@@ -26,10 +26,14 @@ namespace Tizen.Security.TEEC
     /// </summary>
     public class LoginMethod
     {
-        public const uint Public      = 0x00000000; ///< No login data is provided.
-        public const uint User        = 0x00000001; ///< Login data about the user running the Client Application process is provided.
-        public const uint Group       = 0x00000002; ///< Login data about the group running the Client Application process is provided.
-        public const uint Application = 0x00000003; ///< Login data about the running Client Application itself is provided.
+        /// <summary>No login data is provided.</summary>
+        public const uint Public      = 0x00000000;
+        /// <summary>Login data about the user running the Client Application process is provided.</summary>
+        public const uint User        = 0x00000001;
+        /// <summary>Login data about the group running the Client Application process is provided.</summary>
+        public const uint Group       = 0x00000002;
+        /// <summary>Login data about the running Client Application itself is provided.</summary>
+        public const uint Application = 0x00000003;
     }
 
     /// <summary>
@@ -37,9 +41,12 @@ namespace Tizen.Security.TEEC
     /// </summary>
     public enum TEFValueType : UInt32
     {
-        Input  = 0x00000001, ///< The Parameter is a TEFValueType tagged as input.
-        Output = 0x00000002, ///< The Parameter is a TEFValueType tagged as output.
-        InOut  = 0x00000003, ///< The Parameter is a TEFValueType tagged as both as input and output.
+        /// <summary>The Parameter is a ValueType tagged as input.</summary>
+        Input  = 0x00000001,
+        /// <summary>The Parameter is a ValueType tagged as output.</summary>
+        Output = 0x00000002,
+        /// <summary>The Parameter is a ValueType tagged as both as input and output.</summary>
+        InOut  = 0x00000003,
     }
 
     /// <summary>
@@ -48,9 +55,12 @@ namespace Tizen.Security.TEEC
     /// </summary>
     public enum TEFTempMemoryType : UInt32
     {
-        Input  = 0x00000005, ///< The Parameter is a TEFTempMemoryType and is tagged as input
-        Output = 0x00000006, ///< Same as Input, but the Memory Reference is tagged as output
-        InOut  = 0x00000007, ///< A Temporary Memory Reference tagged as both input and output.
+        /// <summary>The Parameter is a TempMemoryType and is tagged as input.</summary>
+        Input  = 0x00000005,
+        /// <summary>Same as Input, but the Memory Reference is tagged as output.</summary>
+        Output = 0x00000006,
+        /// <summary>A Temporary Memory Reference tagged as both input and output.</summary>
+        InOut  = 0x00000007,
     }
 
     /// <summary>
@@ -58,10 +68,14 @@ namespace Tizen.Security.TEEC
     /// </summary>
     public enum TEFRegisteredMemoryType : UInt32
     {
-        Whole         = 0x0000000C, ///< The Parameter is a Registered Memory Reference that refers to the entirety of its parent Shared Memory block.
-        PartialInput  = 0x0000000D, ///< A Registered Memory Reference structure that refers to a partial region of its parent Shared Memory block and is tagged as input.
-        PartialOutput = 0x0000000E, ///< A Registered Memory Reference structure that refers to a partial region of its parent Shared Memory block and is tagged as output.
-        PartialInOut  = 0x0000000F, ///< A Registered Memory Reference structure that refers to a partial region of its parent Shared Memory block and is tagged as both input and output
+        /// <summary>The Parameter is a Registered Memory Reference that refers to the entirety of its parent Shared Memory block.</summary>
+        Whole         = 0x0000000C,
+        /// <summary>A Registered Memory Reference structure that refers to a partial region of its parent Shared Memory block and is tagged as input.</summary>
+        PartialInput  = 0x0000000D,
+        /// <summary>A Registered Memory Reference structure that refers to a partial region of its parent Shared Memory block and is tagged as output.</summary>
+        PartialOutput = 0x0000000E,
+        /// <summary>A Registered Memory Reference structure that refers to a partial region of its parent Shared Memory block and is tagged as both input and output.</summary>
+        PartialInOut  = 0x0000000F,
     }
 
     /// <summary>
@@ -70,8 +84,10 @@ namespace Tizen.Security.TEEC
     [Flags]
     public enum SharedMemoryFlags : UInt32
     {
-        Input  = 0x00000001, ///< A flag indicates Shared Memory can be read
-        Output = 0x00000002, ///< A flag indicates Shared Memory can be written
+        /// <summary>A flag indicates Shared Memory can be read.</summary>
+        Input  = 0x00000001,
+        /// <summary>A flag indicates Shared Memory can be written.</summary>
+        Output = 0x00000002,
     }
 
     /// <summary>
@@ -333,7 +349,7 @@ namespace Tizen.Security.TEEC
         /// There can be up to four Parameter objects given in the {paramlist} array
         /// </summary>
         /// <param name="destination">The UUID of destination TA</param>
-        /// <param name="loginMethod">The authentication algorithm @see LoginMethod</param>
+        /// <param name="loginMethod">The authentication algorithm <see cref="LoginMethod" /></param>
         /// <param name="connectionData">The data to be verified by given login method</param>
         /// <param name="paramlist">The parameters to be passed to TA open-session-callback</param>
         public Session OpenSession(Guid destination, uint loginMethod, byte[] connectionData, Parameter[] paramlist)
@@ -358,7 +374,7 @@ namespace Tizen.Security.TEEC
         /// @see OpenSession(Guid destination, uint connectionMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token)
         /// </summary>
         /// <param name="destination">The UUID of destination TA</param>
-        /// <param name="loginMethod">The authentication algorithm @see LoginMethod</param>
+        /// <param name="loginMethod">The authentication algorithm <see cref="LoginMethod" /></param>
         /// <param name="connectionData">The data to be verified by given login method</param>
         /// <param name="paramlist">The parameters to be passed to TA open-session-callback</param>
         /// <param name="token">The token for task manipulation</param>
@@ -388,7 +404,7 @@ namespace Tizen.Security.TEEC
         /// <summary>
         /// This function registers a block of existing Client Application memory as a block of Shared Memory within
         /// the scope of the specified Context, in accordance with the parameters.
-        /// The input {memaddr} MUST point to the shared memory region to register
+        /// The input <paramref name="memaddr"/> MUST point to the shared memory region to register
         /// </summary>
         /// <param name="memaddr">The address of shared memory</param>
         /// <param name="size">The size of shared memory</param>
