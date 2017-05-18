@@ -37,6 +37,7 @@ namespace Tizen.Uix.VoiceControl
         {
             _resultEvent = evt;
             SafeCommandListHandle handle = new SafeCommandListHandle(cmdList);
+            handle._ownership = false;
             _list = new VoiceCommandList(handle);
             _result = Marshal.PtrToStringAnsi(result);
         }

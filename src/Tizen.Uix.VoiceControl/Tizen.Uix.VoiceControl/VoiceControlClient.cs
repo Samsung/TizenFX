@@ -205,7 +205,6 @@ namespace Tizen.Uix.VoiceControl
         /// <param name="evt">The ResultEvent</param>
         /// <param name="cmdList">Command List</param>
         /// <param name="result">Result</param>
-        public delegate void RecognitionResultDelegate(ResultEvent evt, VoiceCommandList cmdList, string result);
 
         private static event EventHandler<RecognitionResultEventArgs> _recognitionResult;
         private static event EventHandler<StateChangedEventArgs> _stateChanged;
