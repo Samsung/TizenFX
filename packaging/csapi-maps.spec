@@ -1,6 +1,6 @@
 Name:       csapi-maps
 Summary:    Tizen Map Service API for C#
-Version:    1.0.10
+Version:    1.0.11
 Release:    5
 Group:      Development/Libraries
 License:    Apache-2.0 and SAMSUNG
