@@ -43,7 +43,8 @@ namespace Tizen.Multimedia
         DrmFutureUse = PlayerErrorCode.DrmFutureUse,
         DrmNotPermitted = PlayerErrorCode.DrmNotPermitted,
         ResourceLimit = PlayerErrorCode.ResourceLimit,
-        ServiceDisconnected = PlayerErrorCode.ServiceDisconnected
+        ServiceDisconnected = PlayerErrorCode.ServiceDisconnected,
+        SubtitleNotSupported = PlayerErrorCode.NotSupportedSubtitle,
     }
 
     /// <summary>
