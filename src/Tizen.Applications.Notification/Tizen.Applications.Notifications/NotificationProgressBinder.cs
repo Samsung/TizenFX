@@ -23,20 +23,22 @@ namespace Tizen.Applications.Notifications
             double current, max;
 
             Notification.ProgressType progress = notification.Progress;
-            Interop.Notification.SetProgressType(notification.Handle, progress.Category);
 
             if (progress.Category == ProgressCategory.PendingBar)
             {
+                Interop.Notification.SetProgressType(notification.Handle, ProgressCategory.Percent);
                 current = 0;
                 max = 0;
             }
             else if (progress.Category == ProgressCategory.Percent)
             {
+                Interop.Notification.SetProgressType(notification.Handle, progress.Category);
                 current = progress.ProgressCurrent / 100;
                 max = progress.ProgressMax;
             }
             else
             {
+                Interop.Notification.SetProgressType(notification.Handle, progress.Category);
                 current = progress.ProgressCurrent;
                 max = progress.ProgressMax;
             }

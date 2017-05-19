@@ -35,6 +35,9 @@ namespace Tizen.Applications.NotificationEventListener
                 if (category == ProgressCategory.Percent)
                 {
                     current *= 100;
+
+                    if (current == 0 && max == 0)
+                        category = ProgressCategory.PendingBar;
                 }
 
                 eventargs.Progress = new NotificationEventArgs.ProgressArgs();
