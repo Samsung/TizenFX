@@ -10,10 +10,7 @@
     <description>Tizen WebView API for C#</description>
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
     <dependencies>
-      <dependency id="ElmSharp" version="1.1.0" />
+      <dependency id="ElmSharp" version="1.2.0" />
     </dependencies>
   </metadata>
-  <files>
-    <file src="bin/$Configuration$/Tizen.WebView.dll" target="lib/netstandard1.3" />
-  </files>
 </package>

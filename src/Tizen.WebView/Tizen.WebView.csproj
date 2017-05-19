@@ -1,99 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8405E84F-B920-4AAC-9AD5-001B9DEBC9CA}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tizen.WebView</RootNamespace>
-    <AssemblyName>Tizen.WebView</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <DefaultLanguage>en-US</DefaultLanguage>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
-    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
-    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
-    <NoStdLib>true</NoStdLib>
-    <NoWarn>$(NoWarn);1701</NoWarn>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>;1701;1702</NoWarn>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>;1701;1702</NoWarn>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Tizen.WebView.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <GenerateReferenceAssembly>True</GenerateReferenceAssembly>
   </PropertyGroup>
+
   <ItemGroup>
-    <None Include="Tizen.WebView.nuspec" />
-    <None Include="Tizen.WebView.project.json" />
-    <None Include="Tizen.WebView.snk" />
+    <PackageReference Include="ElmSharp" Version="1.2.0-*" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Interop\Interop.ChromiumEwk.Context.cs" />
-    <Compile Include="Interop\Interop.ChromiumEwk.CookieManager.cs" />
-    <Compile Include="Interop\Interop.ChromiumEwk.cs" />
-    <Compile Include="Interop\Interop.ChromiumEwk.Error.cs" />
-    <Compile Include="Interop\Interop.ChromiumEwk.Settings.cs" />
-    <Compile Include="Interop\Interop.ChromiumEwk.View.cs" />
-    <Compile Include="Interop\Interop.Elementary.cs" />
-    <Compile Include="Interop\Interop.Evas.cs" />
-    <Compile Include="Interop\Interop.Libraries.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tizen.WebView\Chromium.cs" />
-    <Compile Include="Tizen.WebView\Context.cs" />
-    <Compile Include="Tizen.WebView\CookieManager.cs" />
-    <Compile Include="Tizen.WebView\JavaScriptMessage.cs" />
-    <Compile Include="Tizen.WebView\Settings.cs" />
-    <Compile Include="Tizen.WebView\SmartCallbackLoadErrorArgs.cs" />
-    <Compile Include="Tizen.WebView\SmartCallbackArgs.cs" />
-    <Compile Include="Tizen.WebView\WebView.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <PropertyGroup>
-    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
-         https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
-    -->
-    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
-         properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
-         to prevent it from outputting a warning (MSB3644).
-    -->
-    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
-    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
-    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
-  </PropertyGroup>
+
 </Project>
