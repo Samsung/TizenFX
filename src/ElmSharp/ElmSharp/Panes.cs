@@ -109,6 +109,54 @@ namespace ElmSharp
             }
         }
 
+        public int LeftMinimumSize
+        {
+            get
+            {
+                return Interop.Elementary.elm_panes_content_left_min_size_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_panes_content_left_min_size_set(RealHandle, value);
+            }
+        }
+
+        public double LeftMinimumRelativeSize
+        {
+            get
+            {
+                return Interop.Elementary.elm_panes_content_left_min_relative_size_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_panes_content_left_min_relative_size_set(RealHandle, value);
+            }
+        }
+
+        public int RightMinimumSize
+        {
+            get
+            {
+                return Interop.Elementary.elm_panes_content_right_min_size_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_panes_content_right_min_size_set(RealHandle, value);
+            }
+        }
+
+        public double RightMinimumRelativeSize
+        {
+            get
+            {
+                return Interop.Elementary.elm_panes_content_right_min_relative_size_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_panes_content_right_min_relative_size_set(RealHandle, value);
+            }
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
