@@ -69,6 +69,7 @@
     <Compile Include="examples\positionUsesAnchorPoint-test.cs" />
     <Compile Include="examples\relative-vector.cs" />
     <Compile Include="examples\scroll-view.cs" />
+    <Compile Include="examples\sibling-order-test.cs" />
     <Compile Include="examples\test1.cs" />
     <Compile Include="examples\user-alphafunction.cs" />
     <Compile Include="examples\view-navi-property.cs" />
