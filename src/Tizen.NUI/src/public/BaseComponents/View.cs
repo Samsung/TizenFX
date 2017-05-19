@@ -1870,14 +1870,14 @@ namespace Tizen.NUI.BaseComponents
             SetVisible(false);
         }
 
-        internal void Raise()
+        public void Raise()
         {
             NDalicPINVOKE.Raise(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void Lower()
+        public void Lower()
         {
             NDalicPINVOKE.Lower(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -2161,7 +2161,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal Vector3 GetNaturalSize()
+        public Vector3 GetNaturalSize()
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetNaturalSize(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
