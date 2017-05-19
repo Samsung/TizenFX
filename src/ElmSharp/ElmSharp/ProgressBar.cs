@@ -175,6 +175,26 @@ namespace ElmSharp
             Interop.Elementary.elm_progressbar_pulse(RealHandle, false);
         }
 
+        /// <summary>
+        /// Gets the part value of the given part of the Progressbar.
+        /// </summary>
+        /// <param name="part">Part of the Progressbar.</param>
+        /// <returns>Returns value range is from 0.0 to 1.0.</returns>
+        public double GetPartValue(string part)
+        {
+            return Interop.Elementary.elm_progressbar_part_value_get(RealHandle, part);
+        }
+
+        /// <summary>
+        /// Sets the part value of the give part of the Progressbar.
+        /// </summary>
+        /// <param name="part">Part of the Progressbar.</param>
+        /// <param name="value">Value range is from 0.0 to 1.0.</param>
+        public void SetPartValue(string part, double value)
+        {
+            Interop.Elementary.elm_progressbar_part_value_set(RealHandle, part, value);
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
