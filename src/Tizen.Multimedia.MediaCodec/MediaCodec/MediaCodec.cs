@@ -25,10 +25,10 @@ namespace Tizen.Multimedia.MediaCodec
     /// </summary>
     public class MediaCodec : IDisposable
     {
-        private static readonly int CodecTypeMask = 0xFFFF;
-        private static readonly int CodecKindMask = 0x3000;
-        private static readonly int CodecKindAudio = 0x1000;
-        private static readonly int CodecKindVideo = 0x2000;
+        private const int CodecTypeMask = 0xFFFF;
+        private const int CodecKindMask = 0x3000;
+//        private const int CodecKindAudio = 0x1000; // Not used
+        private const int CodecKindVideo = 0x2000;
 
         private IntPtr _handle;
 
