@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System;
-using static Interop;
+using Native = Interop.AudioEffect;
 
 namespace Tizen.Multimedia
 {
@@ -31,7 +32,7 @@ namespace Tizen.Multimedia
 
             bool available = false;
 
-            NativePlayer.AudioEffectEqualizerIsAvailable(Player.Handle, out available).
+            Native.EqualizerIsAvailable(Player.Handle, out available).
                 ThrowIfFailed("Failed to initialize the AudioEffect");
 
             IsAvailable = available;
@@ -42,12 +43,12 @@ namespace Tizen.Multimedia
             }
 
             int count = 0;
-            NativePlayer.AudioEffectGetEqualizerBandsCount(Player.Handle, out count).
+            Native.GetEqualizerBandsCount(Player.Handle, out count).
                 ThrowIfFailed("Failed to initialize the AudioEffect");
 
             int min = 0;
             int max = 0;
-            NativePlayer.AudioEffectGetEqualizerLevelRange(Player.Handle, out min, out max).
+            Native.GetEqualizerLevelRange(Player.Handle, out min, out max).
                 ThrowIfFailed("Failed to initialize the AudioEffect");
 
             Count = count;
@@ -98,7 +99,7 @@ namespace Tizen.Multimedia
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             Player.ValidateNotDisposed();
 
-            NativePlayer.AudioEffectEqualizerClear(Player.Handle).
+            Native.EqualizerClear(Player.Handle).
                 ThrowIfFailed("Failed to clear equalizer effect");
             Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
