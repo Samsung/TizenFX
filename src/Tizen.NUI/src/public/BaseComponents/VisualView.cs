@@ -321,5 +321,23 @@ namespace Tizen.NUI.BaseComponents
             return null;
         }
 
+
+        //temporary fix to pass TCT 
+        public Animation VisualAnimate(VisualAnimator visualMap)
+        {
+            foreach (var item in _visualDictionary.ToList())
+            {
+                if (item.Value.Name == visualMap.Target)
+                {
+                    TransitionData _transitionData = new TransitionData(visualMap.OutputVisualMap);
+                    return this.CreateTransition(_transitionData);
+                }
+            }
+            return null;
+        }
+        //temporary fix to pass TCT 
+
+
+
     }
 }
