@@ -93,6 +93,8 @@ namespace Tizen.Security.TEEC
         Input  = 0x00000001,
         /// <summary>A flag indicates Shared Memory can be written.</summary>
         Output = 0x00000002,
+        /// <summary>A flag indicates Shared Memory can be read and written.</summary>
+        InOut = 0x00000003,
     }
 
     /// <summary>

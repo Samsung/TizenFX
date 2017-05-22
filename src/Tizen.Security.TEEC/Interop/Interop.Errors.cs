@@ -25,7 +25,7 @@ internal static partial class Interop
             case (uint)LibteecError.None:
                 return ;
             case (uint)LibteecError.NotImplemented:
-                throw new NotImplementedException(string.Format("[{0}] {1} error=0x{2}",
+                throw new NotSupportedException(string.Format("[{0}] {1} error=0x{2}",
                         LogTag, msg, err.ToString("X")));
             case (uint)LibteecError.CommunicationFailed:
                 throw new Exception(string.Format("[{0}] {1} error=0x{2}",
