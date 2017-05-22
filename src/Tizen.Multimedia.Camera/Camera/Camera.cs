@@ -197,8 +197,8 @@ namespace Tizen.Multimedia
 
     #region DeviceStateChanged callback
         internal static Native.DeviceStateChangedCallback _deviceStateChangedCallback;
-        public static event EventHandler<CameraDeviceStateChangedEventArgs> _deviceStateChanged;
-        public static object _deviceStateChangedEventLock = new object();
+        private static event EventHandler<CameraDeviceStateChangedEventArgs> _deviceStateChanged;
+        private static object _deviceStateChangedEventLock = new object();
 
         /// <summary>
         /// Set the DeviceStateChanged Callback.
