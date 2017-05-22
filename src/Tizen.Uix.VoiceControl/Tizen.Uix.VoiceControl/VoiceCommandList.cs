@@ -49,7 +49,7 @@ namespace Tizen.Uix.VoiceControl
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public VoiceCommandList()
         {
-            SafeCommandListHandle handle = new SafeCommandListHandle();
+            SafeCommandListHandle handle;
             ErrorCode error = VcCmdListCreate(out handle);
             if (error != ErrorCode.None)
             {
