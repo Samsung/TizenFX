@@ -33,6 +33,7 @@ namespace Tizen.Location
         /// </summary>
         public BoundaryType BoundaryType{ get; internal set; }
 
+        internal LocationBoundary() { }
         /// <summary>
         /// The destructor of LocationBoundary class.
         /// </summary>
