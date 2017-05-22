@@ -15,7 +15,4 @@
       <dependency id="Tizen.System.Information" version="1.0.3" />
     </dependencies>
   </metadata>
-  <files>
-    <file src="bin/$Configuration$/Tizen.Messaging.dll" target="lib/netstandard1.3" />
-  </files>
 </package>
