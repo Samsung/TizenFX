@@ -866,7 +866,12 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>A object which inherit View</returns>
         public static T DownCast<T>(View view) where T : View
         {
-            return (T)(ViewRegistry.GetViewFromActor(view));
+            View ret = ViewRegistry.GetViewFromActor(view);
+            if (ret != null)
+            {
+                return (T)ret;
+            }
+            return null;
         }
 
         private View ConvertIdToView(uint id)
