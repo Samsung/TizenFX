@@ -94,7 +94,7 @@ namespace Tizen.Security.TEEC
         /// <summary>A flag indicates Shared Memory can be written.</summary>
         Output = 0x00000002,
         /// <summary>A flag indicates Shared Memory can be read and written.</summary>
-        InOut = 0x00000003,
+        InOut = Input | Output,
     }
 
     /// <summary>
@@ -133,8 +133,10 @@ namespace Tizen.Security.TEEC
         /// <since_tizen> 4 </since_tizen>
         /// <param name="data">Source data buffer to copy data from</param>
         /// <param name="dstOffs">Starting offset in source shared memory</param>
+        /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public void SetData(byte[] data, int dstOffs)
         {
+            if ((shm.flags & (uint)SharedMemoryFlags.Output) == 0) throw new InvalidOperationException("No write access");
             //TODO copy data into shared memory starting at given offset
         }
         /// <summary>
@@ -144,8 +146,10 @@ namespace Tizen.Security.TEEC
         /// <since_tizen> 4 </since_tizen>
         /// <param name="data">Destination data buffer to copy data into</param>
         /// <param name="dstOffs">Starting offset in destination shared memory</param>
+        /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public void GetData(byte[] data, int srcOffs)
         {
+            if ((shm.flags & (uint)SharedMemoryFlags.Input) == 0) throw new InvalidOperationException("No read access");
             //TODO copy data from shared memory starting at given offset
         }
     };
@@ -426,9 +430,6 @@ namespace Tizen.Security.TEEC
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public void Dispose() {
             Interop.Libteec.FinalizeContext(ref context);
             //context.imp = null;
