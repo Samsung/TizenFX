@@ -586,7 +586,6 @@ namespace Tizen.Account.AccountManager
             {
                 if (_handle != IntPtr.Zero)
                 {
-                    Interop.Account.Destroy(_handle);
                     _handle = IntPtr.Zero;
                 }
             }

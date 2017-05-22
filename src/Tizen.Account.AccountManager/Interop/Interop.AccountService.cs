@@ -108,7 +108,6 @@ internal static partial class Interop
 
             protected override bool ReleaseHandle()
             {
-                Account.Destroy(this.handle);
                 this.SetHandle(IntPtr.Zero);
                 return true;
             }
