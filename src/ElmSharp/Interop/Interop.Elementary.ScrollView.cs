@@ -111,9 +111,11 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_scroller_region_show (IntPtr obj, int x, int y, int w, int h);
 
-        // @TODO uses Elm_Scroller_Single_Direction structure:
-        // internal static extern ElmScrollerSingleDirection elm_scroller_single_direction_get(IntPtr obj);
-        // internal static extern void elm_scroller_single_direction_set(IntPtr obj, ElmScrollerSingleDirection single_dir);
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_scroller_single_direction_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_scroller_single_direction_set(IntPtr obj, int singleDirection);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_scroller_step_size_get (IntPtr obj, out int x, out int y);
