@@ -14,7 +14,4 @@
       <dependency id="Tizen" version="1.0.1" />
     </dependencies>
   </metadata>
-  <files>
-    <file src="bin/$Configuration$/Tizen.Network.IoTConnectivity.dll" target="lib/netstandard1.3" />
-  </files>
 </package>
