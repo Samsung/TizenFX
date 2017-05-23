@@ -24,189 +24,221 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
-
-using System;
-using System.Runtime.InteropServices;
-
-
-internal class ResourceImage : Image {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal ResourceImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ResourceImage_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ResourceImage obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  public override void Dispose() {
-    if (!Window.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_ResourceImage(swigCPtr);
-        }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
-    }
-  }
-
-
-
-public class LoadingFinishedEventArgs : EventArgs
+namespace Tizen.NUI
 {
-   private ResourceImage _resourceImage;
 
-   public ResourceImage ResourceImage
-   {
-      get
-      {
-         return _resourceImage;
-      }
-      set
-      {
-         _resourceImage = value;
-      }
-   }
-}
+    using System;
+    using System.Runtime.InteropServices;
 
-  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-  private delegate void LoadingFinishedEventCallbackDelegate(IntPtr ResourceImage);
-  private DaliEventHandler<object,LoadingFinishedEventArgs> _resourceImageLoadingFinishedEventHandler;
-  private LoadingFinishedEventCallbackDelegate _resourceImageLoadingFinishedEventCallbackDelegate;
 
-  public event DaliEventHandler<object,LoadingFinishedEventArgs> LoadingFinished
-  {
-     add
-     {
-        lock(this)
+    internal class ResourceImage : Image
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        internal ResourceImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ResourceImage_SWIGUpcast(cPtr), cMemoryOwn)
         {
-           // Restricted to only one listener
-           if (_resourceImageLoadingFinishedEventHandler == null)
-           {
-              _resourceImageLoadingFinishedEventHandler += value;
-
-              _resourceImageLoadingFinishedEventCallbackDelegate = new LoadingFinishedEventCallbackDelegate(OnLoadingFinished);
-              this.LoadingFinishedSignal().Connect(_resourceImageLoadingFinishedEventCallbackDelegate);
-           }
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-     }
 
-     remove
-     {
-        lock(this)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ResourceImage obj)
         {
-           if (_resourceImageLoadingFinishedEventHandler != null)
-           {
-              this.LoadingFinishedSignal().Disconnect(_resourceImageLoadingFinishedEventCallbackDelegate);
-           }
-
-           _resourceImageLoadingFinishedEventHandler -= value;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-     }
-  }
 
-  // Callback for ResourceImage LoadingFinishedSignal
-  private void OnLoadingFinished(IntPtr data)
-  {
-     LoadingFinishedEventArgs e = new LoadingFinishedEventArgs();
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
 
-     // Populate all members of "e" (LoadingFinishedEventArgs) with real data
-     e.ResourceImage = ResourceImage.GetResourceImageFromPtr(data);
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
 
-     if (_resourceImageLoadingFinishedEventHandler != null)
-     {
-        //here we send all data to user event handlers
-        _resourceImageLoadingFinishedEventHandler(this, e);
-     }
-  }
+            }
 
-
-public static ResourceImage GetResourceImageFromPtr(global::System.IntPtr cPtr) {
-    ResourceImage ret = new ResourceImage(cPtr, false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
 
 
-  public static Uint16Pair GetImageSize(string url) {
-    Uint16Pair ret = new Uint16Pair(NDalicPINVOKE.ResourceImage_GetImageSize(url), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_ResourceImage(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
 
-  public ResourceImage (string url, bool orientationCorrection) : this (NDalicPINVOKE.ResourceImage_New__SWIG_0(url, orientationCorrection), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            base.Dispose(type);
+        }
 
-  }
-  public ResourceImage (string url) : this (NDalicPINVOKE.ResourceImage_New__SWIG_1(url), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-  }
-  public ResourceImage (string url, Uint16Pair size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection) : this (NDalicPINVOKE.ResourceImage_New__SWIG_2(url, Uint16Pair.getCPtr(size), (int)fittingMode, (int)samplingMode, orientationCorrection), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        public class LoadingFinishedEventArgs : EventArgs
+        {
+            private ResourceImage _resourceImage;
 
-  }
-  public ResourceImage (string url, Uint16Pair size, FittingModeType fittingMode, SamplingModeType samplingMode) : this (NDalicPINVOKE.ResourceImage_New__SWIG_3(url, Uint16Pair.getCPtr(size), (int)fittingMode, (int)samplingMode), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            public ResourceImage ResourceImage
+            {
+                get
+                {
+                    return _resourceImage;
+                }
+                set
+                {
+                    _resourceImage = value;
+                }
+            }
+        }
 
-  }
-  public ResourceImage (string url, Uint16Pair size, FittingModeType fittingMode) : this (NDalicPINVOKE.ResourceImage_New__SWIG_4(url, Uint16Pair.getCPtr(size), (int)fittingMode), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void LoadingFinishedEventCallbackDelegate(IntPtr ResourceImage);
+        private DaliEventHandler<object, LoadingFinishedEventArgs> _resourceImageLoadingFinishedEventHandler;
+        private LoadingFinishedEventCallbackDelegate _resourceImageLoadingFinishedEventCallbackDelegate;
 
-  }
-  public ResourceImage (string url, Uint16Pair size) : this (NDalicPINVOKE.ResourceImage_New__SWIG_5(url, Uint16Pair.getCPtr(size)), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        public event DaliEventHandler<object, LoadingFinishedEventArgs> LoadingFinished
+        {
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_resourceImageLoadingFinishedEventHandler == null)
+                    {
+                        _resourceImageLoadingFinishedEventHandler += value;
 
-  }
-  public ResourceImage(ResourceImage handle) : this(NDalicPINVOKE.new_ResourceImage__SWIG_1(ResourceImage.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+                        _resourceImageLoadingFinishedEventCallbackDelegate = new LoadingFinishedEventCallbackDelegate(OnLoadingFinished);
+                        this.LoadingFinishedSignal().Connect(_resourceImageLoadingFinishedEventCallbackDelegate);
+                    }
+                }
+            }
 
-  public ResourceImage Assign(ResourceImage rhs) {
-    ResourceImage ret = new ResourceImage(NDalicPINVOKE.ResourceImage_Assign(swigCPtr, ResourceImage.getCPtr(rhs)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            remove
+            {
+                lock (this)
+                {
+                    if (_resourceImageLoadingFinishedEventHandler != null)
+                    {
+                        this.LoadingFinishedSignal().Disconnect(_resourceImageLoadingFinishedEventCallbackDelegate);
+                    }
 
-  public new static ResourceImage DownCast(BaseHandle handle) {
-    ResourceImage ret = new ResourceImage(NDalicPINVOKE.ResourceImage_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+                    _resourceImageLoadingFinishedEventHandler -= value;
+                }
+            }
+        }
 
-  public LoadingState GetLoadingState() {
-    LoadingState ret = (LoadingState)NDalicPINVOKE.ResourceImage_GetLoadingState(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        // Callback for ResourceImage LoadingFinishedSignal
+        private void OnLoadingFinished(IntPtr data)
+        {
+            LoadingFinishedEventArgs e = new LoadingFinishedEventArgs();
 
-  public string GetUrl() {
-    string ret = NDalicPINVOKE.ResourceImage_GetUrl(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            // Populate all members of "e" (LoadingFinishedEventArgs) with real data
+            e.ResourceImage = ResourceImage.GetResourceImageFromPtr(data);
 
-  public void Reload() {
-    NDalicPINVOKE.ResourceImage_Reload(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+            if (_resourceImageLoadingFinishedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _resourceImageLoadingFinishedEventHandler(this, e);
+            }
+        }
 
-  public ResourceImageSignal LoadingFinishedSignal() {
-    ResourceImageSignal ret = new ResourceImageSignal(NDalicPINVOKE.ResourceImage_LoadingFinishedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
 
-}
+        public static ResourceImage GetResourceImageFromPtr(global::System.IntPtr cPtr)
+        {
+            ResourceImage ret = new ResourceImage(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+
+        public static Uint16Pair GetImageSize(string url)
+        {
+            Uint16Pair ret = new Uint16Pair(NDalicPINVOKE.ResourceImage_GetImageSize(url), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public ResourceImage(string url, bool orientationCorrection) : this(NDalicPINVOKE.ResourceImage_New__SWIG_0(url, orientationCorrection), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        public ResourceImage(string url) : this(NDalicPINVOKE.ResourceImage_New__SWIG_1(url), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        public ResourceImage(string url, Uint16Pair size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection) : this(NDalicPINVOKE.ResourceImage_New__SWIG_2(url, Uint16Pair.getCPtr(size), (int)fittingMode, (int)samplingMode, orientationCorrection), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        public ResourceImage(string url, Uint16Pair size, FittingModeType fittingMode, SamplingModeType samplingMode) : this(NDalicPINVOKE.ResourceImage_New__SWIG_3(url, Uint16Pair.getCPtr(size), (int)fittingMode, (int)samplingMode), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        public ResourceImage(string url, Uint16Pair size, FittingModeType fittingMode) : this(NDalicPINVOKE.ResourceImage_New__SWIG_4(url, Uint16Pair.getCPtr(size), (int)fittingMode), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        public ResourceImage(string url, Uint16Pair size) : this(NDalicPINVOKE.ResourceImage_New__SWIG_5(url, Uint16Pair.getCPtr(size)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        public ResourceImage(ResourceImage handle) : this(NDalicPINVOKE.new_ResourceImage__SWIG_1(ResourceImage.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public ResourceImage Assign(ResourceImage rhs)
+        {
+            ResourceImage ret = new ResourceImage(NDalicPINVOKE.ResourceImage_Assign(swigCPtr, ResourceImage.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public new static ResourceImage DownCast(BaseHandle handle)
+        {
+            ResourceImage ret = new ResourceImage(NDalicPINVOKE.ResourceImage_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public LoadingState GetLoadingState()
+        {
+            LoadingState ret = (LoadingState)NDalicPINVOKE.ResourceImage_GetLoadingState(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public string GetUrl()
+        {
+            string ret = NDalicPINVOKE.ResourceImage_GetUrl(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void Reload()
+        {
+            NDalicPINVOKE.ResourceImage_Reload(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public ResourceImageSignal LoadingFinishedSignal()
+        {
+            ResourceImageSignal ret = new ResourceImageSignal(NDalicPINVOKE.ResourceImage_LoadingFinishedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+    }
 
 }

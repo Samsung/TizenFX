@@ -8,11 +8,13 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum TextureType {
-  TEXTURE_2D,
-  TEXTURE_CUBE
-}
+    internal enum TextureType
+    {
+        TEXTURE_2D,
+        TEXTURE_CUBE
+    }
 
 }

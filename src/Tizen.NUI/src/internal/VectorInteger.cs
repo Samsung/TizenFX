@@ -8,144 +8,211 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-internal class VectorInteger : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
+    internal class VectorInteger : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-  internal VectorInteger(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VectorInteger obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~VectorInteger() {
-    DisposeQueue.Instance.Add(this);
-  }
-
-  public virtual void Dispose() {
-    if (!Window.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_VectorInteger(swigCPtr);
+        internal VectorInteger(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VectorInteger obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
+        //A Flat to check if it is already disposed.
+        protected bool disposed = false;
+
+
+        ~VectorInteger()
+        {
+            if (!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
+        }
+
+        public void Dispose()
+        {
+            //Throw excpetion if Dispose() is called in separate thread.
+            if (!Window.IsInstalled())
+            {
+                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+            }
+
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                System.GC.SuppressFinalize(this);
+            }
+        }
+
+        protected virtual void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_VectorInteger(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            disposed = true;
+        }
+
+
+
+        public VectorInteger() : this(NDalicPINVOKE.new_VectorInteger__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public VectorInteger(VectorInteger vector) : this(NDalicPINVOKE.new_VectorInteger__SWIG_1(VectorInteger.getCPtr(vector)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public VectorInteger Assign(VectorInteger vector)
+        {
+            VectorInteger ret = new VectorInteger(NDalicPINVOKE.VectorInteger_Assign(swigCPtr, VectorInteger.getCPtr(vector)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public SWIGTYPE_p_int Begin()
+        {
+            global::System.IntPtr cPtr = NDalicPINVOKE.VectorInteger_Begin(swigCPtr);
+            SWIGTYPE_p_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_int(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public SWIGTYPE_p_int End()
+        {
+            global::System.IntPtr cPtr = NDalicPINVOKE.VectorInteger_End(swigCPtr);
+            SWIGTYPE_p_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_int(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public SWIGTYPE_p_int ValueOfIndex(uint index)
+        {
+            SWIGTYPE_p_int ret = new SWIGTYPE_p_int(NDalicPINVOKE.VectorInteger_ValueOfIndex__SWIG_0(swigCPtr, index), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void PushBack(int element)
+        {
+            NDalicPINVOKE.VectorInteger_PushBack(swigCPtr, element);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Insert(SWIGTYPE_p_int at, int element)
+        {
+            NDalicPINVOKE.VectorInteger_Insert__SWIG_0(swigCPtr, SWIGTYPE_p_int.getCPtr(at), element);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Insert(SWIGTYPE_p_int at, SWIGTYPE_p_int from, SWIGTYPE_p_int to)
+        {
+            NDalicPINVOKE.VectorInteger_Insert__SWIG_1(swigCPtr, SWIGTYPE_p_int.getCPtr(at), SWIGTYPE_p_int.getCPtr(from), SWIGTYPE_p_int.getCPtr(to));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Reserve(uint count)
+        {
+            NDalicPINVOKE.VectorInteger_Reserve(swigCPtr, count);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Resize(uint count)
+        {
+            NDalicPINVOKE.VectorInteger_Resize__SWIG_0(swigCPtr, count);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Resize(uint count, int item)
+        {
+            NDalicPINVOKE.VectorInteger_Resize__SWIG_1(swigCPtr, count, item);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public SWIGTYPE_p_int Erase(SWIGTYPE_p_int iterator)
+        {
+            global::System.IntPtr cPtr = NDalicPINVOKE.VectorInteger_Erase__SWIG_0(swigCPtr, SWIGTYPE_p_int.getCPtr(iterator));
+            SWIGTYPE_p_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_int(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public SWIGTYPE_p_int Erase(SWIGTYPE_p_int first, SWIGTYPE_p_int last)
+        {
+            global::System.IntPtr cPtr = NDalicPINVOKE.VectorInteger_Erase__SWIG_1(swigCPtr, SWIGTYPE_p_int.getCPtr(first), SWIGTYPE_p_int.getCPtr(last));
+            SWIGTYPE_p_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_int(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void Remove(SWIGTYPE_p_int iterator)
+        {
+            NDalicPINVOKE.VectorInteger_Remove(swigCPtr, SWIGTYPE_p_int.getCPtr(iterator));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Swap(VectorInteger vector)
+        {
+            NDalicPINVOKE.VectorInteger_Swap(swigCPtr, VectorInteger.getCPtr(vector));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Clear()
+        {
+            NDalicPINVOKE.VectorInteger_Clear(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Release()
+        {
+            NDalicPINVOKE.VectorInteger_Release(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public static readonly int BaseType = NDalicPINVOKE.VectorInteger_BaseType_get();
+
     }
-  }
-
-
-  public VectorInteger() : this(NDalicPINVOKE.new_VectorInteger__SWIG_0(), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public VectorInteger(VectorInteger vector) : this(NDalicPINVOKE.new_VectorInteger__SWIG_1(VectorInteger.getCPtr(vector)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public VectorInteger Assign(VectorInteger vector) {
-    VectorInteger ret = new VectorInteger(NDalicPINVOKE.VectorInteger_Assign(swigCPtr, VectorInteger.getCPtr(vector)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_int Begin() {
-    global::System.IntPtr cPtr = NDalicPINVOKE.VectorInteger_Begin(swigCPtr);
-    SWIGTYPE_p_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_int(cPtr, false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_int End() {
-    global::System.IntPtr cPtr = NDalicPINVOKE.VectorInteger_End(swigCPtr);
-    SWIGTYPE_p_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_int(cPtr, false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_int ValueOfIndex(uint index) {
-    SWIGTYPE_p_int ret = new SWIGTYPE_p_int(NDalicPINVOKE.VectorInteger_ValueOfIndex__SWIG_0(swigCPtr, index), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void PushBack(int element) {
-    NDalicPINVOKE.VectorInteger_PushBack(swigCPtr, element);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Insert(SWIGTYPE_p_int at, int element) {
-    NDalicPINVOKE.VectorInteger_Insert__SWIG_0(swigCPtr, SWIGTYPE_p_int.getCPtr(at), element);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Insert(SWIGTYPE_p_int at, SWIGTYPE_p_int from, SWIGTYPE_p_int to) {
-    NDalicPINVOKE.VectorInteger_Insert__SWIG_1(swigCPtr, SWIGTYPE_p_int.getCPtr(at), SWIGTYPE_p_int.getCPtr(from), SWIGTYPE_p_int.getCPtr(to));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Reserve(uint count) {
-    NDalicPINVOKE.VectorInteger_Reserve(swigCPtr, count);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Resize(uint count) {
-    NDalicPINVOKE.VectorInteger_Resize__SWIG_0(swigCPtr, count);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Resize(uint count, int item) {
-    NDalicPINVOKE.VectorInteger_Resize__SWIG_1(swigCPtr, count, item);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SWIGTYPE_p_int Erase(SWIGTYPE_p_int iterator) {
-    global::System.IntPtr cPtr = NDalicPINVOKE.VectorInteger_Erase__SWIG_0(swigCPtr, SWIGTYPE_p_int.getCPtr(iterator));
-    SWIGTYPE_p_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_int(cPtr, false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_int Erase(SWIGTYPE_p_int first, SWIGTYPE_p_int last) {
-    global::System.IntPtr cPtr = NDalicPINVOKE.VectorInteger_Erase__SWIG_1(swigCPtr, SWIGTYPE_p_int.getCPtr(first), SWIGTYPE_p_int.getCPtr(last));
-    SWIGTYPE_p_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_int(cPtr, false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void Remove(SWIGTYPE_p_int iterator) {
-    NDalicPINVOKE.VectorInteger_Remove(swigCPtr, SWIGTYPE_p_int.getCPtr(iterator));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Swap(VectorInteger vector) {
-    NDalicPINVOKE.VectorInteger_Swap(swigCPtr, VectorInteger.getCPtr(vector));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Clear() {
-    NDalicPINVOKE.VectorInteger_Clear(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Release() {
-    NDalicPINVOKE.VectorInteger_Release(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static readonly int BaseType = NDalicPINVOKE.VectorInteger_BaseType_get();
-
-}
 
 }

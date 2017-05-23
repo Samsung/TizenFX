@@ -8,13 +8,15 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum FaceCullingModeType {
-  NONE,
-  FRONT,
-  BACK,
-  FRONT_AND_BACK
-}
+    internal enum FaceCullingModeType
+    {
+        NONE,
+        FRONT,
+        BACK,
+        FRONT_AND_BACK
+    }
 
 }

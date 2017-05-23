@@ -22,19 +22,20 @@
 namespace Tizen.NUI
 {
 
-public static class Object
-{
-  public static PropertyValue GetProperty(global::System.Runtime.InteropServices.HandleRef handle, int index) {
-    PropertyValue ret = new PropertyValue(NDalicPINVOKE.Handle_GetProperty(handle, index), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+    public static class Object
+    {
+        public static PropertyValue GetProperty(global::System.Runtime.InteropServices.HandleRef handle, int index)
+        {
+            PropertyValue ret = new PropertyValue(NDalicPINVOKE.Handle_GetProperty(handle, index), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
-  public static void SetProperty( global::System.Runtime.InteropServices.HandleRef handle, int index, PropertyValue propertyValue)
-  {
-    NDalicPINVOKE.Handle_SetProperty(handle, index, PropertyValue.getCPtr(propertyValue));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-}
+        public static void SetProperty(global::System.Runtime.InteropServices.HandleRef handle, int index, PropertyValue propertyValue)
+        {
+            NDalicPINVOKE.Handle_SetProperty(handle, index, PropertyValue.getCPtr(propertyValue));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+    }
 
 }

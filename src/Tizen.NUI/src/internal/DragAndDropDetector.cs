@@ -8,79 +8,103 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal class DragAndDropDetector : BaseHandle {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    internal class DragAndDropDetector : BaseHandle
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal DragAndDropDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.DragAndDropDetector_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(DragAndDropDetector obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  public override void Dispose() {
-    if (!Window.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_DragAndDropDetector(swigCPtr);
+        internal DragAndDropDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.DragAndDropDetector_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(DragAndDropDetector obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_DragAndDropDetector(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+
+        public DragAndDropDetector() : this(NDalicPINVOKE.new_DragAndDropDetector(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public string GetContent()
+        {
+            string ret = NDalicPINVOKE.DragAndDropDetector_GetContent(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public Vector2 GetCurrentScreenPosition()
+        {
+            Vector2 ret = new Vector2(NDalicPINVOKE.DragAndDropDetector_GetCurrentScreenPosition(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t EnteredSignal()
+        {
+            SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t(NDalicPINVOKE.DragAndDropDetector_EnteredSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ExitedSignal()
+        {
+            SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t(NDalicPINVOKE.DragAndDropDetector_ExitedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t MovedSignal()
+        {
+            SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t(NDalicPINVOKE.DragAndDropDetector_MovedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t DroppedSignal()
+        {
+            SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t(NDalicPINVOKE.DragAndDropDetector_DroppedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
     }
-  }
-
-
-  public DragAndDropDetector() : this(NDalicPINVOKE.new_DragAndDropDetector(), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public string GetContent() {
-    string ret = NDalicPINVOKE.DragAndDropDetector_GetContent(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public Vector2 GetCurrentScreenPosition() {
-    Vector2 ret = new Vector2(NDalicPINVOKE.DragAndDropDetector_GetCurrentScreenPosition(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t EnteredSignal() {
-    SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t(NDalicPINVOKE.DragAndDropDetector_EnteredSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ExitedSignal() {
-    SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t(NDalicPINVOKE.DragAndDropDetector_ExitedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t MovedSignal() {
-    SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t(NDalicPINVOKE.DragAndDropDetector_MovedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t DroppedSignal() {
-    SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t(NDalicPINVOKE.DragAndDropDetector_DroppedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-}
 
 }

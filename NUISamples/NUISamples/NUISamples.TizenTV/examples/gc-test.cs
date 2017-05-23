@@ -3,6 +3,7 @@ using Tizen.Applications;
 using System.Collections.Generic;
 using System;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.UIComponents;
 
 namespace TizenVDUIApplication19
 {
@@ -14,6 +15,7 @@ namespace TizenVDUIApplication19
         private List<View> myViewList;
         private const int numberOfObjects = 500;
         private Random myRandom;
+        private const string resources = "/home/owner/apps_rw/NUISamples.TizenTV/res";
 
         protected override void OnCreate()
         {
@@ -62,7 +64,148 @@ namespace TizenVDUIApplication19
             GC.Collect();
             GC.WaitForPendingFinalizers();
 
-            for (int i = 0; i < numberOfObjects; i++)
+            for (int i = 0; i < 50; i++)
+            {
+                TextLabel v = new TextLabel();
+
+                float intensity = myRandom.Next(0, 255) / 255.0f;
+                v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
+                v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
+                v.AnchorPoint = AnchorPoint.TopLeft;
+                v.Size = new Size(100, 100, 0);
+                v.Text = "label " + i;
+
+                myViewList.Add(v);
+
+                Window.Instance.GetDefaultLayer().Add(v);
+            }
+
+            for (int i = 50; i < 100; i++)
+            {
+                PushButton v = new PushButton();
+
+                float intensity = myRandom.Next(0, 255) / 255.0f;
+                v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
+                v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
+                v.AnchorPoint = AnchorPoint.TopLeft;
+                v.Size = new Size(100, 100, 0);
+                v.LabelText = "button " + i;
+
+                myViewList.Add(v);
+
+                Window.Instance.GetDefaultLayer().Add(v);
+            }
+
+            for (int i = 100; i < 150; i++)
+            {
+                ImageView v = new ImageView();
+
+                float intensity = myRandom.Next(0, 255) / 255.0f;
+                v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
+                v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
+                v.AnchorPoint = AnchorPoint.TopLeft;
+                v.Size = new Size(100, 100, 0);
+                v.ResourceUrl = resources + "/images/gallery-3.jpg";
+
+                myViewList.Add(v);
+
+                Window.Instance.GetDefaultLayer().Add(v);
+            }
+
+            for (int i = 150; i < 200; i++)
+            {
+                TextEditor v = new TextEditor();
+
+                float intensity = myRandom.Next(0, 255) / 255.0f;
+                v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
+                v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
+                v.AnchorPoint = AnchorPoint.TopLeft;
+                v.Size = new Size(100, 100, 0);
+                v.Text = "editor" + i;
+
+                myViewList.Add(v);
+
+                Window.Instance.GetDefaultLayer().Add(v);
+            }
+
+            for (int i = 200; i < 250; i++)
+            {
+                TextField v = new TextField();
+
+                float intensity = myRandom.Next(0, 255) / 255.0f;
+                v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
+                v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
+                v.AnchorPoint = AnchorPoint.TopLeft;
+                v.Size = new Size(100, 100, 0);
+                v.Text = "field " + i;
+
+                myViewList.Add(v);
+
+                Window.Instance.GetDefaultLayer().Add(v);
+            }
+
+            for (int i = 250; i < 300; i++)
+            {
+                CheckBoxButton v = new CheckBoxButton();
+
+                float intensity = myRandom.Next(0, 255) / 255.0f;
+                v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
+                v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
+                v.AnchorPoint = AnchorPoint.TopLeft;
+                v.Size = new Size(100, 100, 0);
+                v.LabelText = "check " + i;
+
+                myViewList.Add(v);
+
+                Window.Instance.GetDefaultLayer().Add(v);
+            }
+
+            for (int i = 300; i < 350; i++)
+            {
+                ScrollBar v = new ScrollBar();
+
+                float intensity = myRandom.Next(0, 255) / 255.0f;
+                v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
+                v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
+                v.AnchorPoint = AnchorPoint.TopLeft;
+                v.Size = new Size(100, 100, 0);
+
+                myViewList.Add(v);
+
+                Window.Instance.GetDefaultLayer().Add(v);
+            }
+
+            for (int i = 350; i < 400; i++)
+            {
+                Slider v = new Slider();
+
+                float intensity = myRandom.Next(0, 255) / 255.0f;
+                v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
+                v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
+                v.AnchorPoint = AnchorPoint.TopLeft;
+                v.Size = new Size(100, 100, 0);
+
+                myViewList.Add(v);
+
+                Window.Instance.GetDefaultLayer().Add(v);
+            }
+
+            for (int i = 400; i < 450; i++)
+            {
+                TableView v = new TableView(1, 1);
+
+                float intensity = myRandom.Next(0, 255) / 255.0f;
+                v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
+                v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
+                v.AnchorPoint = AnchorPoint.TopLeft;
+                v.Size = new Size(100, 100, 0);
+
+                myViewList.Add(v);
+
+                Window.Instance.GetDefaultLayer().Add(v);
+            }
+
+            for (int i = 450; i < numberOfObjects; i++)
             {
                 View v = new View();
 

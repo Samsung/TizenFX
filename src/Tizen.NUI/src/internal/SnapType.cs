@@ -8,11 +8,13 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum SnapType {
-  Snap,
-  Flick
-}
+    internal enum SnapType
+    {
+        Snap,
+        Flick
+    }
 
 }

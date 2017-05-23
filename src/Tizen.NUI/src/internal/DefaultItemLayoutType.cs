@@ -8,13 +8,15 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    public enum DefaultItemLayoutType {
-  DEPTH,
-  GRID,
-  LIST,
-  SPIRAL
-}
+    public enum DefaultItemLayoutType
+    {
+        DEPTH,
+        GRID,
+        LIST,
+        SPIRAL
+    }
 
 }

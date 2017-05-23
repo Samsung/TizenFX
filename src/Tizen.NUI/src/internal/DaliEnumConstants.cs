@@ -17,61 +17,62 @@ using System;
 
 namespace Tizen.NUI
 {
-  namespace Constants
-  {
-    public enum TextureType
+
+    namespace Constants
     {
-      Texture2D     = Tizen.NUI.TextureType.TEXTURE_2D,   ///< One 2D image                            @SINCE_1_1.43
-      TextureCube   = Tizen.NUI.TextureType.TEXTURE_CUBE  ///< Six 2D images arranged in a cube-shape  @SINCE_1_1.43
-    }
+        public enum TextureType
+        {
+            Texture2D = Tizen.NUI.TextureType.TEXTURE_2D,   ///< One 2D image                            @SINCE_1_1.43
+            TextureCube = Tizen.NUI.TextureType.TEXTURE_CUBE  ///< Six 2D images arranged in a cube-shape  @SINCE_1_1.43
+        }
 
-    public enum ViewMode
-    {
-      Mono              = Tizen.NUI.ViewMode.MONO,                          ///< Monoscopic (single camera). This is the default @SINCE_1_0.0
-      StereoHorizontal  = Tizen.NUI.ViewMode.STEREO_HORIZONTAL, ///< Stereoscopic. Frame buffer is split horizontally with the left and right camera views in their respective sides. @SINCE_1_0.0
-      StereoVertical    = Tizen.NUI.ViewMode.STEREO_VERTICAL,     ///< Stereoscopic. Frame buffer is split vertically with the left camera view at the top and the right camera view at the bottom. @SINCE_1_0.0
-      StereoInterlaced  = Tizen.NUI.ViewMode.STEREO_INTERLACED  ///< @DEPRECATED_1_1.19 @brief Stereoscopic. Left/Right camera views are rendered into the framebuffer on alternate frames. @SINCE_1_0.0
-    }
+        public enum ViewMode
+        {
+            Mono = Tizen.NUI.ViewMode.MONO,                          ///< Monoscopic (single camera). This is the default @SINCE_1_0.0
+            StereoHorizontal = Tizen.NUI.ViewMode.STEREO_HORIZONTAL, ///< Stereoscopic. Frame buffer is split horizontally with the left and right camera views in their respective sides. @SINCE_1_0.0
+            StereoVertical = Tizen.NUI.ViewMode.STEREO_VERTICAL,     ///< Stereoscopic. Frame buffer is split vertically with the left camera view at the top and the right camera view at the bottom. @SINCE_1_0.0
+            StereoInterlaced = Tizen.NUI.ViewMode.STEREO_INTERLACED  ///< @DEPRECATED_1_1.19 @brief Stereoscopic. Left/Right camera views are rendered into the framebuffer on alternate frames. @SINCE_1_0.0
+        }
 
-    public struct Direction
-    {
-      public enum Type
-      {
-        LeftToRight = Tizen.NUI.DirectionType.LEFT_TO_RIGHT,
-        RightToLeft = Tizen.NUI.DirectionType.RIGHT_TO_LEFT
-      }
-    }
-
-
+        public struct Direction
+        {
+            public enum Type
+            {
+                LeftToRight = Tizen.NUI.DirectionType.LEFT_TO_RIGHT,
+                RightToLeft = Tizen.NUI.DirectionType.RIGHT_TO_LEFT
+            }
+        }
 
 
-    public struct Tooltip
-    {
-      public struct Property
-      {
-        public static readonly int Content = NDalic.TOOLTIP_CONTENT;
-        public static readonly int Layout = NDalic.TOOLTIP_LAYOUT;
-        public static readonly int WaitTime = NDalic.TOOLTIP_WAIT_TIME;
-        public static readonly int Background = NDalic.TOOLTIP_BACKGROUND;
-        public static readonly int Tail = NDalic.TOOLTIP_TAIL;
-        public static readonly int Position = NDalic.TOOLTIP_POSITION;
-        public static readonly int HoverPointOffset = NDalic.TOOLTIP_HOVER_POINT_OFFSET;
-        public static readonly int MovementThreshold = NDalic.TOOLTIP_MOVEMENT_THRESHOLD;
-        public static readonly int DisappearOnMovement = NDalic.TOOLTIP_DISAPPEAR_ON_MOVEMENT;
-      }
 
-      public struct BackgroundProperty
-      {
-        public static readonly int Visual = NDalic.TOOLTIP_BACKGROUND_VISUAL;
-        public static readonly int Border = NDalic.TOOLTIP_BACKGROUND_BORDER;
-      }
 
-      public struct TailProperty
-      {
-        public static readonly int Visibility = NDalic.TOOLTIP_TAIL_VISIBILITY;
-        public static readonly int AboveVisual = NDalic.TOOLTIP_TAIL_ABOVE_VISUAL;
-        public static readonly int BelowVisual = NDalic.TOOLTIP_TAIL_BELOW_VISUAL;
-      }
-    }
-  } // namespace Constants
+        public struct Tooltip
+        {
+            public struct Property
+            {
+                public static readonly int Content = NDalic.TOOLTIP_CONTENT;
+                public static readonly int Layout = NDalic.TOOLTIP_LAYOUT;
+                public static readonly int WaitTime = NDalic.TOOLTIP_WAIT_TIME;
+                public static readonly int Background = NDalic.TOOLTIP_BACKGROUND;
+                public static readonly int Tail = NDalic.TOOLTIP_TAIL;
+                public static readonly int Position = NDalic.TOOLTIP_POSITION;
+                public static readonly int HoverPointOffset = NDalic.TOOLTIP_HOVER_POINT_OFFSET;
+                public static readonly int MovementThreshold = NDalic.TOOLTIP_MOVEMENT_THRESHOLD;
+                public static readonly int DisappearOnMovement = NDalic.TOOLTIP_DISAPPEAR_ON_MOVEMENT;
+            }
+
+            public struct BackgroundProperty
+            {
+                public static readonly int Visual = NDalic.TOOLTIP_BACKGROUND_VISUAL;
+                public static readonly int Border = NDalic.TOOLTIP_BACKGROUND_BORDER;
+            }
+
+            public struct TailProperty
+            {
+                public static readonly int Visibility = NDalic.TOOLTIP_TAIL_VISIBILITY;
+                public static readonly int AboveVisual = NDalic.TOOLTIP_TAIL_ABOVE_VISUAL;
+                public static readonly int BelowVisual = NDalic.TOOLTIP_TAIL_BELOW_VISUAL;
+            }
+        }
+    } // namespace Constants
 } // namesapce Dali

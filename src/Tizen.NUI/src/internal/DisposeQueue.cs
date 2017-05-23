@@ -42,7 +42,7 @@ namespace Tizen.NUI
 
         public void Add(IDisposable disposable)
         {
-            lock(_listLock)
+            lock (_listLock)
             {
                 _disposables.Add(disposable);
             }
@@ -55,7 +55,7 @@ namespace Tizen.NUI
 
         private void ProcessDisposables()
         {
-            lock(_listLock)
+            lock (_listLock)
             {
                 foreach (IDisposable disposable in _disposables)
                 {

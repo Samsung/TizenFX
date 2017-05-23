@@ -8,17 +8,19 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum StencilOperationType {
-  ZERO,
-  KEEP,
-  REPLACE,
-  INCREMENT,
-  DECREMENT,
-  INVERT,
-  INCREMENT_WRAP,
-  DECREMENT_WRAP
-}
+    internal enum StencilOperationType
+    {
+        ZERO,
+        KEEP,
+        REPLACE,
+        INCREMENT,
+        DECREMENT,
+        INVERT,
+        INCREMENT_WRAP,
+        DECREMENT_WRAP
+    }
 
 }

@@ -40,39 +40,40 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        ~View()
+        //you can override it to clean-up your own resources.
+        protected override void Dispose(DisposeTypes type)
         {
-            DisposeQueue.Instance.Add(this);
-
-            // Unregister this instance of view from the view registry.
-            ViewRegistry.UnregisterView(this);
-        }
-
-        public virtual void Dispose()
-        {
-            if (!Window.IsInstalled())//Stage=>Window
+            if(disposed)
             {
-                DisposeQueue.Instance.Add(this);
                 return;
             }
 
-            lock (this)
+            if(type == DisposeTypes.Explicit)
             {
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_View(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                global::System.GC.SuppressFinalize(this);
-                //base.Dispose();
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
             }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            //Unreference this from if a static instance refer to this. 
+            ViewRegistry.UnregisterView(this);            
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_View(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
-
-
 
         private EventHandler _keyInputFocusGainedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -709,7 +710,7 @@ namespace Tizen.NUI.BaseComponents
                 DisposeQueue.Instance.Add(this);
             }
 
-            public virtual void Dispose()
+            public void Dispose()
             {
                 if (!Window.IsInstalled()) {
                     DisposeQueue.Instance.Add(this);

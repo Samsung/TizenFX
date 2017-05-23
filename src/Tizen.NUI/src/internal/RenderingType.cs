@@ -8,11 +8,13 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum RenderingType {
-  RENDERING_SHARED_ATLAS,
-  RENDERING_VECTOR_BASED
-}
+    internal enum RenderingType
+    {
+        RENDERING_SHARED_ATLAS,
+        RENDERING_VECTOR_BASED
+    }
 
 }

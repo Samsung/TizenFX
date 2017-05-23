@@ -612,16 +612,16 @@ namespace DaliTest
             Tizen.Log.Debug("NUI", "window type is "+type);
             window.Type = WindowType.Notification;
 
-            NotificationLevelType level = window.GetNotificationLevel();
-            window.SetNotificationLevel(NotificationLevelType.High);
+            NotificationLevel level = window.GetNotificationLevel();
+            window.SetNotificationLevel(NotificationLevel.High);
             level = window.GetNotificationLevel();
             Tizen.Log.Debug("NUI", "window notification level is " + level);
 
             window.SetOpaqueState(true);
             Tizen.Log.Debug("NUI", "window is opaque? " + window.IsOpaqueState());
 
-            window.SetScreenMode(ScreenModeType.AlwaysOn);
-            ScreenModeType screenMode = window.GetScreenMode();
+            window.SetScreenMode(ScreenMode.AlwaysOn);
+            ScreenMode screenMode = window.GetScreenMode();
             Tizen.Log.Debug("NUI", "window screen mode is " + screenMode);
 
             bool ret = window.SetBrightness(50);

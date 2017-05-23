@@ -8,10 +8,12 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum Meta {
-  DIMENSION_COUNT = 2
-}
+    internal enum Meta
+    {
+        DIMENSION_COUNT = 2
+    }
 
 }

@@ -1310,4 +1310,10 @@ namespace Tizen.NUI
         /// </summary>
         Dialog
     }
+
+    public enum DisposeTypes
+    {              
+        Explicit,   //Called By User 
+        Implicit,   //Called by DisposeQueue
+    }
 }

@@ -8,12 +8,14 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum LoadingState {
-  ResourceLoading,
-  ResourceLoadingSucceeded,
-  ResourceLoadingFailed
-}
+    internal enum LoadingState
+    {
+        ResourceLoading,
+        ResourceLoadingSucceeded,
+        ResourceLoadingFailed
+    }
 
 }
