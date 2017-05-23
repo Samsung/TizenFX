@@ -27,7 +27,7 @@ namespace Tizen.Applications.NotificationEventListener
 
             Interop.NotificationEventListener.GetStyleList(eventargs.Handle, out styleList);
 
-            if ((styleList & (int)NotificatioDisplayApplist.Active) != 0)
+            if ((styleList & (int)NotificationDisplayApplist.Active) != 0)
             {
                 NotificationEventArgs.ActiveStyleArgs activeStyle = new NotificationEventArgs.ActiveStyleArgs();
                 eventargs.Style.Add(activeStyle.Key, activeStyle);
@@ -52,7 +52,7 @@ namespace Tizen.Applications.NotificationEventListener
                 NotificationReplyActionArgBinder.BindObject(eventargs);
             }
 
-            if ((styleList & (int)NotificatioDisplayApplist.Lock) != 0)
+            if ((styleList & (int)NotificationDisplayApplist.Lock) != 0)
             {
                 NotificationEventArgs.LockStyleArgs lockStyle = new NotificationEventArgs.LockStyleArgs();
                 eventargs.Style.Add(lockStyle.Key, lockStyle);
@@ -64,7 +64,7 @@ namespace Tizen.Applications.NotificationEventListener
                 lockStyle.Thumbnail = path;
             }
 
-            if ((styleList & (int)NotificatioDisplayApplist.Ticker) != 0 || (styleList & (int)NotificatioDisplayApplist.Indicator) != 0)
+            if ((styleList & (int)NotificationDisplayApplist.Ticker) != 0 || (styleList & (int)NotificationDisplayApplist.Indicator) != 0)
             {
                 NotificationEventArgs.IndicatorStyleArgs indicatorStyle = new NotificationEventArgs.IndicatorStyleArgs();
                 eventargs.Style.Add(indicatorStyle.Key, indicatorStyle);

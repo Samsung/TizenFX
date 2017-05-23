@@ -153,7 +153,7 @@ namespace Tizen.Applications.NotificationEventListener
             }
 
             Interop.NotificationEventListener.GetStyleList(eventargs.Handle, out displayList);
-            if ((displayList & (int)NotificatioDisplayApplist.Tray) == 0)
+            if ((displayList & (int)NotificationDisplayApplist.Tray) == 0)
             {
                 eventargs.IsDisplay = false;
             }

@@ -453,7 +453,7 @@ namespace Tizen.Applications.NotificationEventListener
     /// Enumeration for display application list.
     /// </summary>
     [Flags]
-    internal enum NotificatioDisplayApplist
+    internal enum NotificationDisplayApplist
     {
         /// <summary>
         /// Notification Tray(Quickpanel)
