@@ -24,192 +24,219 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
-
-using System;
-using System.Runtime.InteropServices;
-using Tizen.NUI.BaseComponents;
-
-public class LongPressGestureDetector : GestureDetector {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal LongPressGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.LongPressGestureDetector_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(LongPressGestureDetector obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  public override void Dispose() {
-    if (!Window.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_LongPressGestureDetector(swigCPtr);
-        }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
-    }
-  }
-
-
-
-
-public class DetectedEventArgs : EventArgs
+namespace Tizen.NUI
 {
-   private View _view;
-   private LongPressGesture _longPressGesture;
 
-   public View View
+    using System;
+    using System.Runtime.InteropServices;
+    using Tizen.NUI.BaseComponents;
+
+    public class LongPressGestureDetector : GestureDetector
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        internal LongPressGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.LongPressGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(LongPressGestureDetector obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
             {
-      get
-      {
-         return _view;
-      }
-      set
-      {
-         _view = value;
-      }
-   }
+                return;
+            }
 
-   public LongPressGesture LongPressGesture
-   {
-      get
-      {
-         return _longPressGesture;
-      }
-      set
-      {
-         _longPressGesture = value;
-      }
-   }
-}
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
 
-  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-  private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr longPressGesture);
-  private DaliEventHandler<object,DetectedEventArgs> _longPressGestureEventHandler;
-  private DetectedCallbackDelegate _longPressGestureCallbackDelegate;
+            }
 
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
 
-  public event DaliEventHandler<object,DetectedEventArgs> Detected
-  {
-     add
-     {
-        lock(this)
-        {
-           // Restricted to only one listener
-           if (_longPressGestureEventHandler == null)
-           {
-              _longPressGestureEventHandler += value;
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_LongPressGestureDetector(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
 
-              _longPressGestureCallbackDelegate = new DetectedCallbackDelegate(OnLongPressGestureDetected);
-              this.DetectedSignal().Connect(_longPressGestureCallbackDelegate);
-           }
+            base.Dispose(type);
         }
-     }
 
-     remove
-     {
-        lock(this)
+
+        public class DetectedEventArgs : EventArgs
         {
-           if (_longPressGestureEventHandler != null)
-           {
-              this.DetectedSignal().Disconnect(_longPressGestureCallbackDelegate);
-           }
+            private View _view;
+            private LongPressGesture _longPressGesture;
 
-           _longPressGestureEventHandler -= value;
+            public View View
+            {
+                get
+                {
+                    return _view;
+                }
+                set
+                {
+                    _view = value;
+                }
+            }
+
+            public LongPressGesture LongPressGesture
+            {
+                get
+                {
+                    return _longPressGesture;
+                }
+                set
+                {
+                    _longPressGesture = value;
+                }
+            }
         }
-     }
-  }
 
- private void OnLongPressGestureDetected(IntPtr actor, IntPtr longPressGesture)
-  {
-   DetectedEventArgs e = new DetectedEventArgs();
-
-   // Populate all members of "e" (LongPressGestureEventArgs) with real data
-   e.View = View.GetViewFromPtr(actor);
-   e.LongPressGesture = Tizen.NUI.LongPressGesture.GetLongPressGestureFromPtr(longPressGesture);
-
-   if (_longPressGestureEventHandler != null)
-   {
-      //here we send all data to user event handlers
-      _longPressGestureEventHandler(this, e);
-   }
-
-  }
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr longPressGesture);
+        private DaliEventHandler<object, DetectedEventArgs> _longPressGestureEventHandler;
+        private DetectedCallbackDelegate _longPressGestureCallbackDelegate;
 
 
-public static LongPressGestureDetector GetLongPressGestureDetectorFromPtr(global::System.IntPtr cPtr) {
-    LongPressGestureDetector ret = new LongPressGestureDetector(cPtr, false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        public event DaliEventHandler<object, DetectedEventArgs> Detected
+        {
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_longPressGestureEventHandler == null)
+                    {
+                        _longPressGestureEventHandler += value;
+
+                        _longPressGestureCallbackDelegate = new DetectedCallbackDelegate(OnLongPressGestureDetected);
+                        this.DetectedSignal().Connect(_longPressGestureCallbackDelegate);
+                    }
+                }
+            }
+
+            remove
+            {
+                lock (this)
+                {
+                    if (_longPressGestureEventHandler != null)
+                    {
+                        this.DetectedSignal().Disconnect(_longPressGestureCallbackDelegate);
+                    }
+
+                    _longPressGestureEventHandler -= value;
+                }
+            }
+        }
+
+        private void OnLongPressGestureDetected(IntPtr actor, IntPtr longPressGesture)
+        {
+            DetectedEventArgs e = new DetectedEventArgs();
+
+            // Populate all members of "e" (LongPressGestureEventArgs) with real data
+            e.View = View.GetViewFromPtr(actor);
+            e.LongPressGesture = Tizen.NUI.LongPressGesture.GetLongPressGestureFromPtr(longPressGesture);
+
+            if (_longPressGestureEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _longPressGestureEventHandler(this, e);
+            }
+
+        }
 
 
-  public LongPressGestureDetector () : this (NDalicPINVOKE.LongPressGestureDetector_New__SWIG_0(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        public static LongPressGestureDetector GetLongPressGestureDetectorFromPtr(global::System.IntPtr cPtr)
+        {
+            LongPressGestureDetector ret = new LongPressGestureDetector(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
-  }
-  public LongPressGestureDetector (uint touchesRequired) : this (NDalicPINVOKE.LongPressGestureDetector_New__SWIG_1(touchesRequired), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-  }
-  public LongPressGestureDetector (uint minTouches, uint maxTouches) : this (NDalicPINVOKE.LongPressGestureDetector_New__SWIG_2(minTouches, maxTouches), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        public LongPressGestureDetector() : this(NDalicPINVOKE.LongPressGestureDetector_New__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-  }
-  public new static LongPressGestureDetector DownCast(BaseHandle handle) {
-    LongPressGestureDetector ret = new LongPressGestureDetector(NDalicPINVOKE.LongPressGestureDetector_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        }
+        public LongPressGestureDetector(uint touchesRequired) : this(NDalicPINVOKE.LongPressGestureDetector_New__SWIG_1(touchesRequired), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-  public LongPressGestureDetector(LongPressGestureDetector handle) : this(NDalicPINVOKE.new_LongPressGestureDetector__SWIG_1(LongPressGestureDetector.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        }
+        public LongPressGestureDetector(uint minTouches, uint maxTouches) : this(NDalicPINVOKE.LongPressGestureDetector_New__SWIG_2(minTouches, maxTouches), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-  public LongPressGestureDetector Assign(LongPressGestureDetector rhs) {
-    LongPressGestureDetector ret = new LongPressGestureDetector(NDalicPINVOKE.LongPressGestureDetector_Assign(swigCPtr, LongPressGestureDetector.getCPtr(rhs)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        }
+        public new static LongPressGestureDetector DownCast(BaseHandle handle)
+        {
+            LongPressGestureDetector ret = new LongPressGestureDetector(NDalicPINVOKE.LongPressGestureDetector_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
-  public void SetTouchesRequired(uint touches) {
-    NDalicPINVOKE.LongPressGestureDetector_SetTouchesRequired__SWIG_0(swigCPtr, touches);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        public LongPressGestureDetector(LongPressGestureDetector handle) : this(NDalicPINVOKE.new_LongPressGestureDetector__SWIG_1(LongPressGestureDetector.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-  public void SetTouchesRequired(uint minTouches, uint maxTouches) {
-    NDalicPINVOKE.LongPressGestureDetector_SetTouchesRequired__SWIG_1(swigCPtr, minTouches, maxTouches);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        public LongPressGestureDetector Assign(LongPressGestureDetector rhs)
+        {
+            LongPressGestureDetector ret = new LongPressGestureDetector(NDalicPINVOKE.LongPressGestureDetector_Assign(swigCPtr, LongPressGestureDetector.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
-  public uint GetMinimumTouchesRequired() {
-    uint ret = NDalicPINVOKE.LongPressGestureDetector_GetMinimumTouchesRequired(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        public void SetTouchesRequired(uint touches)
+        {
+            NDalicPINVOKE.LongPressGestureDetector_SetTouchesRequired__SWIG_0(swigCPtr, touches);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-  public uint GetMaximumTouchesRequired() {
-    uint ret = NDalicPINVOKE.LongPressGestureDetector_GetMaximumTouchesRequired(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        public void SetTouchesRequired(uint minTouches, uint maxTouches)
+        {
+            NDalicPINVOKE.LongPressGestureDetector_SetTouchesRequired__SWIG_1(swigCPtr, minTouches, maxTouches);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-  internal LongPressGestureDetectedSignal DetectedSignal() {
-    LongPressGestureDetectedSignal ret = new LongPressGestureDetectedSignal(NDalicPINVOKE.LongPressGestureDetector_DetectedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        public uint GetMinimumTouchesRequired()
+        {
+            uint ret = NDalicPINVOKE.LongPressGestureDetector_GetMinimumTouchesRequired(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
-}
+        public uint GetMaximumTouchesRequired()
+        {
+            uint ret = NDalicPINVOKE.LongPressGestureDetector_GetMaximumTouchesRequired(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal LongPressGestureDetectedSignal DetectedSignal()
+        {
+            LongPressGestureDetectedSignal ret = new LongPressGestureDetectedSignal(NDalicPINVOKE.LongPressGestureDetector_DetectedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+    }
 
 }

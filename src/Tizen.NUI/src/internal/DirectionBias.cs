@@ -8,12 +8,14 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    public enum DirectionBias {
-  DirectionBiasLeft = -1,
-  DirectionBiasNone = 0,
-  DirectionBiasRight = 1
-}
+    public enum DirectionBias
+    {
+        DirectionBiasLeft = -1,
+        DirectionBiasNone = 0,
+        DirectionBiasRight = 1
+    }
 
 }

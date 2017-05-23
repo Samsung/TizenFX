@@ -8,17 +8,19 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum FilterModeType {
-  NONE = 0,
-  DEFAULT,
-  NEAREST,
-  LINEAR,
-  NEAREST_MIPMAP_NEAREST,
-  LINEAR_MIPMAP_NEAREST,
-  NEAREST_MIPMAP_LINEAR,
-  LINEAR_MIPMAP_LINEAR
-}
+    internal enum FilterModeType
+    {
+        NONE = 0,
+        DEFAULT,
+        NEAREST,
+        LINEAR,
+        NEAREST_MIPMAP_NEAREST,
+        LINEAR_MIPMAP_NEAREST,
+        NEAREST_MIPMAP_LINEAR,
+        LINEAR_MIPMAP_LINEAR
+    }
 
 }

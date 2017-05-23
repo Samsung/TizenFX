@@ -321,28 +321,36 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        public override void Dispose()
+        protected override void Dispose(DisposeTypes type)
         {
-            if (!Window.IsInstalled())
+            if (disposed)
             {
-                DisposeQueue.Instance.Add(this);
                 return;
             }
 
-            lock (this)
+            if (type == DisposeTypes.Explicit)
             {
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_Application(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                global::System.GC.SuppressFinalize(this);
-                base.Dispose();
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
             }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Application(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
 
         private static void LOG(string str)
@@ -1054,7 +1062,7 @@ namespace Tizen.NUI
 #endif
             this.InitSignal().Connect(initializeCallback);
 #if DEBUG_ON
-            Tizen.Log.Debug("NUI",  "InitSignal connection count = " + InitSignal().GetConnectionCount() );
+            Tizen.Log.Debug("NUI", "InitSignal connection count = " + InitSignal().GetConnectionCount());
 #endif
         }
 
@@ -1079,16 +1087,16 @@ namespace Tizen.NUI
 
                 try
                 {
-                if (NDalicManualPINVOKE.NativeVersionCheck(ref ver1, ref ver2, ref ver3))
-                {
-                    if (ver1 != Version.ver1 || ver2 != Version.ver2 || ver3 != Version.ver3)
+                    if (NDalicManualPINVOKE.NativeVersionCheck(ref ver1, ref ver2, ref ver3))
                     {
+                        if (ver1 != Version.ver1 || ver2 != Version.ver2 || ver3 != Version.ver3)
+                        {
                             //throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
                             Tizen.Log.Fatal("NUI", "Dali native version mismatch error! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease + " but native dali=" + ver1 + "." + ver2 + "." + ver3);
+                        }
                     }
-                }
-                else
-                {
+                    else
+                    {
                         //throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
                         Tizen.Log.Fatal("NUI", "Dali native version mismatch error! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease + " but native dali=" + ver1 + "." + ver2 + "." + ver3);
                     }
@@ -1099,7 +1107,7 @@ namespace Tizen.NUI
                     Tizen.Log.Fatal("NUI", "Dali native version is very old! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease);
                     Tizen.Log.Fatal("NUI", "exception occured! =" + exc.Message);
                 }
-             LOG(" Dali native version="+ver1 + "." + ver2 + "." + ver3 + "	NUI version=" +  Version.nuiVer1 + "." +  Version.nuiVer2 + "." +  Version.nuiVer3 + Version.nuiRelease);
+                LOG(" Dali native version=" + ver1 + "." + ver2 + "." + ver3 + "	NUI version=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease);
             }
             LOG(" NewApplication(string stylesheet, Application.WindowMode windowMode) is called! ");
 

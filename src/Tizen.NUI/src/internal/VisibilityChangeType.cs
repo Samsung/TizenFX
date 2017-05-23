@@ -8,11 +8,13 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-public enum VisibilityChangeType {
-  SELF,
-  PARENT
-}
+    public enum VisibilityChangeType
+    {
+        SELF,
+        PARENT
+    }
 
 }

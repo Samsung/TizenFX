@@ -8,13 +8,15 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    public enum ControlOrientationType {
-  Up,
-  Left,
-  Down,
-  Right
-}
+    public enum ControlOrientationType
+    {
+        Up,
+        Left,
+        Down,
+        Right
+    }
 
 }

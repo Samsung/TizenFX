@@ -8,22 +8,27 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal class SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    internal class SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool(global::System.IntPtr cPtr, bool futureUse) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
+        internal SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool(global::System.IntPtr cPtr, bool futureUse)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
 
-  protected SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool() {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-  }
+        protected SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool()
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        }
 
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-}
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+    }
 
 }

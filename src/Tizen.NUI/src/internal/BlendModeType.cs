@@ -8,12 +8,14 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum BlendModeType {
-  OFF,
-  AUTO,
-  ON
-}
+    internal enum BlendModeType
+    {
+        OFF,
+        AUTO,
+        ON
+    }
 
 }

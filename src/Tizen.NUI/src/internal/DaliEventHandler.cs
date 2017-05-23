@@ -14,13 +14,14 @@
  * limitations under the License.
  *
  */
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
     using System;
     using System.Runtime.InteropServices;
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate R DaliEventHandlerWithReturnType<T,U,R>(T source, U e);
+    public delegate R DaliEventHandlerWithReturnType<T, U, R>(T source, U e);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     internal delegate void EventCallbackDelegateType0();

@@ -8,17 +8,19 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum DepthFunctionType {
-  NEVER,
-  ALWAYS,
-  LESS,
-  GREATER,
-  EQUAL,
-  NOT_EQUAL,
-  LESS_EQUAL,
-  GREATER_EQUAL
-}
+    internal enum DepthFunctionType
+    {
+        NEVER,
+        ALWAYS,
+        LESS,
+        GREATER,
+        EQUAL,
+        NOT_EQUAL,
+        LESS_EQUAL,
+        GREATER_EQUAL
+    }
 
 }

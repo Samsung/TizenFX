@@ -54,29 +54,36 @@ namespace Tizen.NUI
         /// <summary>
         /// To make Window instance be disposed.
         /// </summary>
-        public override void Dispose()
+        protected override void Dispose(DisposeTypes type)
         {
-            if (!Window.IsInstalled())
+            if(disposed)
             {
-                DisposeQueue.Instance.Add(this);
                 return;
             }
 
-            lock (this)
+            if(type == DisposeTypes.Explicit)
             {
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_Window(swigCPtr);
-                        NDalicPINVOKE.delete_Stage(stageCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                global::System.GC.SuppressFinalize(this);
-                base.Dispose();
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
             }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Window(swigCPtr);
+                    NDalicPINVOKE.delete_Stage(stageCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
 
         internal static Window GetCurrent()
@@ -244,6 +251,15 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
+        // public void SetType(WindowType type) {
+            
+        // }
+
+        // public WindowType GetType() {
+        //     WindowType ret = (WindowType)NDalicPINVOKE.GetType(swigCPtr);
+        //     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        //     return ret;
+        // }
 
         /// <summary>
         /// Sets a priority level for the specified notification window.

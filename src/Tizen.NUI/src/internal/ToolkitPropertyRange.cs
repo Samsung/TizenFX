@@ -8,13 +8,15 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum ToolkitPropertyRange {
-  VISUAL_PROPERTY_BASE_START_INDEX = PropertyRanges.CORE_PROPERTY_MAX_INDEX+1,
-  VISUAL_PROPERTY_BASE_END_INDEX = VISUAL_PROPERTY_BASE_START_INDEX+100,
-  VISUAL_PROPERTY_START_INDEX = VISUAL_PROPERTY_BASE_END_INDEX+1,
-  VISUAL_PROPERTY_END_INDEX = VISUAL_PROPERTY_START_INDEX+100000
-}
+    internal enum ToolkitPropertyRange
+    {
+        VISUAL_PROPERTY_BASE_START_INDEX = PropertyRanges.CORE_PROPERTY_MAX_INDEX + 1,
+        VISUAL_PROPERTY_BASE_END_INDEX = VISUAL_PROPERTY_BASE_START_INDEX + 100,
+        VISUAL_PROPERTY_START_INDEX = VISUAL_PROPERTY_BASE_END_INDEX + 1,
+        VISUAL_PROPERTY_END_INDEX = VISUAL_PROPERTY_START_INDEX + 100000
+    }
 
 }

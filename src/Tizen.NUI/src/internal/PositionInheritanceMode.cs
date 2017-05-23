@@ -8,13 +8,15 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum PositionInheritanceMode {
-  INHERIT_PARENT_POSITION,
-  USE_PARENT_POSITION,
-  USE_PARENT_POSITION_PLUS_LOCAL_POSITION,
-  DONT_INHERIT_POSITION
-}
+    internal enum PositionInheritanceMode
+    {
+        INHERIT_PARENT_POSITION,
+        USE_PARENT_POSITION,
+        USE_PARENT_POSITION_PLUS_LOCAL_POSITION,
+        DONT_INHERIT_POSITION
+    }
 
 }
