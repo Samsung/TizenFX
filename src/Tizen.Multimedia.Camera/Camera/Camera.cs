@@ -38,9 +38,6 @@ namespace Tizen.Multimedia
     /// and functions for picture manipulations like sepia negative and many more.
     /// It also notifies you when a significant picture parameter changes e.g. focus.
     /// </summary>
-    /// <privilege>
-    /// http://tizen.org/privilege/camera
-    /// </privilege>
     public class Camera : IDisposable, IDisplayable<CameraError>
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -52,9 +49,6 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="Camera"/> Class.
         /// </summary>
         /// <param name="device">The camera device to access</param>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
         public Camera(CameraDevice device)
         {
             CameraErrorFactory.ThrowIfError(Native.Create((int)device, out _handle),
@@ -526,9 +520,6 @@ namespace Tizen.Multimedia
         /// Changes the camera device.
         /// </summary>
         /// <param name="device">The hardware camera to access.</param>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
         /// <remarks>
         /// If display reuse is set using <see cref="DisplayReuseHint"/>
         /// before stopping the preview, the display will be reused and last frame on the display
@@ -550,9 +541,6 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the device state.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
         /// <param name="device">The device to get state.</param>
         /// <returns>Returns the state of camera device</returns>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
@@ -571,9 +559,6 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the flash state.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
         /// <param name="device">The device to get state.</param>
         /// <returns>Returns the flash state of camera device</returns>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
