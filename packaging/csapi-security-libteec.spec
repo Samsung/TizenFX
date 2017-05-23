@@ -36,7 +36,6 @@ done
 %install
 for ASM in %{Assemblies}; do
 %dotnet_install $ASM
-echo assembly files: %{dotnet_assembly_files}
 done
 
 %files
