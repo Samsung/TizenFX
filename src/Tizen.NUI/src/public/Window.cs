@@ -250,7 +250,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="level">The notification window level.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
-        public bool SetNotificationLevel(NotificationLevelType level) {
+        public bool SetNotificationLevel(NotificationLevel level) {
             bool ret = NDalicPINVOKE.SetNotificationLevel(swigCPtr, (int)level);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -260,8 +260,8 @@ namespace Tizen.NUI
         /// Gets a priority level for the specified notification window.
         /// </summary>
         /// <returns>The notification window level.</returns>
-        public NotificationLevelType GetNotificationLevel() {
-            NotificationLevelType ret = (NotificationLevelType)NDalicPINVOKE.GetNotificationLevel(swigCPtr);
+        public NotificationLevel GetNotificationLevel() {
+            NotificationLevel ret = (NotificationLevel)NDalicPINVOKE.GetNotificationLevel(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -290,7 +290,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="screenMode">The screen mode.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
-        public bool SetScreenMode(ScreenModeType screenMode) {
+        public bool SetScreenMode(ScreenMode screenMode) {
             bool ret = NDalicPINVOKE.SetScreenMode(swigCPtr, (int)screenMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -300,8 +300,8 @@ namespace Tizen.NUI
         /// Gets a screen mode of the window.
         /// </summary>
         /// <returns>The screen mode.</returns>
-        public ScreenModeType GetScreenMode() {
-            ScreenModeType ret = (ScreenModeType)NDalicPINVOKE.GetScreenMode(swigCPtr);
+        public ScreenMode GetScreenMode() {
+            ScreenMode ret = (ScreenMode)NDalicPINVOKE.GetScreenMode(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

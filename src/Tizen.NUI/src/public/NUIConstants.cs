@@ -1248,7 +1248,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An enum of screen mode.
     /// </summary>
-    public enum ScreenModeType {
+    public enum ScreenMode {
         /// <summary>
         /// The mode which turns the screen off after a timeout.
         /// </summary>
@@ -1262,7 +1262,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An enum of notification window's priority level.
     /// </summary>
-    public enum NotificationLevelType {
+    public enum NotificationLevel {
         /// <summary>
         /// No notification level.<br>
         /// Default level.<br>
