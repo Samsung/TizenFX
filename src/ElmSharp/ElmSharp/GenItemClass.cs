@@ -26,7 +26,7 @@ namespace ElmSharp
     /// </summary>
     public class GenItemClass : IDisposable
     {
-        private static Dictionary<IntPtr, EvasObject> s_HandleToEvasObject = new Dictionary<IntPtr, EvasObject>();
+        static Dictionary<IntPtr, EvasObject> s_HandleToEvasObject = new Dictionary<IntPtr, EvasObject>();
 
         /// <summary>
         /// The delegate to define <see cref="GetTextHandler"/>.
@@ -59,9 +59,9 @@ namespace ElmSharp
         /// <returns>Return content that should be shown.</returns>
         public delegate EvasObject GetReusableContentDelegate(object data, string part, EvasObject old);
 
-        private ItemClass _itemClass;
-        private IntPtr _unmanagedPtr = IntPtr.Zero;
-        private string _style;
+        ItemClass _itemClass;
+        IntPtr _unmanagedPtr = IntPtr.Zero;
+        string _style;
 
         /// <summary>
         /// Creates and initializes a new instance of the GenItemClass.
@@ -70,7 +70,8 @@ namespace ElmSharp
         public GenItemClass(string style)
         {
             _style = style;
-            IntPtr unmanaged = Interop.Elementary.elm_genlist_item_class_new();
+            IntPtr unmanaged = CreateItemClass();
+
             _itemClass = Marshal.PtrToStructure<ItemClass>(unmanaged);
             _itemClass.itemStyle = style;
             _itemClass.textCallback = GetTextCallback;
@@ -79,7 +80,7 @@ namespace ElmSharp
             _itemClass.delCallback = DelCallback;
             _itemClass.reusableContentCallback = GetReusableContentCallback;
 
-            Interop.Elementary.elm_genlist_item_class_free(unmanaged);
+            ReleaseItemClass(unmanaged);
         }
 
         ~GenItemClass()
@@ -150,12 +151,23 @@ namespace ElmSharp
             DeleteHandler?.Invoke(data);
         }
 
-        private string GetTextCallback(IntPtr data, IntPtr obj, IntPtr part)
+        protected virtual IntPtr CreateItemClass()
+        {
+            return Interop.Elementary.elm_genlist_item_class_new();
+        }
+
+        protected virtual void ReleaseItemClass(IntPtr unmanagedPtr)
+        {
+            Interop.Elementary.elm_genlist_item_class_free(unmanagedPtr);
+        }
+
+        string GetTextCallback(IntPtr data, IntPtr obj, IntPtr part)
         {
             GenItem item = ItemObject.GetItemById((int)data) as GenItem;
             return GetTextHandler?.Invoke(item?.Data, Marshal.PtrToStringAnsi(part));
         }
-        private IntPtr GetContentCallback(IntPtr data, IntPtr obj, IntPtr part)
+
+        IntPtr GetContentCallback(IntPtr data, IntPtr obj, IntPtr part)
         {
             GenItem item = ItemObject.GetItemById((int)data) as GenItem;
             EvasObject evasObject = GetContentHandler?.Invoke(item?.Data, Marshal.PtrToStringAnsi(part));
@@ -167,13 +179,13 @@ namespace ElmSharp
             return evasObject;
         }
 
-        private void EvasObjectDeleted(object sender, EventArgs e)
+        void EvasObjectDeleted(object sender, EventArgs e)
         {
             IntPtr handle = (sender as EvasObject).Handle;
             s_HandleToEvasObject.Remove(handle);
         }
 
-        private IntPtr GetReusableContentCallback(IntPtr data, IntPtr obj, IntPtr part, IntPtr old)
+        IntPtr GetReusableContentCallback(IntPtr data, IntPtr obj, IntPtr part, IntPtr old)
         {
             IntPtr reusedHandle = IntPtr.Zero;
             GenItem item = ItemObject.GetItemById((int)data) as GenItem;
@@ -183,7 +195,8 @@ namespace ElmSharp
             }
             return reusedHandle;
         }
-        private void DelCallback(IntPtr data, IntPtr obj)
+
+        void DelCallback(IntPtr data, IntPtr obj)
         {
             // We can't use this callback
             // because, when item was deleted
@@ -194,14 +207,36 @@ namespace ElmSharp
         }
     }
 
+    public class GenGridItemClass : GenItemClass
+    {
+        public GenGridItemClass(string style) : base(style)
+        {
+        }
+
+        protected override IntPtr CreateItemClass()
+        {
+            return Interop.Elementary.elm_gengrid_item_class_new();
+        }
+
+        protected override void ReleaseItemClass(IntPtr unmanagedPtr)
+        {
+            Interop.Elementary.elm_gengrid_item_class_free(unmanagedPtr);
+        }
+    }
+
     [StructLayout(LayoutKind.Sequential)]
     internal class ItemClass
     {
         public delegate string GetTextCallback(IntPtr data, IntPtr obj, IntPtr part);
+
         public delegate IntPtr GetContentCallback(IntPtr data, IntPtr obj, IntPtr part);
+
         public delegate int GetStateCallback(IntPtr data, IntPtr obj, IntPtr part);
+
         public delegate void DelCallback(IntPtr data, IntPtr obj);
+
         public delegate int FilterCallback(IntPtr data, IntPtr obj, IntPtr key);
+
         public delegate IntPtr GetReusableContentCallback(IntPtr data, IntPtr obj, IntPtr part, IntPtr old);
 
         public int version;
@@ -217,5 +252,4 @@ namespace ElmSharp
         public FilterCallback filterCallback;
         public GetReusableContentCallback reusableContentCallback;
     }
-
 }

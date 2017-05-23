@@ -40,13 +40,8 @@ internal static partial class Interop
             // Scrolls to the bottom of the viewport
         }
 
-        internal enum Elm_Object_Select_Mode
-        {
-            ELM_OBJECT_SELECT_MODE_DEFAULT,
-            ELM_OBJECT_SELECT_MODE_ALWAYS,
-            ELM_OBJECT_SELECT_MODE_NONE,
-            ELM_OBJECT_SELECT_MODE_DISPLAY_ONLY
-        }
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void Evas_Smart_Cb(IntPtr data, IntPtr obj, IntPtr eventInfo);
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_genlist_add(IntPtr parent);
@@ -163,19 +158,28 @@ internal static partial class Interop
         internal static extern bool elm_genlist_item_expanded_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_genlist_highlight_mode_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_genlist_highlight_mode_set(IntPtr obj, bool highlight);
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_genlist_at_xy_item_get(IntPtr obj, int x, int y, out int posret);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_genlist_item_insert_after(IntPtr obj, IntPtr itc, IntPtr data, IntPtr parent, IntPtr after, int type, Evas_Smart_Cb func, IntPtr func_data);
+        internal static extern IntPtr elm_genlist_item_insert_after(IntPtr obj, IntPtr itc, IntPtr data, IntPtr parent, IntPtr after, int type, Evas.SmartCallback func, IntPtr func_data);
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_genlist_item_item_class_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern double elm_genlist_longpress_timeout_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_genlist_longpress_timeout_set(IntPtr obj, double timeout);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_genlist_multi_select_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_genlist_multi_select_set(IntPtr obj, bool multi);
@@ -186,7 +190,58 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_genlist_selected_item_get(IntPtr obj);
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void Evas_Smart_Cb(IntPtr data, IntPtr obj, IntPtr eventInfo);
+        [DllImport(Libraries.Elementary)]
+        internal static extern string elm_genlist_item_cursor_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_item_cursor_set(IntPtr obj, string cursor);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_item_cursor_unset(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_genlist_item_cursor_engine_only_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_item_cursor_engine_only_set(IntPtr obj, bool engineOnly);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern string elm_genlist_item_cursor_style_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_item_cursor_style_set(IntPtr obj, string style);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_item_demote(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_genlist_item_expanded_depth_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_item_subitems_clear(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_item_tooltip_text_set(IntPtr obj, string text);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_item_tooltip_unset(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern string elm_genlist_item_tooltip_style_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_item_tooltip_style_set(IntPtr obj, string style);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_genlist_item_tooltip_window_mode_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_genlist_item_tooltip_window_mode_set(IntPtr obj, bool disable);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_genlist_item_sorted_insert(IntPtr obj, IntPtr itc, IntPtr data, IntPtr parent, int type, Eina_Compare_Cb compare, Evas.SmartCallback func, IntPtr funcData);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_item_tooltip_content_cb_set(IntPtr obj, Elm_Tooltip_Item_Content_Cb func, IntPtr funcData, Evas.SmartCallback deleteFunc);
     }
 }

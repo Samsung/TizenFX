@@ -208,8 +208,13 @@ namespace ElmSharp
 
         internal static ItemObject GetItemByHandle(IntPtr handle)
         {
-            ItemObject value;
+            ItemObject value = null;
             s_HandleToItemTable.TryGetValue(handle, out value);
+            if (value == null)
+            {
+                int id = (int)Interop.Elementary.elm_object_item_data_get(handle);
+                return GetItemById(id);
+            }
             return value;
         }
 

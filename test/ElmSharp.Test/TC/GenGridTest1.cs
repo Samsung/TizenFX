@@ -66,14 +66,20 @@ namespace ElmSharp.Test
             };
 
             var rnd = new Random();
-            for (int i = 0; i < 102; i++)
+            for (int i = 0; i < 10; i++)
             {
                 int r = rnd.Next(255);
                 int g = rnd.Next(255);
                 int b = rnd.Next(255);
                 Color color = Color.FromRgb(r, g, b);
-                grid.Append(defaultClass, color);
+                var griditem = grid.Append(defaultClass, color);
+                griditem.SetTooltipText("AAAAAA");
+                //griditem.TooltipStyle = "transparent";
+
+                griditem.TooltipContentDelegate = () => { return new Button(window); };
+
             }
+
             grid.Show();
             conformant.SetContent(grid);
         }

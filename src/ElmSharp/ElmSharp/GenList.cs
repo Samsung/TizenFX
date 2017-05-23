@@ -28,10 +28,12 @@ namespace ElmSharp
         /// if Normal is set then this item is normal item.
         /// </summary>
         Normal = 0,
+
         /// <summary>
         /// If tree is set then this item is displayed as an item that is able to expand and have child items.
         /// </summary>
         Tree = (1 << 0),
+
         /// <summary>
         /// if Group is set then this item is group index item that is displayed at the top until the next group comes.
         /// </summary>
@@ -49,16 +51,19 @@ namespace ElmSharp
         /// The genlist will respect the container's geometry and, if any of its items won't fit into its transverse axis, one won't be able to scroll it in that direction.
         /// </summary>
         Compress = 0,
+
         /// <summary>
         /// This is the same as Compress, with the exception that if any of its items won't fit into its transverse axis, one will be able to scroll it in that direction.
         /// </summary>
         Scroll,
+
         /// <summary>
         /// Sets a minimum size hint on the genlist object, so that containers may respect it (and resize itself to fit the child properly).
         /// More specifically, a minimum size hint will be set for its transverse axis, so that the largest item in that direction fits well.
         /// This is naturally bound by the genlist object's maximum size hints, set externally.
         /// </summary>
         Limit,
+
         /// <summary>
         /// Besides setting a minimum size on the transverse axis, just like on Limit, the genlist will set a minimum size on th longitudinal axis, trying to reserve space to all its children to be visible at a time.
         /// This is naturally bound by the genlist object's maximum size hints, set externally.
@@ -94,18 +99,22 @@ namespace ElmSharp
         /// Scrolls to nowhere.
         /// </summary>
         None = 0,
+
         /// <summary>
         /// Scrolls to the nearest viewport.
         /// </summary>
         In = (1 << 0),
+
         /// <summary>
         /// Scrolls to the top of the viewport.
         /// </summary>
         Top = (1 << 1),
+
         /// <summary>
         /// Scrolls to the middle of the viewport.
         /// </summary>
         Middle = (1 << 2),
+
         /// <summary>
         /// Scrolls to the bottom of the viewport.
         /// </summary>
@@ -231,6 +240,104 @@ namespace ElmSharp
             set
             {
                 Interop.Elementary.elm_genlist_reorder_mode_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or set the maximum number of items within an item block.
+        /// </summary>
+        public int BlockCount
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_block_count_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_genlist_block_count_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether the genlist items should be highlighted when an item is selected.
+        /// </summary>
+        public bool IsHighlight
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_highlight_mode_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_genlist_highlight_mode_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets the depth of expanded item.
+        /// </summary>
+        public int ExpandedItemDepth
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_item_expanded_depth_get(RealHandle);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the timeout in seconds for the longpress event.
+        /// </summary>
+        public double LongPressTimeout
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_longpress_timeout_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_genlist_longpress_timeout_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether enable multi-selection in the genlist.
+        /// </summary>
+        public bool IsMultiSelection
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_multi_select_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_genlist_multi_select_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets the selected item in a given genlist widget.
+        /// </summary>
+        public GenListItem SelectedItem
+        {
+            get
+            {
+                IntPtr handle = Interop.Elementary.elm_genlist_selected_item_get(RealHandle);
+                return ItemObject.GetItemByHandle(handle) as GenListItem;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the genlist select mode by <see cref="GenItemSelectionMode"/>.
+        /// </summary>
+        public GenItemSelectionMode SelectionMode
+        {
+            get
+            {
+                return (GenItemSelectionMode)Interop.Elementary.elm_genlist_select_mode_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_genlist_select_mode_set(RealHandle, (int)value);
             }
         }
 
@@ -467,6 +574,67 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Inserts an item with <see cref="GenListItemType"/> after another item under a parent in a genlist widget.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <param name="before">The item after which to place this new one.</param>
+        /// <param name="type">The genlist item type.</param>
+        /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
+        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
+        public GenListItem InsertAfter(GenItemClass itemClass, object data, GenListItem after, GenListItemType type, GenListItem parent)
+        {
+            GenListItem item = new GenListItem(data, itemClass);
+            // insert before the `before` list item
+            IntPtr handle = Interop.Elementary.elm_genlist_item_insert_before(
+                RealHandle, // genlist handle
+                itemClass.UnmanagedPtr, // item class
+                (IntPtr)item.Id, // data
+                parent, // parent
+                after, // after
+                (int)type, // item type
+                null, // select callback
+                (IntPtr)item.Id); // callback data
+            item.Handle = handle;
+            AddInternal(item);
+            return item;
+        }
+
+        /// <summary>
+        /// Insert an item in a genlist widget using a user-defined sort function.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <param name="func">User defined comparison function that defines the sort order based on genlist item and its data.</param>
+        /// <param name="type">The genlist item type.</param>
+        /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
+        /// <returns>Return a genlist item that contains data and itemClass.</returns>
+        public GenListItem InsertSorted(GenItemClass itemClass, object data, Comparison<GenListItem> comparison, GenListItemType type, GenListItem parent)
+        {
+            Interop.Elementary.Eina_Compare_Cb compareCallback = (handle1, handle2) =>
+            {
+                GenListItem item1 = ItemObject.GetItemByHandle(handle1) as GenListItem;
+                GenListItem item2 = ItemObject.GetItemByHandle(handle2) as GenListItem;
+                return comparison(item1, item2);
+            };
+
+            GenListItem item = new GenListItem(data, itemClass);
+
+            IntPtr handle = Interop.Elementary.elm_genlist_item_sorted_insert(
+                RealHandle, // genlist handle
+                itemClass.UnmanagedPtr, // item clas
+                (IntPtr)item.Id, // data
+                parent, // parent
+                (int)type, // item type
+                compareCallback, // compare callback
+                null, //select callback
+                (IntPtr)item.Id); // callback data
+            item.Handle = handle;
+            AddInternal(item);
+            return item;
+        }
+
+        /// <summary>
         /// Shows the given item with position type in a genlist.
         /// When animated is true, genlist will jump to the given item and display it (by animatedly scrolling), if it is not fully visible. This may use animation and may take some time.
         /// When animated is false, genlist will jump to the given item and display it (by jumping to that position), if it is not fully visible.
@@ -507,6 +675,32 @@ namespace ElmSharp
         public void Clear()
         {
             Interop.Elementary.elm_genlist_clear(RealHandle);
+        }
+
+        /// <summary>
+        /// Get the item that is at the x, y canvas coords.
+        /// </summary>
+        /// <param name="x">The input x coordinate</param>
+        /// <param name="y">The input y coordinate</param>
+        /// <param name="pos">The position relative to the item returned here
+        ///  -1, 0, or 1, depending on whether the coordinate is on the upper portion of that item (-1), in the middle section (0), or on the lower part (1).
+        /// </param>
+        /// <returns></returns>
+        public GenListItem GetItemByPosition(int x, int y, out int pos)
+        {
+            IntPtr handle = Interop.Elementary.elm_genlist_at_xy_item_get(RealHandle, x, y, out pos);
+            return ItemObject.GetItemByHandle(handle) as GenListItem;
+        }
+
+        /// <summary>
+        /// Gets the nth item in a given genlist widget, placed at position nth, in its internal items list.
+        /// </summary>
+        /// <param name="index">The number of the item to grab (0 being the first)</param>
+        /// <returns></returns>
+        public GenListItem GetItemByIndex(int index)
+        {
+            IntPtr handle = Interop.Elementary.elm_genlist_nth_item_get(RealHandle, index);
+            return ItemObject.GetItemByHandle(handle) as GenListItem;
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)

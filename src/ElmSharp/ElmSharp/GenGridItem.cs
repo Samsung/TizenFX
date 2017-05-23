@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace ElmSharp
 {
@@ -50,6 +51,127 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Gets or sets the type of mouse pointer/cursor decoration to be shown, when the mouse pointer is over the given gengrid widget item.
+        /// <remarks>
+        /// The cursor's changing area is restricted to the item's area, and not the whole widget's. Note that that item cursors have precedence over widget cursors, so that a mouse over item will always show cursor type.
+        /// </remarks>>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override string Cursor
+        {
+            get
+            {
+                return Interop.Elementary.elm_gengrid_item_cursor_get(Handle);
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    Interop.Elementary.elm_gengrid_item_cursor_set(Handle, value);
+                }
+                else
+                {
+                    Interop.Elementary.elm_gengrid_item_cursor_unset(Handle);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets custom cursor for gengrid item.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override string CursorStyle
+        {
+            get
+            {
+                return Interop.Elementary.elm_gengrid_item_cursor_style_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_gengrid_item_cursor_style_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether to rely on the rendering engine.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool IsUseEngineCursor
+        {
+            get
+            {
+                return Interop.Elementary.elm_gengrid_item_cursor_engine_only_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_gengrid_item_cursor_engine_only_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the style of given gengrid item's tooltip.
+        /// </summary>
+        public override string TooltipStyle
+        {
+            get
+            {
+                return Interop.Elementary.elm_gengrid_item_tooltip_style_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_gengrid_item_tooltip_style_set(Handle, value);
+            }
+        }
+
+        public override GenItemSelectionMode SelectionMode
+        {
+            get
+            {
+                return (GenItemSelectionMode)Interop.Elementary.elm_gengrid_item_select_mode_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_gengrid_item_select_mode_set(Handle, (Interop.Elementary.Elm_Object_Select_Mode)value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets gengrid item's row position, relative to the whole gengrid's grid area.
+        /// </summary>
+        public int Row
+        {
+            get
+            {
+                int row, column;
+                Interop.Elementary.elm_gengrid_item_pos_get(Handle, out row, out column);
+                return row;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets gengrid item's column position, relative to the whole gengrid's grid area.
+        /// </summary>
+        public int Column
+        {
+            get
+            {
+                int row, column;
+                Interop.Elementary.elm_gengrid_item_pos_get(Handle, out row, out column);
+                return column;
+            }
+        }
+
+        public override void SetTooltipText(string tooltip)
+        {
+            Interop.Elementary.elm_gengrid_item_tooltip_text_set(Handle, tooltip);
+        }
+
+        public override void UnsetTooltip()
+        {
+            Interop.Elementary.elm_gengrid_item_tooltip_unset(Handle);
+        }
+
+        /// <summary>
         /// Updates the content of a given gengrid item.
         /// This updates an item by calling all the genitem class functions again to get the content, text, and states.
         /// Use this when the original item data has changed and you want the changes to reflect.
@@ -60,6 +182,14 @@ namespace ElmSharp
         public override void Update()
         {
             Interop.Elementary.elm_gengrid_item_update(Handle);
+        }
+
+        protected override void UpdateTooltipDelegate()
+        {
+            Interop.Elementary.elm_gengrid_item_tooltip_content_cb_set(Handle,
+                TooltipContentDelegate != null ? _tooltipCb : null,
+                IntPtr.Zero,
+                null);
         }
     }
 }

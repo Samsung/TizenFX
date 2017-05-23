@@ -73,9 +73,6 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_index_item_sorted_insert(IntPtr obj, string letter, Evas_Smart_Cb func, IntPtr data, Eina_Compare_Cb cmpFunc, Eina_Compare_Cb cmpDataFunc);
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate int Eina_Compare_Cb(IntPtr data1, IntPtr data2);
-
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_index_delay_change_time_set(IntPtr obj, double time);
 

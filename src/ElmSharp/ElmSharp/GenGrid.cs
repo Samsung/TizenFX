@@ -20,36 +20,6 @@ using System.Collections.Generic;
 namespace ElmSharp
 {
     /// <summary>
-    /// Enumeration for setting selection mode for GenGird.
-    /// </summary>
-    public enum GenGridSelectionMode
-    {
-        /// <summary>
-        /// The item will only call their selection func and callback when first becoming selected.
-        /// Any further clicks will do nothing, unless you set Always select mode.
-        /// </summary>
-        Default = 0,
-
-        /// <summary>
-        /// This means that, even if selected, every click will make the selected callbacks be called.
-        /// </summary>
-        Always,
-
-        /// <summary>
-        /// This will turn off the ability to select the item entirely and they will neither appear selected nor call selected callback functions.
-        /// </summary>
-        None,
-
-        /// <summary>
-        /// This will apply no-finger-size rule with DisplayOnly.
-        /// No-finger-size rule makes an item can be smaller than lower limit.
-        /// Clickable objects should be bigger than human touch point device (your finger) for some touch or small screen devices.
-        /// So it is enabled, the item can be shrink than predefined finger-size value. And the item will be updated.
-        /// </summary>
-        DisplayOnly,
-    }
-
-    /// <summary>
     /// It inherits System.EventArgs.
     /// It contains Item which is <see cref="GenGridItem"/> type.
     /// All events of GenGrid contain GenGridItemEventArgs as a parameter.
@@ -274,11 +244,11 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the gengrid select mode by <see cref="GenGridSelectionMode"/>.
         /// </summary>
-        public GenGridSelectionMode SelectionMode
+        public GenItemSelectionMode SelectionMode
         {
             get
             {
-                return (GenGridSelectionMode)Interop.Elementary.elm_gengrid_select_mode_get(RealHandle);
+                return (GenItemSelectionMode)Interop.Elementary.elm_gengrid_select_mode_get(RealHandle);
             }
             set
             {
@@ -365,6 +335,68 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Gets the first item in a given gengrid widget.
+        /// </summary>
+        public GenGridItem FirstItem
+        {
+            get
+            {
+                IntPtr handle = Interop.Elementary.elm_gengrid_first_item_get(RealHandle);
+                return ItemObject.GetItemByHandle(handle) as GenGridItem;
+            }
+        }
+
+        /// <summary>
+        /// Gets the last item in a given gengrid widget.
+        /// </summary>
+        public GenGridItem LastItem
+        {
+            get
+            {
+                IntPtr handle = Interop.Elementary.elm_gengrid_last_item_get(RealHandle);
+                return ItemObject.GetItemByHandle(handle) as GenGridItem;
+            }
+        }
+
+        /// <summary>
+        /// Gets the items count in a given gengrid widget.
+        /// </summary>
+        public uint ItemCount
+        {
+            get
+            {
+                return Interop.Elementary.elm_gengrid_items_count(RealHandle);
+            }
+        }
+
+        /// <summary>
+        /// Gets the selected item in a given gengrid widget.
+        /// </summary>
+        public GenGridItem SelectedItem
+        {
+            get
+            {
+                IntPtr handle = Interop.Elementary.elm_gengrid_selected_item_get(RealHandle);
+                return ItemObject.GetItemByHandle(handle) as GenGridItem;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether a given gengrid widget is or not able have items reordered.
+        /// </summary>
+        public bool ReorderMode
+        {
+            get
+            {
+                return Interop.Elementary.elm_gengrid_reorder_mode_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_gengrid_reorder_mode_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
         /// Appends a new item to a given gengrid widget. This adds an item to the end of the gengrid.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
@@ -417,6 +449,48 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Inserts an item before another in a gengrid widget. This inserts an item after another in the gengrid.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <param name="after">The item after which to place this new one.</param>
+        /// <returns>Return a gengrid item that contains data and itemClass.</returns>
+        /// <seealso cref="GenItemClass"/>
+        /// <seealso cref="GenGridItem"/>
+        public GenGridItem InsertAfter(GenItemClass itemClass, object data, GenGridItem after)
+        {
+            GenGridItem item = new GenGridItem(data, itemClass);
+            IntPtr handle = Interop.Elementary.elm_gengrid_item_insert_after(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, after, null, (IntPtr)item.Id);
+            item.Handle = handle;
+            AddInternal(item);
+            return item;
+        }
+
+        /// <summary>
+        /// Insert an item in a gengrid widget using a user-defined sort function.
+        /// </summary>
+        /// <param name="itemClass">The itemClass defines how to display the data.</param>
+        /// <param name="data">The item data.</param>
+        /// <param name="func">User defined comparison function that defines the sort order based on gengrid item and its data.</param>
+        /// <returns>Return a gengrid item that contains data and itemClass.</returns>
+        public GenGridItem InsertSorted(GenItemClass itemClass, object data, Comparison<GenGridItem> comparison)
+        {
+            Interop.Elementary.Eina_Compare_Cb compareCallback = (handle1, handle2) =>
+            {
+                GenGridItem item1 = ItemObject.GetItemByHandle(handle1) as GenGridItem;
+                GenGridItem item2 = ItemObject.GetItemByHandle(handle2) as GenGridItem;
+                return comparison(item1, item2);
+            };
+
+            GenGridItem item = new GenGridItem(data, itemClass);
+
+            IntPtr handle = Interop.Elementary.elm_gengrid_item_sorted_insert(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, compareCallback, null, (IntPtr)item.Id);
+            item.Handle = handle;
+            AddInternal(item);
+            return item;
+        }
+
+        /// <summary>
         /// Shows a given item to the visible area of a gengrid.
         /// </summary>
         /// <param name="item">The gengrid item to display.</param>
@@ -462,6 +536,24 @@ namespace ElmSharp
         public void Clear()
         {
             Interop.Elementary.elm_gengrid_clear(RealHandle);
+        }
+
+        /// <summary>
+        /// Get the item that is at the x, y canvas coords.
+        /// </summary>
+        /// <param name="x">The input x coordinate</param>
+        /// <param name="y">The input y coordinate</param>
+        /// <param name="positionX">The position relative to the item returned here.
+        /// -1, 0 or 1, depending if the coordinate is on the left portion of that item(-1), on the middle section(0) or on the right part(1).
+        /// </param>
+        /// <param name="positionY">The position relative to the item returned here
+        /// -1, 0 or 1, depending if the coordinate is on the upper portion of that item (-1), on the middle section (0) or on the lower part (1).
+        /// </param>
+        /// <returns></returns>
+        public GenGridItem GetItemByPosition(int x, int y, out int portionX, out int portionY)
+        {
+            IntPtr handle = Interop.Elementary.elm_gengrid_at_xy_item_get(RealHandle, x, y, out portionX, out portionY);
+            return ItemObject.GetItemByHandle(handle) as GenGridItem;
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)

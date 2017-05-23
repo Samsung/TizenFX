@@ -195,15 +195,6 @@ internal static partial class Interop
         }
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_part_content_set(IntPtr obj, string part, IntPtr content);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_object_item_part_content_unset(IntPtr obj, string part);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_part_content_set(IntPtr obj, IntPtr part, IntPtr content);
-
-        [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_object_part_content_get(IntPtr obj, string part);
 
         [DllImport(Libraries.Elementary)]
@@ -335,78 +326,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_object_part_text_set(IntPtr obj, IntPtr part, string text);
-
-        [DllImport(Libraries.Elementary, EntryPoint = "elm_object_item_part_text_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
-        internal static extern IntPtr _elm_object_item_part_text_get(IntPtr obj, string part);
-
-        internal static string elm_object_item_part_text_get(IntPtr obj, string part)
-        {
-            var text = _elm_object_item_part_text_get(obj, part);
-            return Marshal.PtrToStringAnsi(text);
-        }
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_color_class_color_set(IntPtr it, string part, int r, int g, int b, int a);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_color_class_color_get(IntPtr obj, string part, out int r, out int g, out int b, out int a);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_color_class_del(IntPtr obj, string part);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_part_text_set(IntPtr obj, string part, string label);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_part_text_set(IntPtr obj, IntPtr part, string label);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_object_item_data_get(IntPtr it);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_data_set(IntPtr it, IntPtr data);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_del(IntPtr obj);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_del_cb_set(IntPtr obj, Interop.Evas.SmartCallback callback);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_disabled_set(IntPtr obj, bool disable);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern bool elm_object_item_disabled_get(IntPtr obj);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_object_item_part_content_get(IntPtr obj, string part);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_object_item_access_object_get(IntPtr obj);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_access_unregister(IntPtr obj);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_object_item_track(IntPtr obj);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_untrack(IntPtr obj);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_object_item_widget_get(IntPtr obj);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_signal_emit(IntPtr obj, string emission, string source);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_item_signal_callback_add(IntPtr obj, string emission, string source, Elm_Object_Item_Signal_Cb func, IntPtr data);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_object_item_signal_callback_del(IntPtr obj, string emission, string source, Elm_Object_Item_Signal_Cb func, IntPtr data);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool Elm_Object_Item_Signal_Cb(IntPtr data, IntPtr item, string emission, string source);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_config_focus_highlight_animate_set(bool animate);
@@ -747,6 +666,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_transit_effect_image_animation_add(IntPtr transit, IntPtr images);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int Eina_Compare_Cb(IntPtr data1, IntPtr data2);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void Elm_Transit_Effect_Transition_Cb(IntPtr effect, IntPtr transit, double progress);

@@ -15,34 +15,10 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace ElmSharp
 {
-    /// <summary>
-    /// Enumeration for setting genlist selection mode.
-    /// </summary>
-    public enum GenListSelectionMode
-    {
-        /// <summary>
-        /// Default select mode.
-        /// </summary>
-        Default,
-
-        /// <summary>
-        /// Always select mode.
-        /// </summary>
-        Always,
-
-        /// <summary>
-        /// No select mode.
-        /// </summary>
-        None,
-
-        /// <summary>
-        /// No select mode with no finger size rule.
-        /// </summary>
-        DisplayOnly
-    }
 
     /// <summary>
     /// The type of item's part type.
@@ -83,8 +59,7 @@ namespace ElmSharp
     /// </summary>
     public class GenListItem : GenItem
     {
-        internal GenListItem(object data, GenItemClass itemClass)
-            : base(data, itemClass)
+        internal GenListItem(object data, GenItemClass itemClass) : base(data, itemClass)
         {
         }
 
@@ -145,13 +120,22 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Demote an item to the end of the list.
+        /// </summary>
+        /// <param name="item">The genlistitem object</param>
+        public void DemoteItem()
+        {
+            Interop.Elementary.elm_genlist_item_demote(Handle);
+        }
+
+        /// <summary>
         /// Gets or sets the genlist item's select mode.
         /// </summary>
-        public GenListSelectionMode SelectionMode
+        public override GenItemSelectionMode SelectionMode
         {
             get
             {
-                return (GenListSelectionMode)Interop.Elementary.elm_genlist_item_select_mode_get(Handle);
+                return (GenItemSelectionMode)Interop.Elementary.elm_genlist_item_select_mode_get(Handle);
             }
             set
             {
@@ -192,6 +176,126 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Gets or sets the type of mouse pointer/cursor decoration to be shown, when the mouse pointer is over the given genlist widget item.
+        /// <remarks>
+        /// The cursor's changing area is restricted to the item's area, and not the whole widget's. Note that that item cursors have precedence over widget cursors, so that a mouse over item will always show cursor type.
+        /// </remarks>>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override string Cursor
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_item_cursor_get(Handle);
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    Interop.Elementary.elm_genlist_item_cursor_set(Handle, value);
+                }
+                else
+                {
+                    Interop.Elementary.elm_genlist_item_cursor_unset(Handle);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets custom cursor for genlist item.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override string CursorStyle
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_item_cursor_style_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_genlist_item_cursor_style_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether to rely on the rendering engine.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool IsUseEngineCursor
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_item_cursor_engine_only_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_genlist_item_cursor_engine_only_set(Handle, value);
+            }
+        }
+
+        public override void SetTooltipText(string tooltip)
+        {
+            Interop.Elementary.elm_genlist_item_tooltip_text_set(Handle, tooltip);
+        }
+
+        public override void UnsetTooltip()
+        {
+            Interop.Elementary.elm_genlist_item_tooltip_unset(Handle);
+        }
+
+        /// <summary>
+        /// Gets or sets the style of given genlist item's tooltip.
+        /// </summary>
+        public override string TooltipStyle
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_item_tooltip_style_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_genlist_item_tooltip_style_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether disable size restrictions on an object's tooltip.
+        /// </summary>
+        public bool IsTooltipWindowMode
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_item_tooltip_window_mode_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_genlist_item_tooltip_window_mode_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets the index of the item. It is only valid once displayed.
+        /// </summary>
+        public int Index
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_item_index_get(Handle);
+            }
+        }
+
+        /// <summary>
+        /// Remove all sub-items (children) of the given item.
+        /// </summary>
+        /// <remark>
+        /// This removes all items that are children (and their descendants) of the given item it.
+        /// </remark>
+        public void ClearSubitems()
+        {
+            Interop.Elementary.elm_genlist_item_subitems_clear(Handle);
+        }
+
+        /// <summary>
         /// Update the item class of an item.
         /// This sets another class of the item, changing the way that it is displayed. After changing the item class, <see cref="Update"/> is called on the item.
         /// </summary>
@@ -203,5 +307,14 @@ namespace ElmSharp
             ItemClass = itemClass;
             Interop.Elementary.elm_genlist_item_item_class_update((IntPtr)Handle, itemClass.UnmanagedPtr);
         }
+
+        protected override void UpdateTooltipDelegate()
+        {
+            Interop.Elementary.elm_genlist_item_tooltip_content_cb_set(Handle,
+                TooltipContentDelegate != null ? _tooltipCb : null,
+                IntPtr.Zero,
+                null);
+        }
+
     }
 }

@@ -58,6 +58,9 @@ internal static partial class Interop
         internal static extern IntPtr elm_gengrid_item_insert_before(IntPtr obj, IntPtr itc, IntPtr data, IntPtr before, Evas.SmartCallback func, IntPtr func_data);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_gengrid_item_insert_after(IntPtr obj, IntPtr itc, IntPtr data, IntPtr after, Evas.SmartCallback func, IntPtr func_data);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_gengrid_item_class_new();
 
         [DllImport(Libraries.Elementary)]
@@ -106,10 +109,10 @@ internal static partial class Interop
         internal static extern void elm_gengrid_item_bring_in(IntPtr obj, int type);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_gengrid_item_select_mode_set(IntPtr it, int mode);
+        internal static extern void elm_gengrid_item_select_mode_set(IntPtr it, Elm_Object_Select_Mode mode);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern int elm_gengrid_item_select_mode_get(IntPtr it);
+        internal static extern Elm_Object_Select_Mode elm_gengrid_item_select_mode_get(IntPtr it);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_gengrid_select_mode_set(IntPtr it, int mode);
@@ -137,5 +140,53 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_gengrid_last_item_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern string elm_gengrid_item_cursor_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_gengrid_item_cursor_set(IntPtr obj, string cursor);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_gengrid_item_cursor_unset(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern string elm_gengrid_item_cursor_style_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_gengrid_item_cursor_style_set(IntPtr obj, string cursor);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_gengrid_item_cursor_engine_only_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_gengrid_item_cursor_engine_only_set(IntPtr obj, bool engine);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_gengrid_item_tooltip_text_set(IntPtr obj, string text);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_gengrid_item_tooltip_unset(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern string elm_gengrid_item_tooltip_style_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_gengrid_item_tooltip_style_set(IntPtr obj, string style);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_gengrid_reorder_mode_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_gengrid_reorder_mode_set(IntPtr obj, bool mode);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_gengrid_item_pos_get(IntPtr obj, out int row, out int column);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_gengrid_item_sorted_insert(IntPtr obj, IntPtr itc, IntPtr data, Eina_Compare_Cb compare, Evas.SmartCallback func, IntPtr funcData);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_gengrid_item_tooltip_content_cb_set(IntPtr obj, Elm_Tooltip_Item_Content_Cb func, IntPtr funcData, Evas.SmartCallback deleteFunc);
     }
 }
