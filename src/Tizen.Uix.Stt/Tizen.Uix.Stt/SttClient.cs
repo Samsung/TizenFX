@@ -284,9 +284,9 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Constructor to create a STT instance.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. Out Of Memory
@@ -537,9 +537,9 @@ namespace Tizen.Uix.Stt
         /// The language is specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code.
         /// For example, "ko_KR" for Korean, "en_US" for American English.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <returns>
         /// Default Lanaguage string value.
         /// </returns>
@@ -565,9 +565,9 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Gets the microphone volume during recording.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <precondition>
         /// The State must be Recording.
         /// </precondition>
@@ -595,9 +595,9 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Gets the current STT state.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <returns>
         /// Current STT State value.
         /// </returns>
@@ -845,9 +845,9 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Connects to the STT service asynchronously.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported
@@ -877,9 +877,9 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Disconnects from the STT service.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported
@@ -910,9 +910,9 @@ namespace Tizen.Uix.Stt
         /// The language is specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code.
         /// For example, "ko_KR" for Korean, "en_US" for American English.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <returns>
         /// list of strings of supported languages.
         /// </returns>
@@ -949,9 +949,9 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Checks whether the recognition type is supported.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <param name="type">
         /// RecognitionType value.
         /// </param>
@@ -1023,9 +1023,9 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Sets the silence detection.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <param name="type">
         /// SilenceDetection value.
         /// </param>
@@ -1056,9 +1056,9 @@ namespace Tizen.Uix.Stt
         /// Sets the sound to start recording.
         /// Sound file type should be wav type.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <param name="filePath">
         /// File Path for the sound.
         /// </param>
@@ -1091,9 +1091,9 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Unsets the sound to start recording.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported.
@@ -1121,9 +1121,9 @@ namespace Tizen.Uix.Stt
         /// Sets the sound to stop recording.
         /// Sound file type should be wav type.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <param name="filePath">
         /// File Path for the sound.
         /// </param>
@@ -1156,9 +1156,9 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Unsets the sound to stop recording.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported.
@@ -1187,9 +1187,9 @@ namespace Tizen.Uix.Stt
         /// This function starts recording in the STT service and sending recording data to engine.
         /// This work continues until Stop, Cancel or silence detected by engine
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <param name="language">
         /// The language selected
         /// </param>
@@ -1267,9 +1267,9 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Finishes the recording and starts recognition processing in engine asynchronously.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported.
@@ -1307,9 +1307,9 @@ namespace Tizen.Uix.Stt
         /// This function cancels recording and engine cancels recognition processing.
         /// After successful cancel, StateChanged event is invoked otherwise if error is occurred, ErrorOccured event is invoked.
         /// </summary>
-        /// <priviledge>
+        /// <privilege>
         /// http://tizen.org/privilege/recorder
-        /// </priviledge>
+        /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported.
