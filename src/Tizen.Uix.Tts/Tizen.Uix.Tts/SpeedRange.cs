@@ -18,7 +18,7 @@
 namespace Tizen.Uix.Tts
 {
     /// <summary>
-    /// This class holds the Spped Range Values
+    /// This class holds the Speed Range Values
     /// </summary>
     public class SpeedRange
     {
@@ -30,7 +30,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// The Max Spped Range Value
+        /// The Max Speed Range Value
         /// </summary>
         public int Max
         {
@@ -39,7 +39,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// The Min Spped Range Value
+        /// The Min Speed Range Value
         /// </summary>
         public int Min
         {
@@ -48,7 +48,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// The Normal Spped Range Value
+        /// The Normal Speed Range Value
         /// </summary>
         public int Normal
         {
