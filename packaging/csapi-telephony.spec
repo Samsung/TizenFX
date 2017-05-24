@@ -1,6 +1,6 @@
 Name:       csapi-telephony
 Summary:    Tizen Telephony API for C#
-Version:    1.0.9
+Version:    1.0.10
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
