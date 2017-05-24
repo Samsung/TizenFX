@@ -83,7 +83,15 @@ namespace Tizen.Applications.Notifications
                 style.GetRemoveTime(out hidetime, out deletetime);
 
                 Interop.Notification.SetHideTime(notification.Handle, hidetime);
-                Interop.Notification.SetDeleteTime(notification.Handle, deletetime);
+                try
+                {
+                    Interop.Notification.SetDeleteTime(notification.Handle, deletetime);
+                }
+                catch (TypeLoadException)
+                {
+                    // To support in API version 3.0
+                    style.SetRemoveTime(hidetime, 60);
+                }
             }
 
             ret = Interop.Notification.SetImage(notification.Handle, NotificationImage.Background, style?.BackgroundImage);
@@ -151,7 +159,16 @@ namespace Tizen.Applications.Notifications
                 {
                     int hidetime, deletetime;
                     Interop.Notification.GetHideTime(notification.Handle, out hidetime);
-                    Interop.Notification.GetDeleteTime(notification.Handle, out deletetime);
+                    try
+                    {
+                        Interop.Notification.GetDeleteTime(notification.Handle, out deletetime);
+                    }
+                    catch (TypeLoadException)
+                    {
+                        // To support in API version 3.0
+                        deletetime = 60;
+                    }
+
                     active.SetRemoveTime(hidetime, deletetime);
                 }
 

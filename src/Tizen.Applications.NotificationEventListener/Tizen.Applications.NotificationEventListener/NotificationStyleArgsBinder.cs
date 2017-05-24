@@ -16,6 +16,8 @@
 
 namespace Tizen.Applications.NotificationEventListener
 {
+    using System;
+
     internal static class NotificationStyleArgBinder
     {
         internal static void BindObject(NotificationEventArgs eventargs)
@@ -46,7 +48,15 @@ namespace Tizen.Applications.NotificationEventListener
                 Interop.NotificationEventListener.GetHideTimeout(eventargs.Handle, out timeout);
                 activeStyle.HideTimeout = timeout;
 
-                Interop.NotificationEventListener.GetDeleteTimeout(eventargs.Handle, out timeout);
+                try
+                {
+                    Interop.NotificationEventListener.GetDeleteTimeout(eventargs.Handle, out timeout);
+                }
+                catch (TypeLoadException)
+                {
+                    //To support in API version 3.0
+                    timeout = 60;
+                }
                 activeStyle.DeleteTimeout = timeout;
 
                 NotificationReplyActionArgBinder.BindObject(eventargs);
