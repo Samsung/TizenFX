@@ -23,6 +23,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class represents response from a resource.
     /// It provides APIs to manage response.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class Response : IDisposable
     {
         private bool _disposed = false;
@@ -30,6 +31,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Constructor of Response
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <code>
         /// Response response = new Response();
         /// </code>
@@ -46,21 +48,28 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Gets or sets the result from/into the reponse
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The result from/into the reponse.</value>
         public ResponseCode Result { get; set; }
 
         /// <summary>
         /// Gets or sets the representation from/into the reponse
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The representation from/into the reponse.</value>
         public Representation Representation { get; set; }
 
         /// <summary>
         /// Gets or sets the options from/into the reponse
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The options from/into the reponse.</value>
         public ResourceOptions Options { get; set; }
 
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -122,6 +131,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {

@@ -20,21 +20,25 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// Enumeration for type of observation
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public enum ObserveType
     {
         /// <summary>
         /// No observe action
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         NoType = 0,
 
         /// <summary>
         /// Indicates action of registering observation
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         Register = 1,
 
         /// <summary>
         /// Indicates action of unregistering observation
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         Deregister = 2,
     }
 }

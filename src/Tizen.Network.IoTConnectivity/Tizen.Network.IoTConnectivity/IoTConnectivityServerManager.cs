@@ -22,15 +22,16 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// IoT connectivity server manager consists of server side APIs.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public static class IoTConnectivityServerManager
     {
-
         private static int s_requestId = 1;
         private static Dictionary<IntPtr, Interop.IoTConnectivity.Server.Resource.RequestHandlerCallback> s_RequestHandlerCallbackMap = new Dictionary<IntPtr, Interop.IoTConnectivity.Server.Resource.RequestHandlerCallback>();
 
         /// <summary>
         /// Initializes IoTCon. Call this API to start IoTCon.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// @a filePath point to a file for handling secure virtual resources.
         /// The file that is CBOR(Concise Binary Object Representation)-format must already exist
@@ -40,7 +41,9 @@ namespace Tizen.Network.IoTConnectivity
         /// http://tizen.org/privilege/network.get \n
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="filePath">The file path to point to storage for handling secure virtual resources.</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <post>
         /// You must call Deinitialize() if IoTCon API is no longer needed.
         /// </post>
@@ -65,9 +68,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Deinitializes IoTCon.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// This API must be called if IoTCon API is no longer needed.
         /// </remarks>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
@@ -87,10 +92,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Registers a resource in IoTCon server
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="resource">The resource to register</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
@@ -156,10 +164,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Unregisters a resource in IoTCon server
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="resource">The resource to unregister</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
@@ -195,6 +206,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Starts presence of a server
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// Use this API to send server's announcements to clients.
         /// Server can call this API when online for the first time or come back from offline to online.\n
@@ -204,7 +216,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="time">The interval of announcing presence in seconds.</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
@@ -235,6 +249,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Stops presence of a server.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// Use this API to stop sending server's announcements to clients.
         /// Server can call this API when terminating, entering to offline or out of network.
@@ -242,6 +257,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
@@ -268,11 +285,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Sets the device name
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// This API sets the name of the local device (the device calling the API).\n
         /// If the device name is set, clients can get the name using <see cref="IoTConnectivityClientManager.StartFindingDeviceInformation()"/>.
         /// </remarks>
         /// <param name="deviceName">The device name</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="IoTConnectivityClientManager.DeviceInformationFound"/>
         /// <seealso cref="IoTConnectivityClientManager.StartFindingDeviceInformation()"/>
         /// <seealso cref="DeviceInformationFoundEventArgs"/>

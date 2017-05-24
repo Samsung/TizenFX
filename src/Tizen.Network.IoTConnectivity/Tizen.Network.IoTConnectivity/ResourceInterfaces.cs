@@ -26,31 +26,37 @@ namespace Tizen.Network.IoTConnectivity
     /// This class contains resource interfaces and provides APIs to manage, add, remove those interfaces.
     /// A resource interface indicates a class or category of resources.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class ResourceInterfaces : IEnumerable<string>, IDisposable
     {
         /// <summary>
         /// Default Interface
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public const string DefaultInterface = "oic.if.baseline";
 
         /// <summary>
         /// List Links Interface which is used to list the references to other resources contained in a resource.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public const string LinkInterface = "oic.if.ll";
 
         /// <summary>
         /// Batch Interface which is used to manipulate (GET, PUT, POST, DELETE) on other resource contained in a resource.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public const string BatchInterface = "oic.if.b";
 
         /// <summary>
         /// Group Interface which is used to manipulate (GET, PUT, POST) a group of remote resources.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public const string GroupInterface = "oic.mi.grp";
 
         /// <summary>
         /// Read-Only Interface which is used to limit the methods that can be applied to a resource to GET only.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public const string ReadonlyInterface = "oic.if.r";
 
         private readonly IntPtr _resourceInterfacesHandle = IntPtr.Zero;
@@ -61,6 +67,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Constructor of ResourceInterfaces
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Add()"/>
         /// <seealso cref="Remove()"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
@@ -81,7 +89,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Constructor of ResourceInterfaces using list of interfaces
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="ifaces">List of resource interfaces</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
@@ -145,6 +155,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Indicates count of interfaces in the list
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Count of interfaces in the list.</value>
         /// <code>
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>()
         ///     { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
@@ -161,10 +173,12 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Adds a resource interface into the list.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// @a item could be a value such as <see cref="DefaultInterface"/>
         /// </remarks>
         /// <param name="item">The string data to insert into the resource interfaces</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Remove()"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
@@ -195,7 +209,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Removes a resource interface from the list
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="item">The string data to delete from the resource ifaces</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Add()"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
@@ -223,6 +239,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Return enumerator for the list of interfaces
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>The enumerator</returns>
         /// <code>
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>()
@@ -240,6 +257,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Return enumerator for the list of interfaces
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>The enumerator</returns>
         /// <code>
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>()
@@ -257,6 +275,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public void Dispose()
         {
             Dispose(true);
@@ -272,7 +292,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

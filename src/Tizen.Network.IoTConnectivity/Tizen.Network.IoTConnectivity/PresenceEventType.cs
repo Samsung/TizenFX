@@ -20,19 +20,23 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// Enumeration for operation of presence response.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public enum PresenceEventType
     {
         /// <summary>
         /// Indicates for resource creation operation of server
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         ResourceCreated = 0,
         /// <summary>
         /// Indicates for resource updation operation of server
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         ResourceUpdated,
         /// <summary>
         /// Indicates for resource destruction operation of server
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         ResourceDestroyed
     }
 }

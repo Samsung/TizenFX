@@ -23,11 +23,13 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// IoT connectivity client manager consists of client side APIs.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public static class IoTConnectivityClientManager
     {
         /// <summary>
         /// The IP Address for multicast
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public const string MulticastAddress = null;
 
         private static int s_presenceListenerId = 1;
@@ -42,40 +44,46 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// PresenceReceived event. This event is occurred when server starts sending presence of a resource.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public static event EventHandler<PresenceReceivedEventArgs> PresenceReceived;
 
         /// <summary>
         /// ResourceFound event. This event is occurred when a resource is found from the remote server
         /// after sending request using API StartFindingResource().
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public static event EventHandler<ResourceFoundEventArgs> ResourceFound;
 
         /// <summary>
         /// PlatformInformationFound event. This event is occurred when platform information is found
         /// after sending request using API StartFindingPlatformInformation().
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public static event EventHandler<PlatformInformationFoundEventArgs> PlatformInformationFound;
 
         /// <summary>
         /// DeviceInformationFound event. This event is occurred when device information is found
         /// after sending request using API StartFindingDeviceInformation().
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public static event EventHandler<DeviceInformationFoundEventArgs> DeviceInformationFound;
 
         /// <summary>
         /// FindingError event. This event is occurred when an error is found.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public static event EventHandler<FindingErrorOccurredEventArgs> FindingErrorOccurred;
 
         /// <summary>
         /// Timeout in seconds
         /// </summary>
-        /// <remarks>
+        /// <since_tizen>3</since_tizen>
+        /// <value>
         /// Value to be set must be in range from 1 to 3600. Default timeout interval value is 30.\n
         /// Sets/gets the timeout of StartFindingResource(), StartFindingDeviceInformation(), StartFindingPlatformInformation(),
         /// RemoteResource.GetAsync(), RemoteResource.PutAsync(), RemoteResource.PostAsync() and RemoteResource.DeleteAsync() APIs.\n
         /// Setter can throw exception.
-        /// </remarks>
+        /// </value>
         /// <pre>
         /// Initialize() should be called to initialize
         /// </pre>
@@ -110,13 +118,14 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Polling interval of IoTConnectivity
         /// </summary>
-        /// <remarks>
+        /// <since_tizen>3</since_tizen>
+        /// <value>
         /// Sets/Gets the polling inerval(milliseconds) of IoTCon. Default value is 100 milliseconds.
         /// Value to be set must be in range from 1 to 999. The closer to 0, the faster it operates.
         /// Setter is invoked immediately for changing the interval.
         /// If you want the faster operation, we recommend you set 10 milliseconds for polling interval.
         /// Setter can throw exception.
-        /// </remarks>
+        /// </value>
         /// <pre>
         /// Initialize() should be called to initialize
         /// </pre>
@@ -152,6 +161,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Initializes IoTCon.
         /// Call this function to start IoTCon.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// @a filePath point to a file for handling secure virtual resources.
         /// The file that is CBOR(Concise Binary Object Representation)-format must already exist
@@ -161,7 +171,9 @@ namespace Tizen.Network.IoTConnectivity
         /// http://tizen.org/privilege/network.get \n
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="filePath">The file path to point to storage for handling secure virtual resources.</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <post>
         /// You must call Deinitialize() if IoTCon API is no longer needed.
         /// </post>
@@ -186,9 +198,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Deinitializes IoTCon.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// This API must be called if IoTCon API is no longer needed.
         /// </remarks>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
@@ -220,10 +234,12 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Invokes a next message from a queue for receiving messages from others, immediately.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// This API invokes a next message from a queue for receiving messages from others, immediately.
         /// After calling the API, it continues the polling with existing interval.
         /// </remarks>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
@@ -244,6 +260,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Starts receiving presence events
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// Sends request to receive presence to an interested server's resource with resourceType.
         /// If succeeded, <see cref="PresenceReceived"/> event handler will be triggered when the server sends presence.
@@ -255,9 +272,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="hostAddress">The address or addressable name of the server</param>
         /// <param name="resourceType">A resource type that a client is interested in</param>
         /// <returns>PresenceId - An identifier for this request</returns>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>Initialize() should be called to initialize.</pre>
         /// <post>
         /// When the resource receive presence, <see cref="PresenceReceived"/> event handler will be invoked.\n
@@ -349,13 +368,16 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Stops receiving presence events
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// Sends request to not to receive server's presence any more.
         /// </remarks>
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="presenceId">The start presence request identifier</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
@@ -420,6 +442,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Starts finding resources.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// Sends request to find a resource of @a hostAddress server with @a resourceType.
         /// If succeeded, <see cref="ResourceFound"/> event handler will be triggered with information of the resource.\n
@@ -430,9 +453,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="hostAddress">The address or addressable name of the server. The address includes a protocol like coaps://</param>
         /// <param name="query">The query specified as a filter for founding resources</param>
         /// <returns>RequestId - An identifier for this request</returns>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>Initialize() should be called to initialize.</pre>
         /// <post>
         /// When the resource is found, <see cref="ResourceFound"/> event handler will be invoked.
@@ -530,6 +555,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Starts finding the device information of remote server.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// Requests server for device information.
         /// If succeeded, <see cref="DeviceInformationFound"/> event handler will be triggered with information of the device.\n
@@ -538,9 +564,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="hostAddress">The host address of remote server</param>
         /// <param name="query">The query specified as a filter for founding resources</param>
         /// <returns>RequestId - An identifier for this request</returns>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>Initialize() should be called to initialize.</pre>
         /// <post>
         /// <see cref="DeviceInformationFound" /> event handler will be invoked.
@@ -630,6 +658,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Starts finding the platform information of remote server.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// Requests server for platform information.
         /// If succeeded, <see cref="PlatformInformationFound" /> event handler will be triggered with information of the platform.\n
@@ -638,9 +667,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="hostAddress">The host address of remote server</param>
         /// <param name="query">The query specified as a filter for founding resources</param>
         /// <returns>RequestId - An identifier for this request</returns>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>Initialize() should be called to initialize.</pre>
         /// <post>
         /// <see cref="PlatformInformationFound" /> event handler will be invoked.

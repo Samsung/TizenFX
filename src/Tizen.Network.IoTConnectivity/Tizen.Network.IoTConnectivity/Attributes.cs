@@ -29,6 +29,7 @@ namespace Tizen.Network.IoTConnectivity
     /// It provides API to manage attributes.
     /// This class is accessed by using a constructor to create a new instance of this object.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class Attributes : IDictionary<string, object>, IDisposable
     {
         internal IntPtr _resourceAttributesHandle = IntPtr.Zero;
@@ -38,6 +39,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// The Attributes constructor
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
         /// <code>
@@ -76,6 +79,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Gets the number of keys
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The number of keys.</value>
         /// <code>
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         /// attributes.Add("brightness", 50);
@@ -93,6 +98,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Represents whether attribute is readonly
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Whether attribute is readonly.</value>
         /// <code>
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         ///     { "state", "ON" },
@@ -112,6 +119,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Contains all the attribute keys
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>All the attribute keys.</value>
         /// <code>
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         ///     { "state", "ON" },
@@ -131,6 +140,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Contains all the attribute values
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>All the attribute values.</value>
         /// <code>
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         ///     { "state", "ON" },
@@ -150,6 +161,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Gets or sets the attribute with the specified key.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The attribute with the specified key.</value>
         /// <param name="key">The key of the attribute to get or set.</param>
         /// <returns>The element with the specified key.</returns>
         /// <code>
@@ -176,7 +189,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Adds attribute key and value as a key value pair
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="item">The key value pair to add</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <code>
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
         /// attributes.Add(new KeyValuePair<string, object> ("state", "ON"));
@@ -189,8 +204,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Adds an attribute
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="key">The key representing the attribute</param>
         /// <param name="value">The value representing the attribute</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <code>
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
         /// attributes.Add("brightness", 50);
@@ -280,6 +297,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Clears attributes collection
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
@@ -304,6 +323,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Checks whether the given key value pair exists in attributes collection
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="item">The status key value pair</param>
         /// <returns>true if exists. Otherwise, false</returns>
         /// <code>
@@ -322,6 +342,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Checks whether the given key exists in attributes collection
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="key">The status key to look for</param>
         /// <returns>true if exists. Otherwise, false</returns>
         /// <code>
@@ -340,6 +361,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Copies the elements of the attributes to an array, starting at a particular index.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="array">The destination array</param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         /// <code>
@@ -358,8 +380,9 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        ///   Returns an enumerator that iterates through the collection.
+        /// Returns an enumerator that iterates through the collection.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns> An enumerator that can be used to iterate through the collection.</returns>
         /// <code>
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
@@ -379,8 +402,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Removes an attribute from collection
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="item">The attributes element to remove</param>
         /// <returns>true if operation is success. Otherwise, false</returns>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
@@ -398,10 +423,12 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        ///  Removes an attribute from collection using key
+        /// Removes an attribute from collection using key
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="key">The attributes element to remove</param>
         /// <returns>true if operation is successful, Otherwise, false</returns>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
@@ -430,6 +457,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Gets the value associated with the specified key.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="key">The key whose value to get.</param>
         /// <param name="value"> The value associated with the specified key</param>
         /// <returns> true if the attributes collection contains an element with the specified key; otherwise, false.</returns>
@@ -448,8 +476,9 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        ///   Returns an enumerator that iterates through the collection.
+        /// Returns an enumerator that iterates through the collection.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _attributes.GetEnumerator();
@@ -458,6 +487,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public void Dispose()
         {
             Dispose(true);
@@ -467,7 +498,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

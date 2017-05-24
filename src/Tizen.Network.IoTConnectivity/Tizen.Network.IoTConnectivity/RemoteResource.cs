@@ -27,6 +27,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class represents a remote resource.
     /// It provides APIs to manage remote resource.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class RemoteResource : IDisposable
     {
         internal const int TimeOutMax = 3600;
@@ -48,6 +49,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Creates a remote resource instance
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// To use this API, you should provide all of the details required to correctly contact and
         /// observe the object.\n
@@ -59,6 +61,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="policy">The policies of the resource</param>
         /// <param name="resourceTypes">The resource types of the resource</param>
         /// <param name="resourceInterfaces">The resource interfaces of the resource</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
@@ -102,16 +105,19 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Event that is invoked with cached resource attributes
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public event EventHandler<CacheUpdatedEventArgs> CacheUpdated;
 
         /// <summary>
         /// Observe event on the resource sent by the server
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public event EventHandler<ObserverNotifiedEventArgs> ObserverNotified;
 
         /// <summary>
         /// Event that is called when remote resource's state are changed
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
@@ -135,31 +141,43 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// The host address of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The host address of the resource.</value>
         public string HostAddress { get; private set; }
 
         /// <summary>
         /// The URI path of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The URI path of the resource.</value>
         public string UriPath { get; private set; }
 
         /// <summary>
         /// The resource types of the remote resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The resource types of the remote resource.</value>
         public IEnumerable<string> Types { get; private set; }
 
         /// <summary>
         /// The interfaces of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The interfaces of the resource.</value>
         public IEnumerable<string> Interfaces { get; private set; }
 
         /// <summary>
         /// The policy of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The policy of the resource.</value>
         public ResourcePolicy Policy { get; private set; }
 
         /// <summary>
         /// The header options of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The header options of the resource.</value>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         public ResourceOptions Options
@@ -186,9 +204,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Indicates the CacheEnabled status of the remote resource.
         /// </summary>
-        /// <remarks>
+        /// <since_tizen>3</since_tizen>
+        /// <value>
         /// Client can start caching only when this is set true. Set it to false to stop caching the resource attributes.
-        /// </remarks>
+        /// </value>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
@@ -213,10 +232,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Time interval of monitoring and caching API
         /// </summary>
-        /// <remarks>
-        /// Default time interval is 10 seconds.\n
+        /// <since_tizen>3</since_tizen>
+        /// <value>
+        /// Default time interval is 10 seconds.
         /// Seconds for time interval (must be in range from 1 to 3600)
-        /// </remarks>
+        /// </value>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         public int TimeInterval
@@ -250,11 +270,16 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// The device id of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The device id of the resource.</value>
         public string DeviceId { get; private set; }
 
         /// <summary>
         /// Gets cached representation from the remote resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <returns>cached representation from the remote resource</returns>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public Representation CachedRepresentation()
         {
             IntPtr handle;
@@ -272,14 +297,17 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Starts observing on the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// When server sends notification message, <see cref="ObserverNotified"/> will be called.
         /// </remarks>
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="policy">The type to specify how client wants to observe</param>
         /// <param name="query">The query to send to server</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
@@ -340,9 +368,12 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Stops observing on the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
@@ -359,11 +390,14 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Gets the attributes of a resource, asynchronously
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="query">The ResourceQuery to send to server</param>
         /// <returns>Remote response with result and representation</returns>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public async Task<RemoteResponse> GetAsync(ResourceQuery query = null)
         {
             TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
@@ -412,12 +446,15 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Puts the representation of a resource, asynchronously.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="representation">Resource representation to put</param>
         /// <param name="query">The ResourceQuery to send to server</param>
         /// <returns>Remote response with result and representation</returns>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public async Task<RemoteResponse> PutAsync(Representation representation, ResourceQuery query = null)
         {
             TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
@@ -471,12 +508,15 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Post request on a resource, asynchronously
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="representation">Resource representation of request</param>
         /// <param name="query">The ResourceQuery to send to server</param>
         /// <returns>Remote response with result and representation</returns>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public async Task<RemoteResponse> PostAsync(Representation representation, ResourceQuery query = null)
         {
             TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
@@ -523,10 +563,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Deletes the resource, asynchronously
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <returns>Remote response with result and representation</returns>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public async Task<RemoteResponse> DeleteAsync()
         {
             TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
@@ -580,6 +623,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public void Dispose()
         {
             Dispose(true);
@@ -651,7 +696,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

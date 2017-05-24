@@ -20,8 +20,9 @@ using System;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// This class is an event arguments of the ObserverNotified event.
+    /// This class represents event arguments of the ObserverNotified event.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class ObserverNotifiedEventArgs : EventArgs
     {
         internal ObserverNotifiedEventArgs() { }
@@ -29,11 +30,15 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Result of the observe response
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Result of the observe response.</value>
         public ResponseCode Result { get; internal set; }
 
         /// <summary>
         /// Representation of the resource being observed.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Representation of the resource being observed.</value>
         public Representation Representation { get; internal set; }
     }
 }

@@ -25,6 +25,7 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// This class provides APIs to manage query of request.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class ResourceQuery : IDictionary<string, string>, IDisposable
     {
         internal const int QueryMaxLenth = 64;
@@ -35,6 +36,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// The resource query constructor
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Add()"/>
         /// <seealso cref="Remove()"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
@@ -86,6 +89,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Gets and sets the resource type of the query
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The resource type of the query.</value>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
@@ -124,9 +129,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Gets and sets the resource interface of the query
         /// </summary>
-        /// <remarks>
+        /// <since_tizen>3</since_tizen>
+        /// <value>
+        /// The resource interface of the query.
         /// Setter value could be a value such as <see cref="ResourceInterfaces.DefaultInterface"/>
-        /// </remarks>
+        /// </value>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
@@ -164,6 +171,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Contains all the query keys
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>All the query keys.</value>
         /// <code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key", "value");
@@ -182,6 +191,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Contains all the query values
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>All the query values.</value>
         /// <code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key", "value");
@@ -200,6 +211,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Gets the number of query elements
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The number of query elements.</value>
         /// <code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key", "value");
@@ -218,6 +231,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Represents whether the collection is readonly
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Whether the collection is readonly.</value>
         /// <code>
         /// ResourceQuery query = new ResourceQuery();
         /// if (query.IsReadOnly)
@@ -234,6 +249,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Gets or sets the query data
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The query data.</value>
         /// <param name="key">The query key to get or set.</param>
         /// <returns>The query with the specified key.</returns>
         /// <code>
@@ -257,6 +274,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Checks whether the given key exists in Query collection
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="key">The key to look for</param>
         /// <returns>true if exists. Otherwise, false</returns>
         /// <code>
@@ -273,11 +291,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Adds a new key and correspoding value into the query.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// The full length of query should be less than or equal to 64.
         /// </remarks>
         /// <param name="key">The key of the query to insert</param>
         /// <param name="value">The string data to insert into the query</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Remove()"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
@@ -308,8 +328,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Removes the key and its associated value from the query.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="key">The id of the query to delete</param>
         /// <returns>True if operation is successful. Otherwise, false</returns>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Add()"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
@@ -336,6 +358,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Gets the value associated with the specified key.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="key">The query key</param>
         /// <param name="value">Value corresponding to query key</param>
         /// <returns>True if the key exists, false otherwise</returns>
@@ -353,9 +376,11 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        ///  Adds query key and value as a key value pair
+        /// Adds query key and value as a key value pair
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="item">The key value pair</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Remove()"/>
         /// <code>
         /// ResourceQuery query = new ResourceQuery();
@@ -369,6 +394,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Clears the Query collection
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
         /// <code>
@@ -394,6 +421,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Checks if the given query pair exists
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="item">The key value pair</param>
         /// <returns>True if exists. Otherwise, false</returns>
         /// <code>
@@ -411,6 +439,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Copies the elements of the query collection to an Array, starting at a particular index.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="array">The destination array</param>
         /// <param name="arrayIndex">Index parameter</param>
         /// <code>
@@ -428,8 +457,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Remove the given key value pair from the query
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="item">The key value pair to remove</param>
         /// <returns>True if operation is successful. Otherwise, false</returns>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Add()"/>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
@@ -445,6 +476,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Get the enumerator to query collection
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>Enumerator to query pairs</returns>
         /// <code>
         /// ResourceQuery query = new ResourceQuery();
@@ -463,6 +495,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Get the enumerator to query collection
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>Enumerator to query pairs</returns>
         /// <code>
         /// ResourceQuery query = new ResourceQuery();
@@ -481,6 +514,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public void Dispose()
         {
             Dispose(true);
@@ -490,7 +525,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

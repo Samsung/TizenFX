@@ -18,9 +18,10 @@
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// This class represents remote response.
+    /// This class represents a remote response.
     /// It represents the response of all CRUD operations.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class RemoteResponse
     {
         internal RemoteResponse() { }
@@ -28,16 +29,22 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Indicates the result of the response
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The result of the response.</value>
         public ResponseCode Result { get; internal set; }
 
         /// <summary>
         /// Indicates representation of the response
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Representation of the response.</value>
         public Representation Representation { get; internal set; }
 
         /// <summary>
         /// Indicates header options of the response
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Header options of the response.</value>
         public ResourceOptions Options { get; internal set; }
     }
 }

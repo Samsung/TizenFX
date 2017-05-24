@@ -26,6 +26,7 @@ namespace Tizen.Network.IoTConnectivity
     /// Abstract class respresenting a resource.
     /// All resources need to inherit from this class.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public abstract class Resource : IDisposable
     {
         private IntPtr _resourceHandle = IntPtr.Zero;
@@ -36,6 +37,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// The constructor
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// @a uri format would be relative URI path like '/a/light'
         /// and its length must be less than 128.
@@ -43,10 +45,12 @@ namespace Tizen.Network.IoTConnectivity
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="uri">The URI path of the resource</param>
         /// <param name="types">Resource types</param>
         /// <param name="interfaces">Resource interfaces</param>
         /// <param name="policy">The policies of the resoruce</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
         /// IoTConnectivityServerManager.Initialize() should be called to initialize
         /// </pre>
@@ -104,26 +108,36 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Type details of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Type details of the resource.</value>
         public ResourceTypes Types { get; internal set; }
 
         /// <summary>
         /// Interface details of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Interface details of the resource.</value>
         public ResourceInterfaces Interfaces { get; internal set; }
 
         /// <summary>
         /// The policies of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The policies of the resource.</value>
         public ResourcePolicy Policy { get; internal set; }
 
         /// <summary>
         /// URI path of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>URI path of the resource.</value>
         public string UriPath { get; internal set; }
 
         /// <summary>
         /// List of Child resources
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>List of Child resources.</value>
         public ICollection<Resource> Children
         {
             get
@@ -147,11 +161,14 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Notify the specified representation and qos.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="representation">Representation.</param>
         /// <param name="qos">The quality of service for message transfer.</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
         /// IoTConnectivityServerManager.Initialize() should be called to initialize
         /// </pre>
@@ -188,6 +205,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// This is Called when the client performs get operation on this resource.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="request">A request from client</param>
         /// <returns>A response having the representation and the result</returns>
         protected abstract Response OnGet(Request request);
@@ -195,6 +213,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// This is Called when the client performs put operation on this resource.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="request">A request from client</param>
         /// <returns>A response</returns>
         protected abstract Response OnPut(Request request);
@@ -202,6 +221,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// This is Called when the client performs post operation on this resource.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="request">A request from client</param>
         /// <returns>A response having the representation and the result</returns>
         protected abstract Response OnPost(Request request);
@@ -209,6 +229,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// This is Called when the client performs delete operation on this resource.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="request">A request from client</param>
         /// <returns>A response</returns>
         protected abstract Response OnDelete(Request request);
@@ -216,6 +237,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Called on the observing event.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="request">A request from client</param>
         /// <param name="type">Observer type</param>
         /// <param name="observeId">Observe identifier.</param>
@@ -225,6 +247,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public void Dispose()
         {
             Dispose(true);
@@ -234,7 +258,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

@@ -23,9 +23,10 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// This class provides API to manage representation.
+    /// This class provides APIs to manage representation.
     /// A representation is a payload of a request or a response.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class Representation : IDisposable
     {
         internal IntPtr _representationHandle = IntPtr.Zero;
@@ -36,7 +37,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// The Representation constructor
         /// </summary>
-        /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
@@ -83,9 +85,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// The URI path of resource
         /// </summary>
-        /// <remarks>
+        /// <since_tizen>3</since_tizen>
+        /// <value>
+        /// The URI path of resource.
         /// Setter can throw exceptions
-        /// </remarks>
+        /// </value>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
@@ -123,6 +127,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// The type of resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The type of resource.</value>
         /// <seealso cref="ResourceTypes"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
@@ -166,6 +172,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// The interface of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The interface of the resource.</value>
         /// <seealso cref="ResourceInterfaces"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
@@ -209,6 +217,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Current attributes of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Current attributes of the resource.</value>
         /// <seealso cref="Attributes"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
@@ -256,6 +266,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// List of Child resource representation
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>List of Child resource representation.</value>
         /// <code>
         /// Representation repr = new Representation();
         /// Representation child1 = new Representation();
@@ -284,6 +296,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public void Dispose()
         {
             Dispose(true);
@@ -293,7 +307,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

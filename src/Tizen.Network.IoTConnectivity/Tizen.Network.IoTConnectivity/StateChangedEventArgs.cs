@@ -20,8 +20,9 @@ using System;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// This class is an event arguments of the StateChanged event.
+    /// This class represents event arguments of the StateChanged event.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class StateChangedEventArgs : EventArgs
     {
         internal StateChangedEventArgs() { }
@@ -29,6 +30,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Indicates the new state of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The new state of the resource.</value>
         public ResourceState State { get; internal set; }
     }
 }

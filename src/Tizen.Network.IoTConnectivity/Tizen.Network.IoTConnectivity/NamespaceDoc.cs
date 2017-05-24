@@ -3,10 +3,10 @@
 The Tizen.Network.IoTConnectivity namespace provides classes to manage
 Resource, RemoteResource, Request, Response and so on which are based on IoTivity project.
 </summary>
-<remark>
+<remarks>
 The Tizen.Network.IoTConnectivity namespace provides classes to manage
 Resource, RemoteResource, Request, Response and so on which are based on IoTivity project.
-</remark>
+</remarks>
 */
 namespace Tizen.Network.IoTConnectivity {}
 

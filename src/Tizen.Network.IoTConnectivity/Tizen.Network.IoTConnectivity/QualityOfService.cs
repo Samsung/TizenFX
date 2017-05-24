@@ -20,15 +20,18 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// Enumeration for states of remote resource.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public enum QualityOfService
     {
         /// <summary>
         /// Indicates low quality of service
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         Low = 0,
         /// <summary>
         /// Indicates high quality of service
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         High
     }
 }

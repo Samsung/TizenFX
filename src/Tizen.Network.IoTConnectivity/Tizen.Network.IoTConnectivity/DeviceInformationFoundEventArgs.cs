@@ -18,8 +18,9 @@
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// This class is an event arguments of the DeviceInformationFound event.
+    /// This class represents event arguments of the DeviceInformationFound event.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class DeviceInformationFoundEventArgs
     {
         internal DeviceInformationFoundEventArgs() { }
@@ -27,31 +28,43 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// The request id
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The request id.</value>
         public int RequestId { get; internal set; }
 
         /// <summary>
         /// Indicates to continuously receive the event for finding device information.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Continuously receive the event for finding device information.</value>
         public bool EventContinue { get; set; }
 
         /// <summary>
         /// Indicates human friendly name for device
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Human friendly name for device.</value>
         public string Name { get; internal set; }
 
         /// <summary>
         /// Indicates spec version of the core specification
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Spec version of the core specification.</value>
         public string SpecVersion { get; internal set; }
 
         /// <summary>
         /// Indicates unique identifier for OIC device
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Unique identifier for OIC device.</value>
         public string DeviceId { get; internal set; }
 
         /// <summary>
         /// Indicates version of the specs this device data model is implemented to
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Version of the specs this device data model is implemented to.</value>
         public string DataModelVersion { get; internal set; }
     }
 }

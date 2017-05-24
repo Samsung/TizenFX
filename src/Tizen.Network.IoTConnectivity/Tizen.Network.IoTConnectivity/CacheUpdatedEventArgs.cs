@@ -20,8 +20,9 @@ using System;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// This class is an event arguments of the CacheUpdated event.
+    /// This class represents event arguments of the CacheUpdated event.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class CacheUpdatedEventArgs : EventArgs
     {
         internal CacheUpdatedEventArgs() { }
@@ -29,6 +30,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Indicates the updated representation of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The updated representation of the resource.</value>
         public Representation Representation { get; internal set; }
     }
 }

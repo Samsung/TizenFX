@@ -20,8 +20,9 @@ using System;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// This class is an event arguments of the PresenceReceived event.
+    /// This class represents event arguments of the PresenceReceived event.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class PresenceReceivedEventArgs : EventArgs
     {
         internal PresenceReceivedEventArgs() { }
@@ -29,21 +30,29 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Indicates request id of presence event.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Request id of presence event.</value>
         public int PresenceId { get; internal set; }
 
         /// <summary>
         /// Indicates event type
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Event type.</value>
         public PresenceEventType EventType { get; internal set; }
 
         /// <summary>
         /// Indicates host address of resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Host address of resource.</value>
         public string HostAddress { get; internal set; }
 
         /// <summary>
         /// Indicates type of the resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Type of the resource.</value>
         public string Type { get; internal set; }
     }
 }

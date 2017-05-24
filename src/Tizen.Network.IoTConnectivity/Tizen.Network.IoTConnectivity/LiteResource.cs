@@ -22,11 +22,13 @@ namespace Tizen.Network.IoTConnectivity
     /// It provides APIs to encapsulate resources.
     /// This class is accessed by using a constructor to create a new instance of this object.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class LiteResource : Resource
     {
         /// <summary>
         /// The LiteResource constructor
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// Creates a lite resource which can then be registered in server using <see cref="IoTConnectivityServerManager.RegisterResource()"/>.\n
         /// When client requests some operations, it send a response to client, automatically.\n
@@ -35,10 +37,12 @@ namespace Tizen.Network.IoTConnectivity
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
+        /// <privlevel>public</privlevel>
         /// <param name="uri">The uri path of the lite resource</param>
         /// <param name="types">The type of the resource</param>
         /// <param name="policy">Policy of the resource</param>
         /// <param name="attribs">Optional attributes of the resource</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
         /// IoTConnectivityServerManager.Initialize() should be called to initialize
         /// </pre>
@@ -61,6 +65,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Gets or sets the attributes of the lite resource
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>The attributes of the lite resource.</value>
         /// <code>
         /// List<string> list = new List<string>() { "org.tizen.light" };
         /// LiteResource res = new LiteResource("/light/1", new ResourceTypes(list), ResourcePolicy.Discoverable);
@@ -78,6 +84,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Decides whether to accept or reject a post request.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// Child classes of this class can override this method to accept or reject post request.
         /// </remarks>

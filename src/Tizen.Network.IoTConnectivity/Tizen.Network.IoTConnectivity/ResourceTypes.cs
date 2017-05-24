@@ -26,6 +26,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class contains resource types and provides APIs to manage, add, remove those types.
     /// A resource type indicates a class or category of resources.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class ResourceTypes : IEnumerable<string>, IDisposable
     {
         internal const int MaxLength = 61;
@@ -36,6 +37,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Constructor of ResourceTypes
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Add()"/>
         /// <seealso cref="Remove()"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
@@ -56,7 +59,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Constructor of ResourceTypes using list of types
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="types">List of resource types</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <code>
         /// ResourceTypes types = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
@@ -110,6 +115,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Indicates count of types in the list
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <value>Count of types in the list.</value>
         /// <code>
         /// ResourceTypes types = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// Console.WriteLine("There are {0} items", types.Count);
@@ -125,6 +132,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Adds a resource type into the list.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// The length of @a item should be less than or equal to 61.\n
         /// The @a item must start with a lowercase alphabetic character, followed by a sequence
@@ -132,6 +140,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Duplicate strings are not allowed.
         /// </remarks>
         /// <param name="item">The string data to insert into the resource types</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Remove()"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
@@ -162,7 +171,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Removes a resource type from the list
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="item">The string data to delete from the resource types</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Add()"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
@@ -186,6 +197,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Return enumerator for the list of types
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>The enumerator</returns>
         /// <code>
         /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
@@ -202,6 +214,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Return enumerator for the list of types
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>The enumerator</returns>
         /// <code>
         /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
@@ -218,6 +231,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public void Dispose()
         {
             Dispose(true);
@@ -233,7 +248,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <feature>http://tizen.org/feature/iot.ocf</feature>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
