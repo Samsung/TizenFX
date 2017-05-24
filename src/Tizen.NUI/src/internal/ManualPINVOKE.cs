@@ -584,5 +584,16 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get")]
         public static extern int TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_MODE_get")]
+        public static extern int HIDDENINPUT_PROPERTY_MODE_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SUBSTITUTE_CHARACTER_get")]
+        public static extern int HIDDENINPUT_PROPERTY_SUBSTITUTE_CHARACTER_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SUBSTITUTE_COUNT_get")]
+        public static extern int HIDDENINPUT_PROPERTY_SUBSTITUTE_COUNT_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SHOW_DURATION_get")]
+        public static extern int HIDDENINPUT_PROPERTY_SHOW_DURATION_get();
     }
 }

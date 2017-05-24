@@ -71,6 +71,7 @@
     <Compile Include="examples\scroll-view.cs" />
     <Compile Include="examples\sibling-order-test.cs" />
     <Compile Include="examples\test1.cs" />
+    <Compile Include="examples\text-test.cs" />
     <Compile Include="examples\user-alphafunction.cs" />
     <Compile Include="examples\view-navi-property.cs" />
     <Compile Include="examples\date-picker-using-json\ViewRegistryHelper.cs" />
