@@ -35,6 +35,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The Extended Service Set Identifier(ESSID).
         /// </summary>
+        /// <value>Essid of the WiFi.</value>
         public string Essid
         {
             get
@@ -60,6 +61,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The Basic Service Set Identifier(BSSID).
         /// </summary>
+        /// <value>Bssid of the WiFi.</value>
         public string Bssid
         {
             get
@@ -78,6 +80,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The address informaiton for IPv4.
         /// </summary>
+        /// <value>IP address information for IPv4 type.</value>
         public IAddressInformation IPv4Setting
         {
             get
@@ -89,6 +92,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The address ainformation for IPv6.
         /// </summary>
+        /// <value>IP address information for IPv6 type.</value>
         public IAddressInformation IPv6Setting
         {
             get
@@ -100,6 +104,10 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The proxy address.
         /// </summary>
+        /// <value>Represents proxy address of WiFi.</value>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
         public string ProxyAddress
         {
             get
@@ -119,6 +127,7 @@ namespace Tizen.Network.WiFi
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set proxy address, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
                 }
             }
         }
@@ -126,6 +135,10 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The proxy type(IPv6).
         /// </summary>
+        /// <value>Represents proxy type of WiFi.</value>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
         public WiFiProxyType ProxyType
         {
             get
@@ -144,6 +157,7 @@ namespace Tizen.Network.WiFi
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set proxy type, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
                 }
             }
         }
@@ -151,6 +165,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The frequency band(MHz).
         /// </summary>
+        /// <value>Represents the frequency band value.</value>
         public int Frequency
         {
             get
@@ -168,6 +183,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The Received signal strength indication(RSSI).
         /// </summary>
+        /// <value>Represents Rssi level of WiFi.</value>
         public WiFiRssiLevel Rssi
         {
             get
@@ -185,6 +201,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The max speed (Mbps).
         /// </summary>
+        /// <value>Represents max speed value.</value>
         public int MaxSpeed
         {
             get
@@ -202,6 +219,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A property to check whether the access point is favorite or not.
         /// </summary>
+        /// <value>Boolean value to check if the access point is favorite or not.</value>
         public bool IsFavorite
         {
             get
@@ -219,6 +237,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A property to check whether the access point is passpoint or not.
         /// </summary>
+        /// <value>Boolean value to check if the access point is passpoint or not.</value>
         public bool IsPasspoint
         {
             get
@@ -237,6 +256,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The connection state.
         /// </summary>
+        /// <value>Represents the connection state of WiFi.</value>
         public WiFiConnectionState ConnectionState
         {
             get

@@ -29,6 +29,8 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The local MAC address.
         /// </summary>
+        /// <value>Represents the mac address of the WiFi.</value>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
         static public string MacAddress
         {
             get
@@ -40,6 +42,8 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The name of the network interface.
         /// </summary>
+        /// <value>Interface name of WiFi.</value>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
         static public string InterfaceName
         {
             get
@@ -51,6 +55,8 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The network connection state.
         /// </summary>
+        /// <value>Represents the connection state of WiFi.</value>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
         static public WiFiConnectionState ConnectionState
         {
             get
@@ -62,6 +68,8 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A property to Check whether Wi-Fi is activated.
         /// </summary>
+        /// <value>Boolean value to check whether WiFi is activated or not.</value>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
         static public bool IsActive
         {
             get
@@ -135,6 +143,12 @@ namespace Tizen.Network.WiFi
         /// Gets the result of the scan.
         /// </summary>
         /// <returns> A list of WiFiAP objects.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         static public IEnumerable<WiFiAP> GetFoundAPs()
         {
             return WiFiManagerImpl.Instance.GetFoundAPs();
@@ -144,6 +158,12 @@ namespace Tizen.Network.WiFi
         /// Gets the result of specific AP scan.
         /// </summary>
         /// <returns> A list contains the WiFiAP objects.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         static public IEnumerable<WiFiAP> GetFoundSpecificAPs()
         {
             return WiFiManagerImpl.Instance.GetFoundSpecificAPs();
@@ -153,6 +173,13 @@ namespace Tizen.Network.WiFi
         /// Gets the list of wifi configurations.
         /// </summary>
         /// <returns>A list contains the WiFiConfiguration objects.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.profile</privilege>
+        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when system is out of memory.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         static public IEnumerable<WiFiConfiguration> GetWiFiConfigurations()
         {
             return WiFiManagerImpl.Instance.GetWiFiConfigurations();
@@ -162,6 +189,13 @@ namespace Tizen.Network.WiFi
         /// Saves Wi-Fi configuration of access point.
         /// </summary>
         /// <param name="configuration">The configuration to be stored</param>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.profile</privilege>
+        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when WiFiConfiguration is passed as null.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         static public void SaveWiFiConfiguration(WiFiConfiguration configuration)
         {
             WiFiManagerImpl.Instance.SaveWiFiNetworkConfiguration(configuration);
@@ -171,6 +205,13 @@ namespace Tizen.Network.WiFi
         /// Gets the object of the connected WiFiAP.
         /// </summary>
         /// <returns> The connected wifi access point(AP) information.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when system is out of memory.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         static public WiFiAP GetConnectedAP()
         {
             return WiFiManagerImpl.Instance.GetConnectedAP();
@@ -180,6 +221,13 @@ namespace Tizen.Network.WiFi
         /// Activates Wi-Fi asynchronously.
         /// </summary>
         /// <returns> A task indicating whether the Activate method is done or not.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         static public Task ActivateAsync()
         {
             return WiFiManagerImpl.Instance.ActivateAsync();
@@ -189,6 +237,13 @@ namespace Tizen.Network.WiFi
         /// Activates Wi-Fi asynchronously and displays Wi-Fi picker (popup) when Wi-Fi is not automatically connected.
         /// </summary>
         /// <returns> A task indicating whether the ActivateWithPicker method is done or not.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         static public Task ActivateWithPickerAsync()
         {
             return WiFiManagerImpl.Instance.ActivateWithWiFiPickerTestedAsync();
@@ -198,6 +253,13 @@ namespace Tizen.Network.WiFi
         /// Deactivates Wi-Fi asynchronously.
         /// </summary>
         /// <returns> A task indicating whether the Deactivate method is done or not.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         static public Task DeactivateAsync()
         {
             return WiFiManagerImpl.Instance.DeactivateAsync();
@@ -207,6 +269,13 @@ namespace Tizen.Network.WiFi
         /// Starts scan asynchronously.
         /// </summary>
         /// <returns> A task indicating whether the Scan method is done or not.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         static public Task ScanAsync()
         {
             return WiFiManagerImpl.Instance.ScanAsync();
@@ -217,6 +286,13 @@ namespace Tizen.Network.WiFi
         /// </summary>
         /// <returns> A task indicating whether the ScanSpecificAP method is done or not.</returns>
         /// <param name="essid">The essid of hidden ap</param>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         static public Task ScanSpecificAPAsync(string essid)
         {
             return WiFiManagerImpl.Instance.ScanSpecificAPAsync(essid);

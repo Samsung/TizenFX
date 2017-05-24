@@ -41,44 +41,60 @@ namespace Tizen.Network.WiFi
 
     internal static class WiFiErrorFactory
     {
-        static internal void ThrowWiFiException(int e)
-        {
-            ThrowExcption(e, false);
-        }
-
         static internal void ThrowWiFiException(int e, IntPtr handle)
         {
-            ThrowExcption(e, (handle == IntPtr.Zero));
+            ThrowExcption(e, (handle == IntPtr.Zero), false, "");
         }
 
-        static private void ThrowExcption(int e, bool isHandleNull)
+        static internal void ThrowWiFiException(int e, IntPtr handle1, IntPtr handle2)
+        {
+            ThrowExcption(e, (handle1 == IntPtr.Zero), (handle2 == IntPtr.Zero), "");
+        }
+
+        static internal void ThrowWiFiException(int e, string message)
+        {
+            ThrowExcption(e, false, false, message);
+        }
+
+        static internal void ThrowWiFiException(int e, IntPtr handle, string message)
+        {
+            ThrowExcption(e, (handle == IntPtr.Zero), false, message);
+        }
+
+        static internal void ThrowWiFiException(int e, IntPtr handle1, IntPtr handle2, string message)
+        {
+            ThrowExcption(e, (handle1 == IntPtr.Zero), (handle2 == IntPtr.Zero), message);
+        }
+
+        static private void ThrowExcption(int e, bool isHandle1Null, bool isHandle2Null, string message)
         {
             WiFiError err = (WiFiError)e;
             if (err == WiFiError.NotSupportedError)
             {
-                throw new NotSupportedException("Not Supported");
+                throw new NotSupportedException("Unsupported feature http://tizen.org/feature/network.wifi");
             }
 
-            if (isHandleNull)
+            if (err == WiFiError.PermissionDeniedError)
             {
-                if (err == WiFiError.InvalidParameterError || err == WiFiError.InvalidKeyError)
-                {
-                    throw new ArgumentException(err.ToString());
-                }
-                else
-                {
-                    throw new InvalidOperationException("Invalid instance (object may have been disposed or released)");
-                }
+                throw new UnauthorizedAccessException("Permission denied " + message);
+            }
+
+            if (err == WiFiError.OutOfMemoryError)
+            {
+                throw new OutOfMemoryException("Out of memory");
             }
 
             if (err == WiFiError.InvalidParameterError || err == WiFiError.InvalidKeyError)
             {
-                throw new ArgumentException(err.ToString());
+                if (isHandle1Null || isHandle2Null)
+                {
+                    throw new InvalidOperationException("Invalid instance (object may have been disposed or released)");
+                }
+
+                throw new ArgumentException("Invalid parameter");
             }
-            else
-            {
-                throw new InvalidOperationException(err.ToString());
-            }
+
+            throw new InvalidOperationException(err.ToString());
         }
     }
 }

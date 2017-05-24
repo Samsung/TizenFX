@@ -30,6 +30,10 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The type of Wi-Fi security.
         /// </summary>
+        /// <value>Represents the security type of WiFi.</value>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
         public WiFiSecurityType SecurityType
         {
             get
@@ -39,7 +43,6 @@ namespace Tizen.Network.WiFi
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get security type, Error - " + (WiFiError)ret);
-                    WiFiErrorFactory.ThrowWiFiException(ret);
                 }
                 return (WiFiSecurityType)type;
             }
@@ -49,7 +52,7 @@ namespace Tizen.Network.WiFi
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set security type, Error - " + (WiFiError)ret);
-                    WiFiErrorFactory.ThrowWiFiException(ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
                 }
             }
         }
@@ -57,6 +60,10 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The type of Wi-Fi encryption
         /// </summary>
+        /// <value>Represents the encryption type of WiFi.</value>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
         public WiFiEncryptionType EncryptionType
         {
             get
@@ -66,7 +73,6 @@ namespace Tizen.Network.WiFi
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get encryption type, Error - " + (WiFiError)ret);
-                    WiFiErrorFactory.ThrowWiFiException(ret);
                 }
                 return (WiFiEncryptionType)type;
             }
@@ -76,7 +82,7 @@ namespace Tizen.Network.WiFi
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set encryption type, Error - " + (WiFiError)ret);
-                    WiFiErrorFactory.ThrowWiFiException(ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
                 }
             }
         }
@@ -84,6 +90,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The EAP information
         /// </summary>
+        /// <value>Eap information of WiFi.</value>
         public WiFiEap EapInformation
         {
             get
@@ -95,6 +102,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A property to check whether the passphrase is required or not.
         /// </summary>
+        /// <value>Boolean value to check if passphrase is required or not.</value>
         public bool IsPassphraseRequired
         {
             get
@@ -104,7 +112,6 @@ namespace Tizen.Network.WiFi
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get isPassportRequired, Error - " + (WiFiError)ret);
-                    WiFiErrorFactory.ThrowWiFiException(ret);
                 }
                 return required;
             }
@@ -113,6 +120,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A property to check whether the Wi-Fi Protected Setup(WPS) is supported or not.
         /// </summary>
+        /// <value>Boolean value to check if wps is supported or not.</value>
         public bool IsWpsSupported
         {
             get
@@ -122,7 +130,6 @@ namespace Tizen.Network.WiFi
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get isWapSupported, Error - " + (WiFiError)ret);
-                    WiFiErrorFactory.ThrowWiFiException(ret);
                 }
                 return supported;
             }
@@ -137,8 +144,18 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Sets the passphrase.
         /// </summary>
+        /// <param name="passphrase">The passphrase of the access point.</param>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when passphrase is passed as null.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void SetPassphrase(string passphrase)
         {
+            if (passphrase == null)
+            {
+                throw new ArgumentNullException("Passphrase is null");
+            }
             int ret = Interop.WiFi.AP.SetPassphrase(_apHandle, passphrase);
             if (ret != (int)WiFiError.None)
             {

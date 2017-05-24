@@ -153,7 +153,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to initialize wifi, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, "http://tizen.org/privilege/network.get");
             }
             return handle;
         }
@@ -179,7 +179,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get all APs, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
             }
 
             return apList;
@@ -207,7 +207,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get specific APs, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
             }
 
             return apList;
@@ -234,7 +234,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get configurations, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.profile");
             }
 
             return configList;
@@ -243,12 +243,17 @@ namespace Tizen.Network.WiFi
         internal void SaveWiFiNetworkConfiguration(WiFiConfiguration config)
         {
             Log.Debug(Globals.LogTag, "SaveWiFiNetworkConfiguration");
+            if (config == null)
+            {
+                throw new ArgumentNullException("WiFi configuration is null");
+            }
+
             IntPtr configHandle = config.GetHandle();
             int ret = Interop.WiFi.Config.SaveConfiguration(GetSafeHandle(), configHandle);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to save configuration, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.profile");
             }
         }
 
@@ -260,7 +265,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to connect with AP, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
             }
             WiFiAP ap = new WiFiAP(apHandle);
             return ap;
@@ -293,7 +298,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
             }
             return task.Task;
         }
@@ -325,7 +330,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
             }
             return task.Task;
         }
@@ -357,7 +362,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to deactivate wifi, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
             }
             return task.Task;
         }
@@ -389,7 +394,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to scan all AP, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
             }
             return task.Task;
         }
@@ -421,7 +426,7 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to scan with specific AP, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
             }
             return task.Task;
         }
