@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    public class SWIGTYPE_p_Dali__FunctorDelegate
+    internal class SWIGTYPE_p_Dali__FunctorDelegate
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

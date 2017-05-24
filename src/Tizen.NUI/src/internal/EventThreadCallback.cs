@@ -18,7 +18,7 @@
 namespace Tizen.NUI
 {
 
-    public class EventThreadCallback : global::System.IDisposable
+    internal class EventThreadCallback : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;

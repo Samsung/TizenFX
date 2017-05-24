@@ -31,7 +31,7 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
 
-    public class LongPressGestureDetector : GestureDetector
+    internal class LongPressGestureDetector : GestureDetector
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

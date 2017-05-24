@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    public class ConnectionTrackerInterface : SignalObserver
+    internal class ConnectionTrackerInterface : SignalObserver
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

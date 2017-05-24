@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    public class VoidSignal : global::System.IDisposable
+    internal class VoidSignal : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
