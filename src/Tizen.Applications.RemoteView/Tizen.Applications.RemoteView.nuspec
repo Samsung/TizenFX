@@ -11,11 +11,8 @@
 		<copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
 		<description>Provides the Widget Viewer API for Tizen.Net</description>
 		<dependencies>
-			<dependency id="Tizen" version="1.0.2" />
+			<dependency id="Tizen" version="1.0.5" />
 			<dependency id="ElmSharp" version="1.1.0" />
 		</dependencies>
 	</metadata>
-	<files>
-		<file src="bin/$Configuration$/Tizen.Applications.RemoteView.dll" target="lib/netstandard1.3" />
-	</files>
 </package>
