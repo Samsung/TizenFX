@@ -352,6 +352,10 @@ namespace Tizen.System
         {
             _time = val;
         }
+
+        /// <summary>
+        /// Indicates the current time
+        /// </summary>
         public int Value
         {
             get
