@@ -83,10 +83,12 @@ internal static partial class Interop
         internal static extern void elm_box_layout_set(IntPtr obj, BoxLayoutCallback cb, IntPtr data, IntPtr dataFreeCb);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_box_homogeneous_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_box_homogeneous_set(IntPtr obj, bool ishomogeneous);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_box_recalculate(IntPtr obj);
     }
 }
-
