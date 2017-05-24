@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    public class SWIGTYPE_p_CallbackBase
+    internal class SWIGTYPE_p_CallbackBase
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

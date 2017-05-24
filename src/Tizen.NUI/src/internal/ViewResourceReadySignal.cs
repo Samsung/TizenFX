@@ -12,7 +12,7 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
 
-    public class ViewResourceReadySignal : global::System.IDisposable
+    internal class ViewResourceReadySignal : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;

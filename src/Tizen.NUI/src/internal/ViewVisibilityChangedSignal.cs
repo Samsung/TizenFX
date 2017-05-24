@@ -11,7 +11,7 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
 
-    public class ViewVisibilityChangedSignal : global::System.IDisposable
+    internal class ViewVisibilityChangedSignal : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
