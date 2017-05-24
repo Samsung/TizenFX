@@ -31,9 +31,19 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Adds a new profile
         /// </summary>
-        /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <param name="profile">The cellular profile object</param>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <privilege>http://tizen.org/privilege/network.profile</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when value is null.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection or profile instance is invalid or when method failed due to invalid operation</exception>
         public static void AddCellularProfile(CellularProfile profile)
         {
             ConnectionInternalManager.Instance.AddCellularProfile(profile);
@@ -42,9 +52,18 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the list of profile with profile list type
         /// </summary>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <param name="type">The type of profile</param>
         /// <returns>List of connection profile objects.</returns>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection instance has been disposed.</exception>
         public static Task<IEnumerable<ConnectionProfile>> GetProfileListAsync(ProfileListType type)
         {
             return ConnectionInternalManager.Instance.GetProfileListAsync(type);
@@ -53,11 +72,20 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Opens a connection of profile, asynchronously.
         /// </summary>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <param name="profile">The connection profile object</param>
         /// <returns>A task indicates whether the ConnectProfileAsync method is done successfully or not.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when value is null.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection or profile instance is invalid or when method failed due to invalid operation</exception>
         public static Task ConnectProfileAsync(ConnectionProfile profile)
         {
             return ConnectionInternalManager.Instance.OpenProfileAsync(profile);
@@ -66,10 +94,20 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Closes a connection of profile.
         /// </summary>
-        /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <param name="profile">The connection profile object</param>
         /// <returns>A task indicates whether the DisconnectProfileAsync method is done successfully or not.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when value is null.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection or profile instance is invalid or when method failed due to invalid operation</exception>
         public static Task DisconnectProfileAsync(ConnectionProfile profile)
         {
             return ConnectionInternalManager.Instance.CloseProfileAsync(profile);
@@ -78,10 +116,19 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Removes an existing profile.
         /// </summary>
+        /// <param name="profile">The connection profile object</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
-        /// <param name="profile">The connection profile object</param>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when value is null.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection or profile instance is invalid or when method failed due to invalid operation</exception>
         public static void RemoveProfile(ConnectionProfile profile)
         {
             Log.Debug(Globals.LogTag, "RemoveProfile. Id: " + profile.Id + ", Name: " + profile.Name + ", Type: " + profile.Type);
@@ -93,10 +140,19 @@ namespace Tizen.Network.Connection
         /// When a profile is changed, these changes will be not applied to the ConnectionProfileManager immediately.
         /// When you call this function, your changes affect the ConnectionProfileManager and the existing profile is updated.
         /// </summary>
+        /// <param name="profile">The connection profile object</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
-        /// <param name="profile">The connection profile object</param>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when value is null.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection or profile instance is invalid or when method failed due to invalid operation</exception>
         public static void UpdateProfile(ConnectionProfile profile)
         {
             ConnectionInternalManager.Instance.UpdateProfile(profile);
@@ -105,9 +161,17 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the name of the default profile.
         /// </summary>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <returns>Connection profile object.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation</exception>
         public static ConnectionProfile GetCurrentProfile()
         {
             return ConnectionInternalManager.Instance.GetCurrentProfile();
@@ -116,10 +180,18 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the default profile which provides the given cellular service.
         /// </summary>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <param name="type">The cellular service type</param>
         /// <returns>Connection profile object.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation</exception>
         public static ConnectionProfile GetDefaultCellularProfile(CellularServiceType type)
         {
             return ConnectionInternalManager.Instance.GetDefaultCellularProfile(type);
@@ -128,12 +200,21 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Sets the default profile which provides the given cellular service.
         /// </summary>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <param name="type">The cellular service type</param>
         /// <param name="profile">The connection profile object</param>
         /// <returns>A task indicates whether the SetDefaultCellularProfile method is done successfully or not.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <privilege>http://tizen.org/privilege/network.profile</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when value is null.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection or profile instance is invalid or when method failed due to invalid operation</exception>
         public static Task SetDefaultCellularProfile(CellularServiceType type, ConnectionProfile profile)
         {
             return ConnectionInternalManager.Instance.SetDefaultCellularProfile(type, profile);
@@ -155,6 +236,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The connection profile state.
         /// </summary>
+        /// <value>State of the connection profile.</value>
         public ConnectionProfileState ConnectionProfileState
         {
             get

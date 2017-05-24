@@ -32,31 +32,55 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The DNS address.
         /// </summary>
+        /// <value>First DNS address of the connection.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
         System.Net.IPAddress Dns1 { get; set; }
 
         /// <summary>
         /// The DNS address.
         /// </summary>
+        /// <value>Second DNS address of the connection.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
         System.Net.IPAddress Dns2 { get; set; }
 
         /// <summary>
         /// The gateway address.
         /// </summary>
+        /// <value>Gateway address of the connection.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
         System.Net.IPAddress Gateway { get; set; }
 
         /// <summary>
         /// The subnet mask address.
         /// </summary>
+        /// <value>Subnet mask of the connection.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
         System.Net.IPAddress SubnetMask { get; set; }
 
         /// <summary>
         /// The IP address.
         /// </summary>
+        /// <value>IP address of the connection.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
         System.Net.IPAddress IP { get; set; }
 
         /// <summary>
         /// The type of IP config.
         /// </summary>
+        /// <value>IP config type of the connection.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
         IPConfigType IPConfigType { get; set; }
     }
 
@@ -80,7 +104,6 @@ namespace Tizen.Network.Connection
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get dns1 address, " + (ConnectionError)ret);
-                    ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
@@ -88,12 +111,15 @@ namespace Tizen.Network.Connection
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(result);
             }
+
             set
             {
                 int ret = Interop.ConnectionProfile.SetDnsAddress(_profileHandle, (int)_family, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set dns1 address, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
             }
@@ -107,7 +133,6 @@ namespace Tizen.Network.Connection
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get dns2 address, " + (ConnectionError)ret);
-                    ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
@@ -115,12 +140,15 @@ namespace Tizen.Network.Connection
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(result);
             }
+
             set
             {
                 int ret = Interop.ConnectionProfile.SetDnsAddress(_profileHandle, (int)_family, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set dns2 address, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
             }
@@ -135,7 +163,6 @@ namespace Tizen.Network.Connection
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get gateway, " + (ConnectionError)ret);
-                    ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
@@ -143,12 +170,15 @@ namespace Tizen.Network.Connection
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(result);
             }
+
             set
             {
                 int ret = Interop.ConnectionProfile.SetGatewayAddress(_profileHandle, (int)_family, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set gateway, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
             }
@@ -164,7 +194,6 @@ namespace Tizen.Network.Connection
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get subnet mask, " + (ConnectionError)ret);
-                    ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
@@ -172,12 +201,15 @@ namespace Tizen.Network.Connection
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(result);
             }
+
             set
             {
                 int ret = Interop.ConnectionProfile.SetSubnetMask(_profileHandle, (int)_family, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set subnet mask, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
             }
@@ -193,7 +225,6 @@ namespace Tizen.Network.Connection
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get ip, " + (ConnectionError)ret);
-                    ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
@@ -201,12 +232,15 @@ namespace Tizen.Network.Connection
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(result);
             }
+
             set
             {
                 int ret = Interop.ConnectionProfile.SetIPAddress(_profileHandle, (int)_family, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set ip, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
             }
@@ -221,16 +255,18 @@ namespace Tizen.Network.Connection
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get ip config type, " + (ConnectionError)ret);
-                    ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
                 return (IPConfigType)Value;
             }
+
             set
             {
                 int ret = Interop.ConnectionProfile.SetIPConfigType(_profileHandle, (int)_family, (int)value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set ip config type, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
             }

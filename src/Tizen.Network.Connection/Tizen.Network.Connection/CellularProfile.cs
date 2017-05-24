@@ -41,10 +41,17 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The APN (access point name).
         /// </summary>
+        /// <value>Cellular access point name.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown during set when value is null.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
         public string Apn
         {
             get
             {
+                Log.Debug(Globals.LogTag, "Get Apn");
                 IntPtr Value;
                 int ret = Interop.ConnectionCellularProfile.GetApn(ProfileHandle, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
@@ -55,13 +62,26 @@ namespace Tizen.Network.Connection
                 Interop.Libc.Free(Value);
                 return result;
             }
+
             set
             {
-                int ret = Interop.ConnectionCellularProfile.SetApn(ProfileHandle, (string)value);
-                if ((ConnectionError)ret != ConnectionError.None)
+                Log.Debug(Globals.LogTag, "Set Apn");
+                CheckDisposed();
+                if (value != null)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set apn, " + (ConnectionError)ret);
-                    ConnectionErrorFactory.ThrowConnectionException(ret);
+                    int ret = Interop.ConnectionCellularProfile.SetApn(ProfileHandle, value);
+                    if ((ConnectionError)ret != ConnectionError.None)
+                    {
+                        Log.Error(Globals.LogTag, "It failed to set apn, " + (ConnectionError)ret);
+                        ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
+                        ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
+                        ConnectionErrorFactory.ThrowConnectionException(ret);
+                    }
+                }
+
+                else
+                {
+                    throw new ArgumentNullException("Value of Apn is null");
                 }
             }
         }
@@ -69,10 +89,17 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The home URL.
         /// </summary>
+        /// <value>Cellular home URL.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown during set when value is null.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
         public string HomeUri
         {
             get
             {
+                Log.Debug(Globals.LogTag, "Get HomeUri");
                 IntPtr Value;
                 int ret = Interop.ConnectionCellularProfile.GetHomeUrl(ProfileHandle, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
@@ -83,25 +110,43 @@ namespace Tizen.Network.Connection
                 Interop.Libc.Free(Value);
                 return result;
             }
+
             set
             {
-                int ret = Interop.ConnectionCellularProfile.SetHomeUrl(ProfileHandle, (string)value);
-                if ((ConnectionError)ret != ConnectionError.None)
+                Log.Debug(Globals.LogTag, "Set HomeUri");
+                CheckDisposed();
+                if (value != null)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set home url, " + (ConnectionError)ret);
-                    ConnectionErrorFactory.ThrowConnectionException(ret);
+                    int ret = Interop.ConnectionCellularProfile.SetHomeUrl(ProfileHandle, value);
+                    if ((ConnectionError)ret != ConnectionError.None)
+                    {
+                        Log.Error(Globals.LogTag, "It failed to set home url, " + (ConnectionError)ret);
+                        ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
+                        ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
+                        ConnectionErrorFactory.ThrowConnectionException(ret);
+                    }
                 }
 
+                else
+                {
+                    throw new ArgumentNullException("Value of HomeUri is null");
+                }
             }
         }
 
         /// <summary>
         /// The service type.
         /// </summary>
+        /// <value>Cellular service type.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
         public CellularServiceType ServiceType
         {
             get
             {
+                Log.Debug(Globals.LogTag, "Get ServiceType");
                 int value;
                 int ret = Interop.ConnectionCellularProfile.GetServiceType(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
@@ -110,20 +155,26 @@ namespace Tizen.Network.Connection
                 }
                 return (CellularServiceType)value;
             }
+
             set
             {
+                Log.Debug(Globals.LogTag, "Set ServiceType");
+                CheckDisposed();
                 int ret = Interop.ConnectionCellularProfile.SetServiceType(ProfileHandle, (int)value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set service type, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
             }
         }
 
         /// <summary>
-        /// Gets cellular Authentification Information.
+        /// The cellular Authentication Information.
         /// </summary>
+        /// <value>Cellular authentication information</value>
         public CellularAuthInformation CellularAuthInfo
         {
             get
@@ -135,6 +186,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Checks whether the profile is hidden.
         /// </summary>
+        /// <value>True if the cellular profile is hidden, otherwise false.</value>
         public bool Hidden
         {
             get
@@ -152,6 +204,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Checks whether the profile is editable.
         /// </summary>
+        /// <value>True if the cellular profile is editable, otherwise false.</value>
         public bool Editable
         {
             get
@@ -169,6 +222,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Checks whether the profile is default.
         /// </summary>
+        /// <value>True if the cellular profile is default, otherwise false.</value>
         public bool IsDefault
         {
             get
@@ -203,6 +257,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The user name.
         /// </summary>
+        /// <value>Cellular user name.</value>
         public string UserName
         {
             get
@@ -242,6 +297,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The password
         /// </summary>
+        /// <value>Cellular password.</value>
         public string Password
         {
             get
@@ -279,6 +335,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The authentication type
         /// </summary>
+        /// <value>Cellular authentication type.</value>
         public CellularAuthType AuthType
         {
             get

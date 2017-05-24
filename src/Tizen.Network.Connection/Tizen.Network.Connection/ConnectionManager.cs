@@ -40,6 +40,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Checks whether the handle value is valid or not.
         /// </summary>
+        /// <value>True if the handle is invalid, otherwise false.</value>
         public override bool IsInvalid
         {
             get
@@ -48,6 +49,10 @@ namespace Tizen.Network.Connection
             }
         }
 
+        /// <summary>
+        /// Frees the handle.
+        /// </summary>
+        /// <returns>True if the handle is released successfully, otherwise false.</returns>
         protected override bool ReleaseHandle()
         {
             this.SetHandle(IntPtr.Zero);
@@ -141,8 +146,17 @@ namespace Tizen.Network.Connection
         /// Gets the IP address of the current connection.
         /// </summary>
         /// <param name="family">The address family</param>
-        /// <returns>IP address of the connection.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <returns>IP address of the connection (global address in case of IPv6).</returns>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
         public static string GetIPAddress(AddressFamily family)
         {
             return ConnectionInternalManager.Instance.GetIPAddress(family);
@@ -153,7 +167,16 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <param name="family">The address family</param>
         /// <returns>Proxy address of the connection.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
         public static string GetProxy(AddressFamily family)
         {
             return ConnectionInternalManager.Instance.GetProxy(family);
@@ -164,7 +187,16 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <param name="type">The type of current network connection</param>
         /// <returns>MAC address of the Wi-Fi or ethernet.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
         public static string GetMacAddress(ConnectionType type)
         {
             return ConnectionInternalManager.Instance.GetMacAddress(type);
@@ -173,6 +205,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Type and state of the current profile for data connection
         /// </summary>
+        /// <value>Instance of ConnectionItem</value>
         public static ConnectionItem CurrentConnection
         {
             get
@@ -192,6 +225,14 @@ namespace Tizen.Network.Connection
         /// <param name="type">The type of profile. Cellular profile type is supported.</param>
         /// <param name="keyword">The keyword included in profile name.</param>
         /// <returns>CellularProfile object</returns>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when keyword value is null.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public static CellularProfile CreateCellularProfile(ConnectionProfileType type, string keyword)
         {
             IntPtr profileHandle = IntPtr.Zero;
@@ -212,6 +253,8 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The state of cellular connection.
         /// </summary>
+        /// <value>Cellular network state.</value>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public static CellularState CellularState
         {
             get
@@ -223,6 +266,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The state of the Wi-Fi.
         /// </summary>
+        /// <value>WiFi connection state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public static ConnectionState WiFiState
         {
@@ -235,6 +279,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The state of the Bluetooth.
         /// </summary>
+        /// <value>Bluetooth connection state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public static ConnectionState BluetoothState
         {
@@ -247,6 +292,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The Ethernet connection state.
         /// </summary>
+        /// <value>Ethernet connection state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public static ConnectionState EthernetState
         {
@@ -259,6 +305,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Checks for ethernet cable is attached or not.
         /// </summary>
+        /// <value>Ethernet cable state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public static EthernetCableState EthernetCableState
         {
@@ -282,6 +329,8 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The type of the current profile for data connection.
         /// </summary>
+        /// <value>Data connection current profile.</value>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public ConnectionType Type
         {
             get
@@ -293,6 +342,8 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The state of the current profile for data connection.
         /// </summary>
+        /// <value>Connection state of the current connection type.</value>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public ConnectionState State
         {
             get
@@ -345,6 +396,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The connection type.
         /// </summary>
+        /// <value>Type of the connection.</value>
         public ConnectionType ConnectionType
         {
             get
@@ -369,6 +421,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The ethernet cable state.
         /// </summary>
+        /// <value>Attached or detached state of the ethernet cable.</value>
         public EthernetCableState EthernetCableState
         {
             get
@@ -395,6 +448,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The  IPV4 address.
         /// </summary>
+        /// <value>IP address in the format of IPV4 syntax.</value>
         public string IPv4Address
         {
             get
@@ -406,6 +460,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The  IPV6 address.
         /// </summary>
+        /// <value>IP address in the format of IPV6 syntax.</value>
         public string IPv6Address
         {
             get

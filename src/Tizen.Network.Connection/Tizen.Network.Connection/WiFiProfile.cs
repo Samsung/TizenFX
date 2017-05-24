@@ -38,6 +38,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The ESSID (Extended Service Set Identifier).
         /// </summary>
+        /// <value>ESSID of the WiFi.</value>
         public string Essid
         {
             get
@@ -57,6 +58,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The BSSID (Basic Service Set Identifier).
         /// </summary>
+        /// <value>BSSID of the WiFi.</value>
         public string Bssid
         {
             get
@@ -76,6 +78,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The RSSI.
         /// </summary>
+        /// <value>RSSI of the WiFi.</value>
         public int Rssi
         {
             get
@@ -93,6 +96,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The frequency (MHz).
         /// </summary>
+        /// <value>Frequency of the WiFi.</value>
         public int Frequency
         {
             get
@@ -110,6 +114,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The max speed (Mbps).
         /// </summary>
+        /// <value>Maximum speed of the WiFi.</value>
         public int MaxSpeed
         {
             get
@@ -125,8 +130,9 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The security type of Wi-Fi.
+        /// The security type of WiFi.
         /// </summary>
+        /// <value>Security type of the WiFi.</value>
         public WiFiSecurityType SecurityType
         {
             get
@@ -142,8 +148,9 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The encryption type of Wi-Fi.
+        /// The encryption type of WiFi.
         /// </summary>
+        /// <value>Encryption mode of the WiFi.</value>
         public WiFiEncryptionType EncryptionType
         {
             get
@@ -161,6 +168,8 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Checks whether passphrase is required.
         /// </summary>
+        /// <value>True if a passphrase is required, otherwise false.</value>
+        /// <remarks>This property is not valid if <c>WiFiSecurityType</c> is <c>Eap</c>.</remarks>
         public bool PassphraseRequired
         {
             get
@@ -178,6 +187,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Checks whether the WPS (Wi-Fi Protected Setup) is supported.
         /// </summary>
+        /// <value>True if WPS is supported, otherwise false.</value>
         public bool WpsSupported
         {
             get
@@ -196,14 +206,30 @@ namespace Tizen.Network.Connection
         /// Sets the passphrase of the Wi-Fi WPA.
         /// </summary>
         /// <param name="passphrase">The passphrase of Wi-Fi security</param>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when passphrase is null.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
         public void SetPassphrase(string passphrase)
         {
-            int ret = Interop.ConnectionWiFiProfile.SetPassphrase(ProfileHandle, (string)passphrase);
-            if ((ConnectionError)ret != ConnectionError.None)
+            CheckDisposed();
+            if (passphrase != null)
             {
-                Log.Error(Globals.LogTag, "It failed to set passphrase, " + (ConnectionError)ret);
-                ConnectionErrorFactory.ThrowConnectionException(ret);
+                int ret = Interop.ConnectionWiFiProfile.SetPassphrase(ProfileHandle, passphrase);
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to set passphrase, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.wifi");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
+                }
+            }
+
+            else
+            {
+                throw new ArgumentNullException("Value of passphrase is null");
             }
         }
     }

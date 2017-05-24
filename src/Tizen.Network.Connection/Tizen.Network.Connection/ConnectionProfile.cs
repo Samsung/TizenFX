@@ -101,6 +101,9 @@ namespace Tizen.Network.Connection
             Dispose(false);
         }
 
+        /// <summary>
+        /// Disposes the memory allocated to unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -133,11 +136,21 @@ namespace Tizen.Network.Connection
         private void Destroy()
         {
             Interop.ConnectionProfile.Destroy(ProfileHandle);
+            ProfileHandle = IntPtr.Zero;
+        }
+
+        internal void CheckDisposed()
+        {
+            if (disposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
         }
 
         /// <summary>
         /// The profile ID.
         /// </summary>
+        /// <value>Unique ID of the profile.</value>
         public string Id
         {
             get
@@ -157,7 +170,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The profile name.
         /// </summary>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <value>User friendly name of the profile.</value>
         public string Name
         {
             get
@@ -177,6 +190,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The network type.
         /// </summary>
+        /// <value>Profile type of the network connection.</value>
         public ConnectionProfileType Type
         {
             get
@@ -192,8 +206,9 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The name of the network interface, e.g. eth0 and pdp0.
+        /// The name of the network interface.
         /// </summary>
+        /// <value>Network interface name, e.g. eth0 and pdp0.</value>
         public string InterfaceName
         {
             get
@@ -230,6 +245,11 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The Proxy type.
         /// </summary>
+        /// <value>Proxy type of the connection.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown during set when operation is performed on a disposed object.</exception>
         public ProxyType ProxyType
         {
             get
@@ -243,12 +263,16 @@ namespace Tizen.Network.Connection
                 return (ProxyType)Value;
 
             }
+
             set
             {
+                CheckDisposed();
                 int ret = Interop.ConnectionProfile.SetProxyType(ProfileHandle, (int)value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set proxy type, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
             }
@@ -257,7 +281,13 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The proxy address.
         /// </summary>
-        public String ProxyAddress
+        /// <value>Proxy address of the connection.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown during set when value is null.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        public string ProxyAddress
         {
             get
             {
@@ -272,13 +302,25 @@ namespace Tizen.Network.Connection
                 return result;
 
             }
+
             set
             {
-                int ret = Interop.ConnectionProfile.SetProxyAddress(ProfileHandle, (int)AddressFamily.IPv4, value.ToString());
-                if ((ConnectionError)ret != ConnectionError.None)
+                CheckDisposed();
+                if (value != null)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set proxy address, " + (ConnectionError)ret);
-                    ConnectionErrorFactory.ThrowConnectionException(ret);
+                    int ret = Interop.ConnectionProfile.SetProxyAddress(ProfileHandle, (int)AddressFamily.IPv4, value);
+                    if ((ConnectionError)ret != ConnectionError.None)
+                    {
+                        Log.Error(Globals.LogTag, "It failed to set proxy address, " + (ConnectionError)ret);
+                        ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                        ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
+                        ConnectionErrorFactory.ThrowConnectionException(ret);
+                    }
+                }
+
+                else
+                {
+                    throw new ArgumentNullException("ProxyAddress is null");
                 }
             }
         }
@@ -286,6 +328,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The subnet mask address(IPv4).
         /// </summary>
+        /// <value>Instance of IAddressInformation with IPV4 address.</value>
         public IAddressInformation IPv4Settings
         {
             get
@@ -298,6 +341,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The subnet mask address(IPv4).
         /// </summary>
+        /// <value>Instance of IAddressInformation with IPV6 address.</value>
         public IAddressInformation IPv6Settings
         {
             get
@@ -322,6 +366,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The profile state.
         /// </summary>
+        /// <value>State type of the connection profile.</value>
         public ProfileState State
         {
             get
