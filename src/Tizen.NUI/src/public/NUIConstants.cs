@@ -881,6 +881,44 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// HiddenInput Property.
+    /// </summary>
+    public struct HiddenInputProperty
+    {
+        public static readonly int Mode = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_MODE_get();
+        public static readonly int SubstituteCharacter = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_SUBSTITUTE_CHARACTER_get();
+        public static readonly int SubstituteCount = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_SUBSTITUTE_COUNT_get();
+        public static readonly int ShowDuration = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_SHOW_DURATION_get();
+    }
+
+    /// <summary>
+    /// The type for HiddenInput mode.
+    /// </summary>
+    public enum HiddenInputModeType
+    {
+        /// <summary>
+        /// Don't hide text.
+        /// </summary>
+        HideNone,
+        /// <summary>
+        /// Hide all the input text.
+        /// </summary>
+        HideAll,
+        /// <summary>
+        /// Hide n characters from start.
+        /// </summary>
+        HideCount,
+        /// <summary>
+        /// Show n characters from start.
+        /// </summary>
+        ShowCount,
+        /// <summary>
+        /// Show last character for the duration(use ShowDuration property to modify duration).
+        /// </summary>
+        ShowLastCharacter
+    }
+
+    /// <summary>
     /// ParentOrigin constants.
     /// </summary>
     public struct ParentOrigin
