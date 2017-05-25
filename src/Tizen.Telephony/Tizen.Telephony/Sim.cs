@@ -29,9 +29,12 @@ namespace Tizen.Telephony
         /// <summary>
         /// Sim Class Constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="handle">
         /// SlotHandle received in the Manager.Init API
         /// </param>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ArgumentNullException">
         /// This exception occurs if handle provided is null
         /// </exception>

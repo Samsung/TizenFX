@@ -36,9 +36,12 @@ namespace Tizen.Telephony
         /// <summary>
         /// Public Constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="handle">
         /// SlotHandle received in the Manager.Init API
         /// </param>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ArgumentNullException">
         /// This exception occurs if handle provided is null
         /// </exception>
@@ -55,9 +58,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the current value for the preferred voice call subscription.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <returns>
         /// The currently set preferred voicecall subscription value.
         /// </returns>
@@ -80,17 +81,17 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the list of the current call.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// List of CallHandle for existing calls.
         /// </returns>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Incase of any System error</exception>
         /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="NotSupportedException">Incase of Telephony is not supported</exception>>
-        /// <exception cref="OutOfMemoryException">Incase of Out of Memory</exception>>
+        /// <exception cref="OutOfMemoryException">Incase of Out of Memory</exception>
         public IEnumerable<CallHandle> GetCallHandleList()
         {
             uint count;

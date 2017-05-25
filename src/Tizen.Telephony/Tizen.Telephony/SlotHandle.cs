@@ -50,9 +50,13 @@ namespace Tizen.Telephony
         /// <summary>
         /// The Notification Id's for which the ChangeNotification event will be triggered
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="list">
         /// The List of Notification Id's for which the ChangeNotification event will be triggered
         /// </param>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">
         /// This Exception can occur due to:
         /// 1. Operation Not Supported
@@ -77,9 +81,13 @@ namespace Tizen.Telephony
         /// <summary>
         /// The Notification Id's for which the ChangeNotification event will not be triggered
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="list">
         /// The List of Notification Id's for which the ChangeNotification event will be not be triggered
         /// </param>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">
         /// This Exception can occur due to:
         /// 1. Operation Not Supported

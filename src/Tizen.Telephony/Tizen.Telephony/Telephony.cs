@@ -145,11 +145,14 @@ namespace Tizen.Telephony
         /// <summary>
         /// Acquires the Number of available handles to use the telephony API.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// A List of Telephony handles.
         /// You will get 2 SlotHandles in case of dual SIM device.
         /// where,SlotHandle at Index '0' represents Primary SIM and Index '1' represents Secondary SIM.
         /// </returns>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">
         /// This Exception can will be generated in the following cases
         /// 1. System is out of memory
@@ -192,6 +195,9 @@ namespace Tizen.Telephony
         /// <summary>
         /// Deinitializes the telephony handles.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be generated in the following cases
         /// 1. If the operation is not supported on device

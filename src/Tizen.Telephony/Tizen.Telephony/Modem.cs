@@ -28,9 +28,12 @@ namespace Tizen.Telephony
         /// <summary>
         /// Modem Class Constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="handle">
         /// SlotHandle received in the Manager.Init API
         /// </param>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ArgumentNullException">
         /// This exception occurs if handle provided is null
         /// </exception>
@@ -75,9 +78,7 @@ namespace Tizen.Telephony
         /// Gets the IMEI (International Mobile Station Equipment Identity) of a mobile phone.
         /// The IMEI number is used by a GSM network to identify valid devices and therefore can be used for stopping a stolen phone from accessing that network.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <returns>
         /// The International Mobile Station Equipment Identity
         /// empty string if unable to complete the operation
@@ -101,9 +102,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the power status of the modem.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <returns>
         /// The Modem power status (0=on,1=off,2=reset,3=low)
         /// </returns>
@@ -127,9 +126,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the MEID (Mobile Equipment Identifier) of a mobile phone. (for CDMA)
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <returns>
         /// The Mobile Equipment Identifier
         /// empty string if unable to complete the operation
