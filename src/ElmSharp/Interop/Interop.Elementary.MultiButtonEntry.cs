@@ -23,6 +23,8 @@ internal static partial class Interop
     {
         public delegate bool MultiButtonEntryItemFilterCallback(IntPtr obj, string label, IntPtr itemData, IntPtr data);
 
+        public delegate string MultiButtonEntryFormatCallback(int count, IntPtr data);
+
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_multibuttonentry_add(IntPtr obj);
 
@@ -54,9 +56,6 @@ internal static partial class Interop
         internal static extern IntPtr elm_multibuttonentry_item_insert_after(IntPtr obj, IntPtr after, string label, Evas.SmartCallback func, IntPtr data);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_multibuttonentry_items_get(IntPtr obj); //return list
-
-        [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_multibuttonentry_first_item_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
@@ -79,6 +78,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_multibuttonentry_item_next_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_multibuttonentry_format_function_set(IntPtr obj, MultiButtonEntryFormatCallback callback, IntPtr data);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_multibuttonentry_item_filter_append(IntPtr obj, MultiButtonEntryItemFilterCallback callback, IntPtr data);

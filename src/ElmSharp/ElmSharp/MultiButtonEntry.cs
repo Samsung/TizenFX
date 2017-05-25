@@ -30,9 +30,11 @@ namespace ElmSharp
     {
         HashSet<MultiButtonEntryItem> _children = new HashSet<MultiButtonEntryItem>();
         List<Func<string, bool>> _filters = new List<Func<string, bool>>();
+        Func<int, string> _formatFunc = null;
         Entry _entry = null;
 
-        Interop.Elementary.MultiButtonEntryItemFilterCallback _filtercallback;
+        Interop.Elementary.MultiButtonEntryItemFilterCallback _filterCallback;
+        Interop.Elementary.MultiButtonEntryFormatCallback _formatCallback;
 
         SmartEvent _clicked;
         SmartEvent _expanded;
@@ -59,7 +61,8 @@ namespace ElmSharp
             _itemLongPressed = new SmartEvent<MultiButtonEntryItemEventArgs>(this, "item,longpressed", MultiButtonEntryItemEventArgs.CreateFromSmartEvent);
             _itemAdded = new SmartEvent<MultiButtonEntryItemEventArgs>(this, "item,added", MultiButtonEntryItemEventArgs.CreateAndAddFromSmartEvent);
 
-            _filtercallback = new Interop.Elementary.MultiButtonEntryItemFilterCallback(FilterCallbackHandler);
+            _filterCallback = new Interop.Elementary.MultiButtonEntryItemFilterCallback(FilterCallbackHandler);
+            _formatCallback = new Interop.Elementary.MultiButtonEntryFormatCallback(FormatCallbackHandler);
 
             _clicked.On += (sender, e) => Clicked?.Invoke(this, EventArgs.Empty);
             _expanded.On += (sender, e) => Expanded?.Invoke(this, EventArgs.Empty);
@@ -263,6 +266,10 @@ namespace ElmSharp
         public void Clear()
         {
             Interop.Elementary.elm_multibuttonentry_clear(RealHandle);
+            foreach (var item in _children)
+            {
+                item.Deleted -= Item_Deleted;
+            }
             _children.Clear();
         }
 
@@ -275,7 +282,7 @@ namespace ElmSharp
             _filters.Add(func);
             if (_filters.Count == 1)
             {
-                Interop.Elementary.elm_multibuttonentry_item_filter_append(RealHandle, _filtercallback, IntPtr.Zero);
+                Interop.Elementary.elm_multibuttonentry_item_filter_append(RealHandle, _filterCallback, IntPtr.Zero);
             }
         }
 
@@ -288,7 +295,7 @@ namespace ElmSharp
             _filters.Insert(0, func);
             if (_filters.Count == 1)
             {
-                Interop.Elementary.elm_multibuttonentry_item_filter_prepend(RealHandle, _filtercallback, IntPtr.Zero);
+                Interop.Elementary.elm_multibuttonentry_item_filter_prepend(RealHandle, _filterCallback, IntPtr.Zero);
             }
         }
 
@@ -301,8 +308,31 @@ namespace ElmSharp
             _filters.Remove(func);
             if (_filters.Count == 0)
             {
-                Interop.Elementary.elm_multibuttonentry_item_filter_remove(RealHandle, _filtercallback, IntPtr.Zero);
+                Interop.Elementary.elm_multibuttonentry_item_filter_remove(RealHandle, _filterCallback, IntPtr.Zero);
             }
+        }
+
+        /// <summary>
+        /// Set a function to format the string that will be used to display the hidden items counter.
+        /// If func is NULL, the default format will be used, which is "+ 'the hidden items counter'".
+        /// </summary>
+        /// <param name="func">The function to return string to show</param>
+        public void SetFormatCallback(Func<int, string> func)
+        {
+            if (func == null)
+            {
+                Interop.Elementary.elm_multibuttonentry_format_function_set(RealHandle, null, IntPtr.Zero);
+            }
+            else
+            {
+                _formatFunc = func;
+                Interop.Elementary.elm_multibuttonentry_format_function_set(RealHandle, _formatCallback, IntPtr.Zero);
+            }
+        }
+
+        string FormatCallbackHandler(int count, IntPtr data)
+        {
+            return _formatFunc(count);
         }
 
         void Item_Deleted(object sender, EventArgs e)
