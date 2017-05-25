@@ -203,6 +203,7 @@
     <Compile Include="src\internal\SlotObserver.cs" />
     <Compile Include="src\internal\SnapType.cs" />
     <Compile Include="src\internal\StageWheelSignal.cs" />
+    <Compile Include="src\internal\StateChangedSignalType.cs" />
     <Compile Include="src\internal\StencilFunctionType.cs" />
     <Compile Include="src\internal\StencilOperationType.cs" />
     <Compile Include="src\internal\StringValuePair.cs" />
@@ -332,6 +333,7 @@
     <Compile Include="src\public\TapGesture.cs" />
     <Compile Include="src\public\Timer.cs" />
     <Compile Include="src\public\Touch.cs" />
+    <Compile Include="src\public\TTSPlayer.cs" />
     <Compile Include="src\public\BaseComponents\ImageView.cs" />
     <Compile Include="src\public\BaseComponents\TextEditor.cs" />
     <Compile Include="src\public\BaseComponents\TextField.cs" />
