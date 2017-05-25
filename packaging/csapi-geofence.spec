@@ -1,6 +1,6 @@
 Name:       csapi-geofence
 Summary:    Tizen location geofence API for C#
-Version:    1.0.3
+Version:    1.0.4
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0 and SAMSUNG
