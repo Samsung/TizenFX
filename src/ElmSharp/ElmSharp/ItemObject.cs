@@ -175,6 +175,15 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Deletes color of an object item
+        /// </summary>
+        /// <param name="part">The text part name</param>
+        public void DeletePartColor(string part)
+        {
+            Interop.Elementary.elm_object_item_color_class_del(Handle, part);
+        }
+
+        /// <summary>
         /// Gets the handle of object item
         /// </summary>
         /// <param name="obj">ItemObject</param>
