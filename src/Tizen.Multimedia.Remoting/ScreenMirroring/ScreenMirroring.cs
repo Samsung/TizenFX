@@ -44,11 +44,10 @@ namespace Tizen.Multimedia
         private Native.StateChangedCallback _stateChangedCallback;
 
         /// <summary>
-        /// Initializes a new instance of the ScreenMirroring class with parameters Ip, Port, Surface type and Display handle.
+        /// Initializes a new instance of the ScreenMirroring class with parameters Ip, Port and Display handle.
         /// Object should be created only when Ip and Port are available.
         /// Create(i.e constructor) api will create a new handle with the given parameters.
         /// </summary>
-        /// <param name="type">Type.</param>
         /// <param name="display">Display.</param>
         /// <param name="ip">Ip.</param>
         /// <param name="port">Port.</param>
