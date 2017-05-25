@@ -11,10 +11,7 @@
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
     <description>Provides the secure repository protected by Tizen platform for keys, certificates, and sensitive data of users and/or their apps. Additionally, secure cryptographic operations for non-exportable keys without revealing key values to clients are provided.</description>
     <dependencies>
-      <dependency id="Tizen" version="1.0.2" />
+      <dependency id="Tizen" version="1.0.5" />
     </dependencies>
   </metadata>
-  <files>
-    <file src="bin/$Configuration$/Tizen.Security.SecureRepository.dll" target="lib/netstandard1.3" />
-  </files>
 </package>
