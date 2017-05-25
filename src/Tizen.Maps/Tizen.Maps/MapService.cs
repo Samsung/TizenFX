@@ -82,8 +82,8 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets and sets a string representing keys for map service provider
         /// </summary>
-        /// <remark>Regaularly, the provider key is issued by each maps provider, after signing up for a plan in the web site.
-        /// Depending on the plan and its provider which you have signed, you might pay for the network traffic.</remark>
+        /// <remarks>Regaularly, the provider key is issued by each maps provider, after signing up for a plan in the web site.
+        /// Depending on the plan and its provider which you have signed, you might pay for the network traffic.</remarks>
         public string ProviderKey
         {
             get

@@ -200,10 +200,10 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="coordinates">Marker coordinates</param>
         /// <param name="imagePath">Image file path for Marker</param>
-        /// <remark>
+        /// <remarks>
         /// http://tizen.org/privilege/mediastorage is needed if the file path are relevant to media storage.
         /// http://tizen.org/privilege/externalstorage is needed if the file path are relevant to external storage.
-        /// </remark>
+        /// </remarks>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.ArgumentException">Thrown when input coordinates or imagePath are invalid.</exception>
@@ -235,10 +235,10 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="coordinates">Marker coordinates</param>
         /// <param name="imagePath">Image file path for Marker</param>
-        /// <remark>
+        /// <remarks>
         /// http://tizen.org/privilege/mediastorage is needed if input or output path are relevant to media storage.
         /// http://tizen.org/privilege/externalstorage is needed if input or output path are relevant to external storage.
-        /// </remark>
+        /// </remarks>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.ArgumentException">Thrown when input coordinates or imagePath are invalid.</exception>

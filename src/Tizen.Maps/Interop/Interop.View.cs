@@ -244,14 +244,14 @@ internal static partial class Interop
         internal CoordinatesHandle ScreenToGeolocation(Point position)
         {
             IntPtr coordinates;
-            this.ScreenToGeolocation(position.X, position.Y, out coordinates).WarnIfFailed("Failed to convert screen position to geo-coordinates");
+            this.ScreenToGeolocation(position.X, position.Y, out coordinates).WarnIfFailed("Failed to convert screen position to geocoordinates");
             return CoordinatesHandle.Create(coordinates);
         }
 
         internal Point GeolocationToScreen(CoordinatesHandle coordinates)
         {
             int x, y;
-            this.GeolocationToScreen(coordinates, out x, out y).WarnIfFailed("Failed to convert geo-coordinate to screen position");
+            this.GeolocationToScreen(coordinates, out x, out y).WarnIfFailed("Failed to convert geocoordinates to screen position");
             return new Point() { X = x, Y = y };
         }
     }
