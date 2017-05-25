@@ -131,7 +131,7 @@ namespace Tizen.System
         /// <summary>
         /// Adds or removes events for all media keys.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Failed to reserve or release key"</exception>
+        /// <exception cref="InvalidOperationException">Failed to reserve or release key.</exception>
         public static event EventHandler<MediaKeyEventArgs> Event
         {
             add
