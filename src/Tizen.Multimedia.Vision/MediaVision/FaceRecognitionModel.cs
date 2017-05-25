@@ -143,7 +143,6 @@ namespace Tizen.Multimedia
         /// <param name="label">The label that identifies face for which example is adding.
         ///     Specify the same labels for the face images of a single person when calling this method.
         ///     Has to be unique for each face</param>
-        /// <param name="area">The rectangular location of the face image at the source image.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     The <see cref="FaceRecognitionModel"/> has already been disposed of.\n

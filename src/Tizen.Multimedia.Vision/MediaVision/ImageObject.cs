@@ -145,7 +145,6 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="source">The source image where image object is depicted.</param>
         /// <param name="config">The configuration used for extract recognition data from source. This value can be null.</param>
-        /// <param name="area">Location of the image object on the source image, or NULL if the object is shown in full</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     The <see cref="ImageObject"/> has already been disposed of.\n

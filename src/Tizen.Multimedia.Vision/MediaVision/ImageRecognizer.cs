@@ -31,7 +31,6 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="source">The source image on which image objects will be recognized.</param>
         /// <param name="imageObjects">The array of image objects which will be processed as targets of recognition.</param>
-        /// <param name="config">The configuration of engine which will be used for recognition. This value can be null.</param>
         /// <returns>A task that represents the asynchronous recognition operation.</returns>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="source"/> is null.\n

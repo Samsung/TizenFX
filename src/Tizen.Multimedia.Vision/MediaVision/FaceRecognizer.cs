@@ -202,7 +202,6 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="source">The source of the media to recognize eye-blink condition for.</param>
         /// <param name="bound">The bounding the face at the source.</param>
-        /// <param name="config">The configuration used for eye-blink condition recognition. This value can be null.</param>
         /// <returns>A task that represents the asynchronous recognition operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
@@ -261,7 +260,6 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="source">The source of the media to recognize facial expression for.</param>
         /// <param name="bound">The location bounding the face at the source.</param>
-        /// <param name="config">The configuration used for expression recognition.</param>
         /// <returns>A task that represents the asynchronous recognition operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
