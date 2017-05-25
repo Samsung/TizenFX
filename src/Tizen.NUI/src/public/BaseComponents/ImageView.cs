@@ -448,7 +448,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return _borderOnly;
+                return _borderOnly ?? false;
             }
             set
             {
@@ -457,27 +457,53 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        public bool SynchronosLoading
+        {
+            get
+            {
+                return _synchronousLoading ?? false;
+            }
+            set
+            {
+                _synchronousLoading = value;
+                UpdateImage();
+            }
+        }
+
         private void UpdateImage()
         {
-            if (_border != null && _url != null)
+            if (_url != null)
             {
-                _nPatchMap = new PropertyMap();
-                _nPatchMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
-                _nPatchMap.Add(NpatchImageVisualProperty.URL, new PropertyValue(_url));
-                _nPatchMap.Add(NpatchImageVisualProperty.Border, new PropertyValue(_border));
-                if (_borderOnly) { _nPatchMap.Add(NpatchImageVisualProperty.BorderOnly, new PropertyValue(_borderOnly)); }
-                SetProperty(ImageView.Property.IMAGE, new PropertyValue(_nPatchMap));
-            }
-            else
-            {
-                if (_url != null) { SetProperty(ImageView.Property.RESOURCE_URL, new PropertyValue(_url)); }
+                if (_border != null)
+                { // for nine-patch image
+                    _nPatchMap = new PropertyMap();
+                    _nPatchMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
+                    _nPatchMap.Add(NpatchImageVisualProperty.URL, new PropertyValue(_url));
+                    _nPatchMap.Add(NpatchImageVisualProperty.Border, new PropertyValue(_border));
+                    if (_borderOnly != null) { _nPatchMap.Add(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)_borderOnly)); }
+                    if (_synchronousLoading != null) _nPatchMap.Add(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading));
+                    SetProperty(ImageView.Property.IMAGE, new PropertyValue(_nPatchMap));
+                }
+                else if(_synchronousLoading != null)
+                { // for normal image, with synchronous loading property
+                    PropertyMap imageMap = new PropertyMap();
+                    imageMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
+                    imageMap.Add(ImageVisualProperty.URL, new PropertyValue(_url));
+                    imageMap.Add(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading));
+                    SetProperty(ImageView.Property.IMAGE, new PropertyValue(imageMap));
+                }
+                else
+                { // just for normal image
+                    SetProperty(ImageView.Property.RESOURCE_URL, new PropertyValue(_url));
+                }
             }
         }
 
         private Rectangle _border = null;
-        private bool _borderOnly = false;
-        private string _url = null;
         private PropertyMap _nPatchMap = null;
+        private bool? _synchronousLoading = null;
+        private bool? _borderOnly = null;
+        private string _url = null;
 
     }
 

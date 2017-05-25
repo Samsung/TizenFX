@@ -202,6 +202,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Search through this layer's hierarchy for an view with the given unique ID.
+        /// </summary>
+        /// <pre>This layer(the parent) has been initialized.</pre>
+        /// <remarks>The actor itself is also considered in the search.</remarks>
+        /// <param name="child">The id of the child to find</param>
+        /// <returns> A handle to the view if found, or an empty handle if not. </returns>
         public View FindChildById(uint id)
         {
             View ret = new View(NDalicPINVOKE.Actor_FindChildById(swigCPtr, id), true);
@@ -210,6 +217,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Adds a child view to this layer.
+        /// </summary>
+        /// <pre>This layer(the parent) has been initialized. The child view has been initialized. The child view is not the same as the parent layer.</pre>
+        /// <post>The child will be referenced by its parent. This means that the child will be kept alive, even if the handle passed into this method is reset or destroyed.</post>
+        /// <remarks>If the child already has a parent, it will be removed from old parent and reparented to this layer. This may change child's position, color, scale etc as it now inherits them from this layer.</remarks>
+        /// <param name="child">The child</param>
         public void Add(View child)
         {
             NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
@@ -217,6 +231,11 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Removes a child View from this layer. If the view was not a child of this layer, this is a no-op.
+        /// </summary>
+        /// <pre>This layer(the parent) has been initialized. The child view is not the same as the parent view.</pre>
+        /// <param name="child">The child</param>
         public void Remove(View child)
         {
             NDalicPINVOKE.Actor_Remove(swigCPtr, View.getCPtr(child));
@@ -487,6 +506,49 @@ namespace Tizen.NUI
             {
                 SetBehavior(value);
             }
+        }
+
+        /// <summary>
+        /// Gets/Sets the Layer's name.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return GetName();
+            }
+            set
+            {
+                SetName(value);
+            }
+        }
+
+        internal string GetName()
+        {
+            string ret = NDalicPINVOKE.Actor_GetName(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetName(string name)
+        {
+            NDalicPINVOKE.Actor_SetName(swigCPtr, name);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves the number of children held by the layer.
+        /// </summary>
+        /// <pre>The layer has been initialized.</pre>
+        /// <returns>The number of children</returns>
+        public uint GetChildCount()
+        {
+            uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
     }
