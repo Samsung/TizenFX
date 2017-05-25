@@ -104,6 +104,53 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Set a delay change time for index object.
+        /// delay time is 0.2 sec by default.
+        /// </summary>
+        public double Delay
+        {
+            get
+            {
+                return Interop.Elementary.elm_index_delay_change_time_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_index_delay_change_time_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the items level for a given index widget.
+        /// </summary>
+        public int Level
+        {
+            get
+            {
+                return Interop.Elementary.elm_index_item_level_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_index_item_level_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Control standard_priority group of index.
+        /// Priority group will be shown as many items as it can, and other group will be shown one character only.
+        /// </summary>
+        public int Priority
+        {
+            get
+            {
+                return Interop.Elementary.elm_index_standard_priority_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_index_standard_priority_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
         /// Gets the last selected item, for a given index widget.
         /// </summary>
         public IndexItem SelectedItem
@@ -153,12 +200,33 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Insert a new item into the index object after item after.
+        /// </summary>
+        /// <param name="label">the label which the item should be indexed</param>
+        /// <param name="after">The index item to insert after.</param>
+        /// <returns>A object to the IndexItem added or null, on errors</returns>
+        public IndexItem InsertAfter(string label, IndexItem after)
+        {
+            IndexItem item = new IndexItem(label);
+            item.Handle = Interop.Elementary.elm_index_item_insert_after(RealHandle, after, label, null, (IntPtr)item.Id);
+            return item;
+        }
+
+        /// <summary>
         /// Flush the changes made to the index items so they work correctly.
         /// </summary>
         /// <param name="level">The index level (one of 0 or 1) where changes were made</param>
         public void Update(int level)
         {
             Interop.Elementary.elm_index_level_go(RealHandle, level);
+        }
+
+        /// <summary>
+        /// Removes all items from a given index widget.
+        /// </summary>
+        public void Clear()
+        {
+            Interop.Elementary.elm_index_item_clear(RealHandle);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)

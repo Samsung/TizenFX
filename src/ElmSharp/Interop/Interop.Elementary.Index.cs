@@ -23,6 +23,8 @@ internal static partial class Interop
     {
         internal delegate void EventCallback(IntPtr data, IntPtr obj, IntPtr info);
 
+        internal delegate void SmartCallback(IntPtr data, IntPtr obj, IntPtr info);
+
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_index_add(IntPtr parent);
 
@@ -67,5 +69,38 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_index_item_insert_before(IntPtr obj, IntPtr before, string letter, EventCallback func, IntPtr data);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_index_item_sorted_insert(IntPtr obj, string letter, Evas_Smart_Cb func, IntPtr data, Eina_Compare_Cb cmpFunc, Eina_Compare_Cb cmpDataFunc);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int Eina_Compare_Cb(IntPtr data1, IntPtr data2);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_index_delay_change_time_set(IntPtr obj, double time);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern double elm_index_delay_change_time_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_index_item_clear(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_index_item_find(IntPtr obj, IntPtr data);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_index_item_insert_after(IntPtr obj, IntPtr after, string letter, SmartCallback func, IntPtr data);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_index_item_level_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_index_item_level_set(IntPtr obj, int level);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_index_standard_priority_set(IntPtr obj, int priority);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_index_standard_priority_get(IntPtr obj);
     }
 }
