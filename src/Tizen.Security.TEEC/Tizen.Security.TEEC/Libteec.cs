@@ -132,7 +132,7 @@ namespace Tizen.Security.TEEC
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="data">Source data buffer to copy data from</param>
-        /// <param name="dstOffs">Starting offset in source shared memory</param>
+        /// <param name="dstOffs">Starting offset in destination shared memory</param>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public void SetData(byte[] data, int dstOffs)
         {
@@ -145,7 +145,7 @@ namespace Tizen.Security.TEEC
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="data">Destination data buffer to copy data into</param>
-        /// <param name="dstOffs">Starting offset in destination shared memory</param>
+        /// <param name="srcOffs">Starting offset in source shared memory</param>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public void GetData(byte[] data, int srcOffs)
         {
@@ -438,7 +438,7 @@ namespace Tizen.Security.TEEC
         /// <summary>
         /// This function opens a new Session between the Client Application and the specified Trusted Application.
         /// The target Trusted Application is identified by a UUID passed in the parameter destination.
-        /// There can be up to four Parameter objects given in the {paramlist} array
+        /// There can be up to four Parameter objects given in the <paramref name="paramlist"/> array
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="destination">The UUID of destination TA</param>
@@ -581,6 +581,8 @@ namespace Tizen.Security.TEEC
 
         /// <summary>
         /// This function deregisters or deallocates a previously initialized block of Shared Memory.
+        /// </summary>
+        /// <remarks>
         /// For a memory buffer allocated using AllocateSharedMemory the Implementation MUST free the
         /// underlying memory and the Client Application MUST NOT access this region after this function has been
         /// called. In this case the Implementation MUST clear the buffer and size fields of the sharedMem
@@ -588,7 +590,7 @@ namespace Tizen.Security.TEEC
         /// For memory registered using RegisterSharedMemory the implementation MUST deregister the
         /// underlying memory from the TEE, but the memory region will stay available to the Client Application for
         /// other purposes as the memory is owned by it.
-        /// </summary>
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="shm">The shared memory object returned by RegisterSharedMemory or AllocateSharedMemory</param>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
