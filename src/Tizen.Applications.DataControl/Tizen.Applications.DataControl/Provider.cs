@@ -864,7 +864,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Initializes Provider class with dataID.
         /// </summary>
-        /// <param name="dataId">DataControl Data ID</param>
+        /// <param name="dataID">DataControl Data ID</param>
         /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
         public Provider(string dataID)
         {
