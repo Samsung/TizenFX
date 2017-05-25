@@ -594,9 +594,9 @@ namespace Tizen.Telephony
         /// <privilege>
         /// http://tizen.org/privilege/telephony
         /// </privilege>
-        /// <returnns>
+        /// <returns>
         /// The current default data subscription
-        /// </returnns>
+        /// </returns>
         public DefaultDataSubscription NetworkDefaultDataSubscription
         {
             get
@@ -620,9 +620,9 @@ namespace Tizen.Telephony
         /// <privilege>
         /// http://tizen.org/privilege/telephony
         /// </privilege>
-        /// <returnns>
+        /// <returns>
         /// The current default voice subscription
-        /// </returnns>
+        /// </returns>
         public DefaultSubscription NetworkDefaultSubscription
         {
             get
