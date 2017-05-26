@@ -26,7 +26,7 @@ namespace Tizen.Maps
         internal Interop.CoordinatesHandle handle;
 
         /// <summary>
-        /// Constructs map coordinate object.
+        /// Constructs map coordinates object.
         /// </summary>
         /// <param name="latitude">Latitude value, must be between (-90.0 ~ 90.0) degrees</param>
         /// <param name="longitude">Longitude value, must be between (-180.0 ~ 180.0) degrees</param>

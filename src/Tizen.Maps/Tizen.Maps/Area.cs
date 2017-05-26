@@ -28,8 +28,8 @@ namespace Tizen.Maps
         /// <summary>
         /// Constructs rectangular area.
         /// </summary>
-        /// <param name="topLeft">Top left coordinate of the area</param>
-        /// <param name="bottomRight">Bottom left coordinate of the area</param>
+        /// <param name="topLeft">Top-left coordinates of the area</param>
+        /// <param name="bottomRight">Bottom-left coordinate of the area</param>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
@@ -41,7 +41,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Constructs circular area.
         /// </summary>
-        /// <param name="center">Coordinate for center of the area</param>
+        /// <param name="center">Coordinates for center of the area</param>
         /// <param name="radius">Radius of the area</param>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid</exception>

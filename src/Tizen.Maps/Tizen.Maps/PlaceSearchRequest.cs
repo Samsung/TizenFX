@@ -62,7 +62,7 @@ namespace Tizen.Maps
             startExecutionAction = new Action(() =>
             {
                 int requestID;
-                errMessage = $"Failed to get co-ordinates for address {address} in given boundary";
+                errMessage = $"Failed to get coordinates for address {address} in given boundary";
                 errorCode = _service.handle.SearchPlaceByAddress(address, boundary.handle, _service.PlaceSearchFilter.handle, _service.Preferences.handle, _placeCallback, IntPtr.Zero, out requestID);
                 if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                 {

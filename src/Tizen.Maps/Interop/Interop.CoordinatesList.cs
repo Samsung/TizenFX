@@ -51,7 +51,7 @@ internal static partial class Interop
         {
             using (var clonedHandle = CoordinatesHandle.CloneFrom(handleToAdd))
             {
-                if (this.Append(clonedHandle).WarnIfFailed("Failed to add coordinate to the list"))
+                if (this.Append(clonedHandle).WarnIfFailed("Failed to add coordinates to the list"))
                 {
                     clonedHandle.HasOwnership = false;
                 }

@@ -80,9 +80,9 @@ Place search<br/>
    You can refine your search request by supplying keywords, Name of Points
    of Interests, or Proximity.<br/>
  - Category Search: search for popular places for the given location context and matching the category filter criteria.
-   You can refine your search request by specifying the categories of place you are searching for.<p/>
+   You can refine your search request by specifying the categories of place you are searching for.<br/>
 Result item type of searching<br/>
-- ID, name, location, distance, URI, rating, category.<p/>
+ - ID, name, location, distance, URI, rating, category.<br/>
 Place information allows to fetch details about a place. The following place content is supported:<br/>
  - Base Attribute includes name, location, categories, contacts, ID, ratings, icon path,
    image content, review content, and editorial content.<br/>

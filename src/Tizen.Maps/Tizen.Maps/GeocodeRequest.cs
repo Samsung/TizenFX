@@ -32,7 +32,7 @@ namespace Tizen.Maps
             startExecutionAction = new Action(() =>
             {
                 int requestID;
-                errMessage = $"Failed to get co-ordinates for given address {address}";
+                errMessage = $"Failed to get coordinates for given address {address}";
                 errorCode = _service.handle.Geocode(address, _service.Preferences.handle, _geocodeCallback, IntPtr.Zero, out requestID);
                 if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                 {
@@ -47,7 +47,7 @@ namespace Tizen.Maps
             startExecutionAction = new Action(() =>
             {
                 int requestID;
-                errMessage = $"Failed to get co-ordinates for given address {address}";
+                errMessage = $"Failed to get coordinates for given address {address}";
                 errorCode = _service.handle.GeocodeInsideArea(address, boundry.handle, _service.Preferences.handle, _geocodeCallback, IntPtr.Zero, out requestID);
                 if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                 {
@@ -62,7 +62,7 @@ namespace Tizen.Maps
             startExecutionAction = new Action(() =>
             {
                 int requestID;
-                errMessage = $"Failed to get co-ordinates for given address {address}";
+                errMessage = $"Failed to get coordinates for given address {address}";
                 errorCode = _service.handle.GeocodeByStructuredAddress(address.handle, _service.Preferences.handle, _geocodeCallback, IntPtr.Zero, out requestID);
                 if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                 {
