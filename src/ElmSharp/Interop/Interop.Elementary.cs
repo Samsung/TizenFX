@@ -171,7 +171,25 @@ internal static partial class Interop
         internal static extern void elm_object_tooltip_unset(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern string elm_object_tooltip_style_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_object_tooltip_style_set(IntPtr obj, string style);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_object_tooltip_window_mode_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_object_tooltip_window_mode_set(IntPtr obj, bool disable);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_tooltip_move_freeze_push(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_tooltip_move_freeze_pop(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_object_tooltip_move_freeze_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_object_tooltip_show(IntPtr obj);
@@ -181,6 +199,15 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_object_tooltip_orient_set(IntPtr obj, int orient);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_object_tooltip_orient_get(IntPtr obj);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate IntPtr Elm_Tooltip_Content_Cb(IntPtr data, IntPtr obj, IntPtr tooltip);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_tooltip_content_cb_set(IntPtr obj, Elm_Tooltip_Content_Cb func, IntPtr data, Interop.Evas.SmartCallback del);
 
         internal static string elm_object_part_text_get(IntPtr obj, string part)
         {
