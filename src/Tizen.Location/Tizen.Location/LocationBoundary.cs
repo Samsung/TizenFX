@@ -62,8 +62,8 @@ namespace Tizen.Location
         /// <summary>
         /// The overidden Dispose method of the IDisposable class.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public void Dispose()
         {
             Log.Info(Globals.LogTag, "Dispose");
@@ -106,9 +106,9 @@ namespace Tizen.Location
         /// </summary>
         /// <param name="topLeft"> The coordinate which constitute the top left handside of the rectangular boundary.</param>
         /// <param name="bottomRight"> The coordinate which constitute the bottom right handside of the rectangular boundary.</param>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public RectangleBoundary(Coordinate topLeft, Coordinate bottomRight)
         {
             Log.Info(Globals.LogTag, "Calling RectangleBoundary constructor");
@@ -176,9 +176,9 @@ namespace Tizen.Location
         /// </summary>
         /// <param name="coordinate"> The coordinates which constitute the center of the circular boundary.</param>
         /// <param name="radius"> The radius value of the circular boundary.</param>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public CircleBoundary(Coordinate coordinate, double radius)
         {
             Log.Info(Globals.LogTag, "Calling CircleBoundary constructor");
@@ -196,9 +196,9 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the coordinate of the center of a circular boundary.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public Coordinate Center
         {
             get
@@ -210,9 +210,9 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the radius of a circular boundary.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public double Radius
         {
             get
@@ -259,9 +259,9 @@ namespace Tizen.Location
         /// Constructor of the polygon boundary class.
         /// </summary>
         /// <param name="coordinates"> The coordinates which constitute the polgonal boundary.</param>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public PolygonBoundary(IList<Coordinate> coordinates)
         {
             Log.Info(Globals.LogTag, "Calling PolygonBoundary Constructor");
@@ -290,9 +290,9 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the list of coordinates which constitute a polygonal boundary
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public IList<Coordinate> Coordinates
         {
             get
