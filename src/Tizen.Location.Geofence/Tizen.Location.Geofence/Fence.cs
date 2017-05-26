@@ -202,7 +202,7 @@ namespace Tizen.Location.Geofence
         /// <param name="latitude">Specifies the value of latitude of geofence [-90.0 ~ 90.0] (degrees).</param>
         /// <param name="longitude">Specifies the value of longitude of geofence [-180.0 ~ 180.0] (degrees).</param>
         /// <param name="radius">Specifies the value of radius of geofence [100 ~ 500](meter).</param>
-        /// <param name="adsress">Specifies the value of address.</param>
+        /// <param name="address">Specifies the value of address.</param>
         /// <returns>Newly created geofence instance.</returns>
         /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Incase of any System error.</exception>

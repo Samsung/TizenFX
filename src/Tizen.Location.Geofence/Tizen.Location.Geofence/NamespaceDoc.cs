@@ -16,8 +16,8 @@ Notifications can be received about the following events:<br/>
 - Zone out when a device exits a specific area<br/>
 - Results and errors for each event requested to geofence module<p>
 The Geofence manager has the following properties:<br/>
-- geofence type</br>
-- status</br>
+- geofence type<br/>
+- status<br/>
 - 'Service state change' callback
 </para>
 
