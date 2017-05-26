@@ -76,17 +76,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VisualFactory(VisualFactory handle) : this(NDalicPINVOKE.new_VisualFactory__SWIG_1(VisualFactory.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal VisualFactory Assign(VisualFactory handle)
-        {
-            VisualFactory ret = new VisualFactory(NDalicPINVOKE.VisualFactory_Assign(swigCPtr, VisualFactory.getCPtr(handle)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         /// <summary>
         /// Request the visual
@@ -107,12 +96,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal VisualBase CreateVisual(string url, Uint16Pair size)
-        {
-            VisualBase ret = new VisualBase(NDalicPINVOKE.VisualFactory_CreateVisual__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(size)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
         private static readonly VisualFactory instance = VisualFactory.Get();
 
         /// <summary>

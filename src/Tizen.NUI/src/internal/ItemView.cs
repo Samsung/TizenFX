@@ -66,7 +66,7 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            //Unreference this from if a static instance refer to this. 
+            //Unreference this from if a static instance refer to this.
             ViewRegistry.UnregisterView(this);
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -96,95 +96,9 @@ namespace Tizen.NUI
             }
         }
 
-        public class Property : global::System.IDisposable
+        public class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-
-            ~Property()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_ItemView_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
             public static readonly int LAYOUT = NDalicManualPINVOKE.ItemView_Property_LAYOUT_get();
-
-            public Property() : this(NDalicPINVOKE.new_ItemView_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
             public static readonly int MINIMUM_SWIPE_SPEED = NDalicPINVOKE.ItemView_Property_MINIMUM_SWIPE_SPEED_get();
             public static readonly int MINIMUM_SWIPE_DISTANCE = NDalicPINVOKE.ItemView_Property_MINIMUM_SWIPE_DISTANCE_get();
             public static readonly int WHEEL_SCROLL_DISTANCE_STEP = NDalicPINVOKE.ItemView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
@@ -196,7 +110,6 @@ namespace Tizen.NUI
             public static readonly int SCROLL_DIRECTION = NDalicPINVOKE.ItemView_Property_SCROLL_DIRECTION_get();
             public static readonly int LAYOUT_ORIENTATION = NDalicPINVOKE.ItemView_Property_LAYOUT_ORIENTATION_get();
             public static readonly int SCROLL_CONTENT_SIZE = NDalicPINVOKE.ItemView_Property_SCROLL_CONTENT_SIZE_get();
-
         }
 
         public ItemView(ItemFactory factory) : this(NDalicPINVOKE.ItemView_New(ItemFactory.getCPtr(factory)), true)
@@ -204,19 +117,8 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public ItemView(ItemView itemView) : this(NDalicPINVOKE.new_ItemView__SWIG_1(ItemView.getCPtr(itemView)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
-        public ItemView Assign(ItemView itemView)
-        {
-            ItemView ret = new ItemView(NDalicPINVOKE.ItemView_Assign(swigCPtr, ItemView.getCPtr(itemView)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public new static ItemView DownCast(BaseHandle handle)
+        internal new static ItemView DownCast(BaseHandle handle)
         {
             ItemView ret = new ItemView(NDalicPINVOKE.ItemView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -454,20 +356,12 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public enum PropertyRange
-        {
-            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000,
-            ANIMATABLE_PROPERTY_START_INDEX = PropertyRanges.ANIMATABLE_PROPERTY_REGISTRATION_START_INDEX,
-            ANIMATABLE_PROPERTY_END_INDEX = PropertyRanges.ANIMATABLE_PROPERTY_REGISTRATION_START_INDEX + 1000
-        }
-
         public float MinimumSwipeSpeed
         {
             get
             {
                 float temp = 0.0f;
-                GetProperty(ItemView.Property.MINIMUM_SWIPE_SPEED).Get(ref temp);
+                GetProperty(ItemView.Property.MINIMUM_SWIPE_SPEED).Get(out temp);
                 return temp;
             }
             set
@@ -480,7 +374,7 @@ namespace Tizen.NUI
             get
             {
                 float temp = 0.0f;
-                GetProperty(ItemView.Property.MINIMUM_SWIPE_DISTANCE).Get(ref temp);
+                GetProperty(ItemView.Property.MINIMUM_SWIPE_DISTANCE).Get(out temp);
                 return temp;
             }
             set
@@ -493,7 +387,7 @@ namespace Tizen.NUI
             get
             {
                 float temp = 0.0f;
-                GetProperty(ItemView.Property.WHEEL_SCROLL_DISTANCE_STEP).Get(ref temp);
+                GetProperty(ItemView.Property.WHEEL_SCROLL_DISTANCE_STEP).Get(out temp);
                 return temp;
             }
             set
@@ -506,7 +400,7 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                GetProperty(ItemView.Property.SNAP_TO_ITEM_ENABLED).Get(ref temp);
+                GetProperty(ItemView.Property.SNAP_TO_ITEM_ENABLED).Get(out temp);
                 return temp;
             }
             set
@@ -519,7 +413,7 @@ namespace Tizen.NUI
             get
             {
                 float temp = 0.0f;
-                GetProperty(ItemView.Property.REFRESH_INTERVAL).Get(ref temp);
+                GetProperty(ItemView.Property.REFRESH_INTERVAL).Get(out temp);
                 return temp;
             }
             set
@@ -532,7 +426,7 @@ namespace Tizen.NUI
             get
             {
                 float temp = 0.0f;
-                GetProperty(ItemView.Property.LAYOUT_POSITION).Get(ref temp);
+                GetProperty(ItemView.Property.LAYOUT_POSITION).Get(out temp);
                 return temp;
             }
             set
@@ -545,7 +439,7 @@ namespace Tizen.NUI
             get
             {
                 float temp = 0.0f;
-                GetProperty(ItemView.Property.SCROLL_SPEED).Get(ref temp);
+                GetProperty(ItemView.Property.SCROLL_SPEED).Get(out temp);
                 return temp;
             }
             set
@@ -558,7 +452,7 @@ namespace Tizen.NUI
             get
             {
                 float temp = 0.0f;
-                GetProperty(ItemView.Property.OVERSHOOT).Get(ref temp);
+                GetProperty(ItemView.Property.OVERSHOOT).Get(out temp);
                 return temp;
             }
             set
@@ -584,7 +478,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                GetProperty(ItemView.Property.LAYOUT_ORIENTATION).Get(ref temp);
+                GetProperty(ItemView.Property.LAYOUT_ORIENTATION).Get(out temp);
                 return temp;
             }
             set
@@ -597,7 +491,7 @@ namespace Tizen.NUI
             get
             {
                 float temp = 0.0f;
-                GetProperty(ItemView.Property.SCROLL_CONTENT_SIZE).Get(ref temp);
+                GetProperty(ItemView.Property.SCROLL_CONTENT_SIZE).Get(out temp);
                 return temp;
             }
             set

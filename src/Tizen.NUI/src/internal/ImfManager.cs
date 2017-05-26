@@ -14,7 +14,7 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
 
 
-    public class ImfManager : BaseHandle
+    internal class ImfManager : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

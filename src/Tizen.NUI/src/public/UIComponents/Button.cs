@@ -489,101 +489,22 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets/Sets the padding around the foreground visual
         /// </summary>
-        public Vector4 VisualPadding
+        public Vector4 ForegroundVisualPadding
         {
             get
             {
                 Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(Button.Property.VISUAL_PADDING).Get(temp);
+                GetProperty(Button.Property.FOREGROUND_VISUAL_PADDING).Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(Button.Property.VISUAL_PADDING, new Tizen.NUI.PropertyValue(value));
+                SetProperty(Button.Property.FOREGROUND_VISUAL_PADDING, new Tizen.NUI.PropertyValue(value));
             }
         }
 
-        internal class Property : global::System.IDisposable
+        internal class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-            ~Property()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_Button_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
             internal static readonly int UNSELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_UNSELECTED_VISUAL_get();
             internal static readonly int SELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_SELECTED_VISUAL_get();
             internal static readonly int DISABLED_SELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_SELECTED_VISUAL_get();
@@ -594,14 +515,7 @@ namespace Tizen.NUI.UIComponents
             internal static readonly int DISABLED_SELECTED_BACKGROUND_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_SELECTED_BACKGROUND_VISUAL_get();
             internal static readonly int LABEL_RELATIVE_ALIGNMENT = NDalicManualPINVOKE.Button_Property_LABEL_RELATIVE_ALIGNMENT_get();
             internal static readonly int LABEL_PADDING = NDalicManualPINVOKE.Button_Property_LABEL_PADDING_get();
-            internal static readonly int VISUAL_PADDING = NDalicManualPINVOKE.Button_Property_VISUAL_PADDING_get();
-            //changed
-            internal Property() : this(NDalicPINVOKE.new_Button_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            internal static readonly int DISABLED = NDalicPINVOKE.Button_Property_DISABLED_get();
+            internal static readonly int FOREGROUND_VISUAL_PADDING = NDalicManualPINVOKE.Button_Property_VISUAL_PADDING_get();
             internal static readonly int AUTO_REPEATING = NDalicPINVOKE.Button_Property_AUTO_REPEATING_get();
             internal static readonly int INITIAL_AUTO_REPEATING_DELAY = NDalicPINVOKE.Button_Property_INITIAL_AUTO_REPEATING_DELAY_get();
             internal static readonly int NEXT_AUTO_REPEATING_DELAY = NDalicPINVOKE.Button_Property_NEXT_AUTO_REPEATING_DELAY_get();
@@ -610,8 +524,6 @@ namespace Tizen.NUI.UIComponents
             internal static readonly int UNSELECTED_COLOR = NDalicPINVOKE.Button_Property_UNSELECTED_COLOR_get();
             internal static readonly int SELECTED_COLOR = NDalicPINVOKE.Button_Property_SELECTED_COLOR_get();
             internal static readonly int LABEL = NDalicPINVOKE.Button_Property_LABEL_get();
-            internal static readonly int LABEL_TEXT = NDalicPINVOKE.Button_Property_LABEL_TEXT_get();
-
         }
 
         /// <summary>
@@ -623,18 +535,6 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Button(Button button) : this(NDalicPINVOKE.new_Button__SWIG_1(Button.getCPtr(button)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Button Assign(Button button)
-        {
-            Button ret = new Button(NDalicPINVOKE.Button_Assign(swigCPtr, Button.getCPtr(button)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Downcasts a handle to Button handle.<br>
         /// If handle points to a Button, the downcast produces valid handle.<br>
@@ -642,101 +542,9 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>A handle to a Button or an uninitialized handle</returns>
-        public new static Button DownCast(BaseHandle handle)
+        internal new static Button DownCast(BaseHandle handle)
         {
             Button ret = new Button(NDalicPINVOKE.Button_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal bool IsDisabled()
-        {
-            bool ret = NDalicPINVOKE.Button_IsDisabled(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal bool IsAutoRepeating()
-        {
-            bool ret = NDalicPINVOKE.Button_IsAutoRepeating(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal float GetInitialAutoRepeatingDelay()
-        {
-            float ret = NDalicPINVOKE.Button_GetInitialAutoRepeatingDelay(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal float GetNextAutoRepeatingDelay()
-        {
-            float ret = NDalicPINVOKE.Button_GetNextAutoRepeatingDelay(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal bool IsTogglableButton()
-        {
-            bool ret = NDalicPINVOKE.Button_IsTogglableButton(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal bool IsSelected()
-        {
-            bool ret = NDalicPINVOKE.Button_IsSelected(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Retrieves button's animation time.
-        /// </summary>
-        /// <returns></returns>
-        public float GetAnimationTime()
-        {
-            float ret = NDalicPINVOKE.Button_GetAnimationTime(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal string GetLabelText()
-        {
-            string ret = NDalicPINVOKE.Button_GetLabelText(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetLabel(View label)
-        {
-            NDalicPINVOKE.Button_SetLabel(swigCPtr, View.getCPtr(label));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetButtonImage(Image image)
-        {
-            NDalicPINVOKE.Button_SetButtonImage(swigCPtr, Image.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetSelectedImage(Image image)
-        {
-            NDalicPINVOKE.Button_SetSelectedImage(swigCPtr, Image.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal View GetButtonImage()
-        {
-            View ret = new View(NDalicPINVOKE.Button_GetButtonImage(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal View GetSelectedImage()
-        {
-            View ret = new View(NDalicPINVOKE.Button_GetSelectedImage(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -769,29 +577,6 @@ namespace Tizen.NUI.UIComponents
             return ret;
         }
 
-        internal enum PropertyRange
-        {
-            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
-        }
-
-        /// <summary>
-        /// Gets/Sets the button as disabled.
-        /// </summary>
-        public bool Disabled
-        {
-            get
-            {
-                bool temp = false;
-                GetProperty(Button.Property.DISABLED).Get(ref temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(Button.Property.DISABLED, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
         /// <summary>
         /// If the autorepeating property is set to true then the togglable property is set to false.
         /// </summary>
@@ -800,7 +585,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 bool temp = false;
-                GetProperty(Button.Property.AUTO_REPEATING).Get(ref temp);
+                GetProperty(Button.Property.AUTO_REPEATING).Get(out temp);
                 return temp;
             }
             set
@@ -817,7 +602,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(Button.Property.INITIAL_AUTO_REPEATING_DELAY).Get(ref temp);
+                GetProperty(Button.Property.INITIAL_AUTO_REPEATING_DELAY).Get(out temp);
                 return temp;
             }
             set
@@ -834,7 +619,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(Button.Property.NEXT_AUTO_REPEATING_DELAY).Get(ref temp);
+                GetProperty(Button.Property.NEXT_AUTO_REPEATING_DELAY).Get(out temp);
                 return temp;
             }
             set
@@ -851,7 +636,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 bool temp = false;
-                GetProperty(Button.Property.TOGGLABLE).Get(ref temp);
+                GetProperty(Button.Property.TOGGLABLE).Get(out temp);
                 return temp;
             }
             set
@@ -868,7 +653,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 bool temp = false;
-                GetProperty(Button.Property.SELECTED).Get(ref temp);
+                GetProperty(Button.Property.SELECTED).Get(out temp);
                 return temp;
             }
             set
@@ -935,13 +720,16 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                string temp;
-                GetProperty(Button.Property.LABEL_TEXT).Get(out temp);
-                return temp;
+                Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
+                GetProperty( Button.Property.LABEL).Get(map);
+                Tizen.NUI.PropertyValue value = map.Find( TextVisualProperty.Text, "Text");
+                string str;
+                value.Get(out str);
+                return str;
             }
             set
             {
-                SetProperty(Button.Property.LABEL_TEXT, new Tizen.NUI.PropertyValue(value));
+                SetProperty( Button.Property.LABEL, new Tizen.NUI.PropertyValue( value ) );
             }
         }
 

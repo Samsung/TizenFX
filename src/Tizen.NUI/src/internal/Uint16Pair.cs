@@ -178,28 +178,28 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public bool EqualTo(Uint16Pair rhs)
+        private bool EqualTo(Uint16Pair rhs)
         {
             bool ret = NDalicPINVOKE.Uint16Pair_EqualTo(swigCPtr, Uint16Pair.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public bool NotEqualTo(Uint16Pair rhs)
+        private bool NotEqualTo(Uint16Pair rhs)
         {
             bool ret = NDalicPINVOKE.Uint16Pair_NotEqualTo(swigCPtr, Uint16Pair.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public bool LessThan(Uint16Pair rhs)
+        private bool LessThan(Uint16Pair rhs)
         {
             bool ret = NDalicPINVOKE.Uint16Pair_LessThan(swigCPtr, Uint16Pair.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public bool GreaterThan(Uint16Pair rhs)
+        private bool GreaterThan(Uint16Pair rhs)
         {
             bool ret = NDalicPINVOKE.Uint16Pair_GreaterThan(swigCPtr, Uint16Pair.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

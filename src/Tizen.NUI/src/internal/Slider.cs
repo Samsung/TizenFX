@@ -72,7 +72,7 @@ namespace Tizen.NUI.UIComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            //Unreference this from if a static instance refer to this. 
+            //Unreference this from if a static instance refer to this.
             ViewRegistry.UnregisterView(this);
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -515,12 +515,6 @@ namespace Tizen.NUI.UIComponents
             return ret;
         }
 
-        internal enum PropertyRange
-        {
-            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
-        }
-
         /// <summary>
         /// Lower bound property
         /// </summary>
@@ -529,7 +523,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(Slider.Property.LOWER_BOUND).Get(ref temp);
+                GetProperty(Slider.Property.LOWER_BOUND).Get(out temp);
                 return temp;
             }
             set
@@ -546,7 +540,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(Slider.Property.UPPER_BOUND).Get(ref temp);
+                GetProperty(Slider.Property.UPPER_BOUND).Get(out temp);
                 return temp;
             }
             set
@@ -563,7 +557,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(Slider.Property.VALUE).Get(ref temp);
+                GetProperty(Slider.Property.VALUE).Get(out temp);
                 return temp;
             }
             set
@@ -682,7 +676,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 int temp = 0;
-                GetProperty(Slider.Property.VALUE_PRECISION).Get(ref temp);
+                GetProperty(Slider.Property.VALUE_PRECISION).Get(out temp);
                 return temp;
             }
             set
@@ -699,7 +693,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 bool temp = false;
-                GetProperty(Slider.Property.SHOW_POPUP).Get(ref temp);
+                GetProperty(Slider.Property.SHOW_POPUP).Get(out temp);
                 return temp;
             }
             set
@@ -716,7 +710,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 bool temp = false;
-                GetProperty(Slider.Property.SHOW_VALUE).Get(ref temp);
+                GetProperty(Slider.Property.SHOW_VALUE).Get(out temp);
                 return temp;
             }
             set
@@ -750,7 +744,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 bool temp = false;
-                GetProperty(Slider.Property.SNAP_TO_MARKS).Get(ref temp);
+                GetProperty(Slider.Property.SNAP_TO_MARKS).Get(out temp);
                 return temp;
             }
             set
@@ -767,7 +761,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(Slider.Property.MARK_TOLERANCE).Get(ref temp);
+                GetProperty(Slider.Property.MARK_TOLERANCE).Get(out temp);
                 return temp;
             }
             set

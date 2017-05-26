@@ -137,7 +137,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public Texture(SWIGTYPE_p_Dali__Internal__Texture pointer) : this(NDalicPINVOKE.new_Texture__SWIG_2(SWIGTYPE_p_Dali__Internal__Texture.getCPtr(pointer)), true)
+        internal Texture(SWIGTYPE_p_Dali__Internal__Texture pointer) : this(NDalicPINVOKE.new_Texture__SWIG_2(SWIGTYPE_p_Dali__Internal__Texture.getCPtr(pointer)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

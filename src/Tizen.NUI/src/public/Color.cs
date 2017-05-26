@@ -40,7 +40,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
+        //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam)
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
@@ -151,6 +151,11 @@ namespace Tizen.NUI
             return arg1.Multiply(arg2);
         }
 
+        public static Color operator*(Color arg1, float arg2)
+        {
+            return arg1.Multiply(arg2);
+        }
+
         /// <summary>
         /// Division operator.
         /// </summary>
@@ -158,6 +163,11 @@ namespace Tizen.NUI
         /// <param name="arg2">Second Value</param>
         /// <returns>A Color containing the result of the division</returns>
         public static Color operator /(Color arg1, Color arg2)
+        {
+            return arg1.Divide(arg2);
+        }
+
+        public static Color operator/(Color arg1, float arg2)
         {
             return arg1.Divide(arg2);
         }
@@ -247,6 +257,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        private Color Multiply(float rhs)
+        {
+            Color ret = new Color(NDalicPINVOKE.Vector4_Multiply__SWIG_1(swigCPtr, rhs), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         private Color MultiplyAssign(Color rhs)
         {
             Color ret = new Color(NDalicPINVOKE.Vector4_MultiplyAssign__SWIG_0(swigCPtr, Color.getCPtr(rhs)), false);
@@ -268,6 +285,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        private Color Divide(float rhs)
+        {
+            Color ret = new Color(NDalicPINVOKE.Vector4_Divide__SWIG_1(swigCPtr, rhs), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
         private Color DivideAssign(Color rhs)
         {

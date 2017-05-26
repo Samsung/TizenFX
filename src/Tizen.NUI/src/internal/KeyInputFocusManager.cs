@@ -12,8 +12,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-
-    public class KeyInputFocusManager : BaseHandle
+    internal class KeyInputFocusManager : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -60,7 +59,7 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        public KeyInputFocusManager() : this(NDalicPINVOKE.new_KeyInputFocusManager(), true)
+        private KeyInputFocusManager() : this(NDalicPINVOKE.new_KeyInputFocusManager(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

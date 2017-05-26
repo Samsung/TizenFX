@@ -95,17 +95,17 @@ namespace Tizen.NUI
         }
 
 
-        public TouchPoint(int id, TouchPoint.State state, float screenX, float screenY) : this(NDalicPINVOKE.new_TouchPoint__SWIG_0(id, (int)state, screenX, screenY), true)
+        public TouchPoint(int id, TouchPoint.StateType state, float screenX, float screenY) : this(NDalicPINVOKE.new_TouchPoint__SWIG_0(id, (int)state, screenX, screenY), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public TouchPoint(int id, TouchPoint.State state, float screenX, float screenY, float localX, float localY) : this(NDalicPINVOKE.new_TouchPoint__SWIG_1(id, (int)state, screenX, screenY, localX, localY), true)
+        public TouchPoint(int id, TouchPoint.StateType state, float screenX, float screenY, float localX, float localY) : this(NDalicPINVOKE.new_TouchPoint__SWIG_1(id, (int)state, screenX, screenY, localX, localY), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public int deviceId
+        public int DeviceId
         {
             set
             {
@@ -120,7 +120,7 @@ namespace Tizen.NUI
             }
         }
 
-        public TouchPoint.State state
+        public TouchPoint.StateType State
         {
             set
             {
@@ -129,13 +129,13 @@ namespace Tizen.NUI
             }
             get
             {
-                TouchPoint.State ret = (TouchPoint.State)NDalicPINVOKE.TouchPoint_state_get(swigCPtr);
+                TouchPoint.StateType ret = (TouchPoint.StateType)NDalicPINVOKE.TouchPoint_state_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
 
-        public View hitView
+        public View HitView
         {
             set
             {
@@ -151,7 +151,7 @@ namespace Tizen.NUI
             }
         }
 
-        public Vector2 local
+        public Vector2 Local
         {
             set
             {
@@ -167,7 +167,7 @@ namespace Tizen.NUI
             }
         }
 
-        public Vector2 screen
+        public Vector2 Screen
         {
             set
             {
@@ -183,7 +183,7 @@ namespace Tizen.NUI
             }
         }
 
-        public enum State
+        public enum StateType
         {
             Started,
             Finished,

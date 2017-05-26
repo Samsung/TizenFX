@@ -441,25 +441,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="index">The element index to retrieve.</param>
         /// <returns>The a reference to the element</returns>
-        public PropertyValue ValueOfIndex(uint index)
+        private PropertyValue ValueOfIndex(uint index)
         {
             PropertyValue ret = new PropertyValue(NDalicPINVOKE.Property_Array_ValueOfIndex__SWIG_0(swigCPtr, index), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        /// <summary>
-        /// Copy the array.
-        /// </summary>
-        /// <param name="other">The array to copy from</param>
-        /// <returns>The copied array</returns>
-        internal PropertyArray Assign(PropertyArray other)
-        {
-            PropertyArray ret = new PropertyArray(NDalicPINVOKE.Property_Array_Assign(swigCPtr, PropertyArray.getCPtr(other)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
     }
 
     /// <summary>
@@ -481,7 +468,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
+        //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam)
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
@@ -549,7 +536,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The type of the key
         /// </summary>
-        public PropertyKey.Type type
+        public PropertyKey.KeyType Type
         {
             set
             {
@@ -558,7 +545,7 @@ namespace Tizen.NUI
             }
             get
             {
-                PropertyKey.Type ret = (PropertyKey.Type)NDalicPINVOKE.Property_Key_type_get(swigCPtr);
+                PropertyKey.KeyType ret = (PropertyKey.KeyType)NDalicPINVOKE.Property_Key_type_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -567,7 +554,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The index key.
         /// </summary>
-        public int indexKey
+        public int IndexKey
         {
             set
             {
@@ -585,7 +572,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The string key.
         /// </summary>
-        public string stringKey
+        public string StringKey
         {
             set
             {
@@ -693,7 +680,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The type of key
         /// </summary>
-        public enum Type
+        public enum KeyType
         {
             Index,
             String
@@ -917,18 +904,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the key at the specified position.
-        /// </summary>
-        /// <param name="position">The specified position</param>
-        /// <returns>A reference to the key at the specified position</returns>
-        public string GetKey(uint position)
-        {
-            string ret = NDalicPINVOKE.Property_Map_GetKey(swigCPtr, position);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Retrieve the key at the specified position.
         /// </summary>
         /// <param name="position">The specified position</param>
@@ -940,32 +915,12 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal StringValuePair GetPair(uint position)
-        {
-            StringValuePair ret = new StringValuePair(NDalicPINVOKE.Property_Map_GetPair(swigCPtr, position), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Finds the value for the specified key if it exists.
         /// </summary>
         /// <param name="key">The key to find</param>
         /// <returns>The value if it exists, an empty object otherwise</returns>
-        public PropertyValue Find(string key)
-        {
-            global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_0(swigCPtr, key);
-            PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Finds the value for the specified key if it exists.
-        /// </summary>
-        /// <param name="key">The key to find</param>
-        /// <returns>The value if it exists, an empty object otherwise</returns>
-        public PropertyValue Find(int key)
+        internal PropertyValue Find(int key)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_2(swigCPtr, key);
             PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
@@ -982,34 +937,6 @@ namespace Tizen.NUI
         public PropertyValue Find(int indexKey, string stringKey)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_3(swigCPtr, indexKey, stringKey);
-            PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Finds the value for the specified key if it exists and its type is type.
-        /// </summary>
-        /// <param name="key">The key to find</param>
-        /// <param name="type">The type to check</param>
-        /// <returns>The value if it exists, an empty value otherwise</returns>
-        public PropertyValue Find(string key, PropertyType type)
-        {
-            global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_4(swigCPtr, key, (int)type);
-            PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Finds the value for the specified key if it exists and its type is type.
-        /// </summary>
-        /// <param name="key">The key to find</param>
-        /// <param name="type">The type to check</param>
-        /// <returns>The value if it exists, an empty value otherwise</returns>
-        public PropertyValue Find(int key, PropertyType type)
-        {
-            global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_5(swigCPtr, key, (int)type);
             PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1040,7 +967,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="key">The key whose value to retrieve</param>
         /// <returns>The value for the element with the specified key</returns>
-        public PropertyValue ValueOfIndex(string key)
+        internal PropertyValue ValueOfIndex(string key)
         {
             PropertyValue ret = new PropertyValue(NDalicPINVOKE.Property_Map_ValueOfIndex__SWIG_0(swigCPtr, key), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1052,25 +979,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="key">The key whose value to retrieve</param>
         /// <returns>The value for the element with the specified key</returns>
-        public PropertyValue ValueOfIndex(int key)
+        internal PropertyValue ValueOfIndex(int key)
         {
             PropertyValue ret = new PropertyValue(NDalicPINVOKE.Property_Map_ValueOfIndex__SWIG_2(swigCPtr, key), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        /// <summary>
-        /// Copy the map.
-        /// </summary>
-        /// <param name="other">The map to copy from</param>
-        /// <returns>The copied map</returns>
-        internal PropertyMap Assign(PropertyMap other)
-        {
-            PropertyMap ret = new PropertyMap(NDalicPINVOKE.Property_Map_Assign(swigCPtr, PropertyMap.getCPtr(other)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
     }
 
     /// <summary>
@@ -1492,18 +1406,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Copy the value.
-        /// </summary>
-        /// <param name="value">The value to copy from</param>
-        /// <returns>The copied value</returns>
-        internal PropertyValue Assign(PropertyValue value)
-        {
-            PropertyValue ret = new PropertyValue(NDalicPINVOKE.Property_Value_Assign(swigCPtr, PropertyValue.getCPtr(value)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Queries the type of this property value.
         /// </summary>
         /// <returns>The type ID</returns>
@@ -1519,9 +1421,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="boolValue">On return, a boolean value</param>
         /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
-        public bool Get(ref bool boolValue)
+        public bool Get(out bool boolValue)
         {
-            bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_1(swigCPtr, ref boolValue);
+            bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_1(swigCPtr, out boolValue);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1531,9 +1433,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="floatValue">On return, a floating-point value</param>
         /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
-        public bool Get(ref float floatValue)
+        public bool Get(out float floatValue)
         {
-            bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_2(swigCPtr, ref floatValue);
+            bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_2(swigCPtr, out floatValue);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1543,9 +1445,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="integerValue">On return, a integer value</param>
         /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
-        public bool Get(ref int integerValue)
+        public bool Get(out int integerValue)
         {
-            bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_3(swigCPtr, ref integerValue);
+            bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_3(swigCPtr, out integerValue);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1666,30 +1568,5 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        /// <summary>
-        /// Retrieves the Array API of the Property::Value without copying the contents of the map.
-        /// </summary>
-        /// <returns>The Array API of the Property::Value or NULL if not a Property::Array</returns>
-        public PropertyArray GetArray()
-        {
-            global::System.IntPtr cPtr = NDalicPINVOKE.Property_Value_GetArray(swigCPtr);
-            PropertyArray ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyArray(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Retrieves the Map API of the Property::Value without copying the contents of the map.
-        /// </summary>
-        /// <returns>The Map API of the Property::Value or NULL if not a Property::Map</returns>
-        public PropertyMap GetMap()
-        {
-            global::System.IntPtr cPtr = NDalicPINVOKE.Property_Value_GetMap(swigCPtr);
-            PropertyMap ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyMap(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
     }
 }

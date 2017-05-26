@@ -40,7 +40,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
+        //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam)
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
@@ -268,9 +268,14 @@ namespace Tizen.NUI
         public enum Modes
         {
             /// <summary>
+            /// The user has used a built-in function.
+            /// </summary>
+            BuiltinFunction,
+
+            /// <summary>
             /// The user has provided a custom function
             /// </summary>
-            CustomFunction = 1,
+            CustomFunction,
             /// <summary>
             /// The user has provided the control points of a bezier curve
             /// </summary>

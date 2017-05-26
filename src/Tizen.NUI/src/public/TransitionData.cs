@@ -83,7 +83,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public static TransitionData DownCast(BaseHandle handle)
+        internal static TransitionData DownCast(BaseHandle handle)
         {
             TransitionData ret = new TransitionData(NDalicPINVOKE.TransitionData_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -93,13 +93,6 @@ namespace Tizen.NUI
         public TransitionData(TransitionData handle) : this(NDalicPINVOKE.new_TransitionData__SWIG_1(TransitionData.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public TransitionData Assign(TransitionData handle)
-        {
-            TransitionData ret = new TransitionData(NDalicPINVOKE.TransitionData_Assign(swigCPtr, TransitionData.getCPtr(handle)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         public uint Count()

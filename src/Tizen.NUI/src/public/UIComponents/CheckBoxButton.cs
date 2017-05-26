@@ -84,17 +84,6 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        internal CheckBoxButton(CheckBoxButton checkBox) : this(NDalicPINVOKE.new_CheckBoxButton__SWIG_1(CheckBoxButton.getCPtr(checkBox)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal CheckBoxButton Assign(CheckBoxButton checkBox)
-        {
-            CheckBoxButton ret = new CheckBoxButton(NDalicPINVOKE.CheckBoxButton_Assign(swigCPtr, CheckBoxButton.getCPtr(checkBox)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         internal new static CheckBoxButton DownCast(BaseHandle handle)
         {

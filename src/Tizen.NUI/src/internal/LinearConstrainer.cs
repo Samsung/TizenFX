@@ -163,7 +163,6 @@ namespace Tizen.NUI
 
             internal static readonly int VALUE = NDalicPINVOKE.LinearConstrainer_Property_VALUE_get();
             internal static readonly int PROGRESS = NDalicPINVOKE.LinearConstrainer_Property_PROGRESS_get();
-
         }
 
         public LinearConstrainer() : this(NDalicPINVOKE.LinearConstrainer_New(), true)
@@ -171,7 +170,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public new static LinearConstrainer DownCast(BaseHandle handle)
+        internal new static LinearConstrainer DownCast(BaseHandle handle)
         {
             LinearConstrainer ret = new LinearConstrainer(NDalicPINVOKE.LinearConstrainer_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

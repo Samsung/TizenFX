@@ -76,7 +76,7 @@ namespace Tizen.NUI.UIComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            //Unreference this from if a static instance refer to this. 
+            //Unreference this from if a static instance refer to this.
             ViewRegistry.UnregisterView(this);
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -109,17 +109,6 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        internal RadioButton(RadioButton radioButton) : this(NDalicPINVOKE.new_RadioButton__SWIG_1(RadioButton.getCPtr(radioButton)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal RadioButton Assign(RadioButton radioButton)
-        {
-            RadioButton ret = new RadioButton(NDalicPINVOKE.RadioButton_Assign(swigCPtr, RadioButton.getCPtr(radioButton)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         /// <summary>
         /// Downcasts a handle to RadioButton handle.
@@ -128,7 +117,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>A handle to a RadioButton or an uninitialized handle</returns>
-        public new static RadioButton DownCast(BaseHandle handle)
+        internal new static RadioButton DownCast(BaseHandle handle)
         {
             RadioButton ret = new RadioButton(NDalicPINVOKE.RadioButton_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

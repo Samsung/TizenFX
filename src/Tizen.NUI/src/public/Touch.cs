@@ -83,13 +83,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Touch Assign(Touch other)
-        {
-            Touch ret = new Touch(NDalicPINVOKE.Touch_Assign(swigCPtr, Touch.getCPtr(other)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Returns the time (in ms) that the touch event occurred.
         /// </summary>

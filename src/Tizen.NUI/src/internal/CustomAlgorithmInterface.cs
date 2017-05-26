@@ -107,7 +107,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public CustomAlgorithmInterface() : this(NDalicPINVOKE.new_CustomAlgorithmInterface(), true)
+        internal CustomAlgorithmInterface() : this(NDalicPINVOKE.new_CustomAlgorithmInterface(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SwigDirectorConnect();
@@ -140,7 +140,7 @@ namespace Tizen.NUI
             return View.getCPtr(GetNextFocusableView(new View(current, true), new View(proposed, true), (View.FocusDirection)direction)).Handle;
         }
 
-        public delegate global::System.IntPtr SwigDelegateCustomAlgorithmInterface_0(global::System.IntPtr current, global::System.IntPtr proposed, int direction);
+        internal delegate global::System.IntPtr SwigDelegateCustomAlgorithmInterface_0(global::System.IntPtr current, global::System.IntPtr proposed, int direction);
 
         private SwigDelegateCustomAlgorithmInterface_0 swigDelegate0;
 

@@ -182,18 +182,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public PaddingType(PaddingType rhs) : this(NDalicPINVOKE.new_PaddingType__SWIG_2(PaddingType.getCPtr(rhs)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public PaddingType Assign(PaddingType rhs)
-        {
-            PaddingType ret = new PaddingType(NDalicPINVOKE.PaddingType_Assign(swigCPtr, PaddingType.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public void Set(float newX, float newY, float newWidth, float newHeight)
         {
             NDalicPINVOKE.PaddingType_Set(swigCPtr, newX, newY, newWidth, newHeight);

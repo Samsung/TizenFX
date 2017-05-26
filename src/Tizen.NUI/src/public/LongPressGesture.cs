@@ -113,26 +113,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Copy constructor.
-        /// </summary>
-        /// <param name="rhs">A reference to the copied handle</param>
-        public LongPressGesture(LongPressGesture rhs) : this(NDalicPINVOKE.new_LongPressGesture__SWIG_1(LongPressGesture.getCPtr(rhs)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Assignment operator.
-        /// </summary>
-        /// <param name="rhs">A reference to the copied handle</param>
-        /// <returns>A reference to this</returns>
-        public LongPressGesture Assign(LongPressGesture rhs)
-        {
-            LongPressGesture ret = new LongPressGesture(NDalicPINVOKE.LongPressGesture_Assign(swigCPtr, LongPressGesture.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         private uint numberOfTouches
         {

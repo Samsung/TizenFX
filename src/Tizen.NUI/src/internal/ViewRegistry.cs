@@ -74,7 +74,7 @@ namespace Tizen.NUI
     /// </remarks>
     ///
     ///
-    public class ScriptableProperty : System.Attribute
+    internal class ScriptableProperty : System.Attribute
     {
         public enum ScriptableType
         {
@@ -123,7 +123,7 @@ namespace Tizen.NUI
     ///
     ///
     /// </summary>
-    public sealed class ViewRegistry
+    internal sealed class ViewRegistry
     {
         /// <summary>
         /// ViewRegistry is a singleton
@@ -446,7 +446,7 @@ namespace Tizen.NUI
                 if (type.Equals(typeof(Int32)))
                 {
                     int value = 0;
-                    ok = propValue.Get(ref value);
+                    ok = propValue.Get(out value);
                     if (ok)
                     {
                         propertyInfo.SetValue(view, value);
@@ -455,7 +455,7 @@ namespace Tizen.NUI
                 else if (type.Equals(typeof(bool)))
                 {
                     bool value = false;
-                    ok = propValue.Get(ref value);
+                    ok = propValue.Get(out value);
                     if (ok)
                     {
                         propertyInfo.SetValue(view, value);
@@ -464,7 +464,7 @@ namespace Tizen.NUI
                 else if (type.Equals(typeof(float)))
                 {
                     float value = 0;
-                    ok = propValue.Get(ref value);
+                    ok = propValue.Get(out value);
                     if (ok)
                     {
                         propertyInfo.SetValue(view, value);

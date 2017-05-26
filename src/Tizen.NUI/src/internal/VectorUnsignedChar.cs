@@ -111,7 +111,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public SWIGTYPE_p_unsigned_char Begin()
+        internal SWIGTYPE_p_unsigned_char Begin()
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.VectorUnsignedChar_Begin(swigCPtr);
             SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
@@ -119,7 +119,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public SWIGTYPE_p_unsigned_char End()
+        internal SWIGTYPE_p_unsigned_char End()
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.VectorUnsignedChar_End(swigCPtr);
             SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
@@ -127,7 +127,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public SWIGTYPE_p_unsigned_char ValueOfIndex(uint index)
+        internal SWIGTYPE_p_unsigned_char ValueOfIndex(uint index)
         {
             SWIGTYPE_p_unsigned_char ret = new SWIGTYPE_p_unsigned_char(NDalicPINVOKE.VectorUnsignedChar_ValueOfIndex__SWIG_0(swigCPtr, index), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -146,7 +146,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void Insert(byte[] at, SWIGTYPE_p_unsigned_char from, SWIGTYPE_p_unsigned_char to)
+        internal void Insert(byte[] at, SWIGTYPE_p_unsigned_char from, SWIGTYPE_p_unsigned_char to)
         {
             NDalicPINVOKE.VectorUnsignedChar_Insert__SWIG_1(swigCPtr, at, SWIGTYPE_p_unsigned_char.getCPtr(from), SWIGTYPE_p_unsigned_char.getCPtr(to));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -170,7 +170,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public SWIGTYPE_p_unsigned_char Erase(byte[] iterator)
+        internal SWIGTYPE_p_unsigned_char Erase(byte[] iterator)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.VectorUnsignedChar_Erase__SWIG_0(swigCPtr, iterator);
             SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
@@ -178,7 +178,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public SWIGTYPE_p_unsigned_char Erase(byte[] first, SWIGTYPE_p_unsigned_char last)
+        internal SWIGTYPE_p_unsigned_char Erase(byte[] first, SWIGTYPE_p_unsigned_char last)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.VectorUnsignedChar_Erase__SWIG_1(swigCPtr, first, SWIGTYPE_p_unsigned_char.getCPtr(last));
             SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);

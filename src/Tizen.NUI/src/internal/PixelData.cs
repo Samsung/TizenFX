@@ -81,17 +81,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public PixelData(PixelData handle) : this(NDalicPINVOKE.new_PixelData__SWIG_1(PixelData.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
-        public PixelData Assign(PixelData rhs)
-        {
-            PixelData ret = new PixelData(NDalicPINVOKE.PixelData_Assign(swigCPtr, PixelData.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         public uint GetWidth()
         {

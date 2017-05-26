@@ -99,14 +99,14 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public uint GetAttachedActorCount()
+        public uint GetAttachedViewCount()
         {
             uint ret = NDalicPINVOKE.GestureDetector_GetAttachedActorCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public View GetAttachedActor(uint index)
+        public View GetAttachedView(uint index)
         {
             View ret = new View(NDalicPINVOKE.GestureDetector_GetAttachedActor(swigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
