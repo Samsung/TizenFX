@@ -9,6 +9,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Tizen" Version="1.0.5" />
-    <PackageReference Include="ElmSharp" Version="1.1.0" />
+    <PackageReference Include="ElmSharp" Version="1.1.0-*" />
   </ItemGroup>
 </Project>
