@@ -57,9 +57,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.HeartRateMonitor"/> class.
         /// </summary>
-        /// <remarks>
-        /// For accessing heart rate monitor, app should have http://tizen.org/privilege/healthinfo privilege.
-        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/healthinfo</privilege>
+        /// <feature>http://tizen.org/feature/sensor.heart_rate_monitor</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
         /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the sensor</exception>
@@ -80,7 +79,6 @@ namespace Tizen.Sensor
         /// <summary>
         /// Event Handler for storing the callback functions for event corresponding to change in heart rate monitor data.
         /// </summary>
-
         public event EventHandler<HeartRateMonitorDataUpdatedEventArgs> DataUpdated;
 
         private static int GetCount()

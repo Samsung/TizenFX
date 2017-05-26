@@ -92,9 +92,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.Pedometer"/> class.
         /// </summary>
-        /// <remarks>
-        /// For accessing pedometer, app should have http://tizen.org/privilege/healthinfo privilege.
-        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/healthinfo</privilege>
+        /// <feature>http://tizen.org/feature/sensor.pedometer</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
         /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the sensor</exception>

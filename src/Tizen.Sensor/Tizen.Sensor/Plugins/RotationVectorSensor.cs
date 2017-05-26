@@ -78,6 +78,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.RotationVectorSensor"/> class.
         /// </summary>
+        /// <feature>http://tizen.org/feature/sensor.rotation_vector</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
