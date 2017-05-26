@@ -26,7 +26,7 @@ namespace Tizen.Location
     }
 
     /// <summary>
-    /// Location Manager error codes
+    /// Location Manager error codes.
     /// </summary>
     public enum LocationError
     {
@@ -43,7 +43,7 @@ namespace Tizen.Location
     }
 
     /// <summary>
-    /// Location Boundary error codes
+    /// Location Boundary error codes.
     /// </summary>
     public enum LocationBoundError
     {
