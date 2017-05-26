@@ -15,9 +15,6 @@
 
 namespace Tizen.NUI
 {
-    using System;
-    using System.Runtime.InteropServices;
-    using Tizen.NUI.UIComponents;
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
@@ -65,11 +62,11 @@ namespace Tizen.NUI
         /// or absolute (in world units).<br>
         /// Optional.
         /// </summary>
-        public Vector2 Size
+        public Size2D Size
         {
             get
             {
-                return _visualSize ?? (new Vector2(1.0f, 1.0f));
+                return _visualSize ?? (new Size2D(1, 1));
             }
             set
             {
