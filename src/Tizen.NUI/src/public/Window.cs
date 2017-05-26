@@ -399,55 +399,26 @@ namespace Tizen.NUI
             return ret;
         }
 
-
-
-        /// <summary>
-        /// Creates an initialized handle to a new Window.
-        /// </summary>
-        /// <param name="windowPosition">The position and size of the Window</param>
-        /// <param name="name">The Window title</param>
-        /// <param name="isTransparent">Whether Window is transparent</param>
-        public Window(Rectangle windowPosition, string name, bool isTransparent) : this(NDalicPINVOKE.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTransparent), true)
+        internal Window(Rectangle windowPosition, string name, bool isTransparent) : this(NDalicPINVOKE.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTransparent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
-        /// <summary>
-        /// Creates an initialized handle to a new Window.
-        /// </summary>
-        /// <param name="windowPosition">The position and size of the Window</param>
-        /// <param name="name">The Window title</param>
-        public Window(Rectangle windowPosition, string name) : this(NDalicPINVOKE.Window_New__SWIG_1(Rectangle.getCPtr(windowPosition), name), true)
+        internal Window(Rectangle windowPosition, string name) : this(NDalicPINVOKE.Window_New__SWIG_1(Rectangle.getCPtr(windowPosition), name), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
-        /// <summary>
-        /// Creates an initialized handle to a new Window.
-        /// </summary>
-        /// <param name="windowPosition">The position and size of the Window</param>
-        /// <param name="name">The Window title</param>
-        /// <param name="className">The Window class name</param>
-        /// <param name="isTransparent">Whether Window is transparent</param>
-        public Window(Rectangle windowPosition, string name, string className, bool isTransparent) : this(NDalicPINVOKE.Window_New__SWIG_2(Rectangle.getCPtr(windowPosition), name, className, isTransparent), true)
+        internal Window(Rectangle windowPosition, string name, string className, bool isTransparent) : this(NDalicPINVOKE.Window_New__SWIG_2(Rectangle.getCPtr(windowPosition), name, className, isTransparent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
-        /// <summary>
-        /// Creates an initialized handle to a new Window.
-        /// </summary>
-        /// <param name="windowPosition">The position and size of the Window</param>
-        /// <param name="name">The Window title</param>
-        /// <param name="className">The Window class name</param>
-        public Window(Rectangle windowPosition, string name, string className) : this(NDalicPINVOKE.Window_New__SWIG_3(Rectangle.getCPtr(windowPosition), name, className), true)
+        internal Window(Rectangle windowPosition, string name, string className) : this(NDalicPINVOKE.Window_New__SWIG_3(Rectangle.getCPtr(windowPosition), name, className), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         internal Window(Window handle) : this(NDalicPINVOKE.new_Window__SWIG_1(Window.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -460,31 +431,18 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// This sets whether the indicator bar should be shown or not.
-        /// </summary>
-        /// <param name="visibleMode">Visible mode for indicator bar, Visible in default</param>
         internal void ShowIndicator(Window.IndicatorVisibleMode visibleMode)
         {
             NDalicPINVOKE.Window_ShowIndicator(swigCPtr, (int)visibleMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// This sets the opacity mode of indicator bar.
-        /// </summary>
-        /// <param name="opacity">The opacity mode</param>
         internal void SetIndicatorBgOpacity(Window.IndicatorBgOpacity opacity)
         {
             NDalicPINVOKE.Window_SetIndicatorBgOpacity(swigCPtr, (int)opacity);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// This sets the orientation of indicator bar.<br>
-        /// It does not implicitly show the indicator if it is currently hidden.<br>
-        /// </summary>
-        /// <param name="orientation">The orientation</param>
         internal void RotateIndicator(Window.WindowOrientation orientation)
         {
             NDalicPINVOKE.Window_RotateIndicator(swigCPtr, (int)orientation);
@@ -799,6 +757,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
         /// <summary>
         ///  Grabs the key specified by a key for a window in a GrabMode. <br>
         ///  Details: This function can be used for following example scenarios: <br>
@@ -815,6 +774,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
         /// <summary>
         /// Ungrabs the key specified by a key for a window.  <br>
         /// Note: If this function is called between key down and up events of a grabbed key, an application doesn't receive the key up event. <br>
@@ -827,14 +787,13 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
         internal System.IntPtr GetNativeWindowHandler()
         {
             System.IntPtr ret = NDalicManualPINVOKE.GetNativeWindowHandler(HandleRef.ToIntPtr(this.swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-
 
         /// <summary>
         /// Enumeration for orientation of the window is the way in which a rectangular page is oriented for normal viewing.
@@ -1233,11 +1192,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Window size property (read-only).
         /// </summary>
-        public Vector2 Size
+        public Size2D Size
         {
             get
             {
-                Vector2 ret = GetSize();
+                Size2D ret = GetSize();
                 return ret;
             }
         }
@@ -1245,7 +1204,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Background color property.
         /// </summary>
-        public Vector4 BackgroundColor
+        public Color BackgroundColor
         {
             set
             {
@@ -1253,7 +1212,7 @@ namespace Tizen.NUI
             }
             get
             {
-                Vector4 ret = GetBackgroundColor();
+                Color ret = GetBackgroundColor();
                 return ret;
             }
         }
