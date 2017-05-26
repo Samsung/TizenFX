@@ -43,7 +43,7 @@ namespace VisualViewTest2
                 Window.Instance.GetDefaultLayer().Add(view[i]);
                 view[i].FocusGained += VisualSample_FocusGained;
                 view[i].FocusLost += VisualSample_FocusLost;
-                view[i].KeyEvent += VisualSample_KeyEvent;
+                view[i].Key += VisualSample_KeyEvent;
             }
 
             view[0].RightFocusableView = view[1];
@@ -125,7 +125,7 @@ namespace VisualViewTest2
 
 
             guide = new TextLabel();
-            guide.AnchorPoint = AnchorPoint.TopLeft;
+            guide.PivotPoint = AnchorPoint.TopLeft;
             guide.Size2D = new Size2D(800, 200);
             guide.Padding = new Vector4(50, 50, 50, 50);
             guide.MultiLine = true;
@@ -139,8 +139,8 @@ namespace VisualViewTest2
 
             Window.Instance.KeyEvent += Instance_Key;
             FocusManager.Instance.SetCurrentFocusView(view[0]);
-            Window.Instance.TouchEvent += Instance_Touch;
-            _window = this.Window;
+            Window.Instance.Touched += Instance_Touch;
+            _window = Window.Instance;
             _window.WindowFocusChanged += _window_WindowFocusChanged;
 
         }

@@ -68,13 +68,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public TypeInfo Assign(TypeInfo rhs)
-        {
-            TypeInfo ret = new TypeInfo(NDalicPINVOKE.TypeInfo_Assign(swigCPtr, TypeInfo.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public string GetName()
         {
             string ret = NDalicPINVOKE.TypeInfo_GetName(swigCPtr);
@@ -92,34 +85,6 @@ namespace Tizen.NUI
         public BaseHandle CreateInstance()
         {
             BaseHandle ret = new BaseHandle(NDalicPINVOKE.TypeInfo_CreateInstance(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public uint GetActionCount()
-        {
-            uint ret = NDalicPINVOKE.TypeInfo_GetActionCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public string GetActionName(uint index)
-        {
-            string ret = NDalicPINVOKE.TypeInfo_GetActionName(swigCPtr, index);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public uint GetSignalCount()
-        {
-            uint ret = NDalicPINVOKE.TypeInfo_GetSignalCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public string GetSignalName(uint index)
-        {
-            string ret = NDalicPINVOKE.TypeInfo_GetSignalName(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

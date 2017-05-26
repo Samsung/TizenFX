@@ -386,9 +386,9 @@ namespace Tizen.NUI
         private FocusedViewEnterKeyEventCallback _focusedViewEnterKeyEventCallback;
 
         /// <summary>
-        /// FocusedViewEnterKeyPressed will be triggered when the current focused view has the enter key pressed on it.
+        /// FocusedViewActivated will be triggered when the current focused view has the enter key pressed on it.
         /// </summary>
-        public event EventHandler<FocusedViewEnterKeyEventArgs> FocusedViewEnterKeyPressed
+        public event EventHandler<FocusedViewEnterKeyEventArgs> FocusedViewActivated
         {
             add
             {

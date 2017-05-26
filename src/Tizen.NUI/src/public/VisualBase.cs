@@ -74,13 +74,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VisualBase Assign(VisualBase handle)
-        {
-            VisualBase ret = new VisualBase(NDalicPINVOKE.VisualBase_Assign(swigCPtr, VisualBase.getCPtr(handle)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// name of the visual
         /// </summary>

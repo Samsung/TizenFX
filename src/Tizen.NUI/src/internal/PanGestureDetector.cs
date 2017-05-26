@@ -524,7 +524,7 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.PANNING).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, PanGestureDetector.Property.PANNING).Get(out temp);
                 return temp;
             }
         }

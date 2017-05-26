@@ -85,7 +85,7 @@ namespace ControlDashboard
             TextLabel topLabel = new TextLabel();
             topLabel.WidthResizePolicy = ResizePolicyType.FillToParent;
             topLabel.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            topLabel.AnchorPoint = AnchorPoint.TopCenter;
+            topLabel.PivotPoint = AnchorPoint.TopCenter;
             topLabel.SetSizeModeFactor(new Vector3(0.0f, 0.1f, 0.0f));
             topLabel.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             topLabel.TextColor = Color.White;
@@ -102,7 +102,7 @@ namespace ControlDashboard
             _contentContainer.WidthResizePolicy = ResizePolicyType.FillToParent;
             _contentContainer.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
             _contentContainer.SetSizeModeFactor(new Vector3(0.0f, 0.9f, 0.0f));
-            _contentContainer.AnchorPoint = AnchorPoint.BottomCenter;
+            _contentContainer.PivotPoint = AnchorPoint.BottomCenter;
             _contentContainer.Position = new Position(0, _window.Size.Height * 0.1f, 0);
             _contentContainer.SetRelativeHeight(0, 0.07f);
             _contentContainer.SetRelativeHeight(1, 0.26f);
@@ -317,7 +317,7 @@ namespace ControlDashboard
                 {
                     PushButton button = new PushButton();
                     button.LabelText = "Popup";
-                    button.AnchorPoint = AnchorPoint.Center;
+                    button.PivotPoint = AnchorPoint.Center;
                     button.MaximumSize = new Size2D(150, 100);
                     _popup = CreatePopup();
                     _popup.SetTitle(CreateTitle("Popup"));
@@ -345,7 +345,7 @@ namespace ControlDashboard
                 {
                     PushButton button = new PushButton();
                     button.LabelText = "Toast";
-                    button.AnchorPoint = AnchorPoint.Center;
+                    button.PivotPoint = AnchorPoint.Center;
                     button.Clicked += (obj, ee) =>
                     {
                         TypeInfo typeInfo = new TypeInfo(TypeRegistry.Get().GetTypeInfo("PopupToast"));
@@ -390,22 +390,22 @@ namespace ControlDashboard
             footer.WidthResizePolicy = ResizePolicyType.FillToParent;
             footer.HeightResizePolicy = ResizePolicyType.Fixed;
             footer.Size = new Size(0.0f, 80.0f, 0.0f);
-            footer.AnchorPoint = AnchorPoint.Center;
+            footer.PivotPoint = AnchorPoint.Center;
 
             PushButton okButton = CreateOKButton();
-            okButton.AnchorPoint = AnchorPoint.Center;
+            okButton.PivotPoint = AnchorPoint.Center;
             okButton.WidthResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             okButton.HeightResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             okButton.SetSizeModeFactor(new Vector3(-20.0f, -20.0f, 0.0f));
 
             PushButton cancelButton = CreateCancelButton();
-            cancelButton.AnchorPoint = AnchorPoint.Center;
+            cancelButton.PivotPoint = AnchorPoint.Center;
             cancelButton.WidthResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             cancelButton.HeightResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             cancelButton.SetSizeModeFactor(new Vector3(-20.0f, -20.0f, 0.0f));
 
             TableView controlLayout = new TableView(1, 2);
-            controlLayout.AnchorPoint = AnchorPoint.Center;
+            controlLayout.PivotPoint = AnchorPoint.Center;
             controlLayout.WidthResizePolicy = ResizePolicyType.FillToParent;
             controlLayout.HeightResizePolicy = ResizePolicyType.FillToParent;
             controlLayout.SetCellPadding(new Size2D(10, 10));

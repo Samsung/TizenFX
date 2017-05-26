@@ -216,11 +216,6 @@ namespace Tizen.NUI
         }
 
 
-        internal BaseHandle(BaseObject handle) : this(NDalicPINVOKE.new_BaseHandle__SWIG_0(BaseObject.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         public BaseHandle() : this(NDalicPINVOKE.new_BaseHandle__SWIG_1(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -231,12 +226,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public BaseHandle Assign(BaseHandle rhs)
-        {
-            BaseHandle ret = new BaseHandle(NDalicPINVOKE.BaseHandle_Assign(swigCPtr, BaseHandle.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         public bool DoAction(string actionName, PropertyMap attributes)
         {
@@ -259,12 +248,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal BaseObject GetBaseObject()
-        {
-            BaseObject ret = new BaseObject(NDalicPINVOKE.BaseHandle_GetBaseObject__SWIG_0(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         public void Reset()
         {

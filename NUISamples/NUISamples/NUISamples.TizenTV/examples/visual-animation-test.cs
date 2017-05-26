@@ -65,7 +65,7 @@ namespace VisaulAnimationExample
 
             TableView titleLayout = new TableView(2, 1);
             titleLayout.Name = ("TitleLayout");
-            titleLayout.AnchorPoint = AnchorPoint.TopLeft;
+            titleLayout.PivotPoint = AnchorPoint.TopLeft;
             titleLayout.Position2D = new Position2D(10, 10);
             titleLayout.Size2D = new Size2D((int)(window.Size.Width * 0.9f), (int)(window.Size.Height * 0.9f));
             titleLayout.SetCellPadding(new Size2D(10, 10));
@@ -85,7 +85,7 @@ namespace VisaulAnimationExample
             contentLayout.Name = ("ContentLayout");
             contentLayout.WidthResizePolicy = ResizePolicyType.FillToParent;
             contentLayout.HeightResizePolicy = ResizePolicyType.FillToParent;
-            contentLayout.AnchorPoint = AnchorPoint.TopLeft;
+            contentLayout.PivotPoint = AnchorPoint.TopLeft;
             contentLayout.SetCellPadding(new Size2D(10, 10));
             contentLayout.BackgroundColor = Color.Magenta;
             titleLayout.AddChild(contentLayout, new TableView.CellPosition(1, 0));
@@ -117,7 +117,7 @@ namespace VisaulAnimationExample
             _shadowButton.LabelText = "Toggle Transition";
             _shadowButton.Name = ("ToggleTransition");
             _shadowButton.ParentOrigin = ParentOrigin.Center;
-            _shadowButton.AnchorPoint = AnchorPoint.Center;
+            _shadowButton.PivotPoint = AnchorPoint.Center;
             _shadowButton.Clicked += (obj, ev) =>
             {
                 _active = !_active;
@@ -165,7 +165,7 @@ namespace VisaulAnimationExample
             PushButton svgButton = new PushButton();
             svgButton.LabelText = "SVG Visual Test";
             svgButton.Name = ("svg_visual_test");
-            svgButton.AnchorPoint = AnchorPoint.Center;
+            svgButton.PivotPoint = AnchorPoint.Center;
             svgButton.WidthResizePolicy = ResizePolicyType.FillToParent;
             svgButton.HeightResizePolicy = ResizePolicyType.FillToParent;
             svgButton.Clicked += (obj, ev) =>
@@ -205,7 +205,7 @@ namespace VisaulAnimationExample
             PushButton gifButton = new PushButton();
             gifButton.LabelText = "AnimatedImage Visual Test";
             gifButton.Name = ("gif_visual_test");
-            gifButton.AnchorPoint = AnchorPoint.Center;
+            gifButton.PivotPoint = AnchorPoint.Center;
             gifButton.WidthResizePolicy = ResizePolicyType.FillToParent;
             gifButton.HeightResizePolicy = ResizePolicyType.FillToParent;
             gifButton.Clicked += (obj, ev) =>

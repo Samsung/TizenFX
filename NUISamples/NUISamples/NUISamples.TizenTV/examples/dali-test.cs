@@ -136,7 +136,7 @@ namespace DaliTest
             Animatable handle = new Animatable();
             int myPropertyIndex = handle.RegisterProperty("myProperty", new PropertyValue(10.0f), PropertyAccessMode.ReadWrite);
             float myProperty = 0.0f;
-            handle.GetProperty(myPropertyIndex).Get(ref myProperty);
+            handle.GetProperty(myPropertyIndex).Get(out myProperty);
             Tizen.Log.Debug("NUI",  "myProperty value: " + myProperty );
 
             int myPropertyIndex2 = handle.RegisterProperty("myProperty2", new PropertyValue(new Size(5.0f, 5.0f, 0.0f)), PropertyAccessMode.ReadWrite);
@@ -159,7 +159,7 @@ namespace DaliTest
 
             TextLabel text = new TextLabel("Hello Mono World");
             text.ParentOrigin = ParentOrigin.Center;
-            text.AnchorPoint = AnchorPoint.Center;
+            text.PivotPoint = AnchorPoint.Center;
             text.HorizontalAlignment = HorizontalAlignment.Center;
             window.GetDefaultLayer().Add(text);
 
@@ -541,9 +541,9 @@ namespace DaliTest
             label.TextColor = Color.Red;
             label.PointSize = 30.0f;
             label.ParentOrigin = ParentOrigin.TopLeft;
-            label.AnchorPoint = AnchorPoint.TopLeft;
+            label.PivotPoint = AnchorPoint.TopLeft;
             label.Position = new Position(0.0f, 50.0f, 0.0f);
-            Window.GetDefaultLayer().Add(label);
+            Window.Instance.GetDefaultLayer().Add(label);
             label.VisibilityChanged += (sender, e) =>
             {
                 if (e.Visibility)
@@ -555,8 +555,8 @@ namespace DaliTest
             PushButton button = new PushButton();
             button.LabelText = "Change Visibility";
             button.ParentOrigin = ParentOrigin.TopLeft;
-            button.AnchorPoint = AnchorPoint.TopLeft;
-            Window.GetDefaultLayer().Add(button);
+            button.PivotPoint = AnchorPoint.TopLeft;
+            Window.Instance.GetDefaultLayer().Add(button);
             button.Clicked += (sender, e) =>
             {
                 if (label.Visible)
@@ -578,13 +578,13 @@ namespace DaliTest
             image.ResourceUrl = _resPath + "/images/dog-anim.gif";
             image.Size2D = new Size2D(150, 150);
             image.ParentOrigin = ParentOrigin.TopLeft;
-            image.AnchorPoint = AnchorPoint.TopLeft;
+            image.PivotPoint = AnchorPoint.TopLeft;
             image.Position = new Position(0.0f, 150.0f, 0.0f);
             image.ResourceReady += (sender, e) =>
             {
                 Tizen.Log.Debug("NUI", "Resource is ready!");
             };
-            Window.GetDefaultLayer().Add(image);
+            Window.Instance.GetDefaultLayer().Add(image);
         }
 
         public void WindowDevelPropertyTest()
@@ -692,7 +692,7 @@ namespace DaliTest
           container.Position = new Position(-800.0f, -800.0f, 0.0f);
           Window.Instance.GetDefaultLayer().Add(container);
           Tizen.Log.Debug("NUI", "winow layer count is "+Window.Instance.GetLayerCount());
-          Tizen.Log.Debug("NUI", "winow default layer child at 0 is "+Window.GetDefaultLayer().GetChildAt(0));
+          Tizen.Log.Debug("NUI", "winow default layer child at 0 is "+Window.Instance.GetDefaultLayer().GetChildAt(0));
           // Test downcast for native control
           TextLabel myLabel = new TextLabel();
           myLabel.Name = "MyLabelName";

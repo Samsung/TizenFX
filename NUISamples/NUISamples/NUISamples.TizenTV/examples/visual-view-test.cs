@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ namespace VisualViewTest
             /* Create a visual view. */
             _visualView = new VisualView();
             _visualView.ParentOrigin = ParentOrigin.TopLeft;
-            _visualView.AnchorPoint = AnchorPoint.TopLeft;
+            _visualView.PivotPoint = AnchorPoint.TopLeft;
             _visualView.Size = new Size(window.Size.Width, window.Size.Height, 0.0f);
 
             /* color visual */
@@ -260,12 +260,12 @@ namespace VisualViewTest
             npatchImageVisualMap1.Border = new Rectangle(100, 100, 100, 100);
             _visualView.AddVisual("npatchImageVisual1", npatchImageVisualMap1);
 
-            _window = this.Window;
+            _window = Window.Instance;
             _window.WindowFocusChanged += (sender, ee) =>
             {
                 cnt++;
                 Tizen.Log.Debug("NUI", "[WindowFocusTest] WindowFocusChanged event comes! focus gained=" + ee.FocusGained);
-                imageVisualMap1.Size += new Vector2(50.0f, 50.0f);
+                imageVisualMap1.Size += new Size2D(50, 50);
                 imageVisualMap1.Position += new Vector2(20.0f, 20.0f);
 
                 textVisualMap1.Text = "Hello Goodbye" + cnt;

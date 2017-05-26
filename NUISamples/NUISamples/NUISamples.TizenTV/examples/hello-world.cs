@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2016 Samsung Electronics Co., Ltd.
+* Copyright (c) 2017 Samsung Electronics Co., Ltd.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ namespace HelloWorldTest
         {
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
-            window.TouchEvent += OnWindowTouched;
+            window.Touched += OnWindowTouched;
             window.KeyEvent += OnWindowKeyEvent;
 
             TextLabel pixelLabel = new TextLabel("Test Pixel Size 32.0f");
@@ -84,7 +84,7 @@ namespace HelloWorldTest
 
             _text = new TextLabel("Hello NUI World");
             _text.ParentOrigin = ParentOrigin.Center;
-            _text.AnchorPoint = AnchorPoint.Center;
+            _text.PivotPoint = AnchorPoint.Center;
             _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
             _text.TextColor = Color.Magenta;

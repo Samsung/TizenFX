@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2016 Samsung Electronics Co., Ltd.
+* Copyright (c) 2017 Samsung Electronics Co., Ltd.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -64,15 +64,15 @@ namespace UserAlphaFunctionTest
             Log("Initialize() is called!");
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
-            window.TouchEvent += OnWindowTouched;
-            window.TouchEvent += OnWindowTouched2;
+            window.Touched += OnWindowTouched;
+            window.Touched += OnWindowTouched2;
             //window.EventProcessingFinished += OnEventProcessingFinished;
-            window.WheelEvent += OnWindowWheelEvent;
+            window.WheelRolled += OnWindowWheelEvent;
 
             // Add a _text label to the window
             _text = new TextLabel("Hello Mono World");
             _text.ParentOrigin = ParentOrigin.BottomCenter;
-            _text.AnchorPoint = AnchorPoint.BottomCenter;
+            _text.PivotPoint = AnchorPoint.BottomCenter;
             _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
             window.GetDefaultLayer().Add(_text);
@@ -81,17 +81,17 @@ namespace UserAlphaFunctionTest
             _view1.Size = new Vector3(200.0f, 200.0f, 0.0f);
             _view1.BackgroundColor = Color.Green;
             _view1.ParentOrigin = ParentOrigin.Center;
-            _view1.AnchorPoint = AnchorPoint.Center;
+            _view1.PivotPoint = AnchorPoint.Center;
             _view1.WidthResizePolicy = ResizePolicyType.Fixed;
             _view1.HeightResizePolicy = ResizePolicyType.Fixed;
-            _view1.OnWindowEvent += OnWindow;
+            _view1.AddedToWindow += OnWindow;
             window.GetDefaultLayer().Add(_view1);
 
             _view2 = new View();
             _view2.BackgroundColor = Color.Red;
             _view2.Size = new Vector3(50.0f, 50.0f, 0.0f);
             _view2.ParentOrigin = ParentOrigin.TopLeft;
-            _view2.AnchorPoint = AnchorPoint.TopLeft;
+            _view2.PivotPoint = AnchorPoint.TopLeft;
             _view2.WidthResizePolicy = ResizePolicyType.Fixed;
             _view2.HeightResizePolicy = ResizePolicyType.Fixed;
             _view1.Add(_view2);
@@ -100,7 +100,7 @@ namespace UserAlphaFunctionTest
             _view3.BackgroundColor = Color.Blue;
             _view3.Size = new Vector3(50.0f, 50.0f, 0.0f);
             _view3.ParentOrigin = ParentOrigin.TopLeft;
-            _view3.AnchorPoint = AnchorPoint.TopLeft;
+            _view3.PivotPoint = AnchorPoint.TopLeft;
             _view3.WidthResizePolicy = ResizePolicyType.Fixed;
             _view3.HeightResizePolicy = ResizePolicyType.Fixed;
             _view1.Add(_view3);

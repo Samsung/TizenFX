@@ -69,19 +69,8 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Animatable(Animatable handle) : this(NDalicPINVOKE.new_Handle__SWIG_1(Animatable.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
-        public bool Supports(Animatable.Capability capability)
-        {
-            bool ret = NDalicPINVOKE.Handle_Supports(swigCPtr, (int)capability);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public uint GetPropertyCount()
+        internal uint GetPropertyCount()
         {
             uint ret = NDalicPINVOKE.Handle_GetPropertyCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -112,13 +101,6 @@ namespace Tizen.NUI
         public bool IsPropertyAnimatable(int index)
         {
             bool ret = NDalicPINVOKE.Handle_IsPropertyAnimatable(swigCPtr, index);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public bool IsPropertyAConstraintInput(int index)
-        {
-            bool ret = NDalicPINVOKE.Handle_IsPropertyAConstraintInput(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -175,19 +157,19 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void RemovePropertyNotifications()
+        internal void RemovePropertyNotifications()
         {
             NDalicPINVOKE.Handle_RemovePropertyNotifications(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void RemoveConstraints()
+        internal void RemoveConstraints()
         {
             NDalicPINVOKE.Handle_RemoveConstraints__SWIG_0(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void RemoveConstraints(uint tag)
+        internal void RemoveConstraints(uint tag)
         {
             NDalicPINVOKE.Handle_RemoveConstraints__SWIG_1(swigCPtr, tag);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

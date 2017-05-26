@@ -83,7 +83,7 @@ namespace SiblingOrderTest
                 _view.LabelText = "view" + i;
                 _view.MinimumSize = new Size2D(100, 50);
                 _view.ParentOrigin = ParentOrigin.TopLeft;
-                _view.AnchorPoint = AnchorPoint.TopLeft;
+                _view.PivotPoint = AnchorPoint.TopLeft;
                 _view.Position2D = _myPos + new Position2D(20 * i, 10 * i);
 
                 _window.GetDefaultLayer().Add(_view);
@@ -102,7 +102,7 @@ namespace SiblingOrderTest
                 _view.LabelText = "view" + i;
                 _view.MinimumSize = new Size2D(100, 50);
                 _view.ParentOrigin = ParentOrigin.TopLeft;
-                _view.AnchorPoint = AnchorPoint.TopLeft;
+                _view.PivotPoint = AnchorPoint.TopLeft;
                 _view.Position2D = _myPos + new Position2D(20 * i, 10 * i);
                 _view.SiblingOrder = i;
 
@@ -122,7 +122,7 @@ namespace SiblingOrderTest
                 _view.LabelText = "view" + i;
                 _view.MinimumSize = new Size2D(100, 50);
                 _view.ParentOrigin = ParentOrigin.TopLeft;
-                _view.AnchorPoint = AnchorPoint.TopLeft;
+                _view.PivotPoint = AnchorPoint.TopLeft;
                 _view.Position2D = _myPos + new Position2D(20 * i, 10 * i);
                 _view.SiblingOrder = 10-i;
 
@@ -142,7 +142,7 @@ namespace SiblingOrderTest
                 _view.LabelText = "view" + i;
                 _view.MinimumSize = new Size2D(100, 50);
                 _view.ParentOrigin = ParentOrigin.TopLeft;
-                _view.AnchorPoint = AnchorPoint.TopLeft;
+                _view.PivotPoint = AnchorPoint.TopLeft;
                 _view.Position2D = _myPos + new Position2D(20 * i, 10 * i);
                 if (i<5)
                 {
@@ -169,7 +169,7 @@ namespace SiblingOrderTest
                 _view.LabelText = "view" + i;
                 _view.MinimumSize = new Size2D(100, 50);
                 _view.ParentOrigin = ParentOrigin.TopLeft;
-                _view.AnchorPoint = AnchorPoint.TopLeft;
+                _view.PivotPoint = AnchorPoint.TopLeft;
                 _view.Position2D = _myPos + new Position2D(20 * i, 10 * i);
                 if (i<5)
                 {

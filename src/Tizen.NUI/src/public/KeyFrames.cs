@@ -116,21 +116,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>Handle to a KeyFrames object or an uninitialized handle</returns>
-        public static KeyFrames DownCast(BaseHandle handle)
+        internal static KeyFrames DownCast(BaseHandle handle)
         {
             KeyFrames ret = new KeyFrames(NDalicPINVOKE.KeyFrames_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal KeyFrames(KeyFrames handle) : this(NDalicPINVOKE.new_KeyFrames__SWIG_1(KeyFrames.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal KeyFrames Assign(KeyFrames rhs)
-        {
-            KeyFrames ret = new KeyFrames(NDalicPINVOKE.KeyFrames_Assign(swigCPtr, KeyFrames.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

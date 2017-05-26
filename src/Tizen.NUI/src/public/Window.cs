@@ -106,7 +106,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the focus acceptable flag of an window as true.
         /// </summary>
-        public void SetAcceptFocus(bool accept)
+        internal void SetAcceptFocus(bool accept)
         {
             NDalicPINVOKE.SetAcceptFocus(swigCPtr, accept);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -115,7 +115,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves whether the window is focus acceptable or not.
         /// </summary>
-        public bool IsFocusAcceptable()
+        internal bool IsFocusAcceptable()
         {
             return NDalicPINVOKE.IsFocusAcceptable(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -254,15 +254,6 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
-        // public void SetType(WindowType type) {
-            
-        // }
-
-        // public WindowType GetType() {
-        //     WindowType ret = (WindowType)NDalicPINVOKE.GetType(swigCPtr);
-        //     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        //     return ret;
-        // }
 
         /// <summary>
         /// Sets a priority level for the specified notification window.
@@ -422,25 +413,13 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Window(Window handle) : this(NDalicPINVOKE.new_Window__SWIG_1(Window.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Window Assign(Window rhs)
-        {
-            Window ret = new Window(NDalicPINVOKE.Window_Assign(swigCPtr, Window.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal void ShowIndicator(Window.IndicatorVisibleMode visibleMode)
         {
             NDalicPINVOKE.Window_ShowIndicator(swigCPtr, (int)visibleMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetIndicatorBgOpacity(Window.IndicatorBgOpacity opacity)
+        internal void SetIndicatorBackgroundOpacity(Window.IndicatorBackgroundOpacity opacity)
         {
             NDalicPINVOKE.Window_SetIndicatorBgOpacity(swigCPtr, (int)opacity);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -544,7 +523,7 @@ namespace Tizen.NUI
         /// Add layer to the Stage.
         /// </summary>
         /// <param name="layer">Layer to add</param>
-        public void AddLayer(Layer layer)
+        public void Add(Layer layer)
         {
             NDalicPINVOKE.Stage_Add(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -554,7 +533,7 @@ namespace Tizen.NUI
         /// Remove layer from the Stage.
         /// </summary>
         /// <param name="layer">Layer to remove</param>
-        public void RemoveLayer(Layer layer)
+        public void Remove(Layer layer)
         {
             NDalicPINVOKE.Stage_Remove(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -591,7 +570,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The number of layers.</returns>
         /// <remarks>Note that a default layer is always provided (count >= 1).</remarks>
-        public uint GetLayerCount()
+        internal uint GetLayerCount()
         {
             uint ret = NDalicPINVOKE.Stage_GetLayerCount(stageCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -835,7 +814,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for opacity of the indicator.
         /// </summary>
-        internal enum IndicatorBgOpacity
+        internal enum IndicatorBackgroundOpacity
         {
             Opaque = 100,
             Translucent = 50,
@@ -884,7 +863,7 @@ namespace Tizen.NUI
         /// then when the last finger is lifted.<br>
         /// An interrupted event will also be emitted (if it occurs).<br>
         /// </summary>
-        public event EventHandler<TouchEventArgs> TouchEvent
+        public event EventHandler<TouchEventArgs> Touched
         {
             add
             {
@@ -952,7 +931,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event emitted when wheel event is received.
         /// </summary>
-        public event EventHandler<WheelEventArgs> WheelEvent
+        public event EventHandler<WheelEventArgs> WheelRolled
         {
             add
             {

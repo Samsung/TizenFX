@@ -66,7 +66,7 @@ namespace Tizen.NUI.BaseComponents
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.          
+            //because the execution order of Finalizes is non-deterministic.
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -81,91 +81,8 @@ namespace Tizen.NUI.BaseComponents
             base.Dispose(type);
         }
 
-        internal class Property : global::System.IDisposable
+        internal class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-            
-            ~Property()
-            {
-                if(!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled()) {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if(type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_TextLabel_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                disposed = true;
-            }
-
-            internal Property() : this(NDalicPINVOKE.new_TextLabel_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
             internal static readonly int RENDERING_BACKEND = NDalicPINVOKE.TextLabel_Property_RENDERING_BACKEND_get();
             internal static readonly int TEXT = NDalicPINVOKE.TextLabel_Property_TEXT_get();
             internal static readonly int FONT_FAMILY = NDalicPINVOKE.TextLabel_Property_FONT_FAMILY_get();
@@ -220,46 +137,16 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TextLabel Assign(TextLabel handle)
-        {
-            TextLabel ret = new TextLabel(NDalicPINVOKE.TextLabel_Assign(swigCPtr, TextLabel.getCPtr(handle)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         /// <summary>
         /// Downcasts a handle to TextLabel.
         /// </summary>
         /// <param name="handle">Handle to an object</param>
-        public new static TextLabel DownCast(BaseHandle handle)
+        internal new static TextLabel DownCast(BaseHandle handle)
         {
             TextLabel ret = new TextLabel(NDalicPINVOKE.TextLabel_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal enum PropertyRange
-        {
-            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
-        }
-
-        /// <summary>
-        /// RenderingBackend property.<br>
-        /// The type of rendering e.g. bitmap-based.
-        /// </summary>
-        public int RenderingBackend
-        {
-            get
-            {
-                int temp = 0;
-                GetProperty(TextLabel.Property.RENDERING_BACKEND).Get(ref temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(TextLabel.Property.RENDERING_BACKEND, new Tizen.NUI.PropertyValue(value));
-            }
         }
 
         /// <summary>
@@ -325,7 +212,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextLabel.Property.POINT_SIZE).Get(ref temp);
+                GetProperty(TextLabel.Property.POINT_SIZE).Get(out temp);
                 return temp;
             }
             set
@@ -343,7 +230,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(TextLabel.Property.MULTI_LINE).Get(ref temp);
+                GetProperty(TextLabel.Property.MULTI_LINE).Get(out temp);
                 return temp;
             }
             set
@@ -530,7 +417,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(TextLabel.Property.UNDERLINE_ENABLED).Get(ref temp);
+                GetProperty(TextLabel.Property.UNDERLINE_ENABLED).Get(out temp);
                 return temp;
             }
             set
@@ -566,7 +453,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextLabel.Property.UNDERLINE_HEIGHT).Get(ref temp);
+                GetProperty(TextLabel.Property.UNDERLINE_HEIGHT).Get(out temp);
                 return temp;
             }
             set
@@ -584,7 +471,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(TextLabel.Property.ENABLE_MARKUP).Get(ref temp);
+                GetProperty(TextLabel.Property.ENABLE_MARKUP).Get(out temp);
                 return temp;
             }
             set
@@ -602,7 +489,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(TextLabel.Property.ENABLE_AUTO_SCROLL).Get(ref temp);
+                GetProperty(TextLabel.Property.ENABLE_AUTO_SCROLL).Get(out temp);
                 return temp;
             }
             set
@@ -620,7 +507,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int temp = 0;
-                GetProperty(TextLabel.Property.AUTO_SCROLL_SPEED).Get(ref temp);
+                GetProperty(TextLabel.Property.AUTO_SCROLL_SPEED).Get(out temp);
                 return temp;
             }
             set
@@ -638,7 +525,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int temp = 0;
-                GetProperty(TextLabel.Property.AUTO_SCROLL_LOOP_COUNT).Get(ref temp);
+                GetProperty(TextLabel.Property.AUTO_SCROLL_LOOP_COUNT).Get(out temp);
                 return temp;
             }
             set
@@ -656,7 +543,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextLabel.Property.AUTO_SCROLL_GAP).Get(ref temp);
+                GetProperty(TextLabel.Property.AUTO_SCROLL_GAP).Get(out temp);
                 return temp;
             }
             set
@@ -674,7 +561,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextLabel.Property.LINE_SPACING).Get(ref temp);
+                GetProperty(TextLabel.Property.LINE_SPACING).Get(out temp);
                 return temp;
             }
             set
@@ -764,7 +651,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextLabel.Property.PIXEL_SIZE).Get(ref temp);
+                GetProperty(TextLabel.Property.PIXEL_SIZE).Get(out temp);
                 return temp;
             }
             set
@@ -782,7 +669,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(TextLabel.Property.ELLIPSIS).Get(ref temp);
+                GetProperty(TextLabel.Property.ELLIPSIS).Get(out temp);
                 return temp;
             }
             set
@@ -800,7 +687,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextLabel.Property.AUTO_SCROLL_LOOP_DELAY).Get(ref temp);
+                GetProperty(TextLabel.Property.AUTO_SCROLL_LOOP_DELAY).Get(out temp);
                 return temp;
             }
             set

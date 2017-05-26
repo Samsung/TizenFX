@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ namespace VisualViewTest3
             /* Create a visual view. */
             _visualView = new VisualView();
             _visualView.ParentOrigin = ParentOrigin.TopLeft;
-            _visualView.AnchorPoint = AnchorPoint.TopLeft;
+            _visualView.PivotPoint = AnchorPoint.TopLeft;
             _visualView.Size = new Size(window.Size.Width, window.Size.Height, 0.0f);
 
             /* color visual */
@@ -89,11 +89,11 @@ namespace VisualViewTest3
             imageVisualMap2.DepthIndex = 9.0f;
             _visualView.AddVisual("imageVisual2", imageVisualMap2);
             /* If imageVisual2 added first, the it will be covered by imageVisual1.
-               so, we need to set their depth index to ensure they all can be showed. 
+               so, we need to set their depth index to ensure they all can be showed.
              */
             _visualView.AddVisual("imageVisual1", imageVisualMap1);
 
-            _window = this.Window;
+            _window = Window.Instance;
             _window.WindowFocusChanged += (sender, ee) =>
             {
                 cnt++;

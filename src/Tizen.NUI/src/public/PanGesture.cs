@@ -176,31 +176,11 @@ namespace Tizen.NUI
         /// Constructor.
         /// </summary>
         /// <param name="state">The state of the gesture</param>
-        public PanGesture(Gesture.StateType state) : this(NDalicPINVOKE.new_PanGesture__SWIG_1((int)state), true)
+        internal PanGesture(Gesture.StateType state) : this(NDalicPINVOKE.new_PanGesture__SWIG_1((int)state), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Copy constructor.
-        /// </summary>
-        /// <param name="rhs">A reference to the copied handle</param>
-        public PanGesture(PanGesture rhs) : this(NDalicPINVOKE.new_PanGesture__SWIG_2(PanGesture.getCPtr(rhs)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Assignment operator.
-        /// </summary>
-        /// <param name="rhs">A reference to the copied handle</param>
-        /// <returns>A reference to this</returns>
-        public PanGesture Assign(PanGesture rhs)
-        {
-            PanGesture ret = new PanGesture(NDalicPINVOKE.PanGesture_Assign(swigCPtr, PanGesture.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         private Vector2 velocity
         {
