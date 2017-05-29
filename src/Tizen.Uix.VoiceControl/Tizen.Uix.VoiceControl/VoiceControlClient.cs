@@ -234,9 +234,9 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
-        /// <precondition>
+        /// <pre>
         /// The State must be Initialized or Ready.
-        /// </precondition>
+        /// </pre>
         public static string CurrentLanguage
         {
             get
@@ -263,9 +263,9 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
-        /// <precondition>
+        /// <pre>
         /// The State must be Initialized or Ready.
-        /// </precondition>
+        /// </pre>
         public static State State
         {
             get
@@ -292,9 +292,9 @@ namespace Tizen.Uix.VoiceControl
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
-        /// <precondition>
+        /// <pre>
         /// The State must be Ready.
-        /// </precondition>
+        /// </pre>
         public static ServiceState ServiceState
         {
             get
@@ -338,9 +338,9 @@ namespace Tizen.Uix.VoiceControl
         /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Ready.
-        /// </precondition>
+        /// </pre>
         public static void SetInvocationName(string name)
         {
             ErrorCode error = VcSetInvocationName(name);
@@ -368,9 +368,9 @@ namespace Tizen.Uix.VoiceControl
         /// <exception cref="OutOfMemoryException"> This Exception can be due to Out Of Memory. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
-        /// <postcondition>
+        /// <post>
         /// The State will be Initialized.
-        /// </postcondition>
+        /// </post>
         public static void Initialize()
         {
             ErrorCode error = VcInitialize();
@@ -425,12 +425,12 @@ namespace Tizen.Uix.VoiceControl
         /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
-        /// <precondition>
+        /// <pre>
         /// The State should be Initialized
-        /// </precondition>
-        /// <postcondition>
+        /// </pre>
+        /// <post>
         /// The State will be Ready
-        /// </postcondition>
+        /// </post>
         public static void Prepare()
         {
             ErrorCode error = VcPrepare();
@@ -457,12 +457,12 @@ namespace Tizen.Uix.VoiceControl
         /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
-        /// <precondition>
+        /// <pre>
         /// The State should be Ready
-        /// </precondition>
-        /// <postcondition>
+        /// </pre>
+        /// <post>
         /// The State should be Initialized
-        /// </postcondition>
+        /// </post>
         public static void Unprepare()
         {
             ErrorCode error = VcUnprepare();
@@ -493,9 +493,9 @@ namespace Tizen.Uix.VoiceControl
         /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
-        /// <precondition>
+        /// <pre>
         /// The State should be Ready or Initialized
-        /// </precondition>
+        /// </pre>
         public static IEnumerable<string> GetSupportedLanguages()
         {
             s_supportedLanguages = new List<string>();
@@ -539,9 +539,9 @@ namespace Tizen.Uix.VoiceControl
         /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
-        /// <precondition>
+        /// <pre>
         /// The State should be Ready
-        /// </precondition>
+        /// </pre>
         public static VoiceCommandList GetSystemCommandList()
         {
             IntPtr handle = IntPtr.Zero;
@@ -590,9 +590,9 @@ namespace Tizen.Uix.VoiceControl
         /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
-        /// <precondition>
+        /// <pre>
         /// The State should be Ready
-        /// </precondition>
+        /// </pre>
         public static void RequestDialog(string dispText, string uttText, bool autoStart)
         {
             ErrorCode error = VcRequestDialog(dispText, uttText, autoStart);
@@ -626,9 +626,9 @@ namespace Tizen.Uix.VoiceControl
         /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
-        /// <precondition>
+        /// <pre>
         /// The State should be Ready
-        /// </precondition>
+        /// </pre>
         public static void SetCommandList(VoiceCommandList list, CommandType type)
         {
             if ((type == CommandType.Foreground) || (type == CommandType.Background))
@@ -665,9 +665,9 @@ namespace Tizen.Uix.VoiceControl
         /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
-        /// <precondition>
+        /// <pre>
         /// The State should be Ready
-        /// </precondition>
+        /// </pre>
         public static void UnsetCommandList(CommandType type)
         {
             if ((type == CommandType.Foreground) || (type == CommandType.Background))
@@ -706,9 +706,9 @@ namespace Tizen.Uix.VoiceControl
         /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         /// <returns>The Recognition Result if possible else a null object</returns>
-        /// <precondition>
+        /// <pre>
         /// The State should be Ready
-        /// </precondition>
+        /// </pre>
         public static RecognitionResult GetResult()
         {
             s_recognitionResult = null;
@@ -729,9 +729,9 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Event to be invoked when the recognition is done.
         /// </summary>
-        /// <precondition>
+        /// <pre>
         /// The State should be Initialized
-        /// </precondition>
+        /// </pre>
         public static event EventHandler<RecognitionResultEventArgs> RecognitionResult
         {
             add
@@ -775,9 +775,9 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Event to be invoked when VoiceControl service state changes.
         /// </summary>
-        /// <precondition>
+        /// <pre>
         /// The State should be Initialized
-        /// </precondition>
+        /// </pre>
         public static event EventHandler<ServiceStateChangedEventArgs> ServiceStateChanged
         {
             add
@@ -813,9 +813,9 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Event to be invoked when VoiceControl client state changes.
         /// </summary>
-        /// <precondition>
+        /// <pre>
         /// The State should be Initialized
-        /// </precondition>
+        /// </pre>
         public static event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
@@ -851,9 +851,9 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Event to be invoked when an error occurs.
         /// </summary>
-        /// <precondition>
+        /// <pre>
         /// The State should be Initialized
-        /// </precondition>
+        /// </pre>
         public static event EventHandler<ErrorOccuredEventArgs> ErrorOccured
         {
             add
@@ -891,9 +891,9 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Event to be invoked when default laungage change.
         /// </summary>
-        /// <precondition>
+        /// <pre>
         /// The State should be Initialized
-        /// </precondition>
+        /// </pre>
         public static event EventHandler<CurrentLanguageChangedEventArgs> CurrentLanguageChanged
         {
             add
