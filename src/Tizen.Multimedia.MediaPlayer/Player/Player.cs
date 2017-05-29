@@ -574,7 +574,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the mute state.
         /// </summary>
-        /// <param name="mute">true to mute the player; otherwise, false.</value>
+        /// <param name="mute">true to mute the player; otherwise, false.</param>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         public void SetMute(bool mute)
         {
