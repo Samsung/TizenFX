@@ -287,6 +287,10 @@ namespace Tizen.Uix.Stt
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. Out Of Memory
@@ -537,6 +541,9 @@ namespace Tizen.Uix.Stt
         /// The language is specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code.
         /// For example, "ko_KR" for Korean, "en_US" for American English.
         /// </summary>
+        /// <value>
+        /// Default language in STT.
+        /// </value>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -565,12 +572,15 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Gets the microphone volume during recording.
         /// </summary>
+        /// <value>
+        /// Recording volume in STT.
+        /// </value>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
-        /// <precondition>
+        /// <pre>
         /// The State must be Recording.
-        /// </precondition>
+        /// </pre>
         public float GetRecordingVolume
         {
             get
@@ -595,6 +605,9 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Gets the current STT state.
         /// </summary>
+        /// <value>
+        /// Current state of STT.
+        /// </value>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -624,6 +637,12 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// This property can be used to get and set the current engine id.
         /// </summary>
+        /// <value>
+        /// Current STT engine id.
+        /// </value>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This Exception can occur while setting due to the following reaons
         /// 1. Out Of Memory
@@ -635,9 +654,9 @@ namespace Tizen.Uix.Stt
         /// <exception cref="ArgumentException">
         /// This can happen if Improper EngineId is provided while setting the value.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Created.
-        /// </precondition>
+        /// </pre>
         public string Engine
         {
             get
@@ -676,6 +695,13 @@ namespace Tizen.Uix.Stt
         /// <returns>
         /// list of ResultTime
         /// </returns>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <remarks>
         /// This function should only be called in RecognitionResult Event
         /// </remarks>
@@ -713,15 +739,22 @@ namespace Tizen.Uix.Stt
         /// <returns>
         /// The Data Corresponding to the Key provided
         /// </returns>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. No Answer from STT Service
         /// 2. STT Not Supported
         /// 3. Invalid State
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Ready.
-        /// </precondition>
+        /// </pre>
         public string GetPrivateData(string key)
         {
             string data;
@@ -747,6 +780,13 @@ namespace Tizen.Uix.Stt
         /// <param name="data">
         /// The data string
         /// </param>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. No Answer from STT Service
@@ -756,9 +796,9 @@ namespace Tizen.Uix.Stt
         /// <exception cref="ArgumentException">
         /// This can happen if Improper value is provided while setting the value.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Ready.
-        /// </precondition>
+        /// </pre>
         public void SetPrivateData(string key, string data)
         {
             lock (thisLock)
@@ -778,6 +818,13 @@ namespace Tizen.Uix.Stt
         /// <returns>
         /// IEnumerable<SupportedEngine> list of supported engines
         /// </returns>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. Out Of Memory
@@ -815,6 +862,13 @@ namespace Tizen.Uix.Stt
         /// <param name="credential">
         /// The credential string
         /// </param>
+        /// <privilege>
+        /// http://tizen.org/privilege/recorder
+        /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. Out Of Memory
@@ -826,9 +880,9 @@ namespace Tizen.Uix.Stt
         /// <exception cref="ArgumentException">
         /// This can happen if Improper value is provided while setting the value.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Created.
-        /// </precondition>
+        /// </pre>
         public void SetCredential(string credential)
         {
             lock (thisLock)
@@ -848,19 +902,23 @@ namespace Tizen.Uix.Stt
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported
         /// 2. Permission Denied
         /// 3. Invalid State
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Created.
-        /// </precondition>
-        /// <postcondition>
+        /// </pre>
+        /// <post>
         /// If this function is successful, the STT state will be Ready
         /// If this function is unsuccessful, ErrorOccured event will be invoked
-        /// </postcondition>
+        /// </post>
         public void Prepare()
         {
             lock (thisLock)
@@ -880,18 +938,22 @@ namespace Tizen.Uix.Stt
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported
         /// 2. Permission Denied
         /// 3. Invalid State
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Ready.
-        /// </precondition>
-        /// <postcondition>
+        /// </pre>
+        /// <post>
         /// If this function is successful, the STT state will be Created
-        /// </postcondition>
+        /// </post>
         public void Unprepare()
         {
             lock (thisLock)
@@ -916,6 +978,10 @@ namespace Tizen.Uix.Stt
         /// <returns>
         /// list of strings of supported languages.
         /// </returns>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported
@@ -958,6 +1024,10 @@ namespace Tizen.Uix.Stt
         /// <returns>
         /// bool value indicating whether the recognition type is supported.
         /// </returns>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported
@@ -965,9 +1035,9 @@ namespace Tizen.Uix.Stt
         /// 3. Engine Not Found.
         /// 4. Operation Failed.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The state should be Ready.
-        /// </precondition>
+        /// </pre>
         public bool IsRecognitionTypeSupported(RecognitionType type)
         {
             bool supported;
@@ -1029,6 +1099,10 @@ namespace Tizen.Uix.Stt
         /// <param name="type">
         /// SilenceDetection value.
         /// </param>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported
@@ -1036,9 +1110,9 @@ namespace Tizen.Uix.Stt
         /// 3. Not supported feature of current engine.
         /// 4. Operation Failed.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The state should be Ready.
-        /// </precondition>
+        /// </pre>
         public void SetSilenceDetection(SilenceDetection type)
         {
             lock (thisLock)
@@ -1062,6 +1136,10 @@ namespace Tizen.Uix.Stt
         /// <param name="filePath">
         /// File Path for the sound.
         /// </param>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported.
@@ -1072,9 +1150,9 @@ namespace Tizen.Uix.Stt
         /// <exception cref="ArgumentException">
         /// If an Invalid Parameter is provided.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The state should be Ready.
-        /// </precondition>
+        /// </pre>
         public void SetStartSound(string filePath)
         {
             lock (thisLock)
@@ -1094,6 +1172,10 @@ namespace Tizen.Uix.Stt
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported.
@@ -1101,9 +1183,9 @@ namespace Tizen.Uix.Stt
         /// 3. Invalid State.
         /// 4. Operation Failed.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The state should be Ready.
-        /// </precondition>
+        /// </pre>
         public void UnsetStartSound()
         {
             lock (thisLock)
@@ -1127,6 +1209,10 @@ namespace Tizen.Uix.Stt
         /// <param name="filePath">
         /// File Path for the sound.
         /// </param>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported.
@@ -1137,9 +1223,9 @@ namespace Tizen.Uix.Stt
         /// <exception cref="ArgumentException">
         /// If an Invalid Parameter is provided.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The state should be Ready.
-        /// </precondition>
+        /// </pre>
         public void SetStopSound(string filePath)
         {
             lock (thisLock)
@@ -1159,6 +1245,10 @@ namespace Tizen.Uix.Stt
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported.
@@ -1166,9 +1256,9 @@ namespace Tizen.Uix.Stt
         /// 3. Invalid State.
         /// 4. Operation Failed.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The state should be Ready.
-        /// </precondition>
+        /// </pre>
         public void UnsetStopSound()
         {
             lock (thisLock)
@@ -1196,6 +1286,10 @@ namespace Tizen.Uix.Stt
         /// <param name="type">
         /// The type for recognition
         /// </param>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported.
@@ -1208,14 +1302,14 @@ namespace Tizen.Uix.Stt
         /// <exception cref="ArgumentException">
         /// If an Invalid Language is provided
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The state should be Ready.
-        /// </precondition>
-        /// <postcondition>
+        /// </pre>
+        /// <post>
         /// It will invoke StateChanged Event if registerd.
         /// If this function succeeds, the STT state will be Recording.
         /// If you call this function again before state changes, you will receive ErrorINProgressToRecording.
-        /// </postcondition>
+        /// </post>
         public void Start(string language, RecognitionType type)
         {
             lock (thisLock)
@@ -1270,6 +1364,10 @@ namespace Tizen.Uix.Stt
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported.
@@ -1280,15 +1378,15 @@ namespace Tizen.Uix.Stt
         /// 6. Progress to recording is not finished.
         /// 7. Progress to processing is not finished.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The state should be Recording.
-        /// </precondition>
-        /// <postcondition>
+        /// </pre>
+        /// <post>
         /// It will invoke StateChanged Event if registerd.
         /// If this function succeeds, the STT state will be Processing.
         /// If you call this function again before state changes, you will receive ErrorINProgressToProcessing.
         /// After processing of engine, RecognitionResult event is invoked
-        /// </postcondition>
+        /// </post>
         public void Stop()
         {
             lock (thisLock)
@@ -1310,6 +1408,10 @@ namespace Tizen.Uix.Stt
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. STT Not Supported.
@@ -1320,14 +1422,14 @@ namespace Tizen.Uix.Stt
         /// 6. Progress to recording is not finished.
         /// 7. Progress to processing is not finished.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The state should be Recording or Processing.
-        /// </precondition>
-        /// <postcondition>
+        /// </pre>
+        /// <post>
         /// It will invoke StateChanged Event if registerd.
         /// If this function succeeds, the STT state will be Ready.
         /// If you call this function again before state changes, you will receive ErrorINProgressToReady.
-        /// </postcondition>
+        /// </post>
         public void Cancel()
         {
             lock (thisLock)
