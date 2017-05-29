@@ -241,7 +241,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="address">A string which representing free-formed address</param>
         /// <param name="boundary">An instance of Area object which representing interested area</param>
-        /// <seealso cref="Area">
+        /// <seealso cref="Area"/>
         /// <returns>GeocodeRequest object created with address string and specified boundary</returns>
         public GeocodeRequest CreateGeocodeRequest(string address, Area boundary)
         {
