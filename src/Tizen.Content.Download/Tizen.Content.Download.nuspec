@@ -14,7 +14,4 @@
       <dependency id="Tizen.Applications.Common" version="1.5.6" />
     </dependencies>
   </metadata>
-  <files>
-    <file src="bin/$Configuration$/Tizen.Content.Download.dll" target="lib/netstandard1.3" />
-  </files>
 </package>
