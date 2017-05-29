@@ -371,6 +371,8 @@ namespace Tizen.Network.Bluetooth
             service.SetParent(this);
         }
 
+        /// <summary>
+        /// Gets included service
         /// </summary>
         /// <param name="uuid">UUID for the service to get</param>
         /// <returns>service with given uuid if it exists, null otherwise</returns>

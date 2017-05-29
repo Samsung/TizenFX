@@ -242,10 +242,10 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// Get service uuids list from the Le scan result information
         /// </summary>
+        /// <value> Gets list of string service uuids.</value>
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <returns> Returns list of string service uuids.
         public IEnumerable<string> ServiceUuid
         {
             get
@@ -262,10 +262,10 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// Get device name from the Le scan result information
         /// </summary>
+        /// <value> Gets device name.</value>
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <returns>  Returns device name.
         public string DeviceName
         {
             get
@@ -281,10 +281,10 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         ///  Get transmission power level from the Le scan result information
         /// </summary>
+        /// <value> Gets the transmission power level in dB.</value>
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <returns> Returns the transmission power level in dB.
         public int TxPowerLevel
         {
             get
@@ -300,10 +300,10 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// Get service solicitation uuid list from the scan result information
         /// </summary>
+        /// <value> Gets list of service solicitation uuids.</value>
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <returns> Returns list of service solicitation uuids.
         public IEnumerable<string> ServiceSolictationUuid
         {
             get
@@ -318,10 +318,10 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// Gets the manufacturer data from the scan result information
         /// </summary>
+        /// <value> Gets the appearance value.</value>
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <returns> Returns the appearance value.
         public int Appearance
         {
             get
@@ -336,10 +336,10 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// Gets the manufacturer data from the scan result information
         /// </summary>
+        /// <value> Gets the manufacturer data containing the manucturer data and id information.</value>
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <returns> Returns the manufacturer data containing the manucturer data and id information.
         public ManufacturerData ManufacturerData
         {
             get
@@ -358,7 +358,7 @@ namespace Tizen.Network.Bluetooth {
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <returns> Returns the  service data list.
+        /// <returns> Returns the  service data list.</returns>
         public IEnumerable<BluetoothLeServiceData> GetServiceDataList()
         {
             int serviceCount = 0;
