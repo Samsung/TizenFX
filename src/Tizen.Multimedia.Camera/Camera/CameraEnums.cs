@@ -649,11 +649,11 @@ namespace Tizen.Multimedia
         /// </summary>
         Sports,
         /// <summary>
-        /// Party & Indoor.
+        /// Party &amp; Indoor.
         /// </summary>
         PartyAndIndoor,
         /// <summary>
-        /// Beach & Indoor.
+        /// Beach &amp; Indoor.
         /// </summary>
         BeachAndIndoor,
         /// <summary>
@@ -661,7 +661,7 @@ namespace Tizen.Multimedia
         /// </summary>
         Sunset,
         /// <summary>
-        /// Dusk & Dawn.
+        /// Dusk &amp; Dawn.
         /// </summary>
         DuskAndDawn,
         /// <summary>

@@ -23,7 +23,7 @@ namespace Tizen.Multimedia
     {
         /// <summary>
         /// Public constructor.
-        /// </summary
+        /// </summary>
         /// <param name="latitude">Latitude data</param>
         /// <param name="longitude">Longitude data</param>
         /// <param name="altitude">Altitude data</param>
