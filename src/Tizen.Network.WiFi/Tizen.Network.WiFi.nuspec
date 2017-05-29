@@ -12,10 +12,7 @@
 	<description>Provides the Wi-Fi APIs for Tizen.Network.WiFi</description>
 		<dependencies>
 			<dependency id="Tizen" version="1.0.2" />
-			<dependency id="Tizen.Network.Connection" version="1.0.2" />
+			<dependency id="Tizen.Network.Connection" version="1.0.10" />
 		</dependencies>
 	</metadata>
-	<files>
-		<file src="bin/$Configuration$/Tizen.Network.WiFi.dll" target="lib/netstandard1.3" />
-	</files>
 </package>
