@@ -185,6 +185,9 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Constructor to create a TTS instance.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. Out Of Memory
@@ -463,6 +466,9 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Gets the default voice set by the user.
         /// </summary>
+        /// <value>
+        /// Default voice in TTS
+        /// </value>
         /// <returns>
         /// Default Voice SupportedVoice value.
         /// </returns>
@@ -489,12 +495,15 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Gets the maximum byte size for text.
         /// </summary>
+        /// <value>
+        /// Maximum byte size for text
+        /// </value>
         /// <returns>
         /// Default Voice SupportedVoice value, 0 if unable to get the value
         /// </returns>
-        /// <precondition>
+        /// <pre>
         /// The State should be Ready
-        /// </precondition>
+        /// </pre>
         public uint GetMaxTextSize
         {
             get
@@ -519,6 +528,9 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Gets the current TTS state.
         /// </summary>
+        /// <value>
+        /// Current state of TTS
+        /// </value>
         /// <returns>
         /// Current TTS State value.
         /// </returns>
@@ -546,6 +558,9 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// The TTS Mode can be set using this property
         /// </summary>
+        /// <value>
+        /// Current mode of TTS (default, screen-reader, notification)
+        /// </value>
         /// <returns>
         /// The Mode value
         /// </returns>
@@ -556,9 +571,9 @@ namespace Tizen.Uix.Tts
         /// 3. TTS Not Supported
         /// 4. Engine Not Found
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// State should be Created
-        /// </precondition>
+        /// </pre>
         public Mode CurrentMode
         {
             get
@@ -598,6 +613,9 @@ namespace Tizen.Uix.Tts
         /// <param name="credential">
         /// The credential string
         /// </param>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. TTS Not Supported
@@ -606,9 +624,9 @@ namespace Tizen.Uix.Tts
         /// <exception cref="ArgumentException">
         /// This can happen if Improper value is provided while setting the value.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Created or Ready.
-        /// </precondition>
+        /// </pre>
         public void SetCredential(string credential)
         {
             lock (thisLock)
@@ -625,18 +643,21 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Connects to the TTS service asynchronously.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. TTS Not Supported
         /// 2. Invalid State
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Created.
-        /// </precondition>
-        /// <postcondition>
+        /// </pre>
+        /// <post>
         /// If this function is successful, the TTS state will be Ready
         /// If this function is unsuccessful, ErrorOccured event will be invoked
-        /// </postcondition>
+        /// </post>
         public void Prepare()
         {
             lock (thisLock)
@@ -653,17 +674,20 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Disconnects from the STT service.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. TTS Not Supported
         /// 2. Invalid State
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Ready.
-        /// </precondition>
-        /// <postcondition>
+        /// </pre>
+        /// <post>
         /// If this function is successful, the TTS state will be Created
-        /// </postcondition>
+        /// </post>
         public void Unprepare()
         {
             lock (thisLock)
@@ -683,6 +707,9 @@ namespace Tizen.Uix.Tts
         /// <returns>
         /// list of SupportedVoice.
         /// </returns>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
         /// 1. TTS Not Supported
@@ -722,6 +749,9 @@ namespace Tizen.Uix.Tts
         /// <returns>
         /// The Data Corresponding to the Key provided
         /// </returns>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. TTS Not Supported
@@ -729,9 +759,9 @@ namespace Tizen.Uix.Tts
         /// 3. Engine Not found
         /// 4. Operation Failure
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Ready.
-        /// </precondition>
+        /// </pre>
         public string GetPrivateData(string key)
         {
             string data;
@@ -758,6 +788,9 @@ namespace Tizen.Uix.Tts
         /// <param name="data">
         /// The data string
         /// </param>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. TTS Not Supported
@@ -768,9 +801,9 @@ namespace Tizen.Uix.Tts
         /// <exception cref="ArgumentException">
         /// This can happen if Improper value is provided while setting the value.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Ready.
-        /// </precondition>
+        /// </pre>
         public void SetPrivateData(string key, string data)
         {
             lock (thisLock)
@@ -790,15 +823,18 @@ namespace Tizen.Uix.Tts
         /// <returns>
         /// The SpeedRange value
         /// </returns>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. TTS Not Supported
         /// 2. Invalid State
         /// 3. Operation Failure
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Created.
-        /// </precondition>
+        /// </pre>
         public SpeedRange GetSpeedRange()
         {
             int min = 0, max = 0, normal = 0;
@@ -837,6 +873,9 @@ namespace Tizen.Uix.Tts
         /// <returns>
         /// The utterance ID.
         /// </returns>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. TTS Not Supported
@@ -848,9 +887,9 @@ namespace Tizen.Uix.Tts
         /// <exception cref="ArgumentException">
         /// This can happen if Improper value is provided.
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Ready or Playing or Paused.
-        /// </precondition>
+        /// </pre>
         public int AddText(string text, string language, int voiceType, int speed)
         {
             int id;
@@ -871,6 +910,9 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Starts synthesizing voice from the text and plays the synthesized audio data.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. TTS Not Supported
@@ -879,12 +921,12 @@ namespace Tizen.Uix.Tts
         /// 4. Out of Network
         /// 5. Permission Denied
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Ready or Paused.
-        /// </precondition>
-        /// <postcondition>
+        /// </pre>
+        /// <post>
         /// If this function succeeds, the TTS state will be Playing.
-        /// </postcondition>
+        /// </post>
         public void Play()
         {
             lock (thisLock)
@@ -901,19 +943,22 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Stops playing the utterance and clears the queue.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. TTS Not Supported
         /// 2. Invalid State
         /// 3. Operation Failure
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Ready or Playing or Paused.
-        /// </precondition>
-        /// <postcondition>
+        /// </pre>
+        /// <post>
         /// If this function succeeds, the TTS state will be Ready.
         /// This function will remove all text added via AddText() and synthesized sound data.
-        /// </postcondition>
+        /// </post>
         public void Stop()
         {
             lock (thisLock)
@@ -930,18 +975,21 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Pauses the currently playing utterance.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
         /// 1. TTS Not Supported
         /// 2. Invalid State
         /// 3. Operation Failure
         /// </exception>
-        /// <precondition>
+        /// <pre>
         /// The State must be Playing.
-        /// </precondition>
-        /// <postcondition>
+        /// </pre>
+        /// <post>
         /// If this function succeeds, the TTS state will be Paused.
-        /// </postcondition>
+        /// </post>
         public void Pause()
         {
             lock (thisLock)
