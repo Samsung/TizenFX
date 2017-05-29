@@ -11,10 +11,7 @@
 		<copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
 		<description>Provide classes for Device APIs</description>
     <dependencies>
-      <dependency id="Tizen" version="1.0.2" />
+      <dependency id="Tizen" version="1.0.3" />
     </dependencies>
 	</metadata>
-  <files>
-    <file src="bin/$Configuration$/Tizen.System.dll" target="lib/netstandard1.3" />
-  </files>
 </package>
