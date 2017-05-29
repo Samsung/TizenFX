@@ -112,6 +112,8 @@ namespace Tizen.Multimedia
             List<AudioDevice> audioDeviceList = new List<AudioDevice>();
             IntPtr deviceListHandle;
             IntPtr handlePosition;
+            AudioDeviceIoDirection ioDirection;
+
             int ret = Interop.AudioDevice.GetCurrentDeviceList(options, out deviceListHandle);
             if (ret != (int)AudioManagerError.NoData)
             {
@@ -120,14 +122,29 @@ namespace Tizen.Multimedia
             while (ret == (int)AudioManagerError.None)
             {
                 ret = Interop.AudioDevice.GetNextDevice(deviceListHandle, out handlePosition);
-                if (ret == (int)AudioManagerError.None)
+                if (ret == (int)AudioManagerError.NoData)
                 {
-                    audioDeviceList.Add(new AudioDevice(handlePosition));
+                    break;
                 }
-                else if (ret != (int)AudioManagerError.NoData)
+                else if (ret != (int)AudioManagerError.None)
                 {
                     AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to get next device");
                 }
+
+                if (options == AudioDeviceOptions.Input || (options == AudioDeviceOptions.Output))
+                {
+                    ret = Interop.AudioDevice.GetDeviceIoDirection(handlePosition, out ioDirection);
+                    if (ret != 0)
+                    {
+                        Tizen.Log.Error(AudioManagerLog.Tag, "Unable to get device IoDirection" + (AudioManagerError)ret);
+                        AudioManagerErrorFactory.CheckAndThrowException(ret, handlePosition, "Unable to get device IO Direction");
+                    }
+                    else if (ioDirection == AudioDeviceIoDirection.InputAndOutput)
+                    {
+                        continue;
+                    }
+                }
+                audioDeviceList.Add(new AudioDevice(handlePosition));
             }
             return audioDeviceList;
         }
