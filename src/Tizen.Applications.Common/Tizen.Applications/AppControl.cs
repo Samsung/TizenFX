@@ -391,9 +391,8 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the collection of the extra data.
         /// </summary>
-        /// Extra data for communication between AppControls.
-        /// </summary>
         /// <value>
+        /// Extra data for communication between AppControls.
         /// </value>
         /// <example>
         /// <code>
@@ -709,7 +708,7 @@ namespace Tizen.Applications
             /// <summary>
             /// Gets the extra data.
             /// </summary>
-            /// <typeparam name="T">Only string & IEnumerable<string></typeparam>
+            /// <typeparam name="T">Only string and IEnumerable&lt;string&gt;</typeparam>
             /// <param name="key">The name of extra data</param>
             /// <returns>The value associated with the given key</returns>
             /// <exception cref="ArgumentNullException">Thrown when the key is invalid parameter</exception>
