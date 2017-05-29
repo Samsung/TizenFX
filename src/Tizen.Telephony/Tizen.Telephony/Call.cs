@@ -58,10 +58,11 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the current value for the preferred voice call subscription.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
-        /// <returns>
+        /// <value>
         /// The currently set preferred voicecall subscription value.
-        /// </returns>
+        /// </value>
         public CallPreferredVoiceSubscription PreferredVoiceSubscription
         {
             get

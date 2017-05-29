@@ -125,13 +125,12 @@ namespace Tizen.Telephony
         /// Gets the Integrated Circuit Card IDentification (ICC-ID).
         /// The Integrated Circuit Card Identification number internationally identifies SIM cards.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The Integrated Circuit Card Identification
         /// empty string if unable to complete the operation
-        /// </returns>
+        /// </value>
         /// <precondition>
         /// The SIM state must be Available
         /// </precondition>
@@ -155,13 +154,12 @@ namespace Tizen.Telephony
         /// Gets the SIM Operator (MCC [3 digits] + MNC [2~3 digits]).
         /// The Operator is embedded in the SIM card.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The SIM Operator
         /// empty string if unable to complete the operation
-        /// </returns>
+        /// </value>
         /// <precondition>
         /// The SIM state must be Available
         /// </precondition>
@@ -184,13 +182,12 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the Mobile Subscription Identification Number (MSIN [9~10 digits]) of the SIM provider.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The Mobile Subscription Identification Number
         /// empty string if unable to complete the operation
-        /// </returns>
+        /// </value>
         /// <precondition>
         /// The SIM state must be Available
         /// </precondition>
@@ -214,13 +211,12 @@ namespace Tizen.Telephony
         /// Gets the Service Provider Name (SPN) of the SIM card.
         /// Gets Service Provider Name embedded in the SIM card.If this value is not stored in SIM card, empty string will be returned.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The Service Provider Name
         /// empty string if unable to complete the operation
-        /// </returns>
+        /// </value>
         /// <precondition>
         /// The SIM state must be Available
         /// </precondition>
@@ -243,12 +239,11 @@ namespace Tizen.Telephony
         /// <summary>
         /// Checks whether the current SIM card is different from the previous SIM card.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// true if the current SIM card is different from the previous SIM card, otherwise false if the SIM card is not changed
-        /// </returns>
+        /// </value>
         /// <precondition>
         /// The SIM state must be Available
         /// </precondition>
@@ -277,12 +272,11 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the state of the SIM.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The current state of the SIM
-        /// </returns>
+        /// </value>
         public State CurrentState
         {
             get
@@ -302,13 +296,12 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the count of application on UICC.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The masking value for below values are provided by the enum ApplicationType
         /// 0 if unable to complete the operation
-        /// </returns>
+        /// </value>
         /// <precondition>
         /// The SIM state must be Available
         /// </precondition>
@@ -332,13 +325,12 @@ namespace Tizen.Telephony
         /// Gets subscriber number embedded in the SIM card. This value contains MSISDN related to the subscriber.
         /// If this value is not stored in SIM card, empty string will be returned.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The subscriber number in the SIM
         /// empty string if unable to complete the operation
-        /// </returns>
+        /// </value>
         /// <precondition>
         /// The SIM state must be Available
         /// </precondition>
@@ -361,13 +353,12 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the Subscriber ID.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The subscriber ID
         /// empty string if unable to complete the operation
-        /// </returns>
+        /// </value>
         /// <precondition>
         /// The SIM state must be Available
         /// </precondition>
@@ -390,12 +381,11 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the lock state of the SIM.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The current lock state of the SIM
-        /// </returns>
+        /// </value>
         /// <precondition>
         /// The SIM state must be Available
         /// </precondition>
@@ -419,13 +409,12 @@ namespace Tizen.Telephony
         /// Gets the GID1 (Group Identifier Level 1).
         /// Gets Group Identifier Level 1(GID1) embedded in the SIM card.If this value is not stored in SIM card, empty string will be returned.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The GID1 (Group Identifier Level 1)
         /// empty string if unable to complete the operation
-        /// </returns>
+        /// </value>
         /// <precondition>
         /// The SIM state must be Available
         /// </precondition>
@@ -449,12 +438,11 @@ namespace Tizen.Telephony
         /// Gets the call forwarding indicator state of the SIM.
         /// If the state is true, incoming call will be forwarded to the selected number.state indicates the CFU(Call Forwarding Unconditional) indicator status - Voice. (3GPP TS 31.102 4.2.64 EF CFIS)
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The value whether incoming call will be forwarded or not. (true: forwarded, false: not forwarded)
-        /// </returns>
+        /// </value>
         /// <precondition>
         /// The SIM state must be Available
         /// </precondition>

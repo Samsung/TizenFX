@@ -86,6 +86,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Event Handler to be invoked when the telephony state changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<StateEventArgs> StateChanged
         {
             add
@@ -123,9 +124,10 @@ namespace Tizen.Telephony
         /// <summary>
         /// Acquires the telephony state value.
         /// </summary>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>
         /// The state value of telephony.
-        /// </returns>
+        /// </value>
         public static State CurrentState
         {
             get

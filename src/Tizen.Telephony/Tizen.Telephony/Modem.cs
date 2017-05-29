@@ -78,11 +78,12 @@ namespace Tizen.Telephony
         /// Gets the IMEI (International Mobile Station Equipment Identity) of a mobile phone.
         /// The IMEI number is used by a GSM network to identify valid devices and therefore can be used for stopping a stolen phone from accessing that network.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
-        /// <returns>
+        /// <value>
         /// The International Mobile Station Equipment Identity
         /// empty string if unable to complete the operation
-        /// </returns>
+        /// </value>
         public string Imei
         {
             get
@@ -102,10 +103,11 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the power status of the modem.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
-        /// <returns>
+        /// <value>
         /// The Modem power status (0=on,1=off,2=reset,3=low)
-        /// </returns>
+        /// </value>
         public PowerStatus CurrentPowerStatus
         {
             get
@@ -126,11 +128,12 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the MEID (Mobile Equipment Identifier) of a mobile phone. (for CDMA)
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
-        /// <returns>
+        /// <value>
         /// The Mobile Equipment Identifier
         /// empty string if unable to complete the operation
-        /// </returns>
+        /// </value>
         public string Meid
         {
             get

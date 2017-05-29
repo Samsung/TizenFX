@@ -106,10 +106,11 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the call handle ID.
         /// </summary>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>
         /// The id of the call handle
         /// 0 if unable to complete the operation
-        /// </returns>
+        /// </value>
         public uint HandleId
         {
             get
@@ -129,10 +130,11 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the call number.
         /// </summary>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>
         /// The number of the call
         /// empty string if unable to complete the operation
-        /// </returns>
+        /// </value>
         public string Number
         {
             get
@@ -152,9 +154,10 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the call type.
         /// </summary>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>
         /// The type of the call
-        /// </returns>
+        /// </value>
         public CallType Type
         {
             get
@@ -174,9 +177,10 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the call status.
         /// </summary>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>
         /// The status of the call
-        /// </returns>
+        /// </value>
         public CallStatus Status
         {
             get
@@ -196,9 +200,10 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets whether the call is MO(Mobile Originated) call or MT(Mobile Terminated).
         /// </summary>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>
         /// The direction of the call
-        /// </returns>
+        /// </value>
         /// <exception cref="InvalidOperationException">
         /// This Exception can occur due to:
         /// 1. Operation Not Supported
@@ -223,9 +228,10 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets whether the call is conference call or not.
         /// </summary>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>
         /// The value whether the call is conference call or not. (true: Conference call, false: Single call)
-        /// </returns>
+        /// </value>
         public bool ConferenceStatus
         {
             get

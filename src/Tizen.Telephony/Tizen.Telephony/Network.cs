@@ -287,15 +287,14 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the LAC (Location Area Code) of the current location.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/location.coarse
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
         /// This API can be used in GSM / WCDMA network.
         /// </remarks>
-        /// <returns>
+        /// <value>
         /// The Location Area Code, -1 if unknown
-        /// </returns>
+        /// </value>
         public int Lac
         {
             get
@@ -317,15 +316,14 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the cell ID of the current location.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/location.coarse
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
         /// This API can be used in GSM / WCDMA / LTE network.
         /// </remarks>
-        /// <returns>
+        /// <value>
         /// The cell identification number, -1 if unknown
-        /// </returns>
+        /// </value>
         public int CellId
         {
             get
@@ -346,13 +344,12 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the RSSI (Received Signal Strength Indicator).
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The Received Signal Strength Indicator
         /// Higher the received number, the stronger the signal strength.
-        /// </returns>
+        /// </value>
         public Rssi CurrentRssi
         {
             get
@@ -373,12 +370,11 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the roaming state of the current registered network.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// true if roaming, otherwise false if not roaming
-        /// </returns>
+        /// </value>
         public bool RoamingStatus
         {
             get
@@ -398,16 +394,15 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the MCC (Mobile Country Code) of the current registered network.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <remarks>
         /// This API can be used in GSM / WCDMA / LTE network.
         /// </remarks>
-        /// <returns>
+        /// <value>
         /// The Mobile Country Code (three digits) Mobile Country Code (MCC) identifies the country where the cell is being used.
         /// empty string if unknown.
-        /// </returns>
+        /// </value>
         public string Mcc
         {
             get
@@ -427,16 +422,15 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the MNC (Mobile Network Code) of the current registered network.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <remarks>
         /// This API can be used in GSM / WCDMA / LTE network.
         /// </remarks>
-        /// <returns>
+        /// <value>
         /// The Mobile Network Code (three digits) The Mobile Network Code (MNC) identifies the mobile phone operator and network provider.
         /// empty string if unknown.
-        /// </returns>
+        /// </value>
         public string Mnc
         {
             get
@@ -456,16 +450,15 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the name of the current registered network.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <remarks>
         /// This API can be used in GSM / WCDMA / LTE network.
         /// </remarks>
-        /// <returns>
+        /// <value>
         /// The name of the current registered network
         /// empty string if unknown.
-        /// </returns>
+        /// </value>
         public string NetworkName
         {
             get
@@ -485,15 +478,14 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the network service type of the current registered network.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <remarks>
         /// This API can be used in case network is in service.
         /// </remarks>
-        /// <returns>
+        /// <value>
         /// The network service type
-        /// </returns>
+        /// </value>
         public Type NetworkType
         {
             get
@@ -513,15 +505,14 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the packet service type of the current registered network.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <remarks>
         /// This API can be used in HSDPA network.
         /// </remarks>
-        /// <returns>
+        /// <value>
         /// The type of packet service
-        /// </returns>
+        /// </value>
         public PsType NetworkPsType
         {
             get
@@ -542,12 +533,11 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the network name option of the current registered network.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The network name display option
-        /// </returns>
+        /// </value>
         public NameOption NetworkNameOption
         {
             get
@@ -568,12 +558,11 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the current network state of the telephony service.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The current network state
-        /// </returns>
+        /// </value>
         public ServiceState NetworkServiceState
         {
             get
@@ -594,12 +583,11 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the current default subscription for data service (Packet Switched).
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The current default data subscription
-        /// </returns>
+        /// </value>
         public DefaultDataSubscription NetworkDefaultDataSubscription
         {
             get
@@ -620,12 +608,11 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the current default subscription for voice service (Circuit Switched).
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The current default voice subscription
-        /// </returns>
+        /// </value>
         public DefaultSubscription NetworkDefaultSubscription
         {
             get
@@ -646,12 +633,11 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the network selection mode.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
-        /// <returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/telephony</privilege>
+        /// <value>
         /// The network selection mode.
-        /// </returns>
+        /// </value>
         public SelectionMode NetworkSelectionMode
         {
             get
@@ -672,16 +658,15 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the TAC (Tracking Area Code) of the current location.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
         /// This API can be used in LTE network.
         /// </remarks>
-        /// <returns>
+        /// <value>
         /// The Tracking Area Code
         /// -1 if unknown
-        /// </returns>
+        /// </value>
         public int Tac
         {
             get
@@ -702,16 +687,15 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the system ID of the current location.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/telephony
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
         /// This API can be used in CDMA network.
         /// </remarks>
-        /// <returns>
+        /// <value>
         /// The system ID
         /// -1 if unknown
-        /// </returns>
+        /// </value>
         public int SystemId
         {
             get
@@ -732,16 +716,15 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the network ID of the current location.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/location.coarse
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
         /// This API can be used in CDMA network.
         /// </remarks>
-        /// <returns>
+        /// <value>
         /// The network ID
         /// -1 if unknown
-        /// </returns>
+        /// </value>
         public int NetworkId
         {
             get
@@ -762,16 +745,15 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the base station ID of the current location.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/location.coarse
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/location.coarse</privilege>>
         /// <remarks>
         /// This API can be used in CDMA network.
         /// </remarks>
-        /// <returns>
+        /// <value>
         /// The base station ID
         /// -1 if unknown
-        /// </returns>
+        /// </value>
 
         public int BaseStationId
         {
@@ -793,16 +775,15 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the base station latitude of the current location.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/location.coarse
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
         /// This API can be used in CDMA network.
         /// </remarks>
-        /// <returns>
+        /// <value>
         /// The base station latitude
         /// 0x7FFFFFFF if unknown
-        /// </returns>
+        /// </value>
         public int BaseStationLatitude
         {
             get
@@ -822,16 +803,15 @@ namespace Tizen.Telephony
         /// <summary>
         /// Gets the base station longitude of the current location.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/location.coarse
-        /// </privilege>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
         /// This API can be used in CDMA network.
         /// </remarks>
-        /// <returns>
+        /// <value>
         /// The base station latitude
         /// 0x7FFFFFFF if unknown
-        /// </returns>
+        /// </value>
         public int BaseStationLongitude
         {
             get
