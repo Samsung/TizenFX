@@ -26,9 +26,8 @@ namespace Tizen.Content.MediaContent
     /// <remarks>
     /// A Content filter is required for filtering information associated with Media Folder, Tag, Audio, MediaBookmark and Media Information on basis of details like offset, count, order and condition for searching.
     /// It provide functionality to set properties associated with a given content filter.
-
     /// Setting content filter properties helps to limit the number of filtered items as following:
-    ///<list>
+    /// <list>
     /// <item><description>
     /// Offset - Used to set starting position of the filter's search
     /// </description></item>
@@ -42,10 +41,8 @@ namespace Tizen.Content.MediaContent
     /// Order - Used to set type of media to be ordered by the filter
     /// </description></item>
     /// </list>
-
     /// Searchable expression can use one of the following forms:
-
-    ///<list>
+    /// <list>
     /// <item><description>
     /// column = value
     /// </description></item>
@@ -92,8 +89,6 @@ namespace Tizen.Content.MediaContent
     /// expression1 AND expression2 OR expression3
     /// </description></item>
     /// </list>
-
-
     /// Note that if you want to set qoutation(" ' " or " " ") as value of LIKE operator, you should use two times.(" '' " or " "" ") \n And the optional ESCAPE clause is supported. Both percent symbol("%") and underscore symbol("_") are used in the LIKE pattern.
     /// If these characters are used as value of LIKE operation, then the expression following the ESCAPE caluse of sqlite.
     /// </remarks>

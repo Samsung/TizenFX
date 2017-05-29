@@ -110,7 +110,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the count of ContentCollections for the ContentCollectionType & passed filter from the media database.
+        /// Gets the count of ContentCollections for the ContentCollectionType and passed filter from the media database.
         /// </summary>
         /// <param name="filter">The media filter</param>
         /// <returns>The count of contents present in the media database for a ContentSourceType</returns>

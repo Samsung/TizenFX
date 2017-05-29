@@ -978,7 +978,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Bookmark column set. \n
         /// You can use this define to set the condition of bookmark filter and order keyword.
-        /// </summary
+        /// </summary>
         public class Bookmark
         {
             /// <summary>
@@ -996,7 +996,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Storage column set. \n
         /// You can use this define to set the condition of storage filter and order keyword.
-        /// </summary
+        /// </summary>
         public class Storage
         {
             /// <summary>
@@ -1025,7 +1025,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Face column set. \n
         /// You can use this define to set the condition of face filter and order keyword.
-        /// </summary
+        /// </summary>
         public class Face
         {
             /// <summary>
