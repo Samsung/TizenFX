@@ -132,7 +132,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a tick Timer that emits periodic signal.
         /// </summary>
-        /// <param name="millSec">Interval in milliseconds</param>
+        /// <param name="milliSec">Interval in milliseconds</param>
         /// <returns>A new timer</returns>
         public Timer(uint milliSec) : this(NDalicPINVOKE.Timer_New(milliSec), true)
         {

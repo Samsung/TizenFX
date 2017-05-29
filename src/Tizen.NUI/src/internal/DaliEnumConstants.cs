@@ -19,18 +19,24 @@ namespace Tizen.NUI
 {
   namespace Constants
   {
+    /// <summary>
+    /// Enumeration for texture types.
+    /// </summary>
     public enum TextureType
     {
-      Texture2D     = Tizen.NUI.TextureType.TEXTURE_2D,   ///< One 2D image                            @SINCE_1_1.43
-      TextureCube   = Tizen.NUI.TextureType.TEXTURE_CUBE  ///< Six 2D images arranged in a cube-shape  @SINCE_1_1.43
+      Texture2D     = Tizen.NUI.TextureType.TEXTURE_2D,   ///< One 2D image
+      TextureCube   = Tizen.NUI.TextureType.TEXTURE_CUBE  ///< Six 2D images arranged in a cube-shape
     }
 
+    /// <summary>
+    /// Enumeration for stereoscopic view modes.
+    /// </summary>
     public enum ViewMode
     {
-      Mono              = Tizen.NUI.ViewMode.MONO,                          ///< Monoscopic (single camera). This is the default @SINCE_1_0.0
-      StereoHorizontal  = Tizen.NUI.ViewMode.STEREO_HORIZONTAL, ///< Stereoscopic. Frame buffer is split horizontally with the left and right camera views in their respective sides. @SINCE_1_0.0
-      StereoVertical    = Tizen.NUI.ViewMode.STEREO_VERTICAL,     ///< Stereoscopic. Frame buffer is split vertically with the left camera view at the top and the right camera view at the bottom. @SINCE_1_0.0
-      StereoInterlaced  = Tizen.NUI.ViewMode.STEREO_INTERLACED  ///< @DEPRECATED_1_1.19 @brief Stereoscopic. Left/Right camera views are rendered into the framebuffer on alternate frames. @SINCE_1_0.0
+      Mono              = Tizen.NUI.ViewMode.MONO,                          ///< Monoscopic (single camera). This is the default.
+      StereoHorizontal  = Tizen.NUI.ViewMode.STEREO_HORIZONTAL, ///< Stereoscopic. Frame buffer is split horizontally with the left and right camera views in their respective sides.
+      StereoVertical    = Tizen.NUI.ViewMode.STEREO_VERTICAL,     ///< Stereoscopic. Frame buffer is split vertically with the left camera view at the top and the right camera view at the bottom.
+      StereoInterlaced  = Tizen.NUI.ViewMode.STEREO_INTERLACED  ///< Stereoscopic. Left/Right camera views are rendered into the framebuffer on alternate frames.
     }
 
     public struct Direction
