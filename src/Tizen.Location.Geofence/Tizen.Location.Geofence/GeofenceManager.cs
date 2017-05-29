@@ -23,11 +23,13 @@ namespace Tizen.Location.Geofence
     /// A geofence is a virtual perimeter for a real-world geographic area.
     /// This API provides functions to set geofence with geopoint, MAC address of Wi-Fi and Bluetooth address.
     /// And, notifications on events like changing in service status are provided.
-    /// <list type="ul">There are two kinds of places and fences:
+    /// There are two kinds of places and fences:
+    /// <list>
     /// <item>Public places and fences that are created by MyPlace app can be used by all apps.</item>
     /// <item>Private places and fences that are created by specified app can be used by the same app.</item>
     /// </list>
-    /// <list>Notifications can be received about the following events:
+    /// Notifications can be received about the following events:
+    /// <list>
     /// <item>Zone in when a device enters a specific area</item>
     /// <item>Zone out when a device exits a specific area</item>
     /// <item>Results and errors for each event requested to geofence module</item>
