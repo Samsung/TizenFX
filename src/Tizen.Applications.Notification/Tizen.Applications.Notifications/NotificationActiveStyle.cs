@@ -61,6 +61,15 @@ namespace Tizen.Applications.Notifications
             public bool IsAutoRemove { get; set; } = true;
 
             /// <summary>
+            /// Gets or sets the default button to display highlight on the active notification
+            /// </summary>
+            /// <remarks>
+            /// The default button for display highlight is only reflected on Tizen TV.
+            /// If you use this Property on other profile, this value have no effect
+            /// </remarks>
+            public ButtonIndex DefaultButton { get; set; } = ButtonIndex.None;
+
+            /// <summary>
             /// Gets or sets a ReplyAction to this active notification style.
             /// </summary>
             /// <remarks>

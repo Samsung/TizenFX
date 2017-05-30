@@ -159,6 +159,9 @@ internal static partial class Interop
         [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_event_flag")]
         internal static extern ErrorCode GetEventFlag(NotificationSafeHandle handle, out bool eventFlag);
 
+        [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_default_button")]
+        internal static extern ErrorCode GetDefaultButton(NotificationSafeHandle handle, out int index);
+
         internal static ErrorCode GetAppId(NotificationSafeHandle handle, out string appid)
         {
             ErrorCode err;

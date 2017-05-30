@@ -52,6 +52,11 @@ namespace Tizen.Applications.NotificationEventListener
             public string BackgroundImage { get; internal set; }
 
             /// <summary>
+            /// Gets the default button to display highlight on the active notification
+            /// </summary>
+            public ButtonIndex DefaultButton { get; internal set; }
+
+            /// <summary>
             /// Gets timeout value in second when the notification can be hidden from the viewer.
             /// </summary>
             public int HideTimeout { get; internal set; }

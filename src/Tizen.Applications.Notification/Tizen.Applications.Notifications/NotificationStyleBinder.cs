@@ -100,6 +100,11 @@ namespace Tizen.Applications.Notifications
                 throw NotificationErrorFactory.GetException(ret, "unable to set background Image");
             }
 
+            if (style.DefaultButton != ButtonIndex.None)
+            {
+                Interop.Notification.SetDefaultButton(notification.Handle, (int)style.DefaultButton + 1);
+            }
+
             Interop.Notification.GetApplist(notification.Handle, out flag);
             Interop.Notification.SetApplist(notification.Handle, flag | (int)NotificationDisplayApplist.Active);
 
@@ -178,6 +183,10 @@ namespace Tizen.Applications.Notifications
                     isExisted = true;
                     active.BackgroundImage = path;
                 }
+
+                int defaultIndex;
+                Interop.Notification.GetDefaultButton(notification.Handle, out defaultIndex);
+                active.DefaultButton = (ButtonIndex)(defaultIndex - 1);
 
                 appcontrol = null;
                 Interop.Notification.GetImage(notification.Handle, NotificationImage.TextInputButton, out path);

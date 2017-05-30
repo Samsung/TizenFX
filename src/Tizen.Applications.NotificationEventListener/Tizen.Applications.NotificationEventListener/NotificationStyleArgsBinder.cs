@@ -45,6 +45,10 @@ namespace Tizen.Applications.NotificationEventListener
                 Interop.NotificationEventListener.GetImage(eventargs.Handle, NotificationImage.Background, out path);
                 activeStyle.BackgroundImage = path;
 
+                int index;
+                Interop.NotificationEventListener.GetDefaultButton(eventargs.Handle, out index);
+                activeStyle.DefaultButton = (ButtonIndex)(index - 1);
+
                 Interop.NotificationEventListener.GetHideTimeout(eventargs.Handle, out timeout);
                 activeStyle.HideTimeout = timeout;
 
