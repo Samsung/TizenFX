@@ -243,7 +243,6 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="size">The video size of the format.</param>
-        /// <param name="height">The height value of the format</param>
         /// <param name="frameRate">The frame rate of the format.</param>
         /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
         /// <exception cref="ArgumentOutOfRangeException">width, height or frameRate is less than zero.</exception>
@@ -473,6 +472,7 @@ namespace Tizen.Multimedia
         /// <param name="sampleRate">The sample rate value of the format.</param>
         /// <param name="bit">The bit value of the format.</param>
         /// <param name="bitRate">The bit rate value of the format.</param>
+        /// <param name="aacType">The AAC bitstream format(ADIF or ADTS).</param>
         /// <exception cref="ArgumentException">
         ///     mimeType or aacType is invalid(i.e. undefined value).
         ///     <para>- or -</para>

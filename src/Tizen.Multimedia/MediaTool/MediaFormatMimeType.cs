@@ -58,6 +58,9 @@ namespace Tizen.Multimedia
         Raw = 0x20000000,
     }
 
+    /// <summary>
+    /// Enumeration for audio mime type
+    /// </summary>
     public enum MediaFormatAudioMimeType
     {
         /// <summary>
@@ -207,7 +210,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for media format MIME type
+    /// Enumeration for video mime type
     /// </summary>
     public enum MediaFormatVideoMimeType
     {
@@ -452,6 +455,9 @@ namespace Tizen.Multimedia
         //NativeVideo = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x7000),
     }
 
+    /// <summary>
+    /// Enumeration for container mime type
+    /// </summary>
     public enum MediaFormatContainerMimeType
     {
         /// <summary>
@@ -489,8 +495,6 @@ namespace Tizen.Multimedia
         /// </summary>
         ThreeGP = (MediaFormatType.Container | 0x3070),
 
-
-
         /// <summary>
         /// WAV container, Audio
         /// </summary>
@@ -512,6 +516,9 @@ namespace Tizen.Multimedia
         AacAdif = (MediaFormatType.Container | 0x4031),
     }
 
+    /// <summary>
+    /// Enumeration for text mime type
+    /// </summary>
     public enum MediaFormatTextMimeType
     {
         /// <summary>

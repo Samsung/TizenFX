@@ -32,7 +32,7 @@ namespace Tizen.Multimedia
         MP4,
 
         /// <summary>
-        /// The 3gp type.
+        /// The 3gpp type.
         /// </summary>
         ThreeGpp
     }
