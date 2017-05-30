@@ -87,6 +87,7 @@ namespace ElmSharp
         SmartEvent<GenGridItemEventArgs> _realized;
         SmartEvent<GenGridItemEventArgs> _unrealized;
         SmartEvent<GenGridItemEventArgs> _longpressed;
+        SmartEvent _changed;
 
         /// <summary>
         /// Creates and initializes a new instance of the GenGrid class.
@@ -141,6 +142,11 @@ namespace ElmSharp
         /// ItemLongPressed is raised when a gengrid item is pressed for a certain amount of time. By default it's 1 second.
         /// </summary>
         public event EventHandler<GenGridItemEventArgs> ItemLongPressed;
+
+        /// <summary>
+        ///  Changed is raised when an item is added, removed, resized or moved and when the gengrid is resized or gets "horizontal" property changes.
+        /// </summary>
+        public event EventHandler Changed;
 
         /// <summary>
         /// Gets or sets the item's grid alignment along x-axis within a given gengrid widget.
@@ -480,6 +486,7 @@ namespace ElmSharp
             _realized = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "realized", GenGridItemEventArgs.CreateFromSmartEvent);
             _unrealized = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "unrealized", GenGridItemEventArgs.CreateFromSmartEvent);
             _longpressed = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "longpressed", GenGridItemEventArgs.CreateFromSmartEvent);
+            _changed = new SmartEvent(this, this.RealHandle, "changed");
 
             _selected.On += (s, e) => { if (e.Item != null) ItemSelected?.Invoke(this, e); };
             _unselected.On += (s, e) => { if (e.Item != null) ItemUnselected?.Invoke(this, e); };
@@ -490,6 +497,7 @@ namespace ElmSharp
             _realized.On += (s, e) => { if (e.Item != null) ItemRealized?.Invoke(this, e); };
             _unrealized.On += (s, e) => { if (e.Item != null) ItemUnrealized?.Invoke(this, e); };
             _longpressed.On += (s, e) => { if (e.Item != null) ItemLongPressed?.Invoke(this, e); };
+            _changed.On += (s, e) => { Changed?.Invoke(this, e); };
         }
 
         void AddInternal(GenGridItem item)
