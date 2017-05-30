@@ -88,7 +88,15 @@ namespace Tizen.Multimedia
             _buffer = Marshal.AllocHGlobal(buffer.Length);
             Marshal.Copy(buffer, 0, _buffer, buffer.Length);
 
-            Create(() => Interop.MetadataExtractor.SetBuffer(_handle, _buffer, buffer.Length));
+            try
+            {
+                Create(() => Interop.MetadataExtractor.SetBuffer(_handle, _buffer, buffer.Length));
+            }
+            catch (Exception)
+            {
+                Marshal.FreeHGlobal(_buffer);
+                throw;
+            }
         }
 
         private IntPtr Handle
