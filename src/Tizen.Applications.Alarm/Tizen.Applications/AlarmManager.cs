@@ -227,7 +227,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Sets an alarm to be triggered periodically, starting at a specific time.
+        /// Sets a notification alarm to be triggered at a specific time.
         /// The date describes the time of the first occurrence.
         /// </summary>
         /// <param name="dateTime"> The first active alarm time </param>
@@ -256,8 +256,8 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Sets an alarm to be triggered periodically, starting at a specific time.
-        /// The date describes the time of the first occurrence.
+        /// Sets a notification alarm to be triggered after a specific time.
+        /// The alarm will first go off delay seconds later and then will go off every certain amount of time defined using period seconds.
         /// </summary>
         /// <param name="delay">The amount of time before the first execution (in seconds). </param>
         /// <param name="period"> The amount of time between subsequent alarms (in seconds). This value does not guarantee the accuracy. </param>
@@ -285,8 +285,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Sets an alarm to be triggered periodically, starting at a specific time.
+        /// Sets a notification alarm to be triggered periodically, starting at a specific time.
         /// The date describes the time of the first occurrence.
+        /// weekFlag is the repeat value of the days of the week.
+        /// If weekFlag is AlarmWeekFlag.Tuesday, the alarm will repeat every Tuesday at a specific time.
         /// </summary>
         /// <param name="dateTime"> The first active alarm time </param>
         /// <param name="weekFlag"> The day of the week, AlarmWeekFlag may be a combination of days,
@@ -316,8 +318,8 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Sets an alarm to be triggered periodically, starting at a specific time.
-        /// The date describes the time of the first occurrence.
+        /// Sets a notification alarm to be triggered after a specific time.
+        /// The alarm will go off delay seconds later.
         /// </summary>
         /// <param name="delay">The amount of time before the first execution (in seconds).</param>
         /// <param name="notification"> The notification to be posted when the alarm is triggered </param>
