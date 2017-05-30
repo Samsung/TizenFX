@@ -83,15 +83,13 @@ namespace Tizen.Multimedia
         /// The display rotation.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>A <see cref="CameraRotation"/> that specifies the rotation of camera device.</value>
+        /// <value>A <see cref="Rotation"/> that specifies the rotation of camera device.</value>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
-        public CameraRotation Rotation
+        public Rotation Rotation
         {
             get
             {
-                CameraRotation val = CameraRotation.None;
-
-                CameraErrorFactory.ThrowIfError(Native.GetRotation(_camera.GetHandle(), out val),
+                CameraErrorFactory.ThrowIfError(Native.GetRotation(_camera.GetHandle(), out var val),
                     "Failed to get display rotation");
 
                 return val;
@@ -99,7 +97,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraRotation), value);
+                ValidationUtil.ValidateEnum(typeof(Rotation), value);
+
                 CameraErrorFactory.ThrowIfError(Native.SetRotation(_camera.GetHandle(), value),
                     "Failed to set display rotation.");
             }
@@ -111,13 +110,11 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="CameraFlip"/> that specifies camera flip type.</value>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
-        public CameraFlip Flip
+        public Flips Flip
         {
             get
             {
-                CameraFlip val = CameraFlip.None;
-
-                CameraErrorFactory.ThrowIfError(Native.GetFlip(_camera.GetHandle(), out val),
+                CameraErrorFactory.ThrowIfError(Native.GetFlip(_camera.GetHandle(), out var val),
                     "Failed to get display flip");
 
                 return val;
@@ -125,7 +122,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraFlip), value);
+                ValidationUtil.ValidateFlagsEnum(value, Flips.Horizontal | Flips.Vertical, nameof(Flips));
+
                 CameraErrorFactory.ThrowIfError(Native.SetFlip(_camera.GetHandle(), value),
                     "Failed to set display flip.");
             }

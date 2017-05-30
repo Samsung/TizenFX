@@ -48,9 +48,6 @@ internal static partial class Interop
             [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_set_hardware_acceleration")]
             internal static extern ImageUtilError SetHardwareAcceleration(TransformHandle handle, bool mode);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_get_rotation")]
-            internal static extern ImageUtilError GetRotation(TransformHandle handle, out ImageRotation rotation);
-
             [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_set_rotation")]
             internal static extern ImageUtilError SetRotation(TransformHandle handle, ImageRotation rotation);
 

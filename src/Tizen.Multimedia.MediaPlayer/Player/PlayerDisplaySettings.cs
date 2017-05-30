@@ -103,7 +103,7 @@ namespace Tizen.Multimedia
             }
         }
 
-        private PlayerDisplayRotation _rotation = PlayerDisplayRotation.RotationNone;
+        private Rotation _rotation = Rotation.Rotate0;
 
         /// <summary>
         /// Gets or sets the rotation of the display.
@@ -119,7 +119,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
         /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
-        public PlayerDisplayRotation Rotation
+        public Rotation Rotation
         {
             get
             {
@@ -132,7 +132,7 @@ namespace Tizen.Multimedia
                     return;
                 }
 
-                ValidationUtil.ValidateEnum(typeof(PlayerDisplayRotation), value);
+                ValidationUtil.ValidateEnum(typeof(Rotation), value);
 
                 Native.SetRotation(Player.Handle, value).
                     ThrowIfFailed("Failed to set the rotation state of the display");

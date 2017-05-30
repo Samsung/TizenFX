@@ -35,16 +35,16 @@ internal static partial class Interop
         internal static extern CameraError SetVisible(IntPtr handle, bool visible);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_get_display_rotation")]
-        internal static extern CameraError GetRotation(IntPtr handle, out CameraRotation rotation);
+        internal static extern CameraError GetRotation(IntPtr handle, out Rotation rotation);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_display_rotation")]
-        internal static extern CameraError SetRotation(IntPtr handle, CameraRotation rotation);
+        internal static extern CameraError SetRotation(IntPtr handle, Rotation rotation);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_get_display_flip")]
-        internal static extern CameraError GetFlip(IntPtr handle, out CameraFlip flip);
+        internal static extern CameraError GetFlip(IntPtr handle, out Flips flip);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_display_flip")]
-        internal static extern CameraError SetFlip(IntPtr handle, CameraFlip flip);
+        internal static extern CameraError SetFlip(IntPtr handle, Flips flip);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_display_roi_area")]
         internal static extern CameraError GetRoiArea(IntPtr handle, out int x, out int y, out int width, out int height);

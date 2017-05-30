@@ -755,9 +755,9 @@ namespace Tizen.Multimedia
         /// The stream rotation.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>A <see cref="CameraRotation"/> that specifies the rotation of camera device.</value>
+        /// <value>A <see cref="Rotation"/> that specifies the rotation of camera device.</value>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        public CameraRotation StreamRotation
+        public Rotation StreamRotation
         {
             get
             {
@@ -769,7 +769,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraRotation), value);
+                ValidationUtil.ValidateEnum(typeof(Rotation), value);
+
                 CameraErrorFactory.ThrowIfError(Native.SetStreamRotation(_camera.GetHandle(), value),
                     "Failed to set camera stream rotation.");
             }
@@ -781,7 +782,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="CameraFlip"/> that specifies camera flip type.</value>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        public CameraFlip StreamFlip
+        public Flips StreamFlip
         {
             get
             {
@@ -793,7 +794,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraFlip), value);
+                ValidationUtil.ValidateFlagsEnum(value, Flips.Horizontal | Flips.Vertical, nameof(Flips));
+
                 CameraErrorFactory.ThrowIfError(Native.SetFlip(_camera.GetHandle(), value),
                     "Failed to set camera flip.");
             }

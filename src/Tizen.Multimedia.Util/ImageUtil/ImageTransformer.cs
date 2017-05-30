@@ -15,10 +15,7 @@
  */
 
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
-using static Interop.ImageUtil;
-using static Interop.ImageUtil.Transform;
 
 namespace Tizen.Multimedia.Util
 {
@@ -27,16 +24,11 @@ namespace Tizen.Multimedia.Util
     /// </summary>
     public class ImageTransformer : IDisposable
     {
-        private TransformHandle _handle = null;
-
         /// <summary>
         /// Initialize a new instance of the <see cref="ImageTransformer"/> class.
         /// </summary>
         public ImageTransformer()
         {
-            Create(out _handle).ThrowIfFailed("Failed to create ImageTransformer");
-
-            Debug.Assert(_handle != null);
         }
 
         /// <summary>
@@ -69,7 +61,7 @@ namespace Tizen.Multimedia.Util
                 throw new ArgumentNullException(nameof(item));
             }
 
-            return item.ApplyAsync(_handle, source);
+            return item.ApplyAsync(source);
         }
 
         #region IDisposable Support
@@ -79,11 +71,6 @@ namespace Tizen.Multimedia.Util
         {
             if (!_disposed)
             {
-                if (_handle != null)
-                {
-                    _handle.Dispose();
-                }
-
                 _disposed = true;
             }
         }

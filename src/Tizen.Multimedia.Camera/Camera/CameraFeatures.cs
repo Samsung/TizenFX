@@ -43,8 +43,8 @@ namespace Tizen.Multimedia
         private List<CameraFlashMode> _flashModes;
         private List<CameraSceneMode> _sceneModes;
         private List<CameraEffectMode> _effectModes;
-        private List<CameraRotation> _streamRotations;
-        private List<CameraFlip> _streamFlips;
+        private List<Rotation> _streamRotations;
+        private List<Flips> _streamFlips;
         private List<CameraPtzType> _ptzTypes;
 
         private delegate CameraError GetRangeDelegate(IntPtr handle, out int min, out int max);
@@ -707,10 +707,10 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
-        /// It returns a list containing all the supported <see cref="CameraRotation"/>.
+        /// An IEnumerable containing all the supported <see cref="Rotation"/>.
         /// </returns>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        public IEnumerable<CameraRotation> SupportedStreamRotations
+        public IEnumerable<Rotation> SupportedStreamRotations
         {
             get
             {
@@ -718,9 +718,9 @@ namespace Tizen.Multimedia
                 {
                     try
                     {
-                        _streamRotations = new List<CameraRotation>();
+                        _streamRotations = new List<Rotation>();
 
-                        NativeFeatures.StreamRotationCallback callback = (CameraRotation streamRotation, IntPtr userData) =>
+                        NativeFeatures.StreamRotationCallback callback = (streamRotation, _) =>
                         {
                             _streamRotations.Add(streamRotation);
                             return true;
@@ -747,7 +747,7 @@ namespace Tizen.Multimedia
         /// It returns a list containing all the supported <see cref="CameraFlip"/>.
         /// </returns>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        public IEnumerable<CameraFlip> SupportedStreamFlips
+        public IEnumerable<Flips> SupportedStreamFlips
         {
             get
             {
@@ -755,9 +755,9 @@ namespace Tizen.Multimedia
                 {
                     try
                     {
-                        _streamFlips = new List<CameraFlip>();
+                        _streamFlips = new List<Flips>();
 
-                        NativeFeatures.StreamFlipCallback callback = (CameraFlip streamFlip, IntPtr userData) =>
+                        NativeFeatures.StreamFlipCallback callback = (streamFlip, _) =>
                         {
                             _streamFlips.Add(streamFlip);
                             return true;

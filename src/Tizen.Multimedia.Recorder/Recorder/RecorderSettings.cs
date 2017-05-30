@@ -399,15 +399,13 @@ namespace Tizen.Multimedia
         /// The orientation in a video metadata tag.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>A <see cref="RecorderOrientation"/> that specifies the type of orientation.</value>
+        /// <value>A <see cref="Rotation"/> that specifies the type of orientation.</value>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        public RecorderOrientation OrientationTag
+        public Rotation OrientationTag
         {
             get
             {
-                RecorderOrientation val = 0;
-
-                RecorderErrorFactory.ThrowIfError(Native.GetOrientationTag(_recorder.GetHandle(), out val),
+                RecorderErrorFactory.ThrowIfError(Native.GetOrientationTag(_recorder.GetHandle(), out var val),
                     "Failed to get recorder orientation.");
 
                 return val;

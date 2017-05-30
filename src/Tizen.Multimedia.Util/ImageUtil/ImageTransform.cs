@@ -17,6 +17,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using static Interop.ImageUtil;
@@ -60,13 +61,23 @@ namespace Tizen.Multimedia.Util
             }
         }
 
+        internal static TransformHandle CreateHandle()
+        {
+            Create(out var handle).ThrowIfFailed("Failed to run ImageTransformer");
+            Debug.Assert(handle != null);
+            return handle;
+        }
+
         internal abstract void Configure(TransformHandle handle);
 
-        internal virtual Task<MediaPacket> ApplyAsync(TransformHandle handle, MediaPacket source)
+        internal virtual Task<MediaPacket> ApplyAsync(MediaPacket source)
         {
-            Configure(handle);
+            using (TransformHandle handle = CreateHandle())
+            {
+                Configure(handle);
 
-            return RunAsync(handle, source);
+                return RunAsync(handle, source);
+            }
         }
     }
 
@@ -225,7 +236,7 @@ namespace Tizen.Multimedia.Util
             // intended blank
         }
 
-        internal override async Task<MediaPacket> ApplyAsync(TransformHandle handle, MediaPacket source)
+        internal override async Task<MediaPacket> ApplyAsync(MediaPacket source)
         {
             if (Children.Count == 0)
             {
@@ -234,16 +245,14 @@ namespace Tizen.Multimedia.Util
 
             var items = Children;
 
-            MediaPacket curPacket = await items[0].ApplyAsync(handle, source);
+            MediaPacket curPacket = await items[0].ApplyAsync(source);
 
             for (int i = 1; i < items.Count; ++i)
             {
-                var item = items[i];
-
                 var oldPacket = curPacket;
                 try
                 {
-                    curPacket = await item.ApplyAsync(handle, curPacket);
+                    curPacket = await items[i].ApplyAsync(curPacket);
                 }
                 finally
                 {
@@ -258,31 +267,39 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Rotates or flips an image.
     /// </summary>
-    /// <seealso cref="ImageRotation"/>
+    /// <seealso cref="Rotation"/>
     public class RotateTransform : ImageTransform
     {
-        private ImageRotation _rotation;
+        private Rotation _rotation;
 
         /// <summary>
         /// Initialize a new instance of the <see cref="RotateTransform"/> class.
         /// </summary>
         /// <param name="rotation">The value how to rotate an image.</param>
         /// <exception cref="ArgumentException"><paramref name="rotation"/> is invalid.</exception>
-        public RotateTransform(ImageRotation rotation)
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="rotation"/> is <see cref="Rotation.Rotate90"/>.</exception>
+        public RotateTransform(Rotation rotation)
         {
             Rotation = rotation;
+
         }
 
         /// <summary>
         /// Gets or sets the value how to rotate an image.
         /// </summary>
         /// <exception cref="ArgumentException"><paramref name="value"/> is invalid.</exception>
-        public ImageRotation Rotation
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is <see cref="Rotation.Rotate90"/>.</exception>
+        public Rotation Rotation
         {
             get { return _rotation; }
             set
             {
-                ValidationUtil.ValidateEnum(typeof(ImageRotation), value, nameof(Rotation));
+                ValidationUtil.ValidateEnum(typeof(Rotation), value, nameof(Rotation));
+
+                if (value == Rotation.Rotate0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "Rotation can't be Rotate0.");
+                }
 
                 _rotation = value;
             }
@@ -290,7 +307,96 @@ namespace Tizen.Multimedia.Util
 
         internal override void Configure(TransformHandle handle)
         {
-            SetRotation(handle, Rotation);
+            SetRotation(handle, GetImageRotation());
+        }
+
+        private ImageRotation GetImageRotation()
+        {
+            switch (Rotation)
+            {
+                case Rotation.Rotate90: return ImageRotation.Rotate90;
+                case Rotation.Rotate180: return ImageRotation.Rotate180;
+                case Rotation.Rotate270: return ImageRotation.Rotate270;
+            }
+
+            Debug.Fail("Rotation is invalid value!");
+            return ImageRotation.Rotate0;
+        }
+    }
+
+
+    /// <summary>
+    /// Rotates or flips an image.
+    /// </summary>
+    /// <seealso cref="Rotation"/>
+    public class FlipTransform : ImageTransform
+    {
+        private Flips _flip;
+
+        /// <summary>
+        /// Initialize a new instance of the <see cref="RotateTransform"/> class.
+        /// </summary>
+        /// <param name="flip">The value how to flip an image.</param>
+        /// <exception cref="ArgumentException"><paramref name="flip"/> is invalid.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="flip"/> is <see cref="Flip.None"/>.</exception>
+        public FlipTransform(Flips flip)
+        {
+            Flip = flip;
+        }
+
+        /// <summary>
+        /// Gets or sets the value how to rotate an image.
+        /// </summary>
+        /// <exception cref="ArgumentException"><paramref name="value"/> is invalid.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is <see cref="Flip.None"/>.</exception>
+        public Flips Flip
+        {
+            get { return _flip; }
+            set
+            {
+                ValidationUtil.ValidateFlagsEnum(value, Flips.Horizontal | Flips.Vertical, nameof(Flips));
+
+                if (value == Flips.None)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "Flip can't be None.");
+                }
+
+                _flip = value;
+            }
+        }
+
+        internal override void Configure(TransformHandle handle)
+        {
+            // intended blank
+        }
+
+        private async Task<MediaPacket> ApplyAsync(TransformHandle handle, MediaPacket source,
+            ImageRotation rotation)
+        {
+            SetRotation(handle, rotation);
+            return await RunAsync(handle, source);
+        }
+
+        internal override async Task<MediaPacket> ApplyAsync(MediaPacket source)
+        {
+            using (TransformHandle handle = CreateHandle())
+            {
+                if (Flip.HasFlag(Flips.Vertical | Flips.Horizontal))
+                {
+                    var flipped = await ApplyAsync(handle, source, ImageRotation.FlipHorizontal);
+                    try
+                    {
+                        return await ApplyAsync(handle, flipped, ImageRotation.FlipVertical);
+                    }
+                    finally
+                    {
+                        flipped.Dispose();
+                    }
+                }
+
+                return await ApplyAsync(handle, source, Flip.HasFlag(Flips.Horizontal) ?
+                    ImageRotation.FlipHorizontal : ImageRotation.FlipVertical);
+            }
         }
     }
 
