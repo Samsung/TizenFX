@@ -541,7 +541,7 @@ namespace Tizen.Content.Download
 
         /// <summary>
         /// HTTP header field and value pairs to the download request.
-        /// HTTP header <field,value> pair is the <key,value> pair in the Dictionary HttpHeaders
+        /// HTTP header &lt;field,value&gt; pair is the &lt;key,value&gt; pair in the Dictionary HttpHeaders
         /// The given HTTP header field will be included with the HTTP request of the download request.
         /// If you try to get this property value before setting, an empty dictionary is returned.
         /// </summary>

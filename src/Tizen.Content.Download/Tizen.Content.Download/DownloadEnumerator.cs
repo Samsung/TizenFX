@@ -23,35 +23,35 @@ namespace Tizen.Content.Download
     {
         /// <summary>
         /// Unhandled exception
-        /// <summary>
+        /// </summary>
         None = 0,
         /// <summary>
         /// Ready to download
-        /// <summary>
+        /// </summary>
         Ready,
         /// <summary>
         /// Queued to start downloading
-        /// <summary>
+        /// </summary>
         Queued,
         /// <summary>
         /// Currently downloading
-        /// <summary>
+        /// </summary>
         Downloading,
         /// <summary>
         /// Download is paused and can be resumed
-        /// <summary>
+        /// </summary>
         Paused,
         /// <summary>
         /// The download is completed
-        /// <summary>
+        /// </summary>
         Completed,
         /// <summary>
         /// The download failed
-        /// <summary>
+        /// </summary>
         Failed,
         /// <summary>
         /// User canceled the download request
-        /// <summary>
+        /// </summary>
         Canceled
     }
 
@@ -62,19 +62,19 @@ namespace Tizen.Content.Download
     {
         /// <summary>
         /// Download is available through data network
-        /// <summary>
+        /// </summary>
         DataNetwork = 0,
         /// <summary>
         /// Download is available through WiFi
-        /// <summary>
+        /// </summary>
         Wifi,
         /// <summary>
         /// Download is available through WiFi-Direct
-        /// <summary>
+        /// </summary>
         WifiDirect,
         /// <summary>
         /// Download is available through either data network or WiFi
-        /// <summary>
+        /// </summary>
         All
     }
 
@@ -85,15 +85,15 @@ namespace Tizen.Content.Download
     {
         /// <summary>
         /// Do not register notification
-        /// <summary>
+        /// </summary>
         None = 0,
         /// <summary>
         /// Completion notification for success state and failed state
-        /// <summary>
+        /// </summary>
         CompleteOnly,
         /// <summary>
         /// All download notifications for ongoing state, success state and failed state
-        /// <summary>
+        /// </summary>
         All
     }
 
