@@ -99,7 +99,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>
         /// Relative offset value, for which the object offset is expected (relative to the object size in the current frame).\n
-        /// the default is 0.
+        /// The default is 0.
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
         public double ExpectedOffset
@@ -125,7 +125,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is less than zero.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="value"/> is greater than one.
         /// </exception>
         public double StabilizationAccelaration
@@ -171,8 +171,8 @@ namespace Tizen.Multimedia
         /// <value>
         /// It is component of tolerant shift which will be ignored by stabilization process.
         /// (this value is relative to the object size in the current frame).
-        /// Tolerant shift will be computed like R * S + C, where R - value set to MV_IMAGE_TRACKING_STABLIZATION_TOLERANT_SHIFT,
-        /// S - area of object location on frame, C - constant value equal 1.3.\n
+        /// Tolerant shift will be computed like R * S + C, where R is the value set to <see cref="StabilizationTolerantShift"/>,
+        /// S is the area of object location on frame, C is a constant value 1.3.\n
         /// \n
         /// The default is 0.00006.
         /// </value>

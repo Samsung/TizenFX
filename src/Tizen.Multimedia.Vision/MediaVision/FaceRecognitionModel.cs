@@ -49,7 +49,7 @@ namespace Tizen.Multimedia
         /// <exception cref="FileNotFoundException"><paramref name="modelPath"/> is invalid.</exception>
         /// <exception cref="NotSupportedException">
         ///     The feature is not supported.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="modelPath"/> is not supported format.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
@@ -142,11 +142,11 @@ namespace Tizen.Multimedia
         /// <param name="source">The <see cref="MediaVisionSource"/> that contains face image.</param>
         /// <param name="label">The label that identifies face for which example is adding.
         ///     Specify the same labels for the face images of a single person when calling this method.
-        ///     Has to be unique for each face</param>
+        ///     Has to be unique for each face.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     The <see cref="FaceRecognitionModel"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="source"/> has already been dispose of.
         /// </exception>
         /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
@@ -166,12 +166,12 @@ namespace Tizen.Multimedia
         /// <param name="source">The <see cref="MediaVisionSource"/> that contains face image.</param>
         /// <param name="label">The label that identifies face for which example is adding.
         ///     Specify the same labels for the face images of a single person when calling this method.
-        ///     Has to be unique for each face</param>
+        ///     Has to be unique for each face.</param>
         /// <param name="area">The rectangular region of the face image at the source image.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     The <see cref="FaceRecognitionModel"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="source"/> has already been dispose of.
         /// </exception>
         /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
@@ -246,7 +246,7 @@ namespace Tizen.Multimedia
         /// <param name="config">The configuration used for learning of the recognition models. This value can be null.</param>
         /// <exception cref="ObjectDisposedException">
         ///     The <see cref="FaceRecognitionModel"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <exception cref="InvalidOperationException">No examples added.</exception>

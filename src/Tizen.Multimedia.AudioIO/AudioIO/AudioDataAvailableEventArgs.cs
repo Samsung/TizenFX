@@ -28,6 +28,9 @@ namespace Tizen.Multimedia
             Data = data;
         }
 
+        /// <summary>
+        /// Gets the audio data captured.
+        /// </summary>
         public byte[] Data { get; }
     }
 }

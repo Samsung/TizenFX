@@ -63,12 +63,12 @@ namespace Tizen.Multimedia
         /// <returns><see cref="MediaVisionSource"/> containing the generated QR image.</returns>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="qrConfig"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="message"/> is null.
         /// </exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="message"/> is too long.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="message"/> contains characters which are illegal by the <see cref="QrMode"/>.
         ///     </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
@@ -91,17 +91,17 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="qrConfig"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="message"/> is null.
         /// </exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="message"/> is too long.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="message"/> contains characters which are illegal by the <see cref="QrMode"/>.
         /// </exception>
         /// <exception cref="NotSupportedException">
         ///     The feature is not supported.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <see cref="BarcodeGenerationConfiguration.TextVisibility"/> is the <see cref="Visibility.Visible"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException"><paramref name="config"/> already has been disposed of.</exception>
@@ -135,11 +135,11 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="message"/> is null.</exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="message"/> is too long.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="type"/> is invalid.
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="message"/> contains illegal characters.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
@@ -158,11 +158,11 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="message"/> is null.</exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="message"/> is too long.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="type"/> is invalid.
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="message"/> contains illegal characters.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
@@ -212,14 +212,14 @@ namespace Tizen.Multimedia
         /// <param name="imageConfig">The <see cref="BarcodeImageConfiguration"/> that contains information about the file to be generated.</param>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="messsage"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="qrConfig"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="imageConfig"/> is null.
         /// </exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="message"/> is too long.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="message"/> contains characters which are illegal by the <see cref="QrMode"/>.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
@@ -245,20 +245,20 @@ namespace Tizen.Multimedia
         /// <param name="config">The configuration of the barcode generator. This value can be null.</param>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="messsage"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="qrConfig"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="imageConfig"/> is null.
         /// </exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="message"/> is too long.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="message"/> contains characters which are illegal by the <see cref="QrMode"/>.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
         /// <exception cref="NotSupportedException">
         ///     The feature is not supported.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <see cref="BarcodeGenerationConfiguration.TextVisibility"/> is the <see cref="Visibility.Visible"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException"><paramref name="config"/> already has been disposed of.</exception>
@@ -291,16 +291,16 @@ namespace Tizen.Multimedia
         ///     information about the file to be generated.</param>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="messsage"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="imageConfig"/> is null.
         /// </exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="message"/> is too long.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="type"/> is invalid.
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="message"/> contains illegal characters.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
@@ -320,16 +320,16 @@ namespace Tizen.Multimedia
         /// <param name="config">The configuration of the barcode generator. This value can be null.</param>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="messsage"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="imageConfig"/> is null.
         /// </exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="message"/> is too long.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="type"/> is invalid.
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="message"/> contains illegal characters.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>

@@ -23,10 +23,11 @@ namespace Tizen.Multimedia
     /// </summary>
     public class Quadrangle
     {
+
         /// <summary>
-        /// The constructor of the Quadrangle class
+        /// Initialize a new instance of the <see cref="Quadrangle"/> class with an array of <see cref="Point"/>.
         /// </summary>
-        /// <remarks><paramref name="points"/> must have 4 elements</remarks>
+        /// <remarks><paramref name="points"/> must have 4 elements.</remarks>
         /// <param name="points">four points that define object bounding quadrangle.</param>
         /// <exception cref="ArgumentException">The Length of <paramref name="points"/> is not 4.</exception>
         public Quadrangle(Point[] points)

@@ -35,7 +35,7 @@ namespace Tizen.Multimedia
         /// <param name="imageFormat">The format of the output image.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     The width of <paramref name="size"/> is less than or equal to zero.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     The height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
@@ -82,7 +82,7 @@ namespace Tizen.Multimedia
         /// <param name="imageFormat">The format of the output image.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="width"/> is less than or equal to zero.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="height"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
@@ -111,7 +111,7 @@ namespace Tizen.Multimedia
         public int Height => Size.Height;
 
         /// <summary>
-        /// Gets the path to the file that has to be generated
+        /// Gets the path to the file that has to be generated.
         /// </summary>
         /// <remarks>
         /// The mediastorage privilege http://tizen.org/privilege/mediastorage is needed if image path is relevant to media storage.\n
@@ -120,7 +120,7 @@ namespace Tizen.Multimedia
         public string Path { get; }
 
         /// <summary>
-        /// Gets the format of the output image
+        /// Gets the format of the output image.
         /// </summary>
         public BarcodeImageFormat Format { get; }
     }

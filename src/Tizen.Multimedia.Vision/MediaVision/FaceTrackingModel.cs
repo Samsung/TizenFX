@@ -48,7 +48,7 @@ namespace Tizen.Multimedia
         /// <exception cref="FileNotFoundException"><paramref name="modelPath"/> is invalid.</exception>
         /// <exception cref="NotSupportedException">
         ///     The feature is not supported.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="modelPath"/> is not supported format.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
@@ -98,7 +98,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     The <see cref="FaceTrackingModel"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="source"/> has already bean disposed of.
         /// </exception>
         public void Prepare(MediaVisionSource source, Quadrangle region)

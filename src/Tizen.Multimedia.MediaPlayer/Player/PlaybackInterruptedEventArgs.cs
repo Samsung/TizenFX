@@ -23,7 +23,7 @@ namespace Tizen.Multimedia
     public class PlaybackInterruptedEventArgs : EventArgs
     {
         /// <summary>
-        /// Initialize a new instance of the PlaybackInterruptedEventArgs class.
+        /// Initializes a new instance of the PlaybackInterruptedEventArgs class.
         /// </summary>
         /// <param name="reason">The enum value indicating the reason.</param>
         public PlaybackInterruptedEventArgs(PlaybackInterruptionReason reason)

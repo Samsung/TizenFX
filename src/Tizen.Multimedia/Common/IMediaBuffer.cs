@@ -20,6 +20,9 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
 {
+    /// <summary>
+    /// Provides functionality to read a media buffer.
+    /// </summary>
     public interface IReadOnlyBuffer
     {
         /// <summary>
@@ -27,8 +30,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="index">The index of the value to get or set.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     index is less than zero.
-        ///     <para>-or-</para>
+        ///     index is less than zero.\n
+        ///     -or-\n
         ///     index is equal to or greater than <see cref="Length"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The object that owns the current buffer already has been disposed of.</exception>
@@ -49,7 +52,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Copies data from a byte array to the buffer.
         /// </summary>
-        /// <param name="source">The array to copy from.</param>
+        /// <param name="dest">The array to copy to.</param>
         /// <param name="startIndex">The zero-based index in the source array where copying should start.</param>
         /// <param name="length">The number of array elements to copy.</param>
         /// <exception cref="ArgumentOutOfRangeException">startIndex or length is not valid.</exception>
@@ -59,7 +62,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Copies data from a byte array to the buffer.
         /// </summary>
-        /// <param name="source">The array to copy from.</param>
+        /// <param name="dest">The array to copy to.</param>
         /// <param name="startIndex">The zero-based index in the source array where copying should start.</param>
         /// <param name="length">The number of array elements to copy.</param>
         /// <param name="offset">The zero-based index in the buffer where copying should start.</param>
@@ -68,12 +71,15 @@ namespace Tizen.Multimedia
         void CopyTo(byte[] dest, int startIndex, int length, int offset);
     }
 
+    /// <summary>
+    /// Provides functionality to read and write a media buffer.
+    /// </summary>
     public interface IMediaBuffer : IReadOnlyBuffer
     {
         /// <summary>
         /// Copies data from the buffer to a byte array.
         /// </summary>
-        /// <param name="dest">The array to copy to.</param>
+        /// <param name="source">The array to copy from.</param>
         /// <param name="startIndex">The zero-based index in the dest array where copying should start.</param>
         /// <param name="length">The number of elements to copy.</param>
         /// <exception cref="ArgumentOutOfRangeException">startIndex or length is not valid.</exception>
@@ -85,7 +91,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Copies data from the buffer to a byte array.
         /// </summary>
-        /// <param name="dest">The array to copy to.</param>
+        /// <param name="source">The array to copy from.</param>
         /// <param name="startIndex">The zero-based index in the dest array where copying should start.</param>
         /// <param name="length">The number of elements to copy.</param>
         /// <param name="offset">The zero-based index in the buffer where copying should start.</param>
@@ -142,8 +148,8 @@ namespace Tizen.Multimedia
         /// <param name="offset"></param>
         /// <param name="length"></param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     offset + length is greater than <see cref="Length"/>.
-        ///     <para>-or-</para>
+        ///     offset + length is greater than <see cref="Length"/>.\n
+        ///     -or-\n
         ///     offset or length is less than zero.
         /// </exception>
         private void ValidateRange(int offset, int length)

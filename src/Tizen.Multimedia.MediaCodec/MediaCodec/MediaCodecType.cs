@@ -27,6 +27,9 @@ namespace Tizen.Multimedia.MediaCodec
 
     /// <summary>
     /// Specifies types of codec.
+    /// <para>
+    /// This enumeration has a <see cref="FlagsAttribute"/> attribute that allows a bitwise combination of its member values.
+    /// </para>
     /// </summary>
     [Flags]
     public enum MediaCodecTypes

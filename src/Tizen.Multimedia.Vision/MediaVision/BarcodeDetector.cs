@@ -56,7 +56,7 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     <paramref name="source"/> already has been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="config"/> already has been disposed of.
         /// </exception>
         /// <seealso cref="Barcode"/>

@@ -24,7 +24,7 @@ namespace Tizen.Multimedia
     public class MediaStreamBufferStatusChangedEventArgs : EventArgs
     {
         /// <summary>
-        /// Initialize a new instance of the MediaStreamBufferStatusChangedEventArgs class.
+        /// Initializes a new instance of the MediaStreamBufferStatusChangedEventArgs class.
         /// </summary>
         /// <param name="status">The value indicating the status of the stream.</param>
         public MediaStreamBufferStatusChangedEventArgs(MediaStreamBufferStatus status)

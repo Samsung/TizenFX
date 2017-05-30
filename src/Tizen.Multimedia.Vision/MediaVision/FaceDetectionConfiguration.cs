@@ -40,7 +40,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets or gets the face detection haarcascade xml file for face detection.
+        /// Gets or sets the face detection haarcascade xml file for face detection.
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         public string ModelFilePath
@@ -119,18 +119,18 @@ namespace Tizen.Multimedia
         private Rectangle? _roi;
 
         /// <summary>
-        /// Sets or gets the roi of the face detection.
+        /// Gets or sets the roi of the face detection.
         /// </summary>
         /// <remarks>
         /// Default value is null (the roi will be a full image) can be changed to specify the roi for face detection.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     The width of <paramref name="value"/> is less than or equal to zero.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     The height of <paramref name="value"/> is less than or equal to zero.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     The x position of <paramref name="value"/> is lsss than zero.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     The y position of <paramref name="value"/> is lsss than zero.\n
         /// </exception>
         public Rectangle? Roi

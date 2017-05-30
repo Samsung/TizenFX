@@ -109,7 +109,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="buffer"/> has no element.(The length is zero.)\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="colorspace"/> is invalid.
         /// </exception>
         public MediaVisionSource(byte[] buffer, uint width, uint height, Colorspace colorspace)

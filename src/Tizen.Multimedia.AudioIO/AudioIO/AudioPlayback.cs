@@ -81,14 +81,14 @@ namespace Tizen.Multimedia
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="sampleRate"/> is less than <see cref="MinSampleRate"/>.
-        ///     <para>-or-</para>
+        ///     <paramref name="sampleRate"/> is less than <see cref="MinSampleRate"/>.\n
+        ///     -or-\n
         ///     <paramref name="sampleRate"/> is greater than <see cref="MaxSampleRate"/>.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     The value of <paramref name="channel"/> is invalid.
-        ///     <para>-or-</para>
-        ///     The value of <paramref name="sampleType"/> is invalid.
+        ///     <paramref name="channel"/> is invalid.\n
+        ///     -or-\n
+        ///     <paramref name="sampleType"/> is invalid.
         /// </exception>
         public AudioPlayback(int sampleRate, AudioChannel channel, AudioSampleType sampleType)
         {
@@ -203,13 +203,12 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the size to be allocated for the audio output buffer.
+        /// Gets the size allocated for the audio output buffer.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed.</exception>
         public int GetBufferSize()
         {
-            int size = 0;
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioOutput.GetBufferSize(_handle, out size));
+            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioOutput.GetBufferSize(_handle, out var size));
             return size;
         }
 
@@ -265,8 +264,8 @@ namespace Tizen.Multimedia
         /// This must be called before <see cref="Write(byte[])"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     Operation failed due to internal error.
-        ///     <para>-or-</para>
+        ///     Operation failed due to internal error.\n
+        ///     -or-\n
         ///     The current state is not <see cref="AudioIOState.Idle"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed.</exception>
@@ -283,8 +282,8 @@ namespace Tizen.Multimedia
         /// Unprepares the AudioPlayback.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Operation failed due to internal error.
-        ///     <para>-or-</para>
+        ///     Operation failed due to internal error.\n
+        ///     -or-\n
         ///     The current state is <see cref="AudioIOState.Idle"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed.</exception>
@@ -302,8 +301,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>It has no effect if the current is the <see cref="AudioIOState.Paused"/>.</remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is <see cref="AudioIOState.Idle"/>.
-        ///     <para>-or-</para>
+        ///     The current state is <see cref="AudioIOState.Idle"/>.\n
+        ///     -or-\n
         ///     The method is called in the <see cref="BufferAvailable"/> event handler.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed.</exception>
@@ -324,8 +323,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>It has no effect if the current is the <see cref="AudioIOState.Running"/>.</remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is <see cref="AudioIOState.Idle"/>.
-        ///     <para>-or-</para>
+        ///     The current state is <see cref="AudioIOState.Idle"/>.\n
+        ///     -or-\n
         ///     The method is called in an event handler.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed.</exception>
@@ -361,8 +360,8 @@ namespace Tizen.Multimedia
         /// <param name="streamPolicy">The <see cref="AudioStreamPolicy"/> to apply for the AudioPlayback.</param>
         /// <exception cref="ArgumentNullException"><paramref name="streamPolicy"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     <paramref name="streamPolicy"/> has already been disposed.
-        ///     <para>-or-</para>
+        ///     <paramref name="streamPolicy"/> has already been disposed.\n
+        ///     -or-\n
         ///     The AudioPlayback has already been disposed.
         /// </exception>
         /// <exception cref="NotSupportedException"><paramref name="streamPolicy"/> is not supported.</exception>

@@ -19,16 +19,10 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Argument for the event that is Audio State Changed.
+    /// Provides data for the <see cref="AudioCaptureBase.StateChanged"/> event and <see cref="AudioPlayback.StateChanged"/>.
     /// </summary>
     public class AudioIOStateChangedEventArgs : EventArgs
     {
-        /// <summary>
-        /// Initializes the instance of the AudioStateChangedEventArgs class.
-        /// </summary>
-        /// <param name="previous"></param>
-        /// <param name="current"></param>
-        /// <param name="byPolicy"></param>
         internal AudioIOStateChangedEventArgs(AudioIOState previous, AudioIOState current, bool byPolicy)
         {
             Previous = previous;
@@ -36,10 +30,19 @@ namespace Tizen.Multimedia
             ByPolicy = byPolicy;
         }
 
+        /// <summary>
+        /// Gets the previous state.
+        /// </summary>
         public AudioIOState Previous { get; }
 
+        /// <summary>
+        /// Gets the current state.
+        /// </summary>
         public AudioIOState Current { get; }
 
+        /// <summary>
+        /// Gets the value indicating whether the state is changed by policy or not.
+        /// </summary>
         public bool ByPolicy { get; }
     }
 }

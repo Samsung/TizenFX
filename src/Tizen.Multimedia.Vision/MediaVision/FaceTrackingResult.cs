@@ -39,7 +39,7 @@ namespace Tizen.Multimedia
         public Quadrangle Region { get; }
 
         /// <summary>
-        /// The confidence of the tracking_model that new location of the face was determined correctly
+        /// The confidence of the tracking model that new location of the face was determined correctly
         /// (value from 0.0 to 1.0). If no location was determined during last track iteration, then value is 0.0.
         /// </summary>
         public double Confidence { get; }

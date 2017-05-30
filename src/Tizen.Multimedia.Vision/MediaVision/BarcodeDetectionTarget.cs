@@ -22,17 +22,17 @@ namespace Tizen.Multimedia
     public enum BarcodeDetectionTarget
     {
         /// <summary>
-        /// 1D and 2D
+        /// 1D and 2D.
         /// </summary>
         All,
 
         /// <summary>
-        /// 1D barcode only
+        /// 1D barcode only.
         /// </summary>
         Barcode1D,
 
         /// <summary>
-        /// 2D barcode only
+        /// 2D barcode only.
         /// </summary>
         Barcode2D,
     }

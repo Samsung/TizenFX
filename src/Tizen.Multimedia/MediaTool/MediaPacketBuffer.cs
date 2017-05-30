@@ -45,8 +45,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="index">The index of the value to get or set.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     index is less than zero.
-        ///     <para>-or-</para>
+        ///     index is less than zero.\n
+        ///     -or-\n
         ///     index is equal to or greater than <see cref="Length"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The MediaPacket that owns the current buffer already has been disposed of.</exception>
@@ -78,8 +78,8 @@ namespace Tizen.Multimedia
         /// <param name="offset"></param>
         /// <param name="length"></param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     offset + length is greater than <see cref="Length"/>.
-        ///     <para>-or-</para>
+        ///     offset + length is greater than <see cref="Length"/>.\n
+        ///     -or-\n
         ///     offset or length is less than zero.
         /// </exception>
         private void ValidateRange(int offset, int length)

@@ -59,7 +59,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets and gets ROI (Region Of Interest) to the event trigger
+        /// Sets and gets ROI (Region Of Interest).
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="SurveillanceEngine"/> has already been disposed of.</exception>
         public Point[] Roi

@@ -40,12 +40,12 @@ namespace Tizen.Multimedia
         private PlayerDisplayMode _displayMode = PlayerDisplayMode.LetterBox;
 
         /// <summary>
-        /// Set/Get Display mode.
+        /// Gets or sets the <see cref="PlayerDisplayMode"/>.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        /// The display is not assigned.
-        /// <para>-or-</para>
-        /// Operation failed; internal error.
+        ///     The display is not assigned.\n
+        ///     -or-\n
+        ///     Operation failed; internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
         /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
@@ -74,13 +74,13 @@ namespace Tizen.Multimedia
         private bool _isVisible = true;
 
         /// <summary>
-        ///
+        /// Gets or sets the value indicating whether the display is visible.
         /// </summary>
         /// <value></value>
         /// <exception cref="InvalidOperationException">
-        /// The display is not assigned.
-        /// <para>-or-</para>
-        /// Operation failed; internal error.
+        ///     The display is not assigned.\n
+        ///     -or-\n
+        ///     Operation failed; internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
         public bool IsVisible
@@ -106,13 +106,16 @@ namespace Tizen.Multimedia
         private PlayerDisplayRotation _rotation = PlayerDisplayRotation.RotationNone;
 
         /// <summary>
-        /// Set/Get Display rotation.
+        /// Gets or sets the rotation of the display.
         /// </summary>
-        /// <value> RotationNone, Rotation90, Rotation180, Rotation270 </value>
+        /// <value><see cref="PlayerDisplayRotation.RotationNone"/>,
+        ///     <see cref="PlayerDisplayRotation.Rotation90"/>,
+        ///     <see cref="PlayerDisplayRotation.Rotation180"/>,
+        ///     <see cref="PlayerDisplayRotation.Rotation270"/></value>
         /// <exception cref="InvalidOperationException">
-        /// The display is not assigned.
-        /// <para>-or-</para>
-        /// Operation failed; internal error.
+        ///     The display is not assigned.\n
+        ///     -or-\n
+        ///     Operation failed; internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
         /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
@@ -145,11 +148,11 @@ namespace Tizen.Multimedia
         /// To set roi, <see cref="Mode"/> must be set to <see cref="PlayerDisplayMode.Roi"/> first.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        /// The display is not assigned.
-        /// <para>-or-</para>
-        /// Operation failed; internal error.
-        /// <para>-or-</para>
-        /// <see cref="Mode"/> is not set to <see cref="PlayerDisplayMode.Roi"/>
+        ///     The display is not assigned.\n
+        ///     -or-\n
+        ///     Operation failed; internal error.\n
+        ///     -or-\n
+        ///     <see cref="Mode"/> is not set to <see cref="PlayerDisplayMode.Roi"/>
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">width or height is less than or equal to zero.</exception>

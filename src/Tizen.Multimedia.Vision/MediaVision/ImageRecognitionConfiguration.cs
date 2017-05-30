@@ -149,7 +149,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="ImageRecognitionConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is less than zero.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="value"/> is greater than one.
         /// </exception>
         public double RequiredMatchingPart
@@ -179,7 +179,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="ImageRecognitionConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is less than zero.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="value"/> is greater than one.
         /// </exception>
         public double TolerantPartMatchError

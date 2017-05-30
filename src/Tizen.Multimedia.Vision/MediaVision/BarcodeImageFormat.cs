@@ -23,15 +23,15 @@ namespace Tizen.Multimedia
     public enum BarcodeImageFormat
     {
         /// <summary>
-        /// BMP image format
+        /// BMP image format.
         /// </summary>
         Bmp,
         /// <summary>
-        /// JPEG image format
+        /// JPEG image format.
         /// </summary>
         Jpeg,
         /// <summary>
-        /// PNG image format
+        /// PNG image format.
         /// </summary>
         Png
     }

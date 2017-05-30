@@ -152,7 +152,7 @@ namespace Tizen.Multimedia
         public string StreamCount { get; }
 
         /// <summary>
-        /// Audio codec type
+        /// Gets the audio codec type.
         /// </summary>
         public string Codec { get; }
 

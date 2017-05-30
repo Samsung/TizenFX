@@ -27,7 +27,7 @@ namespace Tizen.Multimedia
     {
 
         /// <summary>
-        /// Initialize a new instance of the VideoStreamChangedEventArgs class.
+        /// Initializes a new instance of the VideoStreamChangedEventArgs class.
         /// </summary>
         internal VideoStreamChangedEventArgs(int height, int width, int fps, int bitRate)
         {

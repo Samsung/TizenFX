@@ -68,9 +68,9 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     index is less than zero.
-        ///     <para>-or-</para>
-        ///     index is equal to or greater than <see cref="GetCount()"/>
+        ///     <paramref name="index"/> is less than zero.\n
+        ///     -or-\n
+        ///     <paramref name="index"/> is equal to or greater than <see cref="GetCount()"/>
         /// </exception>
         public string GetLanguageCode(int index)
         {
@@ -133,9 +133,9 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     index is less than zero.
-        ///     <para>-or-</para>
-        ///     index is equal to or greater than <see cref="GetCount()"/>
+        ///     <paramref name="index"/> is less than zero.\n
+        ///     -or-\n
+        ///     <paramref name="index"/> is equal to or greater than <see cref="GetCount()"/>
         /// </exception>
         public void SetSelected(int index)
         {

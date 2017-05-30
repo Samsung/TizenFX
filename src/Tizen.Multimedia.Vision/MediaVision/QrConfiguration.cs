@@ -34,12 +34,12 @@ namespace Tizen.Multimedia
         /// </code>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="version"/> is less than 1.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="version"/> is greater than 40.
         /// </exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="qrMode"/> is invalid.\n
-        ///     - or -
+        ///     -or-
         ///     <paramref name="ecc"/> is invalid.
         /// </exception>
         public QrConfiguration(QrMode qrMode, ErrorCorrectionLevel ecc, int version)

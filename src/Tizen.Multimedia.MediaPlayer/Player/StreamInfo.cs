@@ -82,7 +82,7 @@ namespace Tizen.Multimedia
             BitRate = bitRate;
             Size = size;
             Log.Debug(PlayerLog.Tag, "fps : " + fps + ", bitrate : " + bitRate +
-                ", width : " + size.Width + ", height : "+ size.Height);
+                ", width : " + size.Width + ", height : " + size.Height);
         }
         /// <summary>
         /// Initialize a new instance of the VideoStreamProperties struct with the specified fps, bit rate, width and height.
@@ -128,9 +128,8 @@ namespace Tizen.Multimedia
         }
     }
 
-
     /// <summary>
-    /// Provides means to retrieve stream information
+    /// Provides means to retrieve stream information.
     /// </summary>
     public class StreamInfo
     {
@@ -149,9 +148,7 @@ namespace Tizen.Multimedia
         {
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            int size;
-            IntPtr art;
-            NativePlayer.GetAlbumArt(Player.Handle, out art, out size).
+            NativePlayer.GetAlbumArt(Player.Handle, out var art, out var size).
                 ThrowIfFailed("Failed to get the album art");
 
             if (art == IntPtr.Zero || size == 0)
@@ -209,7 +206,6 @@ namespace Tizen.Multimedia
         {
             return GetCodecInfo(false);
         }
-
 
         /// <summary>
         /// Gets the duration.

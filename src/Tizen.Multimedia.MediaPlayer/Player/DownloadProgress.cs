@@ -22,7 +22,7 @@ namespace Tizen.Multimedia
     public struct DownloadProgress
     {
         /// <summary>
-        /// Initialize a new instance of the DownloadProgress struct.
+        /// Initializes a new instance of the DownloadProgress struct.
         /// </summary>
         /// <param name="start">The position that downloading started in percentage.</param>
         /// <param name="current">The position indicating the current downloading progress in percentage.</param>

@@ -29,17 +29,17 @@ namespace Tizen.Multimedia
             Height = height;
         }
         /// <summary>
-        /// The thumbnail data
+        /// The thumbnail data.
         /// </summary>
         public byte[] Thumbnail { get; }
 
         /// <summary>
-        /// The width of the thumbnail
+        /// The width of the thumbnail.
         /// </summary>
         public int Width { get; }
 
         /// <summary>
-        /// The height of the thumbnail
+        /// The height of the thumbnail.
         /// </summary>
         public int Height { get; }
     }

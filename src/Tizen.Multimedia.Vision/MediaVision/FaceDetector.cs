@@ -35,7 +35,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="NotSupportedException">
         ///     The feature is not supported.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     The format of <paramref name="source"/> is not supported.
         /// </exception>
         public static async Task<Rectangle[]> DetectAsync(MediaVisionSource source)

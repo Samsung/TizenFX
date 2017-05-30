@@ -17,16 +17,16 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration to text attribute
+    /// Specifies visibilities.
     /// </summary>
     public enum Visibility
     {
         /// <summary>
-        /// Invisible
+        /// Invisible.
         /// </summary>
         Invisible,
         /// <summary>
-        /// Visible
+        /// Visible.
         /// </summary>
         Visible
     }

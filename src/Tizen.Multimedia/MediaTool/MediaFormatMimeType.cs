@@ -65,21 +65,6 @@ namespace Tizen.Multimedia
     public enum MediaFormatAudioMimeType
     {
         /// <summary>
-        /// L16, Audio.
-        /// </summary>.
-        //L16 = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1010),
-
-        /// <summary>
-        /// ALAW, Audio.
-        /// </summary>
-        //ALaw = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1020),
-
-        /// <summary>
-        /// ULAW, Audio.
-        /// </summary>
-        //ULaw = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1030),
-
-        /// <summary>
         /// AMR, Alias for <see cref="AmrNB"/>.
         /// </summary>
         Amr = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1040),
@@ -158,56 +143,6 @@ namespace Tizen.Multimedia
         /// PCM.
         /// </summary>
         Pcm = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1510),
-
-        /// <summary>
-        /// PCM signed 16-bit little-endian, Audio
-        /// </summary>
-        //PcmS16LE = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1510),
-
-        /// <summary>
-        /// PCM signed 24-bit little-endian, Audio
-        /// </summary>
-        //PcmS24LE = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1511),
-
-        /// <summary>
-        /// PCM signed 32-bit little-endian, Audio
-        /// </summary>
-        //Pcm32LE = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1512),
-
-        /// <summary>
-        /// PCM signed 16-bit big-endian, Audio
-        /// </summary>
-        //PcmS16BE = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1513),
-
-        /// <summary>
-        /// PCM signed 24-bit big-endian, Audio
-        /// </summary>
-        //PcmS24BE = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1514),
-
-        /// <summary>
-        /// PCM signed 32-bit big-endian, Audio
-        /// </summary>
-        //PcmS32BE = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1515),
-
-        /// <summary>
-        /// PCM 32-bit floating point little-endian, Audio
-        /// </summary>
-        //PcmF32LE = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1516),
-
-        /// <summary>
-        /// PCM 32-bit floating point big-endian, Audio
-        /// </summary>
-        //PcmF32BE = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1517),
-
-        /// <summary>
-        /// PCM A-law, Audio
-        /// </summary>
-        //PcmALaw = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1520),
-
-        /// <summary>
-        /// PCM U-law, Audio
-        /// </summary>
-        //PcmULaw = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1530),
     }
 
     /// <summary>
@@ -231,52 +166,7 @@ namespace Tizen.Multimedia
         H263P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2021),
 
         /// <summary>
-        /// H263 Baseline Profile
-        /// </summary>
-        //H263BP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2022),
-
-        /// <summary>
-        /// H263 H.320 Coding Efficiency Profile
-        /// </summary>
-        //H263H320Cep = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2023),
-
-        /// <summary>
-        /// H263 Backward-Compatibility Profile
-        /// </summary>
-        //H263Bcp = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2024),
-
-        /// <summary>
-        /// H263 Interactive and Streaming Wireless Profile
-        /// </summary>
-        //H263Isw2p = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2025),
-
-        /// <summary>
-        /// H263 Interactive and Streaming Wireless Profile
-        /// </summary>
-        //H263Isw3p = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2026),
-
-        /// <summary>
-        /// H263 Conversation High Compression Profile
-        /// </summary>
-        //H263Chcp = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2027),
-
-        /// <summary>
-        /// H263 Conversational Internet Profile
-        /// </summary>
-        //H263CInternetP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2028),
-
-        /// <summary>
-        /// H263 Conversational Interlace Profile
-        /// </summary>
-        //H263CInterlaceP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2029),
-
-        /// <summary>
-        /// H263 High Latency Profile
-        /// </summary>
-        //H263Hlp = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x202A),
-
-        /// <summary>
-        /// H264_SP.
+        /// H264_SP
         /// </summary>
         H264SP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2030),
 
@@ -291,32 +181,7 @@ namespace Tizen.Multimedia
         H264HP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2032),
 
         /// <summary>
-        /// H264 Extended Profile
-        /// </summary>
-        //H264XP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2033),
-
-        /// <summary>
-        /// H264 High10 Profile
-        /// </summary>
-        //H264H10P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2034),
-
-        /// <summary>
-        /// H264 High422 Profile
-        /// </summary>
-        //H264H422P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2035),
-
-        /// <summary>
-        /// H264 High444 Profile
-        /// </summary>
-        //H264H444P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2036),
-
-        /// <summary>
-        /// H264 CAVLC444 Profile
-        /// </summary>
-        //H264C444P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2037),
-
-        /// <summary>
-        /// MJPEG.
+        /// MJPEG
         /// </summary>
         MJpeg = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2040),
 
@@ -351,37 +216,7 @@ namespace Tizen.Multimedia
         Mpeg4Asp = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2071),
 
         /// <summary>
-        /// HEVC
-        /// </summary>
-        //Hevc = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2080),
-
-        /// <summary>
-        /// HEVC Main Profile
-        /// </summary>
-        //HevcMP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2081),
-
-        /// <summary>
-        /// HEVC Main10 Profile
-        /// </summary>
-        //HevcM10P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2082),
-
-        /// <summary>
-        /// VP8
-        /// </summary>
-        //VP8 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2090),
-
-        /// <summary>
-        /// VP9
-        /// </summary>
-        //VP9 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20A0),
-
-        /// <summary>
-        /// VC1
-        /// </summary>
-        //VC1 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20B0),
-
-        /// <summary>
-        /// I420.
+        /// I420
         /// </summary>
         I420 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x2510),
 

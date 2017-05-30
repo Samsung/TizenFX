@@ -23,7 +23,7 @@ namespace Tizen.Multimedia
     public class VideoFrameDecodedEventArgs : EventArgs
     {
         /// <summary>
-        /// Initialize a new instance of the VideoFrameDecodedEventArgs class.
+        /// Initializes a new instance of the VideoFrameDecodedEventArgs class.
         /// </summary>
         internal VideoFrameDecodedEventArgs(MediaPacket packet)
         {

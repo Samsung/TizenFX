@@ -52,7 +52,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initialize a new instance of the MetadataExtractor class with the specified path.
+        /// Initializes a new instance of the MetadataExtractor class with the specified path.
         /// </summary>
         /// <param name="path">The path for the file to extract metadata.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
@@ -68,7 +68,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initialize a new instance of the MetadataExtractor class with the specified buffer.
+        /// Initializes a new instance of the MetadataExtractor class with the specified buffer.
         /// </summary>
         /// <param name="buffer">The buffer to extract metadata.</param>
         /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
@@ -117,7 +117,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves the <see cref="Metadata"/>.
         /// </summary>
-        /// <returns>A <see cref="Metadata"/> for the give source.</returns>
+        /// <returns>A <see cref="Metadata"/> for the given source.</returns>
         /// <exception cref="InvalidOperationException">Internal process error is occurred.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataExtractor"/> has been already disposed of.</exception>
         public Metadata GetMetadata()

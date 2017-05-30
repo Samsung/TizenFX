@@ -29,14 +29,13 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the he duration of the updated subtitle.
+        /// Gets the duration of the updated subtitle.
         /// </summary>
         public uint Duration { get; }
 
         /// <summary>
         /// Gets the text of the updated subtitle.
         /// </summary>
-        /// <value> string </value>
         public string Text { get; }
 
         public override string ToString()

@@ -57,7 +57,7 @@ namespace Tizen.Multimedia
         private Color _foregroundColor = Color.Black;
 
         /// <summary>
-        /// Sets or gets the foreground color of the barcode to be generated.
+        /// Gets or sets the foreground color of the barcode to be generated.
         /// </summary>
         /// <remarks>
         /// The alpha value of the color will be ignored.
@@ -79,7 +79,7 @@ namespace Tizen.Multimedia
         private Color _backgroundColor = Color.White;
 
         /// <summary>
-        /// Sets or gets the background color of the barcode to be generated.
+        /// Gets or sets the background color of the barcode to be generated.
         /// </summary>
         /// <remarks>
         /// The alpha value of the color will be ignored.

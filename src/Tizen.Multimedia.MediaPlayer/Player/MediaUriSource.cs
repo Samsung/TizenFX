@@ -32,7 +32,7 @@ namespace Tizen.Multimedia
     {
         // TODO consider using Uri class.
         /// <summary>
-        /// Initialize a new instance of the MediaUriSource class with the specified uri.</summary>
+        /// Initializes a new instance of the MediaUriSource class with the specified uri.</summary>
         /// <param name="uri">The uri string.</param>
         /// <remarks>For HTTP or RSTP, uri should start with "http://" or "rtsp://".
         /// The default protocol is "file://".

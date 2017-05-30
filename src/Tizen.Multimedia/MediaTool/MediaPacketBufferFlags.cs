@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
     public enum MediaPacketBufferFlags
     {
         /// <summary>
-        /// The buffer contains codec initialization or codec specific data instead of media data
+        /// The buffer contains codec initialization or codec specific data instead of media data.
         /// </summary>
         CodecConfig = 0x1,
 

@@ -188,8 +188,8 @@ namespace Tizen.Multimedia.MediaCodec
         /// Prepares the MediaCodec for encoding or decoding.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     The codec is not configured, yet.
-        ///     <para>-or-</para>
+        ///     The codec is not configured, yet.\n
+        ///     -or-\n
         ///     Internal error.
         /// </exception>
         public void Prepare()
@@ -230,9 +230,9 @@ namespace Tizen.Multimedia.MediaCodec
         /// <param name="codecType">The value indicating whether the codec uses hardware acceleration.</param>
         /// <exception cref="ArgumentNullException">format is null</exception>
         /// <exception cref="ArgumentException">
-        ///     codecType is invalid.
-        ///     <para>-or-</para>
-        ///     format is neither audio type or video type.
+        ///     <paramref name="codecType"/> is invalid.\n
+        ///     -or-\n
+        ///     <paramref name="format"/> is neither audio type nor video type.
         ///     </exception>
         /// <exception cref="NotSupportedException">the mime type of the format is not supported.</exception>
         /// <see cref="SupportedAudioCodecs"/>

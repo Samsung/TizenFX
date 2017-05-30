@@ -34,16 +34,16 @@ namespace Tizen.Multimedia
         /// <param name="trackingModel">The model will be used for tracking.</param>
         /// <param name="doLearn">The value indicating whether model learning while tracking. If it is true then model will try to learn
         /// (if it supports learning feature), otherwise model will be not learned during the invoking tracking iteration.
-        /// Learning process improves tracking correctness, but can decrease tracking performance</param>
+        /// Learning process improves tracking correctness, but can decrease tracking performance.</param>
         /// <returns>A task that represents the asynchronous tracking operation.</returns>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="source"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="trackingModel"/> is null.
         /// </exception>
         /// <exception cref="ObjectDisposedException">
         ///     <paramref name="source"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="trackingModel"/> has already been disposed of.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>

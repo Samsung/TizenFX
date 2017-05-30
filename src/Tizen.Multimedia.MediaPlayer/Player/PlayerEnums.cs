@@ -54,13 +54,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initial state, unprepared.
         /// </summary>
-        /// <see cref="Player.Unprepare"/>
+        /// <seealso cref="Player.Unprepare"/>
         Idle = 1,
 
         /// <summary>
         /// Prepared.
         /// </summary>
-        /// <see cref="Player.PrepareAsync"/>
+        /// <seealso cref="Player.PrepareAsync"/>
         Ready,
 
         /// <summary>
@@ -221,6 +221,9 @@ namespace Tizen.Multimedia
     /// <seealso cref="Player.PlaybackInterrupted"/>
     public enum PlaybackInterruptionReason
     {
+        /// <summary>
+        /// Interrupted by a resource conflict and the <see cref="Player"/> will be unprepared, automatically.
+        /// </summary>
         ResourceConflict = 4
     }
 
@@ -230,11 +233,34 @@ namespace Tizen.Multimedia
     /// <seealso cref="StreamInfo.GetMetadata(StreamMetadataKey)"/>
     public enum StreamMetadataKey
     {
+        /// <summary>
+        /// Album.
+        /// </summary>
         Album,
+
+        /// <summary>
+        /// Artists.
+        /// </summary>
         Artist,
+
+        /// <summary>
+        /// Author.
+        /// </summary>
         Author,
+
+        /// <summary>
+        /// Genre.
+        /// </summary>
         Genre,
+
+        /// <summary>
+        /// Title.
+        /// </summary>
         Title,
+
+        /// <summary>
+        /// Year.
+        /// </summary>
         Year
     }
 }

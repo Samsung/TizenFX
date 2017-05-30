@@ -25,7 +25,14 @@ namespace Tizen.Multimedia
     /// <remarks>The recorder privilege(http://tizen.org/privilege/recorder) is required.</remarks>
     public abstract class AudioCaptureBase : IDisposable
     {
+        /// <summary>
+        /// Specifies the minimum value allowed for the audio capture.
+        /// </summary>
         public static readonly int MinSampleRate = 8000;
+
+        /// <summary>
+        /// Specifies the maximum value allowed for the audio capture.
+        /// </summary>
         public static readonly int MaxSampleRate = 48000;
 
         internal IntPtr _handle = IntPtr.Zero;
@@ -146,13 +153,12 @@ namespace Tizen.Multimedia
         public AudioSampleType SampleType { get; }
 
         /// <summary>
-        /// Gets the size to be allocated for the audio input buffer.
+        /// Gets the size allocated for the audio input buffer.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed.</exception>
         public int GetBufferSize()
         {
-            int size;
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.GetBufferSize(_handle, out size));
+            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.GetBufferSize(_handle, out var size));
             return size;
         }
 
@@ -160,8 +166,8 @@ namespace Tizen.Multimedia
         /// Prepares the AudioCapture for reading audio data by starting buffering of audio data from the device.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Operation failed due to internal error.
-        ///     <para>-or-</para>
+        ///     Operation failed due to internal error.\n
+        ///     -or-\n
         ///     The current state is not <see cref="AudioIOState.Idle"/>.
         /// </exception>
         /// <seealso cref="Unprepare"/>
@@ -177,8 +183,8 @@ namespace Tizen.Multimedia
         /// Unprepares the AudioCapture.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Operation failed due to internal error.
-        ///     <para>-or-</para>
+        ///     Operation failed due to internal error.\n
+        ///     \n
         ///     The current state is <see cref="AudioIOState.Idle"/>.
         /// </exception>
         /// <seealso cref="Prepare"/>
@@ -194,8 +200,8 @@ namespace Tizen.Multimedia
         /// Pauses buffering of audio data from the device.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is <see cref="AudioState.Idle"/>.
-        ///     <para>-or-</para>
+        ///     The current state is <see cref="AudioState.Idle"/>.\n
+        ///     -or-\n
         ///     The method is called in the <see cref="AsyncAudioCapture.DataAvailable"/> event handler.
         /// </exception>
         /// <seealso cref="Resume"/>
@@ -213,8 +219,8 @@ namespace Tizen.Multimedia
         /// Resumes buffering audio data from the device.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is <see cref="AudioState.Idle"/>.
-        ///     <para>-or-</para>
+        ///     The current state is <see cref="AudioState.Idle"/>.\n
+        ///     -or-\n
         ///     The method is called in the <see cref="AsyncAudioCapture.DataAvailable"/> event handler.
         /// </exception>
         /// <seealso cref="Pause"/>
@@ -270,7 +276,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to record audio from system audio input devices in synchronous way.
     /// </summary>
-    /// <remarks>The recorder privilege(http://tizen.org/privilege/recorder) is required.</remarks>
+    /// <privilege>http://tizen.org/privilege/recorder</privilege>
     public class AudioCapture : AudioCaptureBase
     {
         /// <summary>
@@ -280,14 +286,14 @@ namespace Tizen.Multimedia
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="sampleRate"/> is less than <see cref="MinSampleRate"/>.
-        ///     <para>-or-</para>
+        ///     <paramref name="sampleRate"/> is less than <see cref="MinSampleRate"/>.\n
+        ///     -or-\n
         ///     <paramref name="sampleRate"/> is greater than <see cref="MaxSampleRate"/>.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     The value of <paramref name="channel"/> is invalid.
-        ///     <para>-or-</para>
-        ///     The value of <paramref name="sampleType"/> is invalid.
+        ///     <paramref name="channel"/> is invalid.\n
+        ///     -or-\n
+        ///     <paramref name="sampleType"/> is invalid.
         /// </exception>
         /// <exception cref="InvalidOperationException">The required privilege is not specified.</exception>
         /// <exception cref="NotSupportedException">The system does not support microphone.</exception>
@@ -299,22 +305,22 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Reads audio data from the audio input buffer.
         /// </summary>
-        /// <param name="length"></param>
-        /// <returns>The buffer of audio data receiving an input</returns>
+        /// <param name="count">The number of bytes to be read.</param>
+        /// <returns>The buffer of audio data captured.</returns>
         /// <exception cref="InvalidOperationException">The current state is not <see cref="AudioIOState.Running"/>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="length"/> is equal to or less than zero.</exception>
-        public byte[] Read(int length)
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is equal to or less than zero.</exception>
+        public byte[] Read(int count)
         {
-            if (length <= 0)
+            if (count <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(length), length,
-                    $"{ nameof(length) } can't be equal to or less than zero.");
+                throw new ArgumentOutOfRangeException(nameof(count), count,
+                    $"{ nameof(count) } can't be equal to or less than zero.");
             }
             ValidateState(AudioIOState.Running);
 
-            byte[] buffer = new byte[length];
+            byte[] buffer = new byte[count];
 
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.Read(_handle, buffer, length),
+            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.Read(_handle, buffer, count),
                 "Failed to read");
 
             return buffer;
@@ -324,7 +330,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to record audio from system audio input devices in asynchronous way.
     /// </summary>
-    /// <remarks>The recorder privilege(http://tizen.org/privilege/recorder) is required.</remarks>
+    /// <privilege>http://tizen.org/privilege/recorder</privilege>
     public class AsyncAudioCapture : AudioCaptureBase
     {
 
@@ -340,14 +346,14 @@ namespace Tizen.Multimedia
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="sampleRate"/> is less than <see cref="MinSampleRate"/>.
-        ///     <para>-or-</para>
+        ///     <paramref name="sampleRate"/> is less than <see cref="MinSampleRate"/>.\n
+        ///     -or-\n
         ///     <paramref name="sampleRate"/> is greater than <see cref="MaxSampleRate"/>.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     The value of <paramref name="channel"/> is invalid.
-        ///     <para>-or-</para>
-        ///     The value of <paramref name="sampleType"/> is invalid.
+        ///     <paramref name="channel"/> is invalid.\n
+        ///     -or-\n
+        ///     <paramref name="sampleType"/> is invalid.
         /// </exception>
         /// <exception cref="InvalidOperationException">The required privilege is not specified.</exception>
         /// <exception cref="NotSupportedException">The system does not support microphone.</exception>

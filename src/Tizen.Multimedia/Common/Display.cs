@@ -66,7 +66,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="Display"/> class with a <see cref="MediaView"/> class.
+        /// Initializes a new instance of the <see cref="Display"/> class with a <see cref="MediaView"/> class.
         /// </summary>
         /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -76,7 +76,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="Display"/> class with a <see cref="Window"/> class.
+        /// Initializes a new instance of the <see cref="Display"/> class with a <see cref="Window"/> class.
         /// </summary>
         public Display(Window window) : this(DisplayType.Overlay, window)
         {

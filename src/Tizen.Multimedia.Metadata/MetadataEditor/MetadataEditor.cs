@@ -53,13 +53,12 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Metadata extractor constructor
+        /// Initializes a new instance of the <see cref="MetadataEditor"/> class with the specified path.
         /// </summary>
         /// <param name="path"> The path of the media file to edit metadata </param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
-        /// <exception cref="OutOfMemoryException">Memory allocation failed.</exception>
-        /// <exception cref="NotSupportedException">Unsupported file type</exception>
-        /// <exception cref="FileNotFoundException">File not exist</exception>
+        /// <exception cref="NotSupportedException">The file is unsupported format.</exception>
+        /// <exception cref="System.IO.FileNotFoundException">The file does not exist.</exception>
         public MetadataEditor(string path)
         {
             if (path == null)
@@ -371,11 +370,11 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Append the picture to the media file
+        /// Appends the picture to the media file.
         /// </summary>
-        /// <param name="path"> The path of picture for adding to the metadata </param>
-        /// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
-        /// <exception cref="ArgumentNullException"> Picture path is null</exception>
+        /// <param name="path">The path of picture for adding to the metadata.</param>
+        /// <exception cref="InvalidOperationException">Internal error occurs.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         public void AddPicture(string path)
         {
             if (path == null)
@@ -388,7 +387,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Remove the picture from the media file
+        /// Removes the picture from the media file.
         /// </summary>
         /// <param name="index"> Index of picture to remove </param>
         /// <exception cref="InvalidOperationException"> When internal process error is occured</exception>

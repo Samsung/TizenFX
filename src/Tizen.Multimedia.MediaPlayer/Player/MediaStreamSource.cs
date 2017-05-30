@@ -27,12 +27,14 @@ namespace Tizen.Multimedia
     /// </summary>
     /// <remarks>The source must be set as a source to a player before pushing.</remarks>
     /// <seealso cref="Player.SetSource(MediaSource)"/>
-    // TODO is this name appropriate?
     public sealed class MediaStreamSource : MediaSource
     {
         private readonly MediaFormat _audioMediaFormat;
         private readonly MediaFormat _videoMediaFormat;
 
+        /// <summary>
+        /// Gets all supported audio types.
+        /// </summary>
         public static IEnumerable<MediaFormatAudioMimeType> SupportedAudioTypes
         {
             get
@@ -41,6 +43,9 @@ namespace Tizen.Multimedia
             }
         }
 
+        /// <summary>
+        /// Gets all supported video types.
+        /// </summary>
         public static IEnumerable<MediaFormatVideoMimeType> SupportedVideoTypes
         {
             get
@@ -91,11 +96,11 @@ namespace Tizen.Multimedia
         /// <param name="audioMediaFormat">The <see cref="AudioMediaFormat"/> for this source.</param>
         /// <param name="videoMediaFormat">The <see cref="VideoMediaFormat"/> for this source.</param>
         /// <remarks>AAC and H.264 are supported.</remarks>
-        /// <exception cref="ArgumentNullException">both <paramref name="audioMediaFormat"/> and <paramref name="videoMediaFormat"/> are null.</exception>
+        /// <exception cref="ArgumentNullException">Both <paramref name="audioMediaFormat"/> and <paramref name="videoMediaFormat"/> are null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="audioMediaFormat"/> is not supported.
-        ///     <para>-or-</para>
-        ///     <paramref name="videoMediaFormat"/> is not supported.
+        ///     <paramref name="audioMediaFormat"/> is not supported.\n
+        ///     -or-\n
+        ///     <paramref name="videoMediaFormat"/> is not supported.\n
         /// </exception>
         /// <seealso cref="SupportedAudioTypes"/>
         /// <seealso cref="SupportedVideoTypes"/>
@@ -168,15 +173,15 @@ namespace Tizen.Multimedia
         /// <remarks>This source must be set as a source to a player and the player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <param name="packet">The <see cref="MediaPacket"/> to decode.</param>
         /// <exception cref="InvalidOperationException">
-        ///     This source is not set as a source to a player.
-        ///     <para>-or-</para>
+        ///     This source is not set as a source to a player.\n
+        ///     -or-\n
         ///     The player is not in the valid state.
         /// </exception>
         /// <exception cref="ArgumentNullException">packet is null.</exception>
         /// <exception cref="ObjectDisposedException">packet has been disposed.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="packet"/> is neither video nor audio type.
-        ///     <para>-or-</para>
+        ///     <paramref name="packet"/> is neither video nor audio type.\n
+        ///     -or-\n
         ///     The format of packet is not matched with the specified format in the constructor.
         /// </exception>
         /// <exception cref="NoBufferSpaceException">the internal buffer reaches limits.</exception>

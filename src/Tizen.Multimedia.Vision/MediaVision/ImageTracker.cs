@@ -34,13 +34,13 @@ namespace Tizen.Multimedia
         /// <returns>A task that represents the asynchronous tracking operation.</returns>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="source"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="trackingModel"/> is null.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     <paramref name="source"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="trackingModel"/> has already been disposed of.
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="trackingModel"/> has no target.</exception>
@@ -60,15 +60,15 @@ namespace Tizen.Multimedia
         /// <returns>A task that represents the asynchronous tracking operation.</returns>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="source"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="trackingModel"/> is null.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     <paramref name="source"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="trackingModel"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="trackingModel"/> has no target.</exception>

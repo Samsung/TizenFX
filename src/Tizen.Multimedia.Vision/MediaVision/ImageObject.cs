@@ -48,7 +48,7 @@ namespace Tizen.Multimedia
         /// <exception cref="FileNotFoundException"><paramref name="path"/> is invalid.</exception>
         /// <exception cref="NotSupportedException">
         ///     The feature is not supported.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="path"/> is not supported file.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
@@ -80,13 +80,15 @@ namespace Tizen.Multimedia
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageObject"/> has already been disposed of.</exception>
         /// <seealso cref="ImageFillConfiguration"/>
-        /// <seealso cref="Fill(MediaVisionSource, ImageFillConfiguration, Rectangle?)"/>
+        /// <seealso cref="Fill(MediaVisionSource)"/>
+        /// <seealso cref="Fill(MediaVisionSource, ImageFillConfiguration)"/>
+        /// <seealso cref="Fill(MediaVisionSource, Rectangle)"/>
+        /// <seealso cref="Fill(MediaVisionSource, ImageFillConfiguration, Rectangle)"/>
         public double RecognitionRate
         {
             get
             {
-                double rate = 0;
-                InteropImage.GetRecognitionRate(Handle, out rate).Validate("Failed to get recognition rate");
+                InteropImage.GetRecognitionRate(Handle, out var rate).Validate("Failed to get recognition rate");
                 return rate;
             }
         }
@@ -96,14 +98,13 @@ namespace Tizen.Multimedia
         /// Gets the label for the image object.
         /// </summary>
         /// <returns>
-        /// The label value; or null if the <see cref="ImageObject"/> has no label.
+        /// The label value if the <see cref="ImageObject"/> has label, otherwise null.
         /// </returns>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageObject"/> has already been disposed of.</exception>
         /// <seealso cref="SetLabel(int)"/>
         public int? GetLabel()
         {
-            int label = 0;
-            var ret = InteropImage.GetLabel(Handle, out label);
+            var ret = InteropImage.GetLabel(Handle, out var label);
 
             if (ret == MediaVisionError.NoData)
             {
@@ -131,7 +132,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     The <see cref="ImageObject"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="source"/> has already been disposed of.
         /// </exception>
         public void Fill(MediaVisionSource source)
@@ -148,9 +149,9 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     The <see cref="ImageObject"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="source"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         public void Fill(MediaVisionSource source, ImageFillConfiguration config)
@@ -167,7 +168,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     The <see cref="ImageObject"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="source"/> has already been disposed of.\n
         /// </exception>
         public void Fill(MediaVisionSource source, Rectangle rect)
@@ -185,9 +186,9 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     The <see cref="ImageObject"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="source"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         public void Fill(MediaVisionSource source, ImageFillConfiguration config, Rectangle rect)

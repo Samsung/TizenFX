@@ -65,7 +65,7 @@ namespace Tizen.Multimedia
             return new Range(min, max);
         }
 
-#region Auto Focus
+        #region Auto Focus
         /// <summary>
         /// Sets auto focus area.
         /// </summary>
@@ -144,9 +144,9 @@ namespace Tizen.Multimedia
                     "Failed to set camera autofocus mode.");
             }
         }
-#endregion Auto Focus
+        #endregion Auto Focus
 
-#region Contrast
+        #region Contrast
         /// <summary>
         /// The contrast level of the camera.
         /// </summary>
@@ -218,9 +218,9 @@ namespace Tizen.Multimedia
                 return _contrastRange.Value;
             }
         }
-#endregion Contrast
+        #endregion Contrast
 
-#region Brightness
+        #region Brightness
         /// <summary>
         /// The brightness level of the camera.
         /// </summary>
@@ -266,9 +266,9 @@ namespace Tizen.Multimedia
                 return _brightnessRange.Value;
             }
         }
-#endregion Brightness
+        #endregion Brightness
 
-#region Exposure
+        #region Exposure
         /// <summary>
         /// The exposure value.
         /// </summary>
@@ -341,9 +341,9 @@ namespace Tizen.Multimedia
                 return _exposureRange.Value;
             }
         }
-#endregion Exposure
+        #endregion Exposure
 
-#region Zoom
+        #region Zoom
         /// <summary>
         /// The zoom level.
         /// The range for zoom level is received from ZoomRange property.
@@ -390,7 +390,7 @@ namespace Tizen.Multimedia
                 return _zoomRange.Value;
             }
         }
-#endregion Zoom
+        #endregion Zoom
 
         /// <summary>
         /// The whitebalance mode.
@@ -473,7 +473,7 @@ namespace Tizen.Multimedia
             }
         }
 
-#region Resolution, Format, Fps of preview, capture
+        #region Resolution, Format, Fps of preview, capture
         /// <summary>
         /// The preview frame rate.
         /// </summary>
@@ -627,9 +627,9 @@ namespace Tizen.Multimedia
                     "Failed to set capture format.");
             }
         }
-#endregion Resolution, Format, Fps of preview, capture
+        #endregion Resolution, Format, Fps of preview, capture
 
-#region Encoded preview
+        #region Encoded preview
         /// <summary>
         /// The bit rate of encoded preview.
         /// </summary>
@@ -675,7 +675,7 @@ namespace Tizen.Multimedia
                     "Failed to set encoded preview gop intervals.");
             }
         }
-#endregion Encoded preview
+        #endregion Encoded preview
 
         /// <summary>
         /// The theater mode.
@@ -958,7 +958,7 @@ namespace Tizen.Multimedia
             }
         }
 
-#region PTZ(Pan Tilt Zoom), Pan, Tilt
+        #region PTZ(Pan Tilt Zoom), Pan, Tilt
         /// <summary>
         /// Sets the type of PTZ(Pan Tilt Zoom). Mechanical or Electronic.
         /// </summary>
@@ -1078,9 +1078,9 @@ namespace Tizen.Multimedia
                 return _tiltRange.Value;
             }
         }
-#endregion PTZ(Pan Tilt Zoom), Pan, Tilt
+        #endregion PTZ(Pan Tilt Zoom), Pan, Tilt
 
-#region EXIF tag
+        #region EXIF tag
         /// <summary>
         /// The scene mode.
         /// true if EXIF tags are enabled in JPEG file, otherwise false.
@@ -1224,7 +1224,7 @@ namespace Tizen.Multimedia
                     "Failed to set camera tag orientation.");
             }
         }
-#endregion EXIF tag
+        #endregion EXIF tag
     }
 }
 

@@ -33,12 +33,12 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The lyrics of the index
+        /// The text representation of the lyrics.
         /// </summary>
         public string Lyrics { get; }
 
         /// <summary>
-        /// The time information of the index
+        /// The time information of the lyrics.
         /// </summary>
         public uint Timestamp { get; }
     }

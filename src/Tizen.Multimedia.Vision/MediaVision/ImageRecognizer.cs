@@ -34,9 +34,9 @@ namespace Tizen.Multimedia
         /// <returns>A task that represents the asynchronous recognition operation.</returns>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="source"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="imageObjects"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="imageObjects"/> contains null reference.
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="imageObjects"/> has no elements.(The length is zero.)</exception>
@@ -57,16 +57,16 @@ namespace Tizen.Multimedia
         /// <returns>A task that represents the asynchronous recognition operation.</returns>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="source"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="imageObjects"/> is null.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="imageObjects"/> contains null elements.
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="imageObjects"/> has no elements.(The length is zero.)</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">
         ///     <paramref name="source"/> has already been disposed of.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         public static async Task<IEnumerable<ImageRecognitionResult>> RecognizeAsync(MediaVisionSource source,

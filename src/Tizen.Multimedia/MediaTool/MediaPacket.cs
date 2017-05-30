@@ -282,8 +282,8 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">
         ///     The value specified for this property is less than zero or greater than <see cref="MediaPacketBuffer.Length"/>.</exception>
         /// <exception cref="InvalidOperationException">
-        ///     The MediaPacket has <see cref="VideoPlanes"/> instead of <see cref="Buffer"/>.
-        ///     <para>-or-</para>
+        ///     The MediaPacket has <see cref="VideoPlanes"/> instead of <see cref="Buffer"/>.\n
+        ///     -or-\n
         ///     The MediaPacket is not in writable state which means it being used by another module.
         ///     </exception>
         public int BufferWrittenLength

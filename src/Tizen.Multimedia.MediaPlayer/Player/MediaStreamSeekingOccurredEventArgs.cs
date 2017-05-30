@@ -23,7 +23,7 @@ namespace Tizen.Multimedia
     public class MediaStreamSeekingOccurredEventArgs : EventArgs
     {
        /// <summary>
-        /// Initialize a new instance of the MediaStreamSeekingOccurredEventArgs class.
+        /// Initializes a new instance of the MediaStreamSeekingOccurredEventArgs class.
         /// </summary>
         /// <param name="offset">The value indicating the new position to seek.</param>
         public MediaStreamSeekingOccurredEventArgs(ulong offset)

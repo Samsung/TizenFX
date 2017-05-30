@@ -210,7 +210,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initializes a new instance of the VideoMediaFormat class with the specified mime type, width and height.
+        /// Initializes a new instance of the VideoMediaFormat class with the specified mime type and size.
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="size">The size of the format.</param>
@@ -271,7 +271,7 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Initializes a new instance of the VideoMediaFormat class with the specified mime type,
-        /// width, height, frame rate and bit rate.
+        /// size, frame rate and bit rate.
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="size">The size of the format.</param>
@@ -454,9 +454,10 @@ namespace Tizen.Multimedia
         /// <param name="sampleRate">The sample rate value of the format.</param>
         /// <param name="bit">The bit value of the format.</param>
         /// <param name="bitRate">The bit rate value of the format.</param>
-        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
+        /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid(i.e. undefined value).</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///                     channel, sampleRate, bit or bitRate is less than zero.</exception>
+        ///     <paramref name="channel"/>, <paramref name="sampleRate"/>, <paramref name="bit"/> or <paramref name="bitRate"/> is less than zero.
+        /// </exception>
         public AudioMediaFormat(MediaFormatAudioMimeType mimeType,
             int channel, int sampleRate, int bit, int bitRate)
         : this(mimeType, channel, sampleRate, bit, bitRate, MediaFormatAacType.None)
@@ -474,12 +475,13 @@ namespace Tizen.Multimedia
         /// <param name="bitRate">The bit rate value of the format.</param>
         /// <param name="aacType">The AAC bitstream format(ADIF or ADTS).</param>
         /// <exception cref="ArgumentException">
-        ///     mimeType or aacType is invalid(i.e. undefined value).
-        ///     <para>- or -</para>
-        ///     aacType is not <see cref="MediaFormatAacType.None"/>, but mimeType is one of aac types.
+        ///     <paramref name="mimeType"/> or <paramref name="aacType"/> is invalid(i.e. undefined value).\n
+        ///     -or-\n
+        ///     <paramref name="aacType"/> is not <see cref="MediaFormatAacType.None"/>, but <paramref name="mimeType"/> is one of aac types.
         ///     </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///                     channel, sampleRate, bit or bitRate is less than zero.</exception>
+        ///     <paramref name="channel"/>, <paramref name="sampleRate"/>, <paramref name="bit"/> or <paramref name="bitRate"/> is less than zero.
+        /// </exception>
         public AudioMediaFormat(MediaFormatAudioMimeType mimeType,
             int channel, int sampleRate, int bit, int bitRate, MediaFormatAacType aacType)
             : base(MediaFormatType.Audio)

@@ -283,9 +283,9 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>A <see cref="AudioLatencyMode"/> that specifies the mode. The default is <see cref="AudioLatencyMode.Mid"/>.</value>
         /// <remarks>
-        /// If the mode is <see cref="AudioLatencyMode.AudioLatencyMode"/>,
+        /// If the mode is <see cref="AudioLatencyMode.High"/>,
         /// audio output interval can be increased so, it can keep more audio data to play.
-        /// But, state transition like pause or resume can be more slower than default(<see cref="AudioLatencyMode.Mid"/>) mode.
+        /// But, state transition like pause or resume can be more slower than default(<see cref="AudioLatencyMode.Mid"/>).
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value is not valid.</exception>
@@ -588,8 +588,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The player is not streaming.
-        ///     <para>-or-</para>
+        ///     The player is not streaming.\n
+        ///     -or-\n
         ///     The player is not in the valid state.
         ///     </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
@@ -617,9 +617,9 @@ namespace Tizen.Multimedia
         /// <remarks>Valid volume range is from 0 to 1.0, inclusive.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     value is less than zero.
-        ///     <para>-or-</para>
-        ///     value is greater than 1.0.
+        ///     <paramref name="value"/> is less than zero.\n
+        ///     -or-\n
+        ///     <paramref name="value"/> is greater than 1.0.
         /// </exception>
         public void SetVolume(float value)
         {
@@ -711,7 +711,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The player is not in the valid state.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     No subtitle is set.
         /// </exception>
         /// <seealso cref="SetSubtitle(string)"/>
@@ -737,9 +737,6 @@ namespace Tizen.Multimedia
             NativePlayer.Prepare(Handle).ThrowIfFailed("Failed to prepare the player");
         }
 
-        /// <summary>
-        /// Invoked when
-        /// </summary>
         protected virtual void OnPreparing()
         {
             RegisterCallbacks();
@@ -909,8 +906,8 @@ namespace Tizen.Multimedia
         /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
-        ///     The player is not in the valid state.
-        ///     <para>-or-</para>
+        ///     The player is not in the valid state.\n
+        ///     -or-\n
         ///     It is not able to assign the source to the player.
         ///     </exception>
         /// <seealso cref="PrepareAsync"/>
@@ -1060,15 +1057,15 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
-        ///     The player is not in the valid state.
-        ///     <para>-or-</para>
+        ///     The player is not in the valid state.\n
+        ///     -or-\n
         ///     Streaming playback.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="rate"/> is less than 5.0.
-        ///     <para>-or-</para>
-        ///     <paramref name="rate"/> is greater than 5.0.
-        ///     <para>-or-</para>
+        ///     <paramref name="rate"/> is less than 5.0.\n
+        ///     -or-\n
+        ///     <paramref name="rate"/> is greater than 5.0.\n
+        ///     -or-\n
         ///     <paramref name="rate"/> is zero.
         /// </exception>
         public void SetPlaybackRate(float rate)
@@ -1091,8 +1088,8 @@ namespace Tizen.Multimedia
         /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
         /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">
-        ///     The player has already been disposed of.
-        ///     <para>-or-</para>
+        ///     The player has already been disposed of.\n
+        ///     -or-\n
         ///     <paramref name="poilcy"/> has already been disposed of.
         /// </exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
@@ -1183,7 +1180,7 @@ namespace Tizen.Multimedia
         private NativePlayer.VideoFrameDecodedCallback _videoFrameDecodedCallback;
 
         /// <summary>
-        /// Occurs when a video frame is decoded
+        /// Occurs when a video frame is decoded.
         /// </summary>
         /// <remarks>
         ///     <para>The event handler will be executed on an internal thread.</para>

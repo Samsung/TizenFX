@@ -56,8 +56,8 @@ namespace Tizen.Multimedia
         /// <param name="value">The value indicating new gain in decibel(dB).</param>
         /// <exception cref="ObjectDisposedException">The player that this EqualizerBand belongs to has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     value is less than <see cref="AudioEffect.MinBandLevel"/>.
-        ///     <para>-or-</para>
+        ///     value is less than <see cref="AudioEffect.MinBandLevel"/>.\n
+        ///     -or-\n
         ///     value is greater than <see cref="AudioEffect.MaxBandLevel"/>.
         /// </exception>
         public void SetLevel(int value)

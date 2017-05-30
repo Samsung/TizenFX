@@ -45,7 +45,7 @@ namespace Tizen.Multimedia
         public Rectangle? Area { get; }
 
         /// <summary>
-        /// The confidence of the recognition_model that face has been recognized correctly (value from 0.0 to 1.0).
+        /// The confidence of the recognition model that face has been recognized correctly (value from 0.0 to 1.0).
         /// No faces were recognized if confidence was 0.0. When model has been learned on large amount of examples,
         /// threshold for this value can be high (0.85-0.95). If model was learned for small amount of examples,
         /// then threshold can be reduced (0.5-0.85).

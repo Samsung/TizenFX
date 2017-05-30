@@ -19,14 +19,14 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Represents concrete EngineConfig for creation of video surveillance systems.
+    /// Represents a configuration of <see cref="MovementDetector"/>.
     /// </summary>
     public class MovementDetectionConfiguration : SurveillanceEngineConfiguration
     {
         private const string KeyThreshold = "MV_SURVEILLANCE_MOVEMENT_DETECTION_THRESHOLD";
 
         /// <summary>
-        /// Represents a configuration of <see cref="MovementDetector"/>.
+        /// A read-only field that represents the default value of <see cref="Threshold"/>.
         /// </summary>
         public static readonly int DefaultThreshold = 10;
 
@@ -53,7 +53,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="MovementDetectionConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is less than zero.\n
-        ///     - or -\n
+        ///     -or-\n
         ///     <paramref name="value"/> is greater than 255.
         /// </exception>
         public int Threshold
