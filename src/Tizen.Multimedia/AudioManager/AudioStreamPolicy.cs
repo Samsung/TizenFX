@@ -209,7 +209,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Acquires the stream focus.
         /// </summary>
-        /// <param name="focusMask">The focus mask that user wants to acquire</param>
+        /// <param name="options">The focus mask that user wants to acquire</param>
+        /// <param name="audioStreamBehavior">The required action for releaser</param>
         /// <param name="extraInformation">The Extra information for this request (optional, this can be null)</param>
         /// <remarks>
         /// Do not call this API within event handlers of FocuStateChanged and StreamFocusStateWatch else it will throw and exception
@@ -225,6 +226,7 @@ namespace Tizen.Multimedia
         /// Releases the acquired focus.
         /// </summary>
         /// <param name="options">The focus mask that user wants to release</param>
+        /// <param name="audioStreamBehavior">The required action for acquirer</param>
         /// <param name="extraInformation">he Extra information for this request (optional, this can be null)</param>
         /// <remarks>
         /// Do not call this API within event handlers of FocuStateChanged and StreamFocusStateWatch else it will throw and exception
