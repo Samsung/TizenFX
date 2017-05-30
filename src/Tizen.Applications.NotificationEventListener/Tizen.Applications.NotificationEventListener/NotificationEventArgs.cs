@@ -29,7 +29,7 @@ namespace Tizen.Applications.NotificationEventListener
 
         internal IDictionary<string, StyleArgs> Style;
         internal IDictionary<string, Bundle> Extender;
-        internal Interop.NotificationEventListener.SafeNotificationHandle Handle;
+        internal Interop.NotificationEventListener.NotificationSafeHandle Handle;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NotificationEventArgs"/> class.

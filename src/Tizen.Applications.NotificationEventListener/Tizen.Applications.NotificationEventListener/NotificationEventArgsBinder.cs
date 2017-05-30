@@ -41,7 +41,7 @@ namespace Tizen.Applications.NotificationEventListener
 
             NotificationEventArgs eventargs = new NotificationEventArgs();
 
-            eventargs.Handle = new Interop.NotificationEventListener.SafeNotificationHandle(notification, data);
+            eventargs.Handle = new Interop.NotificationEventListener.NotificationSafeHandle(notification, data);
 
             err = Interop.NotificationEventListener.GetID(eventargs.Handle, out groupNumber, out uniqueNumber);
             if (err != Interop.NotificationEventListener.ErrorCode.None)
