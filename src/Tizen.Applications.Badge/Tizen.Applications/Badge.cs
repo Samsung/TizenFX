@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2016 - 2017 Samsung Electronics Co., Ltd. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the License);
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an AS IS BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -17,19 +17,29 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Immutable class for getting information of the badge.
+    /// The class containing common properties of the Badge.
     /// </summary>
     public class Badge
     {
-        private readonly string _appId;
-        private readonly int _count;
-        private readonly bool _isDisplay;
+        private int count = 0;
 
-        internal Badge(string appid, int count, bool isDisplay)
+        /// <summary>
+        /// Initializes a new instance of the Badge class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="appId">Application ID</param>
+        /// <param name="count">Count value</param>
+        /// <param name="visible">True if it should be displayed</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
+        public Badge(string appId, int count = 1, bool visible = true)
         {
-            _appId = appid;
-            _count = count;
-            _isDisplay = isDisplay;
+            if (IsNegativeNumber(count))
+            {
+                throw BadgeErrorFactory.GetException(BadgeError.InvalidParameter, "The count must be positive number");
+            }
+            AppId = appId;
+            this.count = count;
+            Visible = visible;
         }
 
         /// <summary>
@@ -40,7 +50,16 @@ namespace Tizen.Applications
         {
             get
             {
-                return _count;
+                return count;
+            }
+            set
+            {
+                if (IsNegativeNumber(value))
+                {
+                    throw BadgeErrorFactory.GetException(BadgeError.InvalidParameter, "The count must be positive number");
+                }
+
+                count = value;
             }
         }
 
@@ -48,24 +67,17 @@ namespace Tizen.Applications
         /// Property for the application ID of the badge.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public string AppId
-        {
-            get
-            {
-                return _appId;
-            }
-        }
+        public string AppId { get; set; }
 
         /// <summary>
-        /// Property for the flag of 'display'.
+        /// Property for display visibility. True if the badge display visible, otherwise false..
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public bool IsDisplay
+        public bool Visible{ get; set; }
+
+        private bool IsNegativeNumber(int number)
         {
-            get
-            {
-                return _isDisplay;
-            }
+            return number < 0;
         }
     }
 }

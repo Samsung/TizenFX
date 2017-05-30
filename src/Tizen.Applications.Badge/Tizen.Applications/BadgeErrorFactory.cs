@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the License);
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an AS IS BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -26,6 +26,7 @@ namespace Tizen.Applications
         OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
         PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
         IoError = Tizen.Internals.Errors.ErrorCode.IoError,
+        NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
         DbError = -0x01120000 | 0x01,
         AlreadyExists = -0x01120000 | 0x02,
         DBusError = -0x01120000 | 0x03,
@@ -51,7 +52,11 @@ namespace Tizen.Applications
                     Log.Error(LogTag, msg);
                     return new ArgumentException(ret + " error occurred.");
                 case BadgeError.PermissionDenied:
+                    Log.Error(LogTag, msg);
                     throw new UnauthorizedAccessException("Permission denied (http://tizen.org/privilege/notification)");
+                case BadgeError.NotSupported:
+                    Log.Error(LogTag, msg);
+                    throw new NotSupportedException("Not Supported (http://tizen.org/feature/badge)");
                 default:
                     Log.Error(LogTag, msg);
                     return new InvalidOperationException(ret + " error occurred.");
