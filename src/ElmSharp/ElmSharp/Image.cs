@@ -345,6 +345,28 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or gets if the center part of the given image object (not the border) should be drawn.
+        /// </summary>
+        /// <remarks>
+        /// When rendering, the image may be scaled to fit the size of the image object.
+        /// This function sets if the center part of the scaled image is to be drawn or left completely blank, or forced to be solid.
+        /// Very useful for frames and decorations.
+        /// </remarks>
+        public ImageBorderFillMode BorderCenterFillMode
+        {
+            get
+            {
+                IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
+                return (ImageBorderFillMode)Interop.Evas.evas_object_image_border_center_fill_get(evasObj);
+            }
+            set
+            {
+                IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
+                Interop.Evas.evas_object_image_border_center_fill_set(evasObj, (int)value);
+            }
+        }
+
+        /// <summary>
         /// Sets the file that is used as the image's source.
         /// </summary>
         /// <param name="file">The path to the file that is used as an image source</param>
@@ -591,6 +613,13 @@ namespace ElmSharp
 
             return handle;
         }
+    }
+
+    public enum ImageBorderFillMode
+    {
+        None,
+        Default,
+        Solid,
     }
 
     /// <summary>
