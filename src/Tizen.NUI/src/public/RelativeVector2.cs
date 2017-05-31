@@ -39,32 +39,69 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
+        //A Flat to check if it is already disposed.
+        protected bool disposed = false;
+
         ~RelativeVector2()
         {
-            DisposeQueue.Instance.Add(this);
+            if(!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
         }
 
-        public virtual void Dispose()
+        public void Dispose()
         {
+            //Throw excpetion if Dispose() is called in separate thread.
             if (!Window.IsInstalled())
             {
-                DisposeQueue.Instance.Add(this);
+                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+            }
+
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                System.GC.SuppressFinalize(this);
+            }
+        }
+
+        protected virtual void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
                 return;
             }
 
-            lock (this)
+            if(type == DisposeTypes.Explicit)
             {
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_Vector2(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                global::System.GC.SuppressFinalize(this);
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
             }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Vector2(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            disposed = true;
         }
 
 

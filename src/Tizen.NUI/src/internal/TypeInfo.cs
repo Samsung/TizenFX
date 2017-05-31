@@ -8,112 +8,142 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-public class TypeInfo : BaseHandle {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    public class TypeInfo : BaseHandle
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal TypeInfo(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TypeInfo_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TypeInfo obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  public override void Dispose() {
-    if (!Window.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_TypeInfo(swigCPtr);
+        internal TypeInfo(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TypeInfo_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TypeInfo obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_TypeInfo(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+
+        public TypeInfo() : this(NDalicPINVOKE.new_TypeInfo__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public TypeInfo(TypeInfo handle) : this(NDalicPINVOKE.new_TypeInfo__SWIG_1(TypeInfo.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public TypeInfo Assign(TypeInfo rhs)
+        {
+            TypeInfo ret = new TypeInfo(NDalicPINVOKE.TypeInfo_Assign(swigCPtr, TypeInfo.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public string GetName()
+        {
+            string ret = NDalicPINVOKE.TypeInfo_GetName(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public string GetBaseName()
+        {
+            string ret = NDalicPINVOKE.TypeInfo_GetBaseName(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public BaseHandle CreateInstance()
+        {
+            BaseHandle ret = new BaseHandle(NDalicPINVOKE.TypeInfo_CreateInstance(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public uint GetActionCount()
+        {
+            uint ret = NDalicPINVOKE.TypeInfo_GetActionCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public string GetActionName(uint index)
+        {
+            string ret = NDalicPINVOKE.TypeInfo_GetActionName(swigCPtr, index);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public uint GetSignalCount()
+        {
+            uint ret = NDalicPINVOKE.TypeInfo_GetSignalCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public string GetSignalName(uint index)
+        {
+            string ret = NDalicPINVOKE.TypeInfo_GetSignalName(swigCPtr, index);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public uint GetPropertyCount()
+        {
+            uint ret = NDalicPINVOKE.TypeInfo_GetPropertyCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void GetPropertyIndices(VectorInteger indices)
+        {
+            NDalicPINVOKE.TypeInfo_GetPropertyIndices(swigCPtr, VectorInteger.getCPtr(indices));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public string GetPropertyName(int index)
+        {
+            string ret = NDalicPINVOKE.TypeInfo_GetPropertyName(swigCPtr, index);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
     }
-  }
-
-
-  public TypeInfo() : this(NDalicPINVOKE.new_TypeInfo__SWIG_0(), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public TypeInfo(TypeInfo handle) : this(NDalicPINVOKE.new_TypeInfo__SWIG_1(TypeInfo.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public TypeInfo Assign(TypeInfo rhs) {
-    TypeInfo ret = new TypeInfo(NDalicPINVOKE.TypeInfo_Assign(swigCPtr, TypeInfo.getCPtr(rhs)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public string GetName() {
-    string ret = NDalicPINVOKE.TypeInfo_GetName(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public string GetBaseName() {
-    string ret = NDalicPINVOKE.TypeInfo_GetBaseName(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public BaseHandle CreateInstance() {
-    BaseHandle ret = new BaseHandle(NDalicPINVOKE.TypeInfo_CreateInstance(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public uint GetActionCount() {
-    uint ret = NDalicPINVOKE.TypeInfo_GetActionCount(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public string GetActionName(uint index) {
-    string ret = NDalicPINVOKE.TypeInfo_GetActionName(swigCPtr, index);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public uint GetSignalCount() {
-    uint ret = NDalicPINVOKE.TypeInfo_GetSignalCount(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public string GetSignalName(uint index) {
-    string ret = NDalicPINVOKE.TypeInfo_GetSignalName(swigCPtr, index);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public uint GetPropertyCount() {
-    uint ret = NDalicPINVOKE.TypeInfo_GetPropertyCount(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  internal void GetPropertyIndices(VectorInteger indices) {
-    NDalicPINVOKE.TypeInfo_GetPropertyIndices(swigCPtr, VectorInteger.getCPtr(indices));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public string GetPropertyName(int index) {
-    string ret = NDalicPINVOKE.TypeInfo_GetPropertyName(swigCPtr, index);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-}
 
 }

@@ -24,95 +24,123 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal class NinePatchImage : ResourceImage {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    internal class NinePatchImage : ResourceImage
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal NinePatchImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.NinePatchImage_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(NinePatchImage obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  public override void Dispose() {
-    if (!Window.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_NinePatchImage(swigCPtr);
+        internal NinePatchImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.NinePatchImage_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(NinePatchImage obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_NinePatchImage(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+
+        public NinePatchImage(string filename) : this(NDalicPINVOKE.NinePatchImage_New(filename), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        public new static NinePatchImage DownCast(BaseHandle handle)
+        {
+            NinePatchImage ret = new NinePatchImage(NDalicPINVOKE.NinePatchImage_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public NinePatchImage(NinePatchImage handle) : this(NDalicPINVOKE.new_NinePatchImage__SWIG_1(NinePatchImage.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public NinePatchImage Assign(NinePatchImage rhs)
+        {
+            NinePatchImage ret = new NinePatchImage(NDalicPINVOKE.NinePatchImage_Assign(swigCPtr, NinePatchImage.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public Vector4 GetStretchBorders()
+        {
+            Vector4 ret = new Vector4(NDalicPINVOKE.NinePatchImage_GetStretchBorders(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public VectorUint16Pair GetStretchPixelsX()
+        {
+            VectorUint16Pair ret = new VectorUint16Pair(NDalicPINVOKE.NinePatchImage_GetStretchPixelsX(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public VectorUint16Pair GetStretchPixelsY()
+        {
+            VectorUint16Pair ret = new VectorUint16Pair(NDalicPINVOKE.NinePatchImage_GetStretchPixelsY(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public Rectangle GetChildRectangle()
+        {
+            Rectangle ret = new Rectangle(NDalicPINVOKE.NinePatchImage_GetChildRectangle(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public BufferImage CreateCroppedBufferImage()
+        {
+            BufferImage ret = new BufferImage(NDalicPINVOKE.NinePatchImage_CreateCroppedBufferImage(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static bool IsNinePatchUrl(string url)
+        {
+            bool ret = NDalicPINVOKE.NinePatchImage_IsNinePatchUrl(url);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
     }
-  }
-
-
-  public NinePatchImage (string filename) : this (NDalicPINVOKE.NinePatchImage_New(filename), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-  }
-  public new static NinePatchImage DownCast(BaseHandle handle) {
-    NinePatchImage ret = new NinePatchImage(NDalicPINVOKE.NinePatchImage_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public NinePatchImage(NinePatchImage handle) : this(NDalicPINVOKE.new_NinePatchImage__SWIG_1(NinePatchImage.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public NinePatchImage Assign(NinePatchImage rhs) {
-    NinePatchImage ret = new NinePatchImage(NDalicPINVOKE.NinePatchImage_Assign(swigCPtr, NinePatchImage.getCPtr(rhs)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public Vector4 GetStretchBorders() {
-    Vector4 ret = new Vector4(NDalicPINVOKE.NinePatchImage_GetStretchBorders(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public VectorUint16Pair GetStretchPixelsX() {
-    VectorUint16Pair ret = new VectorUint16Pair(NDalicPINVOKE.NinePatchImage_GetStretchPixelsX(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public VectorUint16Pair GetStretchPixelsY() {
-    VectorUint16Pair ret = new VectorUint16Pair(NDalicPINVOKE.NinePatchImage_GetStretchPixelsY(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public Rectangle GetChildRectangle() {
-    Rectangle ret = new Rectangle(NDalicPINVOKE.NinePatchImage_GetChildRectangle(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public BufferImage CreateCroppedBufferImage() {
-    BufferImage ret = new BufferImage(NDalicPINVOKE.NinePatchImage_CreateCroppedBufferImage(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool IsNinePatchUrl(string url) {
-    bool ret = NDalicPINVOKE.NinePatchImage_IsNinePatchUrl(url);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-}
 
 }

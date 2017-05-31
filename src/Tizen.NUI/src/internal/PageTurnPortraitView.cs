@@ -24,59 +24,82 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal class PageTurnPortraitView : PageTurnView {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    internal class PageTurnPortraitView : PageTurnView
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal PageTurnPortraitView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PageTurnPortraitView_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PageTurnPortraitView obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  public override void Dispose() {
-    if (!Window.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_PageTurnPortraitView(swigCPtr);
+        internal PageTurnPortraitView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PageTurnPortraitView_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PageTurnPortraitView obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            //Unreference this from if a static instance refer to this. 
+            ViewRegistry.UnregisterView(this);
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_PageTurnPortraitView(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+        public PageTurnPortraitView(PageFactory pageFactory, Vector2 pageSize) : this(NDalicPINVOKE.PageTurnPortraitView_New(PageFactory.getCPtr(pageFactory), Vector2.getCPtr(pageSize)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        public PageTurnPortraitView(PageTurnPortraitView pageTurnPortraitView) : this(NDalicPINVOKE.new_PageTurnPortraitView__SWIG_1(PageTurnPortraitView.getCPtr(pageTurnPortraitView)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public PageTurnPortraitView Assign(PageTurnPortraitView pageTurnPortraitView)
+        {
+            PageTurnPortraitView ret = new PageTurnPortraitView(NDalicPINVOKE.PageTurnPortraitView_Assign(swigCPtr, PageTurnPortraitView.getCPtr(pageTurnPortraitView)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public new static PageTurnPortraitView DownCast(BaseHandle handle)
+        {
+            PageTurnPortraitView ret = new PageTurnPortraitView(NDalicPINVOKE.PageTurnPortraitView_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
     }
-  }
-
-
-  public PageTurnPortraitView (PageFactory pageFactory, Vector2 pageSize) : this (NDalicPINVOKE.PageTurnPortraitView_New(PageFactory.getCPtr(pageFactory), Vector2.getCPtr(pageSize)), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-  }
-  public PageTurnPortraitView(PageTurnPortraitView pageTurnPortraitView) : this(NDalicPINVOKE.new_PageTurnPortraitView__SWIG_1(PageTurnPortraitView.getCPtr(pageTurnPortraitView)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public PageTurnPortraitView Assign(PageTurnPortraitView pageTurnPortraitView) {
-    PageTurnPortraitView ret = new PageTurnPortraitView(NDalicPINVOKE.PageTurnPortraitView_Assign(swigCPtr, PageTurnPortraitView.getCPtr(pageTurnPortraitView)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public new static PageTurnPortraitView DownCast(BaseHandle handle) {
-    PageTurnPortraitView ret = new PageTurnPortraitView(NDalicPINVOKE.PageTurnPortraitView_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-}
 
 }

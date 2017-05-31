@@ -24,188 +24,214 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-using System;
-using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
 
-public class TapGestureDetector : GestureDetector {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    public class TapGestureDetector : GestureDetector
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal TapGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TapGestureDetector_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TapGestureDetector obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  public override void Dispose() {
-    if (!Window.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_TapGestureDetector(swigCPtr);
+        internal TapGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TapGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
-    }
-  }
 
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TapGestureDetector obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
 
-
-
-public class DetectedEventArgs : EventArgs
-{
-   private View _view;
-   private TapGesture _tapGesture;
-
-   public View View
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
             {
-      get
-      {
-         return _view;
-      }
-      set
-      {
-         _view = value;
-      }
-   }
+                return;
+            }
 
-   public TapGesture TapGesture
-   {
-      get
-      {
-         return _tapGesture;
-      }
-      set
-      {
-         _tapGesture = value;
-      }
-   }
-}
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
 
-  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-  private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr TapGesture);
-  private DaliEventHandler<object,DetectedEventArgs> _tapGestureEventHandler;
-  private DetectedCallbackDelegate _tapGestureCallbackDelegate;
+            }
 
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
 
-  public event DaliEventHandler<object,DetectedEventArgs> Detected
-  {
-     add
-     {
-        lock(this)
-        {
-           // Restricted to only one listener
-           if (_tapGestureEventHandler == null)
-           {
-              _tapGestureEventHandler += value;
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_TapGestureDetector(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
 
-              _tapGestureCallbackDelegate = new DetectedCallbackDelegate(OnTapGestureDetected);
-              this.DetectedSignal().Connect(_tapGestureCallbackDelegate);
-           }
+            base.Dispose(type);
         }
-     }
 
-     remove
-     {
-        lock(this)
+
+        public class DetectedEventArgs : EventArgs
         {
-           if (_tapGestureEventHandler != null)
-           {
-              this.DetectedSignal().Disconnect(_tapGestureCallbackDelegate);
-           }
+            private View _view;
+            private TapGesture _tapGesture;
 
-           _tapGestureEventHandler -= value;
+            public View View
+            {
+                get
+                {
+                    return _view;
+                }
+                set
+                {
+                    _view = value;
+                }
+            }
+
+            public TapGesture TapGesture
+            {
+                get
+                {
+                    return _tapGesture;
+                }
+                set
+                {
+                    _tapGesture = value;
+                }
+            }
         }
-     }
-  }
 
- private void OnTapGestureDetected(IntPtr actor, IntPtr tapGesture)
-  {
-   DetectedEventArgs e = new DetectedEventArgs();
-
-   // Populate all members of "e" (DetectedEventArgs) with real data
-   e.View = View.GetViewFromPtr(actor);
-   e.TapGesture = Tizen.NUI.TapGesture.GetTapGestureFromPtr(tapGesture);
-
-   if (_tapGestureEventHandler != null)
-   {
-      //here we send all data to user event handlers
-      _tapGestureEventHandler(this, e);
-   }
-
-  }
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr TapGesture);
+        private DaliEventHandler<object, DetectedEventArgs> _tapGestureEventHandler;
+        private DetectedCallbackDelegate _tapGestureCallbackDelegate;
 
 
-public static TapGestureDetector GetTapGestureDetectorFromPtr(global::System.IntPtr cPtr) {
-    TapGestureDetector ret = new TapGestureDetector(cPtr, false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        public event DaliEventHandler<object, DetectedEventArgs> Detected
+        {
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_tapGestureEventHandler == null)
+                    {
+                        _tapGestureEventHandler += value;
+
+                        _tapGestureCallbackDelegate = new DetectedCallbackDelegate(OnTapGestureDetected);
+                        this.DetectedSignal().Connect(_tapGestureCallbackDelegate);
+                    }
+                }
+            }
+
+            remove
+            {
+                lock (this)
+                {
+                    if (_tapGestureEventHandler != null)
+                    {
+                        this.DetectedSignal().Disconnect(_tapGestureCallbackDelegate);
+                    }
+
+                    _tapGestureEventHandler -= value;
+                }
+            }
+        }
+
+        private void OnTapGestureDetected(IntPtr actor, IntPtr tapGesture)
+        {
+            DetectedEventArgs e = new DetectedEventArgs();
+
+            // Populate all members of "e" (DetectedEventArgs) with real data
+            e.View = View.GetViewFromPtr(actor);
+            e.TapGesture = Tizen.NUI.TapGesture.GetTapGestureFromPtr(tapGesture);
+
+            if (_tapGestureEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _tapGestureEventHandler(this, e);
+            }
+
+        }
 
 
-  public TapGestureDetector () : this (NDalicPINVOKE.TapGestureDetector_New__SWIG_0(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        public static TapGestureDetector GetTapGestureDetectorFromPtr(global::System.IntPtr cPtr)
+        {
+            TapGestureDetector ret = new TapGestureDetector(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
-  }
-  public TapGestureDetector (uint tapsRequired) : this (NDalicPINVOKE.TapGestureDetector_New__SWIG_1(tapsRequired), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-  }
-  public new static TapGestureDetector DownCast(BaseHandle handle) {
-    TapGestureDetector ret = new TapGestureDetector(NDalicPINVOKE.TapGestureDetector_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        public TapGestureDetector() : this(NDalicPINVOKE.TapGestureDetector_New__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-  public TapGestureDetector(TapGestureDetector handle) : this(NDalicPINVOKE.new_TapGestureDetector__SWIG_1(TapGestureDetector.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        }
+        public TapGestureDetector(uint tapsRequired) : this(NDalicPINVOKE.TapGestureDetector_New__SWIG_1(tapsRequired), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-  public TapGestureDetector Assign(TapGestureDetector rhs) {
-    TapGestureDetector ret = new TapGestureDetector(NDalicPINVOKE.TapGestureDetector_Assign(swigCPtr, TapGestureDetector.getCPtr(rhs)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        }
+        public new static TapGestureDetector DownCast(BaseHandle handle)
+        {
+            TapGestureDetector ret = new TapGestureDetector(NDalicPINVOKE.TapGestureDetector_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
-  public void SetMinimumTapsRequired(uint minimumTaps) {
-    NDalicPINVOKE.TapGestureDetector_SetMinimumTapsRequired(swigCPtr, minimumTaps);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        public TapGestureDetector(TapGestureDetector handle) : this(NDalicPINVOKE.new_TapGestureDetector__SWIG_1(TapGestureDetector.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-  public void SetMaximumTapsRequired(uint maximumTaps) {
-    NDalicPINVOKE.TapGestureDetector_SetMaximumTapsRequired(swigCPtr, maximumTaps);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        public TapGestureDetector Assign(TapGestureDetector rhs)
+        {
+            TapGestureDetector ret = new TapGestureDetector(NDalicPINVOKE.TapGestureDetector_Assign(swigCPtr, TapGestureDetector.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
-  public uint GetMinimumTapsRequired() {
-    uint ret = NDalicPINVOKE.TapGestureDetector_GetMinimumTapsRequired(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        public void SetMinimumTapsRequired(uint minimumTaps)
+        {
+            NDalicPINVOKE.TapGestureDetector_SetMinimumTapsRequired(swigCPtr, minimumTaps);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-  public uint GetMaximumTapsRequired() {
-    uint ret = NDalicPINVOKE.TapGestureDetector_GetMaximumTapsRequired(swigCPtr);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        public void SetMaximumTapsRequired(uint maximumTaps)
+        {
+            NDalicPINVOKE.TapGestureDetector_SetMaximumTapsRequired(swigCPtr, maximumTaps);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-  internal TapGestureDetectedSignal DetectedSignal() {
-    TapGestureDetectedSignal ret = new TapGestureDetectedSignal(NDalicPINVOKE.TapGestureDetector_DetectedSignal(swigCPtr), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+        public uint GetMinimumTapsRequired()
+        {
+            uint ret = NDalicPINVOKE.TapGestureDetector_GetMinimumTapsRequired(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
-}
+        public uint GetMaximumTapsRequired()
+        {
+            uint ret = NDalicPINVOKE.TapGestureDetector_GetMaximumTapsRequired(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TapGestureDetectedSignal DetectedSignal()
+        {
+            TapGestureDetectedSignal ret = new TapGestureDetectedSignal(NDalicPINVOKE.TapGestureDetector_DetectedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+    }
 
 }

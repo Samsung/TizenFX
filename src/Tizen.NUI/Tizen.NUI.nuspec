@@ -11,8 +11,7 @@
   <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
   <description>Tizen NUI is the UI Framework based on DALi (Dynamic Animation Library) 3D Graphic engine. It is a quick and easy way of allowing developers to create Rich UI Applications like Image/Video galleries, Music players, Games, Homescreens/launch pads, and so on. </description>
   <dependencies>
-   <dependency id="Tizen.Applications.Common" version="1.5.1"/>
-   <dependency id="Tizen.Applications.UI" version="1.5.1"/>
+   <dependency id="Tizen.Applications" version="1.0.3"/>
   </dependencies>
  </metadata>
  <files>

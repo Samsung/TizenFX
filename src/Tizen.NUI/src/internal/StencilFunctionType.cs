@@ -8,17 +8,19 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum StencilFunctionType {
-  NEVER,
-  LESS,
-  EQUAL,
-  LESS_EQUAL,
-  GREATER,
-  NOT_EQUAL,
-  GREATER_EQUAL,
-  ALWAYS
-}
+    internal enum StencilFunctionType
+    {
+        NEVER,
+        LESS,
+        EQUAL,
+        LESS_EQUAL,
+        GREATER,
+        NOT_EQUAL,
+        GREATER_EQUAL,
+        ALWAYS
+    }
 
 }

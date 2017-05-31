@@ -24,474 +24,552 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal class Renderer : Animatable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    internal class Renderer : Animatable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal Renderer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Renderer_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Renderer obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  public override void Dispose() {
-    if (!Window.IsInstalled()) {
-      DisposeQueue.Instance.Add(this);
-      return;
-    }
-
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          NDalicPINVOKE.delete_Renderer(swigCPtr);
+        internal Renderer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Renderer_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
-    }
-  }
-        public class Property : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal Property(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~Property() {
-      DisposeQueue.Instance.Add(this);
-    }
-  
-    public virtual void Dispose() {
-      if (!Window.IsInstalled()) {
-        DisposeQueue.Instance.Add(this);
-        return;
-      }
 
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            NDalicPINVOKE.delete_Renderer_Property(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Renderer obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-        global::System.GC.SuppressFinalize(this);
-      }
-    }
-  
-    public Property() : this(NDalicPINVOKE.new_Renderer_Property(), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    }
-  
-    public static readonly int DEPTH_INDEX = NDalicPINVOKE.Renderer_Property_DEPTH_INDEX_get();
-    public static readonly int FACE_CULLING_MODE = NDalicPINVOKE.Renderer_Property_FACE_CULLING_MODE_get();
-    public static readonly int BLEND_MODE = NDalicPINVOKE.Renderer_Property_BLEND_MODE_get();
-    public static readonly int BLEND_EQUATION_RGB = NDalicPINVOKE.Renderer_Property_BLEND_EQUATION_RGB_get();
-    public static readonly int BLEND_EQUATION_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_EQUATION_ALPHA_get();
-    public static readonly int BLEND_FACTOR_SRC_RGB = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_SRC_RGB_get();
-    public static readonly int BLEND_FACTOR_DEST_RGB = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_DEST_RGB_get();
-    public static readonly int BLEND_FACTOR_SRC_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_SRC_ALPHA_get();
-    public static readonly int BLEND_FACTOR_DEST_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_DEST_ALPHA_get();
-    public static readonly int BLEND_COLOR = NDalicPINVOKE.Renderer_Property_BLEND_COLOR_get();
-    public static readonly int BLEND_PRE_MULTIPLIED_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_PRE_MULTIPLIED_ALPHA_get();
-    public static readonly int INDEX_RANGE_FIRST = NDalicPINVOKE.Renderer_Property_INDEX_RANGE_FIRST_get();
-    public static readonly int INDEX_RANGE_COUNT = NDalicPINVOKE.Renderer_Property_INDEX_RANGE_COUNT_get();
-    public static readonly int DEPTH_WRITE_MODE = NDalicPINVOKE.Renderer_Property_DEPTH_WRITE_MODE_get();
-    public static readonly int DEPTH_FUNCTION = NDalicPINVOKE.Renderer_Property_DEPTH_FUNCTION_get();
-    public static readonly int DEPTH_TEST_MODE = NDalicPINVOKE.Renderer_Property_DEPTH_TEST_MODE_get();
-    public static readonly int RENDER_MODE = NDalicPINVOKE.Renderer_Property_RENDER_MODE_get();
-    public static readonly int STENCIL_FUNCTION = NDalicPINVOKE.Renderer_Property_STENCIL_FUNCTION_get();
-    public static readonly int STENCIL_FUNCTION_MASK = NDalicPINVOKE.Renderer_Property_STENCIL_FUNCTION_MASK_get();
-    public static readonly int STENCIL_FUNCTION_REFERENCE = NDalicPINVOKE.Renderer_Property_STENCIL_FUNCTION_REFERENCE_get();
-    public static readonly int STENCIL_MASK = NDalicPINVOKE.Renderer_Property_STENCIL_MASK_get();
-    public static readonly int STENCIL_OPERATION_ON_FAIL = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_FAIL_get();
-    public static readonly int STENCIL_OPERATION_ON_Z_FAIL = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_Z_FAIL_get();
-    public static readonly int STENCIL_OPERATION_ON_Z_PASS = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_Z_PASS_get();
-  
-  }
 
-  public Renderer (Geometry geometry, Shader shader) : this (NDalicPINVOKE.Renderer_New(Geometry.getCPtr(geometry), Shader.getCPtr(shader)), true) {
-      if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
 
-  }
-  public Renderer(Renderer handle) : this(NDalicPINVOKE.new_Renderer__SWIG_1(Renderer.getCPtr(handle)), true) {
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
 
-  public new static Renderer DownCast(BaseHandle handle) {
-    Renderer ret = new Renderer(NDalicPINVOKE.Renderer_DownCast(BaseHandle.getCPtr(handle)), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            }
 
-  public Renderer Assign(Renderer handle) {
-    Renderer ret = new Renderer(NDalicPINVOKE.Renderer_Assign(swigCPtr, Renderer.getCPtr(handle)), false);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
 
-  public void SetGeometry(Geometry geometry) {
-    NDalicPINVOKE.Renderer_SetGeometry(swigCPtr, Geometry.getCPtr(geometry));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
 
-  public Geometry GetGeometry() {
-    Geometry ret = new Geometry(NDalicPINVOKE.Renderer_GetGeometry(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Renderer(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
 
-  public void SetIndexRange(int firstElement, int elementsCount) {
-    NDalicPINVOKE.Renderer_SetIndexRange(swigCPtr, firstElement, elementsCount);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+            base.Dispose(type);
+        }
 
-  public void SetTextures(TextureSet textureSet) {
-    NDalicPINVOKE.Renderer_SetTextures(swigCPtr, TextureSet.getCPtr(textureSet));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+        public class Property : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
 
-  public TextureSet GetTextures() {
-    TextureSet ret = new TextureSet(NDalicPINVOKE.Renderer_GetTextures(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
 
-  public void SetShader(Shader shader) {
-    NDalicPINVOKE.Renderer_SetShader(swigCPtr, Shader.getCPtr(shader));
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-  }
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
 
-  public Shader GetShader() {
-    Shader ret = new Shader(NDalicPINVOKE.Renderer_GetShader(swigCPtr), true);
-    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
+            //A Flag to check who called Dispose(). (By User or DisposeQueue)
+            private bool isDisposeQueued = false;
+            //A Flat to check if it is already disposed.
+            protected bool disposed = false;
 
-  public int DepthIndex
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_INDEX).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_INDEX, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int FaceCullingMode
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.FACE_CULLING_MODE).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.FACE_CULLING_MODE, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int BlendMode
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_MODE).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_MODE, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int BlendEquationRgb
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_RGB).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_RGB, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int BlendEquationAlpha
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_ALPHA).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_ALPHA, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int BlendFactorSrcRgb
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_RGB).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_RGB, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int BlendFactorDestRgb
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_RGB).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_RGB, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int BlendFactorSrcAlpha
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_ALPHA).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_ALPHA, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int BlendFactorDestAlpha
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_ALPHA).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_ALPHA, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public Vector4 BlendColor
-  {
-    get
-    {
-      Vector4 temp = new Vector4(0.0f,0.0f,0.0f,0.0f);
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_COLOR).Get(  temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_COLOR, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public bool BlendPreMultipliedAlpha
-  {
-    get
-    {
-      bool temp = false;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_PRE_MULTIPLIED_ALPHA).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_PRE_MULTIPLIED_ALPHA, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int IndexRangeFirst
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_FIRST).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_FIRST, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int IndexRangeCount
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_COUNT).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_COUNT, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int DepthWriteMode
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_WRITE_MODE).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_WRITE_MODE, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int DepthFunction
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_FUNCTION).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_FUNCTION, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int DepthTestMode
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_TEST_MODE).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_TEST_MODE, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int RenderMode
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.RENDER_MODE).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.RENDER_MODE, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int StencilFunction
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int StencilFunctionMask
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_MASK).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_MASK, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int StencilFunctionReference
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_REFERENCE).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_REFERENCE, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int StencilMask
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_MASK).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_MASK, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int StencilOperationOnFail
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_FAIL).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_FAIL, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int StencilOperationOnZFail
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_FAIL).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_FAIL, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
-  public int StencilOperationOnZPass
-  {
-    get
-    {
-      int temp = 0;
-      Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_PASS).Get( ref temp );
-      return temp;
-    }
-    set
-    {
-      Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_PASS, new Tizen.NUI.PropertyValue( value ) );
-    }
-  }
 
-}
+            ~Property()
+            {
+                if (!isDisposeQueued)
+                {
+                    isDisposeQueued = true;
+                    DisposeQueue.Instance.Add(this);
+                }
+            }
+
+            public void Dispose()
+            {
+                //Throw excpetion if Dispose() is called in separate thread.
+                if (!Window.IsInstalled())
+                {
+                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                }
+
+                if (isDisposeQueued)
+                {
+                    Dispose(DisposeTypes.Implicit);
+                }
+                else
+                {
+                    Dispose(DisposeTypes.Explicit);
+                    System.GC.SuppressFinalize(this);
+                }
+            }
+
+            protected virtual void Dispose(DisposeTypes type)
+            {
+                if (disposed)
+                {
+                    return;
+                }
+
+                if (type == DisposeTypes.Explicit)
+                {
+                    //Called by User
+                    //Release your own managed resources here.
+                    //You should release all of your own disposable objects here.
+
+                }
+
+                //Release your own unmanaged resources here.
+                //You should not access any managed member here except static instance.
+                //because the execution order of Finalizes is non-deterministic.
+
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_Renderer_Property(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+
+                disposed = true;
+            }
+
+            public Property() : this(NDalicPINVOKE.new_Renderer_Property(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            public static readonly int DEPTH_INDEX = NDalicPINVOKE.Renderer_Property_DEPTH_INDEX_get();
+            public static readonly int FACE_CULLING_MODE = NDalicPINVOKE.Renderer_Property_FACE_CULLING_MODE_get();
+            public static readonly int BLEND_MODE = NDalicPINVOKE.Renderer_Property_BLEND_MODE_get();
+            public static readonly int BLEND_EQUATION_RGB = NDalicPINVOKE.Renderer_Property_BLEND_EQUATION_RGB_get();
+            public static readonly int BLEND_EQUATION_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_EQUATION_ALPHA_get();
+            public static readonly int BLEND_FACTOR_SRC_RGB = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_SRC_RGB_get();
+            public static readonly int BLEND_FACTOR_DEST_RGB = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_DEST_RGB_get();
+            public static readonly int BLEND_FACTOR_SRC_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_SRC_ALPHA_get();
+            public static readonly int BLEND_FACTOR_DEST_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_DEST_ALPHA_get();
+            public static readonly int BLEND_COLOR = NDalicPINVOKE.Renderer_Property_BLEND_COLOR_get();
+            public static readonly int BLEND_PRE_MULTIPLIED_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_PRE_MULTIPLIED_ALPHA_get();
+            public static readonly int INDEX_RANGE_FIRST = NDalicPINVOKE.Renderer_Property_INDEX_RANGE_FIRST_get();
+            public static readonly int INDEX_RANGE_COUNT = NDalicPINVOKE.Renderer_Property_INDEX_RANGE_COUNT_get();
+            public static readonly int DEPTH_WRITE_MODE = NDalicPINVOKE.Renderer_Property_DEPTH_WRITE_MODE_get();
+            public static readonly int DEPTH_FUNCTION = NDalicPINVOKE.Renderer_Property_DEPTH_FUNCTION_get();
+            public static readonly int DEPTH_TEST_MODE = NDalicPINVOKE.Renderer_Property_DEPTH_TEST_MODE_get();
+            public static readonly int RENDER_MODE = NDalicPINVOKE.Renderer_Property_RENDER_MODE_get();
+            public static readonly int STENCIL_FUNCTION = NDalicPINVOKE.Renderer_Property_STENCIL_FUNCTION_get();
+            public static readonly int STENCIL_FUNCTION_MASK = NDalicPINVOKE.Renderer_Property_STENCIL_FUNCTION_MASK_get();
+            public static readonly int STENCIL_FUNCTION_REFERENCE = NDalicPINVOKE.Renderer_Property_STENCIL_FUNCTION_REFERENCE_get();
+            public static readonly int STENCIL_MASK = NDalicPINVOKE.Renderer_Property_STENCIL_MASK_get();
+            public static readonly int STENCIL_OPERATION_ON_FAIL = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_FAIL_get();
+            public static readonly int STENCIL_OPERATION_ON_Z_FAIL = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_Z_FAIL_get();
+            public static readonly int STENCIL_OPERATION_ON_Z_PASS = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_Z_PASS_get();
+
+        }
+
+        public Renderer(Geometry geometry, Shader shader) : this(NDalicPINVOKE.Renderer_New(Geometry.getCPtr(geometry), Shader.getCPtr(shader)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        public Renderer(Renderer handle) : this(NDalicPINVOKE.new_Renderer__SWIG_1(Renderer.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public new static Renderer DownCast(BaseHandle handle)
+        {
+            Renderer ret = new Renderer(NDalicPINVOKE.Renderer_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public Renderer Assign(Renderer handle)
+        {
+            Renderer ret = new Renderer(NDalicPINVOKE.Renderer_Assign(swigCPtr, Renderer.getCPtr(handle)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void SetGeometry(Geometry geometry)
+        {
+            NDalicPINVOKE.Renderer_SetGeometry(swigCPtr, Geometry.getCPtr(geometry));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public Geometry GetGeometry()
+        {
+            Geometry ret = new Geometry(NDalicPINVOKE.Renderer_GetGeometry(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void SetIndexRange(int firstElement, int elementsCount)
+        {
+            NDalicPINVOKE.Renderer_SetIndexRange(swigCPtr, firstElement, elementsCount);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetTextures(TextureSet textureSet)
+        {
+            NDalicPINVOKE.Renderer_SetTextures(swigCPtr, TextureSet.getCPtr(textureSet));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public TextureSet GetTextures()
+        {
+            TextureSet ret = new TextureSet(NDalicPINVOKE.Renderer_GetTextures(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void SetShader(Shader shader)
+        {
+            NDalicPINVOKE.Renderer_SetShader(swigCPtr, Shader.getCPtr(shader));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public Shader GetShader()
+        {
+            Shader ret = new Shader(NDalicPINVOKE.Renderer_GetShader(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public int DepthIndex
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_INDEX).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_INDEX, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int FaceCullingMode
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.FACE_CULLING_MODE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.FACE_CULLING_MODE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int BlendMode
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_MODE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_MODE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int BlendEquationRgb
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_RGB).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_RGB, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int BlendEquationAlpha
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_ALPHA).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_ALPHA, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int BlendFactorSrcRgb
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_RGB).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_RGB, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int BlendFactorDestRgb
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_RGB).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_RGB, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int BlendFactorSrcAlpha
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_ALPHA).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_ALPHA, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int BlendFactorDestAlpha
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_ALPHA).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_ALPHA, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public Vector4 BlendColor
+        {
+            get
+            {
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_COLOR).Get(temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_COLOR, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public bool BlendPreMultipliedAlpha
+        {
+            get
+            {
+                bool temp = false;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_PRE_MULTIPLIED_ALPHA).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_PRE_MULTIPLIED_ALPHA, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int IndexRangeFirst
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_FIRST).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_FIRST, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int IndexRangeCount
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_COUNT).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_COUNT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int DepthWriteMode
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_WRITE_MODE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_WRITE_MODE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int DepthFunction
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_FUNCTION).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_FUNCTION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int DepthTestMode
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_TEST_MODE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_TEST_MODE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int RenderMode
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.RENDER_MODE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.RENDER_MODE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int StencilFunction
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int StencilFunctionMask
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_MASK).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_MASK, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int StencilFunctionReference
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_REFERENCE).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_REFERENCE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int StencilMask
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_MASK).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_MASK, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int StencilOperationOnFail
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_FAIL).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_FAIL, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int StencilOperationOnZFail
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_FAIL).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_FAIL, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        public int StencilOperationOnZPass
+        {
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_PASS).Get(ref temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_PASS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+    }
 
 }

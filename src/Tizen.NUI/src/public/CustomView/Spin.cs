@@ -76,7 +76,7 @@ namespace Tizen.NUI
         public override void OnInitialize()
         {
             // Initialize the propertiesControl
-            _arrowImage = "/home/owner/apps_rw/NUISamples.TizenTV/res/images/arrow.png";
+            _arrowImage = "/home/tengxb/Workspace/nui-debug/examples/res/images/arrow.png";
             _textBackgroundColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
             _currentValue = 0;
             _minValue = 0;

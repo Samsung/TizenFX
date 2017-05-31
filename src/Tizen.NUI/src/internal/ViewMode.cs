@@ -8,13 +8,15 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum ViewMode {
-  MONO,
-  STEREO_HORIZONTAL,
-  STEREO_VERTICAL,
-  STEREO_INTERLACED
-}
+    internal enum ViewMode
+    {
+        MONO,
+        STEREO_HORIZONTAL,
+        STEREO_VERTICAL,
+        STEREO_INTERLACED
+    }
 
 }

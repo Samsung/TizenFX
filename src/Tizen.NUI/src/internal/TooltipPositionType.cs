@@ -8,12 +8,14 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum TooltipPositionType {
-  ABOVE,
-  BELOW,
-  HOVER_POINT
-}
+    internal enum TooltipPositionType
+    {
+        ABOVE,
+        BELOW,
+        HOVER_POINT
+    }
 
 }

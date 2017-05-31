@@ -8,11 +8,13 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum DirectionType {
-  LEFT_TO_RIGHT = 0,
-  RIGHT_TO_LEFT
-}
+    internal enum DirectionType
+    {
+        LEFT_TO_RIGHT = 0,
+        RIGHT_TO_LEFT
+    }
 
 }
