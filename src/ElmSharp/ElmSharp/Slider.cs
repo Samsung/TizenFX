@@ -18,6 +18,29 @@ using System;
 
 namespace ElmSharp
 {
+    public enum SliderIndicatorVisibleMode
+    {
+        /// <summary>
+        /// show indicator on mouse down or change in slider value.
+        /// </summary>
+        Default,
+
+        /// <summary>
+        /// Always show the indicator.
+        /// </summary>
+        Always,
+
+        /// <summary>
+        /// Show the indicator on focus.
+        /// </summary>
+        OnFocus,
+
+        /// <summary>
+        /// Never show the indicator.
+        /// </summary>
+        None
+    }
+
     /// <summary>
     /// The Slider is a widget that adds a draggable slider widget for selecting the value of something within a range.
     /// </summary>
@@ -279,6 +302,21 @@ namespace ElmSharp
             set
             {
                 Interop.Elementary.elm_slider_indicator_show_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the visible mode of indicator.
+        /// </summary>
+        public SliderIndicatorVisibleMode IndicatorVisibleMode
+        {
+            get
+            {
+                return (SliderIndicatorVisibleMode)Interop.Elementary.elm_slider_indicator_visible_mode_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_slider_indicator_visible_mode_set(RealHandle, (Interop.Elementary.Elm_Slider_Indicator_Visible_Mode)value);
             }
         }
 

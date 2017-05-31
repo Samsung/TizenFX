@@ -70,6 +70,38 @@ namespace ElmSharp.Test
                 }
             };
 
+            Button btn2 = new Button(window)
+            {
+                AlignmentX = -1,
+                AlignmentY = 0,
+                WeightX = 1,
+                WeightY = 1,
+                Text = "Set IndicatorVisibleMode"
+            };
+            btn2.Clicked += (s, e) =>
+            {
+                if (sld1.IndicatorVisibleMode == SliderIndicatorVisibleMode.Default)
+                {
+                    sld1.IndicatorVisibleMode = SliderIndicatorVisibleMode.Always;
+                    btn2.Text = "Always";
+                }
+                else if (sld1.IndicatorVisibleMode == SliderIndicatorVisibleMode.Always)
+                {
+                    sld1.IndicatorVisibleMode = SliderIndicatorVisibleMode.OnFocus;
+                    btn2.Text = "OnFocus";
+                }
+                else if (sld1.IndicatorVisibleMode == SliderIndicatorVisibleMode.OnFocus)
+                {
+                    sld1.IndicatorVisibleMode = SliderIndicatorVisibleMode.None;
+                    btn2.Text = "None";
+                }
+                else
+                {
+                    sld1.IndicatorVisibleMode = SliderIndicatorVisibleMode.Default;
+                    btn2.Text = "Default";
+                }
+            };
+
             Label lb1 = new Label(window)
             {
                 AlignmentX = -1,
@@ -80,11 +112,13 @@ namespace ElmSharp.Test
 
             table.Pack(sld1, 1, 1, 2, 1);
             table.Pack(btn, 1, 2, 2, 1);
-            table.Pack(lb1, 1, 3, 2, 1);
+            table.Pack(btn2, 1, 3, 2, 1);
+            table.Pack(lb1, 1, 4, 2, 1);
 
             sld1.Show();
             btn.Show();
             lb1.Show();
+            btn2.Show();
 
             sld1.ValueChanged += (s, e) =>
             {
