@@ -15,7 +15,6 @@
  */
 
 using System;
-
 namespace ElmSharp
 {
     /// <summary>
@@ -71,6 +70,11 @@ namespace ElmSharp
             set
             {
                 Interop.Elementary.elm_label_line_wrap_set(RealHandle, (int)value);
+                if (value != WrapType.None)
+                {
+                    Interop.Evas.evas_object_size_hint_min_get(RealHandle, IntPtr.Zero, out int h);
+                    Interop.Evas.evas_object_size_hint_min_set(RealHandle, 0, h);
+                }
             }
         }
 
@@ -154,8 +158,13 @@ namespace ElmSharp
         /// <returns>The new object, otherwise null if it cannot be created</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            //TODO: Fix this to use layout
-            return Interop.Elementary.elm_label_add(parent.Handle);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
+
+            RealHandle = Interop.Elementary.elm_label_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 
