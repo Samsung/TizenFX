@@ -26,6 +26,7 @@ namespace Tizen.Uix.Stt
     /// <summary>
     /// The recognition result from the engine.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RecognitionResultEventArgs
     {
         private ResultEvent _result;
@@ -100,6 +101,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// The result event
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ResultEvent Result
         {
             get
@@ -111,6 +113,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Result texts.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<string> Data
         {
             get
@@ -122,6 +125,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Returns the Result text count.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int DataCount
         {
             get
@@ -133,6 +137,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Engine message
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ResultMessage Message
         {
             get

@@ -25,233 +25,286 @@ namespace Tizen.Uix.Stt
     /// <summary>
     /// The token event
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ResultEvent
     {
         /// <summary>
         /// Event when the recognition full or last result is ready
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         FinalResult = 0,
         /// <summary>
         /// Event when the recognition partial result is ready
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         PartialResult,
         /// <summary>
         /// Event when the recognition has failed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Error
     };
 
     /// <summary>
     /// Enumeration representing the result message
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ResultMessage
     {
         /// <summary>
         /// No Error
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         None,
         /// <summary>
         /// Recognition failed  because the speech started too soon.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         TooSoon,
         /// <summary>
         /// Recognition failed  because the speech is too short.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         TooShort,
         /// <summary>
         /// Recognition failed  because the speech is too long.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         TooLong,
         /// <summary>
         /// Recognition failed  because the speech is too quiet to listen.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         TooQuiet,
         /// <summary>
         /// Recognition failed  because the speech is too loud to listen.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         TooLoud,
         /// <summary>
         /// Recognition failed  because the speech is too fast to listen.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         TooFast
     };
 
     /// <summary>
     /// Enumeration for the Token type
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum TimeEvent
     {
         /// <summary>
         /// Event when the token is beginning type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Beginning = 0,
         /// <summary>
         /// Event when the token is middle type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Middle = 1,
         /// <summary>
         /// Event when the token is end type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         End = 2
     };
 
     /// <summary>
     /// Enum for Error values that can occur
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum Error
     {
         /// <summary>
         /// Successful, No error
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         None,
         /// <summary>
         /// Out of Memory
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         OutOfMemory,
         /// <summary>
         /// I/O error
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         IoError,
         /// <summary>
         /// Invalid parameter
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InvalidParameter,
         /// <summary>
         /// No answer from the STT service
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         TimedOut,
         /// <summary>
         /// Device or resource busy
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         RecorderBusy,
         /// <summary>
         /// Network is down
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         OutOfNetwork,
         /// <summary>
         /// Permission denied
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         PermissionDenied,
         /// <summary>
         /// STT NOT supported
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         NotSupported,
         /// <summary>
         /// Invalid state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InvalidState,
         /// <summary>
         /// Invalid language
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InvalidLanguage,
         /// <summary>
         /// No available engine
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         EngineNotFound,
         /// <summary>
         /// Operation failed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         OperationFailed,
         /// <summary>
         /// Not supported feature of current engine
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         NotSupportedFeature,
         /// <summary>
         /// Recording timed out
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         RecordingTimedOut,
         /// <summary>
         /// No speech while recording
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         NoSpeech,
         /// <summary>
         /// Progress to ready is not finished
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InProgressToReady,
         /// <summary>
         /// Progress to recording is not finished
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InProgressToRecording,
         /// <summary>
         /// Progress to processing is not finished
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InProgressToProcessing,
         /// <summary>
         /// Service reset
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ServiceReset
     };
 
     /// <summary>
     /// Enumeration for Recognition Types
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecognitionType
     {
         /// <summary>
         /// Free form dictation
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Free,
         /// <summary>
         /// Continuous free dictation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Partial,
         /// <summary>
         /// Search
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Search,
         /// <summary>
         /// Web Search
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         WebSearch,
         /// <summary>
         /// Map
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Map
     };
 
     /// <summary>
     /// Enumeration for the State types
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum State
     {
         /// <summary>
         /// Created state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Created = 0,
         /// <summary>
         /// Ready state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Ready = 1,
         /// <summary>
         /// Recording state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Recording = 2,
         /// <summary>
         /// Processing state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Processing = 3,
         /// <summary>
         /// Unavailable
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Unavailable
     };
 
     /// <summary>
     /// Enumeration for the Silence Detection types
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum SilenceDetection
     {
         /// <summary>
         /// Silence detection type - False
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         False = 0,
         /// <summary>
         /// Silence detection type - True
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         True = 1,
         /// <summary>
         /// Silence detection type - Auto
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Auto = 2
     };
 
@@ -263,6 +316,7 @@ namespace Tizen.Uix.Stt
     /// The STT service always works in the background as a server. If the service is not working, client library will invoke it and client will communicate with it.
     /// The service has engines and the recorder so client does not have the recorder itself. Only the client request commands to the STT service for using STT.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SttClient : IDisposable
     {
         private IntPtr _handle;
@@ -284,6 +338,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Constructor to create a STT instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -291,13 +346,10 @@ namespace Tizen.Uix.Stt
         /// http://tizen.org/feature/speech.recognition
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Out Of Memory
-        /// 2. Operation Failed
-        /// 3. STT Not Supported
-        /// 4. Permission Denied
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
+        /// <exception cref="OutOfMemoryException"> This Exception can be due to Out of Memory. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         public SttClient()
         {
             IntPtr handle;
@@ -314,6 +366,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Event to be invoked when the recognition is done.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RecognitionResultEventArgs> RecognitionResult
         {
             add
@@ -363,6 +416,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Event to be invoked when STT state changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
@@ -407,6 +461,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Event to be invoked when an error occurs.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ErrorOccuredEventArgs> ErrorOccured
         {
             add
@@ -450,6 +505,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Event to be invoked when default laungage change.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<DefaultLanguageChangedEventArgs> DefaultLanguageChanged
         {
             add
@@ -496,6 +552,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Event to be invoked to detect engine change.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<EngineChangedEventArgs> EngineChanged
         {
             add
@@ -541,6 +598,7 @@ namespace Tizen.Uix.Stt
         /// The language is specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code.
         /// For example, "ko_KR" for Korean, "en_US" for American English.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Default language in STT.
         /// </value>
@@ -550,7 +608,7 @@ namespace Tizen.Uix.Stt
         /// <returns>
         /// Default Lanaguage string value.
         /// </returns>
-        public string GetDefaultLanguage
+        public string DefaultLanguage
         {
             get
             {
@@ -572,6 +630,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Gets the microphone volume during recording.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Recording volume in STT.
         /// </value>
@@ -581,7 +640,7 @@ namespace Tizen.Uix.Stt
         /// <pre>
         /// The State must be Recording.
         /// </pre>
-        public float GetRecordingVolume
+        public float RecordingVolume
         {
             get
             {
@@ -605,6 +664,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Gets the current STT state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Current state of STT.
         /// </value>
@@ -614,7 +674,7 @@ namespace Tizen.Uix.Stt
         /// <returns>
         /// Current STT State value.
         /// </returns>
-        public State GetState
+        public State CurrentState
         {
             get
             {
@@ -637,6 +697,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// This property can be used to get and set the current engine id.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Current STT engine id.
         /// </value>
@@ -645,15 +706,13 @@ namespace Tizen.Uix.Stt
         /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This Exception can occur while setting due to the following reaons
-        /// 1. Out Of Memory
-        /// 2. Operation Failed
-        /// 3. STT Not Supported
-        /// 4. Permission Denied
-        /// 5. Invalid State
+        /// 1. Operation Failed
+        /// 2. Invalid State
         /// </exception>
-        /// <exception cref="ArgumentException">
-        /// This can happen if Improper EngineId is provided while setting the value.
-        /// </exception>
+        /// <exception cref="OutOfMemoryException"> This Exception can be due to Out of Memory. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="ArgumentException"> This can happen if Improper EngineId is provided while setting the value. </exception>
         /// <pre>
         /// The State must be Created.
         /// </pre>
@@ -692,6 +751,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Retrieves the time stamp of the current recognition result
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// list of ResultTime
         /// </returns>
@@ -705,12 +765,9 @@ namespace Tizen.Uix.Stt
         /// <remarks>
         /// This function should only be called in RecognitionResult Event
         /// </remarks>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Opearation Failed.
-        /// 2. STT Not Supported
-        /// 3. Permission Denied.
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Opearation Failed. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         public IEnumerable<ResultTime> GetDetailedResult()
         {
             List<ResultTime> list = new List<ResultTime>();
@@ -733,6 +790,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Gets the private data from stt engine.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="key">
         /// The key string
         /// </param>
@@ -746,12 +804,9 @@ namespace Tizen.Uix.Stt
         /// http://tizen.org/feature/speech.recognition
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. No Answer from STT Service
-        /// 2. STT Not Supported
-        /// 3. Invalid State
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="TimeoutException"> This Exception can be due to No Answer from STT Service. </exception>
         /// <pre>
         /// The State must be Ready.
         /// </pre>
@@ -774,6 +829,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Sets the private data to stt engine.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="key">
         /// The key string
         /// </param>
@@ -787,15 +843,10 @@ namespace Tizen.Uix.Stt
         /// http://tizen.org/feature/speech.recognition
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. No Answer from STT Service
-        /// 2. STT Not Supported
-        /// 3. Invalid State
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// This can happen if Improper value is provided while setting the value.
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="TimeoutException"> This Exception can be due to No Answer from STT Service. </exception>
+        /// <exception cref="ArgumentException"> This can happen if Improper value is provided while setting the value. </exception>
         /// <pre>
         /// The State must be Ready.
         /// </pre>
@@ -815,6 +866,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Gets the list of Supported Engine
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// IEnumerable<SupportedEngine> list of supported engines
         /// </returns>
@@ -825,13 +877,10 @@ namespace Tizen.Uix.Stt
         /// http://tizen.org/feature/speech.recognition
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. Out Of Memory
-        /// 2. Operation Failed
-        /// 3. STT Not Supported
-        /// 4. Permission Denied
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
+        /// <exception cref="OutOfMemoryException"> This Exception can be due to Out of Memory. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         public IEnumerable<SupportedEngine> GetSupportedEngines()
         {
             List<SupportedEngine> engineList = new List<SupportedEngine>();
@@ -859,6 +908,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Sets the app credential
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="credential">
         /// The credential string
         /// </param>
@@ -871,15 +921,13 @@ namespace Tizen.Uix.Stt
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
-        /// 1. Out Of Memory
-        /// 2. Operation Failed
-        /// 3. STT Not Supported
-        /// 4. Permission Denied
-        /// 5. Invalid State
+        /// 1. Operation Failed
+        /// 2. Invalid State
         /// </exception>
-        /// <exception cref="ArgumentException">
-        /// This can happen if Improper value is provided while setting the value.
-        /// </exception>
+        /// <exception cref="OutOfMemoryException"> This Exception can be due to Out of Memory. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="ArgumentException"> This can happen if Improper value is provided while setting the value. </exception>
         /// <pre>
         /// The State must be Created.
         /// </pre>
@@ -899,6 +947,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Connects to the STT service asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -906,12 +955,9 @@ namespace Tizen.Uix.Stt
         /// http://tizen.org/feature/speech.recognition
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reasons
-        /// 1. STT Not Supported
-        /// 2. Permission Denied
-        /// 3. Invalid State
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <pre>
         /// The State must be Created.
         /// </pre>
@@ -935,6 +981,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Disconnects from the STT service.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -942,12 +989,9 @@ namespace Tizen.Uix.Stt
         /// http://tizen.org/feature/speech.recognition
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reasons
-        /// 1. STT Not Supported
-        /// 2. Permission Denied
-        /// 3. Invalid State
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <pre>
         /// The State must be Ready.
         /// </pre>
@@ -972,6 +1016,7 @@ namespace Tizen.Uix.Stt
         /// The language is specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code.
         /// For example, "ko_KR" for Korean, "en_US" for American English.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -984,11 +1029,11 @@ namespace Tizen.Uix.Stt
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
-        /// 1. STT Not Supported
-        /// 2. Permission Denied
-        /// 3. Engine Not Found.
-        /// 4. Operation Failed.
+        /// 1. Engine Not Found.
+        /// 2. Operation Failed.
         /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         public IEnumerable<string> GetSupportedLangauages()
         {
             List<string> languageList = new List<string>();
@@ -1015,6 +1060,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Checks whether the recognition type is supported.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -1030,11 +1076,11 @@ namespace Tizen.Uix.Stt
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
-        /// 1. STT Not Supported
-        /// 2. Invalid State
-        /// 3. Engine Not Found.
-        /// 4. Operation Failed.
+        /// 1. Invalid State
+        /// 2. Engine Not Found.
+        /// 3. Operation Failed.
         /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
         /// <pre>
         /// The state should be Ready.
         /// </pre>
@@ -1093,6 +1139,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Sets the silence detection.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -1105,11 +1152,11 @@ namespace Tizen.Uix.Stt
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
-        /// 1. STT Not Supported
-        /// 2. Invalid State
-        /// 3. Not supported feature of current engine.
-        /// 4. Operation Failed.
+        /// 1. Invalid State
+        /// 2. Not supported feature of current engine.
+        /// 3. Operation Failed.
         /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
         /// <pre>
         /// The state should be Ready.
         /// </pre>
@@ -1130,6 +1177,7 @@ namespace Tizen.Uix.Stt
         /// Sets the sound to start recording.
         /// Sound file type should be wav type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -1142,14 +1190,12 @@ namespace Tizen.Uix.Stt
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
-        /// 1. STT Not Supported.
-        /// 2. Permission Denied.
-        /// 3. Invalid State.
-        /// 4. Operation Failed.
+        /// 1. Invalid State.
+        /// 2. Operation Failed.
         /// </exception>
-        /// <exception cref="ArgumentException">
-        /// If an Invalid Parameter is provided.
-        /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="ArgumentException"> If an Invalid Parameter is provided. </exception>
         /// <pre>
         /// The state should be Ready.
         /// </pre>
@@ -1169,6 +1215,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Unsets the sound to start recording.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -1178,11 +1225,11 @@ namespace Tizen.Uix.Stt
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
-        /// 1. STT Not Supported.
-        /// 2. Permission Denied.
-        /// 3. Invalid State.
-        /// 4. Operation Failed.
+        /// 1. Invalid State.
+        /// 2. Operation Failed.
         /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <pre>
         /// The state should be Ready.
         /// </pre>
@@ -1203,6 +1250,7 @@ namespace Tizen.Uix.Stt
         /// Sets the sound to stop recording.
         /// Sound file type should be wav type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -1215,14 +1263,12 @@ namespace Tizen.Uix.Stt
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
-        /// 1. STT Not Supported.
-        /// 2. Permission Denied.
-        /// 3. Invalid State.
-        /// 4. Operation Failed.
+        /// 1. Invalid State.
+        /// 2. Operation Failed.
         /// </exception>
-        /// <exception cref="ArgumentException">
-        /// If an Invalid Parameter is provided.
-        /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="ArgumentException"> If an Invalid Parameter is provided. </exception>
         /// <pre>
         /// The state should be Ready.
         /// </pre>
@@ -1242,6 +1288,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Unsets the sound to stop recording.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -1251,11 +1298,11 @@ namespace Tizen.Uix.Stt
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
-        /// 1. STT Not Supported.
-        /// 2. Permission Denied.
-        /// 3. Invalid State.
-        /// 4. Operation Failed.
+        /// 1. Invalid State.
+        /// 2. Operation Failed.
         /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <pre>
         /// The state should be Ready.
         /// </pre>
@@ -1277,6 +1324,7 @@ namespace Tizen.Uix.Stt
         /// This function starts recording in the STT service and sending recording data to engine.
         /// This work continues until Stop, Cancel or silence detected by engine
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -1292,16 +1340,14 @@ namespace Tizen.Uix.Stt
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
-        /// 1. STT Not Supported.
-        /// 2. Permission Denied.
-        /// 3. Invalid State.
-        /// 4. Operation Failed.
-        /// 5. Recorder Busy.
-        /// 6. Progress to recording is not finished
+        /// 1. Invalid State.
+        /// 2. Operation Failed.
+        /// 3. Recorder Busy.
+        /// 4. Progress to recording is not finished
         /// </exception>
-        /// <exception cref="ArgumentException">
-        /// If an Invalid Language is provided
-        /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="ArgumentException"> If an Invalid Language is provided. </exception>
         /// <pre>
         /// The state should be Ready.
         /// </pre>
@@ -1361,6 +1407,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Finishes the recording and starts recognition processing in engine asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -1370,14 +1417,14 @@ namespace Tizen.Uix.Stt
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
-        /// 1. STT Not Supported.
-        /// 2. Permission Denied.
-        /// 3. Invalid State.
-        /// 4. Operation Failed.
-        /// 5. Progress to ready is not finished.
-        /// 6. Progress to recording is not finished.
-        /// 7. Progress to processing is not finished.
+        /// 1. Invalid State.
+        /// 2. Operation Failed.
+        /// 3. Progress to ready is not finished.
+        /// 4. Progress to recording is not finished.
+        /// 5. Progress to processing is not finished.
         /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <pre>
         /// The state should be Recording.
         /// </pre>
@@ -1405,6 +1452,7 @@ namespace Tizen.Uix.Stt
         /// This function cancels recording and engine cancels recognition processing.
         /// After successful cancel, StateChanged event is invoked otherwise if error is occurred, ErrorOccured event is invoked.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -1414,14 +1462,14 @@ namespace Tizen.Uix.Stt
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
-        /// 1. STT Not Supported.
-        /// 2. Permission Denied.
-        /// 3. Invalid State.
-        /// 4. Operation Failed.
-        /// 5. Progress to ready is not finished.
-        /// 6. Progress to recording is not finished.
-        /// 7. Progress to processing is not finished.
+        /// 1. Invalid State.
+        /// 2. Operation Failed.
+        /// 3. Progress to ready is not finished.
+        /// 4. Progress to recording is not finished.
+        /// 5. Progress to processing is not finished.
         /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <pre>
         /// The state should be Recording or Processing.
         /// </pre>

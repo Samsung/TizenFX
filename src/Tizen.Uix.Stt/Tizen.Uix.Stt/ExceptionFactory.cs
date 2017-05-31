@@ -30,7 +30,7 @@ namespace Tizen.Uix.Stt
             {
                 case SttError.OutOfMemory:
                     {
-                        exp = new InvalidOperationException("Out Of Memory");
+                        exp = new OutOfMemoryException("Out Of Memory");
                         break;
                     }
 
@@ -48,7 +48,7 @@ namespace Tizen.Uix.Stt
 
                 case SttError.TimedOut:
                     {
-                        exp = new InvalidOperationException("No answer from the STT service");
+                        exp = new TimeoutException("No answer from the STT service");
                         break;
                     }
 
@@ -60,13 +60,13 @@ namespace Tizen.Uix.Stt
 
                 case SttError.PermissionDenied:
                     {
-                        exp = new InvalidOperationException("Permission Denied");
+                        exp = new UnauthorizedAccessException("Permission Denied");
                         break;
                     }
 
                 case SttError.NotSupported:
                     {
-                        exp = new InvalidOperationException("STT NOT supported");
+                        exp = new NotSupportedException("STT NOT supported");
                         break;
                     }
 

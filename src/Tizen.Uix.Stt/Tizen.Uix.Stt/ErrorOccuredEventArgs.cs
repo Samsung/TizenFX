@@ -23,6 +23,7 @@ namespace Tizen.Uix.Stt
     /// <summary>
     /// This class holds information related to the STT ErrorOccured Event
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ErrorOccuredEventArgs
     {
         private IntPtr _handle;
@@ -158,6 +159,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// The Error Value
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Error ErrorValue
         {
             get;
@@ -167,10 +169,11 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Gets the current error message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// string error message
         /// </returns>
-        public string GetErrorMessage
+        public string ErrorMessage
         {
             get
             {

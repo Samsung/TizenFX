@@ -21,6 +21,7 @@ namespace Tizen.Uix.Stt
     /// <summary>
     /// This class holds information about the DefaultLanguageChanged Event
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class DefaultLanguageChangedEventArgs
     {
         internal DefaultLanguageChangedEventArgs(string previous, string current)
@@ -32,6 +33,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// The previous language
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string PreviousLanguage
         {
             get;
@@ -41,6 +43,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// The current language
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string CurrentLanguage
         {
             get;

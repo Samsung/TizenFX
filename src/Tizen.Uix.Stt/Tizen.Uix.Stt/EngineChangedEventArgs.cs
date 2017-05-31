@@ -20,6 +20,7 @@ namespace Tizen.Uix.Stt
     /// <summary>
     /// This class holds information related to Engine Changed Event
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class EngineChangedEventArgs
     {
         internal EngineChangedEventArgs(string engineId, string language, bool supportSilence, bool needCredential)
@@ -33,6 +34,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Engine Id
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string EngineId
         {
             get;
@@ -42,6 +44,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Default Lanaguage
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Language
         {
             get;
@@ -51,6 +54,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// The necessity of credential
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool NeedCredential
         {
             get;
@@ -60,6 +64,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Whether the silence detection is supported or not
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool SupportSilence
         {
             get;

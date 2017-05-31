@@ -20,6 +20,7 @@ namespace Tizen.Uix.Stt
     /// <summary>
     /// This class holds information related to the STT StateChanged event
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class StateChangedEventArgs
     {
         internal StateChangedEventArgs(State previous, State current)
@@ -31,6 +32,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// A previous state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public State Previous
         {
             get;
@@ -39,6 +41,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// A current state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public State Current
         {
             get;

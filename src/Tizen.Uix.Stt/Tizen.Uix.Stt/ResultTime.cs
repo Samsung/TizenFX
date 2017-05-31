@@ -22,6 +22,7 @@ namespace Tizen.Uix.Stt
     /// <summary>
     /// This Class represents the result of recognition result from the engine.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ResultTime
     {
         internal ResultTime(int index, TimeEvent e, string text, long startTime, long endTime)
@@ -36,6 +37,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// The result index
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Index
         {
             get;
@@ -45,6 +47,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// The token event
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public TimeEvent TokenEvent
         {
             get;
@@ -54,6 +57,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// The result text
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Text
         {
             get;
@@ -63,6 +67,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// The start time of result text
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public long StartTime
         {
             get;
@@ -72,6 +77,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// The end time of result text
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public long EndTime
         {
             get;
