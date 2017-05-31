@@ -61,7 +61,7 @@ namespace Tizen.Location.Geofence
     /// <summary>
     /// Enumerations for geofence management events.
     /// </summary>
-    public enum GeoFenceEventType
+    public enum GeofenceEventType
     {
         /// <summary>
         /// Geofence is added.
