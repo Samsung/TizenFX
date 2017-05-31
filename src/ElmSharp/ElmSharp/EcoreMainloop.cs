@@ -126,14 +126,19 @@ namespace ElmSharp
         {
             int task_id = (int)user_data;
             Func<bool> userAction = null;
-            _taskMap.TryGetValue(task_id, out userAction);
-            if (userAction != null)
+            if (_taskMap.TryGetValue(task_id, out userAction))
             {
-                _taskMap.Remove(task_id);
-                return userAction();
+                bool result = false;
+
+                if (userAction != null)
+                    result = userAction();
+
+                if (result == false)
+                    _taskMap.Remove(task_id);
+
+                return result;
             }
             return false;
         }
-
     }
 }
