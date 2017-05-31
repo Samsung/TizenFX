@@ -4,7 +4,8 @@
     "NETStandard.Library": "1.6.1",
     "System.Reflection": "4.3.0",
     "System.Reflection.TypeExtensions": "4.3.0",
-    "Tizen.Applications": "1.0.3"
+    "Tizen.Applications.Common": "1.5.1",
+    "Tizen.Applications.UI": "1.5.1"
   },
   "frameworks": {
     "netstandard1.6": {}

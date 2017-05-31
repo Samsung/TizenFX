@@ -905,7 +905,12 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>A object which inherit View</returns>
         public static T DownCast<T>(View view) where T : View
         {
-            return (T)(ViewRegistry.GetViewFromActor(view));
+            View ret = ViewRegistry.GetViewFromBaseHandle(view);
+            if (ret != null)
+            {
+                return (T)ret;
+            }
+            return null;
         }
 
         private View ConvertIdToView(uint id)
@@ -2089,10 +2094,18 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>The view for the given index or empty handle if children not initialized</returns>
         public View GetChildAt(uint index)
         {
-            View ret = new View(NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index), true);
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
+            cPtr = NDalicPINVOKE.View_SWIGUpcast(cPtr);
+            cPtr = NDalicPINVOKE.Handle_SWIGUpcast(cPtr);
+
+            BaseHandle ret = new BaseHandle(cPtr, false);
+
+            View temp = ViewRegistry.GetViewFromBaseHandle(ret);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+
+            return temp ?? null;
         }
 
         /// <summary>

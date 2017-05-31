@@ -478,7 +478,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Sets a title for this Popup.
         /// </summary>
-        /// <param name="titleActor">The actor to set a title</param>
+        /// <param name="titleView">The actor to set a title</param>
         public void SetTitle(View titleView)
         {
             NDalicPINVOKE.Popup_SetTitle(swigCPtr, View.getCPtr(titleView));
