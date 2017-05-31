@@ -26,7 +26,10 @@
 
 namespace Tizen.NUI
 {
+    using System;
+    using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
+
     /// <summary>
     /// Layers provide a mechanism for overlaying groups of actors on top of each other.
     /// </summary>
@@ -440,10 +443,18 @@ namespace Tizen.NUI
         /// <returns>The view for the given index or empty handle if children not initialized</returns>
         public View GetChildAt(uint index)
         {
-            View ret = new View(NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index), true);
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
+            cPtr = NDalicPINVOKE.View_SWIGUpcast(cPtr);
+            cPtr = NDalicPINVOKE.Handle_SWIGUpcast(cPtr);
+
+            BaseHandle ret = new BaseHandle(cPtr, false);
+
+            View temp = ViewRegistry.GetViewFromBaseHandle(ret);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+
+            return temp ?? null;
         }
 
         /// <summary>

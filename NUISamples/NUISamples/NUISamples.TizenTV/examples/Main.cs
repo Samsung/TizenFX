@@ -37,7 +37,8 @@ namespace NUISamples.TizenTV.examples
             //new VisualsUsingCustomView.VisualsExample().Run(args);    //o
             //new FirstScreen.FirstScreenApp().Run(args);               //o
             //new PositionUsesAnchorPointTest.Example().Run(args);
-            new TizenVDUIApplication19.Program().Run(args);
+            // new VisualsExampleTest.Example().Run(args);               //o
+            new TizenSTVUIApplication15.Program().Run(args);
         }
     }
 }

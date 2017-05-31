@@ -55,6 +55,7 @@
     <None Include="shared\res\NUISamples.TizenTV.png" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="examples\as-is-test-sample.cs" />
     <Compile Include="examples\control-dashboard.cs" />
     <Compile Include="examples\custom-control.cs" />
     <Compile Include="examples\dali-test.cs" />
