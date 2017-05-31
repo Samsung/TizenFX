@@ -265,7 +265,7 @@ namespace VisualViewTest
             {
                 cnt++;
                 Tizen.Log.Debug("NUI", "[WindowFocusTest] WindowFocusChanged event comes! focus gained=" + ee.FocusGained);
-                imageVisualMap1.Size += new Vector2(50.0f, 50.0f);
+                imageVisualMap1.Size += new Size2D(50, 50);
                 imageVisualMap1.Position += new Vector2(20.0f, 20.0f);
 
                 textVisualMap1.Text = "Hello Goodbye" + cnt;
