@@ -157,9 +157,29 @@ namespace Tizen.Network.Connection
         /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
-        public static string GetIPAddress(AddressFamily family)
+        public static System.Net.IPAddress GetIPAddress(AddressFamily family)
         {
             return ConnectionInternalManager.Instance.GetIPAddress(family);
+        }
+
+        /// <summary>
+        /// Gets the all IPv6 addresses of the current connection.
+        /// </summary>
+        /// <param name="type">The type of current network connection</param>
+        /// <returns>A list of IPv6 addresses of the connection.</returns>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
+        public static IEnumerable<System.Net.IPAddress> GetAllIPv6Addresses(ConnectionType type)
+        {
+            return ConnectionInternalManager.Instance.GetAllIPv6Addresses(type);
         }
 
         /// <summary>
@@ -200,6 +220,48 @@ namespace Tizen.Network.Connection
         public static string GetMacAddress(ConnectionType type)
         {
             return ConnectionInternalManager.Instance.GetMacAddress(type);
+        }
+
+        /// <summary>
+        /// Gets the statistics information.
+        /// </summary>
+        /// <param name="connectionType">The type of connection (only WiFi and Cellular are supported)</param>
+        /// <param name="statisticsType">The type of statistics</param>
+        /// <returns>The statistics information associated with statisticsType</returns>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
+        public static long GetStatistics(ConnectionType connectionType, StatisticsType statisticsType)
+        {
+            return ConnectionInternalManager.Instance.GetStatistics(connectionType, statisticsType);
+        }
+
+        /// <summary>
+        /// Resets the statistics information.
+        /// </summary>
+        /// <param name="connectionType">The type of connection (only WiFi and Cellular are supported)</param>
+        /// <param name="statisticsType">The type of statistics</param>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
+        public static void ResetStatistics(ConnectionType connectionType, StatisticsType statisticsType)
+        {
+            ConnectionInternalManager.Instance.ResetStatistics(connectionType, statisticsType);
         }
 
         /// <summary>

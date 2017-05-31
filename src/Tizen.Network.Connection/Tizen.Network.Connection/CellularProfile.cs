@@ -171,10 +171,89 @@ namespace Tizen.Network.Connection
             }
         }
 
-        /// <summary>
-        /// The cellular Authentication Information.
+   /// <summary>
+        /// The cellular pdn type.
         /// </summary>
-        /// <value>Cellular authentication information</value>
+        /// <value>Cellular pdn type.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        public CellularPdnType PdnType
+        {
+            get
+            {
+                Log.Debug(Globals.LogTag, "Get PdnType");
+                int value;
+                int ret = Interop.ConnectionCellularProfile.GetPdnType(ProfileHandle, out value);
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to get pdn type, " + (ConnectionError)ret);
+                }
+                return (CellularPdnType)value;
+            }
+
+            set
+            {
+                Log.Debug(Globals.LogTag, "Set PdnType");
+                CheckDisposed();
+                int ret = Interop.ConnectionCellularProfile.SetPdnType(ProfileHandle, (int)value);
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to set pdn type, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The cellular roaming pdn type.
+        /// </summary>
+        /// <value>Cellular roaming pdn type.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        public CellularPdnType RoamingPdnType
+        {
+            get
+            {
+                Log.Debug(Globals.LogTag, "Get RoamingPdnType");
+                int value;
+                int ret = Interop.ConnectionCellularProfile.GetRoamingPdnType(ProfileHandle, out value);
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to get roam pdn type, " + (ConnectionError)ret);
+                }
+                return (CellularPdnType)value;
+            }
+
+            set
+            {
+                Log.Debug(Globals.LogTag, "Set RoamingPdnType");
+                CheckDisposed();
+                int ret = Interop.ConnectionCellularProfile.SetRoamingPdnType(ProfileHandle, (int)value);
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to set roam pdn type, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Cellular Authentication Information.
+        /// </summary>
+        /// <value>Instance of CellularAuthInformation.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown during set when value is null.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
         public CellularAuthInformation CellularAuthInfo
         {
             get

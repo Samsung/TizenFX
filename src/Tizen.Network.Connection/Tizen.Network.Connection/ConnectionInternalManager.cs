@@ -150,7 +150,6 @@ namespace Tizen.Network.Connection
 
         internal IntPtr GetHandle()
         {
-            Log.Debug(Globals.LogTag, "GetHandle, Thread Id = " + Thread.CurrentThread.ManagedThreadId);
             return s_threadName.Value.GetHandle();
         }
 
@@ -399,7 +398,7 @@ namespace Tizen.Network.Connection
             return Interop.Connection.DestroyProfileIterator(iterator);
         }
 
-        internal string GetIPAddress(AddressFamily family)
+        internal System.Net.IPAddress GetIPAddress(AddressFamily family)
         {
             IntPtr ip;
             int ret = Interop.Connection.GetIPAddress(GetHandle(), (int)family, out ip);
@@ -413,11 +412,39 @@ namespace Tizen.Network.Connection
 
             string result = Marshal.PtrToStringAnsi(ip);
             Interop.Libc.Free(ip);
-            return result;
+            return System.Net.IPAddress.Parse(result);;
+        }
+
+        internal IEnumerable<System.Net.IPAddress> GetAllIPv6Addresses(ConnectionType type)
+        {
+            Log.Debug(Globals.LogTag, "GetAllIPv6Addresses");
+            List<System.Net.IPAddress> ipList = new List<System.Net.IPAddress>();
+            Interop.Connection.IPv6AddressCallback callback = (IntPtr ipv6Address, IntPtr userData) =>
+            {
+                if (ipv6Address != IntPtr.Zero)
+                {
+                    string ipv6 = Marshal.PtrToStringAnsi(ipv6Address);
+                    ipList.Add(System.Net.IPAddress.Parse(ipv6));
+                    return true;
+                }
+                return false;
+            };
+
+            int ret = Interop.Connection.GetAllIPv6Addresses(GetHandle(), (int)type, callback, IntPtr.Zero);
+            if (ret != (int)ConnectionError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get all IPv6 addresses, Error - " + (ConnectionError)ret);
+                ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero), "Connection Handle may have been disposed or released");
+                ConnectionErrorFactory.ThrowConnectionException(ret);
+            }
+
+            return ipList;
         }
 
         internal string GetProxy(AddressFamily family)
         {
+            Log.Debug(Globals.LogTag, "GetProxy " + family);
             IntPtr ip;
             int ret = Interop.Connection.GetProxy(GetHandle(), (int)family, out ip);
             if ((ConnectionError)ret != ConnectionError.None)
@@ -435,8 +462,9 @@ namespace Tizen.Network.Connection
 
         internal string GetMacAddress(ConnectionType type)
         {
-            IntPtr ip;
-            int ret = Interop.Connection.GetMacAddress(GetHandle(), (int)type, out ip);
+            Log.Debug(Globals.LogTag, "GetMacAddress " + type);
+            IntPtr mac;
+            int ret = Interop.Connection.GetMacAddress(GetHandle(), (int)type, out mac);
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to get mac address, " + (ConnectionError)ret);
@@ -444,17 +472,49 @@ namespace Tizen.Network.Connection
                 ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero), "Connection Handle may have been disposed or released");
                 ConnectionErrorFactory.ThrowConnectionException(ret);
             }
-            string result = Marshal.PtrToStringAnsi(ip);
-            Interop.Libc.Free(ip);
+            string result = Marshal.PtrToStringAnsi(mac);
+            Interop.Libc.Free(mac);
             return result;
+        }
+
+        internal long GetStatistics(ConnectionType connectionType, StatisticsType statisticsType)
+        {
+            Log.Debug(Globals.LogTag, "GetStatistics " + connectionType + ", " + statisticsType);
+            long size;
+            int ret = Interop.Connection.GetStatistics(GetHandle(), (int)connectionType,
+                    (int)statisticsType, out size);
+            if ((ConnectionError)ret != ConnectionError.None)
+            {
+                Log.Error(Globals.LogTag, "It failed to get statistics, " + (ConnectionError)ret);
+                ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.telephony");
+                ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.get)");
+                ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero), "Connection Handle may have been disposed or released");
+                ConnectionErrorFactory.ThrowConnectionException(ret);
+            }
+            return size;
+        }
+
+        internal void ResetStatistics(ConnectionType connectionType, StatisticsType statisticsType)
+        {
+            Log.Debug(Globals.LogTag, "ResetStatistics " + connectionType + ", " + statisticsType);
+            int ret = Interop.Connection.ResetStatistics(GetHandle(), (int)connectionType,
+                    (int)statisticsType);
+            if ((ConnectionError)ret != ConnectionError.None)
+            {
+                Log.Error(Globals.LogTag, "It failed to reset statistics, " + (ConnectionError)ret);
+                ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.telephony");
+                ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.set)");
+                ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero), "Connection Handle may have been disposed or released");
+                ConnectionErrorFactory.ThrowConnectionException(ret);
+            }
         }
 
         internal ConnectionType ConnectionType
         {
             get
             {
+                Log.Debug(Globals.LogTag, "get ConnectionType");
                 int type = 0;
-                Log.Debug(Globals.LogTag, "Handle: " + GetHandle());
                 int ret = Interop.Connection.GetType(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
@@ -469,8 +529,8 @@ namespace Tizen.Network.Connection
         {
             get
             {
+                Log.Debug(Globals.LogTag, "get CellularState");
                 int type = 0;
-                Log.Debug(Globals.LogTag, "CellularState Handle: " + GetHandle());
                 int ret = Interop.Connection.GetCellularState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
@@ -485,6 +545,7 @@ namespace Tizen.Network.Connection
         {
             get
             {
+                Log.Debug(Globals.LogTag, "get WiFiState");
                 int type = 0;
                 int ret = Interop.Connection.GetWiFiState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
@@ -500,6 +561,7 @@ namespace Tizen.Network.Connection
         {
             get
             {
+                Log.Debug(Globals.LogTag, "get BluetoothState");
                 int type = 0;
                 int ret = Interop.Connection.GetBtState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
@@ -515,6 +577,7 @@ namespace Tizen.Network.Connection
         {
             get
             {
+                Log.Debug(Globals.LogTag, "get ConnectionType");
                 int type = 0;
                 int ret = Interop.Connection.GetEthernetState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
@@ -530,6 +593,7 @@ namespace Tizen.Network.Connection
         {
             get
             {
+                Log.Debug(Globals.LogTag, "get EthernetCableState");
                 int type = 0;
                 int ret = Interop.Connection.GetEthernetCableState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
@@ -543,7 +607,6 @@ namespace Tizen.Network.Connection
 
         internal IntPtr CreateCellularProfile(ConnectionProfileType type, string keyword)
         {
-
             Log.Debug(Globals.LogTag, "CreateCellularProfile, " + type + ", " + keyword);
             if (keyword != null)
             {
@@ -641,6 +704,7 @@ namespace Tizen.Network.Connection
 
         internal ConnectionProfile GetCurrentProfile()
         {
+            Log.Debug(Globals.LogTag, "GetCurrentProfile");
             IntPtr ProfileHandle;
             int ret = Interop.Connection.GetCurrentProfile(GetHandle(), out ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
@@ -658,6 +722,7 @@ namespace Tizen.Network.Connection
 
         internal ConnectionProfile GetDefaultCellularProfile(CellularServiceType type)
         {
+            Log.Debug(Globals.LogTag, "GetDefaultCellularProfile");
             IntPtr ProfileHandle;
             int ret = Interop.Connection.GetDefaultCellularServiceProfile(GetHandle(), (int)type, out ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
@@ -712,6 +777,7 @@ namespace Tizen.Network.Connection
 
         internal Task<IEnumerable<ConnectionProfile>> GetProfileListAsync(ProfileListType type)
         {
+            Log.Debug(Globals.LogTag, "GetProfileListAsync");
             var task = new TaskCompletionSource<IEnumerable<ConnectionProfile>>();
 
             List<ConnectionProfile> Result = new List<ConnectionProfile>();

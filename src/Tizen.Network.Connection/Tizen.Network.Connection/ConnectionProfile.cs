@@ -47,6 +47,7 @@ namespace Tizen.Network.Connection
         {
             add
             {
+                Log.Debug(Globals.LogTag, "ProfileStateChanged add");
                 if (_ProfileStateChanged == null)
                 {
                     ProfileStateChangedStart();
@@ -55,6 +56,7 @@ namespace Tizen.Network.Connection
             }
             remove
             {
+                Log.Debug(Globals.LogTag, "ProfileStateChanged remove");
                 _ProfileStateChanged -= value;
                 if (_ProfileStateChanged == null)
                 {
@@ -73,6 +75,7 @@ namespace Tizen.Network.Connection
                 }
             };
 
+            Log.Debug(Globals.LogTag, "ProfileStateChangedStart");
             int ret = Interop.ConnectionProfile.SetStateChangeCallback(ProfileHandle, _profileChangedCallback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
@@ -82,6 +85,7 @@ namespace Tizen.Network.Connection
 
         private void ProfileStateChangedStop()
         {
+            Log.Debug(Globals.LogTag, "ProfileStateChangedStop");
             int ret = Interop.ConnectionProfile.UnsetStateChangeCallback(ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
             {
@@ -226,20 +230,63 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The profile state.
+        /// Refreshes the profile information.
         /// </summary>
-        public ProfileState State
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when profile instance is invalid or when method failed due to invalid operation</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        public void Refresh()
         {
-            get
+            CheckDisposed();
+            int ret = Interop.ConnectionProfile.Refresh(ProfileHandle);
+            if ((ConnectionError)ret != ConnectionError.None)
             {
+                Log.Error(Globals.LogTag, "It failed to get network interface name, " + (ConnectionError)ret);
+                ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.get)");
+                ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
+                ConnectionErrorFactory.ThrowConnectionException(ret);
+            }
+        }
+
+        /// <summary>
+        /// Get the network state.
+        /// </summary>
+        /// <param name="family">The address family</param>
+        /// <returns>The network state.</returns>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when profile instance is invalid or when method failed due to invalid operation</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        public ProfileState GetState(AddressFamily family)
+        {
                 int Value;
-                int ret = Interop.ConnectionProfile.GetState(ProfileHandle, out Value);
+                int ret = (int)ConnectionError.None;
+                if (family == AddressFamily.IPv4)
+                {
+                    ret = Interop.ConnectionProfile.GetState(ProfileHandle, out Value);
+                }
+                else
+                {
+                    ret = Interop.ConnectionProfile.GetIPv6State(ProfileHandle, out Value);
+                }
+
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to get profile state, " + (ConnectionError)ret);
                 }
                 return (ProfileState)Value;
-            }
         }
 
         /// <summary>
@@ -326,7 +373,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The subnet mask address(IPv4).
+        /// The address information (IPv4)
         /// </summary>
         /// <value>Instance of IAddressInformation with IPV4 address.</value>
         public IAddressInformation IPv4Settings
@@ -339,7 +386,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The subnet mask address(IPv4).
+        /// The address information (IPv6)
         /// </summary>
         /// <value>Instance of IAddressInformation with IPV6 address.</value>
         public IAddressInformation IPv6Settings

@@ -82,6 +82,24 @@ namespace Tizen.Network.Connection
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
         IPConfigType IPConfigType { get; set; }
+
+        /// <summary>
+        /// The prefix length.
+        /// </summary>
+        /// <value>Prefix length of the connection.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        int PrefixLength { get; set; }
+
+        /// <summary>
+        /// The DNS config type.
+        /// </summary>
+        /// <value>Config type of the DNS.</value>
+        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        DnsConfigType DnsConfigType { get; set; }
     }
 
     internal class ConnectionAddressInformation : IAddressInformation
@@ -265,6 +283,58 @@ namespace Tizen.Network.Connection
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set ip config type, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
+                }
+            }
+        }
+
+        public int PrefixLength
+        {
+            get
+            {
+                int Value;
+                int ret = Interop.ConnectionProfile.GetPrefixLength(_profileHandle, (int)_family, out Value);
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to get prefix length, " + (ConnectionError)ret);
+                }
+                return Value;
+            }
+
+            set
+            {
+                int ret = Interop.ConnectionProfile.SetPrefixLength(_profileHandle, (int)_family, value);
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to set prefix length, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
+                }
+            }
+        }
+
+        public DnsConfigType DnsConfigType
+        {
+            get
+            {
+                int Value;
+                int ret = Interop.ConnectionProfile.GetDnsConfigType(_profileHandle, (int)_family, out Value);
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to get DNS config type, " + (ConnectionError)ret);
+                }
+                return (DnsConfigType)Value;
+            }
+
+            set
+            {
+                int ret = Interop.ConnectionProfile.SetDnsConfigType(_profileHandle, (int)_family, (int)value);
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to set DNS config type, " + (ConnectionError)ret);
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
