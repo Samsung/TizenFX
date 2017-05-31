@@ -14,8 +14,8 @@ namespace Tizen.NUI
     /// Helper class for calculating what property indexes should be assigned to C# View (view) classes.
     /// </summary>
     internal class PropertyRangeManager
-  {
-    private Dictionary<String, PropertyRange > _propertyRange;
+    {
+        private Dictionary<String, PropertyRange> _propertyRange;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.NUI.PropertyRangeManager"/> class.
@@ -95,7 +95,7 @@ namespace Tizen.NUI
             int startAnimatablePropertyIndex = (int)Tizen.NUI.PropertyRanges.ANIMATABLE_PROPERTY_REGISTRATION_START_INDEX + maxCountPerDerivation;
 
 #if (DOT_NET_CORE)
-            while ( viewType.GetTypeInfo().BaseType.Name != "CustomView" )   // custom view is our C# view base class. we don't go any deeper.
+            while (viewType.GetTypeInfo().BaseType.Name != "CustomView")   // custom view is our C# view base class. we don't go any deeper.
 #else
             while (viewType.BaseType.Name != "CustomView")   // custom view is our C# view base class. we don't go any deeper.
 #endif
@@ -104,7 +104,7 @@ namespace Tizen.NUI
                 startEventPropertyIndex += (int)Tizen.NUI.PropertyRanges.DEFAULT_PROPERTY_MAX_COUNT_PER_DERIVATION; // DALi uses 10,000
                 startAnimatablePropertyIndex += maxCountPerDerivation;
 #if DEBUG_ON
-                Tizen.Log.Debug("NUI", "getStartPropertyIndex =  " + viewType.Name +"current index " + startEventPropertyIndex);
+                Tizen.Log.Debug("NUI", "getStartPropertyIndex =  " + viewType.Name + "current index " + startEventPropertyIndex);
 #endif
 #if (DOT_NET_CORE)
                 viewType = viewType.GetTypeInfo().BaseType;

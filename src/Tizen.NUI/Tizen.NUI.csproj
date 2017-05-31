@@ -45,7 +45,6 @@
     <None Include="Tizen.NUI.project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\internal\AccessibilityActionSignal.cs" />
     <Compile Include="src\internal\AccessibilityFocusOvershotSignal.cs" />
     <Compile Include="src\internal\AccessibilityManager.cs" />
@@ -204,6 +203,7 @@
     <Compile Include="src\internal\SlotObserver.cs" />
     <Compile Include="src\internal\SnapType.cs" />
     <Compile Include="src\internal\StageWheelSignal.cs" />
+    <Compile Include="src\internal\StateChangedSignalType.cs" />
     <Compile Include="src\internal\StencilFunctionType.cs" />
     <Compile Include="src\internal\StencilOperationType.cs" />
     <Compile Include="src\internal\StringValuePair.cs" />
@@ -333,6 +333,7 @@
     <Compile Include="src\public\TapGesture.cs" />
     <Compile Include="src\public\Timer.cs" />
     <Compile Include="src\public\Touch.cs" />
+    <Compile Include="src\public\TTSPlayer.cs" />
     <Compile Include="src\public\BaseComponents\ImageView.cs" />
     <Compile Include="src\public\BaseComponents\TextEditor.cs" />
     <Compile Include="src\public\BaseComponents\TextField.cs" />
@@ -352,6 +353,9 @@
     <Compile Include="src\public\VisualMaps.cs" />
     <Compile Include="src\public\Wheel.cs" />
     <Compile Include="src\public\Window.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
@@ -376,10 +380,10 @@
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Debug|Any CPU">
-        <ProjectCommonFlavorCfg />
+        <ProjectCorporateFlavorCfg />
       </FlavorProperties>
       <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Release|Any CPU">
-        <ProjectCommonFlavorCfg />
+        <ProjectCorporateFlavorCfg />
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>

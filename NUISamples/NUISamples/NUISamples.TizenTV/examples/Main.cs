@@ -17,9 +17,10 @@ namespace NUISamples.TizenTV.examples
             //new ControlDashboard.Example().Run(args);                 //o
             //new DatePickerTest.Example().Run(args);                   //o
             //new DatePickerUsingJson.Example().Run(args);              //o
-            //new HelloTest.Example().Run(args);                        //o
-            new HelloWorldTest.Example().Run(args);                   //o
-            //new Test1.Example().Run(args);                            //o
+            // new HelloTest.Example().Run(args);                        //o
+            // new HelloWorldTest.Example().Run(args);                   //o
+            // new Test1.Example().Run(args);                            //o
+            //new SiblingOrderTest.Example().Run(args);                 //o
             //new UserAlphaFunctionTest.Example().Run(args);            //o
             //new MyCSharpExample.Example().Run(args);                  //o
             //new CustomControlTest.Example().Run(args);                //o
@@ -36,7 +37,7 @@ namespace NUISamples.TizenTV.examples
             //new VisualsUsingCustomView.VisualsExample().Run(args);    //o
             //new FirstScreen.FirstScreenApp().Run(args);               //o
             //new PositionUsesAnchorPointTest.Example().Run(args);
-            //new TizenVDUIApplication19.Program().Run(args);
+            new TizenVDUIApplication19.Program().Run(args);
         }
     }
 }

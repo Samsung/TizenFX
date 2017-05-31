@@ -54,28 +54,35 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        public override void Dispose()
+        protected override void Dispose(DisposeTypes type)
         {
-            if (!Window.IsInstalled())
+            if(disposed)
             {
-                DisposeQueue.Instance.Add(this);
                 return;
             }
 
-            lock (this)
+            if(type == DisposeTypes.Explicit)
             {
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_Timer(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                global::System.GC.SuppressFinalize(this);
-                base.Dispose();
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
             }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Timer(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
 
 
@@ -132,7 +139,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a tick Timer that emits periodic signal.
         /// </summary>
-        /// <param name="milliSec">Interval in milliseconds</param>
+        /// <param name="millSec">Interval in milliseconds</param>
         /// <returns>A new timer</returns>
         public Timer(uint milliSec) : this(NDalicPINVOKE.Timer_New(milliSec), true)
         {

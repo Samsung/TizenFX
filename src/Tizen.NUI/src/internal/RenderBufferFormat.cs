@@ -8,13 +8,15 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum RenderBufferFormat {
-  COLOR,
-  COLOR_DEPTH,
-  COLOR_STENCIL,
-  COLOR_DEPTH_STENCIL
-}
+    internal enum RenderBufferFormat
+    {
+        COLOR,
+        COLOR_DEPTH,
+        COLOR_STENCIL,
+        COLOR_DEPTH_STENCIL
+    }
 
 }

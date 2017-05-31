@@ -69,7 +69,10 @@
     <Compile Include="examples\positionUsesAnchorPoint-test.cs" />
     <Compile Include="examples\relative-vector.cs" />
     <Compile Include="examples\scroll-view.cs" />
+    <Compile Include="examples\sibling-order-test.cs" />
     <Compile Include="examples\test1.cs" />
+    <Compile Include="examples\text-test.cs" />
+    <Compile Include="examples\ttsplayer-test.cs" />
     <Compile Include="examples\user-alphafunction.cs" />
     <Compile Include="examples\view-navi-property.cs" />
     <Compile Include="examples\date-picker-using-json\ViewRegistryHelper.cs" />
@@ -190,10 +193,10 @@
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Debug|Any CPU">
-        <ProjectCommonFlavorCfg />
+        <ProjectCorporateFlavorCfg />
       </FlavorProperties>
       <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Release|Any CPU">
-        <ProjectCommonFlavorCfg />
+        <ProjectCorporateFlavorCfg />
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>

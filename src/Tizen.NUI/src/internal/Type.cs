@@ -8,17 +8,19 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-public enum Type {
-  NONE,
-  USER,
-  KEYBOARD,
-  MOUSE,
-  TOUCH,
-  PEN,
-  POINTER,
-  GAMEPAD
-}
+    public enum Type
+    {
+        NONE,
+        USER,
+        KEYBOARD,
+        MOUSE,
+        TOUCH,
+        PEN,
+        POINTER,
+        GAMEPAD
+    }
 
 }

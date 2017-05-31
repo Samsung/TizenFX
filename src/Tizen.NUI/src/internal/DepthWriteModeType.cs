@@ -8,12 +8,14 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum DepthWriteModeType {
-  OFF,
-  AUTO,
-  ON
-}
+    internal enum DepthWriteModeType
+    {
+        OFF,
+        AUTO,
+        ON
+    }
 
 }

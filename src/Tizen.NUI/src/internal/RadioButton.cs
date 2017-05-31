@@ -57,30 +57,40 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// To make RadioButton instance be disposed.
         /// </summary>
-        public override void Dispose()
+        protected override void Dispose(DisposeTypes type)
         {
-            if (!Window.IsInstalled())
+            if (disposed)
             {
-                DisposeQueue.Instance.Add(this);
                 return;
             }
 
-            lock (this)
+            if (type == DisposeTypes.Explicit)
             {
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_RadioButton(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                global::System.GC.SuppressFinalize(this);
-                base.Dispose();
-            }
-        }
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
 
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            //Unreference this from if a static instance refer to this. 
+            ViewRegistry.UnregisterView(this);
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_RadioButton(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
         /// <summary>
         /// Creates an uninitialized RadioButton
         /// </summary>

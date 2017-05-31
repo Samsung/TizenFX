@@ -402,7 +402,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Called when the owning view's size is set e.g. using View.SetSize().
         /// </summary>
-        /// <param name="targetSize">The target size</param>
+        /// <param name="targetSize">The target size. Note that this target size may not match the size returned via View.GetTargetSize</param>
         public virtual void OnSizeSet(Vector3 targetSize)
         {
         }
@@ -411,7 +411,7 @@ namespace Tizen.NUI.BaseComponents
         /// Called when the owning view's size is animated e.g. using Animation::AnimateTo( Property( view, View::Property::SIZE ), ... ).
         /// </summary>
         /// <param name="animation">The object which is animating the owning view</param>
-        /// <param name="targetSize">The target size</param>
+        /// <param name="targetSize">The target size. Note that this target size may not match the size returned via @ref View.GetTargetSize</param>
         public virtual void OnSizeAnimation(Animation animation, Vector3 targetSize)
         {
         }

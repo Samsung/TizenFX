@@ -8,14 +8,16 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI {
+namespace Tizen.NUI
+{
 
-    internal enum RenderModeType {
-  NONE,
-  AUTO,
-  COLOR,
-  STENCIL,
-  COLOR_STENCIL
-}
+    internal enum RenderModeType
+    {
+        NONE,
+        AUTO,
+        COLOR,
+        STENCIL,
+        COLOR_STENCIL
+    }
 
 }
