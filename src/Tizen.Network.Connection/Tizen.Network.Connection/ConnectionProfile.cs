@@ -284,22 +284,28 @@ namespace Tizen.Network.Connection
         /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
         public ProfileState GetState(AddressFamily family)
         {
-                int Value;
-                int ret = (int)ConnectionError.None;
-                if (family == AddressFamily.IPv4)
-                {
-                    ret = Interop.ConnectionProfile.GetState(ProfileHandle, out Value);
-                }
-                else
-                {
-                    ret = Interop.ConnectionProfile.GetIPv6State(ProfileHandle, out Value);
-                }
+            CheckDisposed();
+            int Value;
+            int ret = (int)ConnectionError.None;
+            if (family == AddressFamily.IPv4)
+            {
+                ret = Interop.ConnectionProfile.GetState(ProfileHandle, out Value);
+            }
 
-                if ((ConnectionError)ret != ConnectionError.None)
-                {
-                    Log.Error(Globals.LogTag, "It failed to get profile state, " + (ConnectionError)ret);
-                }
-                return (ProfileState)Value;
+            else
+            {
+                ret = Interop.ConnectionProfile.GetIPv6State(ProfileHandle, out Value);
+            }
+
+            if ((ConnectionError)ret != ConnectionError.None)
+            {
+                Log.Error(Globals.LogTag, "It failed to get profile state, " + (ConnectionError)ret);
+                ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
+                ConnectionErrorFactory.ThrowConnectionException(ret);
+            }
+
+            return (ProfileState)Value;
         }
 
         /// <summary>

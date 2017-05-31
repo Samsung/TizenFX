@@ -400,6 +400,7 @@ namespace Tizen.Network.Connection
 
         internal System.Net.IPAddress GetIPAddress(AddressFamily family)
         {
+            Log.Debug(Globals.LogTag, "GetIPAddress " + family);
             IntPtr ip;
             int ret = Interop.Connection.GetIPAddress(GetHandle(), (int)family, out ip);
             if ((ConnectionError)ret != ConnectionError.None)
@@ -472,6 +473,7 @@ namespace Tizen.Network.Connection
                 ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero), "Connection Handle may have been disposed or released");
                 ConnectionErrorFactory.ThrowConnectionException(ret);
             }
+
             string result = Marshal.PtrToStringAnsi(mac);
             Interop.Libc.Free(mac);
             return result;
@@ -506,6 +508,50 @@ namespace Tizen.Network.Connection
                 ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.set)");
                 ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero), "Connection Handle may have been disposed or released");
                 ConnectionErrorFactory.ThrowConnectionException(ret);
+            }
+        }
+
+        internal void AddRoute(AddressFamily family, string interfaceName, System.Net.IPAddress address, System.Net.IPAddress gateway)
+        {
+            if (interfaceName != null && address != null && gateway != null)
+            {
+                Log.Debug(Globals.LogTag, "AddRoute " + family + ", " + interfaceName + ", " + address + ", " + gateway);
+                int ret = Interop.Connection.AddRoute(GetHandle(), family, interfaceName, address.ToString(), gateway.ToString());
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to add route to the routing table, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                    ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.set)");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero), "Connection Handle may have been disposed or released");
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
+                }
+            }
+
+            else
+            {
+                throw new ArgumentNullException("Arguments are null");
+            }
+        }
+
+        internal void RemoveRoute(AddressFamily family, string interfaceName, System.Net.IPAddress address, System.Net.IPAddress gateway)
+        {
+            if (interfaceName != null && address != null && gateway != null)
+            {
+                Log.Debug(Globals.LogTag, "RemoveRoute " + family + ", " + interfaceName + ", " + address + ", " + gateway);
+                int ret = Interop.Connection.RemoveRoute(GetHandle(), family, interfaceName, address.ToString(), gateway.ToString());
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to remove route from the routing table, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                    ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.set)");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero), "Connection Handle may have been disposed or released");
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
+                }
+            }
+
+            else
+            {
+                throw new ArgumentNullException("Arguments are null");
             }
         }
 

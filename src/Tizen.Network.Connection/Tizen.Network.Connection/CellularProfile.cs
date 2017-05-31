@@ -28,11 +28,8 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public class CellularProfile : ConnectionProfile
     {
-        private CellularAuthInformation AuthInfo;
-
         internal CellularProfile(IntPtr handle): base(handle)
         {
-            AuthInfo = new CellularAuthInformation(handle);
         }
 
         ~CellularProfile()
@@ -175,7 +172,7 @@ namespace Tizen.Network.Connection
             }
         }
 
-   /// <summary>
+        /// <summary>
         /// The cellular pdn type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -265,7 +262,46 @@ namespace Tizen.Network.Connection
         {
             get
             {
+                int type;
+                string name;
+                string password;
+                int ret = Interop.ConnectionCellularProfile.GetAuthInfo(ProfileHandle, out type, out name, out password);
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to get cellular authentication information, " + (ConnectionError)ret);
+                    return null;
+                }
+
+                CellularAuthInformation AuthInfo = new CellularAuthInformation();
+                AuthInfo.AuthType = (CellularAuthType)type;
+                AuthInfo.UserName = name;
+                AuthInfo.Password = password;
                 return AuthInfo;
+            }
+
+            set
+            {
+                CheckDisposed();
+                if (value != null)
+                {
+                    CellularAuthInformation AuthInfo = value;
+                    int type = (int)AuthInfo.AuthType;
+                    string name = AuthInfo.UserName;
+                    string password = AuthInfo.Password;
+                    int ret = Interop.ConnectionCellularProfile.SetAuthInfo(ProfileHandle, type, name, password);
+                    if ((ConnectionError)ret != ConnectionError.None)
+                    {
+                        Log.Error(Globals.LogTag, "It failed to set auth information, " + (ConnectionError)ret);
+                        ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
+                        ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
+                        ConnectionErrorFactory.ThrowConnectionException(ret);
+                    }
+                }
+
+                else
+                {
+                    throw new ArgumentNullException("CellularAuthInformation value is null");
+                }
             }
         }
 
@@ -333,15 +369,11 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public class CellularAuthInformation
     {
-        private IntPtr ProfileHandle;
-
-        private string Name = "";
-        private string Passwd = "";
-        private CellularAuthType AuthenType = CellularAuthType.None;
-
-        internal CellularAuthInformation(IntPtr handle)
+        /// <summary>
+        /// Default Constructor.Initializes an object of CellularAuthInformation.
+        /// </summary>
+        public CellularAuthInformation()
         {
-            ProfileHandle = handle;
         }
 
         /// <summary>
@@ -349,118 +381,19 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// </summary>
         /// <value>Cellular user name.</value>
-        public string UserName
-        {
-            get
-            {
-                int type;
-                IntPtr name;
-                IntPtr password;
-
-                int ret = Interop.ConnectionCellularProfile.GetAuthInfo(ProfileHandle, out type, out name, out password);
-                if ((ConnectionError)ret != ConnectionError.None)
-                {
-                    Log.Error(Globals.LogTag, "It failed to get auth information, " + (ConnectionError)ret);
-                }
-
-                Name = Marshal.PtrToStringAnsi(name);
-                Passwd = Marshal.PtrToStringAnsi(name);
-                AuthenType = (CellularAuthType)type;
-
-                Interop.Libc.Free(name);
-                Interop.Libc.Free(password);
-
-                return Name;
-            }
-            set
-            {
-                Name = value;
-                int ret = Interop.ConnectionCellularProfile.SetAuthInfo(ProfileHandle, (int)AuthenType, (string)value, Passwd);
-                Log.Error(Globals.LogTag, "UserName : "+ value);
-                if ((ConnectionError)ret != ConnectionError.None)
-                {
-                    Log.Error(Globals.LogTag, "It failed to set auth information, " + (ConnectionError)ret);
-                    ConnectionErrorFactory.ThrowConnectionException(ret);
-                }
-            }
-        }
-
+        public string UserName { get; set;}
         /// <summary>
         /// The password
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular password.</value>
-        public string Password
-        {
-            get
-            {
-                int type;
-                IntPtr name;
-                IntPtr password;
-
-                int ret = Interop.ConnectionCellularProfile.GetAuthInfo(ProfileHandle, out type, out name, out password);
-                if ((ConnectionError)ret != ConnectionError.None)
-                {
-                    Log.Error(Globals.LogTag, "It failed to get auth information, " + (ConnectionError)ret);
-                }
-                Name = Marshal.PtrToStringAnsi(name);
-                Passwd = Marshal.PtrToStringAnsi(password);
-                AuthenType = (CellularAuthType)type;
-
-                Interop.Libc.Free(name);
-                Interop.Libc.Free(password);
-
-                return Passwd;
-            }
-            set
-            {
-                Passwd = value;
-                int ret = Interop.ConnectionCellularProfile.SetAuthInfo(ProfileHandle, (int)AuthenType, Name, (string)value);
-                if ((ConnectionError)ret != ConnectionError.None)
-                {
-                    Log.Error(Globals.LogTag, "It failed to set auth information, " + (ConnectionError)ret);
-                    ConnectionErrorFactory.ThrowConnectionException(ret);
-                }
-            }
-        }
+        public string Password { get; set; }
 
         /// <summary>
         /// The authentication type
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular authentication type.</value>
-        public CellularAuthType AuthType
-        {
-            get
-            {
-                int type;
-                IntPtr name;
-                IntPtr password;
-
-                int ret = Interop.ConnectionCellularProfile.GetAuthInfo(ProfileHandle, out type, out name, out password);
-                if ((ConnectionError)ret != ConnectionError.None)
-                {
-                    Log.Error(Globals.LogTag, "It failed to get auth information, " + (ConnectionError)ret);
-                }
-
-                Name = Marshal.PtrToStringAnsi(name);
-                Passwd = Marshal.PtrToStringAnsi(name);
-                AuthenType = (CellularAuthType)type;
-
-                Interop.Libc.Free(name);
-                Interop.Libc.Free(password);
-                return AuthenType;
-            }
-            set
-            {
-                AuthenType = value;
-                int ret = Interop.ConnectionCellularProfile.SetAuthInfo(ProfileHandle, (int)value, Name, Passwd);
-                if ((ConnectionError)ret != ConnectionError.None)
-                {
-                    Log.Error(Globals.LogTag, "It failed to set auth information, " + (ConnectionError)ret);
-                    ConnectionErrorFactory.ThrowConnectionException(ret);
-                }
-            }
-        }
+        public CellularAuthType AuthType { get; set; }
     }
 }

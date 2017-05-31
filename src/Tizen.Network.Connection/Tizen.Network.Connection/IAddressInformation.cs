@@ -109,6 +109,12 @@ namespace Tizen.Network.Connection
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
         DnsConfigType DnsConfigType { get; set; }
+
+        /// <summary>
+        /// The DHCP server address. It is only supported for IPV4 address family.
+        /// </summary>
+        /// <value>Server address of the DHCP.</value>
+        System.Net.IPAddress DhcpServerAddress { get; }
     }
 
     internal class ConnectionAddressInformation : IAddressInformation
@@ -141,7 +147,7 @@ namespace Tizen.Network.Connection
 
             set
             {
-                int ret = Interop.ConnectionProfile.SetDnsAddress(_profileHandle, (int)_family, value.ToString());
+                int ret = Interop.ConnectionProfile.SetDnsAddress(_profileHandle, 1, (int)_family, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set dns1 address, " + (ConnectionError)ret);
@@ -170,7 +176,7 @@ namespace Tizen.Network.Connection
 
             set
             {
-                int ret = Interop.ConnectionProfile.SetDnsAddress(_profileHandle, (int)_family, value.ToString());
+                int ret = Interop.ConnectionProfile.SetDnsAddress(_profileHandle, 2, (int)_family, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
                     Log.Error(Globals.LogTag, "It failed to set dns2 address, " + (ConnectionError)ret);
@@ -347,6 +353,29 @@ namespace Tizen.Network.Connection
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
+                }
+            }
+        }
+
+        public System.Net.IPAddress DhcpServerAddress
+        {
+            get
+            {
+                string dhcpServer;
+                int ret = Interop.ConnectionProfile.GetDhcpServerAddress(_profileHandle, _family, out dhcpServer);
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to get the DHCP server address, " + (ConnectionError)ret);
+                }
+
+                if (dhcpServer == null)
+                {
+                    return System.Net.IPAddress.Parse("0.0.0.0");
+                }
+
+                else
+                {
+                    return System.Net.IPAddress.Parse(dhcpServer);
                 }
             }
         }

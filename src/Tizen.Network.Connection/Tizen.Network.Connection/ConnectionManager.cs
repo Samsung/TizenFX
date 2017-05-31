@@ -294,6 +294,54 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
+        /// Adds a route to the routing table.
+        /// </summary>
+        /// <param name="family">The address family</param>
+        /// <param name="interfaceName">The name of network interface</param>
+        /// <param name="hostAddress">The IP address of the host</param>
+        /// <param name="gateway">The gateway address</param>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when interfaceName or hostAddress or gateway is null.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
+        public static void AddRoute(AddressFamily family, string interfaceName, System.Net.IPAddress hostAddress, System.Net.IPAddress gateway)
+        {
+            ConnectionInternalManager.Instance.AddRoute(family, interfaceName, hostAddress, gateway);
+        }
+
+        /// <summary>
+        /// Removes a route from the routing table.
+        /// </summary>
+        /// <param name="family">The address family</param>
+        /// <param name="interfaceName">The name of network interface</param>
+        /// <param name="hostAddress">The IP address of the host</param>
+        /// <param name="gateway">The gateway address</param>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when interfaceName or hostAddress or gateway is null.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
+        public static void RemoveRoute(AddressFamily family, string interfaceName, System.Net.IPAddress hostAddress, System.Net.IPAddress gateway)
+        {
+            ConnectionInternalManager.Instance.RemoveRoute(family, interfaceName, hostAddress, gateway);
+        }
+
+        /// <summary>
         /// Type and state of the current profile for data connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
