@@ -193,5 +193,53 @@ namespace Tizen.Network.WiFi
                 }
             }
         }
+
+        public int PrefixLength
+        {
+            get
+            {
+                int Value;
+                int ret = Interop.WiFi.AP.GetPrefixLength(_handle, (int)_family, out Value);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to get prefix length, " + (WiFiError)ret);
+                    return -1;
+                }
+                return Value;
+            }
+
+            set
+            {
+                int ret = Interop.WiFi.AP.SetPrefixLength(_handle, (int)_family, value);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to set prefix length, " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
+                }
+            }
+        }
+
+        public DnsConfigType DnsConfigType
+        {
+            get
+            {
+                int Value;
+                int ret = Interop.WiFi.AP.GetDnsConfigType(_handle, (int)_family, out Value);
+                if ((WiFiError)ret != WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to get DNS config type, " + (WiFiError)ret);
+                }
+                return (DnsConfigType)Value;
+            }
+            set
+            {
+                int ret = Interop.WiFi.AP.SetDnsConfigType(_handle, (int)_family, (int)value);
+                if ((WiFiError)ret != WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to set DNS config type, " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
+                }
+            }
+        }
     }
 }

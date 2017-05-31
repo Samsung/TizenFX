@@ -135,6 +135,8 @@ internal static partial class Interop
             internal static extern int SetIPConfigType(SafeWiFiAPHandle ap, int addressFamily, int ipConfigType);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_ip_address")]
             internal static extern int GetIPAddress(SafeWiFiAPHandle ap, int addressFamily, out IntPtr ipAddress);
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_foreach_ipv6_address")]
+            internal static extern int GetAllIPv6Addresses(SafeWiFiAPHandle ap, HandleCallback callback, IntPtr userData);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_ip_address")]
             internal static extern int SetIPAddress(SafeWiFiAPHandle ap, int addressFamily, string ipAddress);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_subnet_mask")]
@@ -157,6 +159,14 @@ internal static partial class Interop
             internal static extern int GetDnsAddress(SafeWiFiAPHandle ap, int order, int addressFamily, out IntPtr dnsAddress);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_dns_address")]
             internal static extern int SetDnsAddress(SafeWiFiAPHandle ap, int order, int addressFamily, string dnsAddress);
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_prefix_length")]
+            internal static extern int GetPrefixLength(SafeWiFiAPHandle ap, int addressFamily, out int length);
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_prefix_length")]
+            internal static extern int SetPrefixLength(SafeWiFiAPHandle ap, int addressFamily, int length);
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_dns_config_type")]
+            internal static extern int GetDnsConfigType(SafeWiFiAPHandle ap, int addressFamily, out int type);
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_dns_config_type")]
+            internal static extern int SetDnsConfigType(SafeWiFiAPHandle ap, int addressFamily, int type);
 
             ////Security Information
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_security_type")]

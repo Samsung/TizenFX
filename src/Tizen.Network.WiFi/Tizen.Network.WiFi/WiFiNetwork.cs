@@ -271,6 +271,39 @@ namespace Tizen.Network.WiFi
             }
         }
 
+        /// <summary>
+        /// Gets the all IPv6 addresses of the access point
+        /// </summary>
+        /// <returns>A list of IPv6 addresses of the access point.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
+        public IEnumerable<System.Net.IPAddress> GetAllIPv6Addresses()
+        {
+            Log.Debug(Globals.LogTag, "GetAllIPv6Addresses");
+            List<System.Net.IPAddress> ipList = new List<System.Net.IPAddress>();
+            Interop.WiFi.HandleCallback callback = (IntPtr ipv6Address, IntPtr userData) =>
+            {
+                if (ipv6Address != IntPtr.Zero)
+                {
+                    string ipv6 = Marshal.PtrToStringAnsi(ipv6Address);
+                    ipList.Add(System.Net.IPAddress.Parse(ipv6));
+                    return true;
+                }
+                return false;
+            };
+
+            int ret = Interop.WiFi.AP.GetAllIPv6Addresses(_apHandle, callback, IntPtr.Zero);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get all IPv6 addresses, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
+            }
+
+            return ipList;
+        }
+
         internal WiFiNetwork(Interop.WiFi.SafeWiFiAPHandle apHandle)
         {
             _apHandle = apHandle;
