@@ -16,30 +16,25 @@ BuildRequires: dotnet-build-tools
 # C# API Requires
 BuildRequires: csapi-tizen-nuget
 
-%define Assemblies Tizen.Applications.Common Tizen.Applications.MessagePort Tizen.Applications.Service Tizen.Applications.PackageManager Tizen.Applications.Notification Tizen.Applications.NotificationEventListener Tizen.Applications.Preference Tizen.Applications.Alarm Tizen.Applications.UI Tizen.Applications Tizen.Applications.ToastMessage
+%define Assemblies Tizen.Applications.Common Tizen.Applications.MessagePort Tizen.Applications.Service Tizen.Applications.PackageManager Tizen.Applications.Notification Tizen.Applications.NotificationEventListener Tizen.Applications.Preference Tizen.Applications.Alarm Tizen.Applications.UI Tizen.Applications.ToastMessage
 
 %description
 %{summary}
 
-%package -n %{name}-nuget
-Summary:  An Application library in Tizen C# API
-Group:  Development/Libraries
-Requires: csapi-application-common-nuget
-Requires: csapi-application-message-port-nuget
-Requires: csapi-application-package-manager-nuget
-Requires: csapi-application-notification-nuget
-Requires: csapi-application-toastmessage-nuget
-Requires: csapi-application-notificationeventlistener-nuget
-Requires: csapi-application-preference-nuget
-Requires: csapi-application-alarm-nuget
-Requires: csapi-application-service-nuget
-Requires: csapi-application-ui-nuget
-
-%description -n %{name}-nuget
-An Application library in Tizen C# API package.
+%define ApplicationCommon 1.5.8
+%define MessagePort 1.5.8
+%define PackageManager 1.5.8
+%define Notification 1.5.8
+%define NotificationEventListener 1.5.8
+%define Alarm 1.5.8
+%define Preference 1.5.8
+%define ApplicationService 1.5.8
+%define ApplicationUI 1.5.8
+%define ToastMessage 1.5.8
 
 %package -n csapi-application-common
 Summary:  An Application Common library in Tizen C# API
+Version:  %{ApplicationCommon}
 Group:  Development/Libraries
 AutoReqProv: no
 ExcludeArch: aarch64
@@ -49,6 +44,7 @@ An Application Common library in Tizen C# API package.
 
 %package -n csapi-application-common-nuget
 Summary:  An Application Common library in Tizen C# API
+Version:  %{ApplicationCommon}
 Group:  Development/Libraries
 
 %description -n csapi-application-common-nuget
@@ -56,6 +52,7 @@ An Application Common library in Tizen C# API package.
 
 %package -n csapi-application-message-port
 Summary:  An Application IPC library in Tizen C# API
+Version:  %{MessagePort}
 Group:  Development/Libraries
 AutoReqProv: no
 ExcludeArch: aarch64
@@ -65,6 +62,7 @@ An Application IPC library in Tizen C# API package.
 
 %package -n csapi-application-message-port-nuget
 Summary:  An Application IPC library in Tizen C# API
+Version:  %{MessagePort}
 Group:  Development/Libraries
 
 %description -n csapi-application-message-port-nuget
@@ -73,6 +71,7 @@ An Application IPC library in Tizen C# API package.
 %package -n csapi-application-package-manager
 Summary:  A package library in Tizen C# API
 Group:  Development/Libraries
+Version:  %{PackageManager}
 AutoReqProv: no
 ExcludeArch: aarch64
 
@@ -81,6 +80,7 @@ A package library in Tizen C# API package.
 
 %package -n csapi-application-package-manager-nuget
 Summary:  A package library in Tizen C# API
+Version:  %{PackageManager}
 Group:  Development/Libraries
 
 %description -n csapi-application-package-manager-nuget
@@ -88,6 +88,7 @@ A package library in Tizen C# API package.
 
 %package -n csapi-application-notification
 Summary:  A notification library in Tizen C# API
+Version:  %{Notification}
 Group:  Development/Libraries
 AutoReqProv: no
 ExcludeArch: aarch64
@@ -97,6 +98,7 @@ A notification library in Tizen C# API package.
 
 %package -n csapi-application-notification-nuget
 Summary:  A notification library in Tizen C# API
+Version:  %{Notification}
 Group:  Development/Libraries
 
 %description -n csapi-application-notification-nuget
@@ -104,6 +106,7 @@ A notification library in Tizen C# API package.
 
 %package -n csapi-application-toastmessage
 Summary:  A toastmessage library in Tizen C# API
+Version:  %{ToastMessage}
 Group:  Development/Libraries
 AutoReqProv: no
 ExcludeArch: aarch64
@@ -113,6 +116,7 @@ A toastmessage library in Tizen C# API package.
 
 %package -n csapi-application-toastmessage-nuget
 Summary:  A toastmessage library in Tizen C# API
+Version:  %{ToastMessage}
 Group:  Development/Libraries
 
 %description -n csapi-application-toastmessage-nuget
@@ -120,6 +124,7 @@ A toastmessage library in Tizen C# API package.
 
 %package -n csapi-application-notificationeventlistener
 Summary:  A notificationeventlistener library in Tizen C# API
+Version:  %{NotificationEventListener}
 Group:  Development/Libraries
 AutoReqProv: no
 ExcludeArch: aarch64
@@ -129,6 +134,7 @@ A notificationeventlistener library in Tizen C# API package.
 
 %package -n csapi-application-notificationeventlistener-nuget
 Summary:  A notificationeventlistener library in Tizen C# API
+Version:  %{NotificationEventListener}
 Group:  Development/Libraries
 
 %description -n csapi-application-notificationeventlistener-nuget
@@ -136,6 +142,7 @@ A notificationeventlistener library in Tizen C# API package.
 
 %package -n csapi-application-preference
 Summary:  A preference library in Tizen C# API
+Version:  %{Preference}
 Group:  Development/Libraries
 AutoReqProv: no
 ExcludeArch: aarch64
@@ -145,6 +152,7 @@ A preference library in Tizen C# API package.
 
 %package -n csapi-application-preference-nuget
 Summary:  A preference library in Tizen C# API
+Version:  %{Preference}
 Group:  Development/Libraries
 
 %description -n csapi-application-preference-nuget
@@ -152,6 +160,7 @@ A preference library in Tizen C# API package.
 
 %package -n csapi-application-alarm
 Summary:  An alarm library in Tizen C# API
+Version:  %{Alarm}
 Group:  Development/Libraries
 AutoReqProv: no
 ExcludeArch: aarch64
@@ -161,6 +170,7 @@ An alarm library in Tizen C# API package.
 
 %package -n csapi-application-alarm-nuget
 Summary:  An alarm library in Tizen C# API
+Version:  %{Alarm}
 Group:  Development/Libraries
 
 %description -n csapi-application-alarm-nuget
@@ -168,6 +178,7 @@ An alarm library in Tizen C# API package.
 
 %package -n csapi-application-service
 Summary:  A service application library in Tizen C# API
+Version:  %{ApplicationService}
 Group:  Development/Libraries
 AutoReqProv: no
 ExcludeArch: aarch64
@@ -177,6 +188,7 @@ A service application library in Tizen C# API package.
 
 %package -n csapi-application-service-nuget
 Summary:  A service application library in Tizen C# API
+Version:  %{ApplicationService}
 Group:  Development/Libraries
 
 %description -n csapi-application-service-nuget
@@ -184,6 +196,7 @@ A service application library in Tizen C# API package.
 
 %package -n csapi-application-ui
 Summary:  An ui application library in Tizen C# API
+Version:  %{ApplicationUI}
 Group:  Development/Libraries
 AutoReqProv: no
 ExcludeArch: aarch64
@@ -193,6 +206,7 @@ An ui application library in Tizen C# API package.
 
 %package -n csapi-application-ui-nuget
 Summary:  An ui application library in Tizen C# API
+Version:  %{ApplicationUI}
 Group:  Development/Libraries
 
 %description -n csapi-application-ui-nuget
@@ -294,12 +308,4 @@ done
 
 %files -n csapi-application-ui-nuget
 /nuget/Tizen.Applications.UI.%{version}.nupkg
-
-%files
-%manifest %{name}.manifest
-%license LICENSE
-%attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.dll
-
-%files -n %{name}-nuget
-/nuget/Tizen.Applications.%{version}.nupkg
 
