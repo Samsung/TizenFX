@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -118,12 +118,12 @@ namespace ScrollViewTest
 
       // Set scroll view to have 3 pages in X axis and allow page snapping,
       // and also disable scrolling in Y axis.
-      RulerPtr scrollRulerX = new RulerPtr(new FixedRuler(windowSize.Width));
-      RulerPtr scrollRulerY = new RulerPtr(new DefaultRuler());
-      scrollRulerX.SetDomain(new RulerDomain(0.0f, windowSize.Width * pageColumns, true));
-      scrollRulerY.Disable();
-      _scrollView.SetRulerX(scrollRulerX);
-      _scrollView.SetRulerY(scrollRulerY);
+       PropertyMap rulerMap = new PropertyMap();
+       rulerMap.Add((int)ScrollModeType.XAxisScrollEnabled, new PropertyValue(true));
+       rulerMap.Add((int)ScrollModeType.XAxisSnapToInterval, new PropertyValue(windowSize.Width));
+       rulerMap.Add((int)ScrollModeType.XAxisScrollBoundary, new PropertyValue(windowSize.Width * pageColumns ) );
+       rulerMap.Add((int)ScrollModeType.YAxisScrollEnabled, new PropertyValue( false ) );
+       _scrollView.ScrollMode = rulerMap;
 
       // Create a horizontal scroll bar in the bottom of scroll view (which is optional)
       _scrollBar = new ScrollBar(ScrollBar.Direction.Horizontal);
