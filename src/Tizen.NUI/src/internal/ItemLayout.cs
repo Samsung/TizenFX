@@ -13,7 +13,7 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
 
-    internal class ItemLayout : RefObject
+    public class ItemLayout : RefObject
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -59,6 +59,18 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        public void SetOrientation(ControlOrientationType orientation)
+        {
+            NDalicPINVOKE.ItemLayout_SetOrientation(swigCPtr, (int)orientation);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public ControlOrientationType GetOrientation()
+        {
+            ControlOrientationType ret = (ControlOrientationType)NDalicPINVOKE.ItemLayout_GetOrientation(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
         public void SetLayoutProperties(PropertyMap properties)
         {

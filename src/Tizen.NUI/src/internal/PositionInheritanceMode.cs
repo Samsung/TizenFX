@@ -11,12 +11,12 @@
 namespace Tizen.NUI
 {
 
-    public enum DefaultItemLayoutType
+    internal enum PositionInheritanceMode
     {
-        DEPTH,
-        GRID,
-        LIST,
-        SPIRAL
+        INHERIT_PARENT_POSITION,
+        USE_PARENT_POSITION,
+        USE_PARENT_POSITION_PLUS_LOCAL_POSITION,
+        DONT_INHERIT_POSITION
     }
 
 }

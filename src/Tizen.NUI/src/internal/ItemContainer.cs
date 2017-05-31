@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    internal class ItemContainer : global::System.IDisposable, global::System.Collections.IEnumerable
+    public class ItemContainer : global::System.IDisposable, global::System.Collections.IEnumerable
     , global::System.Collections.Generic.IEnumerable<Item>
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

@@ -359,6 +359,19 @@ namespace Tizen.NUI.UIComponents
             return ret;
         }
 
+        internal void SetScrollPositionIntervals(VectorFloat positions)
+        {
+            NDalicPINVOKE.ScrollBar_SetScrollPositionIntervals(swigCPtr, VectorFloat.getCPtr(positions));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal VectorFloat GetScrollPositionIntervals()
+        {
+            VectorFloat ret = new VectorFloat(NDalicPINVOKE.ScrollBar_GetScrollPositionIntervals(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal void SetScrollDirection(ScrollBar.Direction direction)
         {
             NDalicPINVOKE.ScrollBar_SetScrollDirection(swigCPtr, (int)direction);

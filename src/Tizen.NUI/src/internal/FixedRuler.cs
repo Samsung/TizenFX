@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    internal class FixedRuler : Ruler
+    public class FixedRuler : Ruler
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

@@ -502,6 +502,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        public static PropertyCondition VariableStepCondition(VectorFloat steps)
+        {
+            PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.VariableStepCondition(VectorFloat.getCPtr(steps)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         public static int WEIGHT
         {
             get
@@ -1293,6 +1300,19 @@ namespace Tizen.NUI
             return ret;
         }
 
+        public static bool IsVertical(ControlOrientationType orientation)
+        {
+            bool ret = NDalicPINVOKE.IsVertical((int)orientation);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static bool IsHorizontal(ControlOrientationType orientation)
+        {
+            bool ret = NDalicPINVOKE.IsHorizontal((int)orientation);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
         public static SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t NewItemLayout(DefaultItemLayoutType type)
         {

@@ -8418,9 +8418,6 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ScrollView_Property_WHEEL_SCROLL_DISTANCE_STEP_get")]
   public static extern int ScrollView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
 
-  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ScrollView_Property_SCROLL_MODE_get")]
-  public static extern int ScrollView_Property_SCROLL_MODE_get();
-
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ScrollView_Property_SCROLL_POSITION_get")]
   public static extern int ScrollView_Property_SCROLL_POSITION_get();
 

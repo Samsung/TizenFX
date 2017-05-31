@@ -33,7 +33,7 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
 
 
-    internal class ItemView : Scrollable
+    public class ItemView : Scrollable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
