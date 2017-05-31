@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    internal class RulerDomain : global::System.IDisposable
+    public class RulerDomain : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;

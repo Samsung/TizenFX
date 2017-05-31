@@ -8,15 +8,20 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+/* moved to VisualMaps.cs 
 namespace Tizen.NUI
 {
-
-    public enum DefaultItemLayoutType
+    public enum AlignType
     {
-        DEPTH,
-        GRID,
-        LIST,
-        SPIRAL
+        TOP_BEGIN = 0,
+        TOP_CENTER,
+        TOP_END,
+        CENTER_BEGIN,
+        CENTER,
+        CENTER_END,
+        BOTTOM_BEGIN,
+        BOTTOM_CENTER,
+        BOTTOM_END
     }
-
 }
+*/

@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    internal class CustomActor : Animatable
+    public class CustomActor : Animatable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

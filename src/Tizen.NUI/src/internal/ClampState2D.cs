@@ -11,18 +11,18 @@
 namespace Tizen.NUI
 {
 
-    public class ProgressBarValueChangedSignal : global::System.IDisposable
+    internal class ClampState2D : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
 
-        internal ProgressBarValueChangedSignal(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal ClampState2D(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ProgressBarValueChangedSignal obj)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ClampState2D obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
@@ -32,8 +32,13 @@ namespace Tizen.NUI
         //A Flat to check if it is already disposed.
         protected bool disposed = false;
 
+        protected enum DisposeTypes
+        {
+            Explicit,   //Called By User 
+            Implicit,   //Called by DisposeQueue
+        }
 
-        ~ProgressBarValueChangedSignal()
+        ~ClampState2D()
         {
             if (!isDisposeQueued)
             {
@@ -85,7 +90,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_ProgressBarValueChangedSignal(swigCPtr);
+                    NDalicPINVOKE.delete_ClampState2D(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -94,45 +99,37 @@ namespace Tizen.NUI
         }
 
 
-        public bool Empty()
+        public ClampState x
         {
-            bool ret = NDalicPINVOKE.ProgressBarValueChangedSignal_Empty(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public uint GetConnectionCount()
-        {
-            uint ret = NDalicPINVOKE.ProgressBarValueChangedSignal_GetConnectionCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public void Connect(System.Delegate func)
-        {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
+            set
             {
-                NDalicPINVOKE.ProgressBarValueChangedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicPINVOKE.ClampState2D_x_set(swigCPtr, (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                ClampState ret = (ClampState)NDalicPINVOKE.ClampState2D_x_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
         }
 
-        public void Disconnect(System.Delegate func)
+        public ClampState y
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
+            set
             {
-                NDalicPINVOKE.ProgressBarValueChangedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicPINVOKE.ClampState2D_y_set(swigCPtr, (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                ClampState ret = (ClampState)NDalicPINVOKE.ClampState2D_y_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
         }
 
-        public void Emit(Tizen.NUI.UIComponents.ProgressBar arg1, float arg2, float arg3)
-        {
-            NDalicPINVOKE.ProgressBarValueChangedSignal_Emit(swigCPtr, Tizen.NUI.UIComponents.ProgressBar.getCPtr(arg1), arg2, arg3);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public ProgressBarValueChangedSignal() : this(NDalicPINVOKE.new_ProgressBarValueChangedSignal(), true)
+        public ClampState2D() : this(NDalicPINVOKE.new_ClampState2D(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

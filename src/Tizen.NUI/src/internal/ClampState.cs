@@ -11,12 +11,11 @@
 namespace Tizen.NUI
 {
 
-    public enum DefaultItemLayoutType
+    internal enum ClampState
     {
-        DEPTH,
-        GRID,
-        LIST,
-        SPIRAL
+        NotClamped,
+        ClampedToMin,
+        ClampedToMax
     }
 
 }

@@ -27,7 +27,7 @@
 namespace Tizen.NUI
 {
 
-    internal class Camera : Animatable
+    public class Camera : Animatable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

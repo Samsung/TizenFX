@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    internal class SWIGTYPE_p_Dali__SignalT_void_fDali__Actor_bool_Dali__DevelActor__VisibilityChange__TypeF_t
+    public class SWIGTYPE_p_Dali__SignalT_void_fDali__Actor_bool_Dali__DevelActor__VisibilityChange__TypeF_t
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

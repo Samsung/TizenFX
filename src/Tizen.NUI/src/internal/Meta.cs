@@ -11,12 +11,9 @@
 namespace Tizen.NUI
 {
 
-    public enum DefaultItemLayoutType
+    internal enum Meta
     {
-        DEPTH,
-        GRID,
-        LIST,
-        SPIRAL
+        DIMENSION_COUNT = 2
     }
 
 }

@@ -246,6 +246,53 @@ namespace Tizen.NUI
                 disposed = true;
             }
 
+            internal ClampState2D scale
+            {
+                set
+                {
+                    NDalicPINVOKE.ScrollView_ClampEvent_scale_set(swigCPtr, ClampState2D.getCPtr(value));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    global::System.IntPtr cPtr = NDalicPINVOKE.ScrollView_ClampEvent_scale_get(swigCPtr);
+                    ClampState2D ret = (cPtr == global::System.IntPtr.Zero) ? null : new ClampState2D(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            internal ClampState2D position
+            {
+                set
+                {
+                    NDalicPINVOKE.ScrollView_ClampEvent_position_set(swigCPtr, ClampState2D.getCPtr(value));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    global::System.IntPtr cPtr = NDalicPINVOKE.ScrollView_ClampEvent_position_get(swigCPtr);
+                    ClampState2D ret = (cPtr == global::System.IntPtr.Zero) ? null : new ClampState2D(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            internal ClampState rotation
+            {
+                set
+                {
+                    NDalicPINVOKE.ScrollView_ClampEvent_rotation_set(swigCPtr, (int)value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    ClampState ret = (ClampState)NDalicPINVOKE.ScrollView_ClampEvent_rotation_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
             public ClampEvent() : this(NDalicPINVOKE.new_ScrollView_ClampEvent(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -486,7 +533,6 @@ namespace Tizen.NUI
             public static readonly int PANNING_ENABLED = NDalicPINVOKE.ScrollView_Property_PANNING_ENABLED_get();
             public static readonly int AXIS_AUTO_LOCK_ENABLED = NDalicPINVOKE.ScrollView_Property_AXIS_AUTO_LOCK_ENABLED_get();
             public static readonly int WHEEL_SCROLL_DISTANCE_STEP = NDalicPINVOKE.ScrollView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
-            public static readonly int SCROLL_MODE = NDalicPINVOKE.ScrollView_Property_SCROLL_MODE_get();
             public static readonly int SCROLL_POSITION = NDalicPINVOKE.ScrollView_Property_SCROLL_POSITION_get();
             public static readonly int SCROLL_PRE_POSITION = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_get();
             public static readonly int SCROLL_PRE_POSITION_X = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_X_get();
@@ -587,6 +633,17 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        public void SetRulerX(RulerPtr ruler)
+        {
+            NDalicPINVOKE.ScrollView_SetRulerX(swigCPtr, RulerPtr.getCPtr(ruler));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetRulerY(RulerPtr ruler)
+        {
+            NDalicPINVOKE.ScrollView_SetRulerY(swigCPtr, RulerPtr.getCPtr(ruler));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         public void SetScrollSensitive(bool sensitive)
         {
@@ -1116,21 +1173,6 @@ namespace Tizen.NUI
             set
             {
                 SetProperty(ScrollView.Property.START_PAGE_POSITION, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        public PropertyMap ScrollMode
-        {
-            get
-            {
-                PropertyValue value = GetProperty( ScrollView.Property.SCROLL_MODE );
-                PropertyMap map = new PropertyMap();
-                value.Get( map );
-                return map;
-            }
-            set
-            {
-                SetProperty( ScrollView.Property.SCROLL_MODE, new PropertyValue( value ) );
             }
         }
 

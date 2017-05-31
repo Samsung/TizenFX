@@ -32,7 +32,7 @@ namespace Tizen.NUI
     using Tizen.NUI.BaseComponents;
 
 
-    internal class PanGestureDetector : GestureDetector
+    public class PanGestureDetector : GestureDetector
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

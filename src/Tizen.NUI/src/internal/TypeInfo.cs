@@ -131,6 +131,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal void GetPropertyIndices(VectorInteger indices)
+        {
+            NDalicPINVOKE.TypeInfo_GetPropertyIndices(swigCPtr, VectorInteger.getCPtr(indices));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         public string GetPropertyName(int index)
         {
             string ret = NDalicPINVOKE.TypeInfo_GetPropertyName(swigCPtr, index);

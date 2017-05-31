@@ -11,12 +11,12 @@
 namespace Tizen.NUI
 {
 
-    public enum DefaultItemLayoutType
+    public enum ControlOrientationType
     {
-        DEPTH,
-        GRID,
-        LIST,
-        SPIRAL
+        Up,
+        Left,
+        Down,
+        Right
     }
 
 }

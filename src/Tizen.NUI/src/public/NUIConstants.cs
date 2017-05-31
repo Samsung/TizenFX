@@ -15,16 +15,6 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    public enum ScrollModeType
-    {
-      XAxisScrollEnabled,
-      XAxisSnapToInterval,
-      XAxisScrollBoundary,
-      YAxisScrollEnabled,
-      YAxisSnapToInterval,
-      YAxisScrollBoundary
-    }
-
     /// <summary>
     /// This specifies whether the Actor uses its own color, or inherits.
     /// </summary>

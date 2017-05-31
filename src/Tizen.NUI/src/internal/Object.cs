@@ -22,7 +22,7 @@
 namespace Tizen.NUI
 {
 
-    internal static class Object
+    public static class Object
     {
         public static PropertyValue GetProperty(global::System.Runtime.InteropServices.HandleRef handle, int index)
         {

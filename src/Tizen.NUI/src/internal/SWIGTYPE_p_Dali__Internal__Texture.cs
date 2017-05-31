@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    internal class SWIGTYPE_p_Dali__Internal__Texture
+    public class SWIGTYPE_p_Dali__Internal__Texture
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

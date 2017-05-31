@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    internal class RefObject : global::System.IDisposable
+    public class RefObject : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
