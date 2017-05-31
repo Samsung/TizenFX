@@ -52,13 +52,6 @@ namespace ElmSharp.Test
             toolbar.Show();
             outterBox.PackEnd(toolbar);
 
-            for (int i = 0; i < 5; i++)
-            {
-                ToolbarItem item = toolbar.Append(string.Format("{0} home", i), "home");
-                Color bgColor = Color.FromRgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
-                item.SetPartColor("bg", bgColor);
-            }
-
             toolbar.Selected += (s, e) =>
             {
                 e.Item.DeletePartColor("bg");
@@ -70,6 +63,20 @@ namespace ElmSharp.Test
             };
             lb.Show();
             outterBox.PackEnd(lb);
+
+            for (int i = 0; i < 5; i++)
+            {
+                ToolbarItem item = toolbar.Append(string.Format("{0} home", i), "home");
+                Color bgColor = Color.FromRgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
+                item.SetPartColor("bg", bgColor);
+
+                item.Clicked += (s, e) =>
+                {
+                    lb.Text = (s as ToolbarItem).Text+" clicked";
+                };
+            }
+
+
             conformant.SetContent(outterBox);
         }
     }
