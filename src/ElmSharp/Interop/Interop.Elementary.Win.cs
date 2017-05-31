@@ -83,6 +83,9 @@ internal static partial class Interop
         internal static extern void elm_win_focus_highlight_style_set(IntPtr obj, string style);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_borderless_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_borderless_set(IntPtr obj, bool borderless);
 
         [DllImport(Libraries.Elementary)]
@@ -96,6 +99,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_win_autodel_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_override_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_override_set(IntPtr obj, bool isOverride);
@@ -113,7 +119,13 @@ internal static partial class Interop
         internal static extern IndicatorMode elm_win_indicator_mode_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_demand_attention_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_demand_attention_set(IntPtr obj, bool demandAttention);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_conformant_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_conformant_set(IntPtr obj, bool conformant);
@@ -172,7 +184,13 @@ internal static partial class Interop
         }
 
         [DllImport(Libraries.Elementary)]
+        internal static extern int elm_win_layer_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_layer_set(IntPtr obj, int layer);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_sticky_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_sticky_set(IntPtr obj, bool sticky);
@@ -186,6 +204,9 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool elm_win_iconified_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_floating_mode_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_floating_mode_set(IntPtr obj, bool floating);
@@ -205,29 +226,204 @@ internal static partial class Interop
         internal static extern bool eext_win_keygrab_unset(IntPtr obj, string key);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_keyboard_win_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_keyboard_win_set(IntPtr obj, bool isKeyboard);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_win_keyboard_mode_set(IntPtr obj, Elm_Win_Keyboard_Mode mode);
+        internal static extern int elm_win_keyboard_mode_get(IntPtr obj);
 
-        internal enum Elm_Win_Keyboard_Mode
-        {
-            ELM_WIN_KEYBOARD_UNKNOWN,
-            ELM_WIN_KEYBOARD_OFF,
-            ELM_WIN_KEYBOARD_ON,
-            ELM_WIN_KEYBOARD_ALPHA,
-            ELM_WIN_KEYBOARD_NUMERIC,
-            ELM_WIN_KEYBOARD_PIN,
-            ELM_WIN_KEYBOARD_PHONE_NUMBER,
-            ELM_WIN_KEYBOARD_HEX,
-            ELM_WIN_KEYBOARD_TERMINAL,
-            ELM_WIN_KEYBOARD_PASSWORD,
-            ELM_WIN_KEYBOARD_IP,
-            ELM_WIN_KEYBOARD_HOST,
-            ELM_WIN_KEYBOARD_FILE,
-            ELM_WIN_KEYBOARD_URL,
-            ELM_WIN_KEYBOARD_KEYPAD,
-            ELM_WIN_KEYBOARD_J2ME,
-        }
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_keyboard_mode_set(IntPtr obj, int mode);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_inwin_activate(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_win_inwin_add(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_win_inwin_content_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_inwin_content_set(IntPtr obj, IntPtr content);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_win_inwin_content_unset(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern double elm_win_aspect_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_aspect_set(IntPtr obj, double aspect);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_autohide_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_autohide_set(IntPtr obj, bool autohide);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_center(IntPtr obj, bool h, bool v);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_focus_highlight_animate_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_focus_highlight_animate_set(IntPtr obj, bool animate);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern string elm_win_icon_name_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_icon_name_set(IntPtr obj, string iconName);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_win_icon_object_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_icon_object_set(IntPtr obj, IntPtr icon);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_win_inlined_image_object_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_maximized_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_maximized_set(IntPtr obj, bool maximized);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_modal_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_modal_set(IntPtr obj, bool modal);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_noblank_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_noblank_set(IntPtr obj, bool noblank);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_win_norender_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_norender_pop(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_norender_push(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern string elm_win_profile_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_profile_set(IntPtr obj, string profile);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_quickpanel_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_win_quickpanel_priority_major_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_quickpanel_priority_major_set(IntPtr obj, int priority);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_win_quickpanel_priority_minor_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_quickpanel_priority_minor_set(IntPtr obj, int priority);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_quickpanel_set(IntPtr obj, bool quickpanel);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_win_quickpanel_zone_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_quickpanel_zone_set(IntPtr obj, int zone);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_render(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_screen_constrain_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_screen_constrain_set(IntPtr obj, bool constrain);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_screen_position_get(IntPtr obj, out int x, out int y);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_shaped_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_shaped_set(IntPtr obj, bool shaped);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_size_base_get(IntPtr obj, out int w, out int h);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_size_base_set(IntPtr obj, int w, int h);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_size_step_get(IntPtr obj, out int w, out int h);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_size_step_set(IntPtr obj, int w, int h);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_socket_listen(IntPtr obj, string svcname, int svcnum, bool svcsys);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_win_trap_data_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_trap_set(IntPtr obj, IntPtr trap);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_urgent_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_urgent_set(IntPtr obj, bool urgent);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_win_util_dialog_add(IntPtr obj, string name, string title);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_withdrawn_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_withdrawn_set(IntPtr obj, bool withdrawn);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_wm_rotation_manual_rotation_done(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_wm_rotation_manual_rotation_done_get(IntPtr obj, bool withdrawn);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_wm_rotation_manual_rotation_done_set(IntPtr obj, bool set);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_win_wm_rotation_preferred_rotation_get(IntPtr obj, bool withdrawn);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_available_profiles_get(IntPtr obj, out string[] profiles, out int count);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_available_profiles_set(IntPtr obj, string[] profiles, int count);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_win_fake_add(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_fake_canvas_set(IntPtr obj, IntPtr oee);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_win_illume_command_send(IntPtr obj, IntPtr param);
     }
 }
