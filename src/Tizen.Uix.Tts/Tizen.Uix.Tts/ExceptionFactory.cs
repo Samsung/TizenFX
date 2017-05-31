@@ -30,7 +30,7 @@ namespace Tizen.Uix.Tts
             {
                 case TtsError.OutOfMemory:
                     {
-                        exp = new InvalidOperationException("Out Of Memory");
+                        exp = new OutOfMemoryException("Out Of Memory");
                         break;
                     }
 
@@ -48,7 +48,7 @@ namespace Tizen.Uix.Tts
 
                 case TtsError.TimedOut:
                     {
-                        exp = new InvalidOperationException("No answer from the STT service");
+                        exp = new TimeoutException("No answer from the TTS service");
                         break;
                     }
 
@@ -60,13 +60,13 @@ namespace Tizen.Uix.Tts
 
                 case TtsError.PermissionDenied:
                     {
-                        exp = new InvalidOperationException("Permission Denied");
+                        exp = new UnauthorizedAccessException("Permission Denied");
                         break;
                     }
 
                 case TtsError.NotSupported:
                     {
-                        exp = new InvalidOperationException("STT NOT supported");
+                        exp = new NotSupportedException("TTS NOT supported");
                         break;
                     }
 

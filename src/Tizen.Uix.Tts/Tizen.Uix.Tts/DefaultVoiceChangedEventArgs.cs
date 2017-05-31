@@ -20,6 +20,7 @@ namespace Tizen.Uix.Tts
     /// <summary>
     /// This Class holds information related to DefaultVoiceChanged Event
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class DefaultVoiceChangedEventArgs
     {
         internal DefaultVoiceChangedEventArgs(string previousLanguage, int previousVoiceType, string currentLanguage, int currentVoiceType)
@@ -31,6 +32,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// The Previous SupportedVoice
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SupportedVoice Previous
         {
             get;
@@ -40,6 +42,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// The current SupportedVoice
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SupportedVoice Current
         {
             get;

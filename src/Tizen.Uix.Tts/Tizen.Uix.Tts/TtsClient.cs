@@ -25,137 +25,166 @@ namespace Tizen.Uix.Tts
     /// <summary>
     /// Enumeration for States
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum State
     {
         /// <summary>
         /// Created atate
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Created = 0,
 
         /// <summary>
         /// Ready state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Ready = 1,
 
         /// <summary>
         /// Playing state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Playing = 2,
 
         /// <summary>
         /// Paused state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Paused = 3,
 
         /// <summary>
         /// state Unavailable
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Unavailable
     };
 
     /// <summary>
     /// Enumeration for TTS mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum Mode
     {
         /// <summary>
         /// Default mode for normal application
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Default = 0,
 
         /// <summary>
         /// Notification mode
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Notification = 1,
 
         /// <summary>
         /// Accessibiliity mode
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ScreenReader = 2
     };
 
     /// <summary>
     /// Enum for Error values that can occur
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum Error
     {
         /// <summary>
         /// Successful, No error
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         None,
         /// <summary>
         /// Out of Memory
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         OutOfMemory,
         /// <summary>
         /// I/O error
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         IoError,
         /// <summary>
         /// Invalid parameter
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InvalidParameter,
         /// <summary>
         /// No answer from the STT service
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         TimedOut,
         /// <summary>
         /// Network is down
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         OutOfNetwork,
         /// <summary>
         /// Permission denied
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         PermissionDenied,
         /// <summary>
         /// STT NOT supported
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         NotSupported,
         /// <summary>
         /// Invalid state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InvalidState,
         /// <summary>
         /// Invalid Voice
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InvalidVoice,
         /// <summary>
         /// No available engine
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         EngineNotFound,
         /// <summary>
         /// Operation failed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         OperationFailed,
         /// <summary>
         /// Audio policy blocked
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         AudioPolicyBlocked
     };
 
     /// <summary>
     /// Enumeration for Voice Types
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum Voice
     {
         /// <summary>
         /// Automatic Voice Type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Auto,
 
         /// <summary>
         /// Male Voice
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Male,
 
         /// <summary>
         /// Female Voice
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Female,
 
         /// <summary>
         /// Child Voice Type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Child
     };
 
@@ -163,6 +192,7 @@ namespace Tizen.Uix.Tts
     /// You can use Text-To-Speech (TTS) API's to read sound data transformed by the engine from input texts.
     /// Applications can add input-text to queue for reading continuously and control the player that can play, pause, and stop sound data synthesized from text.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TtsClient : IDisposable
     {
         private IntPtr _handle;
@@ -185,16 +215,17 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Constructor to create a TTS instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
-        /// 1. Out Of Memory
-        /// 2. Operation Failed
-        /// 3. TTS Not Supported
-        /// 4. Engine Not Found
+        /// 1. Operation Failed
+        /// 2. Engine Not Found
         /// </exception>
+        /// <exception cref="OutOfMemoryException"> This Exception can be due to Out Of Memory. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to TTS Not Supported. </exception>
         public TtsClient()
         {
             IntPtr handle;
@@ -211,6 +242,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Event to be invoked when TTS state changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
@@ -254,6 +286,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Event to be invoked when the utterance starts.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<UtteranceEventArgs> UtteranceStarted
         {
             add
@@ -295,6 +328,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Event to be invoked when the utterance completes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<UtteranceEventArgs> UtteranceCompleted
         {
             add
@@ -336,6 +370,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Event to be invoked when an error occurs.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ErrorOccuredEventArgs> ErrorOccured
         {
             add
@@ -378,6 +413,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Event to be invoked when an error occurs.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<DefaultVoiceChangedEventArgs> DefaultVoiceChanged
         {
             add
@@ -423,6 +459,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Event to be invoked to detect engine change.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<EngineChangedEventArgs> EngineChanged
         {
             add
@@ -466,6 +503,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Gets the default voice set by the user.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Default voice in TTS
         /// </value>
@@ -495,6 +533,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Gets the maximum byte size for text.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Maximum byte size for text
         /// </value>
@@ -504,7 +543,7 @@ namespace Tizen.Uix.Tts
         /// <pre>
         /// The State should be Ready
         /// </pre>
-        public uint GetMaxTextSize
+        public uint MaxTextSize
         {
             get
             {
@@ -528,13 +567,14 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Gets the current TTS state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Current state of TTS
         /// </value>
         /// <returns>
         /// Current TTS State value.
         /// </returns>
-        public State GetState
+        public State CurrentState
         {
             get
             {
@@ -558,6 +598,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// The TTS Mode can be set using this property
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Current mode of TTS (default, screen-reader, notification)
         /// </value>
@@ -566,11 +607,11 @@ namespace Tizen.Uix.Tts
         /// </returns>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons while setting the value
-        /// 1. Out Of Memory
-        /// 2. Operation Failed
-        /// 3. TTS Not Supported
-        /// 4. Engine Not Found
+        /// 1. Operation Failed
+        /// 2. Engine Not Found
         /// </exception>
+        /// <exception cref="OutOfMemoryException"> This Exception can be due to Out Of Memory. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to TTS Not Supported. </exception>
         /// <pre>
         /// State should be Created
         /// </pre>
@@ -610,20 +651,16 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Sets the app credential
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="credential">
         /// The credential string
         /// </param>
         /// <feature>
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
-        /// 1. TTS Not Supported
-        /// 2. Invalid State
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// This can happen if Improper value is provided while setting the value.
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to TTS Not Supported. </exception>
+        /// <exception cref="ArgumentException"> This can happen if Improper value is provided while setting the value. </exception>
         /// <pre>
         /// The State must be Created or Ready.
         /// </pre>
@@ -643,14 +680,12 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Connects to the TTS service asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reasons
-        /// 1. TTS Not Supported
-        /// 2. Invalid State
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to TTS Not Supported. </exception>
         /// <pre>
         /// The State must be Created.
         /// </pre>
@@ -674,14 +709,12 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Disconnects from the STT service.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
-        /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reasons
-        /// 1. TTS Not Supported
-        /// 2. Invalid State
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to TTS Not Supported. </exception>
         /// <pre>
         /// The State must be Ready.
         /// </pre>
@@ -704,6 +737,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Retrieves all supported voices of the current engine.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// list of SupportedVoice.
         /// </returns>
@@ -712,10 +746,10 @@ namespace Tizen.Uix.Tts
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reasons
-        /// 1. TTS Not Supported
-        /// 2. Engine Not Found.
-        /// 3. Operation Failed.
+        /// 1. Engine Not Found.
+        /// 2. Operation Failed.
         /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to TTS Not Supported. </exception>
         public IEnumerable<SupportedVoice> GetSupportedVoices()
         {
             List<SupportedVoice> voicesList = new List<SupportedVoice>();
@@ -743,6 +777,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Gets the private data from tts engine.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="key">
         /// The key string
         /// </param>
@@ -754,11 +789,11 @@ namespace Tizen.Uix.Tts
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
-        /// 1. TTS Not Supported
-        /// 2. Invalid State
-        /// 3. Engine Not found
-        /// 4. Operation Failure
+        /// 1. Invalid State
+        /// 2. Engine Not found
+        /// 3. Operation Failure
         /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to TTS Not Supported. </exception>
         /// <pre>
         /// The State must be Ready.
         /// </pre>
@@ -782,6 +817,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Sets the private data to tts engine.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="key">
         /// The key string
         /// </param>
@@ -793,14 +829,12 @@ namespace Tizen.Uix.Tts
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
-        /// 1. TTS Not Supported
-        /// 2. Invalid State
-        /// 3. Engine Not found
-        /// 4. Operation Failure
+        /// 1. Invalid State
+        /// 2. Engine Not found
+        /// 3. Operation Failure
         /// </exception>
-        /// <exception cref="ArgumentException">
-        /// This can happen if Improper value is provided while setting the value.
-        /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to TTS Not Supported. </exception>
+        /// <exception cref="ArgumentException"> This can happen if Improper value is provided while setting the value. </exception>
         /// <pre>
         /// The State must be Ready.
         /// </pre>
@@ -820,6 +854,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Gets the speed range.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// The SpeedRange value
         /// </returns>
@@ -828,10 +863,10 @@ namespace Tizen.Uix.Tts
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
-        /// 1. TTS Not Supported
-        /// 2. Invalid State
-        /// 3. Operation Failure
+        /// 1. Invalid State
+        /// 2. Operation Failure
         /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to TTS Not Supported. </exception>
         /// <pre>
         /// The State must be Created.
         /// </pre>
@@ -855,6 +890,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Adds a text to the queue.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Locale MUST be set for utf8 text validation check.
         /// </remarks>
@@ -878,15 +914,13 @@ namespace Tizen.Uix.Tts
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
-        /// 1. TTS Not Supported
-        /// 2. Invalid State
-        /// 3. Operation Failure
-        /// 4. Invalid Voice
-        /// 5. Permission Denied
+        /// 1. Invalid State
+        /// 2. Operation Failure
+        /// 3. Invalid Voice
         /// </exception>
-        /// <exception cref="ArgumentException">
-        /// This can happen if Improper value is provided.
-        /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to TTS Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="ArgumentException"> This can happen if Improper value is provided. </exception>
         /// <pre>
         /// The State must be Ready or Playing or Paused.
         /// </pre>
@@ -910,17 +944,18 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Starts synthesizing voice from the text and plays the synthesized audio data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
-        /// 1. TTS Not Supported
-        /// 2. Invalid State
-        /// 3. Operation Failure
-        /// 4. Out of Network
-        /// 5. Permission Denied
+        /// 1. Invalid State
+        /// 2. Operation Failure
+        /// 3. Out of Network
         /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to TTS Not Supported. </exception>
+        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <pre>
         /// The State must be Ready or Paused.
         /// </pre>
@@ -943,15 +978,16 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Stops playing the utterance and clears the queue.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
-        /// 1. TTS Not Supported
-        /// 2. Invalid State
-        /// 3. Operation Failure
+        /// 1. Invalid State
+        /// 2. Operation Failure
         /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to TTS Not Supported. </exception>
         /// <pre>
         /// The State must be Ready or Playing or Paused.
         /// </pre>
@@ -975,15 +1011,16 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Pauses the currently playing utterance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
         /// <exception cref="InvalidOperationException">
         /// This Exception can be due to the following reaons
-        /// 1. TTS Not Supported
-        /// 2. Invalid State
-        /// 3. Operation Failure
+        /// 1. Invalid State
+        /// 2. Operation Failure
         /// </exception>
+        /// <exception cref="NotSupportedException"> This Exception can be due to TTS Not Supported. </exception>
         /// <pre>
         /// The State must be Playing.
         /// </pre>
@@ -1006,6 +1043,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Method to release resources
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

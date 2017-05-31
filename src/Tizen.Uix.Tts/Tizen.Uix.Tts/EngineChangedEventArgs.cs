@@ -22,6 +22,7 @@ namespace Tizen.Uix.Tts
     /// <summary>
     /// This class holds information related to Engine Changed Event
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class EngineChangedEventArgs
     {
         internal EngineChangedEventArgs(string engineId, string language, int voiceType, bool needCredential)
@@ -34,6 +35,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Engine Id
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string EngineId
         {
             get;
@@ -43,6 +45,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// The necessity of credential
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool NeedCredential
         {
             get;
@@ -52,6 +55,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// The supported voice
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SupportedVoice VoiceType
         {
             get;

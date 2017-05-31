@@ -20,6 +20,7 @@ namespace Tizen.Uix.Tts
     /// <summary>
     /// This class holds the Speed Range Values
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SpeedRange
     {
         internal SpeedRange(int min, int normal, int max)
@@ -32,6 +33,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// The Max Speed Range Value
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Max
         {
             get;
@@ -41,6 +43,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// The Min Speed Range Value
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Min
         {
             get;
@@ -50,6 +53,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// The Normal Speed Range Value
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Normal
         {
             get;

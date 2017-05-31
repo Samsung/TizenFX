@@ -20,6 +20,7 @@ namespace Tizen.Uix.Tts
     /// <summary>
     /// This Class holds information about the Supported Voices.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SupportedVoice
     {
         internal SupportedVoice(string lang, int voiceType)
@@ -55,6 +56,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Language specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code (for example, "ko_KR" for Korean, "en_US" for American English)
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Language
         {
             get;

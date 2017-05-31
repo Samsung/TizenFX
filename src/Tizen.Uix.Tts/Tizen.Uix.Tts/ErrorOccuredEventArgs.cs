@@ -23,6 +23,7 @@ namespace Tizen.Uix.Tts
     /// <summary>
     /// This class holds information related to the TTS ErrorOccured Event
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ErrorOccuredEventArgs
     {
         private IntPtr _handle;
@@ -116,6 +117,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// The Utterance Id
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int UtteranceId
         {
             get;
@@ -125,6 +127,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// The Error Value
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Error ErrorValue
         {
             get;
@@ -134,10 +137,11 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Gets the current error message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// string error message
         /// </returns>
-        public string GetErrorMessage
+        public string ErrorMessage
         {
             get
             {
