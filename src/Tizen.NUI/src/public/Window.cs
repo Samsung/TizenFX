@@ -43,7 +43,10 @@ namespace Tizen.NUI
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
+            if (NDalicPINVOKE.Stage_IsInstalled())
+            {
+                stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
+            }
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Window obj)

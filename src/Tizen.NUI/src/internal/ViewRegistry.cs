@@ -302,11 +302,12 @@ namespace Tizen.NUI
             }
         }
 
-        public static View GetViewFromActor(View view)
+
+        internal static View GetViewFromBaseHandle(BaseHandle baseHandle)
         {
             // we store a dictionary of ref-obects (C++ land) to custom views (C# land)
 
-            RefObject refObj = view.GetObjectPtr();
+            RefObject refObj = baseHandle.GetObjectPtr();
             IntPtr refObjectPtr = (IntPtr)RefObject.getCPtr(refObj);
 
             WeakReference viewReference;

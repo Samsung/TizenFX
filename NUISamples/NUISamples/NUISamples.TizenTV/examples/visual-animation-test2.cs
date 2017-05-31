@@ -122,7 +122,7 @@ namespace VisaulAnimationExample
             _shadowButton1.Clicked += (obj, ev) =>
             {
                 _active1 = !_active1;
-                StartTransition(_contentView1, _icon, "Offset", _active1);
+                StartTransition(_contentView1, _icon, "Position", _active1);
                 return true;
             };
             _shadowButton1.WidthResizePolicy = ResizePolicyType.FillToParent;
@@ -216,9 +216,9 @@ namespace VisaulAnimationExample
 
             if (activate)
             {
-                if (property == "Offset")
+                if (property == "Position")
                 {
-                    _animation = view.AnimateVisual(target, property, new Position2D(20, 20), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
+                    _animation = view.AnimateVisual(target, property, new Position2D(20, 20), 0, 1000, AlphaFunction.BuiltinFunctions.Linear, new Position2D(40, 40));
                 }
                 else if (property == "Opacity")
                 {
@@ -231,17 +231,17 @@ namespace VisaulAnimationExample
             }
             else
             {
-                if (property == "Offset")
+                if (property == "Position")
                 {
-                    _animation = view.AnimateVisual(target, property, new Position2D(5, 5), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
+                    _animation = view.AnimateVisual(target, property, new Position2D(5, 5), 0, 1000);
                 }
                 else if (property == "Opacity")
                 {
-                    _animation = view.AnimateVisual(target, property, 1.0f, 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
+                    _animation = view.AnimateVisual(target, property, 1.0f, 0, 1000);
                 }
                 else if (property == "MixColor")
                 {
-                    _animation = view.AnimateVisual(target, property, Color.Red, 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
+                    _animation = view.AnimateVisual(target, property, Color.Red, 0, 1000);
                 }
             }
 
