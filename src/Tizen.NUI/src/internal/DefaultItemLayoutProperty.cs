@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    public enum DefaultItemLayoutProperty
+    internal enum DefaultItemLayoutProperty
     {
         TYPE = 0,
         ITEM_SIZE,

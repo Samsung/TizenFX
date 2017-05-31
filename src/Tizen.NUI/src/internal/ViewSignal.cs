@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
     using Tizen.NUI.BaseComponents;
-    public class ViewSignal : global::System.IDisposable
+    internal class ViewSignal : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;

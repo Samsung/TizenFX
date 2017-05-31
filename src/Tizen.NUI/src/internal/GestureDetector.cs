@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
     using Tizen.NUI.BaseComponents;
-    public class GestureDetector : BaseHandle
+    internal class GestureDetector : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
