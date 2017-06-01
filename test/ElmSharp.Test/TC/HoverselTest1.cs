@@ -52,6 +52,14 @@ namespace ElmSharp.Test
             {
                 Console.WriteLine("Hoversel is dismissed");
             };
+            hoversel.Clicked += (s, e) =>
+            {
+                Console.WriteLine("Hoversel is Clicked");
+            };
+            hoversel.Expanded += (s, e) =>
+            {
+                Console.WriteLine("Hoversel is Expanded");
+            };
 
             HoverselItem item1 = hoversel.AddItem("item1");
             HoverselItem item2 = hoversel.AddItem("item2");
