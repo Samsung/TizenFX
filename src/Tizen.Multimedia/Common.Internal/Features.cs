@@ -20,8 +20,8 @@ namespace Tizen.Multimedia
 {
     internal static class Features
     {
-        internal static string AudioEffect = "http://tizen.org/feature/multimedia.custom_audio_effect";
-        internal static string RawVideo = "http://tizen.org/feature/multimedia.raw_video";
+        internal const string AudioEffect = "http://tizen.org/feature/multimedia.custom_audio_effect";
+        internal const string RawVideo = "http://tizen.org/feature/multimedia.raw_video";
 
         internal static bool IsSupported(string featureKey)
         {

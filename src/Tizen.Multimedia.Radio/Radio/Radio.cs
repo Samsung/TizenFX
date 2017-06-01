@@ -17,6 +17,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Tizen.System;
 
 namespace Tizen.Multimedia
 {
@@ -27,14 +28,18 @@ namespace Tizen.Multimedia
     {
         internal Interop.RadioHandle _handle;
 
+        private const string FeatureFmRadio = "http://tizen.org/feature/fmradio";
+
         /// <summary>
         /// Radio constructor
         /// </summary>
+        /// <Feature> http://tizen.org/feature/fmradio </Feature>
         /// <exception cref="OutOfMemoryException"></exception>
         /// <exception cref="NotSupportedException">This is thrown if Radio feature is not supported</exception>
         /// <exception cref="InvalidOperationException"></exception>
         public Radio()
         {
+            ValidateFeatureSupported(FeatureFmRadio);
             _handle = new Interop.RadioHandle();
             _handle.ScanCompleteCb = ScanCompleteCallback;
             _handle.InteruptedCb = PlaybackIntruptedCallback;
@@ -264,6 +269,18 @@ namespace Tizen.Multimedia
 
             _handle.SeekDown(callback);
             return Interop.PinnedTask(tcs);
+        }
+
+        private void ValidateFeatureSupported(string featurePath)
+        {
+            bool supported = false;
+            SystemInfo.TryGetValue(featurePath, out supported);
+
+            if (supported == false)
+            {
+                throw new NotSupportedException($"The feature({featurePath}) is not supported.");
+            }
+
         }
 
         private void ScanUpdateCallback(int frequency, IntPtr data)
