@@ -144,6 +144,32 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or gets the style of the label text.
+        /// </summary>
+        /// <remarks>
+        /// APIs, elm_label_text_style_user_peek/pop/push, are internal APIs only in Tizen. Avalilable since Tizen_4.0.
+        /// </remarks>
+        /// 
+        public string TextStyle
+        {
+            get
+            {
+                return Interop.Elementary.elm_label_text_style_user_peek(RealHandle);
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    Interop.Elementary.elm_label_text_style_user_pop(RealHandle);
+                }
+                else
+                {
+                    Interop.Elementary.elm_label_text_style_user_push(RealHandle, value);
+                }
+            }
+        }
+
+        /// <summary>
         /// Start slide effect.
         /// </summary>
         public void PlaySlide()

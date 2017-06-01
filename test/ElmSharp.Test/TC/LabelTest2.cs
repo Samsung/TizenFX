@@ -34,7 +34,7 @@ namespace ElmSharp.Test
 
             Label label1 = new Label(window);
             label1.Text = "[default valign=top] gyj <span valign=bottom>[bottom gyp]</span>, <span valign=top>[top gyp]</span>, <span valign=middle>[middle gyp]</span>";
-            label1.EdjeObject["elm.text"].TextStyle = "DEFAULT = 'color=#000000FF backing_color=#ff0000 backing=on font_size=25 align=left valign=top wrap=word'";
+            label1.TextStyle = "DEFAULT = 'color=#000000FF backing_color=#ff0000 backing=on font_size=25 align=left valign=top wrap=word'";
             label1.Resize(650, 0);
             var size = label1.EdjeObject["elm.text"].TextBlockFormattedSize;
             label1.Show();
@@ -44,7 +44,7 @@ namespace ElmSharp.Test
             Label label2 = new Label(window);
             label2.Move(0, size.Height + 10);
             label2.Text = "[default valign=middle] gyj <span valign=bottom>[bottom gyp]</span>, <span valign=top>[top gyp]</span>, <span valign=middle>[middle gyp]</span>";
-            label2.EdjeObject["elm.text"].TextStyle = "DEFAULT = 'color=#000000FF backing_color=#ff0000 backing=on font_size=25 align=left valign=middle wrap=word'";
+            label2.TextStyle = "DEFAULT = 'color=#000000FF backing_color=#ff0000 backing=on font_size=25 align=left valign=middle wrap=word'";
             label2.Resize(650, 0);
             size = label2.EdjeObject["elm.text"].TextBlockFormattedSize;
             label2.Show();
@@ -53,7 +53,7 @@ namespace ElmSharp.Test
             Label label3 = new Label(window);
             label3.Move(0, label2.Geometry.Y + size.Height + 10);
             label3.Text = "[default valign=bottom] gyj <span valign=bottom>[bottom gyp]</span>, <span valign=top>[top gyp]</span>, <span valign=middle>[middle gyp]</span>";
-            label3.EdjeObject["elm.text"].TextStyle = "DEFAULT = 'color=#000000FF backing_color=#ff0000 backing=on font_size=25 align=left valign=bottom wrap=word'";
+            label3.TextStyle = "DEFAULT = 'color=#000000FF backing_color=#ff0000 backing=on font_size=25 align=left valign=bottom wrap=word'";
             label3.Resize(650, 0);
             size = label3.EdjeObject["elm.text"].TextBlockFormattedSize;
             label3.Show();

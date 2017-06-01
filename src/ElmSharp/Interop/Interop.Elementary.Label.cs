@@ -62,5 +62,19 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_label_ellipsis_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_label_text_style_user_peek", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern IntPtr _elm_label_text_style_user_peek(IntPtr obj);
+        internal static string elm_label_text_style_user_peek(IntPtr obj)
+        {
+            var text = _elm_label_text_style_user_peek(obj);
+            return Marshal.PtrToStringAnsi(text);
+        }
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_label_text_style_user_push(IntPtr obj, string style);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_label_text_style_user_pop(IntPtr obj);
     }
 }

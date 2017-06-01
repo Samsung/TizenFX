@@ -113,6 +113,28 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets the vertical text alignment of layout's text part
+        /// </summary>
+        /// <remarks>
+        /// API, elm_layout_text_valign_set, is an internal API only in Tizen. Avalilable since Tizen_4.0.
+        /// </remarks>
+        public virtual void SetVerticalTextAlignment(string part, double valign)
+        {
+            Interop.Elementary.elm_layout_text_valign_set(RealHandle, part, valign);
+        }
+
+        /// <summary>
+        /// Gets the vertical text alignment of layout's text part
+        /// </summary>
+        /// <remarks>
+        /// API, elm_layout_text_valign_get, is internal API only in Tizen. Avalilable since Tizen_4.0.
+        /// </remarks>
+        public virtual double GetVerticalTextAlignment(string part)
+        {
+            return Interop.Elementary.elm_layout_text_valign_get(RealHandle, part);
+        }
+
+        /// <summary>
         /// Sets the content at a part of a given container widget.
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by Layout as a child. It's <see cref="EvasObject"/> type.</param>
