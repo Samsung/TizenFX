@@ -40,6 +40,8 @@ namespace ElmSharp
     /// </summary>
     public class Hoversel : Layout
     {
+        SmartEvent _clicked;
+        SmartEvent _expanded;
         SmartEvent _dismissed;
         SmartEvent<HoverselItemEventArgs> _selected;
         Interop.Evas.SmartCallback _onItemSelected;
@@ -50,6 +52,16 @@ namespace ElmSharp
         /// <param name="parent">The parent is a given container which will be attached by Hoversel as a child. It's <see cref="EvasObject"/> type.</param>
         public Hoversel(EvasObject parent) : base(parent)
         {
+            _clicked = new SmartEvent(this, "clicked");
+            _clicked.On += (sender, e) =>
+            {
+                Clicked?.Invoke(this, EventArgs.Empty);
+            };
+            _expanded = new SmartEvent(this, "expanded");
+            _expanded.On += (sender, e) =>
+            {
+                Expanded?.Invoke(this, EventArgs.Empty);
+            };
             _dismissed = new SmartEvent(this, "dismissed");
             _dismissed.On += (sender, e) =>
             {
@@ -66,6 +78,16 @@ namespace ElmSharp
                 item?.SendItemSelected();
             };
         }
+
+        /// <summary>
+        /// Clicked will be triggered when Hoversel is clicked
+        /// </summary>
+        public event EventHandler Clicked;
+
+        /// <summary>
+        /// Expanded will be triggered when Hoversel is activated by clicking the hoversel or by a function
+        /// </summary>
+        public event EventHandler Expanded;
 
         /// <summary>
         /// Dismissed will be triggered when Hoversel Dismissed
