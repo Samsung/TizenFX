@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.IO;
 using System.ComponentModel;
 using Tizen.Internals.Errors;
 
@@ -51,11 +52,11 @@ namespace Tizen.System
             }
             else if (error == RuntimeInfoError.Io)
             {
-                throw new ArgumentException("I/O Error");
+                throw new IOException("I/O Error");
             }
             else if (error == RuntimeInfoError.RemoteIo)
             {
-                throw new ArgumentException("Remote I/O Error");
+                throw new IOException("Remote I/O Error");
             }
             else if (error == RuntimeInfoError.PermissionDenied)
             {
