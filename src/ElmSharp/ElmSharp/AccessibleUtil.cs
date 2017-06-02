@@ -20,14 +20,32 @@ using System.Threading.Tasks;
 
 namespace ElmSharp.Accessible
 {
+    /// <summary>
+    /// Enumeration for ReadingStatus.
+    /// </summary>
     public enum ReadingStatus
     {
+        /// <summary>
+        /// Unknown status
+        /// </summary>
         Unknown,
+        /// <summary>
+        /// Cancelled status
+        /// </summary>
         Cancelled,
+        /// <summary>
+        /// Stopped status
+        /// </summary>
         Stoppped,
+        /// <summary>
+        /// Skipped status
+        /// </summary>
         Skipped
     }
 
+    /// <summary>
+    /// AccessibleUtil provides a method to set the reading information.
+    /// </summary>
     public static class AccessibleUtil
     {
 
@@ -55,11 +73,12 @@ namespace ElmSharp.Accessible
             gch.Free();
         }
 
-        /*
-         * ReadingCancelled is never appear if discardable is true.
-         * ReadingStoppped is appear on end of normal operation.
-         * I don't know when the ReadingSkipped is appeared.
-         */
+        /// <summary>
+        /// Reads given text by screen reader.
+        /// </summary>
+        /// <param name="text">The reading text.</param>
+        /// <param name="discardable">If true, reading can be discarded by subsequent reading requests, if false the reading must finish before next reading request can be started.</param>
+        /// <returns>Return a task with reading status.</returns>
         public static Task<ReadingStatus> Say(string text, bool discardable)
         {
             var tcs = new TaskCompletionSource<ReadingStatus>();

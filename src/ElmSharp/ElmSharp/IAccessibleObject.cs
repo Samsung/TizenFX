@@ -16,6 +16,9 @@
 
 namespace ElmSharp.Accessible
 {
+    /// <summary>
+    /// IAccessibleObject is a interface which defines properties and methods of accessible object.
+    /// </summary>
     public interface IAccessibleObject
     {
         ReadingInfoType ReadingInfoType { get; set; }
