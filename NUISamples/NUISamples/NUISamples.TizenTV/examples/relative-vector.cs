@@ -63,7 +63,7 @@ namespace RelativeVectorTest
             _imageView = new ImageView();
             _imageView.ResourceUrl = resources+"/images/gallery-3.jpg";
             _imageView.ParentOrigin = ParentOrigin.Center;
-            _imageView.PivotPoint = AnchorPoint.Center;
+            _imageView.PivotPoint = PivotPoint.Center;
             _imageView.PixelArea = new RelativeVector4(0.0f, 0.0f, 0.0f, 0.0f);
 
             _window.GetDefaultLayer().Add(_imageView);

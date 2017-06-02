@@ -66,7 +66,7 @@ namespace VisaulAnimationExample
 
             TableView titleLayout = new TableView(2, 1);
             titleLayout.Name = ("TitleLayout");
-            titleLayout.PivotPoint = AnchorPoint.TopLeft;
+            titleLayout.PivotPoint = PivotPoint.TopLeft;
             titleLayout.Position2D = new Position2D(10, 10);
             titleLayout.Size2D = new Size2D((int)(window.Size.Width * 0.9f), (int)(window.Size.Height * 0.9f));
             titleLayout.SetCellPadding(new Size2D(10, 10));
@@ -86,7 +86,7 @@ namespace VisaulAnimationExample
             contentLayout.Name = ("ContentLayout");
             contentLayout.WidthResizePolicy = ResizePolicyType.FillToParent;
             contentLayout.HeightResizePolicy = ResizePolicyType.FillToParent;
-            contentLayout.PivotPoint = AnchorPoint.TopLeft;
+            contentLayout.PivotPoint = PivotPoint.TopLeft;
             contentLayout.SetCellPadding(new Size2D(10, 10));
             contentLayout.BackgroundColor = Color.Magenta;
             titleLayout.AddChild(contentLayout, new TableView.CellPosition(1, 0));
@@ -118,7 +118,7 @@ namespace VisaulAnimationExample
             _shadowButton1.LabelText = "Toggle Transition Position";
             _shadowButton1.Name = ("ToggleTransition");
             _shadowButton1.ParentOrigin = ParentOrigin.Center;
-            _shadowButton1.PivotPoint = AnchorPoint.Center;
+            _shadowButton1.PivotPoint = PivotPoint.Center;
             _shadowButton1.Clicked += (obj, ev) =>
             {
                 _active1 = !_active1;
@@ -156,7 +156,7 @@ namespace VisaulAnimationExample
             _shadowButton2.LabelText = "Toggle Transition Opacity";
             _shadowButton2.Name = ("ToggleTransition");
             _shadowButton2.ParentOrigin = ParentOrigin.Center;
-            _shadowButton2.PivotPoint = AnchorPoint.Center;
+            _shadowButton2.PivotPoint = PivotPoint.Center;
             _shadowButton2.Clicked += (obj, ev) =>
             {
                 _active2 = !_active2;
@@ -194,7 +194,7 @@ namespace VisaulAnimationExample
             _shadowButton3.LabelText = "Toggle Transition MixColor";
             _shadowButton3.Name = ("ToggleTransition");
             _shadowButton3.ParentOrigin = ParentOrigin.Center;
-            _shadowButton3.PivotPoint = AnchorPoint.Center;
+            _shadowButton3.PivotPoint = PivotPoint.Center;
             _shadowButton3.Clicked += (obj, ev) =>
             {
                 _active3 = !_active3;

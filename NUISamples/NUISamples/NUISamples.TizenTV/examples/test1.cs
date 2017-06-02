@@ -95,7 +95,7 @@ namespace Test1
                 _view.MinimumSize = new Size2D(100, 50);
                 _view.LabelText = "sibling" + i;
                 _view.ParentOrigin = ParentOrigin.TopLeft;
-                _view.PivotPoint = AnchorPoint.TopLeft;
+                _view.PivotPoint = PivotPoint.TopLeft;
                 _view.Position2D = _myPos + new Position2D(20 * i, 10 * i);
                 _view.Clicked += (sender, ee) =>
                 {
@@ -125,7 +125,7 @@ namespace Test1
             }
 
             _txt.ParentOrigin = ParentOrigin.TopLeft;
-            _txt.PivotPoint = AnchorPoint.TopLeft;
+            _txt.PivotPoint = PivotPoint.TopLeft;
             _txt.Text = "on top: sibling#, sibling order=?";
             _txt.Position2D = _myPos + new Position2D(-50, 200);
             _txt.TextColor = Color.Blue;
@@ -178,7 +178,7 @@ namespace Test1
                 VisualTest _visualTest = new VisualTest();
                 _visualTest.TextVisual = "Hello NUI Text Visual!";
                 _visualTest.ParentOrigin = ParentOrigin.TopLeft;
-                _visualTest.PivotPoint = AnchorPoint.TopLeft;
+                _visualTest.PivotPoint = PivotPoint.TopLeft;
                 _visualTest.Size2D = new Size2D(600, 200);
                 _visualTest.Position2D = new Position2D(50, 400);
                 _visualTest.BackgroundColor = Color.Yellow;
@@ -223,7 +223,7 @@ namespace Test1
             /* TEST CODE */
             View view = new View();
             view.ParentOrigin = ParentOrigin.TopLeft;
-            view.PivotPoint = AnchorPoint.TopLeft;
+            view.PivotPoint = PivotPoint.TopLeft;
             view.MinimumSize = new Size2D(100, 100);
             view.BackgroundColor = Color.Red;
             _window.GetDefaultLayer().Add(view);

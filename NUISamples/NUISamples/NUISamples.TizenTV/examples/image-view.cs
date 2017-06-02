@@ -89,7 +89,7 @@ namespace ImageViewTest
             _imageView.ResourceUrl = resources+"/images/00_popup_bg.9.png";
             //_imageView.Border = new Rectangle(100, 100, 100, 100);
             _imageView.ParentOrigin = ParentOrigin.TopLeft;
-            _imageView.PivotPoint = AnchorPoint.TopLeft;
+            _imageView.PivotPoint = PivotPoint.TopLeft;
             _imageView.Position = new Position(5.0f, 5.0f, 0.0f);
             _imageView.PixelArea = new Vector4(0.0f, 0.0f, 0.5f, 0.5f);
             _imageView.Size = new Size(200.0f, 80.0f, 0.0f);
@@ -98,7 +98,7 @@ namespace ImageViewTest
 
             _pushButton1 = new PushButton();
             _pushButton1.ParentOrigin = ParentOrigin.BottomLeft;
-            _pushButton1.PivotPoint = AnchorPoint.BottomLeft;
+            _pushButton1.PivotPoint = PivotPoint.BottomLeft;
             _pushButton1.LabelText = "start animation";
             _pushButton1.Position = new Vector3(0.0f, window.Size.Height * 0.1f, 0.0f);
             _pushButton1.Clicked += OnPushButtonClicked1;
@@ -106,7 +106,7 @@ namespace ImageViewTest
 
             _pushButton2 = new PushButton();
             _pushButton2.ParentOrigin = ParentOrigin.BottomLeft;
-            _pushButton2.PivotPoint = AnchorPoint.BottomLeft;
+            _pushButton2.PivotPoint = PivotPoint.BottomLeft;
             _pushButton2.LabelText = "reload image with same URL";
             _pushButton2.Position = new Vector3(0.0f, window.Size.Height * 0.2f, 0.0f);
             _pushButton2.Clicked += OnPushButtonClicked2;
@@ -114,7 +114,7 @@ namespace ImageViewTest
 
             ImageView syncImage = new ImageView();
             syncImage.ParentOrigin = ParentOrigin.CenterLeft;
-            syncImage.PivotPoint = AnchorPoint.CenterLeft;
+            syncImage.PivotPoint = PivotPoint.CenterLeft;
             syncImage.PositionUsesAnchorPoint = true;
             syncImage.Size2D = new Size2D(150, 150);
             syncImage.ResourceUrl = resources+"/images/gallery-3.jpg";
@@ -127,7 +127,7 @@ namespace ImageViewTest
             _map.Add(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue(true));
             ImageView nPatchImage = new ImageView();
             nPatchImage.ParentOrigin = ParentOrigin.BottomLeft;
-            nPatchImage.PivotPoint = AnchorPoint.BottomLeft;
+            nPatchImage.PivotPoint = PivotPoint.BottomLeft;
             nPatchImage.PositionUsesAnchorPoint = true;
             nPatchImage.Size = new Size(300.0f, 100.0f, 0.0f);
             nPatchImage.ImageMap = _map;
@@ -135,7 +135,7 @@ namespace ImageViewTest
 
             ImageView syncNineImage = new ImageView();
             syncNineImage.ParentOrigin = ParentOrigin.CenterLeft;
-            syncNineImage.PivotPoint = AnchorPoint.CenterLeft;
+            syncNineImage.PivotPoint = PivotPoint.CenterLeft;
             syncNineImage.Position2D = new Position2D(0, 200);
             syncNineImage.PositionUsesAnchorPoint = true;
             syncNineImage.Size = new Size(150.0f, 150.0f, 0.0f);
@@ -154,7 +154,7 @@ namespace ImageViewTest
                 _imageView = new ImageView();
                 _imageView.ResourceUrl = resources+"/images/gallery-3.jpg";
                 _imageView.ParentOrigin = ParentOrigin.Center;
-                _imageView.PivotPoint = AnchorPoint.Center;
+                _imageView.PivotPoint = PivotPoint.Center;
                 _imageView.PixelArea = new Vector4(0.0f, 0.0f, 0.5f, 0.5f);
                 //_imageView.SetResizePolicy(ResizePolicyType.USE_NATURAL_SIZE, DimensionType.ALL_DIMENSIONS);
                 layer.Add(_imageView);

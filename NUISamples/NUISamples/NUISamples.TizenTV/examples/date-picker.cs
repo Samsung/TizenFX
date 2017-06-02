@@ -58,7 +58,7 @@ namespace DatePickerTest
             _container = new FlexContainer();
 
             //_container.ParentOrigin = ParentOrigin.Center;
-            _container.PivotPoint = AnchorPoint.Center;
+            _container.PivotPoint = PivotPoint.Center;
             _container.FlexDirection = FlexContainer.FlexDirectionType.Row;
             _container.Size = new Vector3(480.0f, 150.0f, 0.0f);
             _container.Position2D = new Position2D(400, 400);
@@ -67,7 +67,7 @@ namespace DatePickerTest
 
             // Create a Spin control for year
             _spinYear = new Spin();
-            _spinYear.PivotPoint = AnchorPoint.Center;
+            _spinYear.PivotPoint = PivotPoint.Center;
             _spinYear.Flex = 0.3f;
             _spinYear.FlexMargin = new Vector4(5.0f, 0.0f, 5.0f, 0.0f);
             _container.Add(_spinYear);
@@ -84,7 +84,7 @@ namespace DatePickerTest
 
             // Create a Spin control for month
             _spinMonth = new Spin();
-            _spinMonth.PivotPoint = AnchorPoint.Center;
+            _spinMonth.PivotPoint = PivotPoint.Center;
             _spinMonth.Flex = 0.3f;
             _spinMonth.FlexMargin = new Vector4(5.0f, 0.0f, 5.0f, 0.0f);
             _container.Add(_spinMonth);
@@ -101,7 +101,7 @@ namespace DatePickerTest
 
             // Create a Spin control for day
             _spinDay = new Spin();
-            _spinDay.PivotPoint = AnchorPoint.Center;
+            _spinDay.PivotPoint = PivotPoint.Center;
             _spinDay.Flex = 0.3f;
             _spinDay.FlexMargin = new Vector4(5.0f, 0.0f, 5.0f, 0.0f);
             _container.Add(_spinDay);

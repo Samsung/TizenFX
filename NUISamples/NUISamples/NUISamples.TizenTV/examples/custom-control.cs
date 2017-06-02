@@ -202,7 +202,7 @@ namespace CustomControlTest
             FlexContainer container = new FlexContainer();
 
             container.ParentOrigin = ParentOrigin.TopLeft;
-            container.PivotPoint = AnchorPoint.TopLeft;
+            container.PivotPoint = PivotPoint.TopLeft;
             container.FlexDirection = (int)FlexContainer.FlexDirectionType.Column;
             container.WidthResizePolicy = ResizePolicyType.FillToParent;
             container.HeightResizePolicy = ResizePolicyType.FillToParent;
@@ -216,7 +216,7 @@ namespace CustomControlTest
                 // Create a container to layout the image and rating (in each row) horizontally
                 FlexContainer imageRow = new FlexContainer();
                 imageRow.ParentOrigin = ParentOrigin.TopLeft;
-                imageRow.PivotPoint = AnchorPoint.TopLeft;
+                imageRow.PivotPoint = PivotPoint.TopLeft;
                 imageRow.FlexDirection = FlexContainer.FlexDirectionType.Row;
                 imageRow.Flex = 1.0f;
                 container.Add(imageRow);
@@ -236,7 +236,7 @@ namespace CustomControlTest
 
                 // Add the rating control to the row
                 view.ParentOrigin = ParentOrigin.Center;
-                view.PivotPoint = AnchorPoint.Center;
+                view.PivotPoint = PivotPoint.Center;
                 view.Size = new Vector3(200.0f, 40.0f, 0.0f);
                 view.Flex = 0.7f;
                 view.AlignSelf = (int)FlexContainer.Alignment.AlignCenter;

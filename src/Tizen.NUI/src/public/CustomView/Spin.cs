@@ -95,7 +95,7 @@ namespace Tizen.NUI
 
             // Create a text field
             _textField = new TextField();
-            _textField.PivotPoint = Tizen.NUI.AnchorPoint.Center;
+            _textField.PivotPoint = Tizen.NUI.PivotPoint.Center;
             _textField.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
             _textField.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
             _textField.SizeModeFactor = new Vector3(1.0f, 0.45f, 1.0f);

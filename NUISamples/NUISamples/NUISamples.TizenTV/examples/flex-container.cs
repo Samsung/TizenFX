@@ -35,7 +35,7 @@ namespace FlexContainerTest
 
             container = new FlexContainer();
             container.Size = new Size(Window.Instance.Size.Width, Window.Instance.Size.Height, 0);
-            container.PivotPoint = AnchorPoint.TopLeft;
+            container.PivotPoint = PivotPoint.TopLeft;
             container.Padding = new Vector4(100, 100, 100, 100);
 
             container.FlexWrap = FlexContainer.WrapType.Wrap;
@@ -90,7 +90,7 @@ namespace FlexContainerTest
             pushButton1.MinimumSize = new Size2D(400, 200);
             pushButton1.LabelText = "+PreFocusChange";
             pushButton1.ParentOrigin = ParentOrigin.TopLeft;
-            pushButton1.PivotPoint = AnchorPoint.TopLeft;
+            pushButton1.PivotPoint = PivotPoint.TopLeft;
             pushButton1.Position2D = new Position2D(200, 800);
             pushButton1.Clicked += (sender, e) =>
             {
@@ -108,7 +108,7 @@ namespace FlexContainerTest
             pushButton2.MinimumSize = new Size2D(400, 200);
             pushButton2.LabelText = "-PreFocusChange";
             pushButton2.ParentOrigin = ParentOrigin.TopLeft;
-            pushButton2.PivotPoint = AnchorPoint.TopLeft;
+            pushButton2.PivotPoint = PivotPoint.TopLeft;
             pushButton2.Position2D = new Position2D(800, 800);
             pushButton2.Clicked += (sender, e) =>
             {

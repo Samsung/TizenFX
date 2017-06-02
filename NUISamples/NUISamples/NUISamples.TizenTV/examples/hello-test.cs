@@ -64,7 +64,7 @@ namespace HelloTest
             // Add a _text label to the window
             _text = new TextLabel("Hello Mono World");
             _text.ParentOrigin = ParentOrigin.Center;
-            _text.PivotPoint = AnchorPoint.Center;
+            _text.PivotPoint = PivotPoint.Center;
             _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
 

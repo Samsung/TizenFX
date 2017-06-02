@@ -61,7 +61,7 @@ namespace VisualViewTest
             /* Create a visual view. */
             _visualView = new VisualView();
             _visualView.ParentOrigin = ParentOrigin.TopLeft;
-            _visualView.PivotPoint = AnchorPoint.TopLeft;
+            _visualView.PivotPoint = PivotPoint.TopLeft;
             _visualView.Size = new Size(window.Size.Width, window.Size.Height, 0.0f);
 
             /* color visual */

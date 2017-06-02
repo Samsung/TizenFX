@@ -72,7 +72,7 @@ namespace UserAlphaFunctionTest
             // Add a _text label to the window
             _text = new TextLabel("Hello Mono World");
             _text.ParentOrigin = ParentOrigin.BottomCenter;
-            _text.PivotPoint = AnchorPoint.BottomCenter;
+            _text.PivotPoint = PivotPoint.BottomCenter;
             _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
             window.GetDefaultLayer().Add(_text);
@@ -81,7 +81,7 @@ namespace UserAlphaFunctionTest
             _view1.Size = new Vector3(200.0f, 200.0f, 0.0f);
             _view1.BackgroundColor = Color.Green;
             _view1.ParentOrigin = ParentOrigin.Center;
-            _view1.PivotPoint = AnchorPoint.Center;
+            _view1.PivotPoint = PivotPoint.Center;
             _view1.WidthResizePolicy = ResizePolicyType.Fixed;
             _view1.HeightResizePolicy = ResizePolicyType.Fixed;
             _view1.AddedToWindow += OnWindow;
@@ -91,7 +91,7 @@ namespace UserAlphaFunctionTest
             _view2.BackgroundColor = Color.Red;
             _view2.Size = new Vector3(50.0f, 50.0f, 0.0f);
             _view2.ParentOrigin = ParentOrigin.TopLeft;
-            _view2.PivotPoint = AnchorPoint.TopLeft;
+            _view2.PivotPoint = PivotPoint.TopLeft;
             _view2.WidthResizePolicy = ResizePolicyType.Fixed;
             _view2.HeightResizePolicy = ResizePolicyType.Fixed;
             _view1.Add(_view2);
@@ -100,7 +100,7 @@ namespace UserAlphaFunctionTest
             _view3.BackgroundColor = Color.Blue;
             _view3.Size = new Vector3(50.0f, 50.0f, 0.0f);
             _view3.ParentOrigin = ParentOrigin.TopLeft;
-            _view3.PivotPoint = AnchorPoint.TopLeft;
+            _view3.PivotPoint = PivotPoint.TopLeft;
             _view3.WidthResizePolicy = ResizePolicyType.Fixed;
             _view3.HeightResizePolicy = ResizePolicyType.Fixed;
             _view1.Add(_view3);

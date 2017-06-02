@@ -84,7 +84,7 @@ namespace HelloWorldTest
 
             _text = new TextLabel("Hello NUI World");
             _text.ParentOrigin = ParentOrigin.Center;
-            _text.PivotPoint = AnchorPoint.Center;
+            _text.PivotPoint = PivotPoint.Center;
             _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
             _text.TextColor = Color.Magenta;

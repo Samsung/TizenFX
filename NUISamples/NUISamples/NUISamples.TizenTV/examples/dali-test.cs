@@ -159,7 +159,7 @@ namespace DaliTest
 
             TextLabel text = new TextLabel("Hello Mono World");
             text.ParentOrigin = ParentOrigin.Center;
-            text.PivotPoint = AnchorPoint.Center;
+            text.PivotPoint = PivotPoint.Center;
             text.HorizontalAlignment = HorizontalAlignment.Center;
             window.GetDefaultLayer().Add(text);
 
@@ -541,7 +541,7 @@ namespace DaliTest
             label.TextColor = Color.Red;
             label.PointSize = 30.0f;
             label.ParentOrigin = ParentOrigin.TopLeft;
-            label.PivotPoint = AnchorPoint.TopLeft;
+            label.PivotPoint = PivotPoint.TopLeft;
             label.Position = new Position(0.0f, 50.0f, 0.0f);
             Window.Instance.GetDefaultLayer().Add(label);
             label.VisibilityChanged += (sender, e) =>
@@ -555,7 +555,7 @@ namespace DaliTest
             PushButton button = new PushButton();
             button.LabelText = "Change Visibility";
             button.ParentOrigin = ParentOrigin.TopLeft;
-            button.PivotPoint = AnchorPoint.TopLeft;
+            button.PivotPoint = PivotPoint.TopLeft;
             Window.Instance.GetDefaultLayer().Add(button);
             button.Clicked += (sender, e) =>
             {
@@ -578,7 +578,7 @@ namespace DaliTest
             image.ResourceUrl = _resPath + "/images/dog-anim.gif";
             image.Size2D = new Size2D(150, 150);
             image.ParentOrigin = ParentOrigin.TopLeft;
-            image.PivotPoint = AnchorPoint.TopLeft;
+            image.PivotPoint = PivotPoint.TopLeft;
             image.Position = new Position(0.0f, 150.0f, 0.0f);
             image.ResourceReady += (sender, e) =>
             {
