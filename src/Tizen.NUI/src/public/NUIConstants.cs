@@ -1073,7 +1073,7 @@ namespace Tizen.NUI
     /// <summary>
     /// AnchorPoint constants.
     /// </summary>
-    public struct AnchorPoint
+    public struct PivotPoint
     {
         public static float Top
         {
