@@ -21,7 +21,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Three dimensional size
     /// </summary>
-    public class Size : global::System.IDisposable
+    internal class Size : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
