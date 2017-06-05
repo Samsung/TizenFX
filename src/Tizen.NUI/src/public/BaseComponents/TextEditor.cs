@@ -1282,7 +1282,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int temp = 0;
-                GetProperty(TextEditor.Property.LINE_COUNT).Get(out temp);
+                GetProperty(TextEditor.Property.LINE_COUNT).Get(ref temp);
                 return temp;
             }
         }

@@ -1091,10 +1091,10 @@ namespace Tizen.NUI.BaseComponents
 
                 Tizen.NUI.PropertyMap background = Background;
                 int visualType = 0;
-                background.Find(Visual.Property.Type).Get(ref visualType);
+                background.Find(Visual.Property.Type)?.Get(ref visualType);
                 if (visualType == (int)Visual.Type.Color)
                 {
-                    background.Find(ColorVisualProperty.MixColor).Get(backgroundColor);
+                    background.Find(ColorVisualProperty.MixColor)?.Get(backgroundColor);
                 }
 
                 return backgroundColor;
@@ -1116,10 +1116,10 @@ namespace Tizen.NUI.BaseComponents
 
                 Tizen.NUI.PropertyMap background = Background;
                 int visualType = 0;
-                background.Find(Visual.Property.Type).Get(ref visualType);
+                background.Find(Visual.Property.Type)?.Get(ref visualType);
                 if (visualType == (int)Visual.Type.Image)
                 {
-                    background.Find(ImageVisualProperty.URL).Get(out backgroundImage);
+                    background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
                 }
 
                 return backgroundImage;
