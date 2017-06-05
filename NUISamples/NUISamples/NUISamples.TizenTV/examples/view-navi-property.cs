@@ -46,7 +46,7 @@ namespace MyCSharpExample
                 view[i].Position = new Position(300 + i * 300, 300, 0);
                 view[i].Name = "MyView" + i;
                 view[i].Focusable = true;
-                Window.Instance.GetDefaultLayer().Add(view[i]);
+                Window.Instance.Add(view[i]);
                 view[i].FocusGained += FocusNavigationSample_FocusGained;
                 view[i].FocusLost += FocusNavigationSample_FocusLost;
                 view[i].Key += FocusNavigationSample_KeyEvent;

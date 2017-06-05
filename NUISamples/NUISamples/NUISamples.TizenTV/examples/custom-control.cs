@@ -207,7 +207,7 @@ namespace CustomControlTest
             container.WidthResizePolicy = ResizePolicyType.FillToParent;
             container.HeightResizePolicy = ResizePolicyType.FillToParent;
 
-            window.GetDefaultLayer().Add(container);
+            window.Add(container);
 
             Random random = new Random();
 

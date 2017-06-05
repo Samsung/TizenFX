@@ -68,7 +68,7 @@ namespace HelloTest
             _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
 
-            _window.GetDefaultLayer().Add(_text);
+            _window.Add(_text);
         }
 
         // Callback for _animation finished signal handling

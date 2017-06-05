@@ -65,7 +65,7 @@ namespace DatePickerUsingJson
 
             View actorTree =  View.DownCast( handle );
 
-            window.GetDefaultLayer().Add( actorTree );
+            window.Add( actorTree );
 
             View year  = actorTree.FindChildByName("Year");
             View month  =  actorTree.FindChildByName("Month" );

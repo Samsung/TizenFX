@@ -41,7 +41,7 @@ namespace FlexContainerTest
             container.FlexWrap = FlexContainer.WrapType.Wrap;
             container.FlexDirection = FlexContainer.FlexDirectionType.Column;
 
-            Window.Instance.GetDefaultLayer().Add(container);
+            Window.Instance.Add(container);
 
             numOfSamples = samples.GetLength(0);
             Tizen.Log.Debug("NUI", "NUM = " + numOfSamples);
@@ -102,7 +102,7 @@ namespace FlexContainerTest
                 pushButton2.LabelText = "Remove Handler" + _cnt;
                 return true;
             };
-            Window.Instance.GetDefaultLayer().Add(pushButton1);
+            Window.Instance.Add(pushButton1);
 
             pushButton2 = new PushButton();
             pushButton2.MinimumSize = new Size2D(400, 200);
@@ -120,7 +120,7 @@ namespace FlexContainerTest
                 pushButton2.LabelText = "Remove Handler" + _cnt;
                 return true;
             };
-            Window.Instance.GetDefaultLayer().Add(pushButton2);
+            Window.Instance.Add(pushButton2);
 
             //added
             _ani = new Animation(2000);

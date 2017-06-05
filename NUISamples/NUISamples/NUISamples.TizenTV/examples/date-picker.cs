@@ -63,7 +63,7 @@ namespace DatePickerTest
             _container.Size = new Vector3(480.0f, 150.0f, 0.0f);
             _container.Position2D = new Position2D(400, 400);
 
-            window.GetDefaultLayer().Add(_container);
+            window.Add(_container);
 
             // Create a Spin control for year
             _spinYear = new Spin();
@@ -130,7 +130,7 @@ namespace DatePickerTest
             _textField.Text = "imf manager test!";
             _textField.BackgroundColor = Color.Blue;
             _textField.TextColor = Color.White;
-            window.GetDefaultLayer().Add(_textField);
+            window.Add(_textField);
 
             keyboardFocusManager.SetCurrentFocusView(_textField);
 
@@ -139,7 +139,7 @@ namespace DatePickerTest
             _pushButton.Size2D = new Size2D(900, 100);
             _pushButton.LabelText = "imf activate";
             _pushButton.Clicked += _pushButton_Clicked;
-            window.GetDefaultLayer().Add(_pushButton);
+            window.Add(_pushButton);
         }
 
         private bool _pushButton_Clicked(object source, EventArgs e)

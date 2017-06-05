@@ -59,19 +59,19 @@ namespace HelloWorldTest
             TextLabel pixelLabel = new TextLabel("Test Pixel Size 32.0f");
             pixelLabel.Position2D = new Position2D(10, 10);
             pixelLabel.PixelSize = 32.0f;
-            window.GetDefaultLayer().Add(pixelLabel);
+            window.Add(pixelLabel);
 
             TextLabel pointLabel = new TextLabel("Test Point Size 32.0f");
             pointLabel.Position2D = new Position2D(10, 100);
             pointLabel.PointSize = 32.0f;
-            window.GetDefaultLayer().Add(pointLabel);
+            window.Add(pointLabel);
 
             TextLabel ellipsis = new TextLabel("Ellipsis of TextLabel is enabled.");
             ellipsis.Size2D = new Size2D(100, 100);
             ellipsis.Position2D = new Position2D(10, 250);
             ellipsis.PointSize = 20.0f;
             ellipsis.Ellipsis = true;
-            window.GetDefaultLayer().Add(ellipsis);
+            window.Add(ellipsis);
 
             TextLabel autoScrollStopMode = new TextLabel("AutoScrollStopMode is finish-loop.");
             autoScrollStopMode.Size2D = new Size2D(400, 100);
@@ -80,7 +80,7 @@ namespace HelloWorldTest
             autoScrollStopMode.AutoScrollStopMode = AutoScrollStopMode.FinishLoop;
             //autoScrollStopMode.AutoScrollLoopDelay = 10.0f;
             autoScrollStopMode.EnableAutoScroll = true;
-            window.GetDefaultLayer().Add(autoScrollStopMode);
+            window.Add(autoScrollStopMode);
 
             _text = new TextLabel("Hello NUI World");
             _text.ParentOrigin = ParentOrigin.Center;
@@ -88,7 +88,7 @@ namespace HelloWorldTest
             _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
             _text.TextColor = Color.Magenta;
-            window.GetDefaultLayer().Add(_text);
+            window.Add(_text);
 
             _view = new View();
             _view.Size = new Size(100, 100, 100);

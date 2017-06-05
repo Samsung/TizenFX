@@ -75,7 +75,7 @@ namespace VisaulAnimationExample
             titleLayout.Size2D = new Size2D((int)(window.Size.Width * 0.9f), (int)(window.Size.Height * 0.9f));
             titleLayout.SetCellPadding(new Size2D(10, 10));
             titleLayout.BackgroundColor = Color.Cyan;
-            window.GetDefaultLayer().Add(titleLayout);
+            window.Add(titleLayout);
 
             _title = new TextLabel("Visual Transition Example");
             _title.Name = ("Title");

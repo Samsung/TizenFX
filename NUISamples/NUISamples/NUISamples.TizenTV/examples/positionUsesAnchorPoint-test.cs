@@ -68,7 +68,7 @@ namespace PositionUsesAnchorPointTest
             _text1.Size2D = new Size2D(200, 100);
             _text1.PointSize = 10.0f;
             _text1.BackgroundColor = Color.Blue;
-            _window.GetDefaultLayer().Add(_text1);
+            _window.Add(_text1);
 
             _text2 = new TextLabel("PositionNotUsesAnchorPoint");
             _text2.ParentOrigin = ParentOrigin.Center;
@@ -79,7 +79,7 @@ namespace PositionUsesAnchorPointTest
             _text2.Size2D = new Size2D(200, 100);
             _text2.PointSize = 10.0f;
             _text2.BackgroundColor = Color.Red;
-            _window.GetDefaultLayer().Add(_text2);
+            _window.Add(_text2);
         }
 
 

@@ -120,7 +120,7 @@ namespace Test1
 
             for (int i = 0; i < 10; i++)
             {
-                _window.GetDefaultLayer().Add(list_view[i]);
+                _window.Add(list_view[i]);
                 Tizen.Log.Debug("NUI", list_view[i].Name + "'s sibling order=" + list_view[i].SiblingOrder);
             }
 
@@ -129,7 +129,7 @@ namespace Test1
             _txt.Text = "on top: sibling#, sibling order=?";
             _txt.Position2D = _myPos + new Position2D(-50, 200);
             _txt.TextColor = Color.Blue;
-            _window.GetDefaultLayer().Add(_txt);
+            _window.Add(_txt);
 
         }
 
@@ -182,7 +182,7 @@ namespace Test1
                 _visualTest.Size2D = new Size2D(600, 200);
                 _visualTest.Position2D = new Position2D(50, 400);
                 _visualTest.BackgroundColor = Color.Yellow;
-                _window.GetDefaultLayer().Add(_visualTest);
+                _window.Add(_visualTest);
             }
             catch (Exception e)
             {
@@ -226,7 +226,7 @@ namespace Test1
             view.PivotPoint = PivotPoint.TopLeft;
             view.MinimumSize = new Size2D(100, 100);
             view.BackgroundColor = Color.Red;
-            _window.GetDefaultLayer().Add(view);
+            _window.Add(view);
 
             Position position0 = new Position(200.0f, 200.0f, 0.0f);
             Position position1 = new Position(300.0f, 300.0f, 0.0f);

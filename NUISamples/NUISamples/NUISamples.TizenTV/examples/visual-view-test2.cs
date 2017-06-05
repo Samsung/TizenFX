@@ -40,7 +40,7 @@ namespace VisualViewTest2
                 view[i].Position = new Position(400 + i * 800, 600, 0);
                 view[i].Focusable = true;
                 view[i].Name = "MyView" + i;
-                Window.Instance.GetDefaultLayer().Add(view[i]);
+                Window.Instance.Add(view[i]);
                 view[i].FocusGained += VisualSample_FocusGained;
                 view[i].FocusLost += VisualSample_FocusLost;
                 view[i].Key += VisualSample_KeyEvent;
@@ -135,7 +135,7 @@ namespace VisualViewTest2
             guide.Text = "Left/Right - Move focus\n" +
                 "Up/Down - Change Text\n" +
                 "Enter - Change BG image\n";
-            Window.Instance.GetDefaultLayer().Add(guide);
+            Window.Instance.Add(guide);
 
             Window.Instance.KeyEvent += Instance_Key;
             FocusManager.Instance.SetCurrentFocusView(view[0]);

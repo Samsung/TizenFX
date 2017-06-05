@@ -93,7 +93,7 @@ namespace ControlDashboard
             topLabel.HorizontalAlignment = HorizontalAlignment.Begin;
             topLabel.VerticalAlignment = VerticalAlignment.Center;
             topLabel.PointSize = 42.0f;
-            _window.GetDefaultLayer().Add(topLabel);
+            _window.Add(topLabel);
             //StyleManager.Get().ApplyStyle(topLabel, _resPath + "/json/control-dashboard-theme.json", "TextFieldFontSize4");
             topLabel.SetStyleName("TextFieldFontSize4");
 
@@ -111,7 +111,7 @@ namespace ControlDashboard
             _contentContainer.SetRelativeHeight(4, 0.07f);
             _contentContainer.SetRelativeHeight(5, 0.26f);
             _contentContainer.Focusable = (true);
-            _window.GetDefaultLayer().Add(_contentContainer);
+            _window.Add(_contentContainer);
 
             CreateContent();
 
@@ -334,7 +334,7 @@ namespace ControlDashboard
 
                     button.Clicked += (obj, ee) =>
                     {
-                        _window.GetDefaultLayer().Add(_popup);
+                        _window.Add(_popup);
                         _popup.SetDisplayState(Popup.DisplayStateType.Shown);
                         FocusManager.Instance.SetCurrentFocusView(View.DownCast((_popup.FindChildByName("Footer")).FindChildByName("OKButton")));
                         return true;
@@ -360,7 +360,7 @@ namespace ControlDashboard
                                 text.MultiLine = true;
                                 text.HorizontalAlignment = HorizontalAlignment.Center;
                                 toast.SetTitle(text);
-                                _window.GetDefaultLayer().Add(toast);
+                                _window.Add(toast);
                                 toast.SetDisplayState(Popup.DisplayStateType.Shown);
                             }
                         }

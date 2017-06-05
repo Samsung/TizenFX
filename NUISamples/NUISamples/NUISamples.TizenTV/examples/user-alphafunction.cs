@@ -75,7 +75,7 @@ namespace UserAlphaFunctionTest
             _text.PivotPoint = PivotPoint.BottomCenter;
             _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
-            window.GetDefaultLayer().Add(_text);
+            window.Add(_text);
 
             _view1 = new View();
             _view1.Size = new Vector3(200.0f, 200.0f, 0.0f);
@@ -85,7 +85,7 @@ namespace UserAlphaFunctionTest
             _view1.WidthResizePolicy = ResizePolicyType.Fixed;
             _view1.HeightResizePolicy = ResizePolicyType.Fixed;
             _view1.AddedToWindow += OnWindow;
-            window.GetDefaultLayer().Add(_view1);
+            window.Add(_view1);
 
             _view2 = new View();
             _view2.BackgroundColor = Color.Red;

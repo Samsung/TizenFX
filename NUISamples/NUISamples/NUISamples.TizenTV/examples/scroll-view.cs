@@ -73,7 +73,7 @@ namespace ScrollViewTest
       _scrollView.Size = new Size(windowSize.Width, windowSize.Height, 0.0f);
       _scrollView.ParentOrigin = ParentOrigin.Center;
       _scrollView.PivotPoint = PivotPoint.Center;
-      window.GetDefaultLayer().Add(_scrollView);
+      window.Add(_scrollView);
 
       // Add actors to a scroll view with 3 pages
       int pageRows = 1;

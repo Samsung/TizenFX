@@ -69,7 +69,7 @@ namespace VisualViewTest
             colorVisualMap1.Color = Color.Green;
             _visualView.Background = colorVisualMap1.OutputVisualMap;
 
-            window.GetDefaultLayer().Add(_visualView);
+            window.Add(_visualView);
 
             /* image visual 1. */
             imageVisualMap1 = new ImageVisual();

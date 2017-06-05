@@ -155,13 +155,13 @@ namespace DaliTest
             window.BackgroundColor = Color.White;
             Size windowSize = new Size(window.Size.Width, window.Size.Height, 0.0f);
             Tizen.Log.Debug("NUI", "Window size: " + windowSize.Width + ", " + windowSize.Height);
-            window.GetDefaultLayer().Add(view);
+            window.Add(view);
 
             TextLabel text = new TextLabel("Hello Mono World");
             text.ParentOrigin = ParentOrigin.Center;
             text.PivotPoint = PivotPoint.Center;
             text.HorizontalAlignment = HorizontalAlignment.Center;
-            window.GetDefaultLayer().Add(text);
+            window.Add(text);
 
             Tizen.Log.Debug("NUI",  "Text label text:  " + text.Text );
 
@@ -297,10 +297,10 @@ namespace DaliTest
             downView = new View();
             downView.Name = "downView";
 
-            Window.Instance.GetDefaultLayer().Add(leftView);
-            Window.Instance.GetDefaultLayer().Add(rightView);
-            Window.Instance.GetDefaultLayer().Add(upView);
-            Window.Instance.GetDefaultLayer().Add(downView);
+            Window.Instance.Add(leftView);
+            Window.Instance.Add(rightView);
+            Window.Instance.Add(upView);
+            Window.Instance.Add(downView);
 
             view.LeftFocusableView = leftView;
             tmpView = view.LeftFocusableView;
@@ -324,7 +324,7 @@ namespace DaliTest
                 Tizen.Log.Debug("NUI", "Failed: RightFocusedView = " + tmpView.Name);
             }
 
-            Window.Instance.GetDefaultLayer().Add(view);
+            Window.Instance.Add(view);
 
             view.UpFocusableView = upView;
             tmpView = view.UpFocusableView;
@@ -348,7 +348,7 @@ namespace DaliTest
                 Tizen.Log.Debug("NUI", "Failed: DownFocusedView = " + tmpView.Name);
             }
 
-            Window.Instance.GetDefaultLayer().Remove(leftView);
+            Window.Instance.Remove(leftView);
             tmpView = view.LeftFocusableView;
             if (!tmpView)
             {
@@ -543,7 +543,7 @@ namespace DaliTest
             label.ParentOrigin = ParentOrigin.TopLeft;
             label.PivotPoint = PivotPoint.TopLeft;
             label.Position = new Position(0.0f, 50.0f, 0.0f);
-            Window.Instance.GetDefaultLayer().Add(label);
+            Window.Instance.Add(label);
             label.VisibilityChanged += (sender, e) =>
             {
                 if (e.Visibility)
@@ -556,7 +556,7 @@ namespace DaliTest
             button.LabelText = "Change Visibility";
             button.ParentOrigin = ParentOrigin.TopLeft;
             button.PivotPoint = PivotPoint.TopLeft;
-            Window.Instance.GetDefaultLayer().Add(button);
+            Window.Instance.Add(button);
             button.Clicked += (sender, e) =>
             {
                 if (label.Visible)
@@ -584,7 +584,7 @@ namespace DaliTest
             {
                 Tizen.Log.Debug("NUI", "Resource is ready!");
             };
-            Window.Instance.GetDefaultLayer().Add(image);
+            Window.Instance.Add(image);
         }
 
         public void WindowDevelPropertyTest()
@@ -642,7 +642,7 @@ namespace DaliTest
 
             background = spin.Background;
             Color backgroundColor = new Color();
-            background.Find(ColorVisualProperty.MixColor).Get(backgroundColor);
+            background.Find(ColorVisualProperty.MixColor)?.Get(backgroundColor);
             if( backgroundColor == Color.Red )
             {
                 Tizen.Log.Debug("NUI", "Custom View Background property : test passed");
@@ -690,7 +690,7 @@ namespace DaliTest
         {
           View container = new View();
           container.Position = new Position(-800.0f, -800.0f, 0.0f);
-          Window.Instance.GetDefaultLayer().Add(container);
+          Window.Instance.Add(container);
           Tizen.Log.Debug("NUI", "winow layer count is "+Window.Instance.GetLayerCount());
           Tizen.Log.Debug("NUI", "winow default layer child at 0 is "+Window.Instance.GetDefaultLayer().GetChildAt(0));
           // Test downcast for native control

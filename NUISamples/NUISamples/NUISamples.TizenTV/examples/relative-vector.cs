@@ -66,7 +66,7 @@ namespace RelativeVectorTest
             _imageView.PivotPoint = PivotPoint.Center;
             _imageView.PixelArea = new RelativeVector4(0.0f, 0.0f, 0.0f, 0.0f);
 
-            _window.GetDefaultLayer().Add(_imageView);
+            _window.Add(_imageView);
         }
 
         // Callback for window touched signal handling
