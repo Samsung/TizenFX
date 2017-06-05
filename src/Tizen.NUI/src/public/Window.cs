@@ -539,13 +539,13 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void Add(View view)
+        public void Add(View view)
         {
             NDalicPINVOKE.Stage_Add(stageCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void Remove(View view)
+        public void Remove(View view)
         {
             NDalicPINVOKE.Stage_Remove(stageCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
