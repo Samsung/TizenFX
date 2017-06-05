@@ -103,7 +103,7 @@ namespace Tizen.Multimedia
     /// </summary>
     public class AudioMetadata
     {
-        internal AudioMetadata(int streamCount, IntPtr handle)
+        private AudioMetadata(int streamCount, IntPtr handle)
         {
             Debug.Assert(streamCount > 0);
             Debug.Assert(handle != IntPtr.Zero);
@@ -194,7 +194,7 @@ namespace Tizen.Multimedia
             Genre = GetMetadata(handle, MetadataExtractorAttr.Genre);
             Author = GetMetadata(handle, MetadataExtractorAttr.Author);
             Copyright = GetMetadata(handle, MetadataExtractorAttr.Copyright);
-            ReleaseDate = GetMetadata(handle, MetadataExtractorAttr.ReleaseDate);
+            DateReleased = GetMetadata(handle, MetadataExtractorAttr.ReleaseDate);
             Description = GetMetadata(handle, MetadataExtractorAttr.Description);
             Comment = GetMetadata(handle, MetadataExtractorAttr.Comment);
             TrackNumber = GetMetadata(handle, MetadataExtractorAttr.TrackNum);
@@ -288,7 +288,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>A string representing the release date, or null if the information does not exist.</value>
-        public string ReleaseDate { get; }
+        public string DateReleased { get; }
 
         /// <summary>
         /// Gets the description of the media.
