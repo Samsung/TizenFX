@@ -57,18 +57,18 @@ namespace ElmSharp
             }
         }
 
-        internal void AddChild(EvasObject obj)
+        protected void AddChild(EvasObject obj)
         {
             _children.Add(obj);
             obj.Deleted += OnChildDeleted;
         }
 
-        internal void RemoveChild(EvasObject obj)
+        protected void RemoveChild(EvasObject obj)
         {
             _children.Remove(obj);
         }
 
-        internal void ClearChildren()
+        protected void ClearChildren()
         {
             _children.Clear();
         }

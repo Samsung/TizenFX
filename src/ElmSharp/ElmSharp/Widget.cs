@@ -29,22 +29,27 @@ namespace ElmSharp
         /// Previous direction
         /// </summary>
         Previous,
+
         /// <summary>
         /// Next direction
         /// </summary>
         Next,
+
         /// <summary>
         /// Up direction
         /// </summary>
         Up,
+
         /// <summary>
         /// Down direction
         /// </summary>
         Down,
+
         /// <summary>
         /// Right direction
         /// </summary>
         Right,
+
         /// <summary>
         /// Left direction
         /// </summary>
@@ -80,6 +85,11 @@ namespace ElmSharp
 
             _unfocused = new SmartEvent(this, "unfocused");
             _unfocused.On += (s, e) => Unfocused?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected void UpdatePartContents(EvasObject content, string part = "__default__")
+        {
+            _partContents[part] = content;
         }
 
         /// <summary>
@@ -253,9 +263,9 @@ namespace ElmSharp
         /// <param name="part">The name of particular part</param>
         /// <param name="content">The content</param>
         /// <seealso cref="SetPartContent(string, EvasObject, bool)"/>
-        public void SetPartContent(string part, EvasObject content)
+        public virtual bool SetPartContent(string part, EvasObject content)
         {
-            SetPartContent(part, content, false);
+            return SetPartContent(part, content, false);
         }
 
         /// <summary>
@@ -265,15 +275,15 @@ namespace ElmSharp
         /// <param name="content">The content</param>
         /// <param name="preserveOldContent">true, preserve old content will be unset. false, preserve old content will not be unset.</param>
         /// <seealso cref="SetPartContent(string, EvasObject)"/>
-        public void SetPartContent(string part, EvasObject content, bool preserveOldContent)
+        public virtual bool SetPartContent(string part, EvasObject content, bool preserveOldContent)
         {
             if (preserveOldContent)
             {
                 Interop.Elementary.elm_object_part_content_unset(RealHandle, part);
             }
             Interop.Elementary.elm_object_part_content_set(RealHandle, part, content);
-
-            _partContents[part ?? "__default__"] = content;
+            UpdatePartContents(content, part);
+            return true;
         }
 
         /// <summary>
@@ -300,7 +310,7 @@ namespace ElmSharp
             }
 
             Interop.Elementary.elm_object_content_set(RealHandle, content);
-            _partContents["__default__"] = content;
+            UpdatePartContents(content);
         }
 
         /// <summary>
@@ -308,9 +318,10 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The name of particular part</param>
         /// <param name="text">The text</param>
-        public void SetPartText(string part, string text)
+        public virtual bool SetPartText(string part, string text)
         {
             Interop.Elementary.elm_object_part_text_set(RealHandle, part, text);
+            return true;
         }
 
         /// <summary>
@@ -318,7 +329,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The name of particular part</param>
         /// <returns>Text of the particular part of the widget</returns>
-        public string GetPartText(string part)
+        public virtual string GetPartText(string part)
         {
             return Interop.Elementary.elm_object_part_text_get(RealHandle, part);
         }

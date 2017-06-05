@@ -180,7 +180,7 @@ internal static partial class Interop
         internal static extern void elm_object_tooltip_hide(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_tooltip_orient_set(IntPtr obj, Elm_Tooltip_Orient orient);
+        internal static extern void elm_object_tooltip_orient_set(IntPtr obj, int orient);
 
         internal static string elm_object_part_text_get(IntPtr obj, string part)
         {
@@ -209,7 +209,7 @@ internal static partial class Interop
         }
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_object_part_content_unset(IntPtr obj, string part);
+        internal static extern IntPtr elm_object_part_content_unset(IntPtr obj, string part);
 
         internal static void elm_object_content_unset(IntPtr obj)
         {
@@ -242,6 +242,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_layout_theme_set(IntPtr obj, string klass, string group, string style);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_layout_file_get(IntPtr obj, IntPtr file, IntPtr group);
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_layout_file_set(IntPtr obj, string file, string group);
@@ -346,7 +349,7 @@ internal static partial class Interop
         internal static extern bool elm_object_tree_focus_allow_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_object_focus_next_object_get(IntPtr obj, Elm_Focus_Direction dir);
+        internal static extern IntPtr elm_object_focus_next_object_get(IntPtr obj, int dir);
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_object_focused_object_get(IntPtr obj);
@@ -554,7 +557,7 @@ internal static partial class Interop
         internal static extern void elm_transit_objects_final_state_keep_set(IntPtr transit, bool stateKeep);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_transit_tween_mode_set(IntPtr transit, Elm_Transit_Tween_Mode tweenMode);
+        internal static extern void elm_transit_tween_mode_set(IntPtr transit, int tweenMode);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_transit_repeat_times_set(IntPtr transit, int repeat);
@@ -611,7 +614,7 @@ internal static partial class Interop
         internal static extern int elm_transit_repeat_times_get(IntPtr transit);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern Elm_Transit_Tween_Mode elm_transit_tween_mode_get(IntPtr transit);
+        internal static extern int elm_transit_tween_mode_get(IntPtr transit);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_transit_tween_mode_factor_set(IntPtr transit, double v1, double v2);
@@ -650,13 +653,13 @@ internal static partial class Interop
         internal static extern bool elm_transit_smooth_get(IntPtr transit);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_transit_effect_flip_add(IntPtr transit, Elm_Transit_Effect_Flip_Axis axis, bool cw);
+        internal static extern IntPtr elm_transit_effect_flip_add(IntPtr transit, int axis, bool cw);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_transit_effect_resizable_flip_add(IntPtr transit, Elm_Transit_Effect_Flip_Axis axis, bool cw);
+        internal static extern IntPtr elm_transit_effect_resizable_flip_add(IntPtr transit, int axis, bool cw);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_transit_effect_wipe_add(IntPtr transit, Elm_Transit_Effect_Wipe_Type type, Elm_Transit_Effect_Wipe_Dir dir);
+        internal static extern IntPtr elm_transit_effect_wipe_add(IntPtr transit, int type, int dir);
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_transit_effect_blend_add(IntPtr transit);
@@ -679,61 +682,49 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void Elm_Transit_Del_Cb(IntPtr data, IntPtr transit);
 
-        internal enum Elm_Transit_Tween_Mode
-        {
-            ELM_TRANSIT_TWEEN_MODE_LINEAR,
-            ELM_TRANSIT_TWEEN_MODE_SINUSOIDAL,
-            ELM_TRANSIT_TWEEN_MODE_DECELERATE,
-            ELM_TRANSIT_TWEEN_MODE_ACCELERATE,
-            ELM_TRANSIT_TWEEN_MODE_DIVISOR_INTERP,
-            ELM_TRANSIT_TWEEN_MODE_BOUNCE,
-            ELM_TRANSIT_TWEEN_MODE_SPRING,
-            ELM_TRANSIT_TWEEN_MODE_BEZIER_CURVE,
-        }
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_layout_box_insert_at(IntPtr obj, string part, IntPtr child, uint pos);
 
-        internal enum Elm_Transit_Effect_Flip_Axis
-        {
-            ELM_TRANSIT_EFFECT_FLIP_AXIS_X,
-            ELM_TRANSIT_EFFECT_FLIP_AXIS_Y,
-        }
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_layout_box_insert_before(IntPtr obj, string part, IntPtr child, IntPtr reference);
 
-        internal enum Elm_Transit_Effect_Wipe_Type
-        {
-            ELM_TRANSIT_EFFECT_WIPE_TYPE_HIDE,
-            ELM_TRANSIT_EFFECT_WIPE_TYPE_SHOW,
-        }
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_layout_edje_object_can_access_get(IntPtr obj);
 
-        internal enum Elm_Transit_Effect_Wipe_Dir
-        {
-            ELM_TRANSIT_EFFECT_WIPE_DIR_LEFT,
-            ELM_TRANSIT_EFFECT_WIPE_DIR_RIGHT,
-            ELM_TRANSIT_EFFECT_WIPE_DIR_UP,
-            ELM_TRANSIT_EFFECT_WIPE_DIR_DOWN,
-        }
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_layout_edje_object_can_access_set(IntPtr obj, bool canAccess);
 
-        internal enum Elm_Focus_Direction
-        {
-            ELM_FOCUS_PREVIOUS,
-            ELM_FOCUS_NEXT,
-            ELM_FOCUS_UP,
-            ELM_FOCUS_DOWN,
-            ELM_FOCUS_RIGHT,
-            ELM_FOCUS_LEFT,
-        }
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_layout_freeze(IntPtr obj);
 
-        internal enum Elm_Tooltip_Orient
-        {
-            ELM_TOOLTIP_ORIENT_NONE,
-            ELM_TOOLTIP_ORIENT_TOP_LEFT,
-            ELM_TOOLTIP_ORIENT_TOP,
-            ELM_TOOLTIP_ORIENT_TOP_RIGHT,
-            ELM_TOOLTIP_ORIENT_LEFT,
-            ELM_TOOLTIP_ORIENT_CENTER,
-            ELM_TOOLTIP_ORIENT_RIGHT,
-            ELM_TOOLTIP_ORIENT_BOTTOM_LEFT,
-            ELM_TOOLTIP_ORIENT_BOTTOM,
-            ELM_TOOLTIP_ORIENT_BOTTOM_RIGHT,
-            ELM_TOOLTIP_ORIENT_LAST,
-        }
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_layout_part_cursor_engine_only_get(IntPtr obj, string part);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_layout_part_cursor_engine_only_set(IntPtr obj, string part, bool engineOnly);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern string elm_layout_part_cursor_get(IntPtr obj, string part);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_layout_part_cursor_set(IntPtr obj, string part, string cursor);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern string elm_layout_part_cursor_style_get(IntPtr obj, string part);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_layout_part_cursor_style_set(IntPtr obj, string part, string style);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_layout_part_cursor_unset(IntPtr obj, string part);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_layout_sizing_eval(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_layout_sizing_restricted_eval(IntPtr obj, bool width, bool height);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_layout_thaw(IntPtr obj);
     }
 }
