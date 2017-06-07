@@ -285,7 +285,7 @@ namespace ElmSharp
         /// <seealso cref="InsertBefore(ToolbarItem, string, string)"/>
         public ToolbarItem InsertBefore(ToolbarItem before, string label)
         {
-            return InsertBefore(before, label);
+            return InsertBefore(before, label, string.Empty);
         }
 
         /// <summary>
