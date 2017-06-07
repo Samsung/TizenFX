@@ -15,7 +15,7 @@
  */
 using System;
 using System.Diagnostics;
-using static Interop;
+using Native = Interop.AudioEffect;
 
 namespace Tizen.Multimedia
 {
@@ -39,10 +39,10 @@ namespace Tizen.Multimedia
             int frequency = 0;
             int range = 0;
 
-            NativePlayer.AudioEffectGetEqualizerBandFrequency(_owner.Player.Handle, _index, out frequency).
+            Native.GetEqualizerBandFrequency(_owner.Player.Handle, _index, out frequency).
                 ThrowIfFailed("Failed to initialize equalizer band");
 
-            NativePlayer.AudioEffectGetEqualizerBandFrequencyRange(_owner.Player.Handle, _index, out range).
+            Native.GetEqualizerBandFrequencyRange(_owner.Player.Handle, _index, out range).
                 ThrowIfFailed("Failed to initialize equalizer band");
 
             Frequency = frequency;
@@ -73,7 +73,7 @@ namespace Tizen.Multimedia
                     $"but got {value}.");
             }
 
-            NativePlayer.AudioEffectSetEqualizerBandLevel(_owner.Player.Handle, _index, value).
+            Native.SetEqualizerBandLevel(_owner.Player.Handle, _index, value).
                 ThrowIfFailed("Failed to set the level of the equalizer band");
         }
 
@@ -87,7 +87,7 @@ namespace Tizen.Multimedia
             _owner.Player.ValidateNotDisposed();
 
             int value = 0;
-            NativePlayer.AudioEffectGetEqualizerBandLevel(_owner.Player.Handle, _index, out value).
+            Native.GetEqualizerBandLevel(_owner.Player.Handle, _index, out value).
                 ThrowIfFailed("Failed to get the level of the equalizer band");
             Log.Info(PlayerLog.Tag, "get level : " + value);
             return value;

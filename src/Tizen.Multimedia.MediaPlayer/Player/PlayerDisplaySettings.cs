@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System;
 using System.Diagnostics;
-using static Interop;
+using Native = Interop.Display;
 
 namespace Tizen.Multimedia
 {
@@ -63,7 +64,7 @@ namespace Tizen.Multimedia
 
                 ValidationUtil.ValidateEnum(typeof(PlayerDisplayMode), value);
 
-                NativePlayer.SetDisplayMode(Player.Handle, value).
+                Native.SetMode(Player.Handle, value).
                     ThrowIfFailed("Failed to set display mode");
 
                 _displayMode = value;
@@ -95,7 +96,7 @@ namespace Tizen.Multimedia
                     return;
                 }
 
-                NativePlayer.SetDisplayVisible(Player.Handle, value).
+                Native.SetVisible(Player.Handle, value).
                     ThrowIfFailed("Failed to set the visible state of the display");
 
                 _isVisible = value;
@@ -130,7 +131,7 @@ namespace Tizen.Multimedia
 
                 ValidationUtil.ValidateEnum(typeof(PlayerDisplayRotation), value);
 
-                NativePlayer.SetDisplayRotation(Player.Handle, value).
+                Native.SetRotation(Player.Handle, value).
                     ThrowIfFailed("Failed to set the rotation state of the display");
 
                 _rotation = value;
@@ -170,7 +171,7 @@ namespace Tizen.Multimedia
                     $"The height of the roi can't be less than or equal to zero.");
             }
 
-            NativePlayer.SetDisplayRoi(Player.Handle, roi.X, roi.Y, roi.Width, roi.Height).
+            Native.SetRoi(Player.Handle, roi.X, roi.Y, roi.Width, roi.Height).
                 ThrowIfFailed("Failed to set the roi");
         }
     }
