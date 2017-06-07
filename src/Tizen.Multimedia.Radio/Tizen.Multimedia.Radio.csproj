@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Tizen" Version="1.0.3" />
+    <PackageReference Include="Tizen.System.Information" Version="1.0.2" />
   </ItemGroup>
 
 </Project>
