@@ -17,21 +17,21 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Radio State
+    /// Specifies states of the <see cref="Radio"/>.
     /// </summary>
     public enum RadioState
     {
         /// <summary>
-        /// Ready to play or scan
+        /// Ready to play or scan.
         /// </summary>
-        Ready = Interop.RadioState.Ready,
+        Ready,
         /// <summary>
-        /// Playing audio from the tuner
+        /// Playing audio from the tuner.
         /// </summary>
-        Playing = Interop.RadioState.Playing,
+        Playing,
         /// <summary>
-        /// Scanning/ searching for the next station for signal
+        /// Scanning; searching for the next station for signal.
         /// </summary>
-        Scanning = Interop.RadioState.Scanning,
+        Scanning,
     }
 }

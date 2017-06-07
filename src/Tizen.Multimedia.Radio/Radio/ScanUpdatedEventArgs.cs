@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Arguments for radio scan update events
+    /// Provides data for the <see cref="Radio.ScanUpdated"/> event.
     /// </summary>
     public class ScanUpdatedEventArgs : EventArgs
     {
@@ -29,8 +29,14 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Tuned radio frequency, in range [87500 ~ 108000] (kHz)
+        /// Gets the tuned radio frequency that is scanned, in range [87500 ~ 108000] (kHz).
         /// </summary>
         public int Frequency { get; }
+
+
+        public override string ToString()
+        {
+            return $"Frequency={ Frequency.ToString() }";
+        }
     }
 }

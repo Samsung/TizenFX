@@ -15,260 +15,305 @@
  */
 
 using System;
-using System.Runtime.CompilerServices;
+using System.Linq;
 using System.Threading.Tasks;
 using Tizen.System;
+using static Tizen.Multimedia.Interop.Radio;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Radio class, provides support for using the Radio feature
+    /// Provides means for using the radio feature.
     /// </summary>
     public class Radio : IDisposable
     {
-        internal Interop.RadioHandle _handle;
+        private Interop.RadioHandle _handle;
 
         private const string FeatureFmRadio = "http://tizen.org/feature/fmradio";
 
         /// <summary>
-        /// Radio constructor
+        /// Initialize a new instance of the Radio class.
         /// </summary>
-        /// <Feature> http://tizen.org/feature/fmradio </Feature>
-        /// <exception cref="OutOfMemoryException"></exception>
-        /// <exception cref="NotSupportedException">This is thrown if Radio feature is not supported</exception>
-        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="NotSupportedException">Radio feature is not supported</exception>
         public Radio()
         {
             ValidateFeatureSupported(FeatureFmRadio);
-            _handle = new Interop.RadioHandle();
-            _handle.ScanCompleteCb = ScanCompleteCallback;
-            _handle.InteruptedCb = PlaybackIntruptedCallback;
+
+            Create(out _handle);
+
+            try
+            {
+                SetScanCompletedCb(_handle, ScanCompleteCallback).ThrowIfFailed("Failed to initialize radio");
+                SetInterruptedCb(_handle, IntruptedCallback).ThrowIfFailed("Failed to initialize radio");
+            }
+            catch (Exception)
+            {
+                _handle.Dispose();
+                throw;
+            }
+        }
+
+        private Interop.RadioHandle Handle
+        {
+            get
+            {
+                if (_disposed)
+                {
+                    throw new ObjectDisposedException(GetType().Name);
+                }
+                return _handle;
+            }
         }
 
         /// <summary>
-        /// Scan update event, to be triggered when radio scan information is updated
+        /// Occurs when radio scan information is updated.
         /// </summary>
-        public event EventHandler<ScanUpdatedEventArgs> ScanInformationUpdated;
+        public event EventHandler<ScanUpdatedEventArgs> ScanUpdated;
 
         /// <summary>
-        /// Scan stopped event, to be triggered when radio scanning stops
+        /// Occurs when radio scanning stops.
         /// </summary>
         public event EventHandler ScanStopped;
 
         /// <summary>
-        /// Scan complete event, to be triggered when radio scan is completed
+        /// Occurs when radio scan is completed.
         /// </summary>
         public event EventHandler ScanCompleted;
 
         /// <summary>
-        /// Playback interrupted event, to be triggered when radio playback is interrupted
+        /// Occurs when radio is interrupted
         /// </summary>
-        public event EventHandler<RadioInterruptedEventArgs> PlaybackInterrupted;
+        public event EventHandler<RadioInterruptedEventArgs> Interrupted;
 
         /// <summary>
-        /// Current state for the radio
+        /// Gets the current state of the radio.
         /// </summary>
         public RadioState State
         {
             get
             {
-                ValidateObjectNotDisposed();
-                return (RadioState)_handle.State;
+                RadioState state;
+                GetState(Handle, out state);
+                return state;
             }
         }
 
         /// <summary>
-        /// Current radio frequency, in [87500 ~ 108000] (kHz) range
+        /// Gets or sets the radio frequency, in [87500 ~ 108000] (kHz).
         /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException">This is thrown if value passed to setter in not in valid range</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <paramref name="value"/> is less than <see cref="Range.Min"/> of <see cref="FrequencyRange"/>.\n
+        ///     - or - \n
+        ///     <paramref name="value"/> is greater than <see cref="Range.Max"/> of <see cref="FrequencyRange"/>.\n
+        /// </exception>
         public int Frequency
         {
             get
             {
-                ValidateObjectNotDisposed();
-                return _handle.Frequency;
+                int value = 0;
+                GetFrequency(Handle, out value).ThrowIfFailed("Failed to get frequency");
+                return value;
             }
             set
             {
-                ValidateObjectNotDisposed();
-                ValidateInputRangeForPropertySetter(value, 87500, 108000);
-                _handle.Frequency = value;
+                if (value < FrequencyRange.Min || value > FrequencyRange.Max)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(Frequency), value, "Frequency must be within FrequencyRange.");
+                }
+
+                SetFrequency(Handle, value).ThrowIfFailed("Failed to set frequency");
             }
         }
 
         /// <summary>
-        /// Current signal strength, in  [-128 ~ 128] (dBm) range
+        /// Gets the current signal strength, in [-128 ~ 128] (dBm).
         /// </summary>
         public int SignalStrength
         {
             get
             {
-                ValidateObjectNotDisposed();
-                return _handle.SignalStrength;
+                int value = 0;
+                GetSignalStrength(Handle, out value).ThrowIfFailed("Failed to get signal strength");
+                return value;
             }
         }
 
         /// <summary>
-        /// Indicates if radio is muted. By default radio is not muted.
+        /// Gets the value indicating if radio is muted.
         /// </summary>
+        /// <value>
+        /// true if the radio is muted; otherwise, false.
+        /// The default is false.
+        /// </value>
         public bool IsMuted
         {
             get
             {
-                ValidateObjectNotDisposed();
-                return _handle.IsMuted;
+                bool value;
+                GetMuted(Handle, out value).ThrowIfFailed("Failed to get the mute state");
+                return value;
             }
             set
             {
-                ValidateObjectNotDisposed();
-                _handle.IsMuted = value;
+                SetMute(Handle, value).ThrowIfFailed("Failed to set the mute state");
             }
         }
 
         /// <summary>
-        /// Channel spacing for current region
+        /// Gets the channel spacing for current region.
         /// </summary>
         public int ChannelSpacing
         {
             get
             {
-                ValidateObjectNotDisposed();
-                return _handle.ChannelSpacing;
+                int value;
+                GetChannelSpacing(Handle, out value).ThrowIfFailed("Failed to get channel spacing");
+                return value;
             }
         }
 
         /// <summary>
-        /// Current radio volume level, in [0.0 ~ 1.0](1.0 = 100%) range.
-        /// Default value for volume is 1.0.
+        /// Gets or sets the radio volume level.
         /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException">This is thrown if value passed to setter in not in valid range</exception>
+        /// <remarks>Valid volume range is from 0 to 1.0(100%), inclusive.</remarks>
+        /// <value>The default is 1.0.</value>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <paramref name="value"/> is less than zero.\n
+        ///     - or -\n
+        ///     <paramref name="value"/> is greater than 1.0.
+        /// </exception>
         public float Volume
         {
             get
             {
-                ValidateObjectNotDisposed();
-                return _handle.Volume;
+                float value;
+                GetVolume(Handle, out value).ThrowIfFailed("Failed to get volume level.");
+                return value;
             }
             set
             {
-                ValidateObjectNotDisposed();
-                ValidateInputRangeForPropertySetter(value, 0.0, 1.0);
-                _handle.Volume = value;
+                if (value < 0F || 1.0F < value)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        $"Valid volume range is 0 <= value <= 1.0, but got { value }.");
+                }
+
+                SetVolume(Handle, value).ThrowIfFailed("Failed to set volume level");
             }
         }
 
         /// <summary>
-        /// Minimum frequency for the region, in [87500 ~ 108000] (kHz) range
+        /// Gets the frequency for the region, in [87500 ~ 108000] (kHz).
         /// </summary>
-        public int MinimumFrequency
+        public Range FrequencyRange
         {
             get
             {
-                ValidateObjectNotDisposed();
-                return _handle.MinimumFrequency;
+                int min, max;
+
+                GetFrequencyRange(Handle, out min, out max).ThrowIfFailed("Failed to get frequency range");
+
+                return new Range(min, max);
             }
         }
 
         /// <summary>
-        /// Maximum frequency for the region, in [87500 ~ 108000] (kHz) range
+        /// Starts the radio.
         /// </summary>
-        public int MaximumFrequency
+        /// <remarks>The radio must be in the <see cref="RadioState.Ready"/> state.</remarks>
+        /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
+        public void Start()
         {
-            get
-            {
-                ValidateObjectNotDisposed();
-                return _handle.MaximumFrequency;
-            }
+            ValidateRadioState(RadioState.Ready);
+
+            Interop.Radio.Start(Handle).ThrowIfFailed("Failed to start radio");
         }
 
         /// <summary>
-        /// Starts radio playback
+        /// Stops the radio.
         /// </summary>
-        /// <remarks>This method can be called if Radio is in Ready state. This method will move Radio to Playing state</remarks>
-        /// <exception cref="InvalidOperationException">This is thrown if Radio is not in Ready state</exception>
-        public void StartPlayback()
+        /// <remarks>The radio must be in the <see cref="RadioState.Playing"/> state.</remarks>
+        /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
+        public void Stop()
         {
-            ValidateObjectNotDisposed();
-            ValidateRadioState(() => State == RadioState.Ready);
-            _handle.StartPlayback();
-        }
+            ValidateRadioState(RadioState.Playing);
 
-        /// <summary>
-        /// Stops radio playback
-        /// </summary>
-        /// <remarks>This method can be called if Radio is in Playing state. This method will move Radio to Ready state</remarks>
-        /// <exception cref="InvalidOperationException">This is thrown if Radio is not in Playing state</exception>
-        public void StopPlayback()
-        {
-            ValidateObjectNotDisposed();
-            ValidateRadioState(() => State == RadioState.Playing);
-            _handle.StopPlayback();
+            Interop.Radio.Stop(Handle).ThrowIfFailed("Failed to stop radio");
         }
 
         /// <summary>
         /// Starts radio scan, will trigger ScanInformationUpdated event, when scan information is updated
         /// </summary>
-        /// <remarks>This method should not be called if Radio is in Scanning state. This method will move Radio to Scanning state</remarks>
-        /// <exception cref="InvalidOperationException">This is thrown if Radio is already in Scanning state</exception>
+        /// <remarks>The radio must be in the <see cref="RadioState.Ready"/> or <see cref="RadioState.Playing"/> state.</remarks>
+        /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
+        /// <seealso cref="ScanUpdated"/>
+        /// <seealso cref="ScanCompleted"/>
         public void StartScan()
         {
-            ValidateObjectNotDisposed();
-            ValidateRadioState(() => State != RadioState.Scanning);
-            _handle.StartScan(ScanUpdateCallback);
+            ValidateRadioState(RadioState.Ready, RadioState.Playing);
+
+            ScanStart(Handle, ScanUpdatedCallback);
         }
 
         /// <summary>
-        /// Stops radio scan, will trigger ScanStopped event, once complete
+        /// Stops radio scan.
         /// </summary>
-        /// <remarks>This method should be called only if Radio is in Scanning state</remarks>
-        /// <exception cref="InvalidOperationException">This is thrown if Radio is not in Scanning state</exception>
+        /// <remarks>The radio must be in the <see cref="RadioState.Scanning"/> state.</remarks>
+        /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
+        /// <seealso cref="ScanStopped"/>
         public void StopScan()
         {
-            ValidateObjectNotDisposed();
-            ValidateRadioState(() => State == RadioState.Scanning);
-            _handle.StopScan(ScanStoppedCallback);
+            ValidateRadioState(RadioState.Scanning);
+
+            ScanStop(Handle, ScanStoppedCallback);
         }
 
         /// <summary>
-        /// Seeks up the effective frequency of the radio
+        /// Seeks up the effective frequency of the radio.
         /// </summary>
-        /// <returns>Current frequency, in range [87500 ~ 108000] (kHz)</returns>
-        /// <remarks>Radio must be in Playing state to use this API</remarks>
-        /// <exception cref="InvalidOperationException">This is thrown if Radio is not in Playing state</exception>
-        public Task<int> SeekUpAsync()
+        /// <returns>
+        /// A task that represents the asynchronous seeking operation.
+        /// The result value is the current frequency, in range [87500 ~ 108000] (kHz).
+        /// It can be -1 if the seeking operation has failed.
+        /// </returns>
+        /// <remarks>The radio must be in the <see cref="RadioState.Playing/> state.</remarks>
+        /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
+        public async Task<int> SeekUpAsync()
         {
-            ValidateObjectNotDisposed();
-            ValidateRadioState(() => State == RadioState.Playing);
+            ValidateRadioState(RadioState.Playing);
 
             TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
-            Interop.RadioHandle.SeekCompletedCallback callback = (currentFrequency, userData) =>
+            SeekCompletedCallback callback = (currentFrequency, _) =>
             {
                 tcs.TrySetResult(currentFrequency);
             };
 
-            _handle.SeekUp(callback);
-            return Interop.PinnedTask(tcs);
+            SeekUp(Handle, callback);
+            return await tcs.Task;
         }
 
         /// <summary>
-        /// Seeks down the effective frequency of the radio
+        /// Seeks down the effective frequency of the radio.
         /// </summary>
-        /// <returns>Current frequency, in range [87500 ~ 108000] (kHz)</returns>
-        /// <remarks>Radio must be in Playing state to use this API</remarks>
-        /// <exception cref="InvalidOperationException">This is thrown if Radio is not in Playing state</exception>
-        public Task<int> SeekDownAsync()
+        /// <returns>
+        /// A task that represents the asynchronous seeking operation.
+        /// The result value is the current frequency, in range [87500 ~ 108000] (kHz).
+        /// It can be -1 if the seeking operation has failed.
+        /// </returns>
+        /// <remarks>The radio must be in the <see cref="RadioState.Playing/> state.</remarks>
+        /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
+        public async Task<int> SeekDownAsync()
         {
-            ValidateObjectNotDisposed();
-            ValidateRadioState(() => State == RadioState.Playing);
+            ValidateRadioState(RadioState.Playing);
 
             TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
-            Interop.RadioHandle.SeekCompletedCallback callback = (currentFrequency, userData) =>
+            SeekCompletedCallback callback = (currentFrequency, _) =>
             {
                 tcs.TrySetResult(currentFrequency);
             };
 
-            _handle.SeekDown(callback);
-            return Interop.PinnedTask(tcs);
+            SeekDown(Handle, callback);
+            return await tcs.Task;
         }
 
         private void ValidateFeatureSupported(string featurePath)
@@ -283,9 +328,9 @@ namespace Tizen.Multimedia
 
         }
 
-        private void ScanUpdateCallback(int frequency, IntPtr data)
+        private void ScanUpdatedCallback(int frequency, IntPtr data)
         {
-            ScanInformationUpdated?.Invoke(this, new ScanUpdatedEventArgs(frequency));
+            ScanUpdated?.Invoke(this, new ScanUpdatedEventArgs(frequency));
         }
 
         private void ScanStoppedCallback(IntPtr data)
@@ -298,43 +343,43 @@ namespace Tizen.Multimedia
             ScanCompleted?.Invoke(this, EventArgs.Empty);
         }
 
-        private void PlaybackIntruptedCallback(Interop.RadioInterruptedReason reason, IntPtr data)
+        private void IntruptedCallback(RadioInterruptedReason reason, IntPtr data)
         {
-            PlaybackInterrupted?.Invoke(this, new RadioInterruptedEventArgs((RadioInterruptedReason)reason));
+            Interrupted?.Invoke(this, new RadioInterruptedEventArgs(reason));
         }
 
-        private void ValidateInputRangeForPropertySetter<T>(T input, T min, T max, [CallerMemberName] string member = "") where T : IComparable<T>
+        private void ValidateRadioState(params RadioState[] reqiured)
         {
-            if (min.CompareTo(input) == 1 || max.CompareTo(input) == -1)
+            RadioState curState = State;
+
+            if (reqiured.Contains(curState) == false)
             {
-                throw new ArgumentOutOfRangeException(member, input, $"Valid Range [{min} - {max}]");
+                throw new InvalidOperationException($"{curState} is not valid state.");
             }
         }
 
-        private void ValidateRadioState(Func<bool> stateVerifier, [CallerMemberName] string member = "")
+        #region IDisposable Support
+        private bool _disposed = false;
+
+        protected virtual void Dispose(bool disposing)
         {
-            if (stateVerifier() == false)
+            if (!_disposed)
             {
-                throw new InvalidOperationException($"{State} is not valid state to call {member}. Please check API documentation");
+                if (_handle != null)
+                {
+                    _handle.Dispose();
+                }
+                _disposed = true;
             }
         }
 
-        private void ValidateObjectNotDisposed()
-        {
-            if (_disposedValue)
-            {
-                throw new ObjectDisposedException(GetType().Name);
-            }
-        }
-
-        private bool _disposedValue = false;
-
+        /// <summary>
+        /// Releases all resources used by the <see cref="Radio"/> object.
+        /// </summary>
         public void Dispose()
         {
-            _handle.ScanCompleteCb = null;
-            _handle.InteruptedCb = null;
-            _handle.Dispose();
-            _disposedValue = true;
+            Dispose(true);
         }
+        #endregion
     }
 }
