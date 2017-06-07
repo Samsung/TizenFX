@@ -1,5 +1,3 @@
-%define DEV_VERSION beta-002
-
 Name:       elm-sharp
 Summary:    C# Binding for Elementary
 Version:    1.2.0
@@ -29,7 +27,7 @@ cp %{SOURCE1} .
 %build
 for ASM in %{Assemblies}; do
 %dotnet_build $ASM
-%dotnet_pack $ASM/$ASM.nuspec %{version}%{?DEV_VERSION:-%{DEV_VERSION}}
+%dotnet_pack $ASM/$ASM.nuspec %{version}
 done
 
 %install

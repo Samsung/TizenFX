@@ -9,6 +9,6 @@
 		<projectUrl>https://www.tizen.org/</projectUrl>
 		<iconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</iconUrl>
 		<copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
-		<description>ElmSharp is the top-most library based on Tizen Native UI Framwork (EFL). It provides a variety of pre-built UI components, such as layout objects and widgets, that allow you to build rich graphical user interfaces.</description>
+		<description>ElmSharp is the top-most library based on the Tizen Native UI Framwork (EFL). It provides a variety of pre-built UI components, such as layout objects and widgets, that allow you to build rich graphical user interfaces. This is in the beta stage and will be refined based on developer feedback. Backward compatibility issues may be raised when updating the platform version.</description>
 	</metadata>
 </package>
