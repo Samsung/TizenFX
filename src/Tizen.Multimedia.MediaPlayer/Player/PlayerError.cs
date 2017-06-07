@@ -44,7 +44,10 @@ namespace Tizen.Multimedia
         DrmFutureUse = PlayerErrorClass | 0x0a,
         DrmNotPermitted = PlayerErrorClass | 0x0b,
         ResourceLimit = PlayerErrorClass | 0x0c,
-        ServiceDisconnected = PlayerErrorClass | 0x0d
+        ServiceDisconnected = PlayerErrorClass | 0x0d,
+        NotSupportedAudioCodec = PlayerErrorClass | 0x0e,
+        NotSupportedVideoCodec = PlayerErrorClass | 0x0f,
+        NotSupportedSubtitle = PlayerErrorClass | 0x10
     }
 
     internal static class PlayerErrorCodeExtensions
@@ -99,6 +102,13 @@ namespace Tizen.Multimedia
 
                 case PlayerErrorCode.ResourceLimit:
                     throw new ResouceLimitException(msg);
+
+                case PlayerErrorCode.NotSupportedAudioCodec:
+                    throw new CodecNotSupportedException(CodecKind.Audio);
+
+                case PlayerErrorCode.NotSupportedVideoCodec:
+                    throw new CodecNotSupportedException(CodecKind.Video);
+
             }
 
             throw new Exception(msg);
