@@ -120,8 +120,6 @@ namespace Tizen.Multimedia
         private void RetrieveProperties()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-            NativePlayer.GetVolume(Handle, out _volume, out _volume).
-                ThrowIfFailed("Failed to initialize the player");
 
             NativePlayer.GetAudioLatencyMode(Handle, out _audioLatencyMode).
                 ThrowIfFailed("Failed to initialize the player");
@@ -554,33 +552,27 @@ namespace Tizen.Multimedia
         #region Methods
 
         /// <summary>
-        /// Gets the mute state.
+        /// Gets or sets the mute state.
         /// </summary>
+        /// <value>true if the player is muted; otherwise, false.</value>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        public bool IsMuted()
+        public bool Muted
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-            ValidateNotDisposed();
+            get
+            {
+                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
 
-            bool value = false;
-            NativePlayer.IsMuted(Handle, out value).ThrowIfFailed("Failed to get the mute state of the player");
+                bool value = false;
+                NativePlayer.IsMuted(Handle, out value).ThrowIfFailed("Failed to get the mute state of the player");
 
-            Log.Info(PlayerLog.Tag, "get mute : " + value);
+                Log.Info(PlayerLog.Tag, "get mute : " + value);
 
-            return value;
-        }
-
-        /// <summary>
-        /// Sets the mute state.
-        /// </summary>
-        /// <param name="mute">true to mute the player; otherwise, false.</param>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        public void SetMute(bool mute)
-        {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-            ValidateNotDisposed();
-
-            NativePlayer.SetMute(Handle, mute).ThrowIfFailed("Failed to set the mute state of the player");
+                return value;
+            }
+            set
+            {
+                NativePlayer.SetMute(Handle, value).ThrowIfFailed("Failed to set the mute state of the player");
+            }
         }
 
         /// <summary>
@@ -609,10 +601,8 @@ namespace Tizen.Multimedia
         }
 
         #region Volume
-        private float _volume;
-
         /// <summary>
-        /// Sets the current volume.
+        /// Gets or sets the current volume.
         /// </summary>
         /// <remarks>Valid volume range is from 0 to 1.0, inclusive.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
@@ -621,34 +611,28 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="value"/> is greater than 1.0.
         /// </exception>
-        public void SetVolume(float value)
+        public float Volume
         {
-            ValidateNotDisposed();
-
-            if (value < 0F || 1.0F < value)
+            get
             {
-                throw new ArgumentOutOfRangeException(nameof(value), value,
-                    $"Valid volume range is 0 <= value <= 1.0, but got { value }.");
+                float value = 0.0F;
+                NativePlayer.GetVolume(Handle, out value, out value).
+                    ThrowIfFailed("Failed to get the volume of the player");
+                return value;
             }
+            set
+            {
+                if (value < 0F || 1.0F < value)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        $"Valid volume range is 0 <= value <= 1.0, but got { value }.");
+                }
 
-            NativePlayer.SetVolume(Handle, value, value).
-                ThrowIfFailed("Failed to set the volume of the player");
+                NativePlayer.SetVolume(Handle, value, value).
+                    ThrowIfFailed("Failed to set the volume of the player");
+            }
         }
 
-        /// <summary>
-        /// Gets the current volume.
-        /// </summary>
-        /// <remarks>the volume range is from 0 to 1.0, inclusive.</remarks>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        public float GetVolume()
-        {
-            ValidateNotDisposed();
-
-            float value = 0.0F;
-            NativePlayer.GetVolume(Handle, out value, out value).
-                ThrowIfFailed("Failed to get the volume of the player");
-            return value;
-        }
         #endregion
 
         /// <summary>

@@ -51,47 +51,46 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the gain for the equalizer band.
+        /// Sets or gets the gain for the equalizer band.
         /// </summary>
         /// <param name="value">The value indicating new gain in decibel(dB).</param>
         /// <exception cref="ObjectDisposedException">The player that this EqualizerBand belongs to has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     value is less than <see cref="AudioEffect.MinBandLevel"/>.\n
+        ///     <paramref name="value"/> is less than <see cref="AudioEffect.MinBandLevel"/>.\n
         ///     -or-\n
-        ///     value is greater than <see cref="AudioEffect.MaxBandLevel"/>.
+        ///     <paramref name="value"/> is greater than <see cref="AudioEffect.MaxBandLevel"/>.
         /// </exception>
-        public void SetLevel(int value)
+        public int Level
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-            _owner.Player.ValidateNotDisposed();
-
-            if (value < _owner.MinBandLevel || _owner.MaxBandLevel < value)
+            get
             {
-                Log.Error(PlayerLog.Tag, "invalid level : " + value);
-                throw new ArgumentOutOfRangeException(nameof(value), value,
-                    $"valid value range is { nameof(AudioEffect.MinBandLevel) } <= level <= { nameof(AudioEffect.MaxBandLevel) }. " +
-                    $"but got {value}.");
+                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
+                _owner.Player.ValidateNotDisposed();
+
+                int value = 0;
+                Native.GetEqualizerBandLevel(_owner.Player.Handle, _index, out value).
+                    ThrowIfFailed("Failed to get the level of the equalizer band");
+                Log.Info(PlayerLog.Tag, "get level : " + value);
+                return value;
             }
+            set
+            {
+                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
+                _owner.Player.ValidateNotDisposed();
 
-            Native.SetEqualizerBandLevel(_owner.Player.Handle, _index, value).
-                ThrowIfFailed("Failed to set the level of the equalizer band");
+                if (value < _owner.BandLevelRange.Min || _owner.BandLevelRange.Max < value)
+                {
+                    Log.Error(PlayerLog.Tag, "invalid level : " + value);
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        $"valid value range is { nameof(AudioEffect.BandLevelRange) }." +
+                        $"but got {value}.");
+                }
+
+                Native.SetEqualizerBandLevel(_owner.Player.Handle, _index, value).
+                    ThrowIfFailed("Failed to set the level of the equalizer band");
+            }
         }
 
-        /// <summary>
-        /// Gets the gain for the equalizer band.
-        /// </summary>
-        /// <exception cref="ObjectDisposedException">The player that this EqualizerBand belongs to has already been disposed of.</exception>
-        public int GetLevel()
-        {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-            _owner.Player.ValidateNotDisposed();
-
-            int value = 0;
-            Native.GetEqualizerBandLevel(_owner.Player.Handle, _index, out value).
-                ThrowIfFailed("Failed to get the level of the equalizer band");
-            Log.Info(PlayerLog.Tag, "get level : " + value);
-            return value;
-        }
 
         /// <summary>
         /// Gets the frequency in dB.
@@ -99,7 +98,7 @@ namespace Tizen.Multimedia
         public int Frequency { get; }
 
         /// <summary>
-        /// Gets the frequency range oin dB.
+        /// Gets the frequency range in dB.
         /// </summary>
         public int FrequencyRange { get; }
 
