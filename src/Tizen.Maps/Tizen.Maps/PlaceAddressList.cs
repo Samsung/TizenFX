@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// List of <see cref="PlaceAddress"/> objects to be used in <see cref="ServiceData.MapService"/> APIs
+    /// List of <see cref="PlaceAddress"/> objects to be used in <see cref="MapService"/> APIs
     /// </summary>
     internal class PlaceAddressList : IDisposable
     {

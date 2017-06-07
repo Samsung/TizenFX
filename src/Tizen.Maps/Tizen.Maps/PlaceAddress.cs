@@ -100,7 +100,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets a county name for this address.
+        /// Gets a county for this address.
         /// </summary>
         public string County
         {

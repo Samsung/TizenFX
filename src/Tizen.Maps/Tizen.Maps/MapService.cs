@@ -78,7 +78,6 @@ namespace Tizen.Maps
         /// </summary>
         public string Provider { get { return _serviceProvider; } }
 
-
         /// <summary>
         /// Gets and sets a string representing keys for map service provider
         /// </summary>
@@ -115,7 +114,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets search preferences used for <see cref="Geocode"/> or <see cref="ReverseGeocode"/> request.
+        /// Gets search preferences used for <see cref="GeocodeRequest"/> or <see cref="ReverseGeocodeRequest"/>.
         /// </summary>
         public IGeocodePreference GeocodePreferences
         {
@@ -126,7 +125,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets search preferences used for <see cref="Place"/> search request.
+        /// Gets search preferences used for <see cref="PlaceSearchRequest"/>.
         /// </summary>
         public IPlaceSearchPreference PlaceSearchPreferences
         {
@@ -137,7 +136,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets search preferences used for <see cref="Route"/> search request.
+        /// Gets search preferences used for <see cref="RouteSearchRequest"/>.
         /// </summary>
         public IRouteSearchPreference RouteSearchPreferences
         {

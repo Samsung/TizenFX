@@ -20,7 +20,7 @@ namespace Tizen.Maps
     /// Allowed route optimization option used in route search requests
     /// </summary>
     /// <remarks>
-    /// Depending on loaded maps plug-in using <paramref name="MapService"/>, some features may have no effect or differences with descriptions.
+    /// Depending on loaded maps plug-in using <see cref="MapService"/>, some features may have no effect or differences with descriptions.
     /// </remarks>
     public enum RouteOptimization
     {

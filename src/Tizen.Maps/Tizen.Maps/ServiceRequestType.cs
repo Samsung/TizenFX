@@ -59,7 +59,7 @@ namespace Tizen.Maps
         /// </summary>
         SearchPlaceList = Interop.ServiceType.SearchPlaceList,
         /// <summary>
-        /// Indicates that service request to get detailed <see cref="Place"/> information for a given <see cref="PlaceUrl"/> is allowed.
+        /// Indicates that service request to get detailed <see cref="Place"/> information for a given <see cref="PlaceList"/> is allowed.
         /// </summary>
         SearchGetPlaceDetails = Interop.ServiceType.SearchGetPlaceDetails,
 

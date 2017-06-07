@@ -2,7 +2,7 @@
 <summary>
 The Tizen.Maps namespace provides classes to get the information of Place, Geocoding, Route by querying,
 or to show them on the map view with interactive gestural interface.
-<summary>
+</summary>
 
 
 
@@ -10,7 +10,7 @@ or to show them on the map view with interactive gestural interface.
 
 <h2>Overview</h2>
 <para>
-Maps API provides a developer with a set of functions, helping to create Maps aware applications.<p>
+Maps API provides a developer with a set of functions, helping to create Maps aware applications.<p/>
 
 Maps API comprises of following features:<br/>
 - Geocoding and reverse Geocoding<br/>
@@ -21,14 +21,14 @@ Maps API comprises of following features:<br/>
 
 
 <para>
-Maps API allows a Developer to choose one of Map Providers which are being included as plugins.<p>
+Maps API allows a Developer to choose one of Map Providers which are being included as plugins.<p/>
 
 <para>
 <h3>Geocoding</h3>
 The Maps Geocoding API allows translating an address to its geographical
 location defined in terms of latitude and longitude; the input can be a
 qualified and structured address or a free-formed search text with full or
-partial address information.<p>
+partial address information.<p/>
 
 The example below shows a structured address:<br/>
  - housenumber=117,<br/>
@@ -52,7 +52,7 @@ question "Where am I?".
 <h3>Route</h3>
 The Maps Route API provides ways to calculate a route that defines a path
 between a start and a destination and may, optionally, pass through specific
-intermediate locations.<p>
+intermediate locations.<p/>
 
 Route Preferences:<br/>
  - Travel Mode (car, pedestrian, public transit, truck),<br/>
@@ -69,7 +69,7 @@ Route Preferences:<br/>
 
 <para>
 <h3>Places</h3>
-The Maps Place API allows you to find place information.<p>
+The Maps Place API allows you to find place information.<p/>
 
 Place search<br/>
  - Depending on the location context, the number of relevant places might
@@ -93,20 +93,20 @@ Place information allows to fetch details about a place. The following place con
 <para>
 <h3>View</h3>
 The Maps View API provides a developer with a set of functions, bringing
-basic interactive visual user interface in maps applications.<p>
+basic interactive visual user interface in maps applications.<p/>
 
 View widget: Drawing a map image on the map port, the specified rectangular
-area of the maps application GUI.<p>
+area of the maps application GUI.<p/>
 
 Zoom and rotation: Changing zoom and orientation of the view in response
-to user gestures, such as scrolling, tapping, zooming, rotating, etc.<p>
+to user gestures, such as scrolling, tapping, zooming, rotating, etc.<p/>
 
-Conversion of screen coordinates to geographical and vise versa.<p>
+Conversion of screen coordinates to geographical and vise versa.<p/>
 
 User's gesture support:<br/>
  - Receive the event of the user gesture.<br/>
  - Enable or disable the specified gesture.<br/>
- - Re-assign the action, which should be taken in response to the user's gesture.<p>
+ - Re-assign the action, which should be taken in response to the user's gesture.<p/>
 
 Various Properties:<br/>
  - Visibility and size on the screen.<br/>
