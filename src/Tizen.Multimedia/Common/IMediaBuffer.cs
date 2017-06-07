@@ -36,6 +36,7 @@ namespace Tizen.Multimedia
         byte this[int index]
         {
             get;
+            set;
         }
         /// <summary>
         /// Gets the size of the buffer, in bytes.
@@ -70,22 +71,6 @@ namespace Tizen.Multimedia
     public interface IMediaBuffer : IReadOnlyBuffer
     {
         /// <summary>
-        /// Gets or sets a value at the specified index.
-        /// </summary>
-        /// <param name="index">The index of the value to get or set.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        ///     index is less than zero.
-        ///     <para>-or-</para>
-        ///     index is equal to or greater than <see cref="Length"/>.
-        /// </exception>
-        /// <exception cref="ObjectDisposedException">The object that owns the current buffer already has been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The buffer is not available. i.e. not writable state.</exception>
-        byte this[int index]
-        {
-            get;
-            set;
-        }
-        /// <summary>
         /// Copies data from the buffer to a byte array.
         /// </summary>
         /// <param name="dest">The array to copy to.</param>
@@ -108,7 +93,6 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The object that owns the current buffer already has been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The buffer is not available. i.e. not writable state.</exception>
         void CopyFrom(byte[] source, int startIndex, int length, int offset);
-
     }
 
     /// <summary>
@@ -201,7 +185,7 @@ namespace Tizen.Multimedia
             CopyFrom(source, startIndex, length, 0);
         }
 
-         public void CopyTo(byte[] dest, int startIndex, int length, int offset)
+        public void CopyTo(byte[] dest, int startIndex, int length, int offset)
         {
             _owner.ValidateBufferWritable(this);
 
