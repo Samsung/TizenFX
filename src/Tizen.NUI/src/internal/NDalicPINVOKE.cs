@@ -6115,6 +6115,9 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ApplicationExtensions_Init")]
   public static extern void ApplicationExtensions_Init(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ApplicationExtensions_Start")]
+  public static extern void ApplicationExtensions_Start(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ApplicationExtensions_Terminate")]
   public static extern void ApplicationExtensions_Terminate(global::System.Runtime.InteropServices.HandleRef jarg1);
 
