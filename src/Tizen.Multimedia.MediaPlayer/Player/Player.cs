@@ -174,7 +174,6 @@ namespace Tizen.Multimedia
                 return;
             }
 
-            Log.Warn(PlayerLog.Tag, "current state : " + State + ", desired state : " + string.Join(", ", desiredStates));
             throw new InvalidOperationException($"The player is not in a valid state. " +
                 $"Current State : { curState }, Valid State : { string.Join(", ", desiredStates) }.");
         }
@@ -814,13 +813,14 @@ namespace Tizen.Multimedia
 
             NativePlayer.Unprepare(Handle).ThrowIfFailed("Failed to unprepare the player");
 
-            if (_source != null)
-            {
-                _source.DetachFrom(this);
-            }
-            _source = null;
+            OnUnprepared();
         }
 
+        protected virtual void OnUnprepared()
+        {
+            _source?.DetachFrom(this);
+            _source = null;
+        }
 
         //TODO remarks needs to be updated. see the native reference.
         /// <summary>
@@ -1149,6 +1149,12 @@ namespace Tizen.Multimedia
                 {
                     return;
                 }
+
+                if (code == PlaybackInterruptionReason.ResourceConflict)
+                {
+                    OnUnprepared();
+                }
+
                 Log.Warn(PlayerLog.Tag, "interrupted reason : " + code);
                 PlaybackInterrupted?.Invoke(this, new PlaybackInterruptedEventArgs(code));
             };
