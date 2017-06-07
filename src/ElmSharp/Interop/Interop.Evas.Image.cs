@@ -28,6 +28,12 @@ internal static partial class Interop
         internal static extern void evas_object_image_border_set(IntPtr obj, int l, int r, int t, int b);
 
         [DllImport(Libraries.Evas)]
+        internal static extern int evas_object_image_border_center_fill_get(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_border_center_fill_set(IntPtr obj, int filled);
+
+        [DllImport(Libraries.Evas)]
         internal static extern void evas_object_image_alpha_set(IntPtr obj, bool has_alpha);
 
         [DllImport(Libraries.Evas)]

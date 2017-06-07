@@ -48,6 +48,7 @@
     <Compile Include="TC\EcoreTimerTest1.cs" />
     <Compile Include="TC\EvasMapTest2.cs" />
     <Compile Include="TC\GenListTest10.cs" />
+    <Compile Include="TC\ImageTest4.cs" />
     <Compile Include="TC\LabelTest4.cs" />
     <Compile Include="TC\Log.cs" />
     <Compile Include="TC\LabelTest5.cs" />
