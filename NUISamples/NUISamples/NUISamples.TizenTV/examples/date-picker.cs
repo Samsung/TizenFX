@@ -33,11 +33,6 @@ namespace DatePickerTest
         private Spin _spinMonth; // spin control for month
         private Spin _spinDay;   // spin control for day
 
-        private ImfManager _imfMgr;
-        private TextField _textField;
-        private PushButton _pushButton;
-        public bool _toggle;
-
         public Example() : base()
         {
 
@@ -119,51 +114,6 @@ namespace DatePickerTest
             FocusManager keyboardFocusManager = FocusManager.Instance;
             keyboardFocusManager.PreFocusChange += OnKeyboardPreFocusChange;
             keyboardFocusManager.FocusedViewActivated += OnFocusedViewActivated;
-
-            ////////////////////////////////////////////////////////////////////////
-            _imfMgr = ImfManager.Get();
-            _imfMgr.ImfManagerActivated += _imfMgr_ImfManagerActivated;
-
-            _textField = new TextField();
-            _textField.Position2D = new Position2D(100, 100);
-            _textField.Size2D = new Size2D(900, 100);
-            _textField.Text = "imf manager test!";
-            _textField.BackgroundColor = Color.Blue;
-            _textField.TextColor = Color.White;
-            window.Add(_textField);
-
-            keyboardFocusManager.SetCurrentFocusView(_textField);
-
-            _pushButton = new PushButton();
-            _pushButton.Position2D = new Position2D(100, 210);
-            _pushButton.Size2D = new Size2D(900, 100);
-            _pushButton.LabelText = "imf activate";
-            _pushButton.Clicked += _pushButton_Clicked;
-            window.Add(_pushButton);
-        }
-
-        private bool _pushButton_Clicked(object source, EventArgs e)
-        {
-            Tizen.Log.Fatal("NUI", "_pushButton_Clicked event comes!");
-
-            if (_toggle)
-            {
-                _imfMgr.Activate();
-                _pushButton.LabelText = "imf activated";
-                _toggle = false;
-            }
-            else
-            {
-                _imfMgr.Deactivate();
-                _pushButton.LabelText = "imf deactivated";
-                _toggle = true;
-            }
-            return true;
-        }
-
-        private void _imfMgr_ImfManagerActivated(object sender, ImfManager.ImfManagerActivatedEventArgs e)
-        {
-            Tizen.Log.Fatal("NUI", "_imfMgr_ImfManagerActivated event comes!");
         }
 
         private View OnKeyboardPreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)
@@ -205,30 +155,7 @@ namespace DatePickerTest
 
         private void OnFocusedViewActivated(object source, FocusManager.FocusedViewEnterKeyEventArgs e)
         {
-            // Make the text field in the current focused spin to take the key input
-            KeyInputFocusManager manager = KeyInputFocusManager.Get();
 
-            if (e.View == _spinYear.SpinText)
-            {
-                if (manager.GetCurrentFocusControl() != _spinYear.SpinText)
-                {
-                    manager.SetFocus(_spinYear.SpinText);
-                }
-            }
-            else if (e.View == _spinMonth.SpinText)
-            {
-                if (manager.GetCurrentFocusControl() != _spinMonth.SpinText)
-                {
-                    manager.SetFocus(_spinMonth.SpinText);
-                }
-            }
-            else if (e.View == _spinDay.SpinText)
-            {
-                if (manager.GetCurrentFocusControl() != _spinDay.SpinText)
-                {
-                    manager.SetFocus(_spinDay.SpinText);
-                }
-            }
         }
 
         /// <summary>

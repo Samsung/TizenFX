@@ -348,22 +348,38 @@ namespace ControlDashboard
                     button.PivotPoint = PivotPoint.Center;
                     button.Clicked += (obj, ee) =>
                     {
-                        TypeInfo typeInfo = new TypeInfo(TypeRegistry.Get().GetTypeInfo("PopupToast"));
-                        if (typeInfo)
-                        {
-                            BaseHandle baseHandle = typeInfo.CreateInstance();
-                            if (baseHandle)
-                            {
-                                Popup toast = Popup.DownCast(baseHandle);
-                                TextLabel text = new TextLabel("This is a Toast.\nIt will auto-hide itself");
-                                text.TextColor = Color.White;
-                                text.MultiLine = true;
-                                text.HorizontalAlignment = HorizontalAlignment.Center;
-                                toast.SetTitle(text);
-                                _window.Add(toast);
-                                toast.SetDisplayState(Popup.DisplayStateType.Shown);
-                            }
-                        }
+                        Popup toast = new Popup();
+                        toast.SizeModeFactor = new Vector3(0.75f, 0.75f, 0.75f);
+                        toast.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
+                        toast.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
+                        toast.ContextualMode = Popup.ContextualModeType.NonContextual;
+                        toast.AnimationDuration = 0.65f;
+                        toast.TailVisibility = false;
+
+                        // Disable the dimmed backing.
+                        toast.BackingEnabled = false;
+
+                        // The toast popup should fade in (not zoom).
+                        toast.AnimationMode = Popup.AnimationModeType.Fade;
+
+                        // The toast popup should auto-hide.
+                        toast.AutoHideDelay = 3000;
+
+                        // Align to the bottom of the screen.
+                        toast.ParentOrigin = new Position(0.5f, 0.94f, 0.5f);
+                        toast.PivotPoint = PivotPoint.BottomCenter;
+
+                        // Let events pass through the toast popup.
+                        toast.TouchTransparent = true;
+
+                        TextLabel text = new TextLabel("This is a Toast.\nIt will auto-hide itself");
+                        text.TextColor = Color.White;
+                        text.MultiLine = true;
+                        text.HorizontalAlignment = HorizontalAlignment.Center;
+                        toast.SetTitle(text);
+                        _window.Add(toast);
+                        toast.DisplayState = Popup.DisplayStateType.Shown;
+
                         return true;
                     };
                     _contentContainer.AddChild(button, new TableView.CellPosition(((uint)idx / 5) * 2 + 1, (uint)idx % 5));

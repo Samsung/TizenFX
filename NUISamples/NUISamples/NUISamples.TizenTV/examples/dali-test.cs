@@ -642,7 +642,7 @@ namespace DaliTest
 
             background = spin.Background;
             Color backgroundColor = new Color();
-            background.Find(ColorVisualProperty.MixColor)?.Get(backgroundColor);
+            background.Find(ColorVisualProperty.MixColor, "mixColor")?.Get(backgroundColor);
             if( backgroundColor == Color.Red )
             {
                 Tizen.Log.Debug("NUI", "Custom View Background property : test passed");
@@ -691,7 +691,7 @@ namespace DaliTest
           View container = new View();
           container.Position = new Position(-800.0f, -800.0f, 0.0f);
           Window.Instance.Add(container);
-          Tizen.Log.Debug("NUI", "winow layer count is "+Window.Instance.GetLayerCount());
+          Tizen.Log.Debug("NUI", "winow layer count is "+Window.Instance.LayerCount);
           Tizen.Log.Debug("NUI", "winow default layer child at 0 is "+Window.Instance.GetDefaultLayer().GetChildAt(0));
           // Test downcast for native control
           TextLabel myLabel = new TextLabel();
@@ -845,7 +845,7 @@ namespace DaliTest
             button.BackgroundColor = Color.White;
             View parentView = new View();
             parentView.Add(button);
-            PushButton view = PushButton.DownCast(parentView.GetChildAt(0));
+            PushButton view = parentView.GetChildAt(0) as PushButton;
             if (view)
             {
                 Tizen.Log.Debug("NUI", "NUI view GetTypeName= " + view.GetTypeName());
