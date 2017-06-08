@@ -1,6 +1,6 @@
 Name:       csapi-trace
 Summary:    Tizen Tracer API for C#
-Version:    1.0.4
+Version:    1.0.5
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -30,7 +30,7 @@ cp %{SOURCE1} .
 %build
 for ASM in %{Assemblies}; do
 %dotnet_build $ASM
-%dotnet_pack $ASM/$ASM.nuspec %{version}
+%dotnet_pack $ASM
 done
 
 %install
