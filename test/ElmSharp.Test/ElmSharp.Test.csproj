@@ -115,6 +115,7 @@
     <Compile Include="TC\ToolbarTest1.cs" />
     <Compile Include="TC\ToolbarTest2.cs" />
     <Compile Include="TC\ToolbarTest3.cs" />
+    <Compile Include="TC\ToolbarTest4.cs" />
     <Compile Include="TC\WindowInternalTest.cs" />
     <Compile Include="TestCaseBase.cs" />
     <Compile Include="TestRunner.cs" />
