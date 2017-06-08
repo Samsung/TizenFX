@@ -81,6 +81,8 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// DeviceStateChanged is raised when the device state is changed.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         static public event EventHandler<DeviceStateChangedEventArgs> DeviceStateChanged
         {
             add
@@ -96,6 +98,8 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// ConnectionStateChanged is raised when the connection state is changed.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         static public event EventHandler<ConnectionStateChangedEventArgs> ConnectionStateChanged
         {
             add
@@ -111,6 +115,8 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// RssiLevelChanged is raised when the RSSI of connected Wi-Fi is changed.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         static public event EventHandler<RssiLevelChangedEventArgs> RssiLevelChanged
         {
             add
@@ -127,6 +133,8 @@ namespace Tizen.Network.WiFi
         /// BackgroundScanFinished is raised when the background scan is finished.
         /// The background scan starts automatically when wifi is activated. The callback will be invoked periodically.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         static public event EventHandler BackgroundScanFinished
         {
             add
