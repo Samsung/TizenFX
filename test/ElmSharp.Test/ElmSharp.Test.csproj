@@ -110,6 +110,7 @@
     <Compile Include="TC\ScrollerTest1.cs" />
     <Compile Include="TC\ScrollerTest2.cs" />
     <Compile Include="TC\SliderTest1.cs" />
+    <Compile Include="TC\SliderTest2.cs" />
     <Compile Include="TC\SpinnerTest1.cs" />
     <Compile Include="TC\ToolbarTest1.cs" />
     <Compile Include="TC\ToolbarTest2.cs" />

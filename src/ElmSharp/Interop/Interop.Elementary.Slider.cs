@@ -115,5 +115,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern double elm_slider_step_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_slider_indicator_visible_mode_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_slider_indicator_visible_mode_set(IntPtr obj, int mode);
     }
 }
