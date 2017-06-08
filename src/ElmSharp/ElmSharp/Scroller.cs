@@ -27,15 +27,18 @@ namespace ElmSharp
         /// Show scrollbars as needed
         /// </summary>
         Auto = 0,
+
         /// <summary>
         /// Always show scrollbars
         /// </summary>
         Visible,
+
         /// <summary>
         /// Never show scrollbars
         /// </summary>
         Invisible
     }
+
     /// <summary>
     /// Enumeration for visible type of scrollbar.
     /// </summary>
@@ -45,15 +48,39 @@ namespace ElmSharp
         /// Scrolling movement is allowed in both direction.(X axis and Y axis)
         /// </summary>
         None = 1,
+
         /// <summary>
         /// Scrolling movement is not allowed in Y axis direction.
         /// </summary>
         Vertical = 2,
+
         /// <summary>
         /// Scrolling movement is not allowed in X axis direction.
         /// </summary>
         Horizontal = 4
     }
+
+    /// <summary>
+    /// Type that controls how the content is scrolled.
+    /// </summary>
+    public enum ScrollSingleDirection
+    {
+        /// <summary>
+        /// Scroll every direction.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Scroll single direction if the direction is certain.
+        /// </summary>
+        Soft,
+
+        /// <summary>
+        /// Scroll only single direction.
+        /// </summary>
+        Hard,
+    }
+
     /// <summary>
     /// The Scroller is a container that holds and clips a single object and allows you to scroll across it.
     /// </summary>
@@ -282,6 +309,391 @@ namespace ElmSharp
                 int v = VerticalPageScrollLimit;
                 Interop.Elementary.elm_scroller_page_scroll_limit_set(RealHandle, value, v);
             }
+        }
+
+        /// <summary>
+        /// Sets or gets the vertical bounce behaviour.
+        /// When scrolling, the scroller may "bounce" when reaching an edge of the content object.
+        /// This is a visual way to indicate the end has been reached.
+        /// This is enabled by default for both axis.
+        /// This API will set if it is enabled for the given axis with the boolean parameters for each axis.
+        /// </summary>
+        public bool VerticalBounce
+        {
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_bounce_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                bool h = HorizontalBounce;
+                Interop.Elementary.elm_scroller_bounce_set(RealHandle, h, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the horizontal bounce behaviour.
+        /// When scrolling, the scroller may "bounce" when reaching an edge of the content object.
+        /// This is a visual way to indicate the end has been reached.
+        /// This is enabled by default for both axis.
+        /// This API will set if it is enabled for the given axis with the boolean parameters for each axis.
+        /// </summary>
+        public bool HorizontalBounce
+        {
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_bounce_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                bool v = VerticalBounce;
+                Interop.Elementary.elm_scroller_bounce_set(RealHandle, value, v);
+            }
+        }
+
+        /// <summary>
+        /// Gets the width of the content object of the scroller.
+        /// </summary>
+        public int ChildWidth
+        {
+            get
+            {
+                int w, h;
+                Interop.Elementary.elm_scroller_child_size_get(RealHandle, out w, out h);
+                return w;
+            }
+        }
+
+        /// <summary>
+        /// Gets the height of the content object of the scroller.
+        /// </summary>
+        public int ChildHeight
+        {
+            get
+            {
+                int w, h;
+                Interop.Elementary.elm_scroller_child_size_get(RealHandle, out w, out h);
+                return h;
+            }
+        }
+
+        /// <summary>
+        /// Set scrolling gravity values for a scroller.
+        /// The gravity, defines how the scroller will adjust its view when the size of the scroller contents increase.
+        /// The scroller will adjust the view to glue itself as follows.
+        /// x=0.0, for staying where it is relative to the left edge of the content x=1.0, for staying where it is relative to the rigth edge of the content y=0.0, for staying where it is relative to the top edge of the content y=1.0, for staying where it is relative to the bottom edge of the content
+        /// Default values for x and y are 0.0
+        /// </summary>
+        public double HorizontalGravity
+        {
+            get
+            {
+                double v, h;
+                Interop.Elementary.elm_scroller_gravity_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                double v = VerticalGravity;
+                Interop.Elementary.elm_scroller_gravity_set(RealHandle, value, v);
+            }
+        }
+
+        /// <summary>
+        /// Set scrolling gravity values for a scroller.
+        /// The gravity, defines how the scroller will adjust its view when the size of the scroller contents increase.
+        /// The scroller will adjust the view to glue itself as follows.
+        /// x=0.0, for staying where it is relative to the left edge of the content x=1.0, for staying where it is relative to the rigth edge of the content y=0.0, for staying where it is relative to the top edge of the content y=1.0, for staying where it is relative to the bottom edge of the content
+        /// Default values for x and y are 0.0
+        /// </summary>
+        public double VerticalGravity
+        {
+            get
+            {
+                double v, h;
+                Interop.Elementary.elm_scroller_gravity_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                double h = HorizontalGravity;
+                Interop.Elementary.elm_scroller_gravity_set(RealHandle, h, value);
+            }
+        }
+
+        /// <summary>
+        /// Get scroll last page number.
+        /// The page number starts from 0. 0 is the first page. This returns the last page number among the pages.
+        /// </summary>
+        public int LastVerticalPageNumber
+        {
+            get
+            {
+                int v, h;
+                Interop.Elementary.elm_scroller_last_page_get(RealHandle, out h, out v);
+                return v;
+            }
+        }
+
+        /// <summary>
+        /// Get scroll last page number.
+        /// The page number starts from 0. 0 is the first page. This returns the last page number among the pages.
+        /// </summary>
+        public int LastHorizontalPageNumber
+        {
+            get
+            {
+                int v, h;
+                Interop.Elementary.elm_scroller_last_page_get(RealHandle, out h, out v);
+                return h;
+            }
+        }
+
+        /// <summary>
+        /// Set an infinite loop_ for a scroller.
+        /// This function sets the infinite loop vertically.
+        /// If the content is set, it will be shown repeatedly.
+        /// </summary>
+        public bool VerticalLoop
+        {
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_loop_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                bool h = HorizontalLoop;
+                Interop.Elementary.elm_scroller_loop_set(RealHandle, h, value);
+            }
+        }
+
+        /// <summary>
+        /// Set an infinite loop_ for a scroller.
+        /// This function sets the infinite loop horizontally.
+        /// If the content is set, it will be shown repeatedly.
+        /// </summary>
+        public bool HorizontalLoop
+        {
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_loop_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                bool v = VerticalLoop;
+                Interop.Elementary.elm_scroller_loop_set(RealHandle, value, v);
+            }
+        }
+
+        /// <summary>
+        /// Get a given scroller widget's scrolling page size, relative to its viewport size.
+        /// </summary>
+        public double VerticalRelativePageSize
+        {
+            get
+            {
+                double v, h;
+                Interop.Elementary.elm_scroller_page_relative_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                double h = HorizontalRelativePageSize;
+                Interop.Elementary.elm_scroller_page_relative_set(RealHandle, h, value);
+            }
+        }
+
+        /// <summary>
+        /// Get a given scroller widget's scrolling page size, relative to its viewport size.
+        /// </summary>
+        public double HorizontalRelativePageSize
+        {
+            get
+            {
+                double v, h;
+                Interop.Elementary.elm_scroller_page_relative_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                double v = VerticalRelativePageSize;
+                Interop.Elementary.elm_scroller_page_relative_set(RealHandle, value, v);
+            }
+        }
+
+        /// <summary>
+        /// Gets or Sets the page snapping behavior of a scroller.
+        /// </summary>
+        public bool VerticalSnap
+        {
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_page_snap_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                bool h = HorizontalSnap;
+                Interop.Elementary.elm_scroller_page_snap_set(RealHandle, h, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or Sets the page snapping behavior of a scroller.
+        /// </summary>
+        public bool HorizontalSnap
+        {
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_page_snap_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                bool v = VerticalSnap;
+                Interop.Elementary.elm_scroller_page_snap_set(RealHandle, value, v);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the page size to an absolute fixed value, with 0 turning it off for that axis.
+        /// </summary>
+        public int PageHeight
+        {
+            get
+            {
+                int w, h;
+                Interop.Elementary.elm_scroller_page_size_get(RealHandle, out w, out h);
+                return h;
+            }
+            set
+            {
+                int w = PageWidth;
+                Interop.Elementary.elm_scroller_page_size_set(RealHandle, w, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the page size to an absolute fixed value, with 0 turning it off for that axis.
+        /// </summary>
+        public int PageWidth
+        {
+            get
+            {
+                int w, h;
+                Interop.Elementary.elm_scroller_page_size_get(RealHandle, out w, out h);
+                return w;
+            }
+            set
+            {
+                int h = PageHeight;
+                Interop.Elementary.elm_scroller_page_size_set(RealHandle, value, h);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the event propagation for a scroller.
+        /// This enables or disables event propagation from the scroller content to the scroller and its parent.
+        /// By default event propagation is enabled.
+        /// </summary>
+        public bool PropagateEvents
+        {
+            get
+            {
+                return Interop.Elementary.elm_scroller_propagate_events_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_scroller_propagate_events_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the step size to move scroller by key event.
+        /// </summary>
+        public int HorizontalStepSize
+        {
+            get
+            {
+                int h, v;
+                Interop.Elementary.elm_scroller_step_size_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                int v = VerticalStepSize;
+                Interop.Elementary.elm_scroller_step_size_set(RealHandle, value, v);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the step size to move scroller by key event.
+        /// </summary>
+        public int VerticalStepSize
+        {
+            get
+            {
+                int h, v;
+                Interop.Elementary.elm_scroller_step_size_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                int h = HorizontalStepSize;
+                Interop.Elementary.elm_scroller_step_size_set(RealHandle, h, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value whether mouse wheel is enabled or not over the scroller.
+        /// </summary>
+        public bool WheelDisabled
+        {
+            get
+            {
+                return Interop.Elementary.elm_scroller_wheel_disabled_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_scroller_wheel_disabled_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the type of single direction scroll.
+        /// </summary>
+        public ScrollSingleDirection SingleDirection
+        {
+            get
+            {
+                return (ScrollSingleDirection)Interop.Elementary.elm_scroller_single_direction_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_scroller_single_direction_set(RealHandle, (int)value);
+            }
+        }
+
+        /// <summary>
+        /// Sets the scroller minimum size limited to the minimum size of the content.
+        /// By default the scroller will be as small as its design allows, irrespective of its content.
+        /// This will make the scroller minimum size the right size horizontally and/or vertically to perfectly fit its content in that direction.
+        /// </summary>
+        /// <param name="horizontal">Enable limiting minimum size horizontally</param>
+        /// <param name="vertical">Enable limiting minimum size vertically</param>
+        public void MinimumLimit(bool horizontal, bool vertical)
+        {
+            Interop.Elementary.elm_scroller_content_min_limit(RealHandle, horizontal, vertical);
         }
 
         /// <summary>
