@@ -1,3 +1,7 @@
-Tizen.Applications.AttachPanel/bin/
-Tizen.Applications.AttachPanel/obj/
+bin/
+obj/
+*.exe
+*.dll
+*.csproj.user
+*.lock.json
 .vs/

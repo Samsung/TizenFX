@@ -1,90 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectTypeGuids>{2F98DAC9-6F16-457B-AED7-D43CAC379341};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{C6706588-BC6E-4D77-8F34-99BC10F99FDE}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tizen.Applications.AttachPanel</RootNamespace>
-    <AssemblyName>Tizen.Applications.AttachPanel</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <Version>1.0.1</Version>
+    <Authors>Samsung Electronics</Authors>
+    <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
+    <Description>Provides the Attach Panel API for Tizen .NET</Description>
+    <PackageProjectUrl>https://www.tizen.org/</PackageProjectUrl>
+    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
   </PropertyGroup>
+
   <PropertyGroup>
-    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
-    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
-    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
-    <NoStdLib>true</NoStdLib>
-    <NoWarn>$(NoWarn);1701</NoWarn>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>Tizen.Applications.AttachPanel.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>portable</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <None Include="Tizen.Applications.AttachPanel.nuspec" />
-    <None Include="Tizen.Applications.AttachPanel.project.json" />
+    <PackageReference Include="Tizen" Version="1.0.5" />
+    <PackageReference Include="Tizen.Applications.Common" Version="1.5.8" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Interop\Interop.AttachPanel.cs" />
-    <Compile Include="Interop\Interop.Libraries.cs" />
-    <Compile Include="Tizen.Applications.AttachPanel\AttachPanelManager.cs" />
-    <Compile Include="Tizen.Applications.AttachPanel\ContentCategory.cs" />
-    <Compile Include="Tizen.Applications.AttachPanel\StateEventArgs.cs" />
-    <Compile Include="Tizen.Applications.AttachPanel\EventType.cs" />
-    <Compile Include="Tizen.Applications.AttachPanel\ResultEventArgs.cs" />
-    <Compile Include="Tizen.Applications.AttachPanel\StateType.cs" />
-    <Compile Include="Tizen.Applications.AttachPanel\AttachPanel.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-		Other similar extension points exist, see Microsoft.Common.targets.
-	<Target Name="BeforeBuild">
-	</Target>
-	<Target Name="AfterBuild">
-	</Target>
-	-->
-  <PropertyGroup>
-    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
-			 https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
-		-->
-    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
-			 properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
-			 to prevent it from outputting a warning (MSB3644).
-		-->
-    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
-    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
-    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
-  </PropertyGroup>
-  <ProjectExtensions>
-    <VisualStudio>
-      <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Debug|Any CPU">
-        <ProjectCommonFlavorCfg />
-      </FlavorProperties>
-      <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Release|Any CPU">
-        <ProjectCommonFlavorCfg />
-      </FlavorProperties>
-    </VisualStudio>
-  </ProjectExtensions>
+
 </Project>
