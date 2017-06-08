@@ -10,17 +10,10 @@
 
 namespace Tizen.NUI
 {
-
-    internal enum FilterModeType
+    public enum TextureType
     {
-        NONE = 0,
-        DEFAULT,
-        NEAREST,
-        LINEAR,
-        NEAREST_MIPMAP_NEAREST,
-        LINEAR_MIPMAP_NEAREST,
-        NEAREST_MIPMAP_LINEAR,
-        LINEAR_MIPMAP_LINEAR
+        TEXTURE_2D,
+        TEXTURE_CUBE
     }
 
 }
