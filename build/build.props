@@ -1,0 +1,18 @@
+<Project>
+
+  <!-- Common information for packaging -->
+  <PropertyGroup>
+    <Authors>Samsung Electronics</Authors>
+    <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
+    <PackageProjectUrl>https://www.tizen.org/</PackageProjectUrl>
+    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
+  </PropertyGroup>
+
+  <!-- Dependencies -->
+  <PropertyGroup>
+    <TizenVersion>1.0.5</TizenVersion>
+    <ApplicationsVersion>1.5.8</ApplicationsVersion>
+  </PropertyGroup>
+  
+</Project>

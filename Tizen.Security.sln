@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Security", "Tizen.Security\Tizen.Security.csproj", "{73F76515-CE1B-4029-90B7-8FF807AD71CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Security.SecureRepository", "Tizen.Security.SecureRepository\Tizen.Security.SecureRepository.csproj", "{108EB80E-B0A6-4204-8DAE-A21856D46A4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{D560FE12-D9D3-4906-8E93-AC034AA95089}"
+	ProjectSection(SolutionItems) = preProject
+		build\build.props = build\build.props
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73F76515-CE1B-4029-90B7-8FF807AD71CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73F76515-CE1B-4029-90B7-8FF807AD71CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73F76515-CE1B-4029-90B7-8FF807AD71CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73F76515-CE1B-4029-90B7-8FF807AD71CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{108EB80E-B0A6-4204-8DAE-A21856D46A4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{108EB80E-B0A6-4204-8DAE-A21856D46A4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{108EB80E-B0A6-4204-8DAE-A21856D46A4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{108EB80E-B0A6-4204-8DAE-A21856D46A4C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

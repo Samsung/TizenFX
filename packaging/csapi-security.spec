@@ -1,10 +1,8 @@
 %define Assemblies Tizen.Security Tizen.Security.SecureRepository
-%define version_security          1.0.7
-%define version_secure_repository 1.0.8
 
 Name:       csapi-security
 Summary:    Tizen Security API for C#
-Version:    1.0.8
+Version:    1.0.9
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -34,10 +32,7 @@ cp %{SOURCE1} .
 %build
 for ASM in %{Assemblies}; do
 %dotnet_build $ASM
-[ "$ASM" = "Tizen.Security" ] &&
-	%dotnet_pack $ASM/$ASM.nuspec %{version_security}
-[ "$ASM" = "Tizen.Security.SecureRepository" ] &&
-	%dotnet_pack $ASM/$ASM.nuspec %{version_secure_repository}
+%dotnet_pack $ASM
 done
 
 %install
