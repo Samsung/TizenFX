@@ -1,16 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <Version>1.0.9</Version>
+    <Authors>Samsung Electronics</Authors>
+    <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
+    <Description>Provides the Bluetooth API for Tizen .NET</Description>
+    <PackageProjectUrl>https://www.tizen.org/</PackageProjectUrl>
+    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Tizen.Network.Bluetooth.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NETStandard.Library" Version="1.6.0" />
-    <PackageReference Include="Tizen" Version="1.0.3" />
-	<PackageReference Include="Tizen.System.Information" Version="1.0.3" />
+    <PackageReference Include="Tizen" Version="1.0.5" />
+    <PackageReference Include="Tizen.System.Information" Version="1.0.4" />
   </ItemGroup>
 
 </Project>
