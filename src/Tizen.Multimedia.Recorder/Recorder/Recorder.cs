@@ -294,7 +294,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void Start()
         {
-            ValidateState(RecorderState.Ready);
+            ValidateState(RecorderState.Ready, RecorderState.Paused);
 
             RecorderErrorFactory.ThrowIfError(Native.Start(_handle),
                 "Failed to start the media recorder");

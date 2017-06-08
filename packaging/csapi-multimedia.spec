@@ -27,7 +27,7 @@ BuildRequires: csapi-information-nuget
 	Tizen.Multimedia.MediaPlayer 1.0.1 \
 	Tizen.Multimedia.Metadata 1.0.0 \
 	Tizen.Multimedia.Radio 1.0.1 \
-	Tizen.Multimedia.Recorder 1.0.0 \
+	Tizen.Multimedia.Recorder 1.0.1 \
 	Tizen.Multimedia.StreamRecorder 1.0.0 \
 	Tizen.Multimedia.Remoting 1.0.0 \
 	Tizen.Multimedia.Util 1.0.1 \
