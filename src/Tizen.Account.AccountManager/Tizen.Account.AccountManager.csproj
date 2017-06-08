@@ -1,115 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2548B842-F053-4FB2-A15B-43D95239759B}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tizen.Account.AccountManager</RootNamespace>
-    <AssemblyName>Tizen.Account.AccountManager</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <Version>1.0.7</Version>
+    <Authors>Samsung Electronics</Authors>
+    <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
+    <Description>Account Service APIs for Tizen.Account.AccountManager</Description>
+    <PackageProjectUrl>https://www.tizen.org/</PackageProjectUrl>
+    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
   </PropertyGroup>
+
   <PropertyGroup>
-    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.6</TargetFrameworkVersion>
-    <NuGetTargetMoniker>.NETStandard,Version=v1.6</NuGetTargetMoniker>
-    <TargetFrameworkMoniker>.NETStandard,Version=v1.6</TargetFrameworkMoniker>
-    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
-    <NoStdLib>true</NoStdLib>
-    <NoWarn>$(NoWarn);1701</NoWarn>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Tizen.Account.AccountManager.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
   </PropertyGroup>
+
   <ItemGroup>
-    <None Include="Tizen.Account.AccountManager.nuspec" />
-    <None Include="Tizen.Account.AccountManager.project.json" />
-    <None Include="Tizen.Account.AccountManager.snk" />
+    <PackageReference Include="Tizen" Version="1.0.5" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Interop\Interop.Account.cs" />
-    <Compile Include="Interop\Interop.AccountService.cs" />
-    <Compile Include="Interop\Interop.AccountProvider.cs" />
-    <Compile Include="Interop\Interop.Libraries.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tizen.Account.AccountManager\Account.cs" />
-    <Compile Include="Tizen.Account.AccountManager\AccountEnums.cs" />
-    <Compile Include="Tizen.Account.AccountManager\AccountErrorFactory.cs" />
-    <Compile Include="Tizen.Account.AccountManager\AccountService.cs" />
-    <Compile Include="Tizen.Account.AccountManager\AccountProvider.cs" />
-    <Compile Include="Tizen.Account.AccountManager\AccountSubscriberEventArgs.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets" Condition="Exists('$(MSBuildExtensionsPath)\Tizen\Tizen.CSharp.GBS.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <PropertyGroup>
-    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
-             https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
-        -->
-    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
-             properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
-             to prevent it from outputting a warning (MSB3644).
-        -->
-    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
-    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
-    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
-  </PropertyGroup>
-  <!-- Include tasks for Tizen -->
-  <PropertyGroup>
-    <TizenBuildPath>$(MSBuildExtensionsPath)\Tizen</TizenBuildPath>
-    <TizenToolsPath>$(TizenBuildPath)\bin</TizenToolsPath>
-  </PropertyGroup>
-  <UsingTask TaskName="Tizen.Tasks.SignPackage.TizenCleanPackageSource" AssemblyFile="$(TizenToolsPath)\Tizen.Tasks.SignPackage.dll" />
-  <UsingTask TaskName="Tizen.Tasks.SignPackage.TizenPreparePackageManifest" AssemblyFile="$(TizenToolsPath)\Tizen.Tasks.SignPackage.dll" />
-  <UsingTask TaskName="Tizen.Tasks.SignPackage.TizenPreparePackageSource" AssemblyFile="$(TizenToolsPath)\Tizen.Tasks.SignPackage.dll" />
-  <UsingTask TaskName="Tizen.Tasks.SignPackage.TizenSignPackage" AssemblyFile="$(TizenToolsPath)\Tizen.Tasks.SignPackage.dll" />
-  <!-- Task to clean package source -->
-  <Target Name="_TizenCleanPkgSrc">
-    <TizenCleanPackageSource SolutionPath="$(SolutionPath)" ProjectPath="$(MSBuildProjectFullPath)" />
-  </Target>
-  <!-- Task to prepare tizen-manifest.xml file -->
-  <Target Name="_TizenPrepManifest">
-    <TizenPreparePackageManifest SolutionPath="$(SolutionPath)" ProjectPath="$(MSBuildProjectFullPath)" />
-  </Target>
-  <!-- Task to prepare package sources(executable, dlls, resource files) -->
-  <Target Name="_TizenPrepPkgSrc">
-    <TizenPreparePackageSource SolutionPath="$(SolutionPath)" ProjectPath="$(MSBuildProjectFullPath)" AssemblyName="$(AssemblyName)" TargetPath="$(TargetPath)" />
-  </Target>
-  <!-- Task to signing and packaging -->
-  <Target Name="_TizenSignPackge">
-    <TizenSignPackage SolutionPath="$(SolutionPath)" ProjectPath="$(MSBuildProjectFullPath)" SolutionName="$(SolutionName)" AuthorCertificate="$(AuthorCertificate)" AuthorPasswd="$(AuthorPasswd)" DistribCertificate="$(DistribCertificate)" DistribPasswd="$(DistribPasswd)" />
-  </Target>
+  
 </Project>
