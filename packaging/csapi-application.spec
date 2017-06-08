@@ -221,7 +221,7 @@ cp %{SOURCE1} .
 %dotnet_build Tizen.Applications.sln
 
 for ASM in %{Assemblies}; do
-%dotnet_pack $ASM/$ASM.nuspec %{version}
+%dotnet_pack $ASM
 done
 
 %install
