@@ -123,7 +123,7 @@ namespace Tizen.NUI
     ///
     ///
     /// </summary>
-    internal sealed class ViewRegistry
+    public sealed class ViewRegistry
     {
         /// <summary>
         /// ViewRegistry is a singleton
@@ -178,7 +178,7 @@ namespace Tizen.NUI
         };
 
 
-        public ViewRegistry()
+        private ViewRegistry()
         {
             _createCallback = new CreateControlDelegate(CreateControl);
             _getPropertyCallback = new GetPropertyDelegate(GetProperty);
@@ -240,7 +240,7 @@ namespace Tizen.NUI
         /// Store the mapping between this instance of control (View) and native part.
         /// </summary>
         /// <param name="view"> The instance of control (View)</param>
-        public static void RegisterView(View view)
+        internal static void RegisterView(View view)
         {
             // We store a pointer to the RefObject for the control
             RefObject refObj = view.GetObjectPtr();
@@ -261,7 +261,7 @@ namespace Tizen.NUI
         /// Remove the this instance of control (View) and native part from the mapping table.
         /// </summary>
         /// <param name="view"> The instance of control (View)</param>
-        public static void UnregisterView(View view)
+        internal static void UnregisterView(View view)
         {
             RefObject refObj = view.GetObjectPtr();
             IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
