@@ -31,10 +31,34 @@ internal static partial class Interop
         internal static extern double elm_panes_content_left_size_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern double elm_panes_content_left_min_relative_size_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_panes_content_left_min_relative_size_set(IntPtr obj, double size);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_panes_content_left_min_size_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_panes_content_left_min_size_set(IntPtr obj, int size);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_panes_content_right_size_set(IntPtr obj, double size);
 
         [DllImport(Libraries.Elementary)]
         internal static extern double elm_panes_content_right_size_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern double elm_panes_content_right_min_relative_size_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_panes_content_right_min_relative_size_set(IntPtr obj, double size);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_panes_content_right_min_size_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_panes_content_right_min_size_set(IntPtr obj, int size);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_panes_horizontal_set(IntPtr obj, bool horizontal);
