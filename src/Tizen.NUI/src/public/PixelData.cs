@@ -27,7 +27,7 @@
 namespace Tizen.NUI
 {
 
-    internal class PixelData : BaseHandle
+    public class PixelData : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

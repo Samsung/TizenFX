@@ -27,16 +27,16 @@
 namespace Tizen.NUI
 {
 
-    internal class Sampler : BaseHandle
+    public class Geometry : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Sampler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Sampler_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Geometry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Geometry_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Sampler obj)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Geometry obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
@@ -60,13 +60,12 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Sampler(swigCPtr);
+                    NDalicPINVOKE.delete_Geometry(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -74,47 +73,67 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-
-        public Sampler() : this(NDalicPINVOKE.Sampler_New(), true)
+        public Geometry() : this(NDalicPINVOKE.Geometry_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Sampler(Sampler handle) : this(NDalicPINVOKE.new_Sampler__SWIG_1(Sampler.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
-        public static Sampler DownCast(BaseHandle handle)
+        internal static Geometry DownCast(BaseHandle handle)
         {
-            Sampler ret = new Sampler(NDalicPINVOKE.Sampler_DownCast(BaseHandle.getCPtr(handle)), true);
+            Geometry ret = new Geometry(NDalicPINVOKE.Geometry_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public Sampler Assign(Sampler handle)
+        public uint AddVertexBuffer(PropertyBuffer vertexBuffer)
         {
-            Sampler ret = new Sampler(NDalicPINVOKE.Sampler_Assign(swigCPtr, Sampler.getCPtr(handle)), false);
+            uint ret = NDalicPINVOKE.Geometry_AddVertexBuffer(swigCPtr, PropertyBuffer.getCPtr(vertexBuffer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public void SetFilterMode(FilterModeType minFilter, FilterModeType magFilter)
+        public uint GetNumberOfVertexBuffers()
         {
-            NDalicPINVOKE.Sampler_SetFilterMode(swigCPtr, (int)minFilter, (int)magFilter);
+            uint ret = NDalicPINVOKE.Geometry_GetNumberOfVertexBuffers(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void RemoveVertexBuffer(uint index)
+        {
+            NDalicPINVOKE.Geometry_RemoveVertexBuffer(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void SetWrapMode(WrapModeType uWrap, WrapModeType vWrap)
+        public void SetIndexBuffer(ushort[] indices, uint count)
         {
-            NDalicPINVOKE.Sampler_SetWrapMode__SWIG_0(swigCPtr, (int)uWrap, (int)vWrap);
+            NDalicPINVOKE.Geometry_SetIndexBuffer(swigCPtr, indices, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void SetWrapMode(WrapModeType rWrap, WrapModeType sWrap, WrapModeType tWrap)
+        public void SetType(Geometry.Type geometryType)
         {
-            NDalicPINVOKE.Sampler_SetWrapMode__SWIG_1(swigCPtr, (int)rWrap, (int)sWrap, (int)tWrap);
+            NDalicPINVOKE.Geometry_SetType(swigCPtr, (int)geometryType);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public Geometry.Type GetType()
+        {
+            Geometry.Type ret = (Geometry.Type)NDalicPINVOKE.Geometry_GetType(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public enum Type
+        {
+            POINTS,
+            LINES,
+            LINE_LOOP,
+            LINE_STRIP,
+            TRIANGLES,
+            TRIANGLE_FAN,
+            TRIANGLE_STRIP
         }
 
     }

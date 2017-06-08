@@ -27,20 +27,19 @@
 namespace Tizen.NUI
 {
 
-    internal class Texture : BaseHandle
+    public class Sampler : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Texture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Texture_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Sampler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Sampler_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Texture obj)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Sampler obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-
 
         protected override void Dispose(DisposeTypes type)
         {
@@ -61,12 +60,13 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Texture(swigCPtr);
+                    NDalicPINVOKE.delete_Sampler(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -74,71 +74,35 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        public Texture(TextureType type, PixelFormat format, uint width, uint height) : this(NDalicPINVOKE.Texture_New__SWIG_0((int)type, (int)format, width, height), true)
+
+        public Sampler() : this(NDalicPINVOKE.Sampler_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Texture(NativeImageInterface nativeImageInterface) : this(NDalicPINVOKE.Texture_New__SWIG_1(NativeImageInterface.getCPtr(nativeImageInterface)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-        }
-        public Texture(Texture handle) : this(NDalicPINVOKE.new_Texture__SWIG_1(Texture.getCPtr(handle)), true)
+        internal static Sampler DownCast(BaseHandle handle)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public static Texture DownCast(BaseHandle handle)
-        {
-            Texture ret = new Texture(NDalicPINVOKE.Texture_DownCast(BaseHandle.getCPtr(handle)), true);
+            Sampler ret = new Sampler(NDalicPINVOKE.Sampler_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public Texture Assign(Texture handle)
+        public void SetFilterMode(FilterModeType minFilter, FilterModeType magFilter)
         {
-            Texture ret = new Texture(NDalicPINVOKE.Texture_Assign(swigCPtr, Texture.getCPtr(handle)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public bool Upload(PixelData pixelData)
-        {
-            bool ret = NDalicPINVOKE.Texture_Upload__SWIG_0(swigCPtr, PixelData.getCPtr(pixelData));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public bool Upload(PixelData pixelData, uint layer, uint mipmap, uint xOffset, uint yOffset, uint width, uint height)
-        {
-            bool ret = NDalicPINVOKE.Texture_Upload__SWIG_1(swigCPtr, PixelData.getCPtr(pixelData), layer, mipmap, xOffset, yOffset, width, height);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public void GenerateMipmaps()
-        {
-            NDalicPINVOKE.Texture_GenerateMipmaps(swigCPtr);
+            NDalicPINVOKE.Sampler_SetFilterMode(swigCPtr, (int)minFilter, (int)magFilter);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public uint GetWidth()
+        public void SetWrapMode(WrapModeType uWrap, WrapModeType vWrap)
         {
-            uint ret = NDalicPINVOKE.Texture_GetWidth(swigCPtr);
+            NDalicPINVOKE.Sampler_SetWrapMode__SWIG_0(swigCPtr, (int)uWrap, (int)vWrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
-        public uint GetHeight()
+        public void SetWrapMode(WrapModeType rWrap, WrapModeType sWrap, WrapModeType tWrap)
         {
-            uint ret = NDalicPINVOKE.Texture_GetHeight(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal Texture(SWIGTYPE_p_Dali__Internal__Texture pointer) : this(NDalicPINVOKE.new_Texture__SWIG_2(SWIGTYPE_p_Dali__Internal__Texture.getCPtr(pointer)), true)
-        {
+            NDalicPINVOKE.Sampler_SetWrapMode__SWIG_1(swigCPtr, (int)rWrap, (int)sWrap, (int)tWrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
