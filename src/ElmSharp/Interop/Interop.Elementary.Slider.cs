@@ -39,12 +39,6 @@ internal static partial class Interop
         internal static extern bool elm_slider_indicator_show_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_slider_indicator_visible_mode_set(IntPtr obj, Elm_Slider_Indicator_Visible_Mode mode);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern Elm_Slider_Indicator_Visible_Mode elm_slider_indicator_visible_mode_get(IntPtr obj);
-
-        [DllImport(Libraries.Elementary)]
         internal static extern void elm_slider_indicator_show_on_focus_set(IntPtr obj, bool focus);
 
         [DllImport(Libraries.Elementary)]

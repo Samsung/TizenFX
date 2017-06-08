@@ -18,29 +18,6 @@ using System;
 
 namespace ElmSharp
 {
-    public enum SliderIndicatorVisibleMode
-    {
-        /// <summary>
-        /// show indicator on mouse down or change in slider value.
-        /// </summary>
-        Default,
-
-        /// <summary>
-        /// Always show the indicator.
-        /// </summary>
-        Always,
-
-        /// <summary>
-        /// Show the indicator on focus.
-        /// </summary>
-        OnFocus,
-
-        /// <summary>
-        /// Never show the indicator.
-        /// </summary>
-        None
-    }
-
     /// <summary>
     /// Enumeration for the Slider's indicator visiblity mode.
     /// </summary>
