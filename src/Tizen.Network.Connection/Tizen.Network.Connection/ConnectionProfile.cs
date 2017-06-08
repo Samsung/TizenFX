@@ -43,6 +43,10 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The event that is called when the state of profile is changed.
         /// </summary>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         public event EventHandler ProfileStateChanged
         {
             add
@@ -233,10 +237,10 @@ namespace Tizen.Network.Connection
         /// Refreshes the profile information.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <feature>http://tizen.org/feature/network.telephony</feature>
-        /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
@@ -261,10 +265,10 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <param name="family">The address family</param>
         /// <returns>The network state.</returns>
-        /// <feature>http://tizen.org/feature/network.telephony</feature>
-        /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when profile instance is invalid or when method failed due to invalid operation</exception>

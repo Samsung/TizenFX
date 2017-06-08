@@ -70,6 +70,11 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Event that is called when the type of the current connection is changed.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         public static event EventHandler ConnectionTypeChanged
         {
             add
@@ -86,6 +91,8 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Event for ethernet cable is plugged [in/out] event.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
         public static event EventHandler EthernetCableStateChanged
         {
             add
@@ -102,6 +109,11 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Event that is called when the IP address is changed.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         public static event EventHandler IPAddressChanged
         {
             add
@@ -118,6 +130,11 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Event that is called when the proxy address is changed.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         public static event EventHandler ProxyAddressChanged
         {
             add
@@ -148,10 +165,10 @@ namespace Tizen.Network.Connection
         /// <param name="family">The address family</param>
         /// <returns>IP address of the connection (global address in case of IPv6).</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <feature>http://tizen.org/feature/network.telephony</feature>
-        /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
@@ -168,10 +185,10 @@ namespace Tizen.Network.Connection
         /// <param name="type">The type of current network connection</param>
         /// <returns>A list of IPv6 addresses of the connection.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <feature>http://tizen.org/feature/network.telephony</feature>
-        /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
@@ -188,10 +205,10 @@ namespace Tizen.Network.Connection
         /// <param name="family">The address family</param>
         /// <returns>Proxy address of the connection.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <feature>http://tizen.org/feature/network.telephony</feature>
-        /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
@@ -208,10 +225,10 @@ namespace Tizen.Network.Connection
         /// <param name="type">The type of current network connection</param>
         /// <returns>MAC address of the Wi-Fi or ethernet.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <feature>http://tizen.org/feature/network.telephony</feature>
-        /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
@@ -229,10 +246,10 @@ namespace Tizen.Network.Connection
         /// <param name="statisticsType">The type of statistics</param>
         /// <returns>The statistics information associated with statisticsType</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <feature>http://tizen.org/feature/network.telephony</feature>
-        /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
@@ -250,10 +267,10 @@ namespace Tizen.Network.Connection
         /// <param name="statisticsType">The type of statistics</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
-        /// <feature>http://tizen.org/feature/network.telephony</feature>
-        /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
