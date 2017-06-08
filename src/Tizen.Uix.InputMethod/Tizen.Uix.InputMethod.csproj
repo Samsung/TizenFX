@@ -1,102 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{081C204A-2267-4F10-8751-E3AFE5C30AE9}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tizen.Uix.InputMethod</RootNamespace>
-    <AssemblyName>Tizen.Uix.InputMethod</AssemblyName>
-    <FileAlignment>512</FileAlignment>
+    <Version>1.0.2</Version>
+    <Authors>Samsung Electronics</Authors>
+    <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
+    <Description>InputMethod API for Tizen .NET</Description>
+    <PackageProjectUrl>https://www.tizen.org/</PackageProjectUrl>
+    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
   </PropertyGroup>
+
   <PropertyGroup>
-    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.3</TargetFrameworkVersion>
-    <NuGetTargetMoniker>.NETStandard,Version=v1.3</NuGetTargetMoniker>
-    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
-    <NoStdLib>true</NoStdLib>
-    <NoWarn>$(NoWarn);1701;1702</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Tizen.Uix.InputMethod.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
   </PropertyGroup>
+  
   <ItemGroup>
-    <Compile Include="Interop\Interop.EinaList.cs" />
-    <Compile Include="Interop\Interop.InputMethod.cs" />
-    <Compile Include="Interop\Interop.Libraries.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\AccessibilityStateChangedEventArgs.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\CursorPositionUpdatedEventArgs.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\DisplayLanaguageChangedEventArgs.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\OptionWindow.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\EditorWindow.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\FocusedInEventArgs.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\FocusedOutEventArgs.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\DataSetEventArgs.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\InputMethodContext.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\InputMethodDeviceInformation.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\InputMethodEditor.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\InputMethodExceptionFactory.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\LanguageSetSetEventArgs.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\LayoutSetEventArgs.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\OptionWindowCreatedEventArgs.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\OptionWindowDestroyedEventArgs.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\PreEditAttribute.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\ReturnKeyStateSetEventArgs.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\ReturnKeyTypeSetEventArgs.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\RotationChangedEventArgs.cs" />
-    <Compile Include="Tizen.Uix.InputMethod\SurroundingTextUpdatedArgs.cs" />
+    <PackageReference Include="ElmSharp" Version="1.2.0" />
+    <PackageReference Include="Tizen" Version="1.0.5" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Tizen.Uix.InputMethod.nuspec" />
-    <None Include="Tizen.Uix.InputMethod.project.json" />
-    <None Include="Tizen.Uix.InputMethod.snk" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <PropertyGroup>
-    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
-       https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
-    -->
-    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
-       properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
-       to prevent it from outputting a warning (MSB3644).
-    -->
-    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
-    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
-    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
-  </PropertyGroup>
+  
 </Project>
