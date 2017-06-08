@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Pims.Calendar", "Tizen.Pims.Calendar.csproj", "{98DD51D2-9332-47AA-B4EA-D1DB7E71C395}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinApplication2.Tizen", "..\..\XamarinApplication2\XamarinApplication2\XamarinApplication2.Tizen\XamarinApplication2.Tizen.csproj", "{47A990B2-CC6D-48D3-8007-38308056E3E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Pims.Calendar", "Tizen.Pims.Calendar.csproj", "{E43A6288-59D5-45B6-A141-B1E3D575600F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{98DD51D2-9332-47AA-B4EA-D1DB7E71C395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98DD51D2-9332-47AA-B4EA-D1DB7E71C395}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98DD51D2-9332-47AA-B4EA-D1DB7E71C395}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98DD51D2-9332-47AA-B4EA-D1DB7E71C395}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47A990B2-CC6D-48D3-8007-38308056E3E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47A990B2-CC6D-48D3-8007-38308056E3E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47A990B2-CC6D-48D3-8007-38308056E3E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47A990B2-CC6D-48D3-8007-38308056E3E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E43A6288-59D5-45B6-A141-B1E3D575600F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E43A6288-59D5-45B6-A141-B1E3D575600F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E43A6288-59D5-45B6-A141-B1E3D575600F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E43A6288-59D5-45B6-A141-B1E3D575600F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
