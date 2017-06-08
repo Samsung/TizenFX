@@ -31,13 +31,17 @@ namespace ElmSharp.Test
                 Color = Color.Orange
             };
 
-            Background bg2 = new Background(window) {
-                File = "/opt/home/owner/res/tizen.png",
-                BackgroundOption = BackgroundOptions.Tile
+            Background bg2 = new Background(window)
+            {
+                File = "/home/owner/apps_rw/ElmSharpTest/res/picture.png",
+                BackgroundOption = BackgroundOptions.Center,
+                BackgroundColor = Color.Gray
             };
 
+            bg2.SetFileLoadSize(50, 50);
+
             Show(bg1, 0, 0, 100, 100);
-            Show(bg2, 100, 100, 500, 500);
+            Show(bg2, 0, 100, 700, 700);
         }
 
         void Show(Background bg, int x, int y, int w, int h)
