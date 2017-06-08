@@ -1,0 +1,10 @@
+<Project>
+
+  <PropertyGroup>
+    <TizenVersion>1.0.5</TizenVersion>
+    <ElmSharpVersion>1.2.0</ElmSharpVersion>
+    <ApplicationsVersion>1.5.8</ApplicationsVersion>
+    <SystemInfoVersion>1.0.4</SystemInfoVersion>
+  </PropertyGroup>
+
+</Project>

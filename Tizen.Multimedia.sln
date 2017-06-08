@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia", "Tizen.Multimedia\Tizen.Multimedia.csproj", "{0CE698B0-4849-4096-9D7F-30E611F50DAD}"
 EndProject
@@ -26,6 +26,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia.Metadata", "Tizen.Multimedia.Metadata\Tizen.Multimedia.Metadata.csproj", "{C6138D98-B52D-448A-AE8B-36FAF55E6F93}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Multimedia.AudioIO", "Tizen.Multimedia.AudioIO\Tizen.Multimedia.AudioIO.csproj", "{7C22F20F-8327-4DA5-952D-403C44FCC69B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{6398B267-5FD6-42B3-BE26-C68A08F3ABF8}"
+	ProjectSection(SolutionItems) = preProject
+		build\build.props = build\build.props
+		build\dependencies.props = build\dependencies.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -20,18 +20,18 @@ BuildRequires: elm-sharp-nuget
 BuildRequires: csapi-information-nuget
 
 %define Assemblies \
-	Tizen.Multimedia 1.2.0 \
-	Tizen.Multimedia.AudioIO 1.0.0 \
-	Tizen.Multimedia.Camera 1.0.0 \
-	Tizen.Multimedia.MediaCodec 1.0.0 \
-	Tizen.Multimedia.MediaPlayer 1.0.1 \
-	Tizen.Multimedia.Metadata 1.0.0 \
-	Tizen.Multimedia.Radio 1.0.1 \
-	Tizen.Multimedia.Recorder 1.0.1 \
-	Tizen.Multimedia.StreamRecorder 1.0.0 \
-	Tizen.Multimedia.Remoting 1.0.0 \
-	Tizen.Multimedia.Util 1.0.1 \
-	Tizen.Multimedia.Vision 1.0.0
+	Tizen.Multimedia \
+	Tizen.Multimedia.AudioIO \
+	Tizen.Multimedia.Camera \
+	Tizen.Multimedia.MediaCodec \
+	Tizen.Multimedia.MediaPlayer \
+	Tizen.Multimedia.Metadata \
+	Tizen.Multimedia.Radio \
+	Tizen.Multimedia.Recorder \
+	Tizen.Multimedia.StreamRecorder \
+	Tizen.Multimedia.Remoting \
+	Tizen.Multimedia.Util \
+	Tizen.Multimedia.Vision
 
 %description
 %{summary}
@@ -46,21 +46,14 @@ cp %{SOURCE1} .
 %dotnet_build Tizen.Multimedia.sln
 
 AssemArray=(%Assemblies)
-
-for((i=0; i<${#AssemArray[*]};i+=2))
-do
-	AsmName=${AssemArray[$i]}
-	AsmVer=${AssemArray[$i+1]}
-	%dotnet_pack $AsmName/$AsmName.nuspec $AsmVer
+for ASM in "${AssemArray[@]}"; do
+	%dotnet_pack $ASM
 done
 
 %install
 AssemArray=(%Assemblies)
-
-for((i=0; i<${#AssemArray[*]};i+=2))
-do
-	AsmName=${AssemArray[$i]}
-	%dotnet_install $AsmName
+for ASM in "${AssemArray[@]}"; do
+	%dotnet_install $ASM
 done
 
 %files
