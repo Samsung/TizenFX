@@ -14,127 +14,135 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for audio codec.
+    /// Specifies audio codecs for <see cref="ScreenMirroring"/>.
     /// </summary>
-    public enum AudioCodec
+    /// <seealso cref="ScreenMirroringAudioInfo"/>
+    public enum ScreenMirroringAudioCodec
     {
         /// <summary>
-        /// Screen mirroring is not negotiated yet
+        /// Screen mirroring is not negotiated yet.
         /// </summary>
         None,
         /// <summary>
-        /// AAC codec for audio
+        /// AAC codec for audio.
         /// </summary>
         Aac,
         /// <summary>
-        /// AC3 codec for audio
+        /// AC3 codec for audio.
         /// </summary>
         Ac3,
         /// <summary>
-        /// LPCM codec for audio
+        /// LPCM codec for audio.
         /// </summary>
         Lpcm
     }
+
     /// <summary>
-    /// Enumeration for video codec.
+    /// Specifies video codecs for <see cref="ScreenMirroring"/>.
     /// </summary>
-    public enum VideoCodec
+    /// <seealso cref="ScreenMirroringVideoInfo"/>
+    public enum ScreenMirroringVideoCodec
     {
         /// <summary>
-        /// Screen mirroring is not negotiated yet
+        /// Screen mirroring is not negotiated yet.
         /// </summary>
         None,
         /// <summary>
-        /// H.264 codec for video
+        /// H.264 codec for video.
         /// </summary>
         H264
     }
 
     /// <summary>
-    /// Enumeration for screen mirroring resolution.
+    /// Specifies available combinations of resolutions and fps for <see cref="ScreenMirroring"/>.
     /// </summary>
-    public enum ResolutionType
+    [Flags]
+    public enum ScreenMirroringResolutions
     {
         /// <summary>
-        /// W-1920, H-1080, 30 fps
+        /// W-1920, H-1080, 30 fps.
         /// </summary>
         R1920x1080P30 = (1 << 0),
         /// <summary>
-        /// W-1280, H-720, 30 fps
+        /// W-1280, H-720, 30 fps.
         /// </summary>
         R1280x720P30 = (1 << 1),
         /// <summary>
-        /// W-960, H-540, 30 fps
+        /// W-960, H-540, 30 fps.
         /// </summary>
         R960x540P30 = (1 << 2),
         /// <summary>
-        /// W-864, H-480, 30 fps
+        /// W-864, H-480, 30 fps.
         /// </summary>
         R864x480P30 = (1 << 3),
         /// <summary>
-        /// W-720, H-480, 60 fps
+        /// W-720, H-480, 60 fps.
         /// </summary>
         R720x480P60 = (1 << 4),
         /// <summary>
-        /// W-640, H-480, 60 fps
+        /// W-640, H-480, 60 fps.
         /// </summary>
         R640x480P60 = (1 << 5),
         /// <summary>
-        /// W-640, H-360, 30 fps
+        /// W-640, H-360, 30 fps.
         /// </summary>
         R640x360P30 = (1 << 6)
     }
 
     /// <summary>
-    /// Enumeration for screen mirroring sink state
+    /// Specifies the states of <see cref="ScreenMirroring"/>.
     /// </summary>
-    public enum ScreenMirroringSinkState
+    public enum ScreenMirroringState
     {
         /// <summary>
-        /// Screen mirroring is not created yet
+        /// Idle.
         /// </summary>
-        None,
+        Idle = 1,
+
         /// <summary>
-        /// Screen mirroring is created, but not prepared yet
+        /// Prepared.
         /// </summary>
-        Null,
-        /// <summary>
-        /// Screen mirroring is prepared to play media
-        /// </summary>
+        /// <seealso cref="ScreenMirroring.Prepare(Display, ScreenMirroringResolutions)"/>
         Prepared,
+
         /// <summary>
-        /// Screen mirroring is connected
+        /// Connected to a source.
         /// </summary>
+        /// <seealso cref="ScreenMirroring.ConnectAsync(string)"/>
         Connected,
+
         /// <summary>
-        /// Screen mirroring is now playing media
+        /// Playing.
         /// </summary>
+        /// <seealso cref="ScreenMirroring.StartAsync"/>
         Playing,
+
         /// <summary>
-        /// Screen mirroring is paused while playing media
+        /// Paused while playing media.
         /// </summary>
+        /// <seealso cref="ScreenMirroring.PauseAsync"/>
         Paused,
+
         /// <summary>
-        /// Screen mirroring is disconnected
+        /// Disconnected from source.
         /// </summary>
+        /// <seealso cref="ScreenMirroring.Disconnect"/>
         Disconnected
     }
 
     /// <summary>
-    /// Enumeration for screen mirroring error.
+    /// Specifies errors for <see cref="ScreenMirroring"/>.
     /// </summary>
-    public enum ScreenMirroringErrorCode
+    public enum ScreenMirroringError
     {
         /// <summary>
-        /// Successful
+        /// Invalid operation.
         /// </summary>
-        None = ScreenMirroringError.None,
-        /// <summary>
-        /// Invalid operation
-        /// </summary>
-        InvalidOperation = ScreenMirroringError.InvalidOperation
+        InvalidOperation = ScreenMirroringErrorCode.InvalidOperation
     }
 }

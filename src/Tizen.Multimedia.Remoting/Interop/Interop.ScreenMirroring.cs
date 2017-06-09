@@ -16,75 +16,85 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Multimedia;
 
 internal static partial class Interop
 {
     internal static partial class ScreenMirroring
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void StateChangedCallback(IntPtr userData, int state, int error);
+        internal delegate void StateChangedCallback(IntPtr userData,
+            ScreenMirroringState state, ScreenMirroringErrorCode error);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_create")]
-        internal static extern int Create(out IntPtr scmirroringSink);
+        internal static extern ScreenMirroringErrorCode Create(out IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_state_changed_cb")]
-        internal static extern int SetStateChangedCb(IntPtr scmirroringSink, StateChangedCallback cb, IntPtr userData);
+        internal static extern ScreenMirroringErrorCode SetStateChangedCb(IntPtr handle,
+            StateChangedCallback cb, IntPtr userData = default(IntPtr));
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_ip_and_port")]
-        internal static extern int SetIpAndPort(IntPtr scmirroringSink, string ip, string port);
+        internal static extern ScreenMirroringErrorCode SetIpAndPort(IntPtr handle, string ip, string port);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_display")]
-        internal static extern int SetDisplay(IntPtr scmirroringSink, int type, IntPtr display);
+        internal static extern ScreenMirroringErrorCode SetDisplay(IntPtr handle, int type, IntPtr display);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_resolution")]
-        internal static extern int SetResolution(IntPtr scmirroringSink, int resolution);
+        internal static extern ScreenMirroringErrorCode SetResolution(IntPtr handle, ScreenMirroringResolutions resolution);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_prepare")]
-        internal static extern int Prepare(IntPtr scmirroringSink);
+        internal static extern ScreenMirroringErrorCode Prepare(IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_connect")]
-        internal static extern int ConnectAsync(IntPtr scmirroringSink);
+        internal static extern ScreenMirroringErrorCode Connect(IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_start")]
-        internal static extern int StartAsync(IntPtr scmirroringSink);
+        internal static extern ScreenMirroringErrorCode StartAsync(IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_pause")]
-        internal static extern int PauseAsync(IntPtr scmirroringSink);
+        internal static extern ScreenMirroringErrorCode PauseAsync(IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_resume")]
-        internal static extern int ResumeAsync(IntPtr scmirroringSink);
+        internal static extern ScreenMirroringErrorCode ResumeAsync(IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_disconnect")]
-        internal static extern int Disconnect(IntPtr scmirroringSink);
+        internal static extern ScreenMirroringErrorCode Disconnect(IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_unprepare")]
-        internal static extern int Unprepare(IntPtr scmirroringSink);
+        internal static extern ScreenMirroringErrorCode Unprepare(IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_unset_state_changed_cb")]
-        internal static extern int UnsetStateChangedCb(IntPtr scmirroringSink);
+        internal static extern int UnsetStateChangedCb(IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_destroy")]
-        internal static extern int Destroy(IntPtr scmirroringSink);
+        internal static extern int Destroy(IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_get_negotiated_video_codec")]
-        internal static extern int GetNegotiatedVideoCodec(ref IntPtr scmirroringSink, out int codec);
+        internal static extern ScreenMirroringErrorCode GetNegotiatedVideoCodec(ref IntPtr handle,
+            out ScreenMirroringVideoCodec codec);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_get_negotiated_video_resolution")]
-        internal static extern int GetNegotiatedVideoResolution(ref IntPtr scmirroringSink, out int width, out int height);
+        internal static extern ScreenMirroringErrorCode GetNegotiatedVideoResolution(ref IntPtr handle,
+            out int width, out int height);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_get_negotiated_video_frame_rate")]
-        internal static extern int GetNegotiatedVideoFrameRate(ref IntPtr scmirroringSink, out int frameRate);
+        internal static extern ScreenMirroringErrorCode GetNegotiatedVideoFrameRate(ref IntPtr handle,
+            out int frameRate);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_get_negotiated_audio_codec")]
-        internal static extern int GetNegotiatedAudioCodec(ref IntPtr scmirroringSink, out int codec);
+        internal static extern ScreenMirroringErrorCode GetNegotiatedAudioCodec(ref IntPtr handle,
+            out ScreenMirroringAudioCodec codec);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_get_negotiated_audio_channel")]
-        internal static extern int GetNegotiatedAudioChannel(ref IntPtr scmirroringSink, out int channel);
+        internal static extern ScreenMirroringErrorCode GetNegotiatedAudioChannel(ref IntPtr handle,
+            out int channel);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_get_negotiated_audio_sample_rate")]
-        internal static extern int GetNegotiatedAudioSampleRate(ref IntPtr scmirroringSink, out int sampleRate);
+        internal static extern ScreenMirroringErrorCode GetNegotiatedAudioSampleRate(ref IntPtr handle,
+            out int sampleRate);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_get_negotiated_audio_bitwidth")]
-        internal static extern int GetNegotiatedAudioBitwidth(ref IntPtr scmirroringSink, out int bitwidth);
+        internal static extern ScreenMirroringErrorCode GetNegotiatedAudioBitwidth(ref IntPtr handle,
+            out int bitwidth);
     }
 }
