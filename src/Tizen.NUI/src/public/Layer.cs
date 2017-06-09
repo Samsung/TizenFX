@@ -69,8 +69,6 @@ namespace Tizen.NUI
 
         internal class Property
         {
-            internal static readonly int CLIPPING_ENABLE = NDalicPINVOKE.Layer_Property_CLIPPING_ENABLE_get();
-            internal static readonly int CLIPPING_BOX = NDalicPINVOKE.Layer_Property_CLIPPING_BOX_get();
             internal static readonly int BEHAVIOR = NDalicPINVOKE.Layer_Property_BEHAVIOR_get();
         }
 
@@ -323,6 +321,38 @@ namespace Tizen.NUI
             }
         }
 
-    }
+        /// <summary>
+        /// Retrieves and sets the Layer's opacity.<br>
+        /// </summary>
+        public float Opacity
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.OPACITY).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.OPACITY, new Tizen.NUI.PropertyValue(value));
+            }
+        }
 
+        /// <summary>
+        /// Retrieves and sets the Layer's visibility.
+        /// </summary>
+        public bool Visibility
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.VISIBLE).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.VISIBLE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+    }
 }
