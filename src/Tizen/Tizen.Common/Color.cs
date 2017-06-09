@@ -294,7 +294,7 @@ namespace Tizen.Common
         }
 
         /// <summary>
-        /// Returns a string representation in Hex. (ex: #FFFFFFFF in RGBA order)
+        /// Returns a string representation in Hex. (ex: \#FFFFFFFF in RGBA order)
         /// </summary>
         /// <returns>The string representation in Hex.</returns>
         public string ToHex()
