@@ -811,6 +811,7 @@ namespace Tizen.NUI
     public struct ImageVisualProperty
     {
         public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
+        public static readonly int AlphaMaskURL = NDalic.IMAGE_VISUAL_ALPHA_MASK_URL;
         public static readonly int FittingMode = NDalic.IMAGE_VISUAL_FITTING_MODE;
         public static readonly int SamplingMode = NDalic.IMAGE_VISUAL_SAMPLING_MODE;
         public static readonly int DesiredWidth = NDalic.IMAGE_VISUAL_DESIRED_WIDTH;
@@ -1360,8 +1361,8 @@ namespace Tizen.NUI
     }
 
     public enum DisposeTypes
-    {              
-        Explicit,   //Called By User 
+    {
+        Explicit,   //Called By User
         Implicit,   //Called by DisposeQueue
     }
 }

@@ -37,14 +37,14 @@ class NDalicPINVOKE {
     public static extern void SWIGRegisterExceptionCallbacks_NDalic(
                                 ExceptionDelegate applicationDelegate,
                                 ExceptionDelegate arithmeticDelegate,
-                                ExceptionDelegate divideByZeroDelegate, 
-                                ExceptionDelegate indexOutOfRangeDelegate, 
+                                ExceptionDelegate divideByZeroDelegate,
+                                ExceptionDelegate indexOutOfRangeDelegate,
                                 ExceptionDelegate invalidCastDelegate,
                                 ExceptionDelegate invalidOperationDelegate,
                                 ExceptionDelegate ioDelegate,
                                 ExceptionDelegate nullReferenceDelegate,
-                                ExceptionDelegate outOfMemoryDelegate, 
-                                ExceptionDelegate overflowDelegate, 
+                                ExceptionDelegate outOfMemoryDelegate,
+                                ExceptionDelegate overflowDelegate,
                                 ExceptionDelegate systemExceptionDelegate);
 
     [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="SWIGRegisterExceptionArgumentCallbacks_NDalic")]
@@ -136,7 +136,7 @@ class NDalicPINVOKE {
           if (pendingException != null)
             pending = true;
         return pending;
-      } 
+      }
     }
 
     public static void Set(global::System.Exception e) {
@@ -6504,6 +6504,9 @@ class NDalicPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_URL_get")]
   public static extern int IMAGE_VISUAL_URL_get();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_ALPHA_MASK_URL_get")]
+  public static extern int IMAGE_VISUAL_ALPHA_MASK_URL_get();
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_FITTING_MODE_get")]
   public static extern int IMAGE_VISUAL_FITTING_MODE_get();
