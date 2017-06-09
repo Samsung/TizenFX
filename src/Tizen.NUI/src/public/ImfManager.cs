@@ -14,7 +14,7 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
 
 
-    internal class ImfManager : BaseHandle
+    public class ImfManager : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -458,7 +458,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public void ApplyOptions(SWIGTYPE_p_InputMethodOptions options)
+        internal void ApplyOptions(SWIGTYPE_p_InputMethodOptions options)
         {
             NDalicManualPINVOKE.ImfManager_ApplyOptions(swigCPtr, SWIGTYPE_p_InputMethodOptions.getCPtr(options));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -549,7 +549,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ImfManager(SWIGTYPE_p_Dali__Internal__Adaptor__ImfManager imfManager) : this(NDalicManualPINVOKE.new_ImfManager__SWIG_1(SWIGTYPE_p_Dali__Internal__Adaptor__ImfManager.getCPtr(imfManager)), true)
+        internal ImfManager(SWIGTYPE_p_Dali__Internal__Adaptor__ImfManager imfManager) : this(NDalicManualPINVOKE.new_ImfManager__SWIG_1(SWIGTYPE_p_Dali__Internal__Adaptor__ImfManager.getCPtr(imfManager)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -581,7 +581,7 @@ namespace Tizen.NUI
 
 
         ///////////////////////////////////////////////////////////////////////////////
-        public static ImfManager GetImfManagerFromPtr(global::System.IntPtr cPtr)
+        internal static ImfManager GetImfManagerFromPtr(global::System.IntPtr cPtr)
         {
             ImfManager ret = new ImfManager(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -874,7 +874,7 @@ namespace Tizen.NUI
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    public class SWIGTYPE_p_Dali__Internal__Adaptor__ImfManager
+    internal class SWIGTYPE_p_Dali__Internal__Adaptor__ImfManager
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -894,7 +894,7 @@ namespace Tizen.NUI
         }
     }
 
-    public class SWIGTYPE_p_InputMethodOptions
+    internal class SWIGTYPE_p_InputMethodOptions
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
