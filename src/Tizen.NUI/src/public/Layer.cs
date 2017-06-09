@@ -354,5 +354,19 @@ namespace Tizen.NUI
                 SetProperty(View.Property.VISIBLE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Get the number of children held by the layer.
+        /// </summary>
+        public uint ChildCount
+        {
+            get
+            {
+                uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
     }
 }

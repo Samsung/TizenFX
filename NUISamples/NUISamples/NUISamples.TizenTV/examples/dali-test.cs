@@ -830,7 +830,7 @@ namespace DaliTest
                 parent.Add(childs[i]);
             }
 
-            for (uint i = 0; i < parent.GetChildCount(); i++)
+            for (uint i = 0; i < parent.ChildCount; i++)
             {
                 View child = parent.GetChildAt(i);
                 View childView = View.DownCast<View>(child);
