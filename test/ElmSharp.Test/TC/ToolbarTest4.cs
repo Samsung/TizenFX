@@ -20,9 +20,9 @@ using System.Collections.Generic;
 
 namespace ElmSharp.Test
 {
-    public class ToolbarTest3 : TestCaseBase
+    public class ToolbarTest4 : TestCaseBase
     {
-        public override string TestName => "ToolbarTest3";
+        public override string TestName => "ToolbarTest4";
         public override string TestDescription => "To test basic operation of Toolbar";
 
         public override void Run(Window window)
