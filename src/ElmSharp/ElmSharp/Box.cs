@@ -49,6 +49,21 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or gets whether the box to arrange its children homogeneously.
+        /// </summary>
+        public bool IsHomogeneous
+        {
+            get
+            {
+                return Interop.Elementary.elm_box_homogeneous_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_box_homogeneous_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
         /// Adds an object at the end of the pack list.
         /// </summary>
         /// <remarks>
@@ -93,6 +108,22 @@ namespace ElmSharp
         public void PackAfter(EvasObject content, EvasObject after)
         {
             Interop.Elementary.elm_box_pack_after(RealHandle, content, after);
+            AddChild(content);
+        }
+
+        /// <summary>
+        /// Adds an "content "object to the Box before the "before" object.
+        /// </summary>
+        /// <remarks>
+        /// This will add the "content" to the Box indicated before the object indicated with "before".
+        /// If "before" is not already in the Box, results are undefined.
+        /// before means either to the left of the "before" object or below it depending on orientation.
+        /// </remarks>
+        /// <param name="content">The object will be added in Box</param>
+        /// <param name="before">The object has been added in Box</param>
+        public void PackBefore(EvasObject content, EvasObject before)
+        {
+            Interop.Elementary.elm_box_pack_before(RealHandle, content, before);
             AddChild(content);
         }
 
@@ -152,6 +183,46 @@ namespace ElmSharp
             int r, g, b, a;
             Interop.Elementary.elm_object_color_class_color_get(Handle, part, out r, out g, out b, out a);
             return new Color((int)(r / (a / 255.0)), (int)(g / (a / 255.0)), (int)(b / (a / 255.0)), a);
+        }
+
+        /// <summary>
+        /// Force the box to recalculate its children packing.
+        /// If any children was added or removed, box will not calculate the values immediately rather leaving it to the next main loop iteration.
+        /// While this is great as it would save lots of recalculation, whenever you need to get the position of a just added item you must force recalculate before doing so.
+        /// </summary>
+        public void Recalculate()
+        {
+            Interop.Elementary.elm_box_recalculate(RealHandle);
+        }
+
+        /// <summary>
+        /// Clear the box of all children.
+        /// Remove all the elements contained by the box, deleting the respective objects.
+        /// </summary>
+        public void Clear()
+        {
+            Interop.Elementary.elm_box_clear(RealHandle);
+            ClearChildren();
+        }
+
+        /// <summary>
+        /// Sets or gets the alignment of the whole bounding box of contents.
+        /// </summary>
+        /// <param name="horizontal">Horizontal alignment</param>
+        /// <param name="vertical">Vertical alignment</param>
+        public void SetBoxAlignment(double horizontal, double vertical)
+        {
+            Interop.Elementary.elm_box_align_set(RealHandle, horizontal, vertical);
+        }
+
+        /// <summary>
+        /// Sets or gets the space(padding) between the box's elements.
+        /// </summary>
+        /// <param name="horizontal">Horizontal padding</param>
+        /// <param name="vertical">vertical padding</param>
+        public void SetPadding(int horizontal, int vertical)
+        {
+            Interop.Elementary.elm_box_padding_set(RealHandle, horizontal, vertical);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
