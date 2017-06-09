@@ -140,7 +140,6 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="viewUri">The view URI of a filter</param>
         /// <param name="propertyId">The property ID to add a condition</param>
-        /// <param name="matchType">The match flag</param>
         /// <param name="matchValue">The match value</param>
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
@@ -378,7 +377,6 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="propertyId">The property ID to add a condition</param>
-        /// <param name="matchType">The match flag</param>
         /// <param name="matchValue">The match value</param>
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>

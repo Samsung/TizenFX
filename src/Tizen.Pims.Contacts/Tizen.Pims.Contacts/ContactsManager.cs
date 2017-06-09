@@ -224,6 +224,9 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// A setting value of contacts name display order
         /// </summary>
+        /// <remarks>
+        /// DisplayName of contacts returned from database are determined by this property
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         public ContactDisplayOrder NameDisplayOrder
@@ -251,6 +254,9 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// A setting value of contacts name sorting order
         /// </summary>
+        /// <remarks>
+        /// Contacts returned from database are first sorted based on the first name or last name by this property
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         public ContactSortingOrder NameSortingOrder

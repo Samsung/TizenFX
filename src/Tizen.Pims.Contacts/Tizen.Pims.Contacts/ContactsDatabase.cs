@@ -361,7 +361,7 @@ namespace Tizen.Pims.Contacts
         /// Replaces a record in the contacts database.
         /// </summary>
         /// <param name="record">The record to replace</param>
-        /// <param name="id">the record ID to be replaced</param>
+        /// <param name="recordId">the record ID to be replaced</param>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
