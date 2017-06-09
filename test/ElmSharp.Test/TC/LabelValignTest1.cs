@@ -100,17 +100,17 @@ namespace ElmSharp.Test
 
             top.Clicked += (s, e) =>
             {
-                label1.SetPartValign("elm.text", 0);
+                label1.SetVerticalTextAlignment("elm.text", 0);
             };
 
             middle.Clicked += (s, e) =>
             {
-                label1.SetPartValign("elm.text", 0.5);
+                label1.SetVerticalTextAlignment("elm.text", 0.5);
             };
 
             bottom.Clicked += (s, e) =>
             {
-                label1.SetPartValign("elm.text", 1.0);
+                label1.SetVerticalTextAlignment("elm.text", 1.0);
             };
 
             top.Show();
