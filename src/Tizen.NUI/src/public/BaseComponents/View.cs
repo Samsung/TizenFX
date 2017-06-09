@@ -1955,7 +1955,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <pre>The View has been initialized.</pre>
         /// <returns>The number of children</returns>
-        public uint GetChildCount()
+        internal uint GetChildCount()
         {
             uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -3118,6 +3118,17 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.NAME, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Get the number of children held by the view.
+        /// </summary>
+        public uint ChildCount
+        {
+            get
+            {
+                return GetChildCount();
             }
         }
 
