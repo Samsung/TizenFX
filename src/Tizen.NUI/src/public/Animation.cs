@@ -146,6 +146,60 @@ namespace Tizen.NUI
             }
         }
 
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void AnimationProgressReachedEventCallbackType(IntPtr data);
+        private AnimationProgressReachedEventCallbackType _animationProgressReachedEventCallback;
+        private event EventHandler _animationProgressReachedEventHandler;
+        /**
+        * @brief Event for ProgressReached signal which can be used to subscribe/unsubscribe the event handler.
+        * ProgressReached signal is emitted when the Animation has reached a given progress percentage, this is set in the api SetProgressNotification.
+        */
+        public event EventHandler ProgressReached
+        {
+            add
+            {
+                if (_animationProgressReachedEventHandler == null)
+                {
+#if DEBUG_ON
+                    Tizen.Log.Debug("NUI", "con1) ProgressReachedSignal().Empty = " + ProgressReachedSignal().Empty());
+                    Tizen.Log.Debug("NUI", "con2) ProgressReachedSignal().GetConnectionCount = " + ProgressReachedSignal().GetConnectionCount());
+#endif
+                    _animationProgressReachedEventCallback = OnProgressReached;
+                    ProgressReachedSignal().Connect(_animationProgressReachedEventCallback);
+#if DEBUG_ON
+                    Tizen.Log.Debug("NUI", "con3) ProgressReachedSignal().Empty = " + ProgressReachedSignal().Empty());
+                    Tizen.Log.Debug("NUI", "con4) ProgressReachedSignal().GetConnectionCount = " + ProgressReachedSignal().GetConnectionCount());
+#endif
+                }
+
+                _animationProgressReachedEventHandler += value;
+            }
+            remove
+            {
+                _animationProgressReachedEventHandler -= value;
+
+                if (_animationProgressReachedEventHandler == null && ProgressReachedSignal().Empty() == false)
+                {
+#if DEBUG_ON
+                    Tizen.Log.Debug("NUI", "discon1) ProgressReachedSignal().Empty = " + ProgressReachedSignal().Empty());
+                    Tizen.Log.Debug("NUI", "discon2) ProgressReachedSignal().GetConnectionCount = " + ProgressReachedSignal().GetConnectionCount());
+#endif
+                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventHandler);
+#if DEBUG_ON
+                    Tizen.Log.Debug("NUI", "discon3) ProgressReachedSignal().Empty = " + ProgressReachedSignal().Empty());
+                    Tizen.Log.Debug("NUI", "discon4) ProgressReachedSignal().GetConnectionCount = " + ProgressReachedSignal().GetConnectionCount());
+#endif
+                }
+            }
+        }
+        private void OnProgressReached(IntPtr data)
+        {
+            if (_animationProgressReachedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _animationProgressReachedEventHandler(this, null);
+            }
+        }
 
         internal static Animation GetAnimationFromPtr(global::System.IntPtr cPtr)
         {
@@ -365,6 +419,27 @@ namespace Tizen.NUI
             get
             {
                 Vector2 ret = new Vector2(NDalicPINVOKE.Animation_GetPlayRange(swigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+
+        /// <summary>
+        /// Gets/Sets the Progress notification marker which triggers the ProgressReachedSignal.<br>
+        /// percentage of animation progress should be greater than 0 and less than 1, e.g 0.3 for 30% <br>
+        /// One notification can be set on each animation
+        /// </summary>
+        public float ProgressNotification
+        {
+            set
+            {
+                NDalicPINVOKE.Animation_SetProgressNotification(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                float ret = NDalicPINVOKE.Animation_GetProgressNotification(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -885,6 +960,13 @@ namespace Tizen.NUI
         internal AnimationSignal FinishedSignal()
         {
             AnimationSignal ret = new AnimationSignal(NDalicPINVOKE.Animation_FinishedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal AnimationSignal ProgressReachedSignal()
+        {
+            AnimationSignal ret = new AnimationSignal(NDalicPINVOKE.Animation_ProgressReachedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
