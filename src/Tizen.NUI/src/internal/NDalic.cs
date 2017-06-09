@@ -906,6 +906,7 @@ namespace Tizen.NUI
         internal static readonly int GRADIENT_VISUAL_SPREAD_METHOD = NDalicPINVOKE.GRADIENT_VISUAL_SPREAD_METHOD_get();
 
         internal static readonly int IMAGE_VISUAL_URL = NDalicPINVOKE.IMAGE_VISUAL_URL_get();
+        internal static readonly int IMAGE_VISUAL_ALPHA_MASK_URL = NDalicPINVOKE.IMAGE_VISUAL_ALPHA_MASK_URL_get();
         internal static readonly int IMAGE_VISUAL_FITTING_MODE = NDalicPINVOKE.IMAGE_VISUAL_FITTING_MODE_get();
         internal static readonly int IMAGE_VISUAL_SAMPLING_MODE = NDalicPINVOKE.IMAGE_VISUAL_SAMPLING_MODE_get();
         internal static readonly int IMAGE_VISUAL_DESIRED_WIDTH = NDalicPINVOKE.IMAGE_VISUAL_DESIRED_WIDTH_get();
