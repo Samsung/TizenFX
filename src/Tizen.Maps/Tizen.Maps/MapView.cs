@@ -510,7 +510,7 @@ namespace Tizen.Maps
             }
             set
             {
-                Log.Info(string.Format("Center is changed from {0} to {1}", handle.Center, value.handle));
+                Log.Info(string.Format("Center is changed from {0} to {1}", handle.Center.ToString(), value.ToString()));
                 handle.Center = value.handle;
             }
         }

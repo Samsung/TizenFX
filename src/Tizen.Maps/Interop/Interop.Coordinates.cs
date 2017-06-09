@@ -66,5 +66,10 @@ internal static partial class Interop
         {
             return new CoordinatesHandle(nativeHandle, true);
         }
+
+        public override string ToString()
+        {
+            return $"[{Latitude}, {Longitude}]";
+        }
     }
 }
