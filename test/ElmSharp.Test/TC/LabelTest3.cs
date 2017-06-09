@@ -57,16 +57,14 @@ namespace ElmSharp.Test
 
 
             label1.Text = "Jo Ann Buckner";
-            label1.EdjeObject["elm.text"].TextStyle = "DEFAULT='color=#000000FF font_size=24 align=left valign=bottom wrap=word'";
-            label1.EdjeObject.EmitSignal("elm,state,text,visible", "elm");
+            label1.TextStyle = "DEFAULT='color=#000000FF font_size=24 align=left valign=bottom wrap=word'";
             label1.Show();
             label1.Resize(100000, 0);
             size = label1.EdjeObject["elm.text"].TextBlockFormattedSize;
             label1.Geometry = new Rect(55, 213, size.Width, size.Height);
 
             label2.Text = "Customer Success Engineer";
-            label2.EdjeObject["elm.text"].TextStyle = "DEFAULT='color=#000000FF font_size=16 align=left valign=bottom wrap=word'";
-            label2.EdjeObject.EmitSignal("elm,state,text,visible", "elm");
+            label2.TextStyle = "DEFAULT='color=#000000FF font_size=16 align=left valign=bottom wrap=word'";
             label2.Show();
 
             label2.Resize(100000, 0);

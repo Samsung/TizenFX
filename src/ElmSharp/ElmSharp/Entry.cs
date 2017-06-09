@@ -430,10 +430,25 @@ namespace ElmSharp
             Interop.Elementary.elm_entry_select_none(RealHandle);
         }
 
+        public override void SetPartColor(string part, Color color)
+        {
+            IntPtr handle = (part == "bg") ? Handle : RealHandle;
+            Interop.Elementary.elm_object_color_class_color_set(handle, part, color.R * color.A / 255,
+                                                                                color.G * color.A / 255,
+                                                                                color.B * color.A / 255,
+                                                                                color.A);
+        }
+
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            //TODO: Fix this to use layout
-            return Interop.Elementary.elm_entry_add(parent.Handle);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
+            Interop.Elementary.elm_layout_theme_set(handle, "layout", "background", "default");
+
+
+            RealHandle = Interop.Elementary.elm_entry_add(handle);
+            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
+
+            return handle;
         }
     }
 }

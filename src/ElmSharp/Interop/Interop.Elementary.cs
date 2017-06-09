@@ -283,6 +283,12 @@ internal static partial class Interop
         internal static extern string elm_layout_data_get(IntPtr obj, string key);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_layout_text_valign_set(IntPtr obj, string part, double valign);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern double elm_layout_text_valign_get(IntPtr obj, string part);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_notify_add(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
