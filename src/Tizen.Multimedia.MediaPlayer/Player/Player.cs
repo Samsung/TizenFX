@@ -516,6 +516,8 @@ namespace Tizen.Multimedia
         {
             if (!_disposed)
             {
+                ReplaceDisplay(null);
+
                 if (_source != null)
                 {
                     try
