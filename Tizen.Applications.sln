@@ -27,7 +27,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{ACE934F8
 	ProjectSection(SolutionItems) = preProject
 		build\build.props = build\build.props
 		build\dependencies.props = build\dependencies.props
-		build\version.props = build\version.props
 	EndProjectSection
 EndProject
 Global
