@@ -30,22 +30,27 @@ namespace ElmSharp
         /// Default value. Marks will be displayed only on event day.
         /// </summary>
         Unique,
+
         /// <summary>
         /// Marks will be displayed every day after event day.
         /// </summary>
         Daily,
+
         /// <summary>
         /// Marks will be displayed every week after event day.
         /// </summary>
         Weekly,
+
         /// <summary>
         /// Marks will be displayed every month day that coincides to event day.
         /// </summary>
         Monthly,
+
         /// <summary>
         /// Marks will be displayed every year that coincides to event day.
         /// </summary>
         Annually,
+
         /// <summary>
         /// Marks will be displayed every last day of month after event day.
         /// </summary>
@@ -61,18 +66,30 @@ namespace ElmSharp
         /// Default value. a day is always selected.
         /// </summary>
         Default,
+
         /// <summary>
         /// A day is always selected.
         /// </summary>
         Always,
+
         /// <summary>
         /// None of the days can be selected.
         /// </summary>
         None,
+
         /// <summary>
         /// User may have selected a day or not.
         /// </summary>
         OnDemand
+    }
+
+    [Flags]
+    public enum CalendarSelectable
+    {
+        None = 0,
+        Year = 1 << 0,
+        Month = 1 << 1,
+        Day = 1 << 2
     }
 
     /// <summary>
@@ -122,6 +139,9 @@ namespace ElmSharp
         SmartEvent _displayedMonthChanged;
         int _cacheDisplayedMonth;
 
+        Interop.Elementary.Elm_Calendar_Format_Cb _calendarFormat;
+        DateFormatDelegate _dateFormatDelegate = null;
+
         /// <summary>
         /// Creates and initializes a new instance of the Calendar class.
         /// </summary>
@@ -145,6 +165,8 @@ namespace ElmSharp
                 DisplayedMonthChanged?.Invoke(this, new DisplayedMonthChangedEventArgs(_cacheDisplayedMonth, currentDisplayedMonth));
                 _cacheDisplayedMonth = currentDisplayedMonth;
             };
+
+            _calendarFormat = (t) => { return _dateFormatDelegate(t); };
         }
 
         /// <summary>
@@ -156,6 +178,13 @@ namespace ElmSharp
         /// DisplayedMonthChanged will be triggered when the current month displayed in the calendar is changed.
         /// </summary>
         public event EventHandler<DisplayedMonthChangedEventArgs> DisplayedMonthChanged;
+
+        /// <summary>
+        /// This delegate type is used to format the string that will be used to display month and year.
+        /// </summary>
+        /// <param name="time">DateTime</param>
+        /// <returns></returns>
+        public delegate string DateFormatDelegate(DateTime time);
 
         /// <summary>
         /// Sets or gets the minimum for year.
@@ -323,6 +352,46 @@ namespace ElmSharp
             set
             {
                 Interop.Elementary.elm_calendar_select_mode_set(RealHandle, (Interop.Elementary.Elm_Calendar_Select_Mode)value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets fields of a datetime will be taken into account, when SelectedDate set is invoked.
+        /// </summary>
+        public CalendarSelectable Selectable
+        {
+            get
+            {
+                return (CalendarSelectable)Interop.Elementary.elm_calendar_selectable_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_calendar_selectable_set(RealHandle, (int)value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets date format the string that will be used to display month and year.
+        /// By default it uses strftime with "%B %Y" format string.
+        /// It should allocate the memory that will be used by the string, that will be freed by the widget after usage.A pointer to the string and a pointer to the time struct will be provided.
+        /// </summary>
+        public DateFormatDelegate DateFormat
+        {
+            get
+            {
+                return _dateFormatDelegate;
+            }
+            set
+            {
+                _dateFormatDelegate = value;
+                if (value != null)
+                {
+                    Interop.Elementary.elm_calendar_format_function_set(RealHandle, _calendarFormat);
+                }
+                else
+                {
+                    Interop.Elementary.elm_calendar_format_function_set(RealHandle, null);
+                }
             }
         }
 

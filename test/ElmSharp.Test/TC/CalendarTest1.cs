@@ -128,6 +128,7 @@ namespace ElmSharp.Test
             {
                 label1.Text = string.Format("Old.Day={0}, Month={1}, Year={2}", e.OldDate.Day, e.OldDate.Month, e.OldDate.Year);
                 label2.Text = string.Format("New.Day={0}, Month={1}, Year={2}", e.NewDate.Day, e.NewDate.Month, e.NewDate.Year);
+                label3.Text = string.Format("SelectedDate={0}", calendar.SelectedDate);
             };
 
             calendar.DisplayedMonthChanged += (object sender, DisplayedMonthChangedEventArgs e) =>
@@ -135,37 +136,93 @@ namespace ElmSharp.Test
                 label3.Text = string.Format("Old Month={0}, New Month={1}", e.OldMonth, e.NewMonth);
             };
 
+            var label4 = new Label(window)
+            {
+                Text = string.Format("Selectable={0}", calendar.Selectable),
+                Color = Color.Black,
+            };
+
+            var changeSelectable = new Button(window)
+            {
+                Text = "Change Selectable"
+            };
+
+            calendar.Selectable = CalendarSelectable.Month;
+
+            changeSelectable.Clicked += (s, e) =>
+            {
+                if (calendar.Selectable == CalendarSelectable.None)
+                {
+                    calendar.Selectable = CalendarSelectable.Year;
+                }
+                else if (calendar.Selectable == CalendarSelectable.Year)
+                {
+                    calendar.Selectable = CalendarSelectable.Month;
+                }
+                else if (calendar.Selectable == CalendarSelectable.Month)
+                {
+                    calendar.Selectable = CalendarSelectable.Day;
+                }
+                else
+                {
+                    calendar.Selectable = CalendarSelectable.None;
+                }
+                label4.Text = string.Format("Selectable={0}", calendar.Selectable);
+            };
+
+            var setTime = new Button(window)
+            {
+                Text = "Set 2015,1,1",
+            };
+
+            setTime.Clicked += (s, e) =>
+            {
+                calendar.SelectedDate = new DateTime(2015, 1, 1);
+            };
+
             calendar.Resize(600, 600);
-            calendar.Move(0, 250);
+            calendar.Move(0, 150);
             calendar.Show();
 
-            label1.Resize(600, 100);
+            label1.Resize(600, 30);
             label1.Move(0, 0);
             label1.Show();
 
-            label2.Resize(600, 100);
-            label2.Move(0, 50);
+            label2.Resize(600, 30);
+            label2.Move(0, 30);
             label2.Show();
 
-            label3.Resize(600, 100);
-            label3.Move(0, 100);
+            label3.Resize(600, 30);
+            label3.Move(0, 60);
             label3.Show();
 
-            selectMode.Resize(600, 100);
-            selectMode.Move(0, 150);
+            selectMode.Resize(600, 30);
+            selectMode.Move(0, 90);
             selectMode.Show();
 
             addMark.Resize(600, 100);
-            addMark.Move(0, 900);
+            addMark.Move(0, 750);
             addMark.Show();
 
             delMark.Resize(600, 100);
-            delMark.Move(0, 1000);
+            delMark.Move(0, 850);
             delMark.Show();
 
             changeMode.Resize(600, 100);
-            changeMode.Move(0, 1100);
+            changeMode.Move(0, 950);
             changeMode.Show();
+
+            label4.Resize(600, 30);
+            label4.Move(0, 1050);
+            label4.Show();
+
+            changeSelectable.Resize(600, 100);
+            changeSelectable.Move(0, 1080);
+            changeSelectable.Show();
+
+            setTime.Resize(600, 100);
+            setTime.Move(0, 1180);
+            setTime.Show();
         }
     }
 }
