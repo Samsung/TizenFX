@@ -72,7 +72,7 @@ namespace VisualViewTest3
             /* image visual 1. No transform setting case. */
             imageVisualMap1 = new ImageVisual();
             imageVisualMap1.URL = resources + "/images/image-1.jpg";
-            imageVisualMap1.DepthIndex = 1.0f;
+            imageVisualMap1.DepthIndex = 1;
             //_visualView.AddVisual("imageVisual1", imageVisualMap1);
 
             /* image visual 2. Using RelativePosition and SizePolicyWidth setting case. */
@@ -86,7 +86,7 @@ namespace VisualViewTest3
             imageVisualMap2.Origin = Visual.AlignType.TopBegin;
             imageVisualMap2.AnchorPoint = Visual.AlignType.TopBegin;
             /* Ensure imageVisual show  */
-            imageVisualMap2.DepthIndex = 9.0f;
+            imageVisualMap2.DepthIndex = 9;
             _visualView.AddVisual("imageVisual2", imageVisualMap2);
             /* If imageVisual2 added first, the it will be covered by imageVisual1.
                so, we need to set their depth index to ensure they all can be showed.

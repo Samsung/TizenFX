@@ -31,7 +31,7 @@ namespace Tizen.NUI
 
         private PropertyMap _visualTransformMap = null;
 
-        private float? _depthIndex = null;
+        private int? _depthIndex = null;
         protected PropertyMap _outputVisualMap = null;
 
         internal string Name
@@ -408,11 +408,11 @@ namespace Tizen.NUI
         /// By default, the depth index is 0.<br>
         /// Optional.
         /// </summary>
-        public float DepthIndex
+        public int DepthIndex
         {
             get
             {
-                return _depthIndex ?? (0.0f);
+                return _depthIndex ?? (0);
             }
             set
             {

@@ -10042,10 +10042,10 @@ class NDalicPINVOKE {
   public static extern void VisualBase_GetNaturalSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_VisualBase_SetDepthIndex")]
-  public static extern void VisualBase_SetDepthIndex(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+  public static extern void VisualBase_SetDepthIndex(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_VisualBase_GetDepthIndex")]
-  public static extern float VisualBase_GetDepthIndex(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern int VisualBase_GetDepthIndex(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_VisualBase_CreatePropertyMap")]
   public static extern void VisualBase_CreatePropertyMap(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
