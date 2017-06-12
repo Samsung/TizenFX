@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the temperature.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Temperature </value>
         public float Temperature { get; private set; }
     }
 }

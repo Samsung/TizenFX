@@ -20,7 +20,7 @@ namespace Tizen.Sensor
 {
     /// <summary>
     /// UltravioletSensor Class. Used for registering callbacks for ultraviolet sensor and getting ultraviolet data
-    /// /// </summary>
+    /// </summary>
     public sealed class UltravioletSensor : Sensor
     {
         private static string UltravioletSensorKey = "http://tizen.org/feature/sensor.ultraviolet";
@@ -28,11 +28,15 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the ultraviolet sensor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Ultraviolet index </value>
         public float UltravioletIndex { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Returns true or false based on whether ultraviolet sensor is supported by device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -45,6 +49,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns the number of ultraviolet sensors available on the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The count of ultraviolet sensors </value>
         public static int Count
         {
             get
@@ -57,6 +63,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.UltravioletSensor"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.ultraviolet</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
@@ -77,6 +84,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Event Handler for storing the callback functions for event corresponding to change in ultraviolet sensor data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
 
         public event EventHandler<UltravioletSensorDataUpdatedEventArgs> DataUpdated;
 

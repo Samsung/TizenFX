@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the running state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Running state </value>
         public DetectorState Running { get; private set; }
     }
 }

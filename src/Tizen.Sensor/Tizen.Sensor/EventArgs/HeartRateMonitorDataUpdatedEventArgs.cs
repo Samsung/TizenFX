@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the heartRate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Heart rate </value>
         public int HeartRate { get; private set; }
     }
 }

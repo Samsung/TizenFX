@@ -32,11 +32,15 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the time stamp.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Time span </value>
         public TimeSpan TimeSpan { get; private set; }
 
         /// <summary>
         /// Gets the accuracy.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Accuracy </value>
         public SensorDataAccuracy Accuracy { get; private set; }
     }
 }

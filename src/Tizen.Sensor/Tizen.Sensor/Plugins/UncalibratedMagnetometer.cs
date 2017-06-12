@@ -20,7 +20,7 @@ namespace Tizen.Sensor
 {
     /// <summary>
     /// UncalibratedMagnetometer Sensor Class. Used for registering callbacks for uncalibrated magnetometer and getting uncalibrated magnetometer data
-    /// /// </summary>
+    /// </summary>
     public sealed class UncalibratedMagnetometer : Sensor
     {
         private static string UncalibratedMagnetometerKey = "http://tizen.org/feature/sensor.magnetometer.uncalibrated";
@@ -29,36 +29,50 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the X component of the acceleration.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> X </value>
         public float X { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Y component of the acceleration.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Y </value>
         public float Y { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Z component of the acceleration.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Z </value>
         public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the BiasX component of the uncalibrated magnetometer data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> X bias </value>
         public float BiasX { get; private set; } = 0;
 
         /// <summary>
         /// Gets the BiasY component of the uncalibrated magnetometer data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Y bias </value>
         public float BiasY { get; private set; } = 0;
 
         /// <summary>
         /// Gets the BiasZ component of the uncalibrated magnetometer data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Z bias </value>
         public float BiasZ { get; private set; } = 0;
 
         /// <summary>
         /// Returns true or false based on whether uncalibrated magnetometer sensor is supported by device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -71,6 +85,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns the number of uncalibrated magnetometer sensors available on the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The count of uncalibrated magnetometer sensors </value>
         public static int Count
         {
             get
@@ -83,6 +99,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.UncalibratedMagnetometer"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.magnetometer.uncalibrated</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
@@ -103,12 +120,14 @@ namespace Tizen.Sensor
         /// <summary>
         /// Event Handler for storing the callback functions for event corresponding to change in uncalibrated magnetometer sensor data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
 
         public event EventHandler<UncalibratedMagnetometerDataUpdatedEventArgs> DataUpdated;
 
         /// <summary>
         /// Event handler for accuracy changed events.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<SensorAccuracyChangedEventArgs> AccuracyChanged
         {
             add

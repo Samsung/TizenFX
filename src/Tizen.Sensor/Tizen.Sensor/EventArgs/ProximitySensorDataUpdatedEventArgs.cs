@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the proximity state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Proximity state </value>
         public ProximitySensorState Proximity { get; private set; }
     }
 }

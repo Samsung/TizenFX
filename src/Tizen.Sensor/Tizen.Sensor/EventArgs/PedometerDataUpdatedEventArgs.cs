@@ -38,41 +38,57 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the step count
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Step count </value>
         public uint StepCount { get; private set; }
 
         /// <summary>
         /// Gets the walking step count
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Walk step count </value>
         public uint WalkStepCount { get; private set; }
 
         /// <summary>
         /// Gets the running step count
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Run step count</value>
         public uint RunStepCount { get; private set; }
 
         /// <summary>
         /// Gets the moving distance
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Moving distance </value>
         public float MovingDistance { get; private set; }
 
         /// <summary>
         /// Gets the calorie burned
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Calorie burned </value>
         public float CalorieBurned { get; private set; }
 
         /// <summary>
         /// Gets the last speed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Last speed </value>
         public float LastSpeed { get; private set; }
 
         /// <summary>
         /// Gets the last stepping frequency
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Last stepping frequency </value>
         public float LastSteppingFrequency { get; private set; }
 
         /// <summary>
         /// Gets the last step status
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Last stepping status </value>
         public PedometerState LastStepStatus { get; private set; }
     }
 }

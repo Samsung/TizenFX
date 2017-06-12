@@ -28,21 +28,29 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the X component of the acceleration.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> X </value>
         public float X { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Y component of the acceleration.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Y </value>
         public float Y { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Z component of the acceleration.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Z </value>
         public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Returns true or false based on whether gyroscope sensor is supported by device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -55,6 +63,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns the number of gyroscope sensors available on the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The count of gyroscope sensors </value>
         public static int Count
         {
             get
@@ -67,6 +77,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.Gyroscope"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.gyroscope</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
@@ -87,6 +98,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Event Handler for storing the callback functions for event corresponding to change in gyroscope sensor data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
 
         public event EventHandler<GyroscopeDataUpdatedEventArgs> DataUpdated;
 

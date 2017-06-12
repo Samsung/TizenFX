@@ -20,7 +20,7 @@ namespace Tizen.Sensor
 {
     /// <summary>
     /// SleepMonitor Class. Used for registering callbacks for sleep monitor and getting sleep data
-    /// /// </summary>
+    /// </summary>
     public sealed class SleepMonitor : Sensor
     {
         private static string SleepMonitorKey = "http://tizen.org/feature/sensor.sleep_monitor";
@@ -28,11 +28,15 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the sleep state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Sleep state </value>
         public SleepMonitorState SleepState { get; private set; } = SleepMonitorState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether sleep monitor is supported by device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -45,6 +49,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns the number of sleep monitors available on the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The count of sleep monitors </value>
         public static int Count
         {
             get
@@ -57,7 +63,9 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.SleepMonitor"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/healthinfo</privilege>
+        /// <privlevel>public</privlevel>
         /// <feature>http://tizen.org/feature/sensor.sleep_monitor</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
@@ -79,6 +87,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Event Handler for storing the callback functions for event corresponding to change in sleep monitor data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
 
         public event EventHandler<SleepMonitorDataUpdatedEventArgs> DataUpdated;
 

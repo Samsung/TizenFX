@@ -28,11 +28,15 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the state of the wrist up gesture.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Wrist up state </value>
         public DetectorState WristUp { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether wrist up gesture detector is supported by device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -43,8 +47,10 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of wrist up gesture detector available on the device.
+        /// Returns the number of wrist up gesture detectors available on the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The count of wrist up gesture detectors </value>
         public static int Count
         {
             get
@@ -57,6 +63,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.WristUpGestureDetector"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.wrist_up</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
@@ -92,6 +99,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Event Handler for storing the callback functions for event corresponding to change in wrist up gesture detector data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<WristUpGestureDetectorDataUpdatedEventArgs> DataUpdated;
 
         private static Interop.SensorListener.SensorEventCallback _callback;

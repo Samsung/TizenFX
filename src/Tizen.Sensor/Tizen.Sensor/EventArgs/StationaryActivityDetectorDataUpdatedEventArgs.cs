@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the stationary state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Stationary state </value>
         public DetectorState Stationary { get; private set; }
     }
 }

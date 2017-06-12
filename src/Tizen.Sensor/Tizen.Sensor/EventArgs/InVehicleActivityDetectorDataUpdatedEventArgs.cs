@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the in-vehicle state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> In-vehicle state </value>
         public DetectorState InVehicle { get; private set; }
     }
 }

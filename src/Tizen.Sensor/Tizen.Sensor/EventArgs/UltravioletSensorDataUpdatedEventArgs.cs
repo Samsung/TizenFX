@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the ultraviolet index.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Ultraviolet index </value>
         public float UltravioletIndex { get; private set; }
     }
 }

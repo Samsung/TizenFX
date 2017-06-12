@@ -156,139 +156,167 @@ namespace Tizen.Sensor
     /// <summary>
     /// SensorDataAccuracy Enum definition for all possible sensor data accuracy Values.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum SensorDataAccuracy
     {
         /// <summary>
         /// Undefined sensor data accuracy.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Undefined = -1,
         /// <summary>
         /// Sensor data not accurate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Bad = 0,
         /// <summary>
         /// Moderately accurate sensor data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Normal = 1,
         /// <summary>
         /// Highly accurate sensor data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Good = 2,
         /// <summary>
         /// Very highly accurate sensor data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         VeryGood = 3
     }
 
     /// <summary>
     /// Sensor Option Enum definition for sensor option Values
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum SensorPausePolicy
     {
         /// <summary>
         /// Does not receive data when the LCD is off and in the power save mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         None,
         /// <summary>
         /// Receives data when the LCD is off.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         DisplayOff,
         /// <summary>
         /// Receives data in the power save mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         PowerSaveMode,
         /// <summary>
         /// Receives data when the LCD is off and in the power save mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         All
     }
 
     /// <summary>
     /// Pedometer state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum PedometerState
     {
         /// <summary>
         /// Unknown.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Unknown = -1,
 
         /// <summary>
         /// Stop state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Stop,
 
         /// <summary>
         /// Walking state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Walk,
 
         /// <summary>
         /// Running state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Run
     }
 
     /// <summary>
     /// Sleep monitor state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum SleepMonitorState
     {
         /// <summary>
         /// Unknown.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Unknown = -1,
 
         /// <summary>
         /// The wake state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Wake,
 
         /// <summary>
         /// The sleeping state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Sleep
     }
 
     /// <summary>
     /// Proximity sensor state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ProximitySensorState
     {
         /// <summary>
         /// Unknown.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Unknown = -1,
 
         /// <summary>
         /// Near sate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Near = 0,
 
         /// <summary>
         /// Far state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Far = 5
     }
 
     /// <summary>
     /// Detector sensor state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum DetectorState
     {
         /// <summary>
         /// Unknown.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Unknown = -1,
 
         /// <summary>
         /// None sate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         NotDetected = 0,
 
         /// <summary>
         /// Detected state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Detected = 1
     }
 }

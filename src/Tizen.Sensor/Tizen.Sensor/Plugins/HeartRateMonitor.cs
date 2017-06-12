@@ -20,7 +20,7 @@ namespace Tizen.Sensor
 {
     /// <summary>
     /// HeartRateMonitor Class. Used for registering callbacks for heart rate monitor and getting heart rate data
-    /// /// </summary>
+    /// </summary>
     public sealed class HeartRateMonitor : Sensor
     {
         private const string HRMKey = "http://tizen.org/feature/sensor.heart_rate_monitor";
@@ -28,11 +28,15 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the heart rate monitor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Heart rate </value>
         public int HeartRate { get; private set; } = int.MinValue;
 
         /// <summary>
         /// Returns true or false based on whether heart rate monitor is supported by device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -45,6 +49,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns the number of heart rate monitors available on the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The count of heart rate monitors </value>
         public static int Count
         {
             get
@@ -57,7 +63,9 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.HeartRateMonitor"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/healthinfo</privilege>
+        /// <privlevel>public</privlevel>
         /// <feature>http://tizen.org/feature/sensor.heart_rate_monitor</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
@@ -79,6 +87,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Event Handler for storing the callback functions for event corresponding to change in heart rate monitor data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<HeartRateMonitorDataUpdatedEventArgs> DataUpdated;
 
         private static int GetCount()

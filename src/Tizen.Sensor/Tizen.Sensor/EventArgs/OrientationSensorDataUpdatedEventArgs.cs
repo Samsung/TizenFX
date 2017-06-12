@@ -33,16 +33,22 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the azimuth component of the orientation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Azimuth </value>
         public float Azimuth { get; private set; }
 
         /// <summary>
         /// Gets the pitch component of the orientation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Pitch </value>
         public float Pitch { get; private set; }
 
         /// <summary>
         /// Gets the roll component of the orientation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Roll </value>
         public float Roll { get; private set; }
     }
 }

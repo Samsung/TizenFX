@@ -38,6 +38,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the activity accuracy of activity detector
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Activity accuracy </value>
         public SensorDataAccuracy ActivityAccuracy { get; protected set; }
 
         internal ActivityDetector(uint index) : base(index)

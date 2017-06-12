@@ -69,6 +69,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Property: For getting the name of the sensor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The name of sensor </value>
         public string Name
         {
             get
@@ -81,6 +83,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Property: Gets the vendor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The vendor name of sensor </value>
         public string Vendor
         {
             get
@@ -93,6 +97,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Property: Gets the minimum value of range of sensor data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The lower bound of range of sensor reading </value>
         public float MinValue
         {
             get
@@ -105,6 +111,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Property: Gets the maximum value of range of sensor data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The upper bound of range of sensor reading </value>
         public float MaxValue
         {
             get
@@ -117,6 +125,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Property: Gets the resolution.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The resolution </value>
         public float Resolution
         {
             get
@@ -129,6 +139,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Property: Gets the minimum interval.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The minimum update interval </value>
         public int MinInterval
         {
             get
@@ -141,6 +153,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Property: Gets the fifo count.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The size of the hardware FIFO </value>
         public int FifoCount
         {
             get
@@ -153,6 +167,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Property: Gets the maximum batch count.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The maximum batch count </value>
         public int MaxBatchCount
         {
             get
@@ -166,7 +182,9 @@ namespace Tizen.Sensor
         /// Sets the interval of the sensor for sensor data event
         /// Callbacks will be called at frequency of this interval
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <value> The interval of the sensor </value>
         public uint Interval
         {
             set
@@ -185,7 +203,9 @@ namespace Tizen.Sensor
         /// <summary>
         /// Sets the max batch latency for the sensor corresponding to the sensor data event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <value> The max batch latency </value>
         public uint MaxBatchLatency
         {
             set
@@ -204,8 +224,10 @@ namespace Tizen.Sensor
         /// <summary>
         /// Sets the pause policy of the sensor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The pause policy</value>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <value> The pause policy </value>
         public SensorPausePolicy PausePolicy
         {
             set
@@ -224,7 +246,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets or sets the time span.
         /// </summary>
-        /// <value>The time span.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The time span </value>
         public TimeSpan TimeSpan
         {
             set
@@ -242,6 +265,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Indicates whether this sensor is sensing.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if this sensor is sensing; otherwise, <c>false</c>.</value>
         public bool IsSensing
         {
@@ -285,6 +309,7 @@ namespace Tizen.Sensor
         /// Starts the sensor.
         /// After this the event handlers will start receiving events.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void Start()
         {
@@ -307,6 +332,7 @@ namespace Tizen.Sensor
         /// Stop the sensor.
         /// After this the event handlers will stop receiving the events
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public void Stop()
         {

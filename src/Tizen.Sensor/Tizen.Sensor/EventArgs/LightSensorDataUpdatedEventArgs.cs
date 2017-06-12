@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the level of the light.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Light level </value>
         public float Level { get; private set; }
     }
 }

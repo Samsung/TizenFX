@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the humidity.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Humidity </value>
         public float Humidity { get; private set; }
     }
 }

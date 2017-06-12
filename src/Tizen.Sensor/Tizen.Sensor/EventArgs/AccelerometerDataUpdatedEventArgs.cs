@@ -33,16 +33,22 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the X component of the acceleration.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> X </value>
         public float X { get; private set; }
 
         /// <summary>
         /// Gets the Y component of the acceleration.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Y </value>
         public float Y { get; private set; }
 
         /// <summary>
         /// Gets the Z component of the acceleration.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Z </value>
         public float Z { get; private set; }
     }
 }

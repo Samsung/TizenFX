@@ -20,7 +20,7 @@ namespace Tizen.Sensor
 {
     /// <summary>
     /// HumiditySensor Class. Used for registering callbacks for humidity sensor and getting humidity data
-    /// /// </summary>
+    /// </summary>
     public sealed class HumiditySensor : Sensor
     {
         private const string HumiditySensorKey = "http://tizen.org/feature/sensor.humidity";
@@ -28,11 +28,15 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the humidity sensor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Humidity </value>
         public float Humidity { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Returns true or false based on whether humidity sensor is supported by device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -45,6 +49,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns the number of humidity sensors available on the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The count of humidity sensors </value>
         public static int Count
         {
             get
@@ -57,6 +63,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.HumiditySensor"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.humidity</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
@@ -77,6 +84,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Event Handler for storing the callback functions for event corresponding to change in humidity sensor data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
 
         public event EventHandler<HumiditySensorDataUpdatedEventArgs> DataUpdated;
 

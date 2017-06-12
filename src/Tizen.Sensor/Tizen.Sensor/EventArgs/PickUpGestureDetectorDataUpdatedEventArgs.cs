@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the pick up state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Pick up state </value>
         public DetectorState PickUp { get; private set; }
     }
 }

@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the walking state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Walking state </value>
         public DetectorState Walking { get; private set; }
     }
 }

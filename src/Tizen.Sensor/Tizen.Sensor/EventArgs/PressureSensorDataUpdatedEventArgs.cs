@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the pressure.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Pressure </value>
         public float Pressure { get; private set; }
     }
 }

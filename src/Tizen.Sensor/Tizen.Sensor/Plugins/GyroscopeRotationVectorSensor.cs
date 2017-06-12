@@ -28,31 +28,43 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the X component of the gyroscope rotation vector.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> X </value>
         public float X { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Y component of the gyroscope rotation vector.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Y </value>
         public float Y { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Z component of the gyroscope rotation vector.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Z </value>
         public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the W component of the gyroscope rotation vector.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> W </value>
         public float W { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Gets the Accuracy of the gyroscope rotation vector data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Accuracy </value>
         public SensorDataAccuracy Accuracy { get; private set; }
 
         /// <summary>
         /// Returns true or false based on whether gyroscope rotation vector sensor is supported by device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -65,6 +77,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns the number of gyroscope rotation vector sensors available on the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The count of accelerometer rotation vector sensors </value>
         public static int Count
         {
             get
@@ -77,6 +91,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.GyroscopeRotationVectorSensor"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.gyroscope_rotation_vector</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
@@ -97,6 +112,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Event Handler for storing the callback functions for event corresponding to change in gyroscope rotation vector sensor data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
 
         public event EventHandler<GyroscopeRotationVectorSensorDataUpdatedEventArgs> DataUpdated;
 

@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the sleep state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Sleep state </value>
         public SleepMonitorState SleepState { get; private set; }
     }
 }

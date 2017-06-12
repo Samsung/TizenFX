@@ -28,11 +28,15 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the state of running activity detector
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Running state </value>
         public DetectorState Running { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether running activity detector is supported by device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -45,6 +49,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns the number of running activity detector available on the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The count of running activity detectors </value>
         public static int Count
         {
             get
@@ -57,6 +63,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.RunningActivityDetector"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.activity_recognition</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
@@ -88,6 +95,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Event Handler for storing the callback functions for event corresponding to change in running activity detector data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RunningActivityDetectorDataUpdatedEventArgs> DataUpdated;
 
         private static Interop.SensorListener.SensorEventCallback _callback;

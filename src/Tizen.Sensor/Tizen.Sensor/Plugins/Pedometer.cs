@@ -20,7 +20,7 @@ namespace Tizen.Sensor
 {
     /// <summary>
     /// Pedometer Sensor Class. Used for registering callbacks for pedometer and getting pedometer data
-    /// /// </summary>
+    /// </summary>
     public sealed class Pedometer : Sensor
     {
         private static string PedometerKey = "http://tizen.org/feature/sensor.pedometer";
@@ -28,46 +28,64 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the step count
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Step count </value>
         public uint StepCount { get; private set; } = 0;
 
         /// <summary>
         /// Gets the walking step count
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Walk step count </value>
         public uint WalkStepCount { get; private set; } = 0;
 
         /// <summary>
         /// Gets the running step count
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Run step count </value>
         public uint RunStepCount { get; private set; } = 0;
 
         /// <summary>
         /// Gets the moving distance
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Moving distance </value>
         public float MovingDistance { get; private set; } = 0;
 
         /// <summary>
         /// Gets the calorie burned
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Calorie Burned </value>
         public float CalorieBurned { get; private set; } = 0;
 
         /// <summary>
         /// Gets the last speed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Last speed </value>
         public float LastSpeed { get; private set; } = 0;
 
         /// <summary>
         /// Gets the last stepping frequency
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Last stepping frequency </value>
         public float LastSteppingFrequency { get; private set; } = 0;
 
         /// <summary>
         /// Gets the last step status
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Last step status </value>
         public PedometerState LastStepStatus { get; private set; } = PedometerState.Unknown;
 
         /// <summary>
         /// Returns true or false based on whether pedometer sensor is supported by device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -80,6 +98,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns the number of pedometer sensors available on the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> The count of pedometer sensors </value>
         public static int Count
         {
             get
@@ -92,7 +112,9 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.Pedometer"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/healthinfo</privilege>
+        /// <privlevel>public</privlevel>
         /// <feature>http://tizen.org/feature/sensor.pedometer</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
@@ -114,6 +136,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Event Handler for storing the callback functions for event corresponding to change in pedometer sensor data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
 
         public event EventHandler<PedometerDataUpdatedEventArgs> DataUpdated;
 

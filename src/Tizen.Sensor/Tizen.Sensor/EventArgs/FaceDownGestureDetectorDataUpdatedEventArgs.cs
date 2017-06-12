@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the face down state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Face down state </value>
         public DetectorState FaceDown { get; private set; }
     }
 }

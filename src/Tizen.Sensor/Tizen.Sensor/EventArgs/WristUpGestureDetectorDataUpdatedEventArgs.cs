@@ -31,6 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the wrist up state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value> Wrist up state </value>
         public DetectorState WristUp { get; private set; }
     }
 }
