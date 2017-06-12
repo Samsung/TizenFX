@@ -32,7 +32,7 @@ namespace Tizen.Multimedia
         private EventHandler<VolumeChangedEventArgs> _volumeChanged;
         private Interop.SoundManagerVolumeChangedCallback _volumeChangedCallback;
 
-        public AudioVolume()
+        internal AudioVolume()
         {
             Level = new VolumeLevel();
             MaxLevel = new MaxVolumeLevel();
