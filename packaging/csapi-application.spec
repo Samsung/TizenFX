@@ -235,7 +235,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.Common.dll
 
 %files -n csapi-application-common-nuget
-/nuget/Tizen.Applications.Common.%{version}.nupkg
+/nuget/Tizen.Applications.Common.%{ApplicationCommon}.nupkg
 
 %files -n csapi-application-message-port
 %manifest %{name}.manifest
@@ -243,7 +243,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.MessagePort.dll
 
 %files -n csapi-application-message-port-nuget
-/nuget/Tizen.Applications.MessagePort.%{version}.nupkg
+/nuget/Tizen.Applications.MessagePort.%{MessagePort}.nupkg
 
 %files -n csapi-application-package-manager
 %manifest %{name}.manifest
@@ -251,7 +251,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.PackageManager.dll
 
 %files -n csapi-application-package-manager-nuget
-/nuget/Tizen.Applications.PackageManager.%{version}.nupkg
+/nuget/Tizen.Applications.PackageManager.%{PackageManager}.nupkg
 
 %files -n csapi-application-notification
 %manifest %{name}.manifest
@@ -259,7 +259,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.Notification.dll
 
 %files -n csapi-application-notification-nuget
-/nuget/Tizen.Applications.Notification.%{version}.nupkg
+/nuget/Tizen.Applications.Notification.%{Notification}.nupkg
 
 %files -n csapi-application-notificationeventlistener
 %manifest %{name}.manifest
@@ -267,7 +267,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.NotificationEventListener.dll
 
 %files -n csapi-application-notificationeventlistener-nuget
-/nuget/Tizen.Applications.NotificationEventListener.%{version}.nupkg
+/nuget/Tizen.Applications.NotificationEventListener.%{NotificationEventListener}.nupkg
 
 %files -n csapi-application-toastmessage
 %manifest %{name}.manifest
@@ -275,7 +275,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.ToastMessage.dll
 
 %files -n csapi-application-toastmessage-nuget
-/nuget/Tizen.Applications.ToastMessage.%{version}.nupkg
+/nuget/Tizen.Applications.ToastMessage.%{ToastMessage}.nupkg
 
 %files -n csapi-application-preference
 %manifest %{name}.manifest
@@ -283,7 +283,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.Preference.dll
 
 %files -n csapi-application-preference-nuget
-/nuget/Tizen.Applications.Preference.%{version}.nupkg
+/nuget/Tizen.Applications.Preference.%{Preference}.nupkg
 
 %files -n csapi-application-alarm
 %manifest %{name}.manifest
@@ -291,7 +291,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.Alarm.dll
 
 %files -n csapi-application-alarm-nuget
-/nuget/Tizen.Applications.Alarm.%{version}.nupkg
+/nuget/Tizen.Applications.Alarm.%{Alarm}.nupkg
 
 %files -n csapi-application-service
 %manifest %{name}.manifest
@@ -299,7 +299,7 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.Service.dll
 
 %files -n csapi-application-service-nuget
-/nuget/Tizen.Applications.Service.%{version}.nupkg
+/nuget/Tizen.Applications.Service.%{ApplicationService}.nupkg
 
 %files -n csapi-application-ui
 %manifest %{name}.manifest
@@ -307,5 +307,5 @@ done
 %attr(644,root,root) %{_dotnet_assembly_path}/Tizen.Applications.UI.dll
 
 %files -n csapi-application-ui-nuget
-/nuget/Tizen.Applications.UI.%{version}.nupkg
+/nuget/Tizen.Applications.UI.%{ApplicationUI}.nupkg
 
