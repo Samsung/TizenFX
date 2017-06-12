@@ -16,10 +16,42 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Tizen.Network.WiFi
 {
+    /// <summary>
+    /// A class for managing WiFiManager handle.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public sealed class SafeWiFiManagerHandle : SafeHandle
+    {
+        internal SafeWiFiManagerHandle() : base(IntPtr.Zero, true)
+        {
+        }
+
+        /// <summary>
+        /// Checks the validity of the handle.
+        /// </summary>
+        /// <value>Represents the validity of the handle.</value>
+        public override bool IsInvalid
+        {
+            get
+            {
+                return this.handle == IntPtr.Zero;
+            }
+        }
+
+        protected override bool ReleaseHandle()
+        {
+            Interop.WiFi.Deinitialize(this.handle);
+            this.SetHandle(IntPtr.Zero);
+            return true;
+        }
+    }
+
     /// <summary>
     /// A manager class which allows applications to connect to a Wireless Local Area Network (WLAN) and to transfer data over the network.<br>
     /// The Wi-Fi Manager enables your application to activate and deactivate a local Wi-Fi device, and to connect to a WLAN network in the infrastructure mode.
@@ -145,6 +177,23 @@ namespace Tizen.Network.WiFi
             {
                 WiFiManagerImpl.Instance.BackgroundScanFinished -= value;
             }
+        }
+
+        /// <summary>
+        /// Gets the WiFi safe handle.
+        /// </summary>
+        /// <returns>The instance of SafeWiFiManagerHandle</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SafeWiFiManagerHandle GetWiFiHandle()
+        {
+            return WiFiManagerImpl.Instance.GetSafeHandle();
         }
 
         /// <summary>

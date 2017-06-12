@@ -16,6 +16,8 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Network.WiFi;
+using Tizen.Network.Connection;
 
 internal static partial class Interop
 {
@@ -263,28 +265,6 @@ internal static partial class Interop
             internal static extern int GetEapSubjectMatch(SafeWiFiConfigHandle config, out IntPtr subjectMatch);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_set_eap_subject_match")]
             internal static extern int SetEapSubjectMatch(SafeWiFiConfigHandle config, string subjectMatch);
-        }
-
-        internal sealed class SafeWiFiManagerHandle : SafeHandle
-        {
-            public SafeWiFiManagerHandle() : base(IntPtr.Zero, true)
-            {
-            }
-
-            public override bool IsInvalid
-            {
-                get
-                {
-                    return this.handle == IntPtr.Zero;
-                }
-            }
-
-            protected override bool ReleaseHandle()
-            {
-                WiFi.Deinitialize(this.handle);
-                this.SetHandle(IntPtr.Zero);
-                return true;
-            }
         }
 
         internal sealed class SafeWiFiAPHandle : SafeHandle
