@@ -158,7 +158,7 @@ namespace ElmSharp
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     Interop.Elementary.elm_label_text_style_user_pop(RealHandle);
                 }
