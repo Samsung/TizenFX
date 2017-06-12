@@ -46,11 +46,11 @@ namespace ElmSharp.Accessible
         {
             get
             {
-                return (ReadingInfoType)Interop.Elementary.elm_atspi_accessible_reading_info_type_get(Handle);
+                return (ReadingInfoType)Interop.Elementary.elm_atspi_accessible_reading_info_type_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_atspi_accessible_reading_info_type_set(Handle,
+                Interop.Elementary.elm_atspi_accessible_reading_info_type_set(RealHandle,
                         (Interop.Elementary.Elm_Accessible_Reading_Info_Type)value);
             }
         }
@@ -62,11 +62,11 @@ namespace ElmSharp.Accessible
         {
             get
             {
-                return (AccessRole)Interop.Elementary.elm_atspi_accessible_role_get(Handle);
+                return (AccessRole)Interop.Elementary.elm_atspi_accessible_role_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_atspi_accessible_role_set(Handle,
+                Interop.Elementary.elm_atspi_accessible_role_set(RealHandle,
                         (Interop.Elementary.Elm_Atspi_Role)value);
             }
         }
@@ -78,11 +78,11 @@ namespace ElmSharp.Accessible
         {
             get
             {
-                return Interop.Elementary.elm_atspi_accessible_can_highlight_get(Handle);
+                return Interop.Elementary.elm_atspi_accessible_can_highlight_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_atspi_accessible_can_highlight_set(Handle, value);
+                Interop.Elementary.elm_atspi_accessible_can_highlight_set(RealHandle, value);
             }
         }
 
@@ -96,11 +96,11 @@ namespace ElmSharp.Accessible
         {
             get
             {
-                return Interop.Elementary.elm_atspi_accessible_translation_domain_get(Handle);
+                return Interop.Elementary.elm_atspi_accessible_translation_domain_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_atspi_accessible_translation_domain_set(Handle, value);
+                Interop.Elementary.elm_atspi_accessible_translation_domain_set(RealHandle, value);
             }
         }
 
@@ -111,11 +111,11 @@ namespace ElmSharp.Accessible
         {
             get
             {
-                return Interop.Elementary.elm_atspi_accessible_name_get(Handle);
+                return Interop.Elementary.elm_atspi_accessible_name_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_atspi_accessible_name_set(Handle, value);
+                Interop.Elementary.elm_atspi_accessible_name_set(RealHandle, value);
             }
         }
 
@@ -126,11 +126,11 @@ namespace ElmSharp.Accessible
         {
             get
             {
-                return Interop.Elementary.elm_atspi_accessible_description_get(Handle);
+                return Interop.Elementary.elm_atspi_accessible_description_get(RealHandle);
             }
             set
             {
-                Interop.Elementary.elm_atspi_accessible_description_set(Handle, value);
+                Interop.Elementary.elm_atspi_accessible_description_set(RealHandle, value);
             }
         }
 
@@ -153,12 +153,12 @@ namespace ElmSharp.Accessible
                 if (value == null)
                 {
                     _nameProvider = null;
-                    Interop.Elementary.elm_atspi_accessible_name_cb_set(Handle, null, IntPtr.Zero);
+                    Interop.Elementary.elm_atspi_accessible_name_cb_set(RealHandle, null, IntPtr.Zero);
                 }
                 else
                 {
                     _nameProvider = new AccessibleInfoProvider(value);
-                    Interop.Elementary.elm_atspi_accessible_name_cb_set(Handle, _nameProviderInternal, IntPtr.Zero);
+                    Interop.Elementary.elm_atspi_accessible_name_cb_set(RealHandle, _nameProviderInternal, IntPtr.Zero);
                 }
             }
         }
@@ -182,12 +182,12 @@ namespace ElmSharp.Accessible
                 if (value == null)
                 {
                     _descriptionProvider = null;
-                    Interop.Elementary.elm_atspi_accessible_description_cb_set(Handle, null, IntPtr.Zero);
+                    Interop.Elementary.elm_atspi_accessible_description_cb_set(RealHandle, null, IntPtr.Zero);
                 }
                 else
                 {
                     _descriptionProvider = new AccessibleInfoProvider(value);
-                    Interop.Elementary.elm_atspi_accessible_description_cb_set(Handle, _descriptionProviderInternal, IntPtr.Zero);
+                    Interop.Elementary.elm_atspi_accessible_description_cb_set(RealHandle, _descriptionProviderInternal, IntPtr.Zero);
                 }
             }
         }
@@ -216,7 +216,7 @@ namespace ElmSharp.Accessible
         void IAccessibleObject.AppendRelation(IAccessibleRelation relation)
         {
             if (relation.Target == null) throw new ArgumentException("Target of Accessibility relation can not be null");
-            Interop.Elementary.elm_atspi_accessible_relationship_append(Handle, relation.Type, relation.Target.Handle);
+            Interop.Elementary.elm_atspi_accessible_relationship_append(RealHandle, relation.Type, relation.Target.Handle);
         }
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace ElmSharp.Accessible
         void IAccessibleObject.RemoveRelation(IAccessibleRelation relation)
         {
             if (relation.Target == null) throw new ArgumentException("Target of Accessibility relation can not be null");
-            Interop.Elementary.elm_atspi_accessible_relationship_remove(Handle, relation.Type, relation.Target.Handle);
+            Interop.Elementary.elm_atspi_accessible_relationship_remove(RealHandle, relation.Type, relation.Target.Handle);
         }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace ElmSharp.Accessible
         /// </summary>
         public void Highlight()
         {
-            Interop.Elementary.elm_atspi_component_highlight_grab(Handle);
+            Interop.Elementary.elm_atspi_component_highlight_grab(RealHandle);
         }
 
         /// <summary>
@@ -242,7 +242,7 @@ namespace ElmSharp.Accessible
         /// </summary>
         public void Unhighlight()
         {
-            Interop.Elementary.elm_atspi_component_highlight_clear(Handle);
+            Interop.Elementary.elm_atspi_component_highlight_clear(RealHandle);
         }
     }
 }
