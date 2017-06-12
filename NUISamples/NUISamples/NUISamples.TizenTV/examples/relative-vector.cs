@@ -58,7 +58,7 @@ namespace RelativeVectorTest
         private void Initialize()
         {
             _window = Window.Instance;
-            _window.Touched += OnWindowTouched;
+            _window.Touch += OnWindowTouched;
 
             _imageView = new ImageView();
             _imageView.ResourceUrl = resources+"/images/gallery-3.jpg";
