@@ -79,6 +79,19 @@ namespace Tizen.Tapi
         internal VolteNetworkType NetworkType;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct NetworkPreferredPlmnStruct
+    {
+        internal byte Index;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=7)]
+        internal string Plmn;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=41)]
+        internal string NetworkName;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=41)]
+        internal string SnName;
+        internal NetworkSystemType Type;
+    }
+
     internal static class NetworkStructConversions
     {
         internal static NetworkRegistrationStatus ConvertNetworkRegistrationStruct(NetworkRegistrationStatusStruct statusStruct)

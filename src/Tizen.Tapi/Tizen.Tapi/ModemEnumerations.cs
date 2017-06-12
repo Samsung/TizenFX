@@ -46,4 +46,50 @@ namespace Tizen.Tapi
         /// </summary>
         Error
     }
+
+    /// <summary>
+    /// Enumeration for the phone power reset commands.
+    /// </summary>
+    public enum PhonePowerCommand
+    {
+        /// <summary>
+        /// On.
+        /// </summary>
+        On = 0,
+        /// <summary>
+        /// Off.
+        /// </summary>
+        Off,
+        /// <summary>
+        /// Reset.
+        /// </summary>
+        Reset,
+        /// <summary>
+        /// Low value.
+        /// </summary>
+        Low,
+        /// <summary>
+        /// Max value.
+        /// </summary>
+        Max = Low
+    }
+
+    /// <summary>
+    /// Enumeration for flight mode request type.
+    /// </summary>
+    public enum PowerFlightModeRequest
+    {
+        /// <summary>
+        /// Off.
+        /// </summary>
+        Enter = 0x01,
+        /// <summary>
+        /// On.
+        /// </summary>
+        Leave,
+        /// <summary>
+        /// Max value.
+        /// </summary>
+        Max
+    }
 }

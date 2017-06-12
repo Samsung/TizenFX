@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System.Collections.Generic;
+
 namespace Tizen.Tapi
 {
     /// <summary>
@@ -471,6 +473,455 @@ namespace Tizen.Tapi
             get
             {
                 return Type;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which contains information about an outgoing call.
+    /// </summary>
+    public class CallInformation
+    {
+        private CallType _type;
+        private EmergencyType _etype;
+        private string _number;
+        private CallInformation()
+        {
+        }
+
+        /// <summary>
+        /// A parameterized constructor of CallInformation.
+        /// </summary>
+        /// <param name="type">Type of call(voice, data, video, emergency).</param>
+        /// <param name="etype">Emergency category.</param>
+        /// <param name="phoneNumber">Destination phone number.</param>
+        public CallInformation(CallType type, EmergencyType etype, string phoneNumber)
+        {
+            _type = type;
+            _etype = etype;
+            _number = phoneNumber;
+        }
+
+        internal CallType Type
+        {
+            get
+            {
+                return _type;
+            }
+        }
+
+        internal EmergencyType EType
+        {
+            get
+            {
+                return _etype;
+            }
+        }
+
+        internal string PhoneNumber
+        {
+            get
+            {
+                return _number;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which contains information about call end response data.
+    /// </summary>
+    public class CallEndData
+    {
+        private CallEndType _type;
+        private uint _id;
+
+        private CallEndData()
+        {
+        }
+
+        internal CallEndData(CallEndType type, uint id)
+        {
+            _type = type;
+            _id = id;
+        }
+
+        /// <summary>
+        /// End type.
+        /// </summary>
+        public CallEndType Type
+        {
+            get
+            {
+                return _type;
+            }
+        }
+
+        /// <summary>
+        /// Id.
+        /// </summary>
+        public uint Id
+        {
+            get
+            {
+                return _id;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which contains information about burst DTMF in CDMA.
+    /// </summary>
+    public class CallBurstDtmfData
+    {
+        private string _dtmf;
+        private CallDtmfPulseWidth _width;
+        private CallDtmfDigitInterval _interval;
+
+        private CallBurstDtmfData()
+        {
+        }
+
+        /// <summary>
+        /// A parameterized constructor of CallBurstDtmfData.
+        /// </summary>
+        /// <param name="dtmf">Burst DTMF string.</param>
+        /// <param name="width">DTMF Pulse Width.</param>
+        /// <param name="interval">DTMF Inter Digit Interval.</param>
+        public CallBurstDtmfData(string dtmf, CallDtmfPulseWidth width, CallDtmfDigitInterval interval)
+        {
+            _dtmf = dtmf;
+            _width = width;
+            _interval = interval;
+        }
+
+        internal string Dtmf
+        {
+            get
+            {
+                return _dtmf;
+            }
+        }
+
+        internal CallDtmfPulseWidth Width
+        {
+            get
+            {
+                return _width;
+            }
+        }
+
+        internal CallDtmfDigitInterval Interval
+        {
+            get
+            {
+                return _interval;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which contains information about call status.
+    /// </summary>
+    public class CallStatus
+    {
+        private int _handle;
+        private bool _isMoCall;
+        private string _number;
+        private CallType _type;
+        private CallState _state;
+        private bool _isConferenceState;
+        private bool _isVolteCall;
+        internal CallStatus()
+        {
+        }
+
+        /// <summary>
+        /// Call handle.
+        /// </summary>
+        public int CallHandle
+        {
+            get
+            {
+                return _handle;
+            }
+
+            internal set
+            {
+                _handle = value;
+            }
+        }
+
+        /// <summary>
+        /// Status will be true for MO calls. If MT call, then its false.
+        /// </summary>
+        public bool IsMoCall
+        {
+            get
+            {
+                return _isMoCall;
+            }
+
+            internal set
+            {
+                _isMoCall = value;
+            }
+        }
+
+        /// <summary>
+        /// Mobile number.
+        /// </summary>
+        public string PhoneNumber
+        {
+            get
+            {
+                return _number;
+            }
+
+            internal set
+            {
+                _number = value;
+            }
+        }
+
+        /// <summary>
+        /// Type of call(voice, data, emergency).
+        /// </summary>
+        public CallType Type
+        {
+            get
+            {
+                return _type;
+            }
+
+            internal set
+            {
+                _type = value;
+            }
+        }
+
+        /// <summary>
+        /// Current call state.
+        /// </summary>
+        public CallState State
+        {
+            get
+            {
+                return _state;
+            }
+
+            internal set
+            {
+                _state = value;
+            }
+        }
+
+        /// <summary>
+        /// Whether call is in conference state.
+        /// </summary>
+        public bool IsConferenceState
+        {
+            get
+            {
+                return _isConferenceState;
+            }
+
+            internal set
+            {
+                _isConferenceState = value;
+            }
+        }
+
+        /// <summary>
+        /// Whether call is volte call.
+        /// </summary>
+        public bool IsVolteCall
+        {
+            get
+            {
+                return _isVolteCall;
+            }
+
+            internal set
+            {
+                _isVolteCall = value;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class that contains call volume info.
+    /// </summary>
+    public class CallVolumeRecord
+    {
+        private SoundDevice _device;
+        private SoundType _type;
+        private SoundVolume _volume;
+        private CallVolumeRecord()
+        {
+        }
+
+        /// <summary>
+        /// A parameterized constructor of CallVolumeRecord.
+        /// </summary>
+        /// <param name="device">Call sound device.</param>
+        /// <param name="type">Call sound type.</param>
+        /// <param name="volume">Call sound volume.</param>
+        public CallVolumeRecord(SoundDevice device, SoundType type, SoundVolume volume)
+        {
+            _device = device;
+            _type = type;
+            _volume = volume;
+        }
+
+        /// <summary>
+        /// Call sound device info.
+        /// </summary>
+        public SoundDevice Device
+        {
+            get
+            {
+                return _device;
+            }
+        }
+
+        /// <summary>
+        /// Call sound type info.
+        /// </summary>
+        public SoundType Type
+        {
+            get
+            {
+                return _type;
+            }
+        }
+
+        /// <summary>
+        /// Call sound volume info.
+        /// </summary>
+        public SoundVolume Volume
+        {
+            get
+            {
+                return _volume;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which contains call volume info reponse data.
+    /// </summary>
+    public class CallVolumeInfo
+    {
+        private uint _id;
+        private IEnumerable<CallVolumeRecord> _recordList;
+
+        private CallVolumeInfo()
+        {
+        }
+
+        internal CallVolumeInfo(uint id, IEnumerable<CallVolumeRecord> list)
+        {
+            _id = id;
+            _recordList = list;
+        }
+
+        /// <summary>
+        /// Record number.
+        /// </summary>
+        public uint RecordId
+        {
+            get
+            {
+                return _id;
+            }
+        }
+
+        /// <summary>
+        /// Volume info record.
+        /// </summary>
+        public IEnumerable<CallVolumeRecord> Records
+        {
+            get
+            {
+                return _recordList;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which contains call sound path and volume information.
+    /// </summary>
+    public class CallSoundPathInfo
+    {
+        private SoundPath _path;
+        private ExtraVolume _exVolume;
+        private CallSoundPathInfo()
+        {
+        }
+
+        /// <summary>
+        /// A parameterized constructor of CallSoundPathInfo.
+        /// </summary>
+        /// <param name="path">Sound path.</param>
+        /// <param name="exVolume">Extra volume status.</param>
+        public CallSoundPathInfo(SoundPath path, ExtraVolume exVolume)
+        {
+            _path = path;
+            _exVolume = exVolume;
+        }
+
+        internal SoundPath Path
+        {
+            get
+            {
+                return _path;
+            }
+        }
+
+        internal ExtraVolume ExVolume
+        {
+            get
+            {
+                return _exVolume;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which contains call mute status reponse data.
+    /// </summary>
+    public class CallMuteStatusRecord
+    {
+        private SoundMutePath _path;
+        private SoundMuteStatus _status;
+        private CallMuteStatusRecord()
+        {
+        }
+
+        /// <summary>
+        /// A parameterized constructor of CallMuteStatusRecord.
+        /// </summary>
+        /// <param name="path">Mute path.</param>
+        /// <param name="status">Mute status.</param>
+        public CallMuteStatusRecord(SoundMutePath path, SoundMuteStatus status)
+        {
+            _path = path;
+            _status = status;
+        }
+
+        internal SoundMutePath Path
+        {
+            get
+            {
+                return _path;
+            }
+        }
+
+        internal SoundMuteStatus Status
+        {
+            get
+            {
+                return _status;
             }
         }
     }

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Tapi
@@ -45,6 +46,87 @@ namespace Tizen.Tapi
         internal short Length;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 1253)]
         internal string SzMsgData;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SmsDataPackageStruct
+    {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=20)]
+        internal string Sca;
+        internal int Length;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)]
+        internal string SzData;
+        internal SmsNetType Format;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SmsDataStruct
+    {
+        internal int Index;
+        internal SmsMessageStatus Status;
+        internal SmsDataPackageStruct Data;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SmsCbConfigStruct
+    {
+        internal int Net3gppType;
+        internal int CbEnabled;
+        internal byte MsgIdMaxCount;
+        internal int MsgIdRangeCount;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=50, ArraySubType = UnmanagedType.LPStruct)]
+        internal SmsCbMsgStruct[] MsgIds;
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    internal struct SmsCbMsgStruct
+    {
+        [FieldOffset(0)]
+        internal SmsCbMsg3gppStruct Net3gpp;
+        [FieldOffset(0)]
+        internal SmsCbMsg3gpp2Struct Net3gpp2;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SmsCbMsg3gppStruct
+    {
+        internal ushort FromMsgId;
+        internal ushort ToMsgId;
+        internal byte Selected;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SmsCbMsg3gpp2Struct
+    {
+        internal ushort CbCategory;
+        internal ushort CbLanguage;
+        internal byte Selected;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SmsParamsStruct
+    {
+        internal byte RecordIndex;
+        internal byte RecordLength;
+        internal ulong AlphaIdLength;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=129)]
+        internal string AlphaId;
+        internal byte ParamIndicator;
+        internal SmsAddressStruct DestinationAddress;
+        internal SmsAddressStruct ServiceCenterAddress;
+        internal ushort TpProtocolId;
+        internal ushort TpDataCodingScheme;
+        internal ushort TpValidityPeriod;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SmsAddressStruct
+    {
+        internal uint DialNumLength;
+        internal SimTypeOfNumber Type;
+        internal SimNumberPlanIdentity Identity;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=21)]
+        internal string DiallingNumber;
     }
 
     internal static class SmsStructConversions

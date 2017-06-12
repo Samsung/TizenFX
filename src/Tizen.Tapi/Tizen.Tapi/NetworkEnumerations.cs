@@ -313,4 +313,67 @@ namespace Tizen.Tapi
         /// </summary>
         Tdd
     }
+
+    /// <summary>
+    /// Enumeration for the operation that can be done on a preferred PLMN.
+    /// </summary>
+    public enum NetworkPreferredPlmnOp
+    {
+        /// <summary>
+        /// Addition to the Network Preferred PLMN list.
+        /// </summary>
+        Add = 0,
+        /// <summary>
+        /// Edit the network Preferred PLMN list.
+        /// </summary>
+        Edit,
+        /// <summary>
+        /// Delete the entry to the network Preferred PLMN list.
+        /// </summary>
+        Delete
+    }
+
+    /// <summary>
+    /// Enumeration for the CDMA Preferred Network Type(CDMA only).
+    /// </summary>
+    public enum NetworkPreferred
+    {
+        /// <summary>
+        /// Home only.
+        /// </summary>
+        HomeOnly,
+        /// <summary>
+        /// Affiliated.
+        /// </summary>
+        Affiliated,
+        /// <summary>
+        /// Automatic.
+        /// </summary>
+        Automatic,
+        /// <summary>
+        /// Automatic-A.
+        /// </summary>
+        AutomaticA,
+        /// <summary>
+        /// Automatic-B.
+        /// </summary>
+        AutomaticB,
+        /// <summary>
+        /// Roam domestic.
+        /// </summary>
+        RoamDomestic,
+        /// <summary>
+        /// Roam international.
+        /// </summary>
+        RoamInternational,
+        /// <summary>
+        /// Roam dual.
+        /// </summary>
+        RoamDual,
+        /// <summary>
+        /// Blank.
+        /// </summary>
+        Blank
+    }
+
 }

@@ -35,6 +35,8 @@ internal static partial class Interop
         internal delegate void TapiResponseCallback(IntPtr handle, int result, IntPtr data, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void TapiStateCallback(int state, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void CallStatusCallback(ref CallStatusStruct info, IntPtr userData);
 
         //Tapi-common
         [DllImport(Libraries.Tapi, EntryPoint = "tel_get_cp_name_list")]
@@ -195,6 +197,175 @@ internal static partial class Interop
             internal static extern int SsGetCliStatus(IntPtr handle, SsCliType type, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_send_ss_ussd_request")]
             internal static extern int SsSendUssdRequest(IntPtr handle, ref SsUssdMsgInfoStruct info, TapiResponseCallback cb, IntPtr userData);
+        }
+
+        //Call
+        internal static class Call
+        {
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_dial_call")]
+            internal static extern int DialCall(IntPtr handle, ref CallInformationStruct info, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_answer_call")]
+            internal static extern int AnswerCall(IntPtr handle, uint callHandle, CallAnswerType type, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_end_call")]
+            internal static extern int EndCall(IntPtr handle, uint callHandle, CallEndType type, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_hold_call")]
+            internal static extern int HoldCall(IntPtr handle, uint callHandle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_active_call")]
+            internal static extern int ActiveCall(IntPtr handle, uint callHandle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_swap_call")]
+            internal static extern int SwapCall(IntPtr handle, uint callHandle1, uint callHandle2, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_start_call_cont_dtmf")]
+            internal static extern int StartContDtmfCall(IntPtr handle, byte dtmfDigit, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_stop_call_cont_dtmf")]
+            internal static extern int StopContDtmfCall(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_send_call_burst_dtmf")]
+            internal static extern int SendBurstDtmfCall(IntPtr handle, ref CallBurstDtmfStruct info, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_join_call")]
+            internal static extern int JoinCall(IntPtr handle, uint callHandle1, uint callHandle2, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_split_call")]
+            internal static extern int SplitCall(IntPtr handle, uint callHandle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_transfer_call")]
+            internal static extern int TransferCall(IntPtr handle, uint callHandle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_call_status")]
+            internal static extern int GetCallStatus(IntPtr handle, int callId, out CallStatusStruct statusInfo);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_call_status_all")]
+            internal static extern int GetAllCallStatus(IntPtr handle, CallStatusCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_deflect_call")]
+            internal static extern int DeflectCall(IntPtr handle, uint callHandle, ref CallDeflectDestStruct info, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_call_volume_info")]
+            internal static extern int GetCallVolumeInfo(IntPtr handle, SoundDevice device, SoundType type, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_call_volume_info")]
+            internal static extern int SetCallVolumeInfo(IntPtr handle, ref CallVolumeRecordStruct info, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_call_sound_path")]
+            internal static extern int SetCallSoundPath(IntPtr handle, ref CallSoundPathStruct path, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_call_mute_status")]
+            internal static extern int SetCallMuteStatus(IntPtr handle, SoundMuteStatus status, SoundMutePath path, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_call_mute_status")]
+            internal static extern int GetCallMuteStatus(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_call_privacy_mode")]
+            internal static extern int GetCallPrivacyMode(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_call_privacy_mode")]
+            internal static extern int SetCallPrivacyMode(IntPtr handle, CallPrivacyMode mode, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_call_preferred_voice_subscription")]
+            internal static extern int SetCallPreferredVoiceSubs(IntPtr handle, CallPreferredVoiceSubscription subscription, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_call_preferred_voice_subscription")]
+            internal static extern int GetCallPreferredVoiceSubs(IntPtr handle, out CallPreferredVoiceSubscription subscription);
+        }
+
+        //Oem
+        internal static class Oem
+        {
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_send_oem_data")]
+            internal static extern int SendOemData(IntPtr handle, int id, IntPtr data, uint length);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_send_oem_data_sync")]
+            internal static extern int SendOemDataSync(IntPtr handle, int id, IntPtr data, uint length, out OemDataStruct info);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_send_oem_data_async")]
+            internal static extern int SendOemDataAsync(IntPtr handle, int id, IntPtr data, uint length, TapiResponseCallback cb, IntPtr userData);
+        }
+
+        //Modem
+        internal static class Modem
+        {
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_process_power_command")]
+            internal static extern int ProcessPowerCommand(IntPtr handle, PhonePowerCommand cmd, IntPtr data, uint length);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_flight_mode")]
+            internal static extern int SetFlightMode(IntPtr handle, PowerFlightModeRequest mode, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_flight_mode")]
+            internal static extern int GetFlightMode(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_misc_me_version")]
+            internal static extern int GetMiscMeVersion(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_misc_me_version_sync")]
+            internal static extern MiscVersionInfoStruct GetMiscMeVersionSync(IntPtr handle);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_misc_me_sn")]
+            internal static extern int GetMiscMeSn(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_misc_me_sn_sync")]
+            internal static extern MiscSerialNumInfoStruct GetMiscMeSnSync(IntPtr handle);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_misc_me_imei")]
+            internal static extern int GetMiscMeImei(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_misc_me_imei_sync")]
+            internal static extern string GetMiscMeImeiSync(IntPtr handle);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_check_modem_power_status")]
+            internal static extern int CheckPowerStatus(IntPtr handle, out int result);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_device_info")]
+            internal static extern int GetDeviceInfo(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+        }
+
+        //Sms
+        internal static class Sms
+        {
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_send_sms")]
+            internal static extern int SendSms(IntPtr handle, ref SmsDataPackageStruct info, int moreMsg, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_read_sms_in_sim")]
+            internal static extern int ReadSmsSim(IntPtr handle, int index, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_write_sms_in_sim")]
+            internal static extern int WriteSmsSim(IntPtr handle, ref SmsDataStruct data, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_delete_sms_in_sim")]
+            internal static extern int DeleteSmsSim(IntPtr handle, int index, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sms_count")]
+            internal static extern int GetSmsCount(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_sms_cb_config")]
+            internal static extern int SetSmsCbconfig(IntPtr handle, ref SmsCbConfigStruct config, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sms_cb_config")]
+            internal static extern int GetSmsCbconfig(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sms_parameters")]
+            internal static extern int GetSmsParams(IntPtr handle, int index, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_sms_parameters")]
+            internal static extern int SetSmsParams(IntPtr handle, ref SmsParamsStruct info, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_send_sms_deliver_report")]
+            internal static extern int SendSmsDeliverReport(IntPtr handle, ref SmsDataPackageStruct info, SmsResponse response, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_sms_sca")]
+            internal static extern int SetSmsSca(IntPtr handle, ref SmsAddressStruct info, int index, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sms_sca")]
+            internal static extern int GetSmsSca(IntPtr handle, int index, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_sms_memory_status")]
+            internal static extern int SetSmsMemoryStatus(IntPtr handle, int status, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_sms_message_status")]
+            internal static extern int SetSmsMsgStatus(IntPtr handle, int index, SmsMessageStatus status, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sms_parameter_count")]
+            internal static extern int GetSmsParamCount(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_check_sms_device_status")]
+            internal static extern int CheckSmsDeviceStatus(IntPtr handle, out int readyStatus);
+        }
+
+        //Network
+        internal static class Network
+        {
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_select_network_automatic")]
+            internal static extern int SelectAutoNetwork(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_select_network_manual")]
+            internal static extern int SelectManualNetwork(IntPtr handle, string plmn, int act, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_search_network")]
+            internal static extern int SearchNetwork(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_network_selection_mode")]
+            internal static extern int GetNetworkSelectMode(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_network_preferred_plmn")]
+            internal static extern int SetNetworkPreferredPlmn(IntPtr handle, NetworkPreferredPlmnOp operation, ref NetworkPreferredPlmnStruct info, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_network_preferred_plmn")]
+            internal static extern int GetNetworkPreferredPlmn(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_cancel_network_manual_search")]
+            internal static extern int CancelNetworkManualSearch(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_network_serving")]
+            internal static extern int GetNetworkServing(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_network_mode")]
+            internal static extern int SetNetworkMode(IntPtr handle, int mode, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_network_mode")]
+            internal static extern int GetNetworkMode(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_network_neighboring_cell_info")]
+            internal static extern int GetNetworkNeighborCell(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_network_emergency_callback_mode")]
+            internal static extern int SetNetworkEmergencyCallback(IntPtr handle, NetworkEmergencyCallbackMode mode, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_network_roaming_preference")]
+            internal static extern int SetNetworkRoamPreference(IntPtr handle, NetworkPreferred prefRoam, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_network_roaming_preference")]
+            internal static extern int GetNetworkRoamPreference(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_network_default_data_subscription")]
+            internal static extern int SetNetworkDefaultDataSubs(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_network_default_data_subscription")]
+            internal static extern int GetNetworkDefaultDataSubs(IntPtr handle, out NetworkDefaultDataSubscription subscription);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_set_network_default_subscription")]
+            internal static extern int SetNetworkDefaultSubs(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
+            [DllImport(Libraries.Tapi, EntryPoint = "tel_get_network_default_subscription")]
+            internal static extern int GetNetworkDefaultSubs(IntPtr handle, out NetworkDefaultSubscription subscription);
         }
     }
 }

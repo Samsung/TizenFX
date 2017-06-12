@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Tapi
@@ -97,10 +99,96 @@ namespace Tizen.Tapi
     }
 
     [StructLayout(LayoutKind.Sequential)]
+    internal struct CallInformationStruct
+    {
+        internal CallType Type;
+        internal EmergencyType EType;
+        [MarshalAs(UnmanagedType.LPStr)]
+        internal string PhoneNumber;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct CallBurstDtmfStruct
+    {
+        [MarshalAs(UnmanagedType.LPStr)]
+        internal string Dtmf;
+        internal CallDtmfPulseWidth Width;
+        internal CallDtmfDigitInterval Interval;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct CallStatusStruct
+    {
+        internal int CallHandle;
+        internal int BMoCall;
+        [MarshalAs(UnmanagedType.LPStr)]
+        internal string PhoneNumber;
+        internal CallType Type;
+        internal CallState State;
+        internal int BConferenceState;
+        internal int BVolteCall;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct CallDeflectDestStruct
+    {
+        internal IntPtr DestinationNumber;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct CallVolumeRecordStruct
+    {
+        internal SoundDevice Device;
+        internal SoundType Type;
+        internal SoundVolume Volume;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct CallSoundPathStruct
+    {
+        internal SoundPath Path;
+        internal ExtraVolume ExVolume;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
     internal struct CallUpgradeDowngradeNotiStruct
     {
         internal int CallHandle;
         internal CallConfigType ConfigType;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct CallOperationsStruct
+    {
+        internal uint id;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct CallEndStruct
+    {
+        internal CallEndType type;
+        internal uint id;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct CallVolumeStruct
+    {
+        internal uint number;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.LPStruct)]
+        internal CallVolumeRecordStruct[] recordList;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct CallMuteStatusStruct
+    {
+        internal SoundMutePath Path;
+        internal SoundMuteStatus Status;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct CallPrivacyModeStruct
+    {
+        internal CallPrivacyMode Mode;
     }
 
     internal static class CallStructConversions
@@ -198,6 +286,77 @@ namespace Tizen.Tapi
             requestNoti.Handle = notiStruct.CallHandle;
             requestNoti.Type = notiStruct.ConfigType;
             return requestNoti;
+        }
+
+        internal static CallStatus ConvertStatusStruct(CallStatusStruct statusStruct)
+        {
+            CallStatus statusData = new CallStatus();
+            statusData.CallHandle = statusStruct.CallHandle;
+            statusData.IsMoCall = Convert.ToBoolean(statusStruct.BMoCall);
+            statusData.PhoneNumber = statusStruct.PhoneNumber;
+            statusData.Type = statusStruct.Type;
+            statusData.State = statusStruct.State;
+            statusData.IsConferenceState = Convert.ToBoolean(statusStruct.BConferenceState);
+            statusData.IsVolteCall = Convert.ToBoolean(statusStruct.BVolteCall);
+            return statusData;
+        }
+
+        internal static CallVolumeInfo ConvertVolumeStruct(CallVolumeStruct volumeStruct)
+        {
+            List<CallVolumeRecord> records = new List<CallVolumeRecord>();
+            foreach(CallVolumeRecordStruct record in volumeStruct.recordList)
+            {
+                records.Add(new CallVolumeRecord(record.Device, record.Type, record.Volume));
+            }
+
+            CallVolumeInfo volumeInfo = new CallVolumeInfo(volumeStruct.number, records);
+            return volumeInfo;
+        }
+    }
+
+    internal static class CallClassConversions
+    {
+        internal static CallInformationStruct ConvertCallInformationToStruct(CallInformation info)
+        {
+            CallInformationStruct callInfoStruct = new CallInformationStruct();
+            callInfoStruct.Type = info.Type;
+            callInfoStruct.EType = info.EType;
+            callInfoStruct.PhoneNumber = info.PhoneNumber;
+            return callInfoStruct;
+        }
+
+        internal static CallBurstDtmfStruct ConvertCallBurstToStruct(CallBurstDtmfData data)
+        {
+            CallBurstDtmfStruct callBurstStruct = new CallBurstDtmfStruct();
+            callBurstStruct.Dtmf = data.Dtmf;
+            callBurstStruct.Width = data.Width;
+            callBurstStruct.Interval = data.Interval;
+            return callBurstStruct;
+        }
+
+        internal static CallDeflectDestStruct ConvertByteDestinationToStruct(byte[] number)
+        {
+            CallDeflectDestStruct callDeflectStruct = new CallDeflectDestStruct();
+            callDeflectStruct.DestinationNumber = Marshal.AllocHGlobal(83);
+            Marshal.Copy(number, 0, callDeflectStruct.DestinationNumber, Math.Min(83, number.Length));
+            return callDeflectStruct;
+        }
+
+        internal static CallVolumeRecordStruct ConvertVolumeRecordToStruct(CallVolumeRecord record)
+        {
+            CallVolumeRecordStruct volumeStruct = new CallVolumeRecordStruct();
+            volumeStruct.Device = record.Device;
+            volumeStruct.Type = record.Type;
+            volumeStruct.Volume = record.Volume;
+            return volumeStruct;
+        }
+
+        internal static CallSoundPathStruct ConvertSoundPathToStruct(CallSoundPathInfo info)
+        {
+            CallSoundPathStruct pathStruct = new CallSoundPathStruct();
+            pathStruct.Path = info.Path;
+            pathStruct.ExVolume = info.ExVolume;
+            return pathStruct;
         }
     }
 }

@@ -118,4 +118,206 @@ namespace Tizen.Tapi
         /// </summary>
         Status3GPPAnd3GPP2 = 0x03
     }
+
+    /// <summary>
+    /// Enumeration for sms status type.
+    /// </summary>
+    public enum SmsMessageStatus
+    {
+        /// <summary>
+        /// MT message, stored and read.
+        /// </summary>
+        Read,
+        /// <summary>
+        /// MT message, stored and unread.
+        /// </summary>
+        Unread,
+        /// <summary>
+        /// MO message, stored and sent.
+        /// </summary>
+        Sent,
+        /// <summary>
+        /// MO message, stored but not sent.
+        /// </summary>
+        Unsent,
+        /// <summary>
+        /// Delivered at destination.
+        /// </summary>
+        Delivered,
+        /// <summary>
+        /// Service centre forwarded message but is unable to confirm delivery.
+        /// </summary>
+        DeliveryUnconfirmed,
+        /// <summary>
+        /// Message has been replaced.
+        /// </summary>
+        MessageReplaced,
+        /// <summary>
+        /// Reserved for future use.
+        /// </summary>
+        Reserved
+    }
+
+    /// <summary>
+    /// Enumeration for different response types that come in the sent status acknowledgement/notification after sending a message to the network.
+    /// </summary>
+    public enum SmsResponse
+    {
+        /// <summary>
+        /// Message sent successfully.
+        /// </summary>
+        Success,
+        /// <summary>
+        /// Message routing not available.
+        /// </summary>
+        NotAvailable,
+        /// <summary>
+        /// Invalid parameter present in TPDU
+        /// </summary>
+        InvalidParameter,
+        /// <summary>
+        /// Device failure.
+        /// </summary>
+        DeviceFail,
+        /// <summary>
+        /// Reserved Service.
+        /// </summary>
+        ServiceReserved,
+        /// <summary>
+        /// Invalid location.
+        /// </summary>
+        InvalidLocation,
+        /// <summary>
+        /// No SIM error.
+        /// </summary>
+        NoSim,
+        /// <summary>
+        /// SIM not ready error.
+        /// </summary>
+        SimNotReady,
+        /// <summary>
+        /// No response from network.
+        /// </summary>
+        NoNetworkResponse,
+        /// <summary>
+        /// Destination address restricted.
+        /// </summary>
+        DestinationAddressRestricted,
+        /// <summary>
+        /// Service center address restricted.
+        /// </summary>
+        SCAAddressRestricted,
+        /// <summary>
+        /// Resend an already done operation.
+        /// </summary>
+        ResendDone,
+        /// <summary>
+        /// SCA address not available.
+        /// </summary>
+        SCANotAvailable,
+        /// <summary>
+        /// Unassigned number.
+        /// </summary>
+        UnassignedNumber,
+        /// <summary>
+        /// Operator determined barring.
+        /// </summary>
+        OperatorBarring,
+        /// <summary>
+        /// Call barred.
+        /// </summary>
+        CallBarred,
+        /// <summary>
+        /// Message transfer rejected.
+        /// </summary>
+        MessageTransferRejected,
+        /// <summary>
+        /// Message capacity exceeded/memory full.
+        /// </summary>
+        MemoryCapacityExceeded,
+        /// <summary>
+        /// Destination number out of service.
+        /// </summary>
+        DestinationOutOfService,
+        /// <summary>
+        /// Unspecified subscriber.
+        /// </summary>
+        UnspecifiedSubscriber,
+        /// <summary>
+        /// Facility rejected.
+        /// </summary>
+        FacilityRejected,
+        /// <summary>
+        /// Unknown subscriber.
+        /// </summary>
+        UnknownSubscriber,
+        /// <summary>
+        /// Network out of order.
+        /// </summary>
+        NetworkOutOfOrder,
+        /// <summary>
+        /// Temporary failure.
+        /// </summary>
+        TemporaryFail,
+        /// <summary>
+        /// Congestion occured.
+        /// </summary>
+        Congestion,
+        /// <summary>
+        /// Resource unavilable.
+        /// </summary>
+        ResourceUnavailable,
+        /// <summary>
+        /// Facility not subscribed by the user.
+        /// </summary>
+        FacilityNotSubscribed,
+        /// <summary>
+        /// Facility not implemented.
+        /// </summary>
+        FacilityNotImplemented,
+        /// <summary>
+        /// Invalid reference value.
+        /// </summary>
+        InvalidReference,
+        /// <summary>
+        /// Invalid message.
+        /// </summary>
+        InvalidMessage,
+        /// <summary>
+        /// Invalid mandatory information.
+        /// </summary>
+        InvalidMandatoryInfo,
+        /// <summary>
+        /// Message type not implemented.
+        /// </summary>
+        MessageTypeNotImplemented,
+        /// <summary>
+        /// Message not compact protocol.
+        /// </summary>
+        MessageNotCompactProtocol,
+        /// <summary>
+        /// Information element not implemented.
+        /// </summary>
+        IENotImplemented,
+        /// <summary>
+        /// Protocol error.
+        /// </summary>
+        ProtocolError,
+        /// <summary>
+        /// Networking error.
+        /// </summary>
+        Interworking,
+        /// <summary>
+        /// Sms ME full.
+        /// </summary>
+        MeFull,
+        /// <summary>
+        /// Sms sim full.
+        /// </summary>
+        SimFull,
+        /// <summary>
+        /// Timeout error.
+        /// </summary>
+        Timeout
+    }
 }

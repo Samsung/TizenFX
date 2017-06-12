@@ -1250,4 +1250,348 @@ namespace Tizen.Tapi
         /// </summary>
         VoipToVtInProgress = 30
     }
+
+    /// <summary>
+    /// Enumeration for the emergency call category type.
+    /// </summary>
+    public enum EmergencyType
+    {
+        /// <summary>
+        /// Default case
+        /// </summary>
+        Default = 0x00,
+        /// <summary>
+        /// Police emergency
+        /// </summary>
+        Police = 0x01,
+        /// <summary>
+        /// Ambulance emergency
+        /// </summary>
+        Ambulance = 0x02,
+        /// <summary>
+        /// Firebrigade emergency
+        /// </summary>
+        FireBrigade = 0x04,
+        /// <summary>
+        /// Marineguard emergency
+        /// </summary>
+        MarineGuard = 0x08,
+        /// <summary>
+        /// Mountain rescue emergency
+        /// </summary>
+        MountainRescue = 0x10,
+        /// <summary>
+        /// Manual emergency call
+        /// </summary>
+        ManualECall = 0x20,
+        /// <summary>
+        /// Automatic emergency call
+        /// </summary>
+        AutoECall = 0x40,
+        /// <summary>
+        /// Unspecified emergency
+        /// </summary>
+        None = 0xff
+    }
+
+    /// <summary>
+    /// Enumeration for the call answer type.
+    /// </summary>
+    public enum CallAnswerType
+    {
+        /// <summary>
+        /// Answer an incoming call when there are no current active calls.
+        /// </summary>
+        Accept,
+        /// <summary>
+        /// Reject the incoming call.
+        /// </summary>
+        Reject,
+        /// <summary>
+        /// Release current active call and accept the waiting call.
+        /// </summary>
+        Replace,
+        /// <summary>
+        /// Hold the current active call, and accept the waiting call.
+        /// </summary>
+        HoldAndAccept
+    }
+
+    /// <summary>
+    /// Enumeration for the call end type.
+    /// </summary>
+    public enum CallEndType
+    {
+        /// <summary>
+        /// End specific call.
+        /// </summary>
+        End,
+        /// <summary>
+        /// End all calls.
+        /// </summary>
+        EndAll,
+        /// <summary>
+        /// End all active calls.
+        /// </summary>
+        ActiveAll,
+        /// <summary>
+        /// End all held calls.
+        /// </summary>
+        HoldAll
+    }
+
+    /// <summary>
+    /// Enumeration for the onlength to send DTMF.
+    /// </summary>
+    public enum CallDtmfPulseWidth
+    {
+        /// <summary>
+        /// 95 ms.
+        /// </summary>
+        OnLength95ms,
+        /// <summary>
+        /// 150 ms.
+        /// </summary>
+        OnLength150ms,
+        /// <summary>
+        /// 200 ms.
+        /// </summary>
+        OnLength200ms,
+        /// <summary>
+        /// 250 ms.
+        /// </summary>
+        OnLength250ms,
+        /// <summary>
+        /// 300 ms.
+        /// </summary>
+        OnLength300ms,
+        /// <summary>
+        /// 350 ms.
+        /// </summary>
+        OnLength350ms,
+        /// <summary>
+        /// Sms.
+        /// </summary>
+        OnLengthSms
+    }
+
+    /// <summary>
+    /// Enumeration for the offlength to send DTMF.
+    /// </summary>
+    public enum CallDtmfDigitInterval
+    {
+        /// <summary>
+        /// 60 ms.
+        /// </summary>
+        OffLength60ms,
+        /// <summary>
+        /// 100 ms.
+        /// </summary>
+        OffLength100ms,
+        /// <summary>
+        /// 150 ms.
+        /// </summary>
+        OffLength150ms,
+        /// <summary>
+        /// 200 ms.
+        /// </summary>
+        OffLength200ms
+    }
+
+    /// <summary>
+    /// Enumeration for call states.
+    /// </summary>
+    public enum CallState
+    {
+        /// <summary>
+        /// Idle state - i.e. no call.
+        /// </summary>
+        Idle,
+        /// <summary>
+        /// Connected and conversation state.
+        /// </summary>
+        Active,
+        /// <summary>
+        /// Held State.
+        /// </summary>
+        Held,
+        /// <summary>
+        /// Dialing state.
+        /// </summary>
+        Dialing,
+        /// <summary>
+        /// Alerting state.
+        /// </summary>
+        Alert,
+        /// <summary>
+        /// Incoming state.
+        /// </summary>
+        Incoming,
+        /// <summary>
+        /// Answered state, and waiting for connected indication event.
+        /// </summary>
+        Waiting,
+        /// <summary>
+        /// Unknown state.
+        /// </summary>
+        Unknown
+    }
+
+    /// <summary>
+    /// Enumeration for call sound device type.
+    /// </summary>
+    public enum SoundDevice
+    {
+        /// <summary>
+        /// Device type receiver.
+        /// </summary>
+        Receiver,
+        /// <summary>
+        /// Device type speaker.
+        /// </summary>
+        Speaker,
+        /// <summary>
+        /// Device type handsfree.
+        /// </summary>
+        HandsFree,
+        /// <summary>
+        /// Device type headset.
+        /// </summary>
+        Headset,
+        /// <summary>
+        /// Device type bluetooth.
+        /// </summary>
+        Bluetooth,
+        /// <summary>
+        /// Device type external.
+        /// </summary>
+        External
+    }
+
+    /// <summary>
+    /// Enumeration for call sound type.
+    /// </summary>
+    public enum SoundType
+    {
+        /// <summary>
+        /// Sound type voice.
+        /// </summary>
+        Voice,
+        /// <summary>
+        /// Sound type keytone.
+        /// </summary>
+        Keytone,
+        /// <summary>
+        /// Sound type bell.
+        /// </summary>
+        Bell,
+        /// <summary>
+        /// Sound type message
+        /// </summary>
+        Message,
+        /// <summary>
+        /// Sound type alarm
+        /// </summary>
+        Alarm,
+        /// <summary>
+        /// Sound type PDA miscellaneous.
+        /// </summary>
+        PDAMisc
+    }
+
+    /// <summary>
+    /// Enumeration for call sound volume level.
+    /// </summary>
+    public enum SoundVolume
+    {
+        /// <summary>
+        /// Sound is mute.
+        /// </summary>
+        Mute = 0x00,
+        /// <summary>
+        /// Volume level is 1.
+        /// </summary>
+        Level1 = 0x01,
+        /// <summary>
+        /// Volume level is 2.
+        /// </summary>
+        Level2 = 0x02,
+        /// <summary>
+        /// Volume level is 3.
+        /// </summary>
+        Level3 = 0x03,
+        /// <summary>
+        /// Volume level is 4.
+        /// </summary>
+        Level4 = 0x04,
+        /// <summary>
+        /// Volume level is 5.
+        /// </summary>
+        Level5 = 0x05,
+        /// <summary>
+        /// Volume level is 6.
+        /// </summary>
+        Level6 = 0x06,
+        /// <summary>
+        /// Volume level is 7.
+        /// </summary>
+        Level7 = 0x07,
+        /// <summary>
+        /// Volume level is 8.
+        /// </summary>
+        Level8 = 0x08,
+        /// <summary>
+        /// Volume level is 9.
+        /// </summary>
+        Level9 = 0x09
+    }
+
+    /// <summary>
+    /// Enumeration for call extra volume.
+    /// </summary>
+    public enum ExtraVolume
+    {
+        /// <summary>
+        /// Off.
+        /// </summary>
+        Off,
+        /// <summary>
+        /// On.
+        /// </summary>
+        On
+    }
+
+    /// <summary>
+    /// Enumeration for call sound mute status.
+    /// </summary>
+    public enum SoundMuteStatus
+    {
+        /// <summary>
+        /// Off.
+        /// </summary>
+        MuteOff,
+        /// <summary>
+        /// On.
+        /// </summary>
+        MuteOn
+    }
+
+    /// <summary>
+    /// Enumeration for call sound mute path.
+    /// </summary>
+    public enum SoundMutePath
+    {
+        /// <summary>
+        /// Transmit.
+        /// </summary>
+        TX,
+        /// <summary>
+        /// Receiver.
+        /// </summary>
+        RX,
+        /// <summary>
+        /// All.
+        /// </summary>
+        All
+    }
 }
