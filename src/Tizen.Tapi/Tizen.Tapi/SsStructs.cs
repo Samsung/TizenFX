@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Tizen.Tapi
 {
@@ -24,8 +26,37 @@ namespace Tizen.Tapi
     }
 
     [StructLayout(LayoutKind.Sequential)]
+    internal struct SsBarringRecordStruct
+    {
+        internal SsClass Class;
+        internal SsStatus Status;
+        internal SsBarringType Type;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SsBarringResponseStruct
+    {
+        internal int RecordNum;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5, ArraySubType = UnmanagedType.LPStruct)]
+        internal SsBarringRecordStruct[] Record;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
     internal struct SsUssdMsgInfoStruct
     {
+        internal SsUssdType Type;
+        internal byte Dcs;
+        internal int Length;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 208)]
+        internal string UssdString;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SsReleaseCompleteMsgStruct
+    {
+        internal byte MsgLength;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
+        internal string Message;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -34,7 +65,152 @@ namespace Tizen.Tapi
     }
 
     [StructLayout(LayoutKind.Sequential)]
+    internal struct SsWaitingRecordStruct
+    {
+        internal SsClass Class;
+        internal SsStatus Status;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SsWaitingResponseStruct
+    {
+        internal int RecordNum;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5, ArraySubType = UnmanagedType.LPStruct)]
+        internal SsWaitingRecordStruct[] Record;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
     internal struct SsForwardInfoStruct
     {
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SsForwardRecordStruct
+    {
+        internal SsClass Class;
+        internal SsStatus Status;
+        internal SsForwardCondition Condition;
+        internal int IsForwardingNumPresent;
+        internal SsNoReplyTime NoReplyTime;
+        internal SsForwardTypeOfNumber Ton;
+        internal SsForwardNumberingPlanIdentity Npi;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 83)]
+        internal string ForwardingNum;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SsForwardResponseStruct
+    {
+        internal int RecordNum;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5, ArraySubType = UnmanagedType.LPStruct)]
+        internal SsForwardRecordStruct[] Record;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SsInfoStruct
+    {
+        internal SsCause Cause;
+        internal SsInfoType Type;
+    }
+
+    internal static class SsStructConversions
+    {
+        internal static SsForwardRecord ConvertSsForwardRecordStruct(SsForwardRecordStruct recordStruct)
+        {
+            SsForwardRecord record = new SsForwardRecord();
+            record.SsClass = recordStruct.Class;
+            record.SsStatus = recordStruct.Status;
+            record.Condition = recordStruct.Condition;
+            if (recordStruct.IsForwardingNumPresent == 1)
+            {
+                record.IsNumPresent = true;
+            }
+
+            else if (recordStruct.IsForwardingNumPresent == 0)
+            {
+                record.IsNumPresent = false;
+            }
+
+            record.NoReply = recordStruct.NoReplyTime;
+            record.Type = recordStruct.Ton;
+            record.NumIdPlan = recordStruct.Npi;
+            record.ForwardNum = recordStruct.ForwardingNum;
+            return record;
+        }
+
+        internal static SsUssdMsgInfo ConvertSsMsgStruct(SsUssdMsgInfoStruct msgStruct)
+        {
+            SsUssdMsgInfo info = new SsUssdMsgInfo();
+            info.SsLength = msgStruct.Length;
+            info.SsDcs = msgStruct.Dcs;
+            info.Ussd = msgStruct.UssdString;
+            info.SsType = msgStruct.Type;
+            return info;
+        }
+
+        internal static SsReleaseCompleteMsgInfo ConvertReleaseMsgStruct(SsReleaseCompleteMsgStruct msgStruct)
+        {
+            SsReleaseCompleteMsgInfo info = new SsReleaseCompleteMsgInfo();
+            info.Length = msgStruct.MsgLength;
+            info.Msg = Encoding.ASCII.GetBytes(msgStruct.Message);
+            return info;
+        }
+
+        internal static SsForwardResponse ConvertForwardRspStruct(SsForwardResponseStruct responseStruct)
+        {
+            SsForwardResponse info = new SsForwardResponse();
+            List<SsForwardRecord> recordList = new List<SsForwardRecord>();
+            foreach (SsForwardRecordStruct item in responseStruct.Record)
+            {
+                recordList.Add(ConvertSsForwardRecordStruct(item));
+            }
+
+            info.RecordNum = responseStruct.RecordNum;
+            info.RecordList = recordList;
+            return info;
+        }
+
+        internal static SsBarringResponse ConvertBarringRspStruct(SsBarringResponseStruct responseStruct)
+        {
+            SsBarringResponse info = new SsBarringResponse();
+            List<SsBarringRecord> barringList = new List<SsBarringRecord>();
+            foreach (SsBarringRecordStruct item in responseStruct.Record)
+            {
+                SsBarringRecord record = new SsBarringRecord();
+                record.SsClass = item.Class;
+                record.SsStatus = item.Status;
+                record.SsType = item.Type;
+                barringList.Add(record);
+            }
+
+            info.RecordNum = responseStruct.RecordNum;
+            info.RecordList = barringList;
+            return info;
+        }
+
+        internal static SsWaitingResponse ConvertWaitingRspStruct(SsWaitingResponseStruct responseStruct)
+        {
+            SsWaitingResponse info = new SsWaitingResponse();
+            List<SsWaitingRecord> waitingList = new List<SsWaitingRecord>();
+            foreach (SsWaitingRecordStruct item in responseStruct.Record)
+            {
+                SsWaitingRecord record = new SsWaitingRecord();
+                record.SsClass = item.Class;
+                record.SsStatus = item.Status;
+                waitingList.Add(record);
+            }
+
+            info.RecordNum = responseStruct.RecordNum;
+            info.RecordList = waitingList;
+            return info;
+        }
+
+        internal static SsInfo ConvertInfoStruct(SsInfoStruct infoStruct)
+        {
+            SsInfo info = new SsInfo();
+            info.Cse = infoStruct.Cause;
+            info.Type = infoStruct.Type;
+            return info;
+        }
     }
 }

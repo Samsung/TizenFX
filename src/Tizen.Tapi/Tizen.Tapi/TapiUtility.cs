@@ -357,13 +357,15 @@ namespace Tizen.Tapi
                     throw new UnauthorizedAccessException("Permission denied " + message);
                 case TapiError.SystemOutOfMemory:
                     throw new OutOfMemoryException("System out of memory");
-                case TapiError.InvalidInput:
+                case TapiError.InvalidPtr:
                     if (isHandleNull)
                     {
                         throw new InvalidOperationException("Invalid instance (object may have been disposed or released)");
                     }
                     else
                         throw new ArgumentException("Invalid parameter");
+                case TapiError.InvalidInput:
+                    throw new ArgumentException("Invalid parameter");
                 default:
                     throw new InvalidOperationException(_error.ToString());
             }

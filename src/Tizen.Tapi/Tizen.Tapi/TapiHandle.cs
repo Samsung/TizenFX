@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Tapi
@@ -194,7 +195,17 @@ namespace Tizen.Tapi
                             notiData = (CallSoundNoiseReduction)Marshal.ReadInt32(data);
                             break;
                         case Notification.CallSoundClock:
-                            notiData = Marshal.ReadInt32(data);
+                            int status = Marshal.ReadInt32(data);
+                            if (status == 1)
+                            {
+                                notiData = true;
+                            }
+
+                            else if (status == 0)
+                            {
+                                notiData = false;
+                            }
+
                             break;
                         case Notification.CallPreferredVoiceSubscription:
                             notiData = (CallPreferredVoiceSubscription)Marshal.ReadInt32(data);
@@ -244,6 +255,164 @@ namespace Tizen.Tapi
                             SatSendSmsStruct smsStruct = Marshal.PtrToStructure<SatSendSmsStruct>(data);
                             notiData = SatStructConversions.ConvertSatSendSmsStruct(smsStruct);
                             break;
+                        case Notification.SatSetupEventList:
+                            SatEventListDataStruct eventStruct = Marshal.PtrToStructure<SatEventListDataStruct>(data);
+                            notiData = SatStructConversions.ConvertSatEventListStruct(eventStruct);
+                            break;
+                        case Notification.SatSendDtmf:
+                            SatSendDtmfDataStruct dtmfStruct = Marshal.PtrToStructure<SatSendDtmfDataStruct>(data);
+                            notiData = SatStructConversions.ConvertSatSendDtmfStruct(dtmfStruct);
+                            break;
+                        case Notification.SatEndProactiveSession:
+                            notiData = (SatCommandType)Marshal.ReadInt32(data);
+                            break;
+                        case Notification.SatCallControlResult:
+                            SatCallCtrlIndDataStruct dataStruct = Marshal.PtrToStructure<SatCallCtrlIndDataStruct>(data);
+                            notiData = SatStructConversions.ConvertSatCallCtrlIndDataStruct(dataStruct);
+                            break;
+                        case Notification.SatMoSmControlResult:
+                            SatMoSmsCtrlDataStruct moStruct = Marshal.PtrToStructure<SatMoSmsCtrlDataStruct>(data);
+                            notiData = SatStructConversions.ConvertSatMoSmsCtrlDataStruct(moStruct);
+                            break;
+                        case Notification.SatSetupCall:
+                            SatSetupCallDataStruct callDataStruct = Marshal.PtrToStructure<SatSetupCallDataStruct>(data);
+                            notiData = SatStructConversions.ConvertSatSetupCallDataStruct(callDataStruct);
+                            break;
+                        case Notification.SatSendSs:
+                            SatSendSsDataStruct ssStruct = Marshal.PtrToStructure<SatSendSsDataStruct>(data);
+                            notiData = SatStructConversions.ConvertSatSendSsDataStruct(ssStruct);
+                            break;
+                        case Notification.SatSetupUssd:
+                            SatSetupUssdDataStruct ussdStruct = Marshal.PtrToStructure<SatSetupUssdDataStruct>(data);
+                            notiData = SatStructConversions.ConvertSatSetupUssdDataStruct(ussdStruct);
+                            break;
+                        case Notification.PhonebookStatus:
+                            SimPhonebookStatusStruct statusStruct = Marshal.PtrToStructure<SimPhonebookStatusStruct>(data);
+                            notiData = PhonebookStructConversions.ConvertSimPhonebookStatusStruct(statusStruct);
+                            break;
+                        case Notification.PhonebookContactChange:
+                            PhonebookContactChangeInfoStruct contactStruct = Marshal.PtrToStructure<PhonebookContactChangeInfoStruct>(data);
+                            notiData = PhonebookStructConversions.ConvertPhonebookContactChangeStruct(contactStruct);
+                            break;
+                        case Notification.NetworkRegistrationStatus:
+                            NetworkRegistrationStatusStruct nwStruct = Marshal.PtrToStructure<NetworkRegistrationStatusStruct>(data);
+                            notiData = NetworkStructConversions.ConvertNetworkRegistrationStruct(nwStruct);
+                            break;
+                        case Notification.NetworkCellInfo:
+                            NetworkCellNotiStruct notiStruct = Marshal.PtrToStructure<NetworkCellNotiStruct>(data);
+                            notiData = NetworkStructConversions.ConvertNetworkCellNotiStruct(notiStruct);
+                            break;
+                        case Notification.NetworkChange:
+                            NetworkChangeNotiStruct changeStruct = Marshal.PtrToStructure<NetworkChangeNotiStruct>(data);
+                            notiData = NetworkStructConversions.ConvertNetworkChangeStruct(changeStruct);
+                            break;
+                        case Notification.NetworkTimeInfo:
+                            NetworkTimeNotiStruct timeStruct = Marshal.PtrToStructure<NetworkTimeNotiStruct>(data);
+                            notiData = NetworkStructConversions.ConvertNetworkTimeNotiStruct(timeStruct);
+                            break;
+                        case Notification.NetworkIdentity:
+                            NetworkIdentityNotiStruct idStruct = Marshal.PtrToStructure<NetworkIdentityNotiStruct>(data);
+                            notiData = NetworkStructConversions.ConvertNetworkIdentityStruct(idStruct);
+                            break;
+                        case Notification.NetworkSignalStrength:
+                            notiData = Marshal.ReadInt32(data);
+                            break;
+                        case Notification.NetworkEmergencyCallbackMode:
+                            notiData = (NetworkEmergencyCallbackMode)Marshal.ReadInt32(data);
+                            break;
+                        case Notification.NetworkDefaultDataSubscription:
+                            notiData = (NetworkDefaultDataSubscription)Marshal.ReadInt32(data);
+                            break;
+                        case Notification.NetworkDefaultSubscription:
+                            notiData = (NetworkDefaultSubscription)Marshal.ReadInt32(data);
+                            break;
+                        case Notification.NetworkCellId:
+                            notiData = Marshal.ReadInt32(data);
+                            break;
+                        case Notification.NetworkLac:
+                            notiData = Marshal.ReadInt32(data);
+                            break;
+                        case Notification.NetworkTac:
+                            notiData = Marshal.ReadInt32(data);
+                            break;
+                        case Notification.NetworkSystemId:
+                            notiData = Marshal.ReadInt32(data);
+                            break;
+                        case Notification.NetworkNetworkId:
+                            notiData = Marshal.ReadInt32(data);
+                            break;
+                        case Notification.NetworkBsId:
+                            notiData = Marshal.ReadInt32(data);
+                            break;
+                        case Notification.NetworkBsLatitude:
+                            notiData = Marshal.ReadInt32(data);
+                            break;
+                        case Notification.NetworkBsLongitude:
+                            notiData = Marshal.ReadInt32(data);
+                            break;
+                        case Notification.NetworkVolteStatus:
+                            NetworkVolteStatusStruct volteStruct = Marshal.PtrToStructure<NetworkVolteStatusStruct>(data);
+                            notiData = NetworkStructConversions.ConvertNetworkVolteStruct(volteStruct);
+                            break;
+                        case Notification.NetworkEpdgStatus:
+                            int epdgStatus = Marshal.ReadInt32(data);
+                            if (epdgStatus == 1)
+                            {
+                                notiData = true;
+                            }
+
+                            else if (epdgStatus == 0)
+                            {
+                                notiData = false;
+                            }
+
+                            break;
+                        case Notification.SsUssd:
+                            SsUssdMsgInfoStruct ussdInfoStruct = Marshal.PtrToStructure<SsUssdMsgInfoStruct>(data);
+                            notiData = SsStructConversions.ConvertSsMsgStruct(ussdInfoStruct);
+                            break;
+                        case Notification.SsReleaseComplete:
+                            SsReleaseCompleteMsgStruct msgStruct = Marshal.PtrToStructure<SsReleaseCompleteMsgStruct>(data);
+                            notiData = SsStructConversions.ConvertReleaseMsgStruct(msgStruct);
+                            break;
+                        case Notification.SsNotifyForwarding:
+                            SsForwardResponseStruct responseStruct = Marshal.PtrToStructure<SsForwardResponseStruct>(data);
+                            notiData = SsStructConversions.ConvertForwardRspStruct(responseStruct);
+                            break;
+                        case Notification.SsNotifyBarring:
+                            SsBarringResponseStruct barringStruct = Marshal.PtrToStructure<SsBarringResponseStruct>(data);
+                            notiData = SsStructConversions.ConvertBarringRspStruct(barringStruct);
+                            break;
+                        case Notification.SsNotifyWaiting:
+                            SsWaitingResponseStruct waitingStruct = Marshal.PtrToStructure<SsWaitingResponseStruct>(data);
+                            notiData = SsStructConversions.ConvertWaitingRspStruct(waitingStruct);
+                            break;
+                        case Notification.SsNotifyInfo:
+                            SsInfoStruct ssInfoStruct = Marshal.PtrToStructure<SsInfoStruct>(data);
+                            notiData = SsStructConversions.ConvertInfoStruct(ssInfoStruct);
+                            break;
+                        case Notification.SmsIncomingMsg:
+                            SmsIncomingMsgNotiStruct smsNotiStruct = Marshal.PtrToStructure<SmsIncomingMsgNotiStruct>(data);
+                            notiData = SmsStructConversions.ConvertSmsIncomingStruct(smsNotiStruct);
+                            break;
+                        case Notification.SmsIncomingCbMsg:
+                            SmsIncomingCbMsgNotiStruct smsCbStruct = Marshal.PtrToStructure<SmsIncomingCbMsgNotiStruct>(data);
+                            notiData = SmsStructConversions.ConvertSmsIncomingCbStruct(smsCbStruct);
+                            break;
+                        case Notification.SmsIncomingEtwsMsg:
+                            SmsIncomingEtwsMsgNotiStruct etwsStruct = Marshal.PtrToStructure<SmsIncomingEtwsMsgNotiStruct>(data);
+                            notiData = SmsStructConversions.ConvertSmsIncomingEtwsStruct(etwsStruct);
+                            break;
+                        case Notification.SmsMemoryStatus:
+                            notiData = (SmsMemoryStatus)Marshal.ReadInt32(data);
+                            break;
+                        case Notification.SmsReady:
+                            notiData = (SmsReadyStatus)Marshal.ReadInt32(data);
+                            break;
+                        case Notification.OemData:
+                            OemDataStruct oemStruct = Marshal.PtrToStructure<OemDataStruct>(data);
+                            notiData = OemStructConversions.ConvertOemStruct(oemStruct);
+                            break;
                     }
 
                     _notificationChanged(null, new NotificationChangedEventArgs(noti, notiData));
@@ -269,7 +438,147 @@ namespace Tizen.Tapi
         {
             _notificationChangedCb = (IntPtr handle, string prop, IntPtr data, IntPtr userData) =>
             {
+                if (_propertyChanged != null)
+                {
+                    object propData = null;
+                    Property propertyId = default(Property);
+                    if (prop != null)
+                    {
+                        foreach (Property p in Enum.GetValues(typeof(Property)))
+                        {
+                            if (prop == TapiUtility.ConvertPropToString(p))
+                            {
+                                propertyId = p;
+                                break;
+                            }
+                        }
+                    }
 
+                    switch (propertyId)
+                    {
+                        case Property.ModemPower:
+                            propData = (PhonePowerStatus)Marshal.ReadInt32(data);
+                            break;
+                        case Property.ModemDongleStatus:
+                            int dongleStatus = Marshal.ReadInt32(data);
+                            if (dongleStatus == 1)
+                            {
+                                propData = true;
+                            }
+
+                            else if (dongleStatus == 0)
+                            {
+                                propData = false;
+                            }
+
+                            break;
+                        case Property.ModemDongleLogin:
+                            int loginStatus = Marshal.ReadInt32(data);
+                            if (loginStatus == 1)
+                            {
+                                propData = true;
+                            }
+
+                            else if (loginStatus == 0)
+                            {
+                                propData = false;
+                            }
+
+                            break;
+                        case Property.SimCallForwardState:
+                            int forwardState = Marshal.ReadInt32(data);
+                            if (forwardState == 1)
+                            {
+                                propData = true;
+                            }
+
+                            else if (forwardState == 0)
+                            {
+                                propData = false;
+                            }
+
+                            break;
+                        case Property.NetworkLac:
+                            propData = (uint)Marshal.ReadInt32(data);
+                            break;
+                        case Property.NetworkTac:
+                            propData = (uint)Marshal.ReadInt32(data);
+                            break;
+                        case Property.NetworkPlmn:
+                            propData = Marshal.PtrToStringAnsi(data);
+                            break;
+                        case Property.NetworkCellId:
+                            propData = (uint)Marshal.ReadInt32(data);
+                            break;
+                        case Property.NetworkPhysicalCellId:
+                            propData = (uint)Marshal.ReadInt32(data);
+                            break;
+                        case Property.NetworkServiceType:
+                            propData = (NetworkServiceType)Marshal.ReadInt32(data);
+                            break;
+                        case Property.NetworkAct:
+                            propData = (NetworkSystemType)Marshal.ReadInt32(data);
+                            break;
+                        case Property.NetworkPsType:
+                            propData = (NetworkPsType)Marshal.ReadInt32(data);
+                            break;
+                        case Property.NetworkCircuitStatus:
+                            propData = (NetworkServiceLevel)Marshal.ReadInt32(data);
+                            break;
+                        case Property.NetworkPacketStatus:
+                            propData = (NetworkServiceLevel)Marshal.ReadInt32(data);
+                            break;
+                        case Property.NetworkRoamingStatus:
+                            int roamingStatus = Marshal.ReadInt32(data);
+                            if (roamingStatus == 1)
+                            {
+                                propData = true;
+                            }
+
+                            else if (roamingStatus == 0)
+                            {
+                                propData = false;
+                            }
+
+                            break;
+                        case Property.NetworkNameOption:
+                            propData = (NetworkNameDisplayCondition)Marshal.ReadInt32(data);
+                            break;
+                        case Property.NetworkName:
+                            propData = Marshal.PtrToStringAnsi(data);
+                            break;
+                        case Property.NetworkSpnName:
+                            propData = Marshal.PtrToStringAnsi(data);
+                            break;
+                        case Property.NetworkSignalDbm:
+                            propData = Marshal.ReadInt32(data);
+                            break;
+                        case Property.NetworkSignalLevel:
+                            propData = Marshal.ReadInt32(data);
+                            break;
+                        case Property.NetworkImsVoiceStatus:
+                            int imsStatus = Marshal.ReadInt32(data);
+                            if (imsStatus == 1)
+                            {
+                                propData = true;
+                            }
+
+                            else if (imsStatus == 0)
+                            {
+                                propData = false;
+                            }
+
+                            break;
+                        case Property.NetworkVolteEnable:
+                            propData = (VolteNetworkType)Marshal.ReadInt32(data);
+                            break;
+                        case Property.NetworkLteBand:
+                            propData = (NetworkLteBandType)Marshal.ReadInt32(data);
+                            break;
+                    }
+
+                    _propertyChanged(null, new PropertyChangedEventArgs(propertyId, propData));
+                }
             };
             int ret = Interop.Tapi.RegisterNotiEvent(_handle, TapiUtility.ConvertPropToString(property), _notificationChangedCb, IntPtr.Zero);
             if (ret != (int)TapiError.Success)

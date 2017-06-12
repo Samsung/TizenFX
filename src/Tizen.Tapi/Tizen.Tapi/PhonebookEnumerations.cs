@@ -50,4 +50,23 @@ namespace Tizen.Tapi
         /// </summary>
         Unknown = 0xFF
     }
+
+    /// <summary>
+    /// Enumeration for the phonebook operation types.
+    /// </summary>
+    public enum PhonebookOperationType
+    {
+        /// <summary>
+        /// Contact added or updated.
+        /// </summary>
+        Update,
+        /// <summary>
+        /// Existing contact deleted.
+        /// </summary>
+        Delete,
+        /// <summary>
+        /// Max value.
+        /// </summary>
+        Max
+    }
 }

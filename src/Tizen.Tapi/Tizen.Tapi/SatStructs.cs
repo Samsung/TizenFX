@@ -211,6 +211,129 @@ namespace Tizen.Tapi
     }
 
     [StructLayout(LayoutKind.Sequential)]
+    internal struct SatEventListDataStruct
+    {
+        internal int IsEventDownloadActive;
+        internal int IsMtCallEvent;
+        internal int IsCallConnected;
+        internal int IsCallDisconnected;
+        internal int IsLocationStatus;
+        internal int IsUserActivity;
+        internal int IsIdleScreenAvailable;
+        internal int IsCardReaderStatus;
+        internal int IsLanguageSelection;
+        internal int IsBrowserTermination;
+        internal int IsDataAvailable;
+        internal int IsChannelStatus;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SatSendDtmfDataStruct
+    {
+        internal int CommandId;
+        internal int IsHiddenMode;
+        internal SatTextInfoStruct DtmfString;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SatCallCtrlIndCallSsDataStruct
+    {
+        internal SatTextInfoStruct Address;
+        internal SatTextInfoStruct SubAddress;
+        internal SatBcRepeatIndicatorType BcRepeatIndicator;
+        internal SatTextInfoStruct Ccp1;
+        internal SatTextInfoStruct Ccp2;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SatCallCtrlIndUssdDataStruct
+    {
+        internal SatTextInfoStruct UssdString;
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    internal struct SatCallCtrlIndStruct
+    {
+        [FieldOffset(0)]
+        internal SatCallCtrlIndCallSsDataStruct CallCtrlCnfCallData;
+        [FieldOffset(0)]
+        internal SatCallCtrlIndCallSsDataStruct CallCtrlCnfSsData;
+        [FieldOffset(0)]
+        internal SatCallCtrlIndUssdDataStruct CallCtrlCnfUssdData;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SatCallCtrlIndDataStruct
+    {
+        internal SatCallType CallCtrlCnfType;
+        internal SatCallCtrlResultType CallCtrlResult;
+        internal SatTextInfoStruct DisplayData;
+        internal int IsUserInfoDispEnabled;
+        internal SatCallCtrlIndStruct CallCtrlIndData;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SatTextTypeInfoStruct
+    {
+        internal int IsDigitOnly;
+        internal SatDataCodingSchemeStruct Dcs;
+        internal ushort StringLength;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 501)]
+        internal string TextString;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SatDataCodingSchemeStruct
+    {
+        internal int IsCompressedFormat;
+        internal SatAlphabetFormat AlphabetFormat;
+        internal SatMsgClassType MsgClass;
+        internal byte RawDcs;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SatMoSmsCtrlDataStruct
+    {
+        internal SatCallCtrlResultType Result;
+        internal int IsUserInfoDisplayEnabled;
+        internal SatTextTypeInfoStruct DisplayData;
+        internal SatTextTypeInfoStruct RpDestAddr;
+        internal SatTextTypeInfoStruct TpDestAddr;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SatSetupCallDataStruct
+    {
+        internal int CommandId;
+        internal SatCmdQualiSetupCall CallType;
+        internal SatTextInfoStruct DisplayText;
+        internal SatTextInfoStruct CallNumber;
+        internal uint Duration;
+        internal SatIconIdentifierStruct IconId;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SatSendSsDataStruct
+    {
+        internal int CommandId;
+        internal SimTypeOfNumber Ton;
+        internal SimNumberPlanIdentity Npi;
+        internal byte StringLength;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 161)]
+        internal string SsString;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SatSetupUssdDataStruct
+    {
+        internal int CommandId;
+        internal byte RawDcs;
+        internal byte UssdStringLength;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 266)]
+        internal string UssdString;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
     internal struct SatResultDataStruct
     {
     }
@@ -539,6 +662,286 @@ namespace Tizen.Tapi
             smsData.Addr = ConvertSatAddressStruct(smsStruct.Address);
             smsData.Info = ConvertSatSmsTpduStruct(smsStruct.SmsTpdu);
             return smsData;
+        }
+
+        internal static SatEventListData ConvertSatEventListStruct(SatEventListDataStruct listStruct)
+        {
+            SatEventListData listData = new SatEventListData();
+            if (listStruct.IsEventDownloadActive == 1)
+            {
+                listData.IsDownloadActive = true;
+            }
+
+            else if (listStruct.IsEventDownloadActive == 0)
+            {
+                listData.IsDownloadActive = false;
+            }
+
+            if (listStruct.IsMtCallEvent == 1)
+            {
+                listData.IsCallEvent = true;
+            }
+
+            else if (listStruct.IsMtCallEvent == 0)
+            {
+                listData.IsCallEvent = false;
+            }
+
+            if (listStruct.IsCallConnected == 1)
+            {
+                listData.IsConnected = true;
+            }
+
+            else if (listStruct.IsCallConnected == 0)
+            {
+                listData.IsConnected = false;
+            }
+
+            if (listStruct.IsCallDisconnected == 1)
+            {
+                listData.IsDisconnected = true;
+            }
+
+            else if (listStruct.IsCallDisconnected == 0)
+            {
+                listData.IsDisconnected = false;
+            }
+
+            if (listStruct.IsLocationStatus == 1)
+            {
+                listData.IsStatus = true;
+            }
+
+            else if (listStruct.IsLocationStatus == 0)
+            {
+                listData.IsStatus = false;
+            }
+
+            if (listStruct.IsUserActivity == 1)
+            {
+                listData.IsUsrActivity = true;
+            }
+
+            else if (listStruct.IsUserActivity == 0)
+            {
+                listData.IsUsrActivity = false;
+            }
+
+            if (listStruct.IsIdleScreenAvailable == 1)
+            {
+                listData.IsIdleScreen = true;
+            }
+
+            else if (listStruct.IsIdleScreenAvailable == 0)
+            {
+                listData.IsIdleScreen = false;
+            }
+
+            if (listStruct.IsCardReaderStatus == 1)
+            {
+                listData.IsReaderStatus = true;
+            }
+
+            else if (listStruct.IsCardReaderStatus == 0)
+            {
+                listData.IsReaderStatus = false;
+            }
+
+            if (listStruct.IsLanguageSelection == 1)
+            {
+                listData.IsLanguageSelect = true;
+            }
+
+            else if (listStruct.IsLanguageSelection == 0)
+            {
+                listData.IsLanguageSelect = false;
+            }
+
+            if (listStruct.IsBrowserTermination == 1)
+            {
+                listData.IsBrowserTerminate = true;
+            }
+
+            else if (listStruct.IsBrowserTermination == 0)
+            {
+                listData.IsBrowserTerminate = false;
+            }
+
+            if (listStruct.IsDataAvailable == 1)
+            {
+                listData.IsDataPresent = true;
+            }
+
+            else if (listStruct.IsDataAvailable == 0)
+            {
+                listData.IsDataPresent = false;
+            }
+
+            if (listStruct.IsChannelStatus == 1)
+            {
+                listData.IsCnlStatus = true;
+            }
+
+            else if (listStruct.IsChannelStatus == 0)
+            {
+                listData.IsCnlStatus = false;
+            }
+
+            return listData;
+        }
+
+        internal static SatSendDtmfData ConvertSatSendDtmfStruct(SatSendDtmfDataStruct dtmfStruct)
+        {
+            SatSendDtmfData dtmfData = new SatSendDtmfData();
+            dtmfData.Id = dtmfStruct.CommandId;
+            if (dtmfStruct.IsHiddenMode == 1)
+            {
+                dtmfData.IsHidden = true;
+            }
+
+            else if (dtmfStruct.IsHiddenMode == 0)
+            {
+                dtmfData.IsHidden = false;
+            }
+
+            dtmfData.Dtmf = ConvertSatTextInfoStruct(dtmfStruct.DtmfString);
+            return dtmfData;
+        }
+
+        internal static SatCallCtrlData ConvertSatCallCtrlIndCallSsDataStruct(SatCallCtrlIndCallSsDataStruct dataStruct)
+        {
+            SatCallCtrlData data = new SatCallCtrlData();
+            data.Addr = ConvertSatTextInfoStruct(dataStruct.Address);
+            data.SubAddr = ConvertSatTextInfoStruct(dataStruct.SubAddress);
+            data.RepeatIndicator = dataStruct.BcRepeatIndicator;
+            data.Ccparam1 = ConvertSatTextInfoStruct(dataStruct.Ccp1);
+            data.Ccparam2 = ConvertSatTextInfoStruct(dataStruct.Ccp2);
+            return data;
+        }
+
+        internal static SatCallCtrlConfirmData ConvertSatCallCtrlIndDataStruct(SatCallCtrlIndDataStruct dataStruct)
+        {
+            SatCallCtrlConfirmData data = new SatCallCtrlConfirmData();
+            data.Type = dataStruct.CallCtrlCnfType;
+            data.Result = dataStruct.CallCtrlResult;
+            data.Data = ConvertSatTextInfoStruct(dataStruct.DisplayData);
+            if (dataStruct.IsUserInfoDispEnabled == 1)
+            {
+                data.IsUserInfoEnabled = true;
+            }
+
+            else if (dataStruct.IsUserInfoDispEnabled == 0)
+            {
+                data.IsUserInfoEnabled = false;
+            }
+
+            if (dataStruct.CallCtrlCnfType == SatCallType.MoVoice)
+            {
+                data.CallData = ConvertSatCallCtrlIndCallSsDataStruct(dataStruct.CallCtrlIndData.CallCtrlCnfCallData);
+            }
+
+            else if (dataStruct.CallCtrlCnfType == SatCallType.Ss)
+            {
+                data.SsData = ConvertSatCallCtrlIndCallSsDataStruct(dataStruct.CallCtrlIndData.CallCtrlCnfSsData);
+            }
+
+            else if (dataStruct.CallCtrlCnfType == SatCallType.Ussd)
+            {
+                data.Ussd = ConvertSatTextInfoStruct(dataStruct.CallCtrlIndData.CallCtrlCnfUssdData.UssdString);
+            }
+
+            return data;
+        }
+
+        internal static SatDataCodingScheme ConvertSatDataCodingSchemeStruct(SatDataCodingSchemeStruct dataStruct)
+        {
+            SatDataCodingScheme codingScheme = new SatDataCodingScheme();
+            if (dataStruct.IsCompressedFormat == 1)
+            {
+                codingScheme.IsCompressed = true;
+            }
+
+            else if (dataStruct.IsCompressedFormat == 0)
+            {
+                codingScheme.IsCompressed = false;
+            }
+
+            codingScheme.Alphabet = dataStruct.AlphabetFormat;
+            codingScheme.Msg = dataStruct.MsgClass;
+            codingScheme.Dcs = dataStruct.RawDcs;
+            return codingScheme;
+        }
+
+        internal static SatTextTypeInfo ConvertSatTextTypeInfoStruct(SatTextTypeInfoStruct infoStruct)
+        {
+            SatTextTypeInfo info = new SatTextTypeInfo();
+            if (infoStruct.IsDigitOnly == 1)
+            {
+                info.IsDigit = true;
+            }
+
+            else if (infoStruct.IsDigitOnly == 0)
+            {
+                info.IsDigit = false;
+            }
+
+            info.CodingScheme = ConvertSatDataCodingSchemeStruct(infoStruct.Dcs);
+            info.StringLen = infoStruct.StringLength;
+            info.Text = infoStruct.TextString;
+            return info;
+        }
+
+        internal static SatMoSmsCtrlData ConvertSatMoSmsCtrlDataStruct(SatMoSmsCtrlDataStruct dataStruct)
+        {
+            SatMoSmsCtrlData data = new SatMoSmsCtrlData();
+            data.Result = dataStruct.Result;
+            if (dataStruct.IsUserInfoDisplayEnabled == 1)
+            {
+                data.IsUserInfo = true;
+            }
+
+            else if (dataStruct.IsUserInfoDisplayEnabled == 0)
+            {
+                data.IsUserInfo = false;
+            }
+
+            data.Data = ConvertSatTextTypeInfoStruct(dataStruct.DisplayData);
+            data.RpAddr = ConvertSatTextTypeInfoStruct(dataStruct.RpDestAddr);
+            data.TpAddr = ConvertSatTextTypeInfoStruct(dataStruct.TpDestAddr);
+            return data;
+        }
+
+        internal static SatSetupCallData ConvertSatSetupCallDataStruct(SatSetupCallDataStruct dataStruct)
+        {
+            SatSetupCallData callData = new SatSetupCallData();
+            callData.Id = dataStruct.CommandId;
+            callData.Type = dataStruct.CallType;
+            callData.Text = ConvertSatTextInfoStruct(dataStruct.DisplayText);
+            callData.Number = ConvertSatTextInfoStruct(dataStruct.CallNumber);
+            callData.Duratn = dataStruct.Duration;
+            callData.IcnId = ConvertSatIconIdentifierStruct(dataStruct.IconId);
+            return callData;
+        }
+
+        internal static SatSendSsData ConvertSatSendSsDataStruct(SatSendSsDataStruct dataStruct)
+        {
+            SatSendSsData ssData = new SatSendSsData();
+            ssData.Id = dataStruct.CommandId;
+            ssData.NumType = dataStruct.Ton;
+            ssData.Identity = dataStruct.Npi;
+            ssData.StringLen = dataStruct.StringLength;
+            ssData.Ss = dataStruct.SsString;
+            return ssData;
+        }
+
+        internal static SatSetupUssdData ConvertSatSetupUssdDataStruct(SatSetupUssdDataStruct ussdStruct)
+        {
+            SatSetupUssdData ussdData = new SatSetupUssdData();
+            ussdData.Id = ussdStruct.CommandId;
+            ussdData.Dcs = ussdStruct.RawDcs;
+            ussdData.StringLen = ussdStruct.UssdStringLength;
+            ussdData.Ussd = ussdStruct.UssdString;
+            return ussdData;
         }
     }
 }

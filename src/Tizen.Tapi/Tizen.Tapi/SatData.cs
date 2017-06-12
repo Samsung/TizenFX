@@ -1260,4 +1260,838 @@ namespace Tizen.Tapi
             }
         }
     }
+
+    /// <summary>
+    /// A class which defines Event list info.
+    /// </summary>
+    public class SatEventListData
+    {
+        internal bool IsDownloadActive;
+        internal bool IsCallEvent;
+        internal bool IsConnected;
+        internal bool IsDisconnected;
+        internal bool IsStatus;
+        internal bool IsUsrActivity;
+        internal bool IsIdleScreen;
+        internal bool IsReaderStatus;
+        internal bool IsLanguageSelect;
+        internal bool IsBrowserTerminate;
+        internal bool IsDataPresent;
+        internal bool IsCnlStatus;
+
+        internal SatEventListData()
+        {
+        }
+
+        /// <summary>
+        /// Flag to check if the event download is acive.
+        /// </summary>
+        /// <value>Boolean value to check for active event download.</value>
+        public bool IsEventDownloadActive
+        {
+            get
+            {
+                return IsDownloadActive;
+            }
+        }
+
+        /// <summary>
+        /// Flag to check if the event is about Mt call event.
+        /// </summary>
+        /// <value>Boolean value to check the event for Mt call event.</value>
+        public bool IsMtCallEvent
+        {
+            get
+            {
+                return IsCallEvent;
+            }
+        }
+
+        /// <summary>
+        /// Flag to check if the call is connected.
+        /// </summary>
+        /// <value>Boolean value to check the connection of call.</value>
+        public bool IsCallConnected
+        {
+            get
+            {
+                return IsConnected;
+            }
+        }
+
+        /// <summary>
+        /// Flag to check if the call is disconnected.
+        /// </summary>
+        /// <value>Boolean value to check the call disconnection.</value>
+        public bool IsCallDisconnected
+        {
+            get
+            {
+                return IsDisconnected;
+            }
+        }
+
+        /// <summary>
+        /// Flag to check if the event is aboout locaion status.
+        /// </summary>
+        /// <value>Boolean value to check the presence of location status in the event.</value>
+        public bool IsLocationStatus
+        {
+            get
+            {
+                return IsStatus;
+            }
+        }
+
+        /// <summary>
+        /// Flag to check if the event is about user activity.
+        /// </summary>
+        /// <value>Boolean value to check the presence of user activity.</value>
+        public bool IsUserActivity
+        {
+            get
+            {
+                return IsUsrActivity;
+            }
+        }
+
+        /// <summary>
+        /// Flag to check if idle screen is available.
+        /// </summary>
+        /// <value>Boolean value to check the availability of idle screen.</value>
+        public bool IsIdleScreenAvailable
+        {
+            get
+            {
+                return IsIdleScreen;
+            }
+        }
+
+        /// <summary>
+        /// Flag to check if the event is about card reader status.
+        /// </summary>
+        /// <value>Boolean value to check the status of card reader.</value>
+        public bool IsCardReaderStatus
+        {
+            get
+            {
+                return IsReaderStatus;
+            }
+        }
+
+        /// <summary>
+        /// Flag to check if the event is about language selection.
+        /// </summary>
+        /// <value>Boolean value to check if the event is language selection.</value>
+        public bool IsLanguageSelection
+        {
+            get
+            {
+                return IsLanguageSelect;
+            }
+        }
+
+        /// <summary>
+        /// Flag to check if the browser is terminated.
+        /// </summary>
+        /// <value>Boolean value to check the termination of browser.</value>
+        public bool IsBrowserTermination
+        {
+            get
+            {
+                return IsBrowserTerminate;
+            }
+        }
+
+        /// <summary>
+        /// Flag to check if the data is available.
+        /// </summary>
+        /// <value>Boolean value to check availablility of data.</value>
+        public bool IsDataAvailable
+        {
+            get
+            {
+                return IsDataPresent;
+            }
+        }
+
+        /// <summary>
+        /// Flag to check if the event has channel status.
+        /// </summary>
+        /// <value>Boolean value to check if this field is a channel status.</value>
+        public bool IsChannelStatus
+        {
+            get
+            {
+                return IsCnlStatus;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which defines send DTMF proactive command data for the DTMF application.
+    /// </summary>
+    public class SatSendDtmfData
+    {
+        internal int Id;
+        internal bool IsHidden;
+        internal SatTextInfo Dtmf;
+
+        internal SatSendDtmfData()
+        {
+        }
+
+        /// <summary>
+        /// Proactive Command Number sent by USIM
+        /// </summary>
+        /// <value>Command id represented in integer.</value>
+        public int CommandId
+        {
+            get
+            {
+                return Id;
+            }
+        }
+
+        /// <summary>
+        /// Hidden mode flag.
+        /// </summary>
+        /// <value>Flag to check if the data is in hidden mode.</value>
+        public bool IsHiddenMode
+        {
+            get
+            {
+                return IsHidden;
+            }
+        }
+
+        /// <summary>
+        /// DTMF string data.
+        /// </summary>
+        /// <value>An instance of SatTextInfo containing DTMF string data.</value>
+        public SatTextInfo DtmfString
+        {
+            get
+            {
+                return Dtmf;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which defines call control confirm data for Call/Ss.
+    /// </summary>
+    public class SatCallCtrlData
+    {
+        internal SatTextInfo Addr;
+        internal SatTextInfo SubAddr;
+        internal SatBcRepeatIndicatorType RepeatIndicator;
+        internal SatTextInfo Ccparam1;
+        internal SatTextInfo Ccparam2;
+
+        internal SatCallCtrlData()
+        {
+        }
+
+        /// <summary>
+        /// Call destination address.
+        /// </summary>
+        /// <value>An instance of SatTextInfo class.</value>
+        public SatTextInfo Address
+        {
+            get
+            {
+                return Addr;
+            }
+        }
+
+        /// <summary>
+        /// Call SUB address.
+        /// </summary>
+        /// <value>An instance of SatTextInfo class.</value>
+        public SatTextInfo SubAddress
+        {
+            get
+            {
+                return SubAddr;
+            }
+        }
+
+        /// <summary>
+        /// BC repeat indicator.
+        /// </summary>
+        /// <value>SatBcRepeatIndicatorType enum representing Bc repeat indicator.</value>
+        public SatBcRepeatIndicatorType BcRepeatIndicator
+        {
+            get
+            {
+                return RepeatIndicator;
+            }
+        }
+
+        /// <summary>
+        /// Configuration Capability Parameter 1.
+        /// </summary>
+        /// <value>An instance of SatTextInfo class.</value>
+        public SatTextInfo Ccp1
+        {
+            get
+            {
+                return Ccparam1;
+            }
+        }
+
+        /// <summary>
+        /// Configuration Capability Parameter 2.
+        /// </summary>
+        /// <value>An instance of SatTextInfo class.</value>
+        public SatTextInfo Ccp2
+        {
+            get
+            {
+                return Ccparam2;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which defines common call control confirm data.
+    /// </summary>
+    public class SatCallCtrlConfirmData
+    {
+        internal SatCallType Type;
+        internal SatCallCtrlResultType Result;
+        internal SatTextInfo Data;
+        internal bool IsUserInfoEnabled;
+        internal SatCallCtrlData CallData;
+        internal SatCallCtrlData SsData;
+        internal SatTextInfo Ussd;
+
+        internal SatCallCtrlConfirmData()
+        {
+        }
+
+        /// <summary>
+        /// Call control confirm type - call, SS or USSD.
+        /// </summary>
+        /// <value>Type of call represented in SatCallType enum.</value>
+        public SatCallType CallType
+        {
+            get
+            {
+                return Type;
+            }
+        }
+
+        /// <summary>
+        /// Call control result type.
+        /// </summary>
+        /// <value>Type of call control result represented in SatCallCtrlResultType enum.</value>
+        public SatCallCtrlResultType CallCtrlResult
+        {
+            get
+            {
+                return Result;
+            }
+        }
+
+        /// <summary>
+        /// Call control display data.
+        /// </summary>
+        /// <value>An instance of SatTextInfo class containing information about call control display data.</value>
+        public SatTextInfo DisplayData
+        {
+            get
+            {
+                return Data;
+            }
+        }
+
+        /// <summary>
+        /// Flag for checking existence of call control display.
+        /// </summary>
+        /// <value>Boolean value to check existence of user info display.</value>
+        public bool IsUserInfoDisplayEnabled
+        {
+            get
+            {
+                return IsUserInfoEnabled;
+            }
+        }
+
+        /// <summary>
+        /// Call control call address.
+        /// </summary>
+        /// <remarks>
+        /// This value will be filled only if CallType is MoVoice. Otherwise it will be null.
+        /// </remarks>
+        /// <value>An instance of SatCallCtrlData containing call control call address.</value>
+        public SatCallCtrlData CallCtrlCallData
+        {
+            get
+            {
+                return CallData;
+            }
+        }
+
+        /// <summary>
+        /// Call control SS string.
+        /// </summary>
+        /// <remarks>
+        /// This value will be filled only if CallType is Ss. Otherwise it will be null.
+        /// </remarks>
+        /// <value>An instance of SatCallCtrlData containing call control SS string.</value>
+        public SatCallCtrlData CallCtrlSsData
+        {
+            get
+            {
+                return SsData;
+            }
+        }
+
+        /// <summary>
+        /// Call control USSD string.
+        /// </summary>
+        /// <remarks>
+        /// This value will be filled only if CallType is Ussd. Otherwise it will be null.
+        /// </remarks>
+        /// <value>An instance of SatTextInfo class containing call control USSD string.</value>
+        public SatTextInfo UssdString
+        {
+            get
+            {
+                return Ussd;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A  class which defines the data coding scheme object.
+    /// </summary>
+    public class SatDataCodingScheme
+    {
+        internal bool IsCompressed;
+        internal SatAlphabetFormat Alphabet;
+        internal SatMsgClassType Msg;
+        internal byte Dcs;
+
+        internal SatDataCodingScheme()
+        {
+        }
+
+        /// <summary>
+        /// Flag to verify the compressed format.
+        /// </summary>
+        /// <value>Boolean value to check the compressed value.</value>
+        public bool IsCompressedFormat
+        {
+            get
+            {
+                return IsCompressed;
+            }
+        }
+
+        /// <summary>
+        /// Alphabet format type.
+        /// </summary>
+        /// <value>Represented in SatAlphabetFormat enum.</value>
+        public SatAlphabetFormat AlphabetFormat
+        {
+            get
+            {
+                return Alphabet;
+            }
+        }
+
+        /// <summary>
+        /// Type of message class.
+        /// </summary>
+        /// <value>Message class represented in SatMsgClassType enum.</value>
+        public SatMsgClassType MsgClass
+        {
+            get
+            {
+                return Msg;
+            }
+        }
+
+        /// <summary>
+        /// Raw DCS info.
+        /// </summary>
+        /// <value>Dcs info stored in byte.</value>
+        public byte RawDcs
+        {
+            get
+            {
+                return Dcs;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which defines text string data object.
+    /// </summary>
+    public class SatTextTypeInfo
+    {
+        internal bool IsDigit;
+        internal SatDataCodingScheme CodingScheme;
+        internal ushort StringLen;
+        internal string Text;
+
+        internal SatTextTypeInfo()
+        {
+        }
+
+        /// <summary>
+        /// Flag for checking whether only digits are used.
+        /// </summary>
+        /// <value>Boolean value for checking the usage of only digits.</value>
+        public bool IsDigitOnly
+        {
+            get
+            {
+                return IsDigit;
+            }
+        }
+
+        /// <summary>
+        /// Data coding scheme.
+        /// </summary>
+        /// <value>An instance of SatDataCodingScheme class.</value>
+        public SatDataCodingScheme DCS
+        {
+            get
+            {
+                return CodingScheme;
+            }
+        }
+
+        /// <summary>
+        /// Text length.
+        /// </summary>
+        /// <value>Length of the string in unsigned short format.</value>
+        public ushort StringLength
+        {
+            get
+            {
+                return StringLen;
+            }
+        }
+
+        /// <summary>
+        /// Text string.
+        /// </summary>
+        /// <value>Text represented in string.</value>
+        public string TextString
+        {
+            get
+            {
+                return Text;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which defines MO SMS control confirm data.
+    /// </summary>
+    public class SatMoSmsCtrlData
+    {
+        internal SatCallCtrlResultType Result;
+        internal bool IsUserInfo;
+        internal SatTextTypeInfo Data;
+        internal SatTextTypeInfo RpAddr;
+        internal SatTextTypeInfo TpAddr;
+
+        internal SatMoSmsCtrlData()
+        {
+        }
+
+        /// <summary>
+        /// Envelope result.
+        /// </summary>
+        /// <value>Result of MO SMS control confirm data.</value>
+        public SatCallCtrlResultType MoResult
+        {
+            get
+            {
+                return Result;
+            }
+        }
+
+        /// <summary>
+        /// Display present flag.
+        /// </summary>
+        /// <value>Boolean value to check the presence of user information display.</value>
+        public bool IsUserInfoDisplayEnabled
+        {
+            get
+            {
+                return IsUserInfo;
+            }
+        }
+
+        /// <summary>
+        /// Display data for sending SMS.
+        /// </summary>
+        /// <value>An instance of SatTextTypeInfo containing display data for sending SMS.</value>
+        public SatTextTypeInfo DisplayData
+        {
+            get
+            {
+                return Data;
+            }
+        }
+
+        /// <summary>
+        /// The RP destination address of the service center.
+        /// </summary>
+        /// <value>An instance of SatTextTypeInfo containing RP destination address.</value>
+        public SatTextTypeInfo RpDestAddress
+        {
+            get
+            {
+                return RpAddr;
+            }
+        }
+
+        /// <summary>
+        /// The TP destinationn address.
+        /// </summary>
+        /// <value>An instance of SatTextTypeInfo containing TP destination address.</value>
+        public SatTextTypeInfo TpDestAddress
+        {
+            get
+            {
+                return TpAddr;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which defines setup call proactive command data for the call application.
+    /// </summary>
+    public class SatSetupCallData
+    {
+        internal int Id;
+        internal SatCmdQualiSetupCall Type;
+        internal SatTextInfo Text;
+        internal SatTextInfo Number;
+        internal uint Duratn;
+        internal SatIconIdInfo IcnId;
+
+        internal SatSetupCallData()
+        {
+        }
+
+        /// <summary>
+        /// Proactive Command Number sent by USIM.
+        /// </summary>
+        /// <value>Command Id represented in integer format.</value>
+        public int CommandId
+        {
+            get
+            {
+                return Id;
+            }
+        }
+
+        /// <summary>
+        /// Call type
+        /// </summary>
+        /// <value>Type of call represented in SatCmdQualiSetupCall enum.</value>
+        public SatCmdQualiSetupCall CallType
+        {
+            get
+            {
+                return Type;
+            }
+        }
+
+        /// <summary>
+        /// Display data for calling.
+        /// </summary>
+        /// <value>An instance of SatTextInfo containing display data for calling.</value>
+        public SatTextInfo DisplayText
+        {
+            get
+            {
+                return Text;
+            }
+        }
+
+        /// <summary>
+        /// Call number.
+        /// </summary>
+        /// <value>An instance of SatTextInfo containing call number information.</value>
+        public SatTextInfo CallNumber
+        {
+            get
+            {
+                return Number;
+            }
+        }
+
+        /// <summary>
+        /// Maximum repeat duration.
+        /// </summary>
+        /// <value>Max repeat duration represented in unsigned integer format.</value>
+        public uint Duration
+        {
+            get
+            {
+                return Duratn;
+            }
+        }
+
+        /// <summary>
+        /// Icon identifier for the call application.
+        /// </summary>
+        /// <value>An instance of SatIconIdInfo containing Icon id information.</value>
+        public SatIconIdInfo IconId
+        {
+            get
+            {
+                return IcnId;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which defines Send SS notification proactive command data for the applicaiton.
+    /// </summary>
+    public class SatSendSsData
+    {
+        internal int Id;
+        internal SimTypeOfNumber NumType;
+        internal SimNumberPlanIdentity Identity;
+        internal byte StringLen;
+        internal string Ss;
+
+        internal SatSendSsData()
+        {
+        }
+
+        /// <summary>
+        /// Proactive Command Number sent by USIM.
+        /// </summary>
+        /// <value>Command id represented in integer format.</value>
+        public int CommandId
+        {
+            get
+            {
+                return Id;
+            }
+        }
+
+        /// <summary>
+        /// Type of Number.
+        /// </summary>
+        /// <value>TON represented in SimTypeOfNumber enum.</value>
+        public SimTypeOfNumber Ton
+        {
+            get
+            {
+                return NumType;
+            }
+        }
+
+        /// <summary>
+        /// Numbering Plan Identity.
+        /// </summary>
+        /// <value>NPI reprensented in SimNumberPlanIdentity enum.</value>
+        public SimNumberPlanIdentity Npi
+        {
+            get
+            {
+                return Identity;
+            }
+        }
+
+        /// <summary>
+        /// SS string length.
+        /// </summary>
+        /// <value>Length of SS string represented in byte.</value>
+        public byte StringLength
+        {
+            get
+            {
+                return StringLen;
+            }
+        }
+
+        /// <summary>
+        /// SS string.
+        /// </summary>
+        /// <value>Text string represented in string.</value>
+        public string SsString
+        {
+            get
+            {
+                return Ss;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which defines send USSD notification proactive command data for the application.
+    /// </summary>
+    public class SatSetupUssdData
+    {
+        internal int Id;
+        internal byte Dcs;
+        internal byte StringLen;
+        internal string Ussd;
+
+        internal SatSetupUssdData()
+        {
+        }
+
+        /// <summary>
+        /// Proactive Command Number sent by USIM.
+        /// </summary>
+        /// <value>Command id represented in integer format.</value>
+        public int CommandId
+        {
+            get
+            {
+                return Id;
+            }
+        }
+
+        /// <summary>
+        /// Raw DCS info.
+        /// </summary>
+        /// <value>Raw DCS information represented in byte.</value>
+        public byte RawDcs
+        {
+            get
+            {
+                return Dcs;
+            }
+        }
+
+        /// <summary>
+        /// USSD string length.
+        /// </summary>
+        /// <value>Length of USSD string in byte.</value>
+        public byte UssdStringLength
+        {
+            get
+            {
+                return StringLen;
+            }
+        }
+
+        /// <summary>
+        /// USSD string.
+        /// </summary>
+        /// <value>Ussd text represented in string format.</value>
+        public string UssdString
+        {
+            get
+            {
+                return Ussd;
+            }
+        }
+    }
 }

@@ -191,4 +191,281 @@ namespace Tizen.Tapi
         /// </summary>
         TpduCmd = 5
     }
+
+    /// <summary>
+    /// Enumeration for the type of command and the next action indicator.
+    /// </summary>
+    public enum SatCommandType
+    {
+        /// <summary>
+        /// None.
+        /// </summary>
+        None = 0x00,
+        /// <summary>
+        /// Refresh.
+        /// </summary>
+        Refresh = 0x01,
+        /// <summary>
+        /// More time.
+        /// </summary>
+        MoreTime = 0x02,
+        /// <summary>
+        /// Setup event list.
+        /// </summary>
+        SetupEventList = 0x05,
+        /// <summary>
+        /// Setup call.
+        /// </summary>
+        SetupCall = 0x10,
+        /// <summary>
+        /// Send SS.
+        /// </summary>
+        SendSs = 0x11,
+        /// <summary>
+        /// Send USSD.
+        /// </summary>
+        SendUssd = 0x12,
+        /// <summary>
+        /// Send SMS.
+        /// </summary>
+        SendSms = 0x13,
+        /// <summary>
+        /// Send DTMF.
+        /// </summary>
+        SendDtmf = 0x14,
+        /// <summary>
+        /// Launch browser.
+        /// </summary>
+        LaunchBrowser = 0x15,
+        /// <summary>
+        /// Play tone.
+        /// </summary>
+        PlayTone = 0x20,
+        /// <summary>
+        /// Display text.
+        /// </summary>
+        DisplayText = 0x21,
+        /// <summary>
+        /// Get inkey.
+        /// </summary>
+        GetInKey = 0x22,
+        /// <summary>
+        /// Get input.
+        /// </summary>
+        GetInput = 0x23,
+        /// <summary>
+        /// Select item.
+        /// </summary>
+        SelectItem = 0x24,
+        /// <summary>
+        /// Setup menu.
+        /// </summary>
+        SetupMenu = 0x25,
+        /// <summary>
+        /// Provide local info.
+        /// </summary>
+        ProvideLocalInfo = 0x26,
+        /// <summary>
+        /// Setup idle mode text.
+        /// </summary>
+        SetupIdleModeText = 0x28,
+        /// <summary>
+        /// Language notification.
+        /// </summary>
+        LanguageNotification = 0x35,
+        /// <summary>
+        /// Open channel - class e.
+        /// </summary>
+        OpenChannel = 0x40,
+        /// <summary>
+        /// Close channel - class e.
+        /// </summary>
+        CloseChannel = 0x41,
+        /// <summary>
+        /// Receive data - class e.
+        /// </summary>
+        ReceiveData = 0x42,
+        /// <summary>
+        /// Send data.
+        /// </summary>
+        SendData = 0x43,
+        /// <summary>
+        /// Get channel status - class e.
+        /// </summary>
+        GetChannelStatus = 0x44,
+        /// <summary>
+        /// Inform to end the execution of a proactive command.
+        /// </summary>
+        EndOfAppExec = 0xFD,
+        /// <summary>
+        /// Inform end proactive session.
+        /// </summary>
+        EndProactiveSession = 0xFE,
+        /// <summary>
+        /// Reserved.
+        /// </summary>
+        Reserved = 0xFF
+    }
+
+    /// <summary>
+    /// Enumeration for the SAT call type.
+    /// </summary>
+    public enum SatCallType
+    {
+        /// <summary>
+        /// MO voice.
+        /// </summary>
+        MoVoice = 0x00,
+        /// <summary>
+        /// MO SMS.
+        /// </summary>
+        MoSms,
+        /// <summary>
+        /// SS.
+        /// </summary>
+        Ss,
+        /// <summary>
+        /// USSD.
+        /// </summary>
+        Ussd,
+        /// <summary>
+        /// PDP context action.
+        /// </summary>
+        PdpContextAct,
+        /// <summary>
+        /// Max.
+        /// </summary>
+        Max
+    }
+
+    /// <summary>
+    /// Enumeration for the result of call control by SIM.
+    /// </summary>
+    public enum SatCallCtrlResultType
+    {
+        /// <summary>
+        /// Allowed with no mod.
+        /// </summary>
+        AllowedNoMod = 0,
+        /// <summary>
+        /// Not allowed.
+        /// </summary>
+        NotAllowed = 1,
+        /// <summary>
+        /// Allowed with mod.
+        /// </summary>
+        AllowedWithMod = 2,
+        /// <summary>
+        /// Reserved.
+        /// </summary>
+        Reserved = 0xFF
+    }
+
+    /// <summary>
+    /// Enumeration for the SIM ATK BC repeat indicator type.
+    /// </summary>
+    public enum SatBcRepeatIndicatorType
+    {
+        /// <summary>
+        /// Alternate mode.
+        /// </summary>
+        AlternateMode = 0x01,
+        /// <summary>
+        /// Sequential mode.
+        /// </summary>
+        SequentialMode = 0x03,
+        /// <summary>
+        /// Reserved.
+        /// </summary>
+        Reserved = 0xFF
+    }
+
+    /// <summary>
+    /// Enumeration for alphabet format.
+    /// </summary>
+    public enum SatAlphabetFormat
+    {
+        /// <summary>
+        /// SMS default.
+        /// </summary>
+        SmsDefault = 0x00,
+        /// <summary>
+        /// 8Bit data.
+        /// </summary>
+        Data8Bit = 0x01,
+        /// <summary>
+        /// UCS2.
+        /// </summary>
+        Ucs2 = 0x02,
+        /// <summary>
+        /// Reserved.
+        /// </summary>
+        Reserved = 0x03
+    }
+
+    /// <summary>
+    /// Enumeration for the message class.
+    /// </summary>
+    public enum SatMsgClassType
+    {
+        /// <summary>
+        /// None.
+        /// </summary>
+        None = 0x00,
+        /// <summary>
+        /// Class 0.
+        /// </summary>
+        Class0 = 0x01,
+        /// <summary>
+        /// Class 1 Default meaning: ME - specific.
+        /// </summary>
+        Class1,
+        /// <summary>
+        /// Class 2 SIM specific message.
+        /// </summary>
+        Class2,
+        /// <summary>
+        /// Class 3 Default meaning : TE specific.
+        /// </summary>
+        Class3,
+        /// <summary>
+        /// Reserved.
+        /// </summary>
+        Reserved = 0xFF
+    }
+
+    /// <summary>
+    /// Enumeration for the command qualifier values of the setup call command.
+    /// </summary>
+    public enum SatCmdQualiSetupCall
+    {
+        /// <summary>
+        /// Command qualifier for setup call if another call is not busy.
+        /// </summary>
+        AnotherCallNotBusy = 0x00,
+        /// <summary>
+        /// Command qualifier for setup call if another call is not busy with redial.
+        /// </summary>
+        AnotherCallNotBusyWithRedial = 0x01,
+        /// <summary>
+        /// Command qualifier for setup call putting all other calls on hold.
+        /// </summary>
+        PutAllOtherCallsOnHold = 0x02,
+        /// <summary>
+        /// Command qualifier for setup call putting all other calls on hold with redial.
+        /// </summary>
+        PutAllOtherCallsOnHoldWithRedial = 0x03,
+        /// <summary>
+        /// Command qualifier for setup call disconnecting all other calls.
+        /// </summary>
+        DisconnectAllOtherCalls = 0x04,
+        /// <summary>
+        /// Command qualifier for setup call disconnecting all other calls with redial.
+        /// </summary>
+        DisconnectAllOtherCallsWithRedial = 0x05,
+        /// <summary>
+        /// Reserved.
+        /// </summary>
+        Reserved = 0xFF
+    }
 }

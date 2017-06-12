@@ -22,4 +22,71 @@ namespace Tizen.Tapi
     internal struct PhonebookRecordStruct
     {
     }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SimPhonebookListStruct
+    {
+        internal int Fdn;
+        internal int Adn;
+        internal int Sdn;
+        internal int Usim;
+        internal int Aas;
+        internal int Gas;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SimPhonebookStatusStruct
+    {
+        internal int IsInitCompleted;
+        internal SimPhonebookListStruct PbList;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct PhonebookContactChangeInfoStruct
+    {
+        internal PhonebookType Type;
+        internal ushort Index;
+        internal PhonebookOperationType Operation;
+    }
+
+    internal static class PhonebookStructConversions
+    {
+        internal static SimPhonebookList ConvertSimPhonebookListStruct(SimPhonebookListStruct listStruct)
+        {
+            SimPhonebookList list = new SimPhonebookList();
+            list.PbFdn = listStruct.Fdn;
+            list.PbAdn = listStruct.Adn;
+            list.PbSdn = listStruct.Sdn;
+            list.PbUsim = listStruct.Usim;
+            list.PbAas = listStruct.Aas;
+            list.PbGas = listStruct.Gas;
+            return list;
+        }
+
+        internal static SimPhonebookStatus ConvertSimPhonebookStatusStruct(SimPhonebookStatusStruct statusStruct)
+        {
+            SimPhonebookStatus status = new SimPhonebookStatus();
+            if (statusStruct.IsInitCompleted == 1)
+            {
+                status.InitStatus = true;
+            }
+
+            else if (statusStruct.IsInitCompleted == 0)
+            {
+                status.InitStatus = false;
+            }
+
+            status.List = ConvertSimPhonebookListStruct(statusStruct.PbList);
+            return status;
+        }
+
+        internal static PhonebookContactChangeInfo ConvertPhonebookContactChangeStruct(PhonebookContactChangeInfoStruct infoStruct)
+        {
+            PhonebookContactChangeInfo info = new PhonebookContactChangeInfo();
+            info.PbType = infoStruct.Type;
+            info.ChangedIndex = infoStruct.Index;
+            info.OpType = infoStruct.Operation;
+            return info;
+        }
+    }
 }

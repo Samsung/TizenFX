@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace Tizen.Tapi
 {
@@ -98,9 +99,21 @@ namespace Tizen.Tapi
         /// </summary>
         /// <returns>List of available CPs in case of success. Null in case of failure.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
-        public static string[] GetCpNames()
+        public static IEnumerable<string> GetCpNames()
         {
-            return Interop.Tapi.GetCpNames();
+            string[] cpNames = Interop.Tapi.GetCpNames();
+            if (cpNames == null)
+            {
+                return null;
+            }
+
+            List<string> cpList = new List<string>();
+            for (int i = 0; i < ((cpNames.Length) - 1); i++)
+            {
+                cpList.Add(cpNames[i]);
+            }
+
+            return cpList;
         }
 
         /// <summary>
