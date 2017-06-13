@@ -137,9 +137,9 @@ namespace VisualViewTest2
                 "Enter - Change BG image\n";
             Window.Instance.Add(guide);
 
-            Window.Instance.KeyEvent += Instance_Key;
+            Window.Instance.Key += Instance_Key;
             FocusManager.Instance.SetCurrentFocusView(view[0]);
-            Window.Instance.Touched += Instance_Touch;
+            Window.Instance.Touch += Instance_Touch;
             _window = Window.Instance;
             _window.WindowFocusChanged += _window_WindowFocusChanged;
 

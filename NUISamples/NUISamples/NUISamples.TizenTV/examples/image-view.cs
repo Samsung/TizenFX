@@ -63,9 +63,9 @@ namespace ImageViewTest
             Log("Customized Application Initialize event handler");
             window = Window.Instance;
             window.BackgroundColor = Color.Cyan;
-            window.Touched += OnWindowTouched;
-            window.WheelRolled += OnWindowWheelMoved;
-            window.KeyEvent += OnWindowKeyPressed;
+            window.Touch += OnWindowTouched;
+            window.WheelRoll += OnWindowWheelMoved;
+            window.Key += OnWindowKeyPressed;
             //window.EventProcessingFinished += OnWindowEventProcessingFinished;
 
             layer = window.GetDefaultLayer();

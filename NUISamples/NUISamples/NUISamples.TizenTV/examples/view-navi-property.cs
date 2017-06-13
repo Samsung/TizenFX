@@ -60,7 +60,7 @@ namespace MyCSharpExample
             FocusManager.Instance.SetCurrentFocusView(view[0]);
             FocusManager.Instance.PreFocusChange += Instance_PreFocusChange;
 
-            Window.Instance.Touched += Instance_Touch;
+            Window.Instance.Touch += Instance_Touch;
         }
 
         private void Instance_Touch(object sender, Window.TouchEventArgs e)

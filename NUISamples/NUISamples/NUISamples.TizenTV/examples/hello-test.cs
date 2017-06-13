@@ -59,7 +59,7 @@ namespace HelloTest
         {
             // Connect the signal callback for window touched signal
             _window = Window.Instance;
-            _window.Touched += OnWindowTouched;
+            _window.Touch += OnWindowTouched;
 
             // Add a _text label to the window
             _text = new TextLabel("Hello Mono World");

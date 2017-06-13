@@ -64,10 +64,10 @@ namespace UserAlphaFunctionTest
             Log("Initialize() is called!");
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
-            window.Touched += OnWindowTouched;
-            window.Touched += OnWindowTouched2;
+            window.Touch += OnWindowTouched;
+            window.Touch += OnWindowTouched2;
             //window.EventProcessingFinished += OnEventProcessingFinished;
-            window.WheelRolled += OnWindowWheelEvent;
+            window.WheelRoll += OnWindowWheelEvent;
 
             // Add a _text label to the window
             _text = new TextLabel("Hello Mono World");
