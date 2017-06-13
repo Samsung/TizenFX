@@ -25,6 +25,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// A class for managing the configuration of Wi-Fi.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WiFiConfiguration : IDisposable
     {
         private IntPtr _configHandle = IntPtr.Zero;
@@ -34,6 +35,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The name of access point(AP).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Name assigned to AP in WiFi configuration.</value>
         public string Name
         {
@@ -53,6 +55,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The security type of access point(AP).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Security type of AP in WiFi configuration.</value>
         public WiFiSecurityType SecurityType
         {
@@ -71,6 +74,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The proxy address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Proxy address of the access point.</value>
         /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
@@ -107,6 +111,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A property check whether the access point(AP) is hidden or not.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Boolean value indicating whether AP is hidden or not.</value>
         /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
@@ -141,6 +146,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The EAP Configuration.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>EAP configuration assigned to WiFi.</value>
         public WiFiEapConfiguration EapConfiguration
         {
@@ -160,6 +166,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Creates a WiFiConfiguration object with the given name, passphrase and securetype.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="name">Name of the WiFi.</param>
         /// <param name="passPhrase">Password to access the WiFi.</param>
         /// <param name="type">Security type of the WiFi.</param>
@@ -197,6 +204,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A method to destroy the managed objects in WiFiConfiguration.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

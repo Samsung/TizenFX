@@ -21,6 +21,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// An extended EventArgs class which contains changed RSSI level.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RssiLevelChangedEventArgs : EventArgs
     {
         private WiFiRssiLevel _level = WiFiRssiLevel.Level0;
@@ -33,6 +34,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The wifi RSSI level.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiRssiLevel Level
         {
             get

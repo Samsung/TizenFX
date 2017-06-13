@@ -21,6 +21,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// An extended EventArgs class which contains changed connection state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ConnectionStateChangedEventArgs : EventArgs
     {
         private WiFiConnectionState _state = WiFiConnectionState.Disconnected;
@@ -35,6 +36,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The wifi connection state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiConnectionState State
         {
             get
@@ -46,6 +48,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The access point
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiAP AP
         {
             get

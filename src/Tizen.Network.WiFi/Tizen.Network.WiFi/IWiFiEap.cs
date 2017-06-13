@@ -21,21 +21,25 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// An abstract class for WiFi EAP information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     internal interface IWiFiEap
     {
         /// <summary>
         /// The file path of CA Certificate of EAP.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         string CaCertificationFile { get; set; }
 
         /// <summary>
         /// The EAP type of wifi.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         WiFiEapType EapType { get; set; }
 
         /// <summary>
         /// The type of EAP phase2 authentication of Wi-Fi.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         WiFiAuthenticationType AuthenticationType { get; set; }
     } //WiFiEap
 }

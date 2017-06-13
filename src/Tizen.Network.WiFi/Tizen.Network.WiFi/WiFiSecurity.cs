@@ -22,6 +22,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// A class for managing the WiFi security information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WiFiSecurity
     {
         private Interop.WiFi.SafeWiFiAPHandle _apHandle;
@@ -30,6 +31,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The type of Wi-Fi security.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Represents the security type of WiFi.</value>
         /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
@@ -60,6 +62,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The type of Wi-Fi encryption
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Represents the encryption type of WiFi.</value>
         /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
@@ -90,6 +93,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The EAP information
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Eap information of WiFi.</value>
         public WiFiEap EapInformation
         {
@@ -102,6 +106,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A property to check whether the passphrase is required or not.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Boolean value to check if passphrase is required or not.</value>
         public bool IsPassphraseRequired
         {
@@ -120,6 +125,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A property to check whether the Wi-Fi Protected Setup(WPS) is supported or not.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Boolean value to check if wps is supported or not.</value>
         public bool IsWpsSupported
         {
@@ -144,6 +150,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Sets the passphrase.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="passphrase">The passphrase of the access point.</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>

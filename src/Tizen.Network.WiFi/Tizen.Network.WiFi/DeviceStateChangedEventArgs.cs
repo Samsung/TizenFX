@@ -21,6 +21,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// An extended EventArgs class which contains changed device state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class DeviceStateChangedEventArgs : EventArgs
     {
         private WiFiDeviceState _state = WiFiDeviceState.Deactivated;
@@ -33,6 +34,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The wifi device state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDeviceState State
         {
             get

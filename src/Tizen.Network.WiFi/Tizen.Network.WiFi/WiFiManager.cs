@@ -56,11 +56,13 @@ namespace Tizen.Network.WiFi
     /// A manager class which allows applications to connect to a Wireless Local Area Network (WLAN) and to transfer data over the network.<br>
     /// The Wi-Fi Manager enables your application to activate and deactivate a local Wi-Fi device, and to connect to a WLAN network in the infrastructure mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     static public class WiFiManager
     {
         /// <summary>
         /// The local MAC address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Represents the mac address of the WiFi.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         static public string MacAddress
@@ -74,6 +76,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The name of the network interface.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Interface name of WiFi.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         static public string InterfaceName
@@ -87,6 +90,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The network connection state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Represents the connection state of WiFi.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         static public WiFiConnectionState ConnectionState
@@ -100,6 +104,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A property to Check whether Wi-Fi is activated.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Boolean value to check whether WiFi is activated or not.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         static public bool IsActive
@@ -113,6 +118,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// DeviceStateChanged is raised when the device state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         static public event EventHandler<DeviceStateChangedEventArgs> DeviceStateChanged
@@ -130,6 +136,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// ConnectionStateChanged is raised when the connection state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         static public event EventHandler<ConnectionStateChangedEventArgs> ConnectionStateChanged
@@ -147,6 +154,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// RssiLevelChanged is raised when the RSSI of connected Wi-Fi is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         static public event EventHandler<RssiLevelChangedEventArgs> RssiLevelChanged
@@ -165,6 +173,7 @@ namespace Tizen.Network.WiFi
         /// BackgroundScanFinished is raised when the background scan is finished.
         /// The background scan starts automatically when wifi is activated. The callback will be invoked periodically.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         static public event EventHandler BackgroundScanFinished
@@ -182,6 +191,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Gets the WiFi safe handle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The instance of SafeWiFiManagerHandle</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -199,6 +209,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Gets the result of the scan.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns> A list of WiFiAP objects.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -214,6 +225,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Gets the result of specific AP scan.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns> A list contains the WiFiAP objects.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -229,6 +241,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Gets the list of wifi configurations.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>A list contains the WiFiConfiguration objects.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
@@ -245,6 +258,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Saves Wi-Fi configuration of access point.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="configuration">The configuration to be stored</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
@@ -261,6 +275,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Gets the object of the connected WiFiAP.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns> The connected wifi access point(AP) information.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -277,6 +292,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Activates Wi-Fi asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns> A task indicating whether the Activate method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
@@ -293,6 +309,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Activates Wi-Fi asynchronously and displays Wi-Fi picker (popup) when Wi-Fi is not automatically connected.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns> A task indicating whether the ActivateWithPicker method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
@@ -309,6 +326,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Deactivates Wi-Fi asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns> A task indicating whether the Deactivate method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
@@ -325,6 +343,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Starts scan asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns> A task indicating whether the Scan method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
@@ -341,6 +360,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Starts specific access point scan, asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns> A task indicating whether the ScanSpecificAP method is done or not.</returns>
         /// <param name="essid">The essid of hidden ap</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>

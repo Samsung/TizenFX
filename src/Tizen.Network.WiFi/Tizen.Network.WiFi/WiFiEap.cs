@@ -26,6 +26,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// A class for managing the EAP information of access point(AP).
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WiFiEap : IWiFiEap
     {
         private Interop.WiFi.SafeWiFiAPHandle _apHandle;
@@ -33,6 +34,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The file path of CA Certificate of EAP.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>CA certification file of EAP.</value>
         /// <exception cref="NotSupportedException">Thrown while setting this value when WiFi is not supported.</exception>
         /// <exception cref="ArgumentNullException">Thrown while setting this value when file value is null.</exception>
@@ -69,6 +71,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The EAP type of wifi.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Type of EAP.</value>
         /// <exception cref="NotSupportedException">Thrown while setting this value when WiFi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
@@ -99,6 +102,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The type of EAP phase2 authentication of Wi-Fi.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Authentication type of WiFi.</value>
         /// <exception cref="NotSupportedException">Thrown while setting this value when WiFi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
@@ -134,6 +138,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Gets the private key file of EAP.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The file path of private key.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
@@ -155,6 +160,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Sets the private key information of EAP.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="privateKeyFile">The file path of private key.</param>
         /// <param name="password">The password.</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
@@ -179,6 +185,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Gets the Client Certificate of EAP.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The file path of Client Certificate.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
@@ -200,6 +207,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Sets the CA Certificate of EAP.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="clientCertFile">The file path of Client Certificate.</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
@@ -223,6 +231,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Gets the username of EAP passphrase.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The user name</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
@@ -245,6 +254,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Returns whether the password is set or not.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>True if password is set, false if password is not set.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
@@ -267,6 +277,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Sets the user name of EAP.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="userName">The user name</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
@@ -290,6 +301,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Sets the password of EAP.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="password">The password</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>

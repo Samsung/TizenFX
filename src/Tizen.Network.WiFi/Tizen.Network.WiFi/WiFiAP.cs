@@ -23,6 +23,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// A class for managing the network information of the access point(AP).
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WiFiAP : IDisposable
     {
         private IntPtr _apHandle = IntPtr.Zero;
@@ -37,6 +38,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The network information of the access point(AP).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>WiFiNetwork instance containing network information of AP.</value>
         public WiFiNetwork NetworkInformation
         {
@@ -49,6 +51,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The security information of the access point(AP).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>WiFiSecurity instance containing security information of AP.</value>
         public WiFiSecurity SecurityInformation
         {
@@ -68,6 +71,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Creates an object for the access point.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="essid">The Extended Service Set Identifier of the access point.</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -87,6 +91,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Creates an object for the hidden access point.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="essid">The Extended Service Set Identifier of the access point.</param>
         /// <param name="hidden">The value to set hidden AP</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
@@ -111,6 +116,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A method to destroy the managed WiFiAP objects.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -165,6 +171,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Refreshes the access point information.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
@@ -190,6 +197,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Connects the access point asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns> A task indicating whether the Connect method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
@@ -241,6 +249,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Connects the access point with WPS asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="info">A WpsInfo instance which is of type WpsPbcInfo or WpsPinInfo.</param>
         /// <returns>A task indicating whether the ConnectWps method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
@@ -316,6 +325,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Connects the access point with WPS without ssid asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="info">A WpsInfo instance which is of type WpsPbcInfo or WpsPinInfo.</param>
         /// <returns>A task which contains Connected access point information.</returns>
         /// <remarks>
@@ -390,6 +400,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Disconnects the access point asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns> A task indicating whether the Disconnect method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
@@ -440,6 +451,7 @@ namespace Tizen.Network.WiFi
         /// Deletes the information of stored access point and disconnects it when it is connected.<br>
         /// If an AP is connected, then connection information will be stored. This information is used when a connection to that AP is established automatically.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -468,6 +480,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// An abstract class which is used to represent WPS information of access point.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class WpsInfo
     {
     }
@@ -493,6 +506,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A public constructor which instantiates WpsPinInfo class with the given pin.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="pin">WPS Pin of the access point.</param>
         /// <remarks>
         /// Pin should not be null or empty. It should be of less than 8 characters.

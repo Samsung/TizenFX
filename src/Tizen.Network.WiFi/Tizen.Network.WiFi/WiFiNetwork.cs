@@ -25,6 +25,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// A class for managing the Wi-Fi network information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WiFiNetwork
     {
         private Interop.WiFi.SafeWiFiAPHandle _apHandle;
@@ -35,6 +36,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The Extended Service Set Identifier(ESSID).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Essid of the WiFi.</value>
         public string Essid
         {
@@ -61,6 +63,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The Basic Service Set Identifier(BSSID).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Bssid of the WiFi.</value>
         public string Bssid
         {
@@ -80,6 +83,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The address informaiton for IPv4.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>IP address information for IPv4 type.</value>
         public IAddressInformation IPv4Setting
         {
@@ -92,6 +96,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The address ainformation for IPv6.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>IP address information for IPv6 type.</value>
         public IAddressInformation IPv6Setting
         {
@@ -104,6 +109,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The proxy address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Represents proxy address of WiFi.</value>
         /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
@@ -135,6 +141,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The proxy type(IPv6).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Represents proxy type of WiFi.</value>
         /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
@@ -165,6 +172,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The frequency band(MHz).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Represents the frequency band value.</value>
         public int Frequency
         {
@@ -183,6 +191,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The Received signal strength indication(RSSI).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Represents Rssi level of WiFi.</value>
         public WiFiRssiLevel Rssi
         {
@@ -201,6 +210,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The max speed (Mbps).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Represents max speed value.</value>
         public int MaxSpeed
         {
@@ -219,6 +229,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A property to check whether the access point is favorite or not.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Boolean value to check if the access point is favorite or not.</value>
         public bool IsFavorite
         {
@@ -237,6 +248,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// A property to check whether the access point is passpoint or not.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Boolean value to check if the access point is passpoint or not.</value>
         public bool IsPasspoint
         {
@@ -256,6 +268,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The connection state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Represents the connection state of WiFi.</value>
         public WiFiConnectionState ConnectionState
         {
@@ -274,6 +287,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Gets the all IPv6 addresses of the access point
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>A list of IPv6 addresses of the access point.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
