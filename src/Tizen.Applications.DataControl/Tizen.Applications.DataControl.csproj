@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
     <Authors>Samsung Electronics</Authors>
     <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
     <Description>Provides the Data Control API for Tizen .NET</Description>
