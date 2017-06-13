@@ -1772,7 +1772,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Readonly.
         /// </remarks>
-        internal Vector3 NaturalSize
+        public Vector3 NaturalSize
         {
             get
             {
@@ -3589,7 +3589,7 @@ namespace Tizen.NUI.BaseComponents
 
             }
         }
-        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelRolled
+        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelMoved
         {
             add
             {
