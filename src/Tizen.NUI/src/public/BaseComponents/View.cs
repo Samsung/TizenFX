@@ -311,7 +311,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for Touched signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// Touched signal is emitted when touch input is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touched
+        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touch
         {
             add
             {
@@ -383,7 +383,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for Hovered signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// Hovered signal is emitted when hover input is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hovered
+        public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hover
         {
             add
             {
@@ -455,7 +455,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for WheelMoved signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// WheelMoved signal is emitted when wheel event is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelRolled
+        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelRoll
         {
             add
             {
@@ -3533,6 +3533,119 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(View.Property.CLIPPING_MODE, new Tizen.NUI.PropertyValue((int)value));
             }
         }
+
+
+
+
+
+        /*********************************************************************************/
+        /*** will be removed/deprecated                                                  ***/
+        /*********************************************************************************/
+        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touched
+        {
+            add
+            {
+                if (_touchDataEventHandler == null)
+                {
+                    _touchDataCallback = OnTouch;
+                    this.TouchSignal().Connect(_touchDataCallback);
+                }
+
+                _touchDataEventHandler += value;
+            }
+
+            remove
+            {
+                _touchDataEventHandler -= value;
+
+                if (_touchDataEventHandler == null && TouchSignal().Empty() == false)
+                {
+                    this.TouchSignal().Disconnect(_touchDataCallback);
+                }
+
+            }
+        }
+        public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hovered
+        {
+            add
+            {
+                if (_hoverEventHandler == null)
+                {
+                    _hoverEventCallback = OnHoverEvent;
+                    this.HoveredSignal().Connect(_hoverEventCallback);
+                }
+
+                _hoverEventHandler += value;
+            }
+
+            remove
+            {
+                _hoverEventHandler -= value;
+
+                if (_hoverEventHandler == null && HoveredSignal().Empty() == false)
+                {
+                    this.HoveredSignal().Disconnect(_hoverEventCallback);
+                }
+
+            }
+        }
+        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelRolled
+        {
+            add
+            {
+                if (_wheelEventHandler == null)
+                {
+                    _wheelEventCallback = OnWheelEvent;
+                    this.WheelEventSignal().Connect(_wheelEventCallback);
+                }
+
+                _wheelEventHandler += value;
+            }
+
+            remove
+            {
+                _wheelEventHandler -= value;
+
+                if (_wheelEventHandler == null && WheelEventSignal().Empty() == false)
+                {
+                    this.WheelEventSignal().Disconnect(_wheelEventCallback);
+                }
+
+            }
+        }
+        public Position AnchorPoint
+        {
+            get
+            {
+                Position temp = new Position(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.ANCHOR_POINT).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        public Size Size
+        {
+            get
+            {
+                Size temp = new Size(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.SIZE).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+
+        /*********************************************************************************/
+        /*** will be removed/deprecated                                                  ***/
+        /*********************************************************************************/
+
     }
 
 }

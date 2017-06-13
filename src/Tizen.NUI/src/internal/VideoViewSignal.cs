@@ -8,6 +8,8 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI {
 
     internal class VideoViewSignal : global::System.IDisposable {
