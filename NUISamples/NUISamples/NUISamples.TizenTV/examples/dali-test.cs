@@ -136,7 +136,7 @@ namespace DaliTest
             Animatable handle = new Animatable();
             int myPropertyIndex = handle.RegisterProperty("myProperty", new PropertyValue(10.0f), PropertyAccessMode.ReadWrite);
             float myProperty = 0.0f;
-            handle.GetProperty(myPropertyIndex).Get(ref myProperty);
+            handle.GetProperty(myPropertyIndex).Get(out myProperty);
             Tizen.Log.Debug("NUI",  "myProperty value: " + myProperty );
 
             int myPropertyIndex2 = handle.RegisterProperty("myProperty2", new PropertyValue(new Size(5.0f, 5.0f, 0.0f)), PropertyAccessMode.ReadWrite);
@@ -155,13 +155,13 @@ namespace DaliTest
             window.BackgroundColor = Color.White;
             Size windowSize = new Size(window.Size.Width, window.Size.Height, 0.0f);
             Tizen.Log.Debug("NUI", "Window size: " + windowSize.Width + ", " + windowSize.Height);
-            window.GetDefaultLayer().Add(view);
+            window.Add(view);
 
             TextLabel text = new TextLabel("Hello Mono World");
             text.ParentOrigin = ParentOrigin.Center;
-            text.AnchorPoint = AnchorPoint.Center;
+            text.PivotPoint = PivotPoint.Center;
             text.HorizontalAlignment = HorizontalAlignment.Center;
-            window.GetDefaultLayer().Add(text);
+            window.Add(text);
 
             Tizen.Log.Debug("NUI",  "Text label text:  " + text.Text );
 
@@ -297,10 +297,10 @@ namespace DaliTest
             downView = new View();
             downView.Name = "downView";
 
-            Window.Instance.GetDefaultLayer().Add(leftView);
-            Window.Instance.GetDefaultLayer().Add(rightView);
-            Window.Instance.GetDefaultLayer().Add(upView);
-            Window.Instance.GetDefaultLayer().Add(downView);
+            Window.Instance.Add(leftView);
+            Window.Instance.Add(rightView);
+            Window.Instance.Add(upView);
+            Window.Instance.Add(downView);
 
             view.LeftFocusableView = leftView;
             tmpView = view.LeftFocusableView;
@@ -324,7 +324,7 @@ namespace DaliTest
                 Tizen.Log.Debug("NUI", "Failed: RightFocusedView = " + tmpView.Name);
             }
 
-            Window.Instance.GetDefaultLayer().Add(view);
+            Window.Instance.Add(view);
 
             view.UpFocusableView = upView;
             tmpView = view.UpFocusableView;
@@ -348,7 +348,7 @@ namespace DaliTest
                 Tizen.Log.Debug("NUI", "Failed: DownFocusedView = " + tmpView.Name);
             }
 
-            Window.Instance.GetDefaultLayer().Remove(leftView);
+            Window.Instance.Remove(leftView);
             tmpView = view.LeftFocusableView;
             if (!tmpView)
             {
@@ -541,9 +541,9 @@ namespace DaliTest
             label.TextColor = Color.Red;
             label.PointSize = 30.0f;
             label.ParentOrigin = ParentOrigin.TopLeft;
-            label.AnchorPoint = AnchorPoint.TopLeft;
+            label.PivotPoint = PivotPoint.TopLeft;
             label.Position = new Position(0.0f, 50.0f, 0.0f);
-            Window.GetDefaultLayer().Add(label);
+            Window.Instance.Add(label);
             label.VisibilityChanged += (sender, e) =>
             {
                 if (e.Visibility)
@@ -555,8 +555,8 @@ namespace DaliTest
             PushButton button = new PushButton();
             button.LabelText = "Change Visibility";
             button.ParentOrigin = ParentOrigin.TopLeft;
-            button.AnchorPoint = AnchorPoint.TopLeft;
-            Window.GetDefaultLayer().Add(button);
+            button.PivotPoint = PivotPoint.TopLeft;
+            Window.Instance.Add(button);
             button.Clicked += (sender, e) =>
             {
                 if (label.Visible)
@@ -578,13 +578,13 @@ namespace DaliTest
             image.ResourceUrl = _resPath + "/images/dog-anim.gif";
             image.Size2D = new Size2D(150, 150);
             image.ParentOrigin = ParentOrigin.TopLeft;
-            image.AnchorPoint = AnchorPoint.TopLeft;
+            image.PivotPoint = PivotPoint.TopLeft;
             image.Position = new Position(0.0f, 150.0f, 0.0f);
             image.ResourceReady += (sender, e) =>
             {
                 Tizen.Log.Debug("NUI", "Resource is ready!");
             };
-            Window.GetDefaultLayer().Add(image);
+            Window.Instance.Add(image);
         }
 
         public void WindowDevelPropertyTest()
@@ -642,7 +642,7 @@ namespace DaliTest
 
             background = spin.Background;
             Color backgroundColor = new Color();
-            background.Find(ColorVisualProperty.MixColor).Get(backgroundColor);
+            background.Find(ColorVisualProperty.MixColor, "mixColor")?.Get(backgroundColor);
             if( backgroundColor == Color.Red )
             {
                 Tizen.Log.Debug("NUI", "Custom View Background property : test passed");
@@ -690,9 +690,9 @@ namespace DaliTest
         {
           View container = new View();
           container.Position = new Position(-800.0f, -800.0f, 0.0f);
-          Window.Instance.GetDefaultLayer().Add(container);
-          Tizen.Log.Debug("NUI", "winow layer count is "+Window.Instance.GetLayerCount());
-          Tizen.Log.Debug("NUI", "winow default layer child at 0 is "+Window.GetDefaultLayer().GetChildAt(0));
+          Window.Instance.Add(container);
+          Tizen.Log.Debug("NUI", "winow layer count is "+Window.Instance.LayerCount);
+          Tizen.Log.Debug("NUI", "winow default layer child at 0 is "+Window.Instance.GetDefaultLayer().GetChildAt(0));
           // Test downcast for native control
           TextLabel myLabel = new TextLabel();
           myLabel.Name = "MyLabelName";
@@ -830,7 +830,7 @@ namespace DaliTest
                 parent.Add(childs[i]);
             }
 
-            for (uint i = 0; i < parent.GetChildCount(); i++)
+            for (uint i = 0; i < parent.ChildCount; i++)
             {
                 View child = parent.GetChildAt(i);
                 View childView = View.DownCast<View>(child);
@@ -845,7 +845,7 @@ namespace DaliTest
             button.BackgroundColor = Color.White;
             View parentView = new View();
             parentView.Add(button);
-            PushButton view = PushButton.DownCast(parentView.GetChildAt(0));
+            PushButton view = parentView.GetChildAt(0) as PushButton;
             if (view)
             {
                 Tizen.Log.Debug("NUI", "NUI view GetTypeName= " + view.GetTypeName());

@@ -349,140 +349,119 @@ namespace Tizen.NUI
             }
         }
 
-        internal Vector3 Assign(float[] array)
-        {
-            Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_Assign__SWIG_0(swigCPtr, array), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal Vector3 Assign(Vector2 rhs)
-        {
-            Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_Assign__SWIG_1(swigCPtr, Vector2.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal Vector3 Assign(Vector4 rhs)
-        {
-            Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_Assign__SWIG_2(swigCPtr, Vector4.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal Vector3 Add(Vector3 rhs)
+        private Vector3 Add(Vector3 rhs)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_Add(swigCPtr, Vector3.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector3 AddAssign(Vector3 rhs)
+        private Vector3 AddAssign(Vector3 rhs)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_AddAssign(swigCPtr, Vector3.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector3 Subtract(Vector3 rhs)
+        private Vector3 Subtract(Vector3 rhs)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_Subtract__SWIG_0(swigCPtr, Vector3.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector3 SubtractAssign(Vector3 rhs)
+        private Vector3 SubtractAssign(Vector3 rhs)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_SubtractAssign(swigCPtr, Vector3.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector3 Multiply(Vector3 rhs)
+        private Vector3 Multiply(Vector3 rhs)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_Multiply__SWIG_0(swigCPtr, Vector3.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector3 Multiply(float rhs)
+        private Vector3 Multiply(float rhs)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_Multiply__SWIG_1(swigCPtr, rhs), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector3 MultiplyAssign(Vector3 rhs)
+        private Vector3 MultiplyAssign(Vector3 rhs)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_MultiplyAssign__SWIG_0(swigCPtr, Vector3.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector3 MultiplyAssign(float rhs)
+        private Vector3 MultiplyAssign(float rhs)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_MultiplyAssign__SWIG_1(swigCPtr, rhs), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector3 MultiplyAssign(Rotation rhs)
+        private Vector3 MultiplyAssign(Rotation rhs)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_MultiplyAssign__SWIG_2(swigCPtr, Rotation.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector3 Divide(Vector3 rhs)
+        private Vector3 Divide(Vector3 rhs)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_Divide__SWIG_0(swigCPtr, Vector3.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector3 Divide(float rhs)
+        private Vector3 Divide(float rhs)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_Divide__SWIG_1(swigCPtr, rhs), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector3 DivideAssign(Vector3 rhs)
+        private Vector3 DivideAssign(Vector3 rhs)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_DivideAssign__SWIG_0(swigCPtr, Vector3.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector3 DivideAssign(float rhs)
+        private Vector3 DivideAssign(float rhs)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_DivideAssign__SWIG_1(swigCPtr, rhs), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector3 Subtract()
+        private Vector3 Subtract()
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_Subtract__SWIG_1(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal bool EqualTo(Vector3 rhs)
+        private bool EqualTo(Vector3 rhs)
         {
             bool ret = NDalicPINVOKE.Vector3_EqualTo(swigCPtr, Vector3.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal bool NotEqualTo(Vector3 rhs)
+        private bool NotEqualTo(Vector3 rhs)
         {
             bool ret = NDalicPINVOKE.Vector3_NotEqualTo(swigCPtr, Vector3.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal float ValueOfIndex(uint index)
+        private float ValueOfIndex(uint index)
         {
             float ret = NDalicPINVOKE.Vector3_ValueOfIndex__SWIG_0(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

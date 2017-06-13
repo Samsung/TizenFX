@@ -33,7 +33,6 @@ namespace VisaulAnimationExample
         private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
 
         private Animation _animation1;
-        private Animation _animation2;
         private bool _transitionInProgress = false;
         private int cnt1, cnt2;
 
@@ -66,12 +65,12 @@ namespace VisaulAnimationExample
 
             TableView titleLayout = new TableView(2, 1);
             titleLayout.Name = ("TitleLayout");
-            titleLayout.AnchorPoint = AnchorPoint.TopLeft;
+            titleLayout.PivotPoint = PivotPoint.TopLeft;
             titleLayout.Position2D = new Position2D(10, 10);
             titleLayout.Size2D = new Size2D((int)(window.Size.Width * 0.9f), (int)(window.Size.Height * 0.9f));
             titleLayout.SetCellPadding(new Size2D(10, 10));
             titleLayout.BackgroundColor = Color.Cyan;
-            window.GetDefaultLayer().Add(titleLayout);
+            window.Add(titleLayout);
 
             _title = new TextLabel("Visual Transition / SVG / AGIF Example");
             _title.Name = ("Title");
@@ -86,7 +85,7 @@ namespace VisaulAnimationExample
             contentLayout.Name = ("ContentLayout");
             contentLayout.WidthResizePolicy = ResizePolicyType.FillToParent;
             contentLayout.HeightResizePolicy = ResizePolicyType.FillToParent;
-            contentLayout.AnchorPoint = AnchorPoint.TopLeft;
+            contentLayout.PivotPoint = PivotPoint.TopLeft;
             contentLayout.SetCellPadding(new Size2D(10, 10));
             contentLayout.BackgroundColor = Color.Magenta;
             titleLayout.AddChild(contentLayout, new TableView.CellPosition(1, 0));
@@ -118,7 +117,7 @@ namespace VisaulAnimationExample
             _shadowButton.LabelText = "Toggle Transition";
             _shadowButton.Name = ("ToggleTransition");
             _shadowButton.ParentOrigin = ParentOrigin.Center;
-            _shadowButton.AnchorPoint = AnchorPoint.Center;
+            _shadowButton.PivotPoint = PivotPoint.Center;
             _shadowButton.Clicked += (obj, ev) =>
             {
                 _active = !_active;
@@ -166,7 +165,7 @@ namespace VisaulAnimationExample
             PushButton svgButton = new PushButton();
             svgButton.LabelText = "SVG Visual Test";
             svgButton.Name = ("svg_visual_test");
-            svgButton.AnchorPoint = AnchorPoint.Center;
+            svgButton.PivotPoint = PivotPoint.Center;
             svgButton.WidthResizePolicy = ResizePolicyType.FillToParent;
             svgButton.HeightResizePolicy = ResizePolicyType.FillToParent;
             svgButton.Clicked += (obj, ev) =>
@@ -206,7 +205,7 @@ namespace VisaulAnimationExample
             PushButton gifButton = new PushButton();
             gifButton.LabelText = "AnimatedImage Visual Test";
             gifButton.Name = ("gif_visual_test");
-            gifButton.AnchorPoint = AnchorPoint.Center;
+            gifButton.PivotPoint = PivotPoint.Center;
             gifButton.WidthResizePolicy = ResizePolicyType.FillToParent;
             gifButton.HeightResizePolicy = ResizePolicyType.FillToParent;
             gifButton.Clicked += (obj, ev) =>
@@ -233,21 +232,18 @@ namespace VisaulAnimationExample
                 _animation1.Stop();
                 _animation1.Finished += OnTransitionFinished1;
             }
-            if (_animation2)
-            {
-                _animation2.Stop();
-                _animation2.Finished += OnTransitionFinished2;
-            }
 
             if (activate)
             {
-                _animation1 = _contentView.AnimateVisual(_icon, "Size", new Size2D(150, 150), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
-                _animation2 = _contentView.AnimateVisual(_icon, "Position", new Position2D(40, 40), 0, 1000);
+                _contentView.AnimateVisualAdd(_icon, "Size", new Size2D(150, 150), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
+                _contentView.AnimateVisualAdd(_icon, "Position", new Position2D(40, 40), 0, 1000);
+                _animation1 = _contentView.AnimateVisualAddFinish();
             }
             else
             {
-                _animation1 = _contentView.AnimateVisual(_icon, "Size", new Position2D(50, 50), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
-                _animation2 = _contentView.AnimateVisual(_icon, "Position", new Position2D(5, 5), 0, 1000);
+                _contentView.AnimateVisualAdd(_icon, "Size", new Position2D(50, 50), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
+                _contentView.AnimateVisualAdd(_icon, "Position", new Position2D(5, 5), 0, 1000);
+                _animation1 = _contentView.AnimateVisualAddFinish();
             }
 
             if (_animation1)
@@ -255,12 +251,6 @@ namespace VisaulAnimationExample
                 _animation1.Finished += OnTransitionFinished1;
                 _transitionInProgress = true;
                 _animation1.Play();
-            }
-            if (_animation2)
-            {
-                _animation2.Finished += OnTransitionFinished2;
-                _transitionInProgress = true;
-                _animation2.Play();
             }
         }
         private void OnTransitionFinished1(object sender, EventArgs e)
@@ -270,15 +260,6 @@ namespace VisaulAnimationExample
             {
                 _animation1.Finished += OnTransitionFinished1;
                 _animation1.Reset();
-            }
-        }
-        private void OnTransitionFinished2(object sender, EventArgs e)
-        {
-            _transitionInProgress = false;
-            if (_animation2)
-            {
-                _animation2.Finished += OnTransitionFinished2;
-                _animation2.Reset();
             }
         }
 

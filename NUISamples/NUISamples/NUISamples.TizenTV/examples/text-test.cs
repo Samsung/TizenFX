@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2016 Samsung Electronics Co., Ltd.
+* Copyright (c) 2017 Samsung Electronics Co., Ltd.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -53,13 +53,13 @@ namespace TextTest
             pixelLabel.Position2D = new Position2D(10, 10);
             pixelLabel.PixelSize = 32.0f;
             pixelLabel.BackgroundColor = Color.Magenta;
-            window.GetDefaultLayer().Add(pixelLabel);
+            window.Add(pixelLabel);
 
             TextLabel pointLabel = new TextLabel("Test Point Size 32.0f");
             pointLabel.Position2D = new Position2D(10, 100);
             pointLabel.PointSize = 32.0f;
             pointLabel.BackgroundColor = Color.Red;
-            window.GetDefaultLayer().Add(pointLabel);
+            window.Add(pointLabel);
 
             TextLabel ellipsis = new TextLabel("Ellipsis of TextLabel is enabled.");
             ellipsis.Size2D = new Size2D(100, 80);
@@ -67,7 +67,7 @@ namespace TextTest
             ellipsis.PointSize = 20.0f;
             ellipsis.Ellipsis = true;
             ellipsis.BackgroundColor = Color.Cyan;
-            window.GetDefaultLayer().Add(ellipsis);
+            window.Add(ellipsis);
 
             TextLabel autoScrollStopMode = new TextLabel("AutoScrollStopMode is finish-loop.");
             autoScrollStopMode.Size2D = new Size2D(400, 50);
@@ -76,7 +76,7 @@ namespace TextTest
             autoScrollStopMode.BackgroundColor = Color.Green;
             autoScrollStopMode.AutoScrollStopMode = AutoScrollStopMode.FinishLoop;
             autoScrollStopMode.EnableAutoScroll = true;
-            window.GetDefaultLayer().Add(autoScrollStopMode);
+            window.Add(autoScrollStopMode);
 
             TextField field = new TextField();
             field.Size2D = new Size2D(400, 100);
@@ -89,7 +89,20 @@ namespace TextTest
             hiddenMap.Add(HiddenInputProperty.SubstituteCount, new PropertyValue(4));
             hiddenMap.Add(HiddenInputProperty.SubstituteCharacter, new PropertyValue(0x23));
             field.HiddenInputSettings = hiddenMap;
-            window.GetDefaultLayer().Add(field);
+            window.Add(field);
+
+            TextEditor editor = new TextEditor();
+            editor.Size2D = new Size2D(400, 100);
+            editor.Position2D = new Position2D(10, 550);
+            editor.BackgroundColor = Color.Magenta;
+            editor.PlaceholderText = "input someth...";
+            editor.PlaceholderTextColor = Color.Red;
+            window.Add(editor);
+            editor.TextChanged += (obj, e) => {
+                Tizen.Log.Debug("NUI", "editor line count: " + e.TextEditor.LineCount);
+            };
+
+            Tizen.Log.Debug("NUI",  "editor id: " + editor.ID);
         }
 
         [STAThread]

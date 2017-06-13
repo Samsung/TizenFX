@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,11 +33,6 @@ namespace DatePickerTest
         private Spin _spinMonth; // spin control for month
         private Spin _spinDay;   // spin control for day
 
-        private ImfManager _imfMgr;
-        private TextField _textField;
-        private PushButton _pushButton;
-        public bool _toggle;
-
         public Example() : base()
         {
 
@@ -58,16 +53,16 @@ namespace DatePickerTest
             _container = new FlexContainer();
 
             //_container.ParentOrigin = ParentOrigin.Center;
-            _container.AnchorPoint = AnchorPoint.Center;
+            _container.PivotPoint = PivotPoint.Center;
             _container.FlexDirection = FlexContainer.FlexDirectionType.Row;
             _container.Size = new Vector3(480.0f, 150.0f, 0.0f);
             _container.Position2D = new Position2D(400, 400);
 
-            window.GetDefaultLayer().Add(_container);
+            window.Add(_container);
 
             // Create a Spin control for year
             _spinYear = new Spin();
-            _spinYear.AnchorPoint = AnchorPoint.Center;
+            _spinYear.PivotPoint = PivotPoint.Center;
             _spinYear.Flex = 0.3f;
             _spinYear.FlexMargin = new Vector4(5.0f, 0.0f, 5.0f, 0.0f);
             _container.Add(_spinYear);
@@ -84,7 +79,7 @@ namespace DatePickerTest
 
             // Create a Spin control for month
             _spinMonth = new Spin();
-            _spinMonth.AnchorPoint = AnchorPoint.Center;
+            _spinMonth.PivotPoint = PivotPoint.Center;
             _spinMonth.Flex = 0.3f;
             _spinMonth.FlexMargin = new Vector4(5.0f, 0.0f, 5.0f, 0.0f);
             _container.Add(_spinMonth);
@@ -101,7 +96,7 @@ namespace DatePickerTest
 
             // Create a Spin control for day
             _spinDay = new Spin();
-            _spinDay.AnchorPoint = AnchorPoint.Center;
+            _spinDay.PivotPoint = PivotPoint.Center;
             _spinDay.Flex = 0.3f;
             _spinDay.FlexMargin = new Vector4(5.0f, 0.0f, 5.0f, 0.0f);
             _container.Add(_spinDay);
@@ -118,52 +113,7 @@ namespace DatePickerTest
 
             FocusManager keyboardFocusManager = FocusManager.Instance;
             keyboardFocusManager.PreFocusChange += OnKeyboardPreFocusChange;
-            keyboardFocusManager.FocusedViewEnterKeyPressed += OnFocusedActorEnterKeyPressed;
-
-            ////////////////////////////////////////////////////////////////////////
-            _imfMgr = ImfManager.Get();
-            _imfMgr.ImfManagerActivated += _imfMgr_ImfManagerActivated;
-
-            _textField = new TextField();
-            _textField.Position2D = new Position2D(100, 100);
-            _textField.Size2D = new Size2D(900, 100);
-            _textField.Text = "imf manager test!";
-            _textField.BackgroundColor = Color.Blue;
-            _textField.TextColor = Color.White;
-            window.GetDefaultLayer().Add(_textField);
-
-            keyboardFocusManager.SetCurrentFocusView(_textField);
-
-            _pushButton = new PushButton();
-            _pushButton.Position2D = new Position2D(100, 210);
-            _pushButton.Size2D = new Size2D(900, 100);
-            _pushButton.LabelText = "imf activate";
-            _pushButton.Clicked += _pushButton_Clicked;
-            window.GetDefaultLayer().Add(_pushButton);
-        }
-
-        private bool _pushButton_Clicked(object source, EventArgs e)
-        {
-            Tizen.Log.Fatal("NUI", "_pushButton_Clicked event comes!");
-
-            if (_toggle)
-            {
-                _imfMgr.Activate();
-                _pushButton.LabelText = "imf activated";
-                _toggle = false;
-            }
-            else
-            {
-                _imfMgr.Deactivate();
-                _pushButton.LabelText = "imf deactivated";
-                _toggle = true;
-            }
-            return true;
-        }
-
-        private void _imfMgr_ImfManagerActivated(object sender, ImfManager.ImfManagerActivatedEventArgs e)
-        {
-            Tizen.Log.Fatal("NUI", "_imfMgr_ImfManagerActivated event comes!");
+            keyboardFocusManager.FocusedViewActivated += OnFocusedViewActivated;
         }
 
         private View OnKeyboardPreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)
@@ -203,32 +153,9 @@ namespace DatePickerTest
             return nextFocusView;
         }
 
-        private void OnFocusedActorEnterKeyPressed(object source, FocusManager.FocusedViewEnterKeyEventArgs e)
+        private void OnFocusedViewActivated(object source, FocusManager.FocusedViewEnterKeyEventArgs e)
         {
-            // Make the text field in the current focused spin to take the key input
-            KeyInputFocusManager manager = KeyInputFocusManager.Get();
 
-            if (e.View == _spinYear.SpinText)
-            {
-                if (manager.GetCurrentFocusControl() != _spinYear.SpinText)
-                {
-                    manager.SetFocus(_spinYear.SpinText);
-                }
-            }
-            else if (e.View == _spinMonth.SpinText)
-            {
-                if (manager.GetCurrentFocusControl() != _spinMonth.SpinText)
-                {
-                    manager.SetFocus(_spinMonth.SpinText);
-                }
-            }
-            else if (e.View == _spinDay.SpinText)
-            {
-                if (manager.GetCurrentFocusControl() != _spinDay.SpinText)
-                {
-                    manager.SetFocus(_spinDay.SpinText);
-                }
-            }
         }
 
         /// <summary>

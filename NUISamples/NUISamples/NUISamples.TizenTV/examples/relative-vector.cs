@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,15 +58,15 @@ namespace RelativeVectorTest
         private void Initialize()
         {
             _window = Window.Instance;
-            _window.TouchEvent += OnWindowTouched;
+            _window.Touched += OnWindowTouched;
 
             _imageView = new ImageView();
             _imageView.ResourceUrl = resources+"/images/gallery-3.jpg";
             _imageView.ParentOrigin = ParentOrigin.Center;
-            _imageView.AnchorPoint = AnchorPoint.Center;
+            _imageView.PivotPoint = PivotPoint.Center;
             _imageView.PixelArea = new RelativeVector4(0.0f, 0.0f, 0.0f, 0.0f);
 
-            _window.GetDefaultLayer().Add(_imageView);
+            _window.Add(_imageView);
         }
 
         // Callback for window touched signal handling

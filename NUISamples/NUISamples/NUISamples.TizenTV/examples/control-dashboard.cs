@@ -85,7 +85,7 @@ namespace ControlDashboard
             TextLabel topLabel = new TextLabel();
             topLabel.WidthResizePolicy = ResizePolicyType.FillToParent;
             topLabel.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            topLabel.AnchorPoint = AnchorPoint.TopCenter;
+            topLabel.PivotPoint = PivotPoint.TopCenter;
             topLabel.SetSizeModeFactor(new Vector3(0.0f, 0.1f, 0.0f));
             topLabel.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             topLabel.TextColor = Color.White;
@@ -93,7 +93,7 @@ namespace ControlDashboard
             topLabel.HorizontalAlignment = HorizontalAlignment.Begin;
             topLabel.VerticalAlignment = VerticalAlignment.Center;
             topLabel.PointSize = 42.0f;
-            _window.GetDefaultLayer().Add(topLabel);
+            _window.Add(topLabel);
             //StyleManager.Get().ApplyStyle(topLabel, _resPath + "/json/control-dashboard-theme.json", "TextFieldFontSize4");
             topLabel.SetStyleName("TextFieldFontSize4");
 
@@ -102,7 +102,7 @@ namespace ControlDashboard
             _contentContainer.WidthResizePolicy = ResizePolicyType.FillToParent;
             _contentContainer.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
             _contentContainer.SetSizeModeFactor(new Vector3(0.0f, 0.9f, 0.0f));
-            _contentContainer.AnchorPoint = AnchorPoint.BottomCenter;
+            _contentContainer.PivotPoint = PivotPoint.BottomCenter;
             _contentContainer.Position = new Position(0, _window.Size.Height * 0.1f, 0);
             _contentContainer.SetRelativeHeight(0, 0.07f);
             _contentContainer.SetRelativeHeight(1, 0.26f);
@@ -111,7 +111,7 @@ namespace ControlDashboard
             _contentContainer.SetRelativeHeight(4, 0.07f);
             _contentContainer.SetRelativeHeight(5, 0.26f);
             _contentContainer.Focusable = (true);
-            _window.GetDefaultLayer().Add(_contentContainer);
+            _window.Add(_contentContainer);
 
             CreateContent();
 
@@ -317,7 +317,7 @@ namespace ControlDashboard
                 {
                     PushButton button = new PushButton();
                     button.LabelText = "Popup";
-                    button.AnchorPoint = AnchorPoint.Center;
+                    button.PivotPoint = PivotPoint.Center;
                     button.MaximumSize = new Size2D(150, 100);
                     _popup = CreatePopup();
                     _popup.SetTitle(CreateTitle("Popup"));
@@ -334,7 +334,7 @@ namespace ControlDashboard
 
                     button.Clicked += (obj, ee) =>
                     {
-                        _window.GetDefaultLayer().Add(_popup);
+                        _window.Add(_popup);
                         _popup.SetDisplayState(Popup.DisplayStateType.Shown);
                         FocusManager.Instance.SetCurrentFocusView(View.DownCast((_popup.FindChildByName("Footer")).FindChildByName("OKButton")));
                         return true;
@@ -345,25 +345,41 @@ namespace ControlDashboard
                 {
                     PushButton button = new PushButton();
                     button.LabelText = "Toast";
-                    button.AnchorPoint = AnchorPoint.Center;
+                    button.PivotPoint = PivotPoint.Center;
                     button.Clicked += (obj, ee) =>
                     {
-                        TypeInfo typeInfo = new TypeInfo(TypeRegistry.Get().GetTypeInfo("PopupToast"));
-                        if (typeInfo)
-                        {
-                            BaseHandle baseHandle = typeInfo.CreateInstance();
-                            if (baseHandle)
-                            {
-                                Popup toast = Popup.DownCast(baseHandle);
-                                TextLabel text = new TextLabel("This is a Toast.\nIt will auto-hide itself");
-                                text.TextColor = Color.White;
-                                text.MultiLine = true;
-                                text.HorizontalAlignment = HorizontalAlignment.Center;
-                                toast.SetTitle(text);
-                                _window.GetDefaultLayer().Add(toast);
-                                toast.SetDisplayState(Popup.DisplayStateType.Shown);
-                            }
-                        }
+                        Popup toast = new Popup();
+                        toast.SizeModeFactor = new Vector3(0.75f, 0.75f, 0.75f);
+                        toast.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
+                        toast.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
+                        toast.ContextualMode = Popup.ContextualModeType.NonContextual;
+                        toast.AnimationDuration = 0.65f;
+                        toast.TailVisibility = false;
+
+                        // Disable the dimmed backing.
+                        toast.BackingEnabled = false;
+
+                        // The toast popup should fade in (not zoom).
+                        toast.AnimationMode = Popup.AnimationModeType.Fade;
+
+                        // The toast popup should auto-hide.
+                        toast.AutoHideDelay = 3000;
+
+                        // Align to the bottom of the screen.
+                        toast.ParentOrigin = new Position(0.5f, 0.94f, 0.5f);
+                        toast.PivotPoint = PivotPoint.BottomCenter;
+
+                        // Let events pass through the toast popup.
+                        toast.TouchTransparent = true;
+
+                        TextLabel text = new TextLabel("This is a Toast.\nIt will auto-hide itself");
+                        text.TextColor = Color.White;
+                        text.MultiLine = true;
+                        text.HorizontalAlignment = HorizontalAlignment.Center;
+                        toast.SetTitle(text);
+                        _window.Add(toast);
+                        toast.DisplayState = Popup.DisplayStateType.Shown;
+
                         return true;
                     };
                     _contentContainer.AddChild(button, new TableView.CellPosition(((uint)idx / 5) * 2 + 1, (uint)idx % 5));
@@ -390,22 +406,22 @@ namespace ControlDashboard
             footer.WidthResizePolicy = ResizePolicyType.FillToParent;
             footer.HeightResizePolicy = ResizePolicyType.Fixed;
             footer.Size = new Size(0.0f, 80.0f, 0.0f);
-            footer.AnchorPoint = AnchorPoint.Center;
+            footer.PivotPoint = PivotPoint.Center;
 
             PushButton okButton = CreateOKButton();
-            okButton.AnchorPoint = AnchorPoint.Center;
+            okButton.PivotPoint = PivotPoint.Center;
             okButton.WidthResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             okButton.HeightResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             okButton.SetSizeModeFactor(new Vector3(-20.0f, -20.0f, 0.0f));
 
             PushButton cancelButton = CreateCancelButton();
-            cancelButton.AnchorPoint = AnchorPoint.Center;
+            cancelButton.PivotPoint = PivotPoint.Center;
             cancelButton.WidthResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             cancelButton.HeightResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             cancelButton.SetSizeModeFactor(new Vector3(-20.0f, -20.0f, 0.0f));
 
             TableView controlLayout = new TableView(1, 2);
-            controlLayout.AnchorPoint = AnchorPoint.Center;
+            controlLayout.PivotPoint = PivotPoint.Center;
             controlLayout.WidthResizePolicy = ResizePolicyType.FillToParent;
             controlLayout.HeightResizePolicy = ResizePolicyType.FillToParent;
             controlLayout.SetCellPadding(new Size2D(10, 10));

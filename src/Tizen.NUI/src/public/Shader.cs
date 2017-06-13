@@ -27,16 +27,16 @@
 namespace Tizen.NUI
 {
 
-    internal class TextureSet : BaseHandle
+    public class Shader : Animatable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal TextureSet(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TextureSet_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Shader_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextureSet obj)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Shader obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
@@ -65,7 +65,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_TextureSet(swigCPtr);
+                    NDalicPINVOKE.delete_Shader(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -74,63 +74,52 @@ namespace Tizen.NUI
         }
 
 
-        public TextureSet() : this(NDalicPINVOKE.TextureSet_New(), true)
+        public class Hint
+        {
+            public enum Value
+            {
+                NONE = 0x00,
+                OUTPUT_IS_TRANSPARENT = 0x01,
+                MODIFIES_GEOMETRY = 0x02
+            }
+        }
+
+        public class Property
+        {
+            public static readonly int PROGRAM = NDalicPINVOKE.Shader_Property_PROGRAM_get();
+        }
+
+        public Shader(string vertexShader, string fragmentShader, Shader.Hint.Value hints) : this(NDalicPINVOKE.Shader_New__SWIG_0(vertexShader, fragmentShader, (int)hints), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public TextureSet(TextureSet handle) : this(NDalicPINVOKE.new_TextureSet__SWIG_1(TextureSet.getCPtr(handle)), true)
+        public Shader(string vertexShader, string fragmentShader) : this(NDalicPINVOKE.Shader_New__SWIG_1(vertexShader, fragmentShader), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
         }
 
-        public static TextureSet DownCast(BaseHandle handle)
+        internal new static Shader DownCast(BaseHandle handle)
         {
-            TextureSet ret = new TextureSet(NDalicPINVOKE.TextureSet_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public TextureSet Assign(TextureSet handle)
-        {
-            TextureSet ret = new TextureSet(NDalicPINVOKE.TextureSet_Assign(swigCPtr, TextureSet.getCPtr(handle)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public void SetTexture(uint index, Texture texture)
-        {
-            NDalicPINVOKE.TextureSet_SetTexture(swigCPtr, index, Texture.getCPtr(texture));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public Texture GetTexture(uint index)
-        {
-            Texture ret = new Texture(NDalicPINVOKE.TextureSet_GetTexture(swigCPtr, index), true);
+            Shader ret = new Shader(NDalicPINVOKE.Shader_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public void SetSampler(uint index, Sampler sampler)
+        public Tizen.NUI.PropertyMap Program
         {
-            NDalicPINVOKE.TextureSet_SetSampler(swigCPtr, index, Sampler.getCPtr(sampler));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            get
+            {
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                Tizen.NUI.Object.GetProperty(swigCPtr, Shader.Property.PROGRAM).Get(temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Shader.Property.PROGRAM, new Tizen.NUI.PropertyValue(value));
+            }
         }
-
-        public Sampler GetSampler(uint index)
-        {
-            Sampler ret = new Sampler(NDalicPINVOKE.TextureSet_GetSampler(swigCPtr, index), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public uint GetTextureCount()
-        {
-            uint ret = NDalicPINVOKE.TextureSet_GetTextureCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
     }
 
 }

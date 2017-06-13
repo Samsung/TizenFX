@@ -35,13 +35,13 @@ namespace FlexContainerTest
 
             container = new FlexContainer();
             container.Size = new Size(Window.Instance.Size.Width, Window.Instance.Size.Height, 0);
-            container.AnchorPoint = AnchorPoint.TopLeft;
+            container.PivotPoint = PivotPoint.TopLeft;
             container.Padding = new Vector4(100, 100, 100, 100);
 
             container.FlexWrap = FlexContainer.WrapType.Wrap;
             container.FlexDirection = FlexContainer.FlexDirectionType.Column;
 
-            Window.Instance.GetDefaultLayer().Add(container);
+            Window.Instance.Add(container);
 
             numOfSamples = samples.GetLength(0);
             Tizen.Log.Debug("NUI", "NUM = " + numOfSamples);
@@ -72,14 +72,14 @@ namespace FlexContainerTest
                 else Tizen.Log.Debug("NUI", "FocusManager FocusChanged signal callback! e.NextView is null!");
             };
             //added
-            FocusManager.Instance.FocusedViewEnterKeyPressed += (sender, e) =>
+            FocusManager.Instance.FocusedViewActivated += (sender, e) =>
             {
                 if (e.View) Tizen.Log.Debug("NUI", "FocusManager FocusedViewEnterKeyPressed signal callback! e.View.Name=" + e.View.Name);
                 else Tizen.Log.Debug("NUI", "FocusManager FocusChanged signal callback! e.View is null!");
             };
 
             //added
-            Window.Instance.TouchEvent += (sender, e) =>
+            Window.Instance.Touched += (sender, e) =>
             {
                 Tizen.Log.Debug("NUI", "Window Touch signal callback! To avoid crash, when losing key focus, set here again unless the NextView is null");
                 FocusManager.Instance.SetCurrentFocusView(label[3]);
@@ -90,7 +90,7 @@ namespace FlexContainerTest
             pushButton1.MinimumSize = new Size2D(400, 200);
             pushButton1.LabelText = "+PreFocusChange";
             pushButton1.ParentOrigin = ParentOrigin.TopLeft;
-            pushButton1.AnchorPoint = AnchorPoint.TopLeft;
+            pushButton1.PivotPoint = PivotPoint.TopLeft;
             pushButton1.Position2D = new Position2D(200, 800);
             pushButton1.Clicked += (sender, e) =>
             {
@@ -102,13 +102,13 @@ namespace FlexContainerTest
                 pushButton2.LabelText = "Remove Handler" + _cnt;
                 return true;
             };
-            Window.Instance.GetDefaultLayer().Add(pushButton1);
+            Window.Instance.Add(pushButton1);
 
             pushButton2 = new PushButton();
             pushButton2.MinimumSize = new Size2D(400, 200);
             pushButton2.LabelText = "-PreFocusChange";
             pushButton2.ParentOrigin = ParentOrigin.TopLeft;
-            pushButton2.AnchorPoint = AnchorPoint.TopLeft;
+            pushButton2.PivotPoint = PivotPoint.TopLeft;
             pushButton2.Position2D = new Position2D(800, 800);
             pushButton2.Clicked += (sender, e) =>
             {
@@ -120,7 +120,7 @@ namespace FlexContainerTest
                 pushButton2.LabelText = "Remove Handler" + _cnt;
                 return true;
             };
-            Window.Instance.GetDefaultLayer().Add(pushButton2);
+            Window.Instance.Add(pushButton2);
 
             //added
             _ani = new Animation(2000);
@@ -160,12 +160,12 @@ namespace FlexContainerTest
                     Tizen.Log.Debug("NUI", "pushbutton1 Visible=" + pushButton1.Visible + "  pushbutton2 Visible=" + pushButton2.Visible); //added
                     break;
                 case View.FocusDirection.Left:
-                    //added    
+                    //added
                     pushButton1.Show();
-                    pushButton2.Show(); 
+                    pushButton2.Show();
                     break;
                 case View.FocusDirection.Right:
-                    //added    
+                    //added
                     pushButton1.Hide();
                     pushButton2.Hide();
                     break;

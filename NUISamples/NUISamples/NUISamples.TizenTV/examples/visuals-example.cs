@@ -61,7 +61,7 @@ namespace VisualsExampleTest
             contentLayout.SetCellPadding(new Size2D(0, 5));
             contentLayout.BackgroundColor = Color.Red;//new Color(0.949f, 0.949f, 0.949f, 1.0f);
 
-            window.GetDefaultLayer().Add(contentLayout);
+            window.Add(contentLayout);
 
             _title = new TextLabel("Visuals Example");
             _title.Name = "Title";

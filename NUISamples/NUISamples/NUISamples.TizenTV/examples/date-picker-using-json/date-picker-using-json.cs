@@ -65,7 +65,7 @@ namespace DatePickerUsingJson
 
             View actorTree =  View.DownCast( handle );
 
-            window.GetDefaultLayer().Add( actorTree );
+            window.Add( actorTree );
 
             View year  = actorTree.FindChildByName("Year");
             View month  =  actorTree.FindChildByName("Month" );
@@ -86,7 +86,7 @@ namespace DatePickerUsingJson
 
             FocusManager keyboardFocusManager = FocusManager.Instance;
             keyboardFocusManager.PreFocusChange += OnKeyboardPreFocusChange;
-            keyboardFocusManager.FocusedViewEnterKeyPressed += OnFocusedViewEnterKeyPressed;
+            keyboardFocusManager.FocusedViewActivated += OnFocusedViewActivated;
 
             StyleManager.Get().ApplyTheme("/home/owner/apps_rw/NUISamples.TizenTV/res/json/date-picker-theme.json");
         }
@@ -128,7 +128,7 @@ namespace DatePickerUsingJson
             return nextFocusView;
         }
 
-        private void OnFocusedViewEnterKeyPressed(object source, FocusManager.FocusedViewEnterKeyEventArgs e)
+        private void OnFocusedViewActivated(object source, FocusManager.FocusedViewEnterKeyEventArgs e)
         {
             // Make the text field in the current focused spin to take the key input
             KeyInputFocusManager manager = KeyInputFocusManager.Get();

@@ -74,7 +74,7 @@ namespace Tizen.NUI
     /// </remarks>
     ///
     ///
-    public class ScriptableProperty : System.Attribute
+    internal class ScriptableProperty : System.Attribute
     {
         public enum ScriptableType
         {
@@ -178,7 +178,7 @@ namespace Tizen.NUI
         };
 
 
-        public ViewRegistry()
+        private ViewRegistry()
         {
             _createCallback = new CreateControlDelegate(CreateControl);
             _getPropertyCallback = new GetPropertyDelegate(GetProperty);
@@ -240,7 +240,7 @@ namespace Tizen.NUI
         /// Store the mapping between this instance of control (View) and native part.
         /// </summary>
         /// <param name="view"> The instance of control (View)</param>
-        public static void RegisterView(View view)
+        internal static void RegisterView(View view)
         {
             // We store a pointer to the RefObject for the control
             RefObject refObj = view.GetObjectPtr();
@@ -261,7 +261,7 @@ namespace Tizen.NUI
         /// Remove the this instance of control (View) and native part from the mapping table.
         /// </summary>
         /// <param name="view"> The instance of control (View)</param>
-        public static void UnregisterView(View view)
+        internal static void UnregisterView(View view)
         {
             RefObject refObj = view.GetObjectPtr();
             IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
@@ -446,7 +446,7 @@ namespace Tizen.NUI
                 if (type.Equals(typeof(Int32)))
                 {
                     int value = 0;
-                    ok = propValue.Get(ref value);
+                    ok = propValue.Get(out value);
                     if (ok)
                     {
                         propertyInfo.SetValue(view, value);
@@ -455,7 +455,7 @@ namespace Tizen.NUI
                 else if (type.Equals(typeof(bool)))
                 {
                     bool value = false;
-                    ok = propValue.Get(ref value);
+                    ok = propValue.Get(out value);
                     if (ok)
                     {
                         propertyInfo.SetValue(view, value);
@@ -464,7 +464,7 @@ namespace Tizen.NUI
                 else if (type.Equals(typeof(float)))
                 {
                     float value = 0;
-                    ok = propValue.Get(ref value);
+                    ok = propValue.Get(out value);
                     if (ok)
                     {
                         propertyInfo.SetValue(view, value);

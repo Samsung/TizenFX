@@ -27,16 +27,16 @@
 namespace Tizen.NUI
 {
 
-    internal class Geometry : BaseHandle
+    public class TextureSet : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Geometry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Geometry_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TextureSet(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TextureSet_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Geometry obj)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextureSet obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
@@ -65,7 +65,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Geometry(swigCPtr);
+                    NDalicPINVOKE.delete_TextureSet(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -73,78 +73,51 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        public Geometry() : this(NDalicPINVOKE.Geometry_New(), true)
+
+        public TextureSet() : this(NDalicPINVOKE.TextureSet_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Geometry(Geometry handle) : this(NDalicPINVOKE.new_Geometry__SWIG_1(Geometry.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
-        public static Geometry DownCast(BaseHandle handle)
+        internal static TextureSet DownCast(BaseHandle handle)
         {
-            Geometry ret = new Geometry(NDalicPINVOKE.Geometry_DownCast(BaseHandle.getCPtr(handle)), true);
+            TextureSet ret = new TextureSet(NDalicPINVOKE.TextureSet_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public Geometry Assign(Geometry handle)
+        public void SetTexture(uint index, Texture texture)
         {
-            Geometry ret = new Geometry(NDalicPINVOKE.Geometry_Assign(swigCPtr, Geometry.getCPtr(handle)), false);
+            NDalicPINVOKE.TextureSet_SetTexture(swigCPtr, index, Texture.getCPtr(texture));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public Texture GetTexture(uint index)
+        {
+            Texture ret = new Texture(NDalicPINVOKE.TextureSet_GetTexture(swigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public uint AddVertexBuffer(PropertyBuffer vertexBuffer)
+        public void SetSampler(uint index, Sampler sampler)
         {
-            uint ret = NDalicPINVOKE.Geometry_AddVertexBuffer(swigCPtr, PropertyBuffer.getCPtr(vertexBuffer));
+            NDalicPINVOKE.TextureSet_SetSampler(swigCPtr, index, Sampler.getCPtr(sampler));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public Sampler GetSampler(uint index)
+        {
+            Sampler ret = new Sampler(NDalicPINVOKE.TextureSet_GetSampler(swigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public uint GetNumberOfVertexBuffers()
+        public uint GetTextureCount()
         {
-            uint ret = NDalicPINVOKE.Geometry_GetNumberOfVertexBuffers(swigCPtr);
+            uint ret = NDalicPINVOKE.TextureSet_GetTextureCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        public void RemoveVertexBuffer(uint index)
-        {
-            NDalicPINVOKE.Geometry_RemoveVertexBuffer(swigCPtr, index);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public void SetIndexBuffer(ushort[] indices, uint count)
-        {
-            NDalicPINVOKE.Geometry_SetIndexBuffer(swigCPtr, indices, count);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public void SetType(Geometry.Type geometryType)
-        {
-            NDalicPINVOKE.Geometry_SetType(swigCPtr, (int)geometryType);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public Geometry.Type GetType()
-        {
-            Geometry.Type ret = (Geometry.Type)NDalicPINVOKE.Geometry_GetType(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public enum Type
-        {
-            POINTS,
-            LINES,
-            LINE_LOOP,
-            LINE_STRIP,
-            TRIANGLES,
-            TRIANGLE_FAN,
-            TRIANGLE_STRIP
         }
 
     }

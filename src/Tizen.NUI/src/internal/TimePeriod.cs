@@ -104,7 +104,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public float delaySeconds
+        public float DelaySeconds
         {
             set
             {
@@ -119,7 +119,7 @@ namespace Tizen.NUI
             }
         }
 
-        public float durationSeconds
+        public float DurationSeconds
         {
             set
             {

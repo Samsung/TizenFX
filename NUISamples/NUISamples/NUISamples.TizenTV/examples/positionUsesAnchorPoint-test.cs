@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,25 +61,25 @@ namespace PositionUsesAnchorPointTest
             _window = Window.Instance;
             _text1 = new TextLabel("PositionUsesAnchorPoint");
             _text1.ParentOrigin = ParentOrigin.Center;
-            _text1.AnchorPoint = AnchorPoint.Center;
+            _text1.PivotPoint = PivotPoint.Center;
             _text1.Position = new Position(0, 0, 0);
             _text1.PositionUsesAnchorPoint = true;
             _text1.HorizontalAlignment = HorizontalAlignment.Center;
             _text1.Size2D = new Size2D(200, 100);
             _text1.PointSize = 10.0f;
             _text1.BackgroundColor = Color.Blue;
-            _window.GetDefaultLayer().Add(_text1);
+            _window.Add(_text1);
 
             _text2 = new TextLabel("PositionNotUsesAnchorPoint");
             _text2.ParentOrigin = ParentOrigin.Center;
-            _text2.AnchorPoint = AnchorPoint.Center;
+            _text2.PivotPoint = PivotPoint.Center;
             _text2.Position = new Position(0, 0, 0);
             _text2.PositionUsesAnchorPoint = false;
             _text2.HorizontalAlignment = HorizontalAlignment.Center;
             _text2.Size2D = new Size2D(200, 100);
             _text2.PointSize = 10.0f;
             _text2.BackgroundColor = Color.Red;
-            _window.GetDefaultLayer().Add(_text2);
+            _window.Add(_text2);
         }
 
 

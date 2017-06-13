@@ -86,12 +86,16 @@ namespace Tizen.NUI
 
             // Create image visual for the arrow keys
             _arrowVisualPropertyIndex = RegisterProperty("ArrowImage", new PropertyValue(_arrowImage), Tizen.NUI.PropertyAccessMode.ReadWrite);
-            _arrowVisual = VisualFactory.Get().CreateVisual(_arrowImage, new Uint16Pair(150, 150));
+            _arrowVisual = VisualFactory.Get().CreateVisual(
+                new PropertyMap().Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
+                                 .Add(ImageVisualProperty.URL, new PropertyValue(_arrowImage))
+                                 .Add(ImageVisualProperty.DesiredHeight, new PropertyValue(150))
+                                 .Add(ImageVisualProperty.DesiredWidth, new PropertyValue(150)));
             RegisterVisual(_arrowVisualPropertyIndex, _arrowVisual);
 
             // Create a text field
             _textField = new TextField();
-            _textField.AnchorPoint = Tizen.NUI.AnchorPoint.Center;
+            _textField.PivotPoint = Tizen.NUI.PivotPoint.Center;
             _textField.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
             _textField.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
             _textField.SizeModeFactor = new Vector3(1.0f, 0.45f, 1.0f);
@@ -114,9 +118,9 @@ namespace Tizen.NUI
         /// Return the natural size of the actor.<br>
         /// </summary>
         /// <returns> Natural size of this Spin itself</returns>
-        public override Size GetNaturalSize()
+        public override Size2D GetNaturalSize()
         {
-            return new Size(150.0f, 150.0f, 0.0f);
+            return new Size2D(150, 150);
         }
 
         /// <summary>
@@ -220,7 +224,7 @@ namespace Tizen.NUI
                 _textField.Text = _currentValue.ToString();
             }
         }
-        
+
         /// <summary>
         /// Minimum Value of Spin Value.
         /// </summary>
@@ -373,7 +377,11 @@ namespace Tizen.NUI
             set
             {
                 _arrowImage = value;
-                _arrowVisual = VisualFactory.Get().CreateVisual(_arrowImage, new Uint16Pair(150, 150));
+                _arrowVisual = VisualFactory.Get().CreateVisual(
+                    new PropertyMap().Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
+                                 .Add(ImageVisualProperty.URL, new PropertyValue(_arrowImage))
+                                 .Add(ImageVisualProperty.DesiredHeight, new PropertyValue(150))
+                                 .Add(ImageVisualProperty.DesiredWidth, new PropertyValue(150)));
                 RegisterVisual(_arrowVisualPropertyIndex, _arrowVisual);
             }
         }

@@ -68,7 +68,7 @@ namespace Tizen.NUI.BaseComponents
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.          
+            //because the execution order of Finalizes is non-deterministic.
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -159,92 +159,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
 
-        internal class Property : global::System.IDisposable
+        internal class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-              //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-            ~Property()
-            {
-                if(!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if(type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_TextEditor_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                disposed = true;
-            }
-
-            internal Property() : this(NDalicPINVOKE.new_TextEditor_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
             internal static readonly int RENDERING_BACKEND = NDalicPINVOKE.TextEditor_Property_RENDERING_BACKEND_get();
             internal static readonly int TEXT = NDalicPINVOKE.TextEditor_Property_TEXT_get();
             internal static readonly int TEXT_COLOR = NDalicPINVOKE.TextEditor_Property_TEXT_COLOR_get();
@@ -291,95 +207,14 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SCROLL_BAR_SHOW_DURATION = NDalicManualPINVOKE.TextEditor_Property_SCROLL_BAR_SHOW_DURATION_get();
             internal static readonly int SCROLL_BAR_FADE_DURATION = NDalicManualPINVOKE.TextEditor_Property_SCROLL_BAR_FADE_DURATION_get();
             internal static readonly int PIXEL_SIZE = NDalicManualPINVOKE.TextEditor_Property_PIXEL_SIZE_get();
+            internal static readonly int LINE_COUNT = NDalicManualPINVOKE.TextEditor_Property_LINE_COUNT_get();
+            internal static readonly int PLACEHOLDER_TEXT = NDalicManualPINVOKE.TextEditor_Property_PLACEHOLDER_TEXT_get();
+            internal static readonly int PLACEHOLDER_TEXT_COLOR = NDalicManualPINVOKE.TextEditor_Property_PLACEHOLDER_TEXT_COLOR_get();
 
         }
 
-        internal class InputStyle : global::System.IDisposable
+        internal class InputStyle
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            protected bool swigCMemOwn;
-
-            internal InputStyle(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(InputStyle obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-            ~InputStyle()
-            {
-                if(!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if(type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_TextEditor_InputStyle(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                disposed = true;
-            }
-
-            internal InputStyle() : this(NDalicPINVOKE.new_TextEditor_InputStyle(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
             internal enum Mask
             {
                 None = 0x0000,
@@ -393,7 +228,6 @@ namespace Tizen.NUI.BaseComponents
                 Emboss = 0x0080,
                 Outline = 0x0100
             }
-
         }
 
         /// <summary>
@@ -409,19 +243,12 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TextEditor Assign(TextEditor handle)
-        {
-            TextEditor ret = new TextEditor(NDalicPINVOKE.TextEditor_Assign(swigCPtr, TextEditor.getCPtr(handle)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Downcasts a handle to TextEditor.
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>Handle to a TextEditor or an empty handle</returns>
-        public new static TextEditor DownCast(BaseHandle handle)
+        internal new static TextEditor DownCast(BaseHandle handle)
         {
             TextEditor ret = new TextEditor(NDalicPINVOKE.TextEditor_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -440,29 +267,6 @@ namespace Tizen.NUI.BaseComponents
             SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t(NDalicPINVOKE.TextEditor_InputStyleChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal enum PropertyRange
-        {
-            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
-        }
-
-        /// <summary>
-        /// Rendering backend property
-        /// </summary>
-        public int RenderingBackend
-        {
-            get
-            {
-                int temp = 0;
-                GetProperty(TextEditor.Property.RENDERING_BACKEND).Get(ref temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(TextEditor.Property.RENDERING_BACKEND, new Tizen.NUI.PropertyValue(value));
-            }
         }
 
         /// <summary>
@@ -541,7 +345,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextEditor.Property.POINT_SIZE).Get(ref temp);
+                GetProperty(TextEditor.Property.POINT_SIZE).Get(out temp);
                 return temp;
             }
             set
@@ -615,7 +419,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextEditor.Property.SCROLL_THRESHOLD).Get(ref temp);
+                GetProperty(TextEditor.Property.SCROLL_THRESHOLD).Get(out temp);
                 return temp;
             }
             set
@@ -632,7 +436,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextEditor.Property.SCROLL_SPEED).Get(ref temp);
+                GetProperty(TextEditor.Property.SCROLL_SPEED).Get(out temp);
                 return temp;
             }
             set
@@ -683,7 +487,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(TextEditor.Property.ENABLE_CURSOR_BLINK).Get(ref temp);
+                GetProperty(TextEditor.Property.ENABLE_CURSOR_BLINK).Get(out temp);
                 return temp;
             }
             set
@@ -700,7 +504,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextEditor.Property.CURSOR_BLINK_INTERVAL).Get(ref temp);
+                GetProperty(TextEditor.Property.CURSOR_BLINK_INTERVAL).Get(out temp);
                 return temp;
             }
             set
@@ -717,7 +521,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextEditor.Property.CURSOR_BLINK_DURATION).Get(ref temp);
+                GetProperty(TextEditor.Property.CURSOR_BLINK_DURATION).Get(out temp);
                 return temp;
             }
             set
@@ -734,7 +538,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int temp = 0;
-                GetProperty(TextEditor.Property.CURSOR_WIDTH).Get(ref temp);
+                GetProperty(TextEditor.Property.CURSOR_WIDTH).Get(out temp);
                 return temp;
             }
             set
@@ -921,7 +725,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(TextEditor.Property.ENABLE_MARKUP).Get(ref temp);
+                GetProperty(TextEditor.Property.ENABLE_MARKUP).Get(out temp);
                 return temp;
             }
             set
@@ -989,7 +793,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextEditor.Property.INPUT_POINT_SIZE).Get(ref temp);
+                GetProperty(TextEditor.Property.INPUT_POINT_SIZE).Get(out temp);
                 return temp;
             }
             set
@@ -1006,7 +810,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextEditor.Property.LINE_SPACING).Get(ref temp);
+                GetProperty(TextEditor.Property.LINE_SPACING).Get(out temp);
                 return temp;
             }
             set
@@ -1023,7 +827,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextEditor.Property.INPUT_LINE_SPACING).Get(ref temp);
+                GetProperty(TextEditor.Property.INPUT_LINE_SPACING).Get(out temp);
                 return temp;
             }
             set
@@ -1176,7 +980,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(TextEditor.Property.SMOOTH_SCROLL).Get(ref temp);
+                GetProperty(TextEditor.Property.SMOOTH_SCROLL).Get(out temp);
                 return temp;
             }
             set
@@ -1193,7 +997,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextEditor.Property.SMOOTH_SCROLL_DURATION).Get(ref temp);
+                GetProperty(TextEditor.Property.SMOOTH_SCROLL_DURATION).Get(out temp);
                 return temp;
             }
             set
@@ -1210,7 +1014,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(TextEditor.Property.ENABLE_SCROLL_BAR).Get(ref temp);
+                GetProperty(TextEditor.Property.ENABLE_SCROLL_BAR).Get(out temp);
                 return temp;
             }
             set
@@ -1227,7 +1031,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextEditor.Property.SCROLL_BAR_SHOW_DURATION).Get(ref temp);
+                GetProperty(TextEditor.Property.SCROLL_BAR_SHOW_DURATION).Get(out temp);
                 return temp;
             }
             set
@@ -1244,7 +1048,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextEditor.Property.SCROLL_BAR_FADE_DURATION).Get(ref temp);
+                GetProperty(TextEditor.Property.SCROLL_BAR_FADE_DURATION).Get(out temp);
                 return temp;
             }
             set
@@ -1261,12 +1065,59 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TextEditor.Property.PIXEL_SIZE).Get(ref temp);
+                GetProperty(TextEditor.Property.PIXEL_SIZE).Get(out temp);
                 return temp;
             }
             set
             {
                 SetProperty(TextEditor.Property.PIXEL_SIZE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// The line count of text.
+        /// </summary>
+        public int LineCount
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(TextEditor.Property.LINE_COUNT).Get(out temp);
+                return temp;
+            }
+        }
+
+        /// <summary>
+        /// The text to display when the TextEditor is empty and inactive.
+        /// </summary>
+        public string PlaceholderText
+        {
+            get
+            {
+                string temp;
+                GetProperty(TextEditor.Property.PLACEHOLDER_TEXT).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextEditor.Property.PLACEHOLDER_TEXT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// The placeholder-text color.
+        /// </summary>
+        public Color PlaceholderTextColor
+        {
+            get
+            {
+                Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(TextEditor.Property.PLACEHOLDER_TEXT_COLOR).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextEditor.Property.PLACEHOLDER_TEXT_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
 

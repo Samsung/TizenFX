@@ -27,7 +27,7 @@
 namespace Tizen.NUI
 {
 
-    internal class Renderer : Animatable
+    public class Renderer : Animatable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -74,93 +74,8 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        public class Property : global::System.IDisposable
+        public class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-
-            ~Property()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_Renderer_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
-            public Property() : this(NDalicPINVOKE.new_Renderer_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
             public static readonly int DEPTH_INDEX = NDalicPINVOKE.Renderer_Property_DEPTH_INDEX_get();
             public static readonly int FACE_CULLING_MODE = NDalicPINVOKE.Renderer_Property_FACE_CULLING_MODE_get();
             public static readonly int BLEND_MODE = NDalicPINVOKE.Renderer_Property_BLEND_MODE_get();
@@ -193,21 +108,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Renderer(Renderer handle) : this(NDalicPINVOKE.new_Renderer__SWIG_1(Renderer.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
-        public new static Renderer DownCast(BaseHandle handle)
+        internal new static Renderer DownCast(BaseHandle handle)
         {
             Renderer ret = new Renderer(NDalicPINVOKE.Renderer_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public Renderer Assign(Renderer handle)
-        {
-            Renderer ret = new Renderer(NDalicPINVOKE.Renderer_Assign(swigCPtr, Renderer.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -262,7 +166,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_INDEX).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_INDEX).Get(out temp);
                 return temp;
             }
             set
@@ -275,7 +179,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.FACE_CULLING_MODE).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.FACE_CULLING_MODE).Get(out temp);
                 return temp;
             }
             set
@@ -288,7 +192,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_MODE).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_MODE).Get(out temp);
                 return temp;
             }
             set
@@ -301,7 +205,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_RGB).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_RGB).Get(out temp);
                 return temp;
             }
             set
@@ -314,7 +218,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_ALPHA).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_ALPHA).Get(out temp);
                 return temp;
             }
             set
@@ -327,7 +231,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_RGB).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_RGB).Get(out temp);
                 return temp;
             }
             set
@@ -340,7 +244,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_RGB).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_RGB).Get(out temp);
                 return temp;
             }
             set
@@ -353,7 +257,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_ALPHA).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_ALPHA).Get(out temp);
                 return temp;
             }
             set
@@ -366,7 +270,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_ALPHA).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_ALPHA).Get(out temp);
                 return temp;
             }
             set
@@ -392,7 +296,7 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_PRE_MULTIPLIED_ALPHA).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.BLEND_PRE_MULTIPLIED_ALPHA).Get(out temp);
                 return temp;
             }
             set
@@ -405,7 +309,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_FIRST).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_FIRST).Get(out temp);
                 return temp;
             }
             set
@@ -418,7 +322,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_COUNT).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_COUNT).Get(out temp);
                 return temp;
             }
             set
@@ -431,7 +335,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_WRITE_MODE).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_WRITE_MODE).Get(out temp);
                 return temp;
             }
             set
@@ -444,7 +348,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_FUNCTION).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_FUNCTION).Get(out temp);
                 return temp;
             }
             set
@@ -457,7 +361,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_TEST_MODE).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.DEPTH_TEST_MODE).Get(out temp);
                 return temp;
             }
             set
@@ -470,7 +374,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.RENDER_MODE).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.RENDER_MODE).Get(out temp);
                 return temp;
             }
             set
@@ -483,7 +387,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION).Get(out temp);
                 return temp;
             }
             set
@@ -496,7 +400,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_MASK).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_MASK).Get(out temp);
                 return temp;
             }
             set
@@ -509,7 +413,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_REFERENCE).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_REFERENCE).Get(out temp);
                 return temp;
             }
             set
@@ -522,7 +426,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_MASK).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_MASK).Get(out temp);
                 return temp;
             }
             set
@@ -535,7 +439,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_FAIL).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_FAIL).Get(out temp);
                 return temp;
             }
             set
@@ -548,7 +452,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_FAIL).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_FAIL).Get(out temp);
                 return temp;
             }
             set
@@ -561,7 +465,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_PASS).Get(ref temp);
+                Tizen.NUI.Object.GetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_PASS).Get(out temp);
                 return temp;
             }
             set

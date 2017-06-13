@@ -52,13 +52,13 @@ namespace VisualsUsingCustomView
             contentLayout.Name = "ContentLayout";
             //contentLayout.WidthResizePolicy = ResizePolicyType.FillToParent;
             //contentLayout.HeightResizePolicy = ResizePolicyType.FillToParent;
-            contentLayout.AnchorPoint = AnchorPoint.Center;
+            contentLayout.PivotPoint = PivotPoint.Center;
             contentLayout.ParentOrigin = ParentOrigin.Center;
             contentLayout.Size = new Vector3(window.Size.Width, window.Size.Height, 0.0f);
             contentLayout.SetCellPadding(new Size2D(5, 5));
             contentLayout.BackgroundColor = new Color(0.949f, 0.949f, 0.949f, 1.0f);
 
-            window.GetDefaultLayer().Add(contentLayout);
+            window.Add(contentLayout);
 
             TextLabel title = new TextLabel("Contacts List with Visuals");
             title.Name = "Title";

@@ -72,8 +72,8 @@ namespace ScrollViewTest
       Size windowSize = new Size(window.Size.Width, window.Size.Height, 0.0f);
       _scrollView.Size = new Size(windowSize.Width, windowSize.Height, 0.0f);
       _scrollView.ParentOrigin = ParentOrigin.Center;
-      _scrollView.AnchorPoint = AnchorPoint.Center;
-      window.GetDefaultLayer().Add(_scrollView);
+      _scrollView.PivotPoint = PivotPoint.Center;
+      window.Add(_scrollView);
 
       // Add actors to a scroll view with 3 pages
       int pageRows = 1;
@@ -86,7 +86,7 @@ namespace ScrollViewTest
           pageActor.WidthResizePolicy = ResizePolicyType.FillToParent;
           pageActor.HeightResizePolicy = ResizePolicyType.FillToParent;
           pageActor.ParentOrigin = ParentOrigin.Center;
-          pageActor.AnchorPoint = AnchorPoint.Center;
+          pageActor.PivotPoint = PivotPoint.Center;
           pageActor.Position = new Position(pageColumn * windowSize.Width, pageRow * windowSize.Height, 0.0f);
 
           // Add images in a 3x4 grid layout for each page
@@ -102,7 +102,7 @@ namespace ScrollViewTest
               int imageId = (row * imageColumns + column) % 2 + 1;
               ImageView imageView = new ImageView(resources+"/images/image-" + imageId + ".jpg");
               imageView.ParentOrigin = ParentOrigin.Center;
-              imageView.AnchorPoint = AnchorPoint.Center;
+              imageView.PivotPoint = PivotPoint.Center;
               imageView.Size = new Size(imageSize.X, imageSize.Y, imageSize.Z);
               imageView.Position = new Position( margin * 0.5f + (imageSize.X + margin) * column - windowSize.Width * 0.5f + imageSize.X * 0.5f,
                   margin * 0.5f + (imageSize.Y + margin) * row - windowSize.Height * 0.5f + imageSize.Y * 0.5f, 0.0f );
@@ -128,20 +128,20 @@ namespace ScrollViewTest
       // Create a horizontal scroll bar in the bottom of scroll view (which is optional)
       _scrollBar = new ScrollBar(ScrollBar.Direction.Horizontal);
       _scrollBar.ParentOrigin = ParentOrigin.BottomLeft;
-      _scrollBar.AnchorPoint = AnchorPoint.TopLeft;
+      _scrollBar.PivotPoint = PivotPoint.TopLeft;
       _scrollBar.WidthResizePolicy = ResizePolicyType.FitToChildren;
       _scrollBar.HeightResizePolicy = ResizePolicyType.FillToParent;
       _scrollBar.Orientation = new Rotation( new Radian( new Degree( 270.0f ) ), Vector3.ZAxis );
       _scrollView.Add(_scrollBar);
 
       // Connect to the OnRelayout signal
-      _scrollView.OnRelayoutEvent += OnScrollViewRelayout;
+      _scrollView.Relayout += OnScrollViewRelayout;
       //_scrollView.Touched += OnTouch;
-      _scrollView.WheelMoved += Onwheel;
+      _scrollView.WheelRolled += Onwheel;
       _scrollView.FocusGained += OnKey;
       _text = new TextLabel("View Touch Event Handler Test");
       _text.ParentOrigin = ParentOrigin.Center;
-      _text.AnchorPoint = AnchorPoint.Center;
+      _text.PivotPoint = PivotPoint.Center;
       _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 20.0f;
 

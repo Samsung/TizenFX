@@ -211,27 +211,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Copy constructor.
-        /// </summary>
-        /// <param name="rhs">The original object</param>
-        public Rectangle(Rectangle rhs) : this(NDalicPINVOKE.new_Rectangle__SWIG_2(Rectangle.getCPtr(rhs)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Make reference of original Rectangle object.
-        /// </summary>
-        /// <param name="rhs">The original object</param>
-        /// <returns>Reference to this</returns>
-        public Rectangle Assign(Rectangle rhs)
-        {
-            Rectangle ret = new Rectangle(NDalicPINVOKE.Rectangle_Assign(swigCPtr, Rectangle.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Assignment from individual values.
         /// </summary>
         /// <param name="newX">X coordinate</param>

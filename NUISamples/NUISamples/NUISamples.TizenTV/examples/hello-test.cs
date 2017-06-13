@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,16 +59,16 @@ namespace HelloTest
         {
             // Connect the signal callback for window touched signal
             _window = Window.Instance;
-            _window.TouchEvent += OnWindowTouched;
+            _window.Touched += OnWindowTouched;
 
             // Add a _text label to the window
             _text = new TextLabel("Hello Mono World");
             _text.ParentOrigin = ParentOrigin.Center;
-            _text.AnchorPoint = AnchorPoint.Center;
+            _text.PivotPoint = PivotPoint.Center;
             _text.HorizontalAlignment = HorizontalAlignment.Center;
             _text.PointSize = 32.0f;
 
-            _window.GetDefaultLayer().Add(_text);
+            _window.Add(_text);
         }
 
         // Callback for _animation finished signal handling

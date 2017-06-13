@@ -127,7 +127,7 @@ namespace Tizen.NUI
         {
             if (point < points.Count)
             {
-                return points[(int)point].deviceId;
+                return points[(int)point].DeviceId;
             }
             return -1;
         }
@@ -141,7 +141,7 @@ namespace Tizen.NUI
         {
             if (point < points.Count)
             {
-                return (Tizen.NUI.PointStateType)(points[(int)point].state);
+                return (Tizen.NUI.PointStateType)(points[(int)point].State);
             }
             return PointStateType.Finished;
         }
@@ -155,7 +155,7 @@ namespace Tizen.NUI
         {
             if (point < points.Count)
             {
-                return points[(int)point].hitView;
+                return points[(int)point].HitView;
             }
             else
             {
@@ -175,7 +175,7 @@ namespace Tizen.NUI
         {
             if (point < points.Count)
             {
-                return points[(int)point].local;
+                return points[(int)point].Local;
             }
             return new Vector2(0.0f, 0.0f);
         }
@@ -189,7 +189,7 @@ namespace Tizen.NUI
         {
             if (point < points.Count)
             {
-                return points[(int)point].screen;
+                return points[(int)point].Screen;
             }
             return new Vector2(0.0f, 0.0f);
         }
@@ -206,7 +206,7 @@ namespace Tizen.NUI
         /// Constructor.
         /// </summary>
         /// <param name="time">The time the event occurred</param>
-        public Hover(uint time) : this(NDalicPINVOKE.new_Hover__SWIG_1(time), true)
+        internal Hover(uint time) : this(NDalicPINVOKE.new_Hover__SWIG_1(time), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

@@ -31,7 +31,7 @@ namespace Tizen.NUI
 
         private PropertyMap _visualTransformMap = null;
 
-        private float? _depthIndex = null;
+        private int? _depthIndex = null;
         protected PropertyMap _outputVisualMap = null;
 
         internal string Name
@@ -408,11 +408,11 @@ namespace Tizen.NUI
         /// By default, the depth index is 0.<br>
         /// Optional.
         /// </summary>
-        public float DepthIndex
+        public int DepthIndex
         {
             get
             {
-                return _depthIndex ?? (0.0f);
+                return _depthIndex ?? (0);
             }
             set
             {
@@ -561,6 +561,7 @@ namespace Tizen.NUI
         }
 
         private string _url = null;
+        private string _alphaMaskUrl = null;
         private FittingModeType? _fittingMode = null;
         private SamplingModeType? _samplingMode = null;
         private int? _desiredWidth = null;
@@ -584,6 +585,23 @@ namespace Tizen.NUI
             set
             {
                 _url = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Get or set the URL of the alpha mask.<br>
+        /// Optional.
+        /// </summary>
+        public string AlphaMaskURL
+        {
+            get
+            {
+                return _alphaMaskUrl;
+            }
+            set
+            {
+                _alphaMaskUrl = value;
                 UpdateVisual();
             }
         }
@@ -771,6 +789,7 @@ namespace Tizen.NUI
                 _outputVisualMap = new PropertyMap();
                 _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
                 _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url));
+                if (_alphaMaskUrl != null ) { _outputVisualMap.Add(ImageVisualProperty.AlphaMaskURL, new PropertyValue(_alphaMaskUrl)); }
                 if (_fittingMode != null) { _outputVisualMap.Add(ImageVisualProperty.FittingMode, new PropertyValue((int)_fittingMode)); }
                 if (_samplingMode != null) { _outputVisualMap.Add(ImageVisualProperty.SamplingMode, new PropertyValue((int)_samplingMode)); }
                 if (_desiredWidth != null) { _outputVisualMap.Add(ImageVisualProperty.DesiredWidth, new PropertyValue((int)_desiredWidth)); }

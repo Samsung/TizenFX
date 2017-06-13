@@ -24,7 +24,7 @@ using Tizen.NUI.Constants;
 
 namespace VisaulAnimationExample
 {
-    class Example2 : NUIApplication
+    class Example3 : NUIApplication
     {
         private VisualView _contentView1;
         private VisualView _contentView2;
@@ -39,17 +39,21 @@ namespace VisaulAnimationExample
         private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
 
         private Animation _animation;
+        private ImageVisual _icon;
+        private ImageVisual _icon2;
+        private ImageVisual _icon3;
+        private ImageVisual _icon4;
         private bool _transitionInProgress = false;
 
-        public Example2() : base()
+        public Example3() : base()
         {
         }
 
-        public Example2(string stylesheet) : base(stylesheet)
+        public Example3(string stylesheet) : base(stylesheet)
         {
         }
 
-        public Example2(string stylesheet, WindowMode windowMode) : base(stylesheet, windowMode)
+        public Example3(string stylesheet, WindowMode windowMode) : base(stylesheet, windowMode)
         {
         }
 
@@ -82,7 +86,7 @@ namespace VisaulAnimationExample
             titleLayout.AddChild(_title, new TableView.CellPosition(0, 0));
             titleLayout.SetFitHeight(0);
 
-            TableView contentLayout = new TableView(3, 2);
+            TableView contentLayout = new TableView(2, 1);
             contentLayout.Name = ("ContentLayout");
             contentLayout.WidthResizePolicy = ResizePolicyType.FillToParent;
             contentLayout.HeightResizePolicy = ResizePolicyType.FillToParent;
@@ -91,7 +95,6 @@ namespace VisaulAnimationExample
             contentLayout.BackgroundColor = Color.Magenta;
             titleLayout.AddChild(contentLayout, new TableView.CellPosition(1, 0));
 
-            //////////////////////////////////////////////////////////////////////
             // make visual position animation
             _contentView1 = new VisualView();
             _contentView1.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
@@ -99,7 +102,7 @@ namespace VisaulAnimationExample
             //_contentView.Size2D = new Size2D(250, 250);
             _contentView1.BackgroundImage = _resPath + "/images/background-blocks.jpg";
 
-            ImageVisual _icon = new ImageVisual();
+            _icon = new ImageVisual();
             _icon.URL = _resPath + "/images/application-icon-0.png";
             _icon.DepthIndex = 1;
             _icon.Size = new Size2D(50, 50);
@@ -112,6 +115,45 @@ namespace VisaulAnimationExample
             _icon.Opacity = 0.5f;
             _contentView1.AddVisual("icon_visual1", _icon);
 
+            _icon2 = new ImageVisual();
+            _icon2.URL = _resPath + "/images/application-icon-0.png";
+            _icon2.DepthIndex = 1;
+            _icon2.Size = new Size2D(50, 50);
+            _icon2.SizePolicy = VisualTransformPolicyType.Absolute;
+            _icon2.Position = new Position2D(200, 5);
+            _icon2.PositionPolicy = VisualTransformPolicyType.Absolute;
+            _icon2.Origin = Visual.AlignType.TopBegin;
+            _icon2.AnchorPoint = Visual.AlignType.TopBegin;
+            _icon2.MixColor = new Color(0, 1, 0, 0.5f);
+            _icon2.Opacity = 0.5f;
+            _contentView1.AddVisual("icon_visual2", _icon2);
+
+            _icon3 = new ImageVisual();
+            _icon3.URL = _resPath + "/images/application-icon-0.png";
+            _icon3.DepthIndex = 1;
+            _icon3.Size = new Size2D(50, 50);
+            _icon3.SizePolicy = VisualTransformPolicyType.Absolute;
+            _icon3.Position = new Position2D(5, 200);
+            _icon3.PositionPolicy = VisualTransformPolicyType.Absolute;
+            _icon3.Origin = Visual.AlignType.TopBegin;
+            _icon3.AnchorPoint = Visual.AlignType.TopBegin;
+            _icon3.MixColor = new Color(0, 1, 0, 0.5f);
+            _icon3.Opacity = 0.5f;
+            _contentView1.AddVisual("icon_visual3", _icon3);
+
+            _icon4 = new ImageVisual();
+            _icon4.URL = _resPath + "/images/application-icon-0.png";
+            _icon4.DepthIndex = 1;
+            _icon4.Size = new Size2D(50, 50);
+            _icon4.SizePolicy = VisualTransformPolicyType.Absolute;
+            _icon4.Position = new Position2D(200, 200);
+            _icon4.PositionPolicy = VisualTransformPolicyType.Absolute;
+            _icon4.Origin = Visual.AlignType.TopBegin;
+            _icon4.AnchorPoint = Visual.AlignType.TopBegin;
+            _icon4.MixColor = new Color(0, 1, 0, 0.5f);
+            _icon4.Opacity = 0.5f;
+            _contentView1.AddVisual("icon_visual4", _icon4);
+
             contentLayout.AddChild(_contentView1, new TableView.CellPosition(0, 0));
 
             _shadowButton1 = new PushButton();
@@ -122,91 +164,16 @@ namespace VisaulAnimationExample
             _shadowButton1.Clicked += (obj, ev) =>
             {
                 _active1 = !_active1;
-                StartTransition(_contentView1, _icon, "Position", _active1);
+                StartTransition(_contentView1, _active1);
                 return true;
             };
             _shadowButton1.WidthResizePolicy = ResizePolicyType.FillToParent;
-            _shadowButton1.HeightResizePolicy = ResizePolicyType.FillToParent;
-            contentLayout.AddChild(_shadowButton1, new TableView.CellPosition(0, 1));
-
-            //////////////////////////////////////////////////////////////////////
-            // make visual opacity animation
-            _contentView2 = new VisualView();
-            _contentView2.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            _contentView2.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            //_contentView.Size2D = new Size2D(250, 250);
-            _contentView2.BackgroundImage = _resPath + "/images/background-blocks.jpg";
-
-            ImageVisual _icon2 = new ImageVisual();
-            _icon2.URL = _resPath + "/images/application-icon-0.png";
-            _icon2.DepthIndex = 1;
-            _icon2.Size = new Size2D(50, 50);
-            _icon2.SizePolicy = VisualTransformPolicyType.Absolute;
-            _icon2.Position = new Position2D(5, 5);
-            _icon2.PositionPolicy = VisualTransformPolicyType.Absolute;
-            _icon2.Origin = Visual.AlignType.TopBegin;
-            _icon2.AnchorPoint = Visual.AlignType.TopBegin;
-            _icon2.MixColor = new Color(0, 1, 0, 0.5f);
-            _icon2.Opacity = 0.5f;
-            _contentView2.AddVisual("icon_visual2", _icon2);
-
-            contentLayout.AddChild(_contentView2, new TableView.CellPosition(1, 0));
-
-            _shadowButton2 = new PushButton();
-            _shadowButton2.LabelText = "Toggle Transition Opacity";
-            _shadowButton2.Name = ("ToggleTransition");
-            _shadowButton2.ParentOrigin = ParentOrigin.Center;
-            _shadowButton2.PivotPoint = PivotPoint.Center;
-            _shadowButton2.Clicked += (obj, ev) =>
-            {
-                _active2 = !_active2;
-                StartTransition(_contentView2, _icon2, "Opacity", _active2);
-                return true;
-            };
-            _shadowButton2.WidthResizePolicy = ResizePolicyType.FillToParent;
-            _shadowButton2.HeightResizePolicy = ResizePolicyType.FillToParent;
-            contentLayout.AddChild(_shadowButton2, new TableView.CellPosition(1, 1));
-
-            //////////////////////////////////////////////////////////////////////
-            // make AnimatedImage visual test
-            _contentView3 = new VisualView();
-            _contentView3.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            _contentView3.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            //_contentView.Size2D = new Size2D(250, 250);
-            _contentView3.BackgroundImage = _resPath + "/images/background-blocks.jpg";
-
-            ImageVisual _icon3 = new ImageVisual();
-            _icon3.URL = _resPath + "/images/application-icon-0.png";
-            _icon3.DepthIndex = 1;
-            _icon3.Size = new Size2D(50, 50);
-            _icon3.SizePolicy = VisualTransformPolicyType.Absolute;
-            _icon3.Position = new Position2D(5, 5);
-            _icon3.PositionPolicy = VisualTransformPolicyType.Absolute;
-            _icon3.Origin = Visual.AlignType.TopBegin;
-            _icon3.AnchorPoint = Visual.AlignType.TopBegin;
-            _icon3.MixColor = new Color(0, 1, 0, 0.5f);
-            _icon3.Opacity = 0.5f;
-            _contentView3.AddVisual("icon_visual3", _icon3);
-
-            contentLayout.AddChild(_contentView3, new TableView.CellPosition(2, 0));
-
-            _shadowButton3 = new PushButton();
-            _shadowButton3.LabelText = "Toggle Transition MixColor";
-            _shadowButton3.Name = ("ToggleTransition");
-            _shadowButton3.ParentOrigin = ParentOrigin.Center;
-            _shadowButton3.PivotPoint = PivotPoint.Center;
-            _shadowButton3.Clicked += (obj, ev) =>
-            {
-                _active3 = !_active3;
-                StartTransition(_contentView3, _icon3, "MixColor", _active3);
-                return true;
-            };
-            _shadowButton3.WidthResizePolicy = ResizePolicyType.FillToParent;
-            _shadowButton3.HeightResizePolicy = ResizePolicyType.FillToParent;
-            contentLayout.AddChild(_shadowButton3, new TableView.CellPosition(2, 1));
+            _shadowButton1.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
+            contentLayout.AddChild(_shadowButton1, new TableView.CellPosition(1, 0));
+            contentLayout.SetFitHeight(1);
         }
 
-        private void StartTransition(VisualView view, VisualMap target, string property, bool activate)
+        private void StartTransition(VisualView view, bool activate)
         {
             if (_animation)
             {
@@ -216,42 +183,30 @@ namespace VisaulAnimationExample
 
             if (activate)
             {
-                if (property == "Position")
-                {
-                    _animation = view.AnimateVisual(target, property, new Position2D(20, 20), 0, 1000, AlphaFunction.BuiltinFunctions.Linear, new Position2D(40, 40));
-                }
-                else if (property == "Opacity")
-                {
-                    _animation = view.AnimateVisual(target, property, 0.0f, 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
-                }
-                else if (property == "MixColor")
-                {
-                    _animation = view.AnimateVisual(target, property, Color.Green, 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
-                }
+                view.AnimateVisualAdd(_icon, "Position", new Position2D(80, 80), 0, 2000, AlphaFunction.BuiltinFunctions.Linear, new Position2D(5, 5));
+                view.AnimateVisualAdd(_icon2, "Opacity", 0.0f, 0, 2000, AlphaFunction.BuiltinFunctions.Linear);
+                view.AnimateVisualAdd(_icon3, "MixColor", Color.Green, 0, 2000, AlphaFunction.BuiltinFunctions.Linear);
+                view.AnimateVisualAdd(_icon4, "Size", new Size2D(150, 150), 0, 2000, AlphaFunction.BuiltinFunctions.Linear);
+                _animation = view.AnimateVisualAddFinish();
             }
             else
             {
-                if (property == "Position")
-                {
-                    _animation = view.AnimateVisual(target, property, new Position2D(5, 5), 0, 1000);
-                }
-                else if (property == "Opacity")
-                {
-                    _animation = view.AnimateVisual(target, property, 1.0f, 0, 1000);
-                }
-                else if (property == "MixColor")
-                {
-                    _animation = view.AnimateVisual(target, property, Color.Red, 0, 1000);
-                }
+                view.AnimateVisualAdd(_icon, "Position", new Position2D(5, 5), 0, 2000, AlphaFunction.BuiltinFunctions.Linear, new Position2D(80, 80));
+                view.AnimateVisualAdd(_icon2, "Opacity", 1.0f, 0, 2000);
+                view.AnimateVisualAdd(_icon3, "MixColor", Color.Red, 0, 2000);
+                view.AnimateVisualAdd(_icon4, "Size", new Size2D(50, 50), 0, 2000, AlphaFunction.BuiltinFunctions.Linear);
+                _animation = view.AnimateVisualAddFinish();
             }
 
             if (_animation)
             {
                 _animation.Finished += OnTransitionFinished;
+                _animation.EndAction = Animation.EndActions.StopFinal;
                 _transitionInProgress = true;
                 _animation.Play();
             }
         }
+
         private void OnTransitionFinished(object sender, EventArgs e)
         {
             _transitionInProgress = false;
@@ -262,14 +217,13 @@ namespace VisaulAnimationExample
             }
         }
 
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void _Main(string[] args)
         {
-            Example example = new Example();
+            Example3 example = new Example3();
             example.Run(args);
         }
 

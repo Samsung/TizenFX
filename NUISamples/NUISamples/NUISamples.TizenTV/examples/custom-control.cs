@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ using Tizen.NUI;
 
 namespace CustomControlTest
 {
-    
+
     // A custom control for star rating (draggable to change the rating)
     class StarRating : CustomView
     {
@@ -202,12 +202,12 @@ namespace CustomControlTest
             FlexContainer container = new FlexContainer();
 
             container.ParentOrigin = ParentOrigin.TopLeft;
-            container.AnchorPoint = AnchorPoint.TopLeft;
+            container.PivotPoint = PivotPoint.TopLeft;
             container.FlexDirection = (int)FlexContainer.FlexDirectionType.Column;
             container.WidthResizePolicy = ResizePolicyType.FillToParent;
             container.HeightResizePolicy = ResizePolicyType.FillToParent;
 
-            window.GetDefaultLayer().Add(container);
+            window.Add(container);
 
             Random random = new Random();
 
@@ -216,7 +216,7 @@ namespace CustomControlTest
                 // Create a container to layout the image and rating (in each row) horizontally
                 FlexContainer imageRow = new FlexContainer();
                 imageRow.ParentOrigin = ParentOrigin.TopLeft;
-                imageRow.AnchorPoint = AnchorPoint.TopLeft;
+                imageRow.PivotPoint = PivotPoint.TopLeft;
                 imageRow.FlexDirection = FlexContainer.FlexDirectionType.Row;
                 imageRow.Flex = 1.0f;
                 container.Add(imageRow);
@@ -236,7 +236,7 @@ namespace CustomControlTest
 
                 // Add the rating control to the row
                 view.ParentOrigin = ParentOrigin.Center;
-                view.AnchorPoint = AnchorPoint.Center;
+                view.PivotPoint = PivotPoint.Center;
                 view.Size = new Vector3(200.0f, 40.0f, 0.0f);
                 view.Flex = 0.7f;
                 view.AlignSelf = (int)FlexContainer.Alignment.AlignCenter;

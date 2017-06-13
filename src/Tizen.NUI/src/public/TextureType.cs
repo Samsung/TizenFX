@@ -7,24 +7,13 @@
 // Do not make changes to this file unless you know what you are doing--modify
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
-/* moved to VisualMaps.cs 
-namespace Tizen.NUI {
 
-    internal enum VisualType {
-  BORDER,
-  COLOR,
-  GRADIENT,
-  IMAGE,
-  MESH,
-  PRIMITIVE,
-  WIREFRAME
-
-  ,
-  TEXT,
-  N_PATCH,
-  SVG,
-  ANIMATED_IMAGE
-}
+namespace Tizen.NUI
+{
+    public enum TextureType
+    {
+        TEXTURE_2D,
+        TEXTURE_CUBE
+    }
 
 }
-*/

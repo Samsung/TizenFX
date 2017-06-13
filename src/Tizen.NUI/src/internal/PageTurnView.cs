@@ -556,11 +556,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public enum PropertyRange
-        {
-            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
-        }
 
         public Vector2 PageSize
         {
@@ -580,7 +575,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                GetProperty(PageTurnView.Property.CURRENT_PAGE_ID).Get(ref temp);
+                GetProperty(PageTurnView.Property.CURRENT_PAGE_ID).Get(out temp);
                 return temp;
             }
             set

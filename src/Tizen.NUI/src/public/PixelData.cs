@@ -27,16 +27,16 @@
 namespace Tizen.NUI
 {
 
-    internal class PropertyBuffer : BaseHandle
+    public class PixelData : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal PropertyBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PropertyBuffer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PixelData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PixelData_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyBuffer obj)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PixelData obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
@@ -60,12 +60,13 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PropertyBuffer(swigCPtr);
+                    NDalicPINVOKE.delete_PixelData(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -74,41 +75,39 @@ namespace Tizen.NUI
         }
 
 
-        public PropertyBuffer(PropertyMap bufferFormat) : this(NDalicPINVOKE.PropertyBuffer_New(PropertyMap.getCPtr(bufferFormat)), true)
+
+        public PixelData(byte[] buffer, uint bufferSize, uint width, uint height, PixelFormat pixelFormat, PixelData.ReleaseFunction releaseFunction) : this(NDalicPINVOKE.PixelData_New(buffer, bufferSize, width, height, (int)pixelFormat, (int)releaseFunction), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public PropertyBuffer(PropertyBuffer handle) : this(NDalicPINVOKE.new_PropertyBuffer__SWIG_1(PropertyBuffer.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
-        public static PropertyBuffer DownCast(BaseHandle handle)
+
+        public uint GetWidth()
         {
-            PropertyBuffer ret = new PropertyBuffer(NDalicPINVOKE.PropertyBuffer_DownCast(BaseHandle.getCPtr(handle)), true);
+            uint ret = NDalicPINVOKE.PixelData_GetWidth(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public PropertyBuffer Assign(PropertyBuffer handle)
+        public uint GetHeight()
         {
-            PropertyBuffer ret = new PropertyBuffer(NDalicPINVOKE.PropertyBuffer_Assign(swigCPtr, PropertyBuffer.getCPtr(handle)), false);
+            uint ret = NDalicPINVOKE.PixelData_GetHeight(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public void SetData(System.IntPtr data, uint size)
+        public PixelFormat GetPixelFormat()
         {
-            NDalicPINVOKE.PropertyBuffer_SetData(swigCPtr, data, size);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public uint GetSize()
-        {
-            uint ret = NDalicPINVOKE.PropertyBuffer_GetSize(swigCPtr);
+            PixelFormat ret = (PixelFormat)NDalicPINVOKE.PixelData_GetPixelFormat(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        public enum ReleaseFunction
+        {
+            FREE,
+            DELETE_ARRAY
         }
 
     }
