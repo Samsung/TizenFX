@@ -25,6 +25,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This Class is CellularProfile. It provides functions to manage the cellular profile.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CellularProfile : ConnectionProfile
     {
         private CellularAuthInformation AuthInfo;
@@ -41,6 +42,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The APN (access point name).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular access point name.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -89,6 +91,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The home URL.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular home URL.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -137,6 +140,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The service type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular service type.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -174,6 +178,7 @@ namespace Tizen.Network.Connection
    /// <summary>
         /// The cellular pdn type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular pdn type.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -211,6 +216,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The cellular roaming pdn type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular roaming pdn type.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -248,6 +254,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Cellular Authentication Information.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Instance of CellularAuthInformation.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -265,6 +272,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Checks whether the profile is hidden.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>True if the cellular profile is hidden, otherwise false.</value>
         public bool Hidden
         {
@@ -283,6 +291,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Checks whether the profile is editable.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>True if the cellular profile is editable, otherwise false.</value>
         public bool Editable
         {
@@ -301,6 +310,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Checks whether the profile is default.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>True if the cellular profile is default, otherwise false.</value>
         public bool IsDefault
         {
@@ -320,6 +330,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This Class is CellularAuthInformation. It provides the properties to get and set the cellular authentication information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CellularAuthInformation
     {
         private IntPtr ProfileHandle;
@@ -335,6 +346,7 @@ namespace Tizen.Network.Connection
 
         /// <summary>
         /// The user name.
+        /// <since_tizen> 3 </since_tizen>
         /// </summary>
         /// <value>Cellular user name.</value>
         public string UserName
@@ -376,6 +388,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The password
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular password.</value>
         public string Password
         {
@@ -414,6 +427,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The authentication type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular authentication type.</value>
         public CellularAuthType AuthType
         {

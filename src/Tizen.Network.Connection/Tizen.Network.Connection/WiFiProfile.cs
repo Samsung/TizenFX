@@ -25,6 +25,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This Class is WiFiProfile. It provides functions to manage the WiFi profile.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WiFiProfile : ConnectionProfile
     {
         internal WiFiProfile(IntPtr Handle) : base(Handle)
@@ -38,6 +39,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The ESSID (Extended Service Set Identifier).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>ESSID of the WiFi.</value>
         public string Essid
         {
@@ -58,6 +60,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The BSSID (Basic Service Set Identifier).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>BSSID of the WiFi.</value>
         public string Bssid
         {
@@ -78,6 +81,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The RSSI.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>RSSI of the WiFi.</value>
         public int Rssi
         {
@@ -96,6 +100,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The frequency (MHz).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Frequency of the WiFi.</value>
         public int Frequency
         {
@@ -114,6 +119,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The max speed (Mbps).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Maximum speed of the WiFi.</value>
         public int MaxSpeed
         {
@@ -132,6 +138,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The security type of WiFi.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Security type of the WiFi.</value>
         public WiFiSecurityType SecurityType
         {
@@ -150,6 +157,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The encryption type of WiFi.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Encryption mode of the WiFi.</value>
         public WiFiEncryptionType EncryptionType
         {
@@ -168,6 +176,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Checks whether passphrase is required.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>True if a passphrase is required, otherwise false.</value>
         /// <remarks>This property is not valid if <c>WiFiSecurityType</c> is <c>Eap</c>.</remarks>
         public bool PassphraseRequired
@@ -187,6 +196,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Checks whether the WPS (Wi-Fi Protected Setup) is supported.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>True if WPS is supported, otherwise false.</value>
         public bool WpsSupported
         {
@@ -205,6 +215,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Sets the passphrase of the Wi-Fi WPA.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="passphrase">The passphrase of Wi-Fi security</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>

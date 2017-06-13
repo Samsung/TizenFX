@@ -26,6 +26,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for connection type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ConnectionType
     {
         Disconnected = 0,  /**< Disconnected */
@@ -39,6 +40,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for address family.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AddressFamily
     {
         IPv4 = 0,   /**< IPv4 Address */
@@ -48,6 +50,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for cellular network state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CellularState
     {
         OutOfService = 0,  /**< Out of service */
@@ -61,6 +64,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for connection state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ConnectionState
     {
         Deactivated = 0,   /**< Deactivated */
@@ -71,6 +75,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This enumeration defines the attached or detached state of ethernet cable.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum EthernetCableState
     {
         Detached = 0,  /**< Ethernet cable is detached */
@@ -80,6 +85,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for statistics type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum StatisticsType
     {
         LastReceivedData = 0,  /**< Last received data */
@@ -91,6 +97,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for network connection type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ConnectionProfileType
     {
         Cellular = 0,  /**< Cellular type */
@@ -102,6 +109,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for profile state type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ProfileState
     {
         Disconnected = 0,  /**< Disconnected state */
@@ -113,6 +121,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for proxy method type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ProxyType
     {
         Direct = 0,  /**< Direct connection */
@@ -123,6 +132,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for IP configuration type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum IPConfigType
     {
         None = 0,  /**< Not defined */
@@ -135,6 +145,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for cellular service type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CellularServiceType
     {
         Unknown = 0,  /**< Unknown */
@@ -149,6 +160,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for cellular pdn type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CellularPdnType
     {
         Unknown = 0,  /**< Unknown */
@@ -160,6 +172,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for DNS configuration type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum DnsConfigType
     {
         None = 0,  /**< Not defined */
@@ -176,6 +189,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for connection errors.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     // To do : have to assign valid error code
     public enum ConnectionError
     {
@@ -200,6 +214,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for profile list type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ProfileListType
     {
         Registered = 0,  /**< The iterator of the registered profile  */
@@ -210,6 +225,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for security type of Wi-Fi.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiSecurityType
     {
         None  =  0,       /**< Security disabled */
@@ -222,6 +238,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for encryption modes.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiEncryptionType
     {
         None = 0,  /**< Encryption disabled */
@@ -234,6 +251,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for connection profile state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ConnectionProfileState
     {
         Disconnected = 0,  /**< Disconnected state */
@@ -245,6 +263,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// Enumeration for cellular authentication type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CellularAuthType
     {
         None = 0,  /**< No authentication */

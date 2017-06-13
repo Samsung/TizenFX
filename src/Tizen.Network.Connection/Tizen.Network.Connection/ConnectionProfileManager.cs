@@ -26,11 +26,13 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This class is ConnectionProfileManager. It provides functions to add, get, connect or modify the connection profile.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class ConnectionProfileManager
     {
         /// <summary>
         /// Adds a new profile
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="profile">The cellular profile object</param>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -53,6 +55,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the list of profile with profile list type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="type">The type of profile</param>
         /// <returns>List of connection profile objects.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -74,6 +77,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Opens a connection of profile, asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="profile">The connection profile object</param>
         /// <returns>A task indicates whether the ConnectProfileAsync method is done successfully or not.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -97,6 +101,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Closes a connection of profile.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="profile">The connection profile object</param>
         /// <returns>A task indicates whether the DisconnectProfileAsync method is done successfully or not.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -120,6 +125,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Removes an existing profile.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="profile">The connection profile object</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
@@ -144,6 +150,7 @@ namespace Tizen.Network.Connection
         /// When a profile is changed, these changes will be not applied to the ConnectionProfileManager immediately.
         /// When you call this function, your changes affect the ConnectionProfileManager and the existing profile is updated.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="profile">The connection profile object</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
@@ -166,6 +173,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the name of the default profile.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Connection profile object.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -186,6 +194,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the default profile which provides the given cellular service.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="type">The cellular service type</param>
         /// <returns>Connection profile object.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -207,6 +216,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Sets the default profile which provides the given cellular service.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="type">The cellular service type</param>
         /// <param name="profile">The connection profile object</param>
         /// <returns>A task indicates whether the SetDefaultCellularProfile method is done successfully or not.</returns>
@@ -232,6 +242,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// An extended EventArgs class which contains the state of changed connection profile.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ConnectionProfileStateEventArgs : EventArgs
     {
         private  ConnectionProfileState State;
@@ -244,6 +255,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The connection profile state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>State of the connection profile.</value>
         public ConnectionProfileState ConnectionProfileState
         {

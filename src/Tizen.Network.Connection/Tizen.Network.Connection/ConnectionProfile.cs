@@ -25,6 +25,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This Class is ConnectionProfile. It provides event and propeties of the connection profile.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ConnectionProfile : IDisposable
     {
         internal IntPtr ProfileHandle = IntPtr.Zero;
@@ -43,6 +44,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The event that is called when the state of profile is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
@@ -112,6 +114,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Disposes the memory allocated to unmanaged resources.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -158,6 +161,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The profile ID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Unique ID of the profile.</value>
         public string Id
         {
@@ -178,6 +182,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The profile name.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>User friendly name of the profile.</value>
         public string Name
         {
@@ -198,6 +203,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The network type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Profile type of the network connection.</value>
         public ConnectionProfileType Type
         {
@@ -216,6 +222,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The name of the network interface.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Network interface name, e.g. eth0 and pdp0.</value>
         public string InterfaceName
         {
@@ -236,6 +243,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Refreshes the profile information.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -263,6 +271,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Get the network state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="family">The address family</param>
         /// <returns>The network state.</returns>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
@@ -296,6 +305,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The Proxy type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Proxy type of the connection.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -332,6 +342,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The proxy address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Proxy address of the connection.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -379,6 +390,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The address information (IPv4)
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Instance of IAddressInformation with IPV4 address.</value>
         public IAddressInformation IPv4Settings
         {
@@ -392,6 +404,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The address information (IPv6)
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Instance of IAddressInformation with IPV6 address.</value>
         public IAddressInformation IPv6Settings
         {
@@ -405,6 +418,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// An extended EventArgs class which contains changed profile state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ProfileStateEventArgs : EventArgs
     {
         private ProfileState _State = ProfileState.Disconnected;
@@ -417,6 +431,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The profile state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>State type of the connection profile.</value>
         public ProfileState State
         {

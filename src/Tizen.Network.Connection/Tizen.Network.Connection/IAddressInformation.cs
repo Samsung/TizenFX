@@ -27,11 +27,13 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This interface provides properties to manage address information of the connection.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public interface IAddressInformation
     {
         /// <summary>
         /// The DNS address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>First DNS address of the connection.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -41,6 +43,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The DNS address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Second DNS address of the connection.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -50,6 +53,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The gateway address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Gateway address of the connection.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -59,6 +63,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The subnet mask address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Subnet mask of the connection.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -68,6 +73,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The IP address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>IP address of the connection.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -77,6 +83,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The type of IP config.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>IP config type of the connection.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -86,6 +93,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The prefix length.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Prefix length of the connection.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
@@ -95,6 +103,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The DNS config type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Config type of the DNS.</value>
         /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>

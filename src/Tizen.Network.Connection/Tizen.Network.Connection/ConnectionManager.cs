@@ -63,6 +63,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This class is ConnectionManager. It provides functions to manage data connections.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class ConnectionManager
     {
         private static ConnectionItem _currentConnection = null;
@@ -70,6 +71,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Event that is called when the type of the current connection is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -91,6 +93,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Event for ethernet cable is plugged [in/out] event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         public static event EventHandler EthernetCableStateChanged
@@ -109,6 +112,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Event that is called when the IP address is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -130,6 +134,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Event that is called when the proxy address is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -151,6 +156,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the connection handle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Instance of SafeConnectionHandle</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static SafeConnectionHandle GetConnectionHandle()
@@ -162,6 +168,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the IP address of the current connection.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="family">The address family</param>
         /// <returns>IP address of the connection (global address in case of IPv6).</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -182,6 +189,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the all IPv6 addresses of the current connection.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="type">The type of current network connection</param>
         /// <returns>A list of IPv6 addresses of the connection.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -202,6 +210,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the proxy address of the current connection.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="family">The address family</param>
         /// <returns>Proxy address of the connection.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -222,6 +231,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the MAC address of the Wi-Fi or ethernet.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="type">The type of current network connection</param>
         /// <returns>MAC address of the Wi-Fi or ethernet.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -242,6 +252,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Gets the statistics information.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="connectionType">The type of connection (only WiFi and Cellular are supported)</param>
         /// <param name="statisticsType">The type of statistics</param>
         /// <returns>The statistics information associated with statisticsType</returns>
@@ -263,6 +274,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Resets the statistics information.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="connectionType">The type of connection (only WiFi and Cellular are supported)</param>
         /// <param name="statisticsType">The type of statistics</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -284,6 +296,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Type and state of the current profile for data connection
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Instance of ConnectionItem</value>
         public static ConnectionItem CurrentConnection
         {
@@ -301,6 +314,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Creates a cellular profile handle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="type">The type of profile. Cellular profile type is supported.</param>
         /// <param name="keyword">The keyword included in profile name.</param>
         /// <returns>CellularProfile object</returns>
@@ -332,6 +346,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The state of cellular connection.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular network state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public static CellularState CellularState
@@ -345,6 +360,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The state of the Wi-Fi.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>WiFi connection state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public static ConnectionState WiFiState
@@ -358,6 +374,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The state of the Bluetooth.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Bluetooth connection state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public static ConnectionState BluetoothState
@@ -371,6 +388,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The Ethernet connection state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Ethernet connection state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public static ConnectionState EthernetState
@@ -384,6 +402,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Checks for ethernet cable is attached or not.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Ethernet cable state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public static EthernetCableState EthernetCableState
@@ -399,6 +418,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This class contains connection information such as connection type and state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ConnectionItem
     {
         internal ConnectionItem()
@@ -408,6 +428,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The type of the current profile for data connection.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Data connection current profile.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public ConnectionType Type
@@ -421,6 +442,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The state of the current profile for data connection.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Connection state of the current connection type.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         public ConnectionState State
@@ -463,6 +485,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// An extended EventArgs class which contains changed connection type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ConnectionTypeEventArgs : EventArgs
     {
         private ConnectionType Type = ConnectionType.Disconnected;
@@ -475,6 +498,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The connection type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Type of the connection.</value>
         public ConnectionType ConnectionType
         {
@@ -488,6 +512,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// An extended EventArgs class which contains changed ethernet cable state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class EthernetCableStateEventArgs : EventArgs
     {
         private EthernetCableState State;
@@ -500,6 +525,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The ethernet cable state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Attached or detached state of the ethernet cable.</value>
         public EthernetCableState EthernetCableState
         {
@@ -513,6 +539,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// An extended EventArgs class which contains changed address.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AddressEventArgs : EventArgs
     {
         private string IPv4 = "";
@@ -527,6 +554,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The  IPV4 address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>IP address in the format of IPV4 syntax.</value>
         public string IPv4Address
         {
@@ -539,6 +567,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The  IPV6 address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>IP address in the format of IPV6 syntax.</value>
         public string IPv6Address
         {
