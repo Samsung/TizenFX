@@ -32,8 +32,8 @@ cp %{SOURCE1} .
 
 %build
 for ASM in %{Assemblies}; do
-%dotnet_build $ASM
-%dotnet_pack $ASM
+%dotnet_build $ASM /p:DefineConstants="DOT_NET_CORE","DEBUG_ON"
+%dotnet_pack $ASM/$ASM.nuspec %{version}
 done
 
 
