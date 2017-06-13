@@ -2293,14 +2293,6 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PositionInheritanceMode GetPositionInheritanceMode()
-        {
-            PositionInheritanceMode ret = (PositionInheritanceMode)NDalicPINVOKE.Actor_GetPositionInheritanceMode(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal bool IsPositionInherited()
         {
             bool ret = NDalicPINVOKE.Actor_IsPositionInherited(swigCPtr);

@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    public class DefaultRuler : Ruler
+    internal class DefaultRuler : Ruler
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

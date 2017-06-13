@@ -17,7 +17,7 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
 
-    public class ViewImpl : CustomActorImpl
+    internal class ViewImpl : CustomActorImpl
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

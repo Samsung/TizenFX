@@ -155,12 +155,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void GetPropertyIndices(VectorInteger indices)
-        {
-            NDalicPINVOKE.Handle_GetPropertyIndices(swigCPtr, VectorInteger.getCPtr(indices));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal PropertyNotification AddPropertyNotification(int index, PropertyCondition condition)
         {
             PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.Handle_AddPropertyNotification__SWIG_0(swigCPtr, index, PropertyCondition.getCPtr(condition)), true);
