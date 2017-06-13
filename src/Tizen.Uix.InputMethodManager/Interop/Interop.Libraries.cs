@@ -25,6 +25,6 @@ internal static partial class Interop
     /// </summary>
     internal static partial class Libraries
     {
-        public const string InputMethodManager = "libcapi-ui-inputmethod-manager.so";
+        public const string InputMethodManager = "libcapi-ui-inputmethod-manager.so.0";
     }
 }
