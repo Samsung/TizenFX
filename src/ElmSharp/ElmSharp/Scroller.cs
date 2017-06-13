@@ -183,7 +183,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Auto means the horizontal scrollbar is made visible if it is needed, and otherwise kept hidden.
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
-        public ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
+        public virtual ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
         {
             get
             {
@@ -205,7 +205,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
-        public ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
+        public virtual ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
             get
             {
