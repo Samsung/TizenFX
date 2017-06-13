@@ -566,15 +566,6 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_PIXEL_SIZE_get")]
         public static extern int TextEditor_Property_PIXEL_SIZE_get();
 
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_LINE_COUNT_get")]
-        public static extern int TextEditor_Property_LINE_COUNT_get();
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_PLACEHOLDER_TEXT_get")]
-        public static extern int TextEditor_Property_PLACEHOLDER_TEXT_get();
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_PLACEHOLDER_TEXT_COLOR_get")]
-        public static extern int TextEditor_Property_PLACEHOLDER_TEXT_COLOR_get();
-
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextField_Property_HIDDEN_INPUT_SETTINGS_get")]
         public static extern int TextField_Property_HIDDEN_INPUT_SETTINGS_get();
 

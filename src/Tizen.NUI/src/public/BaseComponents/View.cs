@@ -3383,18 +3383,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets the View's ID.
-        /// Readonly
-        /// </summary>
-        public uint ID
-        {
-            get
-            {
-                return GetId();
-            }
-        }
-
-        /// <summary>
         /// Gets/Sets the status of whether an view should emit touch or hover signals.
         /// </summary>
         public bool Sensitive

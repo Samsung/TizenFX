@@ -90,18 +90,6 @@ namespace TextTest
             hiddenMap.Add(HiddenInputProperty.SubstituteCharacter, new PropertyValue(0x23));
             field.HiddenInputSettings = hiddenMap;
             window.GetDefaultLayer().Add(field);
-            TextEditor editor = new TextEditor();
-            editor.Size2D = new Size2D(400, 100);
-            editor.Position2D = new Position2D(10, 550);
-            editor.BackgroundColor = Color.Magenta;
-            editor.PlaceholderText = "input someth...";
-            editor.PlaceholderTextColor = Color.Red;
-            window.GetDefaultLayer().Add(editor);
-            editor.TextChanged += (obj, e) => {
-                Tizen.Log.Debug("NUI", "editor line count: " + e.TextEditor.LineCount);
-            };
-
-            Tizen.Log.Debug("NUI",  "editor id: " + editor.ID);
         }
 
         [STAThread]
