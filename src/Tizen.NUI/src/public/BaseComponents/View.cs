@@ -2564,7 +2564,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal uint AddRenderer(Renderer renderer)
+        public uint AddRenderer(Renderer renderer)
         {
             uint ret = NDalicPINVOKE.Actor_AddRenderer(swigCPtr, Renderer.getCPtr(renderer));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -2580,7 +2580,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal Renderer GetRendererAt(uint index)
+        public Renderer GetRendererAt(uint index)
         {
             Renderer ret = new Renderer(NDalicPINVOKE.Actor_GetRendererAt(swigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -2588,14 +2588,14 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal void RemoveRenderer(Renderer renderer)
+        public void RemoveRenderer(Renderer renderer)
         {
             NDalicPINVOKE.Actor_RemoveRenderer__SWIG_0(swigCPtr, Renderer.getCPtr(renderer));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void RemoveRenderer(uint index)
+        public void RemoveRenderer(uint index)
         {
             NDalicPINVOKE.Actor_RemoveRenderer__SWIG_1(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -3525,6 +3525,16 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(View.Property.CLIPPING_MODE, new Tizen.NUI.PropertyValue((int)value));
             }
         }
-    }
 
+        /// <summary>
+        /// Get the number of renderers held by the view.
+        /// </summary>
+        public uint RendererCount
+        {
+            get
+            {
+                return GetRendererCount();
+            }
+        }
+    }
 }
