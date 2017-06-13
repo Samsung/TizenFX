@@ -1591,7 +1591,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 Size temp = new Size(0.0f, 0.0f, 0.0f);
                 GetProperty(View.Property.SIZE).Get(temp);
-                return new Size2D(temp);
+                Size2D size = new Size2D((int)temp.Width, (int)temp.Height);
+                return size;
             }
             set
             {
@@ -1603,7 +1604,7 @@ namespace Tizen.NUI.BaseComponents
         ///  Retrieves the size of the View.<br>
         ///  The coordinates are relative to the View's parent.<br>
         /// </summary>
-        public Size CurrentSize
+        public Size2D CurrentSize
         {
             get
             {
@@ -2082,12 +2083,13 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal Size GetCurrentSize()
+        internal Size2D GetCurrentSize()
         {
             Size ret = new Size(NDalicPINVOKE.Actor_GetCurrentSize(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            Size2D size = new Size2D((int)ret.Width, (int)ret.Height);
+            return size;
         }
 
         internal Vector3 GetNaturalSize()
@@ -2778,25 +2780,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.ANCHOR_POINT_Z, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the size of an view.<br>
-        /// Geometry can be scaled to fit within this area.<br>
-        /// This does not interfere with the views scale factor.<br>
-        /// </summary>
-        public Size Size
-        {
-            get
-            {
-                Size temp = new Size(0.0f, 0.0f, 0.0f);
-                GetProperty(View.Property.SIZE).Get(temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(value));
             }
         }
 

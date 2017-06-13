@@ -118,9 +118,9 @@ namespace Tizen.NUI
         /// Return the natural size of the actor.<br>
         /// </summary>
         /// <returns> Natural size of this Spin itself</returns>
-        public override Size GetNaturalSize()
+        public override Size2D GetNaturalSize()
         {
-            return new Size(150.0f, 150.0f, 0.0f);
+            return new Size2D(150, 150);
         }
 
         /// <summary>
