@@ -303,7 +303,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for Touched signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// Touched signal is emitted when touch input is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touched
+        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touch
         {
             add
             {
@@ -375,7 +375,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for Hovered signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// Hovered signal is emitted when hover input is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hovered
+        public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hover
         {
             add
             {
@@ -447,7 +447,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for WheelMoved signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// WheelMoved signal is emitted when wheel event is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelRolled
+        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelRoll
         {
             add
             {

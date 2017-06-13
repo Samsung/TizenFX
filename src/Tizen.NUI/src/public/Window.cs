@@ -863,7 +863,7 @@ namespace Tizen.NUI
         /// then when the last finger is lifted.<br>
         /// An interrupted event will also be emitted (if it occurs).<br>
         /// </summary>
-        public event EventHandler<TouchEventArgs> Touched
+        public event EventHandler<TouchEventArgs> Touch
         {
             add
             {
@@ -931,7 +931,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event emitted when wheel event is received.
         /// </summary>
-        public event EventHandler<WheelEventArgs> WheelRolled
+        public event EventHandler<WheelEventArgs> WheelRoll
         {
             add
             {
@@ -996,7 +996,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event emitted when key event is received.
         /// </summary>
-        public event EventHandler<KeyEventArgs> KeyEvent
+        public event EventHandler<KeyEventArgs> Key
         {
             add
             {
