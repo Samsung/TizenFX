@@ -133,6 +133,7 @@ namespace Tizen.NUI
             }
             _applicationExt = new ApplicationExtensions(_application);
             _applicationExt.Init();
+            _applicationExt.Start();
 
             // This is also required to create DisposeQueue on main thread.
             disposeQ.Initialize();

@@ -207,6 +207,9 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SCROLL_BAR_SHOW_DURATION = NDalicManualPINVOKE.TextEditor_Property_SCROLL_BAR_SHOW_DURATION_get();
             internal static readonly int SCROLL_BAR_FADE_DURATION = NDalicManualPINVOKE.TextEditor_Property_SCROLL_BAR_FADE_DURATION_get();
             internal static readonly int PIXEL_SIZE = NDalicManualPINVOKE.TextEditor_Property_PIXEL_SIZE_get();
+            internal static readonly int LINE_COUNT = NDalicManualPINVOKE.TextEditor_Property_LINE_COUNT_get();
+            internal static readonly int PLACEHOLDER_TEXT = NDalicManualPINVOKE.TextEditor_Property_PLACEHOLDER_TEXT_get();
+            internal static readonly int PLACEHOLDER_TEXT_COLOR = NDalicManualPINVOKE.TextEditor_Property_PLACEHOLDER_TEXT_COLOR_get();
 
         }
 
@@ -1068,6 +1071,53 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.PIXEL_SIZE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// The line count of text.
+        /// </summary>
+        public int LineCount
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(TextEditor.Property.LINE_COUNT).Get(out temp);
+                return temp;
+            }
+        }
+
+        /// <summary>
+        /// The text to display when the TextEditor is empty and inactive.
+        /// </summary>
+        public string PlaceholderText
+        {
+            get
+            {
+                string temp;
+                GetProperty(TextEditor.Property.PLACEHOLDER_TEXT).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextEditor.Property.PLACEHOLDER_TEXT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// The placeholder-text color.
+        /// </summary>
+        public Color PlaceholderTextColor
+        {
+            get
+            {
+                Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(TextEditor.Property.PLACEHOLDER_TEXT_COLOR).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextEditor.Property.PLACEHOLDER_TEXT_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
 

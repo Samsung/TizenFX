@@ -109,6 +109,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        public void Start()
+        {
+            NDalicPINVOKE.ApplicationExtensions_Start(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         public void Terminate()
         {
             NDalicPINVOKE.ApplicationExtensions_Terminate(swigCPtr);
