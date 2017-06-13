@@ -30,8 +30,7 @@ namespace NUISamples.TizenTV.examples
             //new DaliTest.Example().Run(args);                         //o
             //new RelativeVectorTest.Example().Run(args);
             //new VisaulAnimationExample.Example().Run(args);
-            // new VisaulAnimationExample.Example2().Run(args);          //o
-            new VisaulAnimationExample.Example3().Run(args);          //o
+            //new VisaulAnimationExample.Example2().Run(args);
             //new VisualViewTest.Example().Run(args);                   //o
             //new VisualViewTest2.VisualSample().Run(args);
             //new VisualViewTest3.Example().Run(args);                   //o
@@ -39,7 +38,7 @@ namespace NUISamples.TizenTV.examples
             //new FirstScreen.FirstScreenApp().Run(args);               //o
             //new PositionUsesAnchorPointTest.Example().Run(args);
             // new VisualsExampleTest.Example().Run(args);               //o
-            //new TizenSTVUIApplication15.Program().Run(args);
+            new TizenSTVUIApplication15.Program().Run(args);
         }
     }
 }

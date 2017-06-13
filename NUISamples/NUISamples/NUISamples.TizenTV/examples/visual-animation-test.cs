@@ -33,6 +33,7 @@ namespace VisaulAnimationExample
         private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
 
         private Animation _animation1;
+        private Animation _animation2;
         private bool _transitionInProgress = false;
         private int cnt1, cnt2;
 
@@ -232,18 +233,21 @@ namespace VisaulAnimationExample
                 _animation1.Stop();
                 _animation1.Finished += OnTransitionFinished1;
             }
+            if (_animation2)
+            {
+                _animation2.Stop();
+                _animation2.Finished += OnTransitionFinished2;
+            }
 
             if (activate)
             {
-                _contentView.AnimateVisualAdd(_icon, "Size", new Size2D(150, 150), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
-                _contentView.AnimateVisualAdd(_icon, "Position", new Position2D(40, 40), 0, 1000);
-                _animation1 = _contentView.AnimateVisualAddFinish();
+                _animation1 = _contentView.AnimateVisual(_icon, "Size", new Size2D(150, 150), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
+                _animation2 = _contentView.AnimateVisual(_icon, "Position", new Position2D(40, 40), 0, 1000);
             }
             else
             {
-                _contentView.AnimateVisualAdd(_icon, "Size", new Position2D(50, 50), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
-                _contentView.AnimateVisualAdd(_icon, "Position", new Position2D(5, 5), 0, 1000);
-                _animation1 = _contentView.AnimateVisualAddFinish();
+                _animation1 = _contentView.AnimateVisual(_icon, "Size", new Position2D(50, 50), 0, 1000, AlphaFunction.BuiltinFunctions.Linear);
+                _animation2 = _contentView.AnimateVisual(_icon, "Position", new Position2D(5, 5), 0, 1000);
             }
 
             if (_animation1)
@@ -251,6 +255,12 @@ namespace VisaulAnimationExample
                 _animation1.Finished += OnTransitionFinished1;
                 _transitionInProgress = true;
                 _animation1.Play();
+            }
+            if (_animation2)
+            {
+                _animation2.Finished += OnTransitionFinished2;
+                _transitionInProgress = true;
+                _animation2.Play();
             }
         }
         private void OnTransitionFinished1(object sender, EventArgs e)
@@ -260,6 +270,15 @@ namespace VisaulAnimationExample
             {
                 _animation1.Finished += OnTransitionFinished1;
                 _animation1.Reset();
+            }
+        }
+        private void OnTransitionFinished2(object sender, EventArgs e)
+        {
+            _transitionInProgress = false;
+            if (_animation2)
+            {
+                _animation2.Finished += OnTransitionFinished2;
+                _animation2.Reset();
             }
         }
 

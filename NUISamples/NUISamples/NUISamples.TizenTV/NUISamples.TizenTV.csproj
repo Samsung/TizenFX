@@ -79,7 +79,6 @@
     <Compile Include="examples\date-picker-using-json\ViewRegistryHelper.cs" />
     <Compile Include="examples\visual-animation-test.cs" />
     <Compile Include="examples\visual-animation-test2.cs" />
-    <Compile Include="examples\visual-animation-test3.cs" />
     <Compile Include="examples\visual-view-test2.cs" />
     <Compile Include="examples\visual-view-test.cs" />
     <Compile Include="examples\visual-view-test3.cs" />
