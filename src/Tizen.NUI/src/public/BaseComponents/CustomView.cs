@@ -484,9 +484,9 @@ namespace Tizen.NUI.BaseComponents
         /// Return the natural size of the view.
         /// </summary>
         /// <returns>The view's natural size</returns>
-        public virtual Size GetNaturalSize()
+        public virtual Size2D GetNaturalSize()
         {
-            return new Size(0.0f, 0.0f, 0.0f);
+            return new Size2D(0, 0);
         }
 
         /// <summary>

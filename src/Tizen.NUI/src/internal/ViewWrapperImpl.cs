@@ -33,7 +33,7 @@ namespace Tizen.NUI
         public delegate bool OnWheelDelegate(Wheel wheel);
         public delegate void OnRelayoutDelegate(Vector2 size, RelayoutContainer container);
         public delegate void OnSetResizePolicyDelegate(ResizePolicyType policy, DimensionType dimension);
-        public delegate Size GetNaturalSizeDelegate();
+        public delegate Size2D GetNaturalSizeDelegate();
         public delegate float CalculateChildSizeDelegate(View child, DimensionType dimension);
         public delegate float GetHeightForWidthDelegate(float width);
         public delegate float GetWidthForHeightDelegate(float height);
@@ -365,7 +365,7 @@ namespace Tizen.NUI
 
         private global::System.IntPtr DirectorGetNaturalSize()
         {
-            return Size.getCPtr(GetNaturalSize()).Handle;
+            return Size2D.getCPtr(GetNaturalSize()).Handle;
         }
 
         private float DirectorCalculateChildSize(global::System.IntPtr child, int dimension)
