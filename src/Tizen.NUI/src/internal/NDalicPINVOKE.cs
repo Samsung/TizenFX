@@ -37,14 +37,14 @@ class NDalicPINVOKE {
     public static extern void SWIGRegisterExceptionCallbacks_NDalic(
                                 ExceptionDelegate applicationDelegate,
                                 ExceptionDelegate arithmeticDelegate,
-                                ExceptionDelegate divideByZeroDelegate, 
-                                ExceptionDelegate indexOutOfRangeDelegate, 
+                                ExceptionDelegate divideByZeroDelegate,
+                                ExceptionDelegate indexOutOfRangeDelegate,
                                 ExceptionDelegate invalidCastDelegate,
                                 ExceptionDelegate invalidOperationDelegate,
                                 ExceptionDelegate ioDelegate,
                                 ExceptionDelegate nullReferenceDelegate,
-                                ExceptionDelegate outOfMemoryDelegate, 
-                                ExceptionDelegate overflowDelegate, 
+                                ExceptionDelegate outOfMemoryDelegate,
+                                ExceptionDelegate overflowDelegate,
                                 ExceptionDelegate systemExceptionDelegate);
 
     [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="SWIGRegisterExceptionArgumentCallbacks_NDalic")]
@@ -136,7 +136,7 @@ class NDalicPINVOKE {
           if (pendingException != null)
             pending = true;
         return pending;
-      } 
+      }
     }
 
     public static void Set(global::System.Exception e) {
@@ -1659,13 +1659,13 @@ class NDalicPINVOKE {
   public static extern int Property_Value_GetType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Property_Value_Get__SWIG_1")]
-  public static extern bool Property_Value_Get__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, ref bool jarg2);
+  public static extern bool Property_Value_Get__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, out bool jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Property_Value_Get__SWIG_2")]
-  public static extern bool Property_Value_Get__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, ref float jarg2);
+  public static extern bool Property_Value_Get__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, out float jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Property_Value_Get__SWIG_3")]
-  public static extern bool Property_Value_Get__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, ref int jarg2);
+  public static extern bool Property_Value_Get__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, out int jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Property_Value_Get__SWIG_4")]
   public static extern bool Property_Value_Get__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -4580,8 +4580,17 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Animation_Clear")]
   public static extern void Animation_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Animation_SetProgressNotification")]
+  public static extern void Animation_SetProgressNotification(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Animation_GetProgressNotification")]
+  public static extern float Animation_GetProgressNotification(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Animation_FinishedSignal")]
   public static extern global::System.IntPtr Animation_FinishedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Animation_ProgressReachedSignal")]
+  public static extern global::System.IntPtr Animation_ProgressReachedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Animation_AnimateBy__SWIG_0")]
   public static extern void Animation_AnimateBy__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
@@ -6115,6 +6124,9 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ApplicationExtensions_Init")]
   public static extern void ApplicationExtensions_Init(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ApplicationExtensions_Start")]
+  public static extern void ApplicationExtensions_Start(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ApplicationExtensions_Terminate")]
   public static extern void ApplicationExtensions_Terminate(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -6504,6 +6516,9 @@ class NDalicPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_URL_get")]
   public static extern int IMAGE_VISUAL_URL_get();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_ALPHA_MASK_URL_get")]
+  public static extern int IMAGE_VISUAL_ALPHA_MASK_URL_get();
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_FITTING_MODE_get")]
   public static extern int IMAGE_VISUAL_FITTING_MODE_get();
@@ -10030,10 +10045,10 @@ class NDalicPINVOKE {
   public static extern void VisualBase_GetNaturalSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_VisualBase_SetDepthIndex")]
-  public static extern void VisualBase_SetDepthIndex(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+  public static extern void VisualBase_SetDepthIndex(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_VisualBase_GetDepthIndex")]
-  public static extern float VisualBase_GetDepthIndex(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern int VisualBase_GetDepthIndex(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_VisualBase_CreatePropertyMap")]
   public static extern void VisualBase_CreatePropertyMap(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);

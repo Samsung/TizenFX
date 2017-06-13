@@ -13,7 +13,7 @@ namespace Tizen.NUI
 
     /// <summary>
     /// The key structure is used to store a key press.
-    /// </summary> 
+    /// </summary>
     public class Key : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -115,7 +115,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Name given to the key pressed
-        /// </summary> 
+        /// </summary>
         public string KeyPressedName
         {
             get
@@ -136,7 +136,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Keycode for the key pressed.
-        /// </summary> 
+        /// </summary>
         public int KeyCode
         {
             get
@@ -147,7 +147,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Special keys like shift, alt and control which modify the next key pressed.
-        /// </summary> 
+        /// </summary>
         public int KeyModifier
         {
             get
@@ -158,7 +158,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The time (in ms) that the key event occurred.
-        /// </summary> 
+        /// </summary>
         public uint Time
         {
             get
@@ -169,7 +169,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// State of the key event.
-        /// </summary> 
+        /// </summary>
         public Key.StateType State
         {
             get
@@ -191,7 +191,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Default Constructor.
-        /// </summary> 
+        /// </summary>
         public Key() : this(NDalicPINVOKE.new_Key__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -206,20 +206,11 @@ namespace Tizen.NUI
         /// <param name="keyModifier">The key modifier for special keys like shift and alt</param>
         /// <param name="timeStamp">The time (in ms) that the key event occurred</param>
         /// <param name="keyState">The state of the key event</param>
-        public Key(string keyName, string keyString, int keyCode, int keyModifier, uint timeStamp, Key.StateType keyState) : this(NDalicPINVOKE.new_Key__SWIG_1(keyName, keyString, keyCode, keyModifier, timeStamp, (int)keyState), true)
+        internal Key(string keyName, string keyString, int keyCode, int keyModifier, uint timeStamp, Key.StateType keyState) : this(NDalicPINVOKE.new_Key__SWIG_1(keyName, keyString, keyCode, keyModifier, timeStamp, (int)keyState), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Key(Key rhs) : this(NDalicPINVOKE.new_Key__SWIG_2(Key.getCPtr(rhs)), true) {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public Key Assign(Key rhs) {
-            Key ret = new Key(NDalicPINVOKE.Key_Assign(swigCPtr, Key.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
         /// <summary>
         /// Checks to see if Shift key modifier has been supplied.
         /// </summary>

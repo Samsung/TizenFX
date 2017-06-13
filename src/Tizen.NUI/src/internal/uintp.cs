@@ -112,7 +112,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public SWIGTYPE_p_unsigned_int cast()
+        internal SWIGTYPE_p_unsigned_int cast()
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.uintp_cast(swigCPtr);
             SWIGTYPE_p_unsigned_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_int(cPtr, false);
@@ -120,7 +120,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public static uintp frompointer(SWIGTYPE_p_unsigned_int t)
+        internal static uintp frompointer(SWIGTYPE_p_unsigned_int t)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.uintp_frompointer(SWIGTYPE_p_unsigned_int.getCPtr(t));
             uintp ret = (cPtr == global::System.IntPtr.Zero) ? null : new uintp(cPtr, false);

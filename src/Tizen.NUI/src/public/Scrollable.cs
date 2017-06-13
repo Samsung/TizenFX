@@ -50,7 +50,7 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            //Unreference this from if a static instance refer to this. 
+            //Unreference this from if a static instance refer to this.
             ViewRegistry.UnregisterView(this);
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -271,93 +271,8 @@ namespace Tizen.NUI
         }
 
 
-        public class Property : global::System.IDisposable
+        public class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-
-            ~Property()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_Scrollable_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
-            public Property() : this(NDalicPINVOKE.new_Scrollable_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
             public static readonly int OVERSHOOT_EFFECT_COLOR = NDalicPINVOKE.Scrollable_Property_OVERSHOOT_EFFECT_COLOR_get();
             public static readonly int OVERSHOOT_ANIMATION_SPEED = NDalicPINVOKE.Scrollable_Property_OVERSHOOT_ANIMATION_SPEED_get();
             public static readonly int OVERSHOOT_ENABLED = NDalicPINVOKE.Scrollable_Property_OVERSHOOT_ENABLED_get();
@@ -380,58 +295,46 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Scrollable(Scrollable handle) : this(NDalicPINVOKE.new_Scrollable__SWIG_1(Scrollable.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public Scrollable Assign(Scrollable handle)
-        {
-            Scrollable ret = new Scrollable(NDalicPINVOKE.Scrollable_Assign(swigCPtr, Scrollable.getCPtr(handle)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public new static Scrollable DownCast(BaseHandle handle)
+        internal new static Scrollable DownCast(BaseHandle handle)
         {
             Scrollable ret = new Scrollable(NDalicPINVOKE.Scrollable_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public bool IsOvershootEnabled()
+        private bool IsOvershootEnabled()
         {
             bool ret = NDalicPINVOKE.Scrollable_IsOvershootEnabled(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public void SetOvershootEnabled(bool enable)
+        private void SetOvershootEnabled(bool enable)
         {
             NDalicPINVOKE.Scrollable_SetOvershootEnabled(swigCPtr, enable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void SetOvershootEffectColor(Vector4 color)
+        private void SetOvershootEffectColor(Vector4 color)
         {
             NDalicPINVOKE.Scrollable_SetOvershootEffectColor(swigCPtr, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Vector4 GetOvershootEffectColor()
+        private Vector4 GetOvershootEffectColor()
         {
             Vector4 ret = new Vector4(NDalicPINVOKE.Scrollable_GetOvershootEffectColor(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public void SetOvershootAnimationSpeed(float pixelsPerSecond)
+        private void SetOvershootAnimationSpeed(float pixelsPerSecond)
         {
             NDalicPINVOKE.Scrollable_SetOvershootAnimationSpeed(swigCPtr, pixelsPerSecond);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public float GetOvershootAnimationSpeed()
+        private float GetOvershootAnimationSpeed()
         {
             float ret = NDalicPINVOKE.Scrollable_GetOvershootAnimationSpeed(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -459,14 +362,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public enum PropertyRange
-        {
-            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000,
-            ANIMATABLE_PROPERTY_START_INDEX = PropertyRanges.ANIMATABLE_PROPERTY_REGISTRATION_START_INDEX,
-            ANIMATABLE_PROPERTY_END_INDEX = PropertyRanges.ANIMATABLE_PROPERTY_REGISTRATION_START_INDEX + 1000
-        }
-
         public Vector4 OvershootEffectColor
         {
             get
@@ -485,7 +380,7 @@ namespace Tizen.NUI
             get
             {
                 float temp = 0.0f;
-                GetProperty(Scrollable.Property.OVERSHOOT_ANIMATION_SPEED).Get(ref temp);
+                GetProperty(Scrollable.Property.OVERSHOOT_ANIMATION_SPEED).Get(out temp);
                 return temp;
             }
             set
@@ -498,7 +393,7 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                GetProperty(Scrollable.Property.OVERSHOOT_ENABLED).Get(ref temp);
+                GetProperty(Scrollable.Property.OVERSHOOT_ENABLED).Get(out temp);
                 return temp;
             }
             set
@@ -524,7 +419,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                GetProperty(Scrollable.Property.SCROLL_TO_ALPHA_FUNCTION).Get(ref temp);
+                GetProperty(Scrollable.Property.SCROLL_TO_ALPHA_FUNCTION).Get(out temp);
                 return temp;
             }
             set
@@ -576,7 +471,7 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                GetProperty(Scrollable.Property.CAN_SCROLL_VERTICAL).Get(ref temp);
+                GetProperty(Scrollable.Property.CAN_SCROLL_VERTICAL).Get(out temp);
                 return temp;
             }
             set
@@ -589,7 +484,7 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                GetProperty(Scrollable.Property.CAN_SCROLL_HORIZONTAL).Get(ref temp);
+                GetProperty(Scrollable.Property.CAN_SCROLL_HORIZONTAL).Get(out temp);
                 return temp;
             }
             set

@@ -65,7 +65,7 @@ namespace Tizen.NUI.UIComponents
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.           
+            //because the execution order of Finalizes is non-deterministic.
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -81,98 +81,13 @@ namespace Tizen.NUI.UIComponents
         }
 
 
-        internal class Property : global::System.IDisposable
+        internal class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-            ~Property()
-            {
-                if(!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if(type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_PushButton_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                disposed = true;
-            }
-
-            internal Property() : this(NDalicPINVOKE.new_PushButton_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
             internal static readonly int UNSELECTED_ICON = NDalicPINVOKE.PushButton_Property_UNSELECTED_ICON_get();
             internal static readonly int SELECTED_ICON = NDalicPINVOKE.PushButton_Property_SELECTED_ICON_get();
             internal static readonly int ICON_ALIGNMENT = NDalicPINVOKE.PushButton_Property_ICON_ALIGNMENT_get();
             internal static readonly int LABEL_PADDING = NDalicPINVOKE.PushButton_Property_LABEL_PADDING_get();
             internal static readonly int ICON_PADDING = NDalicPINVOKE.PushButton_Property_ICON_PADDING_get();
-
         }
 
         /// <summary>
@@ -183,17 +98,6 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        internal PushButton(PushButton pushButton) : this(NDalicPINVOKE.new_PushButton__SWIG_1(PushButton.getCPtr(pushButton)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal PushButton Assign(PushButton pushButton)
-        {
-            PushButton ret = new PushButton(NDalicPINVOKE.PushButton_Assign(swigCPtr, PushButton.getCPtr(pushButton)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         /// <summary>
         /// Downcasts a handle to PushButton handle.<br>
@@ -202,216 +106,11 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>handle to a PushButton or an uninitialized handle</returns>
-        public new static PushButton DownCast(BaseHandle handle)
+        internal new static PushButton DownCast(BaseHandle handle)
         {
             PushButton ret = new PushButton(NDalicPINVOKE.PushButton_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        internal new void SetButtonImage(Image image)
-        {
-            NDalicPINVOKE.PushButton_SetButtonImage__SWIG_0_0(swigCPtr, Image.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetButtonImage(View image)
-        {
-            NDalicPINVOKE.PushButton_SetButtonImage__SWIG_1(swigCPtr, View.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetBackgroundImage(View image)
-        {
-            NDalicPINVOKE.PushButton_SetBackgroundImage(swigCPtr, View.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal new void SetSelectedImage(Image image)
-        {
-            NDalicPINVOKE.PushButton_SetSelectedImage__SWIG_0_0(swigCPtr, Image.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetSelectedImage(View image)
-        {
-            NDalicPINVOKE.PushButton_SetSelectedImage__SWIG_1(swigCPtr, View.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetSelectedBackgroundImage(View image)
-        {
-            NDalicPINVOKE.PushButton_SetSelectedBackgroundImage(swigCPtr, View.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetDisabledBackgroundImage(View image)
-        {
-            NDalicPINVOKE.PushButton_SetDisabledBackgroundImage(swigCPtr, View.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetDisabledImage(View image)
-        {
-            NDalicPINVOKE.PushButton_SetDisabledImage(swigCPtr, View.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetDisabledSelectedImage(View image)
-        {
-            NDalicPINVOKE.PushButton_SetDisabledSelectedImage(swigCPtr, View.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal enum PropertyRange
-        {
-            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
-        }
-
-        /// <summary>
-        /// Sets the unselected button image.
-        /// </summary>
-        public string UnselectedIcon
-        {
-            set
-            {
-                SetProperty(PushButton.Property.UNSELECTED_ICON, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-        /// <summary>
-        /// Sets the selected button image.
-        /// </summary>
-        public string SelectedIcon
-        {
-            set
-            {
-                SetProperty(PushButton.Property.SELECTED_ICON, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-        /// <summary>
-        /// Sets the icon alignment.
-        /// </summary>
-        public IconAlignmentType IconAlignment
-        {
-            get
-            {
-                string temp;
-                if (GetProperty(PushButton.Property.ICON_ALIGNMENT).Get(out temp) == false)
-                {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "IconAlignment get error!");
-#endif
-                }
-                 switch (temp)
-                {
-                    case "LEFT":
-                        return IconAlignmentType.Left;
-                    case "RIGHT":
-                        return IconAlignmentType.Right;
-                    case "TOP":
-                        return IconAlignmentType.Top;
-                    case "BOTTOM":
-                        return IconAlignmentType.Bottom;
-                    default:
-                        return IconAlignmentType.Default;
-                }
-            }
-            set
-            {
-                string valueToString = "";
-                switch (value)
-                {
-                    case IconAlignmentType.Left:
-                    {
-                        valueToString = "LEFT";
-                        break;
-                    }
-                    case IconAlignmentType.Right:
-                    {
-                        valueToString = "RIGHT";
-                        break;
-                    }
-                    case IconAlignmentType.Top:
-                    {
-                        valueToString = "TOP";
-                        break;
-                    }
-                    case IconAlignmentType.Bottom:
-                    {
-                        valueToString = "BOTTOM";
-                        break;
-                    }
-                    default:
-                    {
-                        valueToString = "DEFAULT";
-                        break;
-                    }
-                }
-                SetProperty(PushButton.Property.ICON_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
-            }
-        }
-        /// <summary>
-        /// Sets the label padding value.
-        /// </summary>
-        public Vector4 LabelPadding
-        {
-            get
-            {
-                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(PushButton.Property.LABEL_PADDING).Get(temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(PushButton.Property.LABEL_PADDING, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Sets the icon padding value.
-        /// </summary>
-        public Vector4 IconPadding
-        {
-            get
-            {
-                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(PushButton.Property.ICON_PADDING).Get(temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(PushButton.Property.ICON_PADDING, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Enumeration for the alignment modes of the icon.
-        /// </summary>
-        public enum IconAlignmentType
-        {
-            /// <summary>
-            /// Icon located to the left of text.
-            /// </summary>
-            Left,
-            /// <summary>
-            /// Icon located to the right of text.
-            /// </summary>
-            Right,
-            /// <summary>
-            /// Icon located to the top of text.
-            /// </summary>
-            Top,
-            /// <summary>
-            /// Icon located to the bottom of text.
-            /// </summary>
-            Bottom,
-            /// <summary>
-            /// Icon located to the right of text by default.
-            /// </summary>
-            Default = Right
-        }
-
     }
-
 }

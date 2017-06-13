@@ -10,8 +10,7 @@
 
 namespace Tizen.NUI
 {
-
-    internal enum FilterModeType
+    public enum FilterModeType
     {
         NONE = 0,
         DEFAULT,

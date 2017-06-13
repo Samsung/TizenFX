@@ -30,7 +30,7 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
-    
+
     /// <summary>
     /// VideoView is a control for video playback and display.
     /// </summary>
@@ -160,97 +160,12 @@ namespace Tizen.NUI
         }
 
 
-        internal class Property : global::System.IDisposable
+        internal class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-            ~Property()
-            {
-                if(!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if(type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_VideoView_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                disposed = true;
-            }
-
-            internal Property() : this(NDalicPINVOKE.new_VideoView_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
             internal static readonly int VIDEO = NDalicPINVOKE.VideoView_Property_VIDEO_get();
             internal static readonly int LOOPING = NDalicPINVOKE.VideoView_Property_LOOPING_get();
             internal static readonly int MUTED = NDalicPINVOKE.VideoView_Property_MUTED_get();
             internal static readonly int VOLUME = NDalicPINVOKE.VideoView_Property_VOLUME_get();
-
         }
 
         /// <summary>
@@ -277,13 +192,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VideoView Assign(VideoView videoView)
-        {
-            VideoView ret = new VideoView(NDalicPINVOKE.VideoView_Assign(swigCPtr, VideoView.getCPtr(videoView)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Downcasts a handle to VideoView handle.<br>
         /// If handle points to a VideoView, the downcast produces valid handle.<br>
@@ -291,7 +199,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>Handle to a VideoView or an uninitialized handle</returns>
-        public new static VideoView DownCast(BaseHandle handle)
+        internal new static VideoView DownCast(BaseHandle handle)
         {
             VideoView ret = new VideoView(NDalicPINVOKE.VideoView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -352,11 +260,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal enum PropertyRange
-        {
-            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX
-        }
-
         /// <summary>
         /// video file url as string type or PropertyMap.
         /// </summary>
@@ -382,7 +285,7 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                GetProperty(VideoView.Property.LOOPING).Get(ref temp);
+                GetProperty(VideoView.Property.LOOPING).Get(out temp);
                 return temp;
             }
             set
@@ -399,7 +302,7 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                GetProperty(VideoView.Property.MUTED).Get(ref temp);
+                GetProperty(VideoView.Property.MUTED).Get(out temp);
                 return temp;
             }
             set

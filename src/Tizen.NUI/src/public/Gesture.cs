@@ -32,7 +32,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
+        //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam)
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
@@ -138,18 +138,6 @@ namespace Tizen.NUI
         public Gesture(Gesture rhs) : this(NDalicPINVOKE.new_Gesture(Gesture.getCPtr(rhs)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Assignment operator.
-        /// </summary>
-        /// <param name="rhs">A reference to the copied handle</param>
-        /// <returns>A reference to this</returns>
-        public Gesture Assign(Gesture rhs)
-        {
-            Gesture ret = new Gesture(NDalicPINVOKE.Gesture_Assign(swigCPtr, Gesture.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         private Gesture.GestureType type

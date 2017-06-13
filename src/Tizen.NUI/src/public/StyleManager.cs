@@ -214,7 +214,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="key">The key of the constant</param>
         /// <param name="value">The value of the constant</param>
-        public void SetStyleConstant(string key, PropertyValue value)
+        public void AddConstant(string key, PropertyValue value)
         {
             NDalicPINVOKE.StyleManager_SetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -226,7 +226,7 @@ namespace Tizen.NUI
         /// <param name="key">The key of the constant</param>
         /// <param name="valueOut">The value of the constant if it exists</param>
         /// <returns></returns>
-        public bool GetStyleConstant(string key, PropertyValue valueOut)
+        public bool GetConstant(string key, PropertyValue valueOut)
         {
             bool ret = NDalicPINVOKE.StyleManager_GetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(valueOut));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

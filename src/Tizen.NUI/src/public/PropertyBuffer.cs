@@ -27,20 +27,19 @@
 namespace Tizen.NUI
 {
 
-    internal class Texture : BaseHandle
+    public class PropertyBuffer : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Texture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Texture_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PropertyBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PropertyBuffer_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Texture obj)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyBuffer obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-
 
         protected override void Dispose(DisposeTypes type)
         {
@@ -66,7 +65,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Texture(swigCPtr);
+                    NDalicPINVOKE.delete_PropertyBuffer(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -74,72 +73,31 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        public Texture(TextureType type, PixelFormat format, uint width, uint height) : this(NDalicPINVOKE.Texture_New__SWIG_0((int)type, (int)format, width, height), true)
+
+        public PropertyBuffer(PropertyMap bufferFormat) : this(NDalicPINVOKE.PropertyBuffer_New(PropertyMap.getCPtr(bufferFormat)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public Texture(NativeImageInterface nativeImageInterface) : this(NDalicPINVOKE.Texture_New__SWIG_1(NativeImageInterface.getCPtr(nativeImageInterface)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-        }
-        public Texture(Texture handle) : this(NDalicPINVOKE.new_Texture__SWIG_1(Texture.getCPtr(handle)), true)
+        internal static PropertyBuffer DownCast(BaseHandle handle)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public static Texture DownCast(BaseHandle handle)
-        {
-            Texture ret = new Texture(NDalicPINVOKE.Texture_DownCast(BaseHandle.getCPtr(handle)), true);
+            PropertyBuffer ret = new PropertyBuffer(NDalicPINVOKE.PropertyBuffer_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public Texture Assign(Texture handle)
+        public void SetData(System.IntPtr data, uint size)
         {
-            Texture ret = new Texture(NDalicPINVOKE.Texture_Assign(swigCPtr, Texture.getCPtr(handle)), false);
+            NDalicPINVOKE.PropertyBuffer_SetData(swigCPtr, data, size);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public uint GetSize()
+        {
+            uint ret = NDalicPINVOKE.PropertyBuffer_GetSize(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        public bool Upload(PixelData pixelData)
-        {
-            bool ret = NDalicPINVOKE.Texture_Upload__SWIG_0(swigCPtr, PixelData.getCPtr(pixelData));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public bool Upload(PixelData pixelData, uint layer, uint mipmap, uint xOffset, uint yOffset, uint width, uint height)
-        {
-            bool ret = NDalicPINVOKE.Texture_Upload__SWIG_1(swigCPtr, PixelData.getCPtr(pixelData), layer, mipmap, xOffset, yOffset, width, height);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public void GenerateMipmaps()
-        {
-            NDalicPINVOKE.Texture_GenerateMipmaps(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public uint GetWidth()
-        {
-            uint ret = NDalicPINVOKE.Texture_GetWidth(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public uint GetHeight()
-        {
-            uint ret = NDalicPINVOKE.Texture_GetHeight(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public Texture(SWIGTYPE_p_Dali__Internal__Texture pointer) : this(NDalicPINVOKE.new_Texture__SWIG_2(SWIGTYPE_p_Dali__Internal__Texture.getCPtr(pointer)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
     }

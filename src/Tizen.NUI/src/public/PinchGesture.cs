@@ -120,30 +120,9 @@ namespace Tizen.NUI
         /// Default Constructor.
         /// </summary>
         /// <param name="state">The state of the gesture</param>
-        public PinchGesture(Gesture.StateType state) : this(NDalicPINVOKE.new_PinchGesture__SWIG_0((int)state), true)
+        internal PinchGesture(Gesture.StateType state) : this(NDalicPINVOKE.new_PinchGesture__SWIG_0((int)state), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Copy constructor.
-        /// </summary>
-        /// <param name="rhs">A reference to the copied handle</param>
-        public PinchGesture(PinchGesture rhs) : this(NDalicPINVOKE.new_PinchGesture__SWIG_1(PinchGesture.getCPtr(rhs)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Assignment operator.
-        /// </summary>
-        /// <param name="rhs">A reference to the copied handle</param>
-        /// <returns>A reference to this</returns>
-        public PinchGesture Assign(PinchGesture rhs)
-        {
-            PinchGesture ret = new PinchGesture(NDalicPINVOKE.PinchGesture_Assign(swigCPtr, PinchGesture.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         private float scale

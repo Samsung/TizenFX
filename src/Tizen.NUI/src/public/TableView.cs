@@ -83,192 +83,22 @@ namespace Tizen.NUI
         }
 
 
-        internal class Property : global::System.IDisposable
+        internal class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-            ~Property()
-            {
-                if(!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if(type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_TableView_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                disposed = true;
-            }
-
-            public Property() : this(NDalicPINVOKE.new_TableView_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
             internal static readonly int ROWS = NDalicPINVOKE.TableView_Property_ROWS_get();
             internal static readonly int COLUMNS = NDalicPINVOKE.TableView_Property_COLUMNS_get();
             internal static readonly int CELL_PADDING = NDalicPINVOKE.TableView_Property_CELL_PADDING_get();
             internal static readonly int LAYOUT_ROWS = NDalicPINVOKE.TableView_Property_LAYOUT_ROWS_get();
             internal static readonly int LAYOUT_COLUMNS = NDalicPINVOKE.TableView_Property_LAYOUT_COLUMNS_get();
-
         }
 
-        internal class ChildProperty : global::System.IDisposable
+        internal class ChildProperty
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            protected bool swigCMemOwn;
-
-            internal ChildProperty(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ChildProperty obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-            ~ChildProperty()
-            {
-                if(!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if(type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_TableView_ChildProperty(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                disposed = true;
-            }
-
-            public ChildProperty() : this(NDalicPINVOKE.new_TableView_ChildProperty(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
             internal static readonly int CELL_INDEX = NDalicPINVOKE.TableView_ChildProperty_CELL_INDEX_get();
             internal static readonly int ROW_SPAN = NDalicPINVOKE.TableView_ChildProperty_ROW_SPAN_get();
             internal static readonly int COLUMN_SPAN = NDalicPINVOKE.TableView_ChildProperty_COLUMN_SPAN_get();
             internal static readonly int CELL_HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TableView_ChildProperty_CELL_HORIZONTAL_ALIGNMENT_get();
             internal static readonly int CELL_VERTICAL_ALIGNMENT = NDalicPINVOKE.TableView_ChildProperty_CELL_VERTICAL_ALIGNMENT_get();
-
         }
 
         /// <summary>
@@ -500,25 +330,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Changes this handle to point to another real object.
-        /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        /// <returns>A reference to this</returns>
-        public TableView Assign(TableView handle)
-        {
-            TableView ret = new TableView(NDalicPINVOKE.TableView_Assign(swigCPtr, TableView.getCPtr(handle)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Downcasts a handle to TableView handle.<br>
         /// If handle points to a TableView, the downcast produces valid handle.<br>
         /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>Handle to a TableView or an uninitialized handle</returns>
-        public new static TableView DownCast(BaseHandle handle)
+        internal new static TableView DownCast(BaseHandle handle)
         {
             TableView ret = new TableView(NDalicPINVOKE.TableView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -793,28 +611,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the amount of rows in the table.
-        /// </summary>
-        /// <returns>The amount of rows in the table</returns>
-        public uint GetRows()
-        {
-            uint ret = NDalicPINVOKE.TableView_GetRows(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Gets the amount of columns in the table.
-        /// </summary>
-        /// <returns>The amount of columns in the table</returns>
-        public uint GetColumns()
-        {
-            uint ret = NDalicPINVOKE.TableView_GetColumns(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Sets the alignment on a cell.<br>
         /// Cells without calling this function have the default values of LEFT and TOP respectively.<br>
         /// </summary>
@@ -825,14 +621,6 @@ namespace Tizen.NUI
         {
             NDalicPINVOKE.TableView_SetCellAlignment(swigCPtr, TableView.CellPosition.getCPtr(position), (int)horizontal, (int)vertical);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal enum PropertyRange
-        {
-            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000,
-            CHILD_PROPERTY_START_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX,
-            CHILD_PROPERTY_END_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX + 1000
         }
 
         /// <summary>
@@ -854,7 +642,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                GetProperty(TableView.Property.ROWS).Get(ref temp);
+                GetProperty(TableView.Property.ROWS).Get(out temp);
                 return temp;
             }
             set
@@ -870,7 +658,7 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                GetProperty(TableView.Property.COLUMNS).Get(ref temp);
+                GetProperty(TableView.Property.COLUMNS).Get(out temp);
                 return temp;
             }
             set

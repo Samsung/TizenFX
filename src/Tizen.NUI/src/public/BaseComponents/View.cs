@@ -59,8 +59,8 @@ namespace Tizen.NUI.BaseComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            //Unreference this from if a static instance refer to this. 
-            ViewRegistry.UnregisterView(this);            
+            //Unreference this from if a static instance refer to this.
+            ViewRegistry.UnregisterView(this);
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -190,7 +190,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for KeyPressed signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// KeyPressed signal is emitted when key event is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, KeyEventArgs, bool> KeyEvent
+        public event EventHandlerWithReturnType<object, KeyEventArgs, bool> Key
         {
             add
             {
@@ -237,7 +237,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for OnRelayout signal which can be used to subscribe/unsubscribe the event handler.<br>
         /// OnRelayout signal is emitted after the size has been set on the view during relayout.<br>
         /// </summary>
-        public event EventHandler OnRelayoutEvent
+        public event EventHandler Relayout
         {
             add
             {
@@ -447,7 +447,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for WheelMoved signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// WheelMoved signal is emitted when wheel event is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelMoved
+        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelRolled
         {
             add
             {
@@ -496,7 +496,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for OnWindow signal which can be used to subscribe/unsubscribe the event handler.<br>
         /// OnWindow signal is emitted after the view has been connected to the Window.<br>
         /// </summary>
-        public event EventHandler OnWindowEvent
+        public event EventHandler AddedToWindow
         {
             add
             {
@@ -539,7 +539,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for OffWindow signal which can be used to subscribe/unsubscribe the event handler.<br>
         /// OffWindow signal is emitted after the view has been disconnected from the Window.<br>
         /// </summary>
-        public event EventHandler OffWindowEvent
+        public event EventHandler RemovedFromWindow
         {
             add
             {
@@ -689,87 +689,8 @@ namespace Tizen.NUI.BaseComponents
             return (IntPtr)swigCPtr;
         }
 
-        internal class Property : global::System.IDisposable
+        internal class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-            ~Property()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_View_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
             internal static readonly int TOOLTIP = NDalicManualPINVOKE.View_Property_TOOLTIP_get();
             internal static readonly int STATE = NDalicManualPINVOKE.View_Property_STATE_get();
             internal static readonly int SUB_STATE = NDalicManualPINVOKE.View_Property_SUB_STATE_get();
@@ -777,16 +698,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int RIGHT_FOCUSABLE_VIEW_ID = NDalicManualPINVOKE.View_Property_RIGHT_FOCUSABLE_ACTOR_ID_get();
             internal static readonly int UP_FOCUSABLE_VIEW_ID = NDalicManualPINVOKE.View_Property_UP_FOCUSABLE_ACTOR_ID_get();
             internal static readonly int DOWN_FOCUSABLE_VIEW_ID = NDalicManualPINVOKE.View_Property_DOWN_FOCUSABLE_ACTOR_ID_get();
-
-            internal Property() : this(NDalicPINVOKE.new_View_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
             internal static readonly int STYLE_NAME = NDalicPINVOKE.View_Property_STYLE_NAME_get();
-            internal static readonly int BACKGROUND_COLOR = NDalicPINVOKE.View_Property_BACKGROUND_COLOR_get();
-            internal static readonly int BACKGROUND_IMAGE = NDalicPINVOKE.View_Property_BACKGROUND_IMAGE_get();
-            internal static readonly int KEY_INPUT_FOCUS = NDalicPINVOKE.View_Property_KEY_INPUT_FOCUS_get();
             internal static readonly int BACKGROUND = NDalicPINVOKE.View_Property_BACKGROUND_get();
             internal static readonly int SIBLING_ORDER = NDalicManualPINVOKE.Actor_Property_SIBLING_ORDER_get();
             internal static readonly int OPACITY = NDalicManualPINVOKE.Actor_Property_OPACITY_get();
@@ -820,11 +732,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SCALE_Z = NDalicPINVOKE.Actor_Property_SCALE_Z_get();
             internal static readonly int WORLD_SCALE = NDalicPINVOKE.Actor_Property_WORLD_SCALE_get();
             internal static readonly int VISIBLE = NDalicPINVOKE.Actor_Property_VISIBLE_get();
-            internal static readonly int COLOR = NDalicPINVOKE.Actor_Property_COLOR_get();
-            internal static readonly int COLOR_RED = NDalicPINVOKE.Actor_Property_COLOR_RED_get();
-            internal static readonly int COLOR_GREEN = NDalicPINVOKE.Actor_Property_COLOR_GREEN_get();
-            internal static readonly int COLOR_BLUE = NDalicPINVOKE.Actor_Property_COLOR_BLUE_get();
-            internal static readonly int COLOR_ALPHA = NDalicPINVOKE.Actor_Property_COLOR_ALPHA_get();
             internal static readonly int WORLD_COLOR = NDalicPINVOKE.Actor_Property_WORLD_COLOR_get();
             internal static readonly int WORLD_MATRIX = NDalicPINVOKE.Actor_Property_WORLD_MATRIX_get();
             internal static readonly int NAME = NDalicPINVOKE.Actor_Property_NAME_get();
@@ -832,8 +739,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int LEAVE_REQUIRED = NDalicPINVOKE.Actor_Property_LEAVE_REQUIRED_get();
             internal static readonly int INHERIT_ORIENTATION = NDalicPINVOKE.Actor_Property_INHERIT_ORIENTATION_get();
             internal static readonly int INHERIT_SCALE = NDalicPINVOKE.Actor_Property_INHERIT_SCALE_get();
-            internal static readonly int COLOR_MODE = NDalicPINVOKE.Actor_Property_COLOR_MODE_get();
-            internal static readonly int POSITION_INHERITANCE = NDalicPINVOKE.Actor_Property_POSITION_INHERITANCE_get();
             internal static readonly int DRAW_MODE = NDalicPINVOKE.Actor_Property_DRAW_MODE_get();
             internal static readonly int SIZE_MODE_FACTOR = NDalicPINVOKE.Actor_Property_SIZE_MODE_FACTOR_get();
             internal static readonly int WIDTH_RESIZE_POLICY = NDalicPINVOKE.Actor_Property_WIDTH_RESIZE_POLICY_get();
@@ -874,13 +779,6 @@ namespace Tizen.NUI.BaseComponents
         internal View(View uiControl) : this(NDalicPINVOKE.new_View__SWIG_1(View.getCPtr(uiControl)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal View Assign(View handle)
-        {
-            View ret = new View(NDalicPINVOKE.View_Assign(swigCPtr, View.getCPtr(handle)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -1091,10 +989,10 @@ namespace Tizen.NUI.BaseComponents
 
                 Tizen.NUI.PropertyMap background = Background;
                 int visualType = 0;
-                background.Find(Visual.Property.Type).Get(ref visualType);
+                background.Find(Visual.Property.Type)?.Get(out visualType);
                 if (visualType == (int)Visual.Type.Color)
                 {
-                    background.Find(ColorVisualProperty.MixColor).Get(backgroundColor);
+                    background.Find(ColorVisualProperty.MixColor)?.Get(backgroundColor);
                 }
 
                 return backgroundColor;
@@ -1116,10 +1014,10 @@ namespace Tizen.NUI.BaseComponents
 
                 Tizen.NUI.PropertyMap background = Background;
                 int visualType = 0;
-                background.Find(Visual.Property.Type).Get(ref visualType);
+                background.Find(Visual.Property.Type)?.Get(out visualType);
                 if (visualType == (int)Visual.Type.Image)
                 {
-                    background.Find(ImageVisualProperty.URL).Get(out backgroundImage);
+                    background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
                 }
 
                 return backgroundImage;
@@ -1127,20 +1025,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.BACKGROUND, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        internal bool KeyInputFocus
-        {
-            get
-            {
-                bool temp = false;
-                GetProperty(View.Property.KEY_INPUT_FOCUS).Get(ref temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(View.Property.KEY_INPUT_FOCUS, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -1169,7 +1053,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int temp = 0;
-                if (GetProperty(View.Property.STATE).Get(ref temp) == false)
+                if (GetProperty(View.Property.STATE).Get(out temp) == false)
                 {
 #if DEBUG_ON
                     Tizen.Log.Error("NUI", "State get error!");
@@ -1290,7 +1174,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int temp = 0;
-                GetProperty(View.Property.LEFT_FOCUSABLE_VIEW_ID).Get(ref temp);
+                GetProperty(View.Property.LEFT_FOCUSABLE_VIEW_ID).Get(out temp);
                 return temp;
             }
             set
@@ -1304,7 +1188,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int temp = 0;
-                GetProperty(View.Property.RIGHT_FOCUSABLE_VIEW_ID).Get(ref temp);
+                GetProperty(View.Property.RIGHT_FOCUSABLE_VIEW_ID).Get(out temp);
                 return temp;
             }
             set
@@ -1318,7 +1202,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int temp = 0;
-                GetProperty(View.Property.UP_FOCUSABLE_VIEW_ID).Get(ref temp);
+                GetProperty(View.Property.UP_FOCUSABLE_VIEW_ID).Get(out temp);
                 return temp;
             }
             set
@@ -1332,7 +1216,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int temp = 0;
-                GetProperty(View.Property.DOWN_FOCUSABLE_VIEW_ID).Get(ref temp);
+                GetProperty(View.Property.DOWN_FOCUSABLE_VIEW_ID).Get(out temp);
                 return temp;
             }
             set
@@ -1345,13 +1229,13 @@ namespace Tizen.NUI.BaseComponents
         /// Child Property of FlexContainer.<br>
         /// The proportion of the free space in the container the flex item will receive.<br>
         /// If all items in the container set this property, their sizes will be proportional to the specified flex factor.<br>
-        /// </summary> 
+        /// </summary>
         public float Flex
         {
             get
             {
                 float temp = 0.0f;
-                GetProperty(FlexContainer.ChildProperty.FLEX).Get(ref temp);
+                GetProperty(FlexContainer.ChildProperty.FLEX).Get(out temp);
                 return temp;
             }
             set
@@ -1363,13 +1247,13 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Child Property of FlexContainer.<br>
         /// The alignment of the flex item along the cross axis, which, if set, overides the default alignment for all items in the container.<br>
-        /// </summary> 
+        /// </summary>
         public int AlignSelf
         {
             get
             {
                 int temp = 0;
-                GetProperty(FlexContainer.ChildProperty.ALIGN_SELF).Get(ref temp);
+                GetProperty(FlexContainer.ChildProperty.ALIGN_SELF).Get(out temp);
                 return temp;
             }
             set
@@ -1381,7 +1265,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Child Property of FlexContainer.<br>
         /// The space around the flex item.<br>
-        /// </summary> 
+        /// </summary>
         public Vector4 FlexMargin
         {
             get
@@ -1421,7 +1305,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TableView.ChildProperty.ROW_SPAN).Get(ref temp);
+                GetProperty(TableView.ChildProperty.ROW_SPAN).Get(out temp);
                 return temp;
             }
             set
@@ -1438,7 +1322,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(TableView.ChildProperty.COLUMN_SPAN).Get(ref temp);
+                GetProperty(TableView.ChildProperty.COLUMN_SPAN).Get(out temp);
                 return temp;
             }
             set
@@ -1707,7 +1591,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 Size temp = new Size(0.0f, 0.0f, 0.0f);
                 GetProperty(View.Property.SIZE).Get(temp);
-                return new Size2D(temp);
+                Size2D size = new Size2D((int)temp.Width, (int)temp.Height);
+                return size;
             }
             set
             {
@@ -1719,7 +1604,7 @@ namespace Tizen.NUI.BaseComponents
         ///  Retrieves the size of the View.<br>
         ///  The coordinates are relative to the View's parent.<br>
         /// </summary>
-        public Size CurrentSize
+        public Size2D CurrentSize
         {
             get
             {
@@ -1754,7 +1639,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.OPACITY).Get(ref temp);
+                GetProperty(View.Property.OPACITY).Get(out temp);
                 return temp;
             }
             set
@@ -1807,7 +1692,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.POSITION_USES_ANCHOR_POINT).Get(ref temp);
+                GetProperty(View.Property.POSITION_USES_ANCHOR_POINT).Get(out temp);
                 return temp;
             }
             set
@@ -1816,7 +1701,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        public bool StateFocusEnable
+        internal bool FocusState
         {
             get
             {
@@ -1864,7 +1749,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int temp = 0;
-                GetProperty(View.Property.SIBLING_ORDER).Get(ref temp);
+                GetProperty(View.Property.SIBLING_ORDER).Get(out temp);
                 return temp;
             }
             set
@@ -1879,7 +1764,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Readonly.
         /// </remarks>
-        public Vector3 NaturalSize
+        internal Vector3 NaturalSize
         {
             get
             {
@@ -2025,13 +1910,6 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal bool IsLayer()
-        {
-            bool ret = NDalicPINVOKE.Actor_IsLayer(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal Layer GetLayer()
         {
             Layer ret = new Layer(NDalicPINVOKE.Actor_GetLayer(swigCPtr), true);
@@ -2078,7 +1956,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <pre>The View has been initialized.</pre>
         /// <returns>The number of children</returns>
-        public uint GetChildCount()
+        internal uint GetChildCount()
         {
             uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -2205,12 +2083,13 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal Size GetCurrentSize()
+        internal Size2D GetCurrentSize()
         {
             Size ret = new Size(NDalicPINVOKE.Actor_GetCurrentSize(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            Size2D size = new Size2D((int)ret.Width, (int)ret.Height);
+            return size;
         }
 
         internal Vector3 GetNaturalSize()
@@ -2524,21 +2403,6 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal void SetSensitive(bool sensitive)
-        {
-            NDalicPINVOKE.Actor_SetSensitive(swigCPtr, sensitive);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal bool IsSensitive()
-        {
-            bool ret = NDalicPINVOKE.Actor_IsSensitive(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Converts screen coordinates into the view's coordinate system using the default camera.
         /// </summary>
@@ -2552,21 +2416,6 @@ namespace Tizen.NUI.BaseComponents
         public bool ScreenToLocal(out float localX, out float localY, float screenX, float screenY)
         {
             bool ret = NDalicPINVOKE.Actor_ScreenToLocal(swigCPtr, out localX, out localY, screenX, screenY);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetLeaveRequired(bool required)
-        {
-            NDalicPINVOKE.Actor_SetLeaveRequired(swigCPtr, required);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal bool GetLeaveRequired()
-        {
-            bool ret = NDalicPINVOKE.Actor_GetLeaveRequired(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -2597,21 +2446,6 @@ namespace Tizen.NUI.BaseComponents
         internal ResizePolicyType GetResizePolicy(DimensionType dimension)
         {
             ResizePolicyType ret = (ResizePolicyType)NDalicPINVOKE.Actor_GetResizePolicy(swigCPtr, (int)dimension);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetSizeScalePolicy(SizeScalePolicyType policy)
-        {
-            NDalicPINVOKE.Actor_SetSizeScalePolicy(swigCPtr, (int)policy);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal SizeScalePolicyType GetSizeScalePolicy()
-        {
-            SizeScalePolicyType ret = (SizeScalePolicyType)NDalicPINVOKE.Actor_GetSizeScalePolicy(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -2848,7 +2682,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.PARENT_ORIGIN_X).Get(ref temp);
+                GetProperty(View.Property.PARENT_ORIGIN_X).Get(out temp);
                 return temp;
             }
             set
@@ -2862,7 +2696,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.PARENT_ORIGIN_Y).Get(ref temp);
+                GetProperty(View.Property.PARENT_ORIGIN_Y).Get(out temp);
                 return temp;
             }
             set
@@ -2876,7 +2710,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.PARENT_ORIGIN_Z).Get(ref temp);
+                GetProperty(View.Property.PARENT_ORIGIN_Z).Get(out temp);
                 return temp;
             }
             set
@@ -2893,7 +2727,7 @@ namespace Tizen.NUI.BaseComponents
         /// An view's orientation is the rotation from its default orientation, the rotation is centered around its anchor-point.<br>
         /// <pre>The View has been initialized.</pre>
         /// </summary>
-        public Position AnchorPoint
+        public Position PivotPoint
         {
             get
             {
@@ -2907,12 +2741,12 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal float AnchorPointX
+        internal float PivotPointX
         {
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.ANCHOR_POINT_X).Get(ref temp);
+                GetProperty(View.Property.ANCHOR_POINT_X).Get(out temp);
                 return temp;
             }
             set
@@ -2921,12 +2755,12 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal float AnchorPointY
+        internal float PivotPointY
         {
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.ANCHOR_POINT_Y).Get(ref temp);
+                GetProperty(View.Property.ANCHOR_POINT_Y).Get(out temp);
                 return temp;
             }
             set
@@ -2935,36 +2769,17 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal float AnchorPointZ
+        internal float PivotPointZ
         {
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.ANCHOR_POINT_Z).Get(ref temp);
+                GetProperty(View.Property.ANCHOR_POINT_Z).Get(out temp);
                 return temp;
             }
             set
             {
                 SetProperty(View.Property.ANCHOR_POINT_Z, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the size of an view.<br>
-        /// Geometry can be scaled to fit within this area.<br>
-        /// This does not interfere with the views scale factor.<br>
-        /// </summary>
-        public Size Size
-        {
-            get
-            {
-                Size temp = new Size(0.0f, 0.0f, 0.0f);
-                GetProperty(View.Property.SIZE).Get(temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -2976,7 +2791,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.SIZE_WIDTH).Get(ref temp);
+                GetProperty(View.Property.SIZE_WIDTH).Get(out temp);
                 return temp;
             }
             set
@@ -2993,29 +2808,12 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.SIZE_HEIGHT).Get(ref temp);
+                GetProperty(View.Property.SIZE_HEIGHT).Get(out temp);
                 return temp;
             }
             set
             {
                 SetProperty(View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the size depth of an view.
-        /// </summary>
-        public float SizeDepth
-        {
-            get
-            {
-                float temp = 0.0f;
-                GetProperty(View.Property.SIZE_DEPTH).Get(ref temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(View.Property.SIZE_DEPTH, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -3046,7 +2844,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.POSITION_X).Get(ref temp);
+                GetProperty(View.Property.POSITION_X).Get(out temp);
                 return temp;
             }
             set
@@ -3063,7 +2861,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.POSITION_Y).Get(ref temp);
+                GetProperty(View.Property.POSITION_Y).Get(out temp);
                 return temp;
             }
             set
@@ -3080,7 +2878,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.POSITION_Z).Get(ref temp);
+                GetProperty(View.Property.POSITION_Z).Get(out temp);
                 return temp;
             }
             set
@@ -3107,7 +2905,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.WORLD_POSITION_X).Get(ref temp);
+                GetProperty(View.Property.WORLD_POSITION_X).Get(out temp);
                 return temp;
             }
         }
@@ -3117,7 +2915,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.WORLD_POSITION_Y).Get(ref temp);
+                GetProperty(View.Property.WORLD_POSITION_Y).Get(out temp);
                 return temp;
             }
         }
@@ -3127,7 +2925,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.WORLD_POSITION_Z).Get(ref temp);
+                GetProperty(View.Property.WORLD_POSITION_Z).Get(out temp);
                 return temp;
             }
         }
@@ -3189,7 +2987,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.SCALE_X).Get(ref temp);
+                GetProperty(View.Property.SCALE_X).Get(out temp);
                 return temp;
             }
             set
@@ -3206,7 +3004,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.SCALE_Y).Get(ref temp);
+                GetProperty(View.Property.SCALE_Y).Get(out temp);
                 return temp;
             }
             set
@@ -3223,7 +3021,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(View.Property.SCALE_Z).Get(ref temp);
+                GetProperty(View.Property.SCALE_Z).Get(out temp);
                 return temp;
             }
             set
@@ -3257,81 +3055,13 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.VISIBLE).Get(ref temp);
+                GetProperty(View.Property.VISIBLE).Get(out temp);
                 return temp;
             }/* only get is required : removed
             set
             {
                 SetProperty(View.Property.VISIBLE, new Tizen.NUI.PropertyValue(value));
             }*/
-        }
-
-        /// <summary>
-        /// Gets/Sets the view's mix color red.
-        /// </summary>
-        public float ColorRed
-        {
-            get
-            {
-                float temp = 0.0f;
-                GetProperty(View.Property.COLOR_RED).Get(ref temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(View.Property.COLOR_RED, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the view's mix color green.
-        /// </summary>
-        public float ColorGreen
-        {
-            get
-            {
-                float temp = 0.0f;
-                GetProperty(View.Property.COLOR_GREEN).Get(ref temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(View.Property.COLOR_GREEN, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the view's mix color blue
-        /// </summary>
-        public float ColorBlue
-        {
-            get
-            {
-                float temp = 0.0f;
-                GetProperty(View.Property.COLOR_BLUE).Get(ref temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(View.Property.COLOR_BLUE, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the view's mix color alpha.
-        /// </summary>
-        public float ColorAlpha
-        {
-            get
-            {
-                float temp = 0.0f;
-                GetProperty(View.Property.COLOR_ALPHA).Get(ref temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(View.Property.COLOR_ALPHA, new Tizen.NUI.PropertyValue(value));
-            }
         }
 
         /// <summary>
@@ -3375,6 +3105,29 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Get the number of children held by the view.
+        /// </summary>
+        public uint ChildCount
+        {
+            get
+            {
+                return GetChildCount();
+            }
+        }
+
+        /// <summary>
+        /// Gets the View's ID.
+        /// Readonly
+        /// </summary>
+        public uint ID
+        {
+            get
+            {
+                return GetId();
+            }
+        }
+
+        /// <summary>
         /// Gets/Sets the status of whether an view should emit touch or hover signals.
         /// </summary>
         public bool Sensitive
@@ -3382,7 +3135,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.SENSITIVE).Get(ref temp);
+                GetProperty(View.Property.SENSITIVE).Get(out temp);
                 return temp;
             }
             set
@@ -3399,7 +3152,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.LEAVE_REQUIRED).Get(ref temp);
+                GetProperty(View.Property.LEAVE_REQUIRED).Get(out temp);
                 return temp;
             }
             set
@@ -3416,7 +3169,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.INHERIT_ORIENTATION).Get(ref temp);
+                GetProperty(View.Property.INHERIT_ORIENTATION).Get(out temp);
                 return temp;
             }
             set
@@ -3433,62 +3186,12 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.INHERIT_SCALE).Get(ref temp);
+                GetProperty(View.Property.INHERIT_SCALE).Get(out temp);
                 return temp;
             }
             set
             {
                 SetProperty(View.Property.INHERIT_SCALE, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the view's color mode.<br>
-        /// This specifies whether the View uses its own color, or inherits its parent color.<br>
-        /// The default is UseOwnMultiplyParentAlpha.<br>
-        /// </summary>
-        public ColorMode ColorMode
-        {
-            get
-            {
-                string temp;
-                if (GetProperty(View.Property.COLOR_MODE).Get(out temp) == false)
-                {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "ColorMode get error!");
-#endif
-                }
-                switch (temp)
-                {
-                    case "USE_OWN_COLOR":
-                    return ColorMode.UseOwnColor;
-                    case "USE_PARENT_COLOR":
-                    return ColorMode.UseParentColor;
-                    case "USE_OWN_MULTIPLY_PARENT_COLOR":
-                    return ColorMode.UseOwnMultiplyParentColor;
-                    case "USE_OWN_MULTIPLY_PARENT_ALPHA":
-                    return ColorMode.UseOwnMultiplyParentAlpha;
-                    default:
-                    return ColorMode.UseOwnMultiplyParentAlpha;
-                }
-            }
-            set
-            {
-                SetProperty(View.Property.COLOR_MODE, new Tizen.NUI.PropertyValue((int)value));
-            }
-        }
-
-        public string PositionInheritance
-        {
-            get
-            {
-                string temp;
-                GetProperty(View.Property.POSITION_INHERITANCE).Get(out temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(View.Property.POSITION_INHERITANCE, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -3697,7 +3400,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.WIDTH_FOR_HEIGHT).Get(ref temp);
+                GetProperty(View.Property.WIDTH_FOR_HEIGHT).Get(out temp);
                 return temp;
             }
             set
@@ -3714,7 +3417,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.HEIGHT_FOR_WIDTH).Get(ref temp);
+                GetProperty(View.Property.HEIGHT_FOR_WIDTH).Get(out temp);
                 return temp;
             }
             set
@@ -3784,7 +3487,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool temp = false;
-                GetProperty(View.Property.INHERIT_POSITION).Get(ref temp);
+                GetProperty(View.Property.INHERIT_POSITION).Get(out temp);
                 return temp;
             }
             set

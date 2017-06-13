@@ -127,26 +127,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Copy constructor.
-        /// </summary>
-        /// <param name="rhs">TapGesture to copy</param>
-        public TapGesture(TapGesture rhs) : this(NDalicPINVOKE.new_TapGesture__SWIG_1(TapGesture.getCPtr(rhs)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Assignment
-        /// </summary>
-        /// <param name="rhs">A reference to the copied handle</param>
-        /// <returns>A reference to this</returns>
-        public TapGesture Assign(TapGesture rhs)
-        {
-            TapGesture ret = new TapGesture(NDalicPINVOKE.TapGesture_Assign(swigCPtr, TapGesture.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         private uint numberOfTaps
         {

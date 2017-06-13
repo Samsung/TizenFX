@@ -123,30 +123,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Assigns an angle from a float value.
-        /// </summary>
-        /// <param name="value">Float value in radians</param>
-        /// <returns>A reference to this</returns>
-        internal Radian Assign(float value)
-        {
-            Radian ret = new Radian(NDalicPINVOKE.Radian_Assign__SWIG_0(swigCPtr, value), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Assigns an angle from a Degree value.
-        /// </summary>
-        /// <param name="degree">The value in degrees</param>
-        /// <returns>A reference to this</returns>
-        internal Radian Assign(Degree degree)
-        {
-            Radian ret = new Radian(NDalicPINVOKE.Radian_Assign__SWIG_1(swigCPtr, Degree.getCPtr(degree)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Conversion to float.
         /// </summary>
         /// <returns>The float value of this Radian</returns>
@@ -160,7 +136,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The value in radians
         /// </summary>
-        public float radian
+        public float Value
         {
             set
             {

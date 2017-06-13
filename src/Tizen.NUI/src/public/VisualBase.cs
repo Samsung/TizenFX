@@ -74,13 +74,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VisualBase Assign(VisualBase handle)
-        {
-            VisualBase ret = new VisualBase(NDalicPINVOKE.VisualBase_Assign(swigCPtr, VisualBase.getCPtr(handle)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// name of the visual
         /// </summary>
@@ -159,7 +152,7 @@ namespace Tizen.NUI
         /// <summary>
         /// the depth index of this visual.
         /// </summary>
-        public float DepthIndex
+        public int DepthIndex
         {
             set
             {
@@ -170,15 +163,15 @@ namespace Tizen.NUI
                 return GetDepthIndex();
             }
         }
-        internal void SetDepthIndex(float index)
+        internal void SetDepthIndex(int index)
         {
             NDalicPINVOKE.VisualBase_SetDepthIndex(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal float GetDepthIndex()
+        internal int GetDepthIndex()
         {
-            float ret = NDalicPINVOKE.VisualBase_GetDepthIndex(swigCPtr);
+            int ret = NDalicPINVOKE.VisualBase_GetDepthIndex(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

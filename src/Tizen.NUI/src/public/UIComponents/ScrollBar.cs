@@ -30,7 +30,7 @@ namespace Tizen.NUI.UIComponents
     using System;
     using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
-    
+
     /// <summary>
     /// ScrollBar is a UI component that can be linked to the scrollable objects
     /// indicating the current scroll position of the scrollable object.<br>
@@ -70,7 +70,7 @@ namespace Tizen.NUI.UIComponents
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.        
+            //because the execution order of Finalizes is non-deterministic.
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -199,92 +199,8 @@ namespace Tizen.NUI.UIComponents
         }
 
 
-        internal class Property : global::System.IDisposable
+        internal class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-            ~Property()
-            {
-                if(!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if(type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_ScrollBar_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                disposed = true;
-            }
-
-            internal Property() : this(NDalicPINVOKE.new_ScrollBar_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
             internal static readonly int SCROLL_DIRECTION = NDalicPINVOKE.ScrollBar_Property_SCROLL_DIRECTION_get();
             internal static readonly int INDICATOR_HEIGHT_POLICY = NDalicPINVOKE.ScrollBar_Property_INDICATOR_HEIGHT_POLICY_get();
             internal static readonly int INDICATOR_FIXED_HEIGHT = NDalicPINVOKE.ScrollBar_Property_INDICATOR_FIXED_HEIGHT_get();
@@ -294,7 +210,6 @@ namespace Tizen.NUI.UIComponents
             internal static readonly int INDICATOR_MINIMUM_HEIGHT = NDalicPINVOKE.ScrollBar_Property_INDICATOR_MINIMUM_HEIGHT_get();
             internal static readonly int INDICATOR_START_PADDING = NDalicPINVOKE.ScrollBar_Property_INDICATOR_START_PADDING_get();
             internal static readonly int INDICATOR_END_PADDING = NDalicPINVOKE.ScrollBar_Property_INDICATOR_END_PADDING_get();
-
         }
 
         /// <summary>
@@ -319,13 +234,6 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal ScrollBar Assign(ScrollBar scrollBar)
-        {
-            ScrollBar ret = new ScrollBar(NDalicPINVOKE.ScrollBar_Assign(swigCPtr, ScrollBar.getCPtr(scrollBar)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Downcasts a handle to ScrollBar handle.<br>
         /// If handle points to a ScrollBar, the downcast produces valid handle.<br>
@@ -333,7 +241,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>Handle to a ScrollBar or an uninitialized handle</returns>
-        public new static ScrollBar DownCast(BaseHandle handle)
+        internal new static ScrollBar DownCast(BaseHandle handle)
         {
             ScrollBar ret = new ScrollBar(NDalicPINVOKE.ScrollBar_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -448,12 +356,6 @@ namespace Tizen.NUI.UIComponents
             FloatSignal ret = new FloatSignal(NDalicPINVOKE.ScrollBar_ScrollPositionIntervalReachedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal enum PropertyRange
-        {
-            PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
-            PROPERTY_END_INDEX = View.PropertyRange.PROPERTY_START_INDEX + 1000
         }
 
         /// <summary>
@@ -582,7 +484,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(ScrollBar.Property.INDICATOR_FIXED_HEIGHT).Get(ref temp);
+                GetProperty(ScrollBar.Property.INDICATOR_FIXED_HEIGHT).Get(out temp);
                 return temp;
             }
             set
@@ -599,7 +501,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(ScrollBar.Property.INDICATOR_SHOW_DURATION).Get(ref temp);
+                GetProperty(ScrollBar.Property.INDICATOR_SHOW_DURATION).Get(out temp);
                 return temp;
             }
             set
@@ -616,7 +518,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(ScrollBar.Property.INDICATOR_HIDE_DURATION).Get(ref temp);
+                GetProperty(ScrollBar.Property.INDICATOR_HIDE_DURATION).Get(out temp);
                 return temp;
             }
             set
@@ -650,7 +552,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(ScrollBar.Property.INDICATOR_MINIMUM_HEIGHT).Get(ref temp);
+                GetProperty(ScrollBar.Property.INDICATOR_MINIMUM_HEIGHT).Get(out temp);
                 return temp;
             }
             set
@@ -667,7 +569,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(ScrollBar.Property.INDICATOR_START_PADDING).Get(ref temp);
+                GetProperty(ScrollBar.Property.INDICATOR_START_PADDING).Get(out temp);
                 return temp;
             }
             set
@@ -684,7 +586,7 @@ namespace Tizen.NUI.UIComponents
             get
             {
                 float temp = 0.0f;
-                GetProperty(ScrollBar.Property.INDICATOR_END_PADDING).Get(ref temp);
+                GetProperty(ScrollBar.Property.INDICATOR_END_PADDING).Get(out temp);
                 return temp;
             }
             set

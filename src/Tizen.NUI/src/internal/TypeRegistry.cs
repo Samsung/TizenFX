@@ -11,7 +11,7 @@
 namespace Tizen.NUI
 {
 
-    public class TypeRegistry : BaseHandle
+    internal class TypeRegistry : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
