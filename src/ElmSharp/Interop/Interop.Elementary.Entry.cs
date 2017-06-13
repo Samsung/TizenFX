@@ -55,6 +55,48 @@ internal static partial class Interop
             Emoticon
         }
 
+        internal enum WrapType
+        {
+            None,
+            Char,
+            Word,
+            Mixed,
+        }
+
+        internal enum AutocapitalType
+        {
+            None,
+            Word,
+            Sentence,
+            AllCharacter,
+        }
+
+        internal enum InputHints
+        {
+            None,
+            AutoComplete,
+            SensitiveData,
+        }
+
+        internal enum InputPanelLanguage
+        {
+            Automatic,
+            Alphabet,
+        }
+
+        internal enum CopyAndPasteMode
+        {
+            Markup,
+            NoImage,
+            PlainText
+        }
+
+        internal enum TextFormat
+        {
+            PlainUtf8,
+            MarkupUtf8
+        }
+
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_entry_add(IntPtr obj);
 
@@ -81,6 +123,21 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_entry_set(IntPtr obj, string value);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_entry_append(IntPtr obj, string value);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_entry_insert(IntPtr obj, string value);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_file_get(IntPtr obj, out string file, out TextFormat format);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_file_set(IntPtr obj, string file, TextFormat format);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_file_save(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_entry_password_get(IntPtr obj);
@@ -110,6 +167,9 @@ internal static partial class Interop
         internal static extern void elm_entry_cursor_end_set(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern string elm_entry_cursor_content_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_cursor_line_begin_set(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
@@ -122,6 +182,21 @@ internal static partial class Interop
         internal static extern void elm_entry_cursor_pos_set(IntPtr obj, int pos);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_entry_cursor_geometry_get(IntPtr obj, out int x, out int y, out int w, out int h);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_entry_cursor_is_format_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_entry_cursor_is_visible_format_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_cursor_selection_begin(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_cursor_selection_end(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern string elm_entry_markup_to_utf8(IntPtr text);
 
         [DllImport(Libraries.Elementary)]
@@ -132,6 +207,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_input_panel_enabled_set(IntPtr obj, bool enabled);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_entry_input_panel_enabled_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_input_panel_return_key_type_set(IntPtr obj, ReturnKeyType keyType);
@@ -176,31 +254,79 @@ internal static partial class Interop
         internal static extern void elm_entry_input_panel_imdata_set(IntPtr obj, IntPtr data, int len);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern int elm_entry_input_panel_layout_variation_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_input_panel_layout_variation_set(IntPtr obj, int variation);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_entry_line_wrap_set(IntPtr obj, Elm_Wrap_Type wrap);
+        internal static extern WrapType elm_entry_line_wrap_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_entry_markup_filter_remove(IntPtr obj, Elm_Entry_Filter_Cb func, IntPtr data);
+        internal static extern void elm_entry_line_wrap_set(IntPtr obj, WrapType wrap);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_entry_autocapital_type_set(IntPtr obj, Elm_Autocapital_Type autocapitalYype);
+        internal static extern AutocapitalType elm_entry_autocapital_type_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_autocapital_type_set(IntPtr obj, AutocapitalType autoCapitalType);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_entry_autosave_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_autosave_set(IntPtr obj, bool autosave);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern CopyAndPasteMode elm_entry_cnp_mode_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_cnp_mode_set(IntPtr obj, CopyAndPasteMode mode);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_calc_force(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_entry_imf_context_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_entry_input_hint_set(IntPtr obj, Elm_Input_Hints hints);
+        internal static extern InputHints elm_entry_input_hint_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_entry_input_panel_language_set(IntPtr obj, Elm_Input_Panel_Lang lang);
+        internal static extern void elm_entry_input_hint_set(IntPtr obj, InputHints hints);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern InputPanelLanguage elm_entry_input_panel_language_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_input_panel_language_set(IntPtr obj, InputPanelLanguage lang);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_entry_input_panel_return_key_disabled_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_input_panel_return_key_disabled_set(IntPtr obj, bool disabled);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_input_panel_return_key_autoenabled_set(IntPtr obj, bool enabled);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_entry_input_panel_show_on_demand_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_input_panel_show_on_demand_set(IntPtr obj, bool onDemand);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_markup_filter_append(IntPtr obj, Elm_Entry_Filter_Cb func, IntPtr data);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_markup_filter_prepend(IntPtr obj, Elm_Entry_Filter_Cb func, IntPtr data);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_markup_filter_remove(IntPtr obj, Elm_Entry_Filter_Cb func, IntPtr data);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_entry_prediction_allow_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_prediction_allow_set(IntPtr obj, bool prediction);
@@ -212,35 +338,54 @@ internal static partial class Interop
         internal static extern string elm_entry_utf8_to_markup(string str);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void Elm_Entry_Filter_Cb(IntPtr data, IntPtr obj, string[] text);
+        internal delegate void Elm_Entry_Filter_Cb(IntPtr data, IntPtr obj, ref IntPtr text);
 
-        internal enum Elm_Wrap_Type
-        {
-            ELM_WRAP_NONE,
-            ELM_WRAP_CHAR,
-            ELM_WRAP_WORD,
-            ELM_WRAP_MIXED,
-        }
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_entry_anchor_hover_parent_get(IntPtr obj);
 
-        internal enum Elm_Autocapital_Type
-        {
-            ELM_AUTOCAPITAL_TYPE_NONE,
-            ELM_AUTOCAPITAL_TYPE_WORD,
-            ELM_AUTOCAPITAL_TYPE_SENTENCE,
-            ELM_AUTOCAPITAL_TYPE_ALLCHARACTER,
-        }
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_anchor_hover_parent_set(IntPtr obj, IntPtr parent);
 
-        internal enum Elm_Input_Hints
-        {
-            ELM_INPUT_HINT_NONE,
-            ELM_INPUT_HINT_AUTO_COMPLETE,
-            ELM_INPUT_HINT_SENSITIVE_DATA,
-        }
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_anchor_hover_end(IntPtr obj);
 
-        internal enum Elm_Input_Panel_Lang
-        {
-            ELM_INPUT_PANEL_LANG_AUTOMATIC,
-            ELM_INPUT_PANEL_LANG_ALPHABET,
-        }
+        [DllImport(Libraries.Elementary)]
+        internal static extern string elm_entry_anchor_hover_style_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_anchor_hover_style_set(IntPtr obj, string style);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_icon_visible_set(IntPtr obj, bool setting);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate IntPtr Elm_Entry_Item_Provider_Cb(IntPtr data, IntPtr entry, string text);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_item_provider_append(IntPtr obj, Elm_Entry_Item_Provider_Cb func, IntPtr data);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_item_provider_prepend(IntPtr obj, Elm_Entry_Item_Provider_Cb func, IntPtr data);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_item_provider_remove(IntPtr obj, Elm_Entry_Item_Provider_Cb func, IntPtr data);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_selection_copy(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_selection_cut(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_selection_paste(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_entry_selection_handler_disabled_set(IntPtr obj, bool disabled);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern string elm_entry_selection_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern string elm_entry_select_region_set(IntPtr obj, int start, int end);
     }
 }
