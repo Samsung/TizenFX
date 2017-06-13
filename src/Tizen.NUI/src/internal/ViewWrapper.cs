@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ namespace Tizen.NUI
     public class ViewWrapper : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        protected ViewWrapperImpl viewWrapperImpl;
+        internal ViewWrapperImpl viewWrapperImpl;
 
         internal ViewWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.ViewWrapper_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -72,7 +72,7 @@ namespace Tizen.NUI
         }
 
 
-        public ViewWrapper(string typeName, ViewWrapperImpl implementation) : this(NDalicManualPINVOKE.ViewWrapper_New(typeName, ViewWrapperImpl.getCPtr(implementation)), true)
+        internal ViewWrapper(string typeName, ViewWrapperImpl implementation) : this(NDalicManualPINVOKE.ViewWrapper_New(typeName, ViewWrapperImpl.getCPtr(implementation)), true)
         {
             viewWrapperImpl = implementation;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

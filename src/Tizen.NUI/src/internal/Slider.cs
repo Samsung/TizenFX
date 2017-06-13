@@ -34,7 +34,7 @@ namespace Tizen.NUI.UIComponents
     /// <summary>
     /// Slider is a control to enable sliding an indicator between two values.
     /// </summary>
-    public class Slider : View
+    internal class Slider : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

@@ -597,12 +597,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void DeleteRow(uint rowIndex, ViewContainer removed)
-        {
-            NDalicPINVOKE.TableView_DeleteRow__SWIG_1(swigCPtr, rowIndex, ViewContainer.getCPtr(removed));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         /// <summary>
         /// Inserts a new column to the given index.
         /// </summary>
@@ -624,12 +618,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void DeleteColumn(uint columnIndex, ViewContainer removed)
-        {
-            NDalicPINVOKE.TableView_DeleteColumn__SWIG_1(swigCPtr, columnIndex, ViewContainer.getCPtr(removed));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         /// <summary>
         /// Resizes the TableView.
         /// </summary>
@@ -638,12 +626,6 @@ namespace Tizen.NUI
         public void Resize(uint rows, uint columns)
         {
             NDalicPINVOKE.TableView_Resize__SWIG_0(swigCPtr, rows, columns);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void Resize(uint rows, uint columns, ViewContainer removed)
-        {
-            NDalicPINVOKE.TableView_Resize__SWIG_1(swigCPtr, rows, columns, ViewContainer.getCPtr(removed));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

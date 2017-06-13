@@ -32,7 +32,7 @@ namespace Tizen.NUI
     using Tizen.NUI.BaseComponents;
 
 
-    public class Builder : BaseHandle
+    internal class Builder : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
