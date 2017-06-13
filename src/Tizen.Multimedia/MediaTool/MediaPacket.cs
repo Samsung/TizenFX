@@ -594,7 +594,7 @@ namespace Tizen.Multimedia
         /// Provides a thread-safe lock controller.
         /// </summary>
         /// <example>
-        /// using (var lock = BaseMeadiPacket.Lock(mediaPacket))
+        /// using (var lock = BaseMediaPacket.Lock(mediaPacket))
         /// {
         ///     ....
         /// }
@@ -716,7 +716,7 @@ namespace Tizen.Multimedia
         #endregion
 
         /// <summary>
-        /// Creates an object of the MediaPacekt with the specified <see cref="MediaFormat"/>.
+        /// Creates an object of the MediaPacket with the specified <see cref="MediaFormat"/>.
         /// </summary>
         /// <param name="format">The media format for the new packet.</param>
         /// <returns>A new MediaPacket object.</returns>

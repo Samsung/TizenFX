@@ -3,7 +3,7 @@
   <Import Project="../build/build.props" />
 
   <PropertyGroup>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Description>Provides the Multimedia Vision API for Tizen .NET</Description>
   </PropertyGroup>
 

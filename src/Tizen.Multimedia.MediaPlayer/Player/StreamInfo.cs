@@ -231,7 +231,7 @@ namespace Tizen.Multimedia
         /// <remarks>The <see cref="Multimedia.Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.</exception>
-        public AudioStreamProperties GetAudioProperies()
+        public AudioStreamProperties GetAudioProperties()
         {
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 

@@ -28,7 +28,7 @@ namespace Tizen.Multimedia.Util
         internal BitmapFrame(IntPtr nativeBuffer, int width, int height, int size)
         {
             Debug.Assert(nativeBuffer != IntPtr.Zero);
-            
+
             byte[] buf = new byte[size];
             Marshal.Copy(nativeBuffer, buf, 0, size);
 

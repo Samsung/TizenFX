@@ -129,9 +129,9 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     The height of <paramref name="value"/> is less than or equal to zero.\n
         ///     -or-\n
-        ///     The x position of <paramref name="value"/> is lsss than zero.\n
+        ///     The x position of <paramref name="value"/> is less than zero.\n
         ///     -or-\n
-        ///     The y position of <paramref name="value"/> is lsss than zero.\n
+        ///     The y position of <paramref name="value"/> is less than zero.\n
         /// </exception>
         public Rectangle? Roi
         {

@@ -34,7 +34,7 @@ namespace Tizen.Multimedia
         NoAntenna = -0x019A0000 | 0x03,
     }
 
-    internal static class RadioErrorExtesions
+    internal static class RadioErrorExtensions
     {
         internal static void ThrowIfFailed(this RadioError err, string message)
         {

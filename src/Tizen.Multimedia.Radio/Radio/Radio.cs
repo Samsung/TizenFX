@@ -44,7 +44,7 @@ namespace Tizen.Multimedia
             try
             {
                 SetScanCompletedCb(_handle, ScanCompleteCallback).ThrowIfFailed("Failed to initialize radio");
-                SetInterruptedCb(_handle, IntruptedCallback).ThrowIfFailed("Failed to initialize radio");
+                SetInterruptedCb(_handle, InterruptedCallback).ThrowIfFailed("Failed to initialize radio");
             }
             catch (Exception)
             {
@@ -343,16 +343,16 @@ namespace Tizen.Multimedia
             ScanCompleted?.Invoke(this, EventArgs.Empty);
         }
 
-        private void IntruptedCallback(RadioInterruptedReason reason, IntPtr data)
+        private void InterruptedCallback(RadioInterruptedReason reason, IntPtr data)
         {
             Interrupted?.Invoke(this, new RadioInterruptedEventArgs(reason));
         }
 
-        private void ValidateRadioState(params RadioState[] reqiured)
+        private void ValidateRadioState(params RadioState[] required)
         {
             RadioState curState = State;
 
-            if (reqiured.Contains(curState) == false)
+            if (required.Contains(curState) == false)
             {
                 throw new InvalidOperationException($"{curState} is not valid state.");
             }

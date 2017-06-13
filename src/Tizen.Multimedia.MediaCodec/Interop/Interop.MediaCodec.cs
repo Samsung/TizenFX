@@ -88,11 +88,11 @@ namespace Tizen.Multimedia.MediaCodec
             internal static extern int UnsetInputBufferUsedCb(IntPtr handle);
 
             [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_output_buffer_available_cb")]
-            internal static extern int SetOutputBufferAvaiableCb(IntPtr handle,
+            internal static extern int SetOutputBufferAvailableCb(IntPtr handle,
                 OutputBufferAvailableCallback cb, IntPtr arg);
 
             [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_output_buffer_available_cb")]
-            internal static extern int UnsetOutputBufferAvaiableCb(IntPtr handle);
+            internal static extern int UnsetOutputBufferAvailableCb(IntPtr handle);
 
             [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_error_cb")]
             internal static extern int SetErrorCb(IntPtr handle, ErrorCallback cb, IntPtr arg);

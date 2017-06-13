@@ -496,7 +496,7 @@ namespace Tizen.Multimedia.MediaCodec
                 _outputAvailable?.Invoke(this, args);
             };
 
-            int ret = Interop.MediaCodec.SetOutputBufferAvaiableCb(_handle,
+            int ret = Interop.MediaCodec.SetOutputBufferAvailableCb(_handle,
                 _outputBufferAvailableCb, IntPtr.Zero);
 
             MultimediaDebug.AssertNoError(ret);
@@ -504,7 +504,7 @@ namespace Tizen.Multimedia.MediaCodec
 
         private void UnregisterOutputAvailableCallback()
         {
-            int ret = Interop.MediaCodec.UnsetOutputBufferAvaiableCb(_handle);
+            int ret = Interop.MediaCodec.UnsetOutputBufferAvailableCb(_handle);
 
             MultimediaDebug.AssertNoError(ret);
         }

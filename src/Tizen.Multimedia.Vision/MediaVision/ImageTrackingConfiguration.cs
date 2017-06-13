@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
         private const string KeyUseStabilization = "MV_IMAGE_TRACKING_USE_STABLIZATION";
         private const string KeyStabilizationTolerantShift = "MV_IMAGE_TRACKING_STABLIZATION_TOLERANT_SHIFT";
         private const string KeyStabilizationSpeed = "MV_IMAGE_TRACKING_STABLIZATION_SPEED";
-        private const string KeyStabilizationAccelaration = "MV_IMAGE_TRACKING_STABLIZATION_ACCELERATION";
+        private const string KeyStabilizationAcceleration = "MV_IMAGE_TRACKING_STABLIZATION_ACCELERATION";
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="HistoryAmount"/>.
@@ -56,9 +56,9 @@ namespace Tizen.Multimedia
         public static readonly double DefaultStabilizationSpeed = 0.3;
 
         /// <summary>
-        /// A read-only field that represents the default value of <see cref="StabilizationAccelaration"/>.
+        /// A read-only field that represents the default value of <see cref="StabilizationAcceleration"/>.
         /// </summary>
-        public static readonly double DefaultStabilizationAccelaration = 0.1;
+        public static readonly double DefaultStabilizationAcceleration = 0.1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageTrackingConfiguration"/> class.
@@ -128,11 +128,11 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="value"/> is greater than one.
         /// </exception>
-        public double StabilizationAccelaration
+        public double StabilizationAcceleration
         {
             get
             {
-                return GetDouble(KeyStabilizationAccelaration);
+                return GetDouble(KeyStabilizationAcceleration);
             }
             set
             {
@@ -141,7 +141,7 @@ namespace Tizen.Multimedia
                     throw new ArgumentOutOfRangeException(nameof(value), value, "Valid range is 0 to 1 inclusive.");
                 }
 
-                Set(KeyStabilizationAccelaration, value);
+                Set(KeyStabilizationAcceleration, value);
             }
         }
 
