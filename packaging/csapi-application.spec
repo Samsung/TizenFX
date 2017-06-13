@@ -24,8 +24,8 @@ BuildRequires: csapi-tizen-nuget
 %define ApplicationCommon 1.5.8
 %define MessagePort 1.5.8
 %define PackageManager 1.5.8
-%define Notification 1.5.8
-%define NotificationEventListener 1.5.8
+%define Notification 1.5.9
+%define NotificationEventListener 1.5.9
 %define Alarm 1.5.8
 %define Preference 1.5.8
 %define ApplicationService 1.5.8
