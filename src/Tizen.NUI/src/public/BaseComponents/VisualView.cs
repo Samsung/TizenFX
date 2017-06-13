@@ -42,7 +42,6 @@ namespace Tizen.NUI.BaseComponents
         //private LinkedList<VisualBase> _visualList = null;
         private Dictionary<int, VisualBase> _visualDictionary = null;
         private Dictionary<int, PropertyMap> _tranformDictionary = null;
-        private PropertyArray _animateArray = null;
 
         static CustomView CreateInstance()
         {
@@ -69,7 +68,6 @@ namespace Tizen.NUI.BaseComponents
             //Initialize empty
             _visualDictionary = new Dictionary<int, VisualBase>();
             _tranformDictionary = new Dictionary<int, PropertyMap>();
-            _animateArray = new PropertyArray();
         }
 
         /// <summary>
@@ -214,7 +212,6 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="startTime"> The start time of visual animation.</param>
         /// <param name="endTime"> The end time of visual animation.</param>
         /// <param name="alphaFunction"> The alpha function of visual animation</param>
-        /// <param name="initialValue"> The initial property value of visual animation </param>
         /// <returns>Animation instance</returns>
         public Animation AnimateVisual(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
@@ -333,147 +330,6 @@ namespace Tizen.NUI.BaseComponents
             return null;
         }
 
-        /// <summary>
-        /// Add group visual animation (transition) map with the input parameters.
-        /// </summary>
-        /// <param name="target"> The visual map to animation.</param>
-        /// <param name="property"> The property of visual to animation.</param>
-        /// <param name="destinationValue"> The destination value of property after animation.</param>
-        /// <param name="startTime"> The start time of visual animation.</param>
-        /// <param name="endTime"> The end time of visual animation.</param>
-        /// <param name="alphaFunction"> The alpha function of visual animation</param>
-        /// <param name="initialValue"> The initial property value of visual animation </param>
-        public void AnimateVisualAdd(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
-        {
-            string _alphaFunction = null;
-            if (alphaFunction != null)
-            {
-                switch (alphaFunction)
-                {
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Linear:
-                    {
-                        _alphaFunction = "LINEAR";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Reverse:
-                    {
-                        _alphaFunction = "REVERSE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSquare:
-                    {
-                        _alphaFunction = "EASE_IN_SQUARE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSquare:
-                    {
-                        _alphaFunction = "EASE_OUT_SQUARE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseIn:
-                    {
-                        _alphaFunction = "EASE_IN";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOut:
-                    {
-                        _alphaFunction = "EASE_OUT";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOut:
-                    {
-                        _alphaFunction = "EASE_IN_OUT";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSine:
-                    {
-                        _alphaFunction = "EASE_IN_SINE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSine:
-                    {
-                        _alphaFunction = "EASE_OUT_SINE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOutSine:
-                    {
-                        _alphaFunction = "EASE_IN_OUT_SINE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Bounce:
-                    {
-                        _alphaFunction = "BOUNCE";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Sin:
-                    {
-                        _alphaFunction = "SIN";
-                        break;
-                    }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutBack:
-                    {
-                        _alphaFunction = "EASE_OUT_BACK";
-                        break;
-                    }
-                    default:
-                    {
-                        _alphaFunction = "DEFAULT";
-                        break;
-                    }
-                }
-            }
-
-            foreach (var item in _visualDictionary.ToList())
-            {
-                if (item.Value.Name == target.Name)
-                {
-                    PropertyMap _animator = new PropertyMap();
-                    if ( _alphaFunction != null) {_animator.Add("alphaFunction", new PropertyValue(_alphaFunction));}
-
-                    PropertyMap _timePeriod = new PropertyMap();
-                    _timePeriod.Add("duration", new PropertyValue((endTime - startTime) / 1000.0f));
-                    _timePeriod.Add("delay", new PropertyValue(startTime / 1000.0f));
-                    _animator.Add("timePeriod", new PropertyValue(_timePeriod));
-
-                    string _str1 = property.Substring(0, 1);
-                    string _str2 = property.Substring(1);
-                    string _str = _str1.ToLower() + _str2;
-                    if (_str == "position") {_str = "offset";}
-
-                    PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue);
-
-                    PropertyMap _transition = new PropertyMap();
-                    _transition.Add("target", new PropertyValue(target.Name));
-                    _transition.Add("property", new PropertyValue(_str));
-                    if (initialValue != null)
-                    {
-                        PropertyValue initVal = PropertyValue.CreateFromObject(initialValue);
-                        _transition.Add("initialValue", new PropertyValue(initVal));
-                    }
-                    _transition.Add("targetValue", destVal);
-                    _transition.Add("animator", new PropertyValue(_animator));
-
-                    _animateArray.Add(new PropertyValue(_transition));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Finish to add Visual animation (transition) map and create transition animation.
-        /// </summary>
-        /// <returns>Animation instance</returns>
-        public Animation AnimateVisualAddFinish()
-        {
-            if ( _animateArray == null || _animateArray.Empty())
-            {
-                Tizen.Log.Fatal("NUI", "animate visual property array is empty!");
-                return null;
-            }
-            TransitionData _transitionData = new TransitionData(_animateArray);
-
-            return this.CreateTransition(_transitionData);
-        }
-
 
         //temporary fix to pass TCT 
         public Animation VisualAnimate(Tizen.NUI.VisualAnimator visualMap)
@@ -489,6 +345,8 @@ namespace Tizen.NUI.BaseComponents
             return null;
         }
         //temporary fix to pass TCT 
+
+
 
     }
 }
