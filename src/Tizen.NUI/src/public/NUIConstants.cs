@@ -1365,4 +1365,21 @@ namespace Tizen.NUI
         Explicit,   //Called By User
         Implicit,   //Called by DisposeQueue
     }
+
+    /// <summary>
+    /// An enum of scroll state of text eidtor.
+    /// </summary>
+    public enum ScrollState
+    {
+        /// <summary>
+        /// Scrolling is started.
+        /// </summary>
+        Started,
+
+        /// <summary>
+        /// Scrolling is finished.
+        /// </summary>
+        Finished
+    }
+
 }
