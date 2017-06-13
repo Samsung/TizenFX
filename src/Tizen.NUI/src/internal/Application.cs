@@ -55,7 +55,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationTerminate signal
       *
       */
-    internal class NUIApplicationTerminateEventArgs : EventArgs
+    internal class NUIApplicationTerminatingEventArgs : EventArgs
     {
         private Application _application;
         /**
@@ -79,7 +79,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationPause signal
       *
       */
-    internal class NUIApplicationPauseEventArgs : EventArgs
+    internal class NUIApplicationPausedEventArgs : EventArgs
     {
         private Application _application;
         /**
@@ -103,7 +103,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationResume signal
       *
       */
-    internal class NUIApplicationResumeEventArgs : EventArgs
+    internal class NUIApplicationResumedEventArgs : EventArgs
     {
         private Application _application;
         /**
@@ -151,7 +151,7 @@ namespace Tizen.NUI
       * @brief Event arguments that passed via NUIApplicationResize signal
       *
       */
-    internal class NUIApplicationResizeEventArgs : EventArgs
+    internal class NUIApplicationResizedEventArgs : EventArgs
     {
         private Application _application;
         /**
@@ -368,18 +368,18 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void NUIApplicationTerminateEventCallbackDelegate(IntPtr application);
-        private DaliEventHandler<object, NUIApplicationTerminateEventArgs> _applicationTerminateEventHandler;
+        private DaliEventHandler<object, NUIApplicationTerminatingEventArgs> _applicationTerminateEventHandler;
         private NUIApplicationTerminateEventCallbackDelegate _applicationTerminateEventCallbackDelegate;
 
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void NUIApplicationPauseEventCallbackDelegate(IntPtr application);
-        private DaliEventHandler<object, NUIApplicationPauseEventArgs> _applicationPauseEventHandler;
+        private DaliEventHandler<object, NUIApplicationPausedEventArgs> _applicationPauseEventHandler;
         private NUIApplicationPauseEventCallbackDelegate _applicationPauseEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void NUIApplicationResumeEventCallbackDelegate(IntPtr application);
-        private DaliEventHandler<object, NUIApplicationResumeEventArgs> _applicationResumeEventHandler;
+        private DaliEventHandler<object, NUIApplicationResumedEventArgs> _applicationResumeEventHandler;
         private NUIApplicationResumeEventCallbackDelegate _applicationResumeEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -389,7 +389,7 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void NUIApplicationResizeEventCallbackDelegate(IntPtr application);
-        private DaliEventHandler<object, NUIApplicationResizeEventArgs> _applicationResizeEventHandler;
+        private DaliEventHandler<object, NUIApplicationResizedEventArgs> _applicationResizeEventHandler;
         private NUIApplicationResizeEventCallbackDelegate _applicationResizeEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -474,9 +474,9 @@ namespace Tizen.NUI
         /**
           * @brief Event for Terminated signal which can be used to subscribe/unsubscribe the event handler
           * (in the type of NUIApplicationTerminateEventHandler-DaliEventHandler<object,NUIApplicationTerminateEventArgs>)
-          *  provided by the user. Terminated signal is emitted when application is terminated
+          *  provided by the user. Terminated signal is emitted when application is terminating
           */
-        public event DaliEventHandler<object, NUIApplicationTerminateEventArgs> Terminated
+        public event DaliEventHandler<object, NUIApplicationTerminatingEventArgs> Terminating
         {
             add
             {
@@ -510,7 +510,7 @@ namespace Tizen.NUI
         // Callback for Application TerminateSignal
         private void OnNUIApplicationTerminate(IntPtr data)
         {
-            NUIApplicationTerminateEventArgs e = new NUIApplicationTerminateEventArgs();
+            NUIApplicationTerminatingEventArgs e = new NUIApplicationTerminatingEventArgs();
 
             // Populate all members of "e" (NUIApplicationTerminateEventArgs) with real data
             e.Application = Application.GetApplicationFromPtr(data);
@@ -527,7 +527,7 @@ namespace Tizen.NUI
           * (in the type of NUIApplicationPauseEventHandler-DaliEventHandler<object,NUIApplicationPauseEventArgs>)
           * provided by the user. Paused signal is emitted when application is paused
           */
-        public event DaliEventHandler<object, NUIApplicationPauseEventArgs> Paused
+        public event DaliEventHandler<object, NUIApplicationPausedEventArgs> Paused
         {
             add
             {
@@ -561,7 +561,7 @@ namespace Tizen.NUI
         // Callback for Application PauseSignal
         private void OnNUIApplicationPause(IntPtr data)
         {
-            NUIApplicationPauseEventArgs e = new NUIApplicationPauseEventArgs();
+            NUIApplicationPausedEventArgs e = new NUIApplicationPausedEventArgs();
 
             // Populate all members of "e" (NUIApplicationPauseEventArgs) with real data
             e.Application = Application.GetApplicationFromPtr(data);
@@ -578,7 +578,7 @@ namespace Tizen.NUI
           * (in the type of NUIApplicationResumeEventHandler-DaliEventHandler<object,NUIApplicationResumeEventArgs>)
           *  provided by the user. Resumed signal is emitted when application is resumed
           */
-        public event DaliEventHandler<object, NUIApplicationResumeEventArgs> Resumed
+        public event DaliEventHandler<object, NUIApplicationResumedEventArgs> Resumed
         {
             add
             {
@@ -612,7 +612,7 @@ namespace Tizen.NUI
         // Callback for Application ResumeSignal
         private void OnNUIApplicationResume(IntPtr data)
         {
-            NUIApplicationResumeEventArgs e = new NUIApplicationResumeEventArgs();
+            NUIApplicationResumedEventArgs e = new NUIApplicationResumedEventArgs();
 
             // Populate all members of "e" (NUIApplicationResumeEventArgs) with real data
             e.Application = Application.GetApplicationFromPtr(data);
@@ -680,7 +680,7 @@ namespace Tizen.NUI
           * (in the type of NUIApplicationResizeEventHandler-DaliEventHandler<object,NUIApplicationResizeEventArgs>)
           *  provided by the user. Resized signal is emitted when application is resized
           */
-        public event DaliEventHandler<object, NUIApplicationResizeEventArgs> Resized
+        public event DaliEventHandler<object, NUIApplicationResizedEventArgs> Resized
         {
             add
             {
@@ -714,7 +714,7 @@ namespace Tizen.NUI
         // Callback for Application ResizeSignal
         private void OnNUIApplicationResize(IntPtr data)
         {
-            NUIApplicationResizeEventArgs e = new NUIApplicationResizeEventArgs();
+            NUIApplicationResizedEventArgs e = new NUIApplicationResizedEventArgs();
 
             // Populate all members of "e" (NUIApplicationResizeEventArgs) with real data
             e.Application = Application.GetApplicationFromPtr(data);
@@ -830,7 +830,7 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for BatteryLow signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of NUIApplicationBatteryLowEventHandler-DaliEventHandler<object,NUIApplicationBatteryLowEventArgs>) 
+          * (in the type of NUIApplicationBatteryLowEventHandler-DaliEventHandler<object,NUIApplicationBatteryLowEventArgs>)
           * provided by the user. BatteryLow signal is emitted when the battery level of the device is low.
           */
         public event DaliEventHandler<object, NUIApplicationBatteryLowEventArgs> BatteryLow
@@ -1034,7 +1034,7 @@ namespace Tizen.NUI
         [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
         internal delegate void MemoryLowDelegateInternal();
 
-        static void Initialize()
+        static void Initialization()
         {
             //	instance.InitDelegate();
         }
@@ -1056,7 +1056,7 @@ namespace Tizen.NUI
 
         internal void SetupDelegates()
         {
-            InitDelegateInternal initializeCallback = new InitDelegateInternal(Initialize);
+            InitDelegateInternal initializeCallback = new InitDelegateInternal(Initialization);
 #if DEBUG_ON
             Tizen.Log.Debug("NUI", "InitSignal connection count");
 #endif
