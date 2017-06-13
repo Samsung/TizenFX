@@ -95,7 +95,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Event arguments that passed via ScrollPositionIntervalReached event
         /// </summary>
-        public class ScrollPositionIntervalReachedEventArgs : EventArgs
+        public class ScrollIntervalEventArgs : EventArgs
         {
             private float _currentScrollPosition;
 
@@ -122,7 +122,7 @@ namespace Tizen.NUI.UIComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ScrollPositionIntervalReachedEventCallbackDelegate();
-        private EventHandler<ScrollPositionIntervalReachedEventArgs> _scrollBarScrollPositionIntervalReachedEventHandler;
+        private EventHandler<ScrollIntervalEventArgs> _scrollBarScrollPositionIntervalReachedEventHandler;
         private ScrollPositionIntervalReachedEventCallbackDelegate _scrollBarScrollPositionIntervalReachedEventCallbackDelegate;
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Event emitted when the current scroll position of the scrollable content
         /// </summary>
-        public event EventHandler<ScrollPositionIntervalReachedEventArgs> ScrollPositionIntervalReached
+        public event EventHandler<ScrollIntervalEventArgs> ScrollInterval
         {
             add
             {
@@ -189,7 +189,7 @@ namespace Tizen.NUI.UIComponents
         // Callback for ScrollBar ScrollPositionIntervalReachedSignal
         private void OnScrollBarScrollPositionIntervalReached()
         {
-            ScrollPositionIntervalReachedEventArgs e = new ScrollPositionIntervalReachedEventArgs();
+            ScrollIntervalEventArgs e = new ScrollIntervalEventArgs();
 
             if (_scrollBarScrollPositionIntervalReachedEventHandler != null)
             {

@@ -128,7 +128,7 @@ namespace DatePickerUsingJson
             return nextFocusView;
         }
 
-        private void OnFocusedViewActivated(object source, FocusManager.FocusedViewEnterKeyEventArgs e)
+        private void OnFocusedViewActivated(object source, FocusManager.FocusedViewActivatedEventArgs e)
         {
             // Make the text field in the current focused spin to take the key input
             KeyInputFocusManager manager = KeyInputFocusManager.Get();

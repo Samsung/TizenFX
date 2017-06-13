@@ -274,7 +274,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via Touch signal.
         /// </summary>
-        public class TouchEventArgs : EventArgs
+        public class TouchedEventArgs : EventArgs
         {
             private Touch _touch;
 
@@ -294,7 +294,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private EventHandlerWithReturnType<object, TouchEventArgs, bool> _touchDataEventHandler;
+        private EventHandlerWithReturnType<object, TouchedEventArgs, bool> _touchDataEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool TouchDataCallbackType(IntPtr view, IntPtr touchData);
         private TouchDataCallbackType _touchDataCallback;
@@ -303,7 +303,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for Touched signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// Touched signal is emitted when touch input is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touch
+        public event EventHandlerWithReturnType<object, TouchedEventArgs, bool> Touched
         {
             add
             {
@@ -331,7 +331,7 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View TouchSignal
         private bool OnTouch(IntPtr view, IntPtr touchData)
         {
-            TouchEventArgs e = new TouchEventArgs();
+            TouchedEventArgs e = new TouchedEventArgs();
 
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
 
@@ -346,7 +346,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via Hover signal.
         /// </summary>
-        public class HoverEventArgs : EventArgs
+        public class HoveredEventArgs : EventArgs
         {
             private Hover _hover;
 
@@ -366,7 +366,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private EventHandlerWithReturnType<object, HoverEventArgs, bool> _hoverEventHandler;
+        private EventHandlerWithReturnType<object, HoveredEventArgs, bool> _hoverEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool HoverEventCallbackType(IntPtr view, IntPtr hoverEvent);
         private HoverEventCallbackType _hoverEventCallback;
@@ -375,7 +375,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for Hovered signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// Hovered signal is emitted when hover input is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hover
+        public event EventHandlerWithReturnType<object, HoveredEventArgs, bool> Hovered
         {
             add
             {
@@ -403,7 +403,7 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Hover signal
         private bool OnHoverEvent(IntPtr view, IntPtr hoverEvent)
         {
-            HoverEventArgs e = new HoverEventArgs();
+            HoveredEventArgs e = new HoveredEventArgs();
 
             e.Hover = Tizen.NUI.Hover.GetHoverFromPtr(hoverEvent);
 
@@ -418,7 +418,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via Wheel signal.
         /// </summary>
-        public class WheelEventArgs : EventArgs
+        public class WheelRolledEventArgs : EventArgs
         {
             private Wheel _wheel;
 
@@ -438,7 +438,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private EventHandlerWithReturnType<object, WheelEventArgs, bool> _wheelEventHandler;
+        private EventHandlerWithReturnType<object, WheelRolledEventArgs, bool> _wheelEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
         private WheelEventCallbackType _wheelEventCallback;
@@ -447,7 +447,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for WheelMoved signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// WheelMoved signal is emitted when wheel event is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelRoll
+        public event EventHandlerWithReturnType<object, WheelRolledEventArgs, bool> WheelRolled
         {
             add
             {
@@ -475,7 +475,7 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Wheel signal
         private bool OnWheelEvent(IntPtr view, IntPtr wheelEvent)
         {
-            WheelEventArgs e = new WheelEventArgs();
+            WheelRolledEventArgs e = new WheelRolledEventArgs();
 
             e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
 
