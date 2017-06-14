@@ -31,15 +31,15 @@ namespace ElmSharp
         private Interop.Eext.EextEventCallback _backButtonHandler;
         private Interop.Eext.EextEventCallback _moreButtonHandler;
 
-        internal IntPtr Handle { get; set; }
-        internal EvasObject Parent { get; set; }
-        internal IntPtr RealHandle
+        public IntPtr Handle { get; protected set; }
+        public EvasObject Parent { get; private set; }
+        public IntPtr RealHandle
         {
             get
             {
                 return _realHandle == IntPtr.Zero ? Handle : _realHandle;
             }
-            set
+            protected set
             {
                 _realHandle = value;
             }
