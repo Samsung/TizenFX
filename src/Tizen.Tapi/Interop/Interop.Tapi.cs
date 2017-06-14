@@ -267,7 +267,7 @@ internal static partial class Interop
         internal static class Modem
         {
             [DllImport(Libraries.Tapi, EntryPoint = "tel_process_power_command")]
-            internal static extern int ProcessPowerCommand(IntPtr handle, PhonePowerCommand cmd, IntPtr data, uint length);
+            internal static extern int ProcessPowerCommand(IntPtr handle, PhonePowerCommand cmd, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_set_flight_mode")]
             internal static extern int SetFlightMode(IntPtr handle, PowerFlightModeRequest mode, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_flight_mode")]

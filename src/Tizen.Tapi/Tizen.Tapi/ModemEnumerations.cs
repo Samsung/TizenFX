@@ -92,4 +92,27 @@ namespace Tizen.Tapi
         /// </summary>
         Max
     }
+
+    /// <summary>
+    /// Enumeration for flight mode request type.
+    /// </summary>
+    public enum PowerFlightModeResponse
+    {
+        /// <summary>
+        /// Flight mode on success.
+        /// </summary>
+        On = 0x01,
+        /// <summary>
+        /// Flight mode off success.
+        /// </summary>
+        Off,
+        /// <summary>
+        /// Flight mode request fail.
+        /// </summary>
+        Fail,
+        /// <summary>
+        /// Max value.
+        /// </summary>
+        Max
+    }
 }

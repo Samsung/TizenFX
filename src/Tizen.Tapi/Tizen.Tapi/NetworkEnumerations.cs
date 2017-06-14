@@ -376,4 +376,42 @@ namespace Tizen.Tapi
         Blank
     }
 
+    /// <summary>
+    /// Enumeration for the different network operation causes.
+    /// </summary>
+    public enum NetworkOperationCause
+    {
+        /// <summary>
+        /// No error for any operation.
+        /// </summary>
+        NoError,
+        /// <summary>
+        /// Aborted.
+        /// </summary>
+        Aborted,
+        /// <summary>
+        /// Error.
+        /// </summary>
+        Failed,
+        /// <summary>
+        /// Phone is in use(eg: Voice / Data call in progress).
+        /// </summary>
+        PhoneInUse,
+        /// <summary>
+        /// Phone is in offline mode.
+        /// </summary>
+        Offline,
+        /// <summary>
+        /// Modem is unable to process the config settings information.
+        /// </summary>
+        ConfigSettingsFailure,
+        /// <summary>
+        /// Internal failure.
+        /// </summary>
+        InternalFailure,
+        /// <summary>
+        /// Memory is full.
+        /// </summary>
+        MemoryFull
+    }
 }

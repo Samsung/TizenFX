@@ -53,4 +53,50 @@ namespace Tizen.Tapi
         [MarshalAs(UnmanagedType.LPStr)]
         internal string ImeiSv;
     }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct MiscDeviceInfoStruct
+    {
+        [MarshalAs(UnmanagedType.LPStr)]
+        internal string Vendor;
+        [MarshalAs(UnmanagedType.LPStr)]
+        internal string Device;
+    }
+
+    internal class ModemStructConversions
+    {
+        internal static MiscVersionInformation ConvertVersionStruct(MiscVersionInfoStruct infoStruct)
+        {
+            MiscVersionInformation versionInfo = new MiscVersionInformation();
+            versionInfo.CalcDate = infoStruct.CalDate;
+            versionInfo.EriNamNum = infoStruct.EriNam;
+            versionInfo.EriVers = infoStruct.EriVersion;
+            versionInfo.HwVers = infoStruct.HwVersion;
+            versionInfo.SwVers = infoStruct.SwVersion;
+            versionInfo.PrlNamNum = infoStruct.PrlNam;
+            versionInfo.PrlVers = infoStruct.PrlVersion;
+            versionInfo.ProdCode = infoStruct.ProductCode;
+            versionInfo.Version = infoStruct.Mask;
+            versionInfo.Model = infoStruct.ModelId;
+            return versionInfo;
+        }
+
+        internal static MiscSerialNumberInformation ConvertSerialNumberStruct(MiscSerialNumInfoStruct infoStruct)
+        {
+            MiscSerialNumberInformation serialNumberInfo = new MiscSerialNumberInformation();
+            serialNumberInfo.SzEsn = infoStruct.Esn;
+            serialNumberInfo.SzImei = infoStruct.Imei;
+            serialNumberInfo.SzImeiSv = infoStruct.ImeiSv;
+            serialNumberInfo.SzMeid = infoStruct.MeId;
+            return serialNumberInfo;
+        }
+
+        internal static MiscDeviceInfo ConvertMiscInfoStruct(MiscDeviceInfoStruct infoStruct)
+        {
+            MiscDeviceInfo deviceInfo = new MiscDeviceInfo();
+            deviceInfo.Vendor = infoStruct.Vendor;
+            deviceInfo.Device = infoStruct.Device;
+            return deviceInfo;
+        }
+    }
 }

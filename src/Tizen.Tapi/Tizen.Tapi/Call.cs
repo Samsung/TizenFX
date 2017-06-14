@@ -39,7 +39,7 @@ namespace Tizen.Tapi
         {
             if (handle == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("TapiHandle parameter is null");
             }
 
             _handle = handle._handle;
@@ -51,6 +51,7 @@ namespace Tizen.Tapi
         /// <param name="info">Information of call type and number.</param>
         /// <returns>A task indicating whether the DialCall method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>
         /// Register the telephony event with proper Notification enum value which is to be listened using RegisterNotiEvent.
@@ -108,6 +109,7 @@ namespace Tizen.Tapi
         /// <param name="type">The answer type.</param>
         /// <returns>The call id of answer call. This call handle is available to the application through an incoming call(IncomingVoiceCall) event.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>
         /// There can be a maximum of one existing call.
@@ -157,6 +159,7 @@ namespace Tizen.Tapi
         /// <param name="type">The end call type.</param>
         /// <returns>Instance of CallEndData.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>
         /// There should be an existing call in the active/hold state.
@@ -206,6 +209,7 @@ namespace Tizen.Tapi
         /// <param name="callHandle">Unique handle for referring the call.</param>
         /// <returns>The call id of hold call.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>
         /// The call should be in the active state.
@@ -254,6 +258,7 @@ namespace Tizen.Tapi
         /// <param name="callHandle">Unique handle for referring the call.</param>
         /// <returns>The call id of active call.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>
         /// Call should be in the held state in order to retrieve it into the active state unless no active call is present.
@@ -303,6 +308,7 @@ namespace Tizen.Tapi
         /// <param name="heldCallHandle">Held call.</param>
         /// <returns>The call id of swap call.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>
         /// Register the telephony event with proper Notification enum value which is to be listened using RegisterNotiEvent.
@@ -350,6 +356,7 @@ namespace Tizen.Tapi
         /// <param name="digit">The dtmf digit to be sent.</param>
         /// <returns>A task indicating whether the StartContDtmfCall method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks> An active call should be present. This is to be invoked in the following cases:
         /// i. Key Release (post key press) during on-going call.
@@ -397,6 +404,7 @@ namespace Tizen.Tapi
         /// </summary>
         /// <returns>A task indicating whether the StopContDtmfCall method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks> An active call should be present. This is to be invoked in the following cases:
         /// i. Key Release (post key press) during on-going call.
@@ -445,6 +453,7 @@ namespace Tizen.Tapi
         /// <param name="dtmfData">A burst dtmf info containing dtmf string, pulse width, and inter digit interval.</param>
         /// <returns>A task indicating whether the SendBurstDtmfCall method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>
         /// There will be a single asynchronous notification for all the dtmf digits sent. If the users of this API need an asynchronous
@@ -503,6 +512,7 @@ namespace Tizen.Tapi
         /// <param name="callHandle">Unique call handle.</param>
         /// <returns>The call id of join call.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>
         /// For a multiparty call or for joining two calls into conference, there should be one call in the active state and another call in the held state.
@@ -551,6 +561,7 @@ namespace Tizen.Tapi
         /// <param name="callHandle">The handle of the call to be made private. The call handle referring to the call that is to be split from the conference.</param>
         /// <returns>The call id of split call.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>
         /// The call should be in a multiparty conference call.The split call will be the active call and the conference call will be the held call.
@@ -599,6 +610,7 @@ namespace Tizen.Tapi
         /// <param name="activeCallHandle">The call handle of an active call.</param>
         /// <returns>The call id of transferred call.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>
         /// In order to transfer call, served mobile subscriber should have 2 calls, one in the active state and another one in the held state.
@@ -648,6 +660,7 @@ namespace Tizen.Tapi
         /// <param name="destinationNumber">The destination number.</param>
         /// <returns>A task indicating whether the DeflectCall method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>Register the telephony event with proper Notification enum value which is to be listened using RegisterNotiEvent.</remarks>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
@@ -795,6 +808,7 @@ namespace Tizen.Tapi
         /// <param name="record">The call volume information.</param>
         /// <returns>A task indicating whether the SetCallVolumeInfo method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when privilege access is denied.</exception>
@@ -848,6 +862,7 @@ namespace Tizen.Tapi
         /// <param name="path">The call sound path information.</param>
         /// <returns>A task indicating whether the SetCallSoundPath method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when privilege access is denied.</exception>
@@ -901,6 +916,7 @@ namespace Tizen.Tapi
         /// <param name="record">The call mute status information.</param>
         /// <returns>A task indicating whether the SetCallMuteStatus method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when privilege access is denied.</exception>
@@ -1042,6 +1058,7 @@ namespace Tizen.Tapi
         /// <param name="mode">Voice privacy option mode value.</param>
         /// <returns>A task indicating whether the SetCallPrivacyMode method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>Register the telephony event with proper Notification enum value which is to be listened using RegisterNotiEvent.</remarks>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
@@ -1086,6 +1103,7 @@ namespace Tizen.Tapi
         /// <param name="subscription">Preferred voice subscription value.</param>
         /// <returns>A task indicating whether the SetCallPreferredVoiceSubscription method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when privilege access is denied.</exception>
