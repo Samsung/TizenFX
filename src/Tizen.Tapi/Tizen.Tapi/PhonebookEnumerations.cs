@@ -69,4 +69,113 @@ namespace Tizen.Tapi
         /// </summary>
         Max
     }
+
+    /// <summary>
+    /// Enumeration for the storage field types in the 3G Phone book.
+    /// </summary>
+    public enum PhonebookFileType3G
+    {
+        /// <summary>
+        /// Name.
+        /// </summary>
+        Name = 0x01,
+        /// <summary>
+        /// Number.
+        /// </summary>
+        Number,
+        /// <summary>
+        /// First Another number.
+        /// </summary>
+        Anr1,
+        /// <summary>
+        /// Second Another number.
+        /// </summary>
+        Anr2,
+        /// <summary>
+        /// Third Another number.
+        /// </summary>
+        Anr3,
+        /// <summary>
+        /// First Email.
+        /// </summary>
+        Email1,
+        /// <summary>
+        /// Second Email.
+        /// </summary>
+        Email2,
+        /// <summary>
+        /// Third Email.
+        /// </summary>
+        Email3,
+        /// <summary>
+        /// Fourth Email.
+        /// </summary>
+        Email4,
+        /// <summary>
+        /// Second name entry of the main name.
+        /// </summary>
+        Sne,
+        /// <summary>
+        /// Group.
+        /// </summary>
+        Group,
+        /// <summary>
+        /// 1 byte control info and 1 byte hidden info.
+        /// </summary>
+        Pbc
+    }
+
+    /// <summary>
+    /// Enumeration for the text encryption type.
+    /// </summary>
+    public enum TextEncryptionType
+    {
+        /// <summary>
+        /// ASCII Encoding.
+        /// </summary>
+        Ascii,
+        /// <summary>
+        /// GSM 7 Bit Encoding.
+        /// </summary>
+        Gsm7Bit,
+        /// <summary>
+        /// UCS2 Encoding.
+        /// </summary>
+        Ucs2,
+        /// <summary>
+        /// HEX Encoding.
+        /// </summary>
+        Hex
+    }
+
+    /// <summary>
+    /// Enumeration for the phonebook access result.
+    /// </summary>
+    public enum PhonebookAccessResult
+    {
+        /// <summary>
+        /// SIM phonebook operation successful.
+        /// </summary>
+        Success,
+        /// <summary>
+        /// SIM phonebook operation failure.
+        /// </summary>
+        Fail,
+        /// <summary>
+        /// The index passed is not a valid index.
+        /// </summary>
+        InvalidIndex,
+        /// <summary>
+        /// The number length exceeds the max length allowed (or 0).
+        /// </summary>
+        InvalidNumberLength,
+        /// <summary>
+        /// The name length exceeds the max length allowed (or 0).
+        /// </summary>
+        InvalidNameLength,
+        /// <summary>
+        /// Access condition for PB file is not satisfied.
+        /// </summary>
+        AccessConditionNotSatisfied
+    }
 }
