@@ -43,7 +43,6 @@ namespace Tizen.Multimedia
         private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
         private CameraState _state = CameraState.None;
-        private static Dictionary<object, int> _callbackIdInfo = new Dictionary<object, int>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> Class.
@@ -55,8 +54,8 @@ namespace Tizen.Multimedia
             CameraErrorFactory.ThrowIfError(Native.Create(device, out _handle),
                 "Failed to create camera instance");
 
-            Feature = new CameraFeatures(this);
-            Setting = new CameraSettings(this);
+            Capabilities = new CameraCapabilities(this);
+            Settings = new CameraSettings(this);
             DisplaySettings = new CameraDisplaySettings(this);
 
             RegisterCallbacks();
@@ -148,6 +147,12 @@ namespace Tizen.Multimedia
 
         #region EventHandlers
         /// <summary>
+        /// Event that occurs when the camera interrupt is started by policy.
+        /// </summary>
+        public event EventHandler<CameraInterruptStartedEventArgs> InterruptStarted;
+        private Native.InterruptStartedCallback _interruptStartedCallback;
+
+        /// <summary>
         /// Event that occurs when an camera is interrupted by policy.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -189,13 +194,44 @@ namespace Tizen.Multimedia
         public event EventHandler<EventArgs> CaptureCompleted;
         private Native.CaptureCompletedCallback _captureCompletedCallback;
 
+        private Native.HdrCaptureProgressCallback _hdrCaptureProgressCallback;
+        private event EventHandler<HdrCaptureProgressEventArgs> _hdrCaptureProgress;
+        private object _hdrCaptureProgressEventLock = new object();
+
         /// <summary>
         /// Event that occurs when there is change in HDR capture progress.
-        /// Check whether HdrCapture feature is supported or not before add this EventHandler.
+        /// Check whether <see cref="IsHdrCaptureSupported"/> is supported or not before add this EventHandler.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<HdrCaptureProgressEventArgs> HdrCaptureProgress;
-        private Native.HdrCaptureProgressCallback _hdrCaptureProgressCallback;
+        /// <exception cref="NotSupportedException">In case of HDR feature is not supported.</exception>
+        public event EventHandler<HdrCaptureProgressEventArgs> HdrCaptureProgress
+        {
+            add
+            {
+                lock (_hdrCaptureProgressEventLock)
+                {
+                    if (_hdrCaptureProgress == null)
+                    {
+                        RegisterHdrCaptureProgress();
+                    }
+
+                    _hdrCaptureProgress += value;
+                }
+            }
+
+            remove
+            {
+                lock (_hdrCaptureProgressEventLock)
+                {
+                    _hdrCaptureProgress -= value;
+
+                    if (_hdrCaptureProgress == null)
+                    {
+                        UnregisterHdrCaptureProgress();
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Event that occurs when camera state is changed.
@@ -204,38 +240,28 @@ namespace Tizen.Multimedia
         public event EventHandler<CameraStateChangedEventArgs> StateChanged;
         private Native.StateChangedCallback _stateChangedCallback;
 
-        #region DeviceStateChanged callback
-        internal static Native.DeviceStateChangedCallback _deviceStateChangedCallback;
+        private static Native.DeviceStateChangedCallback _deviceStateChangedCallback;
         private static event EventHandler<CameraDeviceStateChangedEventArgs> _deviceStateChanged;
         private static object _deviceStateChangedEventLock = new object();
+        private static int _deviceStateCallbackId;
 
         /// <summary>
-        /// Set the DeviceStateChanged Callback.
-        /// User doesn't need to create camera instance.
-        /// This static EventHandler calls platform function every time because each callback function have to remain its own callbackId.
+        /// Event that occurs after the <see cref="CameraDeviceState"/> is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="callback">Callback of type <see cref="Native.DeviceStateChangedCallback"/>.</param>
-        /// <param name="callbackId">The Id of registered callback.</param>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         public static event EventHandler<CameraDeviceStateChangedEventArgs> DeviceStateChanged
         {
             add
             {
                 lock (_deviceStateChangedEventLock)
                 {
-                    _deviceStateChangedCallback = (CameraDevice device, CameraDeviceState state, IntPtr userData) =>
+                    if (_deviceStateChanged == null)
                     {
-                        _deviceStateChanged?.Invoke(null, new CameraDeviceStateChangedEventArgs(device, state));
-                    };
-                    CameraErrorFactory.ThrowIfError(Native.SetDeviceStateChangedCallback(_deviceStateChangedCallback, IntPtr.Zero, out int callbackId),
-                        "Failed to set interrupt callback");
-
-                    // Keep current callbackId and EventHandler pair to remove EventHandler later.
-                    _callbackIdInfo.Add(value, callbackId);
-                    Log.Info(CameraLog.Tag, "add callbackId " + callbackId.ToString());
+                        RegisterDeviceStateChangedCallback();
+                    }
 
                     _deviceStateChanged += value;
                 }
@@ -247,24 +273,14 @@ namespace Tizen.Multimedia
                 {
                     _deviceStateChanged -= value;
 
-                    _callbackIdInfo.TryGetValue(value, out int callbackId);
-                    Log.Info(CameraLog.Tag, "remove callbackId " + callbackId.ToString());
-
-                    CameraErrorFactory.ThrowIfError(Native.UnsetDeviceStateChangedCallback(callbackId),
-                            "Unsetting media packet preview callback failed");
-
-                    _callbackIdInfo.Remove(value);
-
                     if (_deviceStateChanged == null)
                     {
-                        _deviceStateChangedCallback = null;
+                        UnregisterDeviceStateChangedCallback();
                     }
                 }
             }
         }
-        #endregion DeviceStateChanged callback
 
-        #region Preview EventHandler
         private Native.PreviewCallback _previewCallback;
         private event EventHandler<PreviewEventArgs> _preview;
         private object _previewEventLock = new object();
@@ -296,16 +312,12 @@ namespace Tizen.Multimedia
 
                     if (_preview == null)
                     {
-                        CameraErrorFactory.ThrowIfError(Native.UnsetPreviewCallback(_handle),
-                            "Unsetting preview callback failed");
-                        _previewCallback = null;
+                        UnregisterPreviewCallback();
                     }
                 }
             }
         }
-        #endregion Preview EventHandler
 
-        #region MediaPacketPreview EventHandler
         private Native.MediaPacketPreviewCallback _mediaPacketPreviewCallback;
         private EventHandler<MediaPacketPreviewEventArgs> _mediaPacketPreview;
         private object _mediaPacketPreviewEventLock = new object();
@@ -338,14 +350,11 @@ namespace Tizen.Multimedia
 
                     if (_mediaPacketPreview == null)
                     {
-                        CameraErrorFactory.ThrowIfError(Native.UnsetMediaPacketPreviewCallback(_handle),
-                            "Unsetting media packet preview callback failed");
-                        _mediaPacketPreviewCallback = null;
+                        UnregisterMediaPacketPreviewCallback();
                     }
                 }
             }
         }
-        #endregion MediaPacketPreview EventHandler
         #endregion EventHandlers
 
         #region Properties
@@ -353,13 +362,13 @@ namespace Tizen.Multimedia
         /// Get/Set the various camera settings.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public CameraSettings Setting { get; }
+        public CameraSettings Settings { get; }
 
         /// <summary>
-        /// Gets the various camera features.
+        /// Gets the various camera capabilities.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public CameraFeatures Feature { get; }
+        public CameraCapabilities Capabilities { get; }
 
         /// <summary>
         /// Get/set various camera display properties.
@@ -558,7 +567,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
-        public CameraDeviceState GetDeviceState(CameraDevice device)
+        public static CameraDeviceState GetDeviceState(CameraDevice device)
         {
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
@@ -813,10 +822,10 @@ namespace Tizen.Multimedia
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StopFaceDetection()
         {
             if (_faceDetectedCallback == null)
@@ -836,16 +845,16 @@ namespace Tizen.Multimedia
         {
             RegisterErrorCallback();
             RegisterFocusStateChanged();
-            RegisterHdrCaptureProgress();
+            RegisterInterruptStartedCallback();
             RegisterInterruptedCallback();
             RegisterStateChangedCallback();
 
             //Define capturing callback
-            _capturingCallback = (IntPtr image, IntPtr postview, IntPtr thumbnail, IntPtr userData) =>
+            _capturingCallback = (IntPtr main, IntPtr postview, IntPtr thumbnail, IntPtr userData) =>
             {
-                Capturing?.Invoke(this, new CameraCapturingEventArgs(new ImageData(image),
-                    postview == IntPtr.Zero ? null : new ImageData(postview),
-                    thumbnail == IntPtr.Zero ? null : new ImageData(thumbnail)));
+                Capturing?.Invoke(this, new CameraCapturingEventArgs(new StillImage(main),
+                    postview == IntPtr.Zero ? null : new StillImage(postview),
+                    thumbnail == IntPtr.Zero ? null : new StillImage(thumbnail)));
             };
 
             //Define captureCompleted callback
@@ -854,6 +863,16 @@ namespace Tizen.Multimedia
                 SetState(CameraState.Captured);
                 CaptureCompleted?.Invoke(this, EventArgs.Empty);
             };
+        }
+
+        private void RegisterInterruptStartedCallback()
+        {
+            _interruptStartedCallback = (CameraPolicy policy, CameraState state, IntPtr userData) =>
+            {
+                InterruptStarted?.Invoke(this, new CameraInterruptStartedEventArgs(policy, state));
+            };
+            CameraErrorFactory.ThrowIfError(Native.SetInterruptStartedCallback(_handle, _interruptStartedCallback, IntPtr.Zero),
+                "Failed to set interrupt callback");
         }
 
         private void RegisterInterruptedCallback()
@@ -888,6 +907,27 @@ namespace Tizen.Multimedia
                 "Setting state changed callback failed");
         }
 
+        private static void RegisterDeviceStateChangedCallback()
+        {
+            _deviceStateChangedCallback = (CameraDevice device, CameraDeviceState state, IntPtr userData) =>
+            {
+                _deviceStateChanged?.Invoke(null, new CameraDeviceStateChangedEventArgs(device, state));
+            };
+
+            CameraErrorFactory.ThrowIfError(Native.SetDeviceStateChangedCallback(_deviceStateChangedCallback, IntPtr.Zero, out _deviceStateCallbackId),
+                "Failed to set device state changed callback");
+
+            Log.Info(CameraLog.Tag, "add callbackId " + _deviceStateCallbackId.ToString());
+        }
+
+        private static void UnregisterDeviceStateChangedCallback()
+        {
+            CameraErrorFactory.ThrowIfError(Native.UnsetDeviceStateChangedCallback(_deviceStateCallbackId),
+                "Unsetting device state changed callback failed");
+            _deviceStateChangedCallback = null;
+            _deviceStateCallbackId = 0;
+        }
+
         private void RegisterFocusStateChanged()
         {
             _focusStateChangedCallback = (CameraFocusState state, IntPtr userData) =>
@@ -900,26 +940,36 @@ namespace Tizen.Multimedia
 
         private void RegisterHdrCaptureProgress()
         {
-            //Hdr Capture can not be supported.
-            if (Feature.IsHdrCaptureSupported)
+            _hdrCaptureProgressCallback = (int percent, IntPtr userData) =>
             {
-                _hdrCaptureProgressCallback = (int percent, IntPtr userData) =>
-                {
-                    HdrCaptureProgress?.Invoke(this, new HdrCaptureProgressEventArgs(percent));
-                };
-                CameraErrorFactory.ThrowIfError(Native.SetHdrCaptureProgressCallback(_handle, _hdrCaptureProgressCallback, IntPtr.Zero),
-                    "Setting Hdr capture progress callback failed");
-            }
+                _hdrCaptureProgress?.Invoke(this, new HdrCaptureProgressEventArgs(percent));
+            };
+            CameraErrorFactory.ThrowIfError(Native.SetHdrCaptureProgressCallback(_handle, _hdrCaptureProgressCallback, IntPtr.Zero),
+                "Setting Hdr capture progress callback failed");
+        }
+
+        private void UnregisterHdrCaptureProgress()
+        {
+            CameraErrorFactory.ThrowIfError(Native.UnsetHdrCaptureProgressCallback(_handle),
+                "Unsetting hdr capture progress is failed");
+            _hdrCaptureProgressCallback = null;
         }
 
         private void RegisterPreviewCallback()
         {
             _previewCallback = (IntPtr frame, IntPtr userData) =>
             {
-                _preview?.Invoke(this, new PreviewEventArgs(new PreviewData(frame)));
+                _preview?.Invoke(this, new PreviewEventArgs(new PreviewFrame(frame)));
             };
             CameraErrorFactory.ThrowIfError(Native.SetPreviewCallback(_handle, _previewCallback, IntPtr.Zero),
                 "Setting preview callback failed");
+        }
+
+        private void UnregisterPreviewCallback()
+        {
+            CameraErrorFactory.ThrowIfError(Native.UnsetPreviewCallback(_handle),
+                "Unsetting preview callback failed");
+            _previewCallback = null;
         }
 
         private void RegisterMediaPacketPreviewCallback()
@@ -940,6 +990,13 @@ namespace Tizen.Multimedia
             };
             CameraErrorFactory.ThrowIfError(Native.SetMediaPacketPreviewCallback(_handle, _mediaPacketPreviewCallback, IntPtr.Zero),
                 "Setting media packet preview callback failed");
+        }
+
+        private void UnregisterMediaPacketPreviewCallback()
+        {
+            CameraErrorFactory.ThrowIfError(Native.UnsetMediaPacketPreviewCallback(_handle),
+                "Unsetting media packet preview callback failed");
+            _mediaPacketPreviewCallback = null;
         }
         #endregion Callback registrations
     }

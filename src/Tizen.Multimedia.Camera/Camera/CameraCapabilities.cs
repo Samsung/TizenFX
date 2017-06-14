@@ -16,52 +16,50 @@
 
 using System;
 using System.Collections.Generic;
-using NativeFeatures = Interop.CameraFeatures;
+using NativeCapabilities = Interop.CameraCapabilities;
 using NativeSettings = Interop.CameraSettings;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// The CameraFeatures class provides properties
+    /// The CameraCapabilities class provides properties
     /// to get various capability information of the camera device.
     /// </summary>
-    public class CameraFeatures
+    public class CameraCapabilities
     {
         internal readonly Camera _camera;
 
-        private List<Size> _previewResolutions;
-        private List<Size> _cameraResolutions;
-        private List<CameraPixelFormat> _captureFormats;
-        private List<CameraPixelFormat> _previewFormats;
-        private List<CameraFps> _fps;
-        private List<CameraFps> _fpsByResolution;
-        private List<CameraAutoFocusMode> _autoFocusModes;
-        private List<CameraExposureMode> _exposureModes;
-        private List<CameraIsoLevel> _isoLevels;
-        private List<CameraTheaterMode> _theaterModes;
-        private List<CameraWhiteBalance> _whitebalances;
-        private List<CameraFlashMode> _flashModes;
-        private List<CameraSceneMode> _sceneModes;
-        private List<CameraEffectMode> _effectModes;
-        private List<Rotation> _streamRotations;
-        private List<Flips> _streamFlips;
-        private List<CameraPtzType> _ptzTypes;
-
+        private IList<Size> _previewResolutions;
+        private IList<Size> _cameraResolutions;
+        private IList<CameraPixelFormat> _captureFormats;
+        private IList<CameraPixelFormat> _previewFormats;
+        private IList<CameraFps> _fps;
+        private IList<CameraAutoFocusMode> _autoFocusModes;
+        private IList<CameraExposureMode> _exposureModes;
+        private IList<CameraIsoLevel> _isoLevels;
+        private IList<CameraTheaterMode> _theaterModes;
+        private IList<CameraWhiteBalance> _whitebalances;
+        private IList<CameraFlashMode> _flashModes;
+        private IList<CameraSceneMode> _sceneModes;
+        private IList<CameraEffectMode> _effectModes;
+        private IList<Rotation> _streamRotations;
+        private IList<Flips> _streamFlips;
+        private IList<CameraPtzType> _ptzTypes;
         private delegate CameraError GetRangeDelegate(IntPtr handle, out int min, out int max);
         private delegate bool IsSupportedDelegate(IntPtr handle);
 
-        internal CameraFeatures(Camera camera)
+        internal CameraCapabilities(Camera camera)
         {
             _camera = camera;
 
-            IsFaceDetectionSupported = IsFeatureSupported(NativeFeatures.IsFaceDetectionSupported);
-            IsMediaPacketPreviewCallbackSupported = IsFeatureSupported(NativeFeatures.IsMediaPacketPreviewCallbackSupported);
-            IsZeroShutterLagSupported = IsFeatureSupported(NativeFeatures.IsZeroShutterLagSupported);
-            IsContinuousCaptureSupported = IsFeatureSupported(NativeFeatures.IsContinuousCaptureSupported);
-            IsHdrCaptureSupported = IsFeatureSupported(NativeFeatures.IsHdrCaptureSupported);
-            IsAntiShakeSupported = IsFeatureSupported(NativeFeatures.IsAntiShakeSupported);
-            IsVideoStabilizationSupported = IsFeatureSupported(NativeFeatures.IsVideoStabilizationSupported);
-            IsAutoContrastSupported = IsFeatureSupported(NativeFeatures.IsAutoContrastSupported);
+            IsFaceDetectionSupported = IsFeatureSupported(NativeCapabilities.IsFaceDetectionSupported);
+            IsMediaPacketPreviewCallbackSupported = IsFeatureSupported(NativeCapabilities.IsMediaPacketPreviewCallbackSupported);
+            IsZeroShutterLagSupported = IsFeatureSupported(NativeCapabilities.IsZeroShutterLagSupported);
+            IsContinuousCaptureSupported = IsFeatureSupported(NativeCapabilities.IsContinuousCaptureSupported);
+            IsHdrCaptureSupported = IsFeatureSupported(NativeCapabilities.IsHdrCaptureSupported);
+            IsAntiShakeSupported = IsFeatureSupported(NativeCapabilities.IsAntiShakeSupported);
+            IsVideoStabilizationSupported = IsFeatureSupported(NativeCapabilities.IsVideoStabilizationSupported);
+            IsAutoContrastSupported = IsFeatureSupported(NativeCapabilities.IsAutoContrastSupported);
             IsBrigtnessSupported = CheckRangeValid(NativeSettings.GetBrightnessRange);
             IsExposureSupported = CheckRangeValid(NativeSettings.GetExposureRange);
             IsZoomSupported = CheckRangeValid(NativeSettings.GetZoomRange);
@@ -188,23 +186,7 @@ namespace Tizen.Multimedia
             {
                 if (_previewResolutions == null)
                 {
-                    try
-                    {
-                        _previewResolutions = new List<Size>();
-
-                        NativeFeatures.PreviewResolutionCallback callback = (int width, int height, IntPtr userData) =>
-                        {
-                            _previewResolutions.Add(new Size(width, height));
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedPreviewResolutions(_camera.GetHandle(), callback, IntPtr.Zero),
-                            "Failed to get the supported preview resolutions");
-                    }
-                    catch
-                    {
-                        _previewResolutions = null;
-                        throw;
-                    }
+                    _previewResolutions = GetSupportedPreviewResolutions();
                 }
 
                 return _previewResolutions;
@@ -225,23 +207,7 @@ namespace Tizen.Multimedia
             {
                 if (_cameraResolutions == null)
                 {
-                    try
-                    {
-                        _cameraResolutions = new List<Size>();
-
-                        NativeFeatures.CaptureResolutionCallback callback = (int width, int height, IntPtr userData) =>
-                        {
-                            _cameraResolutions.Add(new Size(width, height));
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedCaptureResolutions(_camera.GetHandle(), callback, IntPtr.Zero),
-                            "Failed to get the supported capture resolutions");
-                    }
-                    catch
-                    {
-                        _cameraResolutions = null;
-                        throw;
-                    }
+                    _cameraResolutions = GetSupportedCaptureResolutions();
                 }
 
                 return _cameraResolutions;
@@ -262,23 +228,7 @@ namespace Tizen.Multimedia
             {
                 if (_captureFormats == null)
                 {
-                    try
-                    {
-                        _captureFormats = new List<CameraPixelFormat>();
-
-                        NativeFeatures.CaptureFormatCallback callback = (CameraPixelFormat format, IntPtr userData) =>
-                        {
-                            _captureFormats.Add(format);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedCapturePixelFormats(_camera.GetHandle(), callback, IntPtr.Zero),
-                            "Failed to get the supported capture formats.");
-                    }
-                    catch
-                    {
-                        _captureFormats = null;
-                        throw;
-                    }
+                    _captureFormats = GetSupportedCapturePixelFormats();
                 }
 
                 return _captureFormats;
@@ -299,23 +249,7 @@ namespace Tizen.Multimedia
             {
                 if (_previewFormats == null)
                 {
-                    try
-                    {
-                        _previewFormats = new List<CameraPixelFormat>();
-
-                        NativeFeatures.PreviewFormatCallback callback = (CameraPixelFormat format, IntPtr userData) =>
-                        {
-                            _previewFormats.Add(format);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedPreviewPixelFormats(_camera.GetHandle(), callback, IntPtr.Zero),
-                            "Failed to get the supported preview formats.");
-                    }
-                    catch
-                    {
-                        _previewFormats = null;
-                        throw;
-                    }
+                    _previewFormats = GetSupportedPreviewPixelFormats();
                 }
 
                 return _previewFormats;
@@ -336,23 +270,7 @@ namespace Tizen.Multimedia
             {
                 if (_fps == null)
                 {
-                    try
-                    {
-                        _fps = new List<CameraFps>();
-
-                        NativeFeatures.FpsCallback callback = (CameraFps fps, IntPtr userData) =>
-                        {
-                            _fps.Add(fps);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedPreviewFps(_camera.GetHandle(), callback, IntPtr.Zero),
-                            "Failed to get the supported camera fps");
-                    }
-                    catch
-                    {
-                        _fps = null;
-                        throw;
-                    }
+                    _fps = GetSupportedPreviewFps();
                 }
 
                 return _fps;
@@ -369,28 +287,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraFps> GetSupportedPreviewFpsByResolution(int width, int height)
         {
-            if (_fpsByResolution == null)
-            {
-                try
-                {
-                    _fpsByResolution = new List<CameraFps>();
-
-                    NativeFeatures.FpsByResolutionCallback callback = (CameraFps fps, IntPtr userData) =>
-                    {
-                        _fpsByResolution.Add(fps);
-                        return true;
-                    };
-                    CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedPreviewFpsByResolution(_camera.GetHandle(),
-                        width, height, callback, IntPtr.Zero), "Failed to get the supported fps by resolutions.");
-                }
-                catch
-                {
-                    _fpsByResolution = null;
-                    throw;
-                }
-            }
-
-            return _fpsByResolution;
+            return GetSupportedPreviewFpsByResolutions(width, height);
         }
 
         /// <summary>
@@ -403,7 +300,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<CameraFps> GetSupportedPreviewFpsByResolution(Size size)
         {
-            return GetSupportedPreviewFpsByResolution(size.Width, size.Height);
+            return GetSupportedPreviewFpsByResolutions(size.Width, size.Height);
         }
 
         /// <summary>
@@ -420,23 +317,7 @@ namespace Tizen.Multimedia
             {
                 if (_autoFocusModes == null)
                 {
-                    try
-                    {
-                        _autoFocusModes = new List<CameraAutoFocusMode>();
-
-                        NativeFeatures.AfModeCallback callback = (CameraAutoFocusMode mode, IntPtr userData) =>
-                        {
-                            _autoFocusModes.Add(mode);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedAfModes(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported Auto focus modes.");
-                    }
-                    catch
-                    {
-                        _autoFocusModes = null;
-                        throw;
-                    }
+                    _autoFocusModes = GetSupportedAutoFocusModes();
                 }
 
                 return _autoFocusModes;
@@ -457,23 +338,7 @@ namespace Tizen.Multimedia
             {
                 if (_exposureModes == null)
                 {
-                    try
-                    {
-                        _exposureModes = new List<CameraExposureMode>();
-
-                        NativeFeatures.ExposureModeCallback callback = (CameraExposureMode mode, IntPtr userData) =>
-                        {
-                            _exposureModes.Add(mode);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedExposureModes(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported Exposure modes.");
-                    }
-                    catch
-                    {
-                        _exposureModes = null;
-                        throw;
-                    }
+                    _exposureModes = GetSupportedExposureModes();
                 }
 
                 return _exposureModes;
@@ -494,23 +359,7 @@ namespace Tizen.Multimedia
             {
                 if (_isoLevels == null)
                 {
-                    try
-                    {
-                        _isoLevels = new List<CameraIsoLevel>();
-
-                        NativeFeatures.IsoCallback callback = (CameraIsoLevel iso, IntPtr userData) =>
-                        {
-                            _isoLevels.Add(iso);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedIso(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported Iso levels.");
-                    }
-                    catch
-                    {
-                        _isoLevels = null;
-                        throw;
-                    }
+                    _isoLevels = GetSupportedIsoLevels();
                 }
 
                 return _isoLevels;
@@ -531,23 +380,7 @@ namespace Tizen.Multimedia
             {
                 if (_theaterModes == null)
                 {
-                    try
-                    {
-                        _theaterModes = new List<CameraTheaterMode>();
-
-                        NativeFeatures.TheaterModeCallback callback = (CameraTheaterMode theaterMode, IntPtr userData) =>
-                        {
-                            _theaterModes.Add(theaterMode);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedTheaterModes(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported theater modes.");
-                    }
-                    catch
-                    {
-                        _theaterModes = null;
-                        throw;
-                    }
+                    _theaterModes = GetSupportedTheaterModes();
                 }
 
                 return _theaterModes;
@@ -568,23 +401,7 @@ namespace Tizen.Multimedia
             {
                 if (_whitebalances == null)
                 {
-                    try
-                    {
-                        _whitebalances = new List<CameraWhiteBalance>();
-
-                        NativeFeatures.WhitebalanceCallback callback = (CameraWhiteBalance whiteBalance, IntPtr userData) =>
-                        {
-                            _whitebalances.Add(whiteBalance);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedWhitebalance(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported white balance.");
-                    }
-                    catch
-                    {
-                        _whitebalances = null;
-                        throw;
-                    }
+                    _whitebalances = GetSupportedWhitebalances();
                 }
 
                 return _whitebalances;
@@ -605,23 +422,7 @@ namespace Tizen.Multimedia
             {
                 if (_flashModes == null)
                 {
-                    try
-                    {
-                        _flashModes = new List<CameraFlashMode>();
-
-                        NativeFeatures.FlashModeCallback callback = (CameraFlashMode flashMode, IntPtr userData) =>
-                        {
-                            _flashModes.Add(flashMode);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedFlashModes(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported flash modes.");
-                    }
-                    catch
-                    {
-                        _flashModes = null;
-                        throw;
-                    }
+                    _flashModes = GetSupportedFlashModes();
                 }
 
                 return _flashModes;
@@ -642,23 +443,7 @@ namespace Tizen.Multimedia
             {
                 if (_sceneModes == null)
                 {
-                    try
-                    {
-                        _sceneModes = new List<CameraSceneMode>();
-
-                        NativeFeatures.SceneModeCallback callback = (CameraSceneMode sceneMode, IntPtr userData) =>
-                        {
-                            _sceneModes.Add(sceneMode);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedSceneModes(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported scene modes.");
-                    }
-                    catch
-                    {
-                        _sceneModes = null;
-                        throw;
-                    }
+                    _sceneModes = GetSupportedSceneModes();
                 }
 
                 return _sceneModes;
@@ -679,23 +464,7 @@ namespace Tizen.Multimedia
             {
                 if (_effectModes == null)
                 {
-                    try
-                    {
-                        _effectModes = new List<CameraEffectMode>();
-
-                        NativeFeatures.EffectCallback callback = (CameraEffectMode effect, IntPtr userData) =>
-                        {
-                            _effectModes.Add(effect);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedEffects(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported camera effects.");
-                    }
-                    catch
-                    {
-                        _effectModes = null;
-                        throw;
-                    }
+                    _effectModes = GetSupportedEffects();
                 }
 
                 return _effectModes;
@@ -716,23 +485,7 @@ namespace Tizen.Multimedia
             {
                 if (_streamRotations == null)
                 {
-                    try
-                    {
-                        _streamRotations = new List<Rotation>();
-
-                        NativeFeatures.StreamRotationCallback callback = (streamRotation, _) =>
-                        {
-                            _streamRotations.Add(streamRotation);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedStreamRotations(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported camera rotations.");
-                    }
-                    catch
-                    {
-                        _streamRotations = null;
-                        throw;
-                    }
+                    _streamRotations = GetSupportedStreamRotations();
                 }
 
                 return _streamRotations;
@@ -753,23 +506,7 @@ namespace Tizen.Multimedia
             {
                 if (_streamFlips == null)
                 {
-                    try
-                    {
-                        _streamFlips = new List<Flips>();
-
-                        NativeFeatures.StreamFlipCallback callback = (streamFlip, _) =>
-                        {
-                            _streamFlips.Add(streamFlip);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedStreamFlips(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported camera flips.");
-                    }
-                    catch
-                    {
-                        _streamFlips = null;
-                        throw;
-                    }
+                    _streamFlips = GetSupportedStreamFlips();
                 }
 
                 return _streamFlips;
@@ -790,27 +527,268 @@ namespace Tizen.Multimedia
             {
                 if (_ptzTypes.Count == 0)
                 {
-                    try
-                    {
-                        _ptzTypes = new List<CameraPtzType>();
-
-                        NativeFeatures.PtzTypeCallback callback = (CameraPtzType ptzType, IntPtr userData) =>
-                        {
-                            _ptzTypes.Add(ptzType);
-                            return true;
-                        };
-                        CameraErrorFactory.ThrowIfError(NativeFeatures.SupportedPtzTypes(_camera.GetHandle(), callback, IntPtr.Zero),
-                        "Failed to get the supported Ptz types.");
-                    }
-                    catch
-                    {
-                        _ptzTypes = null;
-                        throw;
-                    }
+                    _ptzTypes = GetSupportedPtzTypes();
                 }
 
                 return _ptzTypes;
             }
         }
+
+        #region Methods for getting supported values
+        private IList<Size> GetSupportedPreviewResolutions()
+        {
+            List<Size> previewResolutions = new List<Size>();
+
+            NativeCapabilities.PreviewResolutionCallback callback = (int width, int height, IntPtr userData) =>
+            {
+                previewResolutions.Add(new Size(width, height));
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedPreviewResolutions(_camera.GetHandle(), callback, IntPtr.Zero),
+                "Failed to get the supported preview resolutions");
+
+            return previewResolutions.AsReadOnly();
+        }
+
+        private IList<Size> GetSupportedCaptureResolutions()
+        {
+            List<Size> cameraResolutions = new List<Size>();
+
+            NativeCapabilities.CaptureResolutionCallback callback = (int width, int height, IntPtr userData) =>
+            {
+                cameraResolutions.Add(new Size(width, height));
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedCaptureResolutions(_camera.GetHandle(), callback, IntPtr.Zero),
+                "Failed to get the supported capture resolutions");
+
+            return cameraResolutions.AsReadOnly();
+        }
+
+        private IList<CameraPixelFormat> GetSupportedCapturePixelFormats()
+        {
+            List<CameraPixelFormat> captureFormats = new List<CameraPixelFormat>();
+
+            NativeCapabilities.CaptureFormatCallback callback = (CameraPixelFormat format, IntPtr userData) =>
+            {
+                captureFormats.Add(format);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedCapturePixelFormats(_camera.GetHandle(), callback, IntPtr.Zero),
+                "Failed to get the supported capture formats.");
+
+            return captureFormats.AsReadOnly();
+        }
+
+        private IList<CameraPixelFormat> GetSupportedPreviewPixelFormats()
+        {
+            List<CameraPixelFormat> previewFormats = new List<CameraPixelFormat>();
+
+            NativeCapabilities.PreviewFormatCallback callback = (CameraPixelFormat format, IntPtr userData) =>
+            {
+                previewFormats.Add(format);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedPreviewPixelFormats(_camera.GetHandle(), callback, IntPtr.Zero),
+                "Failed to get the supported preview formats.");
+
+            return previewFormats.AsReadOnly();
+        }
+
+        private IList<CameraFps> GetSupportedPreviewFps()
+        {
+            List<CameraFps> previewFps = new List<CameraFps>();
+
+            NativeCapabilities.FpsCallback callback = (CameraFps fps, IntPtr userData) =>
+            {
+                previewFps.Add(fps);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedPreviewFps(_camera.GetHandle(), callback, IntPtr.Zero),
+                "Failed to get the supported camera fps");
+
+            return previewFps.AsReadOnly();
+        }
+
+        private IList<CameraFps> GetSupportedPreviewFpsByResolutions(int width, int height)
+        {
+            List<CameraFps> fpsByResolution = new List<CameraFps>();
+
+            NativeCapabilities.FpsByResolutionCallback callback = (CameraFps fps, IntPtr userData) =>
+            {
+                fpsByResolution.Add(fps);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedPreviewFpsByResolution(_camera.GetHandle(),
+                width, height, callback, IntPtr.Zero), "Failed to get the supported fps by resolutions.");
+
+            return fpsByResolution.AsReadOnly();
+        }
+
+        private IList<CameraAutoFocusMode> GetSupportedAutoFocusModes()
+        {
+            List<CameraAutoFocusMode> autoFocusModes = new List<CameraAutoFocusMode>();
+
+            NativeCapabilities.AfModeCallback callback = (CameraAutoFocusMode mode, IntPtr userData) =>
+            {
+                autoFocusModes.Add(mode);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedAutoFocusModes(_camera.GetHandle(), callback, IntPtr.Zero),
+            "Failed to get the supported Auto focus modes.");
+
+            return autoFocusModes.AsReadOnly();
+        }
+
+        private IList<CameraExposureMode> GetSupportedExposureModes()
+        {
+            List<CameraExposureMode> exposureModes = new List<CameraExposureMode>();
+
+            NativeCapabilities.ExposureModeCallback callback = (CameraExposureMode mode, IntPtr userData) =>
+            {
+                exposureModes.Add(mode);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedExposureModes(_camera.GetHandle(), callback, IntPtr.Zero),
+            "Failed to get the supported Exposure modes.");
+
+            return exposureModes.AsReadOnly();
+        }
+
+        private IList<CameraIsoLevel> GetSupportedIsoLevels()
+        {
+            List<CameraIsoLevel> isoLevels = new List<CameraIsoLevel>();
+
+            NativeCapabilities.IsoCallback callback = (CameraIsoLevel iso, IntPtr userData) =>
+            {
+                isoLevels.Add(iso);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedIso(_camera.GetHandle(), callback, IntPtr.Zero),
+            "Failed to get the supported Iso levels.");
+
+            return isoLevels.AsReadOnly();
+        }
+
+        private IList<CameraTheaterMode> GetSupportedTheaterModes()
+        {
+            List<CameraTheaterMode> theaterModes = new List<CameraTheaterMode>();
+
+            NativeCapabilities.TheaterModeCallback callback = (CameraTheaterMode theaterMode, IntPtr userData) =>
+            {
+                theaterModes.Add(theaterMode);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedTheaterModes(_camera.GetHandle(), callback, IntPtr.Zero),
+            "Failed to get the supported theater modes.");
+
+            return theaterModes.AsReadOnly();
+        }
+
+        private IList<CameraWhiteBalance> GetSupportedWhitebalances()
+        {
+            List<CameraWhiteBalance> whitebalances = new List<CameraWhiteBalance>();
+
+            NativeCapabilities.WhitebalanceCallback callback = (CameraWhiteBalance whiteBalance, IntPtr userData) =>
+            {
+                whitebalances.Add(whiteBalance);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedWhitebalance(_camera.GetHandle(), callback, IntPtr.Zero),
+            "Failed to get the supported white balance.");
+
+            return whitebalances.AsReadOnly();
+        }
+
+        private IList<CameraFlashMode> GetSupportedFlashModes()
+        {
+            List<CameraFlashMode> flashModes = new List<CameraFlashMode>();
+
+            NativeCapabilities.FlashModeCallback callback = (CameraFlashMode flashMode, IntPtr userData) =>
+            {
+                flashModes.Add(flashMode);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedFlashModes(_camera.GetHandle(), callback, IntPtr.Zero),
+            "Failed to get the supported flash modes.");
+
+            return flashModes.AsReadOnly();
+        }
+
+        private IList<CameraSceneMode> GetSupportedSceneModes()
+        {
+            List<CameraSceneMode> sceneModes = new List<CameraSceneMode>();
+
+            NativeCapabilities.SceneModeCallback callback = (CameraSceneMode sceneMode, IntPtr userData) =>
+            {
+                sceneModes.Add(sceneMode);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedSceneModes(_camera.GetHandle(), callback, IntPtr.Zero),
+            "Failed to get the supported scene modes.");
+
+            return sceneModes.AsReadOnly();
+        }
+
+        private IList<CameraEffectMode> GetSupportedEffects()
+        {
+            List<CameraEffectMode> effectModes = new List<CameraEffectMode>();
+
+            NativeCapabilities.EffectCallback callback = (CameraEffectMode effect, IntPtr userData) =>
+            {
+                effectModes.Add(effect);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedEffects(_camera.GetHandle(), callback, IntPtr.Zero),
+            "Failed to get the supported camera effects.");
+
+            return effectModes.AsReadOnly();
+        }
+
+        private IList<Rotation> GetSupportedStreamRotations()
+        {
+            List<Rotation> streamRotations = new List<Rotation>();
+
+            NativeCapabilities.StreamRotationCallback callback = (Rotation streamRotation, IntPtr userData) =>
+            {
+                streamRotations.Add(streamRotation);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedStreamRotations(_camera.GetHandle(), callback, IntPtr.Zero),
+            "Failed to get the supported camera rotations.");
+
+            return streamRotations.AsReadOnly();
+        }
+
+        private IList<Flips> GetSupportedStreamFlips()
+        {
+            List<Flips> streamFlips = new List<Flips>();
+
+            NativeCapabilities.StreamFlipCallback callback = (Flips streamFlip, IntPtr userData) =>
+            {
+                streamFlips.Add(streamFlip);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedStreamFlips(_camera.GetHandle(), callback, IntPtr.Zero),
+            "Failed to get the supported camera flips.");
+
+            return streamFlips.AsReadOnly();
+        }
+
+        private IList<CameraPtzType> GetSupportedPtzTypes()
+        {
+            List<CameraPtzType> ptzTypes = new List<CameraPtzType>();
+
+            NativeCapabilities.PtzTypeCallback callback = (CameraPtzType ptzType, IntPtr userData) =>
+            {
+                ptzTypes.Add(ptzType);
+                return true;
+            };
+            CameraErrorFactory.ThrowIfError(NativeCapabilities.SupportedPtzTypes(_camera.GetHandle(), callback, IntPtr.Zero),
+            "Failed to get the supported Ptz types.");
+
+            return ptzTypes.AsReadOnly();
+        }
+        #endregion Methods for getting supported values
     }
 }

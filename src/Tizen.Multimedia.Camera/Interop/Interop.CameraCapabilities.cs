@@ -20,7 +20,7 @@ using Tizen.Multimedia;
 
 internal static partial class Interop
 {
-    internal static partial class CameraFeatures
+    internal static partial class CameraCapabilities
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool PreviewResolutionCallback(int Width, int Height, IntPtr userData);
@@ -125,7 +125,7 @@ internal static partial class Interop
         internal static extern CameraError SupportedPreviewFpsByResolution(IntPtr handle, int width, int height, FpsByResolutionCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_af_mode")]
-        internal static extern CameraError SupportedAfModes(IntPtr handle, AfModeCallback callback, IntPtr userData);
+        internal static extern CameraError SupportedAutoFocusModes(IntPtr handle, AfModeCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_foreach_supported_exposure_mode")]
         internal static extern CameraError SupportedExposureModes(IntPtr handle, ExposureModeCallback callback, IntPtr userData);

@@ -24,15 +24,14 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The class containing preview image data.
     /// </summary>
-    public class PreviewData
+    public class PreviewFrame
     {
-        internal PreviewData(IntPtr ptr)
+        internal PreviewFrame(IntPtr ptr)
         {
             var unmanagedStruct = Marshal.PtrToStructure<CameraPreviewDataStruct>(ptr);
 
             Format = unmanagedStruct.Format;
-            Width = unmanagedStruct.Width;
-            Height = unmanagedStruct.Height;
+            Resolution = new Size(unmanagedStruct.Width, unmanagedStruct.Height);
             TimeStamp = unmanagedStruct.TimeStamp;
             PlaneType = GetPlaneType(unmanagedStruct);
             Plane = ConvertPlane(unmanagedStruct);
@@ -92,16 +91,10 @@ namespace Tizen.Multimedia
         public CameraPixelFormat Format { get; }
 
         /// <summary>
-        /// The width of the image.
+        /// The resolution of the preview image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public int Width { get; }
-
-        /// <summary>
-        /// The height of the image.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int Height { get; }
+        public Size Resolution { get; }
 
         /// <summary>
         /// The timestamp of preview frame.
@@ -110,15 +103,15 @@ namespace Tizen.Multimedia
         public uint TimeStamp { get; }
 
         /// <summary>
-        /// The buffer including preview frame.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public IPreviewPlane Plane { get; }
-
-        /// <summary>
         /// The type of preview plane. <see cref="Tizen.Multimedia.PlaneType"/>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PlaneType PlaneType { get; }
+
+        /// <summary>
+        /// The buffer including preview frame.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public IPreviewPlane Plane { get; }
     }
 }

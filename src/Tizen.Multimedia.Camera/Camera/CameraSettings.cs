@@ -568,7 +568,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="CameraPixelFormat"/> that specifies the pixel format of captured image.</value>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public CameraPixelFormat CapturePixelFormat
         {
@@ -881,21 +881,20 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Disables shutter sound.
-        /// If true shutter sound is disabled, otherwise false.
+        /// Turn the shutter sound on or off, if it is permitted by policy.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <param name="shutterSound">Shutter sound On/Off flag</param>
         /// <remarks>
+        /// If this value is true, shutter sound will be disabled, otherwise enabled.
         /// In some countries, this operation is not permitted.
         /// </remarks>
+        /// <exception cref="InvalidOperationException">Disabling shutter sound is not permitted.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        public bool DisableShutterSound
+        public void DisableShutterSound(bool shutterSound)
         {
-            set
-            {
-                CameraErrorFactory.ThrowIfError(Native.DisableShutterSound(_camera.GetHandle(), value),
+            CameraErrorFactory.ThrowIfError(Native.DisableShutterSound(_camera.GetHandle(), shutterSound),
                     "Failed to set disable shutter sound.");
-            }
         }
 
         #region PTZ(Pan Tilt Zoom), Pan, Tilt
@@ -922,7 +921,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         /// <param name="type">ptz move type. <seealso cref="CameraPtzMoveType"/></param>
         /// <param name="panStep">pan step</param>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void SetPan(CameraPtzMoveType type, int panStep)
         {
@@ -951,7 +950,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         /// <param name="type">ptz move type</param>
         /// <param name="tiltStep">tilt step</param>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void SetTilt(CameraPtzMoveType type, int tiltStep)
         {

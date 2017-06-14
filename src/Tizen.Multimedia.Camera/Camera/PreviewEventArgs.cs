@@ -23,7 +23,7 @@ namespace Tizen.Multimedia
     /// </summary>
     public class PreviewEventArgs : EventArgs
     {
-        internal PreviewEventArgs(PreviewData preview)
+        internal PreviewEventArgs(PreviewFrame preview)
         {
             Preview = preview;
         }
@@ -32,7 +32,7 @@ namespace Tizen.Multimedia
         /// PreviewData frame.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public PreviewData Preview { get; }
+        public PreviewFrame Preview { get; }
     }
 }
 

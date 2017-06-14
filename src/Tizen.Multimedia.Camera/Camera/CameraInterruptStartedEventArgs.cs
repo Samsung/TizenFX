@@ -19,34 +19,26 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about the captured still image.
+    /// An extended EventArgs class which contains details about current state
+    /// of the camera when interrupt is invoked internally in Native FW.
     /// </summary>
-    public class CameraCapturingEventArgs : EventArgs
+    public class CameraInterruptStartedEventArgs : EventArgs
     {
-        internal CameraCapturingEventArgs(StillImage main, StillImage post, StillImage thumbnail)
+        internal CameraInterruptStartedEventArgs(CameraPolicy policy, CameraState state)
         {
-            MainImage = main;
-            PostView = post;
-            Thumbnail = thumbnail;
+            Policy = policy;
+            State = state;
         }
 
         /// <summary>
-        /// The main image data of the captured still image.
+        /// Current state of the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public StillImage MainImage { get; }
+        public CameraState State { get; }
 
         /// <summary>
-        /// The image data of the postview.
+        /// The policy that interrupted the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public StillImage PostView { get; }
-
-        /// <summary>
-        /// The image data of the thumbnail.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public StillImage Thumbnail { get; }
+        public CameraPolicy Policy { get; }
     }
 }
 

@@ -32,6 +32,9 @@ internal static partial class Interop
         internal delegate void InterruptedCallback(CameraPolicy policy, CameraState previous, CameraState current, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void InterruptStartedCallback(CameraPolicy policy, CameraState state, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void FocusStateChangedCallback(CameraFocusState state, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -165,6 +168,12 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_remove_device_state_changed_cb")]
         internal static extern CameraError UnsetDeviceStateChangedCallback(int cbId);
 
+        [DllImport(Libraries.Camera, EntryPoint = "camera_set_interrupt_started_cb")]
+        internal static extern CameraError SetInterruptStartedCallback(IntPtr handle, InterruptStartedCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_unset_interrupt_started_cb")]
+        internal static extern CameraError UnsetInterruptStartedCallback(IntPtr handle);
+
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_interrupted_cb")]
         internal static extern CameraError SetInterruptedCallback(IntPtr handle, InterruptedCallback callback, IntPtr userData);
 
@@ -190,7 +199,7 @@ internal static partial class Interop
         internal static extern CameraError UnsetHdrCaptureProgressCallback(IntPtr handle);
 
         [StructLayout(LayoutKind.Sequential)]
-        internal struct ImageDataStruct
+        internal struct StillImageDataStruct
         {
             internal IntPtr Data;
             internal uint DataLength;

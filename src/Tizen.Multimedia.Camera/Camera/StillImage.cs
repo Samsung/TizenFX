@@ -22,17 +22,16 @@ using static Interop.Camera;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// The class containing the captured image data.
+    /// The class containing the captured still image.
     /// </summary>
-    public class ImageData
+    public class StillImage
     {
-        internal ImageData(IntPtr ptr)
+        internal StillImage(IntPtr ptr)
         {
-            var unmanagedStruct = Marshal.PtrToStructure<ImageDataStruct>(ptr);
+            var unmanagedStruct = Marshal.PtrToStructure<StillImageDataStruct>(ptr);
 
             Format = unmanagedStruct.Format;
-            Width = unmanagedStruct.Width;
-            Height = unmanagedStruct.Height;
+            Resolution = new Size(unmanagedStruct.Width, unmanagedStruct.Height);
 
             if (unmanagedStruct.Data != IntPtr.Zero && unmanagedStruct.DataLength > 0)
             {
@@ -41,7 +40,7 @@ namespace Tizen.Multimedia
             }
             else
             {
-                Debug.Fail("ImageData is null!");
+                Debug.Fail("CameraStillImage Data is null!");
             }
 
             //Exif can be null
@@ -53,34 +52,28 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The pixel format of the captured image.
+        /// The pixel format of the still image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public CameraPixelFormat Format { get; }
 
         /// <summary>
-        /// The width of the image.
+        /// The resolution of the still image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public int Width { get; }
+        public Size Resolution { get; }
 
         /// <summary>
-        /// The height of the image.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int Height { get; }
-
-        /// <summary>
-        /// The buffer containing image data.
+        /// The buffer containing still image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public byte[] Data { get; }
 
         /// <summary>
-        /// String containing Exif data.
+        /// The Exif data describing additional metadata of still image.
+        /// Please refer Exif specification for more details.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public byte[] Exif { get; }
     }
 }
-
