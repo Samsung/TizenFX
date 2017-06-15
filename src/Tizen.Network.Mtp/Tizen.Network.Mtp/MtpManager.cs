@@ -23,12 +23,20 @@ namespace Tizen.Network.Mtp
     /// <summary>
     /// A class for MTP management. It allows applications to use MTP service.
     /// </summary>
+    /// <remarks>
+    /// http://tizen.org/privilege/mediastorage is needed if input or output path are relevant to media storage.
+    /// http://tizen.org/privilege/externalstorage is needed if input or output path are relevant to external storage.
+    /// </remarks>
     static public class MtpManager
     {
         /// <summary>
-        /// Gets the list of available Secure Element readers.
+        /// Gets the list of MTP devices.
         /// </summary>
-        /// <returns>List of SmartcardReader objects.</returns>
+        /// <returns>List of MtpDevice objects.</returns>
+        /// <feature>http://tizen.org/feature/network.mtp</feature>
+        /// <exception cref="NotSupportedException">Thrown when Mtp is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         static public IEnumerable<MtpDevice> GetDevices()
         {
             try
@@ -42,7 +50,7 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// The Activation changed event.
+        /// MtpStateChanged is raised when the Mtp device state is changed.
         /// </summary>
         static public event EventHandler<MtpStateChangedEventArgs> MtpStateChanged
         {

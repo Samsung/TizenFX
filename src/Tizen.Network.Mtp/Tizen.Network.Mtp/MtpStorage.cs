@@ -33,8 +33,9 @@ namespace Tizen.Network.Mtp
         //private int _objectHandle = 0;
 
         /// <summary>
-        /// The description.
+        /// Gets the description.
         /// </summary>
+        /// <value>Description of storage.</value>
         public string Description
         {
             get
@@ -51,8 +52,9 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// The free space.
+        /// Gets the free space.
         /// </summary>
+        /// <value>Free space of storage.</value>
         public UInt64 FreeSpace
         {
             get
@@ -68,8 +70,9 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// The max capacity.
+        /// Gets the max capacity.
         /// </summary>
+        /// <value>Max capacity of storage.</value>
         public UInt64 MaxCapacity
         {
             get
@@ -85,8 +88,9 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// The storage type.
+        /// Gets the storage type.
         /// </summary>
+        /// <value>Type of storage.</value>
         public MtpStorageType StorageType
         {
             get
@@ -102,8 +106,9 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// The volume identifier.
+        /// Gets the volume identifier.
         /// </summary>
+        /// <value>Volume identifier of stroage.</value>
         public string VolumeIdentifier
         {
             get
@@ -169,6 +174,14 @@ namespace Tizen.Network.Mtp
         /// Gets the list of storages.
         /// </summary>
         /// <returns>List of storage objects.</returns>
+        /// <feature>http://tizen.org/feature/network.mtp</feature>
+        /// <remarks>
+        /// http://tizen.org/privilege/mediastorage is needed if input or output path are relevant to media storage.
+        /// http://tizen.org/privilege/externalstorage is needed if input or output path are relevant to external storage.
+        /// </remarks>
+        /// <exception cref="NotSupportedException">Thrown when Mtp is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public IEnumerable<MtpObject> GetObjectHandles(int parentHandle, MtpFileType fileType)
         {
             IntPtr objectPtr;

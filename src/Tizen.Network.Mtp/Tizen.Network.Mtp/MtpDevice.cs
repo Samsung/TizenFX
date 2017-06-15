@@ -30,8 +30,9 @@ namespace Tizen.Network.Mtp
         private List<MtpStorage> _storageList = new List<MtpStorage>();
 
         /// <summary>
-        /// The manufacturer name.
+        /// Gets the manufacturer name.
         /// </summary>
+        /// <value>Manufacture name of device.</value>
         public string ManufacturerName
         {
             get
@@ -48,8 +49,9 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// The model name.
+        /// Gets the model name.
         /// </summary>
+        /// <value>Model name of device.</value>
         public string ModelName
         {
             get
@@ -66,8 +68,9 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// The serial number.
+        /// Gets the serial number.
         /// </summary>
+        /// <value>Serial number of device.</value>
         public string SerialNumber
         {
             get
@@ -84,8 +87,9 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// The device version.
+        /// Gets the device version.
         /// </summary>
+        /// <value>Version number of device.</value>
         public string DeviceVersion
         {
             get
@@ -144,6 +148,10 @@ namespace Tizen.Network.Mtp
         /// Gets the list of storages.
         /// </summary>
         /// <returns>List of storage objects.</returns>
+        /// <feature>http://tizen.org/feature/network.mtp</feature>
+        /// <exception cref="NotSupportedException">Thrown when Mtp is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public IEnumerable<MtpStorage> GetStorages()
         {
             IntPtr storagePtr;
