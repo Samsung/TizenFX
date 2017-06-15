@@ -65,18 +65,100 @@ namespace ElmSharp.Test
 
             Entry entry3 = new Entry(window)
             {
+                AlignmentX = -1,
+                AlignmentY = 0,
+                WeightX = 1,
+                WeightY = 1,
                 IsSingleLine = true,
                 Scrollable = true,
             };
             entry3.SetPartText("guide", "<span color=#808080FF font_size=28 align=left valign=top wrap=mixed>Enter a System.Double</span>");
-            entry3.Geometry = new Rect(0, 163, 720, 37);
+            //entry3.Geometry = new Rect(0, 163, 720, 37);
             entry3.Show();
+
+            var capital1 = new Entry(window)
+            {
+                AlignmentX = -1,
+                AlignmentY = 0,
+                WeightX = 1,
+                WeightY = 1,
+                Text = "Auto Capital : Word",
+                AutoCapital = AutoCapital.Word
+            };
+
+            var capital2 = new Entry(window)
+            {
+                AlignmentX = -1,
+                AlignmentY = 0,
+                WeightX = 1,
+                WeightY = 1,
+                Text = "Auto Capital : Sentence",
+                AutoCapital = AutoCapital.Sentence
+            };
+
+            var capital3 = new Entry(window)
+            {
+                AlignmentX = -1,
+                AlignmentY = 0,
+                WeightX = 1,
+                WeightY = 1,
+                Text = "Auto Capital : All",
+                AutoCapital = AutoCapital.All
+            };
+
+            var getText = new Entry(window)
+            {
+                AlignmentX = -1,
+                AlignmentY = 0,
+                WeightX = 1,
+                WeightY = 1,
+                Text = "get cursor content test",
+            };
+
+            var label = new Label(window)
+            {
+                AlignmentX = -1,
+                AlignmentY = 0,
+                WeightX = 1,
+                WeightY = 1,
+            };
+
+            getText.CursorChanged += (s, e) =>
+            {
+                label.Text = getText.GetCursorContent();
+            };
+
+            //var autoSave = new Entry(window)
+            //{
+            //    AlignmentX = -1,
+            //    AlignmentY = 0,
+            //    WeightX = 1,
+            //    WeightY = 1,
+            //    Text = "Auto Save",
+            //    IsAutoSave = true
+            //};
+
+            var btn = new Button(window)
+            {
+            };
 
             box.PackEnd(entry1);
             box.PackEnd(entry2);
+            box.PackEnd(entry3);
+            box.PackEnd(capital1);
+            box.PackEnd(capital2);
+            box.PackEnd(capital3);
+            box.PackEnd(getText);
+            box.PackEnd(label);
 
             entry1.Show();
             entry2.Show();
+            entry3.Show();
+            capital1.Show();
+            capital2.Show();
+            capital3.Show();
+            getText.Show();
+            label.Show();
         }
     }
 }
