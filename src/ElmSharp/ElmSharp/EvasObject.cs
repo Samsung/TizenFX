@@ -20,19 +20,37 @@ using System.Diagnostics;
 
 namespace ElmSharp
 {
+    public enum TooltipOrientation
+    {
+        None,
+        TopLeft,
+        Top,
+        TopRight,
+        Left,
+        Center,
+        Right,
+        BottomLeft,
+        Bottom,
+        BottomRight,
+    }
+
     /// <summary>
     /// The EcasObject is a base class for other widget class
     /// </summary>
     public abstract class EvasObject
     {
         private IntPtr _realHandle = IntPtr.Zero;
+
         private event EventHandler _backButtonPressed;
+
         private event EventHandler _moreButtonPressed;
+
         private Interop.Eext.EextEventCallback _backButtonHandler;
         private Interop.Eext.EextEventCallback _moreButtonHandler;
 
         public IntPtr Handle { get; protected set; }
         public EvasObject Parent { get; private set; }
+
         public IntPtr RealHandle
         {
             get
@@ -52,6 +70,9 @@ namespace ElmSharp
         EvasObjectEvent _resized;
         EventHandler _renderPost;
         Interop.Evas.EvasCallback _renderPostCallback = null;
+        Interop.Elementary.Elm_Tooltip_Content_Cb _tooltipContentCallback = null;
+
+        GetTooltipContentDelegate _tooltipContentDelegate = null;
 
         readonly HashSet<IInvalidatable> _eventStore = new HashSet<IInvalidatable>();
 
@@ -74,6 +95,11 @@ namespace ElmSharp
             _moreButtonHandler = new Interop.Eext.EextEventCallback((d, o, i) => { _moreButtonPressed?.Invoke(this, EventArgs.Empty); });
 
             OnInstantiated();
+
+            _tooltipContentCallback = (d, o, t) =>
+            {
+                return _tooltipContentDelegate?.Invoke();
+            };
         }
 
         // C# Finalizer was called on GC thread
@@ -88,10 +114,12 @@ namespace ElmSharp
         /// Deleted will be triggered when widght is deleted
         /// </summary>
         public event EventHandler Deleted;
+
         /// <summary>
         /// KeyUp will be triggered when key is loose
         /// </summary>
         public event EventHandler<EvasKeyEventArgs> KeyUp;
+
         /// <summary>
         /// KeyDown will be triggered when key is preesd down
         /// </summary>
@@ -143,7 +171,6 @@ namespace ElmSharp
             }
         }
 
-
         /// <summary>
         /// Moved will be triggered when widght is moved
         /// </summary>
@@ -152,6 +179,7 @@ namespace ElmSharp
             add { _moved.On += value; }
             remove { _moved.On -= value; }
         }
+
         /// <summary>
         /// Current widget's size Resized Event Handler
         /// </summary>
@@ -185,6 +213,12 @@ namespace ElmSharp
                 }
             }
         }
+
+        /// <summary>
+        /// Called back when a widget's tooltip is activated and needs content.
+        /// </summary>
+        /// <returns></returns>
+        public delegate EvasObject GetTooltipContentDelegate();
 
         /// <summary>
         /// Get widget's status of Realized or not.
@@ -421,6 +455,86 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or Gets style for this object tooltip.
+        /// </summary>
+        public string TooltipStyle
+        {
+            get
+            {
+                return Interop.Elementary.elm_object_tooltip_style_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_object_tooltip_style_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the orientation of Tooltip.
+        /// </summary>
+        public TooltipOrientation TooltipOrientation
+        {
+            get
+            {
+                return (TooltipOrientation)Interop.Elementary.elm_object_tooltip_orient_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_object_tooltip_orient_set(RealHandle, (int)value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets size restriction state of an object's tooltip.
+        /// </summary>
+        public bool TooltipWindowMode
+        {
+            get
+            {
+                return Interop.Elementary.elm_object_tooltip_window_mode_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_object_tooltip_window_mode_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets the content to be shown in the tooltip object.
+        /// </summary>
+        public GetTooltipContentDelegate TooltipContentDelegate
+        {
+            get
+            {
+                return _tooltipContentDelegate;
+            }
+            set
+            {
+                _tooltipContentDelegate = value;
+                if (value != null)
+                {
+                    Interop.Elementary.elm_object_tooltip_content_cb_set(RealHandle, _tooltipContentCallback, IntPtr.Zero, null);
+                }
+                else
+                {
+                    Interop.Elementary.elm_object_tooltip_content_cb_set(RealHandle, null, IntPtr.Zero, null);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the movement freeze by 1
+        /// This gets the movement freeze count by one.
+        /// </summary>
+        public int TooltipMoveFreezeCount
+        {
+            get
+            {
+                return Interop.Elementary.elm_object_tooltip_move_freeze_get(RealHandle);
+            }
+        }
+
+        /// <summary>
         /// Clips one object to another.
         /// </summary>
         /// <param name="clip">The object to clip object by</param>
@@ -464,6 +578,39 @@ namespace ElmSharp
         public void UnsetTooltip()
         {
             Interop.Elementary.elm_object_tooltip_unset(RealHandle);
+        }
+
+        /// <summary>
+        /// This increments the tooltip movement freeze count by one.
+        /// If the count is more than 0, the tooltip position will be fixed.
+        /// </summary>
+        public void PushTooltipMoveFreeze()
+        {
+            Interop.Elementary.elm_object_tooltip_move_freeze_push(RealHandle);
+        }
+
+        /// <summary>
+        /// This decrements the tooltip freeze count by one.
+        /// </summary>
+        public void PopTooltipMoveFreeze()
+        {
+            Interop.Elementary.elm_object_tooltip_move_freeze_pop(RealHandle);
+        }
+
+        /// <summary>
+        /// Force hide tooltip of object.
+        /// </summary>
+        public void HideTooltip()
+        {
+            Interop.Elementary.elm_object_tooltip_hide(RealHandle);
+        }
+
+        /// <summary>
+        /// Force show tooltip of object.
+        /// </summary>
+        public void ShowTooltip()
+        {
+            Interop.Elementary.elm_object_tooltip_show(RealHandle);
         }
 
         /// <summary>
@@ -562,18 +709,21 @@ namespace ElmSharp
         protected virtual void OnInstantiated()
         {
         }
+
         /// <summary>
         /// The callback of Realized Event
         /// </summary>
         protected virtual void OnRealized()
         {
         }
+
         /// <summary>
         /// The callback of Unrealize Event
         /// </summary>
         protected virtual void OnUnrealize()
         {
         }
+
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
@@ -615,7 +765,7 @@ namespace ElmSharp
         {
             if (IsRealized)
             {
-                if(_renderPostCallback != null)
+                if (_renderPostCallback != null)
                 {
                     Interop.Evas.evas_event_callback_del(Interop.Evas.evas_object_evas_get(Handle), Interop.Evas.ObjectCallbackType.RenderPost, _renderPostCallback);
                     _renderPostCallback = null;
@@ -655,6 +805,7 @@ namespace ElmSharp
             }
             _eventStore.Clear();
         }
+
         private void MakeInvalidateEvent()
         {
             foreach (var evt in _eventStore)
@@ -668,6 +819,5 @@ namespace ElmSharp
         {
             _eventStore.Add(item);
         }
-
     }
 }
