@@ -283,7 +283,7 @@ namespace Tizen.NUI
 
             BaseHandle ret = new BaseHandle(cPtr, false);
 
-            View temp = ViewRegistry.GetViewFromBaseHandle(ret);
+            View temp = Registry.GetManagedBaseHandleFromNativePtr(ret) as View;
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();

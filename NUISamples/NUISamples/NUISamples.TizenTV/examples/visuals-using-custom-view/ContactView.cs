@@ -50,7 +50,7 @@ namespace VisualsUsingCustomView
 
         static ContactView()
         {
-            ViewRegistry.Instance.Register( CreateInstance, typeof(ContactView));
+            CustomViewRegistry.Instance.Register( CreateInstance, typeof(ContactView));
         }
 
         public ContactView() : base(typeof(ContactView).Name, CustomViewBehaviour.RequiresKeyboardNavigationSupport)

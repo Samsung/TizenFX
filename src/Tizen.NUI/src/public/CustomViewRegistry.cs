@@ -74,7 +74,7 @@ namespace Tizen.NUI
     /// </remarks>
     ///
     ///
-    internal class ScriptableProperty : System.Attribute
+    public class ScriptableProperty : System.Attribute
     {
         public enum ScriptableType
         {
@@ -123,32 +123,26 @@ namespace Tizen.NUI
     ///
     ///
     /// </summary>
-    public sealed class ViewRegistry
+    public sealed class CustomViewRegistry
     {
         /// <summary>
         /// ViewRegistry is a singleton
         /// </summary>
-        private static ViewRegistry instance = null;
+        private static CustomViewRegistry instance = null;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        delegate IntPtr CreateControlDelegate(IntPtr cPtrControlName);
+        private delegate IntPtr CreateControlDelegate(IntPtr cPtrControlName);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        delegate IntPtr GetPropertyDelegate(IntPtr controlPtr, IntPtr propertyName);
+        private delegate IntPtr GetPropertyDelegate(IntPtr controlPtr, IntPtr propertyName);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        delegate void SetPropertyDelegate(IntPtr controlPtr, IntPtr propertyName, IntPtr propertyValue);
+        private delegate void SetPropertyDelegate(IntPtr controlPtr, IntPtr propertyName, IntPtr propertyValue);
 
         private CreateControlDelegate _createCallback;
         private SetPropertyDelegate _setPropertyCallback;
         private GetPropertyDelegate _getPropertyCallback;
         private PropertyRangeManager _propertyRangeManager;
-
-        /// <summary>
-        /// Given a C++ control the dictionary allows us to find which C# control (View) it belongs to.
-        /// By keeping the weak reference only, it will allow the object to be garbage collected.
-        /// </summary>
-        private Dictionary<IntPtr, WeakReference> _controlMap;
 
         ///<summary>
         // Maps the name of a custom view to a create instance function
@@ -178,16 +172,14 @@ namespace Tizen.NUI
         };
 
 
-        private ViewRegistry()
+        private CustomViewRegistry()
         {
             _createCallback = new CreateControlDelegate(CreateControl);
             _getPropertyCallback = new GetPropertyDelegate(GetProperty);
             _setPropertyCallback = new SetPropertyDelegate(SetProperty);
 
-            _controlMap = new Dictionary<IntPtr, WeakReference>();
             _constructorMap = new Dictionary<string, Func<CustomView>>();
             _propertyRangeManager = new PropertyRangeManager();
-
         }
 
         private Tizen.NUI.PropertyType GetDaliPropertyType(string cSharpTypeName)
@@ -236,44 +228,6 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// Store the mapping between this instance of control (View) and native part.
-        /// </summary>
-        /// <param name="view"> The instance of control (View)</param>
-        internal static void RegisterView(View view)
-        {
-            // We store a pointer to the RefObject for the control
-            RefObject refObj = view.GetObjectPtr();
-            IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
-
-#if DEBUG_ON
-            Tizen.Log.Debug("NUI", "________Storing ref object cptr in control map Hex: {0:X}" + refCptr);
-#endif
-            if (!Instance._controlMap.ContainsKey(refCptr))
-            {
-                Instance._controlMap.Add(refCptr, new WeakReference(view, false));
-            }
-
-            return;
-        }
-
-        /// <summary>
-        /// Remove the this instance of control (View) and native part from the mapping table.
-        /// </summary>
-        /// <param name="view"> The instance of control (View)</param>
-        internal static void UnregisterView(View view)
-        {
-            RefObject refObj = view.GetObjectPtr();
-            IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
-
-            if (Instance._controlMap.ContainsKey(refCptr))
-            {
-                Instance._controlMap.Remove(refCptr);
-            }
-
-            return;
-        }
-
         private static IntPtr GetProperty(IntPtr controlPtr, IntPtr propertyName)
         {
             string name = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(propertyName);
@@ -290,38 +244,17 @@ namespace Tizen.NUI
 
         }
 
-        public static ViewRegistry Instance
+        public static CustomViewRegistry Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new ViewRegistry();
+                    instance = new CustomViewRegistry();
                 }
                 return instance;
             }
         }
-
-
-        internal static View GetViewFromBaseHandle(BaseHandle baseHandle)
-        {
-            // we store a dictionary of ref-obects (C++ land) to custom views (C# land)
-
-            RefObject refObj = baseHandle.GetObjectPtr();
-            IntPtr refObjectPtr = (IntPtr)RefObject.getCPtr(refObj);
-
-            WeakReference viewReference;
-            if (Instance._controlMap.TryGetValue(refObjectPtr, out viewReference))
-            {
-                View retview = viewReference.Target as View;
-                return retview;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
 
         /// <summary>
         /// Function which registers a view and all it's scriptable properties with DALi's type registry.
@@ -394,20 +327,12 @@ namespace Tizen.NUI
         /// Get a property value from a View
         ///
         /// </summary>
-        private IntPtr GetPropertyValue(IntPtr controlPtr, string propertyName)
+        private IntPtr GetPropertyValue(IntPtr refObjectPtr, string propertyName)
         {
             // Get the C# control that maps to the C++ control
-            BaseHandle baseHandle = new BaseHandle(controlPtr, false);
-
-            RefObject refObj = baseHandle.GetObjectPtr();
-
-            IntPtr refObjectPtr = (IntPtr)RefObject.getCPtr(refObj);
-
-            WeakReference viewReference;
-            if (_controlMap.TryGetValue(refObjectPtr, out viewReference))
+            View view = Registry.GetManagedBaseHandleFromRefObject(refObjectPtr) as View;
+            if (view != null)
             {
-                View view = viewReference.Target as View;
-
                 // call the get property function
                 System.Object val = view.GetType().GetProperty(propertyName).GetAccessors()[0].Invoke(view, null);
 
@@ -425,18 +350,18 @@ namespace Tizen.NUI
         /// Set a property value on a View
         ///
         /// </summary>
-        private void SetPropertyValue(IntPtr controlPtr, string propertyName, IntPtr propertyValuePtr)
+        private void SetPropertyValue(IntPtr refObjectPtr, string propertyName, IntPtr propertyValuePtr)
         {
             // Get the C# control that maps to the C++ control
 #if DEBUG_ON
-            Tizen.Log.Debug("NUI", "SetPropertyValue   refObjectPtr = {0:X}" + controlPtr);
+            Tizen.Log.Debug("NUI", "SetPropertyValue   refObjectPtr = {0:X}" + refObjectPtr);
 #endif
             PropertyValue propValue = new PropertyValue(propertyValuePtr, false);
 
-            WeakReference viewReference;
-            if (_controlMap.TryGetValue(controlPtr, out viewReference))
+            // Get the C# control that maps to the C++ control
+            View view = Registry.GetManagedBaseHandleFromRefObject(refObjectPtr) as View;
+            if (view != null)
             {
-                View view = viewReference.Target as View;
                 System.Reflection.PropertyInfo propertyInfo = view.GetType().GetProperty(propertyName);
 
                 // We know the property name, we know it's type, we just need to convert from a DALi property value to native C# type
@@ -546,12 +471,10 @@ namespace Tizen.NUI
             }
             else
             {
-                throw new global::System.InvalidOperationException("failed to find the control to write a property to: cptr = " + controlPtr);
+                throw new global::System.InvalidOperationException("failed to find the control to write a property to: cptr = " + refObjectPtr);
             }
 
         }
 
     }
-
-
 }
