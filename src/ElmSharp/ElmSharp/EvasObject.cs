@@ -49,6 +49,7 @@ namespace ElmSharp
     public abstract class EvasObject
     {
         private IntPtr _realHandle = IntPtr.Zero;
+        private EvasCanvas _evasCanvas;
 
         private event EventHandler _backButtonPressed;
 
@@ -233,6 +234,19 @@ namespace ElmSharp
         /// Get widget's status of Realized or not.
         /// </summary>
         public bool IsRealized { get { return Handle != IntPtr.Zero; } }
+
+        /// <summary>
+        /// Gets EvasCanvas
+        /// </summary>
+        public EvasCanvas EvasCanvas
+        {
+            get
+            {
+                if (_evasCanvas == null)
+                    _evasCanvas = new EvasCanvas(Handle);
+                return _evasCanvas;
+            }
+        }
 
         /// <summary>
         /// Gets the current class's Name.
