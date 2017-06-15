@@ -282,6 +282,86 @@ namespace Tizen.NUI
             Bezier
         }
 
+        internal static string BuiltinToPropertyKey(BuiltinFunctions? alphaFunction)
+        {
+            string propertyKey = null;
+            if (alphaFunction != null)
+            {
+                switch (alphaFunction)
+                {
+                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Linear:
+                    {
+                        propertyKey = "LINEAR";
+                        break;
+                    }
+                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Reverse:
+                    {
+                        propertyKey = "REVERSE";
+                        break;
+                    }
+                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSquare:
+                    {
+                        propertyKey = "EASE_IN_SQUARE";
+                        break;
+                    }
+                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSquare:
+                    {
+                        propertyKey = "EASE_OUT_SQUARE";
+                        break;
+                    }
+                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseIn:
+                    {
+                        propertyKey = "EASE_IN";
+                        break;
+                    }
+                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOut:
+                    {
+                        propertyKey = "EASE_OUT";
+                        break;
+                    }
+                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOut:
+                    {
+                        propertyKey = "EASE_IN_OUT";
+                        break;
+                    }
+                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSine:
+                    {
+                        propertyKey = "EASE_IN_SINE";
+                        break;
+                    }
+                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSine:
+                    {
+                        propertyKey = "EASE_OUT_SINE";
+                        break;
+                    }
+                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOutSine:
+                    {
+                        propertyKey = "EASE_IN_OUT_SINE";
+                        break;
+                    }
+                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Bounce:
+                    {
+                        propertyKey = "BOUNCE";
+                        break;
+                    }
+                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Sin:
+                    {
+                        propertyKey = "SIN";
+                        break;
+                    }
+                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutBack:
+                    {
+                        propertyKey = "EASE_OUT_BACK";
+                        break;
+                    }
+                    default:
+                    {
+                        propertyKey = "DEFAULT";
+                        break;
+                    }
+                }
+            }
+            return propertyKey;
+        }
     }
-
 }

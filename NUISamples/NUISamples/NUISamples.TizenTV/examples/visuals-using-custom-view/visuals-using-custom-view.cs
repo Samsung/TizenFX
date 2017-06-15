@@ -52,9 +52,9 @@ namespace VisualsUsingCustomView
             contentLayout.Name = "ContentLayout";
             //contentLayout.WidthResizePolicy = ResizePolicyType.FillToParent;
             //contentLayout.HeightResizePolicy = ResizePolicyType.FillToParent;
-            contentLayout.PivotPoint = PivotPoint.Center;
-            contentLayout.ParentOrigin = ParentOrigin.Center;
-            contentLayout.Size = new Vector3(window.Size.Width, window.Size.Height, 0.0f);
+            contentLayout.PivotPoint = PivotPoint.TopLeft;
+            contentLayout.ParentOrigin = ParentOrigin.TopLeft;
+            contentLayout.Size2D = new Vector2(window.Size.Width, window.Size.Height);
             contentLayout.SetCellPadding(new Size2D(5, 5));
             contentLayout.BackgroundColor = new Color(0.949f, 0.949f, 0.949f, 1.0f);
 
@@ -79,6 +79,7 @@ namespace VisualsUsingCustomView
 
                 // Configure visuals of ContactView via properties
                 contactView.Name = contact.Name;
+                contactView.MaskURL = contact.MaskURL;
                 contactView.ImageURL = contact.ImageURL;
                 contactView.Color = contact.Color;
                 contactView.Shape = contact.Shape;
@@ -90,7 +91,7 @@ namespace VisualsUsingCustomView
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void _Main(string[] args)
+        static void Main(string[] args)
         {
             VisualsExample visualsExample = new VisualsExample();
             visualsExample.Run(args);
