@@ -677,6 +677,50 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        // Resource Ready Signal
+
+        private EventHandler _resourcesLoadedEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void ResourcesLoadedCallbackType(IntPtr control);
+        private ResourcesLoadedCallbackType _ResourcesLoadedCallback;
+
+        /// <summary>
+        /// Event for ResourcesLoadedSignal signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
+        /// This signal is emitted after all resources required by a View are loaded and ready.<br>
+        /// </summary>
+        public event EventHandler ResourcesLoaded
+        {
+            add
+            {
+                if (_resourcesLoadedEventHandler == null)
+                {
+                    _ResourcesLoadedCallback = OnResourcesLoaded;
+                    this.ResourcesLoadedSignal().Connect(_ResourcesLoadedCallback);
+                }
+
+                _resourcesLoadedEventHandler += value;
+            }
+
+            remove
+            {
+                _resourcesLoadedEventHandler -= value;
+
+                if (_resourcesLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
+                {
+                    this.ResourcesLoadedSignal().Disconnect(_ResourcesLoadedCallback);
+                }
+            }
+        }
+
+        private void OnResourcesLoaded(IntPtr view)
+        {
+            if (_resourcesLoadedEventHandler != null)
+            {
+                _resourcesLoadedEventHandler(this, null);
+            }
+        }
+
+
         internal static View GetViewFromPtr(global::System.IntPtr cPtr)
         {
             View ret = new View(cPtr, false);
@@ -1842,6 +1886,18 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Query if all resources required by a View are loaded and ready.
+        /// </summary>
+        /// <remarks>Most resources are only loaded when the control is placed on stage
+        /// </remarks>
+        public bool IsResourceReady()
+        {
+            bool ret = NDalicPINVOKE.IsResourceReady(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Raise the view to above the target view.
         /// </summary>
         /// <remarks>Sibling order of views within the parent will be updated automatically.
@@ -2652,6 +2708,13 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewVisibilityChangedSignal VisibilityChangedSignal(View view) {
             ViewVisibilityChangedSignal ret = new ViewVisibilityChangedSignal(NDalicPINVOKE.VisibilityChangedSignal(View.getCPtr(view)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ViewSignal ResourcesLoadedSignal()
+        {
+            ViewSignal ret = new ViewSignal(NDalicPINVOKE.ResourceReadySignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
