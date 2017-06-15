@@ -38,6 +38,7 @@ namespace Tizen.Content.Download
         /// Title of the notification.
         /// If user tries to get before setting, empty string is returned.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/download</privilege>
         public string Title
         {
             get
@@ -65,6 +66,7 @@ namespace Tizen.Content.Download
         /// Description of the notification.
         /// If user tries to get before setting, empty string is returned.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/download</privilege>
         public string Description
         {
             get
@@ -92,6 +94,7 @@ namespace Tizen.Content.Download
         /// Type of Notification.
         /// If user tries to get before setting, default NotificationType None is returned.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/download</privilege>
         public NotificationType Type
         {
             get
@@ -119,6 +122,7 @@ namespace Tizen.Content.Download
         /// AppControl for an ongoing download notification.
         /// If user tries to get before setting, null is returned.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// When the notification message is clicked, the action is decided by the app control.
         /// </remarks>
@@ -149,6 +153,7 @@ namespace Tizen.Content.Download
         /// AppControl for a completed download notification.
         /// If user tries to get before setting, null is returned.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// When the notification message is clicked, the action is decided by the app control
         /// </remarks>
@@ -179,6 +184,7 @@ namespace Tizen.Content.Download
         /// AppControl for a failed download notification.
         /// If user tries to get before setting, null is returned.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// When the notification message is clicked, the action is decided by the app control
         /// </remarks>
