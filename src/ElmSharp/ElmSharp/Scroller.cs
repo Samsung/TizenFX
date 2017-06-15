@@ -606,7 +606,7 @@ namespace ElmSharp
         /// This enables or disables event propagation from the scroller content to the scroller and its parent.
         /// By default event propagation is enabled.
         /// </summary>
-        public bool PropagateEvents
+        public bool ContentPropagateEvents
         {
             get
             {
