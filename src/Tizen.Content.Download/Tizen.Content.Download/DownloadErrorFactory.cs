@@ -70,8 +70,6 @@ namespace Tizen.Content.Download
                 case DownloadError.NetworkUnreachable:
                 case DownloadError.ConnectionTimedOut:
                 case DownloadError.NoSpace:
-                case DownloadError.PermissionDenied:
-                case DownloadError.NotSupported:
                 case DownloadError.InvalidState:
                 case DownloadError.ConnectionFailed:
                 case DownloadError.TooManyDownloads:
@@ -88,6 +86,8 @@ namespace Tizen.Content.Download
                 case DownloadError.IdNotFound:
                 case DownloadError.NoData:
                 case DownloadError.IoError: throw new InvalidOperationException(errorMessage);
+                case DownloadError.NotSupported: throw new NotSupportedException(errorMessage);
+                case DownloadError.PermissionDenied: throw new UnauthorizedAccessException(errorMessage);
             }
         }
     }

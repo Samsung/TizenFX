@@ -39,6 +39,9 @@ namespace Tizen.Content.Download
         /// </summary>
         /// <param name="url"> URL to download</param>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public Request(string url)
         {
             if (String.IsNullOrEmpty(url))
@@ -70,6 +73,10 @@ namespace Tizen.Content.Download
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <feature>http://tizen.org/feature/network.wifi.direct</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported.</exception>
         public Request(string url, string destinationPath, string fileName, NetworkType type)
         {
             if (String.IsNullOrEmpty(url))
@@ -122,6 +129,10 @@ namespace Tizen.Content.Download
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <feature>http://tizen.org/feature/network.wifi.direct</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when features is not supported.</exception>
         public Request(string url, string destinationPath, string fileName, NetworkType type, IDictionary<string, string> httpHeaders)
         {
             if (String.IsNullOrEmpty(url))
@@ -171,6 +182,9 @@ namespace Tizen.Content.Download
         /// Event that occurs when the download state changes.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
@@ -195,6 +209,9 @@ namespace Tizen.Content.Download
         /// Event that occurs when the download progress changes.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public event EventHandler<ProgressChangedEventArgs> ProgressChanged
         {
             add
@@ -223,6 +240,9 @@ namespace Tizen.Content.Download
         /// <remarks>
         /// Returns empty string if download is not completed or if state has not yet changed to Completed or if any other error occurs.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public string DownloadedPath
         {
             get
@@ -243,6 +263,9 @@ namespace Tizen.Content.Download
         /// If you try to get this property value before calling Start(), an empty string is returned.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public string MimeType
         {
             get
@@ -262,6 +285,9 @@ namespace Tizen.Content.Download
         /// Current state of the download.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public DownloadState State
         {
             get
@@ -283,6 +309,9 @@ namespace Tizen.Content.Download
         /// If you try to get this property value before calling Start(), an empty string is returned.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public string ContentName
         {
             get
@@ -304,6 +333,9 @@ namespace Tizen.Content.Download
         /// If you try to get this property value before calling Start(), 0 is returned.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public ulong ContentSize
         {
             get
@@ -327,6 +359,9 @@ namespace Tizen.Content.Download
         /// <remarks>
         /// State of download request must be DownlodState.Failed.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public int HttpStatus
         {
             get
@@ -351,6 +386,9 @@ namespace Tizen.Content.Download
         /// The etag value is available or not depending on the web server. If not available, then on get of the property null is returned.
         /// After download is started, it can get the etag value.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public string ETagValue
         {
             get
@@ -391,6 +429,9 @@ namespace Tizen.Content.Download
         /// <remarks>
         /// The download state must be one of the states after Downloading.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public string TemporaryPath
         {
             get
@@ -414,6 +455,9 @@ namespace Tizen.Content.Download
         /// Should be set before calling Start().
         /// If you try to get this property value before setting or if any other error occurs, an empty string is returned.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public string Url
         {
             get
@@ -449,6 +493,10 @@ namespace Tizen.Content.Download
         /// <remarks>
         /// Should be set before calling Start().
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported.</exception>
         public NetworkType AllowedNetworkType
         {
             get
@@ -480,6 +528,9 @@ namespace Tizen.Content.Download
         /// <remarks>
         /// Should be set before calling Start().
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public string DestinationPath
         {
             get
@@ -511,6 +562,9 @@ namespace Tizen.Content.Download
         /// <remarks>
         /// Should be set before calling Start().
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public string FileName
         {
             get
@@ -543,6 +597,9 @@ namespace Tizen.Content.Download
         /// <remarks>
         /// The default value is false.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public bool AutoDownload
         {
             get
@@ -593,6 +650,9 @@ namespace Tizen.Content.Download
         /// If the etag value is not present in the download database, it is not useful to set the temporary file path.
         /// When resuming the download request, the data is attached at the end of this temporary file.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public void SetTemporaryFilePath(string path)
         {
                 int ret = Interop.Download.SetTempFilePath(_downloadId, path);
@@ -610,6 +670,9 @@ namespace Tizen.Content.Download
         /// <remarks>
         /// The URL is the mandatory information to start the download.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public void Start()
         {
             int ret = (int)DownloadError.None;
@@ -636,6 +699,9 @@ namespace Tizen.Content.Download
         /// <remarks>
         /// The paused download request can be restarted with Start() or canceled with Cancel().
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public void Pause()
         {
             int ret = Interop.Download.PauseDownload(_downloadId);
@@ -652,6 +718,9 @@ namespace Tizen.Content.Download
         /// <remarks>
         /// The canceled download can be restarted with Start().
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public void Cancel()
         {
             int ret = Interop.Download.CancelDownload(_downloadId);
@@ -668,6 +737,9 @@ namespace Tizen.Content.Download
         /// <remarks>
         /// After calling this method, download request related data exists in the download database for a certain period of time. Within that time, it is possible to use other APIs with this data.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         public void Dispose()
         {
             Dispose(true);
@@ -678,6 +750,9 @@ namespace Tizen.Content.Download
         /// Deletes the corresponding download request.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
