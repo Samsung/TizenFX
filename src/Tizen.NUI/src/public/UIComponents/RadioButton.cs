@@ -77,7 +77,7 @@ namespace Tizen.NUI.UIComponents
             //because the execution order of Finalizes is non-deterministic.
 
             //Unreference this from if a static instance refer to this.
-            ViewRegistry.UnregisterView(this);
+            Registry.Unregister(this);
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {

@@ -54,7 +54,7 @@ namespace Tizen.NUI.BaseComponents
         {
             // ViewRegistry registers control type with DALi type registery
             // also uses introspection to find any properties that need to be registered with type registry
-            ViewRegistry.Instance.Register(CreateInstance, typeof(VisualView));
+            CustomViewRegistry.Instance.Register(CreateInstance, typeof(VisualView));
         }
 
         public VisualView() : base(typeof(VisualView).Name, CustomViewBehaviour.ViewBehaviourDefault)
@@ -475,7 +475,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
 
-        //temporary fix to pass TCT 
+        //temporary fix to pass TCT
         public Animation VisualAnimate(Tizen.NUI.VisualAnimator visualMap)
         {
             foreach (var item in _visualDictionary.ToList())
@@ -488,7 +488,7 @@ namespace Tizen.NUI.BaseComponents
             }
             return null;
         }
-        //temporary fix to pass TCT 
+        //temporary fix to pass TCT
 
     }
 }

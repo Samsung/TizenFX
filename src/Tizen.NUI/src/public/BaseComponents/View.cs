@@ -31,8 +31,8 @@ namespace Tizen.NUI.BaseComponents
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
-            // Register this instance of view in the view registry.
-            ViewRegistry.RegisterView(this);
+            // Register this instance of view in the registry.
+            Registry.Register(this);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(View obj)
@@ -60,7 +60,7 @@ namespace Tizen.NUI.BaseComponents
             //because the execution order of Finalizes is non-deterministic.
 
             //Unreference this from if a static instance refer to this.
-            ViewRegistry.UnregisterView(this);
+            Registry.Unregister(this);
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -846,7 +846,7 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>A object which inherit View</returns>
         public static T DownCast<T>(View view) where T : View
         {
-            View ret = ViewRegistry.GetViewFromBaseHandle(view);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
             if (ret != null)
             {
                 return (T)ret;
@@ -2093,7 +2093,7 @@ namespace Tizen.NUI.BaseComponents
 
             BaseHandle ret = new BaseHandle(cPtr, false);
 
-            View temp = ViewRegistry.GetViewFromBaseHandle(ret);
+            View temp = Registry.GetManagedBaseHandleFromNativePtr(ret) as View;
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
