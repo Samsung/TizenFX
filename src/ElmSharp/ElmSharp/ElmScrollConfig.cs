@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace ElmSharp
 {
@@ -26,15 +27,16 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the amount of inertia a scroller imposes during region bring animations.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static double BringInScrollFriction
         {
             get
             {
-                return Interop.Elementary.elm_config_scroll_bring_in_scroll_friction_get();
+                return Elementary.BringInScrollFriction;
             }
             set
             {
-                Interop.Elementary.elm_config_scroll_bring_in_scroll_friction_set(value);
+                Elementary.BringInScrollFriction = value;
             }
         }
     }

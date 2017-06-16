@@ -40,6 +40,7 @@ namespace ElmSharp.Test
             "Vodafone (Satellite)",
             "Sample Text"
         };
+
         GenList list;
         Box box;
         Box box2;
@@ -126,7 +127,7 @@ namespace ElmSharp.Test
             list.ScrollAnimationStopped -= List_ScrollAnimationStopped;
 
             EcoreAnimator.RemoveAnimator(_anim);
-            ElmScrollConfig.BringInScrollFriction = _frameSet;
+            Elementary.BringInScrollFriction = _frameSet;
 
             FrameFPS = _frameCount / TimeSet;
             AnimatorFPS = _ecoreCount / TimeSet;
@@ -170,8 +171,8 @@ namespace ElmSharp.Test
             list.RenderPost -= List_RenderPost;
             _enteringSpeed = (EcoreAnimator.GetCurrentTime() - _enteringSpeed) * 1000;
 
-            _frameSet = ElmScrollConfig.BringInScrollFriction;
-            ElmScrollConfig.BringInScrollFriction = TimeSet;
+            _frameSet = Elementary.BringInScrollFriction;
+            Elementary.BringInScrollFriction = TimeSet;
             list.ScrollTo(ItemTarget, ScrollToPosition.In, true);
         }
 

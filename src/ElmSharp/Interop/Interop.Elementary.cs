@@ -153,7 +153,7 @@ internal static partial class Interop
         internal static extern void elm_app_base_scale_set(double base_scale);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern double elm_app_base_scale_set();
+        internal static extern double elm_app_base_scale_get();
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_conformant_add(IntPtr obj);
