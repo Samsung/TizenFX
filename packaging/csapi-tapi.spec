@@ -21,7 +21,12 @@ BuildRequires: csapi-tizen-nuget
 %description
 %{summary}
 
-%dotnet_import_sub_packages
+%package nuget-private
+Summary: Tapi Private Nuget
+Group: Development/Libraries
+
+%description nuget-private
+Tapi Private Nuget for internal uses
 
 %prep
 %setup -q
@@ -42,3 +47,7 @@ done
 %manifest %{name}.manifest
 %license LICENSE
 %attr(644,root,root) %{dotnet_assembly_files}
+
+%files nuget-private
+/nuget/Tizen.Tapi.%{version}.nupkg
+
