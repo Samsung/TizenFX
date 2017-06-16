@@ -120,8 +120,8 @@ namespace ElmSharp
 
         /// <summary>
         /// Gets or sets the item's grid alignment along x-axis within a given gengrid widget.
-        /// The range is less than or equal to 1,and greater than or equal to 0.
-        /// By default, value is 0.5, meaning that the gengrid has its items grid placed exactly in the middle along x-axis.
+        /// Accepted values are in the 0.0 to 1.0 range, with the special value -1.0 used to specify "justify" or "fill" by some users.
+        /// By default, value is 0.0, meaning that the gengrid has its items grid placed exactly in the left along x-axis.
         /// </summary>
         public double ItemAlignmentX
         {
@@ -140,8 +140,8 @@ namespace ElmSharp
 
         /// <summary>
         /// Gets or sets the item's grid alignment on y-axis within a given gengrid widget.
-        /// The range is less than or equal to 1, and greater than or equal to 0.
-        /// By default, value is 0.5, meaning that the gengrid has its items grid placed exactly in the middle along y-axis.
+        /// Accepted values are in the 0.0 to 1.0 range, with the special value -1.0 used to specify "justify" or "fill" by some users.
+        /// By default, value is 0.0, meaning that the gengrid has its items grid placed exactly in the top along y-axis.
         /// </summary>
         public double ItemAlignmentY
         {
