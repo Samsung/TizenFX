@@ -22,6 +22,10 @@ namespace Tizen.Multimedia
     /// </summary>
     public class BufferingProgressChangedEventArgs : EventArgs
     {
+        /// <summary>
+        /// Initializes a new instance of the BufferingProgressChangedEventArgs class.
+        /// </summary>
+        /// <param name="percent">The value indicating the buffering percentage.</param>
         public BufferingProgressChangedEventArgs(int percent)
         {
             Percent = percent;

@@ -151,6 +151,11 @@ namespace Tizen.Multimedia
             _callbackRegistered = true;
         }
 
+        /// <summary>
+        /// Gets the native handle of the player.
+        /// </summary>
+        /// <value>An IntPtr that contains the native handle of the player.</value>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         public IntPtr Handle
         {
             get
@@ -506,6 +511,9 @@ namespace Tizen.Multimedia
         #region Dispose support
         private bool _disposed;
 
+        /// <summary>
+        /// Releases all resources used by the current instance.
+        /// </summary>
         public void Dispose()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
@@ -578,8 +586,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Get Streaming download Progress.
+        /// Gets the streaming download Progress.
         /// </summary>
+        /// <returns>The <see cref="DownloadProgress"/> containing current download progress.</returns>
         /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="InvalidOperationException">
         ///     The player is not streaming.\n
@@ -693,6 +702,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the offset for the subtitle.
         /// </summary>
+        /// <param name="offset">The value indicating a desired offset in milliseconds.</param>
         /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
@@ -731,6 +741,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Prepares the media player for playback, asynchronously.
         /// </summary>
+        /// <returns>A task that represents the asynchronous prepare operation.</returns>
         /// <remarks>To prepare the player, the player must be in the <see cref="PlayerState.Idle"/> state,
         ///     and a source must be set.</remarks>
         /// <exception cref="InvalidOperationException">No source is set.</exception>
@@ -919,6 +930,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Captures a video frame asynchronously.
         /// </summary>
+        /// <returns>A task that represents the asynchronous capture operation.</returns>
         /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
         /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>

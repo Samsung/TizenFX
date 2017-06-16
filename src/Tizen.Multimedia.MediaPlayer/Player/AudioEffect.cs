@@ -103,7 +103,10 @@ namespace Tizen.Multimedia
             Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
-        public int Count{ get; }
+        /// <summary>
+        /// Get the number of items.
+        /// </summary>
+        public int Count { get; }
 
         /// <summary>
         /// Get the band level range of the bands in dB.

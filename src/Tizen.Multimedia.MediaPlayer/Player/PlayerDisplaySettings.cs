@@ -76,7 +76,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the value indicating whether the display is visible.
         /// </summary>
-        /// <value></value>
+        /// <value>true if the display is visible; otherwise false.</value>
         /// <exception cref="InvalidOperationException">
         ///     The display is not assigned.\n
         ///     -or-\n
@@ -144,6 +144,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the roi(region of interest).
         /// </summary>
+        /// <param name="roi">The region.</param>
         /// <remarks>
         /// To set roi, <see cref="Mode"/> must be set to <see cref="PlayerDisplayMode.Roi"/> first.
         /// </remarks>
