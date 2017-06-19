@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="Tizen" Version="1.0.5" />
-    <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
+    <PackageReference Include="System.Threading.Thread" Version="4.3.0" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
