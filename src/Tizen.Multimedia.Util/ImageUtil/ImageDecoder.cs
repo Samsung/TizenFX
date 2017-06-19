@@ -64,6 +64,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Sets the color-space to decode into. The default is <see cref="ColorSpace.Rgba8888"/>.
         /// </summary>
+        /// <param name="colorSpace">The value indicating color-space to decode into.</param>
         /// <exception cref="ArgumentException"><paramref name="colorSpace"/> is invalid.</exception>
         /// <exception cref="NotSupportedException"><paramref name="colorSpace"/> is not supported by the decoder.</exception>
         /// <seealso cref="ImageUtil.GetSupportedColorspace(ImageFormat)"/>
@@ -249,6 +250,10 @@ namespace Tizen.Multimedia.Util
         #region IDisposable Support
         private bool _disposed = false;
 
+        /// <summary>
+        /// Releases the unmanaged resources used by the ImageDecoder.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -261,15 +266,12 @@ namespace Tizen.Multimedia.Util
             }
         }
 
-        ~ImageDecoder()
-        {
-            Dispose(false);
-        }
-
+        /// <summary>
+        /// Releases all resources used by the ImageDecoder.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
         #endregion
     }

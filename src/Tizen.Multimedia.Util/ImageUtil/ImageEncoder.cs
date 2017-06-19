@@ -91,9 +91,9 @@ namespace Tizen.Multimedia.Util
         }
 
         /// <summary>
-        /// Sets the colorspace of the output image.
+        /// Sets the color-space of the output image.
         /// </summary>
-        /// <param name="colorSpace">The target colorspace.</param>
+        /// <param name="colorSpace">The target color-space.</param>
         /// <exception cref="ArgumentException"><paramref name="colorSpace"/> is invalid.</exception>
         /// <exception cref="NotSupportedException"><paramref name="colorSpace"/> is not supported by the encoder.</exception>
         /// <seealso cref="ImageUtil.GetSupportedColorspace(ImageFormat)"/>
@@ -217,6 +217,10 @@ namespace Tizen.Multimedia.Util
         #region IDisposable Support
         private bool _disposed = false;
 
+        /// <summary>
+        /// Releases the unmanaged resources used by the ImageEncoder.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -229,6 +233,9 @@ namespace Tizen.Multimedia.Util
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the ImageEncoder.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -337,9 +344,10 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Initialize a new instance of the <see cref="JpegEncoder"/> class with initial quality value.
         /// </summary>
+        /// <param name="quality">The quality for JPEG image encoding; from 1(lowest quality) to 100(highest quality).</param>
         /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Jpeg"/>.</remarks>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="quality"/> is less than 0.\n
+        ///     <paramref name="quality"/> is less than or equal to 0.\n
         ///     - or -\n
         ///     <paramref name="quality"/> is greater than 100.
         /// </exception>
@@ -352,9 +360,12 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Gets or sets the quality of the encoded image.
         /// </summary>
-        /// <value>The quality of the output image. The default is 75.</value>
+        /// <value>
+        /// The quality of the output image. The default is 75.\n
+        /// Valid value is from 1(lowest quality) to 100(highest quality).
+        /// </value>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="value"/> is less than 0.\n
+        ///     <paramref name="value"/> is less than or equal to 0.\n
         ///     - or -\n
         ///     <paramref name="value"/> is greater than 100.
         /// </exception>
@@ -363,7 +374,7 @@ namespace Tizen.Multimedia.Util
             get { return _quality ?? DefaultQuality; }
             set
             {
-                if (value < 0 || value > 100)
+                if (value <= 0 || value > 100)
                 {
                     throw new ArgumentOutOfRangeException(nameof(Quality), value,
                         "Valid range is from 1 to 100, inclusive.");
@@ -402,7 +413,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Encodes a Graphics Interchange Format (GIF) image from multiple raw image buffers to a specified <see cref="Stream"/>.
         /// </summary>
-        /// <param name="inputBuffer">The image buffer to encode.</param>
+        /// <param name="frames">The image frames to encode.</param>
         /// <param name="outStream">The stream that the image is encoded to.</param>
         /// <returns>A task that represents the asynchronous encoding operation.</returns>
         /// <exception cref="ArgumentNullException">
