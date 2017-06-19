@@ -40,7 +40,7 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //you can override it to clean-up your own resources.
+        // you can override it to clean-up your own resources.
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed)
@@ -797,7 +797,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int CLIPPING_MODE = NDalicPINVOKE.Actor_Property_CLIPPING_MODE_get();
         }
 
-
         /// <summary>
         /// Describes the direction to move the focus towards.
         /// </summary>
@@ -1048,6 +1047,68 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Create an Animation to animate the background color visual. If there is no
+        /// background visual, creates one with transparent black as it's mixColor.
+        /// </summary>
+        public Animation AnimateBackgroundColor( object destinationValue,
+                                                 int startTime,
+                                                 int endTime,
+                                                 AlphaFunction.BuiltinFunctions? alphaFunction = null,
+                                                 object initialValue = null)
+        {
+            Tizen.NUI.PropertyMap background = Background;
+
+            if( background.Empty() )
+            {
+                // If there is no background yet, ensure there is a transparent
+                // color visual
+                BackgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                background = Background;
+            }
+            return AnimateColor( "background", destinationValue, startTime, endTime, alphaFunction, initialValue );
+        }
+
+        /// <summary>
+        /// Create an Animation to animate the mixColor of the named visual.
+        /// </summary>
+        public Animation AnimateColor( string targetVisual, object destinationColor, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialColor = null )
+        {
+            Animation animation = null;
+            {
+                PropertyMap _animator = new PropertyMap();
+                if( alphaFunction != null )
+                {
+                    _animator.Add("alphaFunction", new PropertyValue( AlphaFunction.BuiltinToPropertyKey(alphaFunction) ) );
+                }
+
+                PropertyMap _timePeriod = new PropertyMap();
+                _timePeriod.Add( "duration", new PropertyValue((endTime-startTime)/1000.0f) );
+                _timePeriod.Add( "delay", new PropertyValue( startTime/1000.0f ) );
+                _animator.Add( "timePeriod", new PropertyValue( _timePeriod ) );
+
+                PropertyMap _transition = new PropertyMap();
+                _transition.Add( "animator", new PropertyValue( _animator ) );
+                _transition.Add( "target", new PropertyValue( targetVisual ) );
+                _transition.Add( "property", new PropertyValue( "mixColor" ) );
+
+                if( initialColor != null )
+                {
+                    PropertyValue initValue = PropertyValue.CreateFromObject( initialColor );
+                    _transition.Add( "initialValue", initValue );
+                }
+
+                PropertyValue destValue = PropertyValue.CreateFromObject( destinationColor );
+                _transition.Add( "targetValue", destValue );
+                TransitionData _transitionData = new TransitionData( _transition );
+
+                animation = new Animation( NDalicManualPINVOKE.View_CreateTransition(swigCPtr, TransitionData.getCPtr(_transitionData)), true );
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return animation;
+        }
+
+        /// <summary>
         /// mutually exclusive with BACKGROUND_COLOR & BACKGROUND,  type Map.
         /// </summary>
         public string BackgroundImage
@@ -1072,15 +1133,12 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// <summary>
-        /// mutually exclusive with BACKGROUND_COLOR & BACKGROUND_IMAGE, type Map or string for URL.
-        /// </summary>
         public Tizen.NUI.PropertyMap Background
         {
             get
             {
                 Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-                GetProperty(View.Property.BACKGROUND).Get(temp);
+                GetProperty( View.Property.BACKGROUND ).Get(temp);
                 return temp;
             }
             set
@@ -1088,6 +1146,7 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(View.Property.BACKGROUND, new Tizen.NUI.PropertyValue(value));
             }
         }
+
 
         /// <summary>
         /// The current state of the view.

@@ -24,23 +24,28 @@ namespace VisualsUsingCustomView
     // The collection of contacts
     static class ContactsList
     {
-        private const string resources = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+        private const string resources = "/home/SERILOCAL/david.steele/Git/Tizen/nui/NUISamples/NUISamples/NUISamples.TizenTV/res";
 
         public static readonly ContactItem[] s_contactData = new ContactItem[]
         {
             new ContactItem ("Emmett Yates", resources + "/images/gallery-small-43.jpg",
+                             resources + "/images/mask.png",
                              new Color((73.0f/255.0f),(182.0f/255.0f), (245.0f/255.0f), 1.0f),
                              (int)PrimitiveVisualShapeType.Cone),
             new ContactItem ("Leslie Wong", resources+ "/images/gallery-2.jpg",
+                             resources + "/images/mask.png",
                              new Color((51.0f/255.0f), (51.0f/255.0f), (102.0f/255.0f), 1.0f),
                              (int)PrimitiveVisualShapeType.Sphere),
             new ContactItem ("Walter Jensen", resources+ "/images/gallery-0.jpg",
+                             resources + "/images/mask.png",
                              new Color((151.0f/255.0f), (214.0f/255.0f), (240.0f/255.0f), 1.0f),
                              (int)PrimitiveVisualShapeType.Cylinder),
             new ContactItem ("Dan Haynes", resources+"/images/gallery-1.jpg",
+                             resources + "/images/mask.png",
                              new Color((102.0f/255.0f), (251.0f/255.0f), (102.0f/255.0f), 1.0f),
                              (int)PrimitiveVisualShapeType.ConicalFrustrum),
             new ContactItem ("Mable Hodges", resources+"/images/gallery-3.jpg",
+                             resources + "/images/mask.png",
                              new Color((255.0f/255.0f), (102.0f/255.0f), (102.0f/255.0f), 1.0f),
                              (int)PrimitiveVisualShapeType.Cube)
         };
@@ -53,11 +58,13 @@ namespace VisualsUsingCustomView
         private string _imageURL;
         private Color _color;
         private int _shape;
+        private string _maskURL;
 
-        public ContactItem(string name, string imageURL, Color color, int shape)
+        public ContactItem(string name, string imageURL, string maskURL, Color color, int shape)
         {
             _name = name;
             _imageURL = imageURL;
+            _maskURL = maskURL;
             _color = color;
             _shape = shape;
         }
@@ -71,6 +78,17 @@ namespace VisualsUsingCustomView
             set
             {
                 _imageURL = value;
+            }
+        }
+        public string MaskURL
+        {
+            get
+            {
+                return _maskURL;
+            }
+            set
+            {
+                _maskURL = value;
             }
         }
 

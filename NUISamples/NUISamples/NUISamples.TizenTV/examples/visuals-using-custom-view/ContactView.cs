@@ -28,23 +28,42 @@ namespace VisualsUsingCustomView
 {
     public class ContactView : CustomView
     {
-        private const int ColorVisualPropertyIndex = 0;
-        private const int PrimitiveVisualPropertyIndex = 1;
-        private const int ImageVisualPropertyIndex = 2;
-        private const int TextVisualPropertyIndex = 3;
+        private const int PROPERTY_REGISTRATION_START_INDEX = 10001000;
+        private const int ColorVisualPropertyIndex = PROPERTY_REGISTRATION_START_INDEX+1 ;
+        private const int PrimitiveVisualPropertyIndex = PROPERTY_REGISTRATION_START_INDEX+2;
+        private const int ImageVisualPropertyIndex = PROPERTY_REGISTRATION_START_INDEX+3;
+        private const int TextVisualPropertyIndex = PROPERTY_REGISTRATION_START_INDEX+4;
         private VisualBase _imageVisual;
         private VisualBase _colorVisual;
         private VisualBase _primitiveVisual;
         private VisualBase _textVisual;
         private int _shape;
         private string _imageURL;
+        private string _maskURL;
         private string _name;
         private Color _color;
+
+        static CustomView CreateInstance()
+        {
+            return new ContactView();
+        }
+
+        static ContactView()
+        {
+            ViewRegistry.Instance.Register( CreateInstance, typeof(ContactView));
+        }
 
         public ContactView() : base(typeof(ContactView).Name, CustomViewBehaviour.RequiresKeyboardNavigationSupport)
         {
         }
 
+        public string MaskURL
+        {
+            get { return _maskURL; }
+            set { _maskURL=value; }
+        }
+
+        [ScriptableProperty()]
         public string ImageURL
         {
             get
@@ -58,15 +77,18 @@ namespace VisualsUsingCustomView
                 // Create and Register Image Visual
                 PropertyMap imageVisual = new PropertyMap();
                 imageVisual.Add( Visual.Property.Type, new PropertyValue( (int)Visual.Type.Image ))
-                    .Add( ImageVisualProperty.URL, new PropertyValue( _imageURL ));
+                    .Add( ImageVisualProperty.URL, new PropertyValue( _imageURL ) )
+                    .Add( ImageVisualProperty.AlphaMaskURL, new PropertyValue( _maskURL ));
                 _imageVisual =  VisualFactory.Get().CreateVisual( imageVisual );
-                RegisterVisual( ImageVisualPropertyIndex, _imageVisual );
+
+                RegisterVisual( GetPropertyIndex("ImageURL"), _imageVisual );
 
                 // Set the depth index for Image visual
                 _imageVisual.DepthIndex = ImageVisualPropertyIndex;
             }
         }
 
+        [ScriptableProperty()]
         public string Name
         {
             get
@@ -86,13 +108,15 @@ namespace VisualsUsingCustomView
                     .Add( TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"))
                     .Add( TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
                 _textVisual =  VisualFactory.Get().CreateVisual( textVisual );
-                RegisterVisual( TextVisualPropertyIndex, _textVisual );
+
+                RegisterVisual( GetPropertyIndex("Name"), _textVisual );
 
                 // Set the depth index for Text visual
                 _textVisual.DepthIndex = TextVisualPropertyIndex;
             }
         }
 
+        [ScriptableProperty()]
         public Color Color
         {
             get
@@ -102,19 +126,11 @@ namespace VisualsUsingCustomView
             set
             {
                 _color = value;
-
-                // Create and Register Color Visual
-                PropertyMap colorVisual = new PropertyMap();
-                colorVisual.Add( Visual.Property.Type, new PropertyValue( (int)Visual.Type.Color ))
-                    .Add( ColorVisualProperty.MixColor, new PropertyValue( _color ));
-                _colorVisual =  VisualFactory.Get().CreateVisual( colorVisual );
-                RegisterVisual( ColorVisualPropertyIndex, _colorVisual );
-
-                // Set the depth index for Color visual
-                _colorVisual.DepthIndex = ColorVisualPropertyIndex;
+                BackgroundColor = value;
             }
         }
 
+        [ScriptableProperty()]
         public int Shape
         {
             get
@@ -134,7 +150,7 @@ namespace VisualsUsingCustomView
                     .Add( PrimitiveVisualProperty.ScaleDimensions, new PropertyValue(new Vector3(1.0f,1.0f,0.3f)))
                     .Add( PrimitiveVisualProperty.MixColor, new PropertyValue(new Vector4((245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f)));
                 _primitiveVisual =  VisualFactory.Get().CreateVisual( primitiveVisual );
-                RegisterVisual( PrimitiveVisualPropertyIndex, _primitiveVisual );
+                RegisterVisual( GetPropertyIndex("Shape"), _primitiveVisual );
 
                 // Set the depth index for Primitive visual
                 _primitiveVisual.DepthIndex = PrimitiveVisualPropertyIndex;
@@ -151,7 +167,11 @@ namespace VisualsUsingCustomView
         {
             // Change the Color visual of ContactView with some random color
             Random random = new Random();
-            Color = new Color((random.Next(0, 256) / 255.0f), (random.Next(0, 256) / 255.0f), (random.Next(0, 256) / 255.0f), 1.0f);
+            float nextRed   = (random.Next(0, 256) / 255.0f);
+            float nextGreen = (random.Next(0, 256) / 255.0f);
+            float nextBlue  = (random.Next(0, 256) / 255.0f);
+            Animation anim = AnimateBackgroundColor( new Color( nextRed, nextGreen, nextBlue, 1.0f), 0, 2000 );
+            anim.Play();
         }
 
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
@@ -185,16 +205,6 @@ namespace VisualsUsingCustomView
                 .Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)Visual.AlignType.CenterBegin))
                 .Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)Visual.AlignType.CenterBegin));
             _primitiveVisual.SetTransformAndSize(primitiveVisualTransform, size);
-
-            // Configure the transform and size of Color visual. This is also the default value.
-            PropertyMap colorVisualTransform = new PropertyMap();
-            colorVisualTransform.Add( (int)VisualTransformPropertyType.Offset, new PropertyValue(new Vector2(0.0f,0.0f)))
-                .Add((int)VisualTransformPropertyType.OffsetPolicy, new PropertyValue(new Vector2((int)VisualTransformPolicyType.Relative, (int)VisualTransformPolicyType.Relative)))
-                .Add((int)VisualTransformPropertyType.SizePolicy, new PropertyValue(new Vector2((int)VisualTransformPolicyType.Relative, (int)VisualTransformPolicyType.Relative)))
-                .Add( (int)VisualTransformPropertyType.Size, new PropertyValue(new Vector2(1.0f, 1.0f)) )
-                .Add( (int)VisualTransformPropertyType.Origin, new PropertyValue((int)Visual.AlignType.TopBegin) )
-                .Add( (int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)Visual.AlignType.TopBegin) );
-            _colorVisual.SetTransformAndSize(colorVisualTransform, size);
         }
     }
 }
