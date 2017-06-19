@@ -70,6 +70,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Returns a string that represents this object.
         /// </summary>
+        /// <returns>Returns a string which presents this object.</returns>
         public override string ToString()
         {
             return $"{Name}";
