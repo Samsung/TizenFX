@@ -109,6 +109,11 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the absolute minimum size of panes widget's left side.
+        /// If displayed vertically, left content is displayed at top.
+        /// value representing minimum size of left side in pixels.
+        /// </summary>
         public int LeftMinimumSize
         {
             get
@@ -121,6 +126,12 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the relative minimum size of panes widget's left side.
+        /// proportion of minimum size of left side.
+        /// If displayed vertically, left content is displayed at top.
+        /// value between 0.0 and 1.0 representing size proportion of minimum size of left side.
+        /// </summary>
         public double LeftMinimumRelativeSize
         {
             get
@@ -133,6 +144,11 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the absolute minimum size of panes widget's right side.
+        /// If displayed vertically, right content is displayed at top.
+        /// value representing minimum size of right side in pixels.
+        /// </summary>
         public int RightMinimumSize
         {
             get
@@ -145,6 +161,12 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the relative minimum size of panes widget's right side.
+        /// proportion of minimum size of right side.
+        /// If displayed vertically, right content is displayed at top.
+        /// value between 0.0 and 1.0 representing size proportion of minimum size of right side.
+        /// </summary>
         public double RightMinimumRelativeSize
         {
             get

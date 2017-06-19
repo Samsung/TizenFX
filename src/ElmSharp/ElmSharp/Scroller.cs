@@ -494,7 +494,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get a given scroller widget's scrolling page size, relative to its viewport size.
+        /// Gets or sets a given scroller widget's scrolling page size, relative to its viewport size.
         /// </summary>
         public double VerticalRelativePageSize
         {
@@ -512,7 +512,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get a given scroller widget's scrolling page size, relative to its viewport size.
+        /// Gets or sets a given scroller widget's scrolling page size, relative to its viewport size.
         /// </summary>
         public double HorizontalRelativePageSize
         {
@@ -532,6 +532,12 @@ namespace ElmSharp
         /// <summary>
         /// Gets or Sets the page snapping behavior of a scroller.
         /// </summary>
+        /// <remarks>
+        /// When scrolling, if a scroller is paged (see VerticalRelativePageSize),
+        /// the scroller may snap to pages when being scrolled, i.e., even if it had momentum to scroll further,
+        /// it will stop at the next page boundaries. This is disabled, by default, for both axis.
+        /// This function will set if it that is enabled or not, for each axis.
+        /// </remarks>
         public bool VerticalSnap
         {
             get
@@ -550,6 +556,12 @@ namespace ElmSharp
         /// <summary>
         /// Gets or Sets the page snapping behavior of a scroller.
         /// </summary>
+        /// <remarks>
+        /// When scrolling, if a scroller is paged (see HorizontalRelativePageSize),
+        /// the scroller may snap to pages when being scrolled, i.e., even if it had momentum to scroll further,
+        /// it will stop at the next page boundaries. This is disabled, by default, for both axis.
+        /// This function will set if it that is enabled or not, for each axis.
+        /// </remarks>
         public bool HorizontalSnap
         {
             get
