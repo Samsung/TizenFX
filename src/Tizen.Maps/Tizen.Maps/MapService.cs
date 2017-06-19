@@ -81,7 +81,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets and sets a string representing keys for map service provider
         /// </summary>
-        /// <remarks>Typically, the provider key is issued by each maps provider, after signing up for a plan in the web site.
+        /// <remarks>Regaularly, the provider key is issued by each maps provider, after signing up for a plan in the web site.
         /// Depending on the plan and its provider which you have signed, you might pay for the network traffic.</remarks>
         public string ProviderKey
         {
@@ -261,11 +261,11 @@ namespace Tizen.Maps
         /// Creates a reverse geocode search request for given latitude and longitude.
         /// </summary>
         /// <param name="latitude">Latitude of interested place</param>
-        /// <param name="longitude">Longitude of interested place</param>
+        /// <param name="longitute">Longitude of interested place</param>
         /// <returns>Returns ReverseGeocodeRequest object created with location coordinates</returns>
-        public ReverseGeocodeRequest CreateReverseGeocodeRequest(double latitude, double longitude)
+        public ReverseGeocodeRequest CreateReverseGeocodeRequest(double latitude, double longitute)
         {
-            return new ReverseGeocodeRequest(this, latitude, longitude);
+            return new ReverseGeocodeRequest(this, latitude, longitute);
         }
 
         /// <summary>

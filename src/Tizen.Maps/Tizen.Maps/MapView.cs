@@ -37,11 +37,11 @@ namespace Tizen.Maps
         private Interop.ViewOnEventCallback _viewReadyEventCallback;
 
         private event EventHandler<MapGestureEventArgs> _scrolledEventHandler;
-        private event EventHandler<MapGestureEventArgs> _twoFingerZoomedEventHandler;
-        private event EventHandler<MapGestureEventArgs> _clickedEventHandler;
-        private event EventHandler<MapGestureEventArgs> _doubleClickedEventHandler;
-        private event EventHandler<MapGestureEventArgs> _twoFingerClickedEventHandler;
-        private event EventHandler<MapGestureEventArgs> _twoFingerRotatedEventHandler;
+        private event EventHandler<MapGestureEventArgs> _zoomedEventHandler;
+        private event EventHandler<MapGestureEventArgs> _tappedEventHandler;
+        private event EventHandler<MapGestureEventArgs> _doubleTappedEventHandler;
+        private event EventHandler<MapGestureEventArgs> _twoFingerTappedEventHandler;
+        private event EventHandler<MapGestureEventArgs> _rotatedEventHandler;
         private event EventHandler<MapGestureEventArgs> _longPressedEventHandler;
         private event EventHandler _viewReadyEventHandler;
 
@@ -64,7 +64,7 @@ namespace Tizen.Maps
             this.Resize(1, 1);
 
             // We need to keep Gesture Tap event enabled for object event to work
-            handle.SetGestureEnabled(Interop.ViewGesture.Click, true);
+            handle.SetGestureEnabled(Interop.ViewGesture.Tap, true);
             SetObjectEventCallback();
         }
 
@@ -99,20 +99,20 @@ namespace Tizen.Maps
         /// </summary>
         /// <value>Event handlers to get zoomed gesture event</value>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
-        public event EventHandler<MapGestureEventArgs> TwoFingerZoomed
+        public event EventHandler<MapGestureEventArgs> ZoomChanged
         {
             add
             {
                 SetGestureEventCallback();
                 handle.SetGestureEnabled(Interop.ViewGesture.Zoom, true);
-                _twoFingerZoomedEventHandler += value;
-                Log.Info(string.Format("TwoFingerZoomed event handler is added"));
+                _zoomedEventHandler += value;
+                Log.Info(string.Format("ZoomChanged event handler is added"));
             }
             remove
             {
-                _twoFingerZoomedEventHandler -= value;
-                Log.Info(string.Format("TwoFingerZoomed event handler is removed"));
-                if (_twoFingerZoomedEventHandler == null)
+                _zoomedEventHandler -= value;
+                Log.Info(string.Format("ZoomChanged event handler is removed"));
+                if (_zoomedEventHandler == null)
                 {
                     handle.SetGestureEnabled(Interop.ViewGesture.Zoom, false);
                     UnsetGestureEventCallback();
@@ -130,17 +130,17 @@ namespace Tizen.Maps
             add
             {
                 SetGestureEventCallback();
-                //handle.SetGestureEnabled(Interop.ViewGesture.Click, true);
-                _clickedEventHandler += value;
+                //handle.SetGestureEnabled(Interop.ViewGesture.Tap, true);
+                _tappedEventHandler += value;
                 Log.Info(string.Format("Clicked event handler is added"));
             }
             remove
             {
-                _clickedEventHandler -= value;
+                _tappedEventHandler -= value;
                 Log.Info(string.Format("Clicked event handler is removed"));
-                if (_clickedEventHandler == null)
+                if (_tappedEventHandler == null)
                 {
-                    //handle.SetGestureEnabled(Interop.ViewGesture.Click, false);
+                    //handle.SetGestureEnabled(Interop.ViewGesture.Tap, false);
                     UnsetGestureEventCallback();
                 }
             }
@@ -156,17 +156,17 @@ namespace Tizen.Maps
             add
             {
                 SetGestureEventCallback();
-                handle.SetGestureEnabled(Interop.ViewGesture.DoubleClick, true);
-                _doubleClickedEventHandler += value;
+                handle.SetGestureEnabled(Interop.ViewGesture.DoubleTap, true);
+                _doubleTappedEventHandler += value;
                 Log.Info(string.Format("DoubleClicked event handler is removed"));
             }
             remove
             {
-                _doubleClickedEventHandler -= value;
+                _doubleTappedEventHandler -= value;
                 Log.Info(string.Format("DoubleClicked event handler is removed"));
-                if (_doubleClickedEventHandler == null)
+                if (_doubleTappedEventHandler == null)
                 {
-                    handle.SetGestureEnabled(Interop.ViewGesture.DoubleClick, false);
+                    handle.SetGestureEnabled(Interop.ViewGesture.DoubleTap, false);
                     UnsetGestureEventCallback();
                 }
             }
@@ -177,22 +177,22 @@ namespace Tizen.Maps
         /// </summary>
         /// <value>Event handlers to get clicked gesture event</value>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
-        public event EventHandler<MapGestureEventArgs> TwoFingerClicked
+        public event EventHandler<MapGestureEventArgs> TwoFingerPressed
         {
             add
             {
                 SetGestureEventCallback();
-                handle.SetGestureEnabled(Interop.ViewGesture.TwoFingerClick, true);
-                _twoFingerClickedEventHandler += value;
-                Log.Info(string.Format("TwoFingerClicked event handler is added"));
+                handle.SetGestureEnabled(Interop.ViewGesture.TwoFingerTap, true);
+                _twoFingerTappedEventHandler += value;
+                Log.Info(string.Format("TwoFingerPressed event handler is added"));
             }
             remove
             {
-                _twoFingerClickedEventHandler -= value;
-                Log.Info(string.Format("TwoFingerClicked event handler is removed"));
-                if (_twoFingerClickedEventHandler == null)
+                _twoFingerTappedEventHandler -= value;
+                Log.Info(string.Format("TwoFingerPressed event handler is removed"));
+                if (_twoFingerTappedEventHandler == null)
                 {
-                    handle.SetGestureEnabled(Interop.ViewGesture.TwoFingerClick, false);
+                    handle.SetGestureEnabled(Interop.ViewGesture.TwoFingerTap, false);
                     UnsetGestureEventCallback();
                 }
             }
@@ -203,22 +203,22 @@ namespace Tizen.Maps
         /// </summary>
         /// <value>Event handlers to get rotated gesture event</value>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
-        public event EventHandler<MapGestureEventArgs> TwoFingerRotated
+        public event EventHandler<MapGestureEventArgs> Rotated
         {
             add
             {
                 SetGestureEventCallback();
-                handle.SetGestureEnabled(Interop.ViewGesture.Rotation, true);
-                _twoFingerRotatedEventHandler += value;
+                handle.SetGestureEnabled(Interop.ViewGesture.Rotate, true);
+                _rotatedEventHandler += value;
                 Log.Info(string.Format("Rotated event handler is added"));
             }
             remove
             {
-                _twoFingerRotatedEventHandler -= value;
+                _rotatedEventHandler -= value;
                 Log.Info(string.Format("Rotated event handler is removed"));
-                if (_twoFingerRotatedEventHandler == null)
+                if (_rotatedEventHandler == null)
                 {
-                    handle.SetGestureEnabled(Interop.ViewGesture.Rotation, false);
+                    handle.SetGestureEnabled(Interop.ViewGesture.Rotate, false);
                     UnsetGestureEventCallback();
                 }
             }
@@ -648,11 +648,11 @@ namespace Tizen.Maps
                     switch (eventArg.GestureType)
                     {
                         case GestureType.Scroll: _scrolledEventHandler?.Invoke(this, eventArg); break;
-                        case GestureType.Zoom: _twoFingerZoomedEventHandler?.Invoke(this, eventArg); break;
-                        case GestureType.Click: _clickedEventHandler?.Invoke(this, eventArg); break;
-                        case GestureType.DoubleClick: _doubleClickedEventHandler?.Invoke(this, eventArg); break;
-                        case GestureType.TwoFingerClick: _twoFingerClickedEventHandler?.Invoke(this, eventArg); break;
-                        case GestureType.Rotation: _twoFingerRotatedEventHandler?.Invoke(this, eventArg); break;
+                        case GestureType.Zoom: _zoomedEventHandler?.Invoke(this, eventArg); break;
+                        case GestureType.Tap: _tappedEventHandler?.Invoke(this, eventArg); break;
+                        case GestureType.DoubleTap: _doubleTappedEventHandler?.Invoke(this, eventArg); break;
+                        case GestureType.TwoFingerTap: _twoFingerTappedEventHandler?.Invoke(this, eventArg); break;
+                        case GestureType.Rotate: _rotatedEventHandler?.Invoke(this, eventArg); break;
                         case GestureType.LongPress: _longPressedEventHandler?.Invoke(this, eventArg); break;
                     }
                 };
@@ -663,9 +663,9 @@ namespace Tizen.Maps
 
         private void UnsetGestureEventCallback()
         {
-            if (_scrolledEventHandler != null || _twoFingerZoomedEventHandler != null
-                || _clickedEventHandler != null || _doubleClickedEventHandler != null
-                || _twoFingerClickedEventHandler != null || _twoFingerRotatedEventHandler != null
+            if (_scrolledEventHandler != null || _zoomedEventHandler != null
+                || _tappedEventHandler != null || _doubleTappedEventHandler != null
+                || _twoFingerTappedEventHandler != null || _rotatedEventHandler != null
                 || _longPressedEventHandler != null)
             {
                 return;
@@ -686,12 +686,12 @@ namespace Tizen.Maps
                     var eventArg = new Interop.ObjectEventDataHandle(eventData);
                     switch (eventArg.GestureType)
                     {
-                        case Interop.ViewGesture.Click:
-                        {
-                            var mapObject = _handleToObjectTable[eventArg.ViewObject];
-                            mapObject?.HandleClickedEvent();
-                            break;
-                        }
+                        case Interop.ViewGesture.Tap:
+                            {
+                                var mapObject = _handleToObjectTable[eventArg.ViewObject];
+                                mapObject?.HandleClickedEvent();
+                                break;
+                            }
                     }
                 };
                 handle.SetEventCb(Interop.ViewEventType.Object, _objectEventCallback, IntPtr.Zero);

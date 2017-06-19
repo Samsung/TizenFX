@@ -54,9 +54,6 @@ namespace Tizen.Maps
         /// </summary>
         public event EventHandler Clicked;
 
-        /// <summary>
-        /// Gets or sets visibility for the polyline.
-        /// </summary>
         public override bool IsVisible
         {
             get { return handle.IsVisible; }
