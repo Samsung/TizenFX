@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ElmSharp
 {
@@ -24,6 +26,7 @@ namespace ElmSharp
     public class EdjeObject
     {
         IntPtr _edjeHandle;
+        Dictionary<SignalData, Interop.Elementary.Edje_Signal_Cb> _signalDatas = new Dictionary<SignalData, Interop.Elementary.Edje_Signal_Cb>();
 
         internal EdjeObject(IntPtr handle)
         {
@@ -68,6 +71,158 @@ namespace ElmSharp
         public void DeleteColorClass(string part)
         {
             Interop.Elementary.edje_object_color_class_del(_edjeHandle, part);
+        }
+
+        /// <summary>
+        /// Sets the object color class.
+        /// </summary>
+        /// <param name="colorClass">The color class name.</param>
+        /// <param name="red">The object Red value.</param>
+        /// <param name="green">The object Green value.</param>
+        /// <param name="blue">The object Blue value.</param>
+        /// <param name="alpha">The object Alpha value.</param>
+        /// <param name="outlineRed">The outline Red value.</param>
+        /// <param name="outlineGreen">The outline Green value.</param>
+        /// <param name="outlineBlue">The outline Blue value.</param>
+        /// <param name="outlineAlpha">The outline Alpha value.</param>
+        /// <param name="shadowRed">The shadow Red value.</param>
+        /// <param name="shadowGreen">The shadow Green value.</param>
+        /// <param name="shadowBlue">The shadow Blue value.</param>
+        /// <param name="shadowAlpha">The shadow Alpha value.</param>
+        /// <returns>True if succeed, otherwise False</returns>
+        public bool SetColorClass(string colorClass, int red, int green, int blue, int alpha, int outlineRed, int outlineGreen, int outlineBlue, int outlineAlpha,
+            int shadowRed, int shadowGreen, int shadowBlue, int shadowAlpha)
+        {
+            return Interop.Elementary.edje_object_color_class_set(_edjeHandle, colorClass, red, green, blue, alpha, outlineRed, outlineGreen, outlineBlue, outlineAlpha,
+                shadowRed, shadowGreen, shadowBlue, shadowAlpha);
+        }
+
+        /// <summary>
+        /// Gets the object color class.
+        /// </summary>
+        /// <param name="colorClass">The color class name.</param>
+        /// <param name="red">The object Red value.</param>
+        /// <param name="green">The object Green value.</param>
+        /// <param name="blue">The object Blue value.</param>
+        /// <param name="alpha">The object Alpha value.</param>
+        /// <param name="outlineRed">The outline Red value.</param>
+        /// <param name="outlineGreen">The outline Green value.</param>
+        /// <param name="outlineBlue">The outline Blue value.</param>
+        /// <param name="outlineAlpha">The outline Alpha value.</param>
+        /// <param name="shadowRed">The shadow Red value.</param>
+        /// <param name="shadowGreen">The shadow Green value.</param>
+        /// <param name="shadowBlue">The shadow Blue value.</param>
+        /// <param name="shadowAlpha">The shadow Alpha value.</param>
+        /// <returns>True if succeed, otherwise False</returns>
+        public bool GetColorClass(string colorClass, out int red, out int green, out int blue, out int alpha, out int outlineRed, out int outlineGreen, out int outlineBlue, out int outlineAlpha,
+            out int shadowRed, out int shadowGreen, out int shadowBlue, out int shadowAlpha)
+        {
+            return Interop.Elementary.edje_object_color_class_get(_edjeHandle, colorClass, out red, out green, out blue, out alpha, out outlineRed, out outlineGreen, out outlineBlue, out outlineAlpha,
+                out shadowRed, out shadowGreen, out shadowBlue, out shadowAlpha);
+        }
+
+        /// <summary>
+        /// Sets Edje text class.
+        /// </summary>
+        /// <param name="textClass">The text class name.</param>
+        /// <param name="font">	Font name.</param>
+        /// <param name="fontSize">Font size.</param>
+        /// <returns>True if succeed, otherwise False</returns>
+        public bool SetTextClass(string textClass, string font, int fontSize)
+        {
+            return Interop.Elementary.edje_object_text_class_set(_edjeHandle, textClass, font, fontSize);
+        }
+
+        /// <summary>
+        /// Gets Edje text class.
+        /// </summary>
+        /// <param name="textClass">The text class name.</param>
+        /// <param name="font">Font name.</param>
+        /// <param name="fontSize">Font size.</param>
+        /// <returns>True if succeed, otherwise False</returns>
+        public bool GetTextClass(string textClass, out string font, out int fontSize)
+        {
+            return Interop.Elementary.edje_object_text_class_get(_edjeHandle, textClass, out font, out fontSize);
+        }
+
+        /// <summary>
+        /// Adds Action for an arriving edje signal, emitted by a given Ejde object.
+        /// </summary>
+        /// <param name="emission">The signal's "emission" string</param>
+        /// <param name="source">The signal's "source" string</param>
+        /// <param name="action">The action to be executed when the signal is emitted</param>
+        public void AddSignalAction(string emission, string source, Action<string, string> action)
+        {
+            if (emission != null && source != null && action != null)
+            {
+                var signalData = new SignalData(emission, source, action);
+                if (!_signalDatas.ContainsKey(signalData))
+                {
+                    var signalCallback = new Interop.Elementary.Edje_Signal_Cb((d, o, e, s) =>
+                    {
+                        action(e, s);
+                    });
+
+                    Interop.Elementary.edje_object_signal_callback_add(_edjeHandle, emission, source, signalCallback, IntPtr.Zero);
+                    _signalDatas.Add(signalData, signalCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deletes a signal-triggered action from an object.
+        /// </summary>
+        /// <param name="emission">The signal's "emission" string</param>
+        /// <param name="source">The signal's "source" string</param>
+        /// <param name="action">The action to be executed when the signal is emitted</param>
+        public void DeleteSignalAction(string emission, string source, Action<string, string> action)
+        {
+            if (emission != null && source != null && action != null)
+            {
+                var signalData = new SignalData(emission, source, action);
+
+                Interop.Elementary.Edje_Signal_Cb signalCallback = null;
+                _signalDatas.TryGetValue(signalData, out signalCallback);
+
+                if (signalCallback != null)
+                {
+                    Interop.Elementary.edje_object_signal_callback_del(_edjeHandle, emission, source, signalCallback);
+                    _signalDatas.Remove(signalData);
+                }
+            }
+        }
+
+        class SignalData
+        {
+            public string Emission { get; set; }
+            public string Source { get; set; }
+
+            public Action<string, string> Action { get; set; }
+
+            public SignalData(string emission, string source, Action<string, string> action)
+            {
+                Emission = emission;
+                Source = source;
+                Action = action;
+            }
+
+            public override bool Equals(object obj)
+            {
+                SignalData s = obj as SignalData;
+                if (s == null)
+                {
+                    return false;
+                }
+                return (Emission == s.Emission) && (Source == s.Source) && (Action == s.Action);
+            }
+
+            public override int GetHashCode()
+            {
+                int hashCode = Emission.GetHashCode();
+                hashCode ^= Source.GetHashCode();
+                hashCode ^= Action.GetHashCode();
+                return hashCode;
+            }
         }
     }
 
