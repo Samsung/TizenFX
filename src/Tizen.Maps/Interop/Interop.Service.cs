@@ -56,7 +56,7 @@ internal static partial class Interop
         ViewTraffic = 0x100, // MAPS_VIEW_TRAFFIC
         ViewPublicTransit, // MAPS_VIEW_PUBLIC_TRANSIT
         ViewBuilding, // MAPS_VIEW_BUILDING
-        ViewScalebar, // MAPS_VIEW_SCALEBAR
+        ViewScaleBar, // MAPS_VIEW_SCALEBAR
     }
 
 

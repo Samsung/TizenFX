@@ -471,16 +471,16 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
-        public bool ScalebarEnabled
+        public bool ScaleBarEnabled
         {
             get
             {
-                return handle.ScalebarEnabled;
+                return handle.ScaleBarEnabled;
             }
             set
             {
                 Log.Info(string.Format("Showing the scale-bar is {0}", (value ? "enabled" : "disabled")));
-                handle.ScalebarEnabled = value;
+                handle.ScaleBarEnabled = value;
             }
         }
 

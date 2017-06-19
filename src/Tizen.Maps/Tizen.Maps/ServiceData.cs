@@ -91,6 +91,6 @@ namespace Tizen.Maps
         /// <summary>
         /// Indicates availability of scale bar on the Map.
         /// </summary>
-        ViewScalebar = Interop.ServiceData.ViewScalebar,
+        ViewScaleBar = Interop.ServiceData.ViewScaleBar,
     }
 }

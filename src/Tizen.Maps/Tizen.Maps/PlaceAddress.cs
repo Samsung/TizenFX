@@ -141,15 +141,15 @@ namespace Tizen.Maps
         /// Gets a free text associated with this address.
         /// </summary>
         /// <since_tizen>3</since_tizen>
-        public string Freetext
+        public string FreeText
         {
             get
             {
-                return handle.Freetext;
+                return handle.FreeText;
             }
             set
             {
-                handle.Freetext = value;
+                handle.FreeText = value;
             }
         }
 
@@ -208,7 +208,7 @@ namespace Tizen.Maps
         /// <returns>Returns a string which presents this object.</returns>
         public override string ToString()
         {
-            return $"{Freetext}";
+            return $"{FreeText}";
         }
 
         #region IDisposable Support

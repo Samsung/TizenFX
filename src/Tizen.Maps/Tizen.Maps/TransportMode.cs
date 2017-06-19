@@ -37,7 +37,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Indicates that route is to be traveled using public transport.
         /// </summary>
-        Publictransit = Interop.RouteTransportMode.PublicTransit,
+        PublicTransit = Interop.RouteTransportMode.PublicTransit,
         /// <summary>
         /// Indicates that route is for a truck.
         /// </summary>

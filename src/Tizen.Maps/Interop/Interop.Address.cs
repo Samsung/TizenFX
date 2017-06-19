@@ -74,10 +74,10 @@ internal static partial class Interop
     internal static extern ErrorCode SetPostalCode(this AddressHandle /* maps_address_h */ address, string postalCode);
 
     [DllImport(Libraries.MapService, EntryPoint = "maps_address_get_freetext")]
-    internal static extern ErrorCode GetFreetext(this AddressHandle /* maps_address_h */ address, out string freetext);
+    internal static extern ErrorCode GetFreeText(this AddressHandle /* maps_address_h */ address, out string freetext);
 
     [DllImport(Libraries.MapService, EntryPoint = "maps_address_set_freetext")]
-    internal static extern ErrorCode SetFreetext(this AddressHandle /* maps_address_h */ address, string freetext);
+    internal static extern ErrorCode SetFreeText(this AddressHandle /* maps_address_h */ address, string freetext);
 
     internal class AddressHandle : SafeMapsHandle
     {
@@ -144,10 +144,10 @@ internal static partial class Interop
             set { NativeSet(this.SetPostalCode, value); }
         }
 
-        internal string Freetext
+        internal string FreeText
         {
-            get { return NativeGet(this.GetFreetext); }
-            set { NativeSet(this.SetFreetext, value); }
+            get { return NativeGet(this.GetFreeText); }
+            set { NativeSet(this.SetFreeText, value); }
         }
 
         internal AddressHandle(IntPtr handle, bool needToRelease) : base(handle, needToRelease, Destroy)

@@ -87,10 +87,10 @@ internal static partial class Interop
     internal static extern ErrorCode SetPublicTransitEnabled(this ViewHandle /* maps_view_h */ view, bool enable);
 
     [DllImport(Libraries.MapService, EntryPoint = "maps_view_get_scalebar_enabled")]
-    internal static extern ErrorCode GetScalebarEnabled(this ViewHandle /* maps_view_h */ view, out bool enabled);
+    internal static extern ErrorCode GetScaleBarEnabled(this ViewHandle /* maps_view_h */ view, out bool enabled);
 
     [DllImport(Libraries.MapService, EntryPoint = "maps_view_set_scalebar_enabled")]
-    internal static extern ErrorCode SetScalebarEnabled(this ViewHandle /* maps_view_h */ view, bool enable);
+    internal static extern ErrorCode SetScaleBarEnabled(this ViewHandle /* maps_view_h */ view, bool enable);
 
     [DllImport(Libraries.MapService, EntryPoint = "maps_view_get_screen_location")]
     internal static extern ErrorCode GetScreenLocation(this ViewHandle /* maps_view_h */ view, out int x, out int y, out int width, out int height);
@@ -208,10 +208,10 @@ internal static partial class Interop
             get { return NativeGet<bool>(this.GetPublicTransitEnabled); }
             set { NativeSet(this.SetPublicTransitEnabled, value); }
         }
-        internal bool ScalebarEnabled
+        internal bool ScaleBarEnabled
         {
-            get { return NativeGet<bool>(this.GetScalebarEnabled); }
-            set { NativeSet(this.SetScalebarEnabled, value); }
+            get { return NativeGet<bool>(this.GetScaleBarEnabled); }
+            set { NativeSet(this.SetScaleBarEnabled, value); }
         }
 
         internal string Language
