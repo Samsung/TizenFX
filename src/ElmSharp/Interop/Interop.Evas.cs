@@ -451,7 +451,7 @@ internal static partial class Interop
         internal static extern void evas_object_smart_changed(IntPtr obj);
 
         [DllImport(Libraries.Evas)]
-        internal static extern void evas_color_argb_premul(int a, out int r, out int g, out int b);
+        internal static extern void evas_color_argb_premul(int a, ref int r, ref int g, ref int b);
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_damage_rectangle_add(IntPtr obj, int x, int y, int w, int h);
@@ -676,7 +676,7 @@ internal static partial class Interop
         internal static extern void evas_font_path_global_prepend(string path);
 
         [DllImport(Libraries.Evas)]
-        internal static extern void evas_color_argb_unpremul(int a, out int r, out int g, out int b);
+        internal static extern void evas_color_argb_unpremul(int a, ref int r, ref int g, ref int b);
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_color_hsv_to_rgb(int r, int g, int b, out float h, out float s, out float v);
