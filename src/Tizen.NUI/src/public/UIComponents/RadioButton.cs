@@ -75,10 +75,6 @@ namespace Tizen.NUI.UIComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            //Unreference this from if a static instance refer to this.
-            ViewRegistry.UnregisterView(this);
-
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
