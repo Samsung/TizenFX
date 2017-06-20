@@ -677,6 +677,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal ResizedSignal ResizedSignal()
+        {
+            ResizedSignal ret = new ResizedSignal(NDalicManualPINVOKE.Window_ResizedSignal(stageCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal static Vector4 DEFAULT_BACKGROUND_COLOR
         {
             get
@@ -1168,6 +1175,76 @@ namespace Tizen.NUI
             if (_stageSceneCreatedEventHandler != null)
             {
                 _stageSceneCreatedEventHandler(this, null);
+            }
+        }
+
+        public class ResizedEventArgs : EventArgs
+        {
+            int _width;
+            int _height;
+
+            public int Width
+            {
+                get
+                {
+                    return _width;
+                }
+                set
+                {
+                    _width = value;
+                }
+            }
+
+            public int Height
+            {
+                get
+                {
+                    return _height;
+                }
+                set
+                {
+                    _height = value;
+                }
+            }
+        }
+
+        private WindowResizedEventCallbackType _windowResizedEventCallback;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WindowResizedEventCallbackType(int width, int height);
+        private event EventHandler<ResizedEventArgs> _windowResizedEventHandler;
+
+        public event EventHandler<ResizedEventArgs> Resized
+        {
+            add
+            {
+                if (_windowResizedEventHandler == null)
+                {
+                    _windowResizedEventCallback = OnResized;
+                    ResizedSignal().Connect(_windowResizedEventCallback);
+                }
+
+                _windowResizedEventHandler += value;
+            }
+            remove
+            {
+                _windowResizedEventHandler -= value;
+
+                if (_windowResizedEventHandler == null && ResizedSignal().Empty() == false && _windowResizedEventCallback != null)
+                {
+                    ResizedSignal().Disconnect(_windowResizedEventCallback);
+                }
+            }
+        }
+
+        private void OnResized(int width, int height)
+        {
+            ResizedEventArgs e = new ResizedEventArgs();
+            e.Width = width;
+            e.Height = height;
+
+            if (_windowResizedEventHandler != null)
+            {
+                _windowResizedEventHandler(this, e);
             }
         }
 
