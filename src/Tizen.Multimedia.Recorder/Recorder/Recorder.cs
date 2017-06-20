@@ -31,9 +31,6 @@ namespace Tizen.Multimedia
     ///  to start, stop and save the recorded content. It also provides methods
     ///  to get/set various attributes and capabilities of recorder.
     /// </summary>
-    /// <privilege>
-    /// http://tizen.org/privilege/recorder
-    /// </privilege>
     public class Recorder : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -43,9 +40,6 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Audio recorder constructor.
         /// </summary>
-        /// /// <privilege>
-        /// http://tizen.org/privilege/microphone
-        /// </privilege>
         public Recorder()
         {
             RecorderErrorFactory.ThrowIfError(Native.Create(out _handle),
@@ -65,9 +59,6 @@ namespace Tizen.Multimedia
         /// <param name="camera">
         /// The camera object.
         /// </param>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera
-        /// </privilege>
         public Recorder(Camera camera)
         {
             RecorderErrorFactory.ThrowIfError(Native.CreateVideo(camera.Handle, out _handle),
@@ -239,9 +230,6 @@ namespace Tizen.Multimedia
         /// Before calling the function, it is required to set AudioEncoder,
         /// videoencoder and fileformat properties of recorder.
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera or http://tizen.org/privilege/microphone
-        /// </privilege>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void Prepare()
@@ -260,9 +248,6 @@ namespace Tizen.Multimedia
         /// After this method is finished without any exception,
         /// The state of recorder will be changed to <see cref="RecorderState.Created"/> state.
         /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera or http://tizen.org/privilege/microphone
-        /// </privilege>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void Unprepare()
@@ -288,10 +273,11 @@ namespace Tizen.Multimedia
         ///	The filename should be set before this function is invoked.
         /// </remarks>
         /// <privilege>
-        /// http://tizen.org/privilege/camera or http://tizen.org/privilege/microphone
+        /// http://tizen.org/privilege/recorder
         /// </privilege>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void Start()
         {
             ValidateState(RecorderState.Ready, RecorderState.Paused);
@@ -312,10 +298,11 @@ namespace Tizen.Multimedia
         /// Recording can be resumed with Start().
         /// </remarks>
         /// <privilege>
-        /// http://tizen.org/privilege/camera or http://tizen.org/privilege/microphone
+        /// http://tizen.org/privilege/recorder
         /// </privilege>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void Pause()
         {
             ValidateState(RecorderState.Recording);
@@ -333,10 +320,11 @@ namespace Tizen.Multimedia
         /// The state of recorder will be changed to <see cref="RecorderState.Ready"/> state.
         /// </summary>
         /// <privilege>
-        /// http://tizen.org/privilege/camera or http://tizen.org/privilege/microphone
+        /// http://tizen.org/privilege/recorder
         /// </privilege>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void Commit()
         {
             ValidateState(RecorderState.Recording, RecorderState.Paused);
@@ -355,10 +343,11 @@ namespace Tizen.Multimedia
         /// The state of recorder will be changed to <see cref="RecorderState.Ready"/> state.
         /// </summary>
         /// <privilege>
-        /// http://tizen.org/privilege/camera or http://tizen.org/privilege/microphone
+        /// http://tizen.org/privilege/recorder
         /// </privilege>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void Cancel()
         {
             ValidateState(RecorderState.Recording, RecorderState.Paused);

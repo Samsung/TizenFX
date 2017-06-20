@@ -84,9 +84,6 @@ namespace Tizen.Multimedia
         /// The display rotation.
         /// </summary>
         /// <value>A <see cref="CameraRotation"/> that specifies the rotation of camera device.</value>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera.
-        /// </privilege>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
         public CameraRotation Rotation
         {
@@ -111,9 +108,6 @@ namespace Tizen.Multimedia
         /// The display flip.
         /// </summary>
         /// <value>A <see cref="CameraFlip"/> that specifies camera flip type.</value>
-        /// <privilege>
-        /// http://tizen.org/privilege/camera.
-        /// </privilege>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
         public CameraFlip Flip
         {
