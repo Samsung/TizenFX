@@ -168,6 +168,7 @@
     <Compile Include="src\internal\RenderTask.cs" />
     <Compile Include="src\internal\RenderTaskList.cs" />
     <Compile Include="src\internal\RenderTaskSignal.cs" />
+    <Compile Include="src\internal\ResizedSignal.cs" />
     <Compile Include="src\internal\ResourceImage.cs" />
     <Compile Include="src\internal\ResourceImageSignal.cs" />
     <Compile Include="src\internal\Ruler.cs" />

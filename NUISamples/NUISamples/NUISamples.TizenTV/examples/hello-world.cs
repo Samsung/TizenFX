@@ -55,6 +55,11 @@ namespace HelloWorldTest
             window.BackgroundColor = Color.White;
             window.Touched += OnWindowTouched;
             window.KeyPressed += OnWindowKeyEvent;
+            window.Resized += (obj, e) =>
+            {
+                Tizen.Log.Debug("NUI", "Height: " + e.Height);
+                Tizen.Log.Debug("NUI", "Width: " + e.Width);
+            };
 
             TextLabel pixelLabel = new TextLabel("Test Pixel Size 32.0f");
             pixelLabel.Position2D = new Position2D(10, 10);

@@ -131,6 +131,9 @@ namespace DaliTest
             VisibilityChangeTest();
 
             ResourceReadyTest();
+
+            ViewFocusTest();
+
             WindowDevelPropertyTest();
 
             Animatable handle = new Animatable();
@@ -585,6 +588,46 @@ namespace DaliTest
                 Tizen.Log.Debug("NUI", "Resource is ready!");
             };
             Window.Instance.Add(image);
+        }
+
+        public void ViewFocusTest()
+        {
+            View view1 = new View();
+            view1.BackgroundColor = Color.Red;
+            view1.Size2D = new Size2D(80, 50);
+            view1.ParentOrigin = ParentOrigin.CenterLeft;
+            view1.PivotPoint = PivotPoint.CenterLeft;
+            view1.Position = new Position(10.0f, 50.0f, 0.0f);
+            view1.Focusable = true;
+            View view2 = new View();
+            view2.BackgroundColor = Color.Cyan;
+            view2.Size2D = new Size2D(80, 50);
+            view2.ParentOrigin = ParentOrigin.CenterLeft;
+            view2.PivotPoint = PivotPoint.CenterLeft;
+            view2.Position = new Position(100.0f, 50.0f, 0.0f);
+            view2.Focusable = true;
+            view1.RightFocusableView = view2;
+            view2.LeftFocusableView = view1;
+            Window.Add(view1);
+            Window.Add(view2);
+            FocusManager.Instance.SetCurrentFocusView(view1);
+
+            PushButton button = new PushButton();
+            button.LabelText = "Focus Back";
+            button.Size2D = new Size2D(150, 50);
+            button.ParentOrigin = ParentOrigin.CenterLeft;
+            button.PivotPoint = PivotPoint.CenterLeft;
+            button.Position = new Position(190.0f, 50.0f, 0.0f);
+
+            button.Focusable = true;
+            view2.RightFocusableView = button;
+ 
+            button.Pressed += (obj, e) =>
+            {
+                FocusManager.Instance.MoveFocusBackward();
+                return true;
+            };
+            Window.Add(button);
         }
 
         public void WindowDevelPropertyTest()
