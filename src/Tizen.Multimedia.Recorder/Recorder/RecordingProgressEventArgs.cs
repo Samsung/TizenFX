@@ -23,7 +23,7 @@ namespace Tizen.Multimedia
     /// </summary>
     public class RecordingProgressEventArgs : EventArgs
     {
-        public RecordingProgressEventArgs(ulong elapsedTime, ulong fileSize)
+        internal RecordingProgressEventArgs(ulong elapsedTime, ulong fileSize)
         {
             ElapsedTime = elapsedTime;
             FileSize = fileSize;
