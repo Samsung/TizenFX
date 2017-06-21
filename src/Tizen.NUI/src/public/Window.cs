@@ -59,12 +59,12 @@ namespace Tizen.NUI
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
-            if (disposed)
+            if(disposed)
             {
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
+            if(type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
@@ -96,12 +96,12 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static bool IsInstalled()
-        {
+       internal static bool IsInstalled()
+       {
             bool ret = NDalicPINVOKE.Stage_IsInstalled();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
+       }
 
         /*********************************************************************************/
         /*** will be removed/deprecated                                                  ***/
@@ -154,8 +154,7 @@ namespace Tizen.NUI
         /// Gets the count of supported auxiliary hints of the window.
         /// </summary>
         /// <returns>The number of supported auxiliary hints.</returns>
-        public uint GetSupportedAuxiliaryHintCount()
-        {
+        public uint GetSupportedAuxiliaryHintCount() {
             uint ret = NDalicPINVOKE.GetSupportedAuxiliaryHintCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -166,8 +165,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="index">The index of the supported auxiliary hint lists.</param>
         /// <returns>The auxiliary hint string of the index.</returns>
-        public string GetSupportedAuxiliaryHint(uint index)
-        {
+        public string GetSupportedAuxiliaryHint(uint index) {
             string ret = NDalicPINVOKE.GetSupportedAuxiliaryHint(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -179,8 +177,7 @@ namespace Tizen.NUI
         /// <param name="hint">The auxiliary hint string.</param>
         /// <param name="value">The value string.</param>
         /// <returns>The ID of created auxiliary hint, or 0 on failure.</returns>
-        public uint AddAuxiliaryHint(string hint, string value)
-        {
+        public uint AddAuxiliaryHint(string hint, string value) {
             uint ret = NDalicPINVOKE.AddAuxiliaryHint(swigCPtr, hint, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -191,8 +188,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="id">The ID of the auxiliary hint.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
-        public bool RemoveAuxiliaryHint(uint id)
-        {
+        public bool RemoveAuxiliaryHint(uint id) {
             bool ret = NDalicPINVOKE.RemoveAuxiliaryHint(swigCPtr, id);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -204,8 +200,7 @@ namespace Tizen.NUI
         /// <param name="id">The auxiliary hint ID.</param>
         /// <param name="value">The value string to be set.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
-        public bool SetAuxiliaryHintValue(uint id, string value)
-        {
+        public bool SetAuxiliaryHintValue(uint id, string value) {
             bool ret = NDalicPINVOKE.SetAuxiliaryHintValue(swigCPtr, id, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -216,8 +211,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="id">The auxiliary hint ID.</param>
         /// <returns>The string value of the auxiliary hint ID, or an empty string if none exists.</returns>
-        public string GetAuxiliaryHintValue(uint id)
-        {
+        public string GetAuxiliaryHintValue(uint id) {
             string ret = NDalicPINVOKE.GetAuxiliaryHintValue(swigCPtr, id);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -228,8 +222,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="hint">The auxiliary hint string.</param>
         /// <returns>The ID of auxiliary hint string, or 0 on failure.</returns>
-        public uint GetAuxiliaryHintId(string hint)
-        {
+        public uint GetAuxiliaryHintId(string hint) {
             uint ret = NDalicPINVOKE.GetAuxiliaryHintId(swigCPtr, hint);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -239,8 +232,7 @@ namespace Tizen.NUI
         /// Sets a region to accept input events.
         /// </summary>
         /// <param name="inputRegion">The region to accept input events.</param>
-        public void SetInputRegion(Rectangle inputRegion)
-        {
+        public void SetInputRegion(Rectangle inputRegion) {
             NDalicPINVOKE.SetInputRegion(swigCPtr, Rectangle.getCPtr(inputRegion));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -268,8 +260,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="level">The notification window level.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
-        public bool SetNotificationLevel(NotificationLevel level)
-        {
+        public bool SetNotificationLevel(NotificationLevel level) {
             bool ret = NDalicPINVOKE.SetNotificationLevel(swigCPtr, (int)level);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -279,8 +270,7 @@ namespace Tizen.NUI
         /// Gets a priority level for the specified notification window.
         /// </summary>
         /// <returns>The notification window level.</returns>
-        public NotificationLevel GetNotificationLevel()
-        {
+        public NotificationLevel GetNotificationLevel() {
             NotificationLevel ret = (NotificationLevel)NDalicPINVOKE.GetNotificationLevel(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -290,8 +280,7 @@ namespace Tizen.NUI
         /// Sets a transparent window's visual state to opaque.
         /// </summary>
         /// <param name="opaque">Whether the window's visual state is opaque.</param>
-        public void SetOpaqueState(bool opaque)
-        {
+        public void SetOpaqueState(bool opaque) {
             NDalicPINVOKE.SetOpaqueState(swigCPtr, opaque);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -300,8 +289,7 @@ namespace Tizen.NUI
         /// Returns whether a transparent window's visual state is opaque or not.
         /// </summary>
         /// <returns>True if the window's visual state is opaque, false otherwise.</returns>
-        public bool IsOpaqueState()
-        {
+        public bool IsOpaqueState() {
             bool ret = NDalicPINVOKE.IsOpaqueState(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -312,8 +300,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="screenMode">The screen mode.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
-        public bool SetScreenMode(ScreenMode screenMode)
-        {
+        public bool SetScreenMode(ScreenMode screenMode) {
             bool ret = NDalicPINVOKE.SetScreenMode(swigCPtr, (int)screenMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -323,8 +310,7 @@ namespace Tizen.NUI
         /// Gets a screen mode of the window.
         /// </summary>
         /// <returns>The screen mode.</returns>
-        public ScreenMode GetScreenMode()
-        {
+        public ScreenMode GetScreenMode() {
             ScreenMode ret = (ScreenMode)NDalicPINVOKE.GetScreenMode(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -335,8 +321,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="brightness">The preferred brightness (0 to 100).</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
-        public bool SetBrightness(int brightness)
-        {
+        public bool SetBrightness(int brightness) {
             bool ret = NDalicPINVOKE.SetBrightness(swigCPtr, brightness);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -346,8 +331,7 @@ namespace Tizen.NUI
         /// Gets preffered brightness of the window.
         /// </summary>
         /// <returns>The preffered brightness.</returns>
-        public int GetBrightness()
-        {
+        public int GetBrightness() {
             int ret = NDalicPINVOKE.GetBrightness(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1238,98 +1222,5 @@ namespace Tizen.NUI
                 return GetLayerCount();
             }
         }
-
-
-        /*********************************************************************************/
-        /*** will be removed/deprecated                                                  ***/
-        /*********************************************************************************/
-        /// <summary>
-        /// will be deprecated at nui_0.2.50
-        /// </summary>
-        public event EventHandler<TouchEventArgs> TouchEvent
-        {
-            add
-            {
-                lock (this)
-                {
-                    _stageTouchHandler += value;
-                    _stageTouchCallbackDelegate = OnStageTouch;
-                    this.TouchSignal().Connect(_stageTouchCallbackDelegate);
-                }
-            }
-            remove
-            {
-                lock (this)
-                {
-                    if (_stageTouchHandler != null)
-                    {
-                        this.TouchSignal().Disconnect(_stageTouchCallbackDelegate);
-                    }
-                    _stageTouchHandler -= value;
-                }
-            }
-        }
-        /// <summary>
-        /// will be deprecated at nui_0.2.50
-        /// </summary>
-        public event EventHandler<WheelEventArgs> WheelEvent
-        {
-            add
-            {
-                if (_stageWheelHandler == null)
-                {
-                    _stageWheelCallbackDelegate = OnStageWheel;
-                    WheelEventSignal().Connect(_stageWheelCallbackDelegate);
-                }
-                _stageWheelHandler += value;
-            }
-            remove
-            {
-                _stageWheelHandler -= value;
-                if (_stageWheelHandler == null && WheelEventSignal().Empty() == false)
-                {
-                    WheelEventSignal().Disconnect(_stageWheelCallbackDelegate);
-                }
-            }
-        }
-        /// <summary>
-        /// will be deprecated at nui_0.2.50
-        /// </summary>
-        public event EventHandler<KeyEventArgs> KeyEvent
-        {
-            add
-            {
-                if (_stageKeyHandler == null)
-                {
-                    _stageKeyCallbackDelegate = OnStageKey;
-                    KeyEventSignal().Connect(_stageKeyCallbackDelegate);
-                }
-                _stageKeyHandler += value;
-            }
-            remove
-            {
-                _stageKeyHandler -= value;
-                if (_stageKeyHandler == null && KeyEventSignal().Empty() == false)
-                {
-                    KeyEventSignal().Disconnect(_stageKeyCallbackDelegate);
-                }
-            }
-        }
-
-        /// <summary>
-        /// will be deprecated at nui_0.2.50
-        /// </summary>
-        /// <param name="layer"></param>
-        public void AddLayer(Layer layer)
-        {
-            NDalicPINVOKE.Stage_Add(stageCPtr, Layer.getCPtr(layer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /*********************************************************************************/
-        /*** will be removed/deprecated                                                  ***/
-        /*********************************************************************************/
-
-
     }
 }
