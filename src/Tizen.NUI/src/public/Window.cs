@@ -103,19 +103,19 @@ namespace Tizen.NUI
             return ret;
        }
 
-        /// <summary>
-        /// Sets the focus acceptable flag of an window as true.
-        /// </summary>
-        internal void SetAcceptFocus(bool accept)
+        /*********************************************************************************/
+        /*** will be removed/deprecated                                                  ***/
+        /*********************************************************************************/
+        public void SetAcceptFocus(bool accept)
         {
             NDalicPINVOKE.SetAcceptFocus(swigCPtr, accept);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Retrieves whether the window is focus acceptable or not.
-        /// </summary>
-        internal bool IsFocusAcceptable()
+        /*********************************************************************************/
+        /*** will be removed/deprecated                                                  ***/
+        /*********************************************************************************/
+        public bool IsFocusAcceptable()
         {
             return NDalicPINVOKE.IsFocusAcceptable(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

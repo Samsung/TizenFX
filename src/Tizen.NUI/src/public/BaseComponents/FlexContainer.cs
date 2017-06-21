@@ -24,9 +24,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-using Tizen.NUI.BaseComponents;
-
-namespace Tizen.NUI
+namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
     /// FlexContainer implements a subset of the flexbox spec (defined by W3C):https://www.w3.org/TR/css3-flexbox/<br>
