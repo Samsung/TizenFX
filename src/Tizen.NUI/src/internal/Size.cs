@@ -18,10 +18,10 @@
 namespace Tizen.NUI
 {
 
-    /*********************************************************************************/
-    /*** will be removed/deprecated                                                  ***/
-    /*********************************************************************************/
-    public class Size : global::System.IDisposable
+    /// <summary>
+    /// Three dimensional size
+    /// </summary>
+    internal class Size : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
