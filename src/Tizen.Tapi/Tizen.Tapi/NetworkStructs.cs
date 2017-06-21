@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Tapi
@@ -90,6 +91,146 @@ namespace Tizen.Tapi
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=41)]
         internal string SnName;
         internal NetworkSystemType Type;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct NetworkIdentityStruct
+    {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 41)]
+        internal string NwName;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 41)]
+        internal string SvcName;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+        internal string NwPlmn;
+        internal uint PlmnId;
+        internal NetworkPlmnType Type;
+        internal NetworkSystemType Act;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct NetworkPlmnListStruct
+    {
+        internal char NwCount;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.LPStruct)]
+        internal NetworkIdentityStruct[] NwList;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct NetworkPreferredPlmnListStruct
+    {
+        internal uint Count;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 150, ArraySubType = UnmanagedType.LPStruct)]
+        internal NetworkPreferredPlmnStruct[] PlmnList;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct NetworkCdmaSysStruct
+    {
+        internal int Carrier;
+        internal uint SysId;
+        internal uint NwId;
+        internal uint BaseStnId;
+        internal int BaseStnLatitude;
+        internal int BaseStnLongitude;
+        internal uint RegZone;
+        internal uint Offset;
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    internal struct NetworkAreaStruct
+    {
+        [FieldOffset(0)]
+        internal int Lac;
+        [FieldOffset(0)]
+        internal NetworkCdmaSysStruct Cdma;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct NetworkServingStruct
+    {
+        internal NetworkSystemType SysType;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 7)]
+        internal string Plmn;
+        internal NetworkAreaStruct Area;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct NetworkGeranCellStruct
+    {
+        internal int CellId;
+        internal int Lac;
+        internal int Bcch;
+        internal int Bsic;
+        internal int Rxlev;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct NetworkUmtsCellStruct
+    {
+        internal int CellId;
+        internal int Lac;
+        internal int Arfcn;
+        internal int Psc;
+        internal int Rscp;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct NetworkLteCellStruct
+    {
+        internal int CellId;
+        internal int Lac;
+        internal int Pcid;
+        internal int Earfcn;
+        internal int Tac;
+        internal int Rssi;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct NetworkCdmaCellStruct
+    {
+        internal uint SystemId;
+        internal uint NetworkId;
+        internal uint BaseId;
+        internal uint RefPn;
+        internal int BaseStnLatitude;
+        internal int BaseStnLongitude;
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    internal struct CellStruct
+    {
+        [FieldOffset(0)]
+        internal NetworkGeranCellStruct Geran;
+        [FieldOffset(0)]
+        internal NetworkUmtsCellStruct Umts;
+        [FieldOffset(0)]
+        internal NetworkLteCellStruct Lte;
+        [FieldOffset(0)]
+        internal NetworkCdmaCellStruct Cdma;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct NetworkServingCellStruct
+    {
+        internal NetworkSystemType SystemType;
+        internal int MobileCountryCode;
+        internal int MobileNetworkCode;
+        internal CellStruct Cell;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct NetworkNeighboringCellStruct
+    {
+        internal NetworkServingCellStruct ServCell;
+        internal int GeranCount;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.LPStruct)]
+        internal NetworkGeranCellStruct[] GeranList;
+        internal int UmtsCount;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 24, ArraySubType = UnmanagedType.LPStruct)]
+        internal NetworkUmtsCellStruct[] UmtsList;
+        internal int LteCount;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 24, ArraySubType = UnmanagedType.LPStruct)]
+        internal NetworkLteCellStruct[] LteList;
     }
 
     internal static class NetworkStructConversions
@@ -175,6 +316,191 @@ namespace Tizen.Tapi
             volteStatus.NwFeatureMask = notiStruct.FeatureMask;
             volteStatus.NwType = notiStruct.NetworkType;
             return volteStatus;
+        }
+
+        internal static NetworkPlmnList ConvertNetworkPlmnListStruct(NetworkPlmnListStruct listStruct)
+        {
+            NetworkPlmnList plmnList = new NetworkPlmnList();
+            List<NetworkIdentity> records = new List<NetworkIdentity>();
+
+            foreach (NetworkIdentityStruct idStruct in listStruct.NwList)
+            {
+                NetworkIdentity identity = new NetworkIdentity();
+                identity.Id = idStruct.PlmnId;
+                identity.SvcProviderName = idStruct.SvcName;
+                identity.IdName = idStruct.NwName;
+                identity.PlmnName = idStruct.NwPlmn;
+                identity.PlmnNwType = idStruct.Type;
+                identity.SysType = idStruct.Act;
+                records.Add(identity);
+            }
+
+            plmnList.NwCount = listStruct.NwCount;
+            plmnList.NwList = records;
+            return plmnList;
+        }
+
+        internal static IEnumerable<NetworkPreferredPlmnInfo> ConvertNetworkPreferredPlmnStruct(NetworkPreferredPlmnListStruct plmnStruct)
+        {
+            List<NetworkPreferredPlmnInfo> plmnList = new List<NetworkPreferredPlmnInfo>();
+
+            for (int i = 0; i <= plmnStruct.Count; i++)
+            {
+                NetworkPreferredPlmnInfo plmnInfo = new NetworkPreferredPlmnInfo();
+                plmnInfo.idex = plmnStruct.PlmnList[i].Index;
+                plmnInfo.NwName = plmnStruct.PlmnList[i].NetworkName;
+                plmnInfo.NwPlmn = plmnStruct.PlmnList[i].Plmn;
+                plmnInfo.SvcProvName = plmnStruct.PlmnList[i].SnName;
+                plmnInfo.SysType = plmnStruct.PlmnList[i].Type;
+                plmnList.Add(plmnInfo);
+            }
+
+            return plmnList;
+        }
+
+        internal static NetworkCdmaSysInfo ConvertCdmaStruct(NetworkCdmaSysStruct cdmaStruct)
+        {
+            NetworkCdmaSysInfo cdmaInfo = new NetworkCdmaSysInfo();
+            cdmaInfo.Car = cdmaStruct.Carrier;
+            cdmaInfo.BaseStnId = cdmaStruct.BaseStnId;
+            cdmaInfo.BaseStnLatitude = cdmaStruct.BaseStnLatitude;
+            cdmaInfo.BaseStnLongitude = cdmaStruct.BaseStnLongitude;
+            cdmaInfo.NwId = cdmaStruct.NwId;
+            cdmaInfo.Offset = cdmaStruct.Offset;
+            cdmaInfo.RegZone = cdmaStruct.RegZone;
+            cdmaInfo.SysId = cdmaStruct.SysId;
+            return cdmaInfo;
+        }
+
+        internal static NetworkServing ConvertNetworkServingStruct(NetworkServingStruct servStruct)
+        {
+            NetworkServing servingInfo = new NetworkServing();
+            NetworkAreaStruct areaStruct = servStruct.Area;
+            NetworkCdmaSysStruct cdmaStruct = areaStruct.Cdma;
+            NetworkCdmaSysInfo cdmaInfo = ConvertCdmaStruct(cdmaStruct);
+
+            NetworkAreaInfo areaInfo = new NetworkAreaInfo();
+            areaInfo.Code = areaStruct.Lac;
+            areaInfo.Cdma = cdmaInfo;
+
+            servingInfo.NwPlmn = servStruct.Plmn;
+            servingInfo.Type = servStruct.SysType;
+            servingInfo.Area = areaInfo;
+
+            return servingInfo;
+        }
+
+        internal static NetworkGeranCell ConvertGeranStruct(NetworkGeranCellStruct geranStruct)
+        {
+            NetworkGeranCell geranCell = new NetworkGeranCell();
+            geranCell.Bc = geranStruct.Bcch;
+            geranCell.Bs = geranStruct.Bsic;
+            geranCell.Id = geranStruct.CellId;
+            geranCell.Lc = geranStruct.Lac;
+            geranCell.Rx = geranStruct.Rxlev;
+            return geranCell;
+        }
+
+        internal static NetworkUmtsCell ConvertUmtsStruct(NetworkUmtsCellStruct umtsStruct)
+        {
+            NetworkUmtsCell umtsCell = new NetworkUmtsCell();
+            umtsCell.Arf = umtsStruct.Arfcn;
+            umtsCell.Id = umtsStruct.CellId;
+            umtsCell.Lc = umtsStruct.Lac;
+            umtsCell.Ps = umtsStruct.Psc;
+            umtsCell.Rsc = umtsStruct.Rscp;
+            return umtsCell;
+        }
+
+        internal static NetworkLteCell ConvertLteStruct(NetworkLteCellStruct lteStruct)
+        {
+            NetworkLteCell lteCell = new NetworkLteCell();
+            lteCell.Id = lteStruct.CellId;
+            lteCell.Erf = lteStruct.Earfcn;
+            lteCell.Lc = lteStruct.Lac;
+            lteCell.PId = lteStruct.Pcid;
+            lteCell.Tc = lteStruct.Tac;
+            lteCell.Rs = lteStruct.Rssi;
+            return lteCell;
+        }
+
+        internal static NetworkNeighboringCell ConvertNeighborCellStruct(NetworkNeighboringCellStruct neighborStruct)
+        {
+            NetworkNeighboringCell neighborCell = new NetworkNeighboringCell();
+            NetworkServingCellStruct servStruct = neighborStruct.ServCell;
+            CellStruct cellStruct = servStruct.Cell;
+            NetworkGeranCellStruct geranStruct = cellStruct.Geran;
+            NetworkCdmaCellStruct cdmaStruct = cellStruct.Cdma;
+            NetworkUmtsCellStruct umtsStruct = cellStruct.Umts;
+            NetworkLteCellStruct lteStruct = cellStruct.Lte;
+
+            NetworkGeranCell geranCell = ConvertGeranStruct(geranStruct);
+
+            NetworkCdmaCell cdmaCell = new NetworkCdmaCell();
+            cdmaCell.BaseStnId = cdmaStruct.BaseId;
+            cdmaCell.BaseStnLatitude = cdmaStruct.BaseStnLatitude;
+            cdmaCell.BaseStnLongitude = cdmaStruct.BaseStnLongitude;
+            cdmaCell.NwId = cdmaStruct.NetworkId;
+            cdmaCell.RefPn = cdmaStruct.RefPn;
+            cdmaCell.SysId = cdmaStruct.SystemId;
+
+            NetworkUmtsCell umtsCell = ConvertUmtsStruct(umtsStruct);
+
+            NetworkLteCell lteCell = ConvertLteStruct(lteStruct);
+
+            Cell cell = new Cell();
+            cell.Geran = geranCell;
+            cell.Cdma = cdmaCell;
+            cell.Umts = umtsCell;
+            cell.Lte = lteCell;
+
+            NetworkServingCell servingCell = new NetworkServingCell();
+            servingCell.SysType = servStruct.SystemType;
+            servingCell.MCountryCode = servStruct.MobileCountryCode;
+            servingCell.MNwCode = servStruct.MobileNetworkCode;
+            servingCell.Info = cell;
+
+            neighborCell.ServCell = servingCell;
+            List<NetworkGeranCell> geranCellList = new List<NetworkGeranCell>();
+            for(int i=0;i<neighborStruct.GeranCount;i++)
+            {
+                NetworkGeranCell geran = ConvertGeranStruct(neighborStruct.GeranList[i]);
+                geranCellList.Add(geran);
+            }
+
+            List<NetworkUmtsCell> umtsCellList = new List<NetworkUmtsCell>();
+            for (int i = 0; i < neighborStruct.UmtsCount; i++)
+            {
+                NetworkUmtsCell umts = ConvertUmtsStruct(neighborStruct.UmtsList[i]);
+                umtsCellList.Add(umts);
+            }
+
+            List<NetworkLteCell> lteCellList = new List<NetworkLteCell>();
+            for (int i = 0; i < neighborStruct.GeranCount; i++)
+            {
+                NetworkLteCell lte = ConvertLteStruct(neighborStruct.LteList[i]);
+                lteCellList.Add(lte);
+            }
+
+            neighborCell.GrList = geranCellList;
+            neighborCell.UmtList = umtsCellList;
+            neighborCell.LtList = lteCellList;
+            return neighborCell;
+
+        }
+    }
+
+    internal static class NetworkClassConversions
+    {
+        internal static NetworkPreferredPlmnStruct ConvertNetworkPreferredPlmn(NetworkPreferredPlmnInfo plmnInfo)
+        {
+            NetworkPreferredPlmnStruct plmnStruct = new NetworkPreferredPlmnStruct();
+            plmnStruct.Index = plmnInfo.idex;
+            plmnStruct.NetworkName = plmnInfo.NwName;
+            plmnStruct.Plmn = plmnInfo.NwPlmn;
+            plmnStruct.SnName = plmnInfo.SvcProvName;
+            plmnStruct.Type = plmnInfo.SysType;
+            return plmnStruct;
         }
     }
 }

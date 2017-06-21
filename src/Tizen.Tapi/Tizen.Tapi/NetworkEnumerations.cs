@@ -414,4 +414,77 @@ namespace Tizen.Tapi
         /// </summary>
         MemoryFull
     }
+
+    /// <summary>
+    /// Enumeration for the network plmn type.
+    /// </summary>
+    public enum NetworkPlmnType
+    {
+        /// <summary>
+        /// Unknown.
+        /// </summary>
+        Unknown,
+        /// <summary>
+        /// Home plmn.
+        /// </summary>
+        Home,
+        /// <summary>
+        /// Available.
+        /// </summary>
+        Available,
+        /// <summary>
+        /// Forbidden.
+        /// </summary>
+        Forbidden
+    }
+
+    /// <summary>
+    /// Enumeration for the network selection mode.
+    /// </summary>
+    public enum NetworkSelectionMode
+    {
+        /// <summary>
+        /// Automatic selection mode.
+        /// </summary>
+        Auto,
+        /// <summary>
+        /// Manual selection mode (Not applicable to CDMA).
+        /// </summary>
+        Manual
+    }
+
+    /// <summary>
+    /// Enumeration for the different network modes.
+    /// </summary>
+    public enum NetworkMode
+    {
+        /// <summary>
+        /// Auto.
+        /// </summary>
+        Auto = 0x00,
+        /// <summary>
+        /// Gsm.
+        /// </summary>
+        Gsm = 0x01,
+        /// <summary>
+        /// Wcdma.
+        /// </summary>
+        Wcdma = 0x02,
+        /// <summary>
+        /// Rtt1x.
+        /// </summary>
+        Rtt1x = 0x04,
+        /// <summary>
+        /// Lte.
+        /// </summary>
+        Lte = 0x08,
+        /// <summary>
+        /// Evdo.
+        /// </summary>
+        Evdo = 0x10,
+        /// <summary>
+        /// Cdma.
+        /// </summary>
+        Cdma = 0x14
+    }
 }
