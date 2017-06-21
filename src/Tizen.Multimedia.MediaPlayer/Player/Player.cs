@@ -1076,7 +1076,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">
         ///     The player has already been disposed of.\n
         ///     -or-\n
-        ///     <paramref name="poilcy"/> has already been disposed of.
+        ///     <paramref name="policy"/> has already been disposed of.
         /// </exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>

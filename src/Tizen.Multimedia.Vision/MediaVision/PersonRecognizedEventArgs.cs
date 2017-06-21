@@ -29,12 +29,12 @@ namespace Tizen.Multimedia
         /// </summary>
         public PersonRecognizedEventArgs(IEnumerable<PersonRecognitionInfo> recognitionInfo)
         {
-            Recongnitions = recognitionInfo;
+            Recognitions = recognitionInfo;
         }
 
         /// <summary>
         /// Gets a set of information that correspond to the recognized persons.
         /// </summary>
-        public IEnumerable<PersonRecognitionInfo> Recongnitions { get; }
+        public IEnumerable<PersonRecognitionInfo> Recognitions { get; }
     }
 }

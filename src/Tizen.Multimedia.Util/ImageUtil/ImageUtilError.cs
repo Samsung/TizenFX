@@ -34,7 +34,7 @@ namespace Tizen.Multimedia.Util
         NotSupportedFormat = -0x01920000 | 0x01,
     }
 
-    internal static class ImageUtilErrorExtesions
+    internal static class ImageUtilErrorExtensions
     {
         internal static void ThrowIfFailed(this ImageUtilError err, string message)
         {

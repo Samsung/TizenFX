@@ -101,7 +101,7 @@ namespace Tizen.Multimedia
                     throw new NoBufferSpaceException(msg);
 
                 case PlayerErrorCode.ResourceLimit:
-                    throw new ResouceLimitException(msg);
+                    throw new ResourceLimitException(msg);
 
                 case PlayerErrorCode.NotSupportedAudioCodec:
                     throw new CodecNotSupportedException(CodecKind.Audio);
@@ -132,13 +132,13 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The exception that is thrown when there is no available resource for internal use.
     /// </summary>
-    public class ResouceLimitException : InvalidOperationException
+    public class ResourceLimitException : InvalidOperationException
     {
         /// <summary>
-        /// Initializes a new instance of the ResouceLimitException class with a specified error message.
+        /// Initializes a new instance of the ResourceLimitException class with a specified error message.
         /// </summary>
         /// <param name="message">Error description.</param>
-        public ResouceLimitException(string message) : base(message)
+        public ResourceLimitException(string message) : base(message)
         {
         }
     }
