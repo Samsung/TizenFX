@@ -21,6 +21,9 @@ namespace Tizen.NUI
     /*********************************************************************************/
     /*** will be removed/deprecated                                                  ***/
     /*********************************************************************************/
+    /// <summary>
+    /// will be changed as internal class in nui_0.2.50
+    /// </summary>
     public class Size : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

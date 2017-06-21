@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Version>0.2.42</Version>
@@ -17,6 +17,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <DefineConstants>$(DefineConstants);DEBUG_ON;DOT_NET_CORE</DefineConstants>
+    <SignAssembly>False</SignAssembly>
+    <AssemblyOriginatorKeyFile>TizenTVNUI.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
