@@ -431,7 +431,7 @@ internal static partial class Interop
         internal static extern ResultType AddDataChangeCallback(SafeDataControlHandle provider, DataChangeCallback callback,
             IntPtr userData, AddCallbackResultCallback resultCallback, IntPtr resultCbUserData, out int callbackID);
 
-        [DllImport(Libraries.DataControl, EntryPoint = "datacontrol_remove_data_change_cb", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.DataControl, EntryPoint = "data_control_remove_data_change_cb", CallingConvention = CallingConvention.Cdecl)]
         internal static extern ResultType RemoveDataChangeCallback(SafeDataControlHandle provider, int callbackID);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
