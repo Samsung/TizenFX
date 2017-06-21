@@ -63,7 +63,7 @@ namespace MyCSharpExample
             Window.Instance.Touched += Instance_Touch;
         }
 
-        private void Instance_Touch(object sender, Window.TouchEventArgs e)
+        private void Instance_Touch(object sender, Window.TouchedEventArgs e)
         {
             Tizen.Log.Debug("NUI", "window touched! set key focus as view[0]!");
             FocusManager.Instance.SetCurrentFocusView(view[0]);

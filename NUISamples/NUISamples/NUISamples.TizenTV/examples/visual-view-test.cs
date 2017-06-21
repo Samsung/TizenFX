@@ -261,7 +261,7 @@ namespace VisualViewTest
             _visualView.AddVisual("npatchImageVisual1", npatchImageVisualMap1);
 
             _window = Window.Instance;
-            _window.WindowFocusChanged += (sender, ee) =>
+            _window.FocusChanged += (sender, ee) =>
             {
                 cnt++;
                 Tizen.Log.Debug("NUI", "[WindowFocusTest] WindowFocusChanged event comes! focus gained=" + ee.FocusGained);

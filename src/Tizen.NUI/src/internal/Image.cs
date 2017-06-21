@@ -94,7 +94,7 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for Uploaded signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of UploadedEventHandler-DaliEventHandler<object,UploadedEventArgs>) 
+          * (in the type of UploadedEventHandler-DaliEventHandler<object,UploadedEventArgs>)
           * provided by the user. Uploaded signal is emitted when the image data gets uploaded to GL.
           */
         public event DaliEventHandler<object, UploadedEventArgs> Uploaded

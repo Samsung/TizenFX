@@ -65,7 +65,7 @@ namespace ImageViewTest
             window.BackgroundColor = Color.Cyan;
             window.Touched += OnWindowTouched;
             window.WheelRolled += OnWindowWheelMoved;
-            window.KeyEvent += OnWindowKeyPressed;
+            window.KeyPressed += OnWindowKeyPressed;
             //window.EventProcessingFinished += OnWindowEventProcessingFinished;
 
             layer = window.GetDefaultLayer();
@@ -236,7 +236,7 @@ namespace ImageViewTest
             Log("state=" + e.Key.State);
         }
 
-        public void OnWindowWheelMoved(object sender, Window.WheelEventArgs e)
+        public void OnWindowWheelMoved(object sender, Window.WheelRolledEventArgs e)
         {
             Log("OnWindowWheelEventOccured()!");
             Log("direction=" + e.Wheel.Direction);
@@ -244,7 +244,7 @@ namespace ImageViewTest
         }
 
         // Callback for window touched signal handling
-        public void OnWindowTouched(object sender, Window.TouchEventArgs e)
+        public void OnWindowTouched(object sender, Window.TouchedEventArgs e)
         {
             Log("OnWindowTouched()! e.TouchData.GetState(0)=" + e.Touch.GetState(0));
         }

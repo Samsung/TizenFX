@@ -158,13 +158,13 @@ namespace ScrollViewTest
       Tizen.Log.Debug("NUI", "View Keyevent EVENT callback....");
     }
 
-    private bool Onwheel(object source, View.WheelEventArgs e)
+    private bool Onwheel(object source, View.WheelRolledEventArgs e)
     {
       Tizen.Log.Debug("NUI", "View Wheel EVENT callback....");
       return true;
     }
 
-    private bool OnTouch(object source, View.TouchEventArgs e)
+    private bool OnTouch(object source, View.TouchedEventArgs e)
     {
       Tizen.Log.Debug("NUI", "View TOUCH EVENT callback....");
 

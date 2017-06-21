@@ -40,7 +40,7 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //you can override it to clean-up your own resources.
+        // you can override it to clean-up your own resources.
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed)
@@ -274,7 +274,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via Touch signal.
         /// </summary>
-        public class TouchEventArgs : EventArgs
+        public class TouchedEventArgs : EventArgs
         {
             private Touch _touch;
 
@@ -294,7 +294,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private EventHandlerWithReturnType<object, TouchEventArgs, bool> _touchDataEventHandler;
+        private EventHandlerWithReturnType<object, TouchedEventArgs, bool> _touchDataEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool TouchDataCallbackType(IntPtr view, IntPtr touchData);
         private TouchDataCallbackType _touchDataCallback;
@@ -303,7 +303,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for Touched signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// Touched signal is emitted when touch input is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touched
+        public event EventHandlerWithReturnType<object, TouchedEventArgs, bool> Touched
         {
             add
             {
@@ -331,7 +331,7 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View TouchSignal
         private bool OnTouch(IntPtr view, IntPtr touchData)
         {
-            TouchEventArgs e = new TouchEventArgs();
+            TouchedEventArgs e = new TouchedEventArgs();
 
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
 
@@ -346,7 +346,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via Hover signal.
         /// </summary>
-        public class HoverEventArgs : EventArgs
+        public class HoveredEventArgs : EventArgs
         {
             private Hover _hover;
 
@@ -366,7 +366,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private EventHandlerWithReturnType<object, HoverEventArgs, bool> _hoverEventHandler;
+        private EventHandlerWithReturnType<object, HoveredEventArgs, bool> _hoverEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool HoverEventCallbackType(IntPtr view, IntPtr hoverEvent);
         private HoverEventCallbackType _hoverEventCallback;
@@ -375,7 +375,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for Hovered signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// Hovered signal is emitted when hover input is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hovered
+        public event EventHandlerWithReturnType<object, HoveredEventArgs, bool> Hovered
         {
             add
             {
@@ -403,7 +403,7 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Hover signal
         private bool OnHoverEvent(IntPtr view, IntPtr hoverEvent)
         {
-            HoverEventArgs e = new HoverEventArgs();
+            HoveredEventArgs e = new HoveredEventArgs();
 
             e.Hover = Tizen.NUI.Hover.GetHoverFromPtr(hoverEvent);
 
@@ -418,7 +418,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via Wheel signal.
         /// </summary>
-        public class WheelEventArgs : EventArgs
+        public class WheelRolledEventArgs : EventArgs
         {
             private Wheel _wheel;
 
@@ -438,7 +438,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private EventHandlerWithReturnType<object, WheelEventArgs, bool> _wheelEventHandler;
+        private EventHandlerWithReturnType<object, WheelRolledEventArgs, bool> _wheelEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
         private WheelEventCallbackType _wheelEventCallback;
@@ -447,7 +447,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for WheelMoved signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// WheelMoved signal is emitted when wheel event is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelRolled
+        public event EventHandlerWithReturnType<object, WheelRolledEventArgs, bool> WheelRolled
         {
             add
             {
@@ -475,7 +475,7 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Wheel signal
         private bool OnWheelEvent(IntPtr view, IntPtr wheelEvent)
         {
-            WheelEventArgs e = new WheelEventArgs();
+            WheelRolledEventArgs e = new WheelRolledEventArgs();
 
             e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
 
@@ -677,6 +677,50 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        // Resource Ready Signal
+
+        private EventHandler _resourcesLoadedEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void ResourcesLoadedCallbackType(IntPtr control);
+        private ResourcesLoadedCallbackType _ResourcesLoadedCallback;
+
+        /// <summary>
+        /// Event for ResourcesLoadedSignal signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
+        /// This signal is emitted after all resources required by a View are loaded and ready.<br>
+        /// </summary>
+        public event EventHandler ResourcesLoaded
+        {
+            add
+            {
+                if (_resourcesLoadedEventHandler == null)
+                {
+                    _ResourcesLoadedCallback = OnResourcesLoaded;
+                    this.ResourcesLoadedSignal().Connect(_ResourcesLoadedCallback);
+                }
+
+                _resourcesLoadedEventHandler += value;
+            }
+
+            remove
+            {
+                _resourcesLoadedEventHandler -= value;
+
+                if (_resourcesLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
+                {
+                    this.ResourcesLoadedSignal().Disconnect(_ResourcesLoadedCallback);
+                }
+            }
+        }
+
+        private void OnResourcesLoaded(IntPtr view)
+        {
+            if (_resourcesLoadedEventHandler != null)
+            {
+                _resourcesLoadedEventHandler(this, null);
+            }
+        }
+
+
         internal static View GetViewFromPtr(global::System.IntPtr cPtr)
         {
             View ret = new View(cPtr, false);
@@ -752,7 +796,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int INHERIT_POSITION = NDalicPINVOKE.Actor_Property_INHERIT_POSITION_get();
             internal static readonly int CLIPPING_MODE = NDalicPINVOKE.Actor_Property_CLIPPING_MODE_get();
         }
-
 
         /// <summary>
         /// Describes the direction to move the focus towards.
@@ -1004,6 +1047,68 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Create an Animation to animate the background color visual. If there is no
+        /// background visual, creates one with transparent black as it's mixColor.
+        /// </summary>
+        public Animation AnimateBackgroundColor( object destinationValue,
+                                                 int startTime,
+                                                 int endTime,
+                                                 AlphaFunction.BuiltinFunctions? alphaFunction = null,
+                                                 object initialValue = null)
+        {
+            Tizen.NUI.PropertyMap background = Background;
+
+            if( background.Empty() )
+            {
+                // If there is no background yet, ensure there is a transparent
+                // color visual
+                BackgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                background = Background;
+            }
+            return AnimateColor( "background", destinationValue, startTime, endTime, alphaFunction, initialValue );
+        }
+
+        /// <summary>
+        /// Create an Animation to animate the mixColor of the named visual.
+        /// </summary>
+        public Animation AnimateColor( string targetVisual, object destinationColor, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialColor = null )
+        {
+            Animation animation = null;
+            {
+                PropertyMap _animator = new PropertyMap();
+                if( alphaFunction != null )
+                {
+                    _animator.Add("alphaFunction", new PropertyValue( AlphaFunction.BuiltinToPropertyKey(alphaFunction) ) );
+                }
+
+                PropertyMap _timePeriod = new PropertyMap();
+                _timePeriod.Add( "duration", new PropertyValue((endTime-startTime)/1000.0f) );
+                _timePeriod.Add( "delay", new PropertyValue( startTime/1000.0f ) );
+                _animator.Add( "timePeriod", new PropertyValue( _timePeriod ) );
+
+                PropertyMap _transition = new PropertyMap();
+                _transition.Add( "animator", new PropertyValue( _animator ) );
+                _transition.Add( "target", new PropertyValue( targetVisual ) );
+                _transition.Add( "property", new PropertyValue( "mixColor" ) );
+
+                if( initialColor != null )
+                {
+                    PropertyValue initValue = PropertyValue.CreateFromObject( initialColor );
+                    _transition.Add( "initialValue", initValue );
+                }
+
+                PropertyValue destValue = PropertyValue.CreateFromObject( destinationColor );
+                _transition.Add( "targetValue", destValue );
+                TransitionData _transitionData = new TransitionData( _transition );
+
+                animation = new Animation( NDalicManualPINVOKE.View_CreateTransition(swigCPtr, TransitionData.getCPtr(_transitionData)), true );
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return animation;
+        }
+
+        /// <summary>
         /// mutually exclusive with BACKGROUND_COLOR & BACKGROUND,  type Map.
         /// </summary>
         public string BackgroundImage
@@ -1028,15 +1133,12 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// <summary>
-        /// mutually exclusive with BACKGROUND_COLOR & BACKGROUND_IMAGE, type Map or string for URL.
-        /// </summary>
         public Tizen.NUI.PropertyMap Background
         {
             get
             {
                 Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-                GetProperty(View.Property.BACKGROUND).Get(temp);
+                GetProperty( View.Property.BACKGROUND ).Get(temp);
                 return temp;
             }
             set
@@ -1044,6 +1146,7 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(View.Property.BACKGROUND, new Tizen.NUI.PropertyValue(value));
             }
         }
+
 
         /// <summary>
         /// The current state of the view.
@@ -1842,6 +1945,18 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Query if all resources required by a View are loaded and ready.
+        /// </summary>
+        /// <remarks>Most resources are only loaded when the control is placed on stage
+        /// </remarks>
+        public bool IsResourceReady()
+        {
+            bool ret = NDalicPINVOKE.IsResourceReady(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Raise the view to above the target view.
         /// </summary>
         /// <remarks>Sibling order of views within the parent will be updated automatically.
@@ -2564,7 +2679,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal uint AddRenderer(Renderer renderer)
+        public uint AddRenderer(Renderer renderer)
         {
             uint ret = NDalicPINVOKE.Actor_AddRenderer(swigCPtr, Renderer.getCPtr(renderer));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -2580,7 +2695,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal Renderer GetRendererAt(uint index)
+        public Renderer GetRendererAt(uint index)
         {
             Renderer ret = new Renderer(NDalicPINVOKE.Actor_GetRendererAt(swigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -2588,14 +2703,14 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal void RemoveRenderer(Renderer renderer)
+        public void RemoveRenderer(Renderer renderer)
         {
             NDalicPINVOKE.Actor_RemoveRenderer__SWIG_0(swigCPtr, Renderer.getCPtr(renderer));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void RemoveRenderer(uint index)
+        public void RemoveRenderer(uint index)
         {
             NDalicPINVOKE.Actor_RemoveRenderer__SWIG_1(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -2652,6 +2767,13 @@ namespace Tizen.NUI.BaseComponents
 
         internal ViewVisibilityChangedSignal VisibilityChangedSignal(View view) {
             ViewVisibilityChangedSignal ret = new ViewVisibilityChangedSignal(NDalicPINVOKE.VisibilityChangedSignal(View.getCPtr(view)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ViewSignal ResourcesLoadedSignal()
+        {
+            ViewSignal ret = new ViewSignal(NDalicPINVOKE.ResourceReadySignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -3525,6 +3647,16 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(View.Property.CLIPPING_MODE, new Tizen.NUI.PropertyValue((int)value));
             }
         }
-    }
 
+        /// <summary>
+        /// Get the number of renderers held by the view.
+        /// </summary>
+        public uint RendererCount
+        {
+            get
+            {
+                return GetRendererCount();
+            }
+        }
+    }
 }

@@ -82,7 +82,7 @@ namespace HelloTest
         }
 
         // Callback for window touched signal handling
-        private void OnWindowTouched(object sender, Window.TouchEventArgs e)
+        private void OnWindowTouched(object sender, Window.TouchedEventArgs e)
         {
             // Only animate the _text label when touch down happens
             if (e.Touch.GetState(0) == PointStateType.Down)

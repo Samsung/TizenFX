@@ -153,7 +153,7 @@ namespace DatePickerTest
             return nextFocusView;
         }
 
-        private void OnFocusedViewActivated(object source, FocusManager.FocusedViewEnterKeyEventArgs e)
+        private void OnFocusedViewActivated(object source, FocusManager.FocusedViewActivatedEventArgs e)
         {
 
         }

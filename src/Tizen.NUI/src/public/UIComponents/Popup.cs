@@ -92,7 +92,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Event arguments that passed via OutsideTouchedEvent
         /// </summary>
-        public class OutsideTouchedEventArgs : EventArgs
+        public class TouchedOutsideEventArgs : EventArgs
         {
         }
 
@@ -126,7 +126,7 @@ namespace Tizen.NUI.UIComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void OutsideTouchedEventCallbackDelegate();
-        private EventHandler<OutsideTouchedEventArgs> _popUpOutsideTouchedEventHandler;
+        private EventHandler<TouchedOutsideEventArgs> _popUpOutsideTouchedEventHandler;
         private OutsideTouchedEventCallbackDelegate _popUpOutsideTouchedEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -152,7 +152,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Event is sent when user has touched outside of the Dialog.
         /// </summary>
-        public event EventHandler<OutsideTouchedEventArgs> OutsideTouched
+        public event EventHandler<TouchedOutsideEventArgs> TouchedOutside
         {
             add
             {
@@ -176,7 +176,7 @@ namespace Tizen.NUI.UIComponents
         // Callback for Popup OutsideTouchedSignal
         private void OnOutsideTouched()
         {
-            OutsideTouchedEventArgs e = new OutsideTouchedEventArgs();
+            TouchedOutsideEventArgs e = new TouchedOutsideEventArgs();
 
             if (_popUpOutsideTouchedEventHandler != null)
             {

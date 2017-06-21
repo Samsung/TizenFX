@@ -137,20 +137,20 @@ namespace VisualViewTest2
                 "Enter - Change BG image\n";
             Window.Instance.Add(guide);
 
-            Window.Instance.KeyEvent += Instance_Key;
+            Window.Instance.KeyPressed += Instance_Key;
             FocusManager.Instance.SetCurrentFocusView(view[0]);
             Window.Instance.Touched += Instance_Touch;
             _window = Window.Instance;
-            _window.WindowFocusChanged += _window_WindowFocusChanged;
+            _window.FocusChanged += _window_WindowFocusChanged;
 
         }
 
-        private void _window_WindowFocusChanged(object sender, Window.WindowFocusChangedEventArgs e)
+        private void _window_WindowFocusChanged(object sender, Window.FocusChangedEventArgs e)
         {
             Tizen.Log.Fatal("NUI", "window focus changed!() focus gained=" + e.FocusGained);
         }
 
-        private void Instance_Touch(object sender, Window.TouchEventArgs e)
+        private void Instance_Touch(object sender, Window.TouchedEventArgs e)
         {
             FocusManager.Instance.SetCurrentFocusView(view[0]);
         }

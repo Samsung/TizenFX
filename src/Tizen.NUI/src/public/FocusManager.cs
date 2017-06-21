@@ -363,7 +363,7 @@ namespace Tizen.NUI
         ///<summary>
         ///Event arguments that passed via FocusedViewEnterKey signal
         /// </summary>
-        public class FocusedViewEnterKeyEventArgs : EventArgs
+        public class FocusedViewActivatedEventArgs : EventArgs
         {
             private View _view;
 
@@ -380,7 +380,7 @@ namespace Tizen.NUI
             }
         }
 
-        private EventHandler<FocusedViewEnterKeyEventArgs> _focusedViewEnterKeyEventHandler;
+        private EventHandler<FocusedViewActivatedEventArgs> _focusedViewEnterKeyEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void FocusedViewEnterKeyEventCallback(IntPtr view);
         private FocusedViewEnterKeyEventCallback _focusedViewEnterKeyEventCallback;
@@ -388,7 +388,7 @@ namespace Tizen.NUI
         /// <summary>
         /// FocusedViewActivated will be triggered when the current focused view has the enter key pressed on it.
         /// </summary>
-        public event EventHandler<FocusedViewEnterKeyEventArgs> FocusedViewActivated
+        public event EventHandler<FocusedViewActivatedEventArgs> FocusedViewActivated
         {
             add
             {
@@ -412,7 +412,7 @@ namespace Tizen.NUI
 
         private void OnFocusedViewEnterKey(IntPtr view)
         {
-            FocusedViewEnterKeyEventArgs e = new FocusedViewEnterKeyEventArgs();
+            FocusedViewActivatedEventArgs e = new FocusedViewActivatedEventArgs();
 
             e.View = View.GetViewFromPtr(view);
 
@@ -582,7 +582,7 @@ namespace Tizen.NUI
             View ret = new View(NDalicManualPINVOKE.FocusManager_GetFocusIndicatorActor(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             if (ret.HasBody() == false)
-            { 
+            {
                 return null;
             }
             return ret;

@@ -54,7 +54,7 @@ namespace HelloWorldTest
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
             window.Touched += OnWindowTouched;
-            window.KeyEvent += OnWindowKeyEvent;
+            window.KeyPressed += OnWindowKeyEvent;
 
             TextLabel pixelLabel = new TextLabel("Test Pixel Size 32.0f");
             pixelLabel.Position2D = new Position2D(10, 10);
@@ -146,7 +146,7 @@ namespace HelloWorldTest
             }
         }
 
-        public void OnWindowTouched(object sender, Window.TouchEventArgs e)
+        public void OnWindowTouched(object sender, Window.TouchedEventArgs e)
         {
             if (e.Touch.GetState(0) == PointStateType.Down)
             {
