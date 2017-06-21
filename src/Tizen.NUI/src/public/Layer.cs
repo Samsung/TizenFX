@@ -37,12 +37,12 @@ namespace Tizen.NUI
 
         protected override void Dispose(DisposeTypes type)
         {
-            if (disposed)
+            if(disposed)
             {
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
+            if(type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
@@ -367,36 +367,6 @@ namespace Tizen.NUI
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
-        }
-
-        /// <summary>
-        /// Gets/Sets the Layer's name.
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return GetName();
-            }
-            set
-            {
-                SetName(value);
-            }
-        }
-
-        internal string GetName()
-        {
-            string ret = NDalicPINVOKE.Actor_GetName(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetName(string name)
-        {
-            NDalicPINVOKE.Actor_SetName(swigCPtr, name);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 }
