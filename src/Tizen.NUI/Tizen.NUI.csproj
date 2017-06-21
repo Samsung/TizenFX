@@ -168,6 +168,7 @@
     <Compile Include="src\internal\RenderTask.cs" />
     <Compile Include="src\internal\RenderTaskList.cs" />
     <Compile Include="src\internal\RenderTaskSignal.cs" />
+    <Compile Include="src\internal\ResizedSignal.cs" />
     <Compile Include="src\internal\ResourceImage.cs" />
     <Compile Include="src\internal\ResourceImageSignal.cs" />
     <Compile Include="src\internal\Ruler.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="src\internal\RulerPtr.cs" />
     <Compile Include="src\internal\Sampler.cs" />
     <Compile Include="src\internal\ScrollableSignal.cs" />
+    <Compile Include="src\internal\ScrollStateChangedSignal.cs" />
     <Compile Include="src\internal\ScrollViewPagePathEffect.cs" />
     <Compile Include="src\internal\ScrollViewSnapStartedSignal.cs" />
     <Compile Include="src\internal\Shader.cs" />
@@ -287,6 +289,7 @@
     <Compile Include="src\public\FocusManager.cs" />
     <Compile Include="src\public\Gesture.cs" />
     <Compile Include="src\public\Hover.cs" />
+    <Compile Include="src\public\InputMethod.cs" />
     <Compile Include="src\public\Key.cs" />
     <Compile Include="src\public\KeyFrames.cs" />
     <Compile Include="src\public\Layer.cs" />

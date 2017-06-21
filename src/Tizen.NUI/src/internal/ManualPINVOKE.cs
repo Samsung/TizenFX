@@ -61,6 +61,9 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_KeyboardFocusManager_GetFocusIndicatorActor")]
         public static extern global::System.IntPtr FocusManager_GetFocusIndicatorActor(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_KeyboardFocusManager_MoveFocusBackward")]
+        public static extern void FocusManager_MoveFocusBackward(global::System.Runtime.InteropServices.HandleRef jarg1);
+
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_KeyboardFocusManager_PreFocusChangeSignal")]
         public static extern global::System.IntPtr FocusManager_PreFocusChangeSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -667,5 +670,54 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_StateChangedSignalType")]
         public static extern void delete_StateChangedSignalType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        //manual pinvoke for text-editor ScrollStateChangedSignal
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TextEditor_ScrollStateChangedSignal")]
+        public static extern global::System.IntPtr TextEditor_ScrollStateChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ScrollStateChangedSignal_Empty")]
+        public static extern bool ScrollStateChangedSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ScrollStateChangedSignal_GetConnectionCount")]
+        public static extern uint ScrollStateChangedSignal_GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ScrollStateChangedSignal_Connect")]
+        public static extern void ScrollStateChangedSignal_Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ScrollStateChangedSignal_Disconnect")]
+        public static extern void ScrollStateChangedSignal_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ScrollStateChangedSignal_Emit")]
+        public static extern void ScrollStateChangedSignal_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_ScrollStateChangedSignal")]
+        public static extern global::System.IntPtr new_ScrollStateChangedSignal();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_ScrollStateChangedSignal")]
+        public static extern void delete_ScrollStateChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        // For windows resized signal
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Window_ResizedSignal")]
+        public static extern global::System.IntPtr Window_ResizedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ResizedSignal_Empty")]
+        public static extern bool ResizedSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ResizedSignal_GetConnectionCount")]
+        public static extern uint ResizedSignal_GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ResizedSignal_Connect")]
+        public static extern void ResizedSignal_Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ResizedSignal_Disconnect")]
+        public static extern void ResizedSignal_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ResizedSignal_Emit")]
+        public static extern void ResizedSignal_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_ResizedSignal")]
+        public static extern global::System.IntPtr new_ResizedSignal();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_ResizedSignal")]
+        public static extern void delete_ResizedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
     }
 }
