@@ -245,7 +245,6 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                GetProperty(ImageView.Property.RESOURCE_URL).Get(out _url);
                 return _url;
             }
             set

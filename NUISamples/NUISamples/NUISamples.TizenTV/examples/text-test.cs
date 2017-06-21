@@ -91,30 +91,15 @@ namespace TextTest
             field.HiddenInputSettings = hiddenMap;
             window.Add(field);
 
-            InputMethod inputMethod = new InputMethod();
-            inputMethod.PanelLayout = InputMethod.PanelLayoutType.Number;
-            inputMethod.ActionButton = InputMethod.ActionButtonTitleType.Go;
-            inputMethod.AutoCapital = InputMethod.AutoCapitalType.Word;
-            inputMethod.Variation = 1;
-
-            field.InputMethodSettings = inputMethod.OutputMap;
-
             TextEditor editor = new TextEditor();
             editor.Size2D = new Size2D(400, 100);
             editor.Position2D = new Position2D(10, 550);
             editor.BackgroundColor = Color.Magenta;
             editor.PlaceholderText = "input someth...";
             editor.PlaceholderTextColor = Color.Red;
-            editor.EnableScrollBar = true;
-            editor.Focusable = true;
-            FocusManager.Instance.SetCurrentFocusView(editor);
             window.Add(editor);
             editor.TextChanged += (obj, e) => {
                 Tizen.Log.Debug("NUI", "editor line count: " + e.TextEditor.LineCount);
-            };
-
-            editor.ScrollStateChanged += (obj, e)=> {
-                Tizen.Log.Debug("NUI", "editor scroll state:" + e.ScrollState);
             };
 
             Tizen.Log.Debug("NUI",  "editor id: " + editor.ID);

@@ -151,93 +151,6 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
-        /// <summary>
-        /// Event arguments that passed via ScrollStateChanged signal.
-        /// </summary>
-        public class ScrollStateChangedEventArgs : EventArgs
-        {
-            private TextEditor _textEditor;
-            private ScrollState _scrollState;
-
-            /// <summary>
-            /// TextEditor - is the texteditor control which has the scroll state changed.
-            /// </summary>
-            public TextEditor TextEditor
-            {
-                get
-                {
-                    return _textEditor;
-                }
-                set
-                {
-                    _textEditor = value;
-                }
-            }
-
-            /// <summary>
-            /// ScrollState - is the texteditor control scroll state.
-            /// </summary>
-            public ScrollState ScrollState
-            {
-                get
-                {
-                    return _scrollState;
-                }
-                set
-                {
-                    _scrollState = value;
-                }
-            }
-        }
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void ScrollStateChangedCallbackDelegate(IntPtr textEditor, ScrollState state);
-        private EventHandler<ScrollStateChangedEventArgs> _textEditorScrollStateChangedEventHandler;
-        private ScrollStateChangedCallbackDelegate _textEditorScrollStateChangedCallbackDelegate;
-
-        /// <summary>
-        /// Event for ScrollStateChanged signal which can be used to subscribe/unsubscribe the event handler
-        /// provided by the user. ScrollStateChanged signal is emitted when the scroll state changes.<br>
-        /// </summary>
-        public event EventHandler<ScrollStateChangedEventArgs> ScrollStateChanged
-        {
-            add
-            {
-                if (_textEditorScrollStateChangedEventHandler == null)
-                {
-                    _textEditorScrollStateChangedCallbackDelegate = OnScrollStateChanged;
-                    ScrollStateChangedSignal(this).Connect(_textEditorScrollStateChangedCallbackDelegate);
-                }
-                _textEditorScrollStateChangedEventHandler += value;
-            }
-            remove
-            {
-                _textEditorScrollStateChangedEventHandler -= value;
-                if (_textEditorScrollStateChangedEventHandler == null && ScrollStateChangedSignal(this).Empty() == false)
-                {
-                    ScrollStateChangedSignal(this).Disconnect(_textEditorScrollStateChangedCallbackDelegate);
-                }
-            }
-        }
-
-        private void OnScrollStateChanged(IntPtr textEditor, ScrollState state)
-        {
-            ScrollStateChangedEventArgs e = new ScrollStateChangedEventArgs();
-
-            if (textEditor != null)
-            {
-                // Populate all members of "e" (ScrollStateChangedEventArgs) with real data
-                e.TextEditor = TextEditor.GetTextEditorFromPtr(textEditor);
-                e.ScrollState = state;
-            }
-
-            if (_textEditorScrollStateChangedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _textEditorScrollStateChangedEventHandler(this, e);
-            }
-        }
-
         internal static TextEditor GetTextEditorFromPtr(global::System.IntPtr cPtr)
         {
             TextEditor ret = new TextEditor(cPtr, false);
@@ -345,13 +258,6 @@ namespace Tizen.NUI.BaseComponents
         internal TextEditorSignal TextChangedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(NDalicPINVOKE.TextEditor_TextChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ScrollStateChangedSignal ScrollStateChangedSignal(TextEditor textEditor)
-        {
-            ScrollStateChangedSignal ret = new ScrollStateChangedSignal(NDalicManualPINVOKE.TextEditor_ScrollStateChangedSignal(TextEditor.getCPtr(textEditor)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
