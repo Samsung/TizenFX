@@ -857,7 +857,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Touch event argument.
         /// </summary>
-        public class TouchedEventArgs : EventArgs
+        public class TouchEventArgs : EventArgs
         {
             private Touch _touch;
 
@@ -877,7 +877,7 @@ namespace Tizen.NUI
             }
         }
 
-        private event EventHandler<TouchedEventArgs> _stageTouchHandler;
+        private event EventHandler<TouchEventArgs> _stageTouchHandler;
         private EventCallbackDelegateType1 _stageTouchCallbackDelegate;
 
         /// <summary>
@@ -886,7 +886,7 @@ namespace Tizen.NUI
         /// then when the last finger is lifted.<br>
         /// An interrupted event will also be emitted (if it occurs).<br>
         /// </summary>
-        public event EventHandler<TouchedEventArgs> Touched
+        public event EventHandler<TouchEventArgs> Touch
         {
             add
             {
@@ -912,7 +912,7 @@ namespace Tizen.NUI
 
         private void OnStageTouch(IntPtr data)
         {
-            TouchedEventArgs e = new TouchedEventArgs();
+            TouchEventArgs e = new TouchEventArgs();
 
             if (data != null)
             {
@@ -928,7 +928,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Wheel event arguments.
         /// </summary>
-        public class WheelRolledEventArgs : EventArgs
+        public class WheelEventArgs : EventArgs
         {
             private Wheel _wheel;
 
@@ -948,13 +948,13 @@ namespace Tizen.NUI
             }
         }
 
-        private event EventHandler<WheelRolledEventArgs> _stageWheelHandler;
+        private event EventHandler<WheelEventArgs> _stageWheelHandler;
         private EventCallbackDelegateType1 _stageWheelCallbackDelegate;
 
         /// <summary>
         /// Event emitted when wheel event is received.
         /// </summary>
-        public event EventHandler<WheelRolledEventArgs> WheelRolled
+        public event EventHandler<WheelEventArgs> WheelRoll
         {
             add
             {
@@ -977,7 +977,7 @@ namespace Tizen.NUI
 
         private void OnStageWheel(IntPtr data)
         {
-            WheelRolledEventArgs e = new WheelRolledEventArgs();
+            WheelEventArgs e = new WheelEventArgs();
 
             if (data != null)
             {
@@ -1019,7 +1019,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event emitted when key event is received.
         /// </summary>
-        public event EventHandler<KeyEventArgs> KeyPressed
+        public event EventHandler<KeyEventArgs> Key
         {
             add
             {
@@ -1392,14 +1392,20 @@ namespace Tizen.NUI
                 }
             }
         }
-
         /// <summary>
         /// will be deprecated at nui_0.2.50
         /// </summary>
-        /// <param name="layer"></param>
         public void AddLayer(Layer layer)
         {
             NDalicPINVOKE.Stage_Add(stageCPtr, Layer.getCPtr(layer));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        /// <summary>
+        /// will be deprecated at nui_0.2.50
+        /// </summary>
+        public void RemoveLayer(Layer layer)
+        {
+            NDalicPINVOKE.Stage_Remove(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
