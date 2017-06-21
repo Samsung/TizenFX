@@ -93,6 +93,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// this method will be changed as internal method on later release
+        /// </summary>
+        public new static Path DownCast(BaseHandle handle)
+        {
+            Path ret = new Path(NDalicPINVOKE.Path_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Adds an interpolation point.
         /// </summary>
         /// <param name="point">The new interpolation point to be added</param>

@@ -111,7 +111,7 @@ namespace Tizen.NUI.BaseComponents
         private void OnResourceReady(IntPtr data)
         {
             ResourceReadyEventArgs e = new ResourceReadyEventArgs();
-            if(data != null)
+            if (data != null)
             {
                 e.View = View.GetViewFromPtr(data);
             }
@@ -130,7 +130,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if(type == DisposeTypes.Explicit)
+            if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
@@ -191,13 +191,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Downcasts a handle to ImageView handle.<br>
-        /// If handle points to a ImageView, the downcast produces valid handle.<br>
-        /// If not, the returned handle is left uninitialized.<br>
+        /// this method will be changed as internal method on later release
         /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        /// <returns>Handle to a ImageView or an uninitialized handle</returns>
-        internal new static ImageView DownCast(BaseHandle handle)
+        public new static ImageView DownCast(BaseHandle handle)
         {
             ImageView ret = new ImageView(NDalicPINVOKE.ImageView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -219,7 +215,8 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal ViewResourceReadySignal ResourceReadySignal(View view) {
+        internal ViewResourceReadySignal ResourceReadySignal(View view)
+        {
             ViewResourceReadySignal ret = new ViewResourceReadySignal(NDalicPINVOKE.ResourceReadySignal(View.getCPtr(view)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -383,7 +380,7 @@ namespace Tizen.NUI.BaseComponents
                     if (_synchronousLoading != null) _nPatchMap.Add(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading));
                     SetProperty(ImageView.Property.IMAGE, new PropertyValue(_nPatchMap));
                 }
-                else if(_synchronousLoading != null)
+                else if (_synchronousLoading != null)
                 { // for normal image, with synchronous loading property
                     PropertyMap imageMap = new PropertyMap();
                     imageMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));

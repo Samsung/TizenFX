@@ -312,11 +312,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Downcasts a handle to TextField.
+        /// this method will be changed as internal method on later release
         /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        /// <returns>Handle to a TextField or an empty handle</returns>
-        internal new static TextField DownCast(BaseHandle handle)
+        public new static TextField DownCast(BaseHandle handle)
         {
             TextField ret = new TextField(NDalicPINVOKE.TextField_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
