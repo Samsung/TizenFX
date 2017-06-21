@@ -17,12 +17,12 @@ namespace Tizen.NUI
 {
     public enum ScrollModeType
     {
-        XAxisScrollEnabled,
-        XAxisSnapToInterval,
-        XAxisScrollBoundary,
-        YAxisScrollEnabled,
-        YAxisSnapToInterval,
-        YAxisScrollBoundary
+      XAxisScrollEnabled,
+      XAxisSnapToInterval,
+      XAxisScrollBoundary,
+      YAxisScrollEnabled,
+      YAxisSnapToInterval,
+      YAxisScrollBoundary
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ namespace Tizen.NUI
         /// Actor will use its own color.
         /// </summary>
         UseOwnColor,
-        /// <summary>
+         /// <summary>
         /// Actor will use its parent color.
         /// </summary>
         UseParentColor,
@@ -1297,8 +1297,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An enum of screen mode.
     /// </summary>
-    public enum ScreenMode
-    {
+    public enum ScreenMode {
         /// <summary>
         /// The mode which turns the screen off after a timeout.
         /// </summary>
@@ -1312,8 +1311,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An enum of notification window's priority level.
     /// </summary>
-    public enum NotificationLevel
-    {
+    public enum NotificationLevel {
         /// <summary>
         /// No notification level.<br>
         /// Default level.<br>
@@ -1341,8 +1339,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An enum of Window types.
     /// </summary>
-    public enum WindowType
-    {
+    public enum WindowType {
         /// <summary>
         /// A default window type.<br>
         /// Indicates a normal, top-level window.
@@ -1512,20 +1509,7 @@ namespace Tizen.NUI
         }
     }
 
-    /// <summary>
-    /// An enum of scroll state of text eidtor.
-    /// </summary>
-    public enum ScrollState
-    {
-        /// <summary>
-        /// Scrolling is started.
-        /// </summary>
-        Started,
 
-        /// <summary>
-        /// Scrolling is finished.
-        /// </summary>
-        Finished
-    }
+
 
 }
