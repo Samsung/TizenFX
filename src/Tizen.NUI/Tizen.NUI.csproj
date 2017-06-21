@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" PrivateAssets="All" />
     <PackageReference Include="Tizen.Applications.Common" Version="1.5.8" />
     <PackageReference Include="Tizen.Applications.UI" Version="1.5.8" />
   </ItemGroup>
