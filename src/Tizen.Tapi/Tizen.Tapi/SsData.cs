@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-using System.Text;
 using System.Collections.Generic;
 
 namespace Tizen.Tapi
 {
     /// <summary>
-    /// A class which defines values for USSD request type. Applicable to 3GPP(GSM?UMTS/LET) only.
+    /// A class which defines values for USSD request type. Applicable to 3GPP(GSM/UMTS/LET) only.
     /// </summary>
     public class SsUssdMsgInfo
     {
-        internal SsUssdType SsType;
-        internal byte SsDcs;
-        internal int SsLength;
-        internal string Ussd;
-
-        internal SsUssdMsgInfo()
-        {
-        }
+        private SsUssdType _type;
+        private byte _dcs;
+        private int _length;
+        private string _ussdString;
 
         /// <summary>
         /// USSD type.
@@ -41,7 +36,12 @@ namespace Tizen.Tapi
         {
             get
             {
-                return SsType;
+                return _type;
+            }
+
+            set
+            {
+                _type = value;
             }
         }
 
@@ -53,7 +53,12 @@ namespace Tizen.Tapi
         {
             get
             {
-                return SsDcs;
+                return _dcs;
+            }
+
+            set
+            {
+                _dcs = value;
             }
         }
 
@@ -65,7 +70,12 @@ namespace Tizen.Tapi
         {
             get
             {
-                return SsLength;
+                return _length;
+            }
+
+            set
+            {
+                _length = value;
             }
         }
 
@@ -77,7 +87,12 @@ namespace Tizen.Tapi
         {
             get
             {
-                return Ussd;
+                return _ussdString;
+            }
+
+            set
+            {
+                _ussdString = value;
             }
         }
     }
@@ -465,6 +480,304 @@ namespace Tizen.Tapi
             get
             {
                 return Type;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which defines parameters related to call barring.
+    /// </summary>
+    public class SsBarringInfo
+    {
+        private SsClass _class;
+        private SsBarringMode _mode;
+        private SsBarringType _type;
+        private string _password;
+        private SsBarringInfo()
+        {
+        }
+
+        /// <summary>
+        /// A constructor for instantiating SsBarringInfo class with the necessary parameters.
+        /// </summary>
+        /// <param name="classType">Call type.</param>
+        /// <param name="mode">Barring mode.</param>
+        /// <param name="type">Barring type.</param>
+        /// <param name="password">Password (3GPP(GSM/UMTS/LTE) Specific).</param>
+        public SsBarringInfo(SsClass classType, SsBarringMode mode, SsBarringType type, string password)
+        {
+            _class = classType;
+            _mode = mode;
+            _type = type;
+            _password = password;
+        }
+
+        internal SsClass Class
+        {
+            get
+            {
+                return _class;
+            }
+        }
+
+        internal SsBarringMode Mode
+        {
+            get
+            {
+                return _mode;
+            }
+        }
+
+        internal SsBarringType Type
+        {
+            get
+            {
+                return _type;
+            }
+        }
+
+        internal string Password
+        {
+            get
+            {
+                return _password;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which defines the parameters related to forward info.
+    /// </summary>
+    public class SsForwardInfo
+    {
+        private SsClass _class;
+        private SsForwardMode _mode;
+        private SsForwardCondition _condition;
+        private SsNoReplyTime _noReplyTimer;
+        private SsForwardTypeOfNumber _ton;
+        private SsForwardNumberingPlanIdentity _npi;
+        private string _phoneNumber;
+        private SsForwardInfo()
+        {
+        }
+
+        /// <summary>
+        /// A constructor for instantiating SsForwardInfo class with the necessary parameters.
+        /// </summary>
+        /// <param name="classType">SS Class.</param>
+        /// <param name="mode">Forward Mode.</param>
+        /// <param name="condition">Forward Condition.</param>
+        /// <param name="time">No reply wait time 5-30 secs in intervals of 5(3GPP(GSM/UMTS/LTE) Specific).</param>
+        /// <param name="ton">Type of number.</param>
+        /// <param name="npi">Numbering plan identity.</param>
+        /// <param name="number">Phone number.</param>
+        public SsForwardInfo(SsClass classType, SsForwardMode mode, SsForwardCondition condition, SsNoReplyTime time, SsForwardTypeOfNumber ton, SsForwardNumberingPlanIdentity npi, string number)
+        {
+            _class = classType;
+            _mode = mode;
+            _condition = condition;
+            _noReplyTimer = time;
+            _ton = ton;
+            _npi = npi;
+            _phoneNumber = number;
+        }
+
+        internal SsClass Class
+        {
+            get
+            {
+                return _class;
+            }
+        }
+
+        internal SsForwardMode Mode
+        {
+            get
+            {
+                return _mode;
+            }
+        }
+
+        internal SsForwardCondition Condition
+        {
+            get
+            {
+                return _condition;
+            }
+        }
+
+        internal SsNoReplyTime NoReplyTimer
+        {
+            get
+            {
+                return _noReplyTimer;
+            }
+        }
+
+        internal SsForwardTypeOfNumber Ton
+        {
+            get
+            {
+                return _ton;
+            }
+        }
+
+        internal SsForwardNumberingPlanIdentity Npi
+        {
+            get
+            {
+                return _npi;
+            }
+        }
+
+        internal string PhoneNumber
+        {
+            get
+            {
+                return _phoneNumber;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which defines parameters related to call waiting.
+    /// </summary>
+    public class SsWaitingInfo
+    {
+        private SsClass _class;
+        private SsCallWaitingMode _mode;
+        private SsWaitingInfo()
+        {
+        }
+
+        /// <summary>
+        /// A constructor for instantiating SsWaitingInfo class with necessary parameters.
+        /// </summary>
+        /// <param name="ssClass">Call type.</param>
+        /// <param name="mode">Call waiting mode.</param>
+        public SsWaitingInfo(SsClass ssClass, SsCallWaitingMode mode)
+        {
+            _class = ssClass;
+            _mode = mode;
+        }
+
+        internal SsClass Class
+        {
+            get
+            {
+                return _class;
+            }
+        }
+
+        internal SsCallWaitingMode Mode
+        {
+            get
+            {
+                return _mode;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which defines values for calling line identity service. Applicable to 3GPP(GSM/UMTS/LTE) only.
+    /// </summary>
+    public class SsCliResponse
+    {
+        internal SsLineIdentificationType LineType;
+        internal SsCliStatus CliStatus;
+        internal SsCliResponse()
+        {
+        }
+
+        /// <summary>
+        /// Various line identification types.
+        /// </summary>
+        public SsLineIdentificationType Type
+        {
+            get
+            {
+                return LineType;
+            }
+        }
+
+        /// <summary>
+        /// Line identification status from the network.
+        /// </summary>
+        public SsCliStatus Status
+        {
+            get
+            {
+                return CliStatus;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A class which defines USSD response data. Applicable to 3GPP(GSM/UMTS/LTE) only.
+    /// </summary>
+    public class SsUssdResponse
+    {
+        internal SsUssdType UssdType;
+        internal SsUssdStatus UssdStatus;
+        internal byte DcsInfo;
+        internal int UssdLength;
+        internal string UssdInfo;
+        internal SsUssdResponse()
+        {
+        }
+
+        /// <summary>
+        /// USSD Type.
+        /// </summary>
+        public SsUssdType Type
+        {
+            get
+            {
+                return UssdType;
+            }
+        }
+
+        /// <summary>
+        /// USSD Status.
+        /// </summary>
+        public SsUssdStatus Status
+        {
+            get
+            {
+                return UssdStatus;
+            }
+        }
+
+        /// <summary>
+        /// DCS.
+        /// </summary>
+        public byte Dcs
+        {
+            get
+            {
+                return DcsInfo;
+            }
+        }
+
+        /// <summary>
+        /// USSD string length.
+        /// </summary>
+        public int Length
+        {
+            get
+            {
+                return UssdLength;
+            }
+        }
+
+        /// <summary>
+        /// USSD String.
+        /// </summary>
+        public string UssdString
+        {
+            get
+            {
+                return UssdInfo;
             }
         }
     }

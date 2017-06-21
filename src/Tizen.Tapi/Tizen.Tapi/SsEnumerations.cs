@@ -714,4 +714,123 @@ namespace Tizen.Tapi
         /// </summary>
         Max
     }
+
+    /// <summary>
+    /// Enumeration for the call barring operation mode.
+    /// </summary>
+    public enum SsBarringMode
+    {
+        /// <summary>
+        /// Activate call barring.
+        /// </summary>
+        Activate,
+        /// <summary>
+        /// Deactivate call barring.
+        /// </summary>
+        Deactivate
+    }
+
+    /// <summary>
+    /// Enumeration for the forward mode.
+    /// </summary>
+    public enum SsForwardMode
+    {
+        /// <summary>
+        /// Deactivate call forwarding.
+        /// </summary>
+        Disable,
+        /// <summary>
+        /// Activate call forwarding.
+        /// </summary>
+        Enable,
+        /// <summary>
+        /// Register call forwarding.
+        /// </summary>
+        Registration,
+        /// <summary>
+        /// Deregister call forwarding.
+        /// </summary>
+        Erasure
+    }
+
+    /// <summary>
+    /// Enumeration for the call waiting mode.
+    /// </summary>
+    public enum SsCallWaitingMode
+    {
+        /// <summary>
+        /// Activate call waiting.
+        /// </summary>
+        Activate,
+        /// <summary>
+        /// Deactivate call waiting.
+        /// </summary>
+        Deactivate
+    }
+
+    /// <summary>
+    /// Enumeration for the types of identity presentation / restriction services.
+    /// </summary>
+    public enum SsLineIdentificationType
+    {
+        /// <summary>
+        /// Identify the party calling this phone.
+        /// </summary>
+        CallingLinePresentation = 0x01,
+        /// <summary>
+        /// Hide the identity of this phone when calling others.
+        /// </summary>
+        CallingLineRestriction,
+        /// <summary>
+        /// Identify the party to whom the calling party (this phone) is connected. 3GPP(GSM/UMTS/LTE) Specific.
+        /// </summary>
+        ConnectedLinePresentation,
+        /// <summary>
+        /// Restrict yourself from being identified by incoming calls, such as forwarded calls. 3GPP(GSM/UMTS/LTE) Specific.
+        /// </summary>
+        ConnectedLineRestriction,
+        /// <summary>
+        /// Called line identity presentation. 3GPP(GSM/UMTS/LTE) Specific.
+        /// </summary>
+        CalledLinePresentation,
+        /// <summary>
+        /// Calling Name Presentation. 3GPP(GSM/UMTS/LTE) Specific.
+        /// </summary>
+        CallingNamePresentation
+    }
+
+    /// <summary>
+    /// Enumeration for the USSD indication type. Applicable to 3GPP(GSM/UMTS/LTE) only.
+    /// </summary>
+    public enum SsUssdStatus
+    {
+        /// <summary>
+        /// Notify : to display USSD data to the user.
+        /// </summary>
+        Notify = 0x00,
+        /// <summary>
+        /// No further user action required.
+        /// </summary>
+        NoActionRequire = 0x01,
+        /// <summary>
+        /// Further user action required.
+        /// </summary>
+        ActionRequire = 0x02,
+        /// <summary>
+        /// USSD terminated by the network.
+        /// </summary>
+        TerminatedByNetwork = 0x03,
+        /// <summary>
+        /// Other local client has responded.
+        /// </summary>
+        OtherClient = 0x04,
+        /// <summary>
+        /// Operation not supported.
+        /// </summary>
+        NotSupport = 0x05,
+        /// <summary>
+        /// Time out when there is no response from the network.
+        /// </summary>
+        TimeOut = 0x06
+    }
 }

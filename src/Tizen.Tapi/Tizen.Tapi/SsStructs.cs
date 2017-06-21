@@ -23,6 +23,11 @@ namespace Tizen.Tapi
     [StructLayout(LayoutKind.Sequential)]
     internal struct SsBarringInfoStruct
     {
+        internal SsClass Class;
+        internal SsBarringMode Mode;
+        internal SsBarringType Type;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 4)]
+        internal string Password;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -52,6 +57,17 @@ namespace Tizen.Tapi
     }
 
     [StructLayout(LayoutKind.Sequential)]
+    internal struct SsUssdResponseStruct
+    {
+        internal SsUssdType Type;
+        internal SsUssdStatus Status;
+        internal byte Dcs;
+        internal int Length;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 208)]
+        internal string UssdString;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
     internal struct SsReleaseCompleteMsgStruct
     {
         internal byte MsgLength;
@@ -62,6 +78,8 @@ namespace Tizen.Tapi
     [StructLayout(LayoutKind.Sequential)]
     internal struct SsWaitingInfoStruct
     {
+        internal SsClass Class;
+        internal SsCallWaitingMode Mode;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -82,6 +100,14 @@ namespace Tizen.Tapi
     [StructLayout(LayoutKind.Sequential)]
     internal struct SsForwardInfoStruct
     {
+        internal SsClass Class;
+        internal SsForwardMode Mode;
+        internal SsForwardCondition Condition;
+        internal SsNoReplyTime NoReplyTimer;
+        internal SsForwardTypeOfNumber Ton;
+        internal SsForwardNumberingPlanIdentity Npi;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 82)]
+        internal string PhoneNumber;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -113,6 +139,13 @@ namespace Tizen.Tapi
         internal SsInfoType Type;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SsCliResponseStruct
+    {
+        internal SsLineIdentificationType Type;
+        internal SsCliStatus Status;
+    }
+
     internal static class SsStructConversions
     {
         internal static SsForwardRecord ConvertSsForwardRecordStruct(SsForwardRecordStruct recordStruct)
@@ -141,10 +174,10 @@ namespace Tizen.Tapi
         internal static SsUssdMsgInfo ConvertSsMsgStruct(SsUssdMsgInfoStruct msgStruct)
         {
             SsUssdMsgInfo info = new SsUssdMsgInfo();
-            info.SsLength = msgStruct.Length;
-            info.SsDcs = msgStruct.Dcs;
-            info.Ussd = msgStruct.UssdString;
-            info.SsType = msgStruct.Type;
+            info.Length = msgStruct.Length;
+            info.Dcs = msgStruct.Dcs;
+            info.UssdString = msgStruct.UssdString;
+            info.Type = msgStruct.Type;
             return info;
         }
 
@@ -211,6 +244,69 @@ namespace Tizen.Tapi
             info.Cse = infoStruct.Cause;
             info.Type = infoStruct.Type;
             return info;
+        }
+
+        internal static SsCliResponse ConvertSsCliResponseStruct(SsCliResponseStruct responseStruct)
+        {
+            SsCliResponse response = new SsCliResponse();
+            response.LineType = responseStruct.Type;
+            response.CliStatus = responseStruct.Status;
+            return response;
+        }
+
+        internal static SsUssdResponse ConvertSsUssdResponseStruct(SsUssdResponseStruct responseStruct)
+        {
+            SsUssdResponse response = new SsUssdResponse();
+            response.UssdType = responseStruct.Type;
+            response.UssdStatus = responseStruct.Status;
+            response.DcsInfo = responseStruct.Dcs;
+            response.UssdLength = responseStruct.Length;
+            response.UssdInfo = responseStruct.UssdString;
+            return response;
+        }
+    }
+
+    internal static class SsClassConversions
+    {
+        internal static SsBarringInfoStruct ConvertSsBarringInfo(SsBarringInfo info)
+        {
+            SsBarringInfoStruct barringStruct = new SsBarringInfoStruct();
+            barringStruct.Class = info.Class;
+            barringStruct.Mode = info.Mode;
+            barringStruct.Type = info.Type;
+            barringStruct.Password = info.Password;
+            return barringStruct;
+        }
+
+        internal static SsForwardInfoStruct ConvertSsForwardInfo(SsForwardInfo info)
+        {
+            SsForwardInfoStruct forwardStruct = new SsForwardInfoStruct();
+            forwardStruct.Class = info.Class;
+            forwardStruct.Mode = info.Mode;
+            forwardStruct.Condition = info.Condition;
+            forwardStruct.NoReplyTimer = info.NoReplyTimer;
+            forwardStruct.Ton = info.Ton;
+            forwardStruct.Npi = info.Npi;
+            forwardStruct.PhoneNumber = info.PhoneNumber;
+            return forwardStruct;
+        }
+
+        internal static SsWaitingInfoStruct ConvertSsWaitingInfo(SsWaitingInfo info)
+        {
+            SsWaitingInfoStruct waitingStruct = new SsWaitingInfoStruct();
+            waitingStruct.Class = info.Class;
+            waitingStruct.Mode = info.Mode;
+            return waitingStruct;
+        }
+
+        internal static SsUssdMsgInfoStruct ConvertSsUssdMsgInfo(SsUssdMsgInfo info)
+        {
+            SsUssdMsgInfoStruct msgStruct = new SsUssdMsgInfoStruct();
+            msgStruct.Type = info.Type;
+            msgStruct.Dcs = info.Dcs;
+            msgStruct.Length = info.Length;
+            msgStruct.UssdString = info.UssdString;
+            return msgStruct;
         }
     }
 }
