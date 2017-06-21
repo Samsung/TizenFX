@@ -487,6 +487,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Move the focus to prev focused view.
+        /// </summary>
+        public void MoveFocusBackward()
+        {
+            NDalicManualPINVOKE.FocusManager_MoveFocusBackward(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Sets/Gets the status of whether the focus movement should be looped within the same focus group.<br>
         /// The focus movement is not looped by default.<br>
         /// </summary>
