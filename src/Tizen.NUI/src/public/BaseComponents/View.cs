@@ -43,12 +43,12 @@ namespace Tizen.NUI.BaseComponents
         // you can override it to clean-up your own resources.
         protected override void Dispose(DisposeTypes type)
         {
-            if(disposed)
+            if (disposed)
             {
                 return;
             }
 
-            if(type == DisposeTypes.Explicit)
+            if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
@@ -227,9 +227,9 @@ namespace Tizen.NUI.BaseComponents
                 Delegate[] delegateList = _keyEventHandler.GetInvocationList();
 
                 // Oring the result of each callback.
-                foreach ( EventHandlerWithReturnType<object, KeyEventArgs, bool> del in delegateList )
+                foreach (EventHandlerWithReturnType<object, KeyEventArgs, bool> del in delegateList)
                 {
-                    result |= del( this, e );
+                    result |= del(this, e);
                 }
             }
 
@@ -1173,21 +1173,21 @@ namespace Tizen.NUI.BaseComponents
                 switch (temp)
                 {
                     case 0:
-                    {
-                        return States.Normal;
-                    }
+                        {
+                            return States.Normal;
+                        }
                     case 1:
-                    {
-                        return States.Focused;
-                    }
+                        {
+                            return States.Focused;
+                        }
                     case 2:
-                    {
-                        return States.Disabled;
-                    }
+                        {
+                            return States.Disabled;
+                        }
                     default:
-                    {
-                        return States.Normal;
-                    }
+                        {
+                            return States.Normal;
+                        }
                 }
             }
             set
@@ -1228,25 +1228,25 @@ namespace Tizen.NUI.BaseComponents
                 switch (value)
                 {
                     case States.Normal:
-                    {
-                        valueToString = "NORMAL";
-                        break;
-                    }
+                        {
+                            valueToString = "NORMAL";
+                            break;
+                        }
                     case States.Focused:
-                    {
-                        valueToString = "FOCUSED";
-                        break;
-                    }
+                        {
+                            valueToString = "FOCUSED";
+                            break;
+                        }
                     case States.Disabled:
-                    {
-                        valueToString = "DISABLED";
-                        break;
-                    }
+                        {
+                            valueToString = "DISABLED";
+                            break;
+                        }
                     default:
-                    {
-                        valueToString = "NORMAL";
-                        break;
-                    }
+                        {
+                            valueToString = "NORMAL";
+                            break;
+                        }
                 }
                 SetProperty(View.Property.SUB_STATE, new Tizen.NUI.PropertyValue(valueToString));
             }
@@ -1475,25 +1475,25 @@ namespace Tizen.NUI.BaseComponents
                 switch (value)
                 {
                     case Tizen.NUI.HorizontalAlignmentType.Left:
-                    {
-                        valueToString = "left";
-                        break;
-                    }
+                        {
+                            valueToString = "left";
+                            break;
+                        }
                     case Tizen.NUI.HorizontalAlignmentType.Center:
-                    {
-                        valueToString = "center";
-                        break;
-                    }
+                        {
+                            valueToString = "center";
+                            break;
+                        }
                     case Tizen.NUI.HorizontalAlignmentType.Right:
-                    {
-                        valueToString = "right";
-                        break;
-                    }
+                        {
+                            valueToString = "right";
+                            break;
+                        }
                     default:
-                    {
-                        valueToString = "left";
-                        break;
-                    }
+                        {
+                            valueToString = "left";
+                            break;
+                        }
                 }
                 SetProperty(TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
@@ -1532,25 +1532,25 @@ namespace Tizen.NUI.BaseComponents
                 switch (value)
                 {
                     case Tizen.NUI.VerticalAlignmentType.Top:
-                    {
-                        valueToString = "top";
-                        break;
-                    }
+                        {
+                            valueToString = "top";
+                            break;
+                        }
                     case Tizen.NUI.VerticalAlignmentType.Center:
-                    {
-                        valueToString = "center";
-                        break;
-                    }
+                        {
+                            valueToString = "center";
+                            break;
+                        }
                     case Tizen.NUI.VerticalAlignmentType.Bottom:
-                    {
-                        valueToString = "bottom";
-                        break;
-                    }
+                        {
+                            valueToString = "bottom";
+                            break;
+                        }
                     default:
-                    {
-                        valueToString = "top";
-                        break;
-                    }
+                        {
+                            valueToString = "top";
+                            break;
+                        }
                 }
                 SetProperty(TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
@@ -2773,7 +2773,8 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal ViewVisibilityChangedSignal VisibilityChangedSignal(View view) {
+        internal ViewVisibilityChangedSignal VisibilityChangedSignal(View view)
+        {
             ViewVisibilityChangedSignal ret = new ViewVisibilityChangedSignal(NDalicPINVOKE.VisibilityChangedSignal(View.getCPtr(view)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -3347,13 +3348,13 @@ namespace Tizen.NUI.BaseComponents
                 switch (temp)
                 {
                     case "NORMAL":
-                    return DrawModeType.Normal;
+                        return DrawModeType.Normal;
                     case "OVERLAY_2D":
-                    return DrawModeType.Overlay2D;
+                        return DrawModeType.Overlay2D;
                     case "STENCIL":
-                    return DrawModeType.Stencil;
+                        return DrawModeType.Stencil;
                     default:
-                    return DrawModeType.Normal;
+                        return DrawModeType.Normal;
                 }
             }
             set
@@ -3643,11 +3644,11 @@ namespace Tizen.NUI.BaseComponents
                 switch (temp)
                 {
                     case "DISABLED":
-                    return ClippingModeType.Disabled;
+                        return ClippingModeType.Disabled;
                     case "CLIP_CHILDREN":
-                    return ClippingModeType.ClipChildren;
+                        return ClippingModeType.ClipChildren;
                     default:
-                    return ClippingModeType.Disabled;
+                        return ClippingModeType.Disabled;
                 }
             }
             set
@@ -3722,5 +3723,6 @@ namespace Tizen.NUI.BaseComponents
                 return GetRendererCount();
             }
         }
+
     }
 }
