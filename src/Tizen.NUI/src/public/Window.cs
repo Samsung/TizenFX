@@ -337,7 +337,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public class WindowFocusChangedEventArgs : EventArgs
+        public class FocusChangedEventArgs : EventArgs
         {
             public bool FocusGained
             {
@@ -349,9 +349,9 @@ namespace Tizen.NUI
         private WindowFocusChangedEventCallbackType _windowFocusChangedEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WindowFocusChangedEventCallbackType(bool focusGained);
-        private event EventHandler<WindowFocusChangedEventArgs> _windowFocusChangedEventHandler;
+        private event EventHandler<FocusChangedEventArgs> _windowFocusChangedEventHandler;
 
-        public event EventHandler<WindowFocusChangedEventArgs> WindowFocusChanged
+        public event EventHandler<FocusChangedEventArgs> FocusChanged
         {
             add
             {
@@ -376,7 +376,7 @@ namespace Tizen.NUI
 
         private void OnWindowFocusedChanged(bool focusGained)
         {
-            WindowFocusChangedEventArgs e = new WindowFocusChangedEventArgs();
+            FocusChangedEventArgs e = new FocusChangedEventArgs();
 
             e.FocusGained = focusGained;
 
@@ -834,7 +834,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Touch event argument.
         /// </summary>
-        public class TouchEventArgs : EventArgs
+        public class TouchedEventArgs : EventArgs
         {
             private Touch _touch;
 
@@ -854,7 +854,7 @@ namespace Tizen.NUI
             }
         }
 
-        private event EventHandler<TouchEventArgs> _stageTouchHandler;
+        private event EventHandler<TouchedEventArgs> _stageTouchHandler;
         private EventCallbackDelegateType1 _stageTouchCallbackDelegate;
 
         /// <summary>
@@ -863,7 +863,7 @@ namespace Tizen.NUI
         /// then when the last finger is lifted.<br>
         /// An interrupted event will also be emitted (if it occurs).<br>
         /// </summary>
-        public event EventHandler<TouchEventArgs> Touched
+        public event EventHandler<TouchedEventArgs> Touched
         {
             add
             {
@@ -889,7 +889,7 @@ namespace Tizen.NUI
 
         private void OnStageTouch(IntPtr data)
         {
-            TouchEventArgs e = new TouchEventArgs();
+            TouchedEventArgs e = new TouchedEventArgs();
 
             if (data != null)
             {
@@ -905,7 +905,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Wheel event arguments.
         /// </summary>
-        public class WheelEventArgs : EventArgs
+        public class WheelRolledEventArgs : EventArgs
         {
             private Wheel _wheel;
 
@@ -925,13 +925,13 @@ namespace Tizen.NUI
             }
         }
 
-        private event EventHandler<WheelEventArgs> _stageWheelHandler;
+        private event EventHandler<WheelRolledEventArgs> _stageWheelHandler;
         private EventCallbackDelegateType1 _stageWheelCallbackDelegate;
 
         /// <summary>
         /// Event emitted when wheel event is received.
         /// </summary>
-        public event EventHandler<WheelEventArgs> WheelRolled
+        public event EventHandler<WheelRolledEventArgs> WheelRolled
         {
             add
             {
@@ -954,7 +954,7 @@ namespace Tizen.NUI
 
         private void OnStageWheel(IntPtr data)
         {
-            WheelEventArgs e = new WheelEventArgs();
+            WheelRolledEventArgs e = new WheelRolledEventArgs();
 
             if (data != null)
             {
@@ -996,7 +996,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event emitted when key event is received.
         /// </summary>
-        public event EventHandler<KeyEventArgs> KeyEvent
+        public event EventHandler<KeyEventArgs> KeyPressed
         {
             add
             {
