@@ -22,7 +22,7 @@
   <ItemGroup>
     <PackageReference Include="Tizen" Version="1.0.5" />
     <PackageReference Include="Tizen.Applications.Common" Version="1.5.8" />
-    <PackageReference Include="ElmSharp" Version="1.2.0" />
+    <PackageReference Include="ElmSharp" Version="1.2.1" />
   </ItemGroup>
 
 </Project>
