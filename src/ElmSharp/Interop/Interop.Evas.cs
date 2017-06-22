@@ -111,15 +111,6 @@ internal static partial class Interop
             Mul = 11 /* d = d*s */
         }
 
-        public enum AspectControl
-        {
-            None = 0, /* Preference on scaling unset */
-            Neither = 1, /* Same effect as unset preference on scaling */
-            Horizontal = 2, /* Use all horizontal container space to place an object, using the given aspect */
-            Vertical = 3, /* Use all vertical container space to place an object, using the given aspect */
-            Both = 4 /* Use all horizontal @b and vertical container spaces to place an object (never growing it out of those bounds), using the given aspect */
-        }
-
         public enum ObjectCallbackPriority
         {
             After = 100,
@@ -475,7 +466,7 @@ internal static partial class Interop
         internal static extern string evas_load_error_str(LoadError error);
 
         [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_data_del(IntPtr obj, string key);
+        internal static extern IntPtr evas_object_data_del(IntPtr obj, string key);
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_focus_set(IntPtr obj, bool focus);
@@ -541,7 +532,7 @@ internal static partial class Interop
         internal static extern void evas_object_render_op_set(IntPtr obj, RenderOp op);
 
         [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_size_hint_aspect_set(IntPtr obj, AspectControl aspect, int w, int h);
+        internal static extern void evas_object_size_hint_aspect_set(IntPtr obj, int aspect, int w, int h);
 
         [DllImport(Libraries.Evas)]
         internal static extern IntPtr evas_object_smart_add(IntPtr obj, IntPtr smart);
@@ -637,7 +628,7 @@ internal static partial class Interop
         internal static extern void evas_object_text_style_set(IntPtr obj, TextStyleType type);
 
         [DllImport(Libraries.Evas)]
-        internal static extern bool evas_object_textblock_line_number_geometry_get(IntPtr obj, int line, int x, int y, int w, int h);
+        internal static extern bool evas_object_textblock_line_number_geometry_get(IntPtr obj, int line, out int x, out int y, out int w, out int h);
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_textblock_valign_set(IntPtr obj, double align);
@@ -688,7 +679,7 @@ internal static partial class Interop
         internal static extern void evas_object_stack_below(IntPtr obj, IntPtr below);
 
         [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_size_hint_aspect_get(IntPtr obj, out AspectControl aspect, out int w, out int h);
+        internal static extern void evas_object_size_hint_aspect_get(IntPtr obj, out int aspect, out int w, out int h);
 
         internal static void SetX(IntPtr obj, int x)
         {

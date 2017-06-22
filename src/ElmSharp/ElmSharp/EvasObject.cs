@@ -34,6 +34,15 @@ namespace ElmSharp
         BottomRight,
     }
 
+    public enum AspectControl
+    {
+        None = 0, /* Preference on scaling unset */
+        Neither = 1, /* Same effect as unset preference on scaling */
+        Horizontal = 2, /* Use all horizontal container space to place an object, using the given aspect */
+        Vertical = 3, /* Use all vertical container space to place an object, using the given aspect */
+        Both = 4 /* Use all horizontal @b and vertical container spaces to place an object (never growing it out of those bounds), using the given aspect */
+    }
+
     /// <summary>
     /// The EcasObject is a base class for other widget class
     /// </summary>
@@ -535,6 +544,36 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or gets whether an Evas object is to freeze (discard) events.
+        /// </summary>
+        public bool AllEventsFrozen
+        {
+            get
+            {
+                return Interop.Evas.evas_object_freeze_events_get(RealHandle);
+            }
+            set
+            {
+                Interop.Evas.evas_object_freeze_events_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the layer of its canvas that the given object will be part of.
+        /// </summary>
+        public int Layer
+        {
+            get
+            {
+                return Interop.Evas.evas_object_layer_get(Handle);
+            }
+            set
+            {
+                Interop.Evas.evas_object_layer_set(Handle, value);
+            }
+        }
+
+        /// <summary>
         /// Clips one object to another.
         /// </summary>
         /// <param name="clip">The object to clip object by</param>
@@ -694,6 +733,85 @@ namespace ElmSharp
         public void MarkChanged()
         {
             Interop.Evas.evas_object_smart_changed(RealHandle);
+        }
+
+        /// <summary>
+        /// Sets the hints for an object's aspect ratio.
+        /// </summary>
+        /// <param name="aspect">The policy or type of aspect ratio to apply to object</param>
+        /// <param name="w">The integer to use as aspect width ratio term</param>
+        /// <param name="h">The integer to use as aspect height ratio term</param>
+        public void SetSizeHintAspect(AspectControl aspect, int w, int h)
+        {
+            Interop.Evas.evas_object_size_hint_aspect_set(Handle, (int)aspect, w, h);
+        }
+
+        /// <summary>
+        /// Gets the hints for an object's aspect ratio.
+        /// </summary>
+        /// <param name="aspect">The policy or type of aspect ratio to apply to object</param>
+        /// <param name="w">The integer to use as aspect width ratio term</param>
+        /// <param name="h">The integer to use as aspect height ratio term</param>
+        public void GetSizeHintAspect(out AspectControl aspect, out int w, out int h)
+        {
+            int aspectRatio;
+            Interop.Evas.evas_object_size_hint_aspect_get(Handle, out aspectRatio, out w, out h);
+            aspect = (AspectControl)aspectRatio;
+        }
+
+        /// <summary>
+        /// Stack immediately below anchor.
+        /// </summary>
+        /// <param name="anchor">The object below which to stack.</param>
+        public void StackBelow(EvasObject anchor)
+        {
+            Interop.Evas.evas_object_stack_below(Handle, anchor);
+        }
+
+        /// <summary>
+        /// Stack immediately above anchor.
+        /// </summary>
+        /// <param name="anchor">The object above which to stack.</param>
+        public void StackAbove(EvasObject anchor)
+        {
+            Interop.Evas.evas_object_stack_above(Handle, anchor);
+        }
+
+        /// <summary>
+        /// Raise to the top of its layer.
+        /// </summary>
+        public void RaiseTop()
+        {
+            Interop.Evas.evas_object_raise(Handle);
+        }
+
+        /// <summary>
+        /// Get the geometry of a line number.
+        /// </summary>
+        /// <param name="lineNumber">the line number.</param>
+        /// <param name="x">x coord of the line.</param>
+        /// <param name="y">y coord of the line.</param>
+        /// <param name="w">w coord of the line.</param>
+        /// <param name="h">h coord of the line.</param>
+        /// <returns></returns>
+        public bool GetTextBlockGeometryByLineNumber(int lineNumber, out int x, out int y, out int w, out int h)
+        {
+            return Interop.Evas.evas_object_textblock_line_number_geometry_get(RealHandle, lineNumber, out x, out y, out w, out h);
+        }
+
+        internal IntPtr GetData(string key)
+        {
+            return Interop.Evas.evas_object_data_get(RealHandle, key);
+        }
+
+        internal void SetData(string key, IntPtr data)
+        {
+            Interop.Evas.evas_object_data_set(RealHandle, key, data);
+        }
+
+        internal IntPtr DeleteData(string key)
+        {
+            return Interop.Evas.evas_object_data_del(RealHandle, key);
         }
 
         /// <summary>

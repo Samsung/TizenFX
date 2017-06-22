@@ -221,6 +221,52 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or gets whether a widget and its children are focusable or not.
+        /// </summary>
+        public bool AllowTreeFocus
+        {
+            get
+            {
+                return Interop.Elementary.elm_object_tree_focus_allow_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_object_tree_focus_allow_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the widget's mirrored mode.
+        /// </summary>
+        public bool IsMirroredMode
+        {
+            get
+            {
+                return Interop.Elementary.elm_object_mirrored_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_object_mirrored_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the widget's mirrored mode setting.
+        /// When widget set automatic mode(true), it follows the system mirrored mode.
+        /// </summary>
+        public bool IsAutoMirroredMode
+        {
+            get
+            {
+                return Interop.Elementary.elm_object_mirrored_automatic_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_object_mirrored_automatic_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
         /// Sets the widget to be focused or not.
         /// </summary>
         /// <param name="isFocus">Weather be focused</param>
