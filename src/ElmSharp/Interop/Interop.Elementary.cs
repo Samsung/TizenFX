@@ -516,7 +516,7 @@ internal static partial class Interop
         internal static extern string edje_object_part_state_get(IntPtr obj, string part, out double value);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void edje_object_signal_callback_add(IntPtr obj, string emission, Edje_Signal_Cb func, string source, IntPtr data);
+        internal static extern void edje_object_signal_callback_add(IntPtr obj, string emission, string source, Edje_Signal_Cb func, IntPtr data);
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr edje_object_signal_callback_del(IntPtr obj, string emission, string source, Edje_Signal_Cb func);
