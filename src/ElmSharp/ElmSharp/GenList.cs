@@ -609,16 +609,16 @@ namespace ElmSharp
         /// <param name="type">The genlist item type.</param>
         /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
         /// <returns>Return a genlist item that contains data and itemClass.</returns>
-        public GenListItem InsertSorted(GenItemClass itemClass, object data, Comparison<GenListItem> comparison, GenListItemType type, GenListItem parent)
+        public GenListItem InsertSorted(GenItemClass itemClass, object data, Comparison<object> comparison, GenListItemType type, GenListItem parent)
         {
+            GenListItem item = new GenListItem(data, itemClass);
+
             Interop.Elementary.Eina_Compare_Cb compareCallback = (handle1, handle2) =>
             {
-                GenListItem item1 = ItemObject.GetItemByHandle(handle1) as GenListItem;
-                GenListItem item2 = ItemObject.GetItemByHandle(handle2) as GenListItem;
-                return comparison(item1, item2);
+                GenListItem first = (ItemObject.GetItemByHandle(handle1) as GenListItem) ?? item;
+                GenListItem second = (ItemObject.GetItemByHandle(handle2) as GenListItem) ?? item;
+                return comparison(first.Data, second.Data);
             };
-
-            GenListItem item = new GenListItem(data, itemClass);
 
             IntPtr handle = Interop.Elementary.elm_genlist_item_sorted_insert(
                 RealHandle, // genlist handle
