@@ -16,6 +16,7 @@
 
 using System;
 using ElmSharp;
+using System.Collections.Generic;
 
 namespace ElmSharp.Test
 {
@@ -55,13 +56,17 @@ namespace ElmSharp.Test
                     return string.Format("{0} - {1}", (string)obj, part);
                 }
             };
+
             GenListItem[] items = new GenListItem[100];
-            for (int i = 0; i < 100; i++)
+            int i = 0;
+            for (i = 0; i < 100; i++)
             {
                 items[i] = list.Append(defaultClass, string.Format("{0} Item", i));
             }
             list.Show();
             list.ItemSelected += List_ItemSelected;
+
+            GenListItem scroll = items[0];
 
             box.PackEnd(list);
             Button first = new Button(window)
@@ -76,9 +81,20 @@ namespace ElmSharp.Test
                 AlignmentX = -1,
                 WeightX = 1,
             };
+            Button Add = new Button(window)
+            {
+                Text = "Add",
+                AlignmentX = -1,
+                WeightX = 1,
+            };
+            Add.Clicked += (s, e) =>
+            {
+                scroll = list.InsertBefore(defaultClass, string.Format("{0} Item", i++), scroll);
+                list.ScrollTo(scroll, ScrollToPosition.In, false);
+            };
             first.Clicked += (s, e) =>
             {
-                list.ScrollTo(items[0], ScrollToPosition.In, true);
+                list.ScrollTo(scroll, ScrollToPosition.In, true);
             };
             last.Clicked += (s, e) =>
             {
@@ -86,8 +102,10 @@ namespace ElmSharp.Test
             };
             first.Show();
             last.Show();
+            Add.Show();
             box.PackEnd(first);
             box.PackEnd(last);
+            box.PackEnd(Add);
 
         }
 
