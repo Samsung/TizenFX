@@ -77,18 +77,6 @@ internal static partial class Interop
 
         internal delegate int WidgetInstanceUpdateCallback(IntPtr context, IntPtr content, int force, IntPtr userData);
 
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_size_hint_weight_set(IntPtr obj, double x, double y);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_win_conformant_set(IntPtr obj, bool conformant);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_win_resize_object_add(IntPtr obj, IntPtr subobj);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_conformant_add(IntPtr obj);
-
         [DllImport(Libraries.AppcoreWidget, EntryPoint = "widget_app_main")]
         internal static extern ErrorCode Main(int argc, string[] argv, ref WidgetAppLifecycleCallbacks callback, IntPtr userData);
 

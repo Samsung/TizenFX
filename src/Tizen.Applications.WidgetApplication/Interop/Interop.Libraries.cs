@@ -21,7 +21,5 @@ internal static partial class Interop
         public const string AppCommon = "libcapi-appfw-app-common.so.0";
         public const string AppcoreWidget = "libcapi-appfw-widget-application.so.1";
         public const string WidgetService = "libwidget_service.so.1";
-        public const string Elementary = "libelementary.so.1";
-        public const string Evas = "libevas.so.1";
     }
 }

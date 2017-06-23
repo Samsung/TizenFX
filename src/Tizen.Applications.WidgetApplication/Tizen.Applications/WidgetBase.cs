@@ -26,14 +26,13 @@ namespace Tizen.Applications
     {
         internal IntPtr Handle;
         internal string Id;
-        internal Widget BaseWindow;
         protected static readonly string LogTag = typeof(WidgetBase).Namespace;
 
         /// <summary>
         /// Window object for this widget instance.
         /// It will be created after OnCreate method is invoked.
         /// </summary>
-        protected Widget Window;
+        protected Window Window;
 
         /// <summary>
         /// Delete type.
@@ -161,10 +160,8 @@ namespace Tizen.Applications
             IntPtr win;
 
             Interop.Widget.GetWin(Handle, out win);
-            BaseWindow = new WidgetWindow(win);
-            BaseWindow.Resize(w, h);
-            BaseWindow.Show();
-            Window = new ConformantWindow(Window, win);
+            Window = new WidgetWindow(win);
+            Window.Resize(w, h);
             Window.Show();
         }
 
