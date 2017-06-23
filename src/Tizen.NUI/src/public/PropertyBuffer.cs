@@ -80,13 +80,6 @@ namespace Tizen.NUI
 
         }
 
-        internal static PropertyBuffer DownCast(BaseHandle handle)
-        {
-            PropertyBuffer ret = new PropertyBuffer(NDalicPINVOKE.PropertyBuffer_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public void SetData(System.IntPtr data, uint size)
         {
             NDalicPINVOKE.PropertyBuffer_SetData(swigCPtr, data, size);

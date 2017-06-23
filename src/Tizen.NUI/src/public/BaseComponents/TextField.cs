@@ -170,7 +170,7 @@ namespace Tizen.NUI.BaseComponents
             TextChangedEventArgs e = new TextChangedEventArgs();
 
             // Populate all members of "e" (TextChangedEventArgs) with real data
-            e.TextField = TextField.GetTextFieldFromPtr(textField);
+            e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
 
             if (_textFieldTextChangedEventHandler != null)
             {
@@ -209,7 +209,7 @@ namespace Tizen.NUI.BaseComponents
             MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
 
             // Populate all members of "e" (MaxLengthReachedEventArgs) with real data
-            e.TextField = TextField.GetTextFieldFromPtr(textField);
+            e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
 
             if (_textFieldMaxLengthReachedEventHandler != null)
             {
@@ -218,14 +218,6 @@ namespace Tizen.NUI.BaseComponents
             }
 
         }
-
-        internal static TextField GetTextFieldFromPtr(global::System.IntPtr cPtr)
-        {
-            TextField ret = new TextField(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
 
         internal class Property
         {
@@ -309,18 +301,6 @@ namespace Tizen.NUI.BaseComponents
         internal TextField(TextField handle) : this(NDalicPINVOKE.new_TextField__SWIG_1(TextField.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Downcasts a handle to TextField.
-        /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        /// <returns>Handle to a TextField or an empty handle</returns>
-        internal new static TextField DownCast(BaseHandle handle)
-        {
-            TextField ret = new TextField(NDalicPINVOKE.TextField_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         internal TextFieldSignal TextChangedSignal()

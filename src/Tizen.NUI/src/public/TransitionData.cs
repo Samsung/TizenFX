@@ -83,12 +83,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        internal static TransitionData DownCast(BaseHandle handle)
-        {
-            TransitionData ret = new TransitionData(NDalicPINVOKE.TransitionData_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         public TransitionData(TransitionData handle) : this(NDalicPINVOKE.new_TransitionData__SWIG_1(TransitionData.getCPtr(handle)), true)
         {

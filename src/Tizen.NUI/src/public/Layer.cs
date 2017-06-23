@@ -80,19 +80,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        /// <summary>
-        /// Downcasts a handle to Layer handle.<br>
-        /// If handle points to a Layer, the downcast produces valid handle.<br>
-        /// If not, the returned handle is left uninitialized.<br>
-        /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        /// <returns>Handle to a Layer or an uninitialized handle</returns>
-        internal new static Layer DownCast(BaseHandle handle)
-        {
-            Layer ret = new Layer(NDalicPINVOKE.Layer_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         /// <summary>
         /// Search through this layer's hierarchy for an view with the given unique ID.
@@ -278,17 +265,13 @@ namespace Tizen.NUI
         public View GetChildAt(uint index)
         {
             System.IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
-            cPtr = NDalicPINVOKE.View_SWIGUpcast(cPtr);
-            cPtr = NDalicPINVOKE.Handle_SWIGUpcast(cPtr);
 
-            BaseHandle ret = new BaseHandle(cPtr, false);
-
-            View temp = Registry.GetManagedBaseHandleFromNativePtr(ret) as View;
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            return temp ?? null;
+            return ret ?? null;
         }
 
         /// <summary>

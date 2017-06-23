@@ -123,7 +123,7 @@ namespace ControlDashboard
         {
             if (!e.ProposedView && !e.CurrentView)
             {
-                e.ProposedView = View.DownCast(_contentContainer.GetChildAt(1));
+                e.ProposedView = _contentContainer.GetChildAt(1);
             }
             return e.ProposedView;
         }
@@ -336,7 +336,7 @@ namespace ControlDashboard
                     {
                         _window.Add(_popup);
                         _popup.SetDisplayState(Popup.DisplayStateType.Shown);
-                        FocusManager.Instance.SetCurrentFocusView(View.DownCast((_popup.FindChildByName("Footer")).FindChildByName("OKButton")));
+                        FocusManager.Instance.SetCurrentFocusView((_popup.FindChildByName("Footer")).FindChildByName("OKButton"));
                         return true;
                     };
                     _contentContainer.AddChild(button, new TableView.CellPosition(((uint)idx / 5) * 2 + 1, (uint)idx % 5));

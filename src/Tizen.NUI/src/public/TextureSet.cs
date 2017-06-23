@@ -80,13 +80,6 @@ namespace Tizen.NUI
 
         }
 
-        internal static TextureSet DownCast(BaseHandle handle)
-        {
-            TextureSet ret = new TextureSet(NDalicPINVOKE.TextureSet_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public void SetTexture(uint index, Texture texture)
         {
             NDalicPINVOKE.TextureSet_SetTexture(swigCPtr, index, Texture.getCPtr(texture));

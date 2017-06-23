@@ -72,9 +72,9 @@ namespace DatePickerUsingJson
             View day  = actorTree.FindChildByName("Day");
 
             // need to get the actual C# Spin object associated with the actor,
-            _spinYear = View.DownCast<Spin>( year );
-            _spinMonth = View.DownCast<Spin>( month );
-            _spinDay = View.DownCast<Spin>( day );
+            _spinYear = year as Spin;
+            _spinMonth = month as Spin;
+            _spinDay = day as Spin;
 
             _spinYear.Value = 2099;
             _spinMonth.Value = 5;

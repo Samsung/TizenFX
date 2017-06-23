@@ -68,9 +68,6 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            //Unreference this from if a static instance refer to this.
-            Registry.Unregister(this);
-
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -145,7 +142,7 @@ namespace Tizen.NUI
             FinishedEventArgs e = new FinishedEventArgs();
 
             // Populate all members of "e" (FinishedEventArgs) with real data
-            e.GaussianBlurView = GaussianBlurView.GetGaussianBlurViewFromPtr(data);
+            e.GaussianBlurView = Registry.GetManagedBaseHandleFromNativePtr(data) as GaussianBlurView;
 
             if (_gaussianFinishedEventHandler != null)
             {
@@ -153,14 +150,6 @@ namespace Tizen.NUI
                 _gaussianFinishedEventHandler(this, e);
             }
         }
-
-        public static GaussianBlurView GetGaussianBlurViewFromPtr(global::System.IntPtr cPtr)
-        {
-            GaussianBlurView ret = new GaussianBlurView(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
 
         public GaussianBlurView() : this(NDalicPINVOKE.GaussianBlurView_New__SWIG_0(), true)
         {

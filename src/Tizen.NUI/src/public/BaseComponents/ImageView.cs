@@ -113,7 +113,7 @@ namespace Tizen.NUI.BaseComponents
             ResourceReadyEventArgs e = new ResourceReadyEventArgs();
             if(data != null)
             {
-                e.View = View.GetViewFromPtr(data);
+                e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
             }
 
             if (_resourceReadyEventHandler != null)
@@ -190,19 +190,6 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
-        /// <summary>
-        /// Downcasts a handle to ImageView handle.<br>
-        /// If handle points to a ImageView, the downcast produces valid handle.<br>
-        /// If not, the returned handle is left uninitialized.<br>
-        /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        /// <returns>Handle to a ImageView or an uninitialized handle</returns>
-        internal new static ImageView DownCast(BaseHandle handle)
-        {
-            ImageView ret = new ImageView(NDalicPINVOKE.ImageView_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
         /// <summary>
         /// Sets this ImageView from the given URL.<br>
         /// If the URL is empty, ImageView will not display anything.<br>

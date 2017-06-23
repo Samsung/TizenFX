@@ -113,13 +113,6 @@ namespace Tizen.NUI
 
         }
 
-        internal new static FlexContainer DownCast(BaseHandle handle)
-        {
-            FlexContainer ret = new FlexContainer(NDalicPINVOKE.FlexContainer_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Enumeration for the direction of the main axis in the flex container. This determines
         /// the direction that flex items are laid out in the flex container.

@@ -10904,6 +10904,10 @@ class NDalicPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_ViewResourceReadySignal")]
   public static extern void delete_ViewResourceReadySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_GetRefObjectPtr")]
+  public static extern global::System.IntPtr GetRefObjectPtr(global::System.IntPtr jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_BaseObject_SWIGUpcast")]
   public static extern global::System.IntPtr BaseObject_SWIGUpcast(global::System.IntPtr jarg1);
 

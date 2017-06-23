@@ -20,6 +20,9 @@ namespace Tizen.NUI
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+
+            // Register this instance of BaseHandle in the registry.
+            Registry.Register(this);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(BaseHandle obj)
@@ -78,6 +81,9 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
+
+            //Unreference this instance from Registry.
+            Registry.Unregister(this);
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {

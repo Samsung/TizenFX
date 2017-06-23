@@ -150,7 +150,7 @@ namespace Tizen.NUI
             DetectedEventArgs e = new DetectedEventArgs();
 
             // Populate all members of "e" (DetectedEventArgs) with real data
-            e.View = View.GetViewFromPtr(actor);
+            e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
             e.TapGesture = Tizen.NUI.TapGesture.GetTapGestureFromPtr(tapGesture);
 
             if (_tapGestureEventHandler != null)

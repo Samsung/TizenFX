@@ -61,7 +61,7 @@ namespace Tizen.NUI.UIComponents
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.         
+            //because the execution order of Finalizes is non-deterministic.
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -83,13 +83,6 @@ namespace Tizen.NUI.UIComponents
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-        }
-
-        internal new static CheckBoxButton DownCast(BaseHandle handle)
-        {
-            CheckBoxButton ret = new CheckBoxButton(NDalicPINVOKE.CheckBoxButton_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
     }

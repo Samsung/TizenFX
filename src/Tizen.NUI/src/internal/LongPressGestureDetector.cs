@@ -150,7 +150,7 @@ namespace Tizen.NUI
             DetectedEventArgs e = new DetectedEventArgs();
 
             // Populate all members of "e" (LongPressGestureEventArgs) with real data
-            e.View = View.GetViewFromPtr(actor);
+            e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
             e.LongPressGesture = Tizen.NUI.LongPressGesture.GetLongPressGestureFromPtr(longPressGesture);
 
             if (_longPressGestureEventHandler != null)

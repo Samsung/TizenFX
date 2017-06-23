@@ -149,7 +149,7 @@ namespace Tizen.NUI
             StyleChangedEventArgs e = new StyleChangedEventArgs();
 
             // Populate all members of "e" (StyleChangedEventArgs) with real data
-            e.StyleManager = StyleManager.GetStyleManagerFromPtr(styleManager);
+            e.StyleManager = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
             e.StyleChange = styleChange;
 
             if (_styleManagerStyleChangedEventHandler != null)
@@ -157,13 +157,6 @@ namespace Tizen.NUI
                 //here we send all data to user event handlers
                 _styleManagerStyleChangedEventHandler(this, e);
             }
-        }
-
-        internal static StyleManager GetStyleManagerFromPtr(global::System.IntPtr cPtr)
-        {
-            StyleManager ret = new StyleManager(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>

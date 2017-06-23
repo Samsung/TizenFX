@@ -608,8 +608,8 @@ namespace DaliTest
             view2.Focusable = true;
             view1.RightFocusableView = view2;
             view2.LeftFocusableView = view1;
-            Window.Add(view1);
-            Window.Add(view2);
+            Window.Instance.Add(view1);
+            Window.Instance.Add(view2);
             FocusManager.Instance.SetCurrentFocusView(view1);
 
             PushButton button = new PushButton();
@@ -627,7 +627,7 @@ namespace DaliTest
                 FocusManager.Instance.MoveFocusBackward();
                 return true;
             };
-            Window.Add(button);
+            Window.Instance.Add(button);
         }
 
         public void WindowDevelPropertyTest()
@@ -748,7 +748,7 @@ namespace DaliTest
           View myLabelView  = container.FindChildByName("MyLabelName");
           if(myLabelView)
           {
-            TextLabel newLabel = View.DownCast<TextLabel>(myLabelView);
+            TextLabel newLabel = myLabelView as TextLabel;
             if(newLabel)
             {
               Tizen.Log.Debug("NUI", "Downcast to TextLabel successful: newLabel Name = " + newLabel.Name + ", Text = " + newLabel.Text);
@@ -772,7 +772,7 @@ namespace DaliTest
           View myViewView  = container.FindChildByName("MyViewName");
           if(myViewView)
           {
-            MyView newView = View.DownCast<MyView>(myViewView);
+            MyView newView = myViewView as MyView;
             if(newView)
             {
               Tizen.Log.Debug("NUI", "Downcast to MyView successful: newView Name = " + newView.Name + ", MyOwnName = " + newView.MyOwnName + ", myCurrentValue = " + newView._myCurrentValue);
@@ -797,7 +797,7 @@ namespace DaliTest
           View myButtonView  = container.FindChildByName("MyButtonName");
           if(myButtonView)
           {
-            MyButton newButton = View.DownCast<MyButton>(myButtonView);
+            MyButton newButton = myButtonView as MyButton;
             if(newButton)
             {
               Tizen.Log.Debug("NUI", "Downcast to MyButton successful: newButton Name = " + newButton.Name + ", MyOwnName = " + newButton.MyOwnName + ", LabelText = " + myButton.LabelText + ", myCurrentValue = " + newButton._myCurrentValue);
@@ -820,7 +820,7 @@ namespace DaliTest
           View spinView  = container.FindChildByName("SpinName");
           if(spinView)
           {
-            Spin newSpin = View.DownCast<Spin>(spinView);
+            Spin newSpin = spinView as Spin;
             if(newSpin)
             {
               Tizen.Log.Debug("NUI", "Downcast to Spin successful: newSpin Name = " + newSpin.Name + ", MaxValue = " + newSpin.MaxValue);
@@ -845,7 +845,7 @@ namespace DaliTest
           View mySpinView  = container.FindChildByName("MySpinName");
           if(mySpinView)
           {
-            MySpin newSpin = View.DownCast<MySpin>(mySpinView);
+            MySpin newSpin = mySpinView as MySpin;
             if(newSpin)
             {
               Tizen.Log.Debug("NUI", "Downcast to MySpin successful: newSpin Name = " + newSpin.Name + ", MyOwnName = " + newSpin.MyOwnName + ", MaxValue = " + newSpin.MaxValue + ", currentValue = " + newSpin._myCurrentValue);
@@ -875,8 +875,7 @@ namespace DaliTest
 
             for (uint i = 0; i < parent.ChildCount; i++)
             {
-                View child = parent.GetChildAt(i);
-                View childView = View.DownCast<View>(child);
+                View childView = parent.GetChildAt(i);
                 if (childView)
                 {
                     Tizen.Log.Debug("NUI", "Type[" + childView.GetTypeName() + "] BGColor[" + childView.BackgroundColor.R + "]" + " Name[" + childView.Name + "]");

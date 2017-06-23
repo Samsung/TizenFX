@@ -98,19 +98,5 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-
-        /// <summary>
-        /// Downcasts a handle to PushButton handle.<br>
-        /// If handle points to a PushButton, the downcast produces valid handle.<br>
-        /// If not the returned handle is left uninitialized.<br>
-        /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        /// <returns>handle to a PushButton or an uninitialized handle</returns>
-        internal new static PushButton DownCast(BaseHandle handle)
-        {
-            PushButton ret = new PushButton(NDalicPINVOKE.PushButton_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
     }
 }

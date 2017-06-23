@@ -81,13 +81,6 @@ namespace Tizen.NUI
 
         }
 
-        internal static Sampler DownCast(BaseHandle handle)
-        {
-            Sampler ret = new Sampler(NDalicPINVOKE.Sampler_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public void SetFilterMode(FilterModeType minFilter, FilterModeType magFilter)
         {
             NDalicPINVOKE.Sampler_SetFilterMode(swigCPtr, (int)minFilter, (int)magFilter);
