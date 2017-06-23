@@ -34,7 +34,8 @@ namespace FirstScreen
             _imageFocus = new ImageView(Constants.ImageResourcePath + "/focuseffect/" + _imageName); // Target
 
             _imageFocus.ParentOrigin = _parentOrigin;
-            _imageFocus.AnchorPoint = AnchorPoint.Center;
+            _imageFocus.PivotPoint = PivotPoint.Center;
+            _imageFocus.PositionUsesPivotPoint = true;
             _imageFocus.Name = _name;
         }
 

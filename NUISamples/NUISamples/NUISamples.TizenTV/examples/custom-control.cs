@@ -58,8 +58,6 @@ namespace CustomControlTest
             // Create a container for the star images
             _container = new FlexContainer();
 
-            //_container.ParentOrigin = ParentOrigin.TopLeft;
-            //_container.AnchorPoint = AnchorPoint.TopLeft;
             _container.FlexDirection = FlexContainer.FlexDirectionType.Row;
             _container.WidthResizePolicy = ResizePolicyType.FillToParent;
             _container.HeightResizePolicy = ResizePolicyType.FillToParent;

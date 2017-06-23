@@ -34,7 +34,6 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.AnchorPoint = AnchorPoint.TopLeft;
                 v.Size = new Size(100, 100, 0);
 
                 myViewList.Add(v);
@@ -71,7 +70,6 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.AnchorPoint = AnchorPoint.TopLeft;
                 v.Size = new Size(100, 100, 0);
                 v.Text = "label " + i;
 
@@ -87,7 +85,6 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.AnchorPoint = AnchorPoint.TopLeft;
                 v.Size = new Size(100, 100, 0);
                 v.LabelText = "button " + i;
 
@@ -103,7 +100,6 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.AnchorPoint = AnchorPoint.TopLeft;
                 v.Size = new Size(100, 100, 0);
                 v.ResourceUrl = resources + "/images/gallery-3.jpg";
 
@@ -119,7 +115,6 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.AnchorPoint = AnchorPoint.TopLeft;
                 v.Size = new Size(100, 100, 0);
                 v.Text = "editor" + i;
 
@@ -135,7 +130,6 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.AnchorPoint = AnchorPoint.TopLeft;
                 v.Size = new Size(100, 100, 0);
                 v.Text = "field " + i;
 
@@ -151,7 +145,6 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.AnchorPoint = AnchorPoint.TopLeft;
                 v.Size = new Size(100, 100, 0);
                 v.LabelText = "check " + i;
 
@@ -167,7 +160,6 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.AnchorPoint = AnchorPoint.TopLeft;
                 v.Size = new Size(100, 100, 0);
 
                 myViewList.Add(v);
@@ -182,7 +174,6 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.AnchorPoint = AnchorPoint.TopLeft;
                 v.Size = new Size(100, 100, 0);
 
                 myViewList.Add(v);
@@ -197,7 +188,6 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.AnchorPoint = AnchorPoint.TopLeft;
                 v.Size = new Size(100, 100, 0);
 
                 myViewList.Add(v);
@@ -212,7 +202,6 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.AnchorPoint = AnchorPoint.TopLeft;
                 v.Size = new Size(100, 100, 0);
 
                 myViewList.Add(v);

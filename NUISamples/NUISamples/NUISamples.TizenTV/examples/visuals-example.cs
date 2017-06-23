@@ -54,9 +54,6 @@ namespace VisualsExampleTest
             contentLayout.Name = ("ContentLayout");
             contentLayout.WidthResizePolicy = ResizePolicyType.FillToParent;
             contentLayout.HeightResizePolicy = ResizePolicyType.FillToParent;
-            //contentLayout.ParentOrigin = ParentOrigin.Center;
-            //contentLayout.AnchorPoint = AnchorPoint.Center;
-            // contentLayout.Size = new Size(window.Size.Width, window.Size.Height, 0.0f);
 
             contentLayout.SetCellPadding(new Size2D(0, 5));
             contentLayout.BackgroundColor = Color.Red;//new Color(0.949f, 0.949f, 0.949f, 1.0f);

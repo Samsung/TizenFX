@@ -29,7 +29,7 @@ using Tizen.NUI.Constants;
 // This file can only run on Tizen target. You should compile it with DaliApplication.cs, and
 // add tizen c# application related library as reference.
 //------------------------------------------------------------------------------
-namespace PositionUsesAnchorPointTest
+namespace PositionUsesPivotPointTest
 {
     class Example : NUIApplication
     {
@@ -59,22 +59,22 @@ namespace PositionUsesAnchorPointTest
         {
             // Connect the signal callback for window touched signal
             _window = Window.Instance;
-            _text1 = new TextLabel("PositionUsesAnchorPoint");
+            _text1 = new TextLabel("PositionUsesPivotPoint");
             _text1.ParentOrigin = ParentOrigin.Center;
             _text1.PivotPoint = PivotPoint.Center;
             _text1.Position = new Position(0, 0, 0);
-            _text1.PositionUsesAnchorPoint = true;
+            _text1.PositionUsesPivotPoint = true;
             _text1.HorizontalAlignment = HorizontalAlignment.Center;
             _text1.Size2D = new Size2D(200, 100);
             _text1.PointSize = 10.0f;
             _text1.BackgroundColor = Color.Blue;
             _window.Add(_text1);
 
-            _text2 = new TextLabel("PositionNotUsesAnchorPoint");
+            _text2 = new TextLabel("PositionNotUsesPivotPoint");
             _text2.ParentOrigin = ParentOrigin.Center;
             _text2.PivotPoint = PivotPoint.Center;
             _text2.Position = new Position(0, 0, 0);
-            _text2.PositionUsesAnchorPoint = false;
+            _text2.PositionUsesPivotPoint = false;
             _text2.HorizontalAlignment = HorizontalAlignment.Center;
             _text2.Size2D = new Size2D(200, 100);
             _text2.PointSize = 10.0f;

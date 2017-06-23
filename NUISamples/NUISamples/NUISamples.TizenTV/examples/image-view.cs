@@ -115,7 +115,7 @@ namespace ImageViewTest
             ImageView syncImage = new ImageView();
             syncImage.ParentOrigin = ParentOrigin.CenterLeft;
             syncImage.PivotPoint = PivotPoint.CenterLeft;
-            syncImage.PositionUsesAnchorPoint = true;
+            syncImage.PositionUsesPivotPoint = true;
             syncImage.Size2D = new Size2D(150, 150);
             syncImage.ResourceUrl = resources+"/images/gallery-3.jpg";
             syncImage.SynchronosLoading = true;
@@ -128,7 +128,7 @@ namespace ImageViewTest
             ImageView nPatchImage = new ImageView();
             nPatchImage.ParentOrigin = ParentOrigin.BottomLeft;
             nPatchImage.PivotPoint = PivotPoint.BottomLeft;
-            nPatchImage.PositionUsesAnchorPoint = true;
+            nPatchImage.PositionUsesPivotPoint = true;
             nPatchImage.Size = new Size(300.0f, 100.0f, 0.0f);
             nPatchImage.ImageMap = _map;
             layer.Add(nPatchImage);
@@ -137,7 +137,7 @@ namespace ImageViewTest
             syncNineImage.ParentOrigin = ParentOrigin.CenterLeft;
             syncNineImage.PivotPoint = PivotPoint.CenterLeft;
             syncNineImage.Position2D = new Position2D(0, 200);
-            syncNineImage.PositionUsesAnchorPoint = true;
+            syncNineImage.PositionUsesPivotPoint = true;
             syncNineImage.Size = new Size(150.0f, 150.0f, 0.0f);
             syncNineImage.ResourceUrl = resources+"/images/00_popup_bg.9.png";
             syncNineImage.SynchronosLoading = true;

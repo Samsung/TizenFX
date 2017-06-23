@@ -37,7 +37,7 @@ namespace NUISamples.TizenTV.examples
             //new VisualViewTest3.Example().Run(args);                   //o
             //new VisualsUsingCustomView.VisualsExample().Run(args);    //o
             //new FirstScreen.FirstScreenApp().Run(args);               //o
-            //new PositionUsesAnchorPointTest.Example().Run(args);
+            //new PositionUsesPivotPointTest.Example().Run(args);
             // new VisualsExampleTest.Example().Run(args);               //o
             //new TizenSTVUIApplication15.Program().Run(args);
         }

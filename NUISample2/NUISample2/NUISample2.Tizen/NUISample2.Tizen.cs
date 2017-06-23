@@ -87,7 +87,8 @@ namespace ControlDashboard
             TextLabel topLabel = new TextLabel();
             topLabel.WidthResizePolicy = ResizePolicyType.FillToParent;
             topLabel.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            topLabel.AnchorPoint = AnchorPoint.TopCenter;
+            topLabel.PivotPoint = PivotPoint.TopCenter;
+            topLabel.PositionUsesPivotPoint = true;
             topLabel.ParentOrigin = ParentOrigin.TopCenter;
             topLabel.SetSizeModeFactor(new Vector3(0.0f, 0.1f, 0.0f));
             topLabel.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
@@ -105,7 +106,8 @@ namespace ControlDashboard
             _contentContainer.WidthResizePolicy = ResizePolicyType.FillToParent;
             _contentContainer.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
             _contentContainer.SetSizeModeFactor(new Vector3(0.0f, 0.9f, 0.0f));
-            _contentContainer.AnchorPoint = AnchorPoint.BottomCenter;
+            _contentContainer.PivotPoint = PivotPoint.BottomCenter;
+            _contentContainer.PositionUsesPivotPoint = true;
             _contentContainer.ParentOrigin = ParentOrigin.BottomCenter;
             _contentContainer.SetRelativeHeight(0, 0.07f);
             _contentContainer.SetRelativeHeight(1, 0.26f);
@@ -329,7 +331,8 @@ namespace ControlDashboard
                     PushButton button = new PushButton();
                     button.LabelText = "Popup";
                     button.ParentOrigin = ParentOrigin.Center;
-                    button.AnchorPoint = AnchorPoint.Center;
+                    button.PivotPoint = PivotPoint.Center;
+                    button.PositionUsesPivotPoint = true;
                     button.MaximumSize = new Size2D(150, 100);
                     _popup = CreatePopup();
                     _popup.SetTitle(CreateTitle("Popup"));
@@ -358,7 +361,8 @@ namespace ControlDashboard
                     PushButton button = new PushButton();
                     button.LabelText = "Toast";
                     button.ParentOrigin = ParentOrigin.Center;
-                    button.AnchorPoint = AnchorPoint.Center;
+                    button.PivotPoint = PivotPoint.Center;
+                    button.PositionUsesPivotPoint = true;
                     button.Clicked += (obj, ee) =>
                     {
                         TypeInfo typeInfo = new TypeInfo(TypeRegistry.Get().GetTypeInfo("PopupToast"));
@@ -404,25 +408,29 @@ namespace ControlDashboard
             footer.HeightResizePolicy = ResizePolicyType.Fixed;
             footer.Size = new Size(0.0f, 80.0f, 0.0f);
             footer.ParentOrigin = ParentOrigin.Center;
-            footer.AnchorPoint = AnchorPoint.Center;
+            footer.PivotPoint = PivotPoint.Center;
+            footer.PositionUsesPivotPoint = true;
 
             PushButton okButton = CreateOKButton();
             okButton.ParentOrigin = ParentOrigin.Center;
-            okButton.AnchorPoint = AnchorPoint.Center;
+            okButton.PivotPoint = PivotPoint.Center;
+            okButton.PositionUsesPivotPoint = true;
             okButton.WidthResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             okButton.HeightResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             okButton.SetSizeModeFactor(new Vector3(-20.0f, -20.0f, 0.0f));
 
             PushButton cancelButton = CreateCancelButton();
             cancelButton.ParentOrigin = ParentOrigin.Center;
-            cancelButton.AnchorPoint = AnchorPoint.Center;
+            cancelButton.PivotPoint = PivotPoint.Center;
+            cancelButton.PositionUsesPivotPoint = true;
             cancelButton.WidthResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             cancelButton.HeightResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             cancelButton.SetSizeModeFactor(new Vector3(-20.0f, -20.0f, 0.0f));
 
             TableView controlLayout = new TableView(1, 2);
             controlLayout.ParentOrigin = ParentOrigin.Center;
-            controlLayout.AnchorPoint = AnchorPoint.Center;
+            controlLayout.PivotPoint = PivotPoint.Center;
+            controlLayout.PositionUsesPivotPoint = true;
             controlLayout.WidthResizePolicy = ResizePolicyType.FillToParent;
             controlLayout.HeightResizePolicy = ResizePolicyType.FillToParent;
             controlLayout.SetCellPadding(new Size2D(10, 10));

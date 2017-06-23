@@ -30,6 +30,7 @@ namespace Tizen.NUI.BaseComponents
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.View_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            PositionUsesPivotPoint = false;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(View obj)
@@ -801,7 +802,6 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         public View() : this(NDalicPINVOKE.View_New(), true)
         {
-            PositionUsesAnchorPoint = false;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
@@ -1723,7 +1723,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Sets the position of the View for X and Y.<br>
-        /// By default, sets the position vector between the parent origin and anchor point(default).<br>
+        /// By default, sets the position vector between the parent origin and pivot point(default).<br>
         /// If Position inheritance if disabled, sets the world position.<br>
         /// </summary>
         public Position2D Position2D
@@ -1754,13 +1754,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Determines whether the anchor point should be used to determine the position of the view.
+        /// Determines whether the pivot point should be used to determine the position of the view.
         /// This is true by default.
         /// </summary>
         /// <remarks>If false, then the top-left of the view is used for the position.
         /// Setting this to false will allow scaling or rotation around the anchor-point without affecting the view's position.
         /// </remarks>
-        public bool PositionUsesAnchorPoint
+        public bool PositionUsesPivotPoint
         {
             get
             {
@@ -2818,7 +2818,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets/Sets the anchor-point of an view.<br>
         /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the view, and (1.0, 1.0, 0.5) is the bottom-right corner.<br>
-        /// The default anchor point is AnchorPoint.Center (0.5, 0.5, 0.5).<br>
+        /// The default pivot point is PivotPoint.Center (0.5, 0.5, 0.5).<br>
         /// An view position is the distance between its parent-origin and this anchor-point.<br>
         /// An view's orientation is the rotation from its default orientation, the rotation is centered around its anchor-point.<br>
         /// <pre>The View has been initialized.</pre>
@@ -2915,7 +2915,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Gets/Sets the position of the View.<br>
-        /// By default, sets the position vector between the parent origin and anchor point(default).<br>
+        /// By default, sets the position vector between the parent origin and pivot point(default).<br>
         /// If Position inheritance if disabled, sets the world position.<br>
         /// </summary>
         public Position Position
@@ -3576,7 +3576,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets/Sets whether a child view inherits it's parent's position.<br>
         /// Default is to inherit.<br>
-        /// Switching this off means that using Position sets the view's world position, i.e. translates from the world origin(0,0,0) to the anchor point of the view.<br>
+        /// Switching this off means that using Position sets the view's world position, i.e. translates from the world origin(0,0,0) to the pivot point of the view.<br>
         /// </summary>
         public bool InheritPosition
         {
