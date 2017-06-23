@@ -558,9 +558,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.0
+        /// PivotPoint constants: 0.0
         /// </summary>
-        public static float AnchorPointTop
+        public static float PivotPointTop
         {
             get
             {
@@ -571,9 +571,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 1.0
+        /// PivotPoint constants: 1.0
         /// </summary>
-        public static float AnchorPointBottom
+        public static float PivotPointBottom
         {
             get
             {
@@ -584,9 +584,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.0
+        /// PivotPoint constants: 0.0
         /// </summary>
-        public static float AnchorPointLeft
+        public static float PivotPointLeft
         {
             get
             {
@@ -597,9 +597,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 1.0
+        /// PivotPoint constants: 1.0
         /// </summary>
-        public static float AnchorPointRight
+        public static float PivotPointRight
         {
             get
             {
@@ -610,9 +610,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.0
+        /// PivotPoint constants: 0.0
         /// </summary>
-        public static float AnchorPointMiddle
+        public static float PivotPointMiddle
         {
             get
             {
@@ -623,9 +623,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.0, 0.0, 0.5
+        /// PivotPoint constants: 0.0, 0.0, 0.5
         /// </summary>
-        public static Position AnchorPointTopLeft
+        public static Position PivotPointTopLeft
         {
             get
             {
@@ -637,9 +637,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.5, 0.0, 0.5
+        /// PivotPoint constants: 0.5, 0.0, 0.5
         /// </summary>
-        public static Position AnchorPointTopCenter
+        public static Position PivotPointTopCenter
         {
             get
             {
@@ -651,9 +651,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 1.0, 0.0, 0.5
+        /// PivotPoint constants: 1.0, 0.0, 0.5
         /// </summary>
-        public static Position AnchorPointTopRight
+        public static Position PivotPointTopRight
         {
             get
             {
@@ -665,9 +665,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.0, 0.5, 0.5
+        /// PivotPoint constants: 0.0, 0.5, 0.5
         /// </summary>
-        public static Position AnchorPointCenterLeft
+        public static Position PivotPointCenterLeft
         {
             get
             {
@@ -679,9 +679,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.5, 0.5, 0.5
+        /// PivotPoint constants: 0.5, 0.5, 0.5
         /// </summary>
-        public static Position AnchorPointCenter
+        public static Position PivotPointCenter
         {
             get
             {
@@ -693,9 +693,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 1.0, 0.5, 0.5
+        /// PivotPoint constants: 1.0, 0.5, 0.5
         /// </summary>
-        public static Position AnchorPointCenterRight
+        public static Position PivotPointCenterRight
         {
             get
             {
@@ -707,9 +707,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.0, 1.0, 0.5
+        /// PivotPoint constants: 0.0, 1.0, 0.5
         /// </summary>
-        public static Position AnchorPointBottomLeft
+        public static Position PivotPointBottomLeft
         {
             get
             {
@@ -721,9 +721,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.5, 1.0, 0.5
+        /// PivotPoint constants: 0.5, 1.0, 0.5
         /// </summary>
-        public static Position AnchorPointBottomCenter
+        public static Position PivotPointBottomCenter
         {
             get
             {
@@ -735,9 +735,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 1.0, 1.0, 0.5
+        /// PivotPoint constants: 1.0, 1.0, 0.5
         /// </summary>
-        public static Position AnchorPointBottomRight
+        public static Position PivotPointBottomRight
         {
             get
             {

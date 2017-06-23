@@ -22,8 +22,6 @@ namespace Tizen.NUI
         internal PageTurnView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PageTurnView_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            // By default, we do not want the position to use the anchor point
-            PositionUsesAnchorPoint = false;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PageTurnView obj)

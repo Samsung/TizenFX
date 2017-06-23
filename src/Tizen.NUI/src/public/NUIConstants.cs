@@ -1072,7 +1072,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// AnchorPoint constants.
+    /// PivotPoint constants.
     /// </summary>
     public struct PivotPoint
     {
