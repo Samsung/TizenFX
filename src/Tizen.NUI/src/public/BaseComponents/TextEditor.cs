@@ -141,7 +141,7 @@ namespace Tizen.NUI.BaseComponents
             TextChangedEventArgs e = new TextChangedEventArgs();
 
             // Populate all members of "e" (TextChangedEventArgs) with real data
-            e.TextEditor = TextEditor.GetTextEditorFromPtr(textEditor);
+            e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
 
             if (_textEditorTextChangedEventHandler != null)
             {
@@ -227,7 +227,7 @@ namespace Tizen.NUI.BaseComponents
             if (textEditor != null)
             {
                 // Populate all members of "e" (ScrollStateChangedEventArgs) with real data
-                e.TextEditor = TextEditor.GetTextEditorFromPtr(textEditor);
+                e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
                 e.ScrollState = state;
             }
 
@@ -237,14 +237,6 @@ namespace Tizen.NUI.BaseComponents
                 _textEditorScrollStateChangedEventHandler(this, e);
             }
         }
-
-        internal static TextEditor GetTextEditorFromPtr(global::System.IntPtr cPtr)
-        {
-            TextEditor ret = new TextEditor(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
 
         internal class Property
         {
@@ -328,18 +320,6 @@ namespace Tizen.NUI.BaseComponents
         internal TextEditor(TextEditor handle) : this(NDalicPINVOKE.new_TextEditor__SWIG_1(TextEditor.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Downcasts a handle to TextEditor.
-        /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        /// <returns>Handle to a TextEditor or an empty handle</returns>
-        internal new static TextEditor DownCast(BaseHandle handle)
-        {
-            TextEditor ret = new TextEditor(NDalicPINVOKE.TextEditor_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         internal TextEditorSignal TextChangedSignal()

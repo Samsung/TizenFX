@@ -72,9 +72,6 @@ namespace Tizen.NUI.UIComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            //Unreference this from if a static instance refer to this.
-            Registry.Unregister(this);
-
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)

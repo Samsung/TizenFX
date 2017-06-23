@@ -152,7 +152,7 @@ namespace Tizen.NUI
             DetectedEventArgs e = new DetectedEventArgs();
 
             // Populate all members of "e" (PanGestureEventArgs) with real data
-            e.View = View.GetViewFromPtr(actor);
+            e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
             e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
 
             if (_panGestureEventHandler != null)

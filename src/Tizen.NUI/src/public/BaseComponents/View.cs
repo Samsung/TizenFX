@@ -30,9 +30,6 @@ namespace Tizen.NUI.BaseComponents
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.View_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-
-            // Register this instance of view in the registry.
-            Registry.Register(this);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(View obj)
@@ -58,9 +55,6 @@ namespace Tizen.NUI.BaseComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            //Unreference this from if a static instance refer to this.
-            Registry.Unregister(this);
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -666,7 +660,7 @@ namespace Tizen.NUI.BaseComponents
             VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
             if (data != null)
             {
-                e.View = View.GetViewFromPtr(data);
+                e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
             }
             e.Visibility = visibility;
             e.Type = type;
@@ -718,14 +712,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 _resourcesLoadedEventHandler(this, null);
             }
-        }
-
-
-        internal static View GetViewFromPtr(global::System.IntPtr cPtr)
-        {
-            View ret = new View(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         internal IntPtr GetPtrfromView()
@@ -836,22 +822,6 @@ namespace Tizen.NUI.BaseComponents
             View ret = new View(NDalicPINVOKE.View_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        /// <summary>
-        /// Downcasts a handle to class which inherit View handle.
-        /// </summary>
-        /// <typeparam name="T">Class which inherit View</typeparam>
-        /// <param name="view">View to an object</param>
-        /// <returns>A object which inherit View</returns>
-        public static T DownCast<T>(View view) where T : View
-        {
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
-            if (ret != null)
-            {
-                return (T)ret;
-            }
-            return null;
         }
 
         private View ConvertIdToView(uint id)
@@ -2088,17 +2058,12 @@ namespace Tizen.NUI.BaseComponents
         public View GetChildAt(uint index)
         {
             IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
-            cPtr = NDalicPINVOKE.View_SWIGUpcast(cPtr);
-            cPtr = NDalicPINVOKE.Handle_SWIGUpcast(cPtr);
 
-            BaseHandle ret = new BaseHandle(cPtr, false);
-
-            View temp = Registry.GetManagedBaseHandleFromNativePtr(ret) as View;
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            return temp ?? null;
+            return ret ?? null;
         }
 
         /// <summary>
@@ -2110,7 +2075,10 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>A handle to the view if found, or an empty handle if not</returns>
         public View FindChildByName(string viewName)
         {
-            View ret = new View(NDalicPINVOKE.Actor_FindChildByName(swigCPtr, viewName), true);
+            IntPtr cPtr = NDalicPINVOKE.Actor_FindChildByName(swigCPtr, viewName);
+
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -2118,7 +2086,10 @@ namespace Tizen.NUI.BaseComponents
 
         internal View FindChildById(uint id)
         {
-            View ret = new View(NDalicPINVOKE.Actor_FindChildById(swigCPtr, id), true);
+            IntPtr cPtr = NDalicPINVOKE.Actor_FindChildById(swigCPtr, id);
+
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -2126,7 +2097,10 @@ namespace Tizen.NUI.BaseComponents
 
         internal View GetParent()
         {
-            View ret = new View(NDalicPINVOKE.Actor_GetParent(swigCPtr), true);
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
+
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

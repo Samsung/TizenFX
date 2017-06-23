@@ -74,9 +74,6 @@ namespace Tizen.NUI.UIComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            //Unreference this from if a static instance refer to this.
-            Registry.Unregister(this);
-
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -261,14 +258,6 @@ namespace Tizen.NUI.UIComponents
             return false;
         }
 
-
-
-        internal static Button GetButtonFromPtr(global::System.IntPtr cPtr)
-        {
-            Button ret = new Button(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         /// <summary>
         /// Gets/Sets the unselected button foreground/icon visual
@@ -533,20 +522,6 @@ namespace Tizen.NUI.UIComponents
         public Button() : this(NDalicPINVOKE.new_Button__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Downcasts a handle to Button handle.<br>
-        /// If handle points to a Button, the downcast produces valid handle.<br>
-        /// If not the returned handle is left uninitialized.<br>
-        /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        /// <returns>A handle to a Button or an uninitialized handle</returns>
-        internal new static Button DownCast(BaseHandle handle)
-        {
-            Button ret = new Button(NDalicPINVOKE.Button_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         internal ButtonSignal PressedSignal()

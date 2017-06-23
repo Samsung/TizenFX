@@ -72,9 +72,6 @@ namespace Tizen.NUI.UIComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            //Unreference this from if a static instance refer to this.
-            Registry.Unregister(this);
-
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -171,7 +168,7 @@ namespace Tizen.NUI.UIComponents
             ValueChangedEventArgs e = new ValueChangedEventArgs();
 
             // Populate all members of "e" (ValueChangedEventArgs) with real page
-            e.ProgressBar = ProgressBar.GetProgressBarFromPtr(progressBar);
+            e.ProgressBar = Registry.GetManagedBaseHandleFromNativePtr(progressBar) as ProgressBar;
             e.ProgressValue = progressValue;
             e.SecondaryProgressValue = secondaryProgressValue;
 
@@ -179,15 +176,6 @@ namespace Tizen.NUI.UIComponents
             {
                 _progressBarValueChangedEventHandler(this, e);
             }
-        }
-
-        /// <summary>
-        /// </summary>
-        internal static ProgressBar GetProgressBarFromPtr(global::System.IntPtr cPtr)
-        {
-            ProgressBar ret = new ProgressBar(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         internal class Property

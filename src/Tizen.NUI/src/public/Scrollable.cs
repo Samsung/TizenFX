@@ -50,9 +50,6 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            //Unreference this from if a static instance refer to this.
-            Registry.Unregister(this);
-
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -293,13 +290,6 @@ namespace Tizen.NUI
         public Scrollable() : this(NDalicPINVOKE.new_Scrollable__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal new static Scrollable DownCast(BaseHandle handle)
-        {
-            Scrollable ret = new Scrollable(NDalicPINVOKE.Scrollable_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         private bool IsOvershootEnabled()

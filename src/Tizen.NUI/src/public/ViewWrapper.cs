@@ -55,9 +55,6 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            //Unreference this from if a static instance refer to this.
-            Registry.Unregister(this);
-
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -76,13 +73,6 @@ namespace Tizen.NUI
         {
             viewWrapperImpl = implementation;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal new static ViewWrapper DownCast(BaseHandle handle)
-        {
-            ViewWrapper ret = new ViewWrapper(NDalicManualPINVOKE.ViewWrapper_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
     }
 }

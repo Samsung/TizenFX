@@ -79,13 +79,6 @@ namespace Tizen.NUI
 
         }
 
-        internal static Geometry DownCast(BaseHandle handle)
-        {
-            Geometry ret = new Geometry(NDalicPINVOKE.Geometry_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public uint AddVertexBuffer(PropertyBuffer vertexBuffer)
         {
             uint ret = NDalicPINVOKE.Geometry_AddVertexBuffer(swigCPtr, PropertyBuffer.getCPtr(vertexBuffer));

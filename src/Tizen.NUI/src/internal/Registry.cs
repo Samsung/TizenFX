@@ -85,28 +85,26 @@ namespace Tizen.NUI
 
         internal static BaseHandle GetManagedBaseHandleFromNativePtr(BaseHandle baseHandle)
         {
-            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
-
             RefObject refObj = baseHandle.GetObjectPtr();
             IntPtr refObjectPtr = (IntPtr)RefObject.getCPtr(refObj);
 
-            WeakReference viewReference;
-            if (Instance._controlMap.TryGetValue(refObjectPtr, out viewReference))
-            {
-                BaseHandle ret = viewReference.Target as BaseHandle;
-                return ret;
-            }
-            else
-            {
-                return null;
-            }
+            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
+            return GetManagedBaseHandleFromRefObject(refObjectPtr);
+        }
+
+        internal static BaseHandle GetManagedBaseHandleFromNativePtr(IntPtr cPtr)
+        {
+            IntPtr refObjectPtr = NDalicPINVOKE.GetRefObjectPtr(cPtr);
+
+            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
+            return GetManagedBaseHandleFromRefObject(refObjectPtr);
         }
 
         internal static BaseHandle GetManagedBaseHandleFromRefObject(IntPtr refObjectPtr)
         {
             // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
-
             WeakReference weakReference;
+
             if (Instance._controlMap.TryGetValue(refObjectPtr, out weakReference))
             {
                 BaseHandle ret = weakReference.Target as BaseHandle;

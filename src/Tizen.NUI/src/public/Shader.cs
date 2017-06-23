@@ -100,13 +100,6 @@ namespace Tizen.NUI
 
         }
 
-        internal new static Shader DownCast(BaseHandle handle)
-        {
-            Shader ret = new Shader(NDalicPINVOKE.Shader_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public Tizen.NUI.PropertyMap Program
         {
             get

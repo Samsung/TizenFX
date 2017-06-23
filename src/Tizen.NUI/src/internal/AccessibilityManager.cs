@@ -2202,8 +2202,8 @@ namespace Tizen.NUI
             FocusChangedEventArgs e = new FocusChangedEventArgs();
 
             // Populate all members of "e" (FocusChangedEventArgs) with real data
-            e.ViewCurrent = View.GetViewFromPtr(view1);
-            e.ViewNext = View.GetViewFromPtr(view2);
+            e.ViewCurrent = Registry.GetManagedBaseHandleFromNativePtr(view1) as View;
+            e.ViewNext = Registry.GetManagedBaseHandleFromNativePtr(view2) as View;
 
             if (_accessibilityManagerFocusChangedEventHandler != null)
             {
@@ -2249,7 +2249,7 @@ namespace Tizen.NUI
             FocusedViewActivatedEventArgs e = new FocusedViewActivatedEventArgs();
 
             // Populate all members of "e" (FocusedViewActivatedEventArgs) with real data
-            e.View = View.GetViewFromPtr(view);
+            e.View = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
 
             if (_accessibilityManagerFocusedViewActivatedEventHandler != null)
             {
@@ -2296,7 +2296,7 @@ namespace Tizen.NUI
             FocusOvershotEventArgs e = new FocusOvershotEventArgs();
 
             // Populate all members of "e" (FocusOvershotEventArgs) with real data
-            e.CurrentFocusedView = View.GetViewFromPtr(currentFocusedView);
+            e.CurrentFocusedView = Registry.GetManagedBaseHandleFromNativePtr(currentFocusedView) as View;
             e.FocusOvershotDirection = direction;
 
             if (_accessibilityManagerFocusOvershotEventHandler != null)

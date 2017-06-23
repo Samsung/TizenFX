@@ -143,7 +143,7 @@ namespace Tizen.NUI
             FinishedEventArgs e = new FinishedEventArgs();
 
             // Populate all members of "e" (FinishedEventArgs) with real data
-            e.VideoView = VideoView.GetVideoViewFromPtr(data);
+            e.VideoView = Registry.GetManagedBaseHandleFromNativePtr(data) as VideoView;
 
             if (_videoViewFinishedEventHandler != null)
             {
@@ -151,14 +151,6 @@ namespace Tizen.NUI
                 _videoViewFinishedEventHandler(this, e);
             }
         }
-
-        internal static VideoView GetVideoViewFromPtr(global::System.IntPtr cPtr)
-        {
-            VideoView ret = new VideoView(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
 
         internal class Property
         {
@@ -190,20 +182,6 @@ namespace Tizen.NUI
         internal VideoView(VideoView videoView) : this(NDalicPINVOKE.new_VideoView__SWIG_1(VideoView.getCPtr(videoView)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Downcasts a handle to VideoView handle.<br>
-        /// If handle points to a VideoView, the downcast produces valid handle.<br>
-        /// If not, the returned handle is left uninitialized.<br>
-        /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        /// <returns>Handle to a VideoView or an uninitialized handle</returns>
-        internal new static VideoView DownCast(BaseHandle handle)
-        {
-            VideoView ret = new VideoView(NDalicPINVOKE.VideoView_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>

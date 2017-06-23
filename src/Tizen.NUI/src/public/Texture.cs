@@ -85,13 +85,6 @@ namespace Tizen.NUI
 
         }
 
-        internal static Texture DownCast(BaseHandle handle)
-        {
-            Texture ret = new Texture(NDalicPINVOKE.Texture_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public bool Upload(PixelData pixelData)
         {
             bool ret = NDalicPINVOKE.Texture_Upload__SWIG_0(swigCPtr, PixelData.getCPtr(pixelData));

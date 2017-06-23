@@ -137,18 +137,6 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-
-        /// <summary>
-        /// Downcasts a handle to TextLabel.
-        /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        internal new static TextLabel DownCast(BaseHandle handle)
-        {
-            TextLabel ret = new TextLabel(NDalicPINVOKE.TextLabel_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Text property.<br>
         /// The text to display in UTF-8 format.<br>

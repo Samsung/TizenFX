@@ -181,11 +181,11 @@ namespace Tizen.NUI
 
             if (current != global::System.IntPtr.Zero)
             {
-                e.CurrentView = View.GetViewFromPtr(current);
+                e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
             }
             if (proposed != global::System.IntPtr.Zero)
             {
-                e.ProposedView = View.GetViewFromPtr(proposed);
+                e.ProposedView = Registry.GetManagedBaseHandleFromNativePtr(proposed) as View;
             }
             e.Direction = direction;
 
@@ -273,8 +273,8 @@ namespace Tizen.NUI
         {
             FocusChangedEventArgs e = new FocusChangedEventArgs();
 
-            e.CurrentView = View.GetViewFromPtr(current);
-            e.NextView = View.GetViewFromPtr(next);
+            e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
+            e.NextView = Registry.GetManagedBaseHandleFromNativePtr(next) as View;
 
             if (_focusChangedEventHandler != null)
             {
@@ -351,7 +351,7 @@ namespace Tizen.NUI
         {
             FocusGroupChangedEventArgs e = new FocusGroupChangedEventArgs();
 
-            e.CurrentView = View.GetViewFromPtr(current);
+            e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
             e.ForwardDirection = forwardDirection;
 
             if (_focusGroupChangedEventHandler != null)
@@ -414,7 +414,7 @@ namespace Tizen.NUI
         {
             FocusedViewActivatedEventArgs e = new FocusedViewActivatedEventArgs();
 
-            e.View = View.GetViewFromPtr(view);
+            e.View = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
 
             if (_focusedViewEnterKeyEventHandler != null)
             {
@@ -455,12 +455,9 @@ namespace Tizen.NUI
         /// <returns>A handle to the current focused View or an empty handle if no View is focused</returns>
         public View GetCurrentFocusView()
         {
-            View ret = new View(NDalicManualPINVOKE.FocusManager_GetCurrentFocusActor(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if (ret.HasBody() == false)
-            {
-                return null;
-            }
+            IntPtr cPtr = NDalicManualPINVOKE.FocusManager_GetCurrentFocusActor(swigCPtr);
+
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
             return ret;
         }
 
@@ -555,12 +552,18 @@ namespace Tizen.NUI
         /// <returns>The focus group the given view belongs to or an empty handle if the given view</returns>
         public View GetFocusGroup(View view)
         {
-            View ret = new View(NDalicManualPINVOKE.FocusManager_GetFocusGroup(swigCPtr, View.getCPtr(view)), true);
+            IntPtr cPtr = NDalicManualPINVOKE.FocusManager_GetFocusGroup(swigCPtr, View.getCPtr(view));
+
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+
+
+            /*View ret = new View(NDalicManualPINVOKE.FocusManager_GetFocusGroup(swigCPtr, View.getCPtr(view)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             if (ret.HasBody() == false)
             {
                 return null;
-            }
+            }*/
+
             return ret;
         }
 
@@ -588,12 +591,10 @@ namespace Tizen.NUI
 
         internal View GetFocusIndicatorView()
         {
-            View ret = new View(NDalicManualPINVOKE.FocusManager_GetFocusIndicatorActor(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if (ret.HasBody() == false)
-            {
-                return null;
-            }
+            IntPtr cPtr = NDalicManualPINVOKE.FocusManager_GetFocusIndicatorActor(swigCPtr);
+
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+
             return ret;
         }
 
@@ -678,9 +679,7 @@ namespace Tizen.NUI
 
             public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
             {
-                View currentView = View.DownCast<View>(current);
-                View proposedView = View.DownCast<View>(proposed);
-                return _customFocusAlgorithm.GetNextFocusableView(currentView, proposedView, direction);
+                return _customFocusAlgorithm.GetNextFocusableView(current, proposed, direction);
             }
         }
     }

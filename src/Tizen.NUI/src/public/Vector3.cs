@@ -30,8 +30,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
-
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
         //A Flat to check if it is already disposed.

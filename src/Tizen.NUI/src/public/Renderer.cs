@@ -109,13 +109,6 @@ namespace Tizen.NUI
 
         }
 
-        internal new static Renderer DownCast(BaseHandle handle)
-        {
-            Renderer ret = new Renderer(NDalicPINVOKE.Renderer_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public void SetGeometry(Geometry geometry)
         {
             NDalicPINVOKE.Renderer_SetGeometry(swigCPtr, Geometry.getCPtr(geometry));

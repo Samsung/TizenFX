@@ -201,13 +201,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal static Animation GetAnimationFromPtr(global::System.IntPtr cPtr)
-        {
-            Animation ret = new Animation(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         private float MilliSecondsToSeconds(int millisec)
         {
             return (float)millisec / 1000.0f;

@@ -137,7 +137,10 @@ namespace Tizen.NUI
 
         private global::System.IntPtr SwigDirectorGetNextFocusableView(global::System.IntPtr current, global::System.IntPtr proposed, int direction)
         {
-            return View.getCPtr(GetNextFocusableView(new View(current, true), new View(proposed, true), (View.FocusDirection)direction)).Handle;
+            View currentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
+            View proposedView = Registry.GetManagedBaseHandleFromNativePtr(proposed) as View;
+
+            return View.getCPtr(GetNextFocusableView(currentView, proposedView, (View.FocusDirection)direction)).Handle;
         }
 
         internal delegate global::System.IntPtr SwigDelegateCustomAlgorithmInterface_0(global::System.IntPtr current, global::System.IntPtr proposed, int direction);
