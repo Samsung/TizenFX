@@ -31,6 +31,8 @@ namespace ElmSharp
         readonly Dictionary<string, EvasObject> _partContents = new Dictionary<string, EvasObject>();
         Interop.Evas.SmartCallback _deleteCallback;
         IntPtr _handle = IntPtr.Zero;
+        Dictionary<SignalData, Interop.Elementary.Elm_Object_Item_Signal_Cb> _signalDatas = new Dictionary<SignalData, Interop.Elementary.Elm_Object_Item_Signal_Cb>();
+        EvasObject _trackObject = null;
 
         /// <summary>
         /// Creates and initializes a new instance of ItemObject class.
@@ -65,6 +67,19 @@ namespace ElmSharp
         {
             get { return !Interop.Elementary.elm_object_item_disabled_get(Handle); }
             set { Interop.Elementary.elm_object_item_disabled_set(Handle, !value); }
+        }
+
+        /// <summary>
+        /// Gets track object of the item.
+        /// </summary>
+        public EvasObject TrackObject
+        {
+            get
+            {
+                if (_trackObject == null)
+                    _trackObject = new ItemEvasObject(Handle);
+                return _trackObject;
+            }
         }
 
         internal IntPtr Handle
@@ -184,6 +199,61 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Add a function for a signal emitted by object item edje.
+        /// </summary>
+        /// <param name="emission">The signal's name.</param>
+        /// <param name="source">The signal's source.</param>
+        /// <param name="func">The function to be executed when the signal is emitted.</param>
+        public void AddSignalHandler(string emission, string source, Func<string, string, bool> func)
+        {
+            if (emission != null && source != null && func != null)
+            {
+                var signalData = new SignalData(emission, source, func);
+                if (!_signalDatas.ContainsKey(signalData))
+                {
+                    var signalCallback = new Interop.Elementary.Elm_Object_Item_Signal_Cb((d, o, e, s) =>
+                    {
+                        return func(e, s);
+                    });
+                    Interop.Elementary.elm_object_item_signal_callback_add(Handle, emission, source, signalCallback, IntPtr.Zero);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Remove a signal-triggered function from a object item edje object.
+        /// </summary>
+        /// <param name="emission">The signal's name.</param>
+        /// <param name="source">The signal's source.</param>
+        /// <param name="func">The function to be executed when the signal is emitted.</param>
+        public void RemoveSignalHandler(string emission, string source, Func<string, string, bool> func)
+        {
+            if (emission != null && source != null && func != null)
+            {
+                var signalData = new SignalData(emission, source, func);
+
+                Interop.Elementary.Elm_Object_Item_Signal_Cb signalCallback = null;
+                _signalDatas.TryGetValue(signalData, out signalCallback);
+
+                if (signalCallback != null)
+                {
+                    Interop.Elementary.elm_object_item_signal_callback_del(Handle, emission, source, signalCallback);
+                    _signalDatas.Remove(signalData);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Send a signal to the edje object of the widget item.
+        /// </summary>
+        /// <param name="emission">The signal's name.</param>
+        /// <param name="source">The signal's source.</param>
+        public void EmitSignal(string emission, string source)
+        {
+            Interop.Elementary.elm_object_item_signal_emit(Handle, emission, source);
+        }
+
+        /// <summary>
         /// Gets the handle of object item
         /// </summary>
         /// <param name="obj">ItemObject</param>
@@ -243,6 +313,54 @@ namespace ElmSharp
         static int GetNextId()
         {
             return s_globalId++;
+        }
+
+        class SignalData
+        {
+            public string Emission { get; set; }
+            public string Source { get; set; }
+            public Func<string, string, bool> Func { get; set; }
+
+            public SignalData(string emission, string source, Func<string, string, bool> func)
+            {
+                Emission = emission;
+                Source = source;
+                Func = func;
+            }
+
+            public override bool Equals(object obj)
+            {
+                SignalData s = obj as SignalData;
+                if (s == null)
+                {
+                    return false;
+                }
+                return (Emission == s.Emission) && (Source == s.Source) && (Func == s.Func);
+            }
+
+            public override int GetHashCode()
+            {
+                int hashCode = Emission.GetHashCode();
+                hashCode ^= Source.GetHashCode();
+                hashCode ^= Func.GetHashCode();
+                return hashCode;
+            }
+        }
+
+        class ItemEvasObject : EvasObject
+        {
+            IntPtr _parent = IntPtr.Zero;
+
+            public ItemEvasObject(IntPtr parent) : base()
+            {
+                _parent = parent;
+                Realize(null);
+            }
+
+            protected override IntPtr CreateHandle(EvasObject parent)
+            {
+                return Interop.Elementary.elm_object_item_track(_parent);
+            }
         }
     }
 }

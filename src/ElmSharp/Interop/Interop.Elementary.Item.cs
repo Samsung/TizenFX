@@ -97,7 +97,7 @@ internal static partial class Interop
         internal static extern void elm_object_item_signal_callback_add(IntPtr obj, string emission, string source, Elm_Object_Item_Signal_Cb func, IntPtr data);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern IntPtr elm_object_item_signal_callback_del(IntPtr obj, string emission, string source, Elm_Object_Item_Signal_Cb func, IntPtr data);
+        internal static extern IntPtr elm_object_item_signal_callback_del(IntPtr obj, string emission, string source, Elm_Object_Item_Signal_Cb func);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool Elm_Object_Item_Signal_Cb(IntPtr data, IntPtr item, string emission, string source);

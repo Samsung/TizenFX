@@ -473,16 +473,16 @@ namespace ElmSharp
         /// <param name="data">The item data.</param>
         /// <param name="func">User defined comparison function that defines the sort order based on gengrid item and its data.</param>
         /// <returns>Return a gengrid item that contains data and itemClass.</returns>
-        public GenGridItem InsertSorted(GenItemClass itemClass, object data, Comparison<GenGridItem> comparison)
+        public GenGridItem InsertSorted(GenItemClass itemClass, object data, Comparison<object> comparison)
         {
+            GenGridItem item = new GenGridItem(data, itemClass);
+
             Interop.Elementary.Eina_Compare_Cb compareCallback = (handle1, handle2) =>
             {
-                GenGridItem item1 = ItemObject.GetItemByHandle(handle1) as GenGridItem;
-                GenGridItem item2 = ItemObject.GetItemByHandle(handle2) as GenGridItem;
-                return comparison(item1, item2);
+                GenGridItem first = (ItemObject.GetItemByHandle(handle1) as GenGridItem) ?? item;
+                GenGridItem second = (ItemObject.GetItemByHandle(handle2) as GenGridItem) ?? item;
+                return comparison(first.Data, second.Data);
             };
-
-            GenGridItem item = new GenGridItem(data, itemClass);
 
             IntPtr handle = Interop.Elementary.elm_gengrid_item_sorted_insert(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, compareCallback, null, (IntPtr)item.Id);
             item.Handle = handle;
