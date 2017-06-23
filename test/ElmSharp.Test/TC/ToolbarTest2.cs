@@ -30,7 +30,7 @@ namespace ElmSharp.Test
         {
             Conformant conformant = new Conformant(window);
             conformant.Show();
-            Box outterBox = new Box(window)
+            Box outerBox = new Box(window)
             {
                 AlignmentX = -1,
                 AlignmentY = -1,
@@ -39,20 +39,18 @@ namespace ElmSharp.Test
                 IsHorizontal = false,
                 BackgroundColor = Color.Aqua,
             };
-            outterBox.Show();
+            outerBox.Show();
 
             Toolbar toolbar = new Toolbar(window)
             {
                 AlignmentX = -1,
                 WeightX = 1,
             };
-
             toolbar.Show();
-            outterBox.PackEnd(toolbar);
+            outerBox.PackEnd(toolbar);
 
-            int idx = 1;
-            ToolbarItem item = toolbar.Append(string.Format("{0} home", idx), "home");
-            idx++;
+            List<ToolbarItem> items = new List<ToolbarItem>();
+            items.Add(toolbar.Append(string.Format("{0} home", items.Count), "home"));
 
             Button bt = new Button(window)
             {
@@ -61,13 +59,29 @@ namespace ElmSharp.Test
             };
             bt.Clicked += (s, e) =>
             {
-                ToolbarItem item2 = toolbar.Append(string.Format("{0} home", idx), "home");
-                idx++;
+                items.Add(toolbar.Append(string.Format("{0} home", items.Count), "home"));
+            };
+
+            Button removebt = new Button(window)
+            {
+                Text = "Remove first ToolbarItem",
+                MinimumWidth = 400
+            };
+            removebt.Clicked += (s, e) =>
+            {
+                foreach (var cur in items)
+                {
+                    items.Remove(cur);
+                    cur.Delete();
+                    return;
+                }
             };
 
             bt.Show();
-            outterBox.PackEnd(bt);
-            conformant.SetContent(outterBox);
+            removebt.Show();
+            outerBox.PackEnd(bt);
+            outerBox.PackEnd(removebt);
+            conformant.SetContent(outerBox);
         }
     }
 }
