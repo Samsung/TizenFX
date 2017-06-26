@@ -194,6 +194,15 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_get_main_window")]
         internal static extern IntPtr ImeGetMainWindow();
 
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_prepare")]
+        internal static extern ErrorCode ImePrepare();
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_initialize")]
+        internal static extern ErrorCode ImeInitialize();
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_finalize")]
+        internal static extern ErrorCode ImeFinalize();
+
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_size")]
         internal static extern ErrorCode ImeSetSize(int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight);
 

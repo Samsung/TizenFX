@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -964,7 +964,7 @@ namespace Tizen.Uix.InputMethod
         private static ImeFocusedOutCb _imeFocusedOutDelegate;
         private static event EventHandler<SurroundingTextUpdatedEventArgs> _surroundingTextUpdated;
         private static ImeSurroundingTextUpdatedCb _imeSurroundingTextUpdatedDelegate;
-        private static event EventHandler<System.EventArgs> _inputContextReset;
+        private static event EventHandler<EventArgs> _inputContextReset;
         private static ImeInputContextResetCb _imeInputContextResetDelegate;
         private static event EventHandler<CursorPositionitionUpdatedEventArgs> _cursorPositionUpdated;
         private static ImeCursorPositionitionUpdatedCb _imeCursorPositionitionUpdatedDelegate;
@@ -1201,7 +1201,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Called to reset the input context of an associated text input UI control.
         /// </summary>
-        public static event EventHandler<System.EventArgs> InputContextReset
+        public static event EventHandler<EventArgs> InputContextReset
         {
             add
             {
@@ -1209,7 +1209,7 @@ namespace Tizen.Uix.InputMethod
                 {
                     _imeInputContextResetDelegate = (IntPtr userData) =>
                     {
-                        _inputContextReset?.Invoke(null, System.EventArgs.Empty);
+                        _inputContextReset?.Invoke(null, EventArgs.Empty);
                     };
                     ErrorCode error = ImeEventSetInputContextResetCb(_imeInputContextResetDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
@@ -1774,7 +1774,7 @@ namespace Tizen.Uix.InputMethod
         /// 1) The application does not have the privilege to call this function
         /// 2) IME main loop isn't started yet
         /// </exception>
-        public static void SendKeyEvent(KeyCode keyCode, KeyMask keyMask, bool forwardKey)
+        public static void SendKeyEvent(KeyCode keyCode, KeyMask keyMask, bool forwardKey = false)
         {
             ErrorCode error = ImeSendKeyEvent(keyCode, keyMask, forwardKey);
             if (error != ErrorCode.None)
@@ -2019,6 +2019,58 @@ namespace Tizen.Uix.InputMethod
                 throw InputMethodExceptionFactory.CreateException(error);
             }
             return obj;
+        }
+
+        /// <summary>
+        /// This API requests the InputMethodEditor to initialize
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function
+        /// 2) Operation Failed
+        /// </exception>
+        public static void Create()
+        {
+            ErrorCode error = ImeInitialize();
+            Log.Info(LogTag, "ImeInitialize result : " + error);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "ImeInitialize Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+
+            error = ImePrepare();
+            Log.Info(LogTag, "ImePrepare result : " + error);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "ImePrepare Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// This API requests the InputMethodEditor to finalize
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function
+        /// 2) Operation Failed
+        /// </exception>
+        public static void Destroy()
+        {
+            ErrorCode error = ImeFinalize();
+            Log.Info(LogTag, "ImeFinalize result : " + error);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "ImeFinalize Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
         }
 
         /// <summary>
