@@ -753,6 +753,11 @@ namespace ElmSharp
             Interop.Elementary.elm_entry_select_none(RealHandle);
         }
 
+        /// <summary>
+        /// Sets the color of color class for a given widget.
+        /// </summary>
+        /// <param name="part">The name of color class.</param>
+        /// <param name="color">The struct of color</param>
         public override void SetPartColor(string part, Color color)
         {
             IntPtr handle = (part == "bg") ? Handle : RealHandle;

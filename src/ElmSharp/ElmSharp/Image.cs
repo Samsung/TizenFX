@@ -615,10 +615,22 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// Enumeration for the fill mode of image border
+    /// </summary>
     public enum ImageBorderFillMode
     {
+        /// <summary>
+        /// None mode of image border
+        /// </summary>
         None,
+        /// <summary>
+        /// Default mode of image border
+        /// </summary>
         Default,
+        /// <summary>
+        /// Solid mode of image border
+        /// </summary>
         Solid,
     }
 

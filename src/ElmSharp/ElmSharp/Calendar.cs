@@ -83,12 +83,27 @@ namespace ElmSharp
         OnDemand
     }
 
+    /// <summary>
+    /// Enumeration used to define which fields of a tm struct will be taken into account
+    /// </summary>
     [Flags]
     public enum CalendarSelectable
     {
+        /// <summary>
+        /// None will be taken into account
+        /// </summary>
         None = 0,
+        /// <summary>
+        /// Year will be taken into account
+        /// </summary>
         Year = 1 << 0,
+        /// <summary>
+        /// Month will be taken into account
+        /// </summary>
         Month = 1 << 1,
+        /// <summary>
+        /// Day will be taken into account
+        /// </summary>
         Day = 1 << 2
     }
 

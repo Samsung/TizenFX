@@ -18,13 +18,24 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// The ItemObjectExtension is used to manage item object extension
+    /// </summary>
     public static class ItemObjectExtension
     {
+        /// <summary>
+        /// Grab high light of item object
+        /// </summary>
+        /// <param name="obj">the item object which is grabbed high light</param>
         public static void GrabHighlight(this ItemObject obj)
         {
             Interop.Elementary.elm_atspi_component_highlight_grab(obj.Handle);
         }
 
+        /// <summary>
+        /// Clear high light of item object
+        /// </summary>
+        /// <param name="obj">the item object which is cleared high light</param>
         public static void ClearHighlight(this ItemObject obj)
         {
             Interop.Elementary.elm_atspi_component_highlight_clear(obj.Handle);
