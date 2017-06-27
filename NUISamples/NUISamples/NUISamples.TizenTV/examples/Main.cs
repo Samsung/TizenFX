@@ -14,32 +14,32 @@ namespace NUISamples.TizenTV.examples
         [STAThread]
         static void Main(string[] args)
         {
-            //new ControlDashboard.Example().Run(args);                 //o
-            //new DatePickerTest.Example().Run(args);                   //o
-            //new DatePickerUsingJson.Example().Run(args);              //o
-            // new HelloTest.Example().Run(args);                        //o
-            // new HelloWorldTest.Example().Run(args);                   //o
-            // new Test1.Example().Run(args);                            //o
-            //new SiblingOrderTest.Example().Run(args);                 //o
-            //new UserAlphaFunctionTest.Example().Run(args);            //o
-            //new MyCSharpExample.Example().Run(args);                  //o
-            //new CustomControlTest.Example().Run(args);                //o
-            //new ScrollViewTest.Example().Run(args);                   //o
-            //new ImageViewTest.Example().Run(args);                    //o
-            //new FlexContainerTest.SampleMain().Run(args);             //o
-            //new DaliTest.Example().Run(args);                         //o
+            //new ControlDashboard.Example().Run(args);
+            //new DatePickerTest.Example().Run(args);
+            //new DatePickerUsingJson.Example().Run(args);
+            //new HelloTest.Example().Run(args);
+            //new HelloWorldTest.Example().Run(args);
+            //new Test1.Example().Run(args);
+            //new SiblingOrderTest.Example().Run(args);
+            //new UserAlphaFunctionTest.Example().Run(args);
+            //new MyCSharpExample.Example().Run(args);
+            //new CustomControlTest.Example().Run(args);
+            //new ScrollViewTest.Example().Run(args);
+            //new ImageViewTest.Example().Run(args);
+            //new FlexContainerTest.SampleMain().Run(args);
+            //new DaliTest.Example().Run(args);
             //new RelativeVectorTest.Example().Run(args);
             //new VisaulAnimationExample.Example().Run(args);
-            // new VisaulAnimationExample.Example2().Run(args);          //o
-            new VisaulAnimationExample.Example3().Run(args);          //o
-            //new VisualViewTest.Example().Run(args);                   //o
+            //new VisaulAnimationExample.Example2().Run(args);
+            //new VisaulAnimationExample.Example3().Run(args);
+            //new VisualViewTest.Example().Run(args);
             //new VisualViewTest2.VisualSample().Run(args);
-            //new VisualViewTest3.Example().Run(args);                   //o
-            //new VisualsUsingCustomView.VisualsExample().Run(args);    //o
-            //new FirstScreen.FirstScreenApp().Run(args);               //o
             //new PositionUsesPivotPointTest.Example().Run(args);
-            // new VisualsExampleTest.Example().Run(args);               //o
-            //new TizenSTVUIApplication15.Program().Run(args);
+            //new VisualViewTest3.Example().Run(args);
+            //new VisualsUsingCustomView.VisualsExample().Run(args);
+            //new FirstScreen.FirstScreenApp().Run(args);
+            //new VisualsExampleTest.Example().Run(args);
+            new AsIsTest.Example().Run(args);
         }
     }
 }

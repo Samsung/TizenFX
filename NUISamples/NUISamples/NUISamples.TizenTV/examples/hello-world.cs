@@ -96,7 +96,7 @@ namespace HelloWorldTest
             window.Add(_text);
 
             _view = new View();
-            _view.Size = new Size(100, 100, 100);
+            _view.Size2D = new Size2D(100, 100);
             _view.SizeWidth = 50;
             Tizen.Log.Debug("NUI", "[1]_view SizeWidth=" + _view.SizeWidth);
 

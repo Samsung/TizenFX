@@ -34,7 +34,7 @@ namespace FlexContainerTest
             Window.Instance.BackgroundColor = new Color(0.1f, 0.8f, 0.1f, 1.0f);
 
             container = new FlexContainer();
-            container.Size = new Size(Window.Instance.Size.Width, Window.Instance.Size.Height, 0);
+            container.Size2D = new Size2D(Window.Instance.Size.Width, Window.Instance.Size.Height);
             container.PivotPoint = PivotPoint.TopLeft;
             container.Padding = new Vector4(100, 100, 100, 100);
 

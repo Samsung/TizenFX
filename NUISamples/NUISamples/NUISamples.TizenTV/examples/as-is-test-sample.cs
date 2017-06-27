@@ -2,9 +2,9 @@ using System;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI;
 
-namespace TizenSTVUIApplication15
+namespace AsIsTest
 {
-    class Program : NUIApplication
+    class Example : NUIApplication
     {
         private Timer myTimer;
 
@@ -24,16 +24,17 @@ namespace TizenSTVUIApplication15
             base.OnCreate();
 
             myView = new View();
-            myView.Size = new Size(100, 100, 0);
+            myView.Size2D = new Size2D(100, 100);
             myView.Position = new Position(100, 100, 0);
             myView.BackgroundColor = Color.Red;
             myView.Name = "myView";
+            myView.SizeWidth = 111;
 
             Window.Instance.GetDefaultLayer().Add(myView);
 
             myTextLabel = new TextLabel();
             myTextLabel.Position = new Position(100, 100, 0);
-            myTextLabel.Size = new Size(100, 100, 0);
+            myTextLabel.Size2D = new Size2D(100, 100);
             myTextLabel.Name = "myTextLabel";
 
             myView.Add(myTextLabel);
@@ -92,7 +93,7 @@ namespace TizenSTVUIApplication15
             {
                 Layer myLayer = o as Layer;
 
-                for (int i = 0; i < myLayer.GetChildCount(); i++)
+                for (int i = 0; i < myLayer.ChildCount; i++)
                 {
                     BFS(myLayer.GetChildAt((uint)i), depth + 1);
                 }
@@ -105,8 +106,12 @@ namespace TizenSTVUIApplication15
 
         private bool Mytimer_Tick(object source, Timer.TickEventArgs e)
         {
-            //ObjectDumpTrigger();
+            ObjectDumpTrigger();
             ObjectDumpTrigger2();
+            Tizen.Log.Debug("NUI", " === Size property set/get test!");
+            myView.Size2D.Width += 5;  //this is not working, because stage's Size is Vector2 but view's Size is Vector3. need to figure out.
+            myView.SizeHeight += 5;
+            Tizen.Log.Debug("NUI", $" view's size width= {myView.Size2D.Width} heigh={myView.Size2D.Height}");
 
             return true;
         }
@@ -143,7 +148,7 @@ namespace TizenSTVUIApplication15
             layer.Add(vi2);
             layer.Add(tb3);
 
-            Window.Instance.AddLayer(layer);
+            Window.Instance.Add(layer);
         }
 
         void ObjectDumpTrigger2()
@@ -167,7 +172,7 @@ namespace TizenSTVUIApplication15
                     Tizen.Log.Fatal("NUI-APP", "### layer is null! just return!");
                     return;
                 }
-                uint childCnt = layer.GetChildCount();
+                uint childCnt = layer.ChildCount;
                 if (childCnt > 0)
                 {
                     for (uint i = 0; i < childCnt; i++)
@@ -199,6 +204,32 @@ namespace TizenSTVUIApplication15
                     {
                         var temp = view.GetChildAt(i) as View;
                         Tizen.Log.Fatal("NUI-APP", "depth[" + depth + "] child in layer! type=" + temp.GetTypeName() + " AS-IS Test: IsView?=" + (temp is View) + " IsTextLabel?=" + (temp is TextLabel) );
+
+                        if (temp is TextLabel)
+                        {
+                            ToggleButton _toggleBt = temp as ToggleButton;
+                            if(_toggleBt == null)
+                            {
+                                Tizen.Log.Debug("NUI", $"temp is TextLabel! try to do invalid cast! should return null! OK!GOOD!");
+                            }
+                            else
+                            {
+                                Tizen.Log.Debug("NUI", $"temp is TextLabel! try to do invalid cast! should return null! BAD!ERROR!");
+                            }
+                        }
+                        else if (temp is ToggleButton)
+                        {
+                            TextLabel _textLb = temp as TextLabel;
+                            if(_textLb == null)
+                            {
+                                Tizen.Log.Debug("NUI", $"temp is ToggleButton! try to do invalid cast! should return null! OK!GOOD!");
+                            }
+                            else
+                            {
+                                Tizen.Log.Debug("NUI", $"temp is ToggleButton! try to do invalid cast! should return null! BAD!ERROR!");
+                            }
+                        }
+
                         ViewCheckRecurse(temp, depth);
                     }
                 }
@@ -217,7 +248,7 @@ namespace TizenSTVUIApplication15
         private static void _Main(string[] args)
         {
             //Create an Application
-            Program myProgram = new Program();
+            Example myProgram = new Example();
             myProgram.Run(args);
         }
     }

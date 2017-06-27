@@ -46,7 +46,9 @@ namespace ControlDashboard
         private Window _window;
         private Popup _popup;
         private ProgressBar _progressBar;
-        private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+        //private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+        private const string _resPath = "./res";  //for ubuntu
+
 
         // List of items
         private Item[] mViewList = {
@@ -140,7 +142,7 @@ namespace ControlDashboard
         {
             // Make label for item
             TextLabel itemLabel = new TextLabel("    " + item.name);
-            itemLabel.Size = new Vector3(_window.Size.Width * 0.2f, _window.Size.Height * 0.05f, 0.0f);
+            itemLabel.Size2D = new Size2D((int)(_window.Size.Width * 0.2f), (int)(_window.Size.Height * 0.05f));
             itemLabel.HorizontalAlignment = HorizontalAlignment.Begin;
             itemLabel.VerticalAlignment = VerticalAlignment.Bottom;
             //itemLabel.PointSize = 18.0f;
@@ -392,7 +394,7 @@ namespace ControlDashboard
             else
             {
                 ImageView notSupportView = new ImageView(_resPath + "/images/not_yet_sign.png");
-                notSupportView.Size = new Vector3(_window.Size.Width * 0.2f, _window.Size.Height * 0.25f, 0.0f);
+                notSupportView.Size2D = new Size2D((int)(_window.Size.Width * 0.2f), (int)(_window.Size.Height * 0.25f));
                 notSupportView.Focusable = (true);
                 _contentContainer.AddChild(notSupportView, new TableView.CellPosition(((uint)idx / 5) * 2 + 1, (uint)idx % 5));
             }
@@ -405,7 +407,7 @@ namespace ControlDashboard
             footer.Name = ("Footer");
             footer.WidthResizePolicy = ResizePolicyType.FillToParent;
             footer.HeightResizePolicy = ResizePolicyType.Fixed;
-            footer.Size = new Size(0.0f, 80.0f, 0.0f);
+            footer.Size2D = new Size2D(0, 80);
             footer.PivotPoint = PivotPoint.Center;
 
             PushButton okButton = CreateOKButton();

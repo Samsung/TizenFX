@@ -1171,6 +1171,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Creates a Size property value.
+        /// </summary>
+        /// <param name="vectorValue">A Size values</param>
+        internal PropertyValue(Size vectorValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_5(Size.getCPtr(vectorValue)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Creates a Position property value.
         /// </summary>
         /// <param name="vectorValue">A Position values</param>
@@ -1207,6 +1216,17 @@ namespace Tizen.NUI
         public bool Get(Position2D vectorValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_5(swigCPtr, Position2D.getCPtr(vectorValue));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Retrieves a Size value.
+        /// </summary>
+        /// <param name="vectorValue"> On return, a Size value</param>
+        internal bool Get(Size vectorValue)
+        {
+            bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_6(swigCPtr, Size.getCPtr(vectorValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -41,7 +41,7 @@ namespace MyCSharpExample
             for (int i = 0; i < num; i++)
             {
                 view[i] = new View();
-                view[i].Size = new Size(200, 200, 0);
+                view[i].Size2D = new Size2D(200, 200);
                 view[i].BackgroundColor = Color.Blue;
                 view[i].Position = new Position(300 + i * 300, 300, 0);
                 view[i].Name = "MyView" + i;

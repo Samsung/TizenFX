@@ -95,7 +95,8 @@ namespace DaliTest
 
     class Example : NUIApplication
     {
-        private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+        //private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+        private const string _resPath = "./res";  //for ubuntu
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         delegate void CallbackDelegate(IntPtr appPtr); // void, void delgate
@@ -143,15 +144,15 @@ namespace DaliTest
             Tizen.Log.Debug("NUI",  "myProperty value: " + myProperty );
 
             int myPropertyIndex2 = handle.RegisterProperty("myProperty2", new PropertyValue(new Size(5.0f, 5.0f, 0.0f)), PropertyAccessMode.ReadWrite);
-            Size myProperty2 = new Size(0.0f, 0.0f, 0.0f);
+            Size2D myProperty2 = new Size2D(0, 0);
             handle.GetProperty(myPropertyIndex2).Get(myProperty2);
             Tizen.Log.Debug("NUI",  "myProperty2 value: " + myProperty2.Width + ", " + myProperty2.Height );
 
             View view = new View();
-            view.Size = new Size(200.0f, 200.0f, 0.0f);
+            view.Size2D = new Size2D(200, 200);
             view.Name = "MyView";
             //view.MixColor = new Color(1.0f, 0.0f, 1.0f, 0.8f);
-            Tizen.Log.Debug("NUI", "View size: " + view.Size.Width + ", " + view.Size.Height);
+            Tizen.Log.Debug("NUI", "View size: " + view.Size2D.Width + ", " + view.Size2D.Height);
             Tizen.Log.Debug("NUI", "View name: " + view.Name);
 
             Window window = Window.Instance;

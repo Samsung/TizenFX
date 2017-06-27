@@ -53,7 +53,7 @@ namespace DatePickerTest
             _container = new FlexContainer();
 
             _container.FlexDirection = FlexContainer.FlexDirectionType.Row;
-            _container.Size = new Vector3(480.0f, 150.0f, 0.0f);
+            _container.Size2D = new Size2D(480, 150);
 
             window.Add(_container);
 

@@ -1,4 +1,3 @@
-using Tizen.Applications;
 
 using System.Collections.Generic;
 using System;
@@ -34,7 +33,8 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.Size = new Size(100, 100, 0);
+                v.PivotPoint = PivotPoint.TopLeft;
+                v.Size2D = new Size2D(100, 100);
 
                 myViewList.Add(v);
 
@@ -70,7 +70,8 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.Size = new Size(100, 100, 0);
+                v.PivotPoint = PivotPoint.TopLeft;
+                v.Size2D = new Size2D(100, 100);
                 v.Text = "label " + i;
 
                 myViewList.Add(v);
@@ -85,7 +86,8 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.Size = new Size(100, 100, 0);
+                v.PivotPoint = PivotPoint.TopLeft;
+                v.Size2D = new Size2D(100, 100);
                 v.LabelText = "button " + i;
 
                 myViewList.Add(v);
@@ -100,7 +102,8 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.Size = new Size(100, 100, 0);
+                v.PivotPoint = PivotPoint.TopLeft;
+                v.Size2D = new Size2D(100, 100);
                 v.ResourceUrl = resources + "/images/gallery-3.jpg";
 
                 myViewList.Add(v);
@@ -115,7 +118,8 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.Size = new Size(100, 100, 0);
+                v.PivotPoint = PivotPoint.TopLeft;
+                v.Size2D = new Size2D(100, 100);
                 v.Text = "editor" + i;
 
                 myViewList.Add(v);
@@ -130,7 +134,8 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.Size = new Size(100, 100, 0);
+                v.PivotPoint = PivotPoint.TopLeft;
+                v.Size2D = new Size2D(100, 100);
                 v.Text = "field " + i;
 
                 myViewList.Add(v);
@@ -145,7 +150,8 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.Size = new Size(100, 100, 0);
+                v.PivotPoint = PivotPoint.TopLeft;
+                v.Size2D = new Size2D(100, 100);
                 v.LabelText = "check " + i;
 
                 myViewList.Add(v);
@@ -160,7 +166,8 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.Size = new Size(100, 100, 0);
+                v.PivotPoint = PivotPoint.TopLeft;
+                v.Size2D = new Size2D(100, 100);
 
                 myViewList.Add(v);
 
@@ -174,7 +181,8 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.Size = new Size(100, 100, 0);
+                v.PivotPoint = PivotPoint.TopLeft;
+                v.Size2D = new Size2D(100, 100);
 
                 myViewList.Add(v);
 
@@ -188,7 +196,8 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.Size = new Size(100, 100, 0);
+                v.PivotPoint = PivotPoint.TopLeft;
+                v.Size2D = new Size2D(100, 100);
 
                 myViewList.Add(v);
 
@@ -202,7 +211,8 @@ namespace TizenVDUIApplication19
                 float intensity = myRandom.Next(0, 255) / 255.0f;
                 v.BackgroundColor = new Color(intensity, intensity, intensity, 1);
                 v.Position = new Position(myRandom.Next(0, 1820), myRandom.Next(0, 980), 0);
-                v.Size = new Size(100, 100, 0);
+                v.PivotPoint = PivotPoint.TopLeft;
+                v.Size2D = new Size2D(100, 100);
 
                 myViewList.Add(v);
 

@@ -35,7 +35,7 @@ namespace VisualViewTest2
             for (int i = 0; i < num; i++)
             {
                 view[i] = new VisualView();
-                view[i].Size = new Size(600, 600, 0);
+                view[i].Size2D = new Size2D(600, 600);
                 view[i].BackgroundColor = Color.Blue;
                 view[i].Position = new Position(400 + i * 800, 600, 0);
                 view[i].Focusable = true;
@@ -55,7 +55,7 @@ namespace VisualViewTest2
             imageMap.Origin = Visual.AlignType.TopBegin;
             imageMap.Position = new Vector2(0, 0);
             imageMap.PositionPolicy = VisualTransformPolicyType.Absolute;
-            imageMap.Size = new Vector2(500, 500);
+            imageMap.Size = new Size2D(500, 500);
             imageMap.SizePolicy = VisualTransformPolicyType.Absolute;
             imageMap.DepthIndex = 0;
             view[0].AddVisual("bgVisual", imageMap);

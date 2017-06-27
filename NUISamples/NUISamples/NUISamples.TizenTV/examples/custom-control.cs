@@ -221,7 +221,7 @@ namespace CustomControlTest
 
                 // Add the image view to the row
                 ImageView image = new ImageView(resources+"/images/gallery-" + i + ".jpg");
-                image.Size = new Vector3(120.0f, 120.0f, 0.0f);
+                image.Size2D = new Size2D(120, 120);
                 image.WidthResizePolicy = ResizePolicyType.Fixed;
                 image.HeightResizePolicy = ResizePolicyType.Fixed;
                 image.AlignSelf = (int)FlexContainer.Alignment.AlignCenter;
@@ -235,7 +235,7 @@ namespace CustomControlTest
                 // Add the rating control to the row
                 view.ParentOrigin = ParentOrigin.Center;
                 view.PivotPoint = PivotPoint.Center;
-                view.Size = new Vector3(200.0f, 40.0f, 0.0f);
+                view.Size2D = new Size2D(200, 40);
                 view.Flex = 0.7f;
                 view.AlignSelf = (int)FlexContainer.Alignment.AlignCenter;
                 view.FlexMargin = new Vector4(30.0f, 0.0f, 0.0f, 0.0f);
