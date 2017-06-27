@@ -78,8 +78,25 @@ namespace Tizen.NUI
         public Layer() : this(NDalicPINVOKE.Layer_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
+            if(Window.Instance != null)
+            {
+                this.SetAnchorPoint(Tizen.NUI.PivotPoint.TopLeft);
+                this.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.AllDimensions);
+            }
         }
+        internal void SetAnchorPoint(Vector3 anchorPoint)
+        {
+            NDalicPINVOKE.Actor_SetAnchorPoint(swigCPtr, Vector3.getCPtr(anchorPoint));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
+        {
+            NDalicPINVOKE.Actor_SetResizePolicy(swigCPtr, (int)policy, (int)dimension);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
 
         /// <summary>
         /// Search through this layer's hierarchy for an view with the given unique ID.
