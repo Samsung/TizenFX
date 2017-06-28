@@ -102,11 +102,11 @@ internal static partial class Interop
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_init_info")]
             internal static extern int SimGetInitInfo(IntPtr handle, out SimCardStatus status, out int cardChanged);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_type")]
-            internal static extern int SimGetType(IntPtr handle, out SimType type);
+            internal static extern int SimGetType(IntPtr handle, out SimCardType type);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_imsi")]
             internal static extern int SimGetImsi(IntPtr handle, out SimImsiInfoStruct imsiInfo);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_ecc")]
-            internal static extern int SimGetEcc(IntPtr handle, out SimEccInfoStruct eccInfo);
+            internal static extern int SimGetEcc(IntPtr handle, out SimEccInfoListStruct eccInfo);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_iccid")]
             internal static extern int SimGetIccId(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_language")]
@@ -116,15 +116,15 @@ internal static partial class Interop
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_callforwarding_info")]
             internal static extern int SimGetCallForwardingInfo(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_set_sim_callforwarding_info")]
-            internal static extern int SimSetCallForwardingInfo(IntPtr handle, SimCallForwardRequestStruct request, TapiResponseCallback cb, IntPtr userData);
+            internal static extern int SimSetCallForwardingInfo(IntPtr handle, ref SimCallForwardRequestStruct request, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_messagewaiting_info")]
             internal static extern int SimGetMessageWaitingInfo(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_set_sim_messagewaiting_info")]
-            internal static extern int SimSetMessageWaitingInfo(IntPtr handle, SimMessageWaitingRequestStruct request, TapiResponseCallback cb, IntPtr userData);
+            internal static extern int SimSetMessageWaitingInfo(IntPtr handle, ref SimMessageWaitingRequestStruct request, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_mailbox_info")]
             internal static extern int SimGetMailboxInfo(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_set_sim_mailbox_info")]
-            internal static extern int SimSetMailboxInfo(IntPtr handle, SimMailboxNumberStruct mailbox, TapiResponseCallback cb, IntPtr userData);
+            internal static extern int SimSetMailboxInfo(IntPtr handle, ref SimMailboxNumberStruct mailbox, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_cphs_info")]
             internal static extern int SimGetCphsInfo(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_service_table")]
@@ -160,7 +160,7 @@ internal static partial class Interop
             [DllImport(Libraries.Tapi, EntryPoint = "tel_req_sim_atr")]
             internal static extern int SimRequestAtr(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_application_list")]
-            internal static extern int SimGetApplicationList(IntPtr handle, out byte appList);
+            internal static extern int SimGetApplicationList(IntPtr handle, out IntPtr appList);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_impi")]
             internal static extern int SimGetImpi(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_impu")]
