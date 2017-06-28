@@ -46,7 +46,7 @@ internal static partial class Interop
         [DllImport(Libraries.Email, EntryPoint = "email_add_recipient")]
         internal static extern int AddRecipient(IntPtr EmailHandle, int type, string text);
 
-        [DllImport(Libraries.Email, EntryPoint = "email_remove_all_recipient")]
+        [DllImport(Libraries.Email, EntryPoint = "email_remove_all_recipients")]
         internal static extern int RemoveRecipient(IntPtr EmailHandle);
 
         [DllImport(Libraries.Email, EntryPoint = "email_add_attach")]
