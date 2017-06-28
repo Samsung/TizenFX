@@ -280,7 +280,7 @@ namespace Tizen.NUI
             TypeRegistration.RegisterControl(viewType.Name, _createCallback);
 
             // Cycle through each property in the class
-            foreach (System.Reflection.PropertyInfo propertyInfo in viewType.GetProperties())
+            foreach (System.Reflection.PropertyInfo propertyInfo in viewType.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public))
             {
 
                 if (propertyInfo.CanRead)
