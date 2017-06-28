@@ -24,9 +24,9 @@ namespace Tizen.Network.Mtp
     public enum MtpStorageType
     {
         /// <summary>
-        /// Undifined
+        /// Undefined
         /// </summary>
-        Undifined = 0,
+        Undefined = 0,
         /// <summary>
         /// fixed ROM
         /// </summary>

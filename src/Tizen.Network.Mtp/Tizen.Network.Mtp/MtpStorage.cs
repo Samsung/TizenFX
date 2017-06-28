@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Mtp
 {
     /// <summary>
-    /// A class for Mtp Storage informations. It allows applications to handle storage informations.
+    /// A class for Mtp Storage information. It allows applications to handle storage information.
     /// </summary>
     public class MtpStorage : IDisposable
     {
@@ -33,7 +33,7 @@ namespace Tizen.Network.Mtp
         //private int _objectHandle = 0;
 
         /// <summary>
-        /// Gets the description.
+        /// Gets the description of the storage information.
         /// </summary>
         /// <value>Description of storage.</value>
         public string Description
@@ -52,9 +52,9 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// Gets the free space.
+        /// Gets the free space of the storage information in bytes.
         /// </summary>
-        /// <value>Free space of storage.</value>
+        /// <value>Free space of storage(bytes).</value>
         public UInt64 FreeSpace
         {
             get
@@ -70,9 +70,9 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// Gets the max capacity.
+        /// Gets the max capacity of the storage information in bytes.
         /// </summary>
-        /// <value>Max capacity of storage.</value>
+        /// <value>Max capacity of storage(bytes).</value>
         public UInt64 MaxCapacity
         {
             get
@@ -88,7 +88,7 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// Gets the storage type.
+        /// Gets the storage type of the storage information.
         /// </summary>
         /// <value>Type of storage.</value>
         public MtpStorageType StorageType
@@ -106,7 +106,7 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// Gets the volume identifier.
+        /// Gets the volume identifier of the storage information.
         /// </summary>
         /// <value>Volume identifier of stroage.</value>
         public string VolumeIdentifier
@@ -149,20 +149,15 @@ namespace Tizen.Network.Mtp
             if (disposing)
             {
                 // Free managed objects.
-/*                foreach (SmartcardChannel channel in _basicChannelList)
+                foreach (MtpObject mtpObject in _objectList)
                 {
-                    channel.Dispose();
-                    _basicChannelList.Remove(channel);
+                    mtpObject.Dispose();
+                    _objectList.Remove(mtpObject);
                 }
 
-                foreach (SmartcardChannel channel in _logicalChannelList)
-                {
-                    channel.Dispose();
-                    _logicalChannelList.Remove(channel);
-                }
-*/            }
-            //Free unmanaged objects
-            disposed = true;
+                //Free unmanaged objects
+                disposed = true;
+            }
         }
 
         internal int GetHandle()
@@ -173,6 +168,8 @@ namespace Tizen.Network.Mtp
         /// <summary>
         /// Gets the list of storages.
         /// </summary>
+        /// <param name="parentHandle">The parent object handle. If parentHandle is 0, it means "root folder" of mtp storage.</param>
+        /// <param name="fileType">The file type what you want.</param>
         /// <returns>List of storage objects.</returns>
         /// <feature>http://tizen.org/feature/network.mtp</feature>
         /// <remarks>

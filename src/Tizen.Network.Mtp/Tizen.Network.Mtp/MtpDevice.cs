@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Mtp
 {
     /// <summary>
-    /// A class for Mtp Device informations. It allows applications to handle device informations.
+    /// A class for Mtp Device information. It allows applications to handle device information.
     /// </summary>
     public class MtpDevice : IDisposable
     {
@@ -30,7 +30,7 @@ namespace Tizen.Network.Mtp
         private List<MtpStorage> _storageList = new List<MtpStorage>();
 
         /// <summary>
-        /// Gets the manufacturer name.
+        /// Gets the manufacturer name of the device information.
         /// </summary>
         /// <value>Manufacture name of device.</value>
         public string ManufacturerName
@@ -49,7 +49,7 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// Gets the model name.
+        /// Gets the model name of the device information.
         /// </summary>
         /// <value>Model name of device.</value>
         public string ModelName
@@ -68,7 +68,7 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// Gets the serial number.
+        /// Gets the serial number of the device information.
         /// </summary>
         /// <value>Serial number of device.</value>
         public string SerialNumber
@@ -87,7 +87,7 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// Gets the device version.
+        /// Gets the device version of the device information.
         /// </summary>
         /// <value>Version number of device.</value>
         public string DeviceVersion
@@ -150,7 +150,6 @@ namespace Tizen.Network.Mtp
         /// <returns>List of storage objects.</returns>
         /// <feature>http://tizen.org/feature/network.mtp</feature>
         /// <exception cref="NotSupportedException">Thrown when Mtp is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public IEnumerable<MtpStorage> GetStorages()
         {
