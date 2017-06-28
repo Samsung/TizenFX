@@ -42,7 +42,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Provides means to wrap various display types.
+    /// Provides a means to wrap various display types.
     /// </summary>
     /// <seealso cref="Player"/>
     /// <seealso cref="Camera"/>

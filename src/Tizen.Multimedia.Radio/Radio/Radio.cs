@@ -23,7 +23,7 @@ using static Tizen.Multimedia.Interop.Radio;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides means for using the radio feature.
+    /// Provides a means for using the radio feature.
     /// </summary>
     public class Radio : IDisposable
     {

@@ -20,7 +20,7 @@ using static Interop;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides means to configure properties and handle events for <see cref="MediaStreamSource"/>.
+    /// Provides a means to configure properties and handle events for <see cref="MediaStreamSource"/>.
     /// </summary>
     /// <seealso cref="MediaStreamSource"/>
     public class MediaStreamConfiguration

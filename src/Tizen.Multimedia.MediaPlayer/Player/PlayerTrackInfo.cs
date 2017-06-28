@@ -21,7 +21,7 @@ using static Interop;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides means to retrieve track information.
+    /// Provides a means to retrieve track information.
     /// </summary>
     /// <seealso cref="Player.SubtitleTrackInfo"/>
     /// <seealso cref="Player.AudioTrackInfo"/>

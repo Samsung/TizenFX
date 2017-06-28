@@ -21,7 +21,7 @@ using Native = Interop.Display;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides means to configure display settings for video <see cref="Player"/>.
+    /// Provides a means to configure display settings for video <see cref="Player"/>.
     /// </summary>
     public class PlayerDisplaySettings
     {

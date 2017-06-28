@@ -129,7 +129,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Provides means to retrieve stream information.
+    /// Provides a means to retrieve stream information.
     /// </summary>
     public class StreamInfo
     {
