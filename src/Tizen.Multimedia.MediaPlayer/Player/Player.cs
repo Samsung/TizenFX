@@ -353,7 +353,6 @@ namespace Tizen.Multimedia
 
         private PlayerErrorCode SetDisplay(Display display)
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (display == null)
             {
                 Log.Info(PlayerLog.Tag, "set display to none");
@@ -365,15 +364,9 @@ namespace Tizen.Multimedia
 
         private void ReplaceDisplay(Display newDisplay)
         {
-            if (_display != null)
-            {
-                _display.Owner = null;
-            }
+            _display?.SetOwner(null);
             _display = newDisplay;
-            if (_display != null)
-            {
-                _display.Owner = this;
-            }
+            _display?.SetOwner(this);
         }
 
         /// <summary>
@@ -392,25 +385,20 @@ namespace Tizen.Multimedia
             }
             set
             {
-                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
                 ValidatePlayerState(PlayerState.Idle);
 
-                if (value != null && value.Owner != null)
+                if (value?.Owner != null)
                 {
                     if (ReferenceEquals(this, value.Owner))
                     {
                         return;
                     }
-                    else
-                    {
-                        throw new ArgumentException("The display has already been assigned to another.");
-                    }
-                }
 
+                    throw new ArgumentException("The display has already been assigned to another.");
+                }
                 SetDisplay(value).ThrowIfFailed("Failed to set the display to the player");
 
                 ReplaceDisplay(value);
-                Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
             }
         }
 

@@ -86,10 +86,18 @@ namespace Tizen.Multimedia
 
         private DisplayType Type { get; }
 
-        internal object Owner
+        private object _owner;
+
+        internal object Owner => _owner;
+
+        internal void SetOwner(object newOwner)
         {
-            get;
-            set;
+            if (_owner != null && newOwner != null)
+            {
+                throw new ArgumentException("The display has already been assigned to another.");
+            }
+
+            _owner = newOwner;
         }
 
         internal ErrorType ApplyTo<ErrorType>(IDisplayable<ErrorType> target)
