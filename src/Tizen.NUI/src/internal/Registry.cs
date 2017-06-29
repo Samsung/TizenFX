@@ -1,8 +1,5 @@
 
-//#define DOT_NET_CORE
-#if (DOT_NET_CORE)
 using System.Reflection;
-#endif
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
@@ -43,9 +40,8 @@ namespace Tizen.NUI
             RefObject refObj = baseHandle.GetObjectPtr();
             IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
 
-#if DEBUG_ON
-            Tizen.Log.Debug("NUI", "________Storing ref object cptr in control map Hex: {0:X}" + refCptr);
-#endif
+            NUILog.Debug("________Storing ref object cptr in control map Hex: {0:X}" + refCptr);
+
             if (!Instance._controlMap.ContainsKey(refCptr))
             {
                 Instance._controlMap.Add(refCptr, new WeakReference(baseHandle, false));

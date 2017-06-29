@@ -236,9 +236,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(TextLabel.Property.HORIZONTAL_ALIGNMENT).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "HorizontalAlignment get error!");
-#endif
+                    NUILog.Error("HorizontalAlignment get error!");
                 }
                 switch (temp)
                 {
@@ -293,9 +291,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(TextLabel.Property.VERTICAL_ALIGNMENT).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "VerticalAlignment get error!");
-#endif
+                    NUILog.Error("VerticalAlignment get error!");
                 }
 
                 switch (temp)
@@ -693,9 +689,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if(GetProperty(TextLabel.Property.AUTO_SCROLL_STOP_MODE).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "AutoScrollStopMode get error!");
-#endif
+                    NUILog.Error("AutoScrollStopMode get error!");
                 }
                 switch (temp)
                 {

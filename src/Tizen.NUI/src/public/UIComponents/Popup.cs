@@ -570,9 +570,7 @@ namespace Tizen.NUI.UIComponents
                 string temp;
                 if (GetProperty(Popup.Property.DISPLAY_STATE).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "DisplayState get error!");
-#endif
+                    NUILog.Error("DisplayState get error!");
                 }
                 switch (temp)
                 {
@@ -680,9 +678,7 @@ namespace Tizen.NUI.UIComponents
                 string temp;
                 if (GetProperty(Popup.Property.CONTEXTUAL_MODE).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "ContextualMode get error!");
-#endif
+                    NUILog.Error("ContextualMode get error!");
                 }
                 switch (temp)
                 {
@@ -765,9 +761,7 @@ namespace Tizen.NUI.UIComponents
                 string temp;
                 if (GetProperty(Popup.Property.ANIMATION_MODE).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "AnimationMode get error!");
-#endif
+                    NUILog.Error("AnimationMode get error!");
                 }
                 switch (temp)
                 {

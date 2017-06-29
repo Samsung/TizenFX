@@ -14,6 +14,9 @@
  *
  */
 using System;
+using System.Reflection;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI
 {
@@ -80,4 +83,28 @@ namespace Tizen.NUI
             }
         }
     } // namespace Constants
+
+
+internal class NUILog
+{
+    [Conditional("DEBUG_ON")]
+    public static void Debug(string msg,
+        [CallerLineNumber] int lineNum = 0,
+        [CallerMemberName] string caller = null,
+        [CallerFilePath] string file = null
+    )
+    {
+        Tizen.Log.Debug("NUI", $"{msg} (at {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffffff")} line {lineNum} of {caller} in {file})" );
+    }
+
+    public static void Error(string msg,
+        [CallerLineNumber] int lineNum = 0,
+        [CallerMemberName] string caller = null,
+        [CallerFilePath] string file = null
+    )
+    {
+        Tizen.Log.Debug("NUI", $"[ERROR] {msg} (at {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffffff")} line {lineNum} of {caller} in {file})" );
+    }
+}
+
 } // namesapce Dali

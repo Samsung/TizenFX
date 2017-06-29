@@ -370,9 +370,7 @@ namespace Tizen.NUI.UIComponents
                 string temp;
                 if (GetProperty(ScrollBar.Property.SCROLL_DIRECTION).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "ScrollDirection get error!");
-#endif
+                    NUILog.Error("ScrollDirection get error!");
                 }
 
                 switch (temp)
@@ -420,9 +418,7 @@ namespace Tizen.NUI.UIComponents
                 string temp;
                 if (GetProperty(ScrollBar.Property.INDICATOR_HEIGHT_POLICY).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "IndicatorHeightPolicy get error!");
-#endif
+                    NUILog.Error("IndicatorHeightPolicy get error!");
                 }
 
                 switch (temp)

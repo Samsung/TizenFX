@@ -436,9 +436,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(TextEditor.Property.HORIZONTAL_ALIGNMENT).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "HorizontalAlignment get error!");
-#endif
+                    NUILog.Error("HorizontalAlignment get error!");
                 }
 
                 switch (temp)
