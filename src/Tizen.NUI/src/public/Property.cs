@@ -1146,9 +1146,7 @@ namespace Tizen.NUI
             {
                 throw new global::System.InvalidOperationException("Unimplemented type for Property Value :" + type.Name);
             }
-#if DEBUG_ON
-            Tizen.Log.Debug("NUI", " got an property value of =" + type.Name);
-#endif
+            NUILog.Debug(" got an property value of =" + type.Name);
             return value;
         }
 

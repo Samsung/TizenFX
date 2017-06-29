@@ -1,8 +1,5 @@
 
-//#define DOT_NET_CORE
-#if (DOT_NET_CORE)
 using System.Reflection;
-#endif
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
@@ -286,13 +283,9 @@ namespace Tizen.NUI
                 if (propertyInfo.CanRead)
                 {
 
-#if (DOT_NET_CORE)
                     IEnumerable<Attribute> ie_attrs = propertyInfo.GetCustomAttributes<Attribute>();
                     List<Attribute> li_attrs = new List<Attribute>(ie_attrs);
                     System.Attribute[] attrs = li_attrs.ToArray();
-#else
-                    System.Attribute[] attrs = System.Attribute.GetCustomAttributes(propertyInfo);
-#endif
 
                     foreach (System.Attribute attr in attrs)
                     {

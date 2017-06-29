@@ -200,9 +200,7 @@ namespace Tizen.NUI.BaseComponents
             _tranformDictionary[visualIndex] = visualMap.OutputTransformMap;
 
             RelayoutRequest();
-#if DEBUG_ON
-            Tizen.Log.Debug("NUI", "UpdateVisual() name=" + visualName);
-#endif
+            NUILog.Debug("UpdateVisual() name=" + visualName);
         }
 
         /// <summary>

@@ -1128,9 +1128,7 @@ namespace Tizen.NUI.BaseComponents
                 int temp = 0;
                 if (GetProperty(View.Property.STATE).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "State get error!");
-#endif
+                    NUILog.Error("State get error!");
                 }
                 switch (temp)
                 {
@@ -1168,9 +1166,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(View.Property.SUB_STATE).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "subState get error!");
-#endif
+                    NUILog.Error("subState get error!");
                 }
                 switch (temp)
                 {
@@ -1414,9 +1410,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "CellHorizontalAlignment get error!");
-#endif
+                    NUILog.Error("CellHorizontalAlignment get error!");
                 }
 
                 switch (temp)
@@ -1471,9 +1465,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 GetProperty(TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT).Get(out temp);
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "CellVerticalAlignment get error!");
-#endif
+                    NUILog.Error("CellVerticalAlignment get error!");
                 }
 
                 switch (temp)
@@ -3306,9 +3298,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(View.Property.DRAW_MODE).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "DrawMode get error!");
-#endif
+                    NUILog.Error("DrawMode get error!");
                 }
                 switch (temp)
                 {
@@ -3357,9 +3347,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(View.Property.WIDTH_RESIZE_POLICY).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "WidthResizePolicy get error!");
-#endif
+                    NUILog.Error("WidthResizePolicy get error!");
                 }
                 switch (temp)
                 {
@@ -3399,9 +3387,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(View.Property.HEIGHT_RESIZE_POLICY).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "HeightResizePolicy get error!");
-#endif
+                    NUILog.Error("HeightResizePolicy get error!");
                 }
                 switch (temp)
                 {
@@ -3442,9 +3428,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(View.Property.SIZE_SCALE_POLICY).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "SizeScalePolicy get error!");
-#endif
+                    NUILog.Error("SizeScalePolicy get error!");
                 }
                 switch (temp)
                 {
@@ -3602,9 +3586,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(View.Property.CLIPPING_MODE).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "ClippingMode get error!");
-#endif
+                    NUILog.Error("ClippingMode get error!");
                 }
                 switch (temp)
                 {

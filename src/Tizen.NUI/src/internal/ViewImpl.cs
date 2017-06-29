@@ -8,10 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-#if (DOT_NET_CORE)
 using System.Reflection;
-#endif
-
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -591,25 +588,15 @@ namespace Tizen.NUI
         }
 
 
-#if (DOT_NET_CORE)
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
         {
             global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, methodTypes);
             bool hasDerivedMethod = this.GetType().GetTypeInfo().IsSubclassOf(typeof(ViewImpl));
 
-#if DEBUG_ON
-            Tizen.Log.Debug("NUI-APP", "hasDerivedMethod=" + hasDerivedMethod);
-#endif
+            NUILog.Debug("hasDerivedMethod=" + hasDerivedMethod);
+
             return hasDerivedMethod && (methodInfo != null);
         }
-#else
-        private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
-        {
-            global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, global::System.Reflection.BindingFlags.Public | global::System.Reflection.BindingFlags.NonPublic | global::System.Reflection.BindingFlags.Instance, null, methodTypes, null);
-            bool hasDerivedMethod = methodInfo.DeclaringType.IsSubclassOf(typeof(ViewImpl));
-            return hasDerivedMethod;
-        }
-#endif
 
         private void SwigDirectorOnStageConnection(int depth)
         {

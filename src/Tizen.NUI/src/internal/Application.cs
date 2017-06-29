@@ -353,13 +353,6 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        private static void LOG(string str)
-        {
-#if DEBUG_ON
-            Tizen.Log.Debug("NUI", str);
-#endif
-        }
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void NUIApplicationInitEventCallbackDelegate(IntPtr application);
         private DaliEventHandler<object, NUIApplicationInitEventArgs> _applicationInitEventHandler;
@@ -1057,13 +1050,12 @@ namespace Tizen.NUI
         internal void SetupDelegates()
         {
             InitDelegateInternal initializeCallback = new InitDelegateInternal(Initialization);
-#if DEBUG_ON
-            Tizen.Log.Debug("NUI", "InitSignal connection count");
-#endif
+
+            NUILog.Debug("InitSignal connection count");
+
             this.InitSignal().Connect(initializeCallback);
-#if DEBUG_ON
-            Tizen.Log.Debug("NUI", "InitSignal connection count = " + InitSignal().GetConnectionCount());
-#endif
+
+            NUILog.Debug("InitSignal connection count = " + InitSignal().GetConnectionCount());
         }
 
         public static Application NewApplication()
@@ -1092,24 +1084,24 @@ namespace Tizen.NUI
                         if (ver1 != Version.ver1 || ver2 != Version.ver2 || ver3 != Version.ver3)
                         {
                             //throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
-                            Tizen.Log.Fatal("NUI", "Dali native version mismatch error! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease + " but native dali=" + ver1 + "." + ver2 + "." + ver3);
+                            NUILog.Error("Dali native version mismatch error! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease + " but native dali=" + ver1 + "." + ver2 + "." + ver3);
                         }
                     }
                     else
                     {
                         //throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
-                        Tizen.Log.Fatal("NUI", "Dali native version mismatch error! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease + " but native dali=" + ver1 + "." + ver2 + "." + ver3);
+                        NUILog.Error("Dali native version mismatch error! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease + " but native dali=" + ver1 + "." + ver2 + "." + ver3);
                     }
                 }
                 catch (Exception exc)
                 {
                     //throw new System.InvalidOperationException("Dali native version is very old! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3);
-                    Tizen.Log.Fatal("NUI", "Dali native version is very old! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease);
-                    Tizen.Log.Fatal("NUI", "exception occured! =" + exc.Message);
+                    NUILog.Error("Dali native version is very old! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease);
+                    NUILog.Error("exception occured! =" + exc.Message);
                 }
-                LOG(" Dali native version=" + ver1 + "." + ver2 + "." + ver3 + "	NUI version=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease);
+                NUILog.Debug(" Dali native version=" + ver1 + "." + ver2 + "." + ver3 + "	NUI version=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease);
             }
-            LOG(" NewApplication(string stylesheet, Application.WindowMode windowMode) is called! ");
+            NUILog.Debug(" NewApplication(string stylesheet, Application.WindowMode windowMode) is called! ");
 
             // register all Views with the type registry, so that can be created / styled via JSON
             //ViewRegistryHelper.Initialize(); //moved to Application side.
@@ -1143,7 +1135,7 @@ namespace Tizen.NUI
         */
         public static Application New()
         {
-            LOG("New() is called!");
+            NUILog.Debug("New() is called!");
 
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_0(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1152,7 +1144,7 @@ namespace Tizen.NUI
 
         public static Application New(int argc)
         {
-            LOG("New(int argc) is called!");
+            NUILog.Debug("New(int argc) is called!");
 
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_1(argc), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1161,7 +1153,7 @@ namespace Tizen.NUI
 
         public static Application New(int argc, string stylesheet)
         {
-            LOG("New(int argc, string stylesheet) is called!");
+            NUILog.Debug("New(int argc, string stylesheet) is called!");
 
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_2(argc, stylesheet), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1170,7 +1162,7 @@ namespace Tizen.NUI
 
         public static Application New(int argc, string stylesheet, Application.WindowMode windowMode)
         {
-            LOG("New(int argc, string stylesheet, Application.WindowMode windowMode) is called!");
+            NUILog.Debug("New(int argc, string stylesheet, Application.WindowMode windowMode) is called!");
 
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1179,7 +1171,7 @@ namespace Tizen.NUI
 
         public Application() : this(NDalicPINVOKE.new_Application__SWIG_0(), true)
         {
-            LOG("Application() is called!");
+            NUILog.Debug("Application() is called!");
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

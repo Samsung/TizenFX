@@ -8,11 +8,7 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-//#define DOT_NET_CORE
-#if DOT_NET_CORE
 using System.Reflection;
-#endif
-
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -120,20 +116,12 @@ namespace Tizen.NUI
             NDalicPINVOKE.CustomAlgorithmInterface_director_connect(swigCPtr, swigDelegate0);
         }
 
-#if DOT_NET_CORE
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
         {
             global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, methodTypes);
             bool hasDerivedMethod = this.GetType().GetTypeInfo().IsSubclassOf(typeof(CustomAlgorithmInterface));
             return hasDerivedMethod && (methodInfo != null);
         }
-#else
-  private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes) {
-    global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, global::System.Reflection.BindingFlags.Public | global::System.Reflection.BindingFlags.NonPublic | global::System.Reflection.BindingFlags.Instance, null, methodTypes, null);
-    bool hasDerivedMethod = methodInfo.DeclaringType.IsSubclassOf(typeof(CustomAlgorithmInterface));
-    return hasDerivedMethod;
-  }
-#endif
 
         private global::System.IntPtr SwigDirectorGetNextFocusableView(global::System.IntPtr current, global::System.IntPtr proposed, int direction)
         {
