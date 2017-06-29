@@ -703,8 +703,7 @@ namespace Tizen.Multimedia
 
                         if (_lockCount == 0)
                         {
-                            // TODO rollback after the corresponding native api is fixed.
-                            //SetExtra(IntPtr.Zero);
+                            SetExtra(IntPtr.Zero);
 
                             if (_gcHandle.IsAllocated)
                             {
