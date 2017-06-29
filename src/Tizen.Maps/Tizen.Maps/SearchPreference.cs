@@ -25,7 +25,7 @@ namespace Tizen.Maps
     public class SearchPreference : IGeocodePreference, IPlaceSearchPreference, IRouteSearchPreference, IDisposable
     {
         internal Interop.PreferenceHandle handle;
-        private IReadOnlyDictionary<string, string> _properties = new Dictionary<string, string>();
+        private IDictionary<string, string> _properties = new Dictionary<string, string>();
 
         /// <summary>
         /// Constructors a new search preference.
@@ -117,12 +117,21 @@ namespace Tizen.Maps
         {
             get
             {
-                return _properties;
+                Action<string, string> action = (key, value) =>
+                {
+                    _properties[key] = value;
+                };
+
+                handle.ForeachProperty(action);
+                return (IReadOnlyDictionary<string, string>)_properties;
             }
             set
             {
-                Log.Info(string.Format("Properties is changed from {0} to {1}", Properties.ToString(), value.ToString()));
-                _properties = value;
+                foreach (var prop in value)
+                {
+                    handle.SetProperty(prop.Key, prop.Value);
+                    Log.Info(string.Format("Properties is changed to [{0}, {1}]", prop.Key, prop.Value));
+                }
             }
         }
 
