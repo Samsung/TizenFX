@@ -17,7 +17,6 @@ using System.Diagnostics;
 
 namespace Tizen.Multimedia
 {
-    //TODO we need a better name.
     /// <summary>
     /// Represents data for a video frame captured.
     /// </summary>
