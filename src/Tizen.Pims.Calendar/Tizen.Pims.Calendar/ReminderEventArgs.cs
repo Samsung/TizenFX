@@ -31,7 +31,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// The paramter which data is combined(Value string like id=value&time=value&tick=value&unit=value&type=value)
+        /// The paramter which data is combinded(Value string like id=value&amp;time=value&amp;tick=value&amp;unit=value&amp;type=value)
         /// </summary>
         public string Param
         {
