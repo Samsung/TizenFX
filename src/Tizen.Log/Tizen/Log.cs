@@ -123,7 +123,8 @@ namespace Tizen
     {
         public static void Verbose(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
-            Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, message, file, func, line);
+	    // For internal dlog APIs, Verbose level log is disabled
+            // Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, message, file, func, line);
         }
 
         public static void Debug(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
@@ -170,7 +171,8 @@ namespace Tizen
     {
         public static void Verbose(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
-            Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, message, file, func, line);
+            // For internal dlog APIs, Verbose level log is disabled
+            // Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, message, file, func, line);
         }
 
         public static void Debug(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
