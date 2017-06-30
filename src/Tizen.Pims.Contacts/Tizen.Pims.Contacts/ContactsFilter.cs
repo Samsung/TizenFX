@@ -203,27 +203,27 @@ namespace Tizen.Pims.Contacts
         public enum IntegerMatchType
         {
             /// <summary>
-            /// '='
+            /// =
             /// </summary>
             Equal,
             /// <summary>
-            /// '>'
+            /// &gt;
             /// </summary>
             GreaterThan,
             /// <summary>
-            /// '>='
+            /// &gt;=
             /// </summary>
             GreaterThanOrEqual,
             /// <summary>
-            /// <
+            /// &lt;
             /// </summary>
             LessThan,
             /// <summary>
-            /// <=
+            /// &lt;=
             /// </summary>
             LessThanOrEqual,
             /// <summary>
-            /// <>, this flag can yield poor performance
+            /// &lt;&gt;, this flag can yield poor performance
             /// </summary>
             NotEqual,
             /// <summary>
