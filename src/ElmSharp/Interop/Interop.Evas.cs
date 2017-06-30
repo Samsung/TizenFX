@@ -442,6 +442,9 @@ internal static partial class Interop
         internal static extern void evas_object_smart_changed(IntPtr obj);
 
         [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_smart_calculate(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
         internal static extern void evas_color_argb_premul(int a, ref int r, ref int g, ref int b);
 
         [DllImport(Libraries.Evas)]

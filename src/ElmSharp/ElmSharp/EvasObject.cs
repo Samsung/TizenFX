@@ -750,6 +750,15 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Call the calculate smart function immediately.
+        /// This will force immediate calculations needed for renderization of this object.
+        /// </summary>
+        public void Calculate()
+        {
+            Interop.Evas.evas_object_smart_calculate(RealHandle);
+        }
+
+        /// <summary>
         /// Sets the hints for an object's aspect ratio.
         /// </summary>
         /// <param name="aspect">The policy or type of aspect ratio to apply to object</param>
