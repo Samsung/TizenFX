@@ -42,9 +42,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraDisplayMode val = CameraDisplayMode.LetterBox;
-
-                CameraErrorFactory.ThrowIfError(Native.GetMode(_camera.GetHandle(), out val),
+                CameraErrorFactory.ThrowIfError(Native.GetMode(_camera.GetHandle(), out var val),
                     "Failed to get camera display mode");
 
                 return val;
@@ -68,9 +66,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                bool val = false;
-
-                CameraErrorFactory.ThrowIfError(Native.GetVisible(_camera.GetHandle(), out val),
+                CameraErrorFactory.ThrowIfError(Native.GetVisible(_camera.GetHandle(), out bool val),
                     "Failed to get visible value");
 
                 return val;
@@ -144,13 +140,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                int x = 0;
-                int y = 0;
-                int width = 0;
-                int height = 0;
-
-                CameraErrorFactory.ThrowIfError(Native.GetRoiArea(_camera.GetHandle(), out x, out y, out width, out height),
-                    "Failed to get display roi area");
+                CameraErrorFactory.ThrowIfError(Native.GetRoiArea(_camera.GetHandle(),
+                    out int x, out int y, out int width, out int height), "Failed to get display roi area");
 
                 return new Rectangle(x, y, width, height);
             }

@@ -230,6 +230,6 @@ internal static partial class Interop
         internal static extern CameraError GetTiltRange(IntPtr handle, out int min, out int max);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_ptz_type")]
-        internal static extern CameraError SetPtzType(IntPtr handle, int type);
+        internal static extern CameraError SetPtzType(IntPtr handle, CameraPtzType type);
     }
 }

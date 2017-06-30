@@ -76,10 +76,7 @@ namespace Tizen.Multimedia
 
         private bool CheckRangeValid(GetRangeDelegate func)
         {
-            int min = 0;
-            int max = 0;
-
-            CameraErrorFactory.ThrowIfError(func(_camera.GetHandle(), out min, out max),
+            CameraErrorFactory.ThrowIfError(func(_camera.GetHandle(), out int min, out int max),
                 "Failed to check feature is suported or not.");
 
             return min < max;

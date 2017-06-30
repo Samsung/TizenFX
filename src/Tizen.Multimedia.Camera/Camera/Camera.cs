@@ -226,13 +226,11 @@ namespace Tizen.Multimedia
             {
                 lock (_deviceStateChangedEventLock)
                 {
-                    int callbackId = 0;
-
                     _deviceStateChangedCallback = (CameraDevice device, CameraDeviceState state, IntPtr userData) =>
                     {
                         _deviceStateChanged?.Invoke(null, new CameraDeviceStateChangedEventArgs(device, state));
                     };
-                    CameraErrorFactory.ThrowIfError(Native.SetDeviceStateChangedCallback(_deviceStateChangedCallback, IntPtr.Zero, out callbackId),
+                    CameraErrorFactory.ThrowIfError(Native.SetDeviceStateChangedCallback(_deviceStateChangedCallback, IntPtr.Zero, out int callbackId),
                         "Failed to set interrupt callback");
 
                     // Keep current callbackId and EventHandler pair to remove EventHandler later.
@@ -249,8 +247,7 @@ namespace Tizen.Multimedia
                 {
                     _deviceStateChanged -= value;
 
-                    int callbackId = 0;
-                    _callbackIdInfo.TryGetValue(value, out callbackId);
+                    _callbackIdInfo.TryGetValue(value, out int callbackId);
                     Log.Info(CameraLog.Tag, "remove callbackId " + callbackId.ToString());
 
                     CameraErrorFactory.ThrowIfError(Native.UnsetDeviceStateChangedCallback(callbackId),
@@ -479,9 +476,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                bool val = false;
-
-                CameraErrorFactory.ThrowIfError(Native.GetDisplayReuseHint(_handle, out val),
+                CameraErrorFactory.ThrowIfError(Native.GetDisplayReuseHint(_handle, out bool val),
                     "Failed to get camera display reuse hint");
 
                 return val;
@@ -508,9 +503,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                CameraFacingDirection val = 0;
-
-                CameraErrorFactory.ThrowIfError(Native.GetFacingDirection(_handle, out val),
+                CameraErrorFactory.ThrowIfError(Native.GetFacingDirection(_handle, out var val),
                     "Failed to get camera direction");
 
                 return val;
@@ -530,9 +523,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                int val = 0;
-
-                CameraErrorFactory.ThrowIfError(Native.GetDeviceCount(_handle, out val),
+                CameraErrorFactory.ThrowIfError(Native.GetDeviceCount(_handle, out int val),
                     "Failed to get camera device count");
 
                 return val;
@@ -561,7 +552,7 @@ namespace Tizen.Multimedia
             ValidateState(CameraState.Created);
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            CameraErrorFactory.ThrowIfError(Native.ChangeDevice(_handle, (int)device),
+            CameraErrorFactory.ThrowIfError(Native.ChangeDevice(_handle, device),
                 "Failed to change the camera device");
         }
 
@@ -576,13 +567,12 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         public CameraDeviceState GetDeviceState(CameraDevice device)
         {
-            int val = 0;
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            CameraErrorFactory.ThrowIfError(Native.GetDeviceState(device, out val),
+            CameraErrorFactory.ThrowIfError(Native.GetDeviceState(device, out var val),
                 "Failed to get the camera device state.");
 
-            return (CameraDeviceState)val;
+            return val;
         }
 
         /// <summary>
@@ -596,10 +586,9 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         public static CameraFlashState GetFlashState(CameraDevice device)
         {
-            CameraFlashState val = CameraFlashState.NotUsed;
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            CameraErrorFactory.ThrowIfError(Native.GetFlashState(device, out val),
+            CameraErrorFactory.ThrowIfError(Native.GetFlashState(device, out var val),
                 "Failed to get camera flash state");
 
             return val;

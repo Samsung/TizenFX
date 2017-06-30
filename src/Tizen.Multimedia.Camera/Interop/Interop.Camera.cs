@@ -59,7 +59,7 @@ internal static partial class Interop
         internal static extern CameraError Create(CameraDevice device, out IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_change_device")]
-        internal static extern CameraError ChangeDevice(IntPtr handle, int device);
+        internal static extern CameraError ChangeDevice(IntPtr handle, CameraDevice device);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_destroy")]
         internal static extern CameraError Destroy(IntPtr handle);
@@ -74,7 +74,7 @@ internal static partial class Interop
         internal static extern CameraError StopPreview(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_get_device_state")]
-        internal static extern CameraError GetDeviceState(CameraDevice device, out int state);
+        internal static extern CameraError GetDeviceState(CameraDevice device, out CameraDeviceState state);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_start_capture")]
         internal static extern CameraError StartCapture(IntPtr handle, CapturingCallback captureCallback,
