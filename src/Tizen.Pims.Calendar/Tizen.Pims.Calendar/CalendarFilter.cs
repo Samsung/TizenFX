@@ -175,7 +175,6 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Enumeration for the filter match type of a string.
         /// </summary>
-        /// <param name=""></param>
         public enum StringMatchType
         {
             /// <summary>
@@ -207,7 +206,6 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Enumeration for the filter match type of an integer.
         /// </summary>
-        /// <param name=""></param>
         public enum IntegerMatchType
         {
             /// <summary>
@@ -223,15 +221,15 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             GreaterThanOrEqual,
             /// <summary>
-            /// <
+            /// &lt;
             /// </summary>
             LessThan,
             /// <summary>
-            /// <=
+            /// &lt;=
             /// </summary>
             LessThanOrEqual,
             /// <summary>
-            /// <>, this flag can yield poor performance
+            /// &lt;>, this flag can yield poor performance
             /// </summary>
             NotEqual,
             /// <summary>
@@ -243,7 +241,6 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Enumeration for a filter operator.
         /// </summary>
-        /// <param name=""></param>
         public enum LogicalOperator
         {
             /// <summary>
