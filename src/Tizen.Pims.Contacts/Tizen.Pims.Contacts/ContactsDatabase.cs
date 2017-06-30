@@ -28,6 +28,12 @@ namespace Tizen.Pims.Contacts
     /// </remarks>
     public class ContactsDatabase
     {
+        private Object thisLock = new Object();
+        private Interop.Database.ContactsDBStatusChangedCallback _contactsDBStatusChangedCallback;
+        private event EventHandler<DBStatusChangedEventArgs> _dbStatusChanged;
+        private Dictionary<string, ContactsDBChangedDelegate> _callbackMap = new Dictionary<string, ContactsDBChangedDelegate>();
+        private Dictionary<string, Interop.Database.ContactsDBChangedCallback> _delegateMap = new Dictionary<string, Interop.Database.ContactsDBChangedCallback>();
+        private Interop.Database.ContactsDBChangedCallback _dbChangedDelegate;
         /// <summary>
         /// Delegete for detecting the contacts database changes
         /// </summary>
@@ -38,12 +44,6 @@ namespace Tizen.Pims.Contacts
         /// </remarks>
         /// <see cref="AddDBChangedDelegate"/>
         public delegate void ContactsDBChangedDelegate(string uri);
-        private Object thisLock = new Object();
-        private Interop.Database.ContactsDBStatusChangedCallback _contactsDBStatusChangedCallback;
-        private event EventHandler<DBStatusChangedEventArgs> _dbStatusChanged;
-        private Dictionary<string, ContactsDBChangedDelegate> _callbackMap = new Dictionary<string, ContactsDBChangedDelegate>();
-        private Dictionary<string, Interop.Database.ContactsDBChangedCallback> _delegateMap = new Dictionary<string, Interop.Database.ContactsDBChangedCallback>();
-        private Interop.Database.ContactsDBChangedCallback _dbChangedDelegate;
 
         internal ContactsDatabase()
         {
@@ -75,15 +75,15 @@ namespace Tizen.Pims.Contacts
             /// </summary>
             Name = 0x00000001,
             /// <summary>
-            /// Search record from name and number
+            /// Search record from number
             /// </summary>
             Number = 0x00000002,
             /// <summary>
-            /// Search record from name,number and data
+            /// Search record from data
             /// </summary>
             Data = 0x00000004,
             /// <summary>
-            /// Search record from name,number,data and email. Now, support only PersonEmail view
+            /// Search record from email. Now, support only PersonEmail view
             /// </summary>
             Email = 0x00000008,
         }
@@ -133,53 +133,26 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// The contacts database status.
+        /// The current contacts database version.
         /// </summary>
-        public DBStatus Status
+        public int Version
         {
             get
             {
-                DBStatus status;
-                int error = Interop.Database.GetStatus(out status);
+                int version = -1;
+                int error = Interop.Database.GetVersion(out version);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "GetStatus Failed with error " + error);
+                    Log.Error(Globals.LogTag, "Version Failed with error " + error);
                 }
-                return status;
+                return version;
             }
         }
 
         /// <summary>
-        /// Gets current contacts database version.
+        /// The last successful changed contacts database version on the current connection.
         /// </summary>
-        /// <returns>The current contacts database version</returns>
-        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
-        /// <privilege>http://tizen.org/privilege/callhistory.read</privilege>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
-        public int GetVersion()
-        {
-            int version = -1;
-            int error = Interop.Database.GetVersion(out version);
-            if ((int)ContactsError.None != error)
-            {
-                Log.Error(Globals.LogTag, "GetVersion() Failed with error " + error);
-                throw ContactsErrorFactory.CheckAndCreateException(error);
-            }
-            return version;
-        }
-
-        /// <summary>
-        /// Gets last successful changed contacts database version on the current connection.
-        /// </summary>
-        /// <returns>The last successful changed contacts database version on the current connection</returns>
-        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
-        /// <privilege>http://tizen.org/privilege/callhistory.read</privilege>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
-        public int GetLastChangeVersion
+        public int LastChangeVersion
         {
             get
             {
@@ -187,9 +160,26 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Database.GetLastChangeVersion(out version);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "GetLastChangeVersion Failed with error " + error);
+                    Log.Error(Globals.LogTag, "LastChangeVersion Failed with error " + error);
                 }
                 return version;
+            }
+        }
+
+        /// <summary>
+        /// The contacts database status.
+        /// </summary>
+        public DBStatus Status
+        {
+            get
+            {
+                DBStatus status = DBStatus.Normal;
+                int error = Interop.Database.GetStatus(out status);
+                if ((int)ContactsError.None != error)
+                {
+                    Log.Error(Globals.LogTag, "GetStatus Failed with error " + error);
+                }
+                return status;
             }
         }
 
@@ -545,12 +535,12 @@ namespace Tizen.Pims.Contacts
         /// <param name="keyword">The keyword</param>
         /// <param name="offset">The index from which to get results</param>
         /// <param name="limit">The number to limit results(value 0 is used for get all records)</param>
-        /// <param name="range">The search range</param>
+        /// <param name="range">The search range, it should be a element of SearchRange or bitwise OR operation of them</param>
         /// <returns>The record list</returns>
         public ContactsList Search(string viewUri, string keyword, int offset, int limit, int range)
         {
             IntPtr recordList;
-            int error = Interop.Database.Search(viewUri, keyword, offset, limit, out recordList);
+            int error = Interop.Database.Search(viewUri, keyword, offset, limit, range, out recordList);
             if ((int)ContactsError.None != error)
             {
                 Log.Error(Globals.LogTag, "Search Failed with error " + error);
@@ -627,7 +617,7 @@ namespace Tizen.Pims.Contacts
         /// <param name="keyword">The keyword</param>
         /// <param name="offset">The index from which to get results</param>
         /// <param name="limit">The number to limit results(value 0 is used for get all records)</param>
-        /// <param name="range">The search range</param>
+        /// <param name="range">The search range, it should be a element of SearchRange or bitwise OR operation of them</param>
         /// <param name="startMatch">The text which is inserted into the fragment before the keyword(If NULL, default is "[")</param>
         /// <param name="endMatch">The text which is inserted into the fragment after the keyword(If NULL, default is "]")</param>
         /// <param name="tokenNumber">The one side extra number of tokens near keyword(If negative value, full sentence is printed. e.g. if token number is 3 with 'abc' keyword, "my name is [abc]de and my home")</param>

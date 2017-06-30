@@ -51,7 +51,7 @@ namespace Tizen.Pims.Contacts
     };
 
     /// <summary>
-    /// A class for managing contact information. It allows applications to use contacts service.
+    /// A class for managing contact information. It allows applications to access contacts database.
     /// </summary>
     public class ContactsManager : IDisposable
     {
