@@ -27,6 +27,7 @@ namespace Tizen.Uix.VoiceControl
     /// If the duplicated commands are recognized, the event(e.g. Result.Rejected) of command may be rejected
     /// for selecting command as priority.If you set similar or same commands or the recognized results are multi-results, CommandList has the multi commands.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RecognitionResult
     {
         private ResultEvent _resultEvent;
@@ -45,6 +46,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// The result event
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ResultEvent Result
         {
             get
@@ -56,6 +58,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// The spoken text
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ResultMessage
         {
             get
@@ -68,6 +71,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// The recognized command list
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VoiceCommandList CommandList
         {
             get

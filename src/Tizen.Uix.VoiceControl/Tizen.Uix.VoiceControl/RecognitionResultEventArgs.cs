@@ -21,6 +21,7 @@ namespace Tizen.Uix.VoiceControl
     /// <summary>
     /// The recognition result from the engine.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RecognitionResultEventArgs : EventArgs
     {
         private RecognitionResult _result;
@@ -32,6 +33,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Gets the Recognition result
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecognitionResult Result
         {
             get

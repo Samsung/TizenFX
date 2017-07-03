@@ -25,6 +25,7 @@ namespace Tizen.Uix.VoiceControl
     /// <summary>
     /// Enum for Error values that can occur
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum Error
     {
         /// <summary>
@@ -108,6 +109,7 @@ namespace Tizen.Uix.VoiceControl
     /// <summary>
     /// Enumeration for the client state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum State
     {
         /// <summary>
@@ -131,6 +133,7 @@ namespace Tizen.Uix.VoiceControl
     /// <summary>
     /// Enumerations of service state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ServiceState
     {
         /// <summary>
@@ -158,6 +161,7 @@ namespace Tizen.Uix.VoiceControl
     /// <summary>
     /// Enumerations of result event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ResultEvent
     {
         /// <summary>
@@ -173,6 +177,7 @@ namespace Tizen.Uix.VoiceControl
     /// <summary>
     /// Enumerations of command type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CommandType
     {
         /// <summary>
@@ -193,11 +198,13 @@ namespace Tizen.Uix.VoiceControl
     /// A main function of Voice Control API register command and gets notification for recognition result. 
     /// Applications can add their own commands and be provided result when their command is recognized by user voice input.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class VoiceControlClient
     {
         /// <summary>
         /// Called when client gets the recognition result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// If the duplicated commands are recognized, the event(e.g. Result.Rejected) of command may be rejected
         /// for selecting command as priority.If you set similar or same commands or the recognized results are multi-results, cmdList has the multi commands.
@@ -228,6 +235,7 @@ namespace Tizen.Uix.VoiceControl
         /// For example, "ko_KR" for Korean, "en_US" for American English.
         /// Empty string is returned incase of some internal error
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Current language in voice control.
         /// </value>
@@ -257,6 +265,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Gets current state of voice control client.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Current state of voice control client.
         /// </value>
@@ -286,6 +295,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Gets current state of voice control service.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Current state of voice control service.
         /// </value>
@@ -315,6 +325,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Sets the invocation name.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -354,6 +365,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Initializes voice control.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -384,6 +396,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Deinitializes voice control.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -411,6 +424,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Connects the voice control service.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -444,6 +458,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Disconnects the voice control service.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -479,6 +494,7 @@ namespace Tizen.Uix.VoiceControl
         /// followed by ISO 639-1 for the two-letter language code.
         /// For example, "ko_KR" for Korean, "en_US" for American English.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -518,6 +534,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Gets the system command list.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// The Command List else null in case of no System Commands
         /// </returns>
@@ -570,6 +587,7 @@ namespace Tizen.Uix.VoiceControl
         /// Also, the developer can set whether the dialogue starts automatically or not, using autoStart.
         /// If the developer sets autoStart as true, the framework will start to record next speech and continue the dialogue.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -606,6 +624,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Sets command list.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -650,6 +669,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Unsets command list.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -692,6 +712,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Gets the recognition result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -729,6 +750,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Event to be invoked when the recognition is done.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <pre>
         /// The State should be Initialized
         /// </pre>
@@ -775,6 +797,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Event to be invoked when VoiceControl service state changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <pre>
         /// The State should be Initialized
         /// </pre>
@@ -813,6 +836,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Event to be invoked when VoiceControl client state changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <pre>
         /// The State should be Initialized
         /// </pre>
@@ -851,6 +875,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Event to be invoked when an error occurs.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <pre>
         /// The State should be Initialized
         /// </pre>
@@ -891,6 +916,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Event to be invoked when default laungage change.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <pre>
         /// The State should be Initialized
         /// </pre>

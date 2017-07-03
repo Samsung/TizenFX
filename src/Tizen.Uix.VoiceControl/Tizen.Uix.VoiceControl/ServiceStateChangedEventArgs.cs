@@ -19,6 +19,7 @@ namespace Tizen.Uix.VoiceControl
     /// <summary>
     /// This class holds information related to the VoiceControl service ServiceStateChanged event
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ServiceStateChangedEventArgs
     {
         internal ServiceStateChangedEventArgs(ServiceState previous, ServiceState current)
@@ -30,6 +31,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// A previous state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ServiceState Previous
         {
             get;
@@ -39,6 +41,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// A current state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ServiceState Current
         {
             get;

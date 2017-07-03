@@ -24,6 +24,7 @@ namespace Tizen.Uix.VoiceControl
     /// <summary>
     /// this class represents list of Voice Commands
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class VoiceCommandList
     {
         internal SafeCommandListHandle _handle;
@@ -33,6 +34,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Public Constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -68,6 +70,7 @@ namespace Tizen.Uix.VoiceControl
         /// Gets command count of list.
         /// -1 is returned in case of internal failure.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Command counts of the list.
         /// </value>
@@ -97,6 +100,7 @@ namespace Tizen.Uix.VoiceControl
         /// Get current command from command list by index.
         /// null will be returned in case of Empty List
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Current command from the command list.
         /// </value>
@@ -125,6 +129,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Adds command to command list.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -152,6 +157,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Removes command from command list.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -179,6 +185,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Retrieves all commands of command list.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -214,6 +221,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Moves index to first command.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -240,6 +248,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Moves index to last command.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -266,6 +275,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Moves index to next command.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -296,6 +306,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Moves index to previous command.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>

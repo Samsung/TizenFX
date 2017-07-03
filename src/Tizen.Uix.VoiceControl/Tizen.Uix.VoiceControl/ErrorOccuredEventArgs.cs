@@ -22,6 +22,7 @@ namespace Tizen.Uix.VoiceControl
     /// <summary>
     /// This class holds information related to the VoiceControl ErrorOccured Event
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ErrorOccuredEventArgs
     {
         internal ErrorOccuredEventArgs(ErrorCode error)
@@ -147,6 +148,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// The Error Value
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Error ErrorValue
         {
             get;

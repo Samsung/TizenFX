@@ -23,6 +23,7 @@ namespace Tizen.Uix.VoiceControl
     /// <summary>
     /// Enumeration for Command Format
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CommandFormat
     {
         /// <summary>
@@ -54,6 +55,7 @@ namespace Tizen.Uix.VoiceControl
     /// <summary>
     /// This class represents a Voice Command
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class VoiceCommand
     {
         internal SafeCommandHandle _handle;
@@ -61,6 +63,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Public Constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
         /// <exception cref="OutOfMemoryException"> This Exception can be due to Out Of Memory. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
@@ -87,6 +90,7 @@ namespace Tizen.Uix.VoiceControl
         /// This property should be used for commands which have non-fixed format.
         /// empty string will be returned in case of some internal error
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string UnfixedCommand
         {
             get
@@ -106,6 +110,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Gets/Sets command type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>If you do not set the command type, the default value is Undefined. You should set type if command is valid</remarks>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
@@ -142,6 +147,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// Gets/Sets the command format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>The default format is Fixed</remarks>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
@@ -173,6 +179,7 @@ namespace Tizen.Uix.VoiceControl
         /// Gets/Sets command
         /// in case of get empty string will be returned in case of some internal error
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
         public string Command

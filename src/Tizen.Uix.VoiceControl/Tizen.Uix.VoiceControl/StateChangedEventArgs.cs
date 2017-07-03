@@ -19,6 +19,7 @@ namespace Tizen.Uix.VoiceControl
     /// <summary>
     /// This class holds information related to the VoiceControl client StateChanged event
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class StateChangedEventArgs
     {
         internal StateChangedEventArgs(State previous, State current)
@@ -30,6 +31,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// A previous state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public State Previous
         {
             get;
@@ -39,6 +41,7 @@ namespace Tizen.Uix.VoiceControl
         /// <summary>
         /// A current state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public State Current
         {
             get;
