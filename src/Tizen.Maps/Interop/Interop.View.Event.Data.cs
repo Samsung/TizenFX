@@ -36,10 +36,10 @@ internal static partial class Interop
         None, // MAPS_VIEW_GESTURE_NONE
         Scroll, // MAPS_VIEW_GESTURE_SCROLL
         Zoom, // MAPS_VIEW_GESTURE_ZOOM
-        Tap, // MAPS_VIEW_GESTURE_TAP
-        DoubleTap, // MAPS_VIEW_GESTURE_DOUBLE_TAP
-        TwoFingerTap, // MAPS_VIEW_GESTURE_2_FINGER_TAP
-        Rotate, // MAPS_VIEW_GESTURE_ROTATE
+        Click, // MAPS_VIEW_GESTURE_TAP
+        DoubleClick, // MAPS_VIEW_GESTURE_DOUBLE_TAP
+        TwoFingerClick, // MAPS_VIEW_GESTURE_2_FINGER_TAP
+        Rotation, // MAPS_VIEW_GESTURE_ROTATE
         LongPress, // MAPS_VIEW_GESTURE_LONG_PRESS
     }
 

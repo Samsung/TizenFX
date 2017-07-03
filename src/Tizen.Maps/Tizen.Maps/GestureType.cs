@@ -34,21 +34,21 @@ namespace Tizen.Maps
         /// </summary>
         Zoom = Interop.ViewGesture.Zoom,
         /// <summary>
-        /// Indicates the tap user gesture.
+        /// Indicates the click user gesture
         /// </summary>
-        Tap = Interop.ViewGesture.Tap,
+        Click = Interop.ViewGesture.Click,
         /// <summary>
-        /// Indicates the double tap user gesture.
+        /// Indicates the double click user gesture
         /// </summary>
-        DoubleTap = Interop.ViewGesture.DoubleTap,
+        DoubleClick = Interop.ViewGesture.DoubleClick,
         /// <summary>
-        /// Indicates the two-finger tap user gesture.
+        /// Indicates the two-finger click user gesture
         /// </summary>
-        TwoFingerTap = Interop.ViewGesture.TwoFingerTap,
+        TwoFingerClick = Interop.ViewGesture.TwoFingerClick,
         /// <summary>
         ///  Indicates the rotation user gesture.
         /// </summary>
-        Rotate = Interop.ViewGesture.Rotate,
+        Rotation = Interop.ViewGesture.Rotation,
         /// <summary>
         /// Indicates the long press user gesture.
         /// </summary>
