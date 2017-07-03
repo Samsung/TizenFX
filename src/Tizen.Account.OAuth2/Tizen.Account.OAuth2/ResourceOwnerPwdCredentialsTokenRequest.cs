@@ -19,6 +19,7 @@ namespace Tizen.Account.OAuth2
     /// <summary>
     /// The class contains request parameters for retreiving access token in Resource Owner Password Credentials Grant flow.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ResourceOwnerPwdCredentialsTokenRequest : TokenRequest
     {
         /// <summary>
@@ -32,16 +33,19 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// The grant type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public override string GrantType { get; } = "password";
 
         /// <summary>
         /// The resource owner username
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Username { get; set; }
 
         /// <summary>
         /// The resource owner password
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Password { get; set; }
     }
 }

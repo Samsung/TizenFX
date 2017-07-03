@@ -23,11 +23,13 @@ namespace Tizen.Account.OAuth2
     /// <summary>
     /// The ClientCredentialsAuthorizer is used to obtain access tokens using Client Credentials Grant flow as described at https://tools.ietf.org/html/rfc6749#section-4.4
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ClientCredentialsAuthorizer : Authorizer
     {
         /// <summary>
         /// The constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ClientCredentialsAuthorizer()
         {
 
@@ -36,6 +38,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Authorization not supported through this API for this flow.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is not supported</exception>
         public override Task<AuthorizationResponse> AuthorizeAsync(AuthorizationRequest request)
         {
@@ -46,6 +49,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Refreshing access token is not supported in this flow.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is not supported</exception>
         public override Task<TokenResponse> RefreshAccessTokenAsync(RefreshTokenRequest request)
         {
@@ -57,6 +61,7 @@ namespace Tizen.Account.OAuth2
         /// Retrieves access token using client credentials.
         /// The authroization request parameters should be as defined in https://tools.ietf.org/html/rfc6749#section-4.4.2
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="request">The token request <see cref="ClientCredentialsTokenRequest"/></param>
         /// <returns>The response containing access token.</returns>
         /// <privilege>http://tizen.org/privilege/internet</privilege>

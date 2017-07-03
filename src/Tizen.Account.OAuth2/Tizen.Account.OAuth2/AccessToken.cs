@@ -21,6 +21,7 @@ namespace Tizen.Account.OAuth2
     /// <summary>
     /// Class containing access token and related information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AccessToken
     {
         internal AccessToken()
@@ -30,21 +31,25 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// The lifetime in seconds of the access token.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public long ExpiresIn { get; internal set;}
 
         /// <summary>
         /// The access token issued by the authorization server.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Token { get; internal set;}
 
         /// <summary>
         /// The scope of the access token.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<string> Scope { get; internal set;}
 
         /// <summary>
         /// The type of the access token.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string TokenType { get; internal set;}
     }
 }

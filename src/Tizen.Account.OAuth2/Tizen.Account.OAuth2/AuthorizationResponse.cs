@@ -22,6 +22,7 @@ namespace Tizen.Account.OAuth2
     /// <summary>
     /// The response containing authroization code from the authorization server.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AuthorizationResponse : IDisposable
     {
         private bool _disposed = false;
@@ -35,6 +36,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Destructor of the AuthorizationResponse class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~AuthorizationResponse()
         {
             Dispose(false);
@@ -43,11 +45,13 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// The authroization code.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Code { get; internal set; }
 
         /// <summary>
         /// The state parameter present in authorization request.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// The value can be null depending on the server specifications.
         /// </remarks>
@@ -56,6 +60,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Custom key-value parameter received from service provider
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// The return value can be null depending on the server specifications.
         /// </remarks>
@@ -74,6 +79,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -83,6 +89,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {

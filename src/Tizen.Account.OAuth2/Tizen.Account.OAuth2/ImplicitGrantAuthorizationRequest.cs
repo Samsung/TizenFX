@@ -24,6 +24,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// The constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ImplicitGrantAuthorizationRequest()
         {
 
@@ -32,6 +33,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// The response type parameter to aturhoization server.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public override string ResponseType { get; } = "token";
     }
 }

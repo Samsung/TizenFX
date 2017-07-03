@@ -24,11 +24,13 @@ namespace Tizen.Account.OAuth2
     /// <summary>
     /// The ResourceOwnerPwdCredentialsAuthorizer is used to obtain access tokens using Resource Owner Password Credentials Grant flow as described at https://tools.ietf.org/html/rfc6749#section-4.3
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ResourceOwnerPwdCredentialsAuthorizer : Authorizer
     {
         /// <summary>
         /// The constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ResourceOwnerPwdCredentialsAuthorizer()
         {
 
@@ -37,6 +39,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Authorization not supported through this API for this flow.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is not supported</exception>
         public override Task<AuthorizationResponse> AuthorizeAsync(AuthorizationRequest request)
         {
@@ -48,6 +51,7 @@ namespace Tizen.Account.OAuth2
         /// Retrieves access token by sending resource owner's password credentials.
         /// The authroization request parameters should be as defined in https://tools.ietf.org/html/rfc6749#section-4.3.2
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="request">The token request <see cref="ResourceOwnerPwdCredentialsTokenRequest"/></param>
         /// <returns>The response containing access token.</returns>
         /// <privilege>http://tizen.org/privilege/internet</privilege>

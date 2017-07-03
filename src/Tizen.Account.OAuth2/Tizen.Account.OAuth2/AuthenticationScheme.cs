@@ -20,22 +20,26 @@ namespace Tizen.Account.OAuth2
     /// Enumerations for Client authentication scheme, used to sign client id and client secret accordingly.
     /// Default is Basic (http://tools.ietf.org/html/rfc2617#section-2)
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     /// <remarks>Facebook and Google does not support HTTP Basic Authentication, instead they require client credentials to be sent via request body.</remarks>
     public enum AuthenticationScheme
     {
         /// <summary>
         /// HTTP Basic Authentication for client authentication
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Basic = 0,
 
         /// <summary>
         /// HTTP Basic Authentication for client authentication
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Digest,
 
         /// <summary>
         /// Client credentials are sent via request body
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         RequestBody
     }
 }

@@ -22,6 +22,7 @@ namespace Tizen.Account.OAuth2
     /// <summary>
     /// The response from authroization server containing access token and an optional refresh token.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TokenResponse
     {
         private bool _disposed = false;
@@ -35,6 +36,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Destructor of the AuthorizationResponse class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~TokenResponse()
         {
             Dispose(false);
@@ -43,11 +45,13 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// The access token
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AccessToken AccessToken { get; internal set; }
 
         /// <summary>
         /// The state parameter present in authorization request.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// The value can be null depending on the server specifications.
         /// </remarks>
@@ -56,6 +60,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// The refresh token. The value will be null if authorization server doesn't return a refresh token.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Issuing a refresh token is optional at the discretion of the authorization server.
         /// </remarks>
@@ -64,6 +69,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Gets the value of the key received from service provider
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The value of respecitve key </returns>
         /// <exception cref="System.ArgumentException">Thrown when the key does not exist or when there is an invalid parameter.</exception>
         public string GetCustomValue(string key)
@@ -81,6 +87,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -90,6 +97,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {

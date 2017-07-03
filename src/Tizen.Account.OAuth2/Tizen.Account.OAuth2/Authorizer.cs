@@ -26,6 +26,7 @@ namespace Tizen.Account.OAuth2
     /// Refer to http://tools.ietf.org/html/rfc6749 about OAuth 2.0 protocols.
     /// Also service provider document needs to be referred for using end points and additional parameters.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class Authorizer : IDisposable
     {
 
@@ -35,6 +36,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Constructor for Authoirzer instances
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Authorizer()
         {
             int ret = Interop.Manager.Create(out _managerHandle);
@@ -48,6 +50,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Destructor of the Authorizer class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~Authorizer()
         {
             Dispose(false);
@@ -56,6 +59,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Indicates if the current instance is already handling an authorization request
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsRequestInProgress
         {
             get
@@ -67,6 +71,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Authorizes the client with access toekn / authorizaion code in Implicit and Authorization Code grant flows respectively.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <see cref="CodeGrantAuthorizer.AuthorizeAsync(AuthorizationRequest)"/>
         /// <see cref="ImplicitGrantAuthorizer.AuthorizeAsync(AuthorizationRequest)"/>
         /// <param name="request">An authorization request</param>
@@ -79,6 +84,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Gets the access token in OAuth2 supported grant flows except Implicit Grant flow.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <see cref="CodeGrantAuthorizer.AuthorizeAsync(AuthorizationRequest)"/>
         /// <see cref="ImplicitGrantAuthorizer.AuthorizeAsync(AuthorizationRequest)"/>
         /// <param name="request">A token request</param>
@@ -91,6 +97,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -100,6 +107,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Retrieves access token using a refresh token.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="request">Request containing refresh token</param>
         /// <returns>The response containing access token.</returns>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
@@ -197,6 +205,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {

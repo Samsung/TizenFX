@@ -25,6 +25,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// The constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CodeGrantAuthorizationRequest()
         {
 
@@ -33,6 +34,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// The response type parameter to authorization server.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public override string ResponseType { get; } = "code";
     }
 }

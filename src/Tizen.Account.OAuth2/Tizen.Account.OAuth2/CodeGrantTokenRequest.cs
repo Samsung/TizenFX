@@ -21,11 +21,13 @@ namespace Tizen.Account.OAuth2
     /// <summary>
     /// The class contains request parameters for retreiving access token in Authorization Code Grant flow.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CodeGrantTokenRequest : TokenRequest
     {
         /// <summary>
         /// The constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CodeGrantTokenRequest()
         {
 
@@ -34,11 +36,13 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// The grant type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public override string GrantType { get; } = "authorization_code";
 
         /// <summary>
         /// The authoriztion code received from the authorization server.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Code { get; set; }
     }
 }

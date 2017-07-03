@@ -24,11 +24,13 @@ namespace Tizen.Account.OAuth2
     /// <summary>
     /// The ImplicitGrantAuthorizer is used to obtain access tokens using Implicit Grant flow as described at https://tools.ietf.org/html/rfc6749#section-4.2
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ImplicitGrantAuthorizer : Authorizer
     {
         /// <summary>
         /// The constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ImplicitGrantAuthorizer()
         {
 
@@ -37,6 +39,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Retrieves access token asynchronously. The authroization request parameters should be as defined in https://tools.ietf.org/html/rfc6749#section-4.2.1
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="request">The authorization request <see cref="ImplicitGrantAuthorizationRequest"/></param>
         /// <returns>The response containing access token.</returns>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
@@ -51,6 +54,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Access token can be retreived implicitly using <see cref="AuthorizeAsync"/> in this flow.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is not supported</exception>
         public override Task<TokenResponse> GetAccessTokenAsync(TokenRequest request)
         {
@@ -61,6 +65,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Refreshing access token is not supported in this flow.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is not supported</exception>
         public override Task<TokenResponse> RefreshAccessTokenAsync(RefreshTokenRequest request)
         {

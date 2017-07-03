@@ -24,11 +24,13 @@ namespace Tizen.Account.OAuth2
     /// <summary>
     /// The CodeGrantAuthorizer is used to obtain access tokens and refresh tokens using Authorization Code Grant flow as described at https://tools.ietf.org/html/rfc6749#section-4.1
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CodeGrantAuthorizer : Authorizer
     {
         /// <summary>
         /// The constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CodeGrantAuthorizer()
         {
 
@@ -37,6 +39,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Retrieves authorization code asynchronously. The authroization request parameters should be as defined in https://tools.ietf.org/html/rfc6749#section-4.1.1
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="request">The authorization request <see cref="CodeGrantAuthorizationRequest"/></param>
         /// <returns>The response containing authorization code.</returns>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
@@ -52,6 +55,7 @@ namespace Tizen.Account.OAuth2
         /// Retrieves access token by exchanging authorization code received using <see cref="AuthorizeAsync(AuthorizationRequest)"/>.
         /// The authroization request parameters should be as defined in https://tools.ietf.org/html/rfc6749#section-4.1.3
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="request">The token request <see cref="CodeGrantTokenRequest"/></param>
         /// <returns>The response containing access token.</returns>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
@@ -66,6 +70,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Clears the cookies
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void ClearCookies()
         {
             int ret = (int)OAuth2Error.None;
@@ -80,6 +85,7 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// Clear the cache
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void ClearCache()
         {
             int ret = (int)OAuth2Error.None;

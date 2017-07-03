@@ -19,11 +19,13 @@ namespace Tizen.Account.OAuth2
     /// <summary>
     /// The class contains request parameters for refreshing an access token.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RefreshTokenRequest : TokenRequest
     {
         /// <summary>
         /// The constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RefreshTokenRequest()
         {
 
@@ -32,11 +34,13 @@ namespace Tizen.Account.OAuth2
         /// <summary>
         /// The grant type to be used
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public override string GrantType { get; } = "refresh_token";
 
         /// <summary>
         /// The refresh token issued by authorization server.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string RefreshToken { get; set; }
     }
 }

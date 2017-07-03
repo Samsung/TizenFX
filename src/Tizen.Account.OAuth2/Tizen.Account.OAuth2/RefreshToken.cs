@@ -19,6 +19,7 @@ namespace Tizen.Account.OAuth2
     /// <summary>
     /// The refresh token which can be used to obtain new access token.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RefreshToken
     {
         internal RefreshToken ()
@@ -29,6 +30,7 @@ namespace Tizen.Account.OAuth2
          /// <summary>
         /// The refresh token issued to the client.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Token { get; internal set; }
     }
 }
