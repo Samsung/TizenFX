@@ -19,11 +19,13 @@ namespace Tizen.Account.FidoClient
     /// <summary>
     /// The FIDO message received from the relying party server
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class UafMessage
     {
         /// <summary>
         /// The constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public UafMessage()
         {
         }
@@ -31,6 +33,7 @@ namespace Tizen.Account.FidoClient
         /// <summary>
         /// The FIDO message in JSON format which is received from the relying party server
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Operation { get; set; }
     }
 }

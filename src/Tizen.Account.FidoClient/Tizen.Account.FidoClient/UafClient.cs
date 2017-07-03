@@ -23,6 +23,7 @@ namespace Tizen.Account.FidoClient
     /// <summary>
     /// The FIDO UAF Client APIs
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class UafClient
     {
         private static string _vendorName = null;
@@ -49,6 +50,7 @@ namespace Tizen.Account.FidoClient
         /// <summary>
         /// The FIDO Client vendor name
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static string VendorName
         {
             get
@@ -60,6 +62,7 @@ namespace Tizen.Account.FidoClient
         /// <summary>
         /// The FIDO Client Major version
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static int MajorVersion
         {
             get
@@ -71,6 +74,7 @@ namespace Tizen.Account.FidoClient
         /// <summary>
         /// The FIDO Client Minor version
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static int MinorVersion
         {
             get
@@ -82,6 +86,7 @@ namespace Tizen.Account.FidoClient
         /// <summary>
         /// The FIDO Server response for successfull interaction.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static int StautsOk
         {
             get
@@ -93,6 +98,7 @@ namespace Tizen.Account.FidoClient
         /// <summary>
         /// Checks whether the FIDO message can be processed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="uafMessage">The FIDO UAF message which is received from the relying party server</param>
         /// <returns>True if the message can be handled by the device, else false</returns>
         /// <privilege>http://tizen.org/privilege/fido.client</privilege>
@@ -123,6 +129,7 @@ namespace Tizen.Account.FidoClient
         /// <summary>
         /// Processes the given FIDO UAF message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="uafMessage">The FIDO UAF message which is received from the relying party server</param>
         /// <param name="channelBindng">The channel binding data in JSON format which is received from the relying party server</param>
         /// <returns>FIDO response message</returns>
@@ -179,6 +186,7 @@ namespace Tizen.Account.FidoClient
         /// <summary>
         /// Notifies the FIDO client about the server result. FIDO Server sends the result of processing a UAF message to FIDO client.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="responseCode">The status code received from Server.(StautsOk implies success)</param>
         /// <param name="response">The FIDO response message sent to server in JSON format</param>
         /// <privilege>http://tizen.org/privilege/fido.client</privilege>

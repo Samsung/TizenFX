@@ -24,11 +24,13 @@ namespace Tizen.Account.FidoClient
     /// <summary>
     /// Class to find available FIDO specific authenticators on the device
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class UafAuthenticatorFinder
     {
         /// <summary>
         /// Retrieves  all the available FIDO authenticators supported by this Device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Enumerable list of authenticators</returns>
         /// <privilege>http://tizen.org/privilege/fido.client</privilege>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method</exception>

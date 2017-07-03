@@ -22,6 +22,7 @@ namespace Tizen.Account.FidoClient
     /// <summary>
     /// Contains information about the authenticators registered on the device.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     /// <example>
     /// <code>
     ///     IEnumerable<AuthenticatorInformation> authInfos = await UafAuthenticatorFinder.DiscoverAuthenticatorsAsync();
@@ -41,71 +42,85 @@ namespace Tizen.Account.FidoClient
         /// <summary>
         /// The authenticator Title
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Title { get; internal set; }
 
         /// <summary>
         /// The Authenticator AAID (Authenticator Attestation ID)
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Aaid { get; internal set; }
 
         /// <summary>
         /// The Authenticator description
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Description { get; internal set; }
 
         /// <summary>
         /// The Authenticator assertion scheme.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string AssertionScheme { get; internal set; }
 
         /// <summary>
         /// The Authenticator algorithm.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AuthenticationAlgorithm AuthenticationAlgorithm { get; internal set; }
 
         /// <summary>
         /// The user verification method of this Authenticator
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public UserVerificationMethod UserVerification { get; internal set; }
 
         /// <summary>
         /// The key protection method of this Authenticator.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public KeyProtectionType KeyProtection { get; internal set; }
 
         /// <summary>
         /// The matcher protection method of this Authenticator.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MatcherProtectionType MatcherProtection { get; internal set; }
 
         /// <summary>
         /// The attachment hint of this Authenticator.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AuthenticatorAttachmentHint AttachmentHint { get; internal set; }
 
         /// <summary>
         /// Denotes the Authenticator is Second factor only which is supported by U2F standards.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsSecondFactorOnly { get; internal set; }
 
         /// <summary>
         /// The available attestation types for this Authenticator.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<AuthenticatorAttestationType> AttestationTypes { get; internal set; }
 
         /// <summary>
         /// The Transaction Confirmation display type of this Authenticator.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public TransactionConfirmationDisplayType TcDisplayType { get; internal set; }
 
         /// <summary>
         /// The Transaction Confirmation display type of this Authenticator.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string TcDisplayContentType { get; internal set; }
 
         /// <summary>
         /// The icon of this Authenticator.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Icon { get; internal set; }
     }
 }
