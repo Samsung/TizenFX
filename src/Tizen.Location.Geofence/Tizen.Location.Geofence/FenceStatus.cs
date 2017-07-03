@@ -25,6 +25,7 @@ namespace Tizen.Location.Geofence
     /// <item>Duration: Geofence is specified by duration of current state</item>
     /// </list>
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class FenceStatus : IDisposable
     {
         private bool _disposed = false;
@@ -38,6 +39,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Creates a new geofence status.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public FenceStatus(int fenceId)
@@ -60,6 +62,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Gets the state of geofence.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public GeofenceState State
         {
@@ -79,6 +82,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Gets the amount of seconds geofence is in the current state.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
         public int Duration
         {
@@ -98,6 +102,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Overloaded Dispose API for destroying the fence Handle.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);

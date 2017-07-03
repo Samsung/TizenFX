@@ -23,6 +23,7 @@ namespace Tizen.Location.Geofence
     /// Allows to create a virtual fence as Geofence using GeofenceManager instance.
     /// User can manage all the geofence/place related data and events.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class VirtualPerimeter
     {
         private IntPtr Handle;
@@ -30,6 +31,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Creates a VirtualPerimeter which can be used to create virtual fence.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="manager">GeofenceManager instance.</param>
         /// <exception cref="ArgumentException"> Incase of invlid parameter.</exception>
         public VirtualPerimeter(GeofenceManager manager)
@@ -47,6 +49,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Creates a new place for geofencing service.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="name">A place name to be created.</param>
         /// <returns>The place id to be newly created on success.</returns>
         /// <privilege>http://tizen.org/privilege/location</privilege>
@@ -69,6 +72,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Updates the place name of a given place id.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="placeId">The specified place id.</param>
         /// <param name="name">A new place name of the place id.</param>
         /// <privilege>http://tizen.org/privilege/location</privilege>
@@ -88,6 +92,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Removes the specific place for geofencing service.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="placeId">The specified place id.</param>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
@@ -106,6 +111,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Adds a geofence for a given geofence manager.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="fence">The Geofence instance to be added.</param>
         /// <returns>The geofence id to be newly created on success.</returns>
         /// <remarks> The retun value will always be a number greater than zero.</remarks>
@@ -129,6 +135,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Removes a geofence with a given geofence id.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="fenceId">The specified geofence id.</param>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="ArgumentException">Incase of Invalid parameter.</exception>
@@ -147,6 +154,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Gets the name of place.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="placeId">The place id.</param>
         /// <returns>The name of the place.</returns>
         /// <privilege>http://tizen.org/privilege/location</privilege>
@@ -169,6 +177,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Retrieves a list of places registered in the specified geofence manager.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>list of places registered as PlaceData instance list.</returns>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
@@ -199,6 +208,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Retrieves a list of fences registered in the specified geofence manager.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>list of FenceData instances registred for each Geofence.</returns>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
@@ -229,6 +239,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Retrieves a list of fences registered in the specified place.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="placeId"> The place id.</param>
         /// <returns>list of FenceData instances registred for each Geofence for specified place.</returns>
         /// <privilege>http://tizen.org/privilege/location</privilege>

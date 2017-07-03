@@ -35,6 +35,7 @@ namespace Tizen.Location.Geofence
     /// <item>Results and errors for each event requested to geofence module</item>
     /// </list>
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class GeofenceManager : IDisposable
     {
         private bool _disposed = false;
@@ -48,6 +49,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Creates a new geofence manager.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="OutOfMemoryException">Incase of OutOfMemory condition.</exception>
         /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
@@ -71,6 +73,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Checks whether the geofence manager is available or not.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public static bool IsSupported
         {
             get
@@ -89,6 +92,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Starts the geofencing service.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="geofenceId">The specified geofence id.</param>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <remarks>
@@ -110,6 +114,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Stops the geofenceing service.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="geofenceId">The specified geofence id.</param>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <remarks>
@@ -141,6 +146,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Invokes when a device enters or exits the given geofence, If this event is registered.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// Call to Start() will invoke this event.
         /// </remarks>
@@ -185,6 +191,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Called when a proximity state of device is changed.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// Call to Start() will invoke this event.
         /// </remarks>
@@ -230,6 +237,7 @@ namespace Tizen.Location.Geofence
         /// Called when the some event occurs in geofence and place such as add, update, etc..
         /// The events of public geofence is also received if there are public geofences.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>
         /// Call to Start() will invoke this event.
         /// The value of place_id or geofence_id is -1 when the place id or geofence id is not assigned.
@@ -266,6 +274,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Overloaded Dispose API for destroying the GeofenceManager Handle.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);

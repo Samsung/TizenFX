@@ -20,6 +20,7 @@ namespace Tizen.Location.Geofence
     /// <summary>
     /// Represents the Geofence list Item data.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class FenceData
     {
         internal FenceData(int fenceId, IntPtr handle, int index, int count)
@@ -32,6 +33,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Geofence instance.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Fence Fence
         {
             get;
@@ -41,6 +43,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// The geofence id.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public int GeofenceId
         {
             get;
@@ -50,6 +53,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// The index number of the fences in the list.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <value>Index value starts from 1.</value>
         public int Index
         {
@@ -60,6 +64,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// The total number of fences that exists for the requester.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public int Count
         {
             get;
@@ -70,6 +75,7 @@ namespace Tizen.Location.Geofence
     /// <summary>
     /// Represents the Place list Item data.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class PlaceData
     {
         internal PlaceData(int id, string name, int index, int count)
@@ -82,6 +88,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// The current place id.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public int PlaceId
         {
             get;
@@ -91,6 +98,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// The current place name.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Name
         {
             get;
@@ -100,6 +108,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// The index number of the places in the list.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <value>Index value starts from 1.</value>
         public int Index
         {
@@ -110,6 +119,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// The total number of places that exists for the requester.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public int Count
         {
             get;
