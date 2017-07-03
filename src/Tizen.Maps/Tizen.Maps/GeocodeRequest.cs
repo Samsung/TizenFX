@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Geocode request for map service
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class GeocodeRequest : MapServiceRequest<Geocoordinates>
     {
         private Interop.GeocodeCallback _geocodeCallback;

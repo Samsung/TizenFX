@@ -21,6 +21,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Place Category information, used in Place Discovery and Search requests
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class PlaceCategory : IDisposable
     {
         internal Interop.PlaceCategoryHandle handle;
@@ -28,6 +29,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Constructs search category object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
         public PlaceCategory()
         {
@@ -43,6 +45,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets an ID for this category.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Id
         {
             get { return handle.Id; }
@@ -52,6 +55,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets a name for this category.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Name
         {
             get { return handle.Name; }
@@ -61,6 +65,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets an URL for this category.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Url
         {
             get { return handle.Url; }
@@ -70,6 +75,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Returns a string that represents this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>Returns a string which presents this object.</returns>
         public override string ToString()
         {
@@ -91,6 +97,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Releases all resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);

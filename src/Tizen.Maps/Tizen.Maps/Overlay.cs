@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Overlay map object
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class Overlay : MapObject, IDisposable
     {
         internal Interop.OverlayHandle handle;
@@ -29,6 +30,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Creates a normal overlay map object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coordinates"></param>
         /// <param name="objectToContain"></param>
         /// <exception cref="ArgumentException">Thrown when input coordinates or objectToContain are invalid</exception>
@@ -50,6 +52,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets visibility of overlay map object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public override bool IsVisible
         {
             get { return handle.IsVisible; }
@@ -59,6 +62,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets geographical coordinates for overlay map object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Geocoordinates Coordinates
         {
             get
@@ -76,6 +80,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets minimum zoom level for overlay map object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public int MinimumZoomLevel
         {
             get
@@ -91,6 +96,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets maximum zoom lever for overlay map object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public int MaximumZoomLevel
         {
             get
@@ -134,6 +140,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Releases all resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -145,11 +152,13 @@ namespace Tizen.Maps
     /// <summary>
     /// Bubble overlay map object
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class BubbleOverlay : Overlay
     {
         /// <summary>
         /// Creates a Bubble overlay.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coordinates">The geographical coordinates to be pointed</param>
         /// <param name="objectToContain">The EvasObject to be shown</param>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
@@ -163,11 +172,13 @@ namespace Tizen.Maps
     /// <summary>
     /// Box Overlay map object
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class BoxOverlay : Overlay
     {
         /// <summary>
         /// Creates a Box overlay.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coordinates">The geographical coordinates to be pointed</param>
         /// <param name="objectToContain">The EvasObject to be shown</param>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>

@@ -25,6 +25,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Polygon map object
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class Polygon : MapObject, IDisposable
     {
         internal Interop.PolygonHandle handle;
@@ -33,6 +34,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Creates a polygon visual object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coordinates">List of geographical coordinates</param>
         /// <param name="color">Background color</param>
         /// <exception cref="ArgumentException">Thrown when input values are invalid.</exception>
@@ -51,11 +53,13 @@ namespace Tizen.Maps
         /// <summary>
         /// Adds or removes clicked event handlers.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public event EventHandler Clicked;
 
         /// <summary>
         /// Gets or sets visibility for the polygon.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public override bool IsVisible
         {
             get { return handle.IsVisible; }
@@ -65,6 +69,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets a list of geographical coordinates of polygon vertices.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public IEnumerable<Geocoordinates> Coordinates
         {
             get
@@ -91,6 +96,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets background color to fill the polygon.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Color FillColor
         {
             get
@@ -137,6 +143,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Releases all resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);

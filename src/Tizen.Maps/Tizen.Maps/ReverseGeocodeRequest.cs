@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Reverse geocode request for map service.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class ReverseGeocodeRequest : MapServiceRequest<PlaceAddress>
     {
         private Interop.ReverseGeocodeCallback _geocodeCallback;

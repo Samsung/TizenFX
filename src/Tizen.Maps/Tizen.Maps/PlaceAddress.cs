@@ -21,6 +21,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Address information for the map point used in Geocode and Reverse Geocode requests.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class PlaceAddress : IDisposable
     {
         internal Interop.AddressHandle handle;
@@ -28,6 +29,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Constructs map address object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
         public PlaceAddress()
         {
@@ -42,6 +44,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a building number for this address.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Building
         {
             get
@@ -57,6 +60,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a city name for this address.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string City
         {
             get
@@ -72,6 +76,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a country name for this address.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Country
         {
             get
@@ -87,6 +92,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a country code for this address.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string CountryCode
         {
             get
@@ -102,6 +108,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a county for this address.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string County
         {
             get
@@ -117,6 +124,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a district name for this address.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string District
         {
             get
@@ -132,6 +140,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a free text associated with this address.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Freetext
         {
             get
@@ -147,6 +156,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a postal code for this address.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string PostalCode
         {
             get
@@ -162,6 +172,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a state name for this address.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string State
         {
             get
@@ -177,6 +188,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a street name for this address.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Street
         {
             get
@@ -192,6 +204,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Returns a string that represents this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>Returns a string which presents this object.</returns>
         public override string ToString()
         {
@@ -213,6 +226,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Releases all resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);

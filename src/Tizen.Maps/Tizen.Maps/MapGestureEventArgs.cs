@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Event arguments for gesture type map events
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class MapGestureEventArgs : EventArgs
     {
         internal MapGestureEventArgs(IntPtr nativeHandle)
@@ -40,31 +41,37 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets type of gesture event.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public GestureType GestureType { get; }
 
         /// <summary>
         /// Gets screen coordinates in the event.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Point Position { get; }
 
         /// <summary>
         /// Gets the number of fingers detected in the event.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public int TouchCount { get; }
 
         /// <summary>
         /// Gets zoom factor for zoom gesture event.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double ZoomFactor { get; }
 
         /// <summary>
         /// Gets angle of rotation for rotate gesture event.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double RotationAngle { get; }
 
         /// <summary>
         /// Gets geographical coordinates for the event.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Geocoordinates Geocoordinates { get; }
     }
 }

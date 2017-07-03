@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Place search request for Tizen map service
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class PlaceSearchRequest : MapServiceRequest<Place>
     {
         private Interop.SearchPlaceCallback _placeCallback;

@@ -21,6 +21,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Place Media information, used in Place Discovery and Search requests
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class PlaceMedia
     {
         private string _attribution;
@@ -37,16 +38,19 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a string which representing attribution for this place media.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Attribution { get { return _attribution; } }
 
         /// <summary>
         /// Gets an instance of <see cref="PlaceLink"/> object which representing supplier for this place media.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public PlaceLink Supplier { get { return _supplier; } }
 
         /// <summary>
         /// Gets an instance of <see cref="PlaceLink"/> object which representing via data for this place media.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public PlaceLink Via { get { return _via; } }
     }
 }

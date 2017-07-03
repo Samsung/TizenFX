@@ -21,6 +21,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Class representing geographical coordinates.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class Geocoordinates : IDisposable
     {
         internal Interop.CoordinatesHandle handle;
@@ -28,6 +29,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Constructs map coordinates object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="latitude">Latitude value, must be between (-90.0 ~ 90.0) degrees</param>
         /// <param name="longitude">Longitude value, must be between (-180.0 ~ 180.0) degrees</param>
         /// <exception cref="System.ArgumentException">Thrown when values for latitude and longitude are not valid.</exception>
@@ -45,6 +47,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets latitude of the coordinates.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Latitude
         {
             get
@@ -56,6 +59,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets longitude of the coordinates.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Longitude
         {
             get
@@ -67,6 +71,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Returns a string that represents this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>Returns a string which presents this object.</returns>
         public override string ToString()
         {
@@ -88,6 +93,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Releases all resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);

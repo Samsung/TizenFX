@@ -19,6 +19,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Enumeration of user gestures over map view
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public enum GestureType
     {
         /// <summary>

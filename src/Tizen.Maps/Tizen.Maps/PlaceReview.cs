@@ -21,6 +21,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Place Review information, used in Place Discovery and Search requests
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class PlaceReview
     {
         private DateTime _date;
@@ -50,36 +51,43 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets an instance of <see cref="DateTime"/> object which representing time of this review.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public DateTime Date { get { return _date; } }
 
         /// <summary>
         /// Gets a string which representing title of this review.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Title { get { return _title; } }
 
         /// <summary>
         /// Gets a value which representing rating of this review.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Rating { get { return _rating; } }
 
         /// <summary>
         /// Gets a string which representing description of this review.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Description { get { return _description; } }
 
         /// <summary>
         /// Gets a string which representing language of this review.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Language { get { return _language; } }
 
         /// <summary>
         /// Gets an instance of <see cref="PlaceMedia"/> object which representing review media of this review.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public PlaceMedia ReviewMedia { get { return _media; } }
 
         /// <summary>
         /// Gets an instance of <see cref="PlaceLink"/> object which representing user link of this review.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public PlaceLink UserLink { get { return _userLink; } }
     }
 }

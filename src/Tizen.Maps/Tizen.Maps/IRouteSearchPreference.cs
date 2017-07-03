@@ -20,36 +20,43 @@ namespace Tizen.Maps
     /// <summary>
     /// Preferences for route searches
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public interface IRouteSearchPreference
     {
         /// <summary>
         /// Gets or sets distance unit.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         DistanceUnit Unit { get; set; }
 
         /// <summary>
         /// Gets or sets route optimization.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         RouteOptimization Optimization { get; set; }
 
         /// <summary>
         /// Gets or sets route transport mode.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         TransportMode Mode { get; set; }
 
         /// <summary>
         /// Gets or sets route feature weight.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         RouteFeatureWeight RouteFeatureWeight { get; set; }
 
         /// <summary>
         /// Gets or sets route feature.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         RouteFeature RouteFeature { get; set; }
 
         /// <summary>
         /// Gets or sets if searching for alternative routes is enabled.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         bool SearchAlternativeRoutes { get; set; }
     }
 }

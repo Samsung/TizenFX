@@ -19,6 +19,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Route types
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public enum TransportMode
     {
         /// <summary>

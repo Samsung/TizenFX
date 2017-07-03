@@ -21,6 +21,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Class representing geographical area
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class Area : IDisposable
     {
         internal Interop.AreaHandle handle;
@@ -28,6 +29,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Constructs rectangular area.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="topLeft">Top-left coordinates of the area</param>
         /// <param name="bottomRight">Bottom-left coordinate of the area</param>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
@@ -41,6 +43,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Constructs circular area.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="center">Coordinates for center of the area</param>
         /// <param name="radius">Radius of the area</param>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
@@ -71,6 +74,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Releases all resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);

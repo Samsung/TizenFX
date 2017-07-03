@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Place Segment information, used in Route Search requests
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class RouteSegment
     {
         private Geocoordinates _origin;
@@ -49,31 +50,37 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets an origin coordinates for this segment.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Geocoordinates Origin { get { return _origin; } }
 
         /// <summary>
         /// Gets a destination coordinates for this segment.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Geocoordinates Destination { get { return _destination; } }
 
         /// <summary>
         /// Gets total distance for this segment.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Distance { get { return _distance; } }
 
         /// <summary>
         /// Gets total duration to cover this segment.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Duration { get { return _duration; } }
 
         /// <summary>
         /// Gets a maneuver list for this segment.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public IEnumerable<RouteManeuver> Maneuvers { get { return _maneuvers; } }
 
         /// <summary>
         /// Gets a coordinates list for this segment.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public IEnumerable<Geocoordinates> Path { get { return _path; } }
 
         private Area BoundingBox { get { return _boundingBox; } }

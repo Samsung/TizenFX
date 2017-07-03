@@ -25,6 +25,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Map View class to show a map on the screen.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class MapView : Layout, IDisposable
     {
         internal Interop.ViewHandle handle;
@@ -48,6 +49,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Creates the view and link it to the instance of map service.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="parent">An instance of <see cref="EvasObject"/> object which map view will be drawn</param>
         /// <param name="service">An instance of <see cref="MapService"/> object</param>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
@@ -72,6 +74,7 @@ namespace Tizen.Maps
         /// Adds or removes event handlers to deliver scrolled gesture event.
         /// </summary>
         /// <value>Event handlers to get scrolled gesture event</value>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> Scrolled
         {
@@ -98,6 +101,7 @@ namespace Tizen.Maps
         /// Adds or removes event handlers to deliver zoomed gesture event.
         /// </summary>
         /// <value>Event handlers to get zoomed gesture event</value>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> TwoFingerZoomed
         {
@@ -124,6 +128,7 @@ namespace Tizen.Maps
         /// Adds or removes event handlers to deliver clicked gesture event.
         /// </summary>
         /// <value>Event handlers to get clicked gesture event</value>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> Clicked
         {
@@ -150,6 +155,7 @@ namespace Tizen.Maps
         /// Adds or removes event handlers to deliver double-clicked gesture event.
         /// </summary>
         /// <value>Event handlers to get double-clicked gesture event</value>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> DoubleClicked
         {
@@ -176,6 +182,7 @@ namespace Tizen.Maps
         /// Adds or removes event handlers to deliver clicked gesture event with two-fingers.
         /// </summary>
         /// <value>Event handlers to get clicked gesture event</value>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> TwoFingerClicked
         {
@@ -202,6 +209,7 @@ namespace Tizen.Maps
         /// Adds or removes event handlers to deliver rotated gesture event.
         /// </summary>
         /// <value>Event handlers to get rotated gesture event</value>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> TwoFingerRotated
         {
@@ -229,6 +237,7 @@ namespace Tizen.Maps
         /// Adds or removes event handlers to deliver long-pressed gesture event.
         /// </summary>
         /// <value>Event handlers to get long-pressed gesture event</value>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler<MapGestureEventArgs> LongPressed
         {
@@ -255,6 +264,7 @@ namespace Tizen.Maps
         /// Adds or removes event handlers to deliver a event representing the view is ready to be used.
         /// </summary>
         /// <value>Event handlers to get view ready event</value>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         public event EventHandler ViewReady
         {
@@ -276,6 +286,7 @@ namespace Tizen.Maps
         /// Gets or sets current zoom level.
         /// </summary>
         /// <value>It is an integer value that representing current zoom level.</value>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -298,6 +309,7 @@ namespace Tizen.Maps
         /// Gets or sets minimum zoom level.
         /// </summary>
         /// <value>It is an integer value that limits minimal zoom level within range of current map plug-in supported.</value>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -320,6 +332,7 @@ namespace Tizen.Maps
         /// Gets or sets maximum zoom level.
         /// </summary>
         /// <value>It is an integer value that limits maximum zoom level within range of current map plug-in supported.</value>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -342,6 +355,7 @@ namespace Tizen.Maps
         /// Gets or sets orientation on the map view.
         /// </summary>
         /// <value>It is an integer value from 0 to 360 that indicates orientation of the map view</value>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -363,6 +377,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets theme type of the map view.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -384,6 +399,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Indicates whether the map should show the 3D buildings layer.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -405,6 +421,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Indicates whether the map should show the traffic layer.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -426,6 +443,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Indicates whether the map should show the public transit layer.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -447,6 +465,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Indicates whether the scale-bar is enabled or not.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -474,6 +493,7 @@ namespace Tizen.Maps
         /// Each language tag is composed of one or more "subtags" separated by hyphens (-).
         /// Each subtag is composed of basic Latin letters or digits only.
         /// For example, "ko-KR" for Korean, "en-US" for American English.</value>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -496,6 +516,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets geographical coordinates for map view's center.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -518,6 +539,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a list of map object added to map view.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public IEnumerable<MapObject> Children
         {
             get
@@ -529,6 +551,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Changes geographical coordinates to screen coordinates.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coordinates">Geographical coordinates</param>
         /// <returns>Returns an instance of screen coordinates on the current screen</returns>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
@@ -544,6 +567,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Changes screen coordinates to geographical coordinates.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="screenCoordinates">Screen coordinates</param>
         /// <returns>Returns an instance of geographical coordinates object.</returns>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
@@ -559,6 +583,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Adds a map object to map view.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="child">An instance of map object to be added</param>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
@@ -582,6 +607,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Removes a map object from map view.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="child">An instance of map object to be removed</param>
         /// <remarks>Once removed, the child object will be become invalid</remarks>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
@@ -605,6 +631,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Removes all map objects from map view.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
@@ -623,6 +650,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Captures a snapshot of map view
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="type">Type of file format</param>
         /// <param name="quality">A integer value which representing quality for encoding, from 1 to 100</param>
         /// <param name="path">A string which representing The file path for snapshot</param>
@@ -741,6 +769,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Releases all resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,6 +19,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Features available in the Map Service
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public enum ServiceData
     {
         /// <summary>

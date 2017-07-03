@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Marker map object
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class Marker : MapObject, IDisposable
     {
         internal Interop.MarkerHandle handle;
@@ -39,11 +40,13 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets clicked event handlers.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public event EventHandler Clicked;
 
         /// <summary>
         /// Gets or sets marker's visibility.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public override bool IsVisible
         {
             get
@@ -59,6 +62,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets geographical coordinates for this marker.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Geocoordinates Coordinates
         {
             get
@@ -77,6 +81,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets a string representing image file path for this marker.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string ImagePath
         {
             get
@@ -92,6 +97,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets screen size for this marker.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Size MarkerSize
         {
             get
@@ -107,6 +113,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets z-order for this marker.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <value>The integer value is 0 in default, and must be in range of from -100 to 100.</value>
         public int ZOrder
         {
@@ -123,6 +130,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Changes marker size.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="newSize">New size</param>
         public void Resize(Size newSize)
         {
@@ -132,6 +140,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Changes marker coordinates.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="newPosition">New position for marker</param>
         public void Move(Geocoordinates newPosition)
         {
@@ -168,6 +177,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Releases all resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -181,6 +191,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Pin type marker map object
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class Pin : Marker
     {
         private const string defaultImagePath = "/usr/share/dotnet.tizen/framework/res/maps_marker_pin_48.png";
@@ -188,6 +199,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Creates a Pin type marker.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coordinates">Marker coordinates</param>
         /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid.</exception>
         public Pin(Geocoordinates coordinates)
@@ -198,6 +210,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Creates a Pin type marker.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coordinates">Marker coordinates</param>
         /// <param name="imagePath">Image file path for Marker</param>
         /// <remarks>
@@ -216,6 +229,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Sticker type marker map object
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class Sticker : Marker
     {
         private const string defaultImagePath = "/usr/share/dotnet.tizen/framework/res/maps_marker_sticker_48.png";
@@ -223,6 +237,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Creates a Sticker type marker.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coordinates">Marker coordinates</param>
         /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid.</exception>
         public Sticker(Geocoordinates coordinates)
@@ -233,6 +248,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Creates a Sticker type marker.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coordinates">Marker coordinates</param>
         /// <param name="imagePath">Image file path for Marker</param>
         /// <remarks>

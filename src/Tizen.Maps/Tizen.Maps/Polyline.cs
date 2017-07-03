@@ -25,6 +25,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Polyline map object
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class Polyline : MapObject, IDisposable
     {
         internal Interop.PolylineHandle handle;
@@ -33,6 +34,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Creates polyline visual object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coordinates">List of geographical coordinates</param>
         /// <param name="color">Line color</param>
         /// <param name="width">The width of line [1 ~ 100] (pixels)</param>
@@ -52,11 +54,13 @@ namespace Tizen.Maps
         /// <summary>
         /// Adds or removes clicked event handlers.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public event EventHandler Clicked;
 
         /// <summary>
         /// Gets or sets visibility for the polyline.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public override bool IsVisible
         {
             get { return handle.IsVisible; }
@@ -66,6 +70,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets a list of geographical coordinates for polyline vertices.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public IEnumerable<Geocoordinates> Coordinates
         {
             get
@@ -92,6 +97,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets line color.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Color LineColor
         {
             get
@@ -107,6 +113,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets line width from 1 to 100 pixels.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public int Width
         {
             get
@@ -153,6 +160,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Releases all resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);

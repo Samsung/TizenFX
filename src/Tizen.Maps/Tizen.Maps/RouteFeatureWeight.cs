@@ -19,6 +19,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Route feature weights used in route search requests
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public enum RouteFeatureWeight
     {
         /// <summary>

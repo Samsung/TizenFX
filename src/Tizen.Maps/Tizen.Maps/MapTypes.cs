@@ -19,6 +19,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Map View Type (theme)
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public enum MapTypes
     {
         /// <summary>

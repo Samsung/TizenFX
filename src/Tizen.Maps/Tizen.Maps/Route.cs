@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Route information, used in Route Search requests.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class Route : IDisposable
     {
         internal Interop.RouteHandle handle;
@@ -35,6 +36,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets an instance of <see cref="Geocoordinates"/> object which representing destination coordinates for this route.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Geocoordinates Destination
         {
             get
@@ -46,6 +48,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets total distance for this route.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Distance
         {
             get
@@ -57,6 +60,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Get total duration to cover this route.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Duration
         {
             get
@@ -68,6 +72,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets an ID for this route.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Id
         {
             get
@@ -79,6 +84,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets transport mode for this route.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public TransportMode Mode
         {
             get
@@ -90,6 +96,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets origin coordinates for this route.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Geocoordinates Origin
         {
             get
@@ -101,6 +108,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a coordinates list for this route.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public IEnumerable<Geocoordinates> Path
         {
             get
@@ -114,6 +122,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a segment list for this route.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public IEnumerable<RouteSegment> Segments
         {
             get
@@ -127,6 +136,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets distance unit for this route.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public DistanceUnit Unit
         {
             get
@@ -161,6 +171,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Releases all resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);

@@ -21,6 +21,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Route Maneuver information, used in Route Search requests
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class RouteManeuver
     {
         private Interop.RouteDirection _direction;
@@ -47,41 +48,49 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets direction type for this maneuver.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public DirectionType Direction { get { return (DirectionType)_direction; } }
 
         /// <summary>
         /// Gets turn type for this maneuver.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public TurnInstruction Turn { get { return (TurnInstruction)_turntype; } }
 
         /// <summary>
         /// Gets a geographical coordinates position for this maneuver.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Geocoordinates Position { get { return _coordinates; } }
 
         /// <summary>
         /// Gets a name of the road for this maneuver.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Road { get { return _road; } }
 
         /// <summary>
         /// Gets an instruction text for this maneuver.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Instruction { get { return _instruction; } }
 
         /// <summary>
         /// Gets a locale for this maneuver.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Locale { get { return _locale; } }
 
         /// <summary>
         /// Gets time to next instruction for this maneuver.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public int TimeToNextInstruction { get { return _timeToNextInstruction; } }
 
         /// <summary>
         /// Gets distance to next instruction for this maneuver.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double DistanceToNextInstruction { get { return _distanceToNextInstruction; } }
     }
 }

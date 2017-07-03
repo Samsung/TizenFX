@@ -19,6 +19,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Direction types for route maneuver
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public enum DirectionType
     {
         /// <summary>

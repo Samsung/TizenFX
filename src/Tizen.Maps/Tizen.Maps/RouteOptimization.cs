@@ -19,6 +19,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Allowed route optimization option used in route search requests
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     /// <remarks>
     /// Depending on loaded maps plug-in using <see cref="MapService"/>, some features may have no effect or differences with descriptions.
     /// </remarks>

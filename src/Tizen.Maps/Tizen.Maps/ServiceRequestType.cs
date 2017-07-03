@@ -19,6 +19,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Service Requests available in the Maps Service
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public enum ServiceRequestType
     {
         /// <summary>

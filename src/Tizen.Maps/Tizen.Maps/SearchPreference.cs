@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Preferences for route search requests
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class SearchPreference : IGeocodePreference, IPlaceSearchPreference, IRouteSearchPreference, IDisposable
     {
         internal Interop.PreferenceHandle handle;
@@ -30,6 +31,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Constructors a new search preference.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public SearchPreference()
         {
             handle = new Interop.PreferenceHandle();
@@ -46,6 +48,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets preferred language.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>Language should be specified as an ISO 3166 alpha-2 two letter country-code
         /// followed by ISO 639-1 for the two-letter language code.<br/>e.g. "ko-KR", "en-US".</remarks>
         public string Language
@@ -64,6 +67,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets the maximum result count for each service request.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <remarks>Setting negative value will not have any effect on MaxResults value</remarks>
         public int MaxResults
         {
@@ -81,6 +85,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets distance unit.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public DistanceUnit Unit
         {
             get
@@ -97,6 +102,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets preferred country.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string CountryCode
         {
             get
@@ -113,6 +119,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets search properties as key value pair.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public IReadOnlyDictionary<string, string> Properties
         {
             get
@@ -138,6 +145,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets route optimization.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public RouteOptimization Optimization
         {
             get
@@ -154,6 +162,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets route transport mode.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public TransportMode Mode
         {
             get
@@ -170,6 +179,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets route feature weight.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public RouteFeatureWeight RouteFeatureWeight
         {
             get
@@ -186,6 +196,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets route feature.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public RouteFeature RouteFeature
         {
             get
@@ -202,6 +213,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets if searching for alternative routes is enabled.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public bool SearchAlternativeRoutes
         {
             get
@@ -230,6 +242,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Releases all resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);

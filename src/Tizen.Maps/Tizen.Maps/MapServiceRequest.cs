@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Base class for map service request
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     /// <typeparam name="T"></typeparam>
     public abstract class MapServiceRequest<T> : IDisposable
     {
@@ -50,6 +51,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Sends a request to map service provider.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>Response from map service provider</returns>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
@@ -105,6 +107,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Releases all resources used by this object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);

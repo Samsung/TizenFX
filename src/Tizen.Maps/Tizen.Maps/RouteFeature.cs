@@ -19,6 +19,7 @@ namespace Tizen.Maps
     /// <summary>
     /// Route features, used for route search requests
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public enum RouteFeature
     {
         /// <summary>
