@@ -19,11 +19,13 @@ namespace Tizen.Messaging.Push
     /// <summary>
     /// The ServerResponse structure provides the result and the server response if any.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct ServerResponse
     {
         /// <summary>
         /// Enumeration for the Result from the server.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum Result
         {
             /// <summary>
@@ -47,6 +49,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// Gives the Result of the opeartion.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// It is the Result state of the operation performed.</value>
         public Result ServerResult
@@ -58,6 +61,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// Gives the Message from the server.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// It is the Message sent by the server.</value>
         public string ServerMessage

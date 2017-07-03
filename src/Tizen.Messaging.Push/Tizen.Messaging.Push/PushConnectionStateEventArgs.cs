@@ -21,11 +21,13 @@ namespace Tizen.Messaging.Push
     /// <summary>
     /// An extended EventArgs class which contains the State Information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PushConnectionStateEventArgs : EventArgs
     {
         /// <summary>
         /// Enumeration for the different states.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum PushState
         {
             /// <summary>
@@ -53,6 +55,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// Gives the current state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// It is the current state.</value>
         public PushState State
@@ -64,6 +67,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// Gives information about the error if set.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// It is the string which contains the error string if set.</value>
         public string Error

@@ -22,6 +22,7 @@ namespace Tizen.Messaging.Push
     /// <summary>
     /// The PushClient API provides functions to connect to push service for receiving push messages.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     /// <remarks>
     /// The PushClient API provides the way to connect with the push service.
     /// It provides api's to connect/disconnect from the push service.
@@ -63,6 +64,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// Event Handler for receiving the notifications.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PushMessageEventArgs> NotificationReceived
         {
             add
@@ -84,6 +86,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// Event Handler for receiving changes in States of the connection.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PushConnectionStateEventArgs> StateChanged
         {
             add
@@ -105,6 +108,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// API to connect with the push service.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="pushAppId"> The Push Application Id Registered with the server.</param>
         public static void PushServiceConnect(string pushAppId)
         {
@@ -114,6 +118,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// API to disconnect from the push service.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static void PushServiceDisconnect()
         {
             PushImpl.Instance.PushServiceDisconnect();
@@ -124,6 +129,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// API to Register the application with the push server.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// The method returns a task which on completion with give a ServerResponse Object.
         /// </returns>
@@ -135,6 +141,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// API to Deregister the application from the push server.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// The method returns a task which on completion with give a ServerResponse Object.
         /// </returns>
@@ -146,6 +153,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// Gets the unread notifications for the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static void GetUnreadNotifications()
         {
             PushImpl.Instance.GetUnreadNotifications();
@@ -153,6 +161,7 @@ namespace Tizen.Messaging.Push
 
         /// <summary>
         /// registration Id received from server. </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// It is the string which is the Id received from the server.
         /// </returns>

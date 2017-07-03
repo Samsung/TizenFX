@@ -21,10 +21,12 @@ namespace Tizen.Messaging.Push
     /// <summary>
     /// An extended EventArgs class which contains the message received.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PushMessageEventArgs : EventArgs
     {
         /// <summary>
         /// Gives the Application Data recieved. </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// It is the string which stores the application data.</value>
         public string AppData
@@ -36,6 +38,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// Gives the Message Received Field.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// It is the string which stores the message field.</value>
         public string Message
@@ -47,6 +50,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// Gives the time at which the Notification was received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// It is the DateTime field representing the time at which the Notification was received.</value>
         public DateTime ReceivedAt
@@ -58,6 +62,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// Gives the Sender of the notification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// It is a string value representing the Sender of the Notification.</value>
         public string Sender
@@ -69,6 +74,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// Gives the session ID of the notification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// It is a string value representing the session ID of the Notification.</value>
         public string SessionInfo
@@ -80,6 +86,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// Gives the request Id of the notification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// It is a string value representing the request Id of the Notification.</value>
         public string RequestId
@@ -91,6 +98,7 @@ namespace Tizen.Messaging.Push
         /// <summary>
         /// Gives the value in the type field of the notification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// It is an integer value representing the type field of the notification.</value>
         public int Type
