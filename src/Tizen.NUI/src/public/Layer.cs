@@ -16,6 +16,7 @@
 
 namespace Tizen.NUI
 {
+    using System;
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
@@ -97,6 +98,15 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public new static Layer DownCast(BaseHandle handle)
+        {
+            Layer ret = new Layer(NDalicPINVOKE.Layer_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
         /// <summary>
         /// Search through this layer's hierarchy for an view with the given unique ID.

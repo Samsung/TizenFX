@@ -15,6 +15,8 @@
  *
  */
 
+using System;
+
 namespace Tizen.NUI
 {
 
@@ -857,5 +859,171 @@ namespace Tizen.NUI
         {
             return new Position(vec.X, vec.Y, vec.Z);
         }
+
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static float AnchorPointTop
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointTop_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static float AnchorPointBottom
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointBottom_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static float AnchorPointLeft
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointLeft_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static float AnchorPointRight
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointRight_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static float AnchorPointMiddle
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointMiddle_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointTopLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointTopCenter
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointTopRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointCenterLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointCenter
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointCenterRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointBottomLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointBottomCenter
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointBottomRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
     }
 }
