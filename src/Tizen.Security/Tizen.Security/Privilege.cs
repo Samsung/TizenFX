@@ -24,6 +24,7 @@ namespace Tizen.Security
     /// <summary>
     /// The class provides the information of the given privilege and API version.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class Privilege
     {
         internal static readonly string PackageTypeTpk = "PRVINFO_PACKAGE_TYPE_NATIVE";
@@ -48,6 +49,7 @@ namespace Tizen.Security
         /// <summary>
         /// Gets the display name of the given privilege.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>If there's no matching privilege then it returns last token of given privilege.</remarks>
         /// <param name="apiVersion">The api version</param>
         /// <param name="privilege">The privilege</param>
@@ -70,6 +72,7 @@ namespace Tizen.Security
         /// <summary>
         /// Gets the display name of the given privilege.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>If there's no matching privilege then it returns last token of given privilege.</remarks>
         /// <param name="apiVersion">The api version</param>
         /// <param name="privilege">The privilege</param>
@@ -93,6 +96,7 @@ namespace Tizen.Security
         /// <summary>
         /// Gets the description of the given privilege.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>If there's no matching privilege then it returns description string for undefined privilege.</remarks>
         /// <param name="apiVersion">The api version</param>
         /// <param name="privilege">The privilege</param>
@@ -115,6 +119,7 @@ namespace Tizen.Security
         /// <summary>
         /// Gets the description of the given privilege.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>If there's no matching privilege then it returns description string for undefined privilege.</remarks>
         /// <param name="apiVersion">The api version</param>
         /// <param name="privilege">The privilege</param>
@@ -138,6 +143,7 @@ namespace Tizen.Security
         /// <summary>
         /// Gets the display name of the privacy group in which the given privilege is included.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="privilege">The privilege</param>
         /// <remarks>The privilege must be privacy related.</remarks>
         /// <returns>The privacy group's display name that the given privilege is included in</returns>
@@ -159,6 +165,7 @@ namespace Tizen.Security
         /// <summary>
         /// Gets the status of the given privacy related privilege.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="privilege">The privilege</param>
         /// <remarks>The privilege must be privacy related.</remarks>
         /// <returns>status true if the privilege is on and false if the privilege is off.</returns>
