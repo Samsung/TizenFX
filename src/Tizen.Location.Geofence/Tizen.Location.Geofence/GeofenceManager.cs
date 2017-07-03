@@ -217,7 +217,7 @@ namespace Tizen.Location.Geofence
             }
         }
 
-        private static readonly Interop.GeofenceManager.GeofenceEventCallback s_geofenceEventCallback = (int placeId, int fenceId, GeofenceError error, GeoFenceEventType eventType, IntPtr data) =>
+        private static readonly Interop.GeofenceManager.GeofenceEventCallback s_geofenceEventCallback = (int placeId, int fenceId, GeofenceError error, GeofenceEventType eventType, IntPtr data) =>
         {
             GeofenceResponseEventArgs evenArgs = new GeofenceResponseEventArgs(placeId, fenceId, error, eventType);
             s_geofenceEventChanged?.Invoke(null, evenArgs);
@@ -235,7 +235,7 @@ namespace Tizen.Location.Geofence
         /// The value of place_id or geofence_id is -1 when the place id or geofence id is not assigned.
         /// </remarks>
         /// <exception cref="NotSupportedException">Incase of feature Not supported.</exception>
-        public event EventHandler<GeofenceResponseEventArgs> GeoFenceEventChanged
+        public event EventHandler<GeofenceResponseEventArgs> GeofenceEventChanged
         {
             add
             {

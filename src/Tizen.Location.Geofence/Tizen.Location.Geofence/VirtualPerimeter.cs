@@ -236,7 +236,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="InvalidOperationException">Incase of any System error.</exception>
         /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined.</exception>
         /// <exception cref="NotSupportedException">Incase of Geofence is not supported.</exception>
-        public IEnumerable<FenceData> GetGeoFenceDataListByPlaceId(int placeId)
+        public IEnumerable<FenceData> GetGeofenceDataListByPlaceId(int placeId)
         {
             List<FenceData> fences = new List<FenceData>();
             Interop.VirtualPerimeter.ForEachFenceListCallback callback = (int fenceId, IntPtr handle, int index, int count, IntPtr data) =>

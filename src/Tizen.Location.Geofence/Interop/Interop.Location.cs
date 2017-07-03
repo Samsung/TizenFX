@@ -83,7 +83,7 @@ internal static partial class Interop
         internal delegate bool ProximityStateChangedCallback(int fenceId, ProximityState state, ProximityProvider provider, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool GeofenceEventCallback(int placeId, int fenceId, GeofenceError error, GeoFenceEventType eventType, IntPtr userData);
+        internal delegate bool GeofenceEventCallback(int placeId, int fenceId, GeofenceError error, GeofenceEventType eventType, IntPtr userData);
 
         [DllImport(Libraries.Geofence, EntryPoint = "geofence_manager_is_supported")]
         internal static extern int IsSupported(out bool supported);

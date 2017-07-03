@@ -106,7 +106,7 @@ namespace Tizen.Location.Geofence
         /// <param name="fenceId">The specified geofence id.</param>
         /// <param name="error">The error code for the particular action.</param>
         /// <param name="eventType">The result code for the particular place and geofence management.</param>
-        internal GeofenceResponseEventArgs(int placeId, int fenceId, GeofenceError error, GeoFenceEventType eventType)
+        internal GeofenceResponseEventArgs(int placeId, int fenceId, GeofenceError error, GeofenceEventType eventType)
         {
             PlaceId = placeId;
             FenceId = fenceId;
@@ -141,7 +141,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// The result code for the particular place and geofence management.
         /// </summary>
-        public GeoFenceEventType EventType
+        public GeofenceEventType EventType
         {
             get;
         }
