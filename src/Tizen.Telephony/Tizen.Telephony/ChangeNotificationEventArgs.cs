@@ -37,6 +37,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the SIM card state changes.
             /// SIM.State will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -45,6 +46,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the SIM call forwarding indicator state changes.
             /// 'state(bool)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -53,6 +55,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the network service state changes.
             /// Network.ServiceState will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -61,6 +64,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the cell ID changes.
             /// 'cell_id(int)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/location.coarse
             /// </privilege>
@@ -69,6 +73,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the roaming status changes.
             /// 'roaming_status(bool)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -77,6 +82,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the signal strength changes.
             /// Network.Rssi will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -85,6 +91,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the network name changes.
             /// 'network_name(string)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -93,6 +100,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the ps type changes.
             /// Network.PSType will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -101,6 +109,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the default data subscription changes.
             /// Network.DefaultDataSubscription will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -109,6 +118,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the default subscription changes.
             /// Network.DefaultSubscription will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -117,6 +127,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the LAC (Location Area Code) changes.
             /// 'lac(int)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/location.coarse
             /// </privilege>
@@ -125,6 +136,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the TAC (Tracking Area Code) changes.
             /// 'tac(int)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/location.coarse
             /// </privilege>
@@ -133,6 +145,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the system ID changes.
             /// 'sid(int)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/location.coarse
             /// </privilege>
@@ -141,6 +154,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the network ID changes.
             /// 'nid(int)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/location.coarse
             /// </privilege>
@@ -149,6 +163,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the base station ID changes.
             /// 'id(int)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/location.coarse
             /// </privilege>
@@ -157,6 +172,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the base station latitude changes.
             /// 'latitude(int)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/location.coarse
             /// </privilege>
@@ -165,6 +181,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the base station longitude changes.
             /// 'longitue(int)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/location.coarse
             /// </privilege>
@@ -173,6 +190,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when a voice call is in idle status.
             /// 'handle id(uint)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -181,6 +199,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when a voice call is in active status.
             /// 'handle id(uint)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -189,6 +208,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when a voice call is in held status.
             /// 'handle id(uint)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -197,6 +217,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when a voice call is in dialing status.
             /// 'handle id(uint)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -205,6 +226,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when a voice call is in alertingstatus.
             /// 'handle id(uint)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -213,6 +235,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when a voice call is in incoming status.
             /// 'handle id(uint)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -221,6 +244,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when a video call is in idle status.
             /// 'handle id(uint)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -229,6 +253,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when a video call is in active status.
             /// 'handle id(uint)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -237,6 +262,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when a video call is in dialing status.
             /// 'handle id(uint)' will be delivered in notification data.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -245,6 +271,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when a video call is in alerting status.
             /// 'handle id(uint)' will be delivered in notification data
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -253,6 +280,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when a video call is in incoming status.
             /// 'handle id(uint)' will be delivered in notification data
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -261,6 +289,7 @@ namespace Tizen.Telephony
             /// Notification to be invoked when the preferred voice subscription changes.
             /// CallPreferredVoiceSubscription will be delivered in notification data
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             /// <privilege>
             /// http://tizen.org/privilege/telephony
             /// </privilege>
@@ -270,6 +299,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Telephony notification type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Notification NotificationType
         {
             get;
@@ -279,6 +309,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Data as per the Notification type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public object NotificationData
         {
             get;

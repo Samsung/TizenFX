@@ -30,6 +30,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// The Current State
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public State CurrentState
         {
             get;
