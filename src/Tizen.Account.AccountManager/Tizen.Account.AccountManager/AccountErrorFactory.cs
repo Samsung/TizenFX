@@ -22,84 +22,104 @@ namespace Tizen.Account.AccountManager
     /// <summary>
     /// Enum to give the type of error occured, if any.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AccountError
     {
         //TIZEN_ERROR_ACCOUNT = -0x01000000
         /// <summary>
         /// Successful.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         None = Tizen.Internals.Errors.ErrorCode.None,
         /// <summary>
         /// Invalid parameter.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
         /// <summary>
         /// Out of memory.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
         /// <summary>
         /// Same user name exists in your application
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Duplcated = -0x01000000 | 0x01,
         /// <summary>
         /// Empty Data
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         NoData = Tizen.Internals.Errors.ErrorCode.NoData,
         /// <summary>
         /// elated record does not exist
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         RecordNotFound = -0x01000000 | 0x03,
         /// <summary>
         /// Invalid Operation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,
         /// <summary>
         /// DB operation failed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         DBFailed = -0x01000000 | 0x04,
         /// <summary>
         ///  DB is not connected.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         DBNotOpened = -0x01000000 | 0x05,
         /// <summary>
         /// DB query syntax error
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         QuerySyntaxError = -0x01000000 | 0x06,
         /// <summary>
         /// Iterator has reached the end
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         IteratorEnd = -0x01000000 | 0x07,
         /// <summary>
         /// Notification failed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         NotificationFailed = -0x01000000 | 0x08,
         /// <summary>
         /// Permission denied.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
         /// <summary>
         /// XML parse failed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         XMLParseFailed = -0x01000000 | 0x0a,
         /// <summary>
         /// XML File not found
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         XMLFileNotFound = -0x01000000 | 0x0b,
         /// <summary>
         /// Subscription failed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         EventSubscriptionFailed = -0x01000000 | 0x0c,
         /// <summary>
         /// Account provider is not registered
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ProviderNotRegistered = -0x01000000 | 0x0d,
         /// <summary>
         /// Multiple accounts are not supported.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         MultipleNotAllowed = -0x01000000 | 0x0e,
         /// <summary>
         /// SQLite busy handler expired
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         DBBusy = -0x01000000 | 0x10
     };
 

@@ -22,6 +22,7 @@ namespace Tizen.Account.AccountManager
     /// <summary>
     /// Represents the Account Information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Account : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -37,6 +38,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Creates a new Account instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Account Instance.</returns>
         public static Account CreateAccount()
         {
@@ -53,6 +55,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Id of the Account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>Account Id shall be created only when account is added to the database.</remarks>
         public int AccountId
         {
@@ -72,6 +75,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// UserName of the Account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>User Name of the Account.</value>
         public string UserName
         {
@@ -100,6 +104,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Display Name of the Account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>DisplayName of the  Account.</value>
         public string DisplayName
         {
@@ -128,6 +133,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Icon path of the Account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Icon path of the Account.</value>
         public string IconPath
         {
@@ -156,6 +162,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Domain name of the Account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Domain name of the Account.</value>
         public string DomainName
         {
@@ -184,6 +191,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Email Id of the Account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Email Id of the Account.</value>
         public string EmailId
         {
@@ -212,6 +220,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Package Name of the Account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Package Name.</value>
         public string PackageName
         {
@@ -240,6 +249,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Access Token of the Account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Access Token.</value>
         public string AccessToken
         {
@@ -268,6 +278,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Authentication type of the Account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Authentication type.</value>
         public AccountAuthType AuthType
         {
@@ -296,6 +307,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Secrecy State of the Account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Secrecy State.</value>
         public AccountSecrecyState SecrecyState
         {
@@ -324,6 +336,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Sync State of the Account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Sync State.</value>
         public AccountSyncState SyncState
         {
@@ -352,6 +365,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Source of the Account .
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Account Source.</value>
         public string Source
         {
@@ -392,6 +406,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Sets the account capability.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="capabilityType"> The Account capability type</param>
         /// <param name="state">The Account capability state</param>
         /// <exception cref="ArgumentException">In case of invalid parameters</exception>
@@ -406,6 +421,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Gets all the capabilities of an account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="capabilityType"> The capability type to get the capability value.</param>
         /// <returns>The capability value (on/off) of the specified CapabilityState .</returns>
         /// <exception cref="ArgumentException">In case of invalid parameters</exception>
@@ -424,6 +440,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Gets all the capabilities of an account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>List of Cpabailities as Dictionary</returns>
         public Dictionary<string, CapabilityState> GetAllCapabilities()
         {
@@ -448,6 +465,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Sets the Custom Value to the Account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="key">key to be added to the Account.</param>
         /// <param name="value">value to be updated for respective key for the Account.</param>
         /// <exception cref="ArgumentException">In case of invalid parameters</exception>
@@ -463,6 +481,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Gets the user specific custom text of an account key.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="key">The key to retrieve custom text .</param>
         /// <returns>The text of the given key</returns>
         /// <exception cref="ArgumentException">In case of invalid parameters</exception>
@@ -482,6 +501,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Gets All the custome values.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>List of custom key, value pairs as Dictionary.</returns>
         public Dictionary<string, string> GetAllCustomValues()
         {
@@ -507,6 +527,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Sets the user text.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="index">The index of the user text (must be in range from 0 to 4) </param>
         /// <param name="text">The text string to set as the user text</param>
         /// <exception cref="ArgumentException">In case of invalid parameters</exception>
@@ -522,6 +543,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Gets the user text.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="index">The index of the user text (range: 0 ~ 4)</param>
         /// <returns>The user text of the given key</returns>
         /// <exception cref="ArgumentException">In case of invalid parameters</exception>
@@ -541,6 +563,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Gets the user int value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="index">The index of the user int (range: 0 ~ 4)</param>
         /// <returns>The user int of the given key</returns>
         /// <exception cref="ArgumentException">In case of invalid parameters</exception>
@@ -559,6 +582,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Sets the user integer value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="index">The index of the user integer (must be in range from 0 to 4) </param>
         /// <param name="value">The integer to set as the user integer</param>
         /// <exception cref="ArgumentException">In case of invalid parameters</exception>
@@ -574,6 +598,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Overloaded Dispose API for destroying the Account Handle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

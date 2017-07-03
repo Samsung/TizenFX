@@ -17,11 +17,13 @@
 /// <summary>
 /// Interop for Library reference
 /// </summary>
+/// <since_tizen> 3 </since_tizen>
 internal static partial class Interop
 {
     /// <summary>
     /// Interop for Library reference
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     internal static partial class Libraries
     {
         public const string AccountSvc = "libaccounts-svc.so.0";

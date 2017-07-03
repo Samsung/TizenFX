@@ -32,57 +32,68 @@ namespace Tizen.Account.AccountManager
     /// <item> Read an account or account provider with some filter </item>
     /// </list>
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
 
     public static class AccountService
     {
         /// <summary>
         /// This is contact capability string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly string ContactCapability = "http://tizen.org/account/capability/contact";
 
         /// <summary>
         /// This is calendar capability string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly string CalendarCapability = "http://tizen.org/account/capability/calendar";
 
         /// <summary>
         /// This is email capability string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly string EmailCapability = "http://tizen.org/account/capability/email";
 
         /// <summary>
         /// This is photo capability string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly string PhotoCapability = "http://tizen.org/account/capability/photo";
 
         /// <summary>
         /// This is video capability string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly string VideoCapability = "http://tizen.org/account/capability/video";
 
         /// <summary>
         /// This is music capability string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly string MusicCapability = "http://tizen.org/account/capability/music";
 
         /// <summary>
         /// This is document capability string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly string DocumentCapability = "http://tizen.org/account/capability/document";
 
         /// <summary>
         /// This is message capability string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly string MessageCapability = "http://tizen.org/account/capability/message";
 
         /// <summary>
         /// This is game capability string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly string GameCapability = "http://tizen.org/account/capability/game";
 
         /// <summary>
         /// Retrieves all accounts details from the account database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>List of Accounts</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
         /// <exception cref="InvalidOperationException">In case of any DB error. </exception>
@@ -117,6 +128,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Retrieve an account with the account ID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="accountId"> The account Id to be searched.</param>
         /// <returns>Account instance with reference to the given id.</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
@@ -140,6 +152,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Retrieves all AccountProviders details from the account database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>List of AccountProviders</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
         /// <exception cref="InvalidOperationException">In case of any DB error</exception>
@@ -175,6 +188,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Retrieves the account provider information with application Id.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="appId">Application Id.</param>
         /// <returns>The AccountProvider instance associated with the given application Id.</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
@@ -198,6 +212,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Retrieves all the account providers information with feature.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="feature">The capability value to search for account providers.</param>
         /// <returns>Retrieves AccountProviders information with the capability name.</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
@@ -234,6 +249,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Inserts into the Database with the new account Infomration.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="account">New Account instance to be added.</param>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
         /// <privilege>http://tizen.org/privilege/account.write </privilege>
@@ -261,6 +277,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Updates the account details to the account database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="account">account instance to be updated.</param>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
         /// <privilege>http://tizen.org/privilege/account.write </privilege>
@@ -285,6 +302,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Deletes the account information from the Database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="account">Account instance to be deleted from the database.</param>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
         /// <privilege>http://tizen.org/privilege/account.write </privilege>
@@ -308,6 +326,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Deletes an account from the account database by user name.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="userName">The user name of the account to delete.</param>
         /// <param name="packageName">The package name of the account to delete.</param>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
@@ -327,6 +346,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Deletes an account from the account database by package name.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="packageName">The package name of the account to delete.</param>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
         /// <privilege>http://tizen.org/privilege/account.write </privilege>
@@ -346,6 +366,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Retrieves all accounts with the given user name.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="userName">The user name to search .</param>
         /// <returns>Accounts list matched with the user name</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
@@ -382,6 +403,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Retrieves all accounts with the given package name.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="packageName"> The package name to Search</param>
         /// <returns>Accounts list matched with the package name</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
@@ -418,6 +440,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Retrieves all accounts with the given cpability type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="type"> Capability type</param>
         /// <returns>Accounts list matched with the capability type</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
@@ -454,6 +477,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Retrieves all capabilities with the given account
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="accountId">account instance</param>
         /// <returns>Capabilities list as Dictionary of Capability type and State.</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
@@ -481,6 +505,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Gets the count of accounts in the account database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The number of accounts in the database</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
         /// <exception cref="InvalidOperationException">In case of any DB error </exception>
@@ -500,6 +525,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Updates the sync status of the given account.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="account"> Account for which sync status needs to be updated</param>
         /// <param name="status">Sync State</param>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
@@ -529,6 +555,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// ContentUpdated event is triggered when the media item info from DB changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// ContentUpdate event is triggered if the MediaInformaion updated/deleted or new Inforamtion is Inserted.
         /// </remarks>

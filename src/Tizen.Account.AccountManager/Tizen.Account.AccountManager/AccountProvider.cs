@@ -23,6 +23,7 @@ namespace Tizen.Account.AccountManager
     /// <summary>
     ///  Account Id.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AccountProvider : IDisposable
     {
         internal IntPtr _handle;
@@ -51,6 +52,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         ///  Account Id.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string AppId
         {
             get
@@ -69,6 +71,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         ///  Serviceprovider Id of the account provider.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ServiceProviderId
         {
             get
@@ -87,6 +90,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         ///  Icon path of an account provider.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string IconPath
         {
             get
@@ -105,6 +109,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         ///  Small icon path of an account provider.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string SmallIconPath
         {
             get
@@ -123,6 +128,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         ///  Flag for account provider If supports multiple accounts.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool MultipleAccountSupport
         {
             get
@@ -141,6 +147,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Retrieves all the capability information of the account provider.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
         /// <returns>
         /// list of capability information.
@@ -169,6 +176,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Gets the specific label information detail of an account provider.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="locale">
         /// The locale is specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code.
         /// For example, "ko_KR" or "ko-kr" for Korean, "en_US" or "en-us" for American English.
@@ -192,6 +200,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Gets the specific label information detail of an account provider.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="appId">
         /// The application ID to search
         /// </param>
@@ -222,6 +231,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Gets the label information detail of an account provider.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns> All the labels information for the given account provider.</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
         /// <exception cref="InvalidOperationException">In case of any DB error</exception>
@@ -248,6 +258,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Checks whether the given appId exists in the account provider DB.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="appId">The application ID to check.</param>
         /// <returns>returns true If App is supported </returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
@@ -274,6 +285,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Checks whether the given application ID supports the capability.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="appId">The application Id</param>
         /// <param name="capability">The capability information</param>
         /// <returns>
@@ -303,6 +315,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         ///     Retrieves capability information with application ID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="appId">application Id</param>
         /// <returns> Capability information list for the given appId.</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
@@ -331,6 +344,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Overloaded Dispose API for destroying the AccountProvider Handle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

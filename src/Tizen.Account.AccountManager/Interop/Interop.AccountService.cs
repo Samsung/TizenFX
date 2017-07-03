@@ -20,11 +20,13 @@ using System.Runtime.InteropServices;
 /// <summary>
 /// Interop for Account class APIs
 /// </summary>
+/// <since_tizen> 3 </since_tizen>
 internal static partial class Interop
 {
     /// <summary>
     /// Interop for Account class APIs
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     internal static partial class AccountService
     {
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_update_to_db_by_id", CallingConvention = CallingConvention.Cdecl)]

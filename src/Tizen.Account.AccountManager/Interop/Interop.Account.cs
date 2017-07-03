@@ -20,11 +20,13 @@ using Tizen.Account.AccountManager;
 /// <summary>
 /// Interop for Account class APIs
 /// </summary>
+/// <since_tizen> 3 </since_tizen>
 internal static partial class Interop
 {
     /// <summary>
     /// Interop for Account class APIs
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     internal static partial class Account
     {
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_create", CallingConvention = CallingConvention.Cdecl)]

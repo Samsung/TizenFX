@@ -19,21 +19,25 @@ namespace Tizen.Account.AccountManager
     /// <summary>
     /// Enumeration for the state of capability
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CapabilityState
     {
         /// <summary>
         /// Account capability is invalid
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InvalidState,
 
         /// <summary>
         /// Account capability is disabled
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Disabled,
 
         /// <summary>
         /// Account capability is enabled
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Enabled
     }
 
@@ -45,79 +49,94 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Account secrecy is invalid
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InvalidState,
 
         /// <summary>
         /// Account is not visible
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Invisible,
 
         /// <summary>
         /// Account is visible
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Visible
     }
 
     /// <summary>
     /// Enumeration for the account sync status.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AccountSyncState
     {
         /// <summary>
         /// Account sync is invalid
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         InvalidState,
 
         /// <summary>
         /// Account sync not supported
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         NotSupported,
 
         /// <summary>
         /// Account sync supported but all synchronization functionalities are off
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Off,
 
         /// <summary>
         /// Account sync support and sync status is idle
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Idle,
 
         /// <summary>
         /// Account sync support and sync status is running
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Running
     }
 
     /// <summary>
     /// Enumeration for the account auth type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AccountAuthType
     {
         /// <summary>
         /// Auth type is invalid
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Invalid,
 
         /// <summary>
         /// XAuth type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         XAuth,
 
         /// <summary>
         /// OAuth type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         OAuth,
 
         /// <summary>
         /// Client-Login type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ClientLogin
     }
 
     /// <summary>
     /// Account information change notification type
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     /// <remarks>
     /// When the account database is changed, You can distinguish one event type from the other which are set for subscribing notification.
     /// </remarks>
@@ -126,18 +145,22 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// The insert notification type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Insert,
         /// <summary>
         /// The delete notification type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Delete,
         /// <summary>
         /// The update notification type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Update,
         /// <summary>
         /// The sync update notification type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         syncUpdate
     }
 }

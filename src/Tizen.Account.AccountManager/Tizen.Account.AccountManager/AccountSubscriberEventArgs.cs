@@ -21,6 +21,7 @@ namespace Tizen.Account.AccountManager
     /// <summary>
     /// Event arguments passed when Event is triggered to notify that account is updated/removed from the account database.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AccountSubscriberEventArgs : EventArgs
     {
         private const string NotiInsert = "insert";
@@ -52,6 +53,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// The account event type
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AccountNotificationType EventType
         {
             get;
@@ -61,6 +63,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// The account ID to update
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int AccountId
         {
             get;
