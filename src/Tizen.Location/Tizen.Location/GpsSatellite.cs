@@ -23,6 +23,7 @@ namespace Tizen.Location
     /// <summary>
     /// A class which contains the functionality for obtaining information about Gps satellites in range and in use.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class GpsSatellite
     {
         private int _interval = 1;
@@ -37,6 +38,7 @@ namespace Tizen.Location
         /// The time interval between callback updates.
         /// Should be in the range [1~120] seconds.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public int Interval
@@ -64,6 +66,7 @@ namespace Tizen.Location
         /// <summary>
         /// The NMEAData from the Satellite.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location.</exception>
@@ -94,6 +97,7 @@ namespace Tizen.Location
         /// <summary>
         /// The Count of Active satellites.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
@@ -125,6 +129,7 @@ namespace Tizen.Location
         /// <summary>
         /// The Count of satellites in view.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
@@ -156,6 +161,7 @@ namespace Tizen.Location
         /// <summary>
         /// The list of satellites/last recorded satellites in view.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
@@ -196,6 +202,7 @@ namespace Tizen.Location
         /// <summary>
         /// The constructor of GpsSatellite class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="locator"> Locator object initilized using Gps.</param>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         public GpsSatellite(Locator locator)
@@ -224,6 +231,7 @@ namespace Tizen.Location
         /// (event) SatelliteStatusUpdated is raised whenever satellite information is updated.
         /// The callback will be invoked periodically (every Interval seconds).
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location.</exception>
@@ -295,11 +303,13 @@ namespace Tizen.Location
     /// <summary>
     /// A class which contains the information of the Satellite under consideration.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class SatelliteInformation
     {
         /// <summary>
         /// Class Constructor for SatelliteInformation class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="azimuth"> The azimuth value of the satellite in degrees.</param>
         /// <param name="elevation"> The elevation of the satellite in meters.</param>
         /// <param name="prn"> The Prn value of the satellite.</param>
@@ -317,26 +327,34 @@ namespace Tizen.Location
         /// <summary>
         /// The Azimuth information of the Satellite.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <param name="azimuth"> The azimuth value of the satellite in degrees.</param>
         public uint Azimuth { get; private set; }
 
         /// <summary>
         /// The Elevation information of the Satellite.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <param name="azimuth"> The azimuth value of the satellite in degrees.</param>
         public uint Elevation { get; private set; }
 
         /// <summary>
         /// The PRN of the Satellite.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <param name="azimuth"> The azimuth value of the satellite in degrees.</param>
         public uint Prn { get; private set; }
 
         /// <summary>
         /// The SNR of the Satellite.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public uint Snr { get; private set; }
 
         /// <summary>
         /// The operational status of the Satellite.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public bool Active { get; private set; }
     }
 }

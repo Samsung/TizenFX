@@ -23,6 +23,7 @@ namespace Tizen.Location
         /// <summary>
         /// Class Constructor for ZoneChangedEventArgs class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="state"> An enumeration of type BoundaryState.</param>
         /// <param name="latitude"> The latitude value[-90.0 ~ 90.0] (degrees).</param>
         /// <param name="longitude"> The longitude value[-180.0 ~ 180.0] (degrees).</param>
@@ -40,26 +41,31 @@ namespace Tizen.Location
         /// <summary>
         /// Get the Boundary State.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public BoundaryState BoundState { get; private set; }
 
         /// <summary>
         /// Get the latitude.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Latitude { get; private set; }
 
         /// <summary>
         /// Get the longitude.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Longitude { get; private set; }
 
         /// <summary>
         /// Get the altitude.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Altitude { get; private set; }
 
         /// <summary>
         /// Method to get the timestamp.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public DateTime Timestamp { get; private set; }
     }
 }

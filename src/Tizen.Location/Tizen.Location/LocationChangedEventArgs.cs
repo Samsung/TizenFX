@@ -21,12 +21,14 @@ namespace Tizen.Location
     /// <summary>
     /// An extended EventArgs class which contains the changed location information.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class LocationChangedEventArgs : EventArgs
     {
 
         /// <summary>
         /// Class Constructor for LocationUpdatedEventArgs class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="location"> Object of Location class.</param>
         public LocationChangedEventArgs(Location location)
         {
@@ -36,6 +38,7 @@ namespace Tizen.Location
         /// <summary>
         /// Get the Location Update information.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Location Location { get; private set; }
     }
 }

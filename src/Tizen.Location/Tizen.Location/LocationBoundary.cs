@@ -23,6 +23,7 @@ namespace Tizen.Location
     /// <summary>
     /// Abstract class which provides functions related to geographic bounds information.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public abstract class LocationBoundary : IDisposable
     {
         internal IntPtr handle;
@@ -31,12 +32,14 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the location boundary type.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public BoundaryType BoundaryType{ get; internal set; }
 
         internal LocationBoundary() { }
         /// <summary>
         /// The destructor of LocationBoundary class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         ~LocationBoundary()
         {
             Log.Info(Globals.LogTag, "The destructor of LocationBoundary class");
@@ -51,6 +54,7 @@ namespace Tizen.Location
         /// <summary>
         /// Checks if the boundary contains the specified geographical coordinates.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coordinate"> The coordinate which needs to be checked.</param>
         /// <returns>Returns a boolean value indicating whether or not the specified coordinate lies in the geographical area.</returns>
         public bool BoundaryContainsCoordinates(Coordinate coordinate)
@@ -62,6 +66,7 @@ namespace Tizen.Location
         /// <summary>
         /// The overidden Dispose method of the IDisposable class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public void Dispose()
@@ -99,11 +104,13 @@ namespace Tizen.Location
     /// Class representing a rectangular location boundary.
     /// Inherits the Abstract LocationBoundary class.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class RectangleBoundary : LocationBoundary
     {
         /// <summary>
         /// Constructor of the Rectangle boundary class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="topLeft"> The coordinate which constitute the top left handside of the rectangular boundary.</param>
         /// <param name="bottomRight"> The coordinate which constitute the bottom right handside of the rectangular boundary.</param>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
@@ -126,6 +133,7 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the Top Left handside coordinate of a rectangular boundary.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Coordinate TopLeft
         {
             get
@@ -138,6 +146,7 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the Bottom Right handside coordinate of a rectangular boundary.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Coordinate BottomRight
         {
             get
@@ -169,11 +178,13 @@ namespace Tizen.Location
     /// Class representing a circular location boundary.
     /// Inherits the Abstract LocationBoundary class.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class CircleBoundary : LocationBoundary
     {
         /// <summary>
         /// Constructor of the Circular boundary class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coordinate"> The coordinates which constitute the center of the circular boundary.</param>
         /// <param name="radius"> The radius value of the circular boundary.</param>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
@@ -196,6 +207,7 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the coordinate of the center of a circular boundary.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
@@ -210,6 +222,7 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the radius of a circular boundary.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
@@ -253,11 +266,13 @@ namespace Tizen.Location
     /// Class representing a polygonal location boundary.
     /// Inherits the Abstract LocationBoundary class.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class PolygonBoundary : LocationBoundary
     {
         /// <summary>
         /// Constructor of the polygon boundary class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coordinates"> The coordinates which constitute the polgonal boundary.</param>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
@@ -290,6 +305,7 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the list of coordinates which constitute a polygonal boundary
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
@@ -327,6 +343,7 @@ namespace Tizen.Location
     /// <summary>
     /// The structure which represents the  co-ordinates of a geographical location.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     [StructLayout(LayoutKind.Sequential)]
     public struct Coordinate
     {
@@ -334,12 +351,14 @@ namespace Tizen.Location
         /// Latitude component of the co-ordinate.
         /// Should have a value between [-90.0 ~ 90.0] (degrees).
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Latitude;
 
         /// <summary>
         /// Longitude component of the co-ordinate.
         /// Should have a value between [-180.0 ~ 180.0] (degrees).
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Longitude;
     }
 }

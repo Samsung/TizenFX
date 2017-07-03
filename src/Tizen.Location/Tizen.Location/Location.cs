@@ -23,6 +23,7 @@ namespace Tizen.Location
     /// A class which contains the details of the location rrequested.
     /// Includes the functionality to get the distance between locations.
     /// </summary>
+    /// <since_tizen>3</since_tizen>
     public class Location
     {
         private double _latitude;
@@ -36,6 +37,7 @@ namespace Tizen.Location
         /// <summary>
         /// The default constructor of Location Class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Location()
         {
         }
@@ -43,6 +45,7 @@ namespace Tizen.Location
         /// <summary>
         /// The parameterized constructor of Location Class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="latitude"> Latitude component of the device co-ordinate [-90.0 ~ 90.0] (degrees).</param>
         /// <param name="longitude"> Longitude component of the device co-ordinate[-180.0 ~ 180.0] (degrees).</param>
         /// <param name="altitude"> Altitude value.</param>
@@ -65,6 +68,7 @@ namespace Tizen.Location
         /// <summary>
         /// The current latitude [-90.0 ~ 90.0] (degrees).
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Latitude
         {
             get
@@ -90,6 +94,7 @@ namespace Tizen.Location
         /// <summary>
         /// The current longitude [-180.0 ~ 180.0] (degrees).
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Longitude
         {
             get
@@ -115,6 +120,7 @@ namespace Tizen.Location
         /// <summary>
         /// The current altitude (meters).
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Altitude
         {
             get
@@ -130,6 +136,7 @@ namespace Tizen.Location
         /// <summary>
         /// The Device Speed (km/h).
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Speed
         {
             get
@@ -145,6 +152,7 @@ namespace Tizen.Location
         /// <summary>
         /// The direction, degrees from the north.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Direction
         {
             get
@@ -160,6 +168,7 @@ namespace Tizen.Location
         /// <summary>
         /// The accuracy.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public double Accuracy
         {
             get
@@ -175,6 +184,7 @@ namespace Tizen.Location
         /// <summary>
         /// The time value when the measurement was done.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public DateTime Timestamp
         {
             get
@@ -191,6 +201,7 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the distance between the two given coordinates.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="startLatitude"> The latitude of the source location [-90.0 ~ 90.0] (degrees).</param>
         /// <param name="startLongitude"> The Longitude of the source location[-180.0 ~ 180.0] (degrees).</param>
         /// <param name="endLatitude"> The latitude of the source location [-90.0 ~ 90.0] (degrees).</param>
@@ -214,6 +225,7 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the distance between the current and specified location.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="location"> The location object to which distance is to be calculated.</param>
         /// <returns>Returns the distance to the specified location.</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>

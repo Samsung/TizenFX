@@ -23,6 +23,7 @@ namespace Tizen.Location
         /// <summary>
         /// Checks if the specified geographical positioning type is supported or not.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="locationType"> The back-end positioning method to be used for LBS.</param>
         /// <returns>Returns a boolean value indicating whether or not the specified method is supported.</returns>
         public static bool IsSupportedType(LocationType locationType)
@@ -35,6 +36,7 @@ namespace Tizen.Location
         /// <summary>
         /// Checks if the specified geographical positioning type is enabled or not.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="locationType"> The back-end positioning method to be used for LBS.</param>
         /// <returns>Returns a boolean value indicating whether or not the specified method is supported.</returns>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>

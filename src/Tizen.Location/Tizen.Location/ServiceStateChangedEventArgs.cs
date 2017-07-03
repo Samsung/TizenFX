@@ -26,6 +26,7 @@ namespace Tizen.Location
         /// <summary>
         /// Class Constructor for ServiceStateChangedEventArgs class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="state"> An enumeration of type LocationServiceState.</param>
         public ServiceStateChangedEventArgs(ServiceState state)
         {
@@ -35,6 +36,7 @@ namespace Tizen.Location
         /// <summary>
         /// Get the Service state.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public ServiceState ServiceState { get; private set; }
     }
 }

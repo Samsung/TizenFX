@@ -23,6 +23,7 @@ namespace Tizen.Location
         /// <summary>
         /// Class Constructor for SettingChangedEventArgs class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="method"> The positioing method used for Location information.</param>
         /// <param name="enable"> Status of the method.</param>
         public SettingChangedEventArgs(LocationType type, bool enable)
@@ -34,11 +35,13 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the currently used location method.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public LocationType LocationType { get; private set; }
 
         /// <summary>
         /// Method to get the setting value changed.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public bool IsEnabled { get; private set; }
     }
 }

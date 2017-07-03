@@ -23,6 +23,7 @@ namespace Tizen.Location
         /// <summary>
         /// Class Constructor for SatelliteStatusChangedEventArgs class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="activeCount"> The number of active satellites.</param>
         /// <param name="inviewCount"> The number of satellites in view.</param>
         /// <param name="timestamp"> The time at which the data has been extracted.</param>
@@ -36,16 +37,19 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the number of active satellites.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public uint ActiveCount { get; private set; }
 
         /// <summary>
         /// Gets the number of satellites in view.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public uint InViewCount { get; private set; }
 
         /// <summary>
         /// Get the timestamp.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public DateTime Timestamp { get; private set; }
     }
 }
