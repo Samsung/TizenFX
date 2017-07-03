@@ -1,6 +1,6 @@
 Name:       csapi-nui
 Summary:    dali-NUI
-Version:    0.2.39
+Version:    0.2.44
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0 and BSD-3-Clause and MIT
@@ -32,8 +32,8 @@ cp %{SOURCE1} .
 
 %build
 for ASM in %{Assemblies}; do
-%dotnet_build $ASM /p:DefineConstants="DOT_NET_CORE","DEBUG_ON"
-%dotnet_pack $ASM/$ASM.nuspec %{version}
+%dotnet_build $ASM
+%dotnet_pack $ASM
 done
 
 

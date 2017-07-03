@@ -682,5 +682,66 @@ namespace Tizen.NUI
                 return _customFocusAlgorithm.GetNextFocusableView(current, proposed, direction);
             }
         }
+
+
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public class FocusedViewEnterKeyEventArgs : EventArgs
+        {
+            private View _view;
+
+            public View View
+            {
+                get
+                {
+                    return _view;
+                }
+                set
+                {
+                    _view = value;
+                }
+            }
+        }
+
+        private EventHandler<FocusedViewEnterKeyEventArgs> _focusedViewEnterKeyEventHandler2;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void FocusedViewEnterKeyEventCallback2(IntPtr view);
+        private FocusedViewEnterKeyEventCallback2 _focusedViewEnterKeyEventCallback2;
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public event EventHandler<FocusedViewEnterKeyEventArgs> FocusedViewEnterKeyPressed
+        {
+            add
+            {
+                if (_focusedViewEnterKeyEventCallback2 == null)
+                {
+                    _focusedViewEnterKeyEventCallback2 = OnFocusedViewEnterKey2;
+                    FocusedViewEnterKeySignal().Connect(_focusedViewEnterKeyEventCallback2);
+                }
+                _focusedViewEnterKeyEventHandler2 += value;
+            }
+            remove
+            {
+                _focusedViewEnterKeyEventHandler2 -= value;
+
+                if (_focusedViewEnterKeyEventCallback2 == null && FocusedViewEnterKeySignal().Empty() == false)
+                {
+                    FocusedViewEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback2);
+                }
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        private void OnFocusedViewEnterKey2(IntPtr view)
+        {
+            FocusedViewActivatedEventArgs e = new FocusedViewActivatedEventArgs();
+
+            e.View = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
+
+            if (_focusedViewEnterKeyEventHandler != null)
+            {
+                _focusedViewEnterKeyEventHandler(this, e);
+            }
+        }
     }
 }

@@ -15,13 +15,13 @@
  *
  */
 
+using System;
+
 namespace Tizen.NUI
 {
 
-    /// <summary>
-    /// Three dimensional size
-    /// </summary>
-    internal class Size : global::System.IDisposable
+    [Obsolete("Please do not use! This will be changed to internal class")]
+    public class Size : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
