@@ -19,6 +19,7 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// Enumeration for key types of key manager.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum KeyType : int
     {
         /// <summary>

@@ -19,6 +19,7 @@ namespace Tizen.Security.SecureRepository.Crypto
     /// <summary>
     /// Enumeration for signature algorithm parameters.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     internal enum SignatureParameterName : int
     {
         /// <summary>

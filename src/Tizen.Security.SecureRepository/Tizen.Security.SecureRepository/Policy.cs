@@ -22,11 +22,13 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// A class for a policy for storing key, certificate, and binary data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Policy
     {
         /// <summary>
         /// A default constructor of Policy with default policy.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>The default value for Password is null and the default value for Extractabl is false.</remarks>
         public Policy()
         {
@@ -37,6 +39,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// A constructor of Key that takes the password and the flag for extractable.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="password">Used to encrypt data secure repository.</param>
         /// <param name="extractable">If true key may be extracted from secure repository.</param>
         public Policy(String password, bool extractable)
@@ -49,6 +52,7 @@ namespace Tizen.Security.SecureRepository
         /// Used to encrypt data secure repository. If it is not null, the data
         /// (or key, or certificate) is stored encrypted with this password inside secure repository
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public String Password
         {
             get; set;
@@ -57,6 +61,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// If true key may be extracted from secure repository.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Extractable
         {
             get; set;

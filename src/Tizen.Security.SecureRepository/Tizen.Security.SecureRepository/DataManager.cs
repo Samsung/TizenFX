@@ -23,11 +23,13 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// This class provides the methods storing and retrieving data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class DataManager : Manager
     {
         /// <summary>
         /// Gets data from secure repository.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of a certificate to retrieve.</param>
         /// <param name="password">
         /// The password used in decrypting a data value.
@@ -68,6 +70,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Gets all alias of data which the client can access.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>All alias of data which the client can access.</returns>
         /// <exception cref="ArgumentException">No alias to get.</exception>
         static public IEnumerable<string> GetAliases()
@@ -91,6 +94,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Stores data inside secure repository based on the provided policy.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of data to be stored.</param>
         /// <param name="data">The binary value to be stored.</param>
         /// <param name="policy">The policy about how to store data securely.</param>

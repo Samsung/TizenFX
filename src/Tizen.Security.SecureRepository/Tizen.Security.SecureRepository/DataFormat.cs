@@ -19,6 +19,7 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// Enumeration for data format
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum DataFormat : int
     {
         /// <summary>

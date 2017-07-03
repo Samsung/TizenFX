@@ -23,12 +23,14 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// Class that represents a key.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Key
     {
         /// <summary>
         /// A constructor of Key that takes the binary, its type, and optional password
         /// of binary.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="binary">
         /// The binary value of a key. This binary may be encrypted with binaryPassword.
         /// </param>
@@ -82,6 +84,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// The binary value of a key.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Binary
         {
             get; set;
@@ -90,6 +93,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// The key's type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public KeyType Type
         {
             get; set;
@@ -98,6 +102,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// The password used to decrypt binary when binary is encrypted. It's optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string BinaryPassword
         {
             get; set;

@@ -19,6 +19,7 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// Enumeration for elliptic curve
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum EllipticCurveType : int
     {
         /// <summary>

@@ -23,11 +23,13 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// This class provides the methods handling certificates.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CertificateManager : Manager
     {
         /// <summary>
         /// Gets a certificate from secure repository.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of a certificate to retrieve.</param>
         /// <param name="password">
         /// The password used in decrypting a certificate value. If password of
@@ -69,6 +71,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Gets all alias of certificates which the client can access.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>All alias of certificates which the client can access.</returns>
         /// <exception cref="ArgumentException">No alias to get.</exception>
         static public IEnumerable<string> GetAliases()
@@ -92,6 +95,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Stores a certificate inside secure repository based on the provided policy.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of a certificate to be stored.</param>
         /// <param name="cert">The certificate's binary value to be stored.</param>
         /// <param name="policy">
@@ -120,6 +124,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Verifies a certificate chain and returns that chain.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="certificate">The certificate to be verified.</param>
         /// <param name="untrustedCertificates">
         /// The untrusted CA certificates to be used in verifying a certificate chain.
@@ -182,6 +187,7 @@ namespace Tizen.Security.SecureRepository
         /// Verifies a certificate chain and returns that chain using user entered
         /// trusted and untrusted CA certificates.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="certificate">The certificate to be verified.</param>
         /// <param name="untrustedCertificates">
         /// The untrusted CA certificates to be used in verifying a certificate chain.
@@ -252,6 +258,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Perform OCSP which checks certificate is whether revoked or not.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="certificateChain">
         /// Valid certificate chain to perform OCSP check.
         /// </param>

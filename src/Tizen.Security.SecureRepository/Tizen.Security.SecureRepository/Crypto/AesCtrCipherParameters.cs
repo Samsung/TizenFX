@@ -21,11 +21,13 @@ namespace Tizen.Security.SecureRepository.Crypto
     /// <summary>
     /// A class holding parameters for AES algorithm with counter mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AesCtrCipherParameters : AesCipherParameters
     {
         /// <summary>
         /// A default constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>The CipherAlgorithmType in CipherParameters is set to CipherAlgorithmType.AesCtr.</remarks>
         public AesCtrCipherParameters() : base(CipherAlgorithmType.AesCtr)
         {
@@ -34,6 +36,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// Length of counter block in bits.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>Optional, only 128b is supported at the moment.</remarks>
         /// <exception cref="ArgumentOutOfRangeException">value should be positive.</exception>
         public long CounterLength

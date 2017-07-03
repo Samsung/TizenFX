@@ -19,11 +19,13 @@ namespace Tizen.Security.SecureRepository.Crypto
     /// <summary>
     /// A class holding parameters for ECDSA signature algorithm.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class EcdsaSignatureParameters : SignatureParameters
     {
         /// <summary>
         /// A default constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public EcdsaSignatureParameters() : base(SignatureAlgorithmType.Ecdsa)
         {
         }

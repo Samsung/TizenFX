@@ -19,11 +19,13 @@ namespace Tizen.Security.SecureRepository.Crypto
     /// <summary>
     /// A class holding parameters for AES algorithm with CBC mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AesCbcCipherParameters : AesCipherParameters
     {
         /// <summary>
         /// A default constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>The CipherAlgorithmType in CipherParameters is set to CipherAlgorithmType.AesCbc.</remarks>
         public AesCbcCipherParameters() : base(CipherAlgorithmType.AesCbc)
         {

@@ -21,6 +21,7 @@ namespace Tizen.Security.SecureRepository.Crypto
     /// <summary>
     /// This class provides the methods creating and verifying a signature.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Signature
     {
         private SignatureParameters _parameters;
@@ -28,6 +29,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// A constructor of Signature that takes the algorithm specific parameters.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="parameters">The algorithm specific parameters.</param>
         public Signature(SignatureParameters parameters)
         {
@@ -37,6 +39,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// The algorithm specific parameters.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SignatureParameters Parameters
         {
             get { return _parameters; }
@@ -46,6 +49,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// Creates a signature on a given message using a private key and returns
         /// the signature.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="privateKeyAlias">The name of private key.</param>
         /// <param name="password">
         /// The password used in decrypting a private key value.
@@ -113,6 +117,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// Verifies a given signature on a given message using a public key and returns
         /// the signature status.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="publicKeyAlias">The name of public key.</param>
         /// <param name="password">
         /// The password used in decrypting a public key value.

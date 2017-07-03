@@ -21,11 +21,13 @@ namespace Tizen.Security.SecureRepository.Crypto
     /// <summary>
     /// A class holding parameters for AES algorithm with GCM mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AesGcmCipherParameters : AesCipherParameters
     {
         /// <summary>
         /// A default constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>The CipherAlgorithmType in CipherParameters is set to CipherAlgorithmType.AesGcm.</remarks>
         public AesGcmCipherParameters() : base(CipherAlgorithmType.AesGcm)
         {
@@ -34,6 +36,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// GCM tag length in bits.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>One of {32, 64, 96, 104, 112, 120, 128} (optional, if not present the length 128 is used.</remarks>
         /// <exception cref="ArgumentOutOfRangeException">TagLength should be one of {32, 64, 96, 104, 112, 120, 128}</exception>
         public long TagLength
@@ -60,6 +63,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// Additional authentication data(optional)
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] AAD
         {
             get { return GetBuffer(CipherParameterName.AAD); }

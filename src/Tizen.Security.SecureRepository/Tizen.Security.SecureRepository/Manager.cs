@@ -22,11 +22,13 @@ namespace Tizen.Security.SecureRepository
     /// This class is a base class of XxxManager classes. It provides the common methods
     /// for all sub classes.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Manager
     {
         /// <summary>
         /// Creates a new full alias which is concatenation of owner id and alias.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="ownerId">Data owner's id. This should be package id if data
         /// owner is application. If you want to access data stored by system services,
         /// use CreateFullSystemAlias() instead.</param>
@@ -40,6 +42,7 @@ namespace Tizen.Security.SecureRepository
         /// Creates a new full alias which is concatenation of system service's
         /// owner id and alias.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">Data alias which is owned by system service.</param>
         static public string CreateFullSystemAlias(string alias)
         {
@@ -49,6 +52,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Removes a an entry (no matter of type) from the key manager.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">Item alias to be removed.</param>
         /// <exception cref="ArgumentNullException">alias is null.</exception>
         /// <exception cref="ArgumentException">alias is invalid format.</exception>
@@ -70,6 +74,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Allows another application to access client's application data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">Item alias for which access will be granted.</param>
         /// <param name="otherPackageId">
         /// Package id of the application that will gain access rights.

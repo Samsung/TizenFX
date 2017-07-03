@@ -25,6 +25,7 @@ namespace Tizen.Security.SecureRepository
     /// Class that represents a PKCS#12 contents.
     /// It has a private key or its certificate or all the members of a chain of trust.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Pkcs12
     {
         private SafeCertificateListHandle _certChainHandle = null;
@@ -32,6 +33,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Load Pkcs12 from the given PKCS#12 file path.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filePath">The path of PKCS12 file to be loaded.</param>
         /// <param name="filePassword">The passphrase used to decrypt the PCKS12 file.
         /// If PKCS12 file is not encrypted, passphrase can be null.</param>
@@ -66,6 +68,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// A constructor of Key that takes a private key.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="privateKey">A private key.</param>
         public Pkcs12(Key privateKey)
         {
@@ -78,6 +81,7 @@ namespace Tizen.Security.SecureRepository
         /// A constructor of Key that takes a private key, its corresponding certicate,
         /// and CA's certificate chain.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="privateKey">A private key.</param>
         /// <param name="certificate">A certificate corresponding the private key</param>
         /// <param name="caChain">
@@ -148,6 +152,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// A private key.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Key PrivateKey
         {
             get; set;
@@ -156,6 +161,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// A certificate corresponding the private key.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Certificate Certificate
         {
             get; set;
@@ -164,6 +170,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// A certificate chain of CA(Certificate Authority) that issued the certificate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<Certificate> CaChain
         {
             get

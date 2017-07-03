@@ -20,6 +20,7 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// Enumeration for permissions to access/modify alias.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum Permission : int
     {
         /// <summary>

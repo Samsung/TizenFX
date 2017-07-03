@@ -22,6 +22,7 @@ namespace Tizen.Security.SecureRepository.Crypto
     /// <summary>
     /// A abstract class holding parameters for signing and verification.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     abstract public class SignatureParameters
     {
         private Dictionary<SignatureParameterName, int> _parameters;
@@ -29,6 +30,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// Signature algorithm type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SignatureAlgorithmType SignatureAlgorithm
         {
             get { return (SignatureAlgorithmType)Get(SignatureParameterName.AlgorithmType); }
@@ -37,6 +39,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// Hash algorithm used in signing anve verification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public HashAlgorithm HashAlgorithm
         {
             get { return (HashAlgorithm)Get(SignatureParameterName.HashAlgorithm); }

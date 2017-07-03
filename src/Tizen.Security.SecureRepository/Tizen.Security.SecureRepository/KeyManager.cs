@@ -22,11 +22,13 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// This class provides the methods storing, retrieving, and creating keys.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class KeyManager : Manager
     {
         /// <summary>
         /// Gets a key from secure repository.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of a key to retrieve.</param>
         /// <param name="password">
         /// The password used in decrypting a key value.
@@ -67,6 +69,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Gets all alias of keys which the client can access.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>All alias of keys which the client can access.</returns>
         /// <exception cref="ArgumentException">No alias to get.</exception>
         static public IEnumerable<string> GetAliases()
@@ -90,6 +93,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Stores a key inside secure repository based on the provided policy.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of a key to be stored.</param>
         /// <param name="key">The key's binary value to be stored.</param>
         /// <param name="policy">The policy about how to store a key securely.</param>
@@ -125,6 +129,7 @@ namespace Tizen.Security.SecureRepository
         /// Creates RSA private/public key pair and stores them inside secure repository
         /// based on each policy.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="size">
         /// The size of key strength to be created. 1024, 2048, and 4096 are supported.
         /// </param>
@@ -170,6 +175,7 @@ namespace Tizen.Security.SecureRepository
         /// Creates DSA private/public key pair and stores them inside secure repository
         /// based on each policy.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="size">
         /// The size of key strength to be created. 1024, 2048, 3072, and 4096 are
         /// supported.
@@ -216,6 +222,7 @@ namespace Tizen.Security.SecureRepository
         /// Creates ECDSA private/public key pair and stores them inside secure repository
         /// based on each policy.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="type">The type of elliptic curve of ECDSA.</param>
         /// <param name="privateKeyAlias">The name of private key to be stored.</param>
         /// <param name="publicKeyAlias">The name of public key to be stored.</param>
@@ -257,6 +264,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Creates AES key and stores it inside secure repository based on each policy.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="size">
         /// The size of key strength to be created. 128, 192 and 256 are supported.
         /// </param>

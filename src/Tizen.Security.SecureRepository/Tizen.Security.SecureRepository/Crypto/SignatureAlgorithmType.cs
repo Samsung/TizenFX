@@ -19,6 +19,7 @@ namespace Tizen.Security.SecureRepository.Crypto
     /// <summary>
     /// Enumeration for signature algorithm types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum SignatureAlgorithmType : int
     {
         /// <summary>

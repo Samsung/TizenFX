@@ -25,6 +25,7 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// Enumeration for OCSP status.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum OcspStatus : int
     {
         /// <summary>

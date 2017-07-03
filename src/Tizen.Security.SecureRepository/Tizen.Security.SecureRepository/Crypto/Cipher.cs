@@ -21,6 +21,7 @@ namespace Tizen.Security.SecureRepository.Crypto
     /// <summary>
     /// This class provides the methods encrypting and decrypting data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Cipher
     {
         private readonly CipherParameters _parameters;
@@ -28,6 +29,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// A constructor of Cipher that takes the algorithm specific parameters.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="parameters">The algorithm specific parameters.</param>
         public Cipher(CipherParameters parameters)
         {
@@ -37,6 +39,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// The algorithm specific parameters.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CipherParameters Parameters
         {
             get { return _parameters; }
@@ -45,6 +48,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// Decrypts data using selected key and algorithm.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="keyAlias">Alias of the key to be used for decryption.</param>
         /// <param name="password">
         /// The password used in decrypting a key value. If password of policy is
@@ -98,6 +102,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// Encrypts data using selected key and algorithm.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="keyAlias">Alias of the key to be used for encryption.</param>
         /// <param name="password">
         /// The password used in decrypting a key value. If password of policy is

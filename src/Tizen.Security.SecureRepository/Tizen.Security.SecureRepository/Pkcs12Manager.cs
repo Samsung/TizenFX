@@ -22,11 +22,13 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// This class provides the methods storing, retrieving Pkcs12 contents.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Pkcs12Manager : Manager
     {
         /// <summary>
         /// Gets Pkcs12 contents from secure repository.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of data to retrieve.</param>
         /// <param name="keyPassword">
         /// The password used in decrypting a private key value. If password of
@@ -74,6 +76,7 @@ namespace Tizen.Security.SecureRepository
         /// Stores PKCS12's contents inside key manager based on the provided policies.
         /// All items from the PKCS12 will use the same alias.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of a data to be stored.</param>
         /// <param name="pkcs12">The pkcs12 data to be stored.</param>
         /// <param name="keyPolicy">

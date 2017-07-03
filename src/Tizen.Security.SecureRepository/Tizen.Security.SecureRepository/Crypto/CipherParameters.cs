@@ -21,6 +21,7 @@ namespace Tizen.Security.SecureRepository.Crypto
     /// <summary>
     /// A abstract class holding parameters for encryption and decryption.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     abstract public class CipherParameters
     {
         private SafeCipherParametersHandle _handle;
@@ -28,6 +29,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// <summary>
         /// Cipher algorithm type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CipherAlgorithmType Algorithm
         {
             get

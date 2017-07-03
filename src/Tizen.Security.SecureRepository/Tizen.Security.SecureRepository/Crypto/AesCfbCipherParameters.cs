@@ -19,11 +19,13 @@ namespace Tizen.Security.SecureRepository.Crypto
     /// <summary>
     /// A class holding parameters for AES algorithm with CFB mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AesCfbCipherParameters : AesCipherParameters
     {
         /// <summary>
         /// A default constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>The CipherAlgorithmType in CipherParameters is set to CipherAlgorithmType.AesCfb.</remarks>
         public AesCfbCipherParameters() : base(CipherAlgorithmType.AesCfb)
         {

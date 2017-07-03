@@ -23,11 +23,13 @@ namespace Tizen.Security.SecureRepository
     /// <summary>
     /// Class that represents a certificate.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Certificate
     {
         /// <summary>
         /// Load Certificate from the given file path.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filePath">The path of certificate file to be loaded.</param>
         /// <returns>Loaded certificate class instance.</returns>
         /// <exception cref="ArgumentNullException">
@@ -54,6 +56,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// A constructor of Certificate that takes the binary and its format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="binary">The binary data of a certificate.</param>
         /// <param name="format">The format of the binary data.</param>
         public Certificate(byte[] binary, DataFormat format)
@@ -100,6 +103,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// The binary value of a certificate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Binary
         {
             get; set;
@@ -108,6 +112,7 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// The format of the binary value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DataFormat Format
         {
             get; set;
