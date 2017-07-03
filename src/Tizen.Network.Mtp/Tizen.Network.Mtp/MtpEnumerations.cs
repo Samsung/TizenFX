@@ -21,6 +21,7 @@ namespace Tizen.Network.Mtp
     /// <summary>
     /// Enumeration for Mtp storage type.
     /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     public enum MtpStorageType
     {
         /// <summary>
@@ -48,6 +49,7 @@ namespace Tizen.Network.Mtp
     /// <summary>
     /// Enumeration for Mtp file type.
     /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     public enum MtpFileType
     {
         /// <summary> 
@@ -243,6 +245,7 @@ namespace Tizen.Network.Mtp
     /// <summary>
     /// Enumeration for Mtp Event type.
     /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     public enum MtpEventType
     {
         /// <summary>

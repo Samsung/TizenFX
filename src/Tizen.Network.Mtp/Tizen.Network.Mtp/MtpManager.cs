@@ -27,6 +27,7 @@ namespace Tizen.Network.Mtp
     /// http://tizen.org/privilege/mediastorage is needed if input or output path are relevant to media storage.
     /// http://tizen.org/privilege/externalstorage is needed if input or output path are relevant to external storage.
     /// </remarks>
+    /// <since_tizen> 5 </since_tizen>
     static public class MtpManager
     {
         /// <summary>
@@ -37,6 +38,7 @@ namespace Tizen.Network.Mtp
         /// <exception cref="NotSupportedException">Thrown when Mtp is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <since_tizen> 5 </since_tizen>
         static public IEnumerable<MtpDevice> GetDevices()
         {
             try
@@ -52,6 +54,7 @@ namespace Tizen.Network.Mtp
         /// <summary>
         /// MtpStateChanged is raised when the Mtp device state is changed.
         /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         static public event EventHandler<MtpStateChangedEventArgs> MtpStateChanged
         {
             add

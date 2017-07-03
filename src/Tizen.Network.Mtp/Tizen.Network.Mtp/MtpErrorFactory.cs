@@ -27,6 +27,7 @@ namespace Tizen.Network.Mtp
     /// <summary>
     /// Enumeration for Mtp Error.
     /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     public enum MtpError
     {
         None = ErrorCode.None,

@@ -22,6 +22,7 @@ namespace Tizen.Network.Mtp
     /// <summary>
     /// An extended EventArgs class which contains Mtp event.
     /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     public class MtpStateChangedEventArgs : EventArgs
     {
         private MtpEventType _type = MtpEventType.Unknown;
@@ -36,6 +37,7 @@ namespace Tizen.Network.Mtp
         /// <summary>
         /// The Mtp event type.
         /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public MtpEventType Type
         {
             get
@@ -47,6 +49,7 @@ namespace Tizen.Network.Mtp
         /// <summary>
         /// The event parameter.
         /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public int EventParameter
         {
             get

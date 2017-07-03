@@ -23,6 +23,7 @@ namespace Tizen.Network.Mtp
     /// <summary>
     /// A class for Mtp Object information. It allows applications to handle object information.
     /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     public class MtpObject : IDisposable
     {
         private int _deviceHandle = -1;
@@ -33,6 +34,7 @@ namespace Tizen.Network.Mtp
         /// Gets the filename of the object information.
         /// </summary>
         /// <value>File name of object.</value>
+        /// <since_tizen> 5 </since_tizen>
         public string FileName
         {
             get
@@ -52,6 +54,7 @@ namespace Tizen.Network.Mtp
         /// Gets the keywords of the object information.
         /// </summary>
         /// <value>Keywords of object.</value>
+        /// <since_tizen> 5 </since_tizen>
         public string Keywords
         {
             get
@@ -71,6 +74,7 @@ namespace Tizen.Network.Mtp
         /// Gets the association description of the object information.
         /// </summary>
         /// <value>Association description of object.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int AssociationDescription
         {
             get
@@ -89,6 +93,7 @@ namespace Tizen.Network.Mtp
         /// Gets the association type of the object information.
         /// </summary>
         /// <value>Association type of object.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int AssociationType
         {
             get
@@ -107,6 +112,7 @@ namespace Tizen.Network.Mtp
         /// Gets the size of the object information.
         /// </summary>
         /// <value>Size of object.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int Size
         {
             get
@@ -125,6 +131,7 @@ namespace Tizen.Network.Mtp
         /// Gets the parent object handle of the object information.
         /// </summary>
         /// <value>Handle of Parent object.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int ParentObjectHandle
         {
             get
@@ -143,6 +150,7 @@ namespace Tizen.Network.Mtp
         ///  Gets the mtp storage of the object information.
         /// </summary>
         /// <value>Storage of object.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int Storage
         {
             get
@@ -161,6 +169,7 @@ namespace Tizen.Network.Mtp
         /// Gets the object created time of the object information.
         /// </summary>
         /// <value>Date created of object.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int DateCreated
         {
             get
@@ -179,6 +188,7 @@ namespace Tizen.Network.Mtp
         /// Gets the object modified time of the object information.
         /// </summary>
         /// <value>Date modified of object.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int DateModified
         {
             get
@@ -197,6 +207,7 @@ namespace Tizen.Network.Mtp
         /// Gets the file type of the object information.
         /// </summary>
         /// <value>File type of object.</value>
+        /// <since_tizen> 5 </since_tizen>
         public MtpFileType FileType
         {
             get
@@ -215,6 +226,7 @@ namespace Tizen.Network.Mtp
         /// Gets the image bit depth of the object information.
         /// </summary>
         /// <value>Bit depth of image.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int ImageBitDepth
         {
             get
@@ -233,6 +245,7 @@ namespace Tizen.Network.Mtp
         /// Gets the image pixel width of the object information.
         /// </summary>
         /// <value>Pixel width of image.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int ImagePixelWidth
         {
             get
@@ -251,6 +264,7 @@ namespace Tizen.Network.Mtp
         /// Gets the image pixel height of the object information.
         /// </summary>
         /// <value>Pixel height of image.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int ImagePixelHeight
         {
             get
@@ -269,6 +283,7 @@ namespace Tizen.Network.Mtp
         /// Gets the thumbnail size of the object information.
         /// </summary>
         /// <value>Size of thumbnail.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int ThumbnailSize
         {
             get
@@ -287,6 +302,7 @@ namespace Tizen.Network.Mtp
         /// Gets the thumbnail file type of the object information.
         /// </summary>
         /// <value>File type of thumbnail.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int ThumbnailFileType
         {
             get
@@ -305,6 +321,7 @@ namespace Tizen.Network.Mtp
         /// Gets the thumbnail pixel width of the object information.
         /// </summary>
         /// <value>Pixel width of thumbnail.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int ThumbnailPixelWidth
         {
             get
@@ -323,6 +340,7 @@ namespace Tizen.Network.Mtp
         /// Gets the thumbnail pixel height of the object information.
         /// </summary>
         /// <value>Pixel height of thumbnail.</value>
+        /// <since_tizen> 5 </since_tizen>
         public int ThumbnailPixelHeight
         {
             get
