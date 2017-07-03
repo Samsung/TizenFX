@@ -22,6 +22,7 @@ namespace Tizen.Network.Nfc
     /// <summary>
     /// Enumeration for Nfc Error.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum NfcError
     {
         None = ErrorCode.None,

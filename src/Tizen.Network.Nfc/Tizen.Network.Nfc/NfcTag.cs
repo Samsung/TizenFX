@@ -24,6 +24,7 @@ namespace Tizen.Network.Nfc
     /// <summary>
     /// A class for managing the Tag information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NfcTag : IDisposable
     {
         private bool disposed = false;
@@ -32,6 +33,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The type of NFC tag.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public NfcTagType Type
         {
             get
@@ -49,6 +51,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Whether the given NFC tag supports NDEF messages.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsSupportNdef
         {
             get
@@ -67,6 +70,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The maximum NDEF message size that can be stored in NFC tag.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint MaximumNdefSize
         {
             get
@@ -84,6 +88,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The size of NDEF message that stored in the tag.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint NdefSize
         {
             get
@@ -130,6 +135,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Retrieves all tag information.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>List of NfcTagInformation objects.</returns>
         public IEnumerable<NfcTagInformation> ForeachInformation()
         {
@@ -162,6 +168,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Transceives the data of the raw format card.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="buffer">The binary data for parameter or additional commands.</param>
         public Task<byte[]> TransceiveAsync(byte[] buffer)
         {
@@ -192,6 +199,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Reads NDEF formatted data from NFC tag.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Task<NfcNdefMessage> ReadNdefMessageAsync()
         {
             var task = new TaskCompletionSource<NfcNdefMessage>();
@@ -222,6 +230,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Writes NDEF formatted data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="ndefMessage">The NfcNdefMessage object.</param>
         public Task<NfcError> WriteNdefMessageAsync(NfcNdefMessage ndefMessage)
         {
@@ -246,6 +255,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Formats the detected tag that can store NDEF message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="keyValue">The key value that may need to format the tag.</param>
         public Task<NfcError> FormatNdefMessageAsync(byte[] keyValue)
         {

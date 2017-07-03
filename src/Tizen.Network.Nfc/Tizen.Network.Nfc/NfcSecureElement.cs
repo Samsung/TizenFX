@@ -23,6 +23,7 @@ namespace Tizen.Network.Nfc
     /// <summary>
     /// A class for managing the Secure Element information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NfcSecureElement : IDisposable
     {
         private IntPtr _secureElementHandle = IntPtr.Zero;
@@ -60,6 +61,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Send APDU(Application Protocol Data Unit) response to CLF(Contactless Front-end).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="response">The bytes array of response data.</param>
         /// <param name="responseLength">The size of response bytes array.</param>
         public void HceSendApduResponse(byte[] response, uint responseLength)

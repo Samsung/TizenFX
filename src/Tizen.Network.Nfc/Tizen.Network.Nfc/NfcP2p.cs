@@ -24,6 +24,7 @@ namespace Tizen.Network.Nfc
     /// <summary>
     /// A class for managing the p2p target information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NfcP2p : IDisposable
     {
         private IntPtr _p2pTargetHandle = IntPtr.Zero;
@@ -36,6 +37,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The event for receiving data from NFC peer-to-peer target.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<P2pDataReceivedEventArgs> P2pDataReceived
         {
             add
@@ -87,6 +89,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Sends data to NFC peer-to-peer target.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="ndefMessage">NfcNdefMessage object.</param>
         public Task<NfcError> SendNdefMessageAsync(NfcNdefMessage ndefMessage)
         {
@@ -132,6 +135,7 @@ namespace Tizen.Network.Nfc
     /// <summary>
     /// A class for managing the snep(Simple NDEF Exchange Protocol) information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NfcSnep : IDisposable
     {
         private IntPtr _snepHandle = IntPtr.Zero;

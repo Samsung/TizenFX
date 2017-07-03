@@ -23,6 +23,7 @@ namespace Tizen.Network.Nfc
     /// <summary>
     /// A class for Ndef Record information. It allows applications to use Ndef Record information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NfcNdefRecord : IDisposable
     {
         private bool disposed = false;
@@ -31,6 +32,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The record ID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Id
         {
             get
@@ -51,6 +53,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The record payload.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Payload
         {
             get
@@ -71,6 +74,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The record type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Type
         {
             get
@@ -91,6 +95,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The record TNF(Type Name Format) value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public NfcRecordTypeNameFormat Tnf
         {
             get
@@ -108,6 +113,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The text of text type Ndef record.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Text
         {
             get
@@ -125,6 +131,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The language code of text type Ndef record.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string LanguageCode
         {
             get
@@ -142,6 +149,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The encoding type of text type Ndef record.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public NfcEncodeType EncodeType
         {
             get
@@ -159,6 +167,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The URI of uri type Ndef record.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Uri
         {
             get
@@ -176,6 +185,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The mime type of mime type Ndef record.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string MimeType
         {
             get
@@ -193,6 +203,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Creates a record with given parameter value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="format">The type name format.</param>
         /// <param name="type">The specified type name.</param>
         /// <param name="id">The record ID.</param>
@@ -212,6 +223,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Creates a record with text type payload.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="text">The encoded text.</param>
         /// <param name="languageCode">The language code string value followed by IANA[RFC 3066] (ex: en-US, ko-KR).</param>
         /// <param name="encode">The encoding type.</param>
@@ -229,6 +241,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Creates a record with text type payload.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="uri">The URI string that will be stored in the payload.</param>
         public NfcNdefRecord(string uri)
         {
@@ -244,6 +257,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Creates a record with text type payload.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="mimeType">The mime type [RFC 2046] (ex. text/plain, image/jpeg ) This value is stored in type field.</param>
         /// <param name="data">The data in form of bytes array.</param>
         /// <param name="dataSize">The size of data.</param>

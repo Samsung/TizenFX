@@ -23,6 +23,7 @@ namespace Tizen.Network.Nfc
     /// <summary>
     /// A class for Ndef Message information. It allows applications to use Ndef Message information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NfcNdefMessage : IDisposable
     {
         private bool disposed = false;
@@ -32,6 +33,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The number of record in NDEF message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int RecordCount
         {
             get
@@ -49,6 +51,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Creates a object for the access point.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public NfcNdefMessage()
         {
             int ret = Interop.Nfc.NdefMessage.Create(out _messageHandle);
@@ -98,6 +101,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Appends a record into NDEF message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Whether appending the record succeeded.</returns>
         /// <param name="record">The NfcNdefRecord object that will be appended into NDEF message.</param>
         public bool AppendRecord(NfcNdefRecord record)
@@ -121,6 +125,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Inserts a record at index into NDEF message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Whether insterting the record succeeded.</returns>
         /// <param name="index">The index of record ( starts from 0 ).</param>
         /// <param name="record">The NfcNdefRecord object that will be appended into NDEF message.</param>
@@ -145,6 +150,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Inserts a record at index into NDEF message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Whether removing the record succeeded.</returns>
         /// <param name="index">The index of record ( starts from 0 ).</param>
         public bool RemoveRecord(int index)
@@ -164,6 +170,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Gets record by index.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The NfcNdefRecord object.</returns>
         /// <param name="index">The index of record ( starts from 0 ).</param>
         public NfcNdefRecord GetRecord(int index)

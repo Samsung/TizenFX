@@ -22,6 +22,7 @@ namespace Tizen.Network.Nfc
     /// <summary>
     /// Structure containing the information of Tag data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NfcTagInformation
     {
         private string _key;
@@ -36,6 +37,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Key value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Key
         {
             get
@@ -46,6 +48,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Information value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] InformationValue
         {
             get
@@ -58,6 +61,7 @@ namespace Tizen.Network.Nfc
     /// <summary>
     /// Structure containing the information of Secure element Aid(Application Identifier).
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NfcRegisteredAidInformation
     {
         private NfcSecureElementType _seType;
@@ -74,6 +78,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Secure Element Type value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public NfcSecureElementType SeType
         {
             get
@@ -83,9 +88,9 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// 
         /// The targeted Aid (Application Identifier) value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Aid
         {
             get
@@ -97,6 +102,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Read-only value. If this value is false, there are restrictions to the operation on this Aid.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool ReadOnly
         {
             get

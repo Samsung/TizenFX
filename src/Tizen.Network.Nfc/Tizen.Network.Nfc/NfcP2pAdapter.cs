@@ -23,6 +23,7 @@ namespace Tizen.Network.Nfc
     /// <summary>
     /// A class for NFC P2P(Peer to Peer) mode. It allows applications to handle P2P informations.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/nfc</privilege>
     public class NfcP2pAdapter : IDisposable
     {
@@ -36,6 +37,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The event for  receiving NFC peer-to-peer target discovered notification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<P2pTargetDiscoveredEventArgs> P2pTargetDiscovered
         {
             add
@@ -81,6 +83,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Gets current connected p2p target.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>NfcP2p object.</returns>
         public NfcP2p GetConnectedTarget()
         {

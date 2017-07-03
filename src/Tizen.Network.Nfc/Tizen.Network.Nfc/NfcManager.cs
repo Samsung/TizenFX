@@ -24,12 +24,14 @@ namespace Tizen.Network.Nfc
     /// <summary>
     /// A class for NFC management. It allows applications to use NFC service.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/nfc</privilege>
     static public class NfcManager
     {
         /// <summary>
         /// Whether NFC is supported.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         static public bool IsSupported
         {
             get
@@ -55,6 +57,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// NFC Activation state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         static public bool IsActivated
         {
             get
@@ -80,6 +83,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The Tag Filter type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         static public NfcTagFilterType TagFilterType
         {
             get
@@ -125,6 +129,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The Secure Element type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         static public NfcSecureElementType SecureElementType
         {
             get
@@ -170,6 +175,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Enable or disable the system handling for tag and target discovered event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         static public bool SystemHandlerEnabled
         {
             get
@@ -213,6 +219,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The cached Ndef Message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         static public NfcNdefMessage CachedNdefMessage
         {
             get
@@ -238,6 +245,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Gets Tag adapter object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         static public NfcTagAdapter GetTagAdapter()
         {
             bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
@@ -261,6 +269,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Gets P2p adapter object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         static public NfcP2pAdapter GetP2pAdapter()
         {
             bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
@@ -284,6 +293,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Gets Card Emulation adepter object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         static public NfcCardEmulationAdapter GetCardEmulationAdapter()
         {
             bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
@@ -307,6 +317,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Activates Nfc asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>A task indicates whether the Activate method is done or not.</returns>
         static public Task SetActivationAsync(bool activation)
         {
@@ -330,6 +341,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The Activation changed event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         static public event EventHandler<ActivationChangedEventArgs> ActivationChanged
         {
             add
@@ -373,6 +385,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The Ndef discovered event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         static public event EventHandler<NdefMessageDiscoveredEventArgs> NdefMessageDiscovered
         {
             add

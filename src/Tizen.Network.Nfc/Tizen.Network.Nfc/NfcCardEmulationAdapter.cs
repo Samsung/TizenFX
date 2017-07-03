@@ -23,6 +23,7 @@ namespace Tizen.Network.Nfc
     /// <summary>
     /// A class for NFC CardEmulation mode. It allows applications to handle Card Emulation informations.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
     public class NfcCardEmulationAdapter : IDisposable
     {
@@ -39,6 +40,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Event that is called when receiving Secure Element (SIM/UICC(Universal Integrated Circuit Card)) event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<SecureElementEventArgs> SecureElementEvent
         {
             add
@@ -62,6 +64,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Event that is called when receiving Secure Element(SIM/UICC(Universal Integrated Circuit Card)) transaction event for 'ESE(SmartMX)' type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<SecureElementTranscationEventArgs> EseSecureElementTransactionEvent
         {
             add
@@ -85,6 +88,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Event that is called when receiving Secure Element(SIM/UICC(Universal Integrated Circuit Card)) transaction event for 'UICC' type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<SecureElementTranscationEventArgs> UiccSecureElementTransactionEvent
         {
             add
@@ -108,6 +112,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Event that is called when when receiving HCE(Host Card Emulation) event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<HostCardEmulationEventArgs> HostCardEmulationEvent
         {
             add
@@ -159,6 +164,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Enable card emulation mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void EnableCardEmulation()
         {
             int ret = Interop.Nfc.CardEmulation.EnableCardEmulation();
@@ -172,6 +178,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Disable card emulation mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void DisableCardEmulation()
         {
             int ret = Interop.Nfc.CardEmulation.DisableCardEmulatiion();
@@ -185,6 +192,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Get the current card emulation mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Enumeration value of NfcSecureElementCardEmulationMode.</returns>
         public NfcSecureElementCardEmulationMode GetCardEmulationMode()
         {
@@ -201,6 +209,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Give the priority to the foreground application when dispatching transaction event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void EnableTransactionForegroundDispatch()
         {
             int ret = Interop.Nfc.EnableTransactionForegroundDispatch();
@@ -214,6 +223,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Disable foreground dispatch for "EVT_TRANSACTION" to the givin application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void DisableTransactionForegroundDispatch()
         {
             int ret = Interop.Nfc.DisableTransactionForegroundDispatch();
@@ -227,6 +237,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Gets the state whether an application to call this api is currently the activated handler for specific AID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>'True' when application is currently the activated handler, otherwise 'False'.</returns>
         /// <param name="seType">The type of Secure Element.</param>
         /// <param name="aid">Application Id, specified in ISO/IEC 7816-4.</param>
@@ -246,6 +257,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Gets the state whether an application to call this api is currently the activated handler for category.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>'True' when application is currently the activated handler, otherwise 'False'.</returns>
         /// <param name="seType">The type of Secure Element.</param>
         /// <param name="category">Enumeration value of category.</param>
@@ -265,6 +277,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Registers a AID for a specific category.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="seType">The type of Secure Element.</param>
         /// <param name="category">Enumeration value of category.</param>
         /// <param name="aid">Application Id, specified in ISO/IEC 7816-4.</param>
@@ -281,6 +294,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Unregisters a previously registered AID for the specified category.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="seType">The type of Secure Element.</param>
         /// <param name="category">Enumeration value of category.</param>
         /// <param name="aid">Application Id, specified in ISO/IEC 7816-4.</param>
@@ -297,6 +311,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Sets the application as a preferred handler.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void SetPreferredApplication()
         {
             int ret = Interop.Nfc.CardEmulation.SetPreferredHandler();
@@ -310,6 +325,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Unsets the application as a preferred handler.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void UnsetPreferredApplication()
         {
             int ret = Interop.Nfc.CardEmulation.UnsetPreferredHandler();
@@ -323,6 +339,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Retrieves all registered AID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>List of NfcRegisteredAidInformation objects.</returns>
         /// <param name="seType">The type of Secure Element.</param>
         /// <param name="category">Enumeration value of category.</param>

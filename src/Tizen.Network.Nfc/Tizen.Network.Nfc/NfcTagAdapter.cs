@@ -23,6 +23,7 @@ namespace Tizen.Network.Nfc
     /// <summary>
     /// A class for NFC Tag mode. It allows applications to handle Tag informations.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/nfc</privilege>
     public class NfcTagAdapter : IDisposable
     {
@@ -36,6 +37,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// The event for receiving tag discovered notification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<TagDiscoveredEventArgs> TagDiscovered
         {
             add
@@ -81,6 +83,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Gets current connected tag.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>NfcTag object.</returns>
         public NfcTag GetConnectedTag()
         {
