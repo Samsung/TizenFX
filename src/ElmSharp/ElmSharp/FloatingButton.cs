@@ -23,21 +23,13 @@ namespace ElmSharp
     /// </summary>
     public class FloatingButton : Layout
     {
-        SmartEvent _clicked;
         /// <summary>
         /// Creates and initializes a new instance of the FloatingButton class.
         /// </summary>
         /// <param name="parent">Created on this parent container..</param>
         public FloatingButton(EvasObject parent) : base(parent)
         {
-            _clicked = new SmartEvent(this, Handle, "clicked");
-            _clicked.On += (s, e) => Clicked?.Invoke(this, EventArgs.Empty);
         }
-
-        /// <summary>
-        /// Clicked will be triggered when clicked
-        /// </summary>
-        public event EventHandler Clicked;
 
         /// <summary>
         /// Sets or gets floatingbutton mode.
@@ -128,6 +120,7 @@ namespace ElmSharp
         /// Allows all positions
         /// </summary>
         All,
+
         /// <summary>
         /// Allows LEFT and RIGHT positions only
         /// </summary>
@@ -143,18 +136,22 @@ namespace ElmSharp
         /// Hides in the left, but small handler will show only
         /// </summary>
         LeftOut,
+
         /// <summary>
         /// Shows all of buttons, but lies on the left
         /// </summary>
         Left,
+
         /// <summary>
         /// Shows all of buttons, but lies on the center
         /// </summary>
         Center,
+
         /// <summary>
         /// Shows all of buttons, but lies on the right
         /// </summary>
         Right,
+
         /// <summary>
         /// Hides in the right, but small handler will show only
         /// </summary>
