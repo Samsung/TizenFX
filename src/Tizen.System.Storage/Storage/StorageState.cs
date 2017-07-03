@@ -19,23 +19,28 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for the state of storage devices.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum StorageState
     {
         /// <summary>
         /// Storage is present but cannot be mounted. Typically it happens if the file system of the storage is corrupted
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Unmountable = Interop.Storage.StorageState.Unmountable,
         /// <summary>
         /// Storage is not present or removed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Removed = Interop.Storage.StorageState.Removed,
         /// <summary>
         /// Storage is mounted with read/write access
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Mounted = Interop.Storage.StorageState.Mounted,
         /// <summary>
         /// Storage is mounted with read only access
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         MountedReadOnly = Interop.Storage.StorageState.MountedReadOnly,
     }
 }

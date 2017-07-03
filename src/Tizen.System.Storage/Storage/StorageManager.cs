@@ -29,6 +29,7 @@ namespace Tizen.System
         /// <summary>
         /// List of all storage in the device
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<Storage> Storages
         {
             get

@@ -19,43 +19,53 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration of the storage directory types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum DirectoryType
     {
         /// <summary>
         /// Image directory
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Images = Interop.Storage.DirectoryType.Images,
         /// <summary>
         /// Sounds directory
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Sounds = Interop.Storage.DirectoryType.Sounds,
         /// <summary>
         /// Videos directory
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Videos = Interop.Storage.DirectoryType.Videos,
         /// <summary>
         /// Camera directory
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Camera = Interop.Storage.DirectoryType.Camera,
         /// <summary>
         /// Downloads directory
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Downloads = Interop.Storage.DirectoryType.Downloads,
         /// <summary>
         /// Music directory
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Music = Interop.Storage.DirectoryType.Music,
         /// <summary>
         /// Documents directory
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Documents = Interop.Storage.DirectoryType.Documents,
         /// <summary>
         /// Others directory
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Others = Interop.Storage.DirectoryType.Others,
         /// <summary>
         /// System ringtones directory. Only available for internal storage.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Ringtones = Interop.Storage.DirectoryType.Ringtones,
     }
 }

@@ -77,6 +77,7 @@ namespace Tizen.System
         /// <remarks>
         /// Storage state will be updated before calling event handler.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         /// <example>
         /// <code>
         /// myStorage.StorageStateChanged += (s, e) =>
@@ -113,23 +114,28 @@ namespace Tizen.System
         /// <summary>
         /// Storage ID
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Id { get; }
         /// <summary>
         /// Type of the storage
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public StorageArea StorageType { get; }
         /// <summary>
         /// Root directory for the storage
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string RootDirectory { get; }
         /// <summary>
         /// Total storage size in bytes
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ulong TotalSpace { get { return _totalSpace; } }
 
         /// <summary>
         /// Storage state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public StorageState State
         {
             get
@@ -149,6 +155,7 @@ namespace Tizen.System
         /// <summary>
         /// Available storage size in bytes
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ulong AvaliableSpace
         {
             get
@@ -173,6 +180,7 @@ namespace Tizen.System
         /// For accessing Ringtones directory, app should have http://tizen.org/privilege/systemsettings privilege.
         /// For accessing external storage, app should have http://tizen.org/privilege/externalstorage privilege.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="dirType">Directory type</param>
         /// <returns>Absolute path for given directory type in storage</returns>
         /// <exception cref="ArgumentException">Thrown when failed because of a invalid arguament</exception>
