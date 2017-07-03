@@ -23,6 +23,7 @@ namespace Tizen.Content.Download
     /// <summary>
     /// The Request class provides functions to create and manage a single download request.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Request : IDisposable
     {
         private int _downloadId;
@@ -37,6 +38,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Creates a Request object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="url"> URL to download</param>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
@@ -65,6 +67,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Creates a Request object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="url"> URL to download</param>
         /// <param name="destinationPath"> Directory path where downloaded file is stored </param>
         /// <param name="fileName"> Name of the downloaded file </param>
@@ -120,6 +123,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Creates a Request object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="url"> URL to download</param>
         /// <param name="destinationPath"> Directory path where downloaded file is stored </param>
         /// <param name="fileName"> Name of the downloaded file </param>
@@ -181,6 +185,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Event that occurs when the download state changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
@@ -208,6 +213,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Event that occurs when the download progress changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
@@ -236,6 +242,7 @@ namespace Tizen.Content.Download
         /// Absolute path where the file will be downloaded.
         /// If you try to get this property value before calling Start(), an empty string is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// Returns empty string if download is not completed or if state has not yet changed to Completed or if any other error occurs.
@@ -262,6 +269,7 @@ namespace Tizen.Content.Download
         /// MIME type of the downloaded content.
         /// If you try to get this property value before calling Start(), an empty string is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
@@ -284,6 +292,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Current state of the download.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
@@ -308,6 +317,7 @@ namespace Tizen.Content.Download
         /// This can be defined with reference of HTTP response header data. The content name can be received when HTTP response header is received.
         /// If you try to get this property value before calling Start(), an empty string is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
@@ -332,6 +342,7 @@ namespace Tizen.Content.Download
         /// This information is received from the server. If the server does not send the total size of the content, content_size is set to zero.
         /// If you try to get this property value before calling Start(), 0 is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
@@ -355,6 +366,7 @@ namespace Tizen.Content.Download
         /// HTTP status code when a download exception occurs.
         /// If you try to get this property value before calling Start(), 0 is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// State of download request must be DownlodState.Failed.
@@ -381,6 +393,7 @@ namespace Tizen.Content.Download
         /// ETag value from the HTTP response header when making a HTTP request for resume.
         /// If you try to get this property value before calling Start() or if any other error occurs, an empty string is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// The etag value is available or not depending on the web server. If not available, then on get of the property null is returned.
@@ -407,6 +420,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Contains properties required for creating download notifications.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// When the notification message is clicked, the action taken by the system is decided by the app control properties of the NotificationProperties instance.
         /// If the app control is not set, the following default operation is executed when the notification message is clicked:
@@ -425,6 +439,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Full path of the temporary file which stores downloaded content.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// The download state must be one of the states after Downloading.
@@ -450,6 +465,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// URL to download.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// Should be set before calling Start().
@@ -486,6 +502,7 @@ namespace Tizen.Content.Download
         /// The file will be downloaded only under the allowed network.
         /// If you try to get this property value before setting or if any other error occurs, default value NetworkType All is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <feature>http://tizen.org/feature/network.wifi.direct</feature>
@@ -524,6 +541,7 @@ namespace Tizen.Content.Download
         /// The file will be downloaded to the set destination file path. The downloaded file is saved to an auto-generated file name in the destination. If the destination is not specified, the file will be downloaded to default storage.
         /// If you try to get this property value before setting or if any other error occurs, an empty string is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// Should be set before calling Start().
@@ -558,6 +576,7 @@ namespace Tizen.Content.Download
         /// The file will be saved in the specified destination or default storage with the set file name. If the file name is not specified, the downloaded file will be saved with an auto-generated file name in the destination.
         /// If you try to get this property value before setting or if any other error occurs, an empty string is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// Should be set before calling Start().
@@ -593,6 +612,7 @@ namespace Tizen.Content.Download
         /// If this option is enabled, the previous downloading item is restarted automatically as soon as the download daemon is restarted. The download progress continues after the client process is terminated.
         /// If you try to get this property value before setting, default value false is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// The default value is false.
@@ -629,6 +649,7 @@ namespace Tizen.Content.Download
         /// The given HTTP header field will be included with the HTTP request of the download request.
         /// If you try to get this property value before setting, an empty dictionary is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// HTTP header fields should be set before calling Start().
         /// HTTP header fields can be removed before calling Start().
@@ -645,6 +666,7 @@ namespace Tizen.Content.Download
         /// Sets the directory path of a temporary file used in a previous download request.
         /// This is only useful when resuming download to make HTTP request header at the client side. Otherwise, the path is ignored.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// If the etag value is not present in the download database, it is not useful to set the temporary file path.
@@ -666,6 +688,7 @@ namespace Tizen.Content.Download
         /// Starts or resumes download.
         /// Starts to download the current URL, or resumes the download if paused.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// The URL is the mandatory information to start the download.
@@ -695,6 +718,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Pauses download request.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// The paused download request can be restarted with Start() or canceled with Cancel().
@@ -714,6 +738,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Cancels download request.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// The canceled download can be restarted with Start().
@@ -733,6 +758,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Releases all resources used by the Request class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// After calling this method, download request related data exists in the download database for a certain period of time. Within that time, it is possible to use other APIs with this data.
@@ -749,6 +775,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Deletes the corresponding download request.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>

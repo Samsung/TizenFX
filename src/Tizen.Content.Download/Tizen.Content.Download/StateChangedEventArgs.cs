@@ -21,6 +21,7 @@ namespace Tizen.Content.Download
     /// <summary>
     /// An extended EventArgs class which contains the changed download state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class StateChangedEventArgs : EventArgs
     {
         private DownloadState _state;
@@ -33,6 +34,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Present download state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DownloadState State
         {
             get

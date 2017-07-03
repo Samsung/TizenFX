@@ -22,6 +22,7 @@ namespace Tizen.Content.Download
     /// <summary>
     /// The Notification class consists of all the properties required to set notifications for download operation.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Notification
     {
         private int _downloadId;
@@ -29,6 +30,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Creates a Notification object
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Notification(int requestId)
         {
             _downloadId = requestId;
@@ -38,6 +40,7 @@ namespace Tizen.Content.Download
         /// Title of the notification.
         /// If user tries to get before setting, empty string is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
@@ -69,6 +72,7 @@ namespace Tizen.Content.Download
         /// Description of the notification.
         /// If user tries to get before setting, empty string is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
@@ -100,6 +104,7 @@ namespace Tizen.Content.Download
         /// Type of Notification.
         /// If user tries to get before setting, default NotificationType None is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
@@ -131,6 +136,7 @@ namespace Tizen.Content.Download
         /// AppControl for an ongoing download notification.
         /// If user tries to get before setting, null is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// When the notification message is clicked, the action is decided by the app control.
@@ -165,6 +171,7 @@ namespace Tizen.Content.Download
         /// AppControl for a completed download notification.
         /// If user tries to get before setting, null is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// When the notification message is clicked, the action is decided by the app control
@@ -199,6 +206,7 @@ namespace Tizen.Content.Download
         /// AppControl for a failed download notification.
         /// If user tries to get before setting, null is returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
         /// When the notification message is clicked, the action is decided by the app control

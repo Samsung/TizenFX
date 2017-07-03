@@ -21,6 +21,7 @@ namespace Tizen.Content.Download
     /// <summary>
     /// An extended EventArgs class which contains the size of received data in bytes.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ProgressChangedEventArgs : EventArgs
     {
         private ulong _size = 0;
@@ -33,6 +34,7 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Received data size in bytes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ulong ReceivedDataSize
         {
             get
