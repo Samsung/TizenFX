@@ -28,6 +28,7 @@ namespace Tizen.System
         /// The current capacity of the battery.
         /// Capacity is an integer value from 0 to 100, that indicates remaining battery charge as a percentage of the maximum level.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Percent { get; internal set; }
     }
 
@@ -40,6 +41,7 @@ namespace Tizen.System
         /// <summary>
         /// Level indicates the Current battery level status which is of type BatteryLevelStatus.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BatteryLevelStatus Level { get; internal set; }
     }
 
@@ -52,6 +54,7 @@ namespace Tizen.System
         /// <summary>
         /// The charging state of the battery. Charging is of type boolean which indicates true/false based on currrent charging status.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsCharging { get; internal set; }
     }
 
@@ -64,6 +67,7 @@ namespace Tizen.System
         /// <summary>
         /// State indicates the current display state of the device which is an enum of type DisplayState.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DisplayState State { get; internal set; }
     }
 
@@ -76,6 +80,7 @@ namespace Tizen.System
         /// <summary>
         /// Brightness indicates the current brightness level of the display as an integer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Brightness { get; internal set; }
     }
 }

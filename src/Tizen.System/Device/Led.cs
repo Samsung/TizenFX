@@ -42,6 +42,7 @@ namespace Tizen.System
     {
         /// <summary>
         /// Gets the max brightness value of a LED that is located next to the camera.
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
         /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
         /// <exception cref = "NotSupportedException"> In case of device does not support this behavior.</exception>
@@ -68,6 +69,7 @@ namespace Tizen.System
         /// <remarks>The brightness value range of LED is 0 to Tizen.System.Led.MaxBrightness value.
         /// Changing the brightness value will invoke the registered EventHandler for led BrightnessChanged (If any).
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
         /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
         /// <exception cref = "NotSupportedException"> In case of device does not support this behavior.</exception>
@@ -102,6 +104,7 @@ namespace Tizen.System
         /// <summary>
         /// Plays the LED that is located to the front of a device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="on">Turn on time in milliseconds </param>
         /// <param name="off">Turn off time in milliseconds </param>
         /// <param name="color">
@@ -134,6 +137,7 @@ namespace Tizen.System
         /// <summary>
         /// Stops the LED that is located to the front of a device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
         /// <exception cref = "InvalidOperationException"> In case of any system error.</exception>
         /// <exception cref = "NotSupportedException"> In case of device does not support this behavior.</exception>
@@ -163,6 +167,7 @@ namespace Tizen.System
         /// <summary>
         /// StateChanged is raised when the LED state is changed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">An LedBrightnessChangedEventArgs object that contains the changed brightness.</param>
         public static event EventHandler<LedBrightnessChangedEventArgs> BrightnessChanged

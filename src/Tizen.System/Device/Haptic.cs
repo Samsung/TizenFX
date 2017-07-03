@@ -62,6 +62,7 @@ namespace Tizen.System
         /// <summary>
         /// Get the number of avaialble vibrators.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static int NumberOfVibrators
         {
             get
@@ -78,6 +79,7 @@ namespace Tizen.System
         /// <summary>
         /// Get all the avaialble vibrators.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static IReadOnlyList<Vibrator> Vibrators
         {
             get
@@ -106,6 +108,7 @@ namespace Tizen.System
         /// Vibrates during the specified time with a constant intensity.
         /// This function can be used to start monotonous vibration for the specified time.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="duration">The play duration in milliseconds </param>
         /// <param name="feedback">The amount of the intensity variation (0 ~ 100) </param>
         /// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
@@ -146,6 +149,7 @@ namespace Tizen.System
         /// Stops all vibration effects which are being played.
         /// This function can be used to stop all effects started by Vibrate().
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException"> In case of invalid vibrator instance is used.</exception>
         /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
         /// <exception cref = "InvalidOperationException"> In case of any system error.</exception>
@@ -175,6 +179,7 @@ namespace Tizen.System
         /// Dispose API for closing the internal resources.
         /// This function can be used to stop all effects started by Vibrate().
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

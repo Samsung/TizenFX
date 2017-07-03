@@ -22,19 +22,23 @@ namespace Tizen.System
     /// Enumeration for the available Display states.
     /// An application cannot put the device into the power off state or the suspend state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum DisplayState
     {
         /// <summary>
         /// Normal state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Normal = 0,
         /// <summary>
         /// Screen dim state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Dim,
         /// <summary>
         /// Screen off state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Off
     }
 
@@ -67,6 +71,7 @@ namespace Tizen.System
         /// <summary>
         /// The number of available display devices.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static int NumberOfDisplays
         {
             get
@@ -84,6 +89,7 @@ namespace Tizen.System
         /// Get all the avaialble Displays.
         /// The Display at index zero is always assigned to the main display.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static IReadOnlyList<Display> Displays
         {
             get
@@ -108,6 +114,7 @@ namespace Tizen.System
         /// <summary>
         /// The maximum brightness value that can be set for the specific Display.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <code>
         ///     Display display = Display.Displays[0];
         ///     Console.WriteLine("Display MaxBrightness is: {0}", display.MaxBrightness);
@@ -132,6 +139,7 @@ namespace Tizen.System
         /// <remarks>
         /// Brightness value should be less than are equal to MaxBrightness value.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
         /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
         /// <code>
@@ -163,6 +171,7 @@ namespace Tizen.System
         /// <summary>
         /// The current device display state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static DisplayState State
         {
             get
@@ -181,6 +190,7 @@ namespace Tizen.System
         /// <summary>
         /// StateChanged is raised when the state of the display is changed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="sender"></param>
         /// <param name="e">An DisplayStateChangedEventArgs object that contains the changed state</param>
         /// <code>

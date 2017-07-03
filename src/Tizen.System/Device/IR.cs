@@ -35,6 +35,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets the information whether IR module is available.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static bool IsAvailable
         {
             get
@@ -52,6 +53,7 @@ namespace Tizen.System
         /// <summary>
         /// Transmits IR command.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="carrierFreequency">
         /// Carrier frequency to transmit IR command (Hertz).
         /// </param>

@@ -21,6 +21,7 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for the Battery level.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BatteryLevelStatus
     {
         /// <summary>
@@ -29,6 +30,7 @@ namespace Tizen.System
         /// because the device starts a shutdown process soon
         /// after entering this level.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Empty = 0,
         /// <summary>
         /// The battery charge is at a critical state.
@@ -36,18 +38,22 @@ namespace Tizen.System
         /// because they are not guaranteed to work correctly
         /// at this battery status.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Critical,
         /// <summary>
         /// The battery has little charge left.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Low,
         /// <summary>
         /// The battery status is not to be careful.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         High,
         /// <summary>
         /// The battery status is full.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Full
     }
 
@@ -70,6 +76,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets the battery charge percentage.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>It returns an integer value from 0 to 100 that indicates remaining
         /// battery charge as a percentage of the maximum level.</value>
         public static int Percent
@@ -88,6 +95,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets the current Battery level.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static BatteryLevelStatus Level
         {
             get
@@ -104,6 +112,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets the current charging state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static bool IsCharging
         {
             get
@@ -122,6 +131,7 @@ namespace Tizen.System
         /// <summary>
         /// CapacityChanged is triggered when the battery charge percentage is changed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="sender"></param>
         /// <param name="e">A BatteryCapacityChangedEventArgs object that contains changed battery capacity (Percent)</param>
         /// <code>
@@ -167,6 +177,7 @@ namespace Tizen.System
         /// <summary>
         /// LevelChanged is triggered when the battery level is changed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="sender"></param>
         /// <param name="e">A BatteryLevelChangedEventArgs object that contains changed battery level </param>
         /// <code>
@@ -212,6 +223,7 @@ namespace Tizen.System
         /// ChargingStatusChanged is triggered when the Battery charging status is changed.
         /// This event is triggered when Charger is connected/Disconnected.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="sender"></param>
         /// <param name="e">A BatteryChargingStateChangedEventArgs object that contains changed battery charging state</param>
         /// <code>

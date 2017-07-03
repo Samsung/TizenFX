@@ -37,6 +37,7 @@ namespace Tizen.System
         /// <remarks>
         /// If the process dies, then every lock will be removed.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="timeout">
         /// The positive number in milliseconds or 0 for permanent lock
         /// So you must release the permanent lock of power state with ReleaseCpuLock() if timeout_ms is zero.
@@ -59,6 +60,7 @@ namespace Tizen.System
         /// <summary>
         /// Releases the CPU lock state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
         /// <exception cref = "InvalidOperationException"> In case of any system error.</exception>
         /// <code>
