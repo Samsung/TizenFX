@@ -23,6 +23,7 @@ namespace Tizen.Network.Smartcard
     /// <summary>
     /// A class for Smartcard reader informations. It allows applications to handle reader informations.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
     public class SmartcardReader : IDisposable
     {
@@ -34,6 +35,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// The name of reader.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Name
         {
             get
@@ -52,6 +54,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// The existence of secure element.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsSecureElementPresent
         {
             get
@@ -113,6 +116,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Connects to a Secure Element in the given reader.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The SmartcardSession object.</returns>
         public SmartcardSession OpenSession()
         {
@@ -130,6 +134,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Closes all the sessions opened on the given reader.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void CloseSessions()
         {
             int ret = Interop.Smartcard.Reader.ReaderCloseSessions(_readerHandle);

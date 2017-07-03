@@ -23,6 +23,7 @@ namespace Tizen.Network.Smartcard
     /// <summary>
     /// A class for Smartcard session informations. It allows applications to handle session informations.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
     public class SmartcardSession : IDisposable
     {
@@ -37,6 +38,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// The reader object that provides the given session.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SmartcardReader Reader
         {
             get
@@ -60,6 +62,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// The Answer to Reset(ATR) of this Secure Element.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Atr
         {
             get
@@ -86,6 +89,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Whether the session is closed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsClosed
         {
             get
@@ -149,6 +153,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Closes the connection with the Secure Element.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Close()
         {
             int ret = Interop.Smartcard.Session.SessionClose(_sessionHandle);
@@ -163,6 +168,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Closes any channel opened on the given session.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void CloseChannels()
         {
             int ret = Interop.Smartcard.Session.SessionCloseChannels(_sessionHandle);
@@ -186,6 +192,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Gets an access to the basic channel, as defined in the ISO/IEC 7816-4 specification (the one that has number 0).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The SmartcardChannel object for basic channel.</returns>
         /// <param name="aid">Byte array containing the Application ID(AID) to be selected on the given channel.</param>
         /// <param name="p2">P2 byte of the SELECT command if executed.</param>
@@ -206,6 +213,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Open a logical channel with the Secure Element, selecting the Applet represented by the given Application ID(AID).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The SmartcardChannel object for logical channel.</returns>
         /// <param name="aid">Byte array containing the Application ID(AID) to be selected on the given channel.</param>
         /// <param name="p2">P2 byte of the SELECT command if executed.</param>

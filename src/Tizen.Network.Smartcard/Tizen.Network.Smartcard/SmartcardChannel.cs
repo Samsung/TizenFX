@@ -23,6 +23,7 @@ namespace Tizen.Network.Smartcard
     /// <summary>
     /// A class for Smartcard channel informations. It allows applications to handle channel informations.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
     public class SmartcardChannel : IDisposable
     {
@@ -33,6 +34,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Whether the kind of channel is basic.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsBasicChannel
         {
             get
@@ -50,6 +52,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Whether the kind of channel is logical.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsLogicalChannel
         {
             get
@@ -67,6 +70,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Whether the channel is closed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsClosed
         {
             get
@@ -84,6 +88,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// The session that has opened the given channel.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SmartcardSession Session
         {
             get
@@ -137,6 +142,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Closes the given channel to the Secure Element.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Close()
         {
             int ret = Interop.Smartcard.Channel.ChannelClose(_channelHandle);
@@ -151,6 +157,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Gets the response to the select command.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Byte array to retrieve the SELECT response.</returns>
         public byte[] GetSelectedResponse()
         {
@@ -175,6 +182,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Transmits an APDU command (as per ISO/IEC 7816-4) to the Secure Element.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Byte array for the response APDU plus status words.</returns>
         /// <param name="cmd">Command APDU to be send to the secure element.</param>
         public byte[] Transmit(byte[] cmd)
@@ -201,6 +209,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Helper function to retrieves the response APDU of the previous transmit() call.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Byte array for the response APDU plus status words.</returns>
         public byte[] GetTransmittedResponse()
         {
@@ -225,6 +234,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Performs a selection of the next Applet on the given channel that matches to the partial Application ID(AID).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>True or false depending whether another applet with the partial Application ID(AID).</returns>
         public bool SelectNext()
         {

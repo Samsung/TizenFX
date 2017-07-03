@@ -23,12 +23,14 @@ namespace Tizen.Network.Smartcard
     /// <summary>
     /// A class for Smartcard management. It allows applications to use Smartcard service.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
     static public class SmartcardManager
     {
         /// <summary>
         /// Gets the list of available Secure Element readers.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>List of SmartcardReader objects.</returns>
         static public IEnumerable<SmartcardReader> GetReaders()
         {
