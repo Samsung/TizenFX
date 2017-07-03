@@ -206,6 +206,7 @@ namespace Tizen.System
         /// If you use FeedbackType.All for type parameter, this API will throw ArgumentException.
         /// To get supported information for Vibration type, app should have http://tizen.org/privilege/haptic privilege.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="type">Feedback type</param>
         /// <param name="pattern">Feedback pattern string</param>
         /// <returns>Information whether pattern is supported</returns>
@@ -270,6 +271,7 @@ namespace Tizen.System
         /// <remarks>
         /// To play Vibration type, app should have http://tizen.org/privilege/haptic privilege.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="type">Feedback type</param>
         /// <param name="pattern">Feedback pattern string</param>
         /// <exception cref="Exception">Thrown when failed because feedback is not initialized</exception>
@@ -333,6 +335,7 @@ namespace Tizen.System
         /// <remarks>
         /// To stop vibration, app should have http://tizen.org/privilege/haptic privilege.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="Exception">Thrown when failed because feedback is not initialized</exception>
         /// <exception cref="ArgumentException">Thrown when failed because of a invalid arguament</exception>
         /// <exception cref="NotSupportedException">Thrown when failed because device(haptic, sound) or specific pattern is not supported</exception>
@@ -364,7 +367,7 @@ namespace Tizen.System
                         throw new UnauthorizedAccessException("Access is not granted");
                     case Interop.Feedback.FeedbackError.OperationFailed:
                     default:
-                        throw new InvalidOperationException("Failed to play pattern");
+                        throw new InvalidOperationException("Failed to stop pattern");
                 }
             }
         }

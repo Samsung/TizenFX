@@ -19,19 +19,23 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for feedback device types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum FeedbackType
     {
         /// <summary>
         ///  Sound and Vibration
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         All = 0,
         /// <summary>
         /// Sound feedback
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Sound = Interop.Feedback.FeedbackType.Sound,
         /// <summary>
         /// Vibration
         /// /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Vibration = Interop.Feedback.FeedbackType.Vibration,
     }
 }
