@@ -251,7 +251,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets the layout content.
         /// </summary>
-        /// <param name="swallow">The swallow part name in the edje file</param>
+        /// <param name="part">The swallow part name in the edje file</param>
         /// <param name="content">The child that will be added in this layout object.</param>
         /// <returns>TRUE on success, FALSE otherwise</returns>
         public override bool SetPartContent(string part, EvasObject content)
@@ -259,6 +259,13 @@ namespace ElmSharp
             return SetPartContent(part, content, false);
         }
 
+        /// <summary>
+        /// Sets the layout content.
+        /// </summary>
+        /// <param name="part">The name of particular part</param>
+        /// <param name="content">The content</param>
+        /// <param name="preserveOldContent">true, preserve old content will be unset. false, preserve old content will not be unset.</param>
+        /// <returns>TRUE on success, FALSE otherwise</returns>
         public override bool SetPartContent(string part, EvasObject content, bool preserveOldContent)
         {
             if (preserveOldContent)

@@ -87,6 +87,11 @@ namespace ElmSharp
             _unfocused.On += (s, e) => Unfocused?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Update the part contents
+        /// </summary>
+        /// <param name="content">The content which put to the part</param>
+        /// <param name="part">The updated part</param>
         protected void UpdatePartContents(EvasObject content, string part = "__default__")
         {
             _partContents[part] = content;
