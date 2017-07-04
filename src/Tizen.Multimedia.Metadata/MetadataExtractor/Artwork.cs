@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the Artwork class with the specified data and mimeType.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="data">The data of the artwork to set metadata.</param>
         /// <param name="mimeType">The mime type of the data of the artwork.</param>
         public Artwork(byte[] data, string mimeType)
@@ -35,11 +36,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The encoded artwork image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Data { get; }
 
         /// <summary>
         /// The mime type of artwork.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string MimeType { get; }
     }
 }

@@ -54,6 +54,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the MetadataExtractor class with the specified path.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="path">The path for the file to extract metadata.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> is not exist.</exception>
@@ -70,6 +71,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the MetadataExtractor class with the specified buffer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="buffer">The buffer to extract metadata.</param>
         /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
         /// <exception cref="ArgumentException">The length of <paramref name="buffer"/> is zero.</exception>
@@ -117,6 +119,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves the <see cref="Metadata"/>.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>A <see cref="Metadata"/> for the given source.</returns>
         /// <exception cref="InvalidOperationException">Internal process error is occurred.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataExtractor"/> has been already disposed of.</exception>
@@ -133,6 +136,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the artwork image in the source.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>A <see cref="Artwork"/> if it exists, otherwise null.</returns>
         /// <exception cref="InvalidOperationException">Internal process error is occurred.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataExtractor"/> has been already disposed of.</exception>
@@ -168,6 +172,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the sync lyrics of the source.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="index">The index of lyrics to retrieve.</param>
         /// <returns>A <see cref="SyncLyrics"/> object if <paramref name="index"/> is valid, otherwise null.</returns>
         /// <exception cref="InvalidOperationException">Internal process error is occurred.</exception>
@@ -199,6 +204,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the frame of a video media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The raw thumbnail data in RGB888 if it exists, otherwise null.</returns>
         /// <exception cref="InvalidOperationException">Internal process error is occurred.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataExtractor"/> has been already disposed of.</exception>
@@ -232,6 +238,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the frame of a video media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="timeStamp">The timestamp in milliseconds.</param>
         /// <param name="accurate">true to get an accurate frame for the given timestamp,
         ///     otherwise false to get the nearest i-frame of the video rapidly.</param>
@@ -268,6 +275,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Metadata Extractor destructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~MetadataExtractor()
         {
             Dispose(false);

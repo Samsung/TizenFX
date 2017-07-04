@@ -55,6 +55,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="MetadataEditor"/> class with the specified path.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="path"> The path of the media file to edit metadata </param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="NotSupportedException">The file is unsupported format.</exception>
@@ -108,6 +109,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Artist of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Artist
         {
             get
@@ -124,6 +126,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Title of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Title
         {
             get
@@ -140,6 +143,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Album name of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Album
         {
             get
@@ -156,6 +160,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Genre of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Genre
         {
             get
@@ -172,6 +177,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Author of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Author
         {
             get
@@ -188,6 +194,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Copyright of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Copyright
         {
             get
@@ -204,6 +211,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Date of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// If the added media contains ID3 tag, This parameter refers to the recording time.
         /// If the added media is a mp4 format, This parameter refers to the year.
@@ -224,6 +232,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Description of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Description
         {
             get
@@ -240,6 +249,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Comment of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Comment
         {
             get
@@ -256,6 +266,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Track number of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string TrackNumber
         {
             get
@@ -272,6 +283,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Album art count of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string PictureCount
         {
             get
@@ -283,6 +295,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Conductor of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Conductor
         {
             get
@@ -299,6 +312,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Unsynchronized lyric of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string UnsyncLyrics
         {
             get
@@ -315,6 +329,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Writes the modified metadata to a media file
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
         public void Commit()
         {
@@ -325,6 +340,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the artwork image in a media file
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="index"> Index of picture to import </param>
         /// <returns> Artwork included in the media file</returns>
         /// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
@@ -372,6 +388,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Appends the picture to the media file.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="path">The path of picture for adding to the metadata.</param>
         /// <exception cref="InvalidOperationException">Internal error occurs.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
@@ -389,6 +406,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Removes the picture from the media file.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="index"> Index of picture to remove </param>
         /// <exception cref="InvalidOperationException"> When internal process error is occured</exception>
         /// <exception cref="ArgumentOutOfRangeException"> Wrong index number </exception>
@@ -406,6 +424,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Metadata Editor destructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~MetadataEditor()
         {
             Dispose(false);

@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initialize a new instance of the MetadataExtractor class with the specified lyrics and timestamp.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="lyrics">The text of synclyrics to set.</param>
         /// <param name="timestamp">The timestamp of synclyrics to set.</param>
         public SyncLyrics(string lyrics, uint timestamp)
@@ -35,11 +36,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The text representation of the lyrics.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Lyrics { get; }
 
         /// <summary>
         /// The time information of the lyrics.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint Timestamp { get; }
     }
 }
