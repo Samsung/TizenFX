@@ -1175,6 +1175,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        public static Application New(int argc, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
+        {
+            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_4(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         public Application() : this(NDalicPINVOKE.new_Application__SWIG_0(), true)
         {
             NUILog.Debug("Application() is called!");
