@@ -35,16 +35,19 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The policy that interrupted the recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderPolicy Policy { get; }
 
         /// <summary>
         /// The previous state of the recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderState Previous { get; }
 
         /// <summary>
         /// The current state of the recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderState Current { get; }
     }
 }

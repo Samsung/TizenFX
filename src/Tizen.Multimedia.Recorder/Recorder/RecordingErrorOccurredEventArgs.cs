@@ -33,11 +33,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The error code.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderErrorCode Error { get; }
 
         /// <summary>
         /// The state of the recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderState State { get; }
 
     }
