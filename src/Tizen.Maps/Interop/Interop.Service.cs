@@ -81,6 +81,9 @@ internal static partial class Interop
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     internal delegate bool SearchRouteCallback(ErrorCode /* maps_error_e */ error, int requestId, int index, int total, IntPtr /* maps_route_h */ route, IntPtr /* void */ userData);
 
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    internal delegate void RequestUserConsentwithHandleCallback(bool consented, IntPtr /* void */ userData);
+
 
     [DllImport(Libraries.MapService, EntryPoint = "maps_service_cancel_request")]
     internal static extern ErrorCode CancelRequest(this ServiceHandle /* maps_service_h */ maps, int requestId);
@@ -121,6 +124,8 @@ internal static partial class Interop
     [DllImport(Libraries.MapService, EntryPoint = "maps_service_search_route_waypoints")]
     internal static extern ErrorCode SearchRouteWaypoints(this ServiceHandle /* maps_service_h */ maps, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 2)] [In] IntPtr[] /* maps_coordinates_h */ waypointList, int waypointNum, PreferenceHandle /* maps_preference_h */ preference, SearchRouteCallback callback, IntPtr /* void */ userData, out int requestId);
 
+    [DllImport(Libraries.MapService, EntryPoint = "maps_service_get_user_consent")]
+    internal static extern ErrorCode GetUserConsent(this ServiceHandle /* maps_service_h */ maps, out bool consent);
 
     [DllImport(Libraries.MapService, EntryPoint = "maps_service_set_provider_key")]
     internal static extern ErrorCode SetProviderKey(this ServiceHandle /* maps_service_h */ maps, string providerKey);
@@ -140,25 +145,27 @@ internal static partial class Interop
     [DllImport(Libraries.MapService, EntryPoint = "maps_service_provider_is_data_supported")]
     internal static extern ErrorCode IsDataSupported(this ServiceHandle /* maps_service_h */ maps, ServiceData /* maps_service_data_e */ data, out bool supported);
 
+    [DllImport(Libraries.MapService, EntryPoint = "maps_service_request_user_consent_with_handle")]
+    internal static extern ErrorCode RequestUserConsent(this ServiceHandle /* maps_service_h */ maps, RequestUserConsentwithHandleCallback callback, IntPtr /* void */ userData);
+
     internal class ServiceHandle : SafeMapsHandle
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void RequestUserConsentCallback(bool consented, string provider, IntPtr /* void */ userData);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool ProviderInfoCallback(string mapsProvider, IntPtr /* void */ userData);
-
-        [DllImport(Libraries.MapService, EntryPoint = "maps_service_request_user_consent")]
-        internal static extern ErrorCode RequestUserConsent(string provider, RequestUserConsentCallback callback, IntPtr /* void */ userData);
 
         [DllImport(Libraries.MapService, EntryPoint = "maps_service_foreach_provider")]
         internal static extern ErrorCode ForeachProvider(ProviderInfoCallback callback, IntPtr /* void */ userData);
 
-        [DllImport(Libraries.MapService, EntryPoint = "maps_service_create")]
+        [DllImport(Libraries.MapService, EntryPoint = "maps_service_create_without_user_consent")]
         internal static extern ErrorCode Create(string provider, out IntPtr /* maps_service_h */ maps);
 
         [DllImport(Libraries.MapService, EntryPoint = "maps_service_destroy")]
         internal static extern ErrorCode Destroy(IntPtr /* maps_service_h */ maps);
+
+		internal bool UserConsented
+		{
+			get { return NativeGet<bool>(this.GetUserConsent); }
+		}
 
         internal string ProviderKey
         {

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>1.0.15</Version>
+    <Version>1.0.16</Version>
     <Authors>Samsung Electronics</Authors>
     <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
     <Description>Map Services API for Tizen .NET</Description>
@@ -21,7 +21,7 @@
   <ItemGroup>
     <PackageReference Include="System.ComponentModel" Version="4.3.0" />
     <PackageReference Include="Tizen" Version="1.0.5" />
-    <PackageReference Include="ElmSharp" Version="1.2.1" />
+    <PackageReference Include="ElmSharp" Version="1.2.2" />
   </ItemGroup>
 
 </Project>

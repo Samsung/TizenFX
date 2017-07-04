@@ -83,6 +83,19 @@ namespace Tizen.Maps
         public string Provider { get { return _serviceProvider; } }
 
         /// <summary>
+        /// Gets a user consent for map service provider
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+        public bool UserConsented
+        {
+            get
+            {
+                return handle.UserConsented;
+            }
+        }
+
+        /// <summary>
         /// Gets and sets a string representing keys for map service provider
         /// </summary>
         /// <since_tizen>3</since_tizen>
@@ -182,21 +195,20 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets the user's consent to use maps data.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="provider">A string which representing the name of maps provider</param>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Returns true if user agreed that the application can use maps data, otherwise false.</returns>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
-        public static async Task<bool> RequestUserConsent(string provider)
+        public async Task<bool> RequestUserConsent()
         {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-            Interop.ServiceHandle.RequestUserConsentCallback cb = (consented, serviceProvider, userData) =>
+            Interop.RequestUserConsentwithHandleCallback cb = (consented, userData) =>
             {
                 tcs.TrySetResult(consented);
             };
 
-            var err = Interop.ServiceHandle.RequestUserConsent(provider, cb, IntPtr.Zero);
+            var err = handle.RequestUserConsent(cb, IntPtr.Zero);
             if (err.IsFailed())
             {
                 tcs.TrySetException(err.GetException("Failed to get user consent"));
