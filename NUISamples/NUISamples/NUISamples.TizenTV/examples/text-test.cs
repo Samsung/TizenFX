@@ -89,6 +89,7 @@ namespace TextTest
             hiddenMap.Add(HiddenInputProperty.SubstituteCount, new PropertyValue(4));
             hiddenMap.Add(HiddenInputProperty.SubstituteCharacter, new PropertyValue(0x23));
             field.HiddenInputSettings = hiddenMap;
+            field.EnableSelection = true;
             window.Add(field);
 
             InputMethod inputMethod = new InputMethod();
@@ -99,14 +100,25 @@ namespace TextTest
 
             field.InputMethodSettings = inputMethod.OutputMap;
 
+            PropertyMap propertyMap = new PropertyMap();
+            propertyMap.Add("placeholderText", new PropertyValue("Setting Placeholder Text"));
+            propertyMap.Add("placeholderColor", new PropertyValue(Color.Red));
+            propertyMap.Add("placeholderPointSize", new PropertyValue(12.0f));
+
+            PropertyMap fontStyleMap = new PropertyMap();
+            fontStyleMap.Add("weight", new PropertyValue("bold"));
+            fontStyleMap.Add("width", new PropertyValue("condensed"));
+            fontStyleMap.Add("slant", new PropertyValue("italic"));
+            propertyMap.Add("placeholderFontStyle", new PropertyValue(fontStyleMap));
+
             TextEditor editor = new TextEditor();
             editor.Size2D = new Size2D(400, 100);
             editor.Position2D = new Position2D(10, 550);
             editor.BackgroundColor = Color.Magenta;
-            editor.PlaceholderText = "input someth...";
-            editor.PlaceholderTextColor = Color.Red;
             editor.EnableScrollBar = true;
+            editor.EnableSelection = true;
             editor.Focusable = true;
+            editor.Placeholder = propertyMap;
             FocusManager.Instance.SetCurrentFocusView(editor);
             window.Add(editor);
             editor.TextChanged += (obj, e) => {
