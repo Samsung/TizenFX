@@ -447,128 +447,47 @@ namespace Tizen.NUI
         /// <summary>
         /// Get black colored Color class.
         /// </summary>
-        public static Color Black
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.BLACK_get();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        public static readonly Color Black = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 
         /// <summary>
         /// Get white colored Color class.
         /// </summary>
-        public static Color White
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.WHITE_get();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        public static readonly Color White = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
         /// <summary>
         /// Get red colored Color class.
         /// </summary>
-        public static Color Red
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.RED_get();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        public static readonly Color Red = new Color(1.0f, 0.0f, 0.0f, 1.0f);
 
         /// <summary>
         /// Get green colored Color class.
         /// </summary>
-        public static Color Green
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.GREEN_get();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        public static readonly Color Green = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 
         /// <summary>
         /// Get blue colored Color class.
         /// </summary>
-        public static Color Blue
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.BLUE_get();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        public static readonly Color Blue = new Color(0.0f, 0.0f, 1.0f, 1.0f);
 
         /// <summary>
         /// Get yellow colored Color class.
         /// </summary>
-        public static Color Yellow
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.YELLOW_get();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        public static readonly Color Yellow = new Color(1.0f, 1.0f, 0.0f, 1.0f);
 
         /// <summary>
         /// Get magenta colored Color class.
         /// </summary>
-        public static Color Magenta
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.MAGENTA_get();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        public static readonly Color Magenta = new Color(1.0f, 0.0f, 1.0f, 1.0f);
 
         /// <summary>
         /// Get cyan colored Color class.
         /// </summary>
-        public static Color Cyan
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.CYAN_get();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        public static readonly Color Cyan = new Color(0.0f, 1.0f, 1.0f, 1.0f);
 
         /// <summary>
         /// Get transparent colored Color class.
         /// </summary>
-        public static Color Transparent
-        {
-            get
-            {
-                global::System.IntPtr cPtr = NDalicPINVOKE.TRANSPARENT_get();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        public static readonly Color Transparent = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
         /// <summary>
         /// convert Color class to Vector4 class implicitly.
