@@ -36,7 +36,6 @@ namespace Tizen.Network.Mtp
         /// <returns>List of MtpDevice objects.</returns>
         /// <feature>http://tizen.org/feature/network.mtp</feature>
         /// <exception cref="NotSupportedException">Thrown when Mtp is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         static public IEnumerable<MtpDevice> GetDevices()
