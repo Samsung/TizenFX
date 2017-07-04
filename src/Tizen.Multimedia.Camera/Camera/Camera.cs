@@ -82,16 +82,9 @@ namespace Tizen.Multimedia
 
         #region Dispose support
         /// <summary>
-        /// Release any unmanaged resources used by this object.
+        /// Releases the unmanaged resources used by the Camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            ReplaceDisplay(null);
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -111,6 +104,17 @@ namespace Tizen.Multimedia
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the Camera.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Dispose()
+        {
+            ReplaceDisplay(null);
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
         internal void ValidateNotDisposed()
         {
             if (_disposed)
@@ -119,9 +123,9 @@ namespace Tizen.Multimedia
                 throw new ObjectDisposedException(nameof(Camera));
             }
         }
-#endregion Dispose support
+        #endregion Dispose support
 
-#region Check camera state
+        #region Check camera state
         internal void ValidateState(params CameraState[] required)
         {
             ValidateNotDisposed();
@@ -200,7 +204,7 @@ namespace Tizen.Multimedia
         public event EventHandler<CameraStateChangedEventArgs> StateChanged;
         private Native.StateChangedCallback _stateChangedCallback;
 
-    #region DeviceStateChanged callback
+        #region DeviceStateChanged callback
         internal static Native.DeviceStateChangedCallback _deviceStateChangedCallback;
         private static event EventHandler<CameraDeviceStateChangedEventArgs> _deviceStateChanged;
         private static object _deviceStateChangedEventLock = new object();
@@ -263,7 +267,7 @@ namespace Tizen.Multimedia
         }
         #endregion DeviceStateChanged callback
 
-    #region Preview EventHandler
+        #region Preview EventHandler
         private Native.PreviewCallback _previewCallback;
         private event EventHandler<PreviewEventArgs> _preview;
         private object _previewEventLock = new object();
@@ -302,9 +306,9 @@ namespace Tizen.Multimedia
                 }
             }
         }
-    #endregion Preview EventHandler
+        #endregion Preview EventHandler
 
-    #region MediaPacketPreview EventHandler
+        #region MediaPacketPreview EventHandler
         private Native.MediaPacketPreviewCallback _mediaPacketPreviewCallback;
         private EventHandler<MediaPacketPreviewEventArgs> _mediaPacketPreview;
         private object _mediaPacketPreviewEventLock = new object();
@@ -345,7 +349,6 @@ namespace Tizen.Multimedia
             }
         }
         #endregion MediaPacketPreview EventHandler
-
         #endregion EventHandlers
 
         #region Properties
@@ -841,9 +844,9 @@ namespace Tizen.Multimedia
 
             _faceDetectedCallback = null;
         }
-#endregion Methods
+        #endregion Methods
 
-#region Callback registrations
+        #region Callback registrations
         private void RegisterCallbacks()
         {
             RegisterErrorCallback();
@@ -953,7 +956,7 @@ namespace Tizen.Multimedia
             CameraErrorFactory.ThrowIfError(Native.SetMediaPacketPreviewCallback(_handle, _mediaPacketPreviewCallback, IntPtr.Zero),
                 "Setting media packet preview callback failed");
         }
-#endregion Callback registrations
+        #endregion Callback registrations
     }
 }
 

@@ -88,15 +88,9 @@ namespace Tizen.Multimedia
 
         #region Dispose support
         /// <summary>
-        /// Release any unmanaged resources used by this object.
+        /// Releases the unmanaged resources used by the Recorder.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -114,6 +108,16 @@ namespace Tizen.Multimedia
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the Recorder.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
         internal void ValidateNotDisposed()
         {
             if (_disposed)
@@ -121,9 +125,9 @@ namespace Tizen.Multimedia
                 throw new ObjectDisposedException(nameof(Recorder));
             }
         }
-#endregion Dispose support
+        #endregion Dispose support
 
-#region Check recorder state
+        #region Check recorder state
         internal void ValidateState(params RecorderState[] required)
         {
             ValidateNotDisposed();
@@ -388,9 +392,9 @@ namespace Tizen.Multimedia
             RecorderErrorFactory.ThrowIfError(Native.SetAudioStreamPolicy(_handle, policy.Handle),
                 "Failed to set audio stream policy");
         }
-#endregion Methods
+        #endregion Methods
 
-#region Callback registrations
+        #region Callback registrations
         private void RegisterCallbacks()
         {
             RegisterErrorCallback();
@@ -473,6 +477,6 @@ namespace Tizen.Multimedia
             RecorderErrorFactory.ThrowIfError(Native.SetMuxedStreamCallback(_handle, _muxedStreamCallback, IntPtr.Zero),
                 "Setting muxed stream callback failed");
         }
-#endregion Callback registrations
+        #endregion Callback registrations
     }
 }
