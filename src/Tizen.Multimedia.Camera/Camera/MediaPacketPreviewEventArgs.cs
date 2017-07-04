@@ -31,6 +31,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Media Packet data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaPacket Packet { get; }
     }
 }

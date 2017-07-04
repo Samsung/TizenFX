@@ -31,6 +31,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// PreviewData frame.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PreviewData Preview { get; }
     }
 }

@@ -33,11 +33,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The camera error code.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraErrorCode Error { get; }
 
         /// <summary>
         /// The state of the camera.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraState State { get; }
     }
 }

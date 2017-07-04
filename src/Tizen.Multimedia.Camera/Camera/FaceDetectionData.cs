@@ -40,31 +40,37 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The Id of each face.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Id { get; }
 
         /// <summary>
         /// The confidence level for the detection of the face.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Score { get; }
 
         /// <summary>
         /// The X co-ordinate of the face.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int X { get; }
 
         /// <summary>
         /// The Y co-ordinate of the face.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Y { get; }
 
         /// <summary>
         /// The width of the face.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Width { get; }
 
         /// <summary>
         /// The height of the face.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Height { get; }
     }
 }

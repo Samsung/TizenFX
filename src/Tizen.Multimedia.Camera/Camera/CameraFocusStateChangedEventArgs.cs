@@ -32,6 +32,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Focus state of the camera.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraFocusState State { get; }
     }
 }

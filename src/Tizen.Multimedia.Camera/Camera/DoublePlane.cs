@@ -35,11 +35,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The Y plane data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Y { get; }
 
         /// <summary>
         /// The UV plane data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] UV { get; }
     }
 }

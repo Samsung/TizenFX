@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for Camera device.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraDevice
     {
         /// <summary>
@@ -36,6 +37,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for Camera device state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraDeviceState
     {
         /// <summary>
@@ -55,6 +57,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the facing direction of camera module .
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraFacingDirection
     {
         /// <summary>
@@ -70,6 +73,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the current flash state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraFlashState
     {
         /// <summary>
@@ -85,6 +89,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the camera flip type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraFlip
     {
         /// <summary>
@@ -108,6 +113,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the camera focus state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraFocusState
     {
         /// <summary>
@@ -131,6 +137,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the camera pixel format.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraPixelFormat
     {
         /// <summary>
@@ -202,6 +209,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the camera policy.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraPolicy
     {
         /// <summary>
@@ -221,6 +229,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the camera rotation type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraRotation
     {
         /// <summary>
@@ -244,6 +253,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the camera state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraState
     {
         /// <summary>
@@ -271,6 +281,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the auto focus mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraAutoFocusMode
     {
         /// <summary>
@@ -294,6 +305,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the color tone, which provides the impression of looking through a tinted glass.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraEffectMode
     {
         /// <summary>
@@ -425,6 +437,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the camera exposure modes.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraExposureMode
     {
         /// <summary>
@@ -452,6 +465,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the flash mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraFlashMode
     {
         /// <summary>
@@ -491,6 +505,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for preview FPS.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraFps
     {
         /// <summary>
@@ -542,6 +557,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for HDR capture mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraHdrMode
     {
         /// <summary>
@@ -561,6 +577,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the ISO levels of the camera.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraIsoLevel
     {
         /// <summary>
@@ -600,6 +617,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for PTZ(Pan Tilt Zoom) movement type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraPtzMoveType
     {
         /// <summary>
@@ -615,6 +633,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for PTZ(Pan Tilt Zoom) type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraPtzType
     {
         /// <summary>
@@ -630,6 +649,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the camera scene mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraSceneMode
     {
         /// <summary>
@@ -701,6 +721,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the orientation values of tag.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraTagOrientation
     {
         /// <summary>
@@ -740,6 +761,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the theater mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraTheaterMode
     {
         /// <summary>
@@ -759,6 +781,7 @@ namespace Tizen.Multimedia
     /// <summary>
     ///Enumeration for the white balance levels of the camera.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraWhiteBalance
     {
         /// <summary>
@@ -806,6 +829,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the camera display mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraDisplayMode
     {
         /// <summary>
@@ -837,6 +861,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for camera failure error.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraErrorCode
     {
         /// <summary>
@@ -860,6 +885,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for Image datatype.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum PlaneType
     {
         /// <summary>

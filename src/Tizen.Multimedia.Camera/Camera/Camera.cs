@@ -48,6 +48,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> Class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="device">The camera device to access</param>
         public Camera(CameraDevice device)
         {
@@ -79,10 +80,11 @@ namespace Tizen.Multimedia
             return _handle;
         }
 
-#region Dispose support
+        #region Dispose support
         /// <summary>
         /// Release any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -137,42 +139,48 @@ namespace Tizen.Multimedia
         {
             _state = state;
         }
-#endregion Check camera state
+        #endregion Check camera state
 
-#region EventHandlers
+        #region EventHandlers
         /// <summary>
         /// Event that occurs when an camera is interrupted by policy.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<CameraInterruptedEventArgs> Interrupted;
         private Native.InterruptedCallback _interruptedCallback;
 
         /// <summary>
         /// Event that occurs when there is an asynchronous error.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<CameraErrorOccurredEventArgs> ErrorOccurred;
         private Native.ErrorCallback _errorCallback;
 
         /// <summary>
         /// Event that occurs when the auto focus state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<CameraFocusStateChangedEventArgs> FocusStateChanged;
         private Native.FocusStateChangedCallback _focusStateChangedCallback;
 
         /// <summary>
         /// Event that occurs when a face is detected in preview frame.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<FaceDetectedEventArgs> FaceDetected;
         private Native.FaceDetectedCallback _faceDetectedCallback;
 
         /// <summary>
         /// Event that occurs during capture of image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<CameraCapturingEventArgs> Capturing;
         private Native.CapturingCallback _capturingCallback;
 
         /// <summary>
         /// Event that occurs after the capture of the image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<EventArgs> CaptureCompleted;
         private Native.CaptureCompletedCallback _captureCompletedCallback;
 
@@ -180,12 +188,14 @@ namespace Tizen.Multimedia
         /// Event that occurs when there is change in HDR capture progress.
         /// Check whether HdrCapture feature is supported or not before add this EventHandler.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<HdrCaptureProgressEventArgs> HdrCaptureProgress;
         private Native.HdrCaptureProgressCallback _hdrCaptureProgressCallback;
 
         /// <summary>
         /// Event that occurs when camera state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<CameraStateChangedEventArgs> StateChanged;
         private Native.StateChangedCallback _stateChangedCallback;
 
@@ -199,6 +209,7 @@ namespace Tizen.Multimedia
         /// User doesn't need to create camera instance.
         /// This static EventHandler calls platform function every time because each callback function have to remain its own callbackId.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="callback">Callback of type <see cref="Native.DeviceStateChangedCallback"/>.</param>
         /// <param name="callbackId">The Id of registered callback.</param>
         /// <exception cref="InvalidOperationException">In case of any invalid operations</exception>
@@ -259,6 +270,7 @@ namespace Tizen.Multimedia
         /// Event that occurs once per frame when previewing.
         /// Preview callback is registered when user add callback explicitly to avoid useless P/Invoke.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<PreviewEventArgs> Preview
         {
             add
@@ -300,6 +312,7 @@ namespace Tizen.Multimedia
         /// Event that occurs once per frame when previewing.
         /// Preview callback is registered when user add callback explicitly to avoid useless P/Invoke.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<MediaPacketPreviewEventArgs> MediaPacketPreview
         {
             add
@@ -330,24 +343,27 @@ namespace Tizen.Multimedia
                 }
             }
         }
-    #endregion MediaPacketPreview EventHandler
+        #endregion MediaPacketPreview EventHandler
 
-#endregion EventHandlers
+        #endregion EventHandlers
 
-#region Properties
+        #region Properties
         /// <summary>
         /// Get/Set the various camera settings.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraSettings Setting { get; }
 
         /// <summary>
         /// Gets the various camera features.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraFeatures Feature { get; }
 
         /// <summary>
         /// Get/set various camera display properties.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraDisplaySettings DisplaySettings{ get; }
 
         private Display _display;
@@ -379,6 +395,7 @@ namespace Tizen.Multimedia
         /// Sets or gets the display type and handle to show preview images.
         /// The camera must be in the <see cref="CameraState.Created"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// This must be set before StartPreview() method.
         /// In Custom ROI display mode, DisplayRoiArea property must be set before calling this method.
@@ -426,6 +443,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the state of the camera.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value> None, Created, Preview, Capturing, Captured </value>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public CameraState State
@@ -447,6 +465,7 @@ namespace Tizen.Multimedia
         /// If the hint is set to true, the display will be reused when the camera device is changed with
         /// ChangeDevice method.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="InvalidOperationException">Invalid state.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
@@ -476,6 +495,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the facing direction of camera module.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="CameraFacingDirection"/> that specifies the facing direction of camera device.</value>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public CameraFacingDirection Direction
@@ -496,6 +516,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the camera device count.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>This returns 2, if the device supports primary and secondary cameras.
         /// Otherwise 1, if the device only supports primary camera.</value>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
@@ -519,6 +540,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Changes the camera device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="device">The hardware camera to access.</param>
         /// <remarks>
         /// If display reuse is set using <see cref="DisplayReuseHint"/>
@@ -541,6 +563,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the device state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="device">The device to get state.</param>
         /// <returns>Returns the state of camera device</returns>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
@@ -559,6 +582,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the flash state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="device">The device to get state.</param>
         /// <returns>Returns the flash state of camera device</returns>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
@@ -583,6 +607,7 @@ namespace Tizen.Multimedia
         /// before using this method.
         /// The camera must be in the <see cref="CameraState.Created"/> or <see cref="CameraState.Captured"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
@@ -605,6 +630,7 @@ namespace Tizen.Multimedia
         /// Stops capturing and drawing preview frames on the screen.
         /// The camera must be in the <see cref="CameraState.Preview"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
@@ -628,6 +654,7 @@ namespace Tizen.Multimedia
         /// and for completed using <see cref="CaptureCompleted"/> before calling this method.
         /// The camera must be in the <see cref="CameraState.Preview"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
@@ -656,6 +683,7 @@ namespace Tizen.Multimedia
         /// and for completed using <see cref="CaptureCompleted"/> before calling this method.
         /// The camera must be in the <see cref="CameraState.Preview"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
@@ -710,6 +738,7 @@ namespace Tizen.Multimedia
         /// Starts camera auto-focusing, asynchronously.
         /// The camera must be in the <see cref="CameraState.Preview"/> or <see cref="CameraState.Captured"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="continuous">Continuous auto focus</param>
         /// <privilege>
         /// http://tizen.org/privilege/camera
@@ -734,6 +763,7 @@ namespace Tizen.Multimedia
         /// Stops camera auto focusing.
         /// The camera must be in the <see cref="CameraState.Preview"/> or <see cref="CameraState.Captured"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
@@ -753,6 +783,7 @@ namespace Tizen.Multimedia
         /// Starts face detection.
         /// The camera must be in the <see cref="CameraState.Preview"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>
@@ -789,6 +820,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Stops face detection.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/camera
         /// </privilege>

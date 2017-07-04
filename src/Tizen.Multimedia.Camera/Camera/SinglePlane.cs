@@ -33,6 +33,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The YUV plane data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Data { get; }
     }
 }

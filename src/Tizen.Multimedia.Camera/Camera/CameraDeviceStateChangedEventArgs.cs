@@ -33,11 +33,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Camera device type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraDevice Device { get; }
 
         /// <summary>
         /// Current state of the camera device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraDeviceState State { get; }
     }
 }

@@ -55,26 +55,31 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The pixel format of the captured image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraPixelFormat Format { get; }
 
         /// <summary>
         /// The width of the image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Width { get; }
 
         /// <summary>
         /// The height of the image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Height { get; }
 
         /// <summary>
         /// The buffer containing image data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Data { get; }
 
         /// <summary>
         /// String containing Exif data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Exif { get; }
     }
 }

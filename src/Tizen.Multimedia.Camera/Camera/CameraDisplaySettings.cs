@@ -35,6 +35,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The display mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="CameraDisplayMode"/> that specifies the display mode.</value>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
         public CameraDisplayMode Mode
@@ -60,6 +61,7 @@ namespace Tizen.Multimedia
         /// The display visibility.
         /// True if camera display visible, otherwise false.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
         public bool Visible
         {
@@ -83,6 +85,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The display rotation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="CameraRotation"/> that specifies the rotation of camera device.</value>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
         public CameraRotation Rotation
@@ -107,6 +110,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The display flip.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="CameraFlip"/> that specifies camera flip type.</value>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
         public CameraFlip Flip
@@ -131,6 +135,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// the ROI(Region Of Interest) area of display.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
         public Rectangle RoiArea
         {

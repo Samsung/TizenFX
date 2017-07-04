@@ -34,16 +34,19 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Previous state of the camera.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraState Previous { get; }
 
         /// <summary>
         /// Current state of the camera.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraState Current { get; }
 
         /// <summary>
         /// The policy that interrupted the camera.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraPolicy Policy { get; }
     }
 }

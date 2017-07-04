@@ -33,16 +33,19 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The image data of the captured picture.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ImageData Image { get; }
 
         /// <summary>
         /// The image data of the postview.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ImageData PostView { get; }
 
         /// <summary>
         /// The image data of the thumbnail.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ImageData Thumbnail { get; }
     }
 }

@@ -33,6 +33,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// List containing faces of type <see cref="Tizen.Multimedia.FaceDetectionData"/>.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<FaceDetectionData> Faces { get; }
     }
 }

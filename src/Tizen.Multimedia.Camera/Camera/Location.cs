@@ -37,16 +37,19 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The Latitude data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public double Latitude { get; }
 
         /// <summary>
         /// The Longitude data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public double Longitude { get; }
 
         /// <summary>
         /// The Altitude data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public double Altitude { get; }
     }
 }

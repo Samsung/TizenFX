@@ -88,25 +88,37 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The pixel format of the image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraPixelFormat Format { get; }
 
         /// <summary>
         /// The width of the image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Width { get; }
 
         /// <summary>
         /// The height of the image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Height { get; }
 
         /// <summary>
-        /// The time of capture of the image.
+        /// The timestamp of preview frame.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint TimeStamp { get; }
 
+        /// <summary>
+        /// The buffer including preview frame.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IPreviewPlane Plane { get; }
 
+        /// <summary>
+        /// The type of preview plane. <see cref="Tizen.Multimedia.PlaneType"/>
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PlaneType PlaneType { get; }
     }
 }
