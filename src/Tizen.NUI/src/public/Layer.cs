@@ -332,6 +332,55 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Internal only property to Enable/Disable Clipping, type Boolean.
+        /// By default this is false, i.e. the viewport of the Layer is the entire window.
+        /// </summary>
+        internal bool ClippingEnabled
+        {
+            get
+            {
+                bool ret = NDalicPINVOKE.Layer_IsClipping(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                NDalicPINVOKE.Layer_SetClipping(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Sets the Viewport (in window coordinates), type Rectangle.
+        /// The contents of the layer will not be visible outside this box, when ViewportEnabled is true.
+        /// </summary>
+        public Rectangle Viewport
+        {
+            get
+            {
+                if( ClippingEnabled )
+                {
+                  Rectangle ret = new Rectangle(NDalicPINVOKE.Layer_GetClippingBox(swigCPtr), true);
+                  if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                  return ret;
+                }
+                else
+                {
+                  // Clipping not enabled so return the window size
+                  Size2D windowSize = Window.Instance.Size;
+                  Rectangle ret = new Rectangle(0, 0, windowSize.Width, windowSize.Height);
+                  return ret;
+                }
+            }
+            set
+            {
+                NDalicPINVOKE.Layer_SetClippingBox__SWIG_1(swigCPtr, Rectangle.getCPtr(value));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                ClippingEnabled = true;
+            }
+        }
+
+        /// <summary>
         /// Retrieves and sets the Layer's opacity.<br>
         /// </summary>
         public float Opacity
