@@ -64,6 +64,9 @@ namespace Tizen.Network.Nfc
         /// <since_tizen> 3 </since_tizen>
         /// <param name="response">The bytes array of response data.</param>
         /// <param name="responseLength">The size of response bytes array.</param>
+        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public void HceSendApduResponse(byte[] response, uint responseLength)
         {
             int ret = Interop.Nfc.CardEmulation.HceSendApduRespondse(_secureElementHandle, response, responseLength);

@@ -209,6 +209,9 @@ namespace Tizen.Network.Nfc
         /// <param name="id">The record ID.</param>
         /// <param name="payload">The payload of this record.</param>
         /// <param name="paloadLength">The byte size of payload.</param>
+        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public NfcNdefRecord(NfcRecordTypeNameFormat format, byte[] type, byte[] id, byte[] payload, uint paloadLength)
         {
             int ret = Interop.Nfc.NdefRecord.Create(out _recordHandle, (int)format, type, type.Length, id, id.Length, payload, paloadLength);
@@ -227,6 +230,9 @@ namespace Tizen.Network.Nfc
         /// <param name="text">The encoded text.</param>
         /// <param name="languageCode">The language code string value followed by IANA[RFC 3066] (ex: en-US, ko-KR).</param>
         /// <param name="encode">The encoding type.</param>
+        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public NfcNdefRecord(string text, string languageCode, NfcEncodeType encode)
         {
             int ret = Interop.Nfc.NdefRecord.CreateText(out _recordHandle, text, languageCode, (int)encode);
@@ -243,6 +249,9 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="uri">The URI string that will be stored in the payload.</param>
+        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public NfcNdefRecord(string uri)
         {
             int ret = Interop.Nfc.NdefRecord.CreateUri(out _recordHandle, uri);
@@ -261,6 +270,9 @@ namespace Tizen.Network.Nfc
         /// <param name="mimeType">The mime type [RFC 2046] (ex. text/plain, image/jpeg ) This value is stored in type field.</param>
         /// <param name="data">The data in form of bytes array.</param>
         /// <param name="dataSize">The size of data.</param>
+        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public NfcNdefRecord(string mimeType, byte[] data, uint dataSize)
         {
             int ret = Interop.Nfc.NdefRecord.CreateMime(out _recordHandle, mimeType, data, dataSize);

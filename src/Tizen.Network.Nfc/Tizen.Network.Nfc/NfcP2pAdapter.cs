@@ -85,6 +85,8 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>NfcP2p object.</returns>
+        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public NfcP2p GetConnectedTarget()
         {
             IntPtr targetHandle = IntPtr.Zero;

@@ -52,6 +52,8 @@ namespace Tizen.Network.Nfc
         /// Creates a object for the access point.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public NfcNdefMessage()
         {
             int ret = Interop.Nfc.NdefMessage.Create(out _messageHandle);

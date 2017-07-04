@@ -137,6 +137,8 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>List of NfcTagInformation objects.</returns>
+        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public IEnumerable<NfcTagInformation> ForeachInformation()
         {
             List<NfcTagInformation> infoList = new List<NfcTagInformation>();
@@ -170,10 +172,13 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="buffer">The binary data for parameter or additional commands.</param>
+        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public Task<byte[]> TransceiveAsync(byte[] buffer)
         {
             var task = new TaskCompletionSource<byte[]>();
-            
+
             byte[] resultBuffer = null;
             Interop.Nfc.TagTransceiveCompletedCallback callback = (int result, IntPtr resultData, int dataSize, IntPtr userData) =>
             {
@@ -200,6 +205,8 @@ namespace Tizen.Network.Nfc
         /// Reads NDEF formatted data from NFC tag.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public Task<NfcNdefMessage> ReadNdefMessageAsync()
         {
             var task = new TaskCompletionSource<NfcNdefMessage>();
@@ -232,6 +239,9 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="ndefMessage">The NfcNdefMessage object.</param>
+        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public Task<NfcError> WriteNdefMessageAsync(NfcNdefMessage ndefMessage)
         {
             var task = new TaskCompletionSource<NfcError>();
@@ -257,6 +267,9 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="keyValue">The key value that may need to format the tag.</param>
+        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public Task<NfcError> FormatNdefMessageAsync(byte[] keyValue)
         {
             var task = new TaskCompletionSource<NfcError>();
