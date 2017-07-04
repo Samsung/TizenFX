@@ -49,7 +49,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="handler">The function to call when it ticks off</param>
         /// <returns>A handle to the new animator</returns>
-        public static IntPtr AddAmimator(Func<bool> handler)
+        public static IntPtr AddAnimator(Func<bool> handler)
         {
             int id = RegistHandler(handler);
             return Interop.Ecore.ecore_animator_add(_nativeHandler, (IntPtr)id);

@@ -179,7 +179,7 @@ namespace ElmSharp.Test
         private void List_ScrollAnimationStarted(object sender, EventArgs e)
         {
             _ecoreCount = 0;
-            _anim = EcoreAnimator.AddAmimator(OnEcoreCheck);
+            _anim = EcoreAnimator.AddAnimator(OnEcoreCheck);
             list.RenderPost += List_RenderPostFrame;
         }
 
