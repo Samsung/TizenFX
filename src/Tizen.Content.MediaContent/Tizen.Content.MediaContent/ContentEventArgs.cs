@@ -40,6 +40,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The error code
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaContentError Error
         {
             get;
@@ -49,6 +50,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The PID which publishes notification
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Pid
         {
             get; set;
@@ -57,6 +59,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The update item of notification
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaContentUpdateItemType UpdateItem
         {
             get; set;
@@ -65,6 +68,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The update type of notification
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaContentDBUpdateType UpdateType
         {
             get; set;
@@ -73,6 +77,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The type of the media content
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaContentType MediaType
         {
             get; set;
@@ -81,6 +86,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The UUID of media or directory, which is updated
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Uuid
         {
             get; set;
@@ -89,6 +95,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The path of the media or directory
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string FilePath
         {
             get; set;
@@ -97,6 +104,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The mime type of the media info
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string MimeType
         {
             get; set;

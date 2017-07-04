@@ -38,6 +38,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the count of media tags for the passed filter in the given mediaId from the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// int count</returns>
         /// <param name="filter">The Filter for matching Tags</param>
@@ -54,6 +55,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Moves the media info to the given destination path in the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// void </returns>
         /// <param name="destination">The Destination path</param>
@@ -66,6 +68,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Refreshes the media metadata to the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// void </returns>
         public void Refresh()
@@ -78,6 +81,7 @@ namespace Tizen.Content.MediaContent
         /// Creates a thumbnail image for the given media, asynchronously
         /// If a thumbnail already exists for the given media, then the path of thumbnail will be returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// Task for creation of Thumbnail </returns>
         public Task<string> CreateThumbnailAsync()
@@ -103,6 +107,7 @@ namespace Tizen.Content.MediaContent
         /// which can be cancelled
         /// If a thumbnail already exists for the given media, then the path of thumbnail will be returned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="cancellationToken">Token to cancel the requested operation</param>
         /// <returns>
         /// Task for creation of Thumbnail
@@ -137,6 +142,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Iterates through the media tag in the given media info from the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// Task to get all the Tags </returns>
         /// <param name="filter"> The filter for the Tags</param>
@@ -163,6 +169,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the ID of the media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public virtual string MediaId
         {
             get
@@ -185,6 +192,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the path to the media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string FilePath
         {
             get
@@ -207,6 +215,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Name of the media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string DisplayName
         {
             get
@@ -235,6 +244,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the content type of the media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaContentType MediaType
         {
             get
@@ -250,6 +260,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the MIME type from the media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string MimeType
         {
             get
@@ -272,6 +283,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the media file size in bytes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public long Size
         {
             get
@@ -287,6 +299,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Addition time of the media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DateTime AddedAt
         {
             get
@@ -310,6 +323,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the date of modification of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DateTime ModifiedAt
         {
             get
@@ -327,6 +341,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the timeline of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DateTime TimeLine
         {
             get
@@ -344,6 +359,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the thumbnail of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ThumbnailPath
         {
             get
@@ -367,6 +383,7 @@ namespace Tizen.Content.MediaContent
         ///  Description of media.
         ///  If the media info has no description, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Description
         {
             get
@@ -396,6 +413,7 @@ namespace Tizen.Content.MediaContent
         /// Longitude of media.
         /// Default Value is 0.0.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public double Longitude
         {
             get
@@ -418,6 +436,7 @@ namespace Tizen.Content.MediaContent
         /// Latitude of media.
         /// Default Value is 0.0.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public double Latitude
         {
             get
@@ -440,6 +459,7 @@ namespace Tizen.Content.MediaContent
         /// Altitude of media.
         /// Default Value is 0.0.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public double Altitude
         {
             get
@@ -461,6 +481,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Weather information of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Weather
         {
             get
@@ -489,6 +510,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Rating of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Rating
         {
             get
@@ -510,6 +532,7 @@ namespace Tizen.Content.MediaContent
         /// Favorite status of media.
         /// true if media info is set as favorite, otherwise false if media info is not set as favorite.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsFavourite
         {
             get
@@ -531,6 +554,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Author of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Author
         {
             get
@@ -559,6 +583,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Provider of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Provider
         {
             get
@@ -587,6 +612,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Content name of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ContentName
         {
             get
@@ -616,6 +642,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the title of media.
         /// If the media content has no title, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Title
         {
             get
@@ -638,6 +665,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Category of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Category
         {
             get
@@ -666,6 +694,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// location tag of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string LocationTag
         {
             get
@@ -694,6 +723,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Age Rating of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string AgeRating
         {
             get
@@ -722,6 +752,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Keyword of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Keyword
         {
             get
@@ -750,6 +781,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the storage id of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string StorageId
         {
             get
@@ -772,6 +804,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Checks whether the media is protected via DRM.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsDrm
         {
             get
@@ -787,6 +820,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the storage type of media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ContentStorageType StorageType
         {
             get
@@ -803,6 +837,7 @@ namespace Tizen.Content.MediaContent
         /// Number which represents how many times given content has been played.
         /// While Setting the played count, it will only be incremented by 1, the value provided will be ignored.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int PlayedCount
         {
             get
@@ -825,6 +860,7 @@ namespace Tizen.Content.MediaContent
         ///  Content's latest played(opened) time of the media file.
         ///  for set the current time is automatically taken from the system, the value provided will be ignored.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DateTime PlayedAt
         {
             get

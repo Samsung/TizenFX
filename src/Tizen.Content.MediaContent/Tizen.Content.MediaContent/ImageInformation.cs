@@ -33,6 +33,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the id of the media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string MediaId
         {
             get
@@ -55,6 +56,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the image width in pixels.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Width
         {
             get
@@ -70,6 +72,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the image height in pixels.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Height
         {
             get
@@ -85,6 +88,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Image orientation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaContentOrientation Orientation
         {
             get
@@ -106,6 +110,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the image creation time in seconds, since the Epoch.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string TakenDate
         {
             get
@@ -129,6 +134,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the burst shot ID.
         /// If BurstId is null, this is not a burst shot
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string BurstId
         {
             get
@@ -151,6 +157,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the exposure time from exif.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ExposureTime
         {
             get
@@ -173,6 +180,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the fnumber from exif.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public double FNumber
         {
             get
@@ -188,6 +196,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the iso from exif.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Iso
         {
             get
@@ -203,6 +212,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the model from exif.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Model
         {
             get
@@ -227,6 +237,7 @@ namespace Tizen.Content.MediaContent
         /// The value is true if the media is a burst shot image,
         /// otherwise false if the media is not a burst shot image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsBurstShot
         {
             get
@@ -243,6 +254,7 @@ namespace Tizen.Content.MediaContent
         /// Iterates through the media faces with filter in the given media file from the media database.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// Task to get all the MediaFaces </returns>
         /// <param name="filter"> filter for the Tags</param>
@@ -269,6 +281,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the number of faces for the passed filter in the given media ID from the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// int count</returns>
         /// <param name="filter">The Filter for matching Face</param>
@@ -286,6 +299,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Inserts a MediaFace item to the media database
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="image">The image on which face is to be added</param>
         /// <param name="rect">The dimensions of the face</param>
         /// <returns>The MediaFace instance</returns>
@@ -299,6 +313,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Deletes the MediaFace from the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="face">The face instance to be deleted</param>
         public void DeleteFace(MediaFace face)
         {
@@ -308,6 +323,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Updates the MediaFace in the media database
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="face">The MediaFace object to be updated</param>
         public void UpdateFace(MediaFace face)
         {

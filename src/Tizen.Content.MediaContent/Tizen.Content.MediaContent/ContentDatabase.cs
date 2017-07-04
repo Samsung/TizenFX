@@ -48,6 +48,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Connect to the media database to search, insert, remove or modify media information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// For information security, disconnect() after use media database.
         /// </remarks>
@@ -59,6 +60,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Disconnect from the media database.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static void Disconnect()
         {
             MediaContentValidator.ThrowIfError(Interop.Content.Disconnect(), "Disconnect failed");
@@ -83,6 +85,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// ContentUpdated event is triggered when the media DB changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="sender"></param>
         /// <param name="e">A ContentUpdatedEventArgs object that contains information about the update operation.</param>
         public static event EventHandler<ContentUpdatedEventArgs> ContentUpdated
@@ -112,6 +115,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the count of ContentCollections for the ContentCollectionType and passed filter from the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">The media filter</param>
         /// <returns>The count of contents present in the media database for a ContentSourceType</returns>
         public int GetCount<T>(ContentFilter filter) where T : class
@@ -175,6 +179,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the MediaInformation object for the passed media Id.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="id">The media id to fetch the respective MediaInformation instance</param>
         /// <returns>MediaInformation instance for the associated id.It throws Exception for invalid Id.</returns>
         public MediaInformation Select(string id)
@@ -222,6 +227,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the ContentCollection object for the passed media Id.
         /// Applicable for MediaFolder and Storage types.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="id">The ContentCollection id to fetch the respective MediaInformation instance</param>
         /// <returns>ContentCollection instance for the associated id.It throws Exception for invalid Id.</returns>
         public T Select<T>(string id) where T : ContentCollection
@@ -261,6 +267,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the ContentCollection object for the passed media Id.
         /// Applicable for PlayList, Album and Tag types.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="id">The ContentCollection id to fetch the respective MediaInformation instance</param>
         /// <returns>ContentCollection instance for the associated id.It throws Exception for invalid Id.</returns>
         public T Select<T>(int id) where T : ContentCollection
@@ -430,6 +437,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Returns the ContentCollections with optional filter from the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// This function gets all ContentCollections matching the given filter. If NULL is passed to the filter, no filtering is applied.
         /// </remarks>
@@ -482,6 +490,7 @@ namespace Tizen.Content.MediaContent
         /// Returns media from the media database.
         /// This function gets all media meeting the given filter
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">The media filter</param>
         /// <returns>List of media</returns>
         private IEnumerable<MediaInformation> GetMediaInformations(ContentFilter filter)
@@ -536,6 +545,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Deletes a MediaInformation from the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="mediaInfo">The MediaInformation to be deleted</param>
         public void Delete(MediaInformation mediaInfo)
         {
@@ -549,6 +559,7 @@ namespace Tizen.Content.MediaContent
         /// Applicable for Tag and PlayList only.
         /// For other types ArgumentException is thrown.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="contentcollection">The ContentCollection instance to be deleted</param>
         public void Delete(ContentCollection contentcollection)
         {
@@ -586,6 +597,7 @@ namespace Tizen.Content.MediaContent
         /// Updates a content collection in the media database
         /// Applicable for Tag, PlayList and MediagFolder types only.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="contentCollection">The content collection to be updated</param>
         public void Update(ContentCollection contentCollection)
         {
@@ -614,6 +626,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Updates a media information instance in the media database
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="mediaInfo">The MediaInformation object to be updated</param>
         public void Update(MediaInformation mediaInfo)
         {
@@ -662,6 +675,7 @@ namespace Tizen.Content.MediaContent
         /// Inserts a content collection to the media database.
         /// Applicable for Tag and PlayList types only.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="contentCollection">The content collection to be inserted</param>
         public void Insert(ContentCollection contentCollection)
         {

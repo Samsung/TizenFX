@@ -47,6 +47,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The ID of the media folder. For each MediaFolder this id is unique.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Id
         {
             get
@@ -69,6 +70,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// ParentId of the MediaFolder that is the ID of the upper media folder (parent folder).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ParentId
         {
             get
@@ -91,6 +93,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The path of the media folder
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string FolderPath
         {
             get
@@ -113,6 +116,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The name of the media folder
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Name
         {
             get
@@ -142,6 +146,7 @@ namespace Tizen.Content.MediaContent
         /// The storage type of the media folder.
         /// Storage types give information about the location of storage like Internal memory, USB or External Storage etc...
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ContentStorageType StorageType
         {
             get
@@ -157,6 +162,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The storage id of the media folder
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string StorageId
         {
             get
@@ -179,6 +185,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The modified date of the media folder
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DateTime ModifiedTime
         {
             get
@@ -196,6 +203,7 @@ namespace Tizen.Content.MediaContent
         /// Default Order value is zero.
         /// If you set the order value for each folder, you can sort in ascending or descending order as the set order values using the filter.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Order
         {
             get
@@ -223,6 +231,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the count of media files for the passed filter in the given folder from the media database.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">ContentFilter used to match media content from teh media database.</param>
         /// <returns>The number of media contents matching the filter passed</returns>
         public override int GetMediaInformationCount(ContentFilter filter)
@@ -265,6 +274,7 @@ namespace Tizen.Content.MediaContent
         /// This function gets all media files associated with the given folder and meeting desired filter option.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">ContentFilter used to match media content from the media database.</param>
         /// <returns>List of content media items matching the passed filter</returns>
         public override IEnumerable<MediaInformation> GetMediaInformations(ContentFilter filter)

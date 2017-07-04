@@ -118,6 +118,7 @@ namespace Tizen.Content.MediaContent
         /// The start position of the given filter Starting from zero.
         /// Please note that count value has to be set properly for correct result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Offset
         {
             get
@@ -146,6 +147,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The number of items to be searched with respect to the offset
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Count
         {
             get
@@ -168,6 +170,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the media filter content order and order keyword.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ContentOrder Order
         {
             get
@@ -190,6 +193,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The search order keyword
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string OrderKey
         {
             get
@@ -222,6 +226,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The collate type for comparing two strings
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ContentCollation OrderCollationType
         {
             get
@@ -244,6 +249,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets/Sets the condition for the given filter.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Condition
         {
             get
@@ -275,6 +281,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The collate type for comparing two strings
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ContentCollation ConditionCollationType
         {
             get
@@ -298,6 +305,7 @@ namespace Tizen.Content.MediaContent
         /// Sets the storage id for the given filter.
         /// You can use this property when you want to search items only in the specific storage
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string StorageId
         {
             get
@@ -326,12 +334,14 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The type of the media group
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaGroupType GroupType { get; set; }
 
         /// <summary>
         /// Dispose API for closing the internal resources.
         /// This function can be used to stop all effects started by Vibrate().
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

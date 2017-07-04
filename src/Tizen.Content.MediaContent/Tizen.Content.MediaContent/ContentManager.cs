@@ -50,6 +50,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Database instance to do all the Database oprtions for media content management.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static ContentDatabase Database
         {
             get
@@ -61,6 +62,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Requests to scan a media file.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filePath">File path of the media to be scanned</param>
         /// <returns>A reference to the MediaInformation object scanned</returns>
         /// <remarks>
@@ -77,6 +79,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Inserts a media to the media database
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filePath">File path of the media to be inserted</param>
         /// <returns>the MediaInformation instance about added media path</returns>
         public static MediaInformation AddMediaInformation(string filePath)
@@ -123,6 +126,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Requests to scan a media folder, asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="folderPath">The folder path</param>
         /// <param name="recursive">Indicate sif the folder is to recursively scanned. Default value: true</param>
         /// <remarks>
@@ -152,6 +156,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Requests to scan a media folder, asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="folderPath">The folder path</param>
         /// <param name="cancellationToken">Cancellation token required to cancel the current scan</param>
         /// <param name="recursive">Indicate sif the folder is to recursively scanned. Default value: true</param>
@@ -203,6 +208,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Inserts media files into the media database, asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filePaths">The path array to the media files</param>
         /// <returns>
         /// Task with the result of batch insertion
@@ -225,6 +231,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Inserts the burst shot images into the media database, asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filePaths">The path array to the burst shot images</param>
         /// <returns>
         /// Task with the result of the burstshot insertion
@@ -249,6 +256,7 @@ namespace Tizen.Content.MediaContent
         /// This function deletes the media items from the content storage.Normally, deleting media files in the database are done automatically by the media server,
         /// without calling this function.This function is only called when the media server is busy and user needs to get quick result of deleting.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">The content filter to which media will be matched</param>
         public static void RemoveMediaInformationBatch(ContentFilter filter)
         {

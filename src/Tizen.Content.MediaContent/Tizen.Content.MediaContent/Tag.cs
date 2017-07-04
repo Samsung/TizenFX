@@ -51,6 +51,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The ID of the media tag
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Id
         {
             get
@@ -65,6 +66,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The name of the tag
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Name
         {
             get
@@ -99,6 +101,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Creates a Tag object which can be inserted to the media database using ContentManager:InsertToDatabaseAsync(ContentCollection)
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="tagName">The name of the media tag</param>
         public Tag(string tagName)
         {
@@ -108,6 +111,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Adds a new media info to the tag.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="mediaContent">The media info which is added</param>
         public void AddItem(MediaInformation mediaContent)
         {
@@ -118,6 +122,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Removes the media info from the given tag.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="mediaContent">The media info which is removed</param>
         public void RemoveItem(MediaInformation mediaContent)
         {
@@ -128,6 +133,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the number of media files for the passed filter in the given tag from the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">ContentFilter used to match media content from the media database.</param>
         /// <returns>The number of media contents matching the filter passed</returns>
         public override int GetMediaInformationCount(ContentFilter filter)
@@ -154,6 +160,7 @@ namespace Tizen.Content.MediaContent
         /// This function gets all media items associated with a given tag and meeting a desired filter.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">ContentFilter used to match media content from the media database.</param>
         /// <returns>List of content media items matching the passed filter</returns>
         public override IEnumerable<MediaInformation> GetMediaInformations(ContentFilter filter)

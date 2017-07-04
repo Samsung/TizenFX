@@ -34,6 +34,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The name of the media group
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Name
         {
             get { return _groupName; }
@@ -62,6 +63,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the count of the media info for the given media group present in the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">ContentFilter used to match media content from the media database.</param>
         /// <returns>The number of media contents matching the filter passed</returns>
         public override int GetMediaInformationCount(ContentFilter filter)
@@ -80,6 +82,7 @@ namespace Tizen.Content.MediaContent
         /// This function gets all media files associated with the given group and meeting desired filter option.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">ContentFilter used to match media content from the media database.</param>
         /// <returns>List of content media items matching the passed filter</returns>
         public override IEnumerable<MediaInformation> GetMediaInformations(ContentFilter filter)

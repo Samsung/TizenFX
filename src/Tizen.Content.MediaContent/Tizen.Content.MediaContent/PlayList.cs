@@ -79,6 +79,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The ID of the media playlist
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Id
         {
             get
@@ -95,6 +96,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The playlist name
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Name
         {
             get
@@ -112,6 +114,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The path of the thumbnail
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ThumbnailPath
         {
             get
@@ -139,6 +142,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The constructor to create a new playlist with the given name in the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="name">The name of the inserted playlist</param>
         public PlayList(string name)
         {
@@ -164,6 +168,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Adds a new media info to the playlist.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="mediaContent">The AudioContent obect to be added</param>
         public void AddItem(MediaInformation mediaContent)
         {
@@ -174,6 +179,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Removes the playlist members related with the media from the given playlist.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="media">The AudioContent object to be removed</param>
         public void RemoveItem(MediaInformation media)
         {
@@ -187,6 +193,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Sets the playing order in the playlist.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="media">The playlist reference</param>
         /// <param name="playOrder">The playing order</param>
         public void SetPlayOrder(MediaInformation media, int playOrder)
@@ -201,6 +208,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the playing order in the playlist for the passed member id.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="media">The MediaInformation instance</param>
         /// <returns>The number of play order</returns>
         public int GetPlayOrder(MediaInformation media)
@@ -218,6 +226,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Imports the playlist from m3u playlist file.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="name">The name of the playlist to save</param>
         /// <param name="filePath">The path to import the playlist file</param>
         /// <returns>The imported PlayList object</returns>
@@ -237,6 +246,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Exports the playlist to m3u playlist file.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="list">The playlist instance to export</param>
         /// <param name="filePath">The path to save exported playlist</param>
         /// <returns>path The path to export the playlist</returns>
@@ -249,6 +259,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the number of the media info for the given playlist present in the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">ContentFilter used to match media content from the media database.</param>
         /// <returns>The number of media contents matching the filter passed</returns>
         public override int GetMediaInformationCount(ContentFilter filter)
@@ -275,6 +286,7 @@ namespace Tizen.Content.MediaContent
         /// This function gets all media files associated with the given media playlist and meeting desired filter option.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">ContentFilter used to match media content from the media database.</param>
         /// <returns>List of content media items matching the passed filter</returns>
         public override IEnumerable<MediaInformation> GetMediaInformations(ContentFilter filter)

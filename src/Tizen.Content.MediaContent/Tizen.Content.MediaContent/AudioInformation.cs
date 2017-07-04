@@ -37,6 +37,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the ID of the media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string MediaId
         {
             get
@@ -60,6 +61,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the album name.
         ///  If the media content has no album info, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Album
         {
             get
@@ -83,6 +85,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the artist name.
         ///  If the media content has no album info, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Artist
         {
             get
@@ -106,6 +109,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the album artist name.
         ///  If the media content has no album info, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string AlbumArtist
         {
             get
@@ -129,6 +133,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the genre.
         ///  If the media content has no album info, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Genre
         {
             get
@@ -153,6 +158,7 @@ namespace Tizen.Content.MediaContent
         ///  If the value is an empty string, the property returns "Unknown".
         ///  If the media content has no album info, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Composer
         {
             get
@@ -176,6 +182,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the year.
         ///  If the media content has no album info, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Year
         {
             get
@@ -198,6 +205,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the recorded date.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string RecordedDate
         {
             get
@@ -221,6 +229,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the copyright.
         ///  If the media content has no copyright information, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Copyright
         {
             get
@@ -244,6 +253,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the track number.
         ///  If the media content has no track information, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string TrackNumber
         {
             get
@@ -266,6 +276,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the bitrate in bit per second [bps].
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BitRate
         {
             get
@@ -281,6 +292,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets bit per sample.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BitPerSample
         {
             get
@@ -296,6 +308,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the sample rate in hz.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int SampleRate
         {
             get
@@ -311,6 +324,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the channel.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Channel
         {
             get
@@ -326,6 +340,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the track duration in Milliseconds.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Duration
         {
             get
@@ -342,6 +357,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the number of MediaBookmark for the passed filter in the given media ID from the media database.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// int count</returns>
         /// <param name="filter">The Filter for matching Bookmarks</param>
@@ -359,6 +375,7 @@ namespace Tizen.Content.MediaContent
         /// Returns the MediaBookmarks for the given media info from the media database.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// Task to get all the Bookmarks
         /// </returns>
@@ -385,6 +402,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Adds a MediaBookmark to the audio
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="offset">Offset of the audio in seconds</param>
         /// <returns>
         /// Task with newly added MediaBookmark instance.
@@ -413,6 +431,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Deletes a MediaBookmark item from the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="bookmark">The MediaBookmark instance to be deleted</param>
         public void DeleteBookmark(MediaBookmark bookmark)
         {

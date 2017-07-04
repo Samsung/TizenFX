@@ -35,21 +35,25 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// X coordinate of the FaceRect
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public readonly int X;
 
         /// <summary>
         /// Y coordinate of the FaceRect
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public readonly int Y;
 
         /// <summary>
         /// Width of the FaceRect
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public readonly int Width;
 
         /// <summary>
         /// Height of the FaceRect
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public readonly int Height;
     }
 }

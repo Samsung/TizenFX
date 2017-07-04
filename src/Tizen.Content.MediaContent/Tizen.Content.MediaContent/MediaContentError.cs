@@ -24,6 +24,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Enumeration for media content's error code
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     /// <remarks><paramref name="NotSupported"/> error occurs when the device does not support the function.</remarks>
     public enum MediaContentError
     {

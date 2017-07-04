@@ -32,6 +32,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Media UUID
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Id
             {
                 get
@@ -43,6 +44,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Media path
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Path
             {
                 get
@@ -54,6 +56,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Display name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string DisplayName
             {
                 get
@@ -65,6 +68,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// The type of media (0-image, 1-video, 2-sound, 3-music, 4-other)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string MediaType
             {
                 get
@@ -76,6 +80,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Mime type
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string MimeType
             {
                 get
@@ -88,6 +93,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// File size
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Size
             {
                 get
@@ -99,6 +105,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Added time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string AddedTime
             {
                 get
@@ -110,6 +117,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Modified time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string ModifiedTime
             {
                 get
@@ -121,6 +129,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Timeline. Normally, creation date of media
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Timeline
             {
                 get
@@ -132,6 +141,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// The path of thumbnail
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string ThumbnailPath
             {
                 get
@@ -143,6 +153,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Title
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Title
             {
                 get
@@ -154,6 +165,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Album name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Album
             {
                 get
@@ -165,6 +177,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Artist
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Artist
             {
                 get
@@ -176,6 +189,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Album artist
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string AlbumArtist
             {
                 get
@@ -187,6 +201,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Genre
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Genre
             {
                 get
@@ -198,6 +213,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Composer
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Composer
             {
                 get
@@ -209,6 +225,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Release year
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Year
             {
                 get
@@ -220,6 +237,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Recorded date
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string RecordedDate
             {
                 get
@@ -231,6 +249,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Copyright
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Copyright
             {
                 get
@@ -242,6 +261,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Track Number
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string TrackNumber
             {
                 get
@@ -253,6 +273,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Description
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Description
             {
                 get
@@ -264,6 +285,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Bitrate
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Bitrate
             {
                 get
@@ -275,6 +297,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Bit per sample
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string BitPerSample
             {
                 get
@@ -286,6 +309,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Samplerate
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Samplerate
             {
                 get
@@ -297,6 +321,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Channel
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Channel
             {
                 get
@@ -308,6 +333,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Duration
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Duration
             {
                 get
@@ -319,6 +345,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Longitude
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Longitude
             {
                 get
@@ -330,6 +357,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Latitude
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Latitude
             {
                 get
@@ -341,6 +369,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Altitude
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Altitude
             {
                 get
@@ -351,6 +380,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Width
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Width
             {
                 get
@@ -362,6 +392,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Height
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Height
             {
                 get
@@ -373,6 +404,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Datetaken
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Datetaken
             {
                 get
@@ -384,6 +416,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Orientation
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Orientation
             {
                 get
@@ -395,6 +428,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Burst shot ID
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string BurstId
             {
                 get
@@ -406,6 +440,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Played count
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string PlayedCount
             {
                 get
@@ -417,6 +452,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Last played time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string PlayedTime
             {
                 get
@@ -428,6 +464,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Last played position
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string PlayedPosition
             {
                 get
@@ -439,6 +476,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Rating
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Rating
             {
                 get
@@ -450,6 +488,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Favourite
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Favourite
             {
                 get
@@ -461,6 +500,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Author
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Author
             {
                 get
@@ -472,6 +512,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Provider
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Provider
             {
                 get
@@ -482,6 +523,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Content name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string ContentName
             {
                 get
@@ -493,6 +535,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Category
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Category
             {
                 get
@@ -503,6 +546,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Location tag
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string LocationTag
             {
                 get
@@ -514,6 +558,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Age rating
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string AgeRating
             {
                 get
@@ -525,6 +570,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Keyword
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Keyword
             {
                 get
@@ -536,6 +582,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Weather
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Weather
             {
                 get
@@ -547,6 +594,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Whether DRM(1) or not(0)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string IsDRM
             {
                 get
@@ -558,6 +606,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Storage type
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string StorageType
             {
                 get
@@ -569,6 +618,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Exposure time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string ExposureTime
             {
                 get
@@ -580,6 +630,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// f-number
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string FNumber
             {
                 get
@@ -591,6 +642,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// ISO
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Iso
             {
                 get
@@ -602,6 +654,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Model
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Model
             {
                 get
@@ -613,6 +666,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// 360 content
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Media360
             {
                 get
@@ -629,6 +683,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// File name (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string FileName
                 {
                     get
@@ -640,6 +695,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Title (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string Title
                 {
                     get
@@ -651,6 +707,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Album (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string Album
                 {
                     get
@@ -662,6 +719,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Artist (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string Artist
                 {
                     get
@@ -673,6 +731,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Album artist (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string AlbumArtist
                 {
                     get
@@ -684,6 +743,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Genre (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string Genre
                 {
                     get
@@ -695,6 +755,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Composer (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string Composer
                 {
                     get
@@ -706,6 +767,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Copyright (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string Copyright
                 {
                     get
@@ -717,6 +779,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Description (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string Description
                 {
                     get
@@ -728,6 +791,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Author (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string Author
                 {
                     get
@@ -739,6 +803,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Provider (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string Provider
                 {
                     get
@@ -750,6 +815,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Content name (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string ContentName
                 {
                     get
@@ -761,6 +827,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Category (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string Category
                 {
                     get
@@ -772,6 +839,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Location tag (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string LocationTag
                 {
                     get
@@ -783,6 +851,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Age rating (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string AgeRating
                 {
                     get
@@ -794,6 +863,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Keyword (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string Keyword
                 {
                     get
@@ -814,6 +884,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             ///Folder UUID
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Id
             {
                 get
@@ -825,6 +896,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Folder path
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Path
             {
                 get
@@ -836,6 +908,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Folder name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Name
             {
                 get
@@ -847,6 +920,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Folder modified time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string ModifiedTime
             {
                 get
@@ -858,6 +932,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Folder storage type
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string StorageType
             {
                 get
@@ -874,6 +949,7 @@ namespace Tizen.Content.MediaContent
                 /// <summary>
                 /// Folder name (pinyin)
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 public static string Name
                 {
                     get
@@ -887,6 +963,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Folder order. Default is 0
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Order
             {
                 get
@@ -898,6 +975,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Parent folder UUID
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string ParentId
             {
                 get
@@ -916,6 +994,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Playlist name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Name
             {
                 get
@@ -926,6 +1005,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Playlist member's play order
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Order
             {
                 get
@@ -937,6 +1017,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Count of media in the playlist
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Count
             {
                 get
@@ -955,6 +1036,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Tag name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Name
             {
                 get
@@ -966,6 +1048,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Count of media in the tag
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Count
             {
                 get
@@ -984,6 +1067,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Bookmarked offset
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Offset
             {
                 get
@@ -1002,6 +1086,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Storage UUID
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Id
             {
                 get
@@ -1013,6 +1098,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// Storage path
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Path
             {
                 get
@@ -1031,6 +1117,7 @@ namespace Tizen.Content.MediaContent
             /// <summary>
             /// face tag
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public static string Tag
             {
                 get

@@ -46,6 +46,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The storage id of the media storage
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Id
         {
             get
@@ -68,6 +69,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The storage path of the media storage
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string StoragePath
         {
             get
@@ -90,6 +92,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The storage name of the media storage
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Name
         {
             get
@@ -112,6 +115,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The storage type of the media storage
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ContentStorageType StorageType
         {
             get
@@ -132,6 +136,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the count of media files for the passed filter in the given storage from the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">ContentFilter used to match media content from the media database.</param>
         /// <returns>The number of media contents matching the filter passed</returns>
         public override int GetMediaInformationCount(ContentFilter filter)
@@ -158,6 +163,7 @@ namespace Tizen.Content.MediaContent
         /// This function gets all media files associated with the given storage and meeting desired filter option.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">ContentFilter used to match media content from the media database.</param>
         /// <returns>List of content media items matching the passed filter</returns>
         public override IEnumerable<MediaInformation> GetMediaInformations(ContentFilter filter)

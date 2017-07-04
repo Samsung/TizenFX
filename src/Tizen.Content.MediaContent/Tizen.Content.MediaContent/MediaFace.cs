@@ -50,6 +50,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Create Face for Given Image
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="image">
         ///image item through which FaceRect has to be tagged.
         ///</param>
@@ -79,6 +80,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The Media Face Information API provides functions to manage the face information in the image files.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public FaceRect Rect
         {
             get
@@ -104,6 +106,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Face id.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Id
         {
             get
@@ -126,6 +129,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Media uuid from the face
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string MediaInformationId
         {
             get
@@ -147,6 +151,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Tag name for the MediaFace.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Tag
         {
             get
@@ -175,6 +180,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Orientation Value for the face
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaContentOrientation Orientation
         {
             get
@@ -196,6 +202,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Dispose API for closing the internal resources.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

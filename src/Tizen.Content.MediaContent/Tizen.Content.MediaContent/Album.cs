@@ -47,6 +47,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The media album ID
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Id
         {
             get
@@ -63,6 +64,7 @@ namespace Tizen.Content.MediaContent
         /// The name of the media artist
         /// If the media content has no album info, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Artist
         {
             get
@@ -85,6 +87,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The path of the media album art
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Art
         {
             get
@@ -108,6 +111,7 @@ namespace Tizen.Content.MediaContent
         /// The name of the media album
         /// If the media content has no album info, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Name
         {
             get
@@ -136,6 +140,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the number of MediaInformation Items for the given album present in the media database.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">ContentFilter used to match media content from the media database.</param>
         /// <returns>The number of media contents matching the filter passed</returns>
         public override int GetMediaInformationCount(ContentFilter filter)
@@ -163,6 +168,7 @@ namespace Tizen.Content.MediaContent
         /// This function gets all media files associated with the given media album and meeting desired filter option.
         /// If NULL is passed to the filter, no filtering is applied.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="filter">ContentFilter used to match media content from the media database.</param>
         /// <returns>List of content media items matching the passed filter</returns>
         public override IEnumerable<MediaInformation> GetMediaInformations(ContentFilter filter)

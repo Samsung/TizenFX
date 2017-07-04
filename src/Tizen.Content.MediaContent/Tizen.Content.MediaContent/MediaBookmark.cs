@@ -54,6 +54,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The media bookmark ID
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Id
         {
             get
@@ -69,6 +70,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The thumbnail path of media bookmark
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ThumbnailPath
         {
             get
@@ -91,6 +93,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// The bookmark time offset (in milliseconds)
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint Offset
         {
             get

@@ -25,12 +25,14 @@ using System.Collections.ObjectModel;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// VideoContent class API gives the information related to the image media stored in the device</summary>
+    /// VideoContent class API gives the information related to the image media stored in the device
+    /// </summary>
     public class VideoInformation : MediaInformation
     {
         /// <summary>
         ///  Gets the ID of the media.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string MediaId
         {
             get
@@ -54,6 +56,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the album name.
         ///  If the media content has no album information, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Album
         {
             get
@@ -77,6 +80,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the artist name.
         ///  If the media content has no artist information, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Artist
         {
             get
@@ -100,6 +104,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the album artist name.
         ///  If the media content has no album artist information, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string AlbumArtist
         {
             get
@@ -123,6 +128,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the genre name.
         ///  If the media content has no genre information, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Genre
         {
             get
@@ -146,6 +152,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the composer name.
         ///  If the media content has no composer information, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Composer
         {
             get
@@ -169,6 +176,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the year.
         ///  If the media content has no year information, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Year
         {
             get
@@ -191,6 +199,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the recorded date.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string RecordedDate
         {
             get
@@ -214,6 +223,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the copyright notice.
         ///  If the media content has no copyright information, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Copyright
         {
             get
@@ -237,6 +247,7 @@ namespace Tizen.Content.MediaContent
         ///  Gets the track number.
         ///  If the media content has no track information, the property returns empty string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string TrackNumber
         {
             get
@@ -259,6 +270,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the bitrate in bit per second [bps].
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BitRate
         {
             get
@@ -274,6 +286,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the track duration in Milliseconds.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Duration
         {
             get
@@ -289,6 +302,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the video width in pixels.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Width
         {
             get
@@ -304,6 +318,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         ///  Gets the video height in pixels.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Height
         {
             get
@@ -319,6 +334,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the number of bookmarks for the passed filter in the given media ID from the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// int count</returns>
         /// <param name="filter">The Filter for matching Bookmarks</param>
@@ -335,6 +351,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Iterates through the media bookmark in the given media info from the media database.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// Task to get all the Bookmarks </returns>
         /// <param name="filter"> filter for the Tags</param>
@@ -359,6 +376,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Adds a bookmark to the video
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="offset">Offset of the video in seconds</param>
         /// <param name="thumbnailPath">Thumbnail path for the bookmark</param>
         /// <returns>Task with added MediaBookmark instance </returns>
@@ -387,6 +405,7 @@ namespace Tizen.Content.MediaContent
         /// Deletes a bookmark from the media database.
         /// For other types Unsupported exception is thrown.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="bookmark">The bookmark to be deleted</param>
         public void DeleteBookmark(MediaBookmark bookmark)
         {
