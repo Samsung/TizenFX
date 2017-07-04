@@ -135,6 +135,8 @@ namespace Tizen.Network.Smartcard
         /// Closes all the sessions opened on the given reader.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="NotSupportedException">Thrown when Smartcard is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public void CloseSessions()
         {
             int ret = Interop.Smartcard.Reader.ReaderCloseSessions(_readerHandle);

@@ -143,6 +143,8 @@ namespace Tizen.Network.Smartcard
         /// Closes the given channel to the Secure Element.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="NotSupportedException">Thrown when Smartcard is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public void Close()
         {
             int ret = Interop.Smartcard.Channel.ChannelClose(_channelHandle);
