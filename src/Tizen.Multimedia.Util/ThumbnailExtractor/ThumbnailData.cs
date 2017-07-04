@@ -31,16 +31,19 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The thumbnail data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Thumbnail { get; }
 
         /// <summary>
         /// The width of the thumbnail.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Width { get; }
 
         /// <summary>
         /// The height of the thumbnail.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Height { get; }
     }
 }

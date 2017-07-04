@@ -37,6 +37,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Thumbnail extractor constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// If you need the thumbnail of the specified size, use ThumbnailExtractor(path, width, height) or ThumbnailExtractor(path, size).
         /// </remarks>
@@ -104,6 +105,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Thumbnail extractor constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// If you need the thumbnail of the default size, use ThumbnailExtractor(path). The default size is 320x240. \n
         /// If the set width is not a multiple of 8, it can be changed by inner process. \n
@@ -124,6 +126,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Thumbnail extractor constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// If you need the thumbnail of the default size, use ThumbnailExtractor(path). The default size is 320x240. \n
         /// If the set width is not a multiple of 8, it can be changed by inner process. \n
@@ -143,6 +146,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Extracts the thumbnail for the given media, asynchronously
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// Task for creation of Thumbnail. See <see cref="ThumbnailData"/> details.
         /// </returns>
@@ -207,6 +211,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Thumbnail Utility destructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~ThumbnailExtractor()
         {
             Dispose(false);
