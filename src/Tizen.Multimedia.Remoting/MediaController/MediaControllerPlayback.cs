@@ -27,6 +27,7 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// The constructor of MediaControllerPlayback class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="state">
         /// The state of the playback which is playing in MediaConttoller server application
         /// </param>
@@ -59,14 +60,16 @@ namespace Tizen.Multimedia.MediaController
             Position = position;
         }
 
-       /// <summary>
-       /// Set/Get the State of playback information
-       /// </summary>
+        /// <summary>
+        /// Set/Get the State of playback information
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaControllerPlaybackState State { get; }
 
         /// <summary>
         /// Set/Get the Position of playback information
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ulong Position { get; }
     }
 }

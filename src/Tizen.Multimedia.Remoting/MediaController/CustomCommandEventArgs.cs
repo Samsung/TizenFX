@@ -38,16 +38,19 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Get the Client Name.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ClientName { get; }
 
         /// <summary>
         /// Get the Custom Command.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Command { get; }
 
         /// <summary>
         /// Get the Bundle Data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Bundle BundleData { get; }
     }
 }

@@ -36,11 +36,13 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Get the Client Name.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ClientName { get; }
 
         /// <summary>
         /// Get the State of playback.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaControllerPlaybackState State { get; }
     }
 }

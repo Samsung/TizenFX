@@ -32,11 +32,13 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Get the Name of server
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Name { get; }
 
         /// <summary>
         /// Get the State of server
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaControllerServerState State { get; }
     }
 }

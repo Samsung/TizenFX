@@ -27,6 +27,7 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// The constructor of MediaControllerMetadata class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaControllerMetadata()
         {
             // Do nothing
@@ -55,56 +56,67 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Set/Get the Title of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Title { get; set; }
 
         /// <summary>
         /// Set/Get the Artist of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Artist { get; set; }
 
         /// <summary>
         /// Set/Get the Album of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Album { get; set; }
 
         /// <summary>
         /// Set/Get the Author of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Author { get; set; }
- 
+
         /// <summary>
         /// Set/Get the Genre of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Genre { get; set; }
 
         /// <summary>
         /// Set/Get the Duration of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Duration { get; set; }
 
         /// <summary>
         /// Set/Get the Date of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Date { get; set; }
 
         /// <summary>
         /// Set/Get the Copyright of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Copyright { get; set; }
 
         /// <summary>
         /// Set/Get the Description of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Description { get; set; }
 
         /// <summary>
         /// Set/Get the Track Number of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string TrackNumber { get; set; }
 
         /// <summary>
         /// Set/Get the Picture of media
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Picture { get; set; }
     }
 }

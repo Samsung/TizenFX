@@ -62,6 +62,7 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// The constructor of MediaControllerServer class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the access is denied for media controller client</exception>
         public MediaControllerServer()
@@ -103,6 +104,7 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// PlaybackStateCommandRecieved event is raised when client send command for playback
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<PlaybackStateCommandEventArgs> PlaybackStateCommand
         {
             add
@@ -129,6 +131,7 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// CustomCommandRecieved event is raised when client send customized command
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<CustomCommandEventArgs> CustomCommand
         {
             add
@@ -154,6 +157,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// Update playback state and playback position</summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="playback"> playback state and playback position  </param>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
@@ -176,6 +180,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// Update metadata information </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="metadata"> metadata information  </param>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
@@ -225,6 +230,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// Update shuffle mode </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="mode"> shuffle mode  </param>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
@@ -236,6 +242,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// Update repeat mode </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="mode"> repeat mode  </param>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
@@ -247,6 +254,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// Send reply for command from server to client </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="clientName"> client name to recieve reply  </param>
         /// <param name="result"> result to run command  </param>
         /// <param name="bundle"> Bundle to send various data  </param>

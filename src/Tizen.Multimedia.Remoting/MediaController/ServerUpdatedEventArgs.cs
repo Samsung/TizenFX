@@ -35,6 +35,7 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Get the Server Information.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ServerInformation ServerInfo { get; }
     }
 }

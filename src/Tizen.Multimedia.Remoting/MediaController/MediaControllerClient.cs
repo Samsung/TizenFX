@@ -72,6 +72,7 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// The constructor of MediaControllerClient class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the access is denied for media controller client</exception>
         public MediaControllerClient()
@@ -113,6 +114,7 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// ServerUpdated event is raised when server is changed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ServerUpdatedEventArgs> ServerUpdated
         {
             add
@@ -139,6 +141,7 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// PlaybackUpdated event is raised when playback is changed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<PlaybackUpdatedEventArgs> PlaybackUpdated
         {
             add
@@ -165,6 +168,7 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// MetadataUpdated event is raised when metadata is changed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<MetadataUpdatedEventArgs> MetadataUpdated
         {
             add
@@ -191,6 +195,7 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// ShuffleModeUpdated event is raised when shuffle mode is changed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ShuffleModeUpdatedEventArgs> ShuffleModeUpdated
         {
             add
@@ -217,6 +222,7 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// RepeatModeUpdated event is raised when server is changed
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RepeatModeUpdatedEventArgs> RepeatModeUpdated
         {
             add
@@ -242,6 +248,7 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// CommandReply event is raised when reply for command is recieved
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<CustomCommandReplyEventArgs> CustomCommandReply
         {
             add
@@ -273,6 +280,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// gets latest server information </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The name and state of the latest media controller server application: ServerInformation object</returns>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
         public ServerInformation GetLatestServer()
@@ -294,6 +302,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// gets playback information for specific server </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="serverName"> Server Name  </param>
         /// <returns>The playback state and playback position of the specific media controller server application:MediaControllerPlayback object</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
@@ -323,6 +332,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// gets metadata information for specific server </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="serverName"> Server Name  </param>
         /// <returns>The metadata information of the specific media controller server application:MediaControllerMetadata object</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
@@ -352,6 +362,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// gets shuffle mode for specific server </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="serverName"> Server Name  </param>
         /// <returns>The shuffle mode of the specific media controller server application:MediaControllerShuffleMode enum</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
@@ -367,7 +378,8 @@ namespace Tizen.Multimedia.MediaController
         }
 
         /// <summary>
-        /// gets repeat mode for specific server </summary>
+        /// gets repeat mode for specific server </summary>\
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="serverName"> Server Name  </param>
         /// <returns>The repeat mode of the specific media controller server application:MediaControllerRepeatMode enum</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
@@ -396,6 +408,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// Send customized command to server application </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="serverName"> Server Name  </param>
         /// <param name="command"> Command  </param>
         /// <param name="bundle"> Bundle data  </param>
@@ -410,6 +423,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// Subscribe subscription type from specific server application </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="type"> Subscription Type  </param>
         /// <param name="serverName"> Server Name  </param>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
@@ -421,6 +435,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// Subscribe subscription type from specific server application </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="type"> Subscription Type  </param>
         /// <param name="serverName"> Server Name  </param>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
@@ -432,6 +447,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// gets activated server list </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The list of activated media controller server applications: IEnumerable of string</returns>
         public Task<IEnumerable<string>> GetActivatedServerList()
         {
@@ -445,6 +461,7 @@ namespace Tizen.Multimedia.MediaController
 
         /// <summary>
         /// gets subscribed server list </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="subscriptionType"> Subscription Type  </param>
         /// <returns>The list of subscribed media controller server applications: IEnumerable of string</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>

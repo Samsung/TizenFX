@@ -25,16 +25,19 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Server state is unknown
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         None,
 
         /// <summary>
         /// Server is activated
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Activated,
 
         /// <summary>
         /// Server is deactivated
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Deactivated,
     }
 
@@ -46,36 +49,43 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Playback state is unknown
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         None,
 
         /// <summary>
         /// Playback is playing
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Play,
 
         /// <summary>
         /// Playback is paused
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Pause,
 
         /// <summary>
         /// Playback is next
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Next,
 
         /// <summary>
         /// Playback is prev
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Prev,
 
         /// <summary>
         /// Playback is fastforward
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         FastForward,
 
         /// <summary>
         /// Playback is rewind
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Rewind,
     }
 
@@ -87,11 +97,13 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Shuffle mode is On
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         On,
 
         /// <summary>
         /// Shuffle mode is Off
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Off,
     }
 
@@ -103,11 +115,13 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Repeat mode is On
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         On,
 
         /// <summary>
         /// Repeat mode is Off
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Off,
     }
 
@@ -119,26 +133,31 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// The type of subscription is Server state
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ServerState,
 
         /// <summary>
         /// The type of subscription is Playback
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Playback,
 
         /// <summary>
         /// The type of subscription is Metadata
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Metadata,
 
         /// <summary>
         /// The type of subscription is Shuffle mode
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ShuffleMode,
 
         /// <summary>
         /// The type of subscription is Repeat mode
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         RepeatMode,
     }
 
@@ -150,56 +169,67 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Attribute is title
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Title,
 
         /// <summary>
         /// Attribute is artist
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Artist,
 
         /// <summary>
         /// Attribute is album
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Album,
 
         /// <summary>
         /// Attribute is author
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Author,
 
         /// <summary>
         /// Attribute is genre
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Genre,
 
         /// <summary>
         /// Attribute is duration
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Duration,
 
         /// <summary>
         /// Attribute is date
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Date,
 
         /// <summary>
         /// Attribute is copyright
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Copyright,
 
         /// <summary>
         /// Attribute is description
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Description,
 
         /// <summary>
         /// Attribute is track number
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         TrackNumber,
 
         /// <summary>
         /// Attribute is picture
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Picture,
     }
 }

@@ -36,11 +36,13 @@ namespace Tizen.Multimedia.MediaController
         /// <summary>
         /// Get the Server Name.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ServerName { get; }
 
         /// <summary>
         /// Get the Playback Information.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaControllerPlayback PlaybackInfo { get; }
     }
 }
