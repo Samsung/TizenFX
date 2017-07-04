@@ -262,6 +262,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int INPUT_OUTLINE = NDalicPINVOKE.TextField_Property_INPUT_OUTLINE_get();
             internal static readonly int HIDDEN_INPUT_SETTINGS = NDalicManualPINVOKE.TextField_Property_HIDDEN_INPUT_SETTINGS_get();
             internal static readonly int PIXEL_SIZE = NDalicManualPINVOKE.TextField_Property_PIXEL_SIZE_get();
+            internal static readonly int ENABLE_SELECTION = NDalicManualPINVOKE.TextField_Property_ENABLE_SELECTION_get();
+            internal static readonly int PLACEHOLDER = NDalicManualPINVOKE.TextField_Property_PLACEHOLDER_get();
 
         }
 
@@ -1219,6 +1221,60 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextField.Property.PIXEL_SIZE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Enable selection property.
+        /// </summary>
+        public bool EnableSelection
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(TextField.Property.ENABLE_SELECTION).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextField.Property.ENABLE_SELECTION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Placeholder property.
+        /// Gets/Sets the placeholder : text, color, font family, font style, point size, and pixel size.
+        /// </summary>
+        /// <example>
+        /// The following example demonstrates how to set the placeholder property.
+        /// <code>
+        /// PropertyMap propertyMap = new PropertyMap();
+        /// propertyMap.Add("placeholderText", new PropertyValue("Setting Placeholder Text"));
+        /// propertyMap.Add("placeholderColor", new PropertyValue(Color.Red));
+        /// propertyMap.Add("placeholderFontFamily", new PropertyValue("Arial"));
+        /// propertyMap.Add("placeholderPointSize", new PropertyValue(12.0f));
+        ///
+        /// PropertyMap fontStyleMap = new PropertyMap();
+        /// fontStyleMap.Add("weight", new PropertyValue("bold"));
+        /// fontStyleMap.Add("width", new PropertyValue("condensed"));
+        /// fontStyleMap.Add("slant", new PropertyValue("italic"));
+        /// propertyMap.Add("placeholderFontStyle", new PropertyValue(fontStyleMap));
+        ///
+        /// TextField field = new TextField();
+        /// field.Placeholder = propertyMap;
+        /// </code>
+        /// </example>
+        public Tizen.NUI.PropertyMap Placeholder
+        {
+            get
+            {
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                GetProperty(TextField.Property.PLACEHOLDER).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextField.Property.PLACEHOLDER, new Tizen.NUI.PropertyValue(value));
             }
         }
 

@@ -130,9 +130,9 @@ namespace Tizen.NUI
             }
         }
 
-        public void Emit(int arg1, int arg2)
+        public void Emit(Size2D arg)
         {
-            NDalicManualPINVOKE.ResizedSignal_Emit(swigCPtr, arg1, arg2);
+            NDalicManualPINVOKE.ResizedSignal_Emit(swigCPtr, Size2D.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
