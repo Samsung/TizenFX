@@ -1409,61 +1409,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// will be deprecated at nui_0.2.50
-        /// </summary>
-        public class WindowFocusChangedEventArgs : EventArgs
-        {
-            public bool FocusGained
-            {
-                get;
-                set;
-            }
-        }
-
-        private WindowFocusChangedEventCallbackType _windowFocusChangedEventCallback2;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WindowFocusChangedEventCallbackType2(bool focusGained);
-        private event EventHandler<WindowFocusChangedEventArgs> _windowFocusChangedEventHandler2;
-
-        /// <summary>
-        /// will be deprecated at nui_0.2.50
-        /// </summary>
-        public event EventHandler<WindowFocusChangedEventArgs> WindowFocusChanged
-        {
-            add
-            {
-                if (_windowFocusChangedEventHandler2 == null)
-                {
-                    _windowFocusChangedEventCallback2 = OnWindowFocusedChanged2;
-                    WindowFocusChangedSignal().Connect(_windowFocusChangedEventCallback2);
-                }
-
-                _windowFocusChangedEventHandler2 += value;
-            }
-            remove
-            {
-                _windowFocusChangedEventHandler2 -= value;
-
-                if (_windowFocusChangedEventHandler2 == null && WindowFocusChangedSignal().Empty() == false && _windowFocusChangedEventCallback2 != null)
-                {
-                    WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback2);
-                }
-            }
-        }
-
-        private void OnWindowFocusedChanged2(bool focusGained)
-        {
-            WindowFocusChangedEventArgs e = new WindowFocusChangedEventArgs();
-
-            e.FocusGained = focusGained;
-
-            if (_windowFocusChangedEventHandler2 != null)
-            {
-                _windowFocusChangedEventHandler2(this, e);
-            }
-        }
-
         /*********************************************************************************/
         /*** will be removed/deprecated                                                  ***/
         /*********************************************************************************/
