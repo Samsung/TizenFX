@@ -1875,7 +1875,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Readonly.
         /// </remarks>
-        public Vector3 NaturalSize
+        internal Vector3 NaturalSize
         {
             get
             {

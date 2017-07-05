@@ -904,18 +904,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the key at the specified position.
-        /// </summary>
-        /// <param name="position">The specified position</param>
-        /// <returns>A reference to the key at the specified position</returns>
-        public string GetKey(uint position)
-        {
-            string ret = NDalicPINVOKE.Property_Map_GetKey(swigCPtr, position);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Retrieve the key at the specified position.
         /// </summary>
         /// <param name="position">The specified position</param>
@@ -932,20 +920,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="key">The key to find</param>
         /// <returns>The value if it exists, an empty object otherwise</returns>
-        public PropertyValue Find(string key)
-        {
-            global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_0(swigCPtr, key);
-            PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Finds the value for the specified key if it exists.
-        /// </summary>
-        /// <param name="key">The key to find</param>
-        /// <returns>The value if it exists, an empty object otherwise</returns>
-        public PropertyValue Find(int key)
+        internal PropertyValue Find(int key)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_2(swigCPtr, key);
             PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
@@ -962,34 +937,6 @@ namespace Tizen.NUI
         public PropertyValue Find(int indexKey, string stringKey)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_3(swigCPtr, indexKey, stringKey);
-            PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Finds the value for the specified key if it exists and its type is type.
-        /// </summary>
-        /// <param name="key">The key to find</param>
-        /// <param name="type">The type to check</param>
-        /// <returns>The value if it exists, an empty value otherwise</returns>
-        public PropertyValue Find(string key, PropertyType type)
-        {
-            global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_4(swigCPtr, key, (int)type);
-            PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Finds the value for the specified key if it exists and its type is type.
-        /// </summary>
-        /// <param name="key">The key to find</param>
-        /// <param name="type">The type to check</param>
-        /// <returns>The value if it exists, an empty value otherwise</returns>
-        public PropertyValue Find(int key, PropertyType type)
-        {
-            global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_5(swigCPtr, key, (int)type);
             PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
