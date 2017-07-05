@@ -243,5 +243,13 @@ namespace Tizen.NUI
                 return _application.GetWindow();
             }
         }
+
+        internal Application ApplicationHandle
+        {
+            get
+            {
+                return _application;
+            }
+        }
     }
 }
