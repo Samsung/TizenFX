@@ -110,9 +110,13 @@ namespace Tizen.NUI
 
         }
         /// <summary>
-        /// this method will be changed as internal method on later release
+        /// Downcasts a handle to KeyFrames handle.<br>
+        /// If handle points to a KeyFrames object, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
-        public static KeyFrames DownCast(BaseHandle handle)
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a KeyFrames object or an uninitialized handle</returns>
+        internal static KeyFrames DownCast(BaseHandle handle)
         {
             KeyFrames ret = new KeyFrames(NDalicPINVOKE.KeyFrames_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
