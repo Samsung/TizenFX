@@ -56,7 +56,7 @@ internal static partial class Interop
         internal delegate void DeviceStateChangedCallback(CameraDevice device, CameraDeviceState state, IntPtr userData);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_create")]
-        internal static extern CameraError Create(int device, out IntPtr handle);
+        internal static extern CameraError Create(CameraDevice device, out IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_change_device")]
         internal static extern CameraError ChangeDevice(IntPtr handle, int device);

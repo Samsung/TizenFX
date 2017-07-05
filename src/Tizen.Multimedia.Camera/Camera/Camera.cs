@@ -52,7 +52,7 @@ namespace Tizen.Multimedia
         /// <param name="device">The camera device to access</param>
         public Camera(CameraDevice device)
         {
-            CameraErrorFactory.ThrowIfError(Native.Create((int)device, out _handle),
+            CameraErrorFactory.ThrowIfError(Native.Create(device, out _handle),
                 "Failed to create camera instance");
 
             Feature = new CameraFeatures(this);
@@ -414,6 +414,7 @@ namespace Tizen.Multimedia
             {
                 return _display;
             }
+
             set
             {
                 ValidateState(CameraState.Created);
@@ -438,8 +439,7 @@ namespace Tizen.Multimedia
         CameraError IDisplayable<CameraError>.ApplyEvasDisplay(DisplayType type, ElmSharp.EvasObject evasObject)
         {
             Debug.Assert(_disposed == false);
-
-            Debug.Assert(Enum.IsDefined(typeof(DisplayType), type));
+            ValidationUtil.ValidateEnum(typeof(DisplayType), type, nameof(type));
 
             return CameraDisplay.SetTarget(GetHandle(), type, evasObject);
         }
@@ -550,7 +550,7 @@ namespace Tizen.Multimedia
         /// If display reuse is set using <see cref="DisplayReuseHint"/>
         /// before stopping the preview, the display will be reused and last frame on the display
         /// can be kept even though camera device is changed.
-        /// The camera must be in the <see cref="CameraState.Created"/> or <see cref="CameraState.Preview"/> state.
+        /// The camera must be in the <see cref="CameraState.Created"/>.
         /// </remarks>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
@@ -558,7 +558,8 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void ChangeDevice(CameraDevice device)
         {
-            ValidateState(CameraState.Created, CameraState.Preview);
+            ValidateState(CameraState.Created);
+            ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
             CameraErrorFactory.ThrowIfError(Native.ChangeDevice(_handle, (int)device),
                 "Failed to change the camera device");
@@ -576,6 +577,7 @@ namespace Tizen.Multimedia
         public CameraDeviceState GetDeviceState(CameraDevice device)
         {
             int val = 0;
+            ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
             CameraErrorFactory.ThrowIfError(Native.GetDeviceState(device, out val),
                 "Failed to get the camera device state.");
@@ -595,6 +597,7 @@ namespace Tizen.Multimedia
         public static CameraFlashState GetFlashState(CameraDevice device)
         {
             CameraFlashState val = CameraFlashState.NotUsed;
+            ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
             CameraErrorFactory.ThrowIfError(Native.GetFlashState(device, out val),
                 "Failed to get camera flash state");
