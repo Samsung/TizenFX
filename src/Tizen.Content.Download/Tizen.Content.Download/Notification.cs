@@ -27,11 +27,7 @@ namespace Tizen.Content.Download
     {
         private int _downloadId;
 
-        /// <summary>
-        /// Creates a Notification object
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Notification(int requestId)
+        internal Notification(int requestId)
         {
             _downloadId = requestId;
         }
