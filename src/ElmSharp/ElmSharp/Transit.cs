@@ -37,6 +37,7 @@ namespace ElmSharp
         HashSet<object> _checker = new HashSet<object>();
         Elm_Transit_Del_Cb DeletedCallback;
         Elm_Transit_Effect_End_Cb EffectEndCallback;
+        Elm_Transit_Effect_Transition_Cb EffectTransitionCallback;
 
         /// <summary>
         /// A callback called when the transit is deleted.
@@ -270,8 +271,9 @@ namespace ElmSharp
         public void AddEffect(EffectBase effect)
         {
             IntPtr _effect = effect.CreateEffect(_handle);
-            EffectEndCallback = (ptr1, ptr2) => { effect.SendEffectEnd(); };
-            Interop.Elementary.elm_transit_effect_add(_handle, null, _effect, EffectEndCallback);
+            EffectEndCallback = (effectPtr, transitPtr) => { effect.SendEffectEnd(); };
+            EffectTransitionCallback = (effectPtr, transitPtr, progress) => { };
+            Interop.Elementary.elm_transit_effect_add(_handle, EffectTransitionCallback, _effect, EffectEndCallback);
         }
 
         public void Dispose()
