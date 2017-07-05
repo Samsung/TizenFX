@@ -34,7 +34,7 @@ namespace ElmSharp
         public Panes(EvasObject parent) : base(parent)
         {
             _press = new SmartEvent(this, this.RealHandle, "press");
-            _unpressed = new SmartEvent(this, this.RealHandle, "unpressed");
+            _unpressed = new SmartEvent(this, this.RealHandle, "unpress");
 
             _press.On += (s, e) => Pressed?.Invoke(this, e);
             _unpressed.On += (s, e) => Unpressed?.Invoke(this, e);
