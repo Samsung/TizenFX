@@ -30,8 +30,8 @@ namespace VisaulAnimationExample
         private TextLabel _title;
         private PushButton _shadowButton;
         private bool _active = false;
-        //private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
-        private const string _resPath = "./res";  //for ubuntu
+        private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";  //for tizen
+        //private const string _resPath = "./res";  //for ubuntu
 
         private Animation _animation1;
         private bool _transitionInProgress = false;
@@ -40,18 +40,6 @@ namespace VisaulAnimationExample
         private SVGVisual svgVisual;
         private AnimatedImageVisual gifVisual;
         private ImageVisual _icon;
-
-        public Example() : base()
-        {
-        }
-
-        public Example(string stylesheet) : base(stylesheet)
-        {
-        }
-
-        public Example(string stylesheet, WindowMode windowMode) : base(stylesheet, windowMode)
-        {
-        }
 
         protected override void OnCreate()
         {
@@ -213,14 +201,9 @@ namespace VisaulAnimationExample
             {
                 Tizen.Log.Debug("NUI", "gif button clicked!");
                 cnt2++;
-                if (cnt2 % 2 == 0)
-                {
-                    gifVisual.URL = _resPath + "/images/dali-logo-anim.gif";
-                }
-                else
-                {
-                    gifVisual.URL = _resPath + "/images/echo.gif";
-                }
+                int gifNum = cnt2 % 15;
+                gifVisual.URL = _resPath + "/images/anim-gif/" + gifNum + ".gif";
+                gifButton.LabelText = "file:" + gifNum + ".gif";
                 return true;
             };
             contentLayout.AddChild(gifButton, new TableView.CellPosition(2, 1));

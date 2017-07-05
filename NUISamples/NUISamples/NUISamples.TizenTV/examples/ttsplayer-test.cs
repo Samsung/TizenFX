@@ -50,12 +50,12 @@ namespace TTSPlayerTest
 
             ttsPlayer.StateChanged += (s, e) =>
             {
-                Tizen.Log.Debug("TTS state changed!!!");
+                Tizen.Log.Debug("NUI", "TTS state changed!!!");
             };
             ttsPlayer.Pause();
             ttsPlayer.Resume();
             ttsPlayer.Stop();
-            Tizen.Log.Debug("TTS state: " + ttsPlayer.GetState());
+            Tizen.Log.Debug("NUI", "TTS state: " + ttsPlayer.GetState());
         }
 
         [STAThread]

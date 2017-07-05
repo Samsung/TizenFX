@@ -59,7 +59,7 @@ namespace HelloTest
         {
             // Connect the signal callback for window touched signal
             _window = Window.Instance;
-            _window.Touched += OnWindowTouched;
+            _window.TouchEvent += OnWindowTouched;
 
             // Add a _text label to the window
             _text = new TextLabel("Hello Mono World");
@@ -82,7 +82,7 @@ namespace HelloTest
         }
 
         // Callback for window touched signal handling
-        private void OnWindowTouched(object sender, Window.TouchedEventArgs e)
+        private void OnWindowTouched(object sender, Window.TouchEventArgs e)
         {
             // Only animate the _text label when touch down happens
             if (e.Touch.GetState(0) == PointStateType.Down)
