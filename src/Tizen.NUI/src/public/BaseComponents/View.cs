@@ -3656,62 +3656,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
-
-
-
-        /*********************************************************************************/
-        /*** will be removed/deprecated                                                  ***/
-        /*********************************************************************************/
-        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touched
-        {
-            add
-            {
-                if (_touchDataEventHandler == null)
-                {
-                    _touchDataCallback = OnTouch;
-                    this.TouchSignal().Connect(_touchDataCallback);
-                }
-
-                _touchDataEventHandler += value;
-            }
-
-            remove
-            {
-                _touchDataEventHandler -= value;
-
-                if (_touchDataEventHandler == null && TouchSignal().Empty() == false)
-                {
-                    this.TouchSignal().Disconnect(_touchDataCallback);
-                }
-
-            }
-        }
-        public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hovered
-        {
-            add
-            {
-                if (_hoverEventHandler == null)
-                {
-                    _hoverEventCallback = OnHoverEvent;
-                    this.HoveredSignal().Connect(_hoverEventCallback);
-                }
-
-                _hoverEventHandler += value;
-            }
-
-            remove
-            {
-                _hoverEventHandler -= value;
-
-                if (_hoverEventHandler == null && HoveredSignal().Empty() == false)
-                {
-                    this.HoveredSignal().Disconnect(_hoverEventCallback);
-                }
-
-            }
-        }
-
         /// <summary>
         /// Get the number of renderers held by the view.
         /// </summary>
