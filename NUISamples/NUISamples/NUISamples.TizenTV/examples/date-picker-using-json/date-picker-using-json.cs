@@ -31,6 +31,9 @@ namespace DatePickerUsingJson
         private Spin _spinDay;   // spin control for day
         private Builder _builder; // DALi Builder
 
+        //private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+        private const string _resPath = "./res";  //for ubuntu
+
         public Example() : base()
         {
         }
@@ -58,7 +61,7 @@ namespace DatePickerUsingJson
             constants.Insert( "CONFIG_SCRIPT_LOG_LEVEL",  new PropertyValue( "Verbose") );
             _builder.AddConstants( constants );
 
-            _builder.LoadFromFile("/home/owner/apps_rw/NUISamples.TizenTV/res/json/date-picker-template.json" );
+            _builder.LoadFromFile(_resPath + "/json/date-picker-template.json" );
 
             // create the date-picker from the template in the json file
             BaseHandle handle =  _builder.Create( "date-picker");
@@ -72,9 +75,9 @@ namespace DatePickerUsingJson
             View day  = actorTree.FindChildByName("Day");
 
             // need to get the actual C# Spin object associated with the actor,
-            _spinYear = View.DownCast<Spin>( year );
-            _spinMonth = View.DownCast<Spin>( month );
-            _spinDay = View.DownCast<Spin>( day );
+            _spinYear = year as Spin;
+            _spinMonth = month as Spin;
+            _spinDay = day as Spin;
 
             _spinYear.Value = 2099;
             _spinMonth.Value = 5;
@@ -88,7 +91,7 @@ namespace DatePickerUsingJson
             keyboardFocusManager.PreFocusChange += OnKeyboardPreFocusChange;
             keyboardFocusManager.FocusedViewActivated += OnFocusedViewActivated;
 
-            StyleManager.Get().ApplyTheme("/home/owner/apps_rw/NUISamples.TizenTV/res/json/date-picker-theme.json");
+            StyleManager.Get().ApplyTheme(_resPath + "/json/date-picker-theme.json");
         }
 
         private View OnKeyboardPreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)

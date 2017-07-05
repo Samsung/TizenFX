@@ -268,7 +268,6 @@ namespace FirstScreen
             _topContainer.Size = new Size(_stageSize.Width, _stageSize.Height * Constants.TopContainerHeightFactor, 0);
             _topContainer.Position = new Position(0.0f, _stageSize.Height * Constants.TopContainerPositionFactor, 0.0f);
             _topContainer.ParentOrigin = ParentOrigin.TopLeft;
-            _topContainer.AnchorPoint = AnchorPoint.TopLeft;
 
             // Add a background to Top container
             PropertyMap visual = new PropertyMap();
@@ -282,7 +281,6 @@ namespace FirstScreen
             _bottomContainer.Size = new Size(_stageSize.Width, _stageSize.Height * Constants.BottomContainerHeightFactor, 0);
             _bottomContainer.Position = new Position(0.0f, _stageSize.Height * Constants.BottomContainerHidePositionFactor, 0.0f);
             _bottomContainer.ParentOrigin = ParentOrigin.TopLeft;
-            _bottomContainer.AnchorPoint = AnchorPoint.TopLeft;
 
             // Add a background to Bottom Container
             visual = new PropertyMap();
@@ -297,7 +295,6 @@ namespace FirstScreen
 
             // Add a clip layer to Top Container
             _topClipLayer = new Layer();
-            _topClipLayer.AnchorPoint = AnchorPoint.BottomCenter;
             _topClipLayer.ParentOrigin = ParentOrigin.BottomCenter;
             _topClipLayer.ClippingEnable = true;
             _topClipLayer.ClippingBox = new Rectangle(0,
@@ -311,13 +308,15 @@ namespace FirstScreen
             spotLight.WidthResizePolicy = ResizePolicyType.UseNaturalSize;
             spotLight.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
             spotLight.ParentOrigin = ParentOrigin.Center;
-            spotLight.AnchorPoint = AnchorPoint.Center;
+            spotLight.PivotPoint = PivotPoint.Center;
+            spotLight.PositionUsesPivotPoint = true;
             spotLight.Name = "spotLight";
 
             // Create a shadowBorder for items / images of Poster ScrollContainers
             ImageView shadowBorder = new ImageView(_imagePath + "/focuseffect/thumbnail_shadow.9.png");
             shadowBorder.ParentOrigin = ParentOrigin.Center;
-            shadowBorder.AnchorPoint = AnchorPoint.Center;
+            shadowBorder.PivotPoint = PivotPoint.Center;
+            shadowBorder.PositionUsesPivotPoint = true;
             shadowBorder.WidthResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             shadowBorder.HeightResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             shadowBorder.SizeModeFactor = (new Vector3(32.0f, 41.0f, 0.0f));
@@ -352,7 +351,8 @@ namespace FirstScreen
 
             // Add a clip layer to Bottom Container
             _bottomClipLayer = new Layer();
-            _bottomClipLayer.AnchorPoint = AnchorPoint.BottomCenter;
+            _bottomClipLayer.PivotPoint = PivotPoint.BottomCenter;
+            _bottomClipLayer.PositionUsesPivotPoint = true;
             _bottomClipLayer.ParentOrigin = ParentOrigin.BottomCenter;
             _bottomClipLayer.ClippingEnable = true;
             _bottomClipLayer.ClippingBox = new Rectangle(Convert.ToInt32(Constants.LauncherWidth),
@@ -370,7 +370,8 @@ namespace FirstScreen
                 launcherIcon[launcherIndex].WidthResizePolicy = ResizePolicyType.UseNaturalSize;
                 launcherIcon[launcherIndex].HeightResizePolicy = ResizePolicyType.UseNaturalSize;
                 launcherIcon[launcherIndex].ParentOrigin = ParentOrigin.CenterLeft;
-                launcherIcon[launcherIndex].AnchorPoint = AnchorPoint.CenterLeft;
+                launcherIcon[launcherIndex].PivotPoint = PivotPoint.CenterLeft;
+                launcherIcon[launcherIndex].PositionUsesPivotPoint = true;
                 launcherIcon[launcherIndex].Position = new Position(Constants.LauncherIconWidth * launcherIndex + Constants.LauncherLeftMargin, 0.0f, 0.0f);
                 _bottomContainer.Add(launcherIcon[launcherIndex]);
             }
@@ -381,7 +382,8 @@ namespace FirstScreen
             _launcherSeparator.WidthResizePolicy = ResizePolicyType.UseNaturalSize;
             _launcherSeparator.HeightResizePolicy = ResizePolicyType.FillToParent;
             _launcherSeparator.ParentOrigin = ParentOrigin.CenterLeft;
-            _launcherSeparator.AnchorPoint = AnchorPoint.CenterLeft;
+            _launcherSeparator.PivotPoint = PivotPoint.CenterLeft;
+            _launcherSeparator.PositionUsesPivotPoint = true;
             _launcherSeparator.Position = new Position(Constants.LauncherIconWidth * Constants.LauncherItemsCount + Constants.LauncherLeftMargin, 0.0f, 0.0f);
             _bottomContainer.Add(_launcherSeparator);
 
@@ -401,8 +403,8 @@ namespace FirstScreen
             _menuContainer.ShadowBorder.Size = new Size(_menuContainer.ItemSize.Width + 40.0f, _menuContainer.ItemSize.Height + 50.0f, 0.0f);
             _menuContainer.ShadowBorder.Position = new Position(0.0f, 5.0f, 0.0f);
             _menuContainer.ShadowBorder.ParentOrigin = ParentOrigin.Center;
-            _menuContainer.ShadowBorder.AnchorPoint = AnchorPoint.Center;
-            //_menuContainer.ShadowBorder.MixColor = Color.Red;
+            _menuContainer.ShadowBorder.PivotPoint = PivotPoint.Center;
+            _menuContainer.ShadowBorder.PositionUsesPivotPoint = true;
             _menuContainer.SpotLight = spotLight;
             _bottomClipLayer.Add(_menuContainer);
 
@@ -415,7 +417,8 @@ namespace FirstScreen
 
             _keyboardFocusIndicator = new ImageView(_imagePath + "/focuseffect/highlight_stroke.9.png");
             _keyboardFocusIndicator.ParentOrigin = ParentOrigin.Center;
-            _keyboardFocusIndicator.AnchorPoint = AnchorPoint.Center;
+            _keyboardFocusIndicator.PivotPoint = PivotPoint.Center;
+            _keyboardFocusIndicator.PositionUsesPivotPoint = true;
             _keyboardFocusIndicator.WidthResizePolicy = ResizePolicyType.FillToParent;
             _keyboardFocusIndicator.HeightResizePolicy = ResizePolicyType.FillToParent;
 
@@ -437,7 +440,8 @@ namespace FirstScreen
             TextLabel _dateOfTest = new TextLabel();
             _dateOfTest.WidthResizePolicy = ResizePolicyType.FillToParent;
             _dateOfTest.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            _dateOfTest.AnchorPoint = AnchorPoint.TopCenter;
+            _dateOfTest.PivotPoint = PivotPoint.TopCenter;
+            _dateOfTest.PositionUsesPivotPoint = true;
             _dateOfTest.ParentOrigin = ParentOrigin.TopCenter;
             _dateOfTest.SizeModeFactor = new Vector3(0.0f, 0.1f, 0.0f);
             _dateOfTest.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);

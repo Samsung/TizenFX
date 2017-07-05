@@ -70,7 +70,7 @@ namespace ScrollViewTest
       // Create a scroll view
       _scrollView = new ScrollView();
       Size windowSize = new Size(window.Size.Width, window.Size.Height, 0.0f);
-      _scrollView.Size = new Size(windowSize.Width, windowSize.Height, 0.0f);
+      _scrollView.Size2D = new Size2D((int)windowSize.Width, (int)windowSize.Height);
       _scrollView.ParentOrigin = ParentOrigin.Center;
       _scrollView.PivotPoint = PivotPoint.Center;
       window.Add(_scrollView);
@@ -103,7 +103,7 @@ namespace ScrollViewTest
               ImageView imageView = new ImageView(resources+"/images/image-" + imageId + ".jpg");
               imageView.ParentOrigin = ParentOrigin.Center;
               imageView.PivotPoint = PivotPoint.Center;
-              imageView.Size = new Size(imageSize.X, imageSize.Y, imageSize.Z);
+              imageView.Size2D = new Size2D((int)imageSize.X, (int)imageSize.Y);
               imageView.Position = new Position( margin * 0.5f + (imageSize.X + margin) * column - windowSize.Width * 0.5f + imageSize.X * 0.5f,
                   margin * 0.5f + (imageSize.Y + margin) * row - windowSize.Height * 0.5f + imageSize.Y * 0.5f, 0.0f );
               pageActor.Add(imageView);
@@ -197,7 +197,7 @@ namespace ScrollViewTest
       Tizen.Log.Debug("NUI", "View OnRelayoutEventArgs EVENT callback....");
 
       // Set the correct scroll bar size after size negotiation of scroll view is done
-      _scrollBar.Size = new Size(0.0f, _scrollView.GetRelayoutSize(DimensionType.Width), 0.0f);
+      _scrollBar.Size2D = new Size2D(0, (int)_scrollView.GetRelayoutSize(DimensionType.Width));
     }
 
     /// <summary>

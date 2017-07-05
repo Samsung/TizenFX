@@ -60,7 +60,7 @@ namespace VisualViewTest3
             _visualView = new VisualView();
             _visualView.ParentOrigin = ParentOrigin.TopLeft;
             _visualView.PivotPoint = PivotPoint.TopLeft;
-            _visualView.Size = new Size(window.Size.Width, window.Size.Height, 0.0f);
+            _visualView.Size2D = new Size2D(window.Size.Width, window.Size.Height);
 
             /* color visual */
             ColorVisual colorVisualMap1 = new ColorVisual();

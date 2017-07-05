@@ -54,9 +54,6 @@ namespace VisualsExampleTest
             contentLayout.Name = ("ContentLayout");
             contentLayout.WidthResizePolicy = ResizePolicyType.FillToParent;
             contentLayout.HeightResizePolicy = ResizePolicyType.FillToParent;
-            //contentLayout.ParentOrigin = ParentOrigin.Center;
-            //contentLayout.AnchorPoint = AnchorPoint.Center;
-            // contentLayout.Size = new Size(window.Size.Width, window.Size.Height, 0.0f);
 
             contentLayout.SetCellPadding(new Size2D(0, 5));
             contentLayout.BackgroundColor = Color.Red;//new Color(0.949f, 0.949f, 0.949f, 1.0f);
@@ -81,7 +78,7 @@ namespace VisualsExampleTest
             // colorVisual.Add( Visual.Property.Type, new PropertyValue( (int)Visual.Type.Color ))
             //            .Add( ColorVisualProperty.MixColor, new PropertyValue( Color.Green ));
             //colorView.Background = colorVisual;
-            colorView.Size = new Size(500.0f, 200.0f, 0.0f);
+            colorView.Size2D = new Size2D(500, 200);
             colorView.ResourceUrl = resources+"/images/00_popup_bg.9.png";
             colorView.Border = new Rectangle(100, 100, 100, 100);
            // colorView.

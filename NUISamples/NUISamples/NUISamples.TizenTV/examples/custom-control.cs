@@ -46,7 +46,7 @@ namespace CustomControlTest
         {
           // ViewRegistry registers control type with DALi type registery
           // also uses introspection to find any properties that need to be registered with type registry
-          ViewRegistry.Instance.Register(CreateInstance, typeof(StarRating) );
+          CustomViewRegistry.Instance.Register(CreateInstance, typeof(StarRating) );
         }
 
         public StarRating() : base(typeof(StarRating).Name, CustomViewBehaviour.ViewBehaviourDefault)
@@ -58,8 +58,6 @@ namespace CustomControlTest
             // Create a container for the star images
             _container = new FlexContainer();
 
-            //_container.ParentOrigin = ParentOrigin.TopLeft;
-            //_container.AnchorPoint = AnchorPoint.TopLeft;
             _container.FlexDirection = FlexContainer.FlexDirectionType.Row;
             _container.WidthResizePolicy = ResizePolicyType.FillToParent;
             _container.HeightResizePolicy = ResizePolicyType.FillToParent;
@@ -223,7 +221,7 @@ namespace CustomControlTest
 
                 // Add the image view to the row
                 ImageView image = new ImageView(resources+"/images/gallery-" + i + ".jpg");
-                image.Size = new Vector3(120.0f, 120.0f, 0.0f);
+                image.Size2D = new Size2D(120, 120);
                 image.WidthResizePolicy = ResizePolicyType.Fixed;
                 image.HeightResizePolicy = ResizePolicyType.Fixed;
                 image.AlignSelf = (int)FlexContainer.Alignment.AlignCenter;
@@ -237,7 +235,7 @@ namespace CustomControlTest
                 // Add the rating control to the row
                 view.ParentOrigin = ParentOrigin.Center;
                 view.PivotPoint = PivotPoint.Center;
-                view.Size = new Vector3(200.0f, 40.0f, 0.0f);
+                view.Size2D = new Size2D(200, 40);
                 view.Flex = 0.7f;
                 view.AlignSelf = (int)FlexContainer.Alignment.AlignCenter;
                 view.FlexMargin = new Vector4(30.0f, 0.0f, 0.0f, 0.0f);

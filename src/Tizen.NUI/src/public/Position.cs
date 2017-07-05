@@ -15,6 +15,8 @@
  *
  */
 
+using System;
+
 namespace Tizen.NUI
 {
 
@@ -36,8 +38,6 @@ namespace Tizen.NUI
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-
-        //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
@@ -560,9 +560,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.0
+        /// PivotPoint constants: 0.0
         /// </summary>
-        public static float AnchorPointTop
+        public static float PivotPointTop
         {
             get
             {
@@ -573,9 +573,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 1.0
+        /// PivotPoint constants: 1.0
         /// </summary>
-        public static float AnchorPointBottom
+        public static float PivotPointBottom
         {
             get
             {
@@ -586,9 +586,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.0
+        /// PivotPoint constants: 0.0
         /// </summary>
-        public static float AnchorPointLeft
+        public static float PivotPointLeft
         {
             get
             {
@@ -599,9 +599,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 1.0
+        /// PivotPoint constants: 1.0
         /// </summary>
-        public static float AnchorPointRight
+        public static float PivotPointRight
         {
             get
             {
@@ -612,9 +612,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.0
+        /// PivotPoint constants: 0.0
         /// </summary>
-        public static float AnchorPointMiddle
+        public static float PivotPointMiddle
         {
             get
             {
@@ -625,9 +625,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.0, 0.0, 0.5
+        /// PivotPoint constants: 0.0, 0.0, 0.5
         /// </summary>
-        public static Position AnchorPointTopLeft
+        public static Position PivotPointTopLeft
         {
             get
             {
@@ -639,9 +639,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.5, 0.0, 0.5
+        /// PivotPoint constants: 0.5, 0.0, 0.5
         /// </summary>
-        public static Position AnchorPointTopCenter
+        public static Position PivotPointTopCenter
         {
             get
             {
@@ -653,9 +653,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 1.0, 0.0, 0.5
+        /// PivotPoint constants: 1.0, 0.0, 0.5
         /// </summary>
-        public static Position AnchorPointTopRight
+        public static Position PivotPointTopRight
         {
             get
             {
@@ -667,9 +667,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.0, 0.5, 0.5
+        /// PivotPoint constants: 0.0, 0.5, 0.5
         /// </summary>
-        public static Position AnchorPointCenterLeft
+        public static Position PivotPointCenterLeft
         {
             get
             {
@@ -681,9 +681,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.5, 0.5, 0.5
+        /// PivotPoint constants: 0.5, 0.5, 0.5
         /// </summary>
-        public static Position AnchorPointCenter
+        public static Position PivotPointCenter
         {
             get
             {
@@ -695,9 +695,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 1.0, 0.5, 0.5
+        /// PivotPoint constants: 1.0, 0.5, 0.5
         /// </summary>
-        public static Position AnchorPointCenterRight
+        public static Position PivotPointCenterRight
         {
             get
             {
@@ -709,9 +709,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.0, 1.0, 0.5
+        /// PivotPoint constants: 0.0, 1.0, 0.5
         /// </summary>
-        public static Position AnchorPointBottomLeft
+        public static Position PivotPointBottomLeft
         {
             get
             {
@@ -723,9 +723,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 0.5, 1.0, 0.5
+        /// PivotPoint constants: 0.5, 1.0, 0.5
         /// </summary>
-        public static Position AnchorPointBottomCenter
+        public static Position PivotPointBottomCenter
         {
             get
             {
@@ -737,9 +737,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// AnchorPoint constants: 1.0, 1.0, 0.5
+        /// PivotPoint constants: 1.0, 1.0, 0.5
         /// </summary>
-        public static Position AnchorPointBottomRight
+        public static Position PivotPointBottomRight
         {
             get
             {
@@ -859,5 +859,171 @@ namespace Tizen.NUI
         {
             return new Position(vec.X, vec.Y, vec.Z);
         }
+
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static float AnchorPointTop
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointTop_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static float AnchorPointBottom
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointBottom_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static float AnchorPointLeft
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointLeft_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static float AnchorPointRight
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointRight_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static float AnchorPointMiddle
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointMiddle_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointTopLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointTopCenter
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointTopRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointCenterLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointCenter
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointCenterRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointBottomLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointBottomCenter
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public static Position AnchorPointBottomRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
     }
 }

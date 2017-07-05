@@ -30,7 +30,8 @@ namespace VisaulAnimationExample
         private TextLabel _title;
         private PushButton _shadowButton;
         private bool _active = false;
-        private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+        //private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+        private const string _resPath = "./res";  //for ubuntu
 
         private Animation _animation1;
         private bool _transitionInProgress = false;

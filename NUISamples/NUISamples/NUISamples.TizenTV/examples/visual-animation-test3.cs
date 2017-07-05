@@ -36,7 +36,8 @@ namespace VisaulAnimationExample
         private bool _active1 = false;
         private bool _active2 = false;
         private bool _active3 = false;
-        private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+        //private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
+        private const string _resPath = "./res";  //for ubuntu
 
         private Animation _animation;
         private ImageVisual _icon;

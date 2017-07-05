@@ -16,6 +16,7 @@
 
 namespace Tizen.NUI
 {
+    using System;
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
@@ -78,16 +79,29 @@ namespace Tizen.NUI
         public Layer() : this(NDalicPINVOKE.Layer_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
+            if(Window.Instance != null)
+            {
+                this.SetAnchorPoint(Tizen.NUI.PivotPoint.TopLeft);
+                this.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.AllDimensions);
+            }
         }
-        /// <summary>
-        /// Downcasts a handle to Layer handle.<br>
-        /// If handle points to a Layer, the downcast produces valid handle.<br>
-        /// If not, the returned handle is left uninitialized.<br>
-        /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        /// <returns>Handle to a Layer or an uninitialized handle</returns>
-        internal new static Layer DownCast(BaseHandle handle)
+        internal void SetAnchorPoint(Vector3 anchorPoint)
+        {
+            NDalicPINVOKE.Actor_SetAnchorPoint(swigCPtr, Vector3.getCPtr(anchorPoint));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
+        {
+            NDalicPINVOKE.Actor_SetResizePolicy(swigCPtr, (int)policy, (int)dimension);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public new static Layer DownCast(BaseHandle handle)
         {
             Layer ret = new Layer(NDalicPINVOKE.Layer_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -278,17 +292,13 @@ namespace Tizen.NUI
         public View GetChildAt(uint index)
         {
             System.IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
-            cPtr = NDalicPINVOKE.View_SWIGUpcast(cPtr);
-            cPtr = NDalicPINVOKE.Handle_SWIGUpcast(cPtr);
 
-            BaseHandle ret = new BaseHandle(cPtr, false);
-
-            View temp = ViewRegistry.GetViewFromBaseHandle(ret);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            return temp ?? null;
+            return ret ?? null;
         }
 
         /// <summary>

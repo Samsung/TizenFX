@@ -27,13 +27,6 @@ namespace Tizen.NUI
     /// </summary>
     public class NUIApplication : CoreUIApplication
     {
-        private void LOG(string _str)
-        {
-#if DEBUG_ON
-            Tizen.Log.Debug("NUI", _str);
-#endif
-        }
-
         /// <summary>
         /// The instance of the Application.
         /// </summary>
@@ -103,7 +96,7 @@ namespace Tizen.NUI
         {
             base.OnPause();
             _applicationExt.Pause();
-            LOG("OnPause() is called!");
+            NUILog.Debug("OnPause() is called!");
         }
 
         /// <summary>
@@ -114,9 +107,7 @@ namespace Tizen.NUI
         {
             // Initialize DisposeQueue Singleton class.
             DisposeQueue disposeQ = DisposeQueue.Instance;
-#if DEBUG_ON
-            Tizen.Log.Debug("NUI", "##### 1) DisposeQueue.Instance.Initialize()!");
-#endif
+            NUILog.Debug("##### 1) DisposeQueue.Instance.Initialize()!");
             switch (_appMode)
             {
                 case AppMode.Default:
@@ -137,12 +128,10 @@ namespace Tizen.NUI
 
             // This is also required to create DisposeQueue on main thread.
             disposeQ.Initialize();
-#if DEBUG_ON
-            Tizen.Log.Debug("NUI", "##### 2) DisposeQueue.Instance.Initialize()!");
-#endif
+            NUILog.Debug("##### 2) DisposeQueue.Instance.Initialize()!");
             _window = Window.Instance;
             _window.SetBackgroundColor(Color.White);
-            LOG("OnPreCreate() is called!");
+            NUILog.Debug("OnPreCreate() is called!");
         }
 
         /// <summary>
@@ -152,7 +141,7 @@ namespace Tizen.NUI
         {
             base.OnResume();
             _applicationExt.Resume();
-            LOG("OnResume() is called!");
+            NUILog.Debug("OnResume() is called!");
         }
 
         /// <summary>
@@ -161,11 +150,11 @@ namespace Tizen.NUI
         protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
             base.OnAppControlReceived(e);
-            LOG("OnAppControlReceived() is called!");
+            NUILog.Debug("OnAppControlReceived() is called!");
             if (e != null)
             {
-                LOG("OnAppControlReceived() is called! ApplicationId=" + e.ReceivedAppControl.ApplicationId);
-                LOG("CallerApplicationId=" + e.ReceivedAppControl.CallerApplicationId + "   IsReplyRequest=" + e.ReceivedAppControl.IsReplyRequest);
+                NUILog.Debug("OnAppControlReceived() is called! ApplicationId=" + e.ReceivedAppControl.ApplicationId);
+                NUILog.Debug("CallerApplicationId=" + e.ReceivedAppControl.CallerApplicationId + "   IsReplyRequest=" + e.ReceivedAppControl.IsReplyRequest);
             }
         }
 
@@ -175,7 +164,7 @@ namespace Tizen.NUI
         protected override void OnCreate()
         {
             base.OnCreate();
-            LOG("OnCreate() is called!");
+            NUILog.Debug("OnCreate() is called!");
         }
 
         /// <summary>
@@ -185,7 +174,7 @@ namespace Tizen.NUI
         {
             base.OnLocaleChanged(e);
             _applicationExt.LanguageChange();
-            LOG("OnLocaleChanged() is called!");
+            NUILog.Debug("OnLocaleChanged() is called!");
         }
 
         /// <summary>
@@ -194,7 +183,7 @@ namespace Tizen.NUI
         protected override void OnLowBattery(LowBatteryEventArgs e)
         {
             base.OnLowBattery(e);
-            LOG("OnLowBattery() is called!");
+            NUILog.Debug("OnLowBattery() is called!");
         }
 
         /// <summary>
@@ -203,7 +192,7 @@ namespace Tizen.NUI
         protected override void OnLowMemory(LowMemoryEventArgs e)
         {
             base.OnLowMemory(e);
-            LOG("OnLowMemory() is called!");
+            NUILog.Debug("OnLowMemory() is called!");
         }
 
         /// <summary>
@@ -212,7 +201,7 @@ namespace Tizen.NUI
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
             base.OnRegionFormatChanged(e);
-            LOG("OnRegionFormatChanged() is called!");
+            NUILog.Debug("OnRegionFormatChanged() is called!");
         }
 
         /// <summary>
@@ -222,7 +211,7 @@ namespace Tizen.NUI
         {
             base.OnTerminate();
             _applicationExt.Terminate();
-            LOG("OnTerminate() is called!");
+            NUILog.Debug("OnTerminate() is called!");
         }
 
         /// <summary>

@@ -256,13 +256,11 @@ namespace FirstScreen
             _itemList = new List<View>();
 
             this.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
-            this.AnchorPoint = Tizen.NUI.AnchorPoint.TopLeft;
             this.WidthResizePolicy = ResizePolicyType.FillToParent;
             this.HeightResizePolicy = ResizePolicyType.FillToParent;
             this.Focusable = (true);
 
             _container.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
-            _container.AnchorPoint = Tizen.NUI.AnchorPoint.TopLeft;
             _container.WidthResizePolicy = ResizePolicyType.FillToParent;
             _container.HeightResizePolicy = ResizePolicyType.FillToParent;
 
@@ -288,7 +286,8 @@ namespace FirstScreen
 
             if (item is View && item != _container)
             {
-                item.AnchorPoint = Tizen.NUI.AnchorPoint.BottomCenter;
+                item.PivotPoint = Tizen.NUI.PivotPoint.BottomCenter;
+                item.PositionUsesPivotPoint = true;
                 item.ParentOrigin = Tizen.NUI.ParentOrigin.BottomCenter;
 
                 item.Size = _itemSize;

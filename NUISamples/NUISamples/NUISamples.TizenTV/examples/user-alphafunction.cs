@@ -78,7 +78,7 @@ namespace UserAlphaFunctionTest
             window.Add(_text);
 
             _view1 = new View();
-            _view1.Size = new Vector3(200.0f, 200.0f, 0.0f);
+            _view1.Size2D = new Size2D(200, 200);
             _view1.BackgroundColor = Color.Green;
             _view1.ParentOrigin = ParentOrigin.Center;
             _view1.PivotPoint = PivotPoint.Center;
@@ -89,7 +89,7 @@ namespace UserAlphaFunctionTest
 
             _view2 = new View();
             _view2.BackgroundColor = Color.Red;
-            _view2.Size = new Vector3(50.0f, 50.0f, 0.0f);
+            _view2.Size2D = new Size2D(50, 50);
             _view2.ParentOrigin = ParentOrigin.TopLeft;
             _view2.PivotPoint = PivotPoint.TopLeft;
             _view2.WidthResizePolicy = ResizePolicyType.Fixed;
@@ -98,7 +98,7 @@ namespace UserAlphaFunctionTest
 
             _view3 = new View();
             _view3.BackgroundColor = Color.Blue;
-            _view3.Size = new Vector3(50.0f, 50.0f, 0.0f);
+            _view3.Size2D = new Size2D(50, 50);
             _view3.ParentOrigin = ParentOrigin.TopLeft;
             _view3.PivotPoint = PivotPoint.TopLeft;
             _view3.WidthResizePolicy = ResizePolicyType.Fixed;

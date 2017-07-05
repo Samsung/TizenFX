@@ -58,7 +58,7 @@ namespace Tizen.NUI
         {
             // ViewRegistry registers control type with DALi type registery
             // also uses introspection to find any properties that need to be registered with type registry
-            ViewRegistry.Instance.Register(CreateInstance, typeof(Spin));
+            CustomViewRegistry.Instance.Register(CreateInstance, typeof(Spin));
         }
 
         /// <summary>
