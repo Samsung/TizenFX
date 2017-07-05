@@ -173,21 +173,6 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Pause/Resume the transition.
-        /// </summary>
-        public bool Pause
-        {
-            get
-            {
-                return Interop.Elementary.elm_transit_paused_get(_handle);
-            }
-            set
-            {
-                Interop.Elementary.elm_transit_paused_set(_handle, value);
-            }
-        }
-
-        /// <summary>
         /// Get the time progression of the animation (a double value between 0.0 and 1.0).
         /// The value returned is a fraction(current time / total time).
         /// It represents the progression position relative to the total.
@@ -244,6 +229,24 @@ namespace ElmSharp
         public void Go(double interval = 0)
         {
             Interop.Elementary.elm_transit_go_in(_handle, interval);
+        }
+
+        /// <summary>
+        /// Pause the transition.
+        /// </summary>
+        public void Pause()
+        {
+            if (Interop.Elementary.elm_transit_paused_get(_handle) == false)
+                Interop.Elementary.elm_transit_paused_set(_handle, true);
+        }
+
+        /// <summary>
+        /// Resume the transition.
+        /// </summary>
+        public void Resume()
+        {
+            if (Interop.Elementary.elm_transit_paused_get(_handle) == true)
+                Interop.Elementary.elm_transit_paused_set(_handle, false);
         }
 
         /// <summary>
