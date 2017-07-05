@@ -218,23 +218,15 @@ namespace Tizen.NUI.BaseComponents
         {
             KeyEventArgs e = new KeyEventArgs();
 
-            bool result = false;
-
             e.Key = Tizen.NUI.Key.GetKeyFromPtr(keyEvent);
 
             if (_keyEventHandler != null)
             {
-                Delegate[] delegateList = _keyEventHandler.GetInvocationList();
-
-                // Oring the result of each callback.
-                foreach ( EventHandlerWithReturnType<object, KeyEventArgs, bool> del in delegateList )
-                {
-                    result |= del( this, e );
-                }
+                return _keyEventHandler(this, e);
             }
-
-            return result;
+            return false;
         }
+
 
         private EventHandler _onRelayoutEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
