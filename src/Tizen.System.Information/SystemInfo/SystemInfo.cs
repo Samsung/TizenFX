@@ -49,6 +49,7 @@ namespace Tizen.System
         /// <summary>
         /// Checks if type of value for given feature is T
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <typeparam name="T">Type of value for feature key</typeparam>
         /// <param name="key">The name of the feature</param>
         /// <returns>true if type of value for given feature is T, false otherwise</returns>
@@ -78,6 +79,7 @@ namespace Tizen.System
         /// <summary>
         /// Checks if given key is valid feature
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="key">The name of the feature</param>
         /// <returns>true of key is valid, false otherwise</returns>
         public static bool IsValidKey(string key)
@@ -89,6 +91,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets the value of the feature.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <typeparam name="T">Type of key value</typeparam>
         /// <param name="key">The name of the feature</param>
         /// <param name="value">The value of the given feature</param>
@@ -130,6 +133,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets the bool value of the feature.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="key">The name of the feature</param>
         /// <param name="value">The value of the given feature</param>
         /// <returns>return true on success otherwise false</returns>
@@ -163,6 +167,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets the int value of the feature.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="key">The name of the feature</param>
         /// <param name="value">The value of the given feature</param>
         /// <returns>return true on success otherwise false</returns>
@@ -197,6 +202,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets the double value of the feature.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="key">The name of the feature</param>
         /// <param name="value">The value of the given feature</param>
         /// <returns>return true on success otherwise false</returns>
@@ -231,6 +237,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets the string value of the feature.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="key">The name of the feature</param>
         /// <param name="value">The value of the given feature</param>
         /// <returns>return true on success otherwise false</returns>

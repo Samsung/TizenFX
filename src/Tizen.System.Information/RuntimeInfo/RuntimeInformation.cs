@@ -239,6 +239,7 @@ namespace Tizen.System
         /// Validates the data type of the status represented by Runtime Key.
         /// Note that this is a generic method.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <typeparam name="T">The generic type to validate.</typeparam>
         /// <param name="key">The runtime information key for which the status type is validated </param>
         /// <returns>true if the data type matches</returns>.
@@ -258,6 +259,7 @@ namespace Tizen.System
         /// Gets the status of Runtime Key.
         /// Note that this is a generic method.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <typeparam name="T">The generic type to return.</typeparam>
         /// <param name="key">The runtime information key for which the current should be read </param>
         /// <returns>The current status of the given key</returns>.
@@ -272,6 +274,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets system memory information
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>The system memory information structure.</returns>
         /// <exception cref="IOException">Thrown when I/O error is occurred while reading from system.</exception>
         public static SystemMemoryInformation GetSystemMemoryInformation()
@@ -290,6 +293,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets memory information per processes
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="pid">List of unique process ids </param>
         /// <returns>List of memory information per processes</returns>
         /// <privilege>http://tizen.org/privilege/systemmonitor</privilege>
@@ -323,6 +327,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets system CPU usage time
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <returns>The system CPU usage time structure.</returns>
         /// <exception cref="IOException">Thrown when I/O error is occurred while reading from system.</exception>
         public static CpuUsage GetCpuUsage()
@@ -340,6 +345,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets the CPU usage time per process
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="pid">List of unique process ids </param>
         /// <returns>List of CPU usage information per processes</returns>
         /// <privilege>http://tizen.org/privilege/systemmonitor</privilege>
@@ -394,6 +400,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets the current frequency of processor
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coreId">The index (from 0) of CPU core that you want to know the frequency</param>
         /// <returns>The current frequency(MHz) of processor</returns>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="coreid"/> is invalid.</exception>
@@ -414,6 +421,7 @@ namespace Tizen.System
         /// <summary>
         /// Gets the max frequency of processor
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="coreId">The index (from 0) of CPU core that you want to know the frequency</param>
         /// <returns>The max frequency(MHz) of processor</returns>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="coreid"/> is invalid.</exception>
