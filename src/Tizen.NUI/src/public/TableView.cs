@@ -24,9 +24,11 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI.BaseComponents
-{
+using Tizen.NUI.BaseComponents;
 
+namespace Tizen.NUI
+{
+    using Tizen.NUI.BaseComponents;
     /// <summary>
     /// TableView is a layout container for aligning child actors in a grid like layout.<br>
     /// TableView constrains the x and y position and width and height of the child actors.<br>

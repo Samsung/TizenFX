@@ -8,11 +8,12 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace Tizen.NUI.BaseComponents
+namespace Tizen.NUI
 {
 
     using System;
     using System.Runtime.InteropServices;
+    using Tizen.NUI.BaseComponents;
 
     public class Scrollable : View
     {
