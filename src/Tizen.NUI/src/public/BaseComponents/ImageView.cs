@@ -113,7 +113,7 @@ namespace Tizen.NUI.BaseComponents
         //you can override it to clean-up your own resources.
         protected override void Dispose(DisposeTypes type)
         {
-            if (!disposed)
+            if (disposed)
             {
                 return;
             }
