@@ -313,7 +313,7 @@ namespace Tizen.Content.Download
         }
 
         /// <summary>
-        /// Content name of the downloaded file.
+        /// The content name of the downloaded file.
         /// This can be defined with reference of HTTP response header data. The content name can be received when HTTP response header is received.
         /// If you try to get this property value before calling Start(), an empty string is returned.
         /// </summary>
@@ -339,7 +339,7 @@ namespace Tizen.Content.Download
 
         /// <summary>
         /// Total size of downloaded content.
-        /// This information is received from the server. If the server does not send the total size of the content, content_size is set to zero.
+        /// This information is received from the server. If the server does not send the total size of the content, the content size is set to zero.
         /// If you try to get this property value before calling Start(), 0 is returned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
