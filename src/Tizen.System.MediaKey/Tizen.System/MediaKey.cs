@@ -26,6 +26,7 @@ namespace Tizen.System
         /// <summary>
         /// Enumeration for Key value.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public enum KeyValue
         {
             /// <summary>
@@ -82,6 +83,7 @@ namespace Tizen.System
         /// <summary>
         /// Enumeration for Key status.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public enum KeyStatus
         {
             /// <summary>
@@ -103,11 +105,13 @@ namespace Tizen.System
         /// <summary>
         /// Key value.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public KeyValue Value { get; internal set; }
 
         /// <summary>
         /// Key status.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public KeyStatus Status { get; internal set; }
     }
 
@@ -131,6 +135,7 @@ namespace Tizen.System
         /// <summary>
         /// Adds or removes events for all media keys.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="InvalidOperationException">Failed to reserve or release key.</exception>
         public static event EventHandler<MediaKeyEventArgs> Event
         {
