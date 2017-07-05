@@ -29,6 +29,7 @@ namespace Tizen
         /// <summary>
         /// Prints a log message with the VERBOSE priority.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
         /// <param name="message">The log message to print.</param>
         /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
@@ -42,6 +43,7 @@ namespace Tizen
         /// <summary>
         /// Prints a log message with the DEBUG priority.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
         /// <param name="message">The log message to print.</param>
         /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
@@ -55,6 +57,7 @@ namespace Tizen
         /// <summary>
         /// Prints a log message with the INFO priority.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
         /// <param name="message">The log message to print.</param>
         /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
@@ -68,6 +71,7 @@ namespace Tizen
         /// <summary>
         /// Prints a log message with the WARNING priority.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
         /// <param name="message">The log message to print.</param>
         /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
@@ -81,6 +85,7 @@ namespace Tizen
         /// <summary>
         /// Prints a log message with the ERROR priority.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
         /// <param name="message">The log message to print.</param>
         /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
@@ -94,6 +99,7 @@ namespace Tizen
         /// <summary>
         /// Prints a log message with the FATAL priority.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
         /// <param name="message">The log message to print.</param>
         /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
