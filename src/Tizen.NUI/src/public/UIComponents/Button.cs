@@ -43,8 +43,6 @@ namespace Tizen.NUI.UIComponents
         internal Button(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Button_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            // By default, we do not want the position to use the anchor point
-            PositionUsesAnchorPoint = false;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Button obj)
@@ -73,9 +71,6 @@ namespace Tizen.NUI.UIComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            //Unreference this from if a static instance refer to this. 
-            ViewRegistry.UnregisterView(this);
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -262,14 +257,6 @@ namespace Tizen.NUI.UIComponents
         }
 
 
-
-        internal static Button GetButtonFromPtr(global::System.IntPtr cPtr)
-        {
-            Button ret = new Button(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Gets/Sets the unselected button foreground/icon visual
         /// </summary>
@@ -416,9 +403,7 @@ namespace Tizen.NUI.UIComponents
                 string temp;
                 if (GetProperty(Button.Property.LABEL_RELATIVE_ALIGNMENT).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "LabelRelativeAlignment get error!");
-#endif
+                    NUILog.Error("LabelRelativeAlignment get error!");
                 }
                 switch (temp)
                 {
@@ -533,20 +518,6 @@ namespace Tizen.NUI.UIComponents
         public Button() : this(NDalicPINVOKE.new_Button__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Downcasts a handle to Button handle.<br>
-        /// If handle points to a Button, the downcast produces valid handle.<br>
-        /// If not the returned handle is left uninitialized.<br>
-        /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        /// <returns>A handle to a Button or an uninitialized handle</returns>
-        internal new static Button DownCast(BaseHandle handle)
-        {
-            Button ret = new Button(NDalicPINVOKE.Button_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         internal ButtonSignal PressedSignal()

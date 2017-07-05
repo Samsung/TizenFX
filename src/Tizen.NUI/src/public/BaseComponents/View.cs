@@ -20,6 +20,8 @@ namespace Tizen.NUI.BaseComponents
     using System;
     using System.Runtime.InteropServices;
 
+
+
     /// <summary>
     /// View is the base class for all views.
     /// </summary>
@@ -30,9 +32,7 @@ namespace Tizen.NUI.BaseComponents
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.View_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-
-            // Register this instance of view in the view registry.
-            ViewRegistry.RegisterView(this);
+            PositionUsesPivotPoint = false;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(View obj)
@@ -58,9 +58,6 @@ namespace Tizen.NUI.BaseComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            //Unreference this from if a static instance refer to this.
-            ViewRegistry.UnregisterView(this);
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -190,7 +187,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for KeyPressed signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// KeyPressed signal is emitted when key event is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, KeyEventArgs, bool> Key
+        public event EventHandlerWithReturnType<object, KeyEventArgs, bool> KeyEvent
         {
             add
             {
@@ -274,7 +271,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via Touch signal.
         /// </summary>
-        public class TouchedEventArgs : EventArgs
+        public class TouchEventArgs : EventArgs
         {
             private Touch _touch;
 
@@ -294,7 +291,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private EventHandlerWithReturnType<object, TouchedEventArgs, bool> _touchDataEventHandler;
+        private EventHandlerWithReturnType<object, TouchEventArgs, bool> _touchDataEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool TouchDataCallbackType(IntPtr view, IntPtr touchData);
         private TouchDataCallbackType _touchDataCallback;
@@ -303,7 +300,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for Touched signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// Touched signal is emitted when touch input is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, TouchedEventArgs, bool> Touched
+        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> TouchEvent
         {
             add
             {
@@ -331,7 +328,7 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View TouchSignal
         private bool OnTouch(IntPtr view, IntPtr touchData)
         {
-            TouchedEventArgs e = new TouchedEventArgs();
+            TouchEventArgs e = new TouchEventArgs();
 
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
 
@@ -346,7 +343,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via Hover signal.
         /// </summary>
-        public class HoveredEventArgs : EventArgs
+        public class HoverEventArgs : EventArgs
         {
             private Hover _hover;
 
@@ -366,7 +363,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private EventHandlerWithReturnType<object, HoveredEventArgs, bool> _hoverEventHandler;
+        private EventHandlerWithReturnType<object, HoverEventArgs, bool> _hoverEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool HoverEventCallbackType(IntPtr view, IntPtr hoverEvent);
         private HoverEventCallbackType _hoverEventCallback;
@@ -375,7 +372,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for Hovered signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// Hovered signal is emitted when hover input is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, HoveredEventArgs, bool> Hovered
+        public event EventHandlerWithReturnType<object, HoverEventArgs, bool> HoverEvent
         {
             add
             {
@@ -403,7 +400,7 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Hover signal
         private bool OnHoverEvent(IntPtr view, IntPtr hoverEvent)
         {
-            HoveredEventArgs e = new HoveredEventArgs();
+            HoverEventArgs e = new HoverEventArgs();
 
             e.Hover = Tizen.NUI.Hover.GetHoverFromPtr(hoverEvent);
 
@@ -418,7 +415,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via Wheel signal.
         /// </summary>
-        public class WheelRolledEventArgs : EventArgs
+        public class WheelEventArgs : EventArgs
         {
             private Wheel _wheel;
 
@@ -438,7 +435,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private EventHandlerWithReturnType<object, WheelRolledEventArgs, bool> _wheelEventHandler;
+        private EventHandlerWithReturnType<object, WheelEventArgs, bool> _wheelEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
         private WheelEventCallbackType _wheelEventCallback;
@@ -447,7 +444,7 @@ namespace Tizen.NUI.BaseComponents
         /// Event for WheelMoved signal which can be used to subscribe/unsubscribe the event handler provided by the user.<br>
         /// WheelMoved signal is emitted when wheel event is received.<br>
         /// </summary>
-        public event EventHandlerWithReturnType<object, WheelRolledEventArgs, bool> WheelRolled
+        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelEvent
         {
             add
             {
@@ -475,7 +472,7 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Wheel signal
         private bool OnWheelEvent(IntPtr view, IntPtr wheelEvent)
         {
-            WheelRolledEventArgs e = new WheelRolledEventArgs();
+            WheelEventArgs e = new WheelEventArgs();
 
             e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
 
@@ -666,7 +663,7 @@ namespace Tizen.NUI.BaseComponents
             VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
             if (data != null)
             {
-                e.View = View.GetViewFromPtr(data);
+                e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
             }
             e.Visibility = visibility;
             e.Type = type;
@@ -718,14 +715,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 _resourcesLoadedEventHandler(this, null);
             }
-        }
-
-
-        internal static View GetViewFromPtr(global::System.IntPtr cPtr)
-        {
-            View ret = new View(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         internal IntPtr GetPtrfromView()
@@ -815,7 +804,6 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         public View() : this(NDalicPINVOKE.View_New(), true)
         {
-            PositionUsesAnchorPoint = false;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
@@ -838,15 +826,11 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        /// <summary>
-        /// Downcasts a handle to class which inherit View handle.
-        /// </summary>
-        /// <typeparam name="T">Class which inherit View</typeparam>
-        /// <param name="view">View to an object</param>
-        /// <returns>A object which inherit View</returns>
+        [Obsolete("Please do not use! this will be deprecated")]
         public static T DownCast<T>(View view) where T : View
         {
-            View ret = ViewRegistry.GetViewFromBaseHandle(view);
+            //View ret = ViewRegistry.GetViewFromBaseHandle(view);
+            View ret = View.DownCast(view);
             if (ret != null)
             {
                 return (T)ret;
@@ -1158,9 +1142,7 @@ namespace Tizen.NUI.BaseComponents
                 int temp = 0;
                 if (GetProperty(View.Property.STATE).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "State get error!");
-#endif
+                    NUILog.Error("State get error!");
                 }
                 switch (temp)
                 {
@@ -1198,9 +1180,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(View.Property.SUB_STATE).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "subState get error!");
-#endif
+                    NUILog.Error("subState get error!");
                 }
                 switch (temp)
                 {
@@ -1444,9 +1424,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "CellHorizontalAlignment get error!");
-#endif
+                    NUILog.Error("CellHorizontalAlignment get error!");
                 }
 
                 switch (temp)
@@ -1501,9 +1479,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 GetProperty(TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT).Get(out temp);
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "CellVerticalAlignment get error!");
-#endif
+                    NUILog.Error("CellVerticalAlignment get error!");
                 }
 
                 switch (temp)
@@ -1753,7 +1729,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Sets the position of the View for X and Y.<br>
-        /// By default, sets the position vector between the parent origin and anchor point(default).<br>
+        /// By default, sets the position vector between the parent origin and pivot point(default).<br>
         /// If Position inheritance if disabled, sets the world position.<br>
         /// </summary>
         public Position2D Position2D
@@ -1784,12 +1760,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Determines whether the anchor point should be used to determine the position of the view.
+        /// Determines whether the pivot point should be used to determine the position of the view.
         /// This is true by default.
         /// </summary>
         /// <remarks>If false, then the top-left of the view is used for the position.
         /// Setting this to false will allow scaling or rotation around the anchor-point without affecting the view's position.
         /// </remarks>
+        public bool PositionUsesPivotPoint
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.POSITION_USES_ANCHOR_POINT).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.POSITION_USES_ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
         public bool PositionUsesAnchorPoint
         {
             get
@@ -1861,13 +1852,8 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// <summary>
-        /// Gets the natural size of the view.<br>
-        /// </summary>
-        /// <remarks>
-        /// Readonly.
-        /// </remarks>
-        internal Vector3 NaturalSize
+        [Obsolete("Please do not use! this will be internal property")]
+        public Vector3 NaturalSize
         {
             get
             {
@@ -2088,17 +2074,12 @@ namespace Tizen.NUI.BaseComponents
         public View GetChildAt(uint index)
         {
             IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
-            cPtr = NDalicPINVOKE.View_SWIGUpcast(cPtr);
-            cPtr = NDalicPINVOKE.Handle_SWIGUpcast(cPtr);
 
-            BaseHandle ret = new BaseHandle(cPtr, false);
-
-            View temp = ViewRegistry.GetViewFromBaseHandle(ret);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            return temp ?? null;
+            return ret ?? null;
         }
 
         /// <summary>
@@ -2110,7 +2091,10 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>A handle to the view if found, or an empty handle if not</returns>
         public View FindChildByName(string viewName)
         {
-            View ret = new View(NDalicPINVOKE.Actor_FindChildByName(swigCPtr, viewName), true);
+            IntPtr cPtr = NDalicPINVOKE.Actor_FindChildByName(swigCPtr, viewName);
+
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -2118,7 +2102,10 @@ namespace Tizen.NUI.BaseComponents
 
         internal View FindChildById(uint id)
         {
-            View ret = new View(NDalicPINVOKE.Actor_FindChildById(swigCPtr, id), true);
+            IntPtr cPtr = NDalicPINVOKE.Actor_FindChildById(swigCPtr, id);
+
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -2126,7 +2113,10 @@ namespace Tizen.NUI.BaseComponents
 
         internal View GetParent()
         {
-            View ret = new View(NDalicPINVOKE.Actor_GetParent(swigCPtr), true);
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
+
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -2844,7 +2834,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets/Sets the anchor-point of an view.<br>
         /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the view, and (1.0, 1.0, 0.5) is the bottom-right corner.<br>
-        /// The default anchor point is AnchorPoint.Center (0.5, 0.5, 0.5).<br>
+        /// The default pivot point is PivotPoint.Center (0.5, 0.5, 0.5).<br>
         /// An view position is the distance between its parent-origin and this anchor-point.<br>
         /// An view's orientation is the rotation from its default orientation, the rotation is centered around its anchor-point.<br>
         /// <pre>The View has been initialized.</pre>
@@ -2941,7 +2931,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Gets/Sets the position of the View.<br>
-        /// By default, sets the position vector between the parent origin and anchor point(default).<br>
+        /// By default, sets the position vector between the parent origin and pivot point(default).<br>
         /// If Position inheritance if disabled, sets the world position.<br>
         /// </summary>
         public Position Position
@@ -3332,9 +3322,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(View.Property.DRAW_MODE).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "DrawMode get error!");
-#endif
+                    NUILog.Error("DrawMode get error!");
                 }
                 switch (temp)
                 {
@@ -3383,9 +3371,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(View.Property.WIDTH_RESIZE_POLICY).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "WidthResizePolicy get error!");
-#endif
+                    NUILog.Error("WidthResizePolicy get error!");
                 }
                 switch (temp)
                 {
@@ -3425,9 +3411,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(View.Property.HEIGHT_RESIZE_POLICY).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "HeightResizePolicy get error!");
-#endif
+                    NUILog.Error("HeightResizePolicy get error!");
                 }
                 switch (temp)
                 {
@@ -3468,9 +3452,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(View.Property.SIZE_SCALE_POLICY).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "SizeScalePolicy get error!");
-#endif
+                    NUILog.Error("SizeScalePolicy get error!");
                 }
                 switch (temp)
                 {
@@ -3602,7 +3584,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets/Sets whether a child view inherits it's parent's position.<br>
         /// Default is to inherit.<br>
-        /// Switching this off means that using Position sets the view's world position, i.e. translates from the world origin(0,0,0) to the anchor point of the view.<br>
+        /// Switching this off means that using Position sets the view's world position, i.e. translates from the world origin(0,0,0) to the pivot point of the view.<br>
         /// </summary>
         public bool InheritPosition
         {
@@ -3628,9 +3610,7 @@ namespace Tizen.NUI.BaseComponents
                 string temp;
                 if (GetProperty(View.Property.CLIPPING_MODE).Get(out temp) == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Error("NUI", "ClippingMode get error!");
-#endif
+                    NUILog.Error("ClippingMode get error!");
                 }
                 switch (temp)
                 {
@@ -3658,5 +3638,196 @@ namespace Tizen.NUI.BaseComponents
                 return GetRendererCount();
             }
         }
+
+
+
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touched
+        {
+            add
+            {
+                if (_touchDataEventHandler == null)
+                {
+                    _touchDataCallback = OnTouch;
+                    this.TouchSignal().Connect(_touchDataCallback);
+                }
+
+                _touchDataEventHandler += value;
+            }
+
+            remove
+            {
+                _touchDataEventHandler -= value;
+
+                if (_touchDataEventHandler == null && TouchSignal().Empty() == false)
+                {
+                    this.TouchSignal().Disconnect(_touchDataCallback);
+                }
+
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hovered
+        {
+            add
+            {
+                if (_hoverEventHandler == null)
+                {
+                    _hoverEventCallback = OnHoverEvent;
+                    this.HoveredSignal().Connect(_hoverEventCallback);
+                }
+
+                _hoverEventHandler += value;
+            }
+
+            remove
+            {
+                _hoverEventHandler -= value;
+
+                if (_hoverEventHandler == null && HoveredSignal().Empty() == false)
+                {
+                    this.HoveredSignal().Disconnect(_hoverEventCallback);
+                }
+
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelMoved
+        {
+            add
+            {
+                if (_wheelEventHandler == null)
+                {
+                    _wheelEventCallback = OnWheelEvent;
+                    this.WheelEventSignal().Connect(_wheelEventCallback);
+                }
+
+                _wheelEventHandler += value;
+            }
+
+            remove
+            {
+                _wheelEventHandler -= value;
+
+                if (_wheelEventHandler == null && WheelEventSignal().Empty() == false)
+                {
+                    this.WheelEventSignal().Disconnect(_wheelEventCallback);
+                }
+
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public Position AnchorPoint
+        {
+            get
+            {
+                Position temp = new Position(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.ANCHOR_POINT).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public Size Size
+        {
+            get
+            {
+                Size temp = new Size(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.SIZE).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public event EventHandler OnWindowEvent
+        {
+            add
+            {
+                if (_onWindowEventHandler == null)
+                {
+                    _onWindowEventCallback = OnWindow;
+                    this.OnWindowSignal().Connect(_onWindowEventCallback);
+                }
+
+                _onWindowEventHandler += value;
+            }
+
+            remove
+            {
+                _onWindowEventHandler -= value;
+
+                if (_onWindowEventHandler == null && OnWindowSignal().Empty() == false)
+                {
+                    this.OnWindowSignal().Disconnect(_onWindowEventCallback);
+                }
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public event EventHandler OffWindowEvent
+        {
+            add
+            {
+                if (_offWindowEventHandler == null)
+                {
+                    _offWindowEventCallback = OffWindow;
+                    this.OffWindowSignal().Connect(_offWindowEventCallback);
+                }
+
+                _offWindowEventHandler += value;
+            }
+
+            remove
+            {
+                _offWindowEventHandler -= value;
+
+                if (_offWindowEventHandler == null && OffWindowSignal().Empty() == false)
+                {
+                    this.OffWindowSignal().Disconnect(_offWindowEventCallback);
+                }
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated")]
+        public event EventHandler OnRelayoutEvent
+        {
+            add
+            {
+                if (_onRelayoutEventHandler == null)
+                {
+                    _onRelayoutEventCallback = OnRelayout;
+                    this.OnRelayoutSignal().Connect(_onRelayoutEventCallback);
+                }
+
+                _onRelayoutEventHandler += value;
+            }
+
+            remove
+            {
+                _onRelayoutEventHandler -= value;
+
+                if (_onRelayoutEventHandler == null && OnRelayoutSignal().Empty() == false)
+                {
+                    this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
+                }
+
+            }
+        }
+
+
+
+
     }
 }

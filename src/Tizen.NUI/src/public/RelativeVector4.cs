@@ -39,8 +39,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //NUI Dispose Pattern written by Jinwoo Nam(jjw.nam) 
-
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
         //A Flat to check if it is already disposed.
@@ -244,7 +242,7 @@ namespace Tizen.NUI
         /// Constructor
         /// </summary>
         /// <param name="relativeVector3">RelativeVector3 to create this vector from</param>
-        public RelativeVector4(RelativeVector3 relativeVector3) : this(NDalicPINVOKE.new_Vector4__SWIG_4(RelativeVector3.getCPtr(relativeVector3)), true) 
+        public RelativeVector4(RelativeVector3 relativeVector3) : this(NDalicPINVOKE.new_Vector4__SWIG_4(RelativeVector3.getCPtr(relativeVector3)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
