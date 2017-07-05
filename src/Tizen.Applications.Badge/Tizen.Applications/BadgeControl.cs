@@ -30,6 +30,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Event handler for receiving badge events.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
@@ -75,6 +76,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the badge information from application ID.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="appId">Application ID</param>
         /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
@@ -103,6 +105,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Removes the badge information.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="appId">Application ID</param>
         /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
@@ -120,6 +123,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Adds the badge information.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="appId">Application ID</param>
         /// <param name="count">Count value</param>
         /// <param name="isDisplay">True if it should be displayed</param>
@@ -149,6 +153,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Updates the badge information.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="appId">Application ID</param>
         /// <param name="count">Count value</param>
         /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
@@ -167,6 +172,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Updates the badge information.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="appId">Application ID</param>
         /// <param name="isDisplay">True if it should be displayed</param>
         /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
@@ -185,6 +191,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Updates the badge information.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="appId">Application ID</param>
         /// <param name="count">Count value</param>
         /// <param name="isDisplay">True if it should be displayed</param>
@@ -201,6 +208,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets all badge information.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>

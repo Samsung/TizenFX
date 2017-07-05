@@ -35,6 +35,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Property for the count value of the badge.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public int Count
         {
             get
@@ -46,6 +47,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Property for the application ID of the badge.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string AppId
         {
             get
@@ -57,6 +59,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Property for the flag of 'display'.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public bool IsDisplay
         {
             get

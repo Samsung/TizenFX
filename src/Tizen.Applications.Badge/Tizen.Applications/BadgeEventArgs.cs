@@ -30,6 +30,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Enumeration for badge action.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public enum Action : int
         {
             /// <summary>
@@ -51,11 +52,13 @@ namespace Tizen.Applications
         /// <summary>
         /// Property for Badge object.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Badge Badge { get; internal set; }
 
         /// <summary>
         /// Property for Action value.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public Action Reason { get; internal set; }
     }
 }
