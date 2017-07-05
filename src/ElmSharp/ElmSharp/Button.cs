@@ -151,11 +151,13 @@ namespace ElmSharp
                 {
                     EdjeObject.DeleteColorClass("button/bg");
                     EdjeObject.DeleteColorClass("button/bg_pressed");
+                    EdjeObject.DeleteColorClass("button/bg_disabled");
                 }
                 else
                 {
                     SetPartColor("bg", value);
                     SetPartColor("bg_pressed", value);
+                    SetPartColor("bg_disabled", value);
                 }
                 _backgroundColor = value;
             }
