@@ -331,9 +331,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// this method will be changed as internal method on later release
+        /// Downcasts a handle to TextEditor.
         /// </summary>
-        public new static TextEditor DownCast(BaseHandle handle)
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a TextEditor or an empty handle</returns>
+        internal new static TextEditor DownCast(BaseHandle handle)
         {
             TextEditor ret = new TextEditor(NDalicPINVOKE.TextEditor_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

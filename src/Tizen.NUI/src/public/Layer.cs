@@ -81,9 +81,13 @@ namespace Tizen.NUI
 
         }
         /// <summary>
-        /// this method will be changed as internal method on later release
+        /// Downcasts a handle to Layer handle.<br>
+        /// If handle points to a Layer, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
-        public new static Layer DownCast(BaseHandle handle)
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a Layer or an uninitialized handle</returns>
+        internal new static Layer DownCast(BaseHandle handle)
         {
             Layer ret = new Layer(NDalicPINVOKE.Layer_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

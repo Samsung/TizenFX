@@ -152,9 +152,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// this method will be changed as internal method on later release
+        /// Downcasts a handle to Timer handle.
         /// </summary>
-        public static Timer DownCast(BaseHandle handle)
+        /// <param name="handle">handle to An object</param>
+        /// <returns>handle to a Timer object or an uninitialized handle</returns>
+        internal static Timer DownCast(BaseHandle handle)
         {
             Timer ret = new Timer(NDalicPINVOKE.Timer_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

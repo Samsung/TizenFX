@@ -111,7 +111,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int ELLIPSIS = NDalicManualPINVOKE.TextLabel_Property_ELLIPSIS_get();
             internal static readonly int AUTO_SCROLL_STOP_MODE = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_STOP_MODE_get();
             internal static readonly int AUTO_SCROLL_LOOP_DELAY = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
-            internal static readonly int LINE_COUNT = OUTLINE + 5;
+
         }
 
         /// <summary>
@@ -139,9 +139,10 @@ namespace Tizen.NUI.BaseComponents
 
 
         /// <summary>
-        /// this method will be changed as internal method on later release
+        /// Downcasts a handle to TextLabel.
         /// </summary>
-        public new static TextLabel DownCast(BaseHandle handle)
+        /// <param name="handle">Handle to an object</param>
+        internal new static TextLabel DownCast(BaseHandle handle)
         {
             TextLabel ret = new TextLabel(NDalicPINVOKE.TextLabel_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -723,19 +724,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextLabel.Property.AUTO_SCROLL_STOP_MODE, new Tizen.NUI.PropertyValue((int)value));
-            }
-        }
-
-        /// <summary>
-        /// The line count of text.
-        /// </summary>
-        public int LineCount
-        {
-            get
-            {
-                int temp = 0;
-                GetProperty(TextLabel.Property.LINE_COUNT).Get(out temp);
-                return temp;
             }
         }
 

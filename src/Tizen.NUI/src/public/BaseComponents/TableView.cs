@@ -328,9 +328,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// this method will be changed as internal method on later release
+        /// Downcasts a handle to TableView handle.<br>
+        /// If handle points to a TableView, the downcast produces valid handle.<br>
+        /// If not, the returned handle is left uninitialized.<br>
         /// </summary>
-        public new static TableView DownCast(BaseHandle handle)
+        /// <param name="handle">Handle to an object</param>
+        /// <returns>Handle to a TableView or an uninitialized handle</returns>
+        internal new static TableView DownCast(BaseHandle handle)
         {
             TableView ret = new TableView(NDalicPINVOKE.TableView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
