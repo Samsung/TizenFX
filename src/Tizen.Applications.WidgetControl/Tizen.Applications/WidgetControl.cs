@@ -40,11 +40,13 @@ namespace Tizen.Applications
             /// <summary>
             /// Widget ID.
             /// </summary>
+            /// <since_tizen>3</since_tizen>
             public string Id { get; internal set; }
 
             /// <summary>
             /// Gets widget content.
             /// </summary>
+            /// <since_tizen>3</since_tizen>
             /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
             public Bundle GetContent()
             {
@@ -67,6 +69,7 @@ namespace Tizen.Applications
             /// <summary>
             /// Changes the content for the widget instance.
             /// </summary>
+            /// <since_tizen>3</since_tizen>
             /// <param name="content">Content to be changed</param>
             /// <param name="force"> True if you want to update your widget even if the provider is paused otherwise false.</param>
             /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
@@ -98,6 +101,7 @@ namespace Tizen.Applications
             /// <summary>
             /// Changes the update period for the widget instance.
             /// </summary>
+            /// <since_tizen>3</since_tizen>
             /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
             /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
             /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
@@ -135,6 +139,7 @@ namespace Tizen.Applications
             /// <summary>
             /// Enumeration for types of widget size
             /// </summary>
+            /// <since_tizen>3</since_tizen>
             public enum SizeType : int
             {
                 /// <summary>
@@ -207,21 +212,25 @@ namespace Tizen.Applications
             /// <summary>
             /// Widget width.
             /// </summary>
+            /// <since_tizen>3</since_tizen>
             public int Width { get; internal set; }
 
             /// <summary>
             /// Widget height.
             /// </summary>
+            /// <since_tizen>3</since_tizen>
             public int Height { get; internal set; }
 
             /// <summary>
             /// The path for widget preview image file.
             /// </summary>
+            /// <since_tizen>3</since_tizen>
             public string PreviewImagePath { get; internal set; }
 
             /// <summary>
             /// The size type of the widget.
             /// </summary>
+            /// <since_tizen>3</since_tizen>
             public SizeType Type { get; internal set; }
         }
 
@@ -237,6 +246,7 @@ namespace Tizen.Applications
         /// Factory method for WidgetControl.
         /// It will create all objects of WidgetControl base on package ID.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="pkgId">Parkage ID</param>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
@@ -269,6 +279,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets all widget IDs by package ID.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
@@ -300,11 +311,13 @@ namespace Tizen.Applications
         /// <summary>
         /// Widget ID.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public string Id { get; internal set; }
 
         /// <summary>
         /// The flag value for "nodisplay"
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         public bool IsNoDisplay
         {
@@ -320,6 +333,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Event handler for created widget instance.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
         public event EventHandler<WidgetLifecycleEventArgs> Created
@@ -339,6 +353,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Event handler for resumed widget instance.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
         public event EventHandler<WidgetLifecycleEventArgs> Resumed
@@ -358,6 +373,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Event handler for paused widget instance.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
         public event EventHandler<WidgetLifecycleEventArgs> Paused
@@ -377,6 +393,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Event handler for destroyed widget instance.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
         public event EventHandler<WidgetLifecycleEventArgs> Destroyed
@@ -396,6 +413,7 @@ namespace Tizen.Applications
         /// <summary>
         /// A constructor of WidgetControl object
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="widgetId">widget id.</param>
         public WidgetControl(string widgetId)
         {
@@ -413,6 +431,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets objects for widget instance information.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
         /// <exception cref="NotSupportedException">Thrown when API is not supported in this device</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
@@ -442,6 +461,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets objects for widget scale information.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
@@ -503,6 +523,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets widget name.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="lang">Language</param>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <exception cref="ArgumentNullException">Thrown when argument is null</exception>
@@ -517,6 +538,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets widget icon path.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         /// <param name="lang">Language</param>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <exception cref="ArgumentNullException">Thrown when argument is null</exception>
@@ -533,6 +555,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Releases all resources used by the WidgetControl class.
         /// </summary>
+        /// <since_tizen>3</since_tizen>
         public void Dispose()
         {
             Dispose(true);
