@@ -19,55 +19,68 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies colorspaces for MediaVision.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public enum Colorspace
     {
         /// <summary>
         /// The colorspace type is invalid.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Invalid,
         /// <summary>
         /// The colorspace type is Y800.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Y800,
         /// <summary>
         /// The colorspace type is I420.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         I420,
         /// <summary>
         /// The colorspace type is NV12.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         NV12,
         /// <summary>
         /// The colorspace type is YV12.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         YV12,
         /// <summary>
         /// The colorspace type is NV21.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         NV21,
         /// <summary>
         /// The colorspace type is YUYV.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Yuyv,
         /// <summary>
         /// The colorspace type is UYVY.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Uyvy,
         /// <summary>
         /// The colorspace type is 422P.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Yuv422P,
         /// <summary>
         /// The colorspace type is RGB565.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Rgb565,
         /// <summary>
         /// The colorspace type is RGB888.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Rgb888,
         /// <summary>
         /// The colorspace type is RGBA.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Rgba
     }
 }

@@ -19,6 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a configuration of <see cref="FaceRecognizer"/> instances.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class FaceRecognitionConfiguration : EngineConfiguration
     {
         private const string KeyModelType = "MV_FACE_RECOGNITION_MODEL_TYPE";
@@ -27,6 +28,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="FaceRecognitionConfiguration"/> class.
         /// </summary>
         /// <exception cref="System.NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public FaceRecognitionConfiguration() : base("face_recognition")
         {
         }
@@ -36,6 +38,7 @@ namespace Tizen.Multimedia
         /// Default value is <see cref="FaceRecognitionModelType.Lbph"/>.
         /// </summary>
         /// <exception cref="System.ArgumentException"><paramref name="value"/> is not valid.</exception>
+        /// <since_tizen> 3</since_tizen>
         public FaceRecognitionModelType ModelType
         {
             get

@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to track faces on image sources.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public static class FaceTracker
     {
 
@@ -48,6 +49,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="trackingModel"/> is not prepared.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<FaceTrackingResult> TrackAsync(MediaVisionSource source,
             FaceTrackingModel trackingModel, bool doLearn)
         {

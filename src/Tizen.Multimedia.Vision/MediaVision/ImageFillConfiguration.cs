@@ -19,6 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a configuration of fill operations of <see cref="ImageObject"/> instances.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class ImageFillConfiguration : EngineConfiguration
     {
         private const string KeyScaleFactor = "MV_IMAGE_RECOGNITION_OBJECT_SCALE_FACTOR";
@@ -27,17 +28,20 @@ namespace Tizen.Multimedia
         /// <summary>
         /// A read-only field that represents the default value of <see cref="ObjectScaleFactor"/>.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public static readonly double DefaultScaleFactor = 1.2;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="ObjectMaxKeyPoints"/>.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public static readonly int DefaultMaxKeypoints = 1000;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageFillConfiguration"/> class.
         /// </summary>
         /// <exception cref="System.NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public ImageFillConfiguration() : base("image_recognition")
         {
         }
@@ -48,6 +52,7 @@ namespace Tizen.Multimedia
         /// The default value is 1.2.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageFillConfiguration"/> already has been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public double ObjectScaleFactor
         {
             get
@@ -67,6 +72,7 @@ namespace Tizen.Multimedia
         /// The default value is 1000.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageFillConfiguration"/> already has been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public int ObjectMaxKeyPoints
         {
             get

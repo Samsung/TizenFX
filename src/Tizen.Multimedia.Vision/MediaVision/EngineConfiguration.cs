@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// A base class for configuration classes.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public abstract class EngineConfiguration : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;

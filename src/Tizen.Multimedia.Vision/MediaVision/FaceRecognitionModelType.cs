@@ -19,21 +19,25 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the face recognition model learning algorithms.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public enum FaceRecognitionModelType
     {
         /// <summary>
         /// Eigenfaces.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         EigenFaces = 1,
 
         /// <summary>
         /// Fisherfaces.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         FisherFaces,
 
         /// <summary>
         /// Local Binary Patterns Histograms (LBPH); The default type.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Lbph
     }
 }

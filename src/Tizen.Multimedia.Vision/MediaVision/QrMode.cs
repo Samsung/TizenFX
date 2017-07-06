@@ -19,23 +19,28 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the supported QR code encoding mode.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public enum QrMode
     {
         /// <summary>
         /// Numeric digits.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Numeric,
         /// <summary>
         /// Alphanumeric characters, '$', '%', '*', '+', '-', '.', '/' and ':'.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         AlphaNumeric,
         /// <summary>
         /// Raw 8-bit bytes.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Byte,
         /// <summary>
         /// UTF-8 character encoding.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Utf8
     }
 }

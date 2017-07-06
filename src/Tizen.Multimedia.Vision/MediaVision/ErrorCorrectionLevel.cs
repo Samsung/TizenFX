@@ -19,23 +19,28 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the supported QR code error correction level.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public enum ErrorCorrectionLevel
     {
         /// <summary>
         /// Recovery up to 7% losses.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Low,
         /// <summary>
         /// Recovery up to 15% losses.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Medium,
         /// <summary>
         /// Recovery up to 25% losses.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Quartile,
         /// <summary>
         /// Recovery up to 30% losses.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         High
     }
 }

@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to track images on image sources.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public static class ImageTracker
     {
         /// <summary>
@@ -45,6 +46,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="trackingModel"/> has no target.</exception>
         /// <seealso cref="ImageTrackingModel.SetTarget(ImageObject)"/>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<Quadrangle> TrackAsync(MediaVisionSource source,
             ImageTrackingModel trackingModel)
         {
@@ -73,6 +75,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="trackingModel"/> has no target.</exception>
         /// <seealso cref="ImageTrackingModel.SetTarget(ImageObject)"/>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<Quadrangle> TrackAsync(MediaVisionSource source,
             ImageTrackingModel trackingModel, ImageTrackingConfiguration config)
         {

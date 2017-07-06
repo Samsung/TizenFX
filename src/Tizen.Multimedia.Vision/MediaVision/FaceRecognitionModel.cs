@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents the face recognition model interface.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class FaceRecognitionModel : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -33,6 +34,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="FaceRecognitionModel"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public FaceRecognitionModel()
         {
             InteropModel.Create(out _handle).Validate("Failed to create FaceRecognitionModel");
@@ -54,6 +56,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save(string)"/>
+        /// <since_tizen> 3</since_tizen>
         public FaceRecognitionModel(string modelPath)
         {
             if (modelPath == null)
@@ -73,6 +76,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets labels that had been learned by the model.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public int[] Labels
         {
             get
@@ -108,6 +112,7 @@ namespace Tizen.Multimedia
         /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
+        /// <since_tizen> 3</since_tizen>
         public void Save(string path)
         {
             if (path == null)
@@ -150,6 +155,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="source"/> has already been dispose of.
         /// </exception>
         /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
+        /// <since_tizen> 3</since_tizen>
         public void Add(MediaVisionSource source, int label)
         {
             if (source == null)
@@ -175,6 +181,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="source"/> has already been dispose of.
         /// </exception>
         /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
+        /// <since_tizen> 3</since_tizen>
         public void Add(MediaVisionSource source, int label, Rectangle area)
         {
             if (source == null)
@@ -193,6 +200,7 @@ namespace Tizen.Multimedia
         /// <returns>true if the examples are successfully removed; otherwise, false if there is no example labeled with the specified label.</returns>
         /// <seealso cref="Add(MediaVisionSource, int)"/>
         /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
+        /// <since_tizen> 3</since_tizen>
         public bool Remove(int label)
         {
             var ret = InteropModel.Remove(Handle, ref label);
@@ -210,6 +218,7 @@ namespace Tizen.Multimedia
         /// Removes all face examples.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public void Reset()
         {
             InteropModel.Reset(Handle).Validate("Failed to reset image example");
@@ -229,6 +238,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">No examples added.</exception>
         /// <seealso cref="Add(MediaVisionSource, int)"/>
         /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
+        /// <since_tizen> 3</since_tizen>
         public void Learn()
         {
             Learn(null);
@@ -252,6 +262,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">No examples added.</exception>
         /// <seealso cref="Add(MediaVisionSource, int)"/>
         /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
+        /// <since_tizen> 3</since_tizen>
         public void Learn(FaceRecognitionConfiguration config)
         {
             InteropModel.Learn(EngineConfiguration.GetHandle(config), Handle).

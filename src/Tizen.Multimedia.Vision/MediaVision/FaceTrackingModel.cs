@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents face tracking model.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class FaceTrackingModel : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -32,6 +33,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="FaceTrackingModel"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public FaceTrackingModel()
         {
             InteropModel.Create(out _handle).Validate("Failed to create FaceTrackingModel.");
@@ -53,6 +55,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save()"/>
+        /// <since_tizen> 3</since_tizen>
         public FaceTrackingModel(string modelPath)
         {
             if (modelPath == null)
@@ -101,6 +104,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="source"/> has already bean disposed of.
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public void Prepare(MediaVisionSource source, Quadrangle region)
         {
             if (source == null)
@@ -119,6 +123,7 @@ namespace Tizen.Multimedia
         /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
+        /// <since_tizen> 3</since_tizen>
         public void Save(string path)
         {
             if (path == null)

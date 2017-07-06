@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a configuration of <see cref="FaceDetector"/> instances.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class FaceDetectionConfiguration : EngineConfiguration
     {
         private const string KeyModelFilePath = "MV_FACE_DETECTION_MODEL_FILE_PATH";
@@ -35,6 +36,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="FaceDetectionConfiguration"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public FaceDetectionConfiguration() : base("face_recognition")
         {
         }
@@ -43,6 +45,7 @@ namespace Tizen.Multimedia
         /// Gets or sets the face detection haarcascade xml file for face detection.
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
+        /// <since_tizen> 3</since_tizen>
         public string ModelFilePath
         {
             get
@@ -67,6 +70,7 @@ namespace Tizen.Multimedia
         /// Default value is null (all detected faces will be applied), can be changed to specify the minimum face height.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
+        /// <since_tizen> 3</since_tizen>
         public int? MinHeight
         {
             get
@@ -94,6 +98,7 @@ namespace Tizen.Multimedia
         /// Default value is null (all detected faces will be applied), can be changed to specify the minimum face width.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
+        /// <since_tizen> 3</since_tizen>
         public int? MinWidth
         {
             get
@@ -133,6 +138,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     The y position of <paramref name="value"/> is less than zero.\n
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public Rectangle? Roi
         {
             get

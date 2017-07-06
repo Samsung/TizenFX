@@ -27,6 +27,7 @@ namespace Tizen.Multimedia
     /// <seealso cref="MovementDetector"/>
     /// <seealso cref="PersonAppearanceDetector"/>
     /// <seealso cref="PersonRecognizer"/>
+    /// <since_tizen> 3</since_tizen>
     public abstract class SurveillanceEngine : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -62,6 +63,7 @@ namespace Tizen.Multimedia
         /// Sets and gets ROI (Region Of Interest).
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="SurveillanceEngine"/> has already been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public Point[] Roi
         {
             get
@@ -117,6 +119,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="SurveillanceEngine"/> has already been disposed of.</exception>
         /// <exception cref="ArgumentException"><paramref name="source"/> has not been added.</exception>
+        /// <since_tizen> 3</since_tizen>
         public void RemoveSource(SurveillanceSource source)
         {
             if (source == null)

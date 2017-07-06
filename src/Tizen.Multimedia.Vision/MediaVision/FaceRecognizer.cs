@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to recognize faces, face expressions and eye condition on image sources.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public static class FaceRecognizer
     {
 
@@ -41,6 +42,7 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<FaceRecognitionResult> RecognizeAsync(MediaVisionSource source,
             FaceRecognitionModel recognitionModel)
         {
@@ -62,6 +64,7 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<FaceRecognitionResult> RecognizeAsync(MediaVisionSource source,
             FaceRecognitionModel recognitionModel, Rectangle bound)
         {
@@ -87,6 +90,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<FaceRecognitionResult> RecognizeAsync(MediaVisionSource source,
             FaceRecognitionModel recognitionModel, FaceRecognitionConfiguration config)
         {
@@ -115,6 +119,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<FaceRecognitionResult> RecognizeAsync(MediaVisionSource source,
             FaceRecognitionModel recognitionModel, Rectangle bound, FaceRecognitionConfiguration config)
         {
@@ -206,6 +211,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<EyeCondition> RecognizeEyeConditionAsync(MediaVisionSource source,
             Rectangle bound)
         {
@@ -226,6 +232,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<EyeCondition> RecognizeEyeConditionAsync(MediaVisionSource source,
             Rectangle bound, FaceRecognitionConfiguration config)
         {
@@ -264,6 +271,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<FacialExpression> RecognizeFacialExpressionAsync(MediaVisionSource source,
             Rectangle bound)
         {
@@ -284,6 +292,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<FacialExpression> RecognizeFacialExpressionAsync(MediaVisionSource source,
             Rectangle bound, FaceRecognitionConfiguration config)
         {

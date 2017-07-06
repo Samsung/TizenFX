@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents the media vision source to keep information on image or video frame data as raw buffer.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class MediaVisionSource : IBufferOwner, IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -68,6 +69,7 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaPacket"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="mediaPacket"/> has already been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public MediaVisionSource(MediaPacket mediaPacket)
             : this(handle => FillMediaPacket(handle, mediaPacket))
         {
@@ -112,6 +114,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="colorspace"/> is invalid.
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public MediaVisionSource(byte[] buffer, uint width, uint height, Colorspace colorspace)
             : this(handle => FillBuffer(handle, buffer, width, height, colorspace))
         {
@@ -128,6 +131,7 @@ namespace Tizen.Multimedia
         /// Gets the buffer of the media source.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaVisionSource"/> has already been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public IMediaBuffer Buffer
         {
             get
@@ -150,6 +154,7 @@ namespace Tizen.Multimedia
         /// Gets height of the media source.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaVisionSource"/> has already been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public uint Height
         {
             get
@@ -165,6 +170,7 @@ namespace Tizen.Multimedia
         /// Gets width of the media source.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaVisionSource"/> has already been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public uint Width
         {
             get
@@ -180,6 +186,7 @@ namespace Tizen.Multimedia
         /// Gets <see cref="Colorspace"/> of the media source.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaVisionSource"/> has already been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public Colorspace Colorspace
         {
             get

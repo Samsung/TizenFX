@@ -19,11 +19,13 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a result of <see cref="PersonRecognizer"/> instances.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class PersonRecognitionInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonRecognitionInfo"/> class.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public PersonRecognitionInfo(Rectangle area, int label, double confidence)
         {
             Area = area;
@@ -34,16 +36,19 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the rectangular location where person face was recognized.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public Rectangle Area { get; }
 
         /// <summary>
         /// Gets the label that correspond to the recognized person.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public int Label { get; }
 
         /// <summary>
         /// Gets the confidence value that correspond to the recognized person.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public double Confidence { get; }
     }
 }

@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to detect faces on image sources.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public static class FaceDetector
     {
 
@@ -38,6 +39,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     The format of <paramref name="source"/> is not supported.
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<Rectangle[]> DetectAsync(MediaVisionSource source)
         {
             return await DetectAsync(source, null);
@@ -52,6 +54,7 @@ namespace Tizen.Multimedia
         /// <returns>A task that represents the asynchronous detect operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<Rectangle[]> DetectAsync(MediaVisionSource source,
             FaceDetectionConfiguration config)
         {

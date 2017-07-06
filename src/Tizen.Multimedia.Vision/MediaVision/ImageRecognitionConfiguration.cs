@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a configuration of <see cref="ImageRecognizer"/>.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class ImageRecognitionConfiguration : EngineConfiguration
     {
         private const string KeySceneScaleFactor = "MV_IMAGE_RECOGNITION_SCENE_SCALE_FACTOR";
@@ -33,32 +34,38 @@ namespace Tizen.Multimedia
         /// <summary>
         /// A read-only field that represents the default value of <see cref="KeySceneScaleFactor"/>.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public static readonly double DefaultSceneScaleFactor = 1.2;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="SceneMaxKeyPoints"/>.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public static readonly int DefaultSceneMaxKeypoints = 5000;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="MinKeyPointMatches"/>.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public static readonly int DefaultMinKeyPointMatches = 30;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="RequiredMatchingPart"/>.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public static readonly double DefaultRequiredMatchPart = 0.05;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="TolerantPartMatchError"/>.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public static readonly double DefaultTolerantPartMatchError = 0.1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageRecognitionConfiguration"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public ImageRecognitionConfiguration() : base("image_recognition")
         {
         }
@@ -71,6 +78,7 @@ namespace Tizen.Multimedia
         /// The default is 1.2.
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageRecognitionConfiguration"/> already has been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public double SceneScaleFactor
         {
             get
@@ -93,6 +101,7 @@ namespace Tizen.Multimedia
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageRecognitionConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
+        /// <since_tizen> 3</since_tizen>
         public int SceneMaxKeyPoints
         {
             get
@@ -119,6 +128,7 @@ namespace Tizen.Multimedia
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageRecognitionConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
+        /// <since_tizen> 3</since_tizen>
         public int MinKeyPointMatches
         {
             get
@@ -152,6 +162,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="value"/> is greater than one.
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public double RequiredMatchingPart
         {
             get
@@ -182,6 +193,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="value"/> is greater than one.
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public double TolerantPartMatchError
         {
             get

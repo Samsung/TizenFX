@@ -19,21 +19,25 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the eyes state types.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public enum EyeCondition
     {
         /// <summary>
         /// Eyes are open.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Open,
 
         /// <summary>
         /// Eyes are closed.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Closed,
 
         /// <summary>
         /// The eyes condition wasn't determined.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         NotFound
     }
 }

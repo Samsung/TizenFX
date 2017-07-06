@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a region with 4 <see cref="Point"/>s.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class Quadrangle
     {
 
@@ -30,6 +31,7 @@ namespace Tizen.Multimedia
         /// <remarks><paramref name="points"/> must have 4 elements.</remarks>
         /// <param name="points">four points that define object bounding quadrangle.</param>
         /// <exception cref="ArgumentException">The Length of <paramref name="points"/> is not 4.</exception>
+        /// <since_tizen> 3</since_tizen>
         public Quadrangle(Point[] points)
         {
             if (points.Length != 4)
@@ -43,6 +45,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets four points that define the object bounding quadrangle.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public Point[] Points { get; }
 
         public override string ToString() =>

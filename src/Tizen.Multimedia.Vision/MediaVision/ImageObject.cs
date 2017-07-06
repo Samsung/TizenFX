@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents an image object.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class ImageObject : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -32,6 +33,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="ImageObject"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public ImageObject()
         {
             InteropImage.Create(out _handle).Validate("Failed to create image object");
@@ -53,6 +55,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save(string)"/>
+        /// <since_tizen> 3</since_tizen>
         public ImageObject(string path)
         {
             if (path == null)
@@ -84,6 +87,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Fill(MediaVisionSource, ImageFillConfiguration)"/>
         /// <seealso cref="Fill(MediaVisionSource, Rectangle)"/>
         /// <seealso cref="Fill(MediaVisionSource, ImageFillConfiguration, Rectangle)"/>
+        /// <since_tizen> 3</since_tizen>
         public double RecognitionRate
         {
             get
@@ -102,6 +106,7 @@ namespace Tizen.Multimedia
         /// </returns>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageObject"/> has already been disposed of.</exception>
         /// <seealso cref="SetLabel(int)"/>
+        /// <since_tizen> 3</since_tizen>
         public int? GetLabel()
         {
             var ret = InteropImage.GetLabel(Handle, out var label);
@@ -119,6 +124,7 @@ namespace Tizen.Multimedia
         /// Sets the label for the <see cref="ImageObject"/>.
         /// </summary>
         /// <seealso cref="GetLabel"/>
+        /// <since_tizen> 3</since_tizen>
         public void SetLabel(int label)
         {
             InteropImage.SetLabel(Handle, label).Validate("Failed to set label");
@@ -135,6 +141,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="source"/> has already been disposed of.
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public void Fill(MediaVisionSource source)
         {
             InvokeFill(source, null, null);
@@ -154,6 +161,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public void Fill(MediaVisionSource source, ImageFillConfiguration config)
         {
             InvokeFill(source, config, null);
@@ -171,6 +179,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="source"/> has already been disposed of.\n
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public void Fill(MediaVisionSource source, Rectangle rect)
         {
             InvokeFill(source, null, rect);
@@ -191,6 +200,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public void Fill(MediaVisionSource source, ImageFillConfiguration config, Rectangle rect)
         {
             InvokeFill(source, config, rect);
@@ -227,6 +237,7 @@ namespace Tizen.Multimedia
         /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
+        /// <since_tizen> 3</since_tizen>
         public void Save(string path)
         {
             if (path == null)

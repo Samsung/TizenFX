@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// Provides the ability to recognize person on image sources.
     /// </summary>
     /// <seealso cref="PersonRecognitionConfiguration"/>
+    /// <since_tizen> 3</since_tizen>
     public class PersonRecognizer : SurveillanceEngine
     {
         private const string KeyCount = "NUMBER_OF_PERSONS";
@@ -36,6 +37,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="PersonRecognizer"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public PersonRecognizer() : base(PersonRecognizedEventType)
         {
         }
@@ -45,6 +47,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
         /// <seealso cref="PersonRecognitionConfiguration.FaceRecognitionModelPath"/>
+        /// <since_tizen> 3</since_tizen>
         public event EventHandler<PersonRecognizedEventArgs> Recognized;
 
         internal override void OnEventDetected(IntPtr trigger, IntPtr source, int streamId,
@@ -112,6 +115,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="NotSupportedException">The model file is not supported format or file.</exception>
         /// <see cref="SurveillanceSource.Push(MediaVisionSource)"/>
+        /// <since_tizen> 3</since_tizen>
         public void AddSource(SurveillanceSource source, PersonRecognitionConfiguration config)
         {
             if (config == null)

@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a QR configuration of <see cref="BarcodeGenerator"/>.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class QrConfiguration
     {
         /// <summary>
@@ -42,6 +43,7 @@ namespace Tizen.Multimedia
         ///     -or-
         ///     <paramref name="ecc"/> is invalid.
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public QrConfiguration(QrMode qrMode, ErrorCorrectionLevel ecc, int version)
         {
             if (version < 1 || version > 40)
@@ -60,16 +62,19 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the encoding mode for the message.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public QrMode Mode { get; }
 
         /// <summary>
         /// Gets the error correction level.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public ErrorCorrectionLevel ErrorCorrectionLevel { get; }
 
         /// <summary>
         /// Gets the QR code version.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public int Version { get; }
     }
 }

@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a configuration of <see cref="MovementDetector"/>.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class MovementDetectionConfiguration : SurveillanceEngineConfiguration
     {
         private const string KeyThreshold = "MV_SURVEILLANCE_MOVEMENT_DETECTION_THRESHOLD";
@@ -28,6 +29,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// A read-only field that represents the default value of <see cref="Threshold"/>.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public static readonly int DefaultThreshold = 10;
 
 
@@ -35,6 +37,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="MovementDetectionConfiguration"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public MovementDetectionConfiguration()
         {
         }
@@ -56,6 +59,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="value"/> is greater than 255.
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public int Threshold
         {
             get

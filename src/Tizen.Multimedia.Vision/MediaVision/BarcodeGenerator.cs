@@ -25,6 +25,7 @@ namespace Tizen.Multimedia
     /// and code versions are supported for QRCodes.
     /// </summary>
     /// <seealso cref="BarcodeGenerationConfiguration"/>
+    /// <since_tizen> 3</since_tizen>
     public static class BarcodeGenerator
     {
         private const int NoneErrorCorrection = (int)ErrorCorrectionLevel.High + 1;
@@ -73,6 +74,7 @@ namespace Tizen.Multimedia
         ///     </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <seealso cref="QrMode"/>
+        /// <since_tizen> 3</since_tizen>
         public static MediaVisionSource GenerateSource(string message, QrConfiguration qrConfig)
         {
             return GenerateSource(message, qrConfig, null);
@@ -106,6 +108,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException"><paramref name="config"/> already has been disposed of.</exception>
         /// <seealso cref="QrMode"/>
+        /// <since_tizen> 3</since_tizen>
         public static MediaVisionSource GenerateSource(string message, QrConfiguration qrConfig,
             BarcodeGenerationConfiguration config)
         {
@@ -143,6 +146,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="message"/> contains illegal characters.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static MediaVisionSource GenerateSource(string message, BarcodeType type)
         {
             return GenerateSource(message, type, null);
@@ -167,6 +171,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="config"/> already has been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static MediaVisionSource GenerateSource(string message, BarcodeType type,
             BarcodeGenerationConfiguration config)
         {
@@ -225,6 +230,7 @@ namespace Tizen.Multimedia
         /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <seealso cref="QrMode"/>
+        /// <since_tizen> 3</since_tizen>
         public static void GenerateImage(string message, QrConfiguration qrConfig,
             BarcodeImageConfiguration imageConfig)
         {
@@ -262,6 +268,7 @@ namespace Tizen.Multimedia
         ///     <see cref="BarcodeGenerationConfiguration.TextVisibility"/> is the <see cref="Visibility.Visible"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException"><paramref name="config"/> already has been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static void GenerateImage(string message, QrConfiguration qrConfig,
             BarcodeImageConfiguration imageConfig, BarcodeGenerationConfiguration config)
         {
@@ -305,6 +312,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static void GenerateImage(string message, BarcodeType type, BarcodeImageConfiguration imageConfig)
         {
             GenerateImage(message, type, imageConfig, null);
@@ -335,6 +343,7 @@ namespace Tizen.Multimedia
         /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="config"/> already has been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static void GenerateImage(string message,
             BarcodeType type, BarcodeImageConfiguration imageConfig, BarcodeGenerationConfiguration config)
         {

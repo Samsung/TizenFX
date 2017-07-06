@@ -20,19 +20,23 @@ namespace Tizen.Multimedia
     /// Specifies supported image formats for <see cref="BarcodeGenerator"/>
     /// </summary>
     /// <seealso cref="BarcodeImageConfiguration"/>
+    /// <since_tizen> 3</since_tizen>
     public enum BarcodeImageFormat
     {
         /// <summary>
         /// BMP image format.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Bmp,
         /// <summary>
         /// JPEG image format.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Jpeg,
         /// <summary>
         /// PNG image format.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         Png
     }
 }

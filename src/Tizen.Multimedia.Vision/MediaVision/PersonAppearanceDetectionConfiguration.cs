@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a configuration of <see cref="PersonAppearanceDetector"/> instances.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class PersonAppearanceDetectionConfiguration : SurveillanceEngineConfiguration
     {
         private const string KeySkipFramesCount = "MV_SURVEILLANCE_SKIP_FRAMES_COUNT";
@@ -28,12 +29,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// A read-only field that represents the default value of <see cref="SkipFramesCount"/>.
         /// </summary>
+        /// <since_tizen> 3</since_tizen>
         public static readonly int DefaultSkipFramesCount = 0;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonAppearanceDetectionConfiguration"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public PersonAppearanceDetectionConfiguration()
         {
         }
@@ -51,6 +54,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="PersonAppearanceDetectionConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <seealso cref="SurveillanceSource.Push(MediaVisionSource)"/>
+        /// <since_tizen> 3</since_tizen>
         public int SkipFramesCount
         {
             get

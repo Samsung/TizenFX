@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents the image tracking model interface.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public class ImageTrackingModel : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -32,6 +33,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="ImageTrackingModel"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3</since_tizen>
         public ImageTrackingModel()
         {
             InteropModel.Create(out _handle).Validate("Failed to create FaceTrackingModel");
@@ -53,6 +55,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save()"/>
+        /// <since_tizen> 3</since_tizen>
         public ImageTrackingModel(string modelPath)
         {
             if (modelPath == null)
@@ -78,6 +81,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="imageObject"/> has already been disposed of.
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public void SetTarget(ImageObject imageObject)
         {
             if (imageObject == null)
@@ -96,6 +100,7 @@ namespace Tizen.Multimedia
         /// Tracking algorithm will try to find image by itself.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingModel"/> has already been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public void Refresh()
         {
             InteropModel.Refresh(Handle, IntPtr.Zero).Validate("Failed to refresh state");
@@ -109,6 +114,7 @@ namespace Tizen.Multimedia
         /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingModel"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
+        /// <since_tizen> 3</since_tizen>
         public void Save(string path)
         {
             if (path == null)

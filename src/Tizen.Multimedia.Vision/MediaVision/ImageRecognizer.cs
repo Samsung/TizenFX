@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to recognize images on image sources.
     /// </summary>
+    /// <since_tizen> 3</since_tizen>
     public static class ImageRecognizer
     {
         /// <summary>
@@ -42,6 +43,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException"><paramref name="imageObjects"/> has no elements.(The length is zero.)</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<IEnumerable<ImageRecognitionResult>> RecognizeAsync(
             MediaVisionSource source, ImageObject[] imageObjects)
         {
@@ -69,6 +71,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
+        /// <since_tizen> 3</since_tizen>
         public static async Task<IEnumerable<ImageRecognitionResult>> RecognizeAsync(MediaVisionSource source,
             ImageObject[] imageObjects, ImageRecognitionConfiguration config)
         {
