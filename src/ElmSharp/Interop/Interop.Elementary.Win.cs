@@ -64,7 +64,7 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_alpha_set(IntPtr obj, bool alpha);
 
-        [DllImport(Libraries.Elementary)]
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_win_role_get")]
         internal static extern IntPtr _elm_win_role_get(IntPtr obj);
 
         internal static string elm_win_role_get(IntPtr obj)
