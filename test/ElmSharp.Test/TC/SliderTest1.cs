@@ -38,7 +38,6 @@ namespace ElmSharp.Test
             Slider sld1 = new Slider(window)
             {
                 Text = "Slider Test",
-                UnitFormat = "%1.2f meters",
                 IndicatorFormat = "%1.2f meters",
                 Minimum = 0.0,
                 Maximum = 100.0,
