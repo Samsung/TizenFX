@@ -120,30 +120,6 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the format string for the unit label.
-        /// </summary>
-        /// <remarks>
-        /// Unit label is displayed all the time, if set, after the slider's bar.
-        /// In the horizontal mode, on the right and in the vertical mode, at the bottom.If NULL,
-        /// the unit label won't be visible. If not, it sets the format string for the label text.
-        /// For the label text a floating point value is provided,
-        /// so the label text can display up to 1 floating point value.
-        /// Note that this is optional.Use a format string such as "%1.2f meters" for example,
-        /// and it displays values like: "3.14 meters" for a value equal to 3.14159.By default, unit label is disabled.
-        /// </remarks>
-        public string UnitFormat
-        {
-            get
-            {
-                return Interop.Elementary.elm_slider_unit_format_get(RealHandle);
-            }
-            set
-            {
-                Interop.Elementary.elm_slider_unit_format_set(RealHandle, value);
-            }
-        }
-
-        /// <summary>
         /// Sets or gets the format string for the indicator label.
         /// </summary>
         /// <remarks>
