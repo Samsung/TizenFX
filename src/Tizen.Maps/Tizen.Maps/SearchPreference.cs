@@ -136,6 +136,7 @@ namespace Tizen.Maps
             {
                 foreach (var prop in value)
                 {
+                    _properties[prop.Key] = prop.Value;
                     handle.SetProperty(prop.Key, prop.Value);
                     Log.Info(string.Format("Properties is changed to [{0}, {1}]", prop.Key, prop.Value));
                 }

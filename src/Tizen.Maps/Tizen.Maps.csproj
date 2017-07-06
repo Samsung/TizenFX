@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>1.0.12</Version>
+    <Version>1.0.13</Version>
     <Authors>Samsung Electronics</Authors>
     <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
     <Description>Map Services API for Tizen .NET</Description>
@@ -9,7 +9,7 @@
     <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
   </PropertyGroup>
-  
+
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
