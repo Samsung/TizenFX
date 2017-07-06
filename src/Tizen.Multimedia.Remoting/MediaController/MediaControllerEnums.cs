@@ -131,31 +131,31 @@ namespace Tizen.Multimedia.MediaController
     public enum MediaControllerSubscriptionType
     {
         /// <summary>
-        /// The type of subscription is Server state
+        /// The type of subscription is the state of server
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         ServerState,
 
         /// <summary>
-        /// The type of subscription is Playback
+        /// The type of subscription is the playback
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Playback,
 
         /// <summary>
-        /// The type of subscription is Metadata
+        /// The type of subscription is the metadata
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Metadata,
 
         /// <summary>
-        /// The type of subscription is Shuffle mode
+        /// The type of subscription is the shuffle mode
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         ShuffleMode,
 
         /// <summary>
-        /// The type of subscription is Repeat mode
+        /// The type of subscription is the repeat mode
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         RepeatMode,
