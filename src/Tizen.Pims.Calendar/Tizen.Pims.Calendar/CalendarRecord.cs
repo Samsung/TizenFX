@@ -146,7 +146,9 @@ namespace Tizen.Pims.Calendar
         internal static Interop.Calendar.Record.DateTime ConvertCalendarTimeToStruct(CalendarTime value)
         {
             Interop.Calendar.Record.DateTime time = new Interop.Calendar.Record.DateTime();
-            if ((int)CalendarTime.Type.Utc == time.type)
+            time.type = value._type;
+
+            if ((int)CalendarTime.Type.Utc == value._type)
             {
                 DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0);
                 time.utime = (value.UtcTime.Ticks - epoch.Ticks) / 10000000;
@@ -175,6 +177,7 @@ namespace Tizen.Pims.Calendar
             {
                 value = new CalendarTime(time.year, time.month, time.mday, time.hour, time.minute, time.second);
             }
+            value._type = time.type;
             return value;
         }
 
