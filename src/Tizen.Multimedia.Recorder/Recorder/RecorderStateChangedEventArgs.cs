@@ -34,17 +34,20 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Previous state of the recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderState Previous { get; }
 
         /// <summary>
         /// Current state of the recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderState Current { get; }
 
         /// <summary>
         /// true if the state changed by policy such as Resource Conflict or Security, otherwise false
         /// in normal state change.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsStateChangedByPolicy { get; }
     }
 }

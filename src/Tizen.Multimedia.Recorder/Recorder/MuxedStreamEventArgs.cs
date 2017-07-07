@@ -35,16 +35,19 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The muexed stream data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Stream { get; }
 
         /// <summary>
         /// The length of muxed stream data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int StreamLength { get; }
 
         /// <summary>
         /// The offset of the stream data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ulong Offset { get; }
     }
 }

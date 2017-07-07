@@ -32,11 +32,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The time of recording in milliseconds.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ulong ElapsedTime { get; }
 
         /// <summary>
         /// The size of the recording file in Kilobyte.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ulong FileSize { get; }
     }
 }

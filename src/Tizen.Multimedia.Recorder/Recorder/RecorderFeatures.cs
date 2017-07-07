@@ -42,6 +42,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the file formats supported by the recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="RecorderFileFormat"/>.
         /// </returns>
@@ -78,6 +79,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the audio encoders supported by the recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="RecorderAudioCodec"/>.
         /// </returns>
@@ -114,6 +116,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the video encoders supported by the recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="RecorderVideoCodec"/>.
         /// by recorder.
@@ -151,6 +154,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the video resolutions supported by the recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// It returns videoresolution list containing the width and height of
         /// different resolutions supported by recorder.

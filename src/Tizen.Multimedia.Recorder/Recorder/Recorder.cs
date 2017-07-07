@@ -86,10 +86,11 @@ namespace Tizen.Multimedia
             return _handle;
         }
 
-#region Dispose support
+        #region Dispose support
         /// <summary>
         /// Release any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -141,66 +142,76 @@ namespace Tizen.Multimedia
         {
             _state = state;
         }
-#endregion Check recorder state
+        #endregion Check recorder state
 
-#region EventHandlers
+        #region EventHandlers
         /// <summary>
         /// Event that occurs when an error occurs during recorder operation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RecordingErrorOccurredEventArgs> ErrorOccurred;
         private Native.RecorderErrorCallback _errorOccuredCallback;
 
         /// <summary>
         /// Event that occurs when recorder is interrupted.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RecorderInterruptedEventArgs> Interrupted;
         private Native.InterruptedCallback _interruptedCallback;
 
         /// <summary>
         /// This event occurs when recorder state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RecorderStateChangedEventArgs> StateChanged;
         private Native.StatechangedCallback _stateChangedCallback;
 
         /// <summary>
         /// Event that occurs when recording information changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RecordingProgressEventArgs> RecordingProgress;
         private Native.RecordingProgressCallback _recordingProgressCallback;
 
         /// <summary>
         /// Event that occurs when audio stream data is being delivered.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<AudioStreamDeliveredEventArgs> AudioStreamDelivered;
         private Native.AudioStreamCallback _audioStreamCallback;
 
         /// <summary>
         /// Event that occurs when recording limit is reached.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RecordingLimitReachedEventArgs> RecordingLimitReached;
         private Native.RecordingLimitReachedCallback _recordingLimitReachedCallback;
 
         /// <summary>
         /// Event that occurs when muxed stream data is being delivered.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<MuxedStreamDeliveredEventArgs> MuxedStreamDelivered;
         private Native.MuxedStreamCallback _muxedStreamCallback;
-#endregion EventHandlers
+        #endregion EventHandlers
 
-#region Properties
+        #region Properties
         /// <summary>
         /// Gets the various recorder features.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderFeatures Feature { get; }
 
         /// <summary>
         /// Get/Set the various recorder settings.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderSettings Setting { get; }
 
         /// <summary>
         /// The current state of the recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="RecorderState"/> that specifies the state of recorder.</value>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public RecorderState State
@@ -217,15 +228,16 @@ namespace Tizen.Multimedia
                 return val;
             }
         }
-#endregion Properties
+        #endregion Properties
 
-#region Methods
+        #region Methods
         /// <summary>
         /// Prepare the media recorder for recording.
         /// The recorder must be in the <see cref="RecorderState.Created"/> state.
         /// After this method is finished without any exception,
         /// The state of recorder will be changed to <see cref="RecorderState.Ready"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Before calling the function, it is required to set AudioEncoder,
         /// videoencoder and fileformat properties of recorder.
@@ -248,6 +260,7 @@ namespace Tizen.Multimedia
         /// After this method is finished without any exception,
         /// The state of recorder will be changed to <see cref="RecorderState.Created"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void Unprepare()
@@ -266,6 +279,7 @@ namespace Tizen.Multimedia
         /// After this method is finished without any exception,
         /// The state of recorder will be changed to <see cref="RecorderState.Recording"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// If file path has been set to an existing file, this file is removed automatically and updated by new one.
         /// In the video recorder, some preview format does not support record mode. It will return InvalidOperation error.
@@ -294,6 +308,7 @@ namespace Tizen.Multimedia
         /// After this method is finished without any exception,
         /// The state of recorder will be changed to <see cref="RecorderState.Paused"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Recording can be resumed with Start().
         /// </remarks>
@@ -319,6 +334,7 @@ namespace Tizen.Multimedia
         /// After this method is finished without any exception,
         /// The state of recorder will be changed to <see cref="RecorderState.Ready"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -342,6 +358,7 @@ namespace Tizen.Multimedia
         /// After this method is finished without any exception,
         /// The state of recorder will be changed to <see cref="RecorderState.Ready"/> state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
@@ -361,6 +378,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the audio stream policy.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="policy">Policy.</param>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public void SetAudioStreamPolicy(AudioStreamPolicy policy)

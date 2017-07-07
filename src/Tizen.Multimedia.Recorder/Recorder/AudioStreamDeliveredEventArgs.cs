@@ -37,26 +37,31 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The audio stream data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Stream { get; }
 
         /// <summary>
         /// The length of audio stream data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int StreamLength { get; }
 
         /// <summary>
         /// The audio format type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AudioSampleType Type { get; }
 
         /// <summary>
         /// The number of channels.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Channel { get; }
 
         /// <summary>
         /// The recording time of the stream buffer in milliseconds.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint RecordingTime { get; }
     }
 }

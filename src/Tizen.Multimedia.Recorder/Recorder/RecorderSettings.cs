@@ -38,6 +38,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The number of audio channel.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// For mono recording, set channel to 1.
         /// For stereo recording, set channel to 2.
@@ -65,6 +66,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The audio device for recording.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="RecorderAudioDevice"/> that specifies the type of audio device.</value>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public RecorderAudioDevice AudioDevice
@@ -89,6 +91,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Get the peak audio input level in dB
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// 0dB indicates maximum input level, -300dB indicates minimum input level.
         /// </remarks>
@@ -109,6 +112,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The sampling rate of an audio stream in hertz.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public int AudioSampleRate
         {
@@ -132,6 +136,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The bitrate of an audio encoder in bits per second.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public int AudioBitRate
         {
@@ -155,6 +160,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The bitrate of an video encoder in bits per second.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public int VideoBitRate
         {
@@ -178,6 +184,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The audio codec for encoding an audio stream.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="RecorderAudioCodec"/> that specifies the type of audio codec.</value>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public RecorderAudioCodec AudioCodec
@@ -202,6 +209,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The video codec for encoding video stream.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="RecorderVideoCodec"/> that specifies the type of video codec.</value>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public RecorderVideoCodec VideoCodec
@@ -226,6 +234,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The file format for recording media stream.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="RecorderFileFormat"/> that specifies the file format.</value>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public RecorderFileFormat FileFormat
@@ -250,6 +259,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The file path to record.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// If the same file already exists in the file system, then old file
         /// will be overwritten.
@@ -281,6 +291,7 @@ namespace Tizen.Multimedia
         /// The maximum size of a recording file in KB(kilobytes). If 0, means
         /// unlimited recording size.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// After reaching the limitation, the data which is being recorded will
         /// be discarded and not written to the file.
@@ -310,6 +321,7 @@ namespace Tizen.Multimedia
         /// The time limit of a recording file in Seconds. If 0, means unlimited recording
         /// time.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// After reaching the limitation, the data which is being recorded will
         /// be discarded and not written to the file.
@@ -338,6 +350,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The mute state of a recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public bool Mute
         {
@@ -356,6 +369,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The video recording motion rate
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// The attribute is valid only in a video recorder.
         /// If the rate is in range of 0-1, video is recorded in a slow motion mode.
@@ -384,6 +398,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The orientation in a video metadata tag.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="RecorderOrientation"/> that specifies the type of orientation.</value>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public RecorderOrientation OrientationTag
@@ -408,6 +423,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Resolution of the video.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">In case of invalid parameters</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public Size VideoResolution

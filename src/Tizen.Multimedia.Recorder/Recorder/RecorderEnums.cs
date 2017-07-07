@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for Audio Codec.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecorderAudioCodec
     {
         /// <summary>
@@ -52,6 +53,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for Audio capture devices.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecorderAudioDevice
     {
         /// <summary>
@@ -67,6 +69,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the file container format.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecorderFileFormat
     {
         /// <summary>
@@ -102,6 +105,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the recorder policy.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum  RecorderPolicy
     {
         /// <summary>
@@ -121,6 +125,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the recording limit.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecordingLimitType
     {
         /// <summary>
@@ -140,6 +145,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the recorder rotation type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum  RecorderOrientation
     {
         /// <summary>
@@ -163,6 +169,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for recorder states.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecorderState
     {
         /// <summary>
@@ -191,6 +198,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for video codec.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecorderVideoCodec
     {
         /// <summary>
@@ -214,6 +222,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for recorder failure error.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecorderErrorCode
     {
         /// <summary>
