@@ -30,26 +30,32 @@ namespace ElmSharp
         /// <summary>
         /// Only color selector is displayed
         /// </summary>
+        [Obsolete("Components is obsolete as of version 1.2.3 and is no longer supported.")]
         Components,
         /// <summary>
         /// Both Palette and selector is displayed
         /// </summary>
+        [Obsolete("Both is obsolete as of version 1.2.3 and is no longer supported.")]
         Both,
         /// <summary>
         /// Only color picker is displayed
         /// </summary>
+        [Obsolete("Picker is obsolete as of version 1.2.3 and is no longer supported.")]
         Picker,
         /// <summary>
         /// This mode is not supported. If you use this, nothing will be shown
         /// </summary>
+        [Obsolete("Plane is obsolete as of version 1.2.3 and is no longer supported.")]
         Plane,
         /// <summary>
         /// This mode is not supported. If you use this, it will be shown same with Palette mode
         /// </summary>
+        [Obsolete("PallettePlane is obsolete as of version 1.2.3 and is no longer supported.")]
         PallettePlane,
         /// <summary>
         /// This mode is not supported. If you use this, it will be shown same with Palette mode
         /// </summary>
+        [Obsolete("All is obsolete as of version 1.2.3 and is no longer supported.")]
         All
     }
 
@@ -134,7 +140,10 @@ namespace ElmSharp
             }
             set
             {
-                Interop.Elementary.elm_colorselector_mode_set(Handle, (Interop.Elementary.Elm_Colorselector_Mode)value);
+                if (ColorSelectorMode.Palette == value)
+                {
+                    Interop.Elementary.elm_colorselector_mode_set(Handle, (Interop.Elementary.Elm_Colorselector_Mode)value);
+                }
             }
         }
 
