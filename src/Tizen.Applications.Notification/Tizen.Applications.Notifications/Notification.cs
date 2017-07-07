@@ -36,7 +36,7 @@ namespace Tizen.Applications.Notifications
         private bool disposed = false;
 
         private IDictionary<string, StyleBase> styleDictionary;
-        private IDictionary<string, Bundle> extenderDictionary;
+        private IDictionary<string, Bundle> extraDataDictionary;
         private int count = 0;
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Tizen.Applications.Notifications
         public Notification()
         {
             styleDictionary = new Dictionary<string, StyleBase>();
-            extenderDictionary = new Dictionary<string, Bundle>();
+            extraDataDictionary = new Dictionary<string, Bundle>();
         }
 
         /// <summary>
@@ -60,12 +60,14 @@ namespace Tizen.Applications.Notifications
 
         /// <summary>
         /// Gets or sets icon of Notification.
+        /// An absolute path for an image file.
         /// </summary>
         public string Icon { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets sub icon of Notification.
-        /// This SubIcon is displayed in Icon you set.
+        /// An absolute path for an image file.
+        /// The SubIcon is superimposed on the lower right of the icon.
         /// </summary>
         public string SubIcon { get; set; } = string.Empty;
 
@@ -177,9 +179,9 @@ namespace Tizen.Applications.Notifications
 
         /// <summary>
         /// Gets or sets a value indicating whether notification is displayed on default viewer.
-        /// If you set false and add style, you can see only style notification.
+        /// If you set false and add style, It will be shown only on the style you added.
         /// </summary>
-        public bool IsDisplay { get; set; } = true;
+        public bool IsVisible { get; set; } = true;
 
         /// <summary>
         /// Gets or sets NotificationSafeHandle
@@ -304,7 +306,7 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Method to set extender data to add extra data
+        /// Method to set extra data to add extra data
         /// </summary>
         /// <remarks>
         /// The type of extra data is Bundle.
@@ -324,46 +326,46 @@ namespace Tizen.Applications.Notifications
         /// Bundle bundle = new Bundle();
         /// bundle.AddItem("key", "value");
         ///
-        /// notification.SetExtender("firstKey", bundle);
+        /// notification.SetExtraData("firstKey", bundle);
         /// </code>
         /// </example>
-        public void SetExtender(string key, Bundle value)
+        public void SetExtraData(string key, Bundle value)
         {
             if (value == null || value.SafeBundleHandle.IsInvalid || string.IsNullOrEmpty(key))
             {
                 throw NotificationErrorFactory.GetException(NotificationError.InvalidParameter, "invalid parameter entered");
             }
 
-            if (extenderDictionary.ContainsKey(key) == true)
+            if (extraDataDictionary.ContainsKey(key) == true)
             {
                 Log.Info(LogTag, "The key is existed, so extender data is replaced");
-                extenderDictionary.Remove(key);
-                extenderDictionary.Add(key, value);
+                extraDataDictionary.Remove(key);
+                extraDataDictionary.Add(key, value);
             }
             else
             {
-                extenderDictionary.Add(key, value);
+                extraDataDictionary.Add(key, value);
             }
         }
 
         /// <summary>
-        /// Method to remove extender you already added.
+        /// Method to remove extra you already added.
         /// </summary>
         /// <remarks>
         /// The type of extra data is Bundle.
         /// </remarks>
         /// <param name="key">The key of the extra data to add.</param>
         /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
-        public void RemoveExtender(string key)
+        public void RemoveExtraData(string key)
         {
             if (string.IsNullOrEmpty(key))
             {
                 throw NotificationErrorFactory.GetException(NotificationError.InvalidParameter, "invalid parameter entered");
             }
 
-            if (extenderDictionary.ContainsKey(key))
+            if (extraDataDictionary.ContainsKey(key))
             {
-                extenderDictionary.Remove(key);
+                extraDataDictionary.Remove(key);
             }
             else
             {
@@ -372,12 +374,12 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Method to get extender data you already set
+        /// Method to get extra data you already set
         /// </summary>
         /// <param name="key">The key of the extra data to get.</param>
-        /// <returns>Bundle Object that include extender data</returns>
+        /// <returns>Bundle Object that include extra data</returns>
         /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
-        public Bundle GetExtender(string key)
+        public Bundle GetExtraData(string key)
         {
             if (string.IsNullOrEmpty(key))
             {
@@ -385,7 +387,7 @@ namespace Tizen.Applications.Notifications
             }
 
             Bundle bundle;
-            if (extenderDictionary.TryGetValue(key, out bundle) == false)
+            if (extraDataDictionary.TryGetValue(key, out bundle) == false)
             {
                 throw NotificationErrorFactory.GetException(NotificationError.InvalidParameter, "invalid parameter entered : " + key);
             }
@@ -422,9 +424,9 @@ namespace Tizen.Applications.Notifications
             return styleDictionary;
         }
 
-        internal IDictionary<string, Bundle> GetExtenderDictionary()
+        internal IDictionary<string, Bundle> GetextraDataDictionary()
         {
-            return extenderDictionary;
+            return extraDataDictionary;
         }
 
         internal StyleBase GetStyle(string key)
@@ -448,10 +450,10 @@ namespace Tizen.Applications.Notifications
         {
             NotificationBinder.BindObject(this);
 
-            foreach (string key in GetExtenderDictionary().Keys)
+            foreach (string key in GetextraDataDictionary().Keys)
             {
                 Log.Info(LogTag, "Start to bind Notification.ExtenderData to SafeHandle");
-                Interop.Notification.SetExtentionData(Handle, key, extenderDictionary[key].SafeBundleHandle);
+                Interop.Notification.SetExtentionData(Handle, key, extraDataDictionary[key].SafeBundleHandle);
             }
 
             foreach (Notification.StyleBase style in styleDictionary.Values)
@@ -487,9 +489,12 @@ namespace Tizen.Applications.Notifications
                 Bundle bundle = new Bundle(new SafeBundleHandle(extention, false));
                 foreach (string key in bundle.Keys)
                 {
+                    if (key.StartsWith("_NOTIFICATION_EXTENSION_EVENT_"))
+                        continue;
+
                     SafeBundleHandle sbh;
                     Interop.Notification.GetExtentionData(Handle, key, out sbh);
-                    extenderDictionary.Add(key, new Bundle(sbh));
+                    extraDataDictionary.Add(key, new Bundle(sbh));
                 }
             }
 

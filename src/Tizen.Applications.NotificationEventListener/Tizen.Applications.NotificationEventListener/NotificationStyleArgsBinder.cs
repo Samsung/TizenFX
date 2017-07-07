@@ -63,6 +63,27 @@ namespace Tizen.Applications.NotificationEventListener
                 }
                 activeStyle.DeleteTimeout = timeout;
 
+                SafeAppControlHandle appcontrol = null;
+                Interop.NotificationEventListener.GetExtensionAction(eventargs.Handle, UserEventType.HiddenByUser, out appcontrol);
+                if (appcontrol != null)
+                {
+                    activeStyle.HiddenByUserAction = new AppControl(appcontrol);
+                }
+
+                appcontrol = null;
+                Interop.NotificationEventListener.GetExtensionAction(eventargs.Handle, UserEventType.HiddenByTimeout, out appcontrol);
+                if (appcontrol != null)
+                {
+                    activeStyle.HiddenByTimeoutAction = new AppControl(appcontrol);
+                }
+
+                appcontrol = null;
+                Interop.NotificationEventListener.GetExtensionAction(eventargs.Handle, UserEventType.HiddenByExternal, out appcontrol);
+                if (appcontrol != null)
+                {
+                    activeStyle.HiddenByExternalAction = new AppControl(appcontrol);
+                }
+
                 NotificationReplyActionArgBinder.BindObject(eventargs);
             }
 

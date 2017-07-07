@@ -61,13 +61,13 @@ namespace Tizen.Applications.NotificationEventListener
         }
 
         /// <summary>
-        /// Registers a callback for notification insert event.
+        /// Event handler for notification insert event.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException"> Thrown in case of Permission deny.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
-        public static event EventHandler<NotificationEventArgs> NotificationAddEventHandler
+        public static event EventHandler<NotificationEventArgs> Added
         {
             add
             {
@@ -107,13 +107,13 @@ namespace Tizen.Applications.NotificationEventListener
         }
 
         /// <summary>
-        /// Registers a callback for notification update event.
+        /// Event handler for notification update event.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException"> Thrown in case of Permission deny.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
-        public static event EventHandler<NotificationEventArgs> NotificationUpdateEventHandler
+        public static event EventHandler<NotificationEventArgs> Updated
         {
             add
             {
@@ -153,13 +153,13 @@ namespace Tizen.Applications.NotificationEventListener
         }
 
         /// <summary>
-        /// Registers a callback for notification delete event.
+        /// Event handler for notification delete event.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException"> Thrown in case of Permission deny.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
-        public static event EventHandler<NotificationDeleteEventArgs> NotificationDeleteEventHandler
+        public static event EventHandler<NotificationDeleteEventArgs> Deleted
         {
             add
             {
@@ -334,7 +334,7 @@ namespace Tizen.Applications.NotificationEventListener
         }
 
         /// <summary>
-        /// Returns the notification list handle.
+        /// Returns the notification list.
         /// </summary>
         /// <exception cref="UnauthorizedAccessException"> Thrown in case of Permission deny.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>

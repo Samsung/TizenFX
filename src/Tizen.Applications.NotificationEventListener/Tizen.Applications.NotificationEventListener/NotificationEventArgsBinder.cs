@@ -155,7 +155,7 @@ namespace Tizen.Applications.NotificationEventListener
             Interop.NotificationEventListener.GetStyleList(eventargs.Handle, out displayList);
             if ((displayList & (int)NotificationDisplayApplist.Tray) == 0)
             {
-                eventargs.IsDisplay = false;
+                eventargs.IsVisible = false;
             }
 
             err = Interop.NotificationEventListener.GetExtentionBundle(eventargs.Handle, out extention, out dummy);
@@ -169,9 +169,12 @@ namespace Tizen.Applications.NotificationEventListener
                 Bundle bundle = new Bundle(new SafeBundleHandle(extention, false));
                 foreach (string key in bundle.Keys)
                 {
+                    if (key.StartsWith("_NOTIFICATION_EXTENSION_EVENT_"))
+                        continue;
+
                     SafeBundleHandle sbh;
                     Interop.NotificationEventListener.GetExtender(eventargs.Handle, key, out sbh);
-                    eventargs.Extender.Add(key, new Bundle(sbh));
+                    eventargs.ExtraData.Add(key, new Bundle(sbh));
                 }
             }
 

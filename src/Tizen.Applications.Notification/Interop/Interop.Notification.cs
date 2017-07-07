@@ -218,6 +218,12 @@ internal static partial class Interop
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_default_button")]
         internal static extern NotificationError SetDefaultButton(NotificationSafeHandle handle, int index);
 
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_extension_event_handler")]
+        internal static extern NotificationError SetExtensionAction(NotificationSafeHandle handle, NotificationEventType type, SafeAppControlHandle appcontrol);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_extension_event_handler")]
+        internal static extern NotificationError GetExtensionAction(NotificationSafeHandle handle, NotificationEventType type, out SafeAppControlHandle appcontrol);
+
         internal static NotificationError GetText(NotificationSafeHandle handle, NotificationText type, out string text)
         {
             NotificationError ret;

@@ -28,7 +28,7 @@ namespace Tizen.Applications.NotificationEventListener
         private const string LogTag = "Tizen.Applications.NotificationEventListener";
 
         internal IDictionary<string, StyleArgs> Style;
-        internal IDictionary<string, Bundle> Extender;
+        internal IDictionary<string, Bundle> ExtraData;
         internal Interop.NotificationEventListener.NotificationSafeHandle Handle;
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Tizen.Applications.NotificationEventListener
         public NotificationEventArgs()
         {
             Style = new Dictionary<string, StyleArgs>();
-            Extender = new Dictionary<string, Bundle>();
+            ExtraData = new Dictionary<string, Bundle>();
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// Gets a value that determines whether notification is displayed on the default viewer.
         /// If IsDisplay property set false and add style, you can see only style notification.
         /// </summary>
-        public bool IsDisplay { get; internal set; } = true;
+        public bool IsVisible { get; internal set; } = true;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool HasEventFlag { get; internal set; } = false;
@@ -121,13 +121,13 @@ namespace Tizen.Applications.NotificationEventListener
         public AccessoryArgs Accessory { get; internal set; }
 
         /// <summary>
-        /// Gets the key for extender.
+        /// Gets the key for extra data.
         /// </summary>
-        public ICollection<string> ExtenderKey
+        public ICollection<string> ExtraDataKey
         {
             get
             {
-                return Extender.Keys;
+                return ExtraData.Keys;
             }
         }
 
@@ -161,11 +161,11 @@ namespace Tizen.Applications.NotificationEventListener
         }
 
         /// <summary>
-        /// Gets the ExtenderArgs.
+        /// Gets the ExtraDataArgs.
         /// </summary>
-        /// <param name="key">The key that specifies which extender</param>
+        /// <param name="key">The key that specifies which extra data</param>
         /// <returns>Returns the bundle for key</returns>
-        public Bundle GetExtender(string key)
+        public Bundle GetExtraData(string key)
         {
             Bundle bundle;
 
@@ -174,7 +174,7 @@ namespace Tizen.Applications.NotificationEventListener
                 throw NotificationEventListenerErrorFactory.GetException(Interop.NotificationEventListener.ErrorCode.InvalidParameter, "invalid parameter entered");
             }
 
-            if (Extender.TryGetValue(key, out bundle) == false)
+            if (ExtraData.TryGetValue(key, out bundle) == false)
             {
                 throw NotificationEventListenerErrorFactory.GetException(Interop.NotificationEventListener.ErrorCode.InvalidParameter, "invalid parameter entered : " + key);
             }

@@ -37,12 +37,13 @@ namespace Tizen.Applications.Notifications
             /// Gets or sets the sound option. Default to AccessoryOption.Off.
             /// </summary>
             /// <remarks>
-            /// If you set AccessoryOption.Custom and not set SoundPath, then turn on the default sound.
+            /// If you set AccessoryOption.Custom, you must the SoundPath. Otherwise, an exception is thrown.
             /// </remarks>
             public AccessoryOption SoundOption { get; set; } = AccessoryOption.Off;
 
             /// <summary>
             /// Gets or sets the sound path, It will play on the sound file you set.
+            /// An absolute path for a sound file.
             /// </summary>
             public string SoundPath { get; set; }
 
@@ -52,29 +53,29 @@ namespace Tizen.Applications.Notifications
             public bool CanVibrate { get; set; } = false;
 
             /// <summary>
-            /// Gets or sets the led option. Default to AccessoryOption.Off.
+            /// Gets or sets the led option. The default value is AccessoryOption.Off.
             /// </summary>
             /// <remarks>
-            /// If you set AccessoryOption.Custom and not set LedColor, then turn on the LED with default color.
+            /// If you set AccessoryOption.Custom and not set LedColor, the LED will show default color.
             /// </remarks>
             public AccessoryOption LedOption { get; set; } = AccessoryOption.Off;
 
             /// <summary>
-            /// Gets or sets the led on time period that you would like the LED on the device to blink. as well as the rate
+            /// Gets or sets the on time so that it looks like the device's LED is blinking.
             /// </summary>
             /// <remarks>
             /// Default value of LedOnMillisecond is 0.
             /// The rate is specified in terms of the number of Milliseconds to be on.
-            /// You should always set LedOnMillisecond with LedOffMillisecond. Otherwise, it may not operate normally.
+            /// You must set the on and off times at the same time. Otherwise, it may not operate normally.
             /// </remarks>
             public int LedOnMillisecond { get; set; }
 
             /// <summary>
-            /// Gets or sets the led on time period that you would like the LED on the device to blink. as well as the rate.
+            /// Gets or sets the off time so that it looks like the device's LED is blinking.
             /// </summary>
             /// <remarks>
             /// The rate is specified in terms of the number of Milliseconds to be off.
-            /// You should always set LedOffMillisecond with LedOnMillisecond. Otherwise, it may not operate normally.
+            /// You must set the on and off times at the same time. Otherwise, it may not operate normally.
             /// </remarks>
             public int LedOffMillisecond { get; set; }
 

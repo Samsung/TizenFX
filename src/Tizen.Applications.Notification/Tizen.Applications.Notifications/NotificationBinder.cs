@@ -30,7 +30,7 @@ namespace Tizen.Applications.Notifications
 
             Interop.Notification.SetID(notification.Handle, notification.PrivID);
 
-            if (notification.IsDisplay)
+            if (notification.IsVisible)
             {
                 Interop.Notification.SetApplist(notification.Handle, (int)NotificationDisplayApplist.Tray);
             }
@@ -78,7 +78,7 @@ namespace Tizen.Applications.Notifications
             Interop.Notification.GetApplist(notification.Handle, out appList);
             if ((appList & (int)NotificationDisplayApplist.Tray) == 0)
             {
-                notification.IsDisplay = false;
+                notification.IsVisible = false;
             }
 
             BindSafeHandleText(notification);

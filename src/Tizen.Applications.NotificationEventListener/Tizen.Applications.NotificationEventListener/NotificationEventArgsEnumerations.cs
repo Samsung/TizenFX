@@ -156,6 +156,11 @@ namespace Tizen.Applications.NotificationEventListener
         HiddenByTimeout = 101,
 
         /// <summary>
+        /// Event type : Deleted by timer
+        /// </summary>
+        HiddenByExternal = 102,
+
+        /// <summary>
         /// Event type : Clicked by user
         /// </summary>
         ClickOnNotification = 200,

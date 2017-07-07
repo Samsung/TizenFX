@@ -27,7 +27,7 @@ namespace Tizen.Applications.Notifications
     public sealed partial class Notification
     {
         /// <summary>
-        ///  Class for displaying direct-reply at notification.
+        ///  Class for displaying direct-reply on notification.
         ///  You must set a ReplyMax and Button. Otherwise user can't send written text to application which is set by AppControl.
         /// </summary>
         public sealed class ReplyAction : MakerBase
@@ -46,7 +46,7 @@ namespace Tizen.Applications.Notifications
             public string PlaceHolderText { get; set; }
 
             /// <summary>
-            /// Gets or sets the ReplyMax of ReplyAction which is appeared at Notification.
+            /// Gets or sets the maximum number of characters that the user can input.
             /// You must set a ReplyMax. Otherwise user don't write text to placeholder in notification.
             /// </summary>
             /// <value>

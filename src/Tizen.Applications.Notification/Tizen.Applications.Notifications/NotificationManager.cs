@@ -234,15 +234,15 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Searches for a posted notification which has the inputted tag and isn't deleted not yet.
+        /// Searches for a posted notification which has the specified tag and has not been deleted yet.
         /// </summary>
         /// <remarks>
         /// Load method should be called only for notifications which have been posted using NotificationManager.Post method.
         /// If two or more notifications share the same tag, the notification posted most recently is returned.
         /// </remarks>
         /// <param name="tag">Tag used to query</param>
-        /// <returns>Notification Object with inputted tag</returns>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid or when the tag does not exist</exception>
+        /// <returns>Notification Object with specified tag</returns>
+        /// <exception cref="ArgumentException">Throwing the same exception when argument is invalid and when the tag does not exist is misleading</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <example>
@@ -356,7 +356,7 @@ namespace Tizen.Applications.Notifications
         /// </summary>
         /// <param name="name">Template name</param>
         /// <returns>Notification Object with inputted template name</returns>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid or when no template with input name exists</exception>
+        /// <exception cref="ArgumentException">Throwing the same exception when argument is invalid and when the template does not exist is misleading</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <example>

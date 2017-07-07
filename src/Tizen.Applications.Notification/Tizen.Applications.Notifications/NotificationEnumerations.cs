@@ -100,7 +100,7 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Value for display only SIM card inserted
         /// </summary>
-        DisplayOnlySimmode = 0x01,
+        DisplayOnlySimMode = 0x01,
 
         /// <summary>
         /// Value for disable application launch when it selected
@@ -153,7 +153,10 @@ namespace Tizen.Applications.Notifications
         ThirdButton,
         ClickOnIcon = 6,
         ClockOnThumbnail = 7,
-        ClickOnTextInputButton = 8
+        ClickOnTextInputButton = 8,
+        HiddenByUser = 100,
+        HiddenByTimeout = 101,
+        HiddenByExternal = 102,
     }
 
     internal enum NotificationLayout

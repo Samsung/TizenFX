@@ -46,6 +46,7 @@ namespace Tizen.Applications.Notifications
 
             /// <summary>
             /// Gets or sets the image path that represent the button
+            /// An absolute path for an image file.
             /// </summary>
             public string ImagePath { get; set; }
 

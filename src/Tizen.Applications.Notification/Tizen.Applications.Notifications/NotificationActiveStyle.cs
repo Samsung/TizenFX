@@ -112,6 +112,40 @@ namespace Tizen.Applications.Notifications
             public ReplyAction ReplyAction { get; set; }
 
             /// <summary>
+            /// Gets or sets Action which is invoked when notification is hidden by user.
+            /// </summary>
+            /// <remarks>
+            /// If you set it to null, the already set AppControl will be removed and nothing will happen when notification is hidden by user.
+            /// The property is only reflected on Tizen TV.
+            /// If you use this API on other profile, this action have no effect
+            /// </remarks>
+            /// <seealso cref="Tizen.Applications.AppControl"></seealso>
+            public AppControl HiddenByUserAction { get; set; }
+
+            /// <summary>
+            /// Gets or sets Action which is invoked when there is no any response by user until hide timeout.
+            /// </summary>
+            /// <remarks>
+            /// This action occurs when there is no response to the notification until the delete timeout set by SetRemoveTime().
+            /// If you set it to null, the already set AppControl will be removed and nothing will happen when notification is hidden by timeout.
+            /// The property is only reflected on Tizen TV.
+            /// If you use this API on other profile, this action settings have no effect
+            /// </remarks>
+            /// <seealso cref="Tizen.Applications.AppControl"></seealso>
+            public AppControl HiddenByTimeoutAction { get; set; }
+
+            /// <summary>
+            /// Gets or sets Action which is invoked when the notification is hidden by external factor.
+            /// </summary>
+            /// <remarks>
+            /// If you set it to null, the already set AppControl will be removed and nothing will happen when notification is hidden by external factor.
+            /// The property is only reflected on Tizen TV.
+            /// If you use this API on other profile, this action settings have no effect
+            /// </remarks>
+            /// <seealso cref="Tizen.Applications.AppControl"></seealso>
+            public AppControl HiddenByExternalAction { get; set; }
+
+            /// <summary>
             /// Gets the key of ActiveStyle
             /// </summary>
             internal override string Key

@@ -67,6 +67,32 @@ namespace Tizen.Applications.NotificationEventListener
             public int DeleteTimeout { get; internal set; }
 
             /// <summary>
+            /// Gets Action which is invoked when notification is hidden by user.
+            /// </summary>
+            /// <remarks>
+            /// The property is only reflected on Tizen TV.
+            /// If you use this API on other profile, this action have no effect
+            /// </remarks>
+            public AppControl HiddenByUserAction { get; internal set; }
+
+            /// <summary>
+            /// Gets or sets Action which is invoked when there is no any response by user until hide timeout.
+            /// </summary>
+            /// <remarks>
+            /// The property is only reflected on Tizen TV.
+            /// If you use this API on other profile, this action settings have no effect
+            /// </remarks>
+            public AppControl HiddenByTimeoutAction { get; internal set; }
+
+            /// <summary>
+            /// Gets or sets Action which is invoked when the notification is hidden by external factor.
+            /// </summary>
+            /// <remarks>
+            /// If you use this API on other profile, this action settings have no effect
+            /// </remarks>
+            public AppControl HiddenByExternalAction { get; internal set; }
+
+            /// <summary>
             /// Gets a button to this active notification style.
             /// Buttons are displayed in the notification content.
             /// </summary>

@@ -72,7 +72,7 @@ namespace Tizen.Applications.NotificationEventListener
                 isExisted = true;
             }
 
-            if (eventargs.Extender.TryGetValue(replyKey, out bundle))
+            if (eventargs.ExtraData.TryGetValue(replyKey, out bundle))
             {
                 if (bundle.Contains(replyKey))
                 {

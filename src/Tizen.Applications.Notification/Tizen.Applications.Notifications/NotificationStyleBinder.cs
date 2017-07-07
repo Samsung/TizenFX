@@ -117,6 +117,21 @@ namespace Tizen.Applications.Notifications
             {
                 style.ReplyAction.Make(notification);
             }
+
+            if (style.HiddenByUserAction != null)
+            {
+                Interop.Notification.SetExtensionAction(notification.Handle, NotificationEventType.HiddenByUser, style.HiddenByUserAction.SafeAppControlHandle);
+            }
+
+            if (style.HiddenByTimeoutAction != null)
+            {
+                Interop.Notification.SetExtensionAction(notification.Handle, NotificationEventType.HiddenByTimeout, style.HiddenByUserAction.SafeAppControlHandle);
+            }
+
+            if (style.HiddenByExternalAction != null)
+            {
+                Interop.Notification.SetExtensionAction(notification.Handle, NotificationEventType.HiddenByExternal, style.HiddenByUserAction.SafeAppControlHandle);
+            }
         }
 
         internal static void BindSafeHandle(Notification notification)
@@ -156,6 +171,27 @@ namespace Tizen.Applications.Notifications
                         active.AddButtonAction(button);
                         isExisted = true;
                     }
+                }
+
+                appcontrol = null;
+                Interop.Notification.GetExtensionAction(notification.Handle, NotificationEventType.HiddenByUser, out appcontrol);
+                if (appcontrol != null)
+                {
+                    active.HiddenByUserAction = new AppControl(appcontrol);
+                }
+
+                appcontrol = null;
+                Interop.Notification.GetExtensionAction(notification.Handle, NotificationEventType.HiddenByTimeout, out appcontrol);
+                if (appcontrol != null)
+                {
+                    active.HiddenByTimeoutAction = new AppControl(appcontrol);
+                }
+
+                appcontrol = null;
+                Interop.Notification.GetExtensionAction(notification.Handle, NotificationEventType.HiddenByExternal, out appcontrol);
+                if (appcontrol != null)
+                {
+                    active.HiddenByExternalAction = new AppControl(appcontrol);
                 }
 
                 Interop.Notification.GetAutoRemove(notification.Handle, out autoRemove);
