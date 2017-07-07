@@ -16,6 +16,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using Tizen;
 
 namespace Tizen.Tapi
 {
@@ -101,19 +104,31 @@ namespace Tizen.Tapi
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         public static IEnumerable<string> GetCpNames()
         {
-            string[] cpNames = Interop.Tapi.GetCpNames();
-            if (cpNames == null)
+            IntPtr cpNames = Interop.Tapi.GetCpNames();
+            if(cpNames == IntPtr.Zero)
             {
                 return null;
             }
 
-            List<string> cpList = new List<string>();
-            for (int i = 0; i < ((cpNames.Length) - 1); i++)
+            else
             {
-                cpList.Add(cpNames[i]);
-            }
+                List<string> cpList = new List<string>();
+                int offset = 0;
+                IntPtr cp = Marshal.ReadIntPtr(cpNames, offset);
+                if(cp != IntPtr.Zero)
+                {
+                    do
+                    {
+                        string cpString = Marshal.PtrToStringAnsi(cp);
+                        offset += Marshal.SizeOf(cp);
+                        cpList.Add(cpString);
+                    }
 
-            return cpList;
+                    while ((cp = Marshal.ReadIntPtr(cpNames, offset)) != IntPtr.Zero);
+                }
+
+                return cpList;
+            }
         }
 
         /// <summary>

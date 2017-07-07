@@ -23,43 +23,43 @@ namespace Tizen.Tapi
     internal struct MiscVersionInfoStruct
     {
         internal byte Mask;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.MaxVersionLen)]
         internal string SwVersion;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.MaxVersionLen)]
         internal string HwVersion;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.MaxVersionLen)]
         internal string CalDate;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.MiscProdCodeMaxLen)]
         internal string ProductCode;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.ModelIdMaxLen)]
         internal string ModelId;
         internal byte PrlNam;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.MiscPrlEriVersionMaxLen*3)]
         internal string PrlVersion;
         internal byte EriNam;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.MiscPrlEriVersionMaxLen * 3)]
         internal string EriVersion;
     }
 
     [StructLayout(LayoutKind.Sequential)]
     internal struct MiscSerialNumInfoStruct
     {
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.MiscMeSnMaxLen)]
         internal string Esn;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.MiscMeSnMaxLen)]
         internal string MeId;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.MiscMeSnMaxLen)]
         internal string Imei;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.MiscMeSnMaxLen)]
         internal string ImeiSv;
     }
 
     [StructLayout(LayoutKind.Sequential)]
     internal struct MiscDeviceInfoStruct
     {
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.MiscMeDeviceNameMaxLen + 1)]
         internal string Vendor;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.MiscMeDeviceNameMaxLen + 1)]
         internal string Device;
     }
 

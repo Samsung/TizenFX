@@ -18,7 +18,7 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string Tapi = "libtapi.so.0";
+        public const string Tapi = "libSLP-tapi.so.0";
         public const string Glib = "libglib-2.0.so.0";
         public const string Libc = "libc.so.6";
     }

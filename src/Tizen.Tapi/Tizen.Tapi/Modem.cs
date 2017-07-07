@@ -93,8 +93,8 @@ namespace Tizen.Tapi
             {
                 Task resultTask = new Task(() =>
                 {
-                    if ((mode == PowerFlightModeRequest.Leave && result != (int)PowerFlightModeResponse.On) ||
-                        (mode == PowerFlightModeRequest.Enter && result != (int)PowerFlightModeResponse.Off))
+                    if ((mode == PowerFlightModeRequest.Leave && result != (int)PowerFlightModeResponse.Off) ||
+                        (mode == PowerFlightModeRequest.Enter && result != (int)PowerFlightModeResponse.On))
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during switching flight mode on/off, " + (PowerFlightModeResponse)result);
                         task.SetException(new InvalidOperationException("Error occurs during switching flight mode on/off, " + (PowerFlightModeResponse)result));
@@ -203,7 +203,7 @@ namespace Tizen.Tapi
                 _response_map.Remove(key);
             };
 
-            int ret = Interop.Tapi.Modem.GetFlightMode(_handle, _response_map[id], id);
+            int ret = Interop.Tapi.Modem.GetMiscMeVersion(_handle, _response_map[id], id);
             if (ret != (int)TapiError.Success)
             {
                 Log.Error(TapiUtility.LogTag, "Failed to get the Me version information, Error: " + (TapiError)ret);
@@ -223,7 +223,8 @@ namespace Tizen.Tapi
         {
             get
             {
-                MiscVersionInfoStruct infoStruct = Interop.Tapi.Modem.GetMiscMeVersionSync(_handle);
+                IntPtr info = Interop.Tapi.Modem.GetMiscMeVersionSync(_handle);
+                MiscVersionInfoStruct infoStruct = Marshal.PtrToStructure<MiscVersionInfoStruct>(info);
                 if (infoStruct.Equals(null))
                 {
                     return null;
@@ -288,7 +289,8 @@ namespace Tizen.Tapi
         {
             get
             {
-                MiscSerialNumInfoStruct infoStruct = Interop.Tapi.Modem.GetMiscMeSnSync(_handle);
+                IntPtr info = Interop.Tapi.Modem.GetMiscMeSnSync(_handle);
+                MiscSerialNumInfoStruct infoStruct = Marshal.PtrToStructure<MiscSerialNumInfoStruct>(info);
                 if (infoStruct.Equals(null))
                 {
                     return null;

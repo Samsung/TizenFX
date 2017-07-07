@@ -30,7 +30,7 @@ internal static partial class Interop
     {
         //Callback for event
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void TapiNotificationCallback(IntPtr handle, string id, IntPtr data, IntPtr userData);
+        internal delegate void TapiNotificationCallback(IntPtr handle, IntPtr id, IntPtr data, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void TapiResponseCallback(IntPtr handle, int result, IntPtr data, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -40,7 +40,7 @@ internal static partial class Interop
 
         //Tapi-common
         [DllImport(Libraries.Tapi, EntryPoint = "tel_get_cp_name_list")]
-        internal static extern string[] GetCpNames();
+        internal static extern IntPtr GetCpNames();
         [DllImport(Libraries.Tapi, EntryPoint = "tel_init")]
         internal static extern IntPtr InitTapi(string cpName);
         [DllImport(Libraries.Tapi, EntryPoint = "tel_deinit")]
@@ -275,11 +275,11 @@ internal static partial class Interop
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_misc_me_version")]
             internal static extern int GetMiscMeVersion(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_misc_me_version_sync")]
-            internal static extern MiscVersionInfoStruct GetMiscMeVersionSync(IntPtr handle);
+            internal static extern IntPtr GetMiscMeVersionSync(IntPtr handle);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_misc_me_sn")]
             internal static extern int GetMiscMeSn(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_misc_me_sn_sync")]
-            internal static extern MiscSerialNumInfoStruct GetMiscMeSnSync(IntPtr handle);
+            internal static extern IntPtr GetMiscMeSnSync(IntPtr handle);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_misc_me_imei")]
             internal static extern int GetMiscMeImei(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_misc_me_imei_sync")]

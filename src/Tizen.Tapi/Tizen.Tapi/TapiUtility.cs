@@ -81,6 +81,12 @@ namespace Tizen.Tapi
     internal static class TapiUtility
     {
         internal const string LogTag = "Tizen.Tapi";
+        internal const int MaxVersionLen = 32;
+        internal const int MiscProdCodeMaxLen = 32;
+        internal const int ModelIdMaxLen = 17;
+        internal const int MiscPrlEriVersionMaxLen = 17;
+        internal const int MiscMeSnMaxLen = 32;
+        internal const int MiscMeDeviceNameMaxLen = 32;
 
         internal static string ConvertNotiToString(Notification noti)
         {

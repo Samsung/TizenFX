@@ -17,6 +17,7 @@
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Text;
+using System;
 
 namespace Tizen.Tapi
 {
@@ -110,8 +111,7 @@ namespace Tizen.Tapi
     internal struct SatTextInfoStruct
     {
         internal ushort Length;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 501)]
-        internal string DataString;
+        internal IntPtr DataString;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -344,7 +344,7 @@ namespace Tizen.Tapi
         {
             SatTextInfo textInfo = new SatTextInfo();
             textInfo.Length = textStruct.Length;
-            textInfo.Data = Encoding.ASCII.GetBytes(textStruct.DataString);
+            Marshal.Copy(textStruct.DataString, textInfo.Data, 0, 501);
             return textInfo;
         }
 

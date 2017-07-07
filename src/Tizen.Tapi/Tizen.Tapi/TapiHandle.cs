@@ -78,14 +78,16 @@ namespace Tizen.Tapi
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation.</exception>
         public void RegisterNotiEvent(Notification id)
         {
-            _notificationChangedCb = (IntPtr handle, string notiId, IntPtr data, IntPtr userData) =>
+            _notificationChangedCb = (IntPtr handle, IntPtr notiIdPtr, IntPtr data, IntPtr userData) =>
             {
                 if (_notificationChanged != null)
                 {
+                    string notiId = null;
                     object notiData = null;
                     Notification noti = default(Notification);
-                    if (notiId != null)
+                    if (notiIdPtr != IntPtr.Zero)
                     {
+                        notiId = Marshal.PtrToStringAnsi(notiIdPtr);
                         foreach (Notification n in Enum.GetValues(typeof(Notification)))
                         {
                             if (notiId == TapiUtility.ConvertNotiToString(n))
@@ -436,14 +438,16 @@ namespace Tizen.Tapi
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation.</exception>
         public void RegisterPropEvent(Property property)
         {
-            _notificationChangedCb = (IntPtr handle, string prop, IntPtr data, IntPtr userData) =>
+            _notificationChangedCb = (IntPtr handle, IntPtr propPtr, IntPtr data, IntPtr userData) =>
             {
                 if (_propertyChanged != null)
                 {
+                    string prop = null;
                     object propData = null;
                     Property propertyId = default(Property);
-                    if (prop != null)
+                    if (propPtr != IntPtr.Zero)
                     {
+                        prop = Marshal.PtrToStringAnsi(propPtr);
                         foreach (Property p in Enum.GetValues(typeof(Property)))
                         {
                             if (prop == TapiUtility.ConvertPropToString(p))

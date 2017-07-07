@@ -63,10 +63,10 @@ namespace Tizen.Tapi
     {
         [MarshalAs(UnmanagedType.LPStr)]
         [FieldOffset(0)]
-        internal string Name;
+        internal IntPtr Name;
         [MarshalAs(UnmanagedType.LPStr)]
         [FieldOffset(0)]
-        internal string Number;
+        internal IntPtr Number;
         [FieldOffset(0)]
         internal CallRecordLineControlStruct LineCtrl;
     }
@@ -236,12 +236,12 @@ namespace Tizen.Tapi
             recordData.Type = record.Type;
             if (record.Type == CallRecordType.Name)
             {
-                recordData.Name = record.Data.Name;
+                recordData.Name = Marshal.PtrToStringAnsi(record.Data.Name);
             }
 
             else if (record.Type == CallRecordType.Number)
             {
-                recordData.Number = record.Data.Number;
+                recordData.Number = Marshal.PtrToStringAnsi(record.Data.Number);
             }
 
             else if (record.Type == CallRecordType.LineControl)
