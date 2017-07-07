@@ -7,10 +7,8 @@ namespace Tizen.Applications.AttachPanel
     /// </summary>
     public partial class AttachPanel
     {
-        //private const string LogTag = "Tizen.Applications.AttachPanel";
-
         /// <summary>
-        /// Represents immutable class for attach panel. 
+        /// Represents immutable class for attach panel.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="conformant">The caller's conformant</param>
