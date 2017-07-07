@@ -87,6 +87,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
+            ReplaceDisplay(null);
             Dispose(true);
             GC.SuppressFinalize(this);
         }
