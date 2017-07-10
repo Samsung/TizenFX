@@ -36,7 +36,7 @@ namespace Tizen.Uix.Stt
 
                 case SttError.IoError:
                     {
-                        exp = new InvalidOperationException("I/O Error Occured");
+                        exp = new InvalidOperationException("I/O Error Occurred");
                         break;
                     }
 

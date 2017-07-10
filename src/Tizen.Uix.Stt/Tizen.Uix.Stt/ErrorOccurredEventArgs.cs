@@ -21,14 +21,14 @@ using static Interop.Stt;
 namespace Tizen.Uix.Stt
 {
     /// <summary>
-    /// This class holds information related to the STT ErrorOccured Event
+    /// This class holds information related to the STT ErrorOccurred Event
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class ErrorOccuredEventArgs
+    public class ErrorOccurredEventArgs
     {
         private IntPtr _handle;
 
-        internal ErrorOccuredEventArgs(IntPtr handle, Interop.Stt.SttError error)
+        internal ErrorOccurredEventArgs(IntPtr handle, Interop.Stt.SttError error)
         {
             this._handle = handle;
             switch (error)

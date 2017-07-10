@@ -323,7 +323,7 @@ namespace Tizen.Uix.Stt
         private Object thisLock = new Object();
         private event EventHandler<RecognitionResultEventArgs> _recognitionResult;
         private event EventHandler<StateChangedEventArgs> _stateChanged;
-        private event EventHandler<ErrorOccuredEventArgs> _errorOccured;
+        private event EventHandler<ErrorOccurredEventArgs> _errorOccurred;
         private event EventHandler<DefaultLanguageChangedEventArgs> _defaultLanguageChanged;
         private event EventHandler<EngineChangedEventArgs> _engineChanged;
         private bool disposedValue = false;
@@ -462,7 +462,7 @@ namespace Tizen.Uix.Stt
         /// Event to be invoked when an error occurs.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<ErrorOccuredEventArgs> ErrorOccured
+        public event EventHandler<ErrorOccurredEventArgs> ErrorOccurred
         {
             add
             {
@@ -470,18 +470,18 @@ namespace Tizen.Uix.Stt
                 {
                     _errorDelegate = (IntPtr handle, SttError reason, IntPtr userData) =>
                 {
-                    ErrorOccuredEventArgs args = new ErrorOccuredEventArgs(handle, reason);
-                    _errorOccured?.Invoke(this, args);
+                    ErrorOccurredEventArgs args = new ErrorOccurredEventArgs(handle, reason);
+                    _errorOccurred?.Invoke(this, args);
                 };
                     SttError error = SttSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
                     if (error != SttError.None)
                     {
-                        Log.Error(LogTag, "Add ErrorOccured Failed with error " + error);
+                        Log.Error(LogTag, "Add ErrorOccurred Failed with error " + error);
                     }
 
                     else
                     {
-                        _errorOccured += value;
+                        _errorOccurred += value;
                     }
                 }
 
@@ -494,16 +494,16 @@ namespace Tizen.Uix.Stt
                     SttError error = SttUnsetErrorCB(_handle);
                     if (error != SttError.None)
                     {
-                        Log.Error(LogTag, "Remove ErrorOccured Failed with error " + error);
+                        Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + error);
                     }
 
-                    _errorOccured -= value;
+                    _errorOccurred -= value;
                 }
             }
         }
 
         /// <summary>
-        /// Event to be invoked when default laungage change.
+        /// Event to be invoked when default language change.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<DefaultLanguageChangedEventArgs> DefaultLanguageChanged
@@ -606,7 +606,7 @@ namespace Tizen.Uix.Stt
         /// http://tizen.org/privilege/recorder
         /// </privilege>
         /// <returns>
-        /// Default Lanaguage string value.
+        /// Default Language string value.
         /// </returns>
         public string DefaultLanguage
         {
@@ -618,7 +618,7 @@ namespace Tizen.Uix.Stt
                     SttError error = SttGetDefaultLanguage(_handle, out language);
                     if (error != SttError.None)
                     {
-                        Log.Error(LogTag, "DefaultLanaguage Failed with error " + error);
+                        Log.Error(LogTag, "DefaultLanguage Failed with error " + error);
                         return "";
                     }
                 }
@@ -705,7 +705,7 @@ namespace Tizen.Uix.Stt
         /// http://tizen.org/privilege/recorder
         /// </privilege>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can occur while setting due to the following reaons
+        /// This Exception can occur while setting due to the following reasons
         /// 1. Operation Failed
         /// 2. Invalid State
         /// </exception>
@@ -765,7 +765,7 @@ namespace Tizen.Uix.Stt
         /// <remarks>
         /// This function should only be called in RecognitionResult Event
         /// </remarks>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Opearation Failed. </exception>
+        /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
         public IEnumerable<ResultTime> GetDetailedResult()
@@ -868,7 +868,7 @@ namespace Tizen.Uix.Stt
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
-        /// IEnumerable<SupportedEngine> list of supported engines
+        /// IEnumerable&lt;SupportedEngine&gt; list of supported engines
         /// </returns>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
@@ -920,7 +920,7 @@ namespace Tizen.Uix.Stt
         /// http://tizen.org/feature/microphone
         /// </feature>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
+        /// This Exception can be due to the following reasons
         /// 1. Operation Failed
         /// 2. Invalid State
         /// </exception>
@@ -963,7 +963,7 @@ namespace Tizen.Uix.Stt
         /// </pre>
         /// <post>
         /// If this function is successful, the STT state will be Ready
-        /// If this function is unsuccessful, ErrorOccured event will be invoked
+        /// If this function is unsuccessful, ErrorOccurred event will be invoked
         /// </post>
         public void Prepare()
         {
@@ -1034,7 +1034,7 @@ namespace Tizen.Uix.Stt
         /// </exception>
         /// <exception cref="NotSupportedException"> This Exception can be due to STT Not Supported. </exception>
         /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
-        public IEnumerable<string> GetSupportedLangauages()
+        public IEnumerable<string> GetSupportedLanguages()
         {
             List<string> languageList = new List<string>();
             lock (thisLock)
@@ -1049,7 +1049,7 @@ namespace Tizen.Uix.Stt
                 SttError error = SttForeachSupportedLanguages(_handle, supportedLanguageDelegate, IntPtr.Zero);
                 if (error != SttError.None)
                 {
-                    Log.Error(LogTag, "GetSupportedLangauages Failed with error " + error);
+                    Log.Error(LogTag, "GetSupportedLanguages Failed with error " + error);
                     throw ExceptionFactory.CreateException(error);
                 }
             }
@@ -1352,7 +1352,7 @@ namespace Tizen.Uix.Stt
         /// The state should be Ready.
         /// </pre>
         /// <post>
-        /// It will invoke StateChanged Event if registerd.
+        /// It will invoke StateChanged Event if registered.
         /// If this function succeeds, the STT state will be Recording.
         /// If you call this function again before state changes, you will receive ErrorINProgressToRecording.
         /// </post>
@@ -1429,7 +1429,7 @@ namespace Tizen.Uix.Stt
         /// The state should be Recording.
         /// </pre>
         /// <post>
-        /// It will invoke StateChanged Event if registerd.
+        /// It will invoke StateChanged Event if registered.
         /// If this function succeeds, the STT state will be Processing.
         /// If you call this function again before state changes, you will receive ErrorINProgressToProcessing.
         /// After processing of engine, RecognitionResult event is invoked
@@ -1450,7 +1450,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Cancels processing recognition and recording asynchronously.
         /// This function cancels recording and engine cancels recognition processing.
-        /// After successful cancel, StateChanged event is invoked otherwise if error is occurred, ErrorOccured event is invoked.
+        /// After successful cancel, StateChanged event is invoked otherwise if error is occurred, ErrorOccurred event is invoked.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>
@@ -1474,7 +1474,7 @@ namespace Tizen.Uix.Stt
         /// The state should be Recording or Processing.
         /// </pre>
         /// <post>
-        /// It will invoke StateChanged Event if registerd.
+        /// It will invoke StateChanged Event if registered.
         /// If this function succeeds, the STT state will be Ready.
         /// If you call this function again before state changes, you will receive ErrorINProgressToReady.
         /// </post>

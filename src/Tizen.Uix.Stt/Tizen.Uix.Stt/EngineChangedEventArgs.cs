@@ -42,7 +42,7 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
-        /// Default Lanaguage
+        /// Default Language
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Language
