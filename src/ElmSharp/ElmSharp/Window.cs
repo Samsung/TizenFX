@@ -693,7 +693,7 @@ namespace ElmSharp
         /// more than 5 means that the window will be placed above all others,
         /// and anything else means that the window will be placed in the default layer.
         /// </summary>
-        public int Layer
+        public override int Layer
         {
             get
             {
