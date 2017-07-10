@@ -199,7 +199,7 @@ namespace Tizen.Uix.Tts
         private event EventHandler<StateChangedEventArgs> _stateChanged;
         private event EventHandler<UtteranceEventArgs> _utteranceStarted;
         private event EventHandler<UtteranceEventArgs> _utteranceCompleted;
-        private event EventHandler<ErrorOccuredEventArgs> _errorOccured;
+        private event EventHandler<ErrorOccurredEventArgs> _errorOccurred;
         private event EventHandler<DefaultVoiceChangedEventArgs> _defaultVoiceChanged;
         private event EventHandler<EngineChangedEventArgs> _engineChanged;
         private bool disposedValue = false;
@@ -220,7 +220,7 @@ namespace Tizen.Uix.Tts
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
+        /// This Exception can be due to the following reasons
         /// 1. Operation Failed
         /// 2. Engine Not Found
         /// </exception>
@@ -371,7 +371,7 @@ namespace Tizen.Uix.Tts
         /// Event to be invoked when an error occurs.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<ErrorOccuredEventArgs> ErrorOccured
+        public event EventHandler<ErrorOccurredEventArgs> ErrorOccurred
         {
             add
             {
@@ -379,18 +379,18 @@ namespace Tizen.Uix.Tts
                 {
                     _errorDelegate = (IntPtr handle, int uttId, TtsError reason, IntPtr userData) =>
                 {
-                    ErrorOccuredEventArgs args = new ErrorOccuredEventArgs(handle, uttId, reason);
-                    _errorOccured?.Invoke(this, args);
+                    ErrorOccurredEventArgs args = new ErrorOccurredEventArgs(handle, uttId, reason);
+                    _errorOccurred?.Invoke(this, args);
                 };
                     TtsError error = TtsSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
                     if (error != TtsError.None)
                     {
-                        Log.Error(LogTag, "Add ErrorOccured Failed with error " + error);
+                        Log.Error(LogTag, "Add ErrorOccurred Failed with error " + error);
                     }
 
                     else
                     {
-                        _errorOccured += value;
+                        _errorOccurred += value;
                     }
                 }
             }
@@ -402,10 +402,10 @@ namespace Tizen.Uix.Tts
                     TtsError error = TtsUnsetErrorCB(_handle);
                     if (error != TtsError.None)
                     {
-                        Log.Error(LogTag, "Remove ErrorOccured Failed with error " + error);
+                        Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + error);
                     }
 
-                    _errorOccured -= value;
+                    _errorOccurred -= value;
                 }
             }
         }
@@ -606,7 +606,7 @@ namespace Tizen.Uix.Tts
         /// The Mode value
         /// </returns>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons while setting the value
+        /// This Exception can be due to the following reasons while setting the value
         /// 1. Operation Failed
         /// 2. Engine Not Found
         /// </exception>
@@ -691,7 +691,7 @@ namespace Tizen.Uix.Tts
         /// </pre>
         /// <post>
         /// If this function is successful, the TTS state will be Ready
-        /// If this function is unsuccessful, ErrorOccured event will be invoked
+        /// If this function is unsuccessful, ErrorOccurred event will be invoked
         /// </post>
         public void Prepare()
         {
@@ -788,7 +788,7 @@ namespace Tizen.Uix.Tts
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
+        /// This Exception can be due to the following reasons
         /// 1. Invalid State
         /// 2. Engine Not found
         /// 3. Operation Failure
@@ -828,7 +828,7 @@ namespace Tizen.Uix.Tts
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
+        /// This Exception can be due to the following reasons
         /// 1. Invalid State
         /// 2. Engine Not found
         /// 3. Operation Failure
@@ -862,7 +862,7 @@ namespace Tizen.Uix.Tts
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
+        /// This Exception can be due to the following reasons
         /// 1. Invalid State
         /// 2. Operation Failure
         /// </exception>
@@ -913,7 +913,7 @@ namespace Tizen.Uix.Tts
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
+        /// This Exception can be due to the following reasons
         /// 1. Invalid State
         /// 2. Operation Failure
         /// 3. Invalid Voice
@@ -949,7 +949,7 @@ namespace Tizen.Uix.Tts
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
+        /// This Exception can be due to the following reasons
         /// 1. Invalid State
         /// 2. Operation Failure
         /// 3. Out of Network
@@ -983,7 +983,7 @@ namespace Tizen.Uix.Tts
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
+        /// This Exception can be due to the following reasons
         /// 1. Invalid State
         /// 2. Operation Failure
         /// </exception>
@@ -1016,7 +1016,7 @@ namespace Tizen.Uix.Tts
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can be due to the following reaons
+        /// This Exception can be due to the following reasons
         /// 1. Invalid State
         /// 2. Operation Failure
         /// </exception>

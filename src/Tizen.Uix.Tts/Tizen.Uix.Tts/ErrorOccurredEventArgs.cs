@@ -21,14 +21,14 @@ using static Interop.Tts;
 namespace Tizen.Uix.Tts
 {
     /// <summary>
-    /// This class holds information related to the TTS ErrorOccured Event
+    /// This class holds information related to the TTS ErrorOccurred Event
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class ErrorOccuredEventArgs
+    public class ErrorOccurredEventArgs
     {
         private IntPtr _handle;
 
-        internal ErrorOccuredEventArgs(IntPtr handle, int utteranceId, Interop.Tts.TtsError error)
+        internal ErrorOccurredEventArgs(IntPtr handle, int utteranceId, Interop.Tts.TtsError error)
         {
             this._handle = handle;
             this.UtteranceId = utteranceId;

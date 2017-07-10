@@ -36,7 +36,7 @@ namespace Tizen.Uix.Tts
 
                 case TtsError.IoError:
                     {
-                        exp = new InvalidOperationException("I/O Error Occured");
+                        exp = new InvalidOperationException("I/O Error Occurred");
                         break;
                     }
 
