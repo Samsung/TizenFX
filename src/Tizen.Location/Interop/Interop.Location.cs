@@ -34,6 +34,12 @@ internal static partial class Interop
         [DllImport(Libraries.Location, EntryPoint = "location_manager_stop")]
         internal static extern int Stop(IntPtr handle);
 
+        [DllImport(Libraries.Location, EntryPoint = "location_manager_start_batch")]
+        internal static extern int StartBatch(IntPtr handle);
+
+        [DllImport(Libraries.Location, EntryPoint = "location_manager_stop_batch")]
+        internal static extern int StopBatch(IntPtr handle);
+
         [DllImport(Libraries.Location, EntryPoint = "location_manager_is_enabled_mock_location")]
         internal static extern int IsEnabledMock(out bool status);
 
@@ -91,6 +97,12 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void LocationUpdatedCallback(LocationError error, double latitude, double longitude, double altitude, int timestamp, double speed, double direction, double climb, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void LocationBatchCallback(int batch_size, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void LocationBatchGetCallback(double latitude, double longitude, double altitude, double speed, double direction, double horizontal, double vertical, int timeStamp, IntPtr userData);
+
         [DllImport(Libraries.Location, EntryPoint = "location_manager_set_service_state_changed_cb")]
         internal static extern int SetServiceStateChangedCallback(IntPtr handle, ServiceStatechangedCallback callback, IntPtr userData);
 
@@ -120,6 +132,15 @@ internal static partial class Interop
 
         [DllImport(Libraries.Location, EntryPoint = "location_manager_unset_location_changed_cb")]
         internal static extern int UnSetLocationChangedCallback(IntPtr handle);
+
+        [DllImport(Libraries.Location, EntryPoint = "location_manager_set_location_batch_cb")]
+        internal static extern int SetLocationBatchCallback(IntPtr handle, LocationBatchCallback callback, int batchInterval, int batchPeriod, IntPtr userData);
+
+        [DllImport(Libraries.Location, EntryPoint = "location_manager_unset_location_batch_cb")]
+        internal static extern int UnSetLocationBatchCallback(IntPtr handle);
+
+        [DllImport(Libraries.Location, EntryPoint = "location_manager_foreach_location_batch")]
+        internal static extern int GetLocationBatch(IntPtr handle, LocationBatchGetCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Location, EntryPoint = "location_manager_request_single_location")]
         internal static extern int GetSingleLocation(IntPtr handle, int timeout, LocationUpdatedCallback callback, IntPtr userData);

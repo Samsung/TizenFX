@@ -37,6 +37,8 @@ namespace Tizen.Location
     {
         private int _interval = 1;
         private int _stayInterval = 120;
+        private int _batchInterval = 0;
+        private int _batchPeriod = 0;
         private int _requestId = 0;
         private double _distance = 120.0;
         private bool _isEnableMock = false;
@@ -52,6 +54,8 @@ namespace Tizen.Location
         private Interop.LocatorEvent.SettingchangedCallback _settingChangedCallback;
         private Interop.LocatorEvent.LocationchangedCallback _distanceBasedLocationChangedCallback;
         private Interop.LocatorEvent.LocationchangedCallback _locationChangedCallback;
+        private Interop.LocatorEvent.LocationBatchCallback _locationBatchCallback;
+        private Interop.LocatorEvent.LocationBatchGetCallback _locationBatchGetCallback;
 
         private EventHandler<ZoneChangedEventArgs> _zoneChanged;
         private EventHandler<ServiceStateChangedEventArgs> _serviceStateChanged;
@@ -143,6 +147,64 @@ namespace Tizen.Location
                 else
                 {
                     Log.Error(Globals.LogTag, "Error Setting the StayInterval");
+                    throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The time interval between position collection in batch mode.
+        /// Should be in the range [1~255] seconds.
+        /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
+        public int BatchInterval
+        {
+            get
+            {
+                Log.Info(Globals.LogTag, "Getting the Batch Interval");
+                return _batchInterval;
+            }
+            set
+            {
+                Log.Info(Globals.LogTag, "Setting the Batch Interval");
+                if (value > 0 && value <= 255)
+                {
+                    _batchInterval = value;
+                }
+                else
+                {
+                    Log.Error(Globals.LogTag, "Error setting Callback Interval");
+                    throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The time interval between batch callback updates. The BatchPeriod should be greater than or equal to the BatchInterval. If BatchPeriod is zero or smaller than BatchInterval, then batch mode will not working.
+        /// Should be in the range [0~60000] seconds.
+        /// </summary>
+        /// <since_tizen>3</since_tizen>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
+        public int BatchPeriod
+        {
+            get
+            {
+                Log.Info(Globals.LogTag, "Getting the Batch Period");
+                return _batchPeriod;
+            }
+            set
+            {
+                Log.Info(Globals.LogTag, "Setting the Batch Period");
+                if (value >= 0 && value <= 60000)
+                {
+                    _batchPeriod = value;
+                }
+                else
+                {
+                    Log.Error(Globals.LogTag, "Error setting Batch Period");
                     throw LocationErrorFactory.ThrowLocationException((int)LocationError.InvalidParameter);
                 }
             }
@@ -264,11 +326,23 @@ namespace Tizen.Location
         public void Start()
         {
             Log.Info(Globals.LogTag, "Starting Location Manager");
-            int ret = Interop.Locator.Start(_handle);
-            if (((LocationError)ret != LocationError.None))
+            if (_batchPeriod > 0 && _batchPeriod > _batchInterval)
             {
-                Log.Error(Globals.LogTag, "Error Starting Location Manager," + (LocationError)ret);
-                throw LocationErrorFactory.ThrowLocationException(ret);
+                int ret = Interop.Locator.StartBatch(_handle);
+                if (((LocationError)ret != LocationError.None))
+                {
+                    Log.Error(Globals.LogTag, "Error Starting Location Batch mode," + (LocationError)ret);
+                    throw LocationErrorFactory.ThrowLocationException(ret);
+                }
+            }
+            else
+            {
+                int ret = Interop.Locator.Start(_handle);
+                   if (((LocationError)ret != LocationError.None))
+                {
+                    Log.Error(Globals.LogTag, "Error Starting Location Manager," + (LocationError)ret);
+                    throw LocationErrorFactory.ThrowLocationException(ret);
+                }
             }
             _isStarted = true;
         }
@@ -785,20 +859,36 @@ namespace Tizen.Location
                 Log.Info(Globals.LogTag, "Adding LocationChanged EventHandler");
                 if (_locationChanged == null)
                 {
-                    Log.Info(Globals.LogTag, "Calling function SetLocationChangedCallback");
-                    SetLocationChangedCallback();
+                    if (_batchPeriod > 0 && _batchPeriod > _batchInterval)
+                    {
+                        Log.Info(Globals.LogTag, "Calling function SetLocationBatchCallback");
+                        SetLocationBatchCallback();
+                    }
+                    else
+                    {
+                        Log.Info(Globals.LogTag, "Calling function SetLocationChangedCallback");
+                        SetLocationChangedCallback();
+                    }
                 }
                 _locationChanged += value;
             }
             remove
             {
-                Log.Info(Globals.LogTag, "Adding LocationChanged EventHandler");
+                Log.Info(Globals.LogTag, "Removing LocationChanged EventHandler");
                 _locationChanged -= value;
 
                 if (_locationChanged == null)
                 {
-                    Log.Info(Globals.LogTag, "calling function UnSetLocationChangedCallback");
-                    UnSetLocationChangedCallback();
+                    if (_batchPeriod > 0 && _batchPeriod > _batchInterval)
+                    {
+                        Log.Info(Globals.LogTag, "Calling function UnSetLocationBatchCallback");
+                        UnSetLocationBatchCallback();
+                    }
+                    else
+                    {
+                        Log.Info(Globals.LogTag, "Calling function UnSetLocationChangedCallback");
+                        UnSetLocationChangedCallback();
+                    }
                 }
             }
         }
@@ -832,6 +922,51 @@ namespace Tizen.Location
             if (((LocationError)ret != LocationError.None))
             {
                 Log.Error(Globals.LogTag, "Error in UnSetting location changed Callback," + (LocationError)ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
+            }
+        }
+
+        private void SetLocationBatchCallback()
+        {
+            Log.Info(Globals.LogTag, "Calling SetLocationBatchCallback");
+            int ret;
+            if (_locationBatchCallback == null) {
+                _locationBatchCallback = (batch_size, userData) =>
+                {
+                    Log.Info(Globals.LogTag, "LocationBatchCallback has been called, size : " + batch_size);
+
+                    _locationBatchGetCallback = (latitude, longitude, altitude, speed, direction, horizontal, vertical, timestamp, batchUserData) =>
+                    {
+                        Log.Info(Globals.LogTag, "GetLocationBatch has been called");
+                        Location location = new Location(latitude, longitude, altitude, speed, direction, horizontal, timestamp);
+                        _location = location;
+                        _locationChanged?.Invoke(this, new LocationChangedEventArgs(location));
+                    };
+
+                    ret = Interop.LocatorEvent.GetLocationBatch(_handle, _locationBatchGetCallback, IntPtr.Zero);
+                    if (((LocationError)ret != LocationError.None))
+                    {
+                        Log.Error(Globals.LogTag, "Error in Setting location batch Callback," + (LocationError)ret);
+                        throw LocationErrorFactory.ThrowLocationException(ret);
+                    }
+                };
+            }
+
+            ret = Interop.LocatorEvent.SetLocationBatchCallback(_handle, _locationBatchCallback, _batchInterval, _batchPeriod, IntPtr.Zero);
+            if (((LocationError)ret != LocationError.None))
+            {
+                Log.Error(Globals.LogTag, "Error in Setting location batch Callback," + (LocationError)ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
+            }
+        }
+
+        private void UnSetLocationBatchCallback()
+        {
+            Log.Info(Globals.LogTag, "Calling UnSetLocationBatchCallback");
+            int ret = Interop.LocatorEvent.UnSetLocationBatchCallback(_handle);
+            if (((LocationError)ret != LocationError.None))
+            {
+                Log.Error(Globals.LogTag, "Error in UnSetting location batch Callback," + (LocationError)ret);
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
