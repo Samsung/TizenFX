@@ -237,7 +237,7 @@ internal static partial class Interop
 
         internal static string elm_entry_text_style_user_peek(IntPtr obj)
         {
-            var text = _elm_entry_entry_get(obj);
+            var text = _elm_entry_text_style_user_peek(obj);
             return Marshal.PtrToStringAnsi(text);
         }
 
