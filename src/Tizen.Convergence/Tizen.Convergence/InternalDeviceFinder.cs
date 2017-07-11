@@ -18,24 +18,26 @@ using System;
 using Tizen;
 using System.Threading;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Tizen.Convergence
 {
     /// <summary>
     /// DeviceFinder provides API to find all nearby Tizen D2D convergence compliant devices
     /// </summary>
-    public class DeviceFinder : IDisposable
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class InternalDeviceFinder : IDisposable
     {
-        internal Interop.ConvManagerHandle _convManagerHandle;
+        internal Interop.Internal.ConvManagerHandle _convManagerHandle;
 
         /// <summary>
         /// The constructor
         /// </summary>
         /// <feature>http://tizen.org/feature/convergence.d2d</feature>
         /// <exception cref="NotSupportedException">Thrown if the required feature is not supported.</exception>
-        public DeviceFinder()
+        public InternalDeviceFinder()
         {
-            int ret = Interop.ConvManager.ConvCreate(out _convManagerHandle);
+            int ret = Interop.Internal.ConvManager.ConvCreate(out _convManagerHandle);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to create conv manager handle");
@@ -47,7 +49,7 @@ namespace Tizen.Convergence
         /// <summary>
         /// DeviceFound event is triggered when a device is found during discovery procedure
         /// </summary>
-        public event EventHandler<DeviceFoundEventArgs> DeviceFound;
+        public event EventHandler<InternalDeviceFoundEventArgs> DeviceFound;
 
         /// <summary>
         /// Starts the discovery of nearby devices
@@ -64,32 +66,32 @@ namespace Tizen.Convergence
         public async Task StartFindingAsync(int timeOut, CancellationToken cancellationToken = default(CancellationToken))
         {
             var task = new TaskCompletionSource<bool>();
-            Interop.ConvManager.ConvDiscoveryCallback discoveredCb = (IntPtr deviceHandle, Interop.ConvDiscoveryResult result, IntPtr userData) =>
+            Interop.Internal.ConvManager.ConvDiscoveryCallback discoveredCb = (IntPtr deviceHandle, Interop.Internal.ConvDiscoveryResult result, IntPtr userData) =>
             {
                 Log.Debug(ErrorFactory.LogTag, "discovery callback called with result:[" + result + "]");
                 switch (result)
                 {
-                    case Interop.ConvDiscoveryResult.Success:
+                    case Interop.Internal.ConvDiscoveryResult.Success:
                         {
-                            Device device = new Device(deviceHandle);
-                            DeviceFoundEventArgs deviceFoundEventArgs = new DeviceFoundEventArgs()
+                            InternalDevice device = new InternalDevice(deviceHandle);
+                            InternalDeviceFoundEventArgs deviceFoundEventArgs = new InternalDeviceFoundEventArgs()
                             {
                                 Device = device
                             };
                             DeviceFound?.Invoke(this, deviceFoundEventArgs);
                             break;
                         }
-                    case Interop.ConvDiscoveryResult.Error:
+                    case Interop.Internal.ConvDiscoveryResult.Error:
                         {
                             task.TrySetException(new InvalidOperationException("Discovery error occured"));
                             break;
                         }
-                    case Interop.ConvDiscoveryResult.Lost:
+                    case Interop.Internal.ConvDiscoveryResult.Lost:
                         {
                             task.TrySetException(new InvalidOperationException("Discovery Lost"));
                             break;
                         }
-                    case Interop.ConvDiscoveryResult.Finished:
+                    case Interop.Internal.ConvDiscoveryResult.Finished:
                         {
                             Log.Debug(ErrorFactory.LogTag, "discovery process finished");
                             task.TrySetResult(true);
@@ -97,7 +99,7 @@ namespace Tizen.Convergence
                         }
                 }
             };
-            int ret = Interop.ConvManager.ConvDiscoveryStart(_convManagerHandle, timeOut, discoveredCb, IntPtr.Zero);
+            int ret = Interop.Internal.ConvManager.ConvDiscoveryStart(_convManagerHandle, timeOut, discoveredCb, IntPtr.Zero);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to start finding devices");
@@ -108,7 +110,7 @@ namespace Tizen.Convergence
             {
                 cancellationToken.Register(() =>
                 {
-                    int error = Interop.ConvManager.ConvDiscoveryStop(_convManagerHandle);
+                    int error = Interop.Internal.ConvManager.ConvDiscoveryStop(_convManagerHandle);
                     if (error != (int)ConvErrorCode.None)
                     {
                         Log.Error(ErrorFactory.LogTag, "Failed to stop finding devices" + Internals.Errors.ErrorFacts.GetErrorMessage(error));

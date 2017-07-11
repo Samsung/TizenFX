@@ -15,19 +15,26 @@
 */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Convergence
 {
     /// <summary>
-    /// Contains arguments for the event ServiceErrorOccured.
+    /// Contains arguments for ServiceEventOccured
     /// </summary>
-    public class ServiceErrorOccuredEventArgs : EventArgs
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class InternalServiceEventOccuredEventArgs : EventArgs
     {
-        internal ServiceErrorOccuredEventArgs() { }
+        internal InternalServiceEventOccuredEventArgs() { }
 
         /// <summary>
-        /// The exception
+        /// The channel on which the event occured
         /// </summary>
-        public Exception Exception { get; internal set; }
+        public InternalChannel Channel { get; internal set; }
+
+        /// <summary>
+        /// The payload containing the result
+        /// </summary>
+        public InternalPayload Payload { get; internal set; }
     }
 }

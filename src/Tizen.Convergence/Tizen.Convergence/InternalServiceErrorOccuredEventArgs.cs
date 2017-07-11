@@ -15,19 +15,21 @@
 */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Convergence
 {
     /// <summary>
-    /// Contains arguments for the event DeviceFound.
+    /// Contains arguments for the event ServiceErrorOccured.
     /// </summary>
-    public class DeviceFoundEventArgs : EventArgs
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class InternalServiceErrorOccuredEventArgs : EventArgs
     {
-        internal DeviceFoundEventArgs() { }
+        internal InternalServiceErrorOccuredEventArgs() { }
 
         /// <summary>
-        /// The device found
+        /// The exception
         /// </summary>
-        public Device Device { get; internal set; }
+        public Exception Exception { get; internal set; }
     }
 }

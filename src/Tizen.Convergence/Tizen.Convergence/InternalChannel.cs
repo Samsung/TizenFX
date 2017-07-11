@@ -16,15 +16,17 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace Tizen.Convergence
 {
     /// <summary>
     /// The Channel class provies a logical session for communicating with AppCommunicationService.
     /// </summary>
-    public class Channel : IDisposable
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class InternalChannel : IDisposable
     {
-        internal Interop.ConvChannelHandle _channelHandle;
+        internal Interop.Internal.ConvChannelHandle _channelHandle;
         internal const string ChannelUriKey = "uri";
         internal const string ChannelIdKey = "channel_id";
 
@@ -36,28 +38,28 @@ namespace Tizen.Convergence
         /// <feature>http://tizen.org/feature/convergence.d2d</feature>
         /// <exception cref="NotSupportedException">Thrown if the required feature is not supported.</exception>
         /// <exception cref="ArgumentNullException">Throws when the arguments passed are null</exception>
-        public Channel(string uri, string id)
+        public InternalChannel(string uri, string id)
         {
             if (uri == null || id == null)
             {
                 throw new ArgumentNullException();
             }
 
-            int ret = Interop.ConvChannel.Create(out _channelHandle);
+            int ret = Interop.Internal.ConvChannel.Create(out _channelHandle);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to create channel");
                 throw ErrorFactory.GetException(ret);
             }
 
-            ret = Interop.ConvChannel.SetString(_channelHandle, ChannelUriKey, uri);
+            ret = Interop.Internal.ConvChannel.SetString(_channelHandle, ChannelUriKey, uri);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to create channel");
                 throw ErrorFactory.GetException(ret);
             }
 
-            ret = Interop.ConvChannel.SetString(_channelHandle, ChannelIdKey, id);
+            ret = Interop.Internal.ConvChannel.SetString(_channelHandle, ChannelIdKey, id);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to create channel");
@@ -68,12 +70,12 @@ namespace Tizen.Convergence
             Id = id;
         }
 
-        internal Channel(IntPtr channelHandle)
+        internal InternalChannel(IntPtr channelHandle)
         {
-            _channelHandle = new Interop.ConvChannelHandle(channelHandle, false);
+            _channelHandle = new Interop.Internal.ConvChannelHandle(channelHandle, false);
 
             IntPtr stringPtr = IntPtr.Zero;
-            int ret = Interop.ConvChannel.GetString(_channelHandle, ChannelUriKey, out stringPtr);
+            int ret = Interop.Internal.ConvChannel.GetString(_channelHandle, ChannelUriKey, out stringPtr);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to create channel");
@@ -82,7 +84,7 @@ namespace Tizen.Convergence
             Uri = Marshal.PtrToStringAnsi(stringPtr);
             Interop.Libc.Free(stringPtr);
 
-            ret = Interop.ConvChannel.GetString(_channelHandle, ChannelIdKey, out stringPtr);
+            ret = Interop.Internal.ConvChannel.GetString(_channelHandle, ChannelIdKey, out stringPtr);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to create channel");

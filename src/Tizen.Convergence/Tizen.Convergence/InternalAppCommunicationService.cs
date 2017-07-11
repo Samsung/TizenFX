@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.ComponentModel;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Convergence
@@ -25,20 +26,21 @@ namespace Tizen.Convergence
     /// On the server side an instance of the App Communication Service should be created and started by the app. Note, on the client side the service handle shouldn’t be created, but obtained during discovery.
     /// For more information, refer Tizen D2D convergence specification
     /// </summary>
-    public class AppCommunicationService : Service
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class InternalAppCommunicationService : InternalService
     {
         /// <summary>
         /// The constructor
         /// </summary>
         /// <feature>http://tizen.org/feature/convergence.d2d</feature>
         /// <exception cref="NotSupportedException">Thrown if the required feature is not supported.</exception>
-        public AppCommunicationService() :
-                base(Interop.ServiceType.AppCommunication)
+        public InternalAppCommunicationService() :
+                base(Interop.Internal.ServiceType.AppCommunication)
         {
 
         }
 
-        internal AppCommunicationService(IntPtr serviceHandle) :
+        internal InternalAppCommunicationService(IntPtr serviceHandle) :
                     base(serviceHandle)
         {
 
@@ -57,15 +59,15 @@ namespace Tizen.Convergence
         /// <exception cref="InvalidOperationException">Thrown when the request is not supported as per Tizen D2D convergence specification </exception>
         /// <exception cref="ArgumentNullException">Thrown when any of the arugments are null</exception>
         /// <seealso cref="Service.ServiceEventOccurred"> The result of the request is delivered through this event</seealso>
-        public void Start(Channel channel, Payload payload)
+        public void Start(InternalChannel channel, InternalPayload payload)
         {
             if (channel == null)
             {
                 throw new ArgumentNullException();
             }
 
-            Interop.ConvPayloadHandle handle = (payload == null) ? new Interop.ConvPayloadHandle() : payload._payloadHandle;
-            int ret = Interop.ConvService.Start(_serviceHandle, channel._channelHandle, handle);
+            Interop.Internal.ConvPayloadHandle handle = (payload == null) ? new Interop.Internal.ConvPayloadHandle() : payload._payloadHandle;
+            int ret = Interop.Internal.ConvService.Start(_serviceHandle, channel._channelHandle, handle);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Interop: Failed to start app communication service:" + ErrorFacts.GetErrorMessage(ret));
@@ -85,15 +87,15 @@ namespace Tizen.Convergence
         /// <exception cref="InvalidOperationException">Thrown when the request is not supported as per Tizen D2D convergence specification </exception>
         /// <exception cref="ArgumentNullException">Thrown when any of the arugments are null</exception>
         /// <seealso cref="Service.ServiceEventOccurred"> The result of the request is delivered through this event</seealso>
-        public void Read(Channel channel, Payload payload)
+        public void Read(InternalChannel channel, InternalPayload payload)
         {
             if (channel == null)
             {
                 throw new ArgumentNullException();
             }
 
-            Interop.ConvPayloadHandle handle = (payload == null) ? new Interop.ConvPayloadHandle() : payload._payloadHandle;
-            int ret = Interop.ConvService.Read(_serviceHandle, channel._channelHandle, handle);
+            Interop.Internal.ConvPayloadHandle handle = (payload == null) ? new Interop.Internal.ConvPayloadHandle() : payload._payloadHandle;
+            int ret = Interop.Internal.ConvService.Read(_serviceHandle, channel._channelHandle, handle);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Interop: Failed to read app communication service:" + ErrorFacts.GetErrorMessage(ret));
@@ -114,15 +116,15 @@ namespace Tizen.Convergence
         /// <exception cref="InvalidOperationException">Thrown when the request is not supported as per Tizen D2D convergence specification </exception>
         /// <exception cref="ArgumentNullException">Thrown when any of the arugments are null</exception>
         /// <seealso cref="Service.ServiceEventOccurred"> The result of the request is delivered through this event</seealso>
-        public void Publish(Channel channel, Payload payload)
+        public void Publish(InternalChannel channel, InternalPayload payload)
         {
             if (channel == null)
             {
                 throw new ArgumentNullException();
             }
 
-            Interop.ConvPayloadHandle handle = (payload == null) ? new Interop.ConvPayloadHandle() : payload._payloadHandle;
-            int ret = Interop.ConvService.Publish(_serviceHandle, channel._channelHandle, handle);
+            Interop.Internal.ConvPayloadHandle handle = (payload == null) ? new Interop.Internal.ConvPayloadHandle() : payload._payloadHandle;
+            int ret = Interop.Internal.ConvService.Publish(_serviceHandle, channel._channelHandle, handle);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Interop: Failed to publish app communication service:" + ErrorFacts.GetErrorMessage(ret));
@@ -142,15 +144,15 @@ namespace Tizen.Convergence
         /// <exception cref="InvalidOperationException">Thrown when the request is not supported as per Tizen D2D convergence specification </exception>
         /// <exception cref="ArgumentNullException">Thrown when any of the arugments are null</exception>
         /// <seealso cref="Service.ServiceEventOccurred"> The result of the request is delivered through this event</seealso>
-        public void Stop(Channel channel, Payload payload)
+        public void Stop(InternalChannel channel, InternalPayload payload)
         {
             if (channel == null)
             {
                 throw new ArgumentNullException();
             }
 
-            Interop.ConvPayloadHandle handle = (payload == null) ? new Interop.ConvPayloadHandle() : payload._payloadHandle;
-            int ret = Interop.ConvService.Stop(_serviceHandle, channel._channelHandle, handle);
+            Interop.Internal.ConvPayloadHandle handle = (payload == null) ? new Interop.Internal.ConvPayloadHandle() : payload._payloadHandle;
+            int ret = Interop.Internal.ConvService.Stop(_serviceHandle, channel._channelHandle, handle);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Interop: Failed to start stop communication service:" + ErrorFacts.GetErrorMessage(ret));

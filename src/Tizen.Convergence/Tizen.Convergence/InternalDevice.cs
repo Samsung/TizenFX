@@ -17,19 +17,21 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace Tizen.Convergence
 {
     /// <summary>
     /// The class encapsulates a D2D convergence compliant device information
     /// </summary>
-    public class Device : IDisposable
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class InternalDevice : IDisposable
     {
         internal const string DeviceIdKey = "device_id";
         internal const string DeviceNameKey = "device_name";
         internal const string DeviceTypeKey = "device_type";
-        internal Interop.ConvDeviceHandle _deviceHandle;
-        internal List<Service> _services = new List<Service>();
+        internal Interop.Internal.ConvDeviceHandle _deviceHandle;
+        internal List<InternalService> _services = new List<InternalService>();
 
         /// <summary>
         /// The Unique ID of the device
@@ -49,7 +51,7 @@ namespace Tizen.Convergence
         /// <summary>
         /// List of services supported by the device
         /// </summary>
-        public IEnumerable<Service> Services
+        public IEnumerable<InternalService> Services
         {
             get
             {
@@ -57,9 +59,9 @@ namespace Tizen.Convergence
             }
         }
 
-        internal Device(IntPtr deviceHandle)
+        internal InternalDevice(IntPtr deviceHandle)
         {
-            int ret = Interop.ConvDevice.Clone(deviceHandle, out _deviceHandle);
+            int ret = Interop.Internal.ConvDevice.Clone(deviceHandle, out _deviceHandle);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to clone device");
@@ -67,21 +69,21 @@ namespace Tizen.Convergence
             }
 
             IntPtr stringPtr = IntPtr.Zero;
-            ret = Interop.ConvDevice.GetPropertyString(_deviceHandle, DeviceIdKey, out stringPtr);
+            ret = Interop.Internal.ConvDevice.GetPropertyString(_deviceHandle, DeviceIdKey, out stringPtr);
             if (ret == (int)ConvErrorCode.None)
             {
                 Id = Marshal.PtrToStringAnsi(stringPtr);
                 Interop.Libc.Free(stringPtr);
             }
 
-            ret = Interop.ConvDevice.GetPropertyString(_deviceHandle, DeviceNameKey, out stringPtr);
+            ret = Interop.Internal.ConvDevice.GetPropertyString(_deviceHandle, DeviceNameKey, out stringPtr);
             if (ret == (int)ConvErrorCode.None)
             {
                 Name = Marshal.PtrToStringAnsi(stringPtr);
                 Interop.Libc.Free(stringPtr);
             }
 
-            ret = Interop.ConvDevice.GetPropertyString(_deviceHandle, DeviceTypeKey, out stringPtr);
+            ret = Interop.Internal.ConvDevice.GetPropertyString(_deviceHandle, DeviceTypeKey, out stringPtr);
             if (ret != (int)ConvErrorCode.None)
             {
                 Type = Marshal.PtrToStringAnsi(stringPtr);
@@ -90,12 +92,12 @@ namespace Tizen.Convergence
 
             Log.Debug(ErrorFactory.LogTag, "Device ID ,Name, and Type:[" + Id +"," + Name +"," + Type +"]");
 
-            Interop.ConvDevice.ConvServiceForeachCallback cb = (IntPtr serviceHandle, IntPtr userData) =>
+            Interop.Internal.ConvDevice.ConvServiceForeachCallback cb = (IntPtr serviceHandle, IntPtr userData) =>
             {
-                    _services.Add(Service.GetService(serviceHandle));
+                    _services.Add(InternalService.GetService(serviceHandle));
             };
 
-            ret = Interop.ConvDevice.ForeachService(_deviceHandle, cb, IntPtr.Zero);
+            ret = Interop.Internal.ConvDevice.ForeachService(_deviceHandle, cb, IntPtr.Zero);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to get device services");

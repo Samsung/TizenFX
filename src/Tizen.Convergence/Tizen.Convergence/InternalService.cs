@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace Tizen.Convergence
 {
@@ -23,24 +24,25 @@ namespace Tizen.Convergence
     /// The class abstracts the features provided by Tizen D2D Convergence.
     /// </summary>
     /// <seealso cref="AppCommunicationService"/>
-    public abstract class Service : IDisposable
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public abstract class InternalService : IDisposable
     {
-        internal Interop.ConvServiceHandle _serviceHandle;
+        internal Interop.Internal.ConvServiceHandle _serviceHandle;
         internal const string ServiceIdKey = "service_id";
         internal const string ServiceVersionKey = "service_version";
 
-        private event EventHandler<ServiceEventOccuredEventArgs> _serviceEventOccured;
+        private event EventHandler<InternalServiceEventOccuredEventArgs> _serviceEventOccured;
 
-        internal Service(Interop.ServiceType type)
+        internal InternalService(Interop.Internal.ServiceType type)
         {
-            int ret = Interop.ConvService.Create(out _serviceHandle);
+            int ret = Interop.Internal.ConvService.Create(out _serviceHandle);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to create service handle");
                 throw ErrorFactory.GetException(ret);
             }
 
-            ret = Interop.ConvService.SetType(_serviceHandle, (int)type);
+            ret = Interop.Internal.ConvService.SetType(_serviceHandle, (int)type);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to create service handle");
@@ -48,9 +50,9 @@ namespace Tizen.Convergence
             }
         }
 
-        internal Service(IntPtr existingServiceHandle)
+        internal InternalService(IntPtr existingServiceHandle)
         {
-            int ret = Interop.ConvService.Clone(existingServiceHandle, out _serviceHandle);
+            int ret = Interop.Internal.ConvService.Clone(existingServiceHandle, out _serviceHandle);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to clone device");
@@ -58,7 +60,7 @@ namespace Tizen.Convergence
             }
 
             IntPtr stringPtr = IntPtr.Zero;
-            ret = Interop.ConvService.GetPropertyString(_serviceHandle, ServiceIdKey, out stringPtr);
+            ret = Interop.Internal.ConvService.GetPropertyString(_serviceHandle, ServiceIdKey, out stringPtr);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to get service Id");
@@ -68,7 +70,7 @@ namespace Tizen.Convergence
             Id = Marshal.PtrToStringAnsi(stringPtr);
             Interop.Libc.Free(stringPtr);
 
-            ret = Interop.ConvService.GetPropertyString(_serviceHandle, ServiceVersionKey, out stringPtr);
+            ret = Interop.Internal.ConvService.GetPropertyString(_serviceHandle, ServiceVersionKey, out stringPtr);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to get service version");
@@ -92,7 +94,7 @@ namespace Tizen.Convergence
         /// <summary>
         /// The event handler for Service Events(Start/Publish/Read/Stop)
         /// </summary>
-        public event EventHandler<ServiceEventOccuredEventArgs> ServiceEventOccurred
+        public event EventHandler<InternalServiceEventOccuredEventArgs> ServiceEventOccurred
         {
             add
             {
@@ -115,7 +117,7 @@ namespace Tizen.Convergence
         /// <summary>
         /// The event handler for service error events
         /// </summary>
-        public event EventHandler<ServiceErrorOccuredEventArgs> ServiceErrorOccured;
+        public event EventHandler<InternalServiceErrorOccuredEventArgs> ServiceErrorOccured;
 
         /// <summary>
         /// The dispose method
@@ -125,19 +127,19 @@ namespace Tizen.Convergence
             _serviceHandle.Dispose();
         }
 
-        internal static Service GetService(IntPtr serviceHandle)
+        internal static InternalService GetService(IntPtr serviceHandle)
         {
-            Service service = null;
+            InternalService service = null;
             int serviceType;
-            int ret = Interop.ConvService.GetType(serviceHandle, out serviceType);
+            int ret = Interop.Internal.ConvService.GetType(serviceHandle, out serviceType);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to get service version");
                 throw ErrorFactory.GetException(ret);
             }
-            if (serviceType == (int)Interop.ServiceType.AppCommunication)
+            if (serviceType == (int)Interop.Internal.ServiceType.AppCommunication)
             {
-                service = new AppCommunicationService(serviceHandle);
+                service = new InternalAppCommunicationService(serviceHandle);
             }
 
             return service;
@@ -145,7 +147,7 @@ namespace Tizen.Convergence
 
         private void RegisterServiceEventListener()
         {
-            int ret = Interop.ConvService.SetListenerCb(_serviceHandle, serviceEventsCb, IntPtr.Zero);
+            int ret = Interop.Internal.ConvService.SetListenerCb(_serviceHandle, serviceEventsCb, IntPtr.Zero);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to set listener for service events");
@@ -155,7 +157,7 @@ namespace Tizen.Convergence
 
         private void UnregisterServiceEventListener()
         {
-            int ret = Interop.ConvService.UnsetListenerCb(_serviceHandle);
+            int ret = Interop.Internal.ConvService.UnsetListenerCb(_serviceHandle);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to unset listener for service events");
@@ -169,9 +171,9 @@ namespace Tizen.Convergence
 
             if (error == (int)ConvErrorCode.None)
             {
-                var channel = (channelHandle == IntPtr.Zero) ? null : new Channel(channelHandle);
-                var payload = (resultPayloadHandle == IntPtr.Zero) ? null : new Payload(resultPayloadHandle);
-                _serviceEventOccured?.Invoke(this, new ServiceEventOccuredEventArgs()
+                var channel = (channelHandle == IntPtr.Zero) ? null : new InternalChannel(channelHandle);
+                var payload = (resultPayloadHandle == IntPtr.Zero) ? null : new InternalPayload(resultPayloadHandle);
+                _serviceEventOccured?.Invoke(this, new InternalServiceEventOccuredEventArgs()
                 {
                     Payload = payload,
                     Channel = channel
@@ -179,7 +181,7 @@ namespace Tizen.Convergence
             }
             else
             {
-                var eventArgs = new ServiceErrorOccuredEventArgs()
+                var eventArgs = new InternalServiceErrorOccuredEventArgs()
                 {
                     Exception = ErrorFactory.GetException(error)
                 };

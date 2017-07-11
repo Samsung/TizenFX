@@ -16,24 +16,26 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace Tizen.Convergence
 {
     /// <summary>
     /// Represents a payload used in Tizen D2D convergence
     /// </summary>
-    public class Payload : IDisposable
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class InternalPayload : IDisposable
     {
-        internal Interop.ConvPayloadHandle _payloadHandle;
+        internal Interop.Internal.ConvPayloadHandle _payloadHandle;
 
         /// <summary>
         /// The constructor
         /// </summary>
         /// <feature>http://tizen.org/feature/convergence.d2d</feature>
         /// <exception cref="NotSupportedException">Thrown if the required feature is not supported.</exception>
-        public Payload()
+        public InternalPayload()
         {
-            int ret = Interop.ConvPayload.Create(out _payloadHandle);
+            int ret = Interop.Internal.ConvPayload.Create(out _payloadHandle);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to create payload");
@@ -41,9 +43,9 @@ namespace Tizen.Convergence
             }
         }
 
-        internal Payload(IntPtr payloadHandle)
+        internal InternalPayload(IntPtr payloadHandle)
         {
-            _payloadHandle = new Interop.ConvPayloadHandle(payloadHandle, false);
+            _payloadHandle = new Interop.Internal.ConvPayloadHandle(payloadHandle, false);
         }
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace Tizen.Convergence
             int ret = 0;
             if (value is string)
             {
-                ret = Interop.ConvPayload.SetString(_payloadHandle, key, value);
+                ret = Interop.Internal.ConvPayload.SetString(_payloadHandle, key, value);
                 if (ret != (int)ConvErrorCode.None)
                 {
                     Log.Error(ErrorFactory.LogTag, "Failed to add string to payload");
@@ -89,7 +91,7 @@ namespace Tizen.Convergence
             }
 
             int ret = 0;
-            ret = Interop.ConvPayload.SetByte(_payloadHandle, key, value.Length, value);
+            ret = Interop.Internal.ConvPayload.SetByte(_payloadHandle, key, value.Length, value);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to add string to payload");
@@ -113,7 +115,7 @@ namespace Tizen.Convergence
             }
 
             int ret = 0;
-            ret = Interop.ConvPayload.SetBinary(_payloadHandle, value.Length, value);
+            ret = Interop.Internal.ConvPayload.SetBinary(_payloadHandle, value.Length, value);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to add binary to payload");
@@ -139,7 +141,7 @@ namespace Tizen.Convergence
 
             IntPtr stringPtr = IntPtr.Zero;
             int ret = 0;
-            ret = Interop.ConvPayload.GetString(_payloadHandle, key, out stringPtr);
+            ret = Interop.Internal.ConvPayload.GetString(_payloadHandle, key, out stringPtr);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to add string to payload");
@@ -169,7 +171,7 @@ namespace Tizen.Convergence
             int ret = 0;
             IntPtr byteArrayPtr;
             int byteArraySize;
-            ret = Interop.ConvPayload.GetByte(_payloadHandle, key, out byteArraySize, out byteArrayPtr);
+            ret = Interop.Internal.ConvPayload.GetByte(_payloadHandle, key, out byteArraySize, out byteArrayPtr);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to add string to payload");
@@ -193,7 +195,7 @@ namespace Tizen.Convergence
             int ret = 0;
             IntPtr byteArrayPtr;
             int byteArraySize;
-            ret = Interop.ConvPayload.GetBinary(_payloadHandle, out byteArraySize, out byteArrayPtr);
+            ret = Interop.Internal.ConvPayload.GetBinary(_payloadHandle, out byteArraySize, out byteArrayPtr);
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to get binary from payload");

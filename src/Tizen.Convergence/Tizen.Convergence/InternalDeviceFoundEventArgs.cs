@@ -15,24 +15,21 @@
 */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Convergence
 {
     /// <summary>
-    /// Contains arguments for ServiceEventOccured
+    /// Contains arguments for the event DeviceFound.
     /// </summary>
-    public class ServiceEventOccuredEventArgs : EventArgs
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class InternalDeviceFoundEventArgs : EventArgs
     {
-        internal ServiceEventOccuredEventArgs() { }
+        internal InternalDeviceFoundEventArgs() { }
 
         /// <summary>
-        /// The channel on which the event occured
+        /// The device found
         /// </summary>
-        public Channel Channel { get; internal set; }
-
-        /// <summary>
-        /// The payload containing the result
-        /// </summary>
-        public Payload Payload { get; internal set; }
+        public InternalDevice Device { get; internal set; }
     }
 }
