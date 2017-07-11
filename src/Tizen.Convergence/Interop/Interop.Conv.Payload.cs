@@ -33,7 +33,11 @@ internal static partial class Interop
         [DllImport(Libraries.Convergence, EntryPoint = "conv_payload_get_byte")]
         internal static extern int GetByte(ConvPayloadHandle /* conv_payload_h */ handle, string key, out int length, out IntPtr value);
 
+        [DllImport(Libraries.Convergence, EntryPoint = "conv_payload_set_binary")]
+        internal static extern int SetBinary(ConvPayloadHandle /* conv_payload_h */ handle, int length, byte[] value);
 
+        [DllImport(Libraries.Convergence, EntryPoint = "conv_payload_get_binary")]
+        internal static extern int GetBinary(ConvPayloadHandle /* conv_payload_h */ handle, out int length, out IntPtr value);
     }
 
     internal class ConvPayloadHandle : TizenSafeHandle

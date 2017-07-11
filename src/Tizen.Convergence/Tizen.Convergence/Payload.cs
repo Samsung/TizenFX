@@ -97,6 +97,30 @@ namespace Tizen.Convergence
             }
         }
 
+
+        /// <summary>
+        /// Sets binary to payload.
+        /// </summary>
+        /// <param name="value">The binary to set</param>
+        /// <feature>http://tizen.org/feature/convergence.d2d</feature>
+        /// <exception cref="NotSupportedException">Thrown if the required feature is not supported.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the arguments passed are null </exception>
+        public void Set(byte[] value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            int ret = 0;
+            ret = Interop.ConvPayload.SetBinary(_payloadHandle, value.Length, value);
+            if (ret != (int)ConvErrorCode.None)
+            {
+                Log.Error(ErrorFactory.LogTag, "Failed to add binary to payload");
+                throw ErrorFactory.GetException(ret);
+            }
+        }
+
         /// <summary>
         /// Gets the value of the key from payload
         /// </summary>
@@ -149,6 +173,30 @@ namespace Tizen.Convergence
             if (ret != (int)ConvErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Failed to add string to payload");
+                throw ErrorFactory.GetException(ret);
+            }
+
+            byte[] byteArray = new byte[byteArraySize];
+            Marshal.Copy(byteArrayPtr, byteArray, 0, byteArraySize);
+            value = byteArray;
+            Interop.Libc.Free(byteArrayPtr);
+        }
+
+        /// <summary>
+        /// Gets binary from payload
+        /// </summary>
+        /// <param name="value">The result value</param>
+        /// <feature>http://tizen.org/feature/convergence.d2d</feature>
+        /// <exception cref="NotSupportedException">Thrown if the required feature is not supported.</exception>
+        public void Get(out byte[] value)
+        {
+            int ret = 0;
+            IntPtr byteArrayPtr;
+            int byteArraySize;
+            ret = Interop.ConvPayload.GetBinary(_payloadHandle, out byteArraySize, out byteArrayPtr);
+            if (ret != (int)ConvErrorCode.None)
+            {
+                Log.Error(ErrorFactory.LogTag, "Failed to get binary from payload");
                 throw ErrorFactory.GetException(ret);
             }
 
