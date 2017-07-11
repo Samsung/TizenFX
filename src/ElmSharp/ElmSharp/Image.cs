@@ -205,6 +205,10 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether an image object is under animation.
         /// </summary>
+        /// <remarks>
+        /// An image object, even if it supports animation, will be displayed by default without animation.
+        /// To actually start playing any image object's animation, <see cref="IsAnimated"/> should be TRUE before setting this property true.
+        /// </remarks>
         public bool IsAnimationPlaying
         {
             get
@@ -533,7 +537,7 @@ namespace ElmSharp
                 }
             });
 
-            SmartEvent loadReady = new SmartEvent(this, Handle, "load,ready");
+            SmartEvent loadReady = new SmartEvent(this, RealHandle, "load,ready");
             loadReady.On += (s, e) =>
             {
                 loadReady.Dispose();
@@ -544,7 +548,7 @@ namespace ElmSharp
                 }
             };
 
-            SmartEvent loadError = new SmartEvent(this, Handle, "load,error");
+            SmartEvent loadError = new SmartEvent(this, RealHandle, "load,error");
             loadError.On += (s, e) =>
             {
                 loadError.Dispose();
@@ -624,10 +628,12 @@ namespace ElmSharp
         /// None mode of image border
         /// </summary>
         None,
+
         /// <summary>
         /// Default mode of image border
         /// </summary>
         Default,
+
         /// <summary>
         /// Solid mode of image border
         /// </summary>
@@ -643,30 +649,37 @@ namespace ElmSharp
         /// No orientation change
         /// </summary>
         None = 0,
+
         /// <summary>
         /// Rotate 90 degrees clockwise
         /// </summary>
         Rotate90,
+
         /// <summary>
         /// Rotate 180 degrees clockwise
         /// </summary>
         Rotate180,
+
         /// <summary>
         /// Rotate 90 degrees counter-clockwise (i.e. 270 degrees clockwise)
         /// </summary>
         Rotate270,
+
         /// <summary>
         /// Flip image horizontally
         /// </summary>
         FlipHorizontal,
+
         /// <summary>
         /// Flip image vertically
         /// </summary>
         FlipVertical,
+
         /// <summary>
         /// Flip the image along the y = (width - x) line (bottom-left to top-right)
         /// </summary>
         FlipTranspose,
+
         /// <summary>
         /// Flip the image along the y = x line (top-left to bottom-right)
         /// </summary>
