@@ -575,7 +575,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the layer of its canvas that the given object will be part of.
         /// </summary>
-        public int Layer
+        public virtual int Layer
         {
             get
             {

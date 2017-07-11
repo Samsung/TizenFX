@@ -138,7 +138,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="key">The data key</param>
         /// <returns>The data</returns>
-        public string GetData(string key)
+        public string GetEdjeData(string key)
         {
             return Interop.Elementary.elm_layout_data_get(RealHandle, key);
         }
