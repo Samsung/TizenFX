@@ -55,6 +55,9 @@ namespace Tizen.Applications
         private static Dictionary<int, RequestEventCallback> RequestCallbacks = new Dictionary<int, RequestEventCallback>();
         private static Dictionary<int, SafePackageManagerRequestHandle> RequestHandles = new Dictionary<int, SafePackageManagerRequestHandle>();
 
+        private delegate Interop.PackageManager.ErrorCode InstallMethodWithCallback(SafePackageManagerRequestHandle requestHandle, string pkgPath, Interop.PackageManager.PackageManagerRequestEventCallback requestCallback, IntPtr userData, out int requestID);
+        private delegate Interop.PackageManager.ErrorCode InstallMethod(SafePackageManagerRequestHandle requestHandle, string pkgPath, out int requestID);
+
         /// <summary>
         /// InstallProgressChanged event. This event is occurred when a package is getting installed and the progress of the request to the package manager changes.
         /// </summary>
@@ -387,124 +390,131 @@ namespace Tizen.Applications
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
-        public static bool Install(string packagePath)
+        public static bool Install(string packagePath, InstallationMode installMode = InstallationMode.Normal)
         {
-            return Install(packagePath, null, PackageType.UNKNOWN, null);
+            return Install(packagePath, null, PackageType.UNKNOWN, null, installMode);
         }
 
         /// <summary>
         /// Installs package located at the given path
         /// </summary>
         /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <param name="eventCallback">The event callback will be invoked only for the current request</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that just the request of installation is seccessful.
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
-        public static bool Install(string packagePath, RequestEventCallback eventCallback)
+        public static bool Install(string packagePath, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
         {
-            return Install(packagePath, null, PackageType.UNKNOWN, eventCallback);
+            return Install(packagePath, null, PackageType.UNKNOWN, eventCallback, installMode);
         }
 
         /// <summary>
         /// Installs package located at the given path
         /// </summary>
         /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="type">Optional - Package type for the package to be installed</param>
+        /// <param name="type">Package type for the package to be installed</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that just the request of installation is seccessful.
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
-        public static bool Install(string packagePath, PackageType type)
+        public static bool Install(string packagePath, PackageType type, InstallationMode installMode = InstallationMode.Normal)
         {
-            return Install(packagePath, null, type, null);
+            return Install(packagePath, null, type, null, installMode);
         }
 
         /// <summary>
         /// Installs package located at the given path
         /// </summary>
         /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="expansionPackagePath">Optional - Absolute path for the expansion package to be installed</param>
+        /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that just the request of installation is seccessful.
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
-        public static bool Install(string packagePath, string expansionPackagePath)
+        public static bool Install(string packagePath, string expansionPackagePath, InstallationMode installMode = InstallationMode.Normal)
         {
-            return Install(packagePath, expansionPackagePath, PackageType.UNKNOWN, null);
+            return Install(packagePath, expansionPackagePath, PackageType.UNKNOWN, null, installMode);
         }
 
         /// <summary>
         /// Installs package located at the given path
         /// </summary>
         /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="type">Optional - Package type for the package to be installed</param>
-        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <param name="type">Package type for the package to be installed</param>
+        /// <param name="eventCallback">The event callback will be invoked only for the current request</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that just the request of installation is seccessful.
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
-        public static bool Install(string packagePath, PackageType type, RequestEventCallback eventCallback)
+        public static bool Install(string packagePath, PackageType type, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
         {
-            return Install(packagePath, null, type, eventCallback);
+            return Install(packagePath, null, type, eventCallback, installMode);
         }
 
         /// <summary>
         /// Installs package located at the given path
         /// </summary>
         /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="expansionPackagePath">Optional - Absolute path for the expansion package to be installed</param>
-        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed</param>
+        /// <param name="eventCallback">The event callback will be invoked only for the current request</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that just the request of installation is seccessful.
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
-        public static bool Install(string packagePath, string expansionPackagePath, RequestEventCallback eventCallback)
+        public static bool Install(string packagePath, string expansionPackagePath, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
         {
-            return Install(packagePath, expansionPackagePath, PackageType.UNKNOWN, eventCallback);
+            return Install(packagePath, expansionPackagePath, PackageType.UNKNOWN, eventCallback, installMode);
         }
 
         /// <summary>
         /// Installs package located at the given path
         /// </summary>
         /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="expansionPackagePath">Optional - Absolute path for the expansion package to be installed</param>
-        /// <param name="type">Optional - Package type for the package to be installed</param>
+        /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed</param>
+        /// <param name="type">Package type for the package to be installed</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that just the request of installation is seccessful.
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
-        public static bool Install(string packagePath, string expansionPackagePath, PackageType type)
+        public static bool Install(string packagePath, string expansionPackagePath, PackageType type, InstallationMode installMode = InstallationMode.Normal)
         {
-            return Install(packagePath, expansionPackagePath, type, null);
+            return Install(packagePath, expansionPackagePath, type, null, installMode);
         }
 
         /// <summary>
         /// Installs package located at the given path
         /// </summary>
         /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="expansionPackagePath">Optional - Absolute path for the expansion package to be installed</param>
-        /// <param name="type">Optional - Package type for the package to be installed</param>
-        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed</param>
+        /// <param name="type">Package type for the package to be installed</param>
+        /// <param name="eventCallback">The event callback will be invoked only for the current request</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
         /// The 'true' means that just the request of installation is seccessful.
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
-        public static bool Install(string packagePath, string expansionPackagePath, PackageType type, RequestEventCallback eventCallback)
+        public static bool Install(string packagePath, string expansionPackagePath, PackageType type, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
         {
             SafePackageManagerRequestHandle RequestHandle;
             var err = Interop.PackageManager.PackageManagerRequestCreate(out RequestHandle);
@@ -541,7 +551,16 @@ namespace Tizen.Applications
                 int requestId;
                 if (eventCallback != null)
                 {
-                    err = Interop.PackageManager.PackageManagerRequestInstallWithCB(RequestHandle, packagePath, internalRequestEventCallback, IntPtr.Zero, out requestId);
+                    InstallMethodWithCallback install;
+                    if (installMode == InstallationMode.Mount)
+                    {
+                        install = Interop.PackageManager.PackageManagerRequestMountInstallWithCB;
+                    }
+                    else
+                    {
+                        install = Interop.PackageManager.PackageManagerRequestInstallWithCB;
+                    }
+                    err = install(RequestHandle, packagePath, internalRequestEventCallback, IntPtr.Zero, out requestId);
                     if (err == Interop.PackageManager.ErrorCode.None)
                     {
                         RequestCallbacks.Add(requestId, eventCallback);
@@ -556,7 +575,16 @@ namespace Tizen.Applications
                 }
                 else
                 {
-                    err = Interop.PackageManager.PackageManagerRequestInstall(RequestHandle, packagePath, out requestId);
+                    InstallMethod install;
+                    if (installMode == InstallationMode.Mount)
+                    {
+                        install = Interop.PackageManager.PackageManagerRequestMountInstall;
+                    }
+                    else
+                    {
+                        install = Interop.PackageManager.PackageManagerRequestInstall;
+                    }
+                    err = install(RequestHandle, packagePath, out requestId);
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
                         Log.Warn(LogTag, string.Format("Failed to install package {0}. err = {1}", packagePath, err));

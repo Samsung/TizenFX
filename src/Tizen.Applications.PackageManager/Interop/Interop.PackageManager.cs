@@ -186,6 +186,9 @@ internal static partial class Interop
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install")]
         internal static extern ErrorCode PackageManagerRequestInstall(SafePackageManagerRequestHandle requestHandle, string path, out int id);
 
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_mount_install")]
+        internal static extern ErrorCode PackageManagerRequestMountInstall(SafePackageManagerRequestHandle requestHandle, string path, out int id);
+
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_uninstall")]
         internal static extern ErrorCode PackageManagerRequestUninstall(SafePackageManagerRequestHandle requestHandle, string name, out int id);
 
@@ -215,6 +218,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_install_with_cb")]
         internal static extern ErrorCode PackageManagerRequestInstallWithCB(SafePackageManagerRequestHandle requestHandle, string path, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_mount_install_with_cb")]
+        internal static extern ErrorCode PackageManagerRequestMountInstallWithCB(SafePackageManagerRequestHandle requestHandle, string path, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_request_uninstall_with_cb")]
         internal static extern ErrorCode PackageManagerRequestUninstallWithCB(SafePackageManagerRequestHandle requestHandle, string name, PackageManagerRequestEventCallback callback, IntPtr userData, out int id);
