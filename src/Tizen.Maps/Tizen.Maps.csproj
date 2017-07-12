@@ -19,6 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.ComponentModel" Version="4.3.0" />
     <PackageReference Include="Tizen" Version="1.0.5" />
     <PackageReference Include="ElmSharp" Version="1.2.1" />
   </ItemGroup>

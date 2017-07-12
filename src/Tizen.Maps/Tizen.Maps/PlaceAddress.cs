@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Maps
 {
@@ -150,6 +151,20 @@ namespace Tizen.Maps
             set
             {
                 handle.FreeText = value;
+            }
+        }
+
+        [EditorBrowsableAttribute(EditorBrowsableState.Never)]
+        [Obsolete("Freetext is deprecated. Please use FreeText instead.")]
+        public string Freetext
+        {
+            get
+            {
+                return FreeText;
+            }
+            set
+            {
+                FreeText = value;
             }
         }
 
