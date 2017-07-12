@@ -55,15 +55,12 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-
-                    //Unreference this instance from Registry.
-                    Registry.Unregister(this);
-
                     NDalicPINVOKE.delete_Builder(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
