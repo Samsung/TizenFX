@@ -381,15 +381,9 @@ namespace Tizen.Multimedia
 
         private void ReplaceDisplay(Display newDisplay)
         {
-            if (_display != null)
-            {
-                _display.Owner = null;
-            }
+            _display?.SetOwner(null);
             _display = newDisplay;
-            if (_display != null)
-            {
-                _display.Owner = this;
-            }
+            _display?.SetOwner(this);
         }
 
         /// <summary>
@@ -416,17 +410,16 @@ namespace Tizen.Multimedia
             {
                 ValidateState(CameraState.Created);
 
-                if (value != null && value.Owner != null)
+                if (value?.Owner != null)
                 {
                     if (ReferenceEquals(this, value.Owner))
                     {
                         return;
                     }
-                    else
-                    {
-                        throw new ArgumentException("The display has already been assigned to another.");
-                    }
+
+                    throw new ArgumentException("The display has already been assigned to another.");
                 }
+
                 CameraErrorFactory.ThrowIfError(SetDisplay(value), "Failed to set the camera display");
 
                 ReplaceDisplay(value);
