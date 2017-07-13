@@ -259,7 +259,6 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                //TODO is this needed?
                 if (IsPreparing())
                 {
                     return PlayerState.Preparing;
@@ -805,13 +804,14 @@ namespace Tizen.Multimedia
             _source = null;
         }
 
-        //TODO remarks needs to be updated. see the native reference.
         /// <summary>
         /// Starts or resumes playback.
         /// </summary>
         /// <remarks>
         /// The player must be in the <see cref="PlayerState.Ready"/> or <see cref="PlayerState.Paused"/> state.
-        /// It has no effect if the player is already in the <see cref="PlayerState.Playing"/> state.
+        /// It has no effect if the player is already in the <see cref="PlayerState.Playing"/> state.\n
+        /// \n
+        /// Sound can be mixed with other sounds if you don't control the stream focus using <see cref="ApplyAudioStreamPolicy"/>.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
@@ -819,6 +819,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Stop"/>
         /// <seealso cref="Pause"/>
         /// <seealso cref="PlaybackCompleted"/>
+        /// <seealso cref="ApplyAudioStreamPolicy"/>
         public virtual void Start()
         {
             Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
