@@ -27,6 +27,9 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initialize a new instance of the AudioStreamProperties struct with the specified sample rate, channels and bit rate.
         /// </summary>
+        /// <param name="sampleRate">The sample rate of the stream.</param>
+        /// <param name="channels">The number of channels of the stream.</param>
+        /// <param name="bitRate">The bit rate of the stream.</param>
         public AudioStreamProperties(int sampleRate, int channels, int bitRate)
         {
             SampleRate = sampleRate;
@@ -76,6 +79,9 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initialize a new instance of the VideoStreamProperties struct with the specified fps, bit rate and size.
         /// </summary>
+        /// <param name="fps">The fps of the stream.</param>
+        /// <param name="bitRate">The bit rate of the stream.</param>
+        /// <param name="size">The size of the stream.</param>
         public VideoStreamProperties(int fps, int bitRate, Size size)
         {
             Fps = fps;
@@ -87,6 +93,10 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initialize a new instance of the VideoStreamProperties struct with the specified fps, bit rate, width and height.
         /// </summary>
+        /// <param name="fps">The fps of the stream.</param>
+        /// <param name="bitRate">The bit rate of the stream.</param>
+        /// <param name="width">The width of the stream.</param>
+        /// <param name="height">The height of the stream.</param>
         public VideoStreamProperties(int fps, int bitRate, int width, int height)
         {
             Fps = fps;
@@ -141,6 +151,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves the album art of the stream or null if there is no album art data.
         /// </summary>
+        /// <returns>Raw byte array if album art exists; otherwise null.</returns>
         /// <remarks>The <see cref="Multimedia.Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.</exception>
@@ -194,6 +205,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves the codec name of audio or null if there is no audio.
         /// </summary>
+        /// <returns>A string that represents codec name.</returns>
         public string GetAudioCodec()
         {
             return GetCodecInfo(true);
@@ -202,6 +214,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves the codec name of video or null if there is no video.
         /// </summary>
+        /// <returns>A string that represents codec name.</returns>
         public string GetVideoCodec()
         {
             return GetCodecInfo(false);
@@ -210,6 +223,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the duration.
         /// </summary>
+        /// <returns>The duration of the stream.</returns>
         /// <remarks>The <see cref="Multimedia.Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.</exception>
@@ -228,6 +242,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the properties of audio.
         /// </summary>
+        /// <returns>A <see cref="AudioStreamProperties"/> that contains audio stream information.</returns>
         /// <remarks>The <see cref="Multimedia.Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.</exception>
@@ -250,6 +265,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the properties of video.
         /// </summary>
+        /// <returns>A <see cref="VideoStreamProperties"/> that contains video stream information.</returns>
         /// <remarks>The <see cref="Multimedia.Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.</exception>
@@ -284,6 +300,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the metadata with the specified key.
         /// </summary>
+        /// <returns>A string that represents the value of the specified key.</returns>
         /// <param name="key">The key to query.</param>
         /// <remarks>The <see cref="Multimedia.Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed.</exception>
