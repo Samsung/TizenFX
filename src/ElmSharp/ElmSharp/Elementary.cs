@@ -157,9 +157,6 @@ namespace ElmSharp
             Interop.Elementary.elm_run();
         }
 
-        /// <summary>
-        /// Prepends a theme overlay to the list of overlays.
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ThemeOverlay()
         {
@@ -230,52 +227,30 @@ namespace ElmSharp
             Interop.Elementary.elm_theme_extension_del(IntPtr.Zero, item);
         }
 
-        /// <summary>
-        /// Gets the amount of inertia a scroller imposes during region bring animations.
-        /// </summary>
-        /// <returns>The bring in scroll friction</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static double GetSystemScrollFriction()
         {
             return BringInScrollFriction;
         }
 
-        /// <summary>
-        /// Sets the amount of inertia a scroller imposes during region bring animations.
-        /// </summary>
-        /// <param name="timeSet">The bring in scroll friction</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetSystemScrollFriction(double timeSet)
         {
             BringInScrollFriction = timeSet;
         }
 
-        /// <summary>
-        /// Gets Elementary's profile in use.
-        /// </summary>
-        /// <returns>The profile name</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetProfile()
         {
             return Interop.Elementary.elm_config_profile_get();
         }
 
-        /// <summary>
-        /// Sets the global scaling factor.
-        /// This sets the globally configured scaling factor that is applied to all objects.
-        /// </summary>
-        /// <param name="scale">The scaling factor to set</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetScale(double scale)
         {
             Scale = scale;
         }
 
-        /// <summary>
-        /// Gets the global scaling factor.
-        /// This gets the globally configured scaling factor that is applied to all objects.
-        /// </summary>
-        /// <returns>The scaling factor</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static double GetScale()
         {

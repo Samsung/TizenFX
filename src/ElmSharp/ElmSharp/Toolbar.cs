@@ -211,11 +211,6 @@ namespace ElmSharp
             }
         }
 
-        /// <summary>
-        /// Sets or gets the orientation of a given toolbar widget.
-        /// By default, a toolbar will be horizontal. Use this function to create a vertical toolbar.
-        /// </summary>
-        //TODO: Below browsable limitation will be removed when the EFL-929 issue is resolved.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsHorizontal
         {
