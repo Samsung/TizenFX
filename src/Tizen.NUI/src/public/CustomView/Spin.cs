@@ -64,7 +64,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates an initialized Spin.
         /// </summary>
-        public Spin() : base(typeof(Spin).Name, CustomViewBehaviour.RequiresKeyboardNavigationSupport)
+        public Spin() : base(typeof(Spin).FullName, CustomViewBehaviour.RequiresKeyboardNavigationSupport)
         {
         }
 
