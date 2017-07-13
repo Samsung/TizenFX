@@ -163,15 +163,9 @@ namespace Tizen.Multimedia
 
         private void ReplaceDisplay(Display newDisplay)
         {
-            if (_display != null)
-            {
-                _display.Owner = null;
-            }
+            _display?.SetOwner(null);
             _display = newDisplay;
-            if (_display != null)
-            {
-                _display.Owner = this;
-            }
+            _display?.SetOwner(this);
         }
 
         /// <summary>
