@@ -23,11 +23,14 @@ namespace Tizen.Pims.Contacts
     /// This class provides information about views with properties.
     /// </summary>
     /// <remarks>
-    ///  A view is a class which describes properties of a record. A record can have basic properties of five types: integer, string, boolean, long, double.
+    ///  Views are provided to access and handle entities. A view is a structure, which has property elements.
+    ///  A view is almost the same as a database "VIEW", which limits access and guarantees performance.
+    ///  A "record" represents a single row of the views.
+    ///  A record can have basic properties of five types: integer, string, boolean, long, double.
     /// </remarks>
     public static class ContactsViews
     {
-        private const uint PropertyAddressbook = 0x00100000;
+        private const uint PropertyAddressBook = 0x00100000;
         private const uint PropertyGroup = 0x00200000;
         private const uint PropertyPerson = 0x00300000;
         private const uint PropertyData = 0x00600000;
@@ -69,10 +72,10 @@ namespace Tizen.Pims.Contacts
         private enum PropertyIds : uint
         {
             /* addressbook */
-            AddressbookId = (PropertyAddressbook | DataTypeInt | ReadOnly),
-            AddressbookAccountId = (PropertyAddressbook | DataTypeInt) + 1,
-            AddressbookName = (PropertyAddressbook | DataTypeString) + 2,
-            AddressbookMode = (PropertyAddressbook | DataTypeInt) + 3,
+            AddressbookId = (PropertyAddressBook | DataTypeInt | ReadOnly),
+            AddressbookAccountId = (PropertyAddressBook | DataTypeInt) + 1,
+            AddressbookName = (PropertyAddressBook | DataTypeString) + 2,
+            AddressbookMode = (PropertyAddressBook | DataTypeInt) + 3,
 
             /* group */
             GroupId = (PropertyGroup | DataTypeInt | ReadOnly),
@@ -96,7 +99,7 @@ namespace Tizen.Pims.Contacts
             PersonFavoritePriority = (PropertyPerson | DataTypeDouble | ReadOnly) + 7,
             PersonLinkCount = (PropertyPerson | DataTypeInt | ReadOnly) + 8,
             PersonAddressbookIds = (PropertyPerson | DataTypeString | ReadOnly) + 9,
-            PersonHasPhonenumber = (PropertyPerson | DataTypeBool | ReadOnly) + 10,
+            PersonHasPhoneNumber = (PropertyPerson | DataTypeBool | ReadOnly) + 10,
             PersonHasEmail = (PropertyPerson | DataTypeBool | ReadOnly) + 11,
             PersonDisplayNameIndex = (PropertyPerson | DataTypeString | ReadOnly) + 12,
             PersonStatus = (PropertyPerson | DataTypeString | ReadOnly) + 13,
@@ -118,7 +121,7 @@ namespace Tizen.Pims.Contacts
             ContactImage = (PropertyContact | DataTypeRecord) + 5,
             ContactThumbnail = (PropertyContact | DataTypeString | ReadOnly) + 6,
             ContactIsFavorite = (PropertyContact | DataTypeBool) + 7,
-            ContactHasPhonenumber = (PropertyContact | DataTypeBool | ReadOnly) + 8,
+            ContactHasPhoneNumber = (PropertyContact | DataTypeBool | ReadOnly) + 8,
             ContactHasEmail = (PropertyContact | DataTypeBool | ReadOnly) + 9,
             ContactPersonId = (PropertyContact | DataTypeInt) + 10,
             ContactUid = (PropertyContact | DataTypeString) + 11,
@@ -392,6 +395,9 @@ namespace Tizen.Pims.Contacts
 
         internal const uint AverageSizeOfRecord = 120;  /* average size of person record */
 
+        /// <summary>
+        /// Describes properies of a Address book record.
+        /// </summary>
         public static class Addressbook
         {
             /// <summary>
@@ -431,6 +437,9 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Describes properies of a Group record.
+        /// </summary>
         public static class Group
         {
             /// <summary>
@@ -475,6 +484,9 @@ namespace Tizen.Pims.Contacts
             public const uint MessageAlert = (uint)PropertyIds.GroupMessageAlert;
         }
 
+        /// <summary>
+        /// Describes properies of a Person record.
+        /// </summary>
         public static class Person
         {
             /// <summary>
@@ -536,7 +548,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhonenumber = (uint)PropertyIds.PersonHasPhonenumber;
+            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
@@ -551,6 +563,9 @@ namespace Tizen.Pims.Contacts
             public const uint SnippetString = (uint)PropertyIds.PersonSnippetString;
         }
 
+        /// <summary>
+        /// Describes properies of a Contact record.
+        /// </summary>
         public static class Contact
         {
             /// <summary>
@@ -588,7 +603,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// The contact has phone number or not
             /// </summary>
-            public const uint HasPhonenumber = (uint)PropertyIds.ContactHasPhonenumber;
+            public const uint HasPhoneNumber = (uint)PropertyIds.ContactHasPhoneNumber;
             /// <summary>
             /// The contact has email or not
             /// </summary>
@@ -751,6 +766,9 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Describes properies of a Simple contact record.
+        /// </summary>
         public static class SimpleContact
         {
             /// <summary>
@@ -788,7 +806,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// The contact has phone number or not
             /// </summary>
-            public const uint HasPhonenumber = (uint)PropertyIds.ContactHasPhonenumber;
+            public const uint HasPhoneNumber = (uint)PropertyIds.ContactHasPhoneNumber;
             /// <summary>
             /// The contact has email or not
             /// </summary>
@@ -815,6 +833,9 @@ namespace Tizen.Pims.Contacts
             public const uint ChangedTime = (uint)PropertyIds.ContactChangedTime;
         }
 
+        /// <summary>
+        /// Describes properies of a My profile record.
+        /// </summary>
         public static class MyProfile
         {
             /// <summary>
@@ -907,6 +928,9 @@ namespace Tizen.Pims.Contacts
             public const uint Sip = (uint)PropertyIds.MyProfileSip;
         }
 
+        /// <summary>
+        /// Describes properies of a Name record.
+        /// </summary>
         public static class Name
         {
             /// <summary>
@@ -955,6 +979,9 @@ namespace Tizen.Pims.Contacts
             public const uint PhoneticLast = (uint)PropertyIds.NamePhoneticLast;
         }
 
+        /// <summary>
+        /// Describes properies of a Number record.
+        /// </summary>
         public static class Number
         {
             /// <summary>
@@ -998,6 +1025,9 @@ namespace Tizen.Pims.Contacts
             /// </summary>
             public const uint NumberFilter = (uint)PropertyIds.NumberNumberFilter;
 
+            /// <summary>
+            /// Enumeration for number type.
+            /// </summary>
             public enum Types
             {
                 /// <summary>
@@ -1079,6 +1109,9 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Describes properies of a Email record.
+        /// </summary>
         public static class Email
         {
             /// <summary>
@@ -1110,6 +1143,9 @@ namespace Tizen.Pims.Contacts
             /// </summary>
             public const uint Address = (uint)PropertyIds.EmailEmail;
 
+            /// <summary>
+            /// Enumeration for Contact email type.
+            /// </summary>
             public enum Types
             {
                 /// <summary>
@@ -1135,6 +1171,9 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Describes properies of a Address record.
+        /// </summary>
         public static class Address
         {
             /// <summary>
@@ -1230,6 +1269,9 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Describes properies of a Note record.
+        /// </summary>
         public static class Note
         {
             /// <summary>
@@ -1250,6 +1292,9 @@ namespace Tizen.Pims.Contacts
             public const uint Contents = (uint)PropertyIds.NoteNote;
         }
 
+        /// <summary>
+        /// Describes properies of a Url record.
+        /// </summary>
         public static class Url
         {
             /// <summary>
@@ -1301,6 +1346,9 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Describes properies of a Event record.
+        /// </summary>
         public static class Event
         {
             /// <summary>
@@ -1371,6 +1419,9 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Describes properies of a Relationship record.
+        /// </summary>
         public static class Relationship
         {
             /// <summary>
@@ -1470,6 +1521,9 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Describes properies of a Image record.
+        /// </summary>
         public static class Image
         {
             /// <summary>
@@ -1517,6 +1571,9 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Describes properies of a Company record.
+        /// </summary>
         public static class Company
         {
             /// <summary>
@@ -1587,6 +1644,9 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Describes properies of a Nickname record.
+        /// </summary>
         public static class Nickname
         {
             /// <summary>
@@ -1607,6 +1667,9 @@ namespace Tizen.Pims.Contacts
             public const uint Name = (uint)PropertyIds.NicknameName;
         }
 
+        /// <summary>
+        /// Describes properies of a Messenger record.
+        /// </summary>
         public static class Messenger
         {
             /// <summary>
@@ -1690,6 +1753,9 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Describes properies of a Profile record.
+        /// </summary>
         public static class Profile
         {
             /// <summary>
@@ -1742,6 +1808,9 @@ namespace Tizen.Pims.Contacts
             public const uint ExtraData = (uint)PropertyIds.ProfileExtraData;
         }
 
+        /// <summary>
+        /// Describes properies of a Sip record.
+        /// </summary>
         public static class Sip
         {
             /// <summary>
@@ -1769,6 +1838,9 @@ namespace Tizen.Pims.Contacts
             /// </summary>
             public const uint Label = (uint)PropertyIds.SipLabel;
 
+            /// <summary>
+            /// Enumeration for Contact SIP type.
+            /// </summary>
             public enum Types
             {
                 /// <summary>
@@ -1790,6 +1862,9 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Describes properies of a Extension record.
+        /// </summary>
         public static class Extension
         {
             /// <summary>
@@ -1854,6 +1929,9 @@ namespace Tizen.Pims.Contacts
             public const uint Data12 = (uint)PropertyIds.ExtensionData12;
         }
 
+        /// <summary>
+        /// Describes properies of a Group relation record.
+        /// </summary>
         public static class GroupRelation
         {
             /// <summary>
@@ -1878,6 +1956,9 @@ namespace Tizen.Pims.Contacts
             public const uint Name = (uint)PropertyIds.GroupRelationGroupName;
         }
 
+        /// <summary>
+        /// Describes properies of a Speed dial record.
+        /// </summary>
         public static class SpeedDial
         {
             /// <summary>
@@ -1930,6 +2011,9 @@ namespace Tizen.Pims.Contacts
             public const uint NumberFilter = (uint)PropertyIds.SpeedDialNumberFilter;
         }
 
+        /// <summary>
+        /// Describes properies of a Phone log record.
+        /// </summary>
         public static class PhoneLog
         {
             /// <summary>
@@ -1981,6 +2065,9 @@ namespace Tizen.Pims.Contacts
             /// </summary>
             public const uint SimSlotNo = (uint)PropertyIds.PhonelogSIMSlotNo;
 
+            /// <summary>
+            /// Enumeration for Phone log type.
+            /// </summary>
             public enum Types
             {
                 /// <summary>
@@ -2072,7 +2159,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        ///
+        /// Describes properies of a Contact updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class ContactUpdatedInfo
@@ -2090,7 +2177,7 @@ namespace Tizen.Pims.Contacts
             /// </summary>
             public const uint AddressbookId = (uint)PropertyIds.UpdateInfoAddressbookId;
             /// <summary>
-            /// Contact updated type, refer to the ContactsViews.ChangeTypes
+            /// Contact change type, refer to the ContactsViews.ChangeTypes
             /// </summary>
             public const uint Type = (uint)PropertyIds.UpdateInfoType;
             /// <summary>
@@ -2104,7 +2191,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        ///
+        /// Describes properies of a My profile updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class MyProfileUpdatedInfo
@@ -2118,7 +2205,7 @@ namespace Tizen.Pims.Contacts
             /// </summary>
             public const uint AddressbookId = (uint)PropertyIds.UpdateInfoAddressbookId;
             /// <summary>
-            /// Changed update type, refer to the ContactsViews.ChangeTypes
+            /// MyProfile change type, refer to the ContactsViews.ChangeTypes
             /// </summary>
             public const uint LastChangedType = (uint)PropertyIds.UpdateInfoLastChangedType;
             /// <summary>
@@ -2128,7 +2215,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        ///
+        /// Describes properies of a Group updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class GroupUpdatedInfo
@@ -2146,7 +2233,7 @@ namespace Tizen.Pims.Contacts
             /// </summary>
             public const uint AddressbookId = (uint)PropertyIds.UpdateInfoAddressbookId;
             /// <summary>
-            /// Changed update type, refer to the ContactsViews.ChangeTypes
+            /// Group change type, refer to the ContactsViews.ChangeTypes
             /// </summary>
             public const uint Type = (uint)PropertyIds.UpdateInfoType;
             /// <summary>
@@ -2156,7 +2243,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        ///
+        /// Describes properies of a Group Member updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class GroupMemberUpdatedInfo
@@ -2180,7 +2267,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        ///
+        /// Describes properies of a Relation updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class GroupRelationUpdatedInfo
@@ -2202,7 +2289,7 @@ namespace Tizen.Pims.Contacts
             /// </summary>
             public const uint AddressbookId = (uint)PropertyIds.AddressbookId;
             /// <summary>
-            /// Changed update type, refer to the ContactsViews.ChangeTypes
+            /// Group relation change type, refer to the ContactsViews.ChangeTypes
             /// </summary>
             public const uint Type = (uint)PropertyIds.UpdateInfoType;
             /// <summary>
@@ -2212,7 +2299,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        ///
+        /// Describes properies of a Person & Contact record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonContact
@@ -2276,7 +2363,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhonenumber = (uint)PropertyIds.PersonHasPhonenumber;
+            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
@@ -2304,7 +2391,7 @@ namespace Tizen.Pims.Contacts
         };
 
         /// <summary>
-        ///
+        /// Describes properies of a Person & Number record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonNumber
@@ -2352,7 +2439,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhonenumber = (uint)PropertyIds.PersonHasPhonenumber;
+            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
@@ -2400,7 +2487,7 @@ namespace Tizen.Pims.Contacts
         };
 
         /// <summary>
-        ///
+        /// Describes properies of a Person & Email record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonEmail
@@ -2448,7 +2535,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhonenumber = (uint)PropertyIds.PersonHasPhonenumber;
+            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
@@ -2484,7 +2571,7 @@ namespace Tizen.Pims.Contacts
         };
 
         /// <summary>
-        ///
+        /// Describes properies of a Person & Group Relation record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonGroupRelation
@@ -2536,7 +2623,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhonenumber = (uint)PropertyIds.PersonHasPhonenumber;
+            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
@@ -2580,7 +2667,7 @@ namespace Tizen.Pims.Contacts
         };
 
         /// <summary>
-        ///
+        /// Describes properies of a Person & Group Assigned record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonGroupAssigned
@@ -2632,7 +2719,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhonenumber = (uint)PropertyIds.PersonHasPhonenumber;
+            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
@@ -2672,7 +2759,7 @@ namespace Tizen.Pims.Contacts
         };
 
         /// <summary>
-        ///
+        /// Describes properies of a Person & Group Not Assigned record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonGroupNotAssigned
@@ -2724,7 +2811,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhonenumber = (uint)PropertyIds.PersonHasPhonenumber;
+            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
@@ -2760,7 +2847,7 @@ namespace Tizen.Pims.Contacts
         };
 
         /// <summary>
-        ///
+        /// Describes properies of a Person & Phone Log record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonPhonelog
@@ -2828,7 +2915,7 @@ namespace Tizen.Pims.Contacts
         };
 
         /// <summary>
-        ///
+        /// Describes properies of a Person Usage record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonUsage
@@ -2876,7 +2963,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhonenumber = (uint)PropertyIds.PersonHasPhonenumber;
+            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
@@ -2890,6 +2977,9 @@ namespace Tizen.Pims.Contacts
             /// </summary>
             public const uint TimesUsed = (uint)PropertyIds.PersonTimesUsed;
 
+            /// <summary>
+            /// Enumeration for Person usage type.
+            /// </summary>
             public enum Types
             {
                 /// <summary>
@@ -2940,7 +3030,7 @@ namespace Tizen.Pims.Contacts
         };
 
         /// <summary>
-        ///
+        /// Describes properies of a Contact & Number record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class ContactNumber
@@ -3012,7 +3102,7 @@ namespace Tizen.Pims.Contacts
         };
 
         /// <summary>
-        ///
+        /// Describes properies of a Contact & Email record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class ContactEmail
@@ -3072,7 +3162,7 @@ namespace Tizen.Pims.Contacts
         };
 
         /// <summary>
-        ///
+        /// Describes properies of a Contact & Group Relation record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class ContactGroupRelation
@@ -3120,7 +3210,7 @@ namespace Tizen.Pims.Contacts
         };
 
         /// <summary>
-        ///
+        /// Describes properies of a Phone Log Statistics record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PhonelogStatistics
