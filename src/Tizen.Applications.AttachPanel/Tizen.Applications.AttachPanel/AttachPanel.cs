@@ -20,9 +20,11 @@ namespace Tizen.Applications.AttachPanel
             {
                 throw new ArgumentNullException("Use the value property, not null value");
             }
-            _attachPanel = new IntPtr();
-            Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.CreateAttachPanel(conformant, ref _attachPanel);
+            IntPtr candidateAttachPanel = new IntPtr();
+            Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.CreateAttachPanel(conformant, ref candidateAttachPanel);
             checkException(err);
+
+            _attachPanel = candidateAttachPanel;
 
             if (_eventEventHandler == null)
             {
