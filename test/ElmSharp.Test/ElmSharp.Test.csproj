@@ -45,6 +45,7 @@
     <Compile Include="TC\BackgroundTest1.cs" />
     <Compile Include="TC\BackgroundTest2.cs" />
     <Compile Include="TC\BackgroundTest3.cs" />
+    <Compile Include="TC\ProgressBarTest2.cs" />
     <Compile Include="TC\TransitTest.cs" />
     <Compile Include="TC\EcoreTimerTest1.cs" />
     <Compile Include="TC\EntryTest3.cs" />
@@ -181,10 +182,10 @@
     <Content Include="tizen-manifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ElmSharp, Version=1.2.0.0, Culture=neutral, PublicKeyToken=3836ec6cd2c91e8b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ElmSharp\bin\Debug\netstandard1.3\ElmSharp.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\ElmSharp\ElmSharp.csproj">
+      <Project>{7a268128-a10d-478a-b813-19fd6264003c}</Project>
+      <Name>ElmSharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

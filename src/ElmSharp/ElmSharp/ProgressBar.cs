@@ -186,6 +186,21 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or gets the general or main color of the given Progressbar.
+        /// </summary>
+        public override Color Color
+        {
+            get
+            {
+                return GetPartColor("bar");
+            }
+            set
+            {
+                SetPartColor("bar", value);
+            }
+        }
+
+        /// <summary>
         /// Sets the part value of the give part of the Progressbar.
         /// </summary>
         /// <param name="part">Part of the Progressbar.</param>
