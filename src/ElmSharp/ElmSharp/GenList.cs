@@ -274,17 +274,6 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the depth of expanded item.
-        /// </summary>
-        public int ExpandedItemDepth
-        {
-            get
-            {
-                return Interop.Elementary.elm_genlist_item_expanded_depth_get(RealHandle);
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the timeout in seconds for the longpress event.
         /// </summary>
         public double LongPressTimeout

@@ -285,6 +285,17 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Gets the depth of expanded item.
+        /// </summary>
+        public int ExpandedItemDepth
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_item_expanded_depth_get(Handle);
+            }
+        }
+
+        /// <summary>
         /// Remove all sub-items (children) of the given item.
         /// </summary>
         /// <remark>
