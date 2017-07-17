@@ -2049,7 +2049,11 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void Unparent()
+        /// <summary>
+        /// Removes a View from its Parent View / Layer. If the View has no parent, this method does nothing.
+        /// </summary>
+        /// <pre>The (child) View has been initialized. </pre>
+        public void Unparent()
         {
             NDalicPINVOKE.Actor_Unparent(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
