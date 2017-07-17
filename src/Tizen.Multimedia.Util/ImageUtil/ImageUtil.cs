@@ -29,7 +29,8 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Retrieves supported colorspaces for a <see cref="ImageFormat"/> that represents formats for <see cref="ImageEncoder"/> and <see cref="ImageDecoder"/>.
         /// </summary>
-        /// <param name="format"><see cref="ImageFormat"/>.</param>
+        /// <returns>An IEnumerable of <see="ColorSpace"/> representing the supported color-spaces.</returns>
+        /// <param name="format">The <see cref="ImageFormat"/>.</param>
         /// <exception cref="ArgumentException"><paramref name="format"/> is invalid.</exception>
         public static IEnumerable<ColorSpace> GetSupportedColorSpaces(ImageFormat format)
         {
@@ -47,9 +48,9 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Calculates the size of the image buffer for the specified resolution and color-space.
         /// </summary>
-        /// <param name="size">Resolution of the image.</param>
+        /// <param name="resolution">The resolution of the image.</param>
         /// <param name="colorSpace"><see cref="ColorSpace"/> of the image.</param>
-        /// <returns>Buffer size.</returns>
+        /// <returns>The buffer size.</returns>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     width of <paramref name="resolution"/> is less than or equal to zero.\n
         ///     - or -\n

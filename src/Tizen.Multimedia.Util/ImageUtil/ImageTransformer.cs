@@ -75,6 +75,10 @@ namespace Tizen.Multimedia.Util
         #region IDisposable Support
         private bool _disposed = false;
 
+        /// <summary>
+        /// Releases the unmanaged resources used by the ImageTransformer.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -88,6 +92,9 @@ namespace Tizen.Multimedia.Util
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the ImageTransformer.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
