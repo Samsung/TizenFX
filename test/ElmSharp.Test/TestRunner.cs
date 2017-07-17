@@ -31,6 +31,8 @@ namespace ElmSharp.Test
 
         public static string ResourceDir { get; private set; }
 
+        public string Profile { get; set; }
+
         public TestRunner()
         {
             s_terminated = false;
@@ -157,25 +159,26 @@ namespace ElmSharp.Test
             {
                 GetTextHandler = (data, part) =>
                 {
-                    return string.Format("{0}",(string)data);
+                    TestCaseBase tc = data as TestCaseBase;
+                    return tc == null ? "" : tc.TestName;
                 }
             };
 
-            foreach (var tc in testCases)
+            foreach (var tc in testCases.Where<TestCaseBase>((tc) => tc.TargetProfile.HasFlag(GetTargetProfile())))
             {
-                list.Append(defaultClass, tc.TestName);
+                list.Append(defaultClass, tc);
+            }
+
+            if (Profile == "wearable")
+            {
+                list.Prepend(defaultClass, null);
+                list.Append(defaultClass, null);
             }
 
             list.ItemSelected += (s, e) =>
             {
-                foreach (var tc in testCases)
-                {
-                    if (tc.TestName == (string)(e.Item.Data))
-                    {
-                        StartTCFromList(tc);
-                        break;
-                    }
-                }
+                TestCaseBase tc = e.Item.Data as TestCaseBase;
+                StartTCFromList(tc);
             };
             list.Show();
 
@@ -194,15 +197,31 @@ namespace ElmSharp.Test
             tc.Run(window);
         }
 
+        private TargetProfile GetTargetProfile()
+        {
+            switch (Profile)
+            {
+                case "wearable" :
+                    return TargetProfile.Wearable;
+                case "mobile" :
+                    return TargetProfile.Mobile;
+                case "tv":
+                    return TargetProfile.Tv;
+            }
+            return TargetProfile.Mobile;
+        }
+
         static void Main(string[] args)
         {
             Elementary.Initialize();
             Elementary.ThemeOverlay();
 
-            Console.WriteLine("ELM_PROFILE : {0}", Elementary.GetProfile());
+            var profile = Elementary.GetProfile();
+            Console.WriteLine("ELM_PROFILE : {0}", profile);
             Console.WriteLine("ELM_SCALE : {0}", Elementary.GetScale());
 
             TestRunner testRunner = new TestRunner();
+            testRunner.Profile = profile;
             testRunner.Run(args);
 
             // if running with appfw is failed, below line will be executed.

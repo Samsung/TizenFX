@@ -42,7 +42,7 @@ namespace ElmSharp.Test
 
             Label alertLabel = new Label(win)
             {
-                Text = "Alert";
+                Text = "Alert"
             };
 
             Label Animation = new Label(win)

@@ -15,14 +15,26 @@
  */
 
 using System;
-using ElmSharp;
 
 namespace ElmSharp.Test
 {
+    [Flags]
+    public enum TargetProfile
+    {
+        Mobile = 1,
+        Tv = 2,
+        Wearable = 4
+    }
     public abstract class TestCaseBase
     {
         public abstract string TestName { get; }
         public abstract string TestDescription { get; }
+        public virtual TargetProfile TargetProfile => TargetProfile.Mobile | TargetProfile.Tv;
         public abstract void Run(Window window);
+    }
+
+    public abstract class WearableTestCase : TestCaseBase
+    {
+        public override TargetProfile TargetProfile => TargetProfile.Wearable;
     }
 }
