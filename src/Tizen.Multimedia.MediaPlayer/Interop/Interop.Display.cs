@@ -22,12 +22,11 @@ internal static partial class Interop
 {
     internal static partial class Display
     {
-
         [DllImport(Libraries.Player, EntryPoint = "player_set_display_mode")]
         internal static extern PlayerErrorCode SetMode(IntPtr player, PlayerDisplayMode mode);
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_display_mode")]
-        internal static extern PlayerErrorCode GetMode(IntPtr player, out int mode);
+        internal static extern PlayerErrorCode GetMode(IntPtr player, out PlayerDisplayMode mode);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_display_visible")]
         internal static extern PlayerErrorCode SetVisible(IntPtr player, bool visible);
@@ -39,7 +38,7 @@ internal static partial class Interop
         internal static extern PlayerErrorCode SetRotation(IntPtr player, Rotation rotation);
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_display_rotation")]
-        internal static extern PlayerErrorCode GetRotation(IntPtr player, out int rotation);
+        internal static extern PlayerErrorCode GetRotation(IntPtr player, out Rotation rotation);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_display_roi_area")]
         internal static extern PlayerErrorCode SetRoi(IntPtr player, int x, int y, int width, int height);
