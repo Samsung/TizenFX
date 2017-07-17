@@ -71,8 +71,14 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern double elm_config_scale_get();
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_config_profile_get();
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_config_profile_get")]
+        internal static extern IntPtr _elm_config_profile_get();
+
+        internal static string elm_config_profile_get()
+        {
+            var str = _elm_config_profile_get();
+            return Marshal.PtrToStringAnsi(str);
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_config_preferred_engine_set(string name);
