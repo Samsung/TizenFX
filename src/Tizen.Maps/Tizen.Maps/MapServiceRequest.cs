@@ -67,7 +67,7 @@ namespace Tizen.Maps
             {
                 _requestTask = new TaskCompletionSource<IEnumerable<T>>();
                 startExecutionAction();
-                task = await _requestTask.Task;
+                task = await _requestTask.Task.ConfigureAwait(false);
             }
             errorCode.WarnIfFailed(errMessage);
             return task;
