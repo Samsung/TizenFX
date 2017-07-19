@@ -62,10 +62,7 @@ namespace Tizen.PhonenumberUtils
 
             ret = Interop.PhonenumberUtils.Disconnect();
             if (ret != (int)PhonenumberUtilsError.None)
-            {
                 Log.Error(Globals.LogTag, "Failed to disconnect, Error - " + (PhonenumberUtilsError)ret);
-                PhonenumberUtilsErrorFactory.ThrowPhonenumberUtilsException(ret);
-            }
 
             disposed = true;
         }
@@ -123,7 +120,7 @@ namespace Tizen.PhonenumberUtils
 
         /// <summary>
         /// Gets the normalized number.
-        /// </summary>        
+        /// </summary>
         /// <param name="number">The number</param>
         /// <returns>The normalized number</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -134,7 +131,7 @@ namespace Tizen.PhonenumberUtils
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         /// <remarks>
-        /// Normalized number starts with plus('+') and country code, and excludes the separators such as dash or space. 
+        /// Normalized number starts with plus('+') and country code, and excludes the separators such as dash or space.
         /// It is a format of E.164 standard including the country code based on current network.
         /// </remarks>
         public string GetNormalizedNumber(string number)
