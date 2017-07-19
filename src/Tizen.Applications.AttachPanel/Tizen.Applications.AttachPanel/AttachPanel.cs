@@ -24,6 +24,7 @@ namespace Tizen.Applications.AttachPanel
             Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.CreateAttachPanel(conformant, ref candidateAttachPanel);
             checkException(err);
 
+            Tizen.Log.Debug("AttachPanelSharp", "Success to create an AttachPanel Instance");
             _attachPanel = candidateAttachPanel;
 
             if (_eventEventHandler == null)
@@ -137,6 +138,11 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate memory fails.</exception>
         public void SetExtraData(ContentCategory category, Bundle extraData)
         {
+            if(extraData == null)
+            {
+                checkException(Interop.AttachPanel.ErrorCode.InvalidParameter);
+            }
+
             IntPtr bundle = IntPtr.Zero;
             if (extraData != null)
             {
