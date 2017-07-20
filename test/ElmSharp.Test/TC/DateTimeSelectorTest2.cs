@@ -28,7 +28,7 @@ namespace ElmSharp.Test
         public override void Run(Window window)
         {
             Background bg = new Background(window);
-            bg.Color = Color.White;
+            bg.Color = Color.Gray;
             bg.Move(0, 0);
             bg.Resize(window.ScreenSize.Width, window.ScreenSize.Height);
             bg.Show();
@@ -37,7 +37,7 @@ namespace ElmSharp.Test
             {
                 DateTime = DateTime.Today,
                 Style = "time_layout",
-                Format = "%I:%M %p"
+                Format = "%d/%b/%Y %I:%M %p"
             };
 
             Label label1 = new Label(window);
@@ -55,7 +55,7 @@ namespace ElmSharp.Test
                 label3.Text = string.Format("Current DateTime={0}", dateTime.DateTime);
             };
 
-            dateTime.Resize(600, 600);
+            dateTime.Resize(720, 600);
             dateTime.Move(0, 300);
             dateTime.Show();
 
