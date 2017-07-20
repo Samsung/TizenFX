@@ -922,6 +922,11 @@ namespace Tizen.NUI
         internal static readonly int IMAGE_VISUAL_PIXEL_AREA = NDalicPINVOKE.IMAGE_VISUAL_PIXEL_AREA_get();
         internal static readonly int IMAGE_VISUAL_WRAP_MODE_U = NDalicPINVOKE.IMAGE_VISUAL_WRAP_MODE_U_get();
         internal static readonly int IMAGE_VISUAL_WRAP_MODE_V = NDalicPINVOKE.IMAGE_VISUAL_WRAP_MODE_V_get();
+        internal static readonly int IMAGE_VISUAL_BATCH_SIZE = NDalicPINVOKE.IMAGE_VISUAL_BATCH_SIZE_get();
+        internal static readonly int IMAGE_VISUAL_CACHE_SIZE = NDalicPINVOKE.IMAGE_VISUAL_CACHE_SIZE_get();
+        internal static readonly int IMAGE_VISUAL_FRAME_DELAY = NDalicPINVOKE.IMAGE_VISUAL_FRAME_DELAY_get();
+        internal static readonly int IMAGE_VISUAL_MASK_CONTENT_SCALE = NDalicPINVOKE.IMAGE_VISUAL_MASK_CONTENT_SCALE_get();
+        internal static readonly int IMAGE_VISUAL_CROP_TO_MASK = NDalicPINVOKE.IMAGE_VISUAL_CROP_TO_MASK_get();
 
         internal static readonly int MESH_VISUAL_OBJECT_URL = NDalicPINVOKE.MESH_VISUAL_OBJECT_URL_get();
         internal static readonly int MESH_VISUAL_MATERIAL_URL = NDalicPINVOKE.MESH_VISUAL_MATERIAL_URL_get();
