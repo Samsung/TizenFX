@@ -15,6 +15,7 @@
 
 namespace Tizen.NUI
 {
+    using System.Collections.Generic;
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
@@ -567,11 +568,14 @@ namespace Tizen.NUI
         private Vector4 _pixelArea = null;
         private WrapModeType? _wrapModeU = null;
         private WrapModeType? _wrapModeV = null;
+        private float? _maskContentScale = null;
+        private bool? _cropToMask = null;
 
         /// <summary>
         /// Get or set the URL of the image.<br>
         /// Mandatory.
         /// </summary>
+
         public string URL
         {
             get
@@ -584,6 +588,7 @@ namespace Tizen.NUI
                 UpdateVisual();
             }
         }
+
 
         /// <summary>
         /// Get or set the URL of the alpha mask.<br>
@@ -778,6 +783,32 @@ namespace Tizen.NUI
             }
         }
 
+        public float MaskContentScale
+        {
+            get
+            {
+                return _maskContentScale ?? 1.0f;
+            }
+            set
+            {
+                _maskContentScale = value;
+                UpdateVisual();
+            }
+        }
+
+        public bool CropToMask
+        {
+            get
+            {
+                return _cropToMask ?? false;
+            }
+            set
+            {
+                _cropToMask = value;
+                UpdateVisual();
+            }
+        }
+
         protected override void ComposingPropertyMap()
         {
             if (_url != null)
@@ -799,6 +830,8 @@ namespace Tizen.NUI
                 if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
                 if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
                 if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+                if (_maskContentScale != null) { _outputVisualMap.Add((int)ImageVisualProperty.MaskContentScale, new PropertyValue((float)_maskContentScale)); }
+                if (_cropToMask != null) { _outputVisualMap.Add((int)ImageVisualProperty.CropToMask, new PropertyValue((bool)_cropToMask)); }
             }
         }
     }
@@ -1960,28 +1993,112 @@ namespace Tizen.NUI
         {
         }
 
-        private string _url = null;
+        private List<string> _urls = null;
+        private int? _batchSize = null;
+        private int? _cacheSize = null;
+        private float? _frameDelay = null;
 
         public string URL
         {
             get
             {
-                return _url;
+                if( _urls == null )
+                {
+                    return _urls[0];
+                }
+                else
+                {
+                    return null;
+                }
             }
             set
             {
-                _url = value;
+                if( _urls == null )
+                {
+                    _urls = new List<string>();
+                    _urls.Add(value);
+                }
+                else
+                {
+                    _urls[0] = value;
+                }
+                UpdateVisual();
+            }
+        }
+
+        public List<string> URLS
+        {
+            get
+            {
+                return _urls;
+            }
+            set
+            {
+                _urls = value;
+                UpdateVisual();
+            }
+        }
+
+        public int BatchSize
+        {
+            get
+            {
+                return _batchSize ?? 1;
+            }
+            set
+            {
+                _batchSize = value;
+                UpdateVisual();
+            }
+        }
+
+        public int CacheSize
+        {
+            get
+            {
+                return _cacheSize ?? 1;
+            }
+            set
+            {
+                _cacheSize = value;
+                UpdateVisual();
+            }
+        }
+        public float FrameDelay
+        {
+            get
+            {
+                return _frameDelay ?? 0.1f;
+            }
+            set
+            {
+                _frameDelay = value;
                 UpdateVisual();
             }
         }
 
         protected override void ComposingPropertyMap()
         {
-            if (_url != null)
+            if (_urls != null)
             {
                 _outputVisualMap = new PropertyMap();
                 _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.AnimatedImage));
-                _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url));
+                if( _urls.Count == 1 )
+                {
+                    _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_urls[0]));
+                }
+                else
+                {
+                    var urlArray = new PropertyArray();
+                    foreach( var url in _urls)
+                    {
+                        urlArray.Add(new PropertyValue(url));
+                    }
+                    _outputVisualMap.Add( ImageVisualProperty.URL, ( new PropertyValue( urlArray ) ) );
+                }
+                if (_batchSize != null ) {_outputVisualMap.Add((int)ImageVisualProperty.BatchSize, new PropertyValue((int)_batchSize)); }
+                if (_cacheSize != null ) {_outputVisualMap.Add((int)ImageVisualProperty.CacheSize, new PropertyValue((int)_cacheSize)); }
+                if (_frameDelay != null ) {_outputVisualMap.Add((int)ImageVisualProperty.FrameDelay, new PropertyValue((float)_frameDelay)); }
                 if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
                 if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
                 if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }

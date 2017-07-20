@@ -6557,6 +6557,21 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_WRAP_MODE_V_get")]
   public static extern int IMAGE_VISUAL_WRAP_MODE_V_get();
 
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_BATCH_SIZE_get")]
+  public static extern int IMAGE_VISUAL_BATCH_SIZE_get();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_CACHE_SIZE_get")]
+  public static extern int IMAGE_VISUAL_CACHE_SIZE_get();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_FRAME_DELAY_get")]
+  public static extern int IMAGE_VISUAL_FRAME_DELAY_get();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_MASK_CONTENT_SCALE_get")]
+  public static extern int IMAGE_VISUAL_MASK_CONTENT_SCALE_get();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_CROP_TO_MASK_get")]
+  public static extern int IMAGE_VISUAL_CROP_TO_MASK_get();
+
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_MESH_VISUAL_OBJECT_URL_get")]
   public static extern int MESH_VISUAL_OBJECT_URL_get();
 
