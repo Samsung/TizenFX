@@ -15,174 +15,195 @@
 */
 
 using System;
-using System.Threading.Tasks;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
+using Handle = Interop.ThumbnailExtractorHandle;
 using Native = Interop.ThumbnailExtractor;
 
 namespace Tizen.Multimedia
 {
-    static internal class ThumbnailExtractorLog
-    {
-        internal const string LogTag = "Tizen.Multimedia.ThumbnailExtractor";
-    }
-
     /// <summary>
-    /// The Thumbnail extractor class provides a set of functions to extract the thumbnail data of the input media file
+    /// Provides the ability to extract the thumbnail from media files.
     /// </summary>
-    public class ThumbnailExtractor : IDisposable
+    public static class ThumbnailExtractor
     {
-        private bool _disposed = false;
-        internal IntPtr _handle = IntPtr.Zero;
+        private static Handle CreateHandle()
+        {
+            Native.Create(out var handle).ThrowIfError("Failed to extract.");
+
+            return handle;
+        }
 
         /// <summary>
-        /// Thumbnail extractor constructor
+        /// Extracts the thumbnail for the given media with the specified path.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>
-        /// If you need the thumbnail of the specified size, use ThumbnailExtractor(path, width, height) or ThumbnailExtractor(path, size).
-        /// </remarks>
-        /// <param name="path"> The path of the media file to extract the thumbnail </param>
+        /// <returns>A task that represents the asynchronous extracting operation.</returns>
+        /// <remarks>The size of the thumbnail will be the default size(320x240).\n</remarks>
+        /// <param name="path">The path of the media file to extract the thumbnail.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
-        public ThumbnailExtractor(string path)
+        /// <exception cref="FileNotFoundException">Requested <paramref name="path"/> does not exist.</exception>
+        /// <exception cref="InvalidOperationException">Internal error occurred.</exception>
+        /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
+        /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        public static Task<ThumbnailExtractionResult> ExtractAsync(string path)
+        {
+            return RunExtractAsync(path, null, CancellationToken.None);
+        }
+
+        /// <summary>
+        /// Extracts the thumbnail for the given media with the specified path.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous extracting operation.</returns>
+        /// <remarks>The size of the thumbnail will be the default size(320x240).\n</remarks>
+        /// <param name="path">The path of the media file to extract the thumbnail.</param>
+        /// <param name="cancellationToken">The token to stop the operation.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="FileNotFoundException">Requested <paramref name="path"/> does not exist.</exception>
+        /// <exception cref="InvalidOperationException">Internal error occurred.</exception>
+        /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
+        /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        public static Task<ThumbnailExtractionResult> ExtractAsync(string path, CancellationToken cancellationToken)
+        {
+            return RunExtractAsync(path, null, cancellationToken);
+        }
+
+        /// <summary>
+        /// Extracts the thumbnail for the given media with the specified path and size.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <returns>A task that represents the asynchronous extracting operation.</returns>
+        /// <remarks>
+        /// If the width is not a multiple of 8, it can be changed by inner process.\n
+        /// The width will be a multiple of 8 greater than the set value.
+        /// </remarks>
+        /// <param name="path">The path of the media file to extract the thumbnail.</param>
+        /// <param name="size">The size of the thumbnail.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="FileNotFoundException">Requested <paramref name="path"/> does not exist.</exception>
+        /// <exception cref="InvalidOperationException">Internal error occurred.</exception>
+        /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     Width or height of <paramref name="size"/> is less than or equal to zero.
+        /// </exception>
+        /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        public static Task<ThumbnailExtractionResult> ExtractAsync(string path, Size size)
+        {
+            return RunExtractAsync(path, size, CancellationToken.None);
+        }
+
+        /// <summary>
+        /// Extracts the thumbnail for the given media with the specified path and size.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <returns>A task that represents the asynchronous extracting operation.</returns>
+        /// <remarks>
+        /// If the width is not a multiple of 8, it can be changed by inner process.\n
+        /// The width will be a multiple of 8 greater than the set value.
+        /// </remarks>
+        /// <param name="path">The path of the media file to extract the thumbnail.</param>
+        /// <param name="size">The size of the thumbnail.</param>
+        /// <param name="cancellationToken">The token to stop the operation.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="FileNotFoundException">Requested <paramref name="path"/> does not exist.</exception>
+        /// <exception cref="InvalidOperationException">Internal error occurred.</exception>
+        /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     Width or height of <paramref name="size"/> is less than or equal to zero.
+        /// </exception>
+        /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        public static Task<ThumbnailExtractionResult> ExtractAsync(string path, Size size,
+            CancellationToken cancellationToken)
+        {
+            return RunExtractAsync(path, size, cancellationToken);
+        }
+
+        private static Task<ThumbnailExtractionResult> RunExtractAsync(string path, Size? size,
+            CancellationToken cancellationToken)
         {
             if (path == null)
             {
                 throw new ArgumentNullException(nameof(path));
             }
 
-            ThumbnailExtractorError ret = Native.Create(out _handle);
-            ThumbnailExtractorErrorFactory.ThrowIfError(ret, "Failed to create constructor");
-
-            try
+            if (File.Exists(path) == false)
             {
-                ThumbnailExtractorErrorFactory.ThrowIfError(
-                    Native.SetPath(_handle, path), "Failed to set the path");
+                throw new FileNotFoundException("File does not exists.", path);
             }
-            catch (Exception)
+
+            if (size.HasValue)
             {
-                Native.Destroy(_handle);
-                _handle = IntPtr.Zero;
-                throw;
+                if (size.Value.Width <= 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(size), size.Value.Width,
+                        "The width must be greater than zero.");
+                }
+
+                if (size.Value.Height <= 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(size), size.Value.Height,
+                        "The height must be greater than zero.");
+                }
+            }
+
+            return cancellationToken.IsCancellationRequested ?
+                Task.FromCanceled<ThumbnailExtractionResult>(cancellationToken) :
+                ExtractAsyncCore(path, size, cancellationToken);
+        }
+
+
+        private static async Task<ThumbnailExtractionResult> ExtractAsyncCore(string path, Size? size,
+            CancellationToken cancellationToken)
+        {
+            using (var handle = CreateHandle())
+            {
+                Native.SetPath(handle, path).ThrowIfError("Failed to extract; failed to set the path.");
+
+                if (size.HasValue)
+                {
+                    Native.SetSize(handle, size.Value.Width, size.Value.Height).
+                        ThrowIfError("Failed to extract; failed to set the size");
+                }
+
+                var tcs = new TaskCompletionSource<ThumbnailExtractionResult>();
+
+                IntPtr id = IntPtr.Zero;
+
+                try
+                {
+                    Native.Extract(handle, GetCallback(tcs), IntPtr.Zero, out id)
+                        .ThrowIfError("Failed to extract.");
+
+                    using (RegisterCancellationToken(tcs, cancellationToken, handle, Marshal.PtrToStringAnsi(id)))
+                    {
+                        return await tcs.Task;
+                    }
+                }
+                finally
+                {
+                    LibcSupport.Free(id);
+                }
             }
         }
 
-        private void Create(String path, int width, int height)
+        private static Native.ThumbnailExtractCallback GetCallback(TaskCompletionSource<ThumbnailExtractionResult> tcs)
         {
-            if (path == null)
-            {
-                throw new ArgumentNullException(nameof(path));
-            }
-
-            if (width <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(width), "The width must be greater than zero:[" + width + "]");
-            }
-
-            if (height <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(height), "The height must be greater than zero:[" + height + "]");
-            }
-
-            ThumbnailExtractorError ret = Native.Create(out _handle);
-            ThumbnailExtractorErrorFactory.ThrowIfError(ret, "Failed to create constructor");
-
-            try
-            {
-                ThumbnailExtractorErrorFactory.ThrowIfError(
-                    Native.SetPath(_handle, path), "Failed to set the path");
-
-                ThumbnailExtractorErrorFactory.ThrowIfError(
-                    Native.SetSize(_handle, width, height), "Failed to set the size");
-            }
-            catch (Exception)
-            {
-                Native.Destroy(_handle);
-                _handle = IntPtr.Zero;
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Thumbnail extractor constructor
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <remarks>
-        /// If you need the thumbnail of the default size, use ThumbnailExtractor(path). The default size is 320x240. \n
-        /// If the set width is not a multiple of 8, it can be changed by inner process. \n
-        /// The width will be a multiple of 8 greater than the set value.
-        /// </remarks>
-        /// <param name="path"> The path of the media file to extract the thumbnail </param>
-        /// <param name="width"> The width of the thumbnail </param>
-        /// <param name="height"> The height of the thumbnail </param>
-        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// <paramref name="width"/> or <paramref name="height"/> is less than zero.
-        /// </exception>
-        public ThumbnailExtractor(string path, int width, int height)
-        {
-            Create(path, width, height);
-        }
-
-        /// <summary>
-        /// Thumbnail extractor constructor
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <remarks>
-        /// If you need the thumbnail of the default size, use ThumbnailExtractor(path). The default size is 320x240. \n
-        /// If the set width is not a multiple of 8, it can be changed by inner process. \n
-        /// The width will be a multiple of 8 greater than the set value.
-        /// </remarks>
-        /// <param name="path"> The path of the media file to extract the thumbnail </param>
-        /// <param name="size"> The size to extract the thumbnail </param>
-        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// A value of <paramref name="size"/> is less than zero.
-        /// </exception>
-        public ThumbnailExtractor(string path, Size size)
-        {
-            Create(path, size.Width, size.Height);
-        }
-
-        /// <summary>
-        /// Extracts the thumbnail for the given media, asynchronously
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <returns>
-        /// Task for creation of Thumbnail. See <see cref="ThumbnailData"/> details.
-        /// </returns>
-        /// <exception cref="ArgumentException">Requested <paramref name="path"/> does not exist.</exception>
-        /// <exception cref="OutOfMemoryException">Memory allocation failed.</exception>
-        /// <exception cref="InvalidOperationException">Internal processing failed.</exception>
-        /// <exception cref="UnauthorizedAccessException">Inaccessible for the requested <paramref name="path"/>.</exception>
-        public Task<ThumbnailData> Extract()
-        {
-            if (_handle == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException(nameof(ThumbnailExtractor), "Failed to extract thumbnail");
-            }
-
-            var task = new TaskCompletionSource<ThumbnailData>();
-
-            Native.ThumbnailExtractCallback extractCallback = (ThumbnailExtractorError error,
-                                                                                string requestId,
-                                                                                int thumbWidth,
-                                                                                int thumbHeight,
-                                                                                IntPtr thumbData,
-                                                                                int thumbSize,
-                                                                                IntPtr userData) =>
+            return (error, requestId, thumbWidth, thumbHeight, thumbData, dataSize, _) =>
             {
                 if (error == ThumbnailExtractorError.None)
                 {
                     try
                     {
-                        byte[] tmpBuf = new byte[thumbSize];
-                        Marshal.Copy(thumbData, tmpBuf, 0, thumbSize);
+                        byte[] tmpBuf = new byte[dataSize];
+                        Marshal.Copy(thumbData, tmpBuf, 0, dataSize);
 
-                        task.SetResult(new ThumbnailData(tmpBuf, thumbWidth, thumbHeight));
+                        tcs.SetResult(new ThumbnailExtractionResult(tmpBuf, thumbWidth, thumbHeight));
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-                        task.SetException(new InvalidOperationException("[" + error + "] Fail to copy data"));
+                        tcs.SetException(new InvalidOperationException("[" + error + "] Failed to copy data.", e));
                     }
                     finally
                     {
@@ -191,55 +212,29 @@ namespace Tizen.Multimedia
                 }
                 else
                 {
-                    task.SetException(new InvalidOperationException("[" + error + "] Fail to create thumbnail"));
+                    tcs.SetException(error.ToException("Failed to extract."));
                 }
             };
+        }
 
-            IntPtr id = IntPtr.Zero;
-            ThumbnailExtractorError res = Native.Extract(_handle, extractCallback, IntPtr.Zero, out id);
-            if (id != IntPtr.Zero)
+        private static IDisposable RegisterCancellationToken(TaskCompletionSource<ThumbnailExtractionResult> tcs,
+            CancellationToken cancellationToken, Handle handle, string id)
+        {
+            if (cancellationToken.CanBeCanceled == false)
             {
-                LibcSupport.Free(id);
-                id = IntPtr.Zero;
+                return null;
             }
 
-            ThumbnailExtractorErrorFactory.ThrowIfError(res, "Failed to extract thumbnail");
-
-            return task.Task;
-        }
-
-        /// <summary>
-        /// Thumbnail Utility destructor
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~ThumbnailExtractor()
-        {
-            Dispose(false);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
+            return cancellationToken.Register(() =>
             {
-                if (disposing)
+                if (tcs.Task.IsCompleted)
                 {
-                    // To be used if there are any other disposable objects
+                    return;
                 }
 
-                if (_handle != IntPtr.Zero)
-                {
-                    Native.Destroy(_handle);
-                    _handle = IntPtr.Zero;
-                }
-
-                _disposed = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+                Native.Cancel(handle, id).ThrowIfError("Failed to cancel.");
+                tcs.TrySetCanceled();
+            });
         }
     }
 }

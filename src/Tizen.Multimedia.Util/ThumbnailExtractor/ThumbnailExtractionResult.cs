@@ -18,32 +18,26 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class provides properties of the thumbnail of the given media
+    /// Represents the result of thumbnail extraction.
     /// </summary>
-    public class ThumbnailData
+    public class ThumbnailExtractionResult
     {
-        internal ThumbnailData(byte[] thumbnailData, int width, int height)
+        internal ThumbnailExtractionResult(byte[] thumbnailData, int width, int height)
         {
-            Thumbnail = thumbnailData;
-            Width = width;
-            Height = height;
+            RawData = thumbnailData;
+            Size = new Size(width, height);
         }
+
         /// <summary>
         /// The thumbnail data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public byte[] Thumbnail { get; }
+        public byte[] RawData { get; }
 
         /// <summary>
-        /// The width of the thumbnail.
+        /// The size of the thumbnail.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public int Width { get; }
-
-        /// <summary>
-        /// The height of the thumbnail.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int Height { get; }
+        public Size Size { get; }
     }
 }
