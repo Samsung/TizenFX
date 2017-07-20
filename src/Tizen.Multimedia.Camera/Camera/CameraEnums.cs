@@ -87,30 +87,6 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for the camera flip type.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum CameraFlip
-    {
-        /// <summary>
-        /// No Flip.
-        /// </summary>
-        None,
-        /// <summary>
-        /// Horizontal flip.
-        /// </summary>
-        Horizontal,
-        /// <summary>
-        /// Vertical flip.
-        /// </summary>
-        Vertical,
-        /// <summary>
-        /// Horizontal and vertical flip.
-        /// </summary>
-        Both
-    }
-
-    /// <summary>
     /// Enumeration for the camera focus state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -224,30 +200,6 @@ namespace Tizen.Multimedia
         /// Resource conflict
         /// </summary>
         ResourceConflict
-    }
-
-    /// <summary>
-    /// Enumeration for the camera rotation type.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum CameraRotation
-    {
-        /// <summary>
-        /// No rotation.
-        /// </summary>
-        None,
-        /// <summary>
-        /// 90 degree rotation.
-        /// </summary>
-        Rotation90,
-        /// <summary>
-        /// 180 degree rotation.
-        /// </summary>
-        Rotation180,
-        /// <summary>
-        /// 270 degree rotation.
-        /// </summary>
-        Rotation270
     }
 
     /// <summary>

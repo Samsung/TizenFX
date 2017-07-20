@@ -106,7 +106,7 @@ namespace Tizen.Multimedia
     /// Enumeration for the recorder policy.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public enum  RecorderPolicy
+    public enum RecorderPolicy
     {
         /// <summary>
         /// None.
@@ -140,30 +140,6 @@ namespace Tizen.Multimedia
         /// No free space in storage.
         /// </summary>
         Space
-    }
-
-    /// <summary>
-    /// Enumeration for the recorder rotation type.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum  RecorderOrientation
-    {
-        /// <summary>
-        /// No rotation.
-        /// </summary>
-        RotationNone,
-        /// <summary>
-        /// 90 Degree rotation.
-        /// </summary>
-        Rotation90,
-        /// <summary>
-        /// 180 Degree rotation.
-        /// </summary>
-        Rotation180,
-        /// <summary>
-        /// 270 Degree rotation.
-        /// </summary>
-        Rotation270
     }
 
     /// <summary>

@@ -173,16 +173,16 @@ internal static partial class Interop
         internal static extern CameraError GetLensOrientation(IntPtr handle, out int angle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_stream_rotation")]
-        internal static extern CameraError SetStreamRotation(IntPtr handle, CameraRotation mode);
+        internal static extern CameraError SetStreamRotation(IntPtr handle, Rotation mode);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_stream_rotation")]
-        internal static extern CameraError GetStreamRotation(IntPtr handle, out CameraRotation mode);
+        internal static extern CameraError GetStreamRotation(IntPtr handle, out Rotation mode);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_stream_flip")]
-        internal static extern CameraError SetFlip(IntPtr handle, CameraFlip flip);
+        internal static extern CameraError SetFlip(IntPtr handle, Flips flip);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_stream_flip")]
-        internal static extern CameraError GetFlip(IntPtr handle, out CameraFlip flip);
+        internal static extern CameraError GetFlip(IntPtr handle, out Flips flip);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_hdr_mode")]
         internal static extern CameraError SetHdrMode(IntPtr handle, CameraHdrMode hdr);

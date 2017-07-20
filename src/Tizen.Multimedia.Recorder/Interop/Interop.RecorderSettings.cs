@@ -105,10 +105,10 @@ internal static partial class Interop
         internal static extern RecorderError SetMotionRate(IntPtr handle, double motionRate);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_get_orientation_tag")]
-        internal static extern RecorderError GetOrientationTag(IntPtr handle, out RecorderOrientation orientation);
+        internal static extern RecorderError GetOrientationTag(IntPtr handle, out Rotation orientation);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_set_orientation_tag")]
-        internal static extern RecorderError SetOrientationTag(IntPtr handle, RecorderOrientation orientation);
+        internal static extern RecorderError SetOrientationTag(IntPtr handle, Rotation orientation);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_get_video_resolution")]
         internal static extern RecorderError GetVideoResolution(IntPtr handle, out int width, out int height);

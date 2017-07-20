@@ -36,7 +36,7 @@ internal static partial class Interop
         internal static extern PlayerErrorCode IsVisible(IntPtr player, out bool visible);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_display_rotation")]
-        internal static extern PlayerErrorCode SetRotation(IntPtr player, PlayerDisplayRotation rotation);
+        internal static extern PlayerErrorCode SetRotation(IntPtr player, Rotation rotation);
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_display_rotation")]
         internal static extern PlayerErrorCode GetRotation(IntPtr player, out int rotation);

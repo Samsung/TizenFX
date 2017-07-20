@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,37 +14,31 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia.Util
+namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Specifies how an image is rotated or flipped.
+    /// Specifies the directions of rotation.
     /// </summary>
-    /// <seealso cref="RotateTransform"/>
-    internal enum ImageRotation
+    public enum Rotation
     {
         /// <summary>
         /// No rotation.
         /// </summary>
         Rotate0,
+
         /// <summary>
-        /// Rotate 90 degree clockwise.
+        /// Rotate clockwise by 90 degrees.
         /// </summary>
         Rotate90,
+
         /// <summary>
-        /// Rotate 180 degree clockwise.
+        /// Rotate clockwise by 180 degrees.
         /// </summary>
         Rotate180,
+
         /// <summary>
-        /// Rotate 270 degree clockwise.
+        /// Rotate clockwise by 270 degrees.
         /// </summary>
-        Rotate270,
-        /// <summary>
-        /// Flip horizontally.
-        /// </summary>
-        FlipHorizontal,
-        /// <summary>
-        /// Flip vertically.
-        /// </summary>
-        FlipVertical,
+        Rotate270
     }
 }

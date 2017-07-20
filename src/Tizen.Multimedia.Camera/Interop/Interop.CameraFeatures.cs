@@ -65,10 +65,10 @@ internal static partial class Interop
         internal delegate bool FlashModeCallback(CameraFlashMode mode, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool StreamRotationCallback(CameraRotation rotation, IntPtr userData);
+        internal delegate bool StreamRotationCallback(Rotation rotation, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool StreamFlipCallback(CameraFlip flip, IntPtr userData);
+        internal delegate bool StreamFlipCallback(Flips flip, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool PtzTypeCallback(CameraPtzType type, IntPtr userData);

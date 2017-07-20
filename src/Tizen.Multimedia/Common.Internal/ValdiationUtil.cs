@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Globalization;
 
 namespace Tizen.Multimedia
 {
@@ -33,6 +34,14 @@ namespace Tizen.Multimedia
             if (!Enum.IsDefined(enumType, value))
             {
                 throw new ArgumentException($"Invalid { enumType.Name } value : { value }", paramName);
+            }
+        }
+
+        internal static void ValidateFlagsEnum<T>(T value, T allMasks, string paramName) where T : IConvertible
+        {
+            if (((~allMasks.ToInt32(CultureInfo.InvariantCulture)) & value.ToInt32(CultureInfo.InvariantCulture)) != 0)
+            {
+                throw new ArgumentException($"Invalid { typeof(T).Name } value : { value }", paramName);
             }
         }
 

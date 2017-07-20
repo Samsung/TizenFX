@@ -200,35 +200,6 @@ namespace Tizen.Multimedia
         High,
     }
 
-
-    /// <summary>
-    /// Specifies display rotation modes for <see cref="Player"/>.
-    /// </summary>
-    /// <seealso cref="Display.Rotation"/>
-    public enum PlayerDisplayRotation
-    {
-        /// <summary>
-        /// Display is not rotated
-        /// </summary>
-        RotationNone,
-
-        /// <summary>
-        ///  Display is rotated 90 degrees
-        /// </summary>
-        Rotation90,
-
-        /// <summary>
-        /// Display is rotated 180 degrees
-        /// </summary>
-        Rotation180,
-
-        /// <summary>
-        /// Display is rotated 270 degrees
-        /// </summary>
-        Rotation270
-    }
-
-
     /// <summary>
     /// Specifies display modes for <see cref="Player"/>
     /// </summary>
