@@ -49,6 +49,7 @@
     <Compile Include="TC\BackgroundTest3.cs" />
     <Compile Include="TC\GestureLayerTest1.cs" />
     <Compile Include="TC\ProgressBarTest2.cs" />
+    <Compile Include="TC\ScrollerTest3.cs" />
     <Compile Include="TC\Wearable\CircleTool.cs" />
     <Compile Include="TC\TransitTest.cs" />
     <Compile Include="TC\EcoreTimerTest1.cs" />
