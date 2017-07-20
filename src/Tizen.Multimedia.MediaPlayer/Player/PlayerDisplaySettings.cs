@@ -108,10 +108,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the rotation of the display.
         /// </summary>
-        /// <value><see cref="PlayerDisplayRotation.RotationNone"/>,
-        ///     <see cref="PlayerDisplayRotation.Rotation90"/>,
-        ///     <see cref="PlayerDisplayRotation.Rotation180"/>,
-        ///     <see cref="PlayerDisplayRotation.Rotation270"/></value>
+        /// <value><see cref="Rotation.Rotate0"/>, <see cref="Rotation.Rotate90"/>, <see cref="Rotation.Rotate180"/>,
+        ///     <see cref="Rotation.Rotate270"/></value>
         /// <exception cref="InvalidOperationException">
         ///     The display is not assigned.\n
         ///     -or-\n
