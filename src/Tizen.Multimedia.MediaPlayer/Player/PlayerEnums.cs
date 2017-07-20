@@ -40,25 +40,13 @@ namespace Tizen.Multimedia
         /// </summary>
         NoSpaceOnDevice = PlayerErrorCode.NoSpaceOnDevice,
 
-        //TODO must be removed.
-        /// <summary>
-        /// Not supported.
-        /// </summary>
-        FeatureNotSupported = ErrorCode.NotSupported,
-
-        //TODO must be removed.
-        /// <summary>
-        /// Permission denined.
-        /// </summary>
-        PermissionDenied = ErrorCode.PermissionDenied,
-
         /// <summary>
         /// Not enough buffer.
         /// </summary>
         BufferSpace = ErrorCode.BufferSpace,
 
         /// <summary>
-        /// <see cref="Player.SetPlayPositionAsync(int, bool)/> failed.
+        /// <see cref="Player.SetPlayPositionAsync(int, bool)"/> failed.
         /// </summary>
         SeekFailed = PlayerErrorCode.SeekFailed,
 
@@ -77,56 +65,30 @@ namespace Tizen.Multimedia
         /// </summary>
         InvalidUri = PlayerErrorCode.InvalidUri,
 
-        //TODO must be removed.
-        /// <summary>
-        /// Sound policy error.
-        /// </summary>
-        SoundPolicy = PlayerErrorCode.SoundPolicyError,
-
         /// <summary>
         /// Connection to service failed.
         /// </summary>
         ConnectionFailed = PlayerErrorCode.ConnectionFailed,
-
-        // TODO must be removed.
-        /// <summary>
-        /// Capture failed.
-        /// </summary>
-        VideoCaptureFailed = PlayerErrorCode.VideoCaptureFailed,
-
-        // TODO must be removed.
-        /// <summary>
-        /// DRM expired.
-        /// </summary>
-        DrmExpired = PlayerErrorCode.DrmExpired,
-
-        // TODO must be removed.
-        /// <summary>
-        /// No license of DRM.
-        /// </summary>
-        DrmNoLicense = PlayerErrorCode.DrmNoLicense,
-
-        // TODO must be removed.
-        /// <summary>
-        /// Not used.
-        /// </summary>
-        DrmFutureUse = PlayerErrorCode.DrmFutureUse,
 
         /// <summary>
         /// Not permitted DRM.
         /// </summary>
         DrmNotPermitted = PlayerErrorCode.DrmNotPermitted,
 
-        // TODO must be removed.
-        /// <summary>
-        /// Not enough resource.
-        /// </summary>
-        ResourceLimit = PlayerErrorCode.ResourceLimit,
-
         /// <summary>
         /// Service disconnected.
         /// </summary>
         ServiceDisconnected = PlayerErrorCode.ServiceDisconnected,
+
+        /// <summary>
+        /// Not supported audio codec.
+        /// </summary>
+        AudioCodecNotSupported = PlayerErrorCode.NotSupportedAudioCodec,
+
+        /// <summary>
+        /// Not supported video codec.
+        /// </summary>
+        VideoCodecNotSupported = PlayerErrorCode.NotSupportedVideoCodec,
 
         /// <summary>
         /// Not supported subtitle file.
