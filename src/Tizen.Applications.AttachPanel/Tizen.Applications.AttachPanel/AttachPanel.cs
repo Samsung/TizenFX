@@ -87,6 +87,8 @@ namespace Tizen.Applications.AttachPanel
         /// <privilege>http://tizen.org/privilege/camera</privilege>
         /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <feature>http://tizen.org/feature/camera</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <remarks>
         /// The caller app has to check the return value of this function.
         /// Content categories will be shown as the sequence of using AddCategory
@@ -97,6 +99,8 @@ namespace Tizen.Applications.AttachPanel
         /// http://tizen.org/privilege/camera, for using Camera or TakePicture
         /// http://tizen.org/privilege/recorder, for using Voice
         /// http://tizen.org/privilege/appmanager.launch, for adding content categories on the More tab
+        /// http://tizen.org/feature/camera, for using Camera or TakePicture
+        /// http://tizen.org/feature/microphone, for using Voice
         /// Deliver more information to the callee with a bundle if you need.
         /// http://tizen.org/appcontrol/data/total_count
         /// http://tizen.org/appcontrol/data/total_size
