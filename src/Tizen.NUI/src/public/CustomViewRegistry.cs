@@ -164,6 +164,8 @@ namespace Tizen.NUI
       { "Size",    PropertyType.Vector2 },
       { "Position",PropertyType.Vector3 },
       { "Color",   PropertyType.Vector4 },
+      { "PropertyArray", PropertyType.Array },
+      { "PropertyMap",   PropertyType.Map },
             //  { "Matrix3", PropertyType.MATRIX3 }, commented out until we need to use Matrices from JSON
             //  { "Matrix",  PropertyType.MATRIX },
         };
@@ -279,10 +281,8 @@ namespace Tizen.NUI
             // Cycle through each property in the class
             foreach (System.Reflection.PropertyInfo propertyInfo in viewType.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public))
             {
-
                 if (propertyInfo.CanRead)
                 {
-
                     IEnumerable<Attribute> ie_attrs = propertyInfo.GetCustomAttributes<Attribute>();
                     List<Attribute> li_attrs = new List<Attribute>(ie_attrs);
                     System.Attribute[] attrs = li_attrs.ToArray();
@@ -356,7 +356,6 @@ namespace Tizen.NUI
             if (view != null)
             {
                 System.Reflection.PropertyInfo propertyInfo = view.GetType().GetProperty(propertyName);
-
                 // We know the property name, we know it's type, we just need to convert from a DALi property value to native C# type
                 System.Type type = propertyInfo.PropertyType;
                 bool ok = false;
@@ -453,9 +452,27 @@ namespace Tizen.NUI
                         propertyInfo.SetValue(view, (Color)value);
                     };
                 }
+                else if (type.Equals(typeof(PropertyMap)))
+                {
+                    PropertyMap map = new PropertyMap();
+                    ok = propValue.Get(map);
+                    if( ok )
+                    {
+                        propertyInfo.SetValue( view, map );
+                    }
+                }
+                else if (type.Equals(typeof(PropertyArray)))
+                {
+                    PropertyArray array = new PropertyArray();
+                    ok = propValue.Get(array);
+                    if( ok )
+                    {
+                        propertyInfo.SetValue( view, array );
+                    }
+                }
                 else
                 {
-                    throw new global::System.InvalidOperationException("SetPropertyValue Unimplemented type for Property Value");
+                    throw new global::System.InvalidOperationException("SetPropertyValue Unimplemented type for Property Value for " + type.FullName );
                 }
                 if (!ok)
                 {

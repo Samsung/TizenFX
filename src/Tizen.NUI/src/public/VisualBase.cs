@@ -187,9 +187,11 @@ namespace Tizen.NUI
         /// </summary>
         public PropertyMap Creation
         {
-            set
+            get
             {
-                CreatePropertyMap(value);
+                PropertyMap map = new PropertyMap();
+                CreatePropertyMap(map);
+                return map;
             }
         }
         internal void CreatePropertyMap(PropertyMap map)
