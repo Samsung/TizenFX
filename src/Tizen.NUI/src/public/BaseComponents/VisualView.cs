@@ -104,7 +104,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (visualIndex > 0)
             {
-                visual = VisualFactory.Get().CreateVisual(visualMap.OutputVisualMap); // Create a visual for the new one.
+                visual = VisualFactory.Instance.CreateVisual(visualMap.OutputVisualMap); // Create a visual for the new one.
                 visual.Name = visualName;
                 visual.DepthIndex = visualMap.DepthIndex;
 
@@ -190,7 +190,7 @@ namespace Tizen.NUI.BaseComponents
         {
             VisualBase visual = null;
 
-            visual = VisualFactory.Get().CreateVisual(visualMap.OutputVisualMap);
+            visual = VisualFactory.Instance.CreateVisual(visualMap.OutputVisualMap);
             visual.Name = visualName;
             visual.DepthIndex = visualMap.DepthIndex;
 
