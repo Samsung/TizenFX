@@ -57,6 +57,8 @@ namespace ElmSharp
             }
         }
 
+        protected IEnumerable<EvasObject> Children => _children;
+
         protected void AddChild(EvasObject obj)
         {
             _children.Add(obj);
