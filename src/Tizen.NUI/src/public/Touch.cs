@@ -70,7 +70,12 @@ namespace Tizen.NUI
 
         internal static Touch GetTouchFromPtr(global::System.IntPtr cPtr)
         {
-            Touch ret = new Touch(cPtr, false);
+            Touch ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Touch;
+            if (ret == null)
+            {
+                ret = new Touch(cPtr, false);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -147,7 +152,9 @@ namespace Tizen.NUI
         /// <returns>The actor that was underneath the point specified</returns>
         public View GetHitView(uint point)
         {
-            View ret = new View(NDalicPINVOKE.Touch_GetHitActor(swigCPtr, point), true);
+            global::System.IntPtr cPtr = NDalicPINVOKE.Touch_GetHitActor(swigCPtr, point);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

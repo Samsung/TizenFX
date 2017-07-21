@@ -70,7 +70,7 @@ namespace Tizen.NUI
         }
         public static ScrollViewPagePathEffect DownCast(BaseHandle handle)
         {
-            ScrollViewPagePathEffect ret = new ScrollViewPagePathEffect(NDalicPINVOKE.ScrollViewPagePathEffect_DownCast(BaseHandle.getCPtr(handle)), true);
+            ScrollViewPagePathEffect ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as ScrollViewPagePathEffect;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
