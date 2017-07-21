@@ -66,6 +66,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during selecting the network, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during selecting the network, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -110,6 +111,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during selecting the network, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during selecting the network, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -153,6 +155,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during manual search for the available networks, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during manual search for the available networks, " + (TapiError)result));
+                        return;
                     }
 
                     NetworkPlmnListStruct listStruct = Marshal.PtrToStructure<NetworkPlmnListStruct>(dataResponse);
@@ -197,6 +200,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the present network selection mode, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the present network selection mode, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult((NetworkSelectionMode)Marshal.ReadInt32(dataResponse));
@@ -220,6 +224,8 @@ namespace Tizen.Tapi
         /// <summary>
         /// Set the network preferred plmn asynchronously.
         /// </summary>
+        /// <param name="operation">The operation to be done on the preferred plmn.</param>
+        /// <param name="info">The preferred plmn info.</param>
         /// <returns>A task indicating whether the SetNetworkPreferredPlmn method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -243,6 +249,7 @@ namespace Tizen.Tapi
                         {
                             Log.Error(TapiUtility.LogTag, "Error occurs during setting the network preferred plmn, " + (TapiError)result);
                             task.SetException(new InvalidOperationException("Error occurs during setting the network preferred plmn, " + (TapiError)result));
+                            return;
                         }
 
                         task.SetResult(true);
@@ -292,6 +299,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the preferred plmn list, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the preferred plmn list, " + (TapiError)result));
+                        return;
                     }
 
                     NetworkPreferredPlmnListStruct plmnStruct = Marshal.PtrToStructure<NetworkPreferredPlmnListStruct>(dataResponse);
@@ -337,6 +345,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during cancelling the network manual search, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during cancelling the network manual search, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -379,6 +388,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the network serving information, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the network serving information, " + (TapiError)result));
+                        return;
                     }
 
                     NetworkServingStruct servStruct = Marshal.PtrToStructure<NetworkServingStruct>(dataResponse);
@@ -404,6 +414,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Set the network mode asynchronously.
         /// </summary>
+        /// <param name="mode">The network mode.</param>
         /// <returns>A task indicating whether the SetNetworkMode method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -424,6 +435,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the network mode, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the network mode, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -466,6 +478,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the network mode, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the network mode, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult((NetworkMode)Marshal.ReadInt32(dataResponse));
@@ -508,6 +521,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the neigboring cell info, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the neigboring cell info, " + (TapiError)result));
+                        return;
                     }
 
                     NetworkNeighboringCellStruct cellStruct = Marshal.PtrToStructure<NetworkNeighboringCellStruct>(dataResponse);
@@ -533,6 +547,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Enters or exits the emergency callback mode asynchronously.
         /// </summary>
+        /// <param name="mode">The emergency callback mode.</param>
         /// <returns>A task indicating whether the SetEmergencyCallbackMode method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -553,6 +568,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during setting the emergency callback mode, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during setting the emergency callback mode, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -576,6 +592,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Set the network roaming preference asynchronously.
         /// </summary>
+        /// <param name="roamPref">The network roaming preference.</param>
         /// <returns>A task indicating whether the SetRoamingPreference method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -596,6 +613,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during setting the network roaming preference, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during setting the network roaming preference, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -638,6 +656,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the network roaming preference, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the network roaming preference, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult((NetworkPreferred)Marshal.ReadInt32(dataResponse));
@@ -681,6 +700,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during setting the default data subscription, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during setting the default data subscription, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -746,6 +766,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during setting the default subscription for voice, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during setting the default subscription for voice, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);

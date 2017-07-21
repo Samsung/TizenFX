@@ -51,6 +51,7 @@
     <Compile Include="CommonPage.cs" />
     <Compile Include="ModemPage.cs" />
     <Compile Include="MainPage.cs" />
+    <Compile Include="NetworkPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

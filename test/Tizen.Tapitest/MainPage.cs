@@ -22,13 +22,27 @@ namespace XamarinForTizen.Tizen
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
             modemBtn.Clicked += ModemBtn_Clicked;
+
+            var nwBtn = new Button
+            {
+                Text = "Network",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            nwBtn.Clicked += NwBtn_Clicked;
+
             Content = new StackLayout
             {
                 VerticalOptions = LayoutOptions.Center,
                 Children = {
-                        commonBtn, modemBtn
+                        commonBtn, modemBtn, nwBtn
                     }
             };
+        }
+
+        private async void NwBtn_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NetworkPage());
         }
 
         private async void ModemBtn_Clicked(object sender, EventArgs e)

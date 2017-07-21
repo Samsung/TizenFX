@@ -432,7 +432,7 @@ namespace Tizen.Tapi
     /// </summary>
     public class NetworkPlmnList
     {
-        internal char NwCount;
+        internal byte NwCount;
         internal IEnumerable<NetworkIdentity> NwList;
 
         internal NetworkPlmnList()
@@ -443,7 +443,7 @@ namespace Tizen.Tapi
         /// Network plmn count.
         /// </summary>
         /// <value>Count of the network plmn.</value>
-        public char NetworkCount
+        public byte NetworkCount
         {
             get
             {

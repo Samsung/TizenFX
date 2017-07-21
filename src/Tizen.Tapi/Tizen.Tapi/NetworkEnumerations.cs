@@ -322,7 +322,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Addition to the Network Preferred PLMN list.
         /// </summary>
-        Add = 0,
+        Add = 0x01,
         /// <summary>
         /// Edit the network Preferred PLMN list.
         /// </summary>

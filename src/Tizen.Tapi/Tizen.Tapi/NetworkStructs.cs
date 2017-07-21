@@ -110,7 +110,7 @@ namespace Tizen.Tapi
     [StructLayout(LayoutKind.Sequential)]
     internal struct NetworkPlmnListStruct
     {
-        internal char NwCount;
+        internal byte NwCount;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.LPStruct)]
         internal NetworkIdentityStruct[] NwList;
     }
