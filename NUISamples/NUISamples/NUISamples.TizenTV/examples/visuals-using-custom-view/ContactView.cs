@@ -28,13 +28,7 @@ namespace VisualsUsingCustomView
 {
     public class ContactView : CustomView
     {
-        private const int PROPERTY_REGISTRATION_START_INDEX = 10001000;
-        private const int ColorVisualPropertyIndex = PROPERTY_REGISTRATION_START_INDEX+1 ;
-        private const int PrimitiveVisualPropertyIndex = PROPERTY_REGISTRATION_START_INDEX+2;
-        private const int ImageVisualPropertyIndex = PROPERTY_REGISTRATION_START_INDEX+3;
-        private const int TextVisualPropertyIndex = PROPERTY_REGISTRATION_START_INDEX+4;
         private VisualBase _imageVisual;
-        private VisualBase _colorVisual;
         private VisualBase _primitiveVisual;
         private VisualBase _textVisual;
         private int _shape;
@@ -53,7 +47,7 @@ namespace VisualsUsingCustomView
             CustomViewRegistry.Instance.Register( CreateInstance, typeof(ContactView));
         }
 
-        public ContactView() : base(typeof(ContactView).FullName, CustomViewBehaviour.RequiresKeyboardNavigationSupport)
+        public ContactView() : base( typeof(ContactView).FullName, CustomViewBehaviour.RequiresKeyboardNavigationSupport)
         {
         }
 
@@ -74,22 +68,34 @@ namespace VisualsUsingCustomView
             {
                 _imageURL = value;
 
-                // Create and Register Image Visual
-                PropertyMap imageVisual = new PropertyMap();
-                imageVisual.Add( Visual.Property.Type, new PropertyValue( (int)Visual.Type.Image ))
-                    .Add( ImageVisualProperty.URL, new PropertyValue( _imageURL ) )
-                    .Add( ImageVisualProperty.AlphaMaskURL, new PropertyValue( _maskURL ));
-                _imageVisual =  VisualFactory.Instance.CreateVisual( imageVisual );
-
-                RegisterVisual( GetPropertyIndex("ImageURL"), _imageVisual );
-
-                // Set the depth index for Image visual
-                _imageVisual.DepthIndex = ImageVisualPropertyIndex;
+                ImageVisual imageVisual = new ImageVisual();
+                imageVisual.URL = value;
+                imageVisual.AlphaMaskURL = _maskURL;
+                imageVisual.MaskContentScale = 1.6f;
+                imageVisual.CropToMask = true;
+                ImageVisual = imageVisual.OutputVisualMap;
             }
         }
 
         [ScriptableProperty()]
-        public string Name
+        public PropertyMap ImageVisual
+        {
+            get
+            {
+                return _imageVisual.Creation;
+            }
+            set
+            {
+                _imageVisual =  VisualFactory.Instance.CreateVisual( value );
+                RegisterVisual( GetPropertyIndex("ImageVisual"), _imageVisual );
+
+                // Set the depth index for Image visual
+                _imageVisual.DepthIndex = 30;
+            }
+        }
+
+        [ScriptableProperty()]
+        public string NameField
         {
             get
             {
@@ -100,19 +106,30 @@ namespace VisualsUsingCustomView
                 _name = value;
 
                 // Create and Register Text Visual
-                PropertyMap textVisual = new PropertyMap();
-                textVisual.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text))
-                    .Add(TextVisualProperty.Text, new PropertyValue(_name))
-                    .Add(TextVisualProperty.TextColor, new PropertyValue(Color.White))
-                    .Add(TextVisualProperty.PointSize, new PropertyValue(7))
-                    .Add( TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"))
-                    .Add( TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
-                _textVisual =  VisualFactory.Instance.CreateVisual( textVisual );
+                TextVisual textVisual = new TextVisual();
+                textVisual.Text = _name;
+                textVisual.TextColor = Color.Black;
+                textVisual.PointSize = 12;
+                textVisual.HorizontalAlignment = HorizontalAlignment.Center;
+                textVisual.VerticalAlignment = VerticalAlignment.Center;
+                NameVisual = textVisual.OutputVisualMap;
+            }
+        }
 
-                RegisterVisual( GetPropertyIndex("Name"), _textVisual );
+        [ScriptableProperty()]
+        public PropertyMap NameVisual
+        {
+            get
+            {
+                return _textVisual.Creation;
+            }
+            set
+            {
+                _textVisual =  VisualFactory.Instance.CreateVisual( value );
+                RegisterVisual( GetPropertyIndex("NameVisual"), _textVisual );
 
                 // Set the depth index for Text visual
-                _textVisual.DepthIndex = TextVisualPropertyIndex;
+                _textVisual.DepthIndex = 30;
             }
         }
 
@@ -142,18 +159,31 @@ namespace VisualsUsingCustomView
                 _shape = value;
 
                 // Create and Register Primitive Visual
-                PropertyMap primitiveVisual = new PropertyMap();
-                primitiveVisual.Add( Visual.Property.Type, new PropertyValue( (int)Visual.Type.Primitive ))
-                    .Add( PrimitiveVisualProperty.Shape, new PropertyValue(_shape))
-                    .Add( PrimitiveVisualProperty.BevelPercentage, new PropertyValue(0.3f))
-                    .Add( PrimitiveVisualProperty.BevelSmoothness, new PropertyValue(0.0f))
-                    .Add( PrimitiveVisualProperty.ScaleDimensions, new PropertyValue(new Vector3(1.0f,1.0f,0.3f)))
-                    .Add( PrimitiveVisualProperty.MixColor, new PropertyValue(new Vector4((245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f)));
-                _primitiveVisual =  VisualFactory.Instance.CreateVisual( primitiveVisual );
-                RegisterVisual( GetPropertyIndex("Shape"), _primitiveVisual );
+                var primitiveVisual = new PrimitiveVisual();
+                primitiveVisual.Shape = (PrimitiveVisualShapeType)_shape;
+                primitiveVisual.BevelPercentage = 0.3f;
+                primitiveVisual.BevelSmoothness = 0.0f;
+                primitiveVisual.ScaleDimensions = new Vector3( 1.0f, 1.0f, 0.3f );
+                primitiveVisual.MixColor = new Vector4( (245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f);
+
+                ShapeVisual = primitiveVisual.OutputVisualMap;
+            }
+        }
+
+        [ScriptableProperty()]
+        public PropertyMap ShapeVisual
+        {
+            get
+            {
+                return _primitiveVisual.Creation;
+            }
+            set
+            {
+                _primitiveVisual =  VisualFactory.Instance.CreateVisual( value );
+                RegisterVisual( GetPropertyIndex("ShapeVisual"), _primitiveVisual );
 
                 // Set the depth index for Primitive visual
-                _primitiveVisual.DepthIndex = PrimitiveVisualPropertyIndex;
+                _primitiveVisual.DepthIndex = 30;
             }
         }
 
@@ -171,7 +201,8 @@ namespace VisualsUsingCustomView
             float nextGreen = (random.Next(0, 256) / 255.0f);
             float nextBlue  = (random.Next(0, 256) / 255.0f);
             Animation anim = AnimateBackgroundColor( new Color( nextRed, nextGreen, nextBlue, 1.0f), 0, 2000 );
-            anim.Play();
+            if( anim )
+                anim.Play();
         }
 
         public override void OnRelayout(Vector2 size, RelayoutContainer container)

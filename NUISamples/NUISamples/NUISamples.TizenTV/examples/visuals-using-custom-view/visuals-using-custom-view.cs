@@ -78,7 +78,7 @@ namespace VisualsUsingCustomView
                 contactView.HeightResizePolicy = ResizePolicyType.FillToParent;
 
                 // Configure visuals of ContactView via properties
-                contactView.Name = contact.Name;
+                contactView.NameField = contact.Name;
                 contactView.MaskURL = contact.MaskURL;
                 contactView.ImageURL = contact.ImageURL;
                 contactView.Color = contact.Color;
