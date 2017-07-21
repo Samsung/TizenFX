@@ -103,7 +103,7 @@ namespace Tizen.NUI
         [Obsolete("Please do not use! this will be deprecated")]
         public new static Layer DownCast(BaseHandle handle)
         {
-            Layer ret = new Layer(NDalicPINVOKE.Layer_DownCast(BaseHandle.getCPtr(handle)), true);
+            Layer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Layer;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -117,7 +117,9 @@ namespace Tizen.NUI
         /// <returns> A handle to the view if found, or an empty handle if not. </returns>
         public View FindChildById(uint id)
         {
-            View ret = new View(NDalicPINVOKE.Actor_FindChildById(swigCPtr, id), true);
+            IntPtr cPtr = NDalicPINVOKE.Actor_FindChildById(swigCPtr, id);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

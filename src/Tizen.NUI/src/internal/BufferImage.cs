@@ -93,7 +93,7 @@ namespace Tizen.NUI
         }
         public new static BufferImage DownCast(BaseHandle handle)
         {
-            BufferImage ret = new BufferImage(NDalicPINVOKE.BufferImage_DownCast(BaseHandle.getCPtr(handle)), true);
+            BufferImage ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as BufferImage;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

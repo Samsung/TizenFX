@@ -181,7 +181,7 @@ namespace Tizen.NUI
         }
         public new static Camera DownCast(BaseHandle handle)
         {
-            Camera ret = new Camera(NDalicPINVOKE.CameraActor_DownCast(BaseHandle.getCPtr(handle)), true);
+            Camera ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Camera;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

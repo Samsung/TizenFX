@@ -57,8 +57,8 @@ namespace HelloWorldTest
             window.KeyEvent += OnWindowKeyEvent;
             window.Resized += (obj, e) =>
             {
-                Tizen.Log.Debug("NUI", "Height: " + e.WindowSize.GetHeight());
-                Tizen.Log.Debug("NUI", "Width: " + e.WindowSize.GetWidth());
+                Tizen.Log.Debug("NUI", "Height: " + e.WindowSize.Height);
+                Tizen.Log.Debug("NUI", "Width: " + e.WindowSize.Width);
             };
 
             TextLabel pixelLabel = new TextLabel("Test Pixel Size 32.0f");

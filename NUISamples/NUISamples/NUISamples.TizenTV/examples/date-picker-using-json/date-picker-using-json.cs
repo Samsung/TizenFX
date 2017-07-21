@@ -64,9 +64,7 @@ namespace DatePickerUsingJson
             _builder.LoadFromFile(_resPath + "/json/date-picker-template.json" );
 
             // create the date-picker from the template in the json file
-            BaseHandle handle =  _builder.Create( "date-picker");
-
-            View actorTree =  View.DownCast( handle );
+            View actorTree =  _builder.Create( "date-picker");
 
             window.Add( actorTree );
 

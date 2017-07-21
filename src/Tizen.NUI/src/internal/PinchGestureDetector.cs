@@ -170,7 +170,7 @@ namespace Tizen.NUI
         }
         public new static PinchGestureDetector DownCast(BaseHandle handle)
         {
-            PinchGestureDetector ret = new PinchGestureDetector(NDalicPINVOKE.PinchGestureDetector_DownCast(BaseHandle.getCPtr(handle)), true);
+            PinchGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PinchGestureDetector;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
