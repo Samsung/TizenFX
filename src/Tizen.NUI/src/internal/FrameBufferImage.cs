@@ -97,7 +97,7 @@ namespace Tizen.NUI
         }
         public new static FrameBufferImage DownCast(BaseHandle handle)
         {
-            FrameBufferImage ret = new FrameBufferImage(NDalicPINVOKE.FrameBufferImage_DownCast(BaseHandle.getCPtr(handle)), true);
+            FrameBufferImage ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as FrameBufferImage;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

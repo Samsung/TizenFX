@@ -78,7 +78,9 @@ namespace Tizen.NUI
 
         public Texture GetTexture(uint index)
         {
-            Texture ret = new Texture(NDalicPINVOKE.TextureSet_GetTexture(swigCPtr, index), true);
+            System.IntPtr cPtr = NDalicPINVOKE.TextureSet_GetTexture(swigCPtr, index);
+            Texture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Texture;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -91,7 +93,9 @@ namespace Tizen.NUI
 
         public Sampler GetSampler(uint index)
         {
-            Sampler ret = new Sampler(NDalicPINVOKE.TextureSet_GetSampler(swigCPtr, index), true);
+            System.IntPtr cPtr = NDalicPINVOKE.TextureSet_GetSampler(swigCPtr, index);
+            Sampler ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Sampler;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
