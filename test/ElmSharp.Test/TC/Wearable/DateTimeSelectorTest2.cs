@@ -20,40 +20,37 @@ using System.Text;
 
 namespace ElmSharp.Test.Wearable
 {
-    class ButtonTest2 : WearableTestCase
+    class DateTimeSelectorTest2 : WearableTestCase
     {
-        public override string TestName => "ButtonTest2";
-        public override string TestDescription => "To Test Wearable Circular Buttons";
+        public override string TestName => "DateTimeSelectorTest2";
+        public override string TestDescription => "To test basic operation of DateTimeSelector";
 
         public override void Run(Window window)
         {
+            Conformant conformant = new Conformant(window);
+            conformant.Show();
+
             Background bg = new Background(window);
             bg.Color = Color.Black;
             bg.Show();
+            conformant.SetContent(bg);
 
-            Button btn_bottom = new Button(window)
+            DateTimeSelector dateTime = new DateTimeSelector(window)
             {
-                Style = "bottom",
-                Text = "Down",
-                Geometry = new Rect((window.ScreenSize.Width - 360) / 2, (window.ScreenSize.Height - 100), 360, 100)
+                DateTime = DateTime.Today,
+                Style = "time_layout",
+                Format = "%I:%M %p"
             };
-            btn_bottom.Show();
 
-            Button btn_left = new Button(window)
-            {
-                Style = "popup/circle/left",
-                Text = "Left",
-                Geometry = new Rect(0, 0, 64, 360)
-            };
-            btn_left.Show();
+            dateTime.Geometry = new Rect(0, 0, window.ScreenSize.Width, window.ScreenSize.Height);
+            dateTime.Show();
 
-            Button btn_right = new Button(window)
+            dateTime.DateTimeChanged += (object sender, DateChangedEventArgs e) =>
             {
-                Style = "popup/circle/right",
-                Text = "Right",
-                Geometry = new Rect(window.ScreenSize.Width - 64, 0, 64, 360)
+                Log.Debug($"Old DateTime={e.OldDate}");
+                Log.Debug($"New DateTime={e.NewDate}");
+                Log.Debug($"Current DateTime={dateTime.DateTime}");
             };
-            btn_right.Show();
         }
     }
 }

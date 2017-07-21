@@ -134,6 +134,29 @@
     <Compile Include="TC\Wearable\ClipperTest1.cs" />
     <Compile Include="TC\Wearable\ContextPopupTest1.cs" />
     <Compile Include="TC\Wearable\DateTimeSelectorTest1.cs" />
+    <Compile Include="TC\Wearable\DateTimeSelectorTest2.cs" />
+    <Compile Include="TC\Wearable\EcoreTimerTest1.cs" />
+    <Compile Include="TC\Wearable\EntryTest1.cs" />
+    <Compile Include="TC\Wearable\EntryTest2.cs" />
+    <Compile Include="TC\Wearable\EntryTest3.cs" />
+    <Compile Include="TC\Wearable\EntryTest4.cs" />
+    <Compile Include="TC\Wearable\EvasMapTest1.cs" />
+    <Compile Include="TC\Wearable\EvasMapTest2.cs" />
+    <Compile Include="TC\Wearable\FocusTest1.cs" />
+    <Compile Include="TC\Wearable\GenGridTest1.cs" />
+    <Compile Include="TC\Wearable\GenGridTest2.cs" />
+    <Compile Include="TC\Wearable\GenListTest1.cs" />
+    <Compile Include="TC\Wearable\GenListTest10.cs" />
+    <Compile Include="TC\Wearable\GenListTest9.cs" />
+    <Compile Include="TC\Wearable\GenListTest2.cs" />
+    <Compile Include="TC\Wearable\GenListTest3.cs" />
+    <Compile Include="TC\Wearable\GenListTest4.cs" />
+    <Compile Include="TC\Wearable\GenListTest5.cs" />
+    <Compile Include="TC\Wearable\GenListTest6.cs" />
+    <Compile Include="TC\Wearable\GenListTest7.cs" />
+    <Compile Include="TC\Wearable\GenListTest8.cs" />
+    <Compile Include="TC\Wearable\GestureLayerTest1.cs" />
+    <Compile Include="TC\Wearable\IconTest1.cs" />
     <Compile Include="TC\WindowInternalTest.cs" />
     <Compile Include="TestCaseBase.cs" />
     <Compile Include="TestRunner.cs" />
@@ -201,7 +224,6 @@
       <HintPath>..\ElmSharp\bin\Debug\netstandard1.3\ElmSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
