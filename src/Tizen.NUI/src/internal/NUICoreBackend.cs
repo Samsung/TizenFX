@@ -113,7 +113,7 @@ namespace Tizen.NUI
 
             _application.Initialized += OnInitialized;
             _application.Resumed += OnResumed;
-            _application.Terminated += OnTerminated;
+            _application.Terminating += OnTerminated;
             _application.Paused += OnPaused;
             _application.AppControl += OnAppControl;
 
@@ -189,7 +189,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="source">Application instance</param>
         /// <param name="e">Event argument for Terminated</param>
-        private void OnTerminated(object source, NUIApplicationTerminateEventArgs e)
+        private void OnTerminated(object source, NUIApplicationTerminatingEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnTerminated Called");
             var handler = Handlers[EventType.Terminated] as Action;
@@ -201,7 +201,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="source">Application instance</param>
         /// <param name="e">Event argument for Resumed</param>
-        private void OnResumed(object source, NUIApplicationResumeEventArgs e)
+        private void OnResumed(object source, NUIApplicationResumedEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnResumed Called");
             var handler = Handlers[EventType.Resumed] as Action;
@@ -227,7 +227,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="source">Application instance</param>
         /// <param name="e">Event argument for Paused</param>
-        private void OnPaused(object source, NUIApplicationPauseEventArgs e)
+        private void OnPaused(object source, NUIApplicationPausedEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnPaused Called");
             var handler = Handlers[EventType.Paused] as Action;
