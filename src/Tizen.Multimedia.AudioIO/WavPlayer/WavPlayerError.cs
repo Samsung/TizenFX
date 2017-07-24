@@ -44,6 +44,7 @@ namespace Tizen.Multimedia
                     throw new ArgumentException(message);
 
                 case WavPlayerError.FormatNotSupported:
+                    throw new FileFormatException(message);
 
                 case WavPlayerError.NotSupportedType:
                     throw new NotSupportedException(message);
