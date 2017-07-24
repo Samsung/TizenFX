@@ -307,6 +307,11 @@ namespace Tizen.NUI
 
         public bool HasBody()
         {
+            if (disposed == true)
+            {
+                return false;
+            }
+
             bool ret = NDalicPINVOKE.BaseHandle_HasBody(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -314,6 +319,11 @@ namespace Tizen.NUI
 
         public bool IsEqual(BaseHandle rhs)
         {
+            if (disposed == true)
+            {
+                return false;
+            }
+
             bool ret = NDalicPINVOKE.BaseHandle_IsEqual(swigCPtr, BaseHandle.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
