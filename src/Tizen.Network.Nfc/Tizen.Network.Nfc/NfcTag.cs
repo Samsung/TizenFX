@@ -137,6 +137,7 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>List of NfcTagInformation objects.</returns>
+        /// <privilege>http://tizen.org/privilege/nfc</privilege>
         /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public IEnumerable<NfcTagInformation> ForeachInformation()
@@ -172,6 +173,7 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="buffer">The binary data for parameter or additional commands.</param>
+        /// <privilege>http://tizen.org/privilege/nfc</privilege>
         /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
@@ -205,6 +207,7 @@ namespace Tizen.Network.Nfc
         /// Reads NDEF formatted data from NFC tag.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/nfc</privilege>
         /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public Task<NfcNdefMessage> ReadNdefMessageAsync()
@@ -239,6 +242,7 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="ndefMessage">The NfcNdefMessage object.</param>
+        /// <privilege>http://tizen.org/privilege/nfc</privilege>
         /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
@@ -267,6 +271,7 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="keyValue">The key value that may need to format the tag.</param>
+        /// <privilege>http://tizen.org/privilege/nfc</privilege>
         /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>

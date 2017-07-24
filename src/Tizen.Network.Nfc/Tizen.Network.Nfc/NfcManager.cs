@@ -130,6 +130,7 @@ namespace Tizen.Network.Nfc
         /// The Secure Element type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
         static public NfcSecureElementType SecureElementType
         {
             get
@@ -176,6 +177,7 @@ namespace Tizen.Network.Nfc
         /// Enable or disable the system handling for tag and target discovered event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/nfc</privilege>
         static public bool SystemHandlerEnabled
         {
             get
@@ -319,6 +321,7 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A task indicates whether the Activate method is done or not.</returns>
+        /// <privilege>http://tizen.org/privilege/nfc.admin</privilege>
         static public Task SetActivationAsync(bool activation)
         {
             bool isNfcSupported = SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);

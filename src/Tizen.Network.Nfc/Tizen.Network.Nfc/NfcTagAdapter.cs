@@ -85,6 +85,7 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>NfcTag object.</returns>
+        /// <privilege>http://tizen.org/privilege/nfc</privilege>
         /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public NfcTag GetConnectedTag()
