@@ -254,12 +254,13 @@ namespace Tizen.Tapi
         [MarshalAs(UnmanagedType.LPStr)]
         internal string Apdu;
     }
+
     [StructLayout(LayoutKind.Sequential)]
     internal struct SimApduResponseStruct
     {
         internal ushort RespLen;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5120)]
-        internal string ApduResp;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5120)]
+        internal byte[] ApduResp;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -395,8 +396,8 @@ namespace Tizen.Tapi
     internal struct SimAtrResponseStruct
     {
         internal ushort AtrRespLen;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5120)]
-        internal string AtrResp;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5120)]
+        internal byte[] AtrResp;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -840,7 +841,7 @@ namespace Tizen.Tapi
         {
             SimApduResponse response = new SimApduResponse();
             response.ApduLen = respStruct.RespLen;
-            response.ApduResp = Encoding.ASCII.GetBytes(respStruct.ApduResp);
+            response.ApduResp = respStruct.ApduResp;
             return response;
         }
 
@@ -848,7 +849,7 @@ namespace Tizen.Tapi
         {
             SimAtrResponse atrResp = new SimAtrResponse();
             atrResp.AtrRespLen = respStruct.AtrRespLen;
-            atrResp.AtrResp = Encoding.ASCII.GetBytes(respStruct.AtrResp);
+            atrResp.AtrResp = respStruct.AtrResp;
             return atrResp;
         }
 
@@ -1063,7 +1064,7 @@ namespace Tizen.Tapi
         internal static SimApduStruct ConvertSimApdu(SimApdu apdu)
         {
             SimApduStruct apduStruct = new SimApduStruct();
-            apduStruct.ApduLen = apdu.ApduLength;
+            apduStruct.ApduLen = (ushort)apdu.Apdu.Length;
             apduStruct.Apdu = Encoding.UTF8.GetString(apdu.Apdu);
             return apduStruct;
         }

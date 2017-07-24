@@ -2041,7 +2041,6 @@ namespace Tizen.Tapi
     /// </summary>
     public class SimApdu
     {
-        private ushort _apduLength;
         private byte[] _apdu;
         private SimApdu()
         {
@@ -2050,20 +2049,10 @@ namespace Tizen.Tapi
         /// <summary>
         /// A constructor to instantiate SimApdu class with necessary parameters.
         /// </summary>
-        /// <param name="apduLength">Length of APDU.</param>
         /// <param name="apdu">APDU.</param>
-        public SimApdu(ushort apduLength, byte[] apdu)
+        public SimApdu(byte[] apdu)
         {
-            _apduLength = apduLength;
             _apdu = apdu;
-        }
-
-        internal ushort ApduLength
-        {
-            get
-            {
-                return _apduLength;
-            }
         }
 
         internal byte[] Apdu

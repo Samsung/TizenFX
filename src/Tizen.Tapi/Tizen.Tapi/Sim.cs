@@ -151,7 +151,7 @@ namespace Tizen.Tapi
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation.</exception>
         public byte SimGetApplicationList()
         {
-            IntPtr appList;
+            byte appList;
             int ret = Interop.Tapi.Sim.SimGetApplicationList(_handle, out appList);
             if (ret != (int)TapiError.Success)
             {
@@ -159,7 +159,7 @@ namespace Tizen.Tapi
                 TapiUtility.ThrowTapiException(ret, _handle, "http://tizen.org/privilege/telephony");
             }
 
-            return Marshal.ReadByte(appList);
+            return appList;
         }
 
         /// <summary>
@@ -184,6 +184,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting ICCID info: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting ICCID info, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimIccIdInfoStruct info = Marshal.PtrToStructure<SimIccIdInfoStruct>(data);
@@ -226,6 +227,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting language preference: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting language preference, " + (SimAccessResult)result));
+                        return;
                     }
 
                     task.SetResult((SimLanguagePreference)Marshal.ReadInt32(data));
@@ -269,6 +271,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in setting language preference: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in setting language preference, " + (SimAccessResult)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -310,6 +313,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting call forward info: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting call forward info, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimCallForwardResponseStruct info = Marshal.PtrToStructure<SimCallForwardResponseStruct>(data);
@@ -355,6 +359,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in setting call forward info: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in setting call forward info, " + (SimAccessResult)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -402,6 +407,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting message waiting info: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting message waiting info, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimMessageWaitingResponseStruct info = Marshal.PtrToStructure<SimMessageWaitingResponseStruct>(data);
@@ -447,6 +453,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in setting message waiting info: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in setting message waiting info, " + (SimAccessResult)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -494,6 +501,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting mailbox info: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting mailbox info, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimMailboxListStruct info = Marshal.PtrToStructure<SimMailboxListStruct>(data);
@@ -540,6 +548,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in setting mailbox info: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in setting mailbox info, " + (SimAccessResult)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -587,6 +596,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting CPHS info: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting CPHS info, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimCphsInfoStruct info = Marshal.PtrToStructure<SimCphsInfoStruct>(data);
@@ -629,6 +639,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting service table: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting service table, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimServiceTableStruct info = Marshal.PtrToStructure<SimServiceTableStruct>(data);
@@ -671,6 +682,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting MSISDN info: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting MSISDN info, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimMsisdnListStruct info = Marshal.PtrToStructure<SimMsisdnListStruct>(data);
@@ -713,6 +725,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting OPLMNWACT info: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting OPLMNWACT info, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimOplmnwactListStruct info = Marshal.PtrToStructure<SimOplmnwactListStruct>(data);
@@ -755,6 +768,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting SPN info: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting SPN info, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimSpnStruct info = Marshal.PtrToStructure<SimSpnStruct>(data);
@@ -797,6 +811,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting CPHS netname info: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting CPHS netname info, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimCphsNetNameStruct info = Marshal.PtrToStructure<SimCphsNetNameStruct>(data);
@@ -842,6 +857,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in executing authentication procedure: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in executing authentication procedure, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimAuthenticationResponseStruct info = Marshal.PtrToStructure<SimAuthenticationResponseStruct>(data);
@@ -894,6 +910,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in verifying SIM pins: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in verifying SIM pins, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimPinResultStruct info = Marshal.PtrToStructure<SimPinResultStruct>(data);
@@ -947,6 +964,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in verifying SIM puks: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in verifying SIM puks, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimPinResultStruct info = Marshal.PtrToStructure<SimPinResultStruct>(data);
@@ -1001,6 +1019,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in changing SIM pins: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in changing SIM pins, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimPinResultStruct info = Marshal.PtrToStructure<SimPinResultStruct>(data);
@@ -1054,6 +1073,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in disabling SIM facility: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in disabling SIM facility, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimFacilityResultStruct info = Marshal.PtrToStructure<SimFacilityResultStruct>(data);
@@ -1106,6 +1126,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in enabling SIM facility: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in enabling SIM facility, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimFacilityResultStruct info = Marshal.PtrToStructure<SimFacilityResultStruct>(data);
@@ -1155,6 +1176,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting SIM facility: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting SIM facility, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimFacilityInfoStruct info = Marshal.PtrToStructure<SimFacilityInfoStruct>(data);
@@ -1198,6 +1220,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting SIM lock info: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting SIM lock info, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimLockInfoStruct info = Marshal.PtrToStructure<SimLockInfoStruct>(data);
@@ -1242,6 +1265,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in setting SIM power state: " + (SimPowerSetResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in setting SIM power state, " + (SimPowerSetResult)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -1286,6 +1310,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in requesting SIM APDU: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in requesting SIM APDU, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimApduResponseStruct info = Marshal.PtrToStructure<SimApduResponseStruct>(data);
@@ -1334,6 +1359,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in requesting SIM ATR: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in requesting SIM ATR, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimAtrResponseStruct info = Marshal.PtrToStructure<SimAtrResponseStruct>(data);
@@ -1376,6 +1402,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting SIM IMPI: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting SIM IMPI, " + (SimAccessResult)result));
+                        return;
                     }
 
                     task.SetResult(Marshal.PtrToStringAnsi(data));
@@ -1417,6 +1444,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting SIM IMPU: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting SIM IMPU, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimImpuListStruct info = Marshal.PtrToStructure<SimImpuListStruct>(data);
@@ -1459,6 +1487,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting SIM domain: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting SIM domain, " + (SimAccessResult)result));
+                        return;
                     }
 
                     task.SetResult(Marshal.PtrToStringAnsi(data));
@@ -1500,6 +1529,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting SIM PCSCF: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting SIM PCSCF, " + (SimAccessResult)result));
+                        return;
                     }
 
                     SimPcscfListStruct info = Marshal.PtrToStructure<SimPcscfListStruct>(data);
@@ -1542,6 +1572,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting ISIM service table: " + (SimAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting ISIM service table, " + (SimAccessResult)result));
+                        return;
                     }
 
                     task.SetResult(Encoding.ASCII.GetBytes(Marshal.PtrToStringAnsi(data)));

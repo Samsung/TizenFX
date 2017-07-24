@@ -160,7 +160,7 @@ internal static partial class Interop
             [DllImport(Libraries.Tapi, EntryPoint = "tel_req_sim_atr")]
             internal static extern int SimRequestAtr(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_application_list")]
-            internal static extern int SimGetApplicationList(IntPtr handle, out IntPtr appList);
+            internal static extern int SimGetApplicationList(IntPtr handle, out byte appList);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_impi")]
             internal static extern int SimGetImpi(IntPtr handle, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_impu")]

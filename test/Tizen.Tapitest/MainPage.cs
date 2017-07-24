@@ -31,13 +31,26 @@ namespace XamarinForTizen.Tizen
             };
             nwBtn.Clicked += NwBtn_Clicked;
 
+            var simBtn = new Button
+            {
+                Text = "Sim",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            simBtn.Clicked += simBtn_Clicked;
+
             Content = new StackLayout
             {
                 VerticalOptions = LayoutOptions.Center,
                 Children = {
-                        commonBtn, modemBtn, nwBtn
+                        commonBtn, modemBtn, nwBtn, simBtn
                     }
             };
+        }
+
+        private async void simBtn_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SimPage());
         }
 
         private async void NwBtn_Clicked(object sender, EventArgs e)
