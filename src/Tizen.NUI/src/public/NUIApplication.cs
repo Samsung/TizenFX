@@ -29,6 +29,10 @@ namespace Tizen.NUI
     public class NUIApplication : CoreApplication
     {
         /// <summary>
+        /// The instance of ResourceManager.
+        /// </summary>
+        private static System.Resources.ResourceManager resourceManager = null;
+        /// <summary>
         /// The default constructor.
         /// </summary>
         public NUIApplication() : base(new NUICoreBackend())
@@ -175,6 +179,7 @@ namespace Tizen.NUI
             Opaque = 0,
             Transparent = 1
         }
+<<<<<<< HEAD
 
 
         internal Application ApplicationHandle
@@ -185,5 +190,21 @@ namespace Tizen.NUI
             }
         }
 
+=======
+        /// <summary>
+        /// ResourceManager to handle multilingual
+        /// </summary>
+        public static System.Resources.ResourceManager MultilingualResourceManager
+        {
+            get
+            {
+                return resourceManager;
+            }
+            set
+            {
+                resourceManager = value;
+            }
+        }
+>>>>>>> 23f9e83... Add translatable text in TextLabel, TextField, TextEditor
     }
 }
