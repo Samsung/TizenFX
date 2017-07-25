@@ -17,18 +17,18 @@
 namespace Tizen.NUI
 {
 
-    internal class ResizedSignal : global::System.IDisposable
+    internal class ImfEventSignalType : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
 
-        internal ResizedSignal(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal ImfEventSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ResizedSignal obj)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ImfEventSignalType obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
@@ -38,7 +38,7 @@ namespace Tizen.NUI
         //A Flat to check if it is already disposed.
         protected bool disposed = false;
 
-        ~ResizedSignal()
+        ~ImfEventSignalType()
         {
             if (!isDisposeQueued)
             {
@@ -78,6 +78,7 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+
             }
 
             //Release your own unmanaged resources here.
@@ -89,7 +90,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_ResizedSignal(swigCPtr);
+                    NDalicManualPINVOKE.delete_ImfEventSignalType(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -97,17 +98,16 @@ namespace Tizen.NUI
             disposed = true;
         }
 
-
         public bool Empty()
         {
-            bool ret = NDalicManualPINVOKE.ResizedSignal_Empty(swigCPtr);
+            bool ret = NDalicManualPINVOKE.ImfEventSignalType_Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = NDalicManualPINVOKE.ResizedSignal_GetConnectionCount(swigCPtr);
+            uint ret = NDalicManualPINVOKE.ImfEventSignalType_GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                NDalicManualPINVOKE.ResizedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicManualPINVOKE.ImfEventSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -125,18 +125,19 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                NDalicManualPINVOKE.ResizedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicManualPINVOKE.ImfEventSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
-        public void Emit(Size2D arg)
+        public ImfManager.ImfCallbackData Emit(ImfManager arg1, ImfManager.ImfEventData arg2)
         {
-            NDalicManualPINVOKE.ResizedSignal_Emit(swigCPtr, Size2D.getCPtr(arg));
+            ImfManager.ImfCallbackData ret = new ImfManager.ImfCallbackData(NDalicManualPINVOKE.ImfEventSignalType_Emit(swigCPtr, ImfManager.getCPtr(arg1), ImfManager.ImfEventData.getCPtr(arg2)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
-        public ResizedSignal() : this(NDalicManualPINVOKE.new_ResizedSignal(), true)
+        public ImfEventSignalType() : this(NDalicManualPINVOKE.new_ImfEventSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

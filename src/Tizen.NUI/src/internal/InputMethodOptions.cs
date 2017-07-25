@@ -17,18 +17,18 @@
 namespace Tizen.NUI
 {
 
-    internal class ResizedSignal : global::System.IDisposable
+    internal class InputMethodOptions : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
 
-        internal ResizedSignal(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal InputMethodOptions(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ResizedSignal obj)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(InputMethodOptions obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
@@ -38,7 +38,7 @@ namespace Tizen.NUI
         //A Flat to check if it is already disposed.
         protected bool disposed = false;
 
-        ~ResizedSignal()
+        ~InputMethodOptions()
         {
             if (!isDisposeQueued)
             {
@@ -46,7 +46,6 @@ namespace Tizen.NUI
                 DisposeQueue.Instance.Add(this);
             }
         }
-
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -78,6 +77,7 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+
             }
 
             //Release your own unmanaged resources here.
@@ -89,7 +89,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_ResizedSignal(swigCPtr);
+                    NDalicManualPINVOKE.delete_InputMethodOptions(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -97,48 +97,35 @@ namespace Tizen.NUI
             disposed = true;
         }
 
-
-        public bool Empty()
+        public InputMethodOptions() : this(NDalicManualPINVOKE.new_InputMethodOptions(), true)
         {
-            bool ret = NDalicManualPINVOKE.ResizedSignal_Empty(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public bool IsPassword()
+        {
+            bool ret = NDalicManualPINVOKE.InputMethodOptions_IsPassword(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public uint GetConnectionCount()
+        public void ApplyProperty(PropertyMap settings)
         {
-            uint ret = NDalicManualPINVOKE.ResizedSignal_GetConnectionCount(swigCPtr);
+            NDalicManualPINVOKE.InputMethodOptions_ApplyProperty(swigCPtr, PropertyMap.getCPtr(settings));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void RetrieveProperty(PropertyMap settings)
+        {
+            NDalicManualPINVOKE.InputMethodOptions_RetrieveProperty(swigCPtr, PropertyMap.getCPtr(settings));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public bool CompareAndSet(InputMethod.CategoryType type, InputMethodOptions options, SWIGTYPE_p_int index)
+        {
+            bool ret = NDalicManualPINVOKE.InputMethodOptions_CompareAndSet(swigCPtr, (int)type, InputMethodOptions.getCPtr(options), SWIGTYPE_p_int.getCPtr(index));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        public void Connect(System.Delegate func)
-        {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
-            {
-                NDalicManualPINVOKE.ResizedSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        public void Disconnect(System.Delegate func)
-        {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
-            {
-                NDalicManualPINVOKE.ResizedSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        public void Emit(Size2D arg)
-        {
-            NDalicManualPINVOKE.ResizedSignal_Emit(swigCPtr, Size2D.getCPtr(arg));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public ResizedSignal() : this(NDalicManualPINVOKE.new_ResizedSignal(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
     }

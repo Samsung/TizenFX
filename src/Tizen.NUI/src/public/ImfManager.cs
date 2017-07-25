@@ -13,13 +13,14 @@
 * limitations under the License.
 *
 */
+using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
-    using System;
-    using System.Runtime.InteropServices;
-
-
+    /// <summary>
+    /// Specifically manages the ecore input method framework which enables the virtual or hardware keyboards.
+    /// </summary>
     public class ImfManager : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -66,6 +67,9 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        /// <summary>
+        /// This structure is used to pass on data from the IMF regarding predictive text.
+        /// </summary>
         public class ImfEventData : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -97,6 +101,9 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <summary>
+            /// Dispose pattern
+            /// </summary>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -148,17 +155,37 @@ namespace Tizen.NUI
                 disposed = true;
             }
 
+            internal static ImfEventData GetImfEventDataFromPtr(global::System.IntPtr cPtr)
+            {
+                ImfEventData ret = new ImfEventData(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+
+            /// <summary>
+            /// Default Constructor
+            /// </summary>
             public ImfEventData() : this(NDalicManualPINVOKE.new_ImfManager_ImfEventData__SWIG_0(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
+            /// <summary>
+            /// Constructor
+            /// </summary>
+            /// <param name="aEventName">The name of the event from the IMF.</param>
+            /// <param name="aPredictiveString">The pre-edit or commit string.</param>
+            /// <param name="aCursorOffset">Start position from the current cursor position to start deleting characters.</param>
+            /// <param name="aNumberOfChars">The number of characters to delete from the cursorOffset.</param>
             public ImfEventData(ImfManager.ImfEvent aEventName, string aPredictiveString, int aCursorOffset, int aNumberOfChars) : this(NDalicManualPINVOKE.new_ImfManager_ImfEventData__SWIG_1((int)aEventName, aPredictiveString, aCursorOffset, aNumberOfChars), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
-            public string predictiveString
+            /// <summary>
+            /// The pre-edit or commit string.
+            /// </summary>
+            public string PredictiveString
             {
                 set
                 {
@@ -173,7 +200,10 @@ namespace Tizen.NUI
                 }
             }
 
-            public ImfManager.ImfEvent eventName
+            /// <summary>
+            /// The name of the event from the IMF.
+            /// </summary>
+            public ImfManager.ImfEvent EventName
             {
                 set
                 {
@@ -188,7 +218,10 @@ namespace Tizen.NUI
                 }
             }
 
-            public int cursorOffset
+            /// <summary>
+            /// Start position from the current cursor position to start deleting characters.
+            /// </summary>
+            public int CursorOffset
             {
                 set
                 {
@@ -203,7 +236,10 @@ namespace Tizen.NUI
                 }
             }
 
-            public int numberOfChars
+            /// <summary>
+            /// Number of characters to delete from the cursorOffset.
+            /// </summary>
+            public int NumberOfChars
             {
                 set
                 {
@@ -220,6 +256,9 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Data required by IMF from the callback.
+        /// </summary>
         public class ImfCallbackData : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -251,6 +290,9 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <summary>
+            /// Dispose pattern
+            /// </summary>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -302,17 +344,37 @@ namespace Tizen.NUI
                 disposed = true;
             }
 
+            internal static ImfCallbackData GetImfCallbackDataFromPtr(global::System.IntPtr cPtr)
+            {
+                ImfCallbackData ret = new ImfCallbackData(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+
+            /// <summary>
+            /// Default Constructor
+            /// </summary>
             public ImfCallbackData() : this(NDalicManualPINVOKE.new_ImfManager_ImfCallbackData__SWIG_0(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
+            /// <summary>
+            /// Constructor
+            /// </summary>
+            /// <param name="aUpdate">True if cursor position needs to be updated.</param>
+            /// <param name="aCursorPosition">New position of cursor.</param>
+            /// <param name="aCurrentText">Current text string.</param>
+            /// <param name="aPreeditResetRequired">Flag if preedit reset is required.</param>
             public ImfCallbackData(bool aUpdate, int aCursorPosition, string aCurrentText, bool aPreeditResetRequired) : this(NDalicManualPINVOKE.new_ImfManager_ImfCallbackData__SWIG_1(aUpdate, aCursorPosition, aCurrentText, aPreeditResetRequired), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
-            public string currentText
+            /// <summary>
+            /// Current text string.
+            /// </summary>
+            public string CurrentText
             {
                 set
                 {
@@ -327,7 +389,10 @@ namespace Tizen.NUI
                 }
             }
 
-            public int cursorPosition
+            /// <summary>
+            /// Current text string.
+            /// </summary>
+            public int CursorPosition
             {
                 set
                 {
@@ -342,7 +407,10 @@ namespace Tizen.NUI
                 }
             }
 
-            public bool update
+            /// <summary>
+            /// If cursor position needs to be updated.
+            /// </summary>
+            public bool Update
             {
                 set
                 {
@@ -357,7 +425,10 @@ namespace Tizen.NUI
                 }
             }
 
-            public bool preeditResetRequired
+            /// <summary>
+            /// Flag if preedit reset is required.
+            /// </summary>
+            public bool PreeditResetRequired
             {
                 set
                 {
@@ -374,6 +445,10 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Retrieve a handle to the instance of ImfManager.
+        /// </summary>
+        /// <returns>A handle to the ImfManager.</returns>
         public static ImfManager Get()
         {
             ImfManager ret = new ImfManager(NDalicManualPINVOKE.ImfManager_Get(), true);
@@ -381,18 +456,32 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Activate the IMF.<br/>
+        /// It means that the text editing is started at somewhere.<br/>
+        /// If the H/W keyboard isn't connected then it will show the virtual keyboard.
+        /// </summary>
         public void Activate()
         {
             NDalicManualPINVOKE.ImfManager_Activate(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Deactivate the IMF.<br/>
+        /// It means that the text editing is finished at somewhere.
+        /// </summary>
         public void Deactivate()
         {
             NDalicManualPINVOKE.ImfManager_Deactivate(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Get the restoration status, which controls if the keyboard is restored after the focus lost then regained.<br/>
+        /// If true then keyboard will be restored (activated) after focus is regained.
+        /// </summary>
+        /// <returns>Restoration status.</returns>
         public bool RestoreAfterFocusLost()
         {
             bool ret = NDalicManualPINVOKE.ImfManager_RestoreAfterFocusLost(swigCPtr);
@@ -400,30 +489,48 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Set status whether the IMF has to restore the keyboard after losing focus.
+        /// </summary>
+        /// <param name="toggle">True means that keyboard should be restored after focus lost and regained.</param>
         public void SetRestoreAfterFocusLost(bool toggle)
         {
             NDalicManualPINVOKE.ImfManager_SetRestoreAfterFocusLost(swigCPtr, toggle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Send message reset the pred-edit state / imf module.
+        /// </summary>
         public new void Reset()
         {
             NDalicManualPINVOKE.ImfManager_Reset(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Notifies IMF context that the cursor position has changed, required for features like auto-capitalisation.
+        /// </summary>
         public void NotifyCursorPosition()
         {
             NDalicManualPINVOKE.ImfManager_NotifyCursorPosition(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets cursor position stored in VirtualKeyboard, this is required by the IMF context.
+        /// </summary>
+        /// <param name="cursorPosition">Position of cursor.</param>
         public void SetCursorPosition(uint cursorPosition)
         {
             NDalicManualPINVOKE.ImfManager_SetCursorPosition(swigCPtr, cursorPosition);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets cursor position stored in VirtualKeyboard, this is required by the IMF context.
+        /// </summary>
+        /// <returns>Current position of cursor</returns>
         public uint GetCursorPosition()
         {
             uint ret = NDalicManualPINVOKE.ImfManager_GetCursorPosition(swigCPtr);
@@ -431,12 +538,20 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Method to store the string required by the IMF, this is used to provide predictive word suggestions.
+        /// </summary>
+        /// <param name="text">The text string surrounding the current cursor point.</param>
         public void SetSurroundingText(string text)
         {
             NDalicManualPINVOKE.ImfManager_SetSurroundingText(swigCPtr, text);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets current text string set within the IMF manager, this is used to offer predictive suggestions.
+        /// </summary>
+        /// <returns>Surrounding text.</returns>
         public string GetSurroundingText()
         {
             string ret = NDalicManualPINVOKE.ImfManager_GetSurroundingText(swigCPtr);
@@ -444,12 +559,20 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Notifies IMF context that text input is set to multi line or not.
+        /// </summary>
+        /// <param name="multiLine">True if multiline text input is used.</param>
         public void NotifyTextInputMultiLine(bool multiLine)
         {
             NDalicManualPINVOKE.ImfManager_NotifyTextInputMultiLine(swigCPtr, multiLine);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Returns text direction of the keyboard's current input language.
+        /// </summary>
+        /// <returns>The direction of the text.</returns>
         public ImfManager.TextDirection GetTextDirection()
         {
             ImfManager.TextDirection ret = (ImfManager.TextDirection)NDalicManualPINVOKE.ImfManager_GetTextDirection(swigCPtr);
@@ -457,6 +580,14 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Provides size and position of keyboard.<br/>
+        /// Position is relative to whether keyboard is visible or not.<br/>
+        /// If keyboard is not visible then position will be off the screen.<br/>
+        /// If keyboard is not being shown when this method is called the keyboard is partially setup (IMFContext) to get<br/>
+        /// the values then taken down.  So ideally GetInputMethodArea() should be called after Show().
+        /// </summary>
+        /// <returns>Rectangle which is keyboard panel x, y, width, height</returns>
         public Rectangle GetInputMethodArea()
         {
             Rectangle ret = new Rectangle(NDalicManualPINVOKE.ImfManager_GetInputMethodArea(swigCPtr), true);
@@ -464,24 +595,36 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void ApplyOptions(SWIGTYPE_p_InputMethodOptions options)
+        internal void ApplyOptions(InputMethodOptions options)
         {
-            NDalicManualPINVOKE.ImfManager_ApplyOptions(swigCPtr, SWIGTYPE_p_InputMethodOptions.getCPtr(options));
+            NDalicManualPINVOKE.ImfManager_ApplyOptions(swigCPtr, InputMethodOptions.getCPtr(options));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets up the input-panel specific data.
+        /// </summary>
+        /// <param name="text">The specific data to be set to the input panel.</param>
         public void SetInputPanelUserData(string text)
         {
             NDalicManualPINVOKE.ImfManager_SetInputPanelUserData(swigCPtr, text);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void GetInputPanelUserData(string text)
+        /// <summary>
+        /// Gets the specific data of the current active input panel.
+        /// </summary>
+        /// <param name="text">The specific data to be got from the input panel.</param>
+        public void GetInputPanelUserData(out string text)
         {
-            NDalicManualPINVOKE.ImfManager_GetInputPanelUserData(swigCPtr, text);
+            NDalicManualPINVOKE.ImfManager_GetInputPanelUserData(swigCPtr, out text);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the state of the current active input panel.
+        /// </summary>
+        /// <returns>The state of the input panel.</returns>
         public ImfManager.State GetInputPanelState()
         {
             ImfManager.State ret = (ImfManager.State)NDalicManualPINVOKE.ImfManager_GetInputPanelState(swigCPtr);
@@ -489,104 +632,77 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the return key on the input panel to be visible or invisible.<br/>
+        /// The default is true.
+        /// </summary>
+        /// <param name="visible">True if the return key is visible(enabled), false otherwise.</param>
         public void SetReturnKeyState(bool visible)
         {
             NDalicManualPINVOKE.ImfManager_SetReturnKeyState(swigCPtr, visible);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Enable to show the input panel automatically when focused.
+        /// </summary>
+        /// <param name="enabled">If true, the input panel will be shown when focused.</param>
         public void AutoEnableInputPanel(bool enabled)
         {
             NDalicManualPINVOKE.ImfManager_AutoEnableInputPanel(swigCPtr, enabled);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Shows the input panel.
+        /// </summary>
         public void ShowInputPanel()
         {
             NDalicManualPINVOKE.ImfManager_ShowInputPanel(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Hides the input panel.
+        /// </summary>
         public void HideInputPanel()
         {
             NDalicManualPINVOKE.ImfManager_HideInputPanel(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /*
-        public SWIGTYPE_p_Dali__SignalT_void_fDali__ImfManager_RF_t ActivatedSignal()
+        /// <summary>
+        /// Gets the keyboard type.<br/>
+        /// The default keyboard type is SoftwareKeyboard.
+        /// </summary>
+        /// <returns>The keyboard type</returns>
+        public ImfManager.KeyboardType GetKeyboardType()
         {
-            SWIGTYPE_p_Dali__SignalT_void_fDali__ImfManager_RF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__ImfManager_RF_t(NDalicManualPINVOKE.ImfManager_ActivatedSignal(swigCPtr), false);
+            ImfManager.KeyboardType ret = (ImfManager.KeyboardType)NDalicManualPINVOKE.ImfManager_GetKeyboardType(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public SWIGTYPE_p_Dali__SignalT_Dali__ImfManager__ImfCallbackData_fDali__ImfManager_R_Dali__ImfManager__ImfEventData_const_RF_t EventReceivedSignal()
+        /// <summary>
+        /// Gets the current language locale of the input panel.<br/>
+        /// Ex) en_US, en_GB, en_PH, fr_FR, ...
+        /// </summary>
+        /// <returns>The current language locale of the input panel.</returns>
+        public string GetInputPanelLocale()
         {
-            SWIGTYPE_p_Dali__SignalT_Dali__ImfManager__ImfCallbackData_fDali__ImfManager_R_Dali__ImfManager__ImfEventData_const_RF_t ret = new SWIGTYPE_p_Dali__SignalT_Dali__ImfManager__ImfCallbackData_fDali__ImfManager_R_Dali__ImfManager__ImfEventData_const_RF_t(NDalicManualPINVOKE.ImfManager_EventReceivedSignal(swigCPtr), false);
+            string ret = NDalicManualPINVOKE.ImfManager_GetInputPanelLocale(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public WindowFocusSignalType StatusChangedSignal()
-        {
-            WindowFocusSignalType ret = new WindowFocusSignalType(NDalicManualPINVOKE.ImfManager_StatusChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public VoidSignal ResizedSignal()
-        {
-            VoidSignal ret = new VoidSignal(NDalicManualPINVOKE.ImfManager_ResizedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public VoidSignal LanguageChangedSignal()
-        {
-            VoidSignal ret = new VoidSignal(NDalicManualPINVOKE.ImfManager_LanguageChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-        */
-
-        public ImfManager() : this(NDalicManualPINVOKE.new_ImfManager__SWIG_0(), true)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public ImfManager() : this(NDalicManualPINVOKE.new_ImfManager(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal ImfManager(SWIGTYPE_p_Dali__Internal__Adaptor__ImfManager imfManager) : this(NDalicManualPINVOKE.new_ImfManager__SWIG_1(SWIGTYPE_p_Dali__Internal__Adaptor__ImfManager.getCPtr(imfManager)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public enum TextDirection
-        {
-            LeftToRight,
-            RightToLeft
-        }
-
-        public enum ImfEvent
-        {
-            VOID,
-            PREEDIT,
-            COMMIT,
-            DELETESURROUNDING,
-            GETSURROUNDING,
-            PRIVATECOMMAND
-        }
-
-        public enum State
-        {
-            DEFAULT,
-            SHOW,
-            HIDE,
-            WILL_SHOW
-        }
-
-
-
-        ///////////////////////////////////////////////////////////////////////////////
         internal static ImfManager GetImfManagerFromPtr(global::System.IntPtr cPtr)
         {
             ImfManager ret = new ImfManager(cPtr, false);
@@ -594,6 +710,9 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// ImfManager activated event arguments.
+        /// </summary>
         public class ImfManagerActivatedEventArgs : EventArgs
         {
             public ImfManager ImfManager
@@ -609,6 +728,9 @@ namespace Tizen.NUI
 
         private event EventHandler<ImfManagerActivatedEventArgs> _imfManagerActivatedEventHandler;
 
+        /// <summary>
+        /// ImfManager activated.
+        /// </summary>
         public event EventHandler<ImfManagerActivatedEventArgs> ImfManagerActivated
         {
             add
@@ -644,14 +766,16 @@ namespace Tizen.NUI
             }
         }
 
-        public ActivatedSignalType ActivatedSignal()
+        internal ActivatedSignalType ActivatedSignal()
         {
             ActivatedSignalType ret = new ActivatedSignalType(NDalicManualPINVOKE.ImfManager_ActivatedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        // EventReceivedSignal
+        /// <summary>
+        /// ImfManager event received event arguments.
+        /// </summary>
         public class ImfManagerEventReceivedEventArgs : EventArgs
         {
             public ImfManager ImfManager
@@ -659,13 +783,22 @@ namespace Tizen.NUI
                 get;
                 set;
             }
+
+            public ImfEventData ImfEventData
+            {
+                get;
+                set;
+            }
         }
 
-        private delegate void ImfManagerEventReceivedEventCallbackType(global::System.IntPtr data);
+        private delegate ImfCallbackData ImfManagerEventReceivedEventCallbackType(global::System.IntPtr imfManager, global::System.IntPtr imfEventData);
         private ImfManagerEventReceivedEventCallbackType _imfManagerEventReceivedEventCallback;
 
-        private event EventHandler<ImfManagerEventReceivedEventArgs> _imfManagerEventReceivedEventHandler;
-        public event EventHandler<ImfManagerEventReceivedEventArgs> ImfManagerEventReceived
+        private event EventHandlerWithReturnType<object, ImfManagerEventReceivedEventArgs, ImfCallbackData> _imfManagerEventReceivedEventHandler;
+        /// <summary>
+        /// ImfManager event received.
+        /// </summary>
+        public event EventHandlerWithReturnType<object, ImfManagerEventReceivedEventArgs, ImfCallbackData> ImfManagerEventReceived
         {
             add
             {
@@ -688,40 +821,46 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnImfManagerEventReceived(global::System.IntPtr data)
+        private ImfCallbackData OnImfManagerEventReceived(global::System.IntPtr imfManager, global::System.IntPtr imfEventData)
         {
             ImfManagerEventReceivedEventArgs e = new ImfManagerEventReceivedEventArgs();
 
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
+            e.ImfManager = ImfManager.GetImfManagerFromPtr(imfManager);
+            e.ImfEventData = ImfEventData.GetImfEventDataFromPtr(imfEventData);
 
             if (_imfManagerEventReceivedEventHandler != null)
             {
-                _imfManagerEventReceivedEventHandler(this, e);
+                return _imfManagerEventReceivedEventHandler(this, e);
             }
+            return null;
         }
 
-        public ImfEventSignalType EventReceivedSignal()
+        internal ImfEventSignalType EventReceivedSignal()
         {
             ImfEventSignalType ret = new ImfEventSignalType(NDalicManualPINVOKE.ImfManager_EventReceivedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        // StatusChangedSignal
+        /// <summary>
+        /// ImfManager status changed event arguments.
+        /// </summary>
         public class ImfManagerStatusChangedEventArgs : EventArgs
         {
-            public ImfManager ImfManager
+            public bool StatusChanged
             {
                 get;
                 set;
             }
         }
 
-        private delegate void ImfManagerStatusChangedEventCallbackType(global::System.IntPtr data);
+        private delegate void ImfManagerStatusChangedEventCallbackType(bool statusChanged);
         private ImfManagerStatusChangedEventCallbackType _imfManagerStatusChangedEventCallback;
 
         private event EventHandler<ImfManagerStatusChangedEventArgs> _imfManagerStatusChangedEventHandler;
-
+        /// <summary>
+        /// ImfManager status changed.
+        /// </summary>
         public event EventHandler<ImfManagerStatusChangedEventArgs> ImfManagerStatusChanged
         {
             add
@@ -745,11 +884,11 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnImfManagerStatusChanged(global::System.IntPtr data)
+        private void OnImfManagerStatusChanged(bool statusChanged)
         {
             ImfManagerStatusChangedEventArgs e = new ImfManagerStatusChangedEventArgs();
 
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
+            e.StatusChanged = statusChanged;
 
             if (_imfManagerStatusChangedEventHandler != null)
             {
@@ -757,29 +896,21 @@ namespace Tizen.NUI
             }
         }
 
-        public StatusSignalType StatusChangedSignal()
+        internal StatusSignalType StatusChangedSignal()
         {
             StatusSignalType ret = new StatusSignalType(NDalicManualPINVOKE.ImfManager_StatusChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        // ResizedSignal
-        public class ImfManagerResizedEventArgs : EventArgs
-        {
-            public ImfManager ImfManager
-            {
-                get;
-                set;
-            }
-        }
-
-        private delegate void ImfManagerResizedEventCallbackType(global::System.IntPtr data);
+        private delegate void ImfManagerResizedEventCallbackType();
         private ImfManagerResizedEventCallbackType _imfManagerResizedEventCallback;
 
-        private event EventHandler<ImfManagerResizedEventArgs> _imfManagerResizedEventHandler;
-
-        public event EventHandler<ImfManagerResizedEventArgs> ImfManagerResized
+        private event EventHandler _imfManagerResizedEventHandler;
+        /// <summary>
+        /// ImfManager resized.
+        /// </summary>
+        public event EventHandler ImfManagerResized
         {
             add
             {
@@ -802,41 +933,29 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnImfManagerResized(global::System.IntPtr data)
+        private void OnImfManagerResized()
         {
-            ImfManagerResizedEventArgs e = new ImfManagerResizedEventArgs();
-
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
-
             if (_imfManagerResizedEventHandler != null)
             {
-                _imfManagerResizedEventHandler(this, e);
+                _imfManagerResizedEventHandler(this, null);
             }
         }
 
-        public ImfVoidSignalType ResizedSignal()
+        internal ImfVoidSignalType ResizedSignal()
         {
             ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_ResizedSignal(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        // LanguageChangedSignal
-        public class ImfManagerLanguageChangedEventArgs : EventArgs
-        {
-            public ImfManager ImfManager
-            {
-                get;
-                set;
-            }
-        }
-
-        private delegate void ImfManagerLanguageChangedEventCallbackType(global::System.IntPtr data);
+        private delegate void ImfManagerLanguageChangedEventCallbackType();
         private ImfManagerLanguageChangedEventCallbackType _imfManagerLanguageChangedEventCallback;
 
-        private event EventHandler<ImfManagerLanguageChangedEventArgs> _imfManagerLanguageChangedEventHandler;
-
-        public event EventHandler<ImfManagerLanguageChangedEventArgs> ImfManagerLanguageChanged
+        private event EventHandler _imfManagerLanguageChangedEventHandler;
+        /// <summary>
+        /// ImfManager language changed.
+        /// </summary>
+        public event EventHandler ImfManagerLanguageChanged
         {
             add
             {
@@ -859,577 +978,164 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnImfManagerLanguageChanged(global::System.IntPtr data)
+        private void OnImfManagerLanguageChanged()
         {
-            ImfManagerLanguageChangedEventArgs e = new ImfManagerLanguageChangedEventArgs();
-
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
-
             if (_imfManagerLanguageChangedEventHandler != null)
             {
-                _imfManagerLanguageChangedEventHandler(this, e);
+                _imfManagerLanguageChangedEventHandler(this, null);
             }
         }
 
-        public ImfVoidSignalType LanguageChangedSignal()
+        internal ImfVoidSignalType LanguageChangedSignal()
         {
             ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_LanguageChangedSignal(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-    }
 
-    ///////////////////////////////////////////////////////////////////////////////
-    internal class SWIGTYPE_p_Dali__Internal__Adaptor__ImfManager
-    {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        internal SWIGTYPE_p_Dali__Internal__Adaptor__ImfManager(global::System.IntPtr cPtr, bool futureUse)
+        /// <summary>
+        /// ImfManager keyboard type changed event arguments.
+        /// </summary>
+        public class ImfKeyboardTypeChangedEventArgs : EventArgs
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        protected SWIGTYPE_p_Dali__Internal__Adaptor__ImfManager()
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_Dali__Internal__Adaptor__ImfManager obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-    }
-
-    internal class SWIGTYPE_p_InputMethodOptions
-    {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        internal SWIGTYPE_p_InputMethodOptions(global::System.IntPtr cPtr, bool futureUse)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        protected SWIGTYPE_p_InputMethodOptions()
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_InputMethodOptions obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    public class ActivatedSignalType : global::System.IDisposable
-    {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        protected bool swigCMemOwn;
-
-        internal ActivatedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
-        {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ActivatedSignalType obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
-        protected bool disposed = false;
-
-
-        ~ActivatedSignalType()
-        {
-            if (!isDisposeQueued)
+            public KeyboardType KeyboardType
             {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
+                get;
+                set;
             }
         }
 
-        public void Dispose()
+        private delegate void ImfKeyboardTypeChangedEventCallbackType(KeyboardType type);
+        private ImfKeyboardTypeChangedEventCallbackType _imfKeyboardTypeChangedEventCallback;
+
+        private event EventHandler<ImfKeyboardTypeChangedEventArgs> _imfKeyboardTypeChangedEventHandler;
+        /// <summary>
+        /// ImfManager keyboard type changed.
+        /// </summary>
+        public event EventHandler<ImfKeyboardTypeChangedEventArgs> ImfKeyboardTypeChanged
         {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
+            add
             {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
+                if (_imfKeyboardTypeChangedEventHandler == null)
                 {
-                    swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_ActivatedSignalType(swigCPtr);
+                    _imfKeyboardTypeChangedEventCallback = OnImfKeyboardTypeChanged;
+                    KeyboardTypeChangedSignal().Connect(_imfKeyboardTypeChangedEventCallback);
                 }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+                _imfKeyboardTypeChangedEventHandler += value;
             }
-
-            disposed = true;
-        }
-
-        public bool Empty()
-        {
-            bool ret = NDalicManualPINVOKE.ActivatedSignalType_Empty(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public uint GetConnectionCount()
-        {
-            uint ret = NDalicManualPINVOKE.ActivatedSignalType_GetConnectionCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public void Connect(System.Delegate func)
-        {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
+            remove
             {
-                NDalicManualPINVOKE.ActivatedSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
+                _imfKeyboardTypeChangedEventHandler -= value;
 
-        public void Disconnect(System.Delegate func)
-        {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
-            {
-                NDalicManualPINVOKE.ActivatedSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        public void Emit(bool arg)
-        {
-            NDalicManualPINVOKE.ActivatedSignalType_Emit(swigCPtr, arg);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public ActivatedSignalType() : this(NDalicManualPINVOKE.new_ActivatedSignalType(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    public class ImfEventSignalType : global::System.IDisposable
-    {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        protected bool swigCMemOwn;
-
-        internal ImfEventSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
-        {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ImfEventSignalType obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
-        protected bool disposed = false;
-
-
-        ~ImfEventSignalType()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
-
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
+                if (_imfKeyboardTypeChangedEventHandler == null && _imfKeyboardTypeChangedEventCallback != null)
                 {
-                    swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_ImfEventSignalType(swigCPtr);
+                    KeyboardTypeChangedSignal().Disconnect(_imfKeyboardTypeChangedEventCallback);
                 }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
-
-            disposed = true;
         }
 
-        public bool Empty()
+        private void OnImfKeyboardTypeChanged(KeyboardType type)
         {
-            bool ret = NDalicManualPINVOKE.ImfEventSignalType_Empty(swigCPtr);
+            ImfKeyboardTypeChangedEventArgs e = new ImfKeyboardTypeChangedEventArgs();
+
+            e.KeyboardType = type;
+
+            if (_imfKeyboardTypeChangedEventHandler != null)
+            {
+                _imfKeyboardTypeChangedEventHandler(this, e);
+            }
+        }
+
+        internal KeyboardTypeSignalType KeyboardTypeChangedSignal()
+        {
+            KeyboardTypeSignalType ret = new KeyboardTypeSignalType(NDalicManualPINVOKE.ImfManager_KeyboardTypeChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public uint GetConnectionCount()
+        /// <summary>
+        /// The direction of text.
+        /// </summary>
+        public enum TextDirection
         {
-            uint ret = NDalicManualPINVOKE.ImfEventSignalType_GetConnectionCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            /// <summary>
+            /// Left to right.
+            /// </summary>
+            LeftToRight,
+            /// <summary>
+            /// Right to left.
+            /// </summary>
+            RightToLeft
         }
 
-        public void Connect(System.Delegate func)
+        /// <summary>
+        /// Events that are generated by the IMF.
+        /// </summary>
+        public enum ImfEvent
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
-            {
-                NDalicManualPINVOKE.ImfEventSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
+            /// <summary>
+            /// No event.
+            /// </summary>
+            Void,
+            /// <summary>
+            /// Pre-Edit changed.
+            /// </summary>
+            Preedit,
+            /// <summary>
+            /// Commit recieved.
+            /// </summary>
+            Commit,
+            /// <summary>
+            /// Event to delete a range of characters from the string.
+            /// </summary>
+            DeleteSurrounding,
+            /// <summary>
+            /// Event to query string and cursor position.
+            /// </summary>
+            GetSurrounding,
+            /// <summary>
+            /// Private command sent from the input panel.
+            /// </summary>
+            PrivateCommand
         }
 
-        public void Disconnect(System.Delegate func)
+        /// <summary>
+        /// Enumeration for state of the input panel.
+        /// </summary>
+        public enum State
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
-            {
-                NDalicManualPINVOKE.ImfEventSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
+            /// <summary>
+            /// Unknown state.
+            /// </summary>
+            Default = 0,
+            /// <summary>
+            /// Input panel is shown.
+            /// </summary>
+            Show,
+            /// <summary>
+            /// Input panel is hidden.
+            /// </summary>
+            Hide,
+            /// <summary>
+            /// Input panel in process of being shown.
+            /// </summary>
+            WillShow
         }
 
-        public void Emit(bool arg1, bool arg2)
+        /// <summary>
+        /// Enumeration for the type of Keyboard.
+        /// </summary>
+        public enum KeyboardType
         {
-            NDalicManualPINVOKE.ImfEventSignalType_Emit(swigCPtr, arg1, arg2);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            /// <summary>
+            /// Software keyboard (Virtual keyboard) is default.
+            /// </summary>
+            SoftwareKeyboard,
+            /// <summary>
+            /// Hardware keyboard.
+            /// </summary>
+            HardwareKeyboard
         }
-
-        public ImfEventSignalType() : this(NDalicManualPINVOKE.new_ImfEventSignalType(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
     }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    public class StatusSignalType : global::System.IDisposable
-    {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        protected bool swigCMemOwn;
-
-        internal StatusSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
-        {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(StatusSignalType obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
-        protected bool disposed = false;
-
-
-        ~StatusSignalType()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
-
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_StatusSignalType(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            disposed = true;
-        }
-
-        public bool Empty()
-        {
-            bool ret = NDalicManualPINVOKE.StatusSignalType_Empty(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public uint GetConnectionCount()
-        {
-            uint ret = NDalicManualPINVOKE.StatusSignalType_GetConnectionCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public void Connect(System.Delegate func)
-        {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
-            {
-                NDalicManualPINVOKE.StatusSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        public void Disconnect(System.Delegate func)
-        {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
-            {
-                NDalicManualPINVOKE.StatusSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        public void Emit(bool arg)
-        {
-            NDalicManualPINVOKE.StatusSignalType_Emit(swigCPtr, arg);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public StatusSignalType() : this(NDalicManualPINVOKE.new_StatusSignalType(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    public class ImfVoidSignalType : global::System.IDisposable
-    {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        protected bool swigCMemOwn;
-
-        internal ImfVoidSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
-        {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ImfVoidSignalType obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
-        protected bool disposed = false;
-
-
-        ~ImfVoidSignalType()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
-
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_ImfVoidSignalType(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            disposed = true;
-        }
-
-        public bool Empty()
-        {
-            bool ret = NDalicManualPINVOKE.ImfVoidSignalType_Empty(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public uint GetConnectionCount()
-        {
-            uint ret = NDalicManualPINVOKE.ImfVoidSignalType_GetConnectionCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public void Connect(System.Delegate func)
-        {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
-            {
-                NDalicManualPINVOKE.ImfVoidSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        public void Disconnect(System.Delegate func)
-        {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
-            {
-                NDalicManualPINVOKE.ImfVoidSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        public void Emit()
-        {
-            NDalicManualPINVOKE.ImfVoidSignalType_Emit(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public ImfVoidSignalType() : this(NDalicManualPINVOKE.new_ImfVoidSignalType(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-    }
-
 }
