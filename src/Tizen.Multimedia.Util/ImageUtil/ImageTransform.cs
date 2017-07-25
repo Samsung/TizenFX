@@ -338,7 +338,7 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <param name="flip">The value how to flip an image.</param>
         /// <exception cref="ArgumentException"><paramref name="flip"/> is invalid.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="flip"/> is <see cref="Flip.None"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="flip"/> is <see cref="Flips.None"/>.</exception>
         public FlipTransform(Flips flip)
         {
             Flip = flip;
@@ -348,7 +348,7 @@ namespace Tizen.Multimedia.Util
         /// Gets or sets the value how to rotate an image.
         /// </summary>
         /// <exception cref="ArgumentException"><paramref name="value"/> is invalid.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is <see cref="Flip.None"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is <see cref="Flips.None"/>.</exception>
         public Flips Flip
         {
             get { return _flip; }

@@ -29,7 +29,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Retrieves supported colorspaces for a <see cref="ImageFormat"/> that represents formats for <see cref="ImageEncoder"/> and <see cref="ImageDecoder"/>.
         /// </summary>
-        /// <returns>An IEnumerable of <see="ColorSpace"/> representing the supported color-spaces.</returns>
+        /// <returns>An IEnumerable of <see cref="ColorSpace"/> representing the supported color-spaces.</returns>
         /// <param name="format">The <see cref="ImageFormat"/>.</param>
         /// <exception cref="ArgumentException"><paramref name="format"/> is invalid.</exception>
         public static IEnumerable<ColorSpace> GetSupportedColorSpaces(ImageFormat format)
