@@ -60,6 +60,10 @@ namespace Tizen.NUI.BaseComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
+
+                    //Unreference this instance from Registry.
+                    Registry.Unregister(this);
+
                     NDalicPINVOKE.delete_VideoView(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
