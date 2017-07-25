@@ -367,7 +367,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.get</privilege>
-        public static IEnumerable<Alarm> GetAllSceduledAlarms()
+        public static IEnumerable<Alarm> GetAllScheduledAlarms()
         {
             List<Alarm> alarms = new List<Alarm>();
             Interop.Alarm.RegisteredAlarmCallback callback = (int alarmId, IntPtr userData) =>

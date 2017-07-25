@@ -26,7 +26,7 @@ namespace Tizen.Applications
     /// public class AlarmExample
     /// {
     ///     /// ...
-    ///     IEnumerable &lt; Alarm &gt; alarms = AlarmManager.GetAllSceduledAlarms();
+    ///     IEnumerable &lt; Alarm &gt; alarms = AlarmManager.GetAllScheduledAlarms();
     ///     alarms[0].Cancel();
     /// }
     /// </code>
