@@ -2125,19 +2125,9 @@ namespace Tizen.NUI.BaseComponents
 
         /*internal View GetParent()
         {
-            View ret;
             IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
 
-            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
-
-            if(basehandle is Layer)
-            {
-                ret = new View(cPtr,false);
-            }
-            else
-            {
-                ret = basehandle as View;
-            }
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
