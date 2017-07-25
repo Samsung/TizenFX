@@ -129,12 +129,22 @@ namespace Tizen.Multimedia
             UnsubscribeEventTrigger(Handle, source.StreamId).Validate("Failed to unsubscribe event trigger");
         }
 
+
+        /// <summary>
+        /// Releases all resources used by the <see cref="SurveillanceEngine"/> object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases the resources used by the <see cref="SurveillanceEngine"/> object.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

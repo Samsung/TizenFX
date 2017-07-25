@@ -51,6 +51,10 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3</since_tizen>
         public BarcodeType Type { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <value>A string that represents the current object.</value>
         public override string ToString() =>
             $"Region={Region}, Message={Message}, Type={Type.ToString()}";
     }

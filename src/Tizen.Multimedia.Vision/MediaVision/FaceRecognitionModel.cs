@@ -41,7 +41,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FaceRecognitionModel"/> class withe the specified path.
+        /// Initializes a new instance of the <see cref="FaceRecognitionModel"/> class with the specified path.
         /// </summary>
         /// <remarks>
         /// Models have been saved by <see cref="Save()"/> can be loaded.
@@ -269,12 +269,21 @@ namespace Tizen.Multimedia
                 Validate("Failed to learn");
         }
 
+        /// <summary>
+        /// Releases all resources used by the <see cref="FaceRecognitionModel"/> object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases the resources used by the <see cref="FaceRecognitionModel"/> object.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

@@ -32,7 +32,7 @@ namespace Tizen.Multimedia
         /// <param name="modelPath">Path to the face recognition model.</param>
         /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen>3</since_tizen>
         public PersonRecognitionConfiguration(string modelPath)
         {
             FaceRecognitionModelPath = modelPath;
@@ -41,9 +41,9 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets face recognition model file path.
         /// </summary>
-        /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="PersonRecognitionConfiguration"/> already has been disposed of.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen>3</since_tizen>
         public string FaceRecognitionModelPath
         {
             get

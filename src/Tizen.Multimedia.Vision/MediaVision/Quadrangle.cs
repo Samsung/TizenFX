@@ -48,6 +48,10 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3</since_tizen>
         public Point[] Points { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <value>A string that represents the current object.</value>
         public override string ToString() =>
             $"[{{{Points[0].ToString()}}}, {{{Points[1].ToString()}}}, {{{Points[2].ToString()}}}, {{{Points[3].ToString()}}}]";
     }

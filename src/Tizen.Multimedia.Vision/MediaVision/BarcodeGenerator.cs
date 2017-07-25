@@ -216,7 +216,7 @@ namespace Tizen.Multimedia
         /// <param name="qrConfig">The <see cref="QrConfiguration"/> instance.</param>
         /// <param name="imageConfig">The <see cref="BarcodeImageConfiguration"/> that contains information about the file to be generated.</param>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="messsage"/> is null.\n
+        ///     <paramref name="message"/> is null.\n
         ///     -or-\n
         ///     <paramref name="qrConfig"/> is null.\n
         ///     -or-\n
@@ -250,7 +250,7 @@ namespace Tizen.Multimedia
         ///     information about the file to be generated.</param>
         /// <param name="config">The configuration of the barcode generator. This value can be null.</param>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="messsage"/> is null.\n
+        ///     <paramref name="message"/> is null.\n
         ///     -or-\n
         ///     <paramref name="qrConfig"/> is null.\n
         ///     -or-\n
@@ -297,7 +297,7 @@ namespace Tizen.Multimedia
         /// <param name="imageConfig">The <see cref="BarcodeImageConfiguration"/> that contains
         ///     information about the file to be generated.</param>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="messsage"/> is null.\n
+        ///     <paramref name="message"/> is null.\n
         ///     -or-\n
         ///     <paramref name="imageConfig"/> is null.
         /// </exception>
@@ -327,7 +327,7 @@ namespace Tizen.Multimedia
         ///     information about the file to be generated.</param>
         /// <param name="config">The configuration of the barcode generator. This value can be null.</param>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="messsage"/> is null.\n
+        ///     <paramref name="message"/> is null.\n
         ///     -or-\n
         ///     <paramref name="imageConfig"/> is null.
         /// </exception>
