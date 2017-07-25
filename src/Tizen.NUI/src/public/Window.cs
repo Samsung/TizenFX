@@ -1158,24 +1158,37 @@ namespace Tizen.NUI
 
         public class ResizedEventArgs : EventArgs
         {
-            Uint16Pair _windowSize;
+            int _width;
+            int _height;
 
-            public Uint16Pair WindowSize
+            public int Width
             {
                 get
                 {
-                    return _windowSize;
+                    return _width;
                 }
                 set
                 {
-                    _windowSize = value;
+                    _width = value;
+                }
+            }
+
+            public int Height
+            {
+                get
+                {
+                    return _height;
+                }
+                set
+                {
+                    _height = value;
                 }
             }
         }
 
         private WindowResizedEventCallbackType _windowResizedEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WindowResizedEventCallbackType(Uint16Pair windowSize);
+        private delegate void WindowResizedEventCallbackType(int width, int height);
         private event EventHandler<ResizedEventArgs> _windowResizedEventHandler;
 
         public event EventHandler<ResizedEventArgs> Resized
@@ -1201,41 +1214,16 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnResized(Uint16Pair windowSize)
+        private void OnResized(int width, int height)
         {
             ResizedEventArgs e = new ResizedEventArgs();
-            e.WindowSize = windowSize;
+            e.Width = width;
+            e.Height = height;
 
             if (_windowResizedEventHandler != null)
             {
                 _windowResizedEventHandler(this, e);
             }
-        }
-
-        internal void SetWindowSize(Uint16Pair size)
-        {
-            NDalicManualPINVOKE.SetSize(swigCPtr, Uint16Pair.getCPtr(size));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Uint16Pair GetWindowSize()
-        {
-            Uint16Pair ret = new Uint16Pair(NDalicManualPINVOKE.GetSize(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetPosition(Uint16Pair position)
-        {
-            NDalicManualPINVOKE.SetPosition(swigCPtr, Uint16Pair.getCPtr(position));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Uint16Pair GetPosition()
-        {
-            Uint16Pair ret = new Uint16Pair(NDalicManualPINVOKE.GetPosition(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -1362,35 +1350,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// Gets/Sets a size of the window.
-        /// </summary>
-        public Uint16Pair WindowSize
-        {
-            get
-            {
-                return GetWindowSize();
-            }
-            set
-            {
-                SetWindowSize(value);
-            }
-        }
 
-        /// <summary>
-        /// Gets/Sets a position of the window.
-        /// </summary>
-        public Uint16Pair WindowPosition
-        {
-            get
-            {
-                return GetPosition();
-            }
-            set
-            {
-                SetPosition(value);
-            }
-        }
 
 
     }

@@ -581,23 +581,11 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_PLACEHOLDER_TEXT_COLOR_get")]
         public static extern int TextEditor_Property_PLACEHOLDER_TEXT_COLOR_get();
 
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_ENABLE_SELECTION_get")]
-        public static extern int TextEditor_Property_ENABLE_SELECTION_get();
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_PLACEHOLDER_get")]
-        public static extern int TextEditor_Property_PLACEHOLDER_get();
-
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextField_Property_HIDDEN_INPUT_SETTINGS_get")]
         public static extern int TextField_Property_HIDDEN_INPUT_SETTINGS_get();
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextField_Property_PIXEL_SIZE_get")]
         public static extern int TextField_Property_PIXEL_SIZE_get();
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextField_Property_ENABLE_SELECTION_get")]
-        public static extern int TextField_Property_ENABLE_SELECTION_get();
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextField_Property_PLACEHOLDER_get")]
-        public static extern int TextField_Property_PLACEHOLDER_get();
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextLabel_Property_PIXEL_SIZE_get")]
         public static extern int TextLabel_Property_PIXEL_SIZE_get();
@@ -724,7 +712,7 @@ namespace Tizen.NUI
         public static extern void ResizedSignal_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ResizedSignal_Emit")]
-        public static extern void ResizedSignal_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+        public static extern void ResizedSignal_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_ResizedSignal")]
         public static extern global::System.IntPtr new_ResizedSignal();
@@ -862,18 +850,6 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_WidgetViewManager_SWIGUpcast")]
         public static extern global::System.IntPtr WidgetViewManager_SWIGUpcast(global::System.IntPtr jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Window_SetSize")]
-        public static extern void SetSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Window_GetSize")]
-        public static extern global::System.IntPtr GetSize(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Window_SetPosition")]
-        public static extern void SetPosition(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Window_GetPosition")]
-        public static extern global::System.IntPtr GetPosition(global::System.Runtime.InteropServices.HandleRef jarg1);
 
     }
 }
