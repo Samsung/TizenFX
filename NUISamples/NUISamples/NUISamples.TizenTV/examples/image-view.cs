@@ -63,16 +63,16 @@ namespace ImageViewTest
             Log("Customized Application Initialize event handler");
             window = Window.Instance;
             window.BackgroundColor = Color.Cyan;
-            window.TouchEvent += OnWindowTouched;
-            window.WheelEvent += OnWindowWheelMoved;
-            window.KeyEvent += OnWindowKeyPressed;
+            window.Touched += OnWindowTouched;
+            window.WheelRolled += OnWindowWheelMoved;
+            window.KeyPressed += OnWindowKeyPressed;
             //window.EventProcessingFinished += OnWindowEventProcessingFinished;
 
             layer = window.GetDefaultLayer();
             _layer1 = new Layer();
             _layer2 = new Layer();
-            window.AddLayer(_layer1);
-            window.AddLayer(_layer2);
+            window.Add(_layer1);
+            window.Add(_layer2);
             Log("_layer1.Behavior =" + _layer1.Behavior);
             if (_layer1.Behavior == Layer.LayerBehavior.LayerUI)
             {
@@ -236,7 +236,7 @@ namespace ImageViewTest
             Log("state=" + e.Key.State);
         }
 
-        public void OnWindowWheelMoved(object sender, Window.WheelEventArgs e)
+        public void OnWindowWheelMoved(object sender, Window.WheelRolledEventArgs e)
         {
             Log("OnWindowWheelEventOccured()!");
             Log("direction=" + e.Wheel.Direction);
@@ -244,7 +244,7 @@ namespace ImageViewTest
         }
 
         // Callback for window touched signal handling
-        public void OnWindowTouched(object sender, Window.TouchEventArgs e)
+        public void OnWindowTouched(object sender, Window.TouchedEventArgs e)
         {
             Log("OnWindowTouched()! e.TouchData.GetState(0)=" + e.Touch.GetState(0));
         }

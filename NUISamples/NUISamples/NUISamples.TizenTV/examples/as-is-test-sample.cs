@@ -49,7 +49,7 @@ namespace AsIsTest
 
         private void ObjectDumpTrigger()
         {
-            for (int i = 0; i < Window.LayerCount; i++)
+            for (int i = 0; i < Window.GetLayerCount(); i++)
             {
                 BFS(Window.GetLayer((uint)i), 1);
             }
@@ -84,7 +84,7 @@ namespace AsIsTest
                     Tizen.Log.Fatal("NUI-APP", string.Format("it is not TextLaebl"));
                 }
 
-                for (int i = 0; i < myView.ChildCount; i++)
+                for (int i = 0; i < myView.GetChildCount(); i++)
                 {
                     BFS(myView.GetChildAt((uint)i), depth + 1);
                 }
@@ -148,12 +148,12 @@ namespace AsIsTest
             layer.Add(vi2);
             layer.Add(tb3);
 
-            Window.Instance.AddLayer(layer);
+            Window.Instance.Add(layer);
         }
 
         void ObjectDumpTrigger2()
         {
-            uint layerCnt = Window.LayerCount;
+            uint layerCnt = Window.GetLayerCount();
             Tizen.Log.Fatal("NUI-APP", "layerCnt=" + layerCnt);
 
             for (uint i = 0; i < layerCnt; i++)
@@ -196,7 +196,7 @@ namespace AsIsTest
         {
             if (view)
             {
-                uint childCnt = view.ChildCount;
+                uint childCnt = view.GetChildCount();
                 if (childCnt > 0)
                 {
                     depth = depth + 1;

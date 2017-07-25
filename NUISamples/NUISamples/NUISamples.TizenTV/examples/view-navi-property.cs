@@ -49,7 +49,7 @@ namespace MyCSharpExample
                 Window.Instance.Add(view[i]);
                 view[i].FocusGained += FocusNavigationSample_FocusGained;
                 view[i].FocusLost += FocusNavigationSample_FocusLost;
-                view[i].KeyEvent += FocusNavigationSample_KeyEvent;
+                view[i].Key += FocusNavigationSample_KeyEvent;
             }
 
             view[0].RightFocusableView = view[1];
@@ -60,10 +60,10 @@ namespace MyCSharpExample
             FocusManager.Instance.SetCurrentFocusView(view[0]);
             FocusManager.Instance.PreFocusChange += Instance_PreFocusChange;
 
-            Window.Instance.TouchEvent += Instance_Touch;
+            Window.Instance.Touched += Instance_Touch;
         }
 
-        private void Instance_Touch(object sender, Window.TouchEventArgs e)
+        private void Instance_Touch(object sender, Window.TouchedEventArgs e)
         {
             Tizen.Log.Debug("NUI", "window touched! set key focus as view[0]!");
             FocusManager.Instance.SetCurrentFocusView(view[0]);

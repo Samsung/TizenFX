@@ -43,7 +43,7 @@ namespace VisualViewTest2
                 Window.Instance.Add(view[i]);
                 view[i].FocusGained += VisualSample_FocusGained;
                 view[i].FocusLost += VisualSample_FocusLost;
-                view[i].KeyEvent += VisualSample_KeyEvent;
+                view[i].Key += VisualSample_KeyEvent;
             }
 
             view[0].RightFocusableView = view[1];
@@ -137,9 +137,9 @@ namespace VisualViewTest2
                 "Enter - Change BG image\n";
             Window.Instance.Add(guide);
 
-            Window.Instance.KeyEvent += Instance_Key;
+            Window.Instance.KeyPressed += Instance_Key;
             FocusManager.Instance.SetCurrentFocusView(view[0]);
-            Window.Instance.TouchEvent += Instance_Touch;
+            Window.Instance.Touched += Instance_Touch;
             _window = Window.Instance;
             _window.FocusChanged += _window_WindowFocusChanged;
 
@@ -150,7 +150,7 @@ namespace VisualViewTest2
             Tizen.Log.Fatal("NUI", "window focus changed!() focus gained=" + e.FocusGained);
         }
 
-        private void Instance_Touch(object sender, Window.TouchEventArgs e)
+        private void Instance_Touch(object sender, Window.TouchedEventArgs e)
         {
             FocusManager.Instance.SetCurrentFocusView(view[0]);
         }

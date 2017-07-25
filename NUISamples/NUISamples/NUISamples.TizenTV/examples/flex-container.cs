@@ -79,7 +79,7 @@ namespace FlexContainerTest
             };
 
             //added
-            Window.Instance.TouchEvent += (sender, e) =>
+            Window.Instance.Touched += (sender, e) =>
             {
                 Tizen.Log.Debug("NUI", "Window Touch signal callback! To avoid crash, when losing key focus, set here again unless the NextView is null");
                 FocusManager.Instance.SetCurrentFocusView(label[3]);

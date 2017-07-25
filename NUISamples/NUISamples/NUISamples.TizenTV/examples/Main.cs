@@ -39,8 +39,7 @@ namespace NUISamples.TizenTV.examples
             //new VisualsUsingCustomView.VisualsExample().Run(args);
             //new FirstScreen.FirstScreenApp().Run(args);
             //new VisualsExampleTest.Example().Run(args);
-            //new AsIsTest.Example().Run(args);
-            new WidgetViewTest.Example().Run(args);
+            new AsIsTest.Example().Run(args);
         }
     }
 }

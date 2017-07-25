@@ -58,7 +58,7 @@ namespace RelativeVectorTest
         private void Initialize()
         {
             _window = Window.Instance;
-            _window.TouchEvent += OnWindowTouched;
+            _window.Touched += OnWindowTouched;
 
             _imageView = new ImageView();
             _imageView.ResourceUrl = resources+"/images/gallery-3.jpg";
@@ -70,7 +70,7 @@ namespace RelativeVectorTest
         }
 
         // Callback for window touched signal handling
-        private void OnWindowTouched(object sender, Window.TouchEventArgs e)
+        private void OnWindowTouched(object sender, Window.TouchedEventArgs e)
         {
             // Only animate the _text label when touch down happens
             if (e.Touch.GetState(0) == PointStateType.Down)
