@@ -114,9 +114,7 @@ namespace Tizen.NUI
         /// <returns>A Color containing the result of the addition</returns>
         public static Color operator +(Color arg1, Color arg2)
         {
-            Color result = arg1.Add(arg2);
-            ValueCheck(result);
-            return result;
+            return arg1.Add(arg2);
         }
 
         /// <summary>
@@ -127,9 +125,7 @@ namespace Tizen.NUI
         /// <returns>A Color containing the result of the subtraction</returns>
         public static Color operator -(Color arg1, Color arg2)
         {
-            Color result = arg1.Subtract(arg2);
-            ValueCheck(result);
-            return result;
+            return arg1.Subtract(arg2);
         }
 
         /// <summary>
@@ -139,9 +135,7 @@ namespace Tizen.NUI
         /// <returns>A Color containg the negation</returns>
         public static Color operator -(Color arg1)
         {
-            Color result = arg1.Subtract();
-            ValueCheck(result);
-            return result;
+            return arg1.Subtract();
         }
 
         /// <summary>
@@ -152,16 +146,12 @@ namespace Tizen.NUI
         /// <returns>A Color containing the result of the multiplication</returns>
         public static Color operator *(Color arg1, Color arg2)
         {
-            Color result = arg1.Multiply(arg2);
-            ValueCheck(result);
-            return result;
+            return arg1.Multiply(arg2);
         }
 
         public static Color operator*(Color arg1, float arg2)
         {
-            Color result = arg1.Multiply(arg2);
-            ValueCheck(result);
-            return result;
+            return arg1.Multiply(arg2);
         }
 
         /// <summary>
@@ -172,16 +162,12 @@ namespace Tizen.NUI
         /// <returns>A Color containing the result of the division</returns>
         public static Color operator /(Color arg1, Color arg2)
         {
-            Color result = arg1.Divide(arg2);
-            ValueCheck(result);
-            return result;
+            return arg1.Divide(arg2);
         }
 
         public static Color operator/(Color arg1, float arg2)
         {
-            Color result = arg1.Divide(arg2);
-            ValueCheck(result);
-            return result;
+            return arg1.Divide(arg2);
         }
 
         /// <summary>
@@ -222,10 +208,6 @@ namespace Tizen.NUI
         /// <param name="a">alpha component</param>
         public Color(float r, float g, float b, float a) : this(NDalicPINVOKE.new_Vector4__SWIG_1(r, g, b, a), true)
         {
-            ValueCheck(ref r);
-            ValueCheck(ref g);
-            ValueCheck(ref b);
-            ValueCheck(ref a);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -235,10 +217,6 @@ namespace Tizen.NUI
         /// <param name="array">array Array of R,G,B,A</param>
         public Color(float[] array) : this(NDalicPINVOKE.new_Vector4__SWIG_2(array), true)
         {
-            ValueCheck(ref array[0]);
-            ValueCheck(ref array[1]);
-            ValueCheck(ref array[2]);
-            ValueCheck(ref array[3]);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -375,7 +353,6 @@ namespace Tizen.NUI
         {
             set
             {
-                ValueCheck(ref value);
                 NDalicPINVOKE.Vector4_r_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -394,7 +371,6 @@ namespace Tizen.NUI
         {
             set
             {
-                ValueCheck(ref value);
                 NDalicPINVOKE.Vector4_g_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -413,7 +389,6 @@ namespace Tizen.NUI
         {
             set
             {
-                ValueCheck(ref value);
                 NDalicPINVOKE.Vector4_b_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -432,7 +407,6 @@ namespace Tizen.NUI
         {
             set
             {
-                ValueCheck(ref value);
                 NDalicPINVOKE.Vector4_a_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -586,64 +560,6 @@ namespace Tizen.NUI
         public static implicit operator Color(Vector4 vec)
         {
             return new Color(vec.R, vec.G, vec.B, vec.A);
-        }
-
-        internal static void ValueCheck(Color color)
-        {
-            if (color.R < 0.0f)
-            {
-                color.R = 0.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.R > 1.0f)
-            {
-                color.R = 1.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.G < 0.0f)
-            {
-                color.G = 0.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.G > 1.0f)
-            {
-                color.G = 1.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.B < 0.0f)
-            {
-                color.B = 0.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.B > 1.0f)
-            {
-                color.B = 1.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (color.A < 0.0f)
-            {
-                color.A = 0.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (color.A > 1.0f)
-            {
-                color.A = 1.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
-            }
-        }
-
-        internal static void ValueCheck(ref float value)
-        {
-            if (value < 0.0f)
-            {
-                value = 0.0f;
-                Tizen.Log.Fatal("NUI", "The value of Parameters is invalid! Should be between [0, 1].");
-            }
-            else if (value > 1.0f)
-            {
-                value = 1.0f;
-                Tizen.Log.Fatal("NUI", "The value of Parameters is invalid! Should be between [0, 1].");
-            }
         }
 
     }
