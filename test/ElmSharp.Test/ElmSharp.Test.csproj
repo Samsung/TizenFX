@@ -179,6 +179,13 @@
     <Compile Include="TC\Wearable\SpinnerTest1.cs" />
     <Compile Include="TC\Wearable\TransitTest.cs" />
     <Compile Include="TC\Wearable\WindowInternalTest.cs" />
+    <Compile Include="TC\Wearable\LabelTest1.cs" />
+    <Compile Include="TC\Wearable\LabelTest2.cs" />
+    <Compile Include="TC\Wearable\LabelTest3.cs" />
+    <Compile Include="TC\Wearable\LabelTest4.cs" />
+    <Compile Include="TC\Wearable\LabelTest5.cs" />
+    <Compile Include="TC\Wearable\LabelValignTest1.cs" />
+    <Compile Include="TC\Wearable\TableTest1.cs" />
     <Compile Include="TC\WindowInternalTest.cs" />
     <Compile Include="TestCaseBase.cs" />
     <Compile Include="TestRunner.cs" />
