@@ -32,6 +32,8 @@ namespace Tizen.Network.Connection
         {
         }
 
+        private CellularAuthInformation _cellularAuthInfo = null;
+
         ~CellularProfile()
         {
         }
@@ -272,11 +274,12 @@ namespace Tizen.Network.Connection
                     return null;
                 }
 
-                CellularAuthInformation AuthInfo = new CellularAuthInformation();
-                AuthInfo.AuthType = (CellularAuthType)type;
-                AuthInfo.UserName = name;
-                AuthInfo.Password = password;
-                return AuthInfo;
+                if (_cellularAuthInfo == null)
+                    _cellularAuthInfo = new CellularAuthInformation();
+                _cellularAuthInfo.AuthType = (CellularAuthType)type;
+                _cellularAuthInfo.UserName = name;
+                _cellularAuthInfo.Password = password;
+                return _cellularAuthInfo;
             }
 
             set
@@ -284,10 +287,10 @@ namespace Tizen.Network.Connection
                 CheckDisposed();
                 if (value != null)
                 {
-                    CellularAuthInformation AuthInfo = value;
-                    int type = (int)AuthInfo.AuthType;
-                    string name = AuthInfo.UserName;
-                    string password = AuthInfo.Password;
+                    _cellularAuthInfo = value;
+                    int type = (int)_cellularAuthInfo.AuthType;
+                    string name = _cellularAuthInfo.UserName;
+                    string password = _cellularAuthInfo.Password;
                     int ret = Interop.ConnectionCellularProfile.SetAuthInfo(ProfileHandle, type, name, password);
                     if ((ConnectionError)ret != ConnectionError.None)
                     {
