@@ -29,7 +29,6 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private global::System.Runtime.InteropServices.HandleRef stageCPtr;
-        private Layer _rootLayer;
 
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -565,12 +564,9 @@ namespace Tizen.NUI
 
         internal Layer GetRootLayer()
         {
-            if (_rootLayer == null)
-                _rootLayer = new Layer(NDalicPINVOKE.Stage_GetRootLayer(stageCPtr), true);
-
-
+            Layer ret = new Layer(NDalicPINVOKE.Stage_GetRootLayer(stageCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return _rootLayer;
+            return ret;
         }
 
         internal void SetBackgroundColor(Vector4 color)
