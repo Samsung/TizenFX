@@ -33,10 +33,10 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the MediaPacket class with the specified media format.
         /// </summary>
         /// <param name="format">The media format containing properties for the packet.</param>
-        /// <exception cref="System.ArgumentNullException">format is null.</exception>
-        /// <exception cref="System.ArgumentException">
+        /// <exception cref="ArgumentNullException">format is null.</exception>
+        /// <exception cref="ArgumentException">
         ///     <see cref="MediaFormatType"/> of the specified format is <see cref="MediaFormatType.Container"/>.</exception>
-        /// <exception cref="System.InvalidOperationException">Operation failed.</exception>
+        /// <exception cref="InvalidOperationException">Operation failed.</exception>
         internal MediaPacket(MediaFormat format)
         {
             if (format == null)
@@ -88,7 +88,7 @@ namespace Tizen.Multimedia
         /// Creates and initializes a native handle for the current object.
         /// </summary>
         /// <param name="format">The format to be set to the media format.</param>
-        /// <exception cref="System.InvalidOperationException">Operation failed.</exception>
+        /// <exception cref="InvalidOperationException">Operation failed.</exception>
         private void Initialize(MediaFormat format)
         {
             if (format.Type == MediaFormatType.Container)
@@ -131,7 +131,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Allocates internal buffer.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Operation failed.</exception>
+        /// <exception cref="InvalidOperationException">Operation failed.</exception>
         private void Alloc()
         {
             ErrorCode ret = (ErrorCode)Interop.MediaPacket.Alloc(_handle);
@@ -404,12 +404,13 @@ namespace Tizen.Multimedia
 
         private bool _isDisposed = false;
 
+
         /// <summary>
-        /// Releases all resources.
+        /// Releases all resources used by the <see cref="MediaPacket"/> object.
         /// </summary>
         /// <exception cref="InvalidOperationException">
         ///     The MediaPacket can not be disposed which means it being used by another module.
-        ///     </exception>
+        /// </exception>
         public void Dispose()
         {
             if (_isDisposed)
@@ -422,6 +423,12 @@ namespace Tizen.Multimedia
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases the resources used by the <see cref="MediaPacket"/> object.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (_isDisposed)

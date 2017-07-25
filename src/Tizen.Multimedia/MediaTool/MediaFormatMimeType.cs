@@ -80,11 +80,6 @@ namespace Tizen.Multimedia
         AmrWB = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1041),
 
         /// <summary>
-        /// G729.
-        /// </summary>
-        //G729 = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1050),
-
-        /// <summary>
         /// AAC, Alias for <see cref="AacLC"/>.
         /// </summary>
         Aac = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1060),
@@ -285,10 +280,6 @@ namespace Tizen.Multimedia
         /// </summary>
         Bgra = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25e0),
 
-        /// <summary>
-        /// HW dependent
-        /// </summary>
-        //NativeVideo = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x7000),
     }
 
     /// <summary>

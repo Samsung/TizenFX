@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia
 {
     /// <summary>
@@ -51,26 +53,51 @@ namespace Tizen.Multimedia
             set;
         }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <value>A string that represents the current object.</value>
         public override string ToString() => $"X={X.ToString()}, Y={Y.ToString()}";
 
+        /// <summary>
+        /// Gets the hash code for this instance of <see cref="Point"/>.
+        /// </summary>
+        /// <value>The hash code for this instance of <see cref="Point"/>.</value>
         public override int GetHashCode()
         {
             return new { X, Y }.GetHashCode();
         }
 
+        /// <summary>
+        /// Compares an object to an instance of <see cref="Point"/> for equality.
+        /// </summary>
+        /// <param name="obj">A <see cref="Object"/> to compare.</param>
+        /// <returns>true if the points are equal; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             return obj is Point && this == (Point)obj;
         }
 
-        public static bool operator ==(Point lhs, Point rhs)
+        /// <summary>
+        /// Compares two instances of <see cref="Point"/> for equality.
+        /// </summary>
+        /// <param name="point1">A <see cref="Point"/> to compare.</param>
+        /// <param name="point2">A <see cref="Point"/> to compare.</param>
+        /// <returns>true if the two instances of <see cref="Point"/> are equal; otherwise false.</returns>
+        public static bool operator ==(Point point1, Point point2)
         {
-            return lhs.X == rhs.X && lhs.Y == rhs.Y;
+            return point1.X == point2.X && point1.Y == point2.Y;
         }
 
-        public static bool operator !=(Point lhs, Point rhs)
+        /// <summary>
+        /// Compares two instances of <see cref="Point"/> for inequality.
+        /// </summary>
+        /// <param name="point1">A <see cref="Point"/> to compare.</param>
+        /// <param name="point2">A <see cref="Point"/> to compare.</param>
+        /// <returns>true if the two instances of <see cref="Point"/> are not equal; otherwise false.</returns>
+        public static bool operator !=(Point point1, Point point2)
         {
-            return !(lhs == rhs);
+            return !(point1 == point2);
         }
     }
 }

@@ -72,26 +72,51 @@ namespace Tizen.Multimedia
             return Min <= value && value <= Max;
         }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <value>A string that represents the current object.</value>
         public override string ToString() => $"Min={Min.ToString()}, Max={Max.ToString()}";
 
+        /// <summary>
+        /// Gets the hash code for this instance of <see cref="Range"/>.
+        /// </summary>
+        /// <value>The hash code for this instance of <see cref="Range"/>.</value>
         public override int GetHashCode()
         {
             return new { Min, Max }.GetHashCode();
         }
 
+        /// <summary>
+        /// Compares an object to an instance of <see cref="Range"/> for equality.
+        /// </summary>
+        /// <param name="obj">A <see cref="Object"/> to compare.</param>
+        /// <returns>true if the two ranges are equal; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             return obj is Range && this == (Range)obj;
         }
 
-        public static bool operator ==(Range lhs, Range rhs)
+        /// <summary>
+        /// Compares two instances of <see cref="Range"/> for equality.
+        /// </summary>
+        /// <param name="range1">A <see cref="Range"/> to compare.</param>
+        /// <param name="range2">A <see cref="Range"/> to compare.</param>
+        /// <returns>true if the two instances of <see cref="Range"/> are equal; otherwise false.</returns>
+        public static bool operator ==(Range range1, Range range2)
         {
-            return lhs.Min == rhs.Min && lhs.Max == rhs.Max;
+            return range1.Min == range2.Min && range1.Max == range2.Max;
         }
 
-        public static bool operator !=(Range lhs, Range rhs)
+        /// <summary>
+        /// Compares two instances of <see cref="Range"/> for inequality.
+        /// </summary>
+        /// <param name="range1">A <see cref="Range"/> to compare.</param>
+        /// <param name="range2">A <see cref="Range"/> to compare.</param>
+        /// <returns>true if the two instances of <see cref="Range"/> are not equal; otherwise false.</returns>
+        public static bool operator !=(Range range1, Range range2)
         {
-            return !(lhs == rhs);
+            return !(range1 == range2);
         }
     }
 }

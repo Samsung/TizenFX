@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia
 {
     /// <summary>
@@ -122,26 +124,51 @@ namespace Tizen.Multimedia
             set { _size = value; }
         }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <value>A string that represents the current object.</value>
         public override string ToString() => $"{_location.ToString()}, {_size.ToString()}";
 
+        /// <summary>
+        /// Gets the hash code for this instance of <see cref="Rectangle"/>.
+        /// </summary>
+        /// <value>The hash code for this instance of <see cref="Rectangle"/>.</value>
         public override int GetHashCode()
         {
             return new { Location, Size }.GetHashCode();
         }
 
+        /// <summary>
+        /// Compares an object to an instance of <see cref="Rectangle"/> for equality.
+        /// </summary>
+        /// <param name="obj">A <see cref="Object"/> to compare.</param>
+        /// <returns>true if the rectangles are equal; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             return obj is Rectangle && this == (Rectangle)obj;
         }
 
-        public static bool operator ==(Rectangle lhs, Rectangle rhs)
+        /// <summary>
+        /// Compares two instances of <see cref="Rectangle"/> for equality.
+        /// </summary>
+        /// <param name="rect1">A <see cref="Rectangle"/> to compare.</param>
+        /// <param name="rect2">A <see cref="Rectangle"/> to compare.</param>
+        /// <returns>true if the two instances of <see cref="Rectangle"/> are equal; otherwise false.</returns>
+        public static bool operator ==(Rectangle rect1, Rectangle rect2)
         {
-            return lhs.Location == rhs.Location && lhs.Size == rhs.Size;
+            return rect1.Location == rect2.Location && rect1.Size == rect2.Size;
         }
 
-        public static bool operator !=(Rectangle lhs, Rectangle rhs)
+        /// <summary>
+        /// Compares two instances of <see cref="Rectangle"/> for inequality.
+        /// </summary>
+        /// <param name="rect1">A <see cref="Rectangle"/> to compare.</param>
+        /// <param name="rect2">A <see cref="Rectangle"/> to compare.</param>
+        /// <returns>true if the two instances of <see cref="Rectangle"/> are not equal; otherwise false.</returns>
+        public static bool operator !=(Rectangle rect1, Rectangle rect2)
         {
-            return !(lhs == rhs);
+            return !(rect1 == rect2);
         }
     }
 }

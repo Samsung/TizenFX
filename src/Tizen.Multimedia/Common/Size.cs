@@ -14,8 +14,13 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia
 {
+    /// <summary>
+    /// Represents a size in 2D space.
+    /// <summary>
     public struct Size
     {
         /// <summary>
@@ -47,26 +52,51 @@ namespace Tizen.Multimedia
             set;
         }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <value>A string that represents the current object.</value>
         public override string ToString() => $"Width={ Width.ToString() }, Height={ Height.ToString() }";
 
+        /// <summary>
+        /// Gets the hash code for this instance of <see cref="Size"/>.
+        /// </summary>
+        /// <value>The hash code for this instance of <see cref="Size"/>.</value>
         public override int GetHashCode()
         {
             return new { Width, Height }.GetHashCode();
         }
 
+        /// <summary>
+        /// Compares an object to an instance of <see cref="Size"/> for equality.
+        /// </summary>
+        /// <param name="obj">A <see cref="Object"/> to compare.</param>
+        /// <returns>true if the two sizes are equal; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             return obj is Size && this == (Size)obj;
         }
 
-        public static bool operator ==(Size lhs, Size rhs)
+        /// <summary>
+        /// Compares two instances of <see cref="Size"/> for equality.
+        /// </summary>
+        /// <param name="size1">A <see cref="Size"/> to compare.</param>
+        /// <param name="size2">A <see cref="Size"/> to compare.</param>
+        /// <returns>true if the two instances of <see cref="Size"/> are equal; otherwise false.</returns>
+        public static bool operator ==(Size size1, Size size2)
         {
-            return lhs.Width == rhs.Width && lhs.Height == rhs.Height;
+            return size1.Width == size2.Width && size1.Height == size2.Height;
         }
 
-        public static bool operator !=(Size lhs, Size rhs)
+        /// <summary>
+        /// Compares two instances of <see cref="Size"/> for inequality.
+        /// </summary>
+        /// <param name="size1">A <see cref="Size"/> to compare.</param>
+        /// <param name="size2">A <see cref="Size"/> to compare.</param>
+        /// <returns>true if the two instances of <see cref="Size"/> are not equal; otherwise false.</returns>
+        public static bool operator !=(Size size1, Size size2)
         {
-            return !(lhs == rhs);
+            return !(size1 == size2);
         }
     }
 }
