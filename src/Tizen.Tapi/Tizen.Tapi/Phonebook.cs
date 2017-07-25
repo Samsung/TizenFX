@@ -61,19 +61,16 @@ namespace Tizen.Tapi
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation.</exception>
         public SimPhonebookStatus GetPhonebookInitInfo()
         {
-            int isInitCompleted;
-            IntPtr pbList;
             SimPhonebookStatusStruct pbStatus;
-            int ret = Interop.Tapi.Phonebook.GetPhonebookInitInfo(_handle, out isInitCompleted, out pbList);
+            int ret = Interop.Tapi.Phonebook.GetPhonebookInitInfo(_handle, out int isInitCompleted, out SimPhonebookListStruct pbList);
             if (ret != (int)TapiError.Success)
             {
                 Log.Error(TapiUtility.LogTag, "Failed to get phonebook init info, Error: " + (TapiError)ret);
                 TapiUtility.ThrowTapiException(ret, _handle, "http://tizen.org/privilege/telephony");
             }
 
-            SimPhonebookListStruct pbListStruct = Marshal.PtrToStructure<SimPhonebookListStruct>(pbList);
             pbStatus.IsInitCompleted = isInitCompleted;
-            pbStatus.PbList = pbListStruct;
+            pbStatus.PbList = pbList;
             return PhonebookStructConversions.ConvertSimPhonebookStatusStruct(pbStatus);
         }
 
@@ -100,6 +97,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting phone book storage: " + (PhonebookAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting phone book storage, " + (PhonebookAccessResult)result));
+                        return;
                     }
 
                     PhonebookStorageInfoStruct info = Marshal.PtrToStructure<PhonebookStorageInfoStruct>(data);
@@ -143,6 +141,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting phone book meta info: " + (PhonebookAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting phone book meta info, " + (PhonebookAccessResult)result));
+                        return;
                     }
 
                     PhonebookMetaInfoStruct info = Marshal.PtrToStructure<PhonebookMetaInfoStruct>(data);
@@ -185,6 +184,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting 3G phone book meta info: " + (PhonebookAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting 3G phone book meta info, " + (PhonebookAccessResult)result));
+                        return;
                     }
 
                     PhonebookMetaInfo3GStruct metaInfo = Marshal.PtrToStructure<PhonebookMetaInfo3GStruct>(data);
@@ -229,6 +229,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during reading phone book record: " + (PhonebookAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs during reading phone book record, " + (PhonebookAccessResult)result));
+                        return;
                     }
 
                     PhonebookRecordStruct record = Marshal.PtrToStructure<PhonebookRecordStruct>(data);
@@ -267,7 +268,7 @@ namespace Tizen.Tapi
         /// <exception cref="ArgumentNullException">Thrown when record is passed as null.</exception>
         /// <exception cref="ArgumentException">Thrown when it is failed due to invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation.</exception>
-        public Task UpdatePhonebookRecord(PhonebookRecord record)
+        public Task<bool> UpdatePhonebookRecord(PhonebookRecord record)
         {
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id = (IntPtr)_requestId++;
@@ -279,6 +280,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during updation of phone book record: " + (PhonebookAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs during updation of phone book record, " + (PhonebookAccessResult)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -322,7 +324,7 @@ namespace Tizen.Tapi
         /// <exception cref="UnauthorizedAccessException">Thrown when privilege access is denied.</exception>
         /// <exception cref="ArgumentException">Thrown when it is failed due to invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation.</exception>
-        public Task DeletePhonebookRecord(PhonebookType type, ushort index)
+        public Task<bool> DeletePhonebookRecord(PhonebookType type, ushort index)
         {
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id = (IntPtr)_requestId++;
@@ -334,6 +336,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during deletion of phone book record: " + (PhonebookAccessResult)result);
                         task.SetException(new InvalidOperationException("Error occurs during deletion of phone book record, " + (PhonebookAccessResult)result));
+                        return;
                     }
 
                     task.SetResult(true);

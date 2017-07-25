@@ -64,7 +64,7 @@ internal static partial class Interop
         internal static class Phonebook
         {
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_pb_init_info")]
-            internal static extern int GetPhonebookInitInfo(IntPtr handle, out int initCompleted, out IntPtr pbList);
+            internal static extern int GetPhonebookInitInfo(IntPtr handle, out int initCompleted, out SimPhonebookListStruct pbList);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_pb_count")]
             internal static extern int GetPhonebookStorage(IntPtr handle, PhonebookType pbType, TapiResponseCallback cb, IntPtr userData);
             [DllImport(Libraries.Tapi, EntryPoint = "tel_get_sim_pb_meta_info")]

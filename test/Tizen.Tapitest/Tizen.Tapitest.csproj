@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="CallgsmPage.cs" />
     <Compile Include="CommonPage.cs" />
+    <Compile Include="PhonebookPage.cs" />
     <Compile Include="SimPage.cs" />
     <Compile Include="ModemPage.cs" />
     <Compile Include="MainPage.cs" />

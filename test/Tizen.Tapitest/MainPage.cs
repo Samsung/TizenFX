@@ -47,13 +47,26 @@ namespace XamarinForTizen.Tizen
             };
             simBtn.Clicked += simBtn_Clicked;
 
+            var phonebookBtn = new Button
+            {
+                Text = "Phonebook",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            phonebookBtn.Clicked += phonebookBtn_Clicked;
+
             Content = new StackLayout
             {
                 VerticalOptions = LayoutOptions.Center,
                 Children = {
-                        commonBtn, callgsmBtn, modemBtn, nwBtn, simBtn
+                        commonBtn, callgsmBtn, modemBtn, nwBtn, simBtn, phonebookBtn
                     }
             };
+        }
+
+        private async void phonebookBtn_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PhonebookPage());
         }
 
         private async void simBtn_Clicked(object sender, EventArgs e)
