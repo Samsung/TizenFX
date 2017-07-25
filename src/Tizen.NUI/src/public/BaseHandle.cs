@@ -27,18 +27,6 @@ namespace Tizen.NUI
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
-            // using copy constructor to create another native handle so Registry.Unregister works fine.
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.new_BaseHandle__SWIG_2(swigCPtr));
-
-            // Register this instance of BaseHandle in the registry.
-            Registry.Register(this);
-        }
-
-        internal BaseHandle(global::System.IntPtr cPtr)
-        {
-            swigCMemOwn = true;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-
             // Register this instance of BaseHandle in the registry.
             Registry.Register(this);
         }
@@ -105,8 +93,11 @@ namespace Tizen.NUI
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                swigCMemOwn = false;
-                NDalicPINVOKE.delete_BaseHandle(swigCPtr);
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_BaseHandle(swigCPtr);
+                }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
@@ -237,12 +228,12 @@ namespace Tizen.NUI
         }
 
 
-        public BaseHandle() : this(NDalicPINVOKE.new_BaseHandle__SWIG_1())
+        public BaseHandle() : this(NDalicPINVOKE.new_BaseHandle__SWIG_1(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public BaseHandle(BaseHandle handle) : this(NDalicPINVOKE.new_BaseHandle__SWIG_2(BaseHandle.getCPtr(handle)))
+        public BaseHandle(BaseHandle handle) : this(NDalicPINVOKE.new_BaseHandle__SWIG_2(BaseHandle.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
