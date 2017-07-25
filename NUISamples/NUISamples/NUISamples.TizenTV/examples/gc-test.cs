@@ -239,19 +239,18 @@ namespace TizenVDUIApplication19
             //This function is called when the app exit normally.
             base.OnTerminate();
         }
-
+        /*
         protected override void OnLowMemory(LowMemoryEventArgs e)
         {
             //This function is called when the system is low on memory.
             base.OnLowMemory(e);
         }
-
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
             //This function is called when the language is changed.
             base.OnLocaleChanged(e);
         }
-
+        */
         private static void _Main(string[] args)
         {
             //Create an Application

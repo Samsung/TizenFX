@@ -29,7 +29,7 @@ namespace DatePickerUsingJson
         private Spin _spinYear;  // spin control for year
         private Spin _spinMonth; // spin control for month
         private Spin _spinDay;   // spin control for day
-        private Builder _builder; // DALi Builder
+        //private Builder _builder; // DALi Builder
 
         //private const string _resPath = "/home/owner/apps_rw/NUISamples.TizenTV/res";
         private const string _resPath = "./res";  //for ubuntu
@@ -51,7 +51,7 @@ namespace DatePickerUsingJson
 
             //This is required for the Application which uses JSON theme and style of Dali builder
             ViewRegistryHelper.Initialize();
-
+            /*
             // load date JSON template...
             _builder = new Builder ();
 
@@ -89,9 +89,10 @@ namespace DatePickerUsingJson
 
             FocusManager keyboardFocusManager = FocusManager.Instance;
             keyboardFocusManager.PreFocusChange += OnKeyboardPreFocusChange;
-            keyboardFocusManager.FocusedViewActivated += OnFocusedViewActivated;
+            //keyboardFocusManager.FocusedViewActivated += OnFocusedViewActivated;
 
             StyleManager.Get().ApplyTheme(_resPath + "/json/date-picker-theme.json");
+            */
         }
 
         private View OnKeyboardPreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)
@@ -130,7 +131,7 @@ namespace DatePickerUsingJson
 
             return nextFocusView;
         }
-
+        /*
         private void OnFocusedViewActivated(object source, FocusManager.FocusedViewActivatedEventArgs e)
         {
             // Make the text field in the current focused spin to take the key input
@@ -158,7 +159,7 @@ namespace DatePickerUsingJson
                 }
             }
         }
-
+        */
 
         /// <summary>
         /// The main entry point for the application.
