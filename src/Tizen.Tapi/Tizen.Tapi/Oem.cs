@@ -122,6 +122,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during sending oem data, " + (NetworkOperationCause)result);
                         task.SetException(new InvalidOperationException("Error occurs during sending oem data, " + (NetworkOperationCause)result));
+                        return;
                     }
 
                     OemDataStruct oemStruct = Marshal.PtrToStructure<OemDataStruct>(dataResponse);

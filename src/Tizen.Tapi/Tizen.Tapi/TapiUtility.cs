@@ -87,6 +87,8 @@ namespace Tizen.Tapi
         internal const int MiscPrlEriVersionMaxLen = 17;
         internal const int MiscMeSnMaxLen = 32;
         internal const int MiscMeDeviceNameMaxLen = 32;
+        internal const int CallDialNumberMaxLen = 83;
+        internal const int CallNameMaxSize = 97;
 
         internal static string ConvertNotiToString(Notification noti)
         {

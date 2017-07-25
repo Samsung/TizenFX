@@ -75,6 +75,7 @@ namespace Tizen.Tapi
                         {
                             Log.Error(TapiUtility.LogTag, "Error occurs during call dial setup, " + (TapiError)result);
                             task.SetException(new InvalidOperationException("Error occurs during call dial setup, " + (TapiError)result));
+                            return;
                         }
 
                         task.SetResult(true);
@@ -131,6 +132,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during answering call, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during answering call, " + (TapiError)result));
+                        return;
                     }
 
                     CallOperationsStruct ansStruct = Marshal.PtrToStructure<CallOperationsStruct>(data);
@@ -181,6 +183,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during ending call, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during ending call, " + (TapiError)result));
+                        return;
                     }
 
                     CallEndStruct endStruct = Marshal.PtrToStructure<CallEndStruct>(data);
@@ -231,6 +234,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during putting call on hold, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during putting call on hold, " + (TapiError)result));
+                        return;
                     }
 
                     CallOperationsStruct holdStruct = Marshal.PtrToStructure<CallOperationsStruct>(data);
@@ -280,6 +284,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during retrieving the hold call, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during retrieving the hold call, " + (TapiError)result));
+                        return;
                     }
 
                     CallOperationsStruct activeStruct = Marshal.PtrToStructure<CallOperationsStruct>(data);
@@ -329,6 +334,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during swapping calls, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during swapping calls, " + (TapiError)result));
+                        return;
                     }
 
                     CallOperationsStruct activeStruct = Marshal.PtrToStructure<CallOperationsStruct>(data);
@@ -379,6 +385,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during starting continuous dtmf, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during starting continuous dtmf, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -427,6 +434,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during stopping continuous dtmf, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during stopping continuous dtmf, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -478,6 +486,7 @@ namespace Tizen.Tapi
                         {
                             Log.Error(TapiUtility.LogTag, "Error occurs while sending dtmf digits, " + (TapiError)result);
                             task.SetException(new InvalidOperationException("Error occurs while sending dtmf digits, " + (TapiError)result));
+                            return;
                         }
 
                         task.SetResult(true);
@@ -534,6 +543,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during joining the two calls, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during joining the two calls, " + (TapiError)result));
+                        return;
                     }
 
                     CallOperationsStruct joinStruct = Marshal.PtrToStructure<CallOperationsStruct>(data);
@@ -583,6 +593,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during splitting a private call from a multiparty call, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during splitting a private call from a multiparty call, " + (TapiError)result));
+                        return;
                     }
 
                     CallOperationsStruct splitStruct = Marshal.PtrToStructure<CallOperationsStruct>(data);
@@ -632,6 +643,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during transferring call, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during transferring call, " + (TapiError)result));
+                        return;
                     }
 
                     CallOperationsStruct splitStruct = Marshal.PtrToStructure<CallOperationsStruct>(data);
@@ -681,6 +693,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during deflecting incoming call, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during deflecting incoming call, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -780,6 +793,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the call volume, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the call volume, " + (TapiError)result));
+                        return;
                     }
 
                     CallVolumeStruct volumeStruct = Marshal.PtrToStructure<CallVolumeStruct>(data);
@@ -829,6 +843,7 @@ namespace Tizen.Tapi
                         {
                             Log.Error(TapiUtility.LogTag, "Error occurs during setting the call volume, " + (TapiError)result);
                             task.SetException(new InvalidOperationException("Error occurs during setting the call volume, " + (TapiError)result));
+                            return;
                         }
 
                         task.SetResult(true);
@@ -883,6 +898,7 @@ namespace Tizen.Tapi
                         {
                             Log.Error(TapiUtility.LogTag, "Error occurs during setting the call sound path, " + (TapiError)result);
                             task.SetException(new InvalidOperationException("Error occurs during setting the call sound path, " + (TapiError)result));
+                            return;
                         }
 
                         task.SetResult(true);
@@ -937,6 +953,7 @@ namespace Tizen.Tapi
                         {
                             Log.Error(TapiUtility.LogTag, "Error occurs during setting the call mute state, " + (TapiError)result);
                             task.SetException(new InvalidOperationException("Error occurs during setting the call mute state, " + (TapiError)result));
+                            return;
                         }
 
                         task.SetResult(true);
@@ -985,6 +1002,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the call mute state, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the call mute state, " + (TapiError)result));
+                        return;
                     }
 
                     CallMuteStatusStruct muteStruct = Marshal.PtrToStructure<CallMuteStatusStruct>(data);
@@ -1030,6 +1048,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the voice privacy mode, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the voice privacy mode, " + (TapiError)result));
+                        return;
                     }
 
                     CallPrivacyModeStruct privacyStruct = Marshal.PtrToStructure<CallPrivacyModeStruct>(data);
@@ -1077,6 +1096,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during setting the voice privacy mode, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during setting the voice privacy mode, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -1121,6 +1141,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during setting preferred voice subscription, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during setting preferred voice subscription, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);

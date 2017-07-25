@@ -29,6 +29,7 @@ namespace Tizen.Tapi
         private event EventHandler<NotificationChangedEventArgs> _notificationChanged;
         private event EventHandler<PropertyChangedEventArgs> _propertyChanged;
 
+        private List<Interop.Tapi.TapiNotificationCallback> _notificationChangedCbList = new List<Interop.Tapi.TapiNotificationCallback>();
         private Interop.Tapi.TapiNotificationCallback _notificationChangedCb;
 
         /// <summary>
@@ -420,6 +421,9 @@ namespace Tizen.Tapi
                     _notificationChanged(null, new NotificationChangedEventArgs(noti, notiData));
                 }
             };
+
+            _notificationChangedCbList.Add(_notificationChangedCb);
+
             int ret = Interop.Tapi.RegisterNotiEvent(_handle, TapiUtility.ConvertNotiToString(id), _notificationChangedCb, IntPtr.Zero);
             if (ret != (int)TapiError.Success)
             {
@@ -584,6 +588,8 @@ namespace Tizen.Tapi
                     _propertyChanged(null, new PropertyChangedEventArgs(propertyId, propData));
                 }
             };
+
+            _notificationChangedCbList.Add(_notificationChangedCb);
             int ret = Interop.Tapi.RegisterNotiEvent(_handle, TapiUtility.ConvertPropToString(property), _notificationChangedCb, IntPtr.Zero);
             if (ret != (int)TapiError.Success)
             {

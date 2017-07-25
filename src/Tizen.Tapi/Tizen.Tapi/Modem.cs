@@ -53,6 +53,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during turning modem on/off, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during turning modem on/off, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -98,6 +99,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during switching flight mode on/off, " + (PowerFlightModeResponse)result);
                         task.SetException(new InvalidOperationException("Error occurs during switching flight mode on/off, " + (PowerFlightModeResponse)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -140,6 +142,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the flight mode, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the flight mode, " + (TapiError)result));
+                        return;
                     }
 
                     int mode = Marshal.ReadInt32(data);
@@ -191,6 +194,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the Me version, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the Me version, " + (TapiError)result));
+                        return;
                     }
 
                     MiscVersionInfoStruct infoStruct = Marshal.PtrToStructure<MiscVersionInfoStruct>(data);
@@ -257,6 +261,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the Me Esn/Meid, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the Me Esn/Meid, " + (TapiError)result));
+                        return;
                     }
 
                     MiscSerialNumInfoStruct infoStruct = Marshal.PtrToStructure<MiscSerialNumInfoStruct>(data);
@@ -323,6 +328,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the Misc Me Imei, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the Misc Me Imei, " + (TapiError)result));
+                        return;
                     }
 
                     task.SetResult(Marshal.PtrToStringAnsi(data));
@@ -410,6 +416,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during getting the device name and vendor name, " + (TapiError)result);
                         task.SetException(new InvalidOperationException("Error occurs during getting the device name and vendor name, " + (TapiError)result));
+                        return;
                     }
 
                     MiscDeviceInfoStruct infoStruct = Marshal.PtrToStructure<MiscDeviceInfoStruct>(data);

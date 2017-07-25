@@ -32,7 +32,7 @@ namespace Tizen.Tapi
     {
         internal uint Handle;
         internal CallType Type;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.CallDialNumberMaxLen)]
         internal string CallerNumber;
         internal CallerName NameData;
         internal CallCliMode CliMode;
@@ -45,7 +45,7 @@ namespace Tizen.Tapi
     internal struct CallerName
     {
         internal CallNameMode NameMode;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.CallNameMaxSize)]
         internal string Name;
     }
 
@@ -103,7 +103,7 @@ namespace Tizen.Tapi
     {
         internal CallType Type;
         internal EmergencyType EType;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.CallDialNumberMaxLen)]
         internal string PhoneNumber;
     }
 
@@ -121,7 +121,7 @@ namespace Tizen.Tapi
     {
         internal int CallHandle;
         internal int BMoCall;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = TapiUtility.CallDialNumberMaxLen)]
         internal string PhoneNumber;
         internal CallType Type;
         internal CallState State;

@@ -909,7 +909,7 @@ namespace Tizen.Tapi
             _status = status;
         }
 
-        internal SoundMutePath Path
+        public SoundMutePath Path
         {
             get
             {
@@ -917,7 +917,7 @@ namespace Tizen.Tapi
             }
         }
 
-        internal SoundMuteStatus Status
+        public SoundMuteStatus Status
         {
             get
             {

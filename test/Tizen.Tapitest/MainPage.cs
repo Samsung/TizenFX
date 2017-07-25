@@ -15,6 +15,14 @@ namespace XamarinForTizen.Tizen
             };
             commonBtn.Clicked += CommonBtn_Clicked;
 
+            var callgsmBtn = new Button
+            {
+                Text = "Call-Gsm",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            callgsmBtn.Clicked += CallgsmBtn_Clicked;
+
             var modemBtn = new Button
             {
                 Text = "Modem",
@@ -43,7 +51,7 @@ namespace XamarinForTizen.Tizen
             {
                 VerticalOptions = LayoutOptions.Center,
                 Children = {
-                        commonBtn, modemBtn, nwBtn, simBtn
+                        commonBtn, callgsmBtn, modemBtn, nwBtn, simBtn
                     }
             };
         }
@@ -56,6 +64,11 @@ namespace XamarinForTizen.Tizen
         private async void NwBtn_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NetworkPage());
+        }
+
+        private async void CallgsmBtn_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CallPage());
         }
 
         private async void ModemBtn_Clicked(object sender, EventArgs e)

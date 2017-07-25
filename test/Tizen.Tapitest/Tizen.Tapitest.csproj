@@ -48,6 +48,7 @@
     <None Include="shared\res\Tizen.Tapitest.png" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CallgsmPage.cs" />
     <Compile Include="CommonPage.cs" />
     <Compile Include="SimPage.cs" />
     <Compile Include="ModemPage.cs" />
