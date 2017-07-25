@@ -2123,7 +2123,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal View GetParent()
+        /*internal View GetParent()
         {
             View ret;
             IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
@@ -2138,6 +2138,26 @@ namespace Tizen.NUI.BaseComponents
             {
                 ret = basehandle as View;
             }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }*/
+
+        internal View GetParent()
+        {
+            View ret;
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
+
+            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
+
+            if(basehandle is Layer)
+            {
+                View ret2 = new View(cPtr,false);
+                return ret2;
+            }
+
+            ret = basehandle as View;
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
