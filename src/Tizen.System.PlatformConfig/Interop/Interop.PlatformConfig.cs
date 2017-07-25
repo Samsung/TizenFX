@@ -28,12 +28,14 @@ internal static partial class Interop
     {
         [DllImport(Libraries.PlatformConfig, EntryPoint = "tzplatform_getenv", CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr _GetEnv(int id);
+        [DllImport(Libraries.PlatformConfig, EntryPoint = "tzplatform_getid", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int GetId(string name);
 
-	internal static string GetEnv(int id)
-	{
-		var text = _GetEnv(id);
-		return Marshal.PtrToStringAnsi(text);
-	}
+        internal static string GetEnv(int id)
+        {
+            var text = _GetEnv(id);
+            return Marshal.PtrToStringAnsi(text);
+        }
     }
 }
 
