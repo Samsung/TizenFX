@@ -30,12 +30,14 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Gets the reason.
-        /// </summary
+        /// </summary>
+        /// <value>The reason for interruption.</value>
         public RadioInterruptedReason Reason { get; }
 
-        public override string ToString()
-        {
-            return $"Reason={ Reason.ToString() }";
-        }
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <value>A string that represents the current object.</value>
+        public override string ToString() => $"Reason={ Reason.ToString() }";
     }
 }

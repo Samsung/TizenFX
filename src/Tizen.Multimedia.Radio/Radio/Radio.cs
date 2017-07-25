@@ -276,7 +276,7 @@ namespace Tizen.Multimedia
         /// The result value is the current frequency, in range [87500 ~ 108000] (kHz).
         /// It can be -1 if the seeking operation has failed.
         /// </returns>
-        /// <remarks>The radio must be in the <see cref="RadioState.Playing/> state.</remarks>
+        /// <remarks>The radio must be in the <see cref="RadioState.Playing"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
         public async Task<int> SeekUpAsync()
         {
@@ -300,7 +300,7 @@ namespace Tizen.Multimedia
         /// The result value is the current frequency, in range [87500 ~ 108000] (kHz).
         /// It can be -1 if the seeking operation has failed.
         /// </returns>
-        /// <remarks>The radio must be in the <see cref="RadioState.Playing/> state.</remarks>
+        /// <remarks>The radio must be in the <see cref="RadioState.Playing"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
         public async Task<int> SeekDownAsync()
         {
@@ -361,6 +361,12 @@ namespace Tizen.Multimedia
         #region IDisposable Support
         private bool _disposed = false;
 
+        /// <summary>
+        /// Releases the resources used by the Radio.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)

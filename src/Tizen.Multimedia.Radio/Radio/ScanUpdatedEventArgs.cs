@@ -33,7 +33,10 @@ namespace Tizen.Multimedia
         /// </summary>
         public int Frequency { get; }
 
-
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <value>A string that represents the current object.</value>
         public override string ToString()
         {
             return $"Frequency={ Frequency.ToString() }";
