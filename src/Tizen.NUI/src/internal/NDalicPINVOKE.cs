@@ -6421,10 +6421,6 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_ApplicationControlSignal")]
   public static extern void delete_ApplicationControlSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("NDalic", EntryPoint="CSharp_Dali_Application_New__SWIG_4")]
-  public static extern global::System.IntPtr Application_New__SWIG_4(int jarg1, string jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
-
-
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TimerSignalType_Empty")]
   public static extern bool TimerSignalType_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
