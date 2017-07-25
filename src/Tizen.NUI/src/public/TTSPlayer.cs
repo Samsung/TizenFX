@@ -59,10 +59,6 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-
-                    //Unreference this instance from Registry.
-                    Registry.Unregister(this);
-
                     NDalicManualPINVOKE.delete_TtsPlayer(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
