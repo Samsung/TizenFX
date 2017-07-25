@@ -56,6 +56,8 @@ namespace Tizen.Network.Nsd
         /// It must begin with an underscore, followed by 1-15 characters which may be letters, digits or hyphens.
         /// </param>
         /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when DNSSD is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when serviceType is set to null.</exception>
         public DnssdService(string serviceType)
         {
             _serviceType = serviceType;

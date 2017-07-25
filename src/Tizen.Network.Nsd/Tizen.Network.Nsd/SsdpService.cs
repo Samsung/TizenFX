@@ -52,6 +52,8 @@ namespace Tizen.Network.Nsd
         /// <since_tizen> 4 </since_tizen>
         /// <param name="target">The SSDP local service's target. It may be a device type or a service type.</param>
         /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when SSDP is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when target is set to null.</exception>
         public SsdpService(string target)
         {
             _target = target;
