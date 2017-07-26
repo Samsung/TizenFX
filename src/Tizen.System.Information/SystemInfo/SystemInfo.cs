@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.System
 {
     /// <summary>
-    /// System Information class. This class has methods which can be used to obtain device information
+    /// System Information class. This class has methods which can be used to obtain device information.
     /// </summary>
     public static class SystemInfo
     {
@@ -47,12 +47,12 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Checks if type of value for given feature is T
+        /// Checks if the type of value for the given feature is T.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <typeparam name="T">Type of value for feature key</typeparam>
-        /// <param name="key">The name of the feature</param>
-        /// <returns>true if type of value for given feature is T, false otherwise</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <typeparam name="T">Type of value for the feature key.</typeparam>
+        /// <param name="key">The name of the feature.</param>
+        /// <returns>True if type of value for the given feature is T, otherwise false.</returns>
         public static bool Is<T>(string key)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
@@ -77,11 +77,11 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Checks if given key is valid feature
+        /// Checks if the given key is a valid feature.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="key">The name of the feature</param>
-        /// <returns>true of key is valid, false otherwise</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="key">The name of the feature.</param>
+        /// <returns>True if the key is valid, otherwise false.</returns>
         public static bool IsValidKey(string key)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
@@ -91,11 +91,11 @@ namespace Tizen.System
         /// <summary>
         /// Gets the value of the feature.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <typeparam name="T">Type of key value</typeparam>
-        /// <param name="key">The name of the feature</param>
-        /// <param name="value">The value of the given feature</param>
-        /// <returns>return true on success otherwise false</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <typeparam name="T">Type of key value.</typeparam>
+        /// <param name="key">The name of the feature.</param>
+        /// <param name="value">The value of the given feature.</param>
+        /// <returns>Returns true on success, otherwise false.</returns>
         public static bool TryGetValue<T>(string key, out T value)
         {
             bool res = false;
@@ -133,10 +133,10 @@ namespace Tizen.System
         /// <summary>
         /// Gets the bool value of the feature.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="key">The name of the feature</param>
-        /// <param name="value">The value of the given feature</param>
-        /// <returns>return true on success otherwise false</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="key">The name of the feature.</param>
+        /// <param name="value">The value of the given feature.</param>
+        /// <returns>Returns true on success, otherwise false.</returns>
         public static bool TryGetValue(string key, out bool value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
@@ -167,10 +167,10 @@ namespace Tizen.System
         /// <summary>
         /// Gets the int value of the feature.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="key">The name of the feature</param>
-        /// <param name="value">The value of the given feature</param>
-        /// <returns>return true on success otherwise false</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="key">The name of the feature.</param>
+        /// <param name="value">The value of the given feature.</param>
+        /// <returns>Returns true on success, otherwise false.</returns>
         public static bool TryGetValue(string key, out int value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
@@ -202,10 +202,10 @@ namespace Tizen.System
         /// <summary>
         /// Gets the double value of the feature.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="key">The name of the feature</param>
-        /// <param name="value">The value of the given feature</param>
-        /// <returns>return true on success otherwise false</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="key">The name of the feature.</param>
+        /// <param name="value">The value of the given feature.</param>
+        /// <returns>Returns true on success, otherwise false.</returns>
         public static bool TryGetValue(string key, out double value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
@@ -237,10 +237,10 @@ namespace Tizen.System
         /// <summary>
         /// Gets the string value of the feature.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="key">The name of the feature</param>
-        /// <param name="value">The value of the given feature</param>
-        /// <returns>return true on success otherwise false</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="key">The name of the feature.</param>
+        /// <param name="value">The value of the given feature.</param>
+        /// <returns>Returns true on success, otherwise false.</returns>
         public static bool TryGetValue(string key, out string value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;

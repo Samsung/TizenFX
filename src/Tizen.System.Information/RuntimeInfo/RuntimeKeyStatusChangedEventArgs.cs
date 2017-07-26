@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 namespace Tizen.System
 {
     /// <summary>
-    /// RuntimeInfoChangedEventArgs is an extended EventArgs class. This class contains event arguments for runtime event listeners
+    /// RuntimeInfoChangedEventArgs is an extended EventArgs class. This class contains event arguments for runtime event listeners.
     /// </summary>
     public class RuntimeKeyStatusChangedEventArgs : EventArgs
     {

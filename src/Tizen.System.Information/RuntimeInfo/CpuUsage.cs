@@ -24,7 +24,7 @@ using System.ComponentModel;
 namespace Tizen.System
 {
     /// <summary>
-    /// Structure for CPU usage.
+    /// The structure for CPU usage.
     /// </summary>
     public class CpuUsage
     {
@@ -37,25 +37,25 @@ namespace Tizen.System
             User = usage.User;
         }
         /// <summary>
-        /// Time running un-niced user processes (Percent)
+        /// Running time of un-niced user processes (Percent).
         /// </summary>
         public double User { get; internal set; }
         /// <summary>
-        /// Time running kernel processes (Percent)
+        /// Running time of kernel processes (Percent).
         /// </summary>
         public double System { get; internal set; }
         /// <summary>
-        /// Time running niced user processes (Percent)
+        /// Running time of niced user processes (Percent).
         /// </summary>
         public double Nice { get; internal set; }
         /// <summary>
-        /// Time waiting for I/O completion (Percent)
+        /// Time waiting for I/O completion (Percent).
         /// </summary>
         public double IoWait { get; internal set; }
     }
 
     /// <summary>
-    /// Structure for CPU usage per processes
+    /// The structure for CPU usage per process.
     /// </summary>
     public class ProcessCpuUsage
     {
@@ -66,11 +66,11 @@ namespace Tizen.System
             STime = usage.STime;
         }
         /// <summary>
-        /// Amount of time that this process has been scheduled in user mode (clock ticks)
+        /// The amount of time this process has been scheduled in user mode (clock ticks).
         /// </summary>
         public uint UTime { get; internal set; }
         /// <summary>
-        /// Amount of time that this process has been scheduled in kernel mode (clock ticks)
+        /// The amount of time this process has been scheduled in kernel mode (clock ticks).
         /// </summary>
         public uint STime { get; internal set; }
     }

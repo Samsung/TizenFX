@@ -25,7 +25,7 @@ using System.ComponentModel;
 namespace Tizen.System
 {
     /// <summary>
-    /// The RuntimeInformation provides functions to obtain runtime information of various system preferences.
+    /// The RuntimeInformation provides functions to obtain the runtime information of various system preferences.
     /// </summary>
     public static class RuntimeInformation
     {
@@ -166,7 +166,7 @@ namespace Tizen.System
         internal static int is_TV_product = -1;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        /// This function is for TV product. It will be removed
+        /// This function is for a TV product. It will be removed.
         internal static RuntimeInformationKey ConvertKeyIfTvProduct(RuntimeInformationKey key)
         {
             bool is_key_existed = false;
@@ -236,13 +236,13 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Validates the data type of the status represented by Runtime Key.
+        /// Validates the data type of the status represented by the runtime key.
         /// Note that this is a generic method.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <typeparam name="T">The generic type to validate.</typeparam>
-        /// <param name="key">The runtime information key for which the status type is validated </param>
-        /// <returns>true if the data type matches</returns>.
+        /// <param name="key">The runtime information key for which the status type is validated.</param>
+        /// <returns>True if the data type matches.</returns>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="key"/> is invalid.</exception>
         public static bool Is<T>(RuntimeInformationKey key)
         {
@@ -256,15 +256,15 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the status of Runtime Key.
+        /// Gets the status of runtime key.
         /// Note that this is a generic method.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <typeparam name="T">The generic type to return.</typeparam>
-        /// <param name="key">The runtime information key for which the current should be read </param>
-        /// <returns>The current status of the given key</returns>.
+        /// <param name="key">The runtime information key for which the current should be read.</param>
+        /// <returns>The current status of the given key.</returns>.
         /// <exception cref="ArgumentException">Thrown when the <paramref name="key"/> is invalid.</exception>
-        /// <exception cref="IOException">Thrown when I/O error is occurred while reading from system.</exception>
+        /// <exception cref="IOException">Thrown when I/O error occurs while reading from the system.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature related <paramref name="key"/> is not supported.</exception>
         public static T GetStatus<T>(RuntimeInformationKey key)
         {
@@ -272,11 +272,11 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets system memory information
+        /// Gets the system memory information.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The system memory information structure.</returns>
-        /// <exception cref="IOException">Thrown when I/O error is occurred while reading from system.</exception>
+        /// <exception cref="IOException">Thrown when I/O error occurs while reading from the system.</exception>
         public static SystemMemoryInformation GetSystemMemoryInformation()
         {
             Interop.RuntimeInfo.MemoryInfo info = new Interop.RuntimeInfo.MemoryInfo();
@@ -291,16 +291,16 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets memory information per processes
+        /// Gets the memory information per process.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="pid">List of unique process ids </param>
-        /// <returns>List of memory information per processes</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="pid">List of unique process ids.</param>
+        /// <returns>List of memory information per process.</returns>
         /// <privilege>http://tizen.org/privilege/systemmonitor</privilege>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is empty.</exception>
-        /// <exception cref="IOException">Thrown when I/O error is occurred while reading from system or requesting to resource management daemon.</exception>
+        /// <exception cref="IOException">Thrown when an I/O error occurs while reading from the system or requesting to the resource management daemon.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the memory is not enough to allocate.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when caller doesn't have a privilege to use this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the caller does not have privilege to use this method.</exception>
         public static IDictionary<int, ProcessMemoryInformation> GetProcessMemoryInformation(IEnumerable<int> pid)
         {
             int[] processArray = pid.ToArray<int>();
@@ -325,11 +325,11 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets system CPU usage time
+        /// Gets the system CPU usage time.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>The system CPU usage time structure.</returns>
-        /// <exception cref="IOException">Thrown when I/O error is occurred while reading from system.</exception>
+        /// <exception cref="IOException">Thrown when an I/O error occurs while reading from the system.</exception>
         public static CpuUsage GetCpuUsage()
         {
             Interop.RuntimeInfo.CpuUsage usage = new Interop.RuntimeInfo.CpuUsage();
@@ -343,16 +343,16 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the CPU usage time per process
+        /// Gets the CPU usage time per process.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="pid">List of unique process ids </param>
-        /// <returns>List of CPU usage information per processes</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="pid">List of unique process ids.</param>
+        /// <returns>List of CPU usage information per process.</returns>
         /// <privilege>http://tizen.org/privilege/systemmonitor</privilege>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="pid"/> is empty.</exception>
-        /// <exception cref="IOException">Thrown when I/O error is occurred while reading from system or requesting to resource management daemon.</exception>
+        /// <exception cref="IOException">Thrown when an I/O error occurs while reading from the system or requesting to the resource management daemon.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the memory is not enough to allocate.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when caller doesn't have a privilege to use this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the caller does not have privilege to use this method.</exception>
         public static IDictionary<int, ProcessCpuUsage> GetProcessCpuUsage(IEnumerable<int> pid)
         {
             int[] processArray = pid.ToArray<int>();
@@ -377,10 +377,10 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the number of processors
+        /// Gets the number of processors.
         /// </summary>
-        /// <value>The number of processors</value>
-        /// <exception cref="IOException">Thrown when I/O error is occurred while reading from system.</exception>
+        /// <value>The number of processors.</value>
+        /// <exception cref="IOException">Thrown when an I/O error occurs while reading from system.</exception>
         public static int ProcessorCount
         {
             get
@@ -398,14 +398,14 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the current frequency of processor
+        /// Gets the current frequency of the processor.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="coreId">The index (from 0) of CPU core that you want to know the frequency</param>
-        /// <returns>The current frequency(MHz) of processor</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="coreId">The index (from 0) of the CPU core that you want to know the frequency of.</param>
+        /// <returns>The current frequency(MHz) of processor.</returns>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="coreid"/> is invalid.</exception>
-        /// <exception cref="IOException">Thrown when I/O error is occurred while reading from system.</exception>
-        /// <exception cref="NotSupportedException">Thrown when this system doesn't store CPU current frequency.</exception>
+        /// <exception cref="IOException">Thrown when an I/O error occurs while reading from system.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this system does not store the current CPU frequency.</exception>
         public static int GetProcessorCurrentFrequency(int coreId)
         {
             int frequency;
@@ -419,14 +419,14 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the max frequency of processor
+        /// Gets the max frequency of the processor.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="coreId">The index (from 0) of CPU core that you want to know the frequency</param>
-        /// <returns>The max frequency(MHz) of processor</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="coreId">The index (from 0) of CPU core that you want to know the frequency of.</param>
+        /// <returns>The max frequency(MHz) of processor.</returns>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="coreid"/> is invalid.</exception>
-        /// <exception cref="IOException">Thrown when I/O error is occurred while reading from system.</exception>
-        /// <exception cref="NotSupportedException">Thrown when this system doesn't store CPU max frequency.</exception>
+        /// <exception cref="IOException">Thrown when an I/O error occurs while reading from system.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this system does not store the max CPU frequency.</exception>
         public static int GetProcessorMaxFrequency(int coreId)
         {
             int frequency;
@@ -440,7 +440,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// (event) BluetoothEnabled is raised when system preference for bluetooth is changed.
+        /// (event) BluetoothEnabled is raised when the system preference for Bluetooth is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> BluetoothEnabled
         {
@@ -472,7 +472,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) WifiHotspotEnabled is raised when system preference for Wi-Fi is changed.
+        /// (event) WifiHotspotEnabled is raised when the system preference for Wi-Fi is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> WifiHotspotEnabled
         {
@@ -504,7 +504,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) BluetoothTetheringEnabled is raised when system preference for bluetooth tethering is changed.
+        /// (event) BluetoothTetheringEnabled is raised when the system preference for bluetooth tethering is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> BluetoothTetheringEnabled
         {
@@ -536,7 +536,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) UsbTetheringEnabled is raised when system preference for USB tethering is changed.
+        /// (event) UsbTetheringEnabled is raised when the system preference for USB tethering is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> UsbTetheringEnabled
         {
@@ -568,7 +568,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) PacketDataEnabled is raised when system preference for package data through 3G network is changed.
+        /// (event) PacketDataEnabled is raised when the system preference for package data through 3G network is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> PacketDataEnabled
         {
@@ -600,7 +600,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) DataRoamingEnabled is raised when system preference for data roaming is changed.
+        /// (event) DataRoamingEnabled is raised when the system preference for data roaming is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> DataRoamingEnabled
         {
@@ -632,7 +632,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) VibrationEnabled is raised when system preference for vibration is changed.
+        /// (event) VibrationEnabled is raised when the system preference for vibration is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> VibrationEnabled
         {
@@ -664,7 +664,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) AudioJackConnected is raised when audio jack is connected/disconnected.
+        /// (event) AudioJackConnected is raised when the audio jack is connected/disconnected.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> AudioJackConnected
         {
@@ -696,7 +696,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) GpsStatusChanged is raised when status of GPS is changed.
+        /// (event) GpsStatusChanged is raised when the status of GPS is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> GpsStatusChanged
         {
@@ -728,7 +728,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) BatteryIsCharging is raised battery is currently charging.
+        /// (event) BatteryIsCharging is raised when the battery is currently charging.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> BatteryIsCharging
         {
@@ -792,7 +792,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) AudioJackConnectorChanged is raised when audio jack connection changes.
+        /// (event) AudioJackConnectorChanged is raised when the audio jack connection changes.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> AudioJackConnectorChanged
         {
@@ -824,7 +824,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) ChargerConnected is raised when charger is connected/disconnected.
+        /// (event) ChargerConnected is raised when the charger is connected/disconnected.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> ChargerConnected
         {
@@ -856,7 +856,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// (event) AutoRotationEnabled is raised when system preference for auto rotation is changed.
+        /// (event) AutoRotationEnabled is raised when the system preference for auto rotation is changed.
         /// </summary>
         public static event EventHandler<RuntimeKeyStatusChangedEventArgs> AutoRotationEnabled
         {

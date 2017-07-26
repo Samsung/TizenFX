@@ -19,7 +19,7 @@ using System;
 namespace Tizen.System
 {
     /// <summary>
-    /// Enumeration for keys for runtime information
+    /// Enumeration for the runtime information key.
     /// </summary>
     public enum RuntimeInformationKey
     {
@@ -41,7 +41,7 @@ namespace Tizen.System
         /// </summary>
         UsbTethering = 5,
         /// <summary>
-        /// Indicates Whether the packet data through 3G network is enabled.
+        /// Indicates whether packet data through 3G network is enabled.
         /// </summary>
         PacketData = 9,
         /// <summary>
@@ -62,7 +62,7 @@ namespace Tizen.System
         /// </summary>
         Gps = 18,
         /// <summary>
-        /// Indicates the battery is currently charging.
+        /// Indicates whether the battery is currently charging.
         /// </summary>
         BatteryIsCharging = 19,
         /// <summary>
@@ -70,12 +70,12 @@ namespace Tizen.System
         /// </summary>
         TvOut = 20,
         /// <summary>
-        /// Indicates the change in audio jack connector type.
+        /// Indicates change in the audio jack connector type.
         /// <see cref="AudioJackConnectionType"/>
         /// </summary>
         AudioJackConnector = 21,
         /// <summary>
-        /// Indicates whether charger is connected.
+        /// Indicates whether the charger is connected.
         /// </summary>
         Charger = 24,
         /// <summary>
@@ -85,58 +85,58 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// Enumeration for Wi-Fi status
+    /// Enumeration for the Wi-Fi status.
     /// </summary>
     public enum WifiStatus
     {
         /// <summary>
-        /// Wi-Fi is disabled.
+        /// The Wi-Fi is disabled.
         /// </summary>
         Disabled,
         /// <summary>
-        /// Wi-Fi is enabled and network connection is not established.
+        /// The Wi-Fi is enabled and the network connection is not established.
         /// </summary>
         Unconnected,
         /// <summary>
-        ///  Network connection is established in Wi-Fi network.
+        /// The network connection is established in a Wi-Fi network.
         /// </summary>
         Connected
     }
 
     /// <summary>
-    /// Enumeration for GPS status.
+    /// Enumeration for the GPS status.
     /// </summary>
     public enum GpsStatus
     {
         /// <summary>
-        /// GPS is disabled.
+        /// The GPS is disabled.
         /// </summary>
         Disabled,
         /// <summary>
-        /// GPS is searching for satellites.
+        /// The GPS is searching for satellites.
         /// </summary>
         Searching,
         /// <summary>
-        /// GPS connection is established.
+        /// The GPS connection is established.
         /// </summary>
         Connected
     }
 
     /// <summary>
-    /// Enumeration for type of audio jack connected.
+    /// Enumeration for the type of audio jack connected.
     /// </summary>
     public enum AudioJackConnectionType
     {
         /// <summary>
-        /// Audio jack is not connected
+        /// The audio jack is not connected.
         /// </summary>
         Unconnected,
         /// <summary>
-        /// 3-conductor wire is connected.
+        /// The 3-conductor wire is connected.
         /// </summary>
         ThreeWireConnected,
         /// <summary>
-        /// 4-conductor wire is connected.
+        /// The 4-conductor wire is connected.
         /// </summary>
         FourWireConnected
     }
