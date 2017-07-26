@@ -22,37 +22,37 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// This class represents event arguments of the PresenceReceived event.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class PresenceReceivedEventArgs : EventArgs
     {
         internal PresenceReceivedEventArgs() { }
 
         /// <summary>
-        /// Indicates request id of presence event.
+        /// Indicates the request ID of the presence event.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>Request id of presence event.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The request ID of the presence event.</value>
         public int PresenceId { get; internal set; }
 
         /// <summary>
-        /// Indicates event type
+        /// Indicates the event type.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>Event type.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The event type.</value>
         public PresenceEventType EventType { get; internal set; }
 
         /// <summary>
-        /// Indicates host address of resource
+        /// Indicates the host address of resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>Host address of resource.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The host address of resource.</value>
         public string HostAddress { get; internal set; }
 
         /// <summary>
-        /// Indicates type of the resource
+        /// Indicates the type of the resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>Type of the resource.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The type of the resource.</value>
         public string Type { get; internal set; }
     }
 }

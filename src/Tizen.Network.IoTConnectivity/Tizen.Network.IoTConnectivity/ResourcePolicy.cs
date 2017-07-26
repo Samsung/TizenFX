@@ -20,45 +20,45 @@ using System;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Enumeration for policy which can be held in a resource.
+    /// Enumeration for the policy, which can be held in a resource.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum ResourcePolicy
     {
         /// <summary>
-        /// Indicates resource uninitialized
+        /// Indicates resource uninitialized.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         NoProperty = 0,
         /// <summary>
-        /// Indicates resource that is allowed to be discovered
+        /// Indicates resource that is allowed to be discovered.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Discoverable = (1 << 0),
         /// <summary>
-        /// Indicates resource that is allowed to be observed
+        /// Indicates resource that is allowed to be observed.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Observable = (1 << 1),
         /// <summary>
-        /// Indicates resource initialized and activated
+        /// Indicates resource initialized and activated.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Active = (1 << 2),
         /// <summary>
-        /// Indicates resource which takes some delay to respond
+        /// Indicates resource, which takes some delay to respond.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Slow = (1 << 3),
         /// <summary>
-        /// Indicates secure resource
+        /// Indicates secure resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Secure = (1 << 4),
         /// <summary>
         /// When this bit is set, the resource is allowed to be discovered only if discovery request contains an explicit querystring.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         ExplicitDiscoverable = (1 << 5),
     }
 }

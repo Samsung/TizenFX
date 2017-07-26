@@ -20,100 +20,100 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// This class represents event arguments of the PlatformInformationFound event.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class PlatformInformationFoundEventArgs
     {
         internal PlatformInformationFoundEventArgs() { }
 
         /// <summary>
-        /// Indicates the request id
+        /// Indicates the request ID.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>The request id.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The request ID.</value>
         public int RequestId { get; internal set; }
 
         /// <summary>
-        /// Indicates to continuously receive the event for finding platform information.
+        /// Indicates to continuously receive the event for finding the platform information.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>Continuously receive the event for finding platform information.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>Continuously receive the event for finding the platform information.</value>
         public bool EventContinue { get; set; }
 
         /// <summary>
-        /// Indicates the platform identifier
+        /// Indicates the platform identifier.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The platform identifier.</value>
         public string PlatformId { get; internal set; }
 
         /// <summary>
-        /// Indicates the name of manufacturer
+        /// Indicates the name of the manufacturer.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>The name of manufacturer.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The name of the manufacturer.</value>
         public string ManufacturerName { get; internal set; }
 
         /// <summary>
-        /// Indicates URL of the manufacturer
+        /// Indicates the URL of the manufacturer.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>URL of the manufacturer.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The URL of the manufacturer.</value>
         public string ManufacturerURL { get; internal set; }
 
         /// <summary>
-        /// Indicates model number as designated by manufacturer
+        /// Indicates the model number as designated by the manufacturer.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>Model number as designated by manufacturer.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The model number as designated by the manufacturer.</value>
         public string ModelNumber { get; internal set; }
 
         /// <summary>
-        /// Indicates manufacturing date of the device
+        /// Indicates the manufacturing date of the device.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>Manufacturing date of the device.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The manufacturing date of the device.</value>
         public string DateOfManufacture { get; internal set; }
 
         /// <summary>
-        /// Indicates version of platfrom defined by manufacturer
+        /// Indicates the version of the platfrom defined by the manufacturer.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>Version of platfrom defined by manufacturer.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The version of platfrom defined by manufacturer.</value>
         public string PlatformVersion { get; internal set; }
 
         /// <summary>
-        /// Indicates version of platfrom resident OS
+        /// Indicates the version of the platfrom resident OS.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>Version of platfrom resident OS.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The version of the platfrom resident OS.</value>
         public string OsVersion { get; internal set; }
 
         /// <summary>
-        /// Indicates version of platform Hardware
+        /// Indicates the version of the platform Hardware.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>Version of platform Hardware.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The version of the platform Hardware.</value>
         public string HardwareVersion { get; internal set; }
 
         /// <summary>
-        /// Indicates version of device firmware
+        /// Indicates the version of the device firmware.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>Version of device firmware.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The version of the device firmware.</value>
         public string FirmwareVersion { get; internal set; }
 
         /// <summary>
-        /// Indicates URL that points to support information from manufacturer
+        /// Indicates the URL that points to support information from the manufacturer.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>URL that points to support information from manufacturer.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The URL that points to support information from the manufacturer.</value>
         public string SupportUrl { get; internal set; }
 
         /// <summary>
-        /// Indicates reference time of the device
+        /// Indicates the reference time of the device.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>Reference time of the device.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The reference time of the device.</value>
         public string SystemTime { get; internal set; }
     }
 }

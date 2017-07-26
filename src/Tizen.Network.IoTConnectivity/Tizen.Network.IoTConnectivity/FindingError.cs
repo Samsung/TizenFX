@@ -18,56 +18,56 @@
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Enumeration for resource found errors
+    /// Enumeration for resource found errors.
     /// </summary>
     internal enum FindingError
     {
         /// <summary>
-        /// I/O error
+        /// I/O error.
         /// </summary>
         Io = 1,
         /// <summary>
-        /// Out of memory
+        /// Out of memory.
         /// </summary>
         OutOfMemory,
         /// <summary>
-        /// Permission denied
+        /// Permission denied.
         /// </summary>
         PermissionDenied,
         /// <summary>
-        /// Not supported
+        /// Not supported.
         /// </summary>
         NotSupported,
         /// <summary>
-        /// Invalid parameter
+        /// Invalid parameter.
         /// </summary>
         InvalidParameter,
         /// <summary>
-        /// No data available
+        /// No data available.
         /// </summary>
         NoData,
         /// <summary>
-        /// Time out
+        /// Time out.
         /// </summary>
         TimeOut,
         /// <summary>
-        /// IoTivity errors
+        /// IoTivity errors.
         /// </summary>
         Iotivity,
         /// <summary>
-        /// Representation errors
+        /// Representation errors.
         /// </summary>
         Representation,
         /// <summary>
-        /// Invalid type
+        /// Invalid type.
         /// </summary>
         InvalidType,
         /// <summary>
-        /// Already
+        /// Already.
         /// </summary>
         Already,
         /// <summary>
-        /// System errors
+        /// System errors.
         /// </summary>
         System
     }

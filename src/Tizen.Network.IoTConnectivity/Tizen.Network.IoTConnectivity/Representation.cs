@@ -26,7 +26,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class provides APIs to manage representation.
     /// A representation is a payload of a request or a response.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class Representation : IDisposable
     {
         internal IntPtr _representationHandle = IntPtr.Zero;
@@ -35,13 +35,13 @@ namespace Tizen.Network.IoTConnectivity
         private ObservableCollection<Representation> _children = new ObservableCollection<Representation>();
 
         /// <summary>
-        /// The Representation constructor
+        /// The Representation constructor.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <code>
         /// Representation repr = new Representation();
         /// </code>
@@ -83,16 +83,16 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// The URI path of resource
+        /// The URI path of resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// The URI path of resource.
-        /// Setter can throw exceptions
+        /// Setter can throw exceptions.
         /// </value>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <code>
         /// Representation repr = new Representation();
         /// repr.UriPath = "/a/light";
@@ -125,14 +125,14 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// The type of resource
+        /// The type of resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The type of resource.</value>
         /// <seealso cref="ResourceTypes"/>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <code>
         /// Representation repr = new Representation();
         /// ResourceTypes types = new ResourceTypes (new List<string>(){ "org.tizen.light" });
@@ -170,14 +170,14 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// The interface of the resource
+        /// The interface of the resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The interface of the resource.</value>
         /// <seealso cref="ResourceInterfaces"/>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <code>
         /// Representation repr = new Representation();
         /// ResourceInterfaces ifaces = new ResourceInterfaces (new List<string>(){ ResourceInterfaces.DefaultInterface });
@@ -215,14 +215,14 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Current attributes of the resource
+        /// Current attributes of the resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Current attributes of the resource.</value>
         /// <seealso cref="Attributes"/>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <code>
         /// Representation repr = new Representation();
         /// Attributes attributes = new Attributes() {
@@ -264,9 +264,9 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// List of Child resource representation
+        /// List of Child resource representation.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>List of Child resource representation.</value>
         /// <code>
         /// Representation repr = new Representation();
@@ -296,7 +296,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public void Dispose()
         {
@@ -307,7 +307,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         protected virtual void Dispose(bool disposing)

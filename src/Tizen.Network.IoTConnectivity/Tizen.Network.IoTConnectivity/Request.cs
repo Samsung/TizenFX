@@ -23,7 +23,7 @@ namespace Tizen.Network.IoTConnectivity
     /// Class respresenting request to a resource.
     /// It provides APIs to manage client's request.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class Request : IDisposable
     {
         private bool _disposed = false;
@@ -41,37 +41,37 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// The host address of the request
+        /// The host address of the request.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The host address of the request.</value>
         public string HostAddress { get; internal set; }
 
         /// <summary>
-        /// The representation of the request
+        /// The representation of the request.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The representation of the request.</value>
         public Representation Representation { get; internal set; }
 
         /// <summary>
-        /// The query of the request
+        /// The query of the request.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The query of the request.</value>
         public ResourceQuery Query { get; internal set; }
 
         /// <summary>
-        /// The options related to the request
+        /// The options related to the request.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The options related to the request.</value>
         public ResourceOptions Options { get; internal set; }
 
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public void Dispose()
         {
@@ -82,7 +82,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         protected virtual void Dispose(bool disposing)

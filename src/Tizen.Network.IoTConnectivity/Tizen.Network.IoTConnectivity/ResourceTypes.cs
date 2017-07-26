@@ -23,10 +23,10 @@ using System.Text.RegularExpressions;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// This class contains resource types and provides APIs to manage, add, remove those types.
-    /// A resource type indicates a class or category of resources.
+    /// This class contains resource types and provides APIs to manage, add, or remove those types.
+    /// A resource type indicates a class or a category of resources.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class ResourceTypes : IEnumerable<string>, IDisposable
     {
         internal const int MaxLength = 61;
@@ -35,14 +35,14 @@ namespace Tizen.Network.IoTConnectivity
         private bool _disposed = false;
 
         /// <summary>
-        /// Constructor of ResourceTypes
+        /// Constructor of ResourceTypes.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Add()"/>
         /// <seealso cref="Remove()"/>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
         /// <code>
         /// ResourceTypes types = new ResourceTypes();
         /// </code>
@@ -57,12 +57,12 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Constructor of ResourceTypes using list of types
+        /// Constructor of ResourceTypes using list of types.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="types">List of resource types</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="types">List of resource types.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <code>
         /// ResourceTypes types = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// </code>
@@ -113,9 +113,9 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Indicates count of types in the list
+        /// Indicates count of types in the list.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Count of types in the list.</value>
         /// <code>
         /// ResourceTypes types = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
@@ -132,19 +132,19 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Adds a resource type into the list.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// The length of @a item should be less than or equal to 61.\n
         /// The @a item must start with a lowercase alphabetic character, followed by a sequence
         /// of lowercase alphabetic, numeric, ".", or "-" characters, and contains no white space.\n
         /// Duplicate strings are not allowed.
         /// </remarks>
-        /// <param name="item">The string data to insert into the resource types</param>
+        /// <param name="item">The string data to insert into the resource types.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Remove()"/>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <code>
         /// ResourceTypes resourceTypes = new ResourceTypes();
         /// resourceTypes.Add("org.tizen.light");
@@ -169,15 +169,15 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Removes a resource type from the list
+        /// Removes a resource type from the list.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="item">The string data to delete from the resource types</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="item">The string data to delete from the resource types.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Add()"/>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <code>
         /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// resourceTypes.Remove("oic.if.room");
@@ -195,10 +195,10 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Return enumerator for the list of types
+        /// Returns an enumerator for the list of types.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <returns>The enumerator</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <returns>The enumerator.</returns>
         /// <code>
         /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// foreach(string item in resourceTypes)
@@ -212,10 +212,10 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Return enumerator for the list of types
+        /// Returns an enumerator for the list of types.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <returns>The enumerator</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <returns>The enumerator.</returns>
         /// <code>
         /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// foreach(string item in resourceTypes)
@@ -231,7 +231,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public void Dispose()
         {
@@ -248,7 +248,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         protected virtual void Dispose(bool disposing)

@@ -22,15 +22,15 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// This class represents event arguments of the StateChanged event.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class StateChangedEventArgs : EventArgs
     {
         internal StateChangedEventArgs() { }
 
         /// <summary>
-        /// Indicates the new state of the resource
+        /// Indicates the new state of the resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The new state of the resource.</value>
         public ResourceState State { get; internal set; }
     }

@@ -22,22 +22,22 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// This class represents event arguments of the FindingErrorOccurred event.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class FindingErrorOccurredEventArgs : EventArgs
     {
         internal FindingErrorOccurredEventArgs() { }
 
         /// <summary>
-        /// The request id of the operation which caused this error
+        /// The request ID of the operation, which caused this error.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>The request id of the operation which caused this error.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The request ID of the operation, which caused this error.</value>
         public int RequestId { get; internal set; }
 
         /// <summary>
         /// Contains error details.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Error details.</value>
         public Exception Error { get; internal set; }
     }

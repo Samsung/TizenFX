@@ -26,7 +26,7 @@ namespace Tizen.Network.IoTConnectivity
     /// Abstract class respresenting a resource.
     /// All resources need to inherit from this class.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class Resource : IDisposable
     {
         private IntPtr _resourceHandle = IntPtr.Zero;
@@ -35,9 +35,9 @@ namespace Tizen.Network.IoTConnectivity
         private IntPtr _observerHandle = IntPtr.Zero;
 
         /// <summary>
-        /// The constructor
+        /// The constructor.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// @a uri format would be relative URI path like '/a/light'
         /// and its length must be less than 128.
@@ -46,19 +46,19 @@ namespace Tizen.Network.IoTConnectivity
         /// http://tizen.org/privilege/internet
         /// </privilege>
         /// <privlevel>public</privlevel>
-        /// <param name="uri">The URI path of the resource</param>
-        /// <param name="types">Resource types</param>
-        /// <param name="interfaces">Resource interfaces</param>
-        /// <param name="policy">The policies of the resoruce</param>
+        /// <param name="uri">The URI path of the resource.</param>
+        /// <param name="types">Resource types.</param>
+        /// <param name="interfaces">Resource interfaces.</param>
+        /// <param name="policy">The policies of the resoruce.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
-        /// IoTConnectivityServerManager.Initialize() should be called to initialize
+        /// IoTConnectivityServerManager.Initialize() should be called to initialize.
         /// </pre>
         /// <seealso cref="ResourceTypes"/>
         /// <seealso cref="ResourceInterfaces"/>
         /// <seealso cref="ResourcePolicy"/>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
         /// <code>
         /// // Create a class which inherits from Resource
         /// public class DoorResource : Resource
@@ -106,37 +106,37 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Type details of the resource
+        /// Type details of the resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Type details of the resource.</value>
         public ResourceTypes Types { get; internal set; }
 
         /// <summary>
-        /// Interface details of the resource
+        /// Interface details of the resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Interface details of the resource.</value>
         public ResourceInterfaces Interfaces { get; internal set; }
 
         /// <summary>
-        /// The policies of the resource
+        /// The policies of the resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The policies of the resource.</value>
         public ResourcePolicy Policy { get; internal set; }
 
         /// <summary>
-        /// URI path of the resource
+        /// URI path of the resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>URI path of the resource.</value>
         public string UriPath { get; internal set; }
 
         /// <summary>
-        /// List of Child resources
+        /// List of Child resources.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>List of Child resources.</value>
         public ICollection<Resource> Children
         {
@@ -161,7 +161,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Notify the specified representation and qos.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/internet
         /// </privilege>
@@ -170,13 +170,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="qos">The quality of service for message transfer.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
-        /// IoTConnectivityServerManager.Initialize() should be called to initialize
+        /// IoTConnectivityServerManager.Initialize() should be called to initialize.
         /// </pre>
         /// <seealso cref="Representation"/>
         /// <seealso cref="QualityOfService"/>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <code>
         /// ResourceInterfaces ifaces = new ResourceInterfaces(new List<string>(){ ResourceInterfaces.DefaultInterface });
         /// ResourceTypes types = new ResourceTypes(new List<string>(){ "oic.iot.door.new.notify" });
@@ -203,43 +203,43 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// This is Called when the client performs get operation on this resource.
+        /// This is called when the client performs get operation on this resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="request">A request from client</param>
-        /// <returns>A response having the representation and the result</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="request">A request from client.</param>
+        /// <returns>A response having the representation and the result.</returns>
         protected abstract Response OnGet(Request request);
 
         /// <summary>
-        /// This is Called when the client performs put operation on this resource.
+        /// This is called when the client performs put operation on this resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="request">A request from client</param>
-        /// <returns>A response</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="request">A request from client.</param>
+        /// <returns>A response.</returns>
         protected abstract Response OnPut(Request request);
 
         /// <summary>
-        /// This is Called when the client performs post operation on this resource.
+        /// This is called when the client performs post operation on this resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="request">A request from client</param>
-        /// <returns>A response having the representation and the result</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="request">A request from client.</param>
+        /// <returns>A response having the representation and the result.</returns>
         protected abstract Response OnPost(Request request);
 
         /// <summary>
-        /// This is Called when the client performs delete operation on this resource.
+        /// This is called when the client performs delete operation on this resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="request">A request from client</param>
-        /// <returns>A response</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="request">A request from client.</param>
+        /// <returns>A response.</returns>
         protected abstract Response OnDelete(Request request);
 
         /// <summary>
         /// Called on the observing event.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="request">A request from client</param>
-        /// <param name="type">Observer type</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="request">A request from client.</param>
+        /// <param name="type">Observer type.</param>
         /// <param name="observeId">Observe identifier.</param>
         /// <returns>Returns true if it wants to be observed, else false.</returns>
         protected abstract bool OnObserving(Request request, ObserveType type, int observeId);
@@ -247,7 +247,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public void Dispose()
         {
@@ -258,7 +258,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         protected virtual void Dispose(bool disposing)

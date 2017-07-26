@@ -22,22 +22,22 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// This class represents event arguments of the ObserverNotified event.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class ObserverNotifiedEventArgs : EventArgs
     {
         internal ObserverNotifiedEventArgs() { }
 
         /// <summary>
-        /// Result of the observe response
+        /// Result of the observe response.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Result of the observe response.</value>
         public ResponseCode Result { get; internal set; }
 
         /// <summary>
         /// Representation of the resource being observed.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Representation of the resource being observed.</value>
         public Representation Representation { get; internal set; }
     }

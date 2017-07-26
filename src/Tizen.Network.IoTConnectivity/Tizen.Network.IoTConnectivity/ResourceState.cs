@@ -18,20 +18,20 @@
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Enumeration for states of remote resource.
+    /// Enumeration for states of the remote resource.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum ResourceState
     {
         /// <summary>
-        /// Indicates remote resource is alive
+        /// Indicates remote resource is alive.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Alive = 0,
         /// <summary>
-        /// Indicates remote resource is lost
+        /// Indicates remote resource is lost.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         LostSignal
     }
 }

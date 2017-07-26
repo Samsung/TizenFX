@@ -18,20 +18,20 @@
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Enumeration for policy of observation
+    /// Enumeration for the policy of observation.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum ObservePolicy
     {
         /// <summary>
-        /// Indicates observation request for most up-to-date notifications only
+        /// Indicates the observation request for the most up-to-date notifications only.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         IgnoreOutOfOrder = 0,
         /// <summary>
-        /// Indicates observation request for all notifications including state notifications
+        /// Indicates the observation request for all notifications including state notifications.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         AcceptOutOfOrder
     }
 }

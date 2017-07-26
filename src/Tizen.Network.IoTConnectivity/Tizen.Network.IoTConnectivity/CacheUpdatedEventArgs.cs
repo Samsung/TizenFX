@@ -22,15 +22,15 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// This class represents event arguments of the CacheUpdated event.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class CacheUpdatedEventArgs : EventArgs
     {
         internal CacheUpdatedEventArgs() { }
 
         /// <summary>
-        /// Indicates the updated representation of the resource
+        /// Indicates the updated representation of the resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The updated representation of the resource.</value>
         public Representation Representation { get; internal set; }
     }

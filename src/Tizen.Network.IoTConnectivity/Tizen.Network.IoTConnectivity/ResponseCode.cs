@@ -18,45 +18,45 @@
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// Enumeration for result of response
+    /// Enumeration for the result of response.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum ResponseCode
     {
         /// <summary>
-        /// Indicates result of response for success
+        /// Indicates the result of response for success.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Ok = 0,
         /// <summary>
-        /// Indicates result of response for some error
+        /// Indicates the result of response for some error.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Error,
         /// <summary>
-        /// Indicates result of response for created resource
+        /// Indicates the result of response for created resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Created,
         /// <summary>
-        /// Indicates result of response for deleted resource
+        /// Indicates the result of response for deleted resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Deleted,
         /// <summary>
-        /// Indicates result of response for changed resource
+        /// Indicates the result of response for changed resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Changed,
         /// <summary>
-        /// Indicates result of response for slow resource
+        /// Indicates the result of response for slow resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Slow,
         /// <summary>
-        /// Indicates result of response for accessing unauthorized resource
+        /// Indicates the result of response for accessing unauthorized resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Forbidden
     }
 }

@@ -22,30 +22,30 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// This class represents event arguments of the ResourceFound event.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class ResourceFoundEventArgs : EventArgs
     {
         internal ResourceFoundEventArgs() { }
 
         /// <summary>
-        /// Indicates the request id.
-        /// This is the same request id returned by the <see cref="IoTConnectivityClientManager.StartFindingResource()"/> API.
+        /// Indicates the request ID.
+        /// This is the same request ID returned by the <see cref="IoTConnectivityClientManager.StartFindingResource()"/> API.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <value>The request id.</value>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>The request ID.</value>
         public int RequestId { get; internal set; }
 
         /// <summary>
         /// Indicates to continuously receive the event for finding resource.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Continuously receive the event for finding resource.</value>
         public bool EventContinue { get; set; }
 
         /// <summary>
-        /// Remote resource which is found after <see cref="IoTConnectivityClientManager.StartFindingResource()"/>.
+        /// Remote resource, which is found after <see cref="IoTConnectivityClientManager.StartFindingResource()"/>.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Remote resource which is found after <see cref="IoTConnectivityClientManager.StartFindingResource()"/>.</value>
         /// <seealso cref="IoTConnectivityClientManager.ResourceFound"/>
         /// <seealso cref="IoTConnectivityClientManager.StartFindingResource()"/>

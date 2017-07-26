@@ -27,7 +27,7 @@ namespace Tizen.Network.IoTConnectivity
     /// The iotcon options API provides methods for managing vendor specific options of coap packet.\n
     /// See more about coap packet in http://tools.ietf.org/html/rfc7252.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class ResourceOptions : IDictionary<ushort, string>, IDisposable
     {
         internal const int MaxSize = 2;
@@ -40,14 +40,14 @@ namespace Tizen.Network.IoTConnectivity
         private bool _disposed = false;
 
         /// <summary>
-        /// The resource options constructor
+        /// The resource options constructor.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Add()"/>
         /// <seealso cref="Remove()"/>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// </code>
@@ -94,9 +94,9 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Contains all the Option keys
+        /// Contains all the Option keys.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>All the Option keys.</value>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
@@ -114,9 +114,9 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Contains all the Option values
+        /// Contains all the Option values.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>All the Option values.</value>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
@@ -134,9 +134,9 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Gets the number of options
+        /// Gets the number of options.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The number of options.</value>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
@@ -154,9 +154,9 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Represents whether the collection is readonly
+        /// Represents whether the collection is readonly.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Whether the collection is readonly.</value>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
@@ -172,12 +172,12 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Gets or sets the option data
+        /// Gets or sets the option data.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The option data.</value>
-        /// <param name="key">The option id to get or set.</param>
-        /// <returns>The option with the specified id.</returns>
+        /// <param name="key">The option ID to get or set.</param>
+        /// <returns>The option with the specified ID.</returns>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options[2055] = "sample-data";
@@ -196,11 +196,11 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Checks whether the given key exists in Options collection
+        /// Checks whether the given key exists in Options collection.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="key">The key to look for</param>
-        /// <returns>true if exists. Otherwise, false</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="key">The key to look for.</param>
+        /// <returns>true if exists. Otherwise, false.</returns>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "sample-data");
@@ -213,20 +213,20 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Adds a new id and a correspoding data into the options.
+        /// Adds a new ID and a correspoding data into the options.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// ResourceOptions can have up to 2 options. \n
         /// key is always situated between 2048 and 3000. \n
         /// Length of option data is less than or equal to 15.
         /// </remarks>
-        /// <param name="key">The id of the option to insert</param>
-        /// <param name="value">The string data to insert into the options</param>
+        /// <param name="key">The ID of the option to insert.</param>
+        /// <param name="value">The string data to insert into the options.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Remove()"/>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "sample-data");
@@ -252,15 +252,15 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Removes the id and its associated data from the options.
+        /// Removes the ID and its associated data from the options.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="key">The id of the option to delete</param>
-        /// <returns>True if operation is successful. Otherwise, false</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="key">The ID of the option to delete.</param>
+        /// <returns>True if operation is successful. Otherwise, false.</returns>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Add()"/>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "12345");
@@ -283,10 +283,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Gets the value associated with the specified key.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="key">The option id</param>
-        /// <param name="value">Value corresponding to option id</param>
-        /// <returns>True if the key exists, false otherwise</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="key">The option ID.</param>
+        /// <param name="value">Value corresponding to option ID.</param>
+        /// <returns>True if the key exists, false otherwise.</returns>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "12345");
@@ -301,10 +301,10 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        ///  Adds options key and value as a key value pair
+        ///  Adds options key and value as a key value pair.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="item">The key value pair</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="item">The key value pair.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Remove()"/>
         /// <code>
@@ -317,11 +317,11 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Clears the Options collection
+        /// Clears the Options collection.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
-        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "12345");
@@ -343,11 +343,11 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Checks if the given option pair exists
+        /// Checks if the given option pair exists.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="item">The key value pair</param>
-        /// <returns>True if exists. Otherwise, false</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="item">The key value pair.</param>
+        /// <returns>True if exists. Otherwise, false.</returns>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "12345"));
@@ -361,11 +361,11 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Copies the elements of the options collection to an Array, starting at a particular index.
+        /// Copies the elements of the options collection to an array, starting at a particular index.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="array">The destination array</param>
-        /// <param name="arrayIndex">Index parameter</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="array">The destination array.</param>
+        /// <param name="arrayIndex">Index parameter.</param>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "12345"));
@@ -379,7 +379,7 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Remove the given key value pair from the options
+        /// Removes the given key value pair from the options.
         /// </summary>
         /// <since_tizen>3</since_tizen>
         /// <param name="item">The key value pair to remove</param>
@@ -398,10 +398,10 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Get the enumerator to options collection
+        /// Get the enumerator to options collection.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <returns>Enumerator to option pairs</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <returns>Enumerator to option pairs.</returns>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "sample1"));
@@ -419,7 +419,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         public void Dispose()
         {
@@ -428,10 +428,10 @@ namespace Tizen.Network.IoTConnectivity
         }
 
         /// <summary>
-        /// Get the enumerator to options collection
+        /// Gets the enumerator to options collection.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <returns>Enumerator to option pairs</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <returns>Enumerator to option pairs.</returns>
         /// <code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "sample1"));
@@ -449,7 +449,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         protected virtual void Dispose(bool disposing)
