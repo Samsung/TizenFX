@@ -109,6 +109,8 @@ namespace Tizen.Messaging.Push
         /// API to connect with the push service.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/push</privilege>
+        /// <exception cref="InvalidOperationException"> In case of privilege not defined. </exception>
         /// <param name="pushAppId"> The Push Application Id Registered with the server.</param>
         public static void PushServiceConnect(string pushAppId)
         {
