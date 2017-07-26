@@ -96,7 +96,7 @@ namespace Tizen.Multimedia.Util
         /// <param name="colorSpace">The target color-space.</param>
         /// <exception cref="ArgumentException"><paramref name="colorSpace"/> is invalid.</exception>
         /// <exception cref="NotSupportedException"><paramref name="colorSpace"/> is not supported by the encoder.</exception>
-        /// <seealso cref="ImageUtil.GetSupportedColorspace(ImageFormat)"/>
+        /// <seealso cref="ImageUtil.GetSupportedColorSpaces(ImageFormat)"/>
         public void SetColorSpace(ColorSpace colorSpace)
         {
             ValidationUtil.ValidateEnum(typeof(ColorSpace), colorSpace, nameof(colorSpace));
@@ -182,7 +182,7 @@ namespace Tizen.Multimedia.Util
         /// </exception>
         /// <exception cref="InvalidOperationException">The resolution is not set.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageEncoder"/> has already been disposed of.</exception>
-        /// <seealso cref="SetResolution(Size)"/>
+        /// <seealso cref="SetResolution"/>
         public Task EncodeAsync(byte[] inputBuffer, Stream outStream)
         {
             if (inputBuffer == null)
@@ -428,7 +428,7 @@ namespace Tizen.Multimedia.Util
         /// </exception>
         /// <exception cref="InvalidOperationException">The resolution is not set.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageEncoder"/> has already been disposed of.</exception>
-        /// <seealso cref="SetResolution(Size)"/>
+        /// <seealso cref="ImageEncoder.SetResolution"/>
         public Task EncodeAsync(IEnumerable<GifFrame> frames, Stream outStream)
         {
             if (frames == null)

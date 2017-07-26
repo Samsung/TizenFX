@@ -67,7 +67,7 @@ namespace Tizen.Multimedia.Util
         /// <param name="colorSpace">The value indicating color-space to decode into.</param>
         /// <exception cref="ArgumentException"><paramref name="colorSpace"/> is invalid.</exception>
         /// <exception cref="NotSupportedException"><paramref name="colorSpace"/> is not supported by the decoder.</exception>
-        /// <seealso cref="ImageUtil.GetSupportedColorspace(ImageFormat)"/>
+        /// <seealso cref="ImageUtil.GetSupportedColorSpaces(ImageFormat)"/>
         public void SetColorSpace(ColorSpace colorSpace)
         {
             ValidationUtil.ValidateEnum(typeof(ColorSpace), colorSpace, nameof(ColorSpace));
