@@ -55,12 +55,24 @@ internal static partial class Interop
             // A message with a struct containing a string and list of floating point numbers as value. Use #Edje_Message_String_Float_Set structs as message body, for this type.
             EDJE_MESSAGE_STRING_FLOAT_SET = 11
         }
+        internal enum Elm_Focus_Autoscroll_Mode
+        {
+            ELM_FOCUS_AUTOSCROLL_MODE_SHOW,
+            ELM_FOCUS_AUTOSCROLL_MODE_NONE,
+            ELM_FOCUS_AUTOSCROLL_MODE_BRING_IN
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_config_scroll_bring_in_scroll_friction_set(double time);
 
         [DllImport(Libraries.Elementary)]
         internal static extern double elm_config_scroll_bring_in_scroll_friction_get();
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_config_focus_autoscroll_mode_set(Elm_Focus_Autoscroll_Mode mode);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern Elm_Focus_Autoscroll_Mode elm_config_focus_autoscroll_mode_get();
 
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_config_accel_preference_set(string preference);

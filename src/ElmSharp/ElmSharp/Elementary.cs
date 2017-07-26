@@ -21,6 +21,25 @@ using System.IO;
 namespace ElmSharp
 {
     /// <summary>
+    /// Focus Autoscroll Mode
+    /// </summary>
+    public enum FocusAutoScrollMode
+    {
+        /// <summary>
+        /// Directly show the focused region or item automatically
+        /// </summary>
+        Show,
+        /// <summary>
+        /// Do not show the focused region or item automatically
+        /// </summary>
+        None,
+        /// <summary>
+        /// Bring in the focused region or item automatically which might invole the scrolling
+        /// </summary>
+        BringIn
+    }
+
+    /// <summary>
     /// The Elementary is a General Elementary,a VERY SIMPLE toolkit.
     /// </summary>
     public static class Elementary
@@ -130,6 +149,21 @@ namespace ElmSharp
             set
             {
                 Interop.Elementary.elm_config_scroll_bring_in_scroll_friction_set(value);
+            }
+        }
+
+        /// <summary>
+        /// Gets of sets focus auto scroll mode.
+        /// </summary>
+        public static FocusAutoScrollMode FocusAutoScrollMode
+        {
+            get
+            {
+                return (FocusAutoScrollMode)Interop.Elementary.elm_config_focus_autoscroll_mode_get();
+            }
+            set
+            {
+                Interop.Elementary.elm_config_focus_autoscroll_mode_set((Interop.Elementary.Elm_Focus_Autoscroll_Mode)value);
             }
         }
 
