@@ -28,6 +28,7 @@ internal static partial class Interop
     {
         [DllImport(Libraries.PlatformConfig, EntryPoint = "tzplatform_getenv", CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr _GetEnv(int id);
+
         [DllImport(Libraries.PlatformConfig, EntryPoint = "tzplatform_getid", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetId(string name);
 
@@ -38,4 +39,3 @@ internal static partial class Interop
         }
     }
 }
-
