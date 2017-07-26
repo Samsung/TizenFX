@@ -242,7 +242,7 @@ namespace Tizen.Network.Nsd
         #region IDisposable Support
         private bool _disposedValue = false; // To detect redundant calls
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (!_disposedValue)
             {

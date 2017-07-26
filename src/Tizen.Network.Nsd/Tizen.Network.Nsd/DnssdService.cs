@@ -353,7 +353,7 @@ namespace Tizen.Network.Nsd
         #region IDisposable Support
         private bool _disposedValue = false; // To detect redundant calls
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (!_disposedValue)
             {
@@ -415,6 +415,8 @@ namespace Tizen.Network.Nsd
         {
             get
             {
+                if (_ipv4 == null)
+                    return IPAddress.Parse("0.0.0.0");
                 return IPAddress.Parse(_ipv4);
             }
         }
@@ -427,6 +429,8 @@ namespace Tizen.Network.Nsd
         {
             get
             {
+                if (_ipv6 == null)
+                    return IPAddress.Parse("0:0:0:0:0:0:0:0");
                 return IPAddress.Parse(_ipv6);
             }
         }
