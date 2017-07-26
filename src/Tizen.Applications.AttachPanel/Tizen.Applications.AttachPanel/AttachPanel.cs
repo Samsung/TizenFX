@@ -25,6 +25,7 @@ namespace Tizen.Applications.AttachPanel
             checkException(err);
 
             Tizen.Log.Debug("AttachPanelSharp", "Success to create an AttachPanel Instance");
+            isCreationSucceed = true;
             _attachPanel = candidateAttachPanel;
 
             if (_eventEventHandler == null)
@@ -40,7 +41,8 @@ namespace Tizen.Applications.AttachPanel
 
         ~AttachPanel()
         {
-            if (_attachPanel != IntPtr.Zero)
+            if (isCreationSucceed &&
+                _attachPanel != IntPtr.Zero)
             {
                 Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.DestroyAttachPanel(_attachPanel);
                 checkException(err);

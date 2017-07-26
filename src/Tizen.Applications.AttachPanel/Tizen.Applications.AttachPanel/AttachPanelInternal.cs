@@ -6,6 +6,7 @@ namespace Tizen.Applications.AttachPanel
     public partial class AttachPanel
     {
         private static IntPtr _attachPanel;
+        private bool isCreationSucceed;
 
         private static event EventHandler<StateEventArgs> _eventEventHandler;
         private static event EventHandler<ResultEventArgs> _resultEventHandler;
