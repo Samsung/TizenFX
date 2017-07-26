@@ -385,5 +385,9 @@ namespace Tizen.Network.Mtp
             disposed = true;
         }
 
+        internal int GetHandle()
+        {
+            return _objectHandle;
+        }
     }
 }

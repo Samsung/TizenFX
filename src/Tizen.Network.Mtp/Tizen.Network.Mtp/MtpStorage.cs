@@ -31,7 +31,7 @@ namespace Tizen.Network.Mtp
         private bool disposed = false;
         private List<int> _objectHandleList = new List<int>();
         private List<MtpObject> _objectList = new List<MtpObject>();
-        //private int _objectHandle = 0;
+        private MtpObject _rootObject;
 
         /// <summary>
         /// Gets the description of the storage information.
@@ -172,11 +172,28 @@ namespace Tizen.Network.Mtp
         }
 
         /// <summary>
-        /// Gets the list of storages.
+        /// Gets the root folder object.
+        /// </summary>
+        /// <returns>List of storage objects.</returns>
+        /// <feature>http://tizen.org/feature/network.mtp</feature>
+        /// <remarks>
+        /// http://tizen.org/privilege/mediastorage is needed if input or output path are relevant to media storage.
+        /// http://tizen.org/privilege/externalstorage is needed if input or output path are relevant to external storage.
+        /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
+        public MtpObject GetRootObject()
+        {
+            _rootObject = new MtpObject(_deviceHandle, 0);
+
+            return _rootObject;
+        }
+
+        /// <summary>
+        /// Gets the list of objects.
         /// </summary>
         /// <param name="parentHandle">The parent object handle. If parentHandle is 0, it means "root folder" of mtp storage.</param>
         /// <param name="fileType">The file type what you want.</param>
-        /// <returns>List of storage objects.</returns>
+        /// <returns>List of objects.</returns>
         /// <feature>http://tizen.org/feature/network.mtp</feature>
         /// <remarks>
         /// http://tizen.org/privilege/mediastorage is needed if input or output path are relevant to media storage.
@@ -186,12 +203,12 @@ namespace Tizen.Network.Mtp
         /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public IEnumerable<MtpObject> GetObjectHandles(int parentHandle, MtpFileType fileType)
+        public IEnumerable<MtpObject> GetObjectList(MtpObject parentObject, MtpFileType fileType)
         {
             IntPtr objectPtr;
             int count = 0;
 
-            int ret = Interop.Mtp.GetObjectHandles(_deviceHandle, _storageHandle, parentHandle, (int)fileType, out objectPtr, out count);
+            int ret = Interop.Mtp.GetObjectHandles(_deviceHandle, _storageHandle, parentObject.GetHandle(), (int)fileType, out objectPtr, out count);
             if (ret != (int)MtpError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get object handle lists, Error - " + (MtpError)ret);
