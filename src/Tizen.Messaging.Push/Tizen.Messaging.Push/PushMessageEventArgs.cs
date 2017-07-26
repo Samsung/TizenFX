@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Messaging.Push
 {
     /// <summary>
-    /// An extended EventArgs class which contains the message received.
+    /// An extended EventArgs class, which contains the message received.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class PushMessageEventArgs : EventArgs
@@ -28,7 +28,7 @@ namespace Tizen.Messaging.Push
         /// Gives the Application Data recieved. </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is the string which stores the application data.</value>
+        /// It is the string, which stores the application data.</value>
         public string AppData
         {
             get;
@@ -40,7 +40,7 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is the string which stores the message field.</value>
+        /// It is the string, which stores the message field.</value>
         public string Message
         {
             get;
@@ -84,11 +84,11 @@ namespace Tizen.Messaging.Push
         }
 
         /// <summary>
-        /// Gives the request Id of the notification.
+        /// Gives the request ID of the notification.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is a string value representing the request Id of the Notification.</value>
+        /// It is a string value representing the request ID of the Notification.</value>
         public string RequestId
         {
             get;

@@ -25,9 +25,9 @@ namespace Tizen.Messaging.Push
     /// <since_tizen> 3 </since_tizen>
     /// <remarks>
     /// The PushClient API provides the way to connect with the push service.
-    /// It provides api's to connect/disconnect from the push service.
-    /// Api's are provided so that an application can register itself
-    /// with the push server along with api's to request push message.
+    /// It provides APIs to connect/disconnect from the push service.
+    /// APIs are provided so that an application can register itself
+    /// with the push server along with APIs to request push message.
     /// </remarks>
     /// <example>
     /// <code>
@@ -111,7 +111,7 @@ namespace Tizen.Messaging.Push
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/push</privilege>
         /// <exception cref="InvalidOperationException"> In case of privilege not defined. </exception>
-        /// <param name="pushAppId"> The Push Application Id Registered with the server.</param>
+        /// <param name="pushAppId"> The Push Application ID Registered with the server.</param>
         public static void PushServiceConnect(string pushAppId)
         {
             PushImpl.Instance.PushServiceConnect(pushAppId);
@@ -133,7 +133,7 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
-        /// The method returns a task which on completion with give a ServerResponse Object.
+        /// The method returns a task, which on completion will give a ServerResponse Object.
         /// </returns>
         public static Task<ServerResponse> PushServerRegister()
         {
@@ -145,7 +145,7 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
-        /// The method returns a task which on completion with give a ServerResponse Object.
+        /// The method returns a task, which on completion will give a ServerResponse Object.
         /// </returns>
         public static Task<ServerResponse> PushServerUnregister()
         {
@@ -162,10 +162,10 @@ namespace Tizen.Messaging.Push
         }
 
         /// <summary>
-        /// registration Id received from server. </summary>
+        /// registration ID received from server. </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
-        /// It is the string which is the Id received from the server.
+        /// It is the string, which is the ID received from the server.
         /// </returns>
         public static string GetRegistrationId()
         {

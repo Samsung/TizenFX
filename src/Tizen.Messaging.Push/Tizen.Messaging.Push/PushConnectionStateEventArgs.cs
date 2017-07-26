@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Messaging.Push
 {
     /// <summary>
-    /// An extended EventArgs class which contains the State Information.
+    /// An extended EventArgs class, which contains the State Information.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class PushConnectionStateEventArgs : EventArgs
@@ -69,7 +69,7 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is the string which contains the error string if set.</value>
+        /// It is the string, which contains the error string if set.</value>
         public string Error
         {
             get;
