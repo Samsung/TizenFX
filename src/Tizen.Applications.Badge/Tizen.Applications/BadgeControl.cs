@@ -19,7 +19,7 @@ namespace Tizen.Applications
     using System;
     using System.Collections.Generic;
     /// <summary>
-    /// Class for badge operation.
+    /// The class for badge operation.
     /// </summary>
     public static class BadgeControl
     {
@@ -30,9 +30,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Event handler for receiving badge events.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
+        /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static event EventHandler<BadgeEventArgs> Changed
         {
@@ -74,13 +74,13 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the badge information from application ID.
+        /// Gets the badge information from the application ID.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="appId">Application ID</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="appId">Application ID.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static Badge Find(string appId)
         {
@@ -105,11 +105,11 @@ namespace Tizen.Applications
         /// <summary>
         /// Removes the badge information.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="appId">Application ID</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="appId">Application ID.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of a an invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static void Remove(string appId)
         {
@@ -123,13 +123,13 @@ namespace Tizen.Applications
         /// <summary>
         /// Adds the badge information.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="appId">Application ID</param>
-        /// <param name="count">Count value</param>
-        /// <param name="isDisplay">True if it should be displayed</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="appId">Application ID.</param>
+        /// <param name="count">Count value.</param>
+        /// <param name="isDisplay">True if it should be displayed.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static void Add(string appId, int count = 1, bool isDisplay = true)
         {
@@ -153,12 +153,12 @@ namespace Tizen.Applications
         /// <summary>
         /// Updates the badge information.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="appId">Application ID</param>
-        /// <param name="count">Count value</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="appId">Application ID.</param>
+        /// <param name="count">Count value.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static void Update(string appId, int count)
         {
@@ -172,12 +172,12 @@ namespace Tizen.Applications
         /// <summary>
         /// Updates the badge information.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="appId">Application ID</param>
-        /// <param name="isDisplay">True if it should be displayed</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="appId">Application ID.</param>
+        /// <param name="isDisplay">True if it should be displayed.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static void Update(string appId, bool isDisplay)
         {
@@ -191,13 +191,13 @@ namespace Tizen.Applications
         /// <summary>
         /// Updates the badge information.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="appId">Application ID</param>
-        /// <param name="count">Count value</param>
-        /// <param name="isDisplay">True if it should be displayed</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="appId">Application ID.</param>
+        /// <param name="count">Count value.</param>
+        /// <param name="isDisplay">True if it should be displayed.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static void Update(string appId, int count, bool isDisplay)
         {
@@ -206,11 +206,11 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets all badge information.
+        /// Gets all the badge information.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
+        /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static IEnumerable<Badge> GetBadges()
         {

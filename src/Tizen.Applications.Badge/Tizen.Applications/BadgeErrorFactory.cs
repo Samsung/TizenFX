@@ -35,7 +35,7 @@ namespace Tizen.Applications
     }
 
     /// <summary>
-    /// Immutable class for getting information of the badge.
+    /// Immutable class for getting the badge information.
     /// </summary>
     internal static class BadgeErrorFactory
     {

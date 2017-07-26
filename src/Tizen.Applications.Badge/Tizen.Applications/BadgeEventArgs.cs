@@ -19,7 +19,7 @@ namespace Tizen.Applications
     using System;
 
     /// <summary>
-    /// Class for event arguments of the badge event
+    /// The class for event arguments of the badge event.
     /// </summary>
     public class BadgeEventArgs : EventArgs
     {
@@ -28,37 +28,37 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Enumeration for badge action.
+        /// Enumeration for the badge action.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public enum Action : int
         {
             /// <summary>
-            /// Badge was added.
+            /// The badge was added.
             /// </summary>
             Add = 0,
 
             /// <summary>
-            /// Badge was removed.
+            /// The badge was removed.
             /// </summary>
             Remove,
 
             /// <summary>
-            /// Badge was updated.
+            /// The badge was updated.
             /// </summary>
             Update,
         }
 
         /// <summary>
-        /// Property for Badge object.
+        /// The property for the badge object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Badge Badge { get; internal set; }
 
         /// <summary>
-        /// Property for Action value.
+        /// The property for the action value.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Action Reason { get; internal set; }
     }
 }
