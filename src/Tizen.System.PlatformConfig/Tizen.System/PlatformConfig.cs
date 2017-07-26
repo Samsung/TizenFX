@@ -24,14 +24,9 @@ namespace Tizen.System
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PlatformConfig
     {
-        public static int GetId(string name)
+        private static int GetId(string name)
         {
             return Interop.PlatformConfig.GetId(name);
-        }
-
-        public static string GetEnv(int id)
-        {
-            return Interop.PlatformConfig.GetEnv(id);
         }
 
         public static string GetEnv(string name)
