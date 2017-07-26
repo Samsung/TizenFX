@@ -24,6 +24,10 @@ namespace ElmSharp
     /// </summary>
     public class EvasKeyEventArgs : EventArgs
     {
+        IntPtr _nativeEventInfo;
+
+        EvasEventFlag _eventFlags;
+
         /// <summary>
         /// BackButton name in Platform
         /// </summary>
@@ -42,6 +46,27 @@ namespace ElmSharp
         /// </summary>
         public string KeyName { get; private set; }
 
+        public EvasEventFlag Flags
+        {
+            get
+            {
+                IntPtr offset = Marshal.OffsetOf<EvasEventKeyDown>("event_flags");
+                return (EvasEventFlag)Marshal.ReadIntPtr(_nativeEventInfo, (int)offset);
+            }
+            set
+            {
+                IntPtr offset = Marshal.OffsetOf<EvasEventKeyDown>("event_flags");
+                Marshal.WriteIntPtr(_nativeEventInfo, (int)offset, (IntPtr)value);
+            }
+        }
+
+        EvasKeyEventArgs(IntPtr info)
+        {
+            _nativeEventInfo = info;
+            var evt = Marshal.PtrToStructure<EvasEventKeyDown>(info);
+            KeyName = evt.keyname;
+        }
+
         /// <summary>
         /// Creates and initializes a new instance of the EvasKeyEventArgs class.
         /// </summary>
@@ -51,8 +76,7 @@ namespace ElmSharp
         /// <returns>EvasKey eventArgs</returns>
         static public EvasKeyEventArgs Create(IntPtr data, IntPtr obj, IntPtr info)
         {
-            var evt = Marshal.PtrToStructure<EvasEventKeyDown>(info);
-            return new EvasKeyEventArgs() { KeyName = evt.keyname };
+            return new EvasKeyEventArgs(info);
         }
 
         /// <summary>
@@ -89,10 +113,13 @@ namespace ElmSharp
             /// UTF8 string if this keystroke has modified a string in the middle of being composed - this string replaces the previous one
             /// </summary>
             public string compose;
+
+            public uint timestamp;
+
             /// <summary>
             /// Event_flags
             /// </summary>
-            public IntPtr event_flags;
+            public EvasEventFlag event_flags;
             /// <summary>
             ///
             /// </summary>
@@ -102,6 +129,22 @@ namespace ElmSharp
             /// </summary>
             public uint keycode;
         };
-
     }
+
+    /// <summary>
+    /// Flags for Events
+    /// </summary>
+    [Flags]
+    public enum EvasEventFlag
+    {
+        /// <summary>
+        /// No fancy flags set
+        /// </summary>
+        None = 0,
+        /// <summary>
+        ///This event is being delivered but should be put "on hold" until the on hold flag is unset. the event should be used for informational purposes and maybe some indications visually, but not actually perform anything
+        /// </summary>
+        OnHold = 1,
+    }
+
 }

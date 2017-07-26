@@ -888,8 +888,8 @@ namespace ElmSharp
 
                 OnRealized();
                 _deleted = new EvasObjectEvent(this, EvasObjectCallbackType.Del);
-                _keydown = new EvasObjectEvent<EvasKeyEventArgs>(this, EvasObjectCallbackType.KeyDown, EvasKeyEventArgs.Create);
-                _keyup = new EvasObjectEvent<EvasKeyEventArgs>(this, EvasObjectCallbackType.KeyUp, EvasKeyEventArgs.Create);
+                _keydown = new EvasObjectEvent<EvasKeyEventArgs>(this, RealHandle, EvasObjectCallbackType.KeyDown, EvasKeyEventArgs.Create);
+                _keyup = new EvasObjectEvent<EvasKeyEventArgs>(this, RealHandle, EvasObjectCallbackType.KeyUp, EvasKeyEventArgs.Create);
                 _moved = new EvasObjectEvent(this, EvasObjectCallbackType.Move);
                 _resized = new EvasObjectEvent(this, EvasObjectCallbackType.Resize);
 
