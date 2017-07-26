@@ -18,7 +18,7 @@
 namespace Tizen.Uix.Tts
 {
     /// <summary>
-    /// This class holds information related to the TTS state change event
+    /// This class holds information related to the TTS StateChanged event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class StateChangedEventArgs
@@ -30,7 +30,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// A previous state
+        /// The previous state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public State Previous
@@ -40,7 +40,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// A current state
+        /// The current state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public State Current

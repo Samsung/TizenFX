@@ -18,7 +18,7 @@
 namespace Tizen.Uix.Tts
 {
     /// <summary>
-    /// This Class hold information related to UtteranceStared and UtteranceCompleted Events
+    /// This class holds information related to UtteranceStared and UtteranceCompleted events.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class UtteranceEventArgs
@@ -29,7 +29,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// The utterance ID
+        /// The utterance ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int UtteranceId

@@ -21,7 +21,7 @@ using static Interop.Tts;
 namespace Tizen.Uix.Tts
 {
     /// <summary>
-    /// This class holds information related to the TTS ErrorOccurred Event
+    /// This class holds information related to the TTS ErrorOccurred event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ErrorOccurredEventArgs
@@ -115,7 +115,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// The Utterance Id
+        /// The utterance ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int UtteranceId
@@ -125,7 +125,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// The Error Value
+        /// The error value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Error ErrorValue
@@ -139,7 +139,7 @@ namespace Tizen.Uix.Tts
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
-        /// string error message
+        /// String error message.
         /// </returns>
         public string ErrorMessage
         {

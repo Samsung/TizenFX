@@ -20,12 +20,12 @@ using System.Runtime.InteropServices;
 using Tizen.Uix.Tts;
 
 /// <summary>
-/// Partial Interop Class
+/// Partial interop class.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Tts Interop Class
+    /// Tts interop class.
     /// </summary>
     internal static class Tts
     {

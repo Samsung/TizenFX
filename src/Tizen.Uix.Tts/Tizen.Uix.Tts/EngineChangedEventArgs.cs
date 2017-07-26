@@ -20,7 +20,7 @@ using static Tizen.Uix.Tts.SupportedVoice;
 namespace Tizen.Uix.Tts
 {
     /// <summary>
-    /// This class holds information related to Engine Changed Event
+    /// This class holds information related to the EngineChanged event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class EngineChangedEventArgs
@@ -33,7 +33,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// Engine Id
+        /// The engine ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string EngineId
@@ -43,7 +43,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// The necessity of credential
+        /// The necessity of the credential.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool NeedCredential
@@ -53,7 +53,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// The supported voice
+        /// The supported voice.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public SupportedVoice VoiceType
