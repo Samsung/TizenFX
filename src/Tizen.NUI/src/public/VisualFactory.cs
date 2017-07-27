@@ -13,6 +13,7 @@
 * limitations under the License.
 *
 */
+using System;
 
 namespace Tizen.NUI
 {
@@ -66,11 +67,8 @@ namespace Tizen.NUI
         }
 
 
-        /// <summary>
-        /// Create or retrieve VisualFactory singleton.
-        /// </summary>
-        /// <returns>A handle to the VisualFactory control.</returns>
-        private static VisualFactory Get()
+        [Obsolete("Please do not use! this will be deprecated, please use VisualFactory.Instance instead")]
+        public static VisualFactory Get()
         {
             VisualFactory ret = new VisualFactory(NDalicPINVOKE.VisualFactory_Get(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
