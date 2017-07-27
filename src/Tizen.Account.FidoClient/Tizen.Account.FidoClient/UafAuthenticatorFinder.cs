@@ -33,7 +33,10 @@ namespace Tizen.Account.FidoClient
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Enumerable list of authenticators</returns>
         /// <privilege>http://tizen.org/privilege/fido.client</privilege>
+        /// <feature>http://tizen.org/feature/fido.uaf</feature>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method</exception>
+        /// <exception cref="NotSupportedException">FIDO is not supported</exception>
+
         /// <example>
         /// <code>
         ///     IEnumerable<AuthenticatorInformation> authInfos = await UafAuthenticatorFinder.DiscoverAuthenticatorsAsync();

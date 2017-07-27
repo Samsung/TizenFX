@@ -102,8 +102,10 @@ namespace Tizen.Account.FidoClient
         /// <param name="uafMessage">The FIDO UAF message which is received from the relying party server</param>
         /// <returns>True if the message can be handled by the device, else false</returns>
         /// <privilege>http://tizen.org/privilege/fido.client</privilege>
+        /// <feature>http://tizen.org/feature/fido.uaf</feature>
         /// <exception cref="ArgumentException"> In case of invalid parameter</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method</exception>
+        /// <exception cref="NotSupportedException">FIDO is not supported</exception>
         /// <example>
         /// <code>
         ///     UafMessage uafRequest = new UafMessage()
@@ -134,6 +136,7 @@ namespace Tizen.Account.FidoClient
         /// <param name="channelBindng">The channel binding data in JSON format which is received from the relying party server</param>
         /// <returns>FIDO response message</returns>
         /// <privilege>http://tizen.org/privilege/fido.client</privilege>
+        /// <feature>http://tizen.org/feature/fido.uaf</feature>
         /// <exception cref="ArgumentException"> In case of invalid parameter</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method</exception>
         /// <exception cref="NotSupportedException">FIDO is not supported</exception>
@@ -190,11 +193,13 @@ namespace Tizen.Account.FidoClient
         /// <param name="responseCode">The status code received from Server.(StautsOk implies success)</param>
         /// <param name="response">The FIDO response message sent to server in JSON format</param>
         /// <privilege>http://tizen.org/privilege/fido.client</privilege>
+        /// <feature>http://tizen.org/feature/fido.uaf</feature>
         /// <remarks>
         /// This is especially important for cases when a new registration may be considered by the client to be in a pending state until it is communicated that the server accepted it
         /// </remarks>
         /// <exception cref="ArgumentException"> In case of invalid parameter</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method</exception>
+        /// <exception cref="NotSupportedException">FIDO is not supported</exception>
         /// <example>
         /// <code>
         ///     UafResponse response = new UafResponse()
