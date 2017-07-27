@@ -192,8 +192,8 @@ namespace Tizen.Network.WiFi
         /// The Received signal strength indication(RSSI).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Represents Rssi level of WiFi.</value>
-        public WiFiRssiLevel Rssi
+        /// <value>Represents Rssi of WiFi(dbm).</value>
+        public int Rssi
         {
             get
             {
@@ -203,7 +203,7 @@ namespace Tizen.Network.WiFi
                 {
                     Log.Error(Globals.LogTag, "Failed to get rssi, Error - " + (WiFiError)ret);
                 }
-                return (WiFiRssiLevel)rssi;
+                return rssi;
             }
         }
 
