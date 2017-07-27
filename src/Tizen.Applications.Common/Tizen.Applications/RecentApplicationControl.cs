@@ -39,6 +39,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Deletes the application from recent application list.
         /// </summary>
+        /// <privlevel>platform</privlevel>
         public void Delete()
         {
             Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
@@ -52,6 +53,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Delete all recent applicationsfrom recent application list.
         /// </summary>
+        /// <privlevel>platform</privlevel>
         public static void DeleteAll()
         {
             Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
