@@ -19,21 +19,21 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// The class for event arguments of the DeviceOrientationChanged
+    /// The class for the argument of the DeviceOrientationChanged EventHandler
     /// </summary>
     public class DeviceOrientationEventArgs : EventArgs
     {
         /// <summary>
         ///  Initializes DeviceOrientationEventArgs class
         /// </summary>
-        /// <param name="orientation"></param>
+        /// <param name="orientation">The information of the DeviceOrientation</param>
         public DeviceOrientationEventArgs(DeviceOrientation orientation)
         {
             DeviceOrientation = orientation;
         }
 
         /// <summary>
-        /// The received DeviceOrientation
+        /// The property to get the intformation of the DeviceOrientation
         /// </summary>
         public DeviceOrientation DeviceOrientation { get; private set; }
     }

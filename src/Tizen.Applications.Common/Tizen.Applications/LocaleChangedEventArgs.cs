@@ -19,22 +19,22 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// 
+    /// The class for the argument of the LocaleChanged EventHandler
     /// </summary>
     public class LocaleChangedEventArgs : EventArgs
     {
 
         /// <summary>
-        /// 
+        /// Initializes LocaleChangedEventArgs class
         /// </summary>
-        /// <param name="locale"></param>
+        /// <param name="locale">The information of the Locale</param>
         public LocaleChangedEventArgs(string locale)
         {
             Locale = locale;
         }
 
         /// <summary>
-        /// 
+        /// The property to get the intformation of the Locale
         /// </summary>
         public string Locale { get; private set; }
 

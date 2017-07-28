@@ -17,10 +17,10 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// 
+    /// Reply callback for the launch request
     /// </summary>
-    /// <param name="launchRequest"></param>
-    /// <param name="replyRequest"></param>
-    /// <param name="result"></param>
+    /// <param name="launchRequest">The AppControl of the launch request that has been sent</param>
+    /// <param name="replyRequest">The AppControl in which the results of the callee are contained</param>
+    /// <param name="result">The result of the launch request</param>
     public delegate void AppControlReplyCallback(AppControl launchRequest, AppControl replyRequest, AppControlReplyResult result);
 }
