@@ -20,24 +20,24 @@ using static Interop.InputMethodManager;
 namespace Tizen.Uix.InputMethodManager
 {
     /// <summary>
-    /// This class provides the functions for launching input method editor (IME) list and selector settings. A user can manage the installed IMEs in the system.
-    /// Input method editor (IME) is an input panel that lets users provide input and the platform receives the text data entered.
-    /// Manager is a module for managing the installed IMEs.
-    /// IME developers can use this module to open the installed IME list or selector menu after their IME installation and then guide to select the installed IME.
+    /// This class provides the function for launching the input method editor (IME) list and selector settings. A user can manage the installed IMEs in the system.
+    /// The input method editor (IME) is an input panel that lets users provide an input and the platform to receive the text data entered.
+    /// The manager is a module for managing the installed IMEs.
+    /// IME developers can use this module to open the installed IME list or the selector menu after their IME installation, and then guide to select the installed IME.
     /// </summary>
     public static class Manager
     {
         /// <summary>
         /// Requests to open the installed IME list menu.
-        /// This api provides the installed IME list menu for the IME developers who might want to open it to enable their IME.
+        /// This API provides the installed IME list menu for IME developers who might want to open it to enable their IME.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/imemanager
         /// </privilege>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can occur if:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) Operation failed
+        /// This exception can occur if:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) Operation failed.
         /// </exception>
         public static void ShowIMEList()
         {
@@ -51,15 +51,15 @@ namespace Tizen.Uix.InputMethodManager
 
         /// <summary>
         /// Requests to open the IME selector menu.
-        /// This api provides the IME selector menu for the IME or other application developers who might want to change the default IME.
+        /// This API provides the IME selector menu for the IME or other application developers who might want to change the default IME.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/imemanager
         /// </privilege>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can occur if:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) Operation failed
+        /// This exception can occur if:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) Operation failed.
         /// </exception>
         public static void ShowIMESelector()
         {
@@ -78,15 +78,15 @@ namespace Tizen.Uix.InputMethodManager
         /// <privilege>
         /// http://tizen.org/privilege/imemanager
         /// </privilege>
-        /// <param name="appId">The application ID of the IME</param>
-        /// <returns>The On (enabled) and Off (disabled) state of the IME</returns>
+        /// <param name="appId">The application ID of the IME.</param>
+        /// <returns>The On (enabled) and Off (disabled) state of the IME.</returns>
         /// <exception cref="ArgumentException">
-        /// This Exception can occur if Invalid parameter is provided
+        /// This exception can occur if an invalid parameter is provided.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can occur if:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) Operation failed
+        /// This exception can occur if:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) Operation failed.
         /// </exception>
         public static bool IsIMEEnabled(string appId)
         {
@@ -108,12 +108,12 @@ namespace Tizen.Uix.InputMethodManager
         /// http://tizen.org/privilege/imemanager
         /// </privilege>
         /// <returns>
-        /// Current activated (selected) IME
+        /// The current activated (selected) IME.
         /// </returns>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can occur if:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) Operation failed
+        /// This exception can occur if:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) Operation failed.
         /// </exception>
         public static string GetActiveIME()
         {
@@ -129,18 +129,18 @@ namespace Tizen.Uix.InputMethodManager
         }
 
         /// <summary>
-        /// Gets the number of IMEs which are enabled (usable).
+        /// Gets the number of IMEs that are enabled (usable).
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/imemanager
         /// </privilege>
         /// <returns>
-        /// The number of enabled IMEs
+        /// The number of enabled IMEs.
         /// </returns>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can occur if:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) Operation failed
+        /// This exception can occur if:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) Operation failed.
         /// </exception>
         public static int GetEnabledIMECount()
         {

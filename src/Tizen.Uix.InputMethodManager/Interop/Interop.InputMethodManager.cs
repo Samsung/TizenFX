@@ -19,12 +19,12 @@ using System;
 using System.Runtime.InteropServices;
 
 /// <summary>
-/// Partial Interop Class
+/// Partial interop class.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// InputMethodManager Interop Class
+    /// InputMethodManager interop class.
     /// </summary>
     internal static class InputMethodManager
     {
