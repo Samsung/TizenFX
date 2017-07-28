@@ -17,18 +17,18 @@
 namespace Tizen.System
 {
     /// <summary>
-    /// Enumeration for storage area types.
+    /// Enumeration for the storage area types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum StorageArea
     {
         /// <summary>
-        /// Internal device storage (built-in storage in a device, non-removable)
+        /// Internal device storage (built-in storage in a device, non-removable).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Internal = Interop.Storage.StorageArea.Internal,
         /// <summary>
-        /// External storage
+        /// External storage.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         External = Interop.Storage.StorageArea.External,

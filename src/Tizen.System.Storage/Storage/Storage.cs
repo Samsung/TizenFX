@@ -19,7 +19,7 @@ using System;
 namespace Tizen.System
 {
     /// <summary>
-    /// class to access storage device information
+    /// The class to access the storage device information.
     /// </summary>
     public class Storage
     {
@@ -75,7 +75,7 @@ namespace Tizen.System
         /// StorageStateChanged event. This event is occurred when a storage state changes.
         /// </summary>
         /// <remarks>
-        /// Storage state will be updated before calling event handler.
+        /// The storage state will be updated before calling the event handler.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         /// <example>
@@ -112,28 +112,28 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Storage ID
+        /// The storage ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int Id { get; }
         /// <summary>
-        /// Type of the storage
+        /// The type of storage.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public StorageArea StorageType { get; }
         /// <summary>
-        /// Root directory for the storage
+        /// The root directory for the storage.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string RootDirectory { get; }
         /// <summary>
-        /// Total storage size in bytes
+        /// The total storage size in bytes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ulong TotalSpace { get { return _totalSpace; } }
 
         /// <summary>
-        /// Storage state
+        /// The StorageState.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public StorageState State
@@ -153,7 +153,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Available storage size in bytes
+        /// The available storage size in bytes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ulong AvaliableSpace
@@ -172,26 +172,26 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Absolute path for given directory type in storage
+        /// Absolute path for a given directory type in the storage.
         /// </summary>
         /// <remarks>
-        /// returned directory path may not exist, so you must make sure that it exists before using it.
-        /// For accessing internal storage except Ringtones directory, app should have http://tizen.org/privilege/mediastorage privilege.
-        /// For accessing Ringtones directory, app should have http://tizen.org/privilege/systemsettings privilege.
-        /// For accessing external storage, app should have http://tizen.org/privilege/externalstorage privilege.
+        /// The returned directory path may not exist, so you must make sure that it exists before using it.
+        /// For accessing internal storage except the ringtones directory, the application should have http://tizen.org/privilege/mediastorage privilege.
+        /// For accessing ringtones directory, the application should have http://tizen.org/privilege/systemsettings privilege.
+        /// For accessing external storage, the application should have http://tizen.org/privilege/externalstorage privilege.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="dirType">Directory type</param>
-        /// <returns>Absolute path for given directory type in storage</returns>
-        /// <exception cref="ArgumentException">Thrown when failed because of a invalid arguament</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory exception</exception>
-        /// <exception cref="NotSupportedException">Thrown when failed if storage is not supported or app does not have permission to access directory path</exception>
+        /// <param name="dirType">Directory type.</param>
+        /// <returns>Absolute path for a given directory type in the storage.</returns>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory exception.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed if the storage is not supported or the application does not have the permission to access the directory path.</exception>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/systemsettings</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <example>
         /// <code>
-        /// // To get video directories for all supported storage,
+        /// // To get the video directories for all the supported storage,
         /// var storageList = StorageManager.Storages as List&lt;Storage&gt;;
         /// foreach (var storage in storageList)
         /// {

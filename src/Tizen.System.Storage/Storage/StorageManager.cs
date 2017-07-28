@@ -20,14 +20,14 @@ using System.Collections.Generic;
 namespace Tizen.System
 {
     /// <summary>
-    /// Storage Manager, provides properties/ methods to access storage in the device.
+    /// The StorageManager provides the properties or methods to access storage in the device.
     /// </summary>
     public static class StorageManager
     {
         private const string LogTag = "Tizen.System";
 
         /// <summary>
-        /// List of all storage in the device
+        /// List of all storage in the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<Storage> Storages
