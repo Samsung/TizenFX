@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="CallgsmPage.cs" />
     <Compile Include="CommonPage.cs" />
+    <Compile Include="SsPage.cs" />
     <Compile Include="PhonebookPage.cs" />
     <Compile Include="SimPage.cs" />
     <Compile Include="ModemPage.cs" />

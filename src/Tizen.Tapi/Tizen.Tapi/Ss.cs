@@ -73,6 +73,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs during setting SS barring info: " + (SsCause)result);
                         task.SetException(new InvalidOperationException("Error occurs during setting SS barring info, " + (SsCause)result));
+                        return;
                     }
 
                     SsBarringResponseStruct response = Marshal.PtrToStructure<SsBarringResponseStruct>(data);
@@ -123,6 +124,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting barring status: " + (SsCause)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting barring status, " + (SsCause)result));
+                        return;
                     }
 
                     SsBarringResponseStruct response = Marshal.PtrToStructure<SsBarringResponseStruct>(data);
@@ -158,7 +160,7 @@ namespace Tizen.Tapi
         /// <exception cref="ArgumentNullException">Thrown when any of the parameter is passed as null.</exception>
         /// <exception cref="ArgumentException">Thrown when it is failed due to invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation.</exception>
-        public Task SsChangeBarringPassword(string oldPassword, string newPassword, string newPasswordAgain)
+        public Task<bool> SsChangeBarringPassword(string oldPassword, string newPassword, string newPasswordAgain)
         {
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id = (IntPtr)_requestId++;
@@ -170,6 +172,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in changing barring password: " + (SsCause)result);
                         task.SetException(new InvalidOperationException("Error occurs in changing barring password, " + (SsCause)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -219,6 +222,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in setting SS forward info: " + (SsCause)result);
                         task.SetException(new InvalidOperationException("Error occurs in setting SS forward info, " + (SsCause)result));
+                        return;
                     }
 
                     SsForwardResponseStruct response = Marshal.PtrToStructure<SsForwardResponseStruct>(data);
@@ -269,6 +273,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting SS forward status: " + (SsCause)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting SS forward status, " + (SsCause)result));
+                        return;
                     }
 
                     SsForwardResponseStruct response = Marshal.PtrToStructure<SsForwardResponseStruct>(data);
@@ -314,6 +319,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in setting SS waiting info: " + (SsCause)result);
                         task.SetException(new InvalidOperationException("Error occurs in setting SS waiting info, " + (SsCause)result));
+                        return;
                     }
 
                     SsWaitingResponseStruct response = Marshal.PtrToStructure<SsWaitingResponseStruct>(data);
@@ -363,6 +369,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting SS waiting info: " + (SsCause)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting SS waiting info, " + (SsCause)result));
+                        return;
                     }
 
                     SsWaitingResponseStruct response = Marshal.PtrToStructure<SsWaitingResponseStruct>(data);
@@ -408,6 +415,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in setting SS CLI status: " + (SsCause)result);
                         task.SetException(new InvalidOperationException("Error occurs in setting SS CLI status, " + (SsCause)result));
+                        return;
                     }
 
                     task.SetResult(true);
@@ -450,6 +458,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in getting SS CLI status: " + (SsCause)result);
                         task.SetException(new InvalidOperationException("Error occurs in getting SS CLI status, " + (SsCause)result));
+                        return;
                     }
 
                     SsCliResponseStruct response = Marshal.PtrToStructure<SsCliResponseStruct>(data);
@@ -495,6 +504,7 @@ namespace Tizen.Tapi
                     {
                         Log.Error(TapiUtility.LogTag, "Error occurs in sending USSD request: " + (SsCause)result);
                         task.SetException(new InvalidOperationException("Error occurs in sending USSD request, " + (SsCause)result));
+                        return;
                     }
 
                     SsUssdResponseStruct response = Marshal.PtrToStructure<SsUssdResponseStruct>(data);
