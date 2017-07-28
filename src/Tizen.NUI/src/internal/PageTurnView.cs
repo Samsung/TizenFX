@@ -524,7 +524,7 @@ namespace Tizen.NUI
 
         public new static PageTurnView DownCast(BaseHandle handle)
         {
-            PageTurnView ret = new PageTurnView(NDalicPINVOKE.PageTurnView_DownCast(BaseHandle.getCPtr(handle)), true);
+            PageTurnView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PageTurnView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

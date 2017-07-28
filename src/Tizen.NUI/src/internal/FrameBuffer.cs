@@ -94,7 +94,9 @@ namespace Tizen.NUI
 
         public Texture GetColorTexture()
         {
-            Texture ret = new Texture(NDalicPINVOKE.FrameBuffer_GetColorTexture(swigCPtr), true);
+            global::System.IntPtr cPtr = NDalicPINVOKE.FrameBuffer_GetColorTexture(swigCPtr);
+            Texture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Texture;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

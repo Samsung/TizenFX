@@ -819,21 +819,21 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>A handle to a View or an uninitialized handle</returns>
+        [Obsolete("Please do not use! this will be deprecated, instead please us as keyword.")]
         public new static View DownCast(BaseHandle handle)
         {
-            View ret = new View(NDalicPINVOKE.View_DownCast(BaseHandle.getCPtr(handle)), true);
+            View ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as View;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        [Obsolete("Please do not use! this will be deprecated")]
+        [Obsolete("Please do not use! this will be deprecated, instead please us as keyword.")]
         public static T DownCast<T>(View view) where T : View
         {
-            //View ret = ViewRegistry.GetViewFromBaseHandle(view);
-            View ret = View.DownCast(view);
+            T ret = Registry.GetManagedBaseHandleFromNativePtr(view) as T;
             if (ret != null)
             {
-                return (T)ret;
+                return ret;
             }
             return null;
         }
@@ -2013,7 +2013,9 @@ namespace Tizen.NUI.BaseComponents
 
         internal Layer GetLayer()
         {
-            Layer ret = new Layer(NDalicPINVOKE.Actor_GetLayer(swigCPtr), true);
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetLayer(swigCPtr);
+            Layer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Layer;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -2701,7 +2703,9 @@ namespace Tizen.NUI.BaseComponents
 
         public Renderer GetRendererAt(uint index)
         {
-            Renderer ret = new Renderer(NDalicPINVOKE.Actor_GetRendererAt(swigCPtr, index), true);
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetRendererAt(swigCPtr, index);
+            Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Renderer;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

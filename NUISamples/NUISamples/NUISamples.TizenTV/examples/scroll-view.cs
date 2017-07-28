@@ -137,7 +137,7 @@ namespace ScrollViewTest
       // Connect to the OnRelayout signal
       _scrollView.Relayout += OnScrollViewRelayout;
       //_scrollView.Touched += OnTouch;
-      _scrollView.WheelRolled += Onwheel;
+      _scrollView.WheelEvent += Onwheel;
       _scrollView.FocusGained += OnKey;
       _text = new TextLabel("View Touch Event Handler Test");
       _text.ParentOrigin = ParentOrigin.Center;
@@ -158,13 +158,13 @@ namespace ScrollViewTest
       Tizen.Log.Debug("NUI", "View Keyevent EVENT callback....");
     }
 
-    private bool Onwheel(object source, View.WheelRolledEventArgs e)
+    private bool Onwheel(object source, View.WheelEventArgs e)
     {
       Tizen.Log.Debug("NUI", "View Wheel EVENT callback....");
       return true;
     }
 
-    private bool OnTouch(object source, View.TouchedEventArgs e)
+    private bool OnTouch(object source, View.TouchEventArgs e)
     {
       Tizen.Log.Debug("NUI", "View TOUCH EVENT callback....");
 

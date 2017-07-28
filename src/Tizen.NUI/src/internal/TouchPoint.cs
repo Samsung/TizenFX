@@ -151,7 +151,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = NDalicPINVOKE.TouchPoint_hitActor_get(swigCPtr);
-                View ret = (cPtr == global::System.IntPtr.Zero) ? null : new View(cPtr, false);
+                View ret = (cPtr == global::System.IntPtr.Zero) ? null : Registry.GetManagedBaseHandleFromRefObject(cPtr) as View;
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
