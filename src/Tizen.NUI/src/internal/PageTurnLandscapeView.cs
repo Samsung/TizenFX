@@ -82,7 +82,7 @@ namespace Tizen.NUI
 
         public new static PageTurnLandscapeView DownCast(BaseHandle handle)
         {
-            PageTurnLandscapeView ret = new PageTurnLandscapeView(NDalicPINVOKE.PageTurnLandscapeView_DownCast(BaseHandle.getCPtr(handle)), true);
+            PageTurnLandscapeView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PageTurnLandscapeView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

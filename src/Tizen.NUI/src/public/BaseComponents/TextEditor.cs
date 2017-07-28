@@ -315,7 +315,7 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("Please do not use! this will be deprecated")]
         public new static TextEditor DownCast(BaseHandle handle)
         {
-            TextEditor ret = new TextEditor(NDalicPINVOKE.TextEditor_DownCast(BaseHandle.getCPtr(handle)), true);
+            TextEditor ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TextEditor;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -218,9 +218,9 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public BaseHandle Create(string templateName)
+        public View Create(string templateName)
         {
-            BaseHandle ret = new BaseHandle(NDalicPINVOKE.Builder_Create__SWIG_0(swigCPtr, templateName), true);
+            View ret = new View(NDalicPINVOKE.Builder_Create__SWIG_0(swigCPtr, templateName), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
