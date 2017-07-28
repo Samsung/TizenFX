@@ -26,6 +26,9 @@ namespace TextTest
 {
     class Example : NUIApplication
     {
+        TextLabel _pointLabel;
+        Boolean _colorToggle;
+
         public Example() : base()
         {
         }
@@ -44,6 +47,27 @@ namespace TextTest
             Initialize();
         }
 
+        private bool LabelTouched(object sender, View.TouchEventArgs e)
+        {
+            if (e.Touch.GetState(0) == PointStateType.Down)
+            {
+                Animation textColorAnimation = new Animation(1000);
+                if (_colorToggle)
+                {
+                    textColorAnimation.AnimateTo(_pointLabel, "TextColorAnimatable", Color.Blue );
+                    _colorToggle = false;
+                }
+                else
+                {
+                     textColorAnimation.AnimateTo(_pointLabel, "TextColorAnimatable", Color.Green );
+                    _colorToggle = true;
+                }
+                textColorAnimation.Play();
+            }
+            return true;
+        }
+
+
         public void Initialize()
         {
             Window window = Window.Instance;
@@ -55,11 +79,16 @@ namespace TextTest
             pixelLabel.BackgroundColor = Color.Magenta;
             window.Add(pixelLabel);
 
-            TextLabel pointLabel = new TextLabel("Test Point Size 32.0f");
-            pointLabel.Position2D = new Position2D(10, 100);
-            pointLabel.PointSize = 32.0f;
-            pointLabel.BackgroundColor = Color.Red;
-            window.Add(pointLabel);
+            _pointLabel = new TextLabel("Test Point Size 32.0f");
+            _pointLabel.Position2D = new Position2D(10, 100);
+            _pointLabel.PointSize = 32.0f;
+            _pointLabel.BackgroundColor = Color.Red;
+            _pointLabel.TextColorAnimatable = Color.Green; // Set initial text color using animatable property
+            _pointLabel.TouchEvent += LabelTouched;
+            _colorToggle = true;
+
+            window.Add(_pointLabel);
+
 
             TextLabel ellipsis = new TextLabel("Ellipsis of TextLabel is enabled.");
             ellipsis.Size2D = new Size2D(100, 80);
