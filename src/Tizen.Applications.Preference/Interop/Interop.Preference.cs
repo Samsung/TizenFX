@@ -19,12 +19,12 @@ using System.Runtime.InteropServices;
 using Tizen.Applications;
 
 /// <summary>
-/// Contains Interop declarations of Preference classes.
+/// Contains interop declarations of the preference classes.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Contains Interop declarations of Preference device API.
+    /// Contains interop declarations of the preference device API.
     /// </summary>
     internal static partial class Preference
     {

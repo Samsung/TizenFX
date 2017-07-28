@@ -19,12 +19,12 @@ namespace Tizen.Applications.NotificationEventListener
     using Tizen.Common;
 
     /// <summary>
-    /// This class provides the methods and properties to get information about the posted or updated notification.
+    /// This class provides methods and properties to get information about the posted or updated notification.
     /// </summary>
     public partial class NotificationEventArgs
     {
         /// <summary>
-        /// Class to get infomation about Notification accessory.
+        /// Class to get infomation about notification accessory.
         /// </summary>
         public class AccessoryArgs
         {
@@ -44,12 +44,12 @@ namespace Tizen.Applications.NotificationEventListener
             public bool CanVibrate { get; internal set; }
 
             /// <summary>
-            /// Gets the led option.
+            /// Gets the LED option.
             /// </summary>
             public AccessoryOption LedOption { get; internal set; }
 
             /// <summary>
-            /// Gets led on time period that you would like the LED on the device to blink. as well as the rate.
+            /// Gets LED on time period that you would like the LED on the device to blink as well as the rate.
             /// </summary>
             /// <value>
             /// Default value of LedOnMilliseconds is 0.
@@ -58,7 +58,7 @@ namespace Tizen.Applications.NotificationEventListener
             public int LedOnMillisecond { get; internal set; }
 
             /// <summary>
-            /// Gets led on time period that you would like the LED on the device to blink. as well as the rate.
+            /// Gets LED on time period that you would like the LED on the device to blink as well as the rate.
             /// </summary>
             /// <value>
             /// Default value of LedOffMillisecond is 0.
@@ -67,7 +67,7 @@ namespace Tizen.Applications.NotificationEventListener
             public int LedOffMillisecond { get; internal set; }
 
             /// <summary>
-            /// Gets led color that you would like the LED on the device to blink.
+            /// Gets LED color that you would like the LED on the device to blink.
             /// </summary>
             public Color LedColor { get; internal set; }
         }

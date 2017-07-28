@@ -82,7 +82,7 @@ namespace Tizen.Applications
         public const string ShareText = "http://tizen.org/appcontrol/operation/share_text";
 
         /// <summary>
-        /// Dials a number. This shows a UI with the number to be dialed, allowing the user to explicitly initiate the call.
+        /// Dials a number. This shows an UI with the number to be dialed, allowing the user to explicitly initiate the call.
         /// </summary>
         public const string Dial = "http://tizen.org/appcontrol/operation/dial";
 
@@ -137,7 +137,7 @@ namespace Tizen.Applications
         public const string SettingBluetoothEnable = "http://tizen.org/appcontrol/operation/setting/bt_enable";
 
         /// <summary>
-        /// Shows settings to configure Bluetooth visibility.
+        /// Shows settings to configure the Bluetooth visibility.
         /// </summary>
         public const string SettingBluetoothVisibility = "http://tizen.org/appcontrol/operation/setting/bt_visibility";
 

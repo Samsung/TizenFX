@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// This class provides information about package certification.
+    /// This class provides information about the package certification.
     /// </summary>
     public class PackageCertificate
     {
@@ -39,17 +39,17 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Root certificate
+        /// Root certificate.
         /// </summary>
         public string Root { get { return _root;  } }
 
         /// <summary>
-        /// Intermediate certificate
+        /// Intermediate certificate.
         /// </summary>
         public string Intermediate { get { return _intermediate; } }
 
         /// <summary>
-        /// Signer certificate
+        /// Signer certificate.
         /// </summary>
         public string Signer { get { return _signer; } }
 

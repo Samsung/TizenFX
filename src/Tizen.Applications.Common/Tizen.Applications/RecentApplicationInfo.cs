@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// This class provides methods and properties to get information of recent application.
+    /// This class provides methods and properties to get information of the recent application.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecentApplicationInfo : ApplicationInfo
@@ -29,12 +29,12 @@ namespace Tizen.Applications
         private const string LogTag = "Tizen.Applications";
 
         /// <summary>
-        /// Gets the instance id.
+        /// Gets the instance ID.
         /// </summary>
         public string InstanceId { get; private set; }
 
         /// <summary>
-        /// Gets the instance Name.
+        /// Gets the instance name.
         /// </summary>
         public string InstanceName { get; private set; }
 
@@ -44,7 +44,7 @@ namespace Tizen.Applications
         public string Arg { get; private set; }
 
         /// <summary>
-        /// Gets the uri.
+        /// Gets the URI.
         /// </summary>
         public string Uri { get; private set; }
 

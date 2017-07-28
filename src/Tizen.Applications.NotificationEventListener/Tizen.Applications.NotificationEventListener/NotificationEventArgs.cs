@@ -41,55 +41,55 @@ namespace Tizen.Applications.NotificationEventListener
         }
 
         /// <summary>
-        /// Gets the unique id of Notification.
+        /// Gets the unique ID of the notification.
         /// </summary>
         public int UniqueNumber { get; internal set; }
 
         /// <summary>
-        /// Gets the appId of Notification.
+        /// Gets the appId of the notification.
         /// </summary>
         public string AppID { get; internal set; }
 
         /// <summary>
-        /// Gets the title of Notification.
+        /// Gets the title of the notification.
         /// </summary>
         public string Title { get; internal set; }
 
         /// <summary>
-        /// Gets the content text of Notification.
+        /// Gets the content text of the notification.
         /// </summary>
         public string Content { get; internal set; }
 
         /// <summary>
-        /// Gets the icon's path of Notification.
+        /// Gets the icon's path of the notification.
         /// </summary>
         public string Icon { get; internal set; }
 
         /// <summary>
-        /// Gets the sub icon path of Notification.
+        /// Gets the sub icon path of the notification.
         /// </summary>
         public string SubIcon { get; internal set; }
 
         /// <summary>
-        /// Gets the Timestamp of notification is visible or not.
+        /// Gets the timestamp if the notification is visible or not.
         /// </summary>
         public bool IsTimeStampVisible { get; internal set; }
 
         /// <summary>
-        /// Gets TimeStamp of Notification.
+        /// Gets TimeStamp of notification.
         /// </summary>
         /// <remarks>
-        /// If IsTimeStampVisible property is set false, this TimeStamp property is meanless.
+        /// If IsTimeStampVisible property is set false, this TimeStamp property is meaningless.
         /// </remarks>
         public DateTime TimeStamp { get; internal set; }
 
         /// <summary>
-        /// Gets the count which is displayed at the right side of notification.
+        /// Gets the count, which is displayed at the right side of notification.
         /// </summary>
         public int Count { get; internal set; }
 
         /// <summary>
-        /// Gets the Tag of notification.
+        /// Gets the tag of notification.
         /// </summary>
         public string Tag { get; internal set; }
 
@@ -98,7 +98,7 @@ namespace Tizen.Applications.NotificationEventListener
 
         /// <summary>
         /// Gets a value that determines whether notification is displayed on the default viewer.
-        /// If IsDisplay property set false and add style, you can see only style notification.
+        /// If IsDisplay property is set as false and add style, you can see only style notification.
         /// </summary>
         public bool IsVisible { get; internal set; } = true;
 
@@ -106,7 +106,7 @@ namespace Tizen.Applications.NotificationEventListener
         public bool HasEventFlag { get; internal set; } = false;
 
         /// <summary>
-        /// Gets the AppControl which is invoked when notification is clicked.
+        /// Gets the AppControl, which is invoked when notification is clicked.
         /// </summary>
         public AppControl Action { get; internal set; }
 
@@ -116,7 +116,7 @@ namespace Tizen.Applications.NotificationEventListener
         public ProgressArgs Progress { get; internal set; }
 
         /// <summary>
-        /// Gets the AccessoryArgs which has option of Sound, Vibration, LED.
+        /// Gets the AccessoryArgs, which has option of sound, vibration, and LED.
         /// </summary>
         public AccessoryArgs Accessory { get; internal set; }
 
@@ -137,11 +137,11 @@ namespace Tizen.Applications.NotificationEventListener
         public NotificationProperty Property { get; internal set; }
 
         /// <summary>
-        /// Gets the styleArgs of active, lock, indicator, bigpicture.
+        /// Gets the styleArgs of active, lock, indicator, and bigpicture.
         /// </summary>
-        /// <typeparam name="T">Type of notification style to be queried</typeparam>
-        /// <returns>The NotificationEventListener.StyleArgs object associated with the given style</returns>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
+        /// <typeparam name="T">Type of notification style to be queried.</typeparam>
+        /// <returns>The NotificationEventListener.StyleArgs object associated with the given style.</returns>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
         public T GetStyle<T>() where T : StyleArgs, new()
         {
             T type = new T();
@@ -163,8 +163,8 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         /// Gets the ExtraDataArgs.
         /// </summary>
-        /// <param name="key">The key that specifies which extra data</param>
-        /// <returns>Returns the bundle for key</returns>
+        /// <param name="key">The key that specifies which extra data.</param>
+        /// <returns>Returns the bundle for key.</returns>
         public Bundle GetExtraData(string key)
         {
             Bundle bundle;

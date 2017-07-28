@@ -40,7 +40,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the absolute path to the application's data directory which is used to store private data of the application.
+        /// Gets the absolute path to the application's data directory, which is used to store private data of the application.
         /// </summary>
         public string Data
         {
@@ -53,7 +53,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the absolute path to the application's cache directory which is used to store temporary data of the application.
+        /// Gets the absolute path to the application's cache directory, which is used to store temporary data of the application.
         /// </summary>
         public string Cache
         {
@@ -79,7 +79,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the absolute path to the application's shared data directory which is used to share data with other applications.
+        /// Gets the absolute path to the application's shared data directory, which is used to share data with other applications.
         /// </summary>
         public string SharedData
         {
@@ -92,7 +92,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the absolute path to the application's shared resource directory which is used to share resources with other applications.
+        /// Gets the absolute path to the application's shared resource directory, which is used to share resources with other applications.
         /// </summary>
         public string SharedResource
         {
@@ -106,7 +106,7 @@ namespace Tizen.Applications
 
 
         /// <summary>
-        /// Gets the absolute path to the application's shared trusted directory which is used to share data with a family of trusted applications.
+        /// Gets the absolute path to the application's shared trusted directory, which is used to share data with a family of trusted applications.
         /// </summary>
         public string SharedTrusted
         {
@@ -119,7 +119,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the absolute path to the application's external data directory which is used to store data of the application.
+        /// Gets the absolute path to the application's external data directory, which is used to store data of the application.
         /// </summary>
         public string ExternalData
         {
@@ -132,7 +132,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the absolute path to the application's external cache directory which is used to store temporary data of the application.
+        /// Gets the absolute path to the application's external cache directory, which is used to store temporary data of the application.
         /// </summary>
         public string ExternalCache
         {
@@ -145,7 +145,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the absolute path to the application's external shared data directory which is used to share data with other applications.
+        /// Gets the absolute path to the application's external shared data directory, which is used to share data with other applications.
         /// </summary>
         public string ExternalSharedData
         {

@@ -19,21 +19,21 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for package type.
+    /// Enumeration for the package types.
     /// </summary>
     public enum PackageType
     {
         UNKNOWN,
         /// <summary>
-        /// Tizen native application package
+        /// Tizen native application package.
         /// </summary>
         TPK,
         /// <summary>
-        /// Tizen web/ hybrid application Package
+        /// Tizen web/hybrid application package.
         /// </summary>
         WGT,
         /// <summary>
-        /// It's a special meaning type to represent the tizen application package which is installed using rpm spec.
+        /// A special meaning type to represent the Tizen application package which is installed using the RPM spec.
         /// Only some preloaded packages can have this type.
         /// </summary>
         RPM

@@ -19,12 +19,12 @@ using Tizen.Applications.CoreBackend;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Represents a service application.
+    /// Represents the service applications.
     /// </summary>
     public class ServiceApplication : CoreApplication
     {
         /// <summary>
-        /// Initializes ServiceApplication class.
+        /// Initializes the ServiceApplication class.
         /// </summary>
         public ServiceApplication() : base(new ServiceCoreBackend())
         {

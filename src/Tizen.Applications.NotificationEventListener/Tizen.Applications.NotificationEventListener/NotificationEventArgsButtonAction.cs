@@ -17,17 +17,17 @@
 namespace Tizen.Applications.NotificationEventListener
 {
     /// <summary>
-    /// This class provides the methods and properties to get information about the posted or updated notification.
+    /// This class provides methods and properties to get information about the posted or updated notification.
     /// </summary>
     public partial class NotificationEventArgs
     {
         /// <summary>
-        ///  Class to get infomation about Notification ButtonAction.
+        ///  Class to get infomation about notification ButtonAction.
         /// </summary>
         public class ButtonActionArgs
         {
             /// <summary>
-            /// Gets the Index of the Button which is appeared at Notification.
+            /// Gets the index of the button, which appears at notification.
             /// </summary>
             public ButtonIndex Index { get; internal set; }
 
@@ -37,7 +37,7 @@ namespace Tizen.Applications.NotificationEventListener
             public string Text { get; internal set; }
 
             /// <summary>
-            /// Gets the image's path that represent the button.
+            /// Gets the image's path that represents the button.
             /// </summary>
             public string ImagePath { get; internal set; }
 

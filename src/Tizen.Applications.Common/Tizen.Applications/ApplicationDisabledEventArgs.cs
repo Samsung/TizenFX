@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Arguments for the event that is raised when the application is disabled.
+    /// Arguments for the event raised when the application is disabled.
     /// </summary>
     public class ApplicationDisabledEventArgs : EventArgs
     {
@@ -33,12 +33,12 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The Id of the application
+        /// The ID of the application.
         /// </summary>
         public string ApplicationId { get { return _applicationId; } }
 
         /// <summary>
-        /// The Event state of the application
+        /// The event state of the application.
         /// </summary>
         public ApplicationEventState EventState { get { return _eventState; } }
     }

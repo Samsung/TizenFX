@@ -16,62 +16,62 @@
 namespace Tizen.Applications.CoreBackend
 {
     /// <summary>
-    /// Class that represents the type of event for backends. This class can be converted from string type.
+    /// This class represents the type of event for backends. This class can be converted from the string type.
     /// </summary>
     public class EventType
     {
         /// <summary>
-        /// Pre-defined event type. "PreCreated"
+        /// Pre-defined event type "PreCreated".
         /// </summary>
         public static readonly EventType PreCreated = "PreCreated";
 
         /// <summary>
-        /// Pre-defined event type. "Created"
+        /// Pre-defined event type "Created".
         /// </summary>
         public static readonly EventType Created = "Created";
 
         /// <summary>
-        /// Pre-defined event type. "Terminated"
+        /// Pre-defined event type "Terminated".
         /// </summary>
         public static readonly EventType Terminated = "Terminated";
 
         /// <summary>
-        /// Pre-defined event type. "AppControlReceived"
+        /// Pre-defined event type "AppControlReceived".
         /// </summary>
         public static readonly EventType AppControlReceived = "AppControlReceived";
 
         /// <summary>
-        /// Pre-defined event type. "Resumed"
+        /// Pre-defined event type "Resumed".
         /// </summary>
         public static readonly EventType Resumed = "Resumed";
 
         /// <summary>
-        /// Pre-defined event type. "Paused"
+        /// Pre-defined event type "Paused".
         /// </summary>
         public static readonly EventType Paused = "Paused";
 
         /// <summary>
-        /// Pre-defined event type. "LowMemory"
+        /// Pre-defined event type "LowMemory".
         /// </summary>
         public static readonly EventType LowMemory = "LowMemory";
 
         /// <summary>
-        /// Pre-defined event type. "LowBattery"
+        /// Pre-defined event type "LowBattery".
         /// </summary>
         public static readonly EventType LowBattery = "LowBattery";
 
         /// <summary>
-        /// Pre-defined event type. "LocaleChanged"
+        /// Pre-defined event type "LocaleChanged".
         /// </summary>
         public static readonly EventType LocaleChanged = "LocaleChanged";
 
         /// <summary>
-        /// Pre-defined event type. "RegionFormatChanged"
+        /// Pre-defined event type "RegionFormatChanged".
         /// </summary>
         public static readonly EventType RegionFormatChanged = "RegionFormatChanged";
 
         /// <summary>
-        /// Pre-defined event type. "DeviceOrientationChanged"
+        /// Pre-defined event type "DeviceOrientationChanged".
         /// </summary>
         public static readonly EventType DeviceOrientationChanged = "DeviceOrientationChanged";
 

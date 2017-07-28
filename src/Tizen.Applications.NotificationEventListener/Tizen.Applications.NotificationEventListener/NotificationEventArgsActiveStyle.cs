@@ -19,12 +19,12 @@ namespace Tizen.Applications.NotificationEventListener
     using System.Collections.Generic;
 
     /// <summary>
-    /// This class provides the methods and properties to get information about the posted or updated notification.
+    /// This class provides methods and properties to get information about the posted or updated notification.
     /// </summary>
     public partial class NotificationEventArgs
     {
         /// <summary>
-        /// Class to get infomation about Notification Active style.
+        /// Class to get infomation about notification active style.
         /// </summary>
         public class ActiveStyleArgs : StyleArgs
         {
@@ -42,7 +42,7 @@ namespace Tizen.Applications.NotificationEventListener
             /// </summary>
             /// <value>
             /// When 'IsAutoRemove' is set as false, the active notification will not be removed as long as the user removes
-            /// the active notification or the app which posted the active notification removes the active notification.
+            /// the active notification, or the app which posted the active notification removes the active notification.
             /// </value>
             public bool IsAutoRemove { get; internal set; }
 
@@ -52,17 +52,17 @@ namespace Tizen.Applications.NotificationEventListener
             public string BackgroundImage { get; internal set; }
 
             /// <summary>
-            /// Gets the default button to display highlight on the active notification
+            /// Gets the default button to display highlight on the active notification.
             /// </summary>
             public ButtonIndex DefaultButton { get; internal set; }
 
             /// <summary>
-            /// Gets timeout value in second when the notification can be hidden from the viewer.
+            /// Gets timeout value in seconds when the notification can be hidden from the viewer.
             /// </summary>
             public int HideTimeout { get; internal set; }
 
             /// <summary>
-            /// Gets timeout value in second when the notification can be deleted from the viewer.
+            /// Gets timeout value in seconds when the notification can be deleted from the viewer.
             /// </summary>
             public int DeleteTimeout { get; internal set; }
 

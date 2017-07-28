@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Arguments for the event that is raised when the application is launched.
+    /// Arguments for the event raised when the application is launched.
     /// </summary>
     public class ApplicationLaunchedEventArgs : EventArgs
     {

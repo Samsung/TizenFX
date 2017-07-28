@@ -17,17 +17,17 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for App Control Launch Mode.
+    /// Enumeration for the application control launch mode.
     /// </summary>
     public enum AppControlLaunchMode
     {
         /// <summary>
-        /// Prefer to launch an application as single mode
+        /// Prefer to launch an application as a single mode.
         /// </summary>
         Single = 0,
 
         /// <summary>
-        /// Prefer to launch an application as group mode
+        /// Prefer to launch an application as a group mode.
         /// </summary>
         Group,
     }

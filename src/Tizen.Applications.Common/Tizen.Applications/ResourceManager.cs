@@ -20,12 +20,12 @@ using Tizen.Internals.Errors;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Class for getting resource path.
+    /// The class for getting the resource path.
     /// </summary>
     public static class ResourceManager
     {
         /// <summary>
-        /// Enumeration for Resource category.
+        /// Enumeration for the resource category.
         /// </summary>
         public enum Category : int
         {
@@ -69,12 +69,12 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Converts resource ID to path name.
+        /// Converts resource ID to the path name.
         /// </summary>
-        /// <param name="category">Category to search</param>
-        /// <param name="id">ID to search</param>
-        /// <returns>Found resource path</returns>
-        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
+        /// <param name="category">Category to search.</param>
+        /// <param name="id">ID to search.</param>
+        /// <returns>Found resource path.</returns>
+        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         public static string GetPath(Category category, string id)
         {
             string path;
@@ -96,12 +96,12 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Converts resource ID to path name.
+        /// Converts resource ID to the path name.
         /// </summary>
-        /// <param name="category">Category to search</param>
-        /// <param name="id">ID to search</param>
-        /// <returns>Found resource path or null when the resource doesn't exist</returns>
-        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions</exception>
+        /// <param name="category">Category to search.</param>
+        /// <param name="id">ID to search.</param>
+        /// <returns>Found resource path or null when the resource doesn't exist.</returns>
+        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         public static string TryGetPath(Category category, string id)
         {
             string path;

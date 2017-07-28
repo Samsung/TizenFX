@@ -40,10 +40,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Initilizes a new TizenSynchronizationContext and install into current thread
+        /// Initilizes a new TizenSynchronizationContext and install into the current thread.
         /// </summary>
         /// <remarks>
-        /// It is equivalent
+        /// It is equivalent.
         /// <code>
         /// SetSynchronizationContext(new TizenSynchronizationContext());
         /// </code>
@@ -60,7 +60,7 @@ namespace Tizen.Applications
         /// <param name="d"><see cref="System.Threading.SendOrPostCallback"/>The SendOrPostCallback delegate to call.</param>
         /// <param name="state"><see cref="System.Object"/>The object passed to the delegate.</param>
         /// <remarks>
-        /// The Post method starts an asynchronous request to post a message.</remarks>
+        /// The post method starts an asynchronous request to post a message.</remarks>
         public override void Post(SendOrPostCallback d, object state)
         {
             Post(() =>
@@ -70,12 +70,12 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Dispatches a synchronous message to a Tizen main loop
+        /// Dispatches a synchronous message to a Tizen main loop.
         /// </summary>
         /// <param name="d"><see cref="System.Threading.SendOrPostCallback"/>The SendOrPostCallback delegate to call.</param>
         /// <param name="state"><see cref="System.Object"/>The object passed to the delegate.</param>
         /// <remarks>
-        /// The Send method starts a synchronous request to send a message.</remarks>
+        /// The send method starts a synchronous request to send a message.</remarks>
         public override void Send(SendOrPostCallback d, object state)
         {
             var mre = new ManualResetEvent(false);

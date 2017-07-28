@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// The Alarm API allows setting an "alarm clock" for the delivery of a notification at some point in the future.
+    /// The alarm API allows setting an "alarm clock" for the delivery of a notification at some point in the future.
     /// </summary>
     /// <example>
     /// <code>
@@ -36,7 +36,7 @@ namespace Tizen.Applications
         private const string _logTag = "Tizen.Applications.Alarm";
 
         /// <summary>
-        /// Constructor created with new AlarmId.
+        /// Constructor created with the new AlarmId.
         /// </summary>
         /// <param name="id"></param>
         internal Alarm(int id)
@@ -57,7 +57,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <privilege>http://tizen.org/privilege/alarm.get</privilege>
         /// <remarks>
-        /// week_flag may be a combination of days, like Tuesday | Friday
+        /// week_flag may be a combination of days, like Tuesday | Friday.
         /// </remarks>
         public AlarmWeekFlag WeekFlag
         {
@@ -163,10 +163,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Cancels the the specific alarm.
+        /// Cancels the specific alarm.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied due to insufficient previlleges.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied due to insufficient privileges.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
         public void Cancel()

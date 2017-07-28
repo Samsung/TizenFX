@@ -17,7 +17,7 @@
 namespace Tizen.Applications.Notifications
 {
     /// <summary>
-    /// Class containing common properties and methods of Notifications
+    /// This class contains common properties and methods of notifications.
     /// </summary>
     /// <remarks>
     /// A notification is a message that is displayed on the notification area.
@@ -27,22 +27,22 @@ namespace Tizen.Applications.Notifications
     public sealed partial class Notification
     {
         /// <summary>
-        ///  Class for generating Lock style notification
+        /// Class for generating lock style notification.
         /// </summary>
         public sealed class LockStyle : StyleBase
         {
             /// <summary>
-            /// Gets or sets an absolute path for an image file to display on the icon of Lock style
+            /// Gets or sets an absolute path for an image file to display the icon of lock style.
             /// </summary>
             public string IconPath { get; set; }
 
             /// <summary>
-            /// Gets or sets an absolute path for a thumbnail image file to display on Lock style
+            /// Gets or sets an absolute path for a thumbnail image file to display on lock style.
             /// </summary>
             public string ThumbnailPath { get; set; }
 
             /// <summary>
-            /// Gets the key of LockStyle
+            /// Gets the key of LockStyle.
             /// </summary>
             internal override string Key
             {

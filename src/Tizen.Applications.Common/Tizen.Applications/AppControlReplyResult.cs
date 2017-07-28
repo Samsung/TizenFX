@@ -17,27 +17,27 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for App Control Result.
+    /// Enumeration for the application control result.
     /// </summary>
     public enum AppControlReplyResult
     {
         /// <summary>
-        /// Callee application launched actually
+        /// The callee application launched actually.
         /// </summary>
         AppStarted = 1,
 
         /// <summary>
-        /// Operation is succeeded
+        /// The operation succeeded.
         /// </summary>
         Succeeded = 0,
 
         /// <summary>
-        /// Operation is failed by the callee
+        /// The operation failed by the callee.
         /// </summary>
         Failed = -1,
 
         /// <summary>
-        /// Operation is canceled by the platform
+        /// The operation canceled by the platform.
         /// </summary>
         Canceled = -2,
     }

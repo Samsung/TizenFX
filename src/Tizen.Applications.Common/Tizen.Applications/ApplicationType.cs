@@ -17,7 +17,7 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for applications type.
+    /// Enumeration for the applications type.
     /// </summary>
     public enum ApplicationType
     {

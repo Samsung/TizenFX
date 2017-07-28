@@ -23,7 +23,7 @@ namespace Tizen.Applications.NotificationEventListener
     public class NotificationDeleteEventArgs : EventArgs
     {
         /// <summary>
-        /// Gets the unique number of the Notification.
+        /// Gets the unique number of the notification.
         /// </summary>
         public int UniqueNumber { get; internal set; }
     }

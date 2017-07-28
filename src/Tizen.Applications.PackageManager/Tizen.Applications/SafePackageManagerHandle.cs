@@ -39,7 +39,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Executes the code required to free the SafePackageManagerHandle.
         /// </summary>
-        /// <returns>true if the handle is released successfully</returns>
+        /// <returns>True if the handle is released successfully.</returns>
         protected override bool ReleaseHandle()
         {
             Interop.PackageManager.PackageManagerDestroy(handle);

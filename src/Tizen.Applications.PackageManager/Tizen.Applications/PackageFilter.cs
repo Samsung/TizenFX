@@ -19,14 +19,14 @@ using System.Collections.Generic;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// This class is a parameter of PackageManager::GetPackages method.
+    /// This class is a parameter of the PackageManager::GetPackages method.
     /// </summary>
     public class PackageFilter
     {
         private IDictionary<string, bool> _filter;
 
         /// <summary>
-        /// Default constructor with empty filter list. All installed applications will satisfy this filter unless updated with more specific filters.
+        /// The default constructor with an empty filter list. All the installed applications will satisfy this filter unless updated with more specific filters.
         /// </summary>
         public PackageFilter()
         {
@@ -34,7 +34,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Constructor with specific filters. Using this will filter out installed packages which do not meet the criteria of the filters.
+        /// The constructor with specific filters. Using this will filter out the installed packages which do not meet the filter criteria.
         /// </summary>
         public PackageFilter(IDictionary<string, bool> filter)
         {
@@ -53,28 +53,28 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// This class contains possible keys for filter to be used in the GetPackages method.
+        /// This class contains possible keys for the filter to be used in the GetPackages method.
         /// </summary>
         public static class Keys
         {
             /// <summary>
-            /// Key of the boolean property for filtering whether the package is removable
+            /// Key of the boolean property for filtering if the package is removable.
             /// </summary>
             public const string Removable = "PMINFO_PKGINFO_PROP_PACKAGE_REMOVABLE";
             /// <summary>
-            /// Key of the boolean property for filtering whether the package is readonly.
+            /// Key of the boolean property for filtering if the package is read-only.
             /// </summary>
             public const string ReadOnly = "PMINFO_PKGINFO_PROP_PACKAGE_READONLY";
             /// <summary>
-            /// Key of the boolean property for filtering whether the package supports disabling.
+            /// Key of the boolean property for filtering if the package supports disabling.
             /// </summary>
             public const string SupportsDisable = "PMINFO_PKGINFO_PROP_PACKAGE_SUPPORT_DISABLE";
             /// <summary>
-            /// Key of the boolean property for filtering whether the package is disabled.
+            /// Key of the boolean property for filtering if the package is disabled.
             /// </summary>
             public const string Disable = "PMINFO_PKGINFO_PROP_PACKAGE_DISABLE";
             /// <summary>
-            /// Key of the boolean property for filtering whether the package is preloaded.
+            /// Key of the boolean property for filtering if the package is preloaded.
             /// </summary>
             public const string Preload = "PMINFO_PKGINFO_PROP_PACKAGE_PRELOAD";
         }

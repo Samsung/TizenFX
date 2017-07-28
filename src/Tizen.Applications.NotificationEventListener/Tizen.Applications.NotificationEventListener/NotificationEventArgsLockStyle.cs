@@ -17,22 +17,22 @@
 namespace Tizen.Applications.NotificationEventListener
 {
     /// <summary>
-    /// This class provides the methods and properties to get information about the posted or updated notification.
+    /// This class provides methods and properties to get information about the posted or updated notification.
     /// </summary>
     public partial class NotificationEventArgs
     {
         /// <summary>
-        ///  Class to get infomation about Notification Lock style.
+        ///  Class to get infomation about notification lock style.
         /// </summary>
         public class LockStyleArgs : StyleArgs
         {
             /// <summary>
-            /// Gets the path of the image file to display on the icon of Lock style.
+            /// Gets the path of the image file to display on the icon of lock style.
             /// </summary>
             public string IconPath { get; internal set; }
 
             /// <summary>
-            /// Gets the path of the thumbnail image file to display on the icon of Lock style.
+            /// Gets the path of the thumbnail image file to display on the icon of lock style.
             /// </summary>
             public string Thumbnail { get; internal set; }
 

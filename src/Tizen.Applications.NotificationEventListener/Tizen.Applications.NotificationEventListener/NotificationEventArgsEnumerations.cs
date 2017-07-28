@@ -20,101 +20,101 @@ namespace Tizen.Applications.NotificationEventListener
     using System.ComponentModel;
 
     /// <summary>
-    /// Enumeration for Progress category
+    /// Enumeration for the progress category.
     /// </summary>
     public enum ProgressCategory
     {
         /// <summary>
-        /// Value for percent type
+        /// Value for the percent type.
         /// </summary>
         Percent,
 
         /// <summary>
-        /// Value for time type
+        /// Value for the time type.
         /// </summary>
         Time,
 
         /// <summary>
-        /// Value for pending type which is not updated progress current value
+        /// Value for the pending type, which is not the updated progress current value.
         /// </summary>
         PendingBar
     }
 
     /// <summary>
-    /// Enumeration for Accessory option
+    /// Enumeration for the accessory option.
     /// </summary>
     public enum AccessoryOption
     {
         /// <summary>
-        /// Value for off accessory option
+        /// Value for off accessory option.
         /// </summary>
         Off = -1,
 
         /// <summary>
-        /// Value for on accessory option
+        /// Value for on accessory option.
         /// </summary>
         On,
 
         /// <summary>
-        /// Value for custom accessory option
+        /// Value for the custom accessory option.
         /// </summary>
         Custom
     }
 
     /// <summary>
-    /// Enumeration for Button Index
+    /// Enumeration for the button index.
     /// </summary>
     public enum ButtonIndex
     {
         /// <summary>
-        /// Value for default button index
+        /// Value for the default button index.
         /// </summary>
         None = -1,
 
         /// <summary>
-        /// Value for first button index
+        /// Value for the first button index.
         /// </summary>
         First,
 
         /// <summary>
-        /// Value for second button index
+        /// Value for the second button index.
         /// </summary>
         Second,
 
         /// <summary>
-        /// Value for third button index
+        /// Value for the third button index.
         /// </summary>
         Third
     }
 
     /// <summary>
-    /// Enumeration for notification particular property
+    /// Enumeration for the notification particular property.
     /// </summary>
     [Flags]
     public enum NotificationProperty
     {
         /// <summary>
-        /// Value for adjust nothing
+        /// Value for the adjust nothing.
         /// </summary>
         None = 0x00,
 
         /// <summary>
-        /// Value for display only SIM card inserted
+        /// Value for display only when SIM card inserted.
         /// </summary>
         DisplayOnlySimMode = 0x01,
 
         /// <summary>
-        /// Value for disable application launch when it selected
+        /// Value for disable application launch when it is selected.
         /// </summary>
         DisableAppLaunch = 0x02,
 
         /// <summary>
-        /// Value for disable auto delete when it selected
+        /// Value for disable auto delete when it is selected.
         /// </summary>
         DisableAutoDelete = 0x04,
 
         /// <summary>
-        /// Value for deleted when device is rebooted even though notification is not set OngoingType
+        /// Value for deleted when device is rebooted even though notification is not set OngoingType.
         /// </summary>
         VolatileDisplay = 0x100,
     }
@@ -126,47 +126,47 @@ namespace Tizen.Applications.NotificationEventListener
     public enum UserEventType
     {
         /// <summary>
-        /// Event type : Click on button 1
+        /// Event type : Click on button 1.
         /// </summary>
         ClickOnButton1 = 0,
 
         /// <summary>
-        /// Event type : Click on button 2
+        /// Event type : Click on button 2.
         /// </summary>
         ClickOnButton2,
 
         /// <summary>
-        /// Event type : Click on button 3
+        /// Event type : Click on button 3.
         /// </summary>
         ClickOnButton3,
 
         /// <summary>
-        /// Event type : Click on text_input button
+        /// Event type : Click on text_input button.
         /// </summary>
         ClickOnReplyButton = 8,
 
         /// <summary>
-        /// Event type : Hidden by user
+        /// Event type : Hidden by user.
         /// </summary>
         HiddenByUser = 100,
 
         /// <summary>
-        /// Event type : Deleted by timer
+        /// Event type : Deleted by timer.
         /// </summary>
         HiddenByTimeout = 101,
 
         /// <summary>
-        /// Event type : Deleted by timer
+        /// Event type : Deleted by timer.
         /// </summary>
         HiddenByExternal = 102,
 
         /// <summary>
-        /// Event type : Clicked by user
+        /// Event type : Clicked by user.
         /// </summary>
         ClickOnNotification = 200,
 
         /// <summary>
-        /// Event type : Deleted by user
+        /// Event type : Deleted by user.
         /// </summary>
         DeleteNotification = 201,
     }
@@ -177,12 +177,12 @@ namespace Tizen.Applications.NotificationEventListener
     internal enum NotificationType
     {
         /// <summary>
-        /// Notification type
+        /// Notification type.
         /// </summary>
         Notification = 0,
 
         /// <summary>
-        /// Ongoing type
+        /// Ongoing type.
         /// </summary>
         Ongoing,
     }
@@ -193,123 +193,123 @@ namespace Tizen.Applications.NotificationEventListener
     internal enum NotificationText
     {
         /// <summary>
-        /// Title
+        /// Title.
         /// </summary>
         Title = 0,
 
         /// <summary>
-        /// Content
+        /// Content.
         /// </summary>
         Content,
 
         /// <summary>
-        /// Text to display event count
+        /// Text to display the event count.
         /// </summary>
         EventCount = 3,
 
         /// <summary>
-        /// Box contents 1
+        /// Box contents 1.
         /// </summary>
         FirstMainText,
 
         /// <summary>
-        /// Box contents 1-1
+        /// Box contents 1-1.
         /// </summary>
         FirstSubText,
 
         /// <summary>
-        /// Box contents 2
+        /// Box contents 2.
         /// </summary>
         SecondMainText,
 
         /// <summary>
-        /// Box contents 2-1
+        /// Box contents 2-1.
         /// </summary>
         SecondSubText,
 
         /// <summary>
-        /// Text on button 1
+        /// Text on button 1.
         /// </summary>
         FirstButton = 13,
 
         /// <summary>
-        /// Text on button 2
+        /// Text on button 2.
         /// </summary>
         SecondButton,
 
         /// <summary>
-        /// Text on button 3
+        /// Text on button 3.
         /// </summary>
         ThirdButton,
 
         /// <summary>
-        /// Guide text on the message reply box
+        /// Guide text on the message reply box.
         /// </summary>
         PlaceHolder = 19,
 
         /// <summary>
-        /// Text on button the on message reply box
+        /// Text on button on the message reply box.
         /// </summary>
         InputButton = 20,
     }
 
     /// <summary>
-    /// Enumeration for image type.
+    /// Enumeration for the image type.
     /// </summary>
     internal enum NotificationImage
     {
         /// <summary>
-        /// Icon
+        /// Icon.
         /// </summary>
         Icon = 0,
 
         /// <summary>
-        /// Indicator icon
+        /// Indicator icon.
         /// </summary>
         Indicator,
 
         /// <summary>
-        ///  Lock screen icon
+        ///  Lock screen icon.
         /// </summary>
         Lockscreen,
 
         /// <summary>
-        /// Thumbnail
+        /// Thumbnail.
         /// </summary>
         Thumbnail,
 
         /// <summary>
-        /// Lock screen thumbnail
+        /// Lock screen thumbnail.
         /// </summary>
         ThumbnailLockscreen,
 
         /// <summary>
-        /// Icon
+        /// Icon.
         /// </summary>
         SubIcon,
 
         /// <summary>
-        /// image displayed on background
+        /// Image displayed on background.
         /// </summary>
         Background,
 
         /// <summary>
-        /// Image for button 1
+        /// Image for button 1.
         /// </summary>
         Button_1 = 12,
 
         /// <summary>
-        /// Image for button 2
+        /// Image for button 2.
         /// </summary>
         Button_2,
 
         /// <summary>
-        /// Image for button 3
+        /// Image for button 3.
         /// </summary>
         Button_3,
 
         /// <summary>
-        /// Image for message reply
+        /// Image for message reply.
         /// </summary>
         TextInputButton = 18,
     }
@@ -320,27 +320,27 @@ namespace Tizen.Applications.NotificationEventListener
     internal enum NotificationLayout
     {
         /// <summary>
-        /// Default
+        /// Default.
         /// </summary>
         None = 0,
 
         /// <summary>
-        /// Layout for notification. Used to inform single event
+        /// Layout for notification. Used to inform single event.
         /// </summary>
         SingleEvent = 1,
 
         /// <summary>
-        /// Layout for notification. Used to display images
+        /// Layout for notification. Used to display images.
         /// </summary>
         Thumbnail = 3,
 
         /// <summary>
-        /// Layout for ongoing notification. Used to display text message
+        /// Layout for ongoing notification. Used to display text message.
         /// </summary>
         OngoingEvent = 4,
 
         /// <summary>
-        /// Layout for ongoing notification. Used to display progress
+        /// Layout for ongoing notification. Used to display progress.
         /// </summary>
         OngoingProgress = 5,
     }
@@ -351,7 +351,7 @@ namespace Tizen.Applications.NotificationEventListener
     internal enum LaunchOption
     {
         /// <summary>
-        /// Launching with app control
+        /// Launching with application control.
         /// </summary>
         AppControl = 1
     }
@@ -362,32 +362,32 @@ namespace Tizen.Applications.NotificationEventListener
     internal enum NotificationOperationDataType
     {
         /// <summary>
-        /// Default
+        /// Default.
         /// </summary>
         Min = 0,
 
         /// <summary>
-        /// Operation type
+        /// Operation type.
         /// </summary>
         Type,
 
         /// <summary>
-        /// Private ID
+        /// Private ID.
         /// </summary>
         UniqueNumber,
 
         /// <summary>
-        /// Notification handler
+        /// Notification handler.
         /// </summary>
         Notification,
 
         /// <summary>
-        /// Reserved
+        /// Reserved.
         /// </summary>
         ExtraInformation1,
 
         /// <summary>
-        /// Reserved
+        /// Reserved.
         /// </summary>
         ExtraInformation2,
     }
@@ -398,22 +398,22 @@ namespace Tizen.Applications.NotificationEventListener
     internal enum NotificationOperationType
     {
         /// <summary>
-        /// Default
+        /// Default.
         /// </summary>
         None = 0,
 
         /// <summary>
-        /// Notification inserted
+        /// Notification inserted.
         /// </summary>
         Insert,
 
         /// <summary>
-        /// Notification updated
+        /// Notification updated.
         /// </summary>
         Update,
 
         /// <summary>
-        /// Notification deleted
+        /// Notification deleted.
         /// </summary>
         Delete,
     }
@@ -424,32 +424,32 @@ namespace Tizen.Applications.NotificationEventListener
     internal enum ClickEventType
     {
         /// <summary>
-        /// Event type : Click on button 1
+        /// Event type : Click on button 1.
         /// </summary>
         FirstButton = 0,
 
         /// <summary>
-        /// Event type : Click on button 2
+        /// Event type : Click on button 2.
         /// </summary>
         SecondButton = 1,
 
         /// <summary>
-        /// Event type : Click on button 3
+        /// Event type : Click on button 3.
         /// </summary>
         ThirdButton = 2,
 
         /// <summary>
-        /// Event type : Click on icon
+        /// Event type : Click on icon.
         /// </summary>
         Icon = 6,
 
         /// <summary>
-        /// Event type : Click on thumbnail
+        /// Event type : Click on thumbnail.
         /// </summary>
         Thumbnail = 7,
 
         /// <summary>
-        /// Event type : Click on text_input button
+        /// Event type : Click on text_input button.
         /// </summary>
         InputButton = 8,
     }
@@ -461,32 +461,32 @@ namespace Tizen.Applications.NotificationEventListener
     internal enum NotificationDisplayApplist
     {
         /// <summary>
-        /// Notification Tray(Quickpanel)
+        /// Notification Tray(Quickpanel).
         /// </summary>
         Tray = 0x00000001,
 
         /// <summary>
-        /// Ticker notification
+        /// Ticker notification.
         /// </summary>
         Ticker = 0x00000002,
 
         /// <summary>
-        /// Lock screen
+        /// Lock screen.
         /// </summary>
         Lock = 0x00000004,
 
         /// <summary>
-        /// Indicator
+        /// Indicator.
         /// </summary>
         Indicator = 0x00000008,
 
         /// <summary>
-        /// Active notification
+        /// Active notification.
         /// </summary>
         Active = 0x00000010,
 
         /// <summary>
-        /// All display application except active notification
+        /// All display application except active notification.
         /// </summary>
         All = 0x0000000f,
     }

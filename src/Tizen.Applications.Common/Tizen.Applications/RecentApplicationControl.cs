@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// This class provides methods and properties to get information of recent application.
+    /// This class provides methods and properties to get information of the recent application.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecentApplicationControl
@@ -37,7 +37,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Deletes the application from recent application list.
+        /// Deletes the application from the recent application list.
         /// </summary>
         /// <privlevel>platform</privlevel>
         public void Delete()
@@ -51,7 +51,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Delete all recent applicationsfrom recent application list.
+        /// Deletes all recent applications from the recent application list.
         /// </summary>
         /// <privlevel>platform</privlevel>
         public static void DeleteAll()

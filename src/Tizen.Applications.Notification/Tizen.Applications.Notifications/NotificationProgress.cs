@@ -17,7 +17,7 @@
 namespace Tizen.Applications.Notifications
 {
     /// <summary>
-    /// Class containing common properties and methods of Notifications
+    /// This class contains common properties and methods of notifications.
     /// </summary>
     /// <remarks>
     /// A notification is a message that is displayed on the notification area.
@@ -27,8 +27,8 @@ namespace Tizen.Applications.Notifications
     public sealed partial class Notification
     {
         /// <summary>
-        ///  Class for displaying progress notification
-        ///  You must initialize progress category, current, max value when you create object.
+        ///  Class for displaying progress notification.
+        ///  You must initialize progress category, current, and max value when you create an object.
         /// </summary>
         public sealed class ProgressType : MakerBase
         {
@@ -37,12 +37,12 @@ namespace Tizen.Applications.Notifications
 
             /// <summary>
             /// Initializes a new instance of the <see cref="ProgressType"/> class.
-            /// You must initialize category, current, max value of progress.
+            /// You must initialize category, current, and max value of the progress.
             /// </summary>
-            /// <param name="category">The category of progress that appeared on Notification</param>
-            /// <param name="current">The current value of the progress</param>
-            /// <param name="max">The max value of the progress</param>
-            /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
+            /// <param name="category">The category of progress that appeared on notification.</param>
+            /// <param name="current">The current value of the progress.</param>
+            /// <param name="max">The max value of the progress.</param>
+            /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
             public ProgressType(ProgressCategory category, double current, double max)
             {
                 if (IsNegativeNumber(current))
@@ -67,9 +67,9 @@ namespace Tizen.Applications.Notifications
             public ProgressCategory Category { get; set; }
 
             /// <summary>
-            /// Gets or sets current value of ProgressType
+            /// Gets or sets current value of ProgressType.
             /// </summary>
-            /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
+            /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
             public double ProgressCurrent
             {
                 get
@@ -89,9 +89,9 @@ namespace Tizen.Applications.Notifications
             }
 
             /// <summary>
-            /// Gets or sets max value of ProgressType
+            /// Gets or sets max value of ProgressType.
             /// </summary>
-            /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
+            /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
             public double ProgressMax
             {
                 get

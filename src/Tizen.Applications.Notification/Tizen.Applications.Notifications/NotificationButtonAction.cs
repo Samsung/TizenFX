@@ -17,7 +17,7 @@
 namespace Tizen.Applications.Notifications
 {
     /// <summary>
-    /// Class containing common properties and methods of Notifications
+    /// This class contains common properties and methods of notifications.
     /// </summary>
     /// <remarks>
     /// A notification is a message that is displayed on the notification area.
@@ -27,34 +27,34 @@ namespace Tizen.Applications.Notifications
     public sealed partial class Notification
     {
         /// <summary>
-        ///  Class to help you set button on Active style of Notification
+        /// This class helps you to set the button on active style of notification.
         /// </summary>
         /// <remarks>
-        /// It must include a Text, an Index, an ImagePath, and an Action to be invoked when user select the button.
+        /// It must include a text, an index, an ImagePath, and an action to be invoked when the user selects the button.
         /// </remarks>>
         public sealed class ButtonAction : MakerBase
         {
             /// <summary>
-            /// Gets or sets the index of Button which is appeared at Notification.
+            /// Gets or sets the index of the button, which appeares as notification.
             /// </summary>
             public ButtonIndex Index { get; set; } = ButtonIndex.None;
 
             /// <summary>
-            /// Gets or sets the text describing the button
+            /// Gets or sets the text describing the button.
             /// </summary>
             public string Text { get; set; }
 
             /// <summary>
-            /// Gets or sets the image path that represent the button
-            /// An absolute path for an image file.
+            /// Gets or sets the image path that represents the button.
+            /// You should provide an absolute path for an image file.
             /// </summary>
             public string ImagePath { get; set; }
 
             /// <summary>
-            /// Gets or sets the action which is invoked when button is clicked
+            /// Gets or sets the action, which is invoked when the button is clicked.
             /// </summary>
             /// <value>
-            /// If you don't set Action, nothing happens when button is clicked.
+            /// If you don't set action, nothing happens when the button is clicked.
             /// </value>
             /// <example>
             /// <code>

@@ -25,7 +25,7 @@ namespace Tizen.Applications.NotificationEventListener
     /// This class provides a way to register callback function for some notification events.
     /// </summary>
     /// <remarks>
-    /// The event listener can use this class to get a list of notification or to clear notifications.
+    /// The event listener can use this class to get a list of notifications or to clear notifications.
     /// </remarks>
     public partial class NotificationListenerManager
     {
@@ -63,8 +63,8 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         /// Event handler for notification insert event.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
-        /// <exception cref="UnauthorizedAccessException"> Thrown in case of Permission deny.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static event EventHandler<NotificationEventArgs> Added
@@ -109,8 +109,8 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         /// Event handler for notification update event.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
-        /// <exception cref="UnauthorizedAccessException"> Thrown in case of Permission deny.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static event EventHandler<NotificationEventArgs> Updated
@@ -155,8 +155,8 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         /// Event handler for notification delete event.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
-        /// <exception cref="UnauthorizedAccessException"> Thrown in case of Permission deny.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static event EventHandler<NotificationDeleteEventArgs> Deleted
@@ -286,12 +286,12 @@ namespace Tizen.Applications.NotificationEventListener
         }
 
         /// <summary>
-        /// Deletes a Notification with appId and uniqueNumber.
+        /// Deletes a notification with appId and uniqueNumber.
         /// </summary>
         /// <param name="appId">The name of the application you want to delete.</param>
         /// <param name="uniqueNumber">The unique number of the notification.</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parameter.</exception>
-        /// <exception cref="UnauthorizedAccessException"> Thrown in case of Permission deny.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static void Delete(string appId, int uniqueNumber)
@@ -311,9 +311,9 @@ namespace Tizen.Applications.NotificationEventListener
         }
 
         /// <summary>
-        /// Deletes all Notification.
+        /// Deletes all notifications.
         /// </summary>
-        /// <exception cref="UnauthorizedAccessException"> Thrown in case of Permission deny.</exception>
+        /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static void DeleteAll()
@@ -336,7 +336,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         /// Returns the notification list.
         /// </summary>
-        /// <exception cref="UnauthorizedAccessException"> Thrown in case of Permission deny.</exception>
+        /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static IList<NotificationEventArgs> GetList()

@@ -22,12 +22,12 @@ using Tizen.Internals.Errors;
 namespace Tizen.Applications.CoreBackend
 {
     /// <summary>
-    /// Abstract class to provide default event handlers for apps.
+    /// An abstract class to provide default event handlers for apps.
     /// </summary>
     public abstract class DefaultCoreBackend : ICoreBackend
     {
         /// <summary>
-        /// Low level event types
+        /// Low level event types.
         /// </summary>
         public enum AppEventType
         {

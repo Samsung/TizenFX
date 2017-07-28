@@ -17,7 +17,7 @@
 namespace Tizen.Applications.Notifications
 {
     /// <summary>
-    /// Class containing common properties and methods of Notifications
+    /// This class contains common properties and methods of notifications.
     /// </summary>
     /// <remarks>
     /// A notification is a message that is displayed on the notification area.
@@ -28,19 +28,19 @@ namespace Tizen.Applications.Notifications
     {
         /// <summary>
         ///  Class for displaying direct-reply on notification.
-        ///  You must set a ReplyMax and Button. Otherwise user can't send written text to application which is set by AppControl.
+        ///  You must set a ReplyMax and Button. Otherwise, user can't send written text to application which is set by AppControl.
         /// </summary>
         public sealed class ReplyAction : MakerBase
         {
             /// <summary>
-            /// Gets or sets the Index of Button which is appeared at Notification.
-            /// If you set ParentIndex, ReplyAction is displayed when button matched with ParentIndex click by the user.
-            /// If you don't set ParentIndex, appeared to notification directly.
+            /// Gets or sets the index of button, which appears at notification.
+            /// If you set ParentIndex, ReplyAction is displayed when button matches with ParentIndex that is clicked by the user.
+            /// If you don't set ParentIndex, it appears as notification directly.
             /// </summary>
             public ButtonIndex ParentIndex { get; set; } = ButtonIndex.None;
 
             /// <summary>
-            /// Gets or sets the PlaceHolderText of ReplyAction which is appeared at Notification.
+            /// Gets or sets the PlaceHolderText of ReplyAction which appears at notification.
             /// If you set PlaceHolderText, it is displayed to placeholder in notification.
             /// </summary>
             public string PlaceHolderText { get; set; }
@@ -55,8 +55,8 @@ namespace Tizen.Applications.Notifications
             public int ReplyMax { get; set; } = 160;
 
             /// <summary>
-            /// Gets or sets the Button which is appeared to ReplyAction in Notification.
-            /// You must set a Button. Otherwise user can't send written text to application which is set by AppControl.
+            /// Gets or sets the button, which appears as ReplyAction in notification.
+            /// You must set the button, otherwise, a user can't send written text to application, which is set by AppControl.
             /// </summary>
             /// <remarks>
             /// If you set it to null, the already set ButtonAction will be removed.

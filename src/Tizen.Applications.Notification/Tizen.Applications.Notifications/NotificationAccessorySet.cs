@@ -19,7 +19,7 @@ namespace Tizen.Applications.Notifications
     using Tizen.Common;
 
     /// <summary>
-    /// Class containing common properties and methods of Notifications
+    /// This class contains common properties and methods of notifications.
     /// </summary>
     /// <remarks>
     /// A notification is a message that is displayed on the notification area.
@@ -29,7 +29,7 @@ namespace Tizen.Applications.Notifications
     public sealed partial class Notification
     {
         /// <summary>
-        ///  Class for Notification AccessorySet which is included vibration, led, sound option
+        ///  Class for notification AccessorySet, which includes vibration, LED, and sound option.
         /// </summary>
         public sealed class AccessorySet : MakerBase
         {
@@ -43,12 +43,12 @@ namespace Tizen.Applications.Notifications
 
             /// <summary>
             /// Gets or sets the sound path, It will play on the sound file you set.
-            /// An absolute path for a sound file.
+            /// You should set an absolute path for a sound file.
             /// </summary>
             public string SoundPath { get; set; }
 
             /// <summary>
-            /// Gets or sets a value indicating whether vibration is operated. Default to false.
+            /// Gets or sets a value indicating whether vibration is operated. Default is false.
             /// </summary>
             public bool CanVibrate { get; set; } = false;
 
@@ -80,10 +80,10 @@ namespace Tizen.Applications.Notifications
             public int LedOffMillisecond { get; set; }
 
             /// <summary>
-            /// Gets or sets the led color that you would like the LED on the device to blink.
+            /// Gets or sets the LED color that you would like the LED on the device to blink.
             /// </summary>
             /// <remarks>
-            /// If you want to set LedColor, you should always set LedOption is AccessoryOption.Custom. Otherwise, it may operate default led color.
+            /// If you want to set LedColor, you should always set LedOption as AccessoryOption.Custom, otherwise, it may operate default LED color.
             /// </remarks>
             public Color LedColor { get; set; }
 

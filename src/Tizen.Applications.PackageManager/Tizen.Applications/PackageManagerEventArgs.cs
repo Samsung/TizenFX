@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// PackageManagerEventArgs class. This class is an event arguments of the InstallProgressChanged, UninstallProgressChanged and UpdateProgressChanged events.
+    /// PackageManagerEventArgs class. This class is an event arguments of the InstallProgressChanged, UninstallProgressChanged, and UpdateProgressChanged events.
     /// </summary>
     public class PackageManagerEventArgs : EventArgs
     {
@@ -37,17 +37,17 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Type of the package to be installed, uninstalled or updated
+        /// Type of the package to be installed, uninstalled, or updated.
         /// </summary>
         public PackageType PackageType { get { return _packageType; } }
 
         /// <summary>
-        /// package ID to be installed, uninstalled or updated
+        /// Package ID to be installed, uninstalled, or updated.
         /// </summary>
         public string PackageId { get { return _packageId; } }
 
         /// <summary>
-        /// Current state of the request to the package manager
+        /// Current state of the request to the package manager.
         /// </summary>
         public PackageEventState State { get { return _state; } }
 

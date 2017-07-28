@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Represents a wrapper class for a unmanaged AppControl handle.
+    /// Represents a wrapper class for an unmanaged AppControl handle.
     /// </summary>
     public sealed class SafeAppControlHandle : SafeHandle
     {
@@ -52,7 +52,7 @@ namespace Tizen.Applications
         /// <summary>
         /// When overridden in a derived class, executes the code required to free the handle.
         /// </summary>
-        /// <returns>true if the handle is released successfully</returns>
+        /// <returns>true if the handle is released successfully.</returns>
         protected override bool ReleaseHandle()
         {
             Interop.AppControl.DangerousDestroy(this.handle);

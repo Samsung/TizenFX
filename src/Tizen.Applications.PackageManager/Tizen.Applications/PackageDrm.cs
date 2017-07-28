@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// This class provide methods and properties for DRM operation
+    /// This class provides the methods and properties for the DRM operation.
     /// </summary>
     public class PackageDrm
     {
@@ -37,21 +37,21 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Returns response data
+        /// Returns the response data.
         /// </summary>
-        /// <returns>Returns response data which is given when GenerateLicenseRequest has invoked</returns>
+        /// <returns>Returns the response data which is given when GenerateLicenseRequest has been invoked.</returns>
         public string ResponseData { get { return _responseData; } }
 
         /// <summary>
-        /// Returns request data
+        /// Returns the request data.
         /// </summary>
-        /// <returns>Returns request data which is generated when GenerateLicenseRequest has invoked</returns>
+        /// <returns>Returns the request data which is generated when GenerateLicenseRequest has been invoked.</returns>
         public string RequestData { get { return _requestData; } }
 
         /// <summary>
-        /// Returns license URL
+        /// Returns the license URL.
         /// </summary>
-        /// <returns>Returns license URL which is generated when GenerateLicenseRequest has invoked</returns>
+        /// <returns>Returns the license URL which is generated when GenerateLicenseRequest has been invoked.</returns>
         public string LicenseUrl { get { return _licenseUrl; } }
 
         internal static PackageDrm CreateDrmRequest(string responseData, string requestData, string licenseUrl)

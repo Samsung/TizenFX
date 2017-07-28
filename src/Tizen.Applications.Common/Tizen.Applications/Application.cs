@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Class that represents a Tizen application.
+    /// The class that represents a Tizen application.
     /// </summary>
     public abstract class Application : IDisposable
     {
@@ -33,12 +33,12 @@ namespace Tizen.Applications
         private ApplicationInfo _applicationInfo;
 
         /// <summary>
-        /// Gets the instance of current application.
+        /// Gets the instance of the current application.
         /// </summary>
         public static Application Current { get { return s_CurrentApplication; } }
 
         /// <summary>
-        /// Gets the class representing directory information of current application.
+        /// Gets the class representing directory information of the current application.
         /// </summary>
         public DirectoryInfo DirectoryInfo
         {
@@ -56,7 +56,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the class representing information of current application.
+        /// Gets the class representing information of the current application.
         /// </summary>
         public ApplicationInfo ApplicationInfo
         {
@@ -92,7 +92,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Exits the main loop of application. 
+        /// Exits the main loop of the application.
         /// </summary>
         public abstract void Exit();
 
@@ -120,7 +120,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Finalizer of the Application class.
+        /// Finalizer of the application class.
         /// </summary>
         ~Application()
         {
@@ -128,7 +128,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Releases all resources used by the Application class.
+        /// Releases all resources used by the application class.
         /// </summary>
         public void Dispose()
         {

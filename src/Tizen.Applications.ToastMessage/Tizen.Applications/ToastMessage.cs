@@ -23,20 +23,20 @@ using System.Threading.Tasks;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// The class helps you create and show ToastMessage which is a view quick message for the user
+    /// The class helps you to create and show the ToastMessage which is a view quick message for the user.
     /// </summary>
     public sealed class ToastMessage
     {
 
         /// <summary>
-        /// Gets and sets message to post ToastMessage
+        /// Gets and sets a message to post the ToastMessage.
         /// </summary>
         public string Message { get; set; }
 
         /// <summary>
-        /// Posts a message on a toast popup
+        /// Posts a message on a toast pop-up.
         /// </summary>
-        /// <exception cref="ArgumentNullException">Thrown when Message is null</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the message is null.</exception>
         /// <example>
         /// <code>
         /// ToastMessage toast = new ToastMessage

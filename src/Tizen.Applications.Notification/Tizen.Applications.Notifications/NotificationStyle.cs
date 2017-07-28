@@ -17,7 +17,7 @@
 namespace Tizen.Applications.Notifications
 {
     /// <summary>
-    /// Class containing common properties and methods of Notifications
+    /// This class contains common properties and methods of notifications.
     /// </summary>
     /// <remarks>
     /// A notification is a message that is displayed on the notification area.
@@ -27,8 +27,8 @@ namespace Tizen.Applications.Notifications
     public sealed partial class Notification
     {
         /// <summary>
-        /// An object that can apply a rich notification style to a Notification object.
-        /// If the platform does not provide rich notification styles in this class have no effect.
+        /// An object can apply a rich notification style to a notification object.
+        /// If the platform does not provide rich notification, styles in this class have no effect.
         /// </summary>
         public abstract class StyleBase : MakerBase
         {

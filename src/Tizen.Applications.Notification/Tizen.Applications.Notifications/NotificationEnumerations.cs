@@ -19,122 +19,122 @@ namespace Tizen.Applications.Notifications
     using System;
 
     /// <summary>
-    /// Enumeration for Progress category
+    /// Enumeration for the progress category.
     /// </summary>
     public enum ProgressCategory
     {
         /// <summary>
-        /// Value for percent type
+        /// Value for percent type.
         /// </summary>
         Percent,
 
         /// <summary>
-        /// Value for time type
+        /// Value for time type.
         /// </summary>
         Time,
 
         /// <summary>
-        /// Value for pending type which is not updated progress current value
+        /// Value for pending type, which is not the updated progress current value.
         /// </summary>
         PendingBar
     }
 
     /// <summary>
-    /// Enumeration for Accessory option
+    /// Enumeration for the accessory option.
     /// </summary>
     public enum AccessoryOption
     {
         /// <summary>
-        /// Value for off accessory option
+        /// Value for off accessory option.
         /// </summary>
         Off = -1,
 
         /// <summary>
-        /// Value for on accessory option
+        /// Value for on accessory option.
         /// </summary>
         On,
 
         /// <summary>
-        /// Value for custom accessory option
+        /// Value for the custom accessory option.
         /// </summary>
         Custom
     }
 
     /// <summary>
-    /// Enumeration for Button Index
+    /// Enumeration for the button index.
     /// </summary>
     public enum ButtonIndex
     {
         /// <summary>
-        /// Value for default button index
+        /// Value for the default button index.
         /// </summary>
         None = -1,
 
         /// <summary>
-        /// Value for first button index
+        /// Value for the first button index.
         /// </summary>
         First,
 
         /// <summary>
-        /// Value for second button index
+        /// Value for the second button index.
         /// </summary>
         Second,
 
         /// <summary>
-        /// Value for third button index
+        /// Value for the third button index.
         /// </summary>
         Third
     }
 
     /// <summary>
-    /// Enumeration for notification particular property
+    /// Enumeration for the notification particular property.
     /// </summary>
     [Flags]
     public enum NotificationProperty
     {
         /// <summary>
-        /// Value for adjust nothing
+        /// Value for adjust nothing.
         /// </summary>
         None = 0x00,
 
         /// <summary>
-        /// Value for display only SIM card inserted
+        /// Value for display only SIM card inserted.
         /// </summary>
         DisplayOnlySimMode = 0x01,
 
         /// <summary>
-        /// Value for disable application launch when it selected
+        /// Value for disable application launch when it is selected.
         /// </summary>
         DisableAppLaunch = 0x02,
 
         /// <summary>
-        /// Value for disable auto delete when it selected
+        /// Value for disable auto delete when it is selected.
         /// </summary>
         DisableAutoDelete = 0x04,
 
         /// <summary>
-        /// Value for deleted when device is rebooted even though notification is not set Ongoing
+        /// Value for deleted when device is rebooted even though notification is not set ongoing.
         /// </summary>
         VolatileDisplay = 0x100
     }
 
     /// <summary>
-    /// Enumeration for block state
+    /// Enumeration for the block state.
     /// </summary>
     public enum NotificationBlockState
     {
         /// <summary>
-        /// Value to check the app is allowed to post notification
+        /// Value to check if the app is allowed to post notification.
         /// </summary>
         Allowed = 0,
 
         /// <summary>
-        /// Value to check the app is not allowed to post any notification
+        /// Value to check if the app is not allowed to post any notification.
         /// </summary>
         Blocked,
 
         /// <summary>
-        /// Value to check do not disturb mode which is user set
+        /// Value to check if the do not disturb mode is set by the user.
         /// </summary>
         DoNotDisturb
     }

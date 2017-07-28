@@ -21,8 +21,8 @@ using Tizen.Internals.Errors;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// The Preference class provides APIs to store and retrieve application specific data/preference. A preference is saved in the form of a key-value pair.
-    /// Keys are always text strings and value can be any one of four types: integer, double, string and boolean.
+    /// The preference class provides APIs to store and retrieve an application specific data/preference. A preference is saved in the form of a key-value pair.
+    /// Keys are always text strings and the value can be any one of the four types: integer, double, string, and boolean.
     /// </summary>
     public static class Preference
     {
@@ -46,10 +46,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Retrieves all keys of the application preferences
+        /// Retrieves all keys of the application preferences.
         /// </summary>
         /// <value>
-        /// The list of keys
+        /// The list of keys.
         /// </value>
         /// <example>
         /// <code>
@@ -82,10 +82,10 @@ namespace Tizen.Applications
         /// Gets the event context for the given key.
         /// </summary>
         /// <seealso cref="EventContext"/>
-        /// <param name="key">The preference key</param>
-        /// <returns>The event context of respective key</returns>
-        /// <exception cref="KeyNotFoundException">Thrown if the key is not found</exception>
-        /// <exception cref="ArgumentException">Thrown if the key is an invalid parameter.</exception>
+        /// <param name="key">The preference key.</param>
+        /// <returns>The event context of respective key.</returns>
+        /// <exception cref="KeyNotFoundException">Thrown if the key is not found.</exception>
+        /// <exception cref="ArgumentException">Thrown if the key is invalid parameter.</exception>
         /// <example>
         /// <code>
         ///     private static void Preference_PreferenceChanged(object sender, PreferenceChangedEventArgs e)
@@ -129,10 +129,10 @@ namespace Tizen.Applications
         /// <summary>
         /// Checks whether the given key exists in the preference.
         /// </summary>
-        /// <param name="key">The name of the key to check</param>
-        /// <returns>true if the key exists in the preference, otherwise false</returns>
+        /// <param name="key">The name of the key to check.</param>
+        /// <returns>True if the key exists in the preference, otherwise false.</returns>
         /// <exception cref="ArgumentException">Thrown if the key is an invalid parameter.</exception>
-        /// <exception cref="IOException">Thrown when method failed due to internal IO error.</exception>
+        /// <exception cref="IOException">Thrown when the method failed due to an internal I/O error.</exception>
         /// <example>
         /// <code>
         ///     Preference.Set("active_user", "Joe");
@@ -161,13 +161,13 @@ namespace Tizen.Applications
         /// Sets a key-value pair representing the preference.
         /// </summary>
         /// <remarks>
-        /// If the key already exists in the Preference, old value will be overwritten with new value.
-        /// Data types supported for value are: integer, double, string and bool.
+        /// If the key already exists in the preference, the old value will be overwritten with a new value.
+        /// Data types for supported values are: integer, double, string, and bool.
         /// </remarks>
-        /// <param name="key">The name of the key to create/modigy</param>
+        /// <param name="key">The name of the key to create/modify./param>
         /// <param name="value">The value corresponding to the key.</param>
         /// <exception cref="ArgumentException">Thrown if the key is an invalid parameter.</exception>
-        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
         /// <example>
         /// <code>
         ///     Preference.Set("Option_enabled", true);
@@ -227,11 +227,11 @@ namespace Tizen.Applications
         /// Note that this is a generic method.
         /// </summary>
         /// <typeparam name="T">The generic type to return.</typeparam>
-        /// <param name="key">The key of the preference</param>
+        /// <param name="key">The key of the preference.</param>
         /// <returns>The value of the preference item if it is of the specified generic type.</returns>
-        /// <exception cref="KeyNotFoundException">Thrown if the key is not found</exception>
+        /// <exception cref="KeyNotFoundException">Thrown if the key is not found.</exception>
         /// <exception cref="ArgumentException">Thrown if the key is an invalid parameter.</exception>
-        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
         /// <example>
         /// <code>
         ///     bool exists = Preference.Contains("active_user");
@@ -288,9 +288,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Removes any preference value with the given key.
         /// </summary>
-        /// <param name="key">The key to remove</param>
-        /// <exception cref="KeyNotFoundException">Thrown if the key is not found</exception>
-        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error.</exception>
+        /// <param name="key">The key to remove.</param>
+        /// <exception cref="KeyNotFoundException">Thrown if the key is not found.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
         /// <example>
         /// <code>
         ///     bool exists = Preference.Contains("active_user");
@@ -311,9 +311,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Removes all key-value pairs from the preference.
+        /// Removes all the key-value pairs from the preference.
         /// </summary>
-        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
         /// <example>
         /// <code>
         ///     Preference.Set("Option_enabled", true);
@@ -354,7 +354,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The class manages event handlers of preference keys. The class enables having event handlers for individual preference keys.
+        /// The class manages event handlers of the preference keys. The class enables having event handlers for individual preference keys.
         /// </summary>
         public class EventContext
         {
@@ -366,10 +366,10 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            /// Occurs whenever there is change in the value of preference key.
+            /// Occurs whenever there is a change in the value of a preference key.
             /// </summary>
             /// <exception cref="System.ArgumentException">Thrown when the key does not exist or when there is an invalid parameter.</exception>
-            /// <exception cref="System.InvalidOperationException">Thrown when the Bundle instance has been disposed.</exception>
+            /// <exception cref="System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
             /// <example>
             /// <code>
             ///     private static void Preference_PreferenceChanged(object sender, PreferenceChangedEventArgs e)

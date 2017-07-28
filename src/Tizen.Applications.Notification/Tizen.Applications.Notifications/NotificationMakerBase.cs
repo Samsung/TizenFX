@@ -19,7 +19,7 @@ namespace Tizen.Applications.Notifications
     using System.ComponentModel;
 
     /// <summary>
-    /// Class containing common properties and methods of Notifications
+    /// This class contains common properties and methods of notifications.
     /// </summary>
     /// <remarks>
     /// A notification is a message that is displayed on the notification area.
@@ -29,7 +29,7 @@ namespace Tizen.Applications.Notifications
     public sealed partial class Notification
     {
         /// <summary>
-        /// An object that help notification make to SafeHandle.
+        /// An object that helps notification to make to SafeHandle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract class MakerBase

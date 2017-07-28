@@ -17,22 +17,22 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for low battery status.
+    /// Enumeration for the low battery status.
     /// </summary>
     public enum LowBatteryStatus
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         None = 0,
 
         /// <summary>
-        /// The battery status is under 1%
+        /// The battery status is under 1%.
         /// </summary>
         PowerOff = 1,
 
         /// <summary>
-        /// The battery status is under 5%
+        /// The battery status is under 5%.
         /// </summary>
         CriticalLow
     }

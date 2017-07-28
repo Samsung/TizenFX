@@ -22,127 +22,127 @@ namespace Tizen.Applications
     public static class AppControlData
     {
         /// <summary>
-        /// Subject
+        /// Subject.
         /// </summary>
         public const string Subject = "http://tizen.org/appcontrol/data/subject";
 
         /// <summary>
-        /// Recipients
+        /// Recipients.
         /// </summary>
         public const string To = "http://tizen.org/appcontrol/data/to";
 
         /// <summary>
-        /// E-mail addresses that should be carbon copied
+        /// E-mail addresses that should be carbon copied.
         /// </summary>
         public const string Cc = "http://tizen.org/appcontrol/data/cc";
 
         /// <summary>
-        /// E-mail addresses that should be blind carbon copied
+        /// E-mail addresses that should be blind carbon copied.
         /// </summary>
         public const string Bcc = "http://tizen.org/appcontrol/data/bcc";
 
         /// <summary>
-        /// Text
+        /// Text.
         /// </summary>
         public const string Text = "http://tizen.org/appcontrol/data/text";
 
         /// <summary>
-        /// Title
+        /// Title.
         /// </summary>
         public const string Title = "http://tizen.org/appcontrol/data/title";
 
         /// <summary>
-        /// Selected items
+        /// Selected items.
         /// </summary>
         public const string Selected = "http://tizen.org/appcontrol/data/selected";
 
         /// <summary>
-        /// Paths of items
+        /// Paths of items.
         /// </summary>
         public const string Path = "http://tizen.org/appcontrol/data/path";
 
         /// <summary>
-        /// Selection mode. ("single" or "multiple")
+        /// Selection mode ("single" or "multiple").
         /// </summary>
         public const string SectionMode = "http://tizen.org/appcontrol/data/selection_mode";
 
         /// <summary>
-        /// All-day mode of event ("true" or "false")
+        /// All-day mode of the event ("true" or "false").
         /// </summary>
         public const string AllDay = "http://tizen.org/appcontrol/data/calendar/all_day";
 
         /// <summary>
-        /// Start time of event (format: YYYY-MM-DD HH:MM:SS)
+        /// Start time of the event (format: YYYY-MM-DD HH:MM:SS).
         /// </summary>
         public const string StartTime = "http://tizen.org/appcontrol/data/calendar/start_time";
 
         /// <summary>
-        /// End time of event (format: YYYY-MM-DD HH:MM:SS)
+        /// End time of the event (format: YYYY-MM-DD HH:MM:SS).
         /// </summary>
         public const string Endtime = "http://tizen.org/appcontrol/data/calendar/end_time";
 
         /// <summary>
-        /// E-mail addressed
+        /// E-mail addressed.
         /// </summary>
         public const string Email = "http://tizen.org/appcontrol/data/email";
 
         /// <summary>
-        /// Phone numbers
+        /// Phone numbers.
         /// </summary>
         public const string Phone = "http://tizen.org/appcontrol/data/phone";
 
         /// <summary>
-        /// URLs
+        /// URLs.
         /// </summary>
         public const string Url = "http://tizen.org/appcontrol/data/url";
 
         /// <summary>
-        /// IDs
+        /// IDs.
         /// </summary>
         public const string Ids = "http://tizen.org/appcontrol/data/id";
 
         /// <summary>
-        /// Type
+        /// Type.
         /// </summary>
         public const string Type = "http://tizen.org/appcontrol/data/type";
 
         /// <summary>
-        /// Total count
+        /// Total count.
         /// </summary>
         public const string TotalCount = "http://tizen.org/appcontrol/data/total_count";
 
         /// <summary>
-        /// Total size (unit : bytes)
+        /// Total size (unit : bytes).
         /// </summary>
         public const string TotalSize = "http://tizen.org/appcontrol/data/total_size";
 
         /// <summary>
-        /// Name
+        /// Name.
         /// </summary>
         public const string Name = "http://tizen.org/appcontrol/data/name";
 
         /// <summary>
-        /// Location
+        /// Location.
         /// </summary>
         public const string Location = "http://tizen.org/appcontrol/data/location";
 
         /// <summary>
-        /// Select the type of input method
+        /// Select the type of input method.
         /// </summary>
         public const string InputType = "http://tizen.org/appcontrol/data/input_type";
 
         /// <summary>
-        /// Send the pre inputted text such as "http://" in web
+        /// Send the pre inputted text, such as "http://" in web.
         /// </summary>
         public const string InputDefaultText = "http://tizen.org/appcontrol/data/input_default_text";
 
         /// <summary>
-        /// Send guide text to show to user such as "Input user name"
+        /// Send guide text to show to the user, such as "Input user name".
         /// </summary>
         public const string InputGuideText = "http://tizen.org/appcontrol/data/input_guide_text";
 
         /// <summary>
-        /// Send text to receive answer result from smart reply
+        /// Send text to receive answer result from smart reply.
         /// </summary>
         public const string InputPredictionHint = "http://tizen.org/appcontrol/data/input_prediction_hint";
     }

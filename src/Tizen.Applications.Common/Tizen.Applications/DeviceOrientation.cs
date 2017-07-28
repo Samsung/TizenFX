@@ -17,27 +17,27 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for device orientation.
+    /// Enumeration for the device orientation.
     /// </summary>
     public enum DeviceOrientation
     {
         /// <summary>
-        /// The device orientation is 0
+        /// The device orientation is 0.
         /// </summary>
         Orientation_0 = 0,
 
         /// <summary>
-        /// The device orientation is 90
+        /// The device orientation is 90.
         /// </summary>
         Orientation_90 = 90,
 
         /// <summary>
-        /// The device orientation is 180
+        /// The device orientation is 180.
         /// </summary>
         Orientation_180 = 180,
 
         /// <summary>
-        /// The device orientation is 270
+        /// The device orientation is 270.
         /// </summary>
         Orientation_270 = 270,
     }

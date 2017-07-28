@@ -19,20 +19,20 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration of the application event state
+    /// Enumeration for the application event state.
     /// </summary>
     public enum ApplicationEventState
     {
         /// <summary>
-        /// Processing Started.
+        /// Processing started.
         /// </summary>
         Started = Interop.ApplicationManager.AppManagerEventState.Started,
         /// <summary>
-        /// Processing Completed.
+        /// Processing completed.
         /// </summary>
         Completed = Interop.ApplicationManager.AppManagerEventState.Completed,
         /// <summary>
-        /// Processing Failed.
+        /// Processing failed.
         /// </summary>
         Failed = Interop.ApplicationManager.AppManagerEventState.Failed
     }

@@ -20,16 +20,16 @@ namespace Tizen.Applications.Notifications
     using System.ComponentModel;
 
     /// <summary>
-    /// NotificationManager class to post, update, delete and get Notification.
+    /// NotificationManager class to post, update, delete, and get notification.
     /// </summary>
     public static class NotificationManager
     {
         /// <summary>
-        /// Posts a new Notification.
+        /// Posts a new notification.
         /// </summary>
-        /// <param name="notification">Notification to post</param>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <param name="notification">Notification to post.</param>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <example>
         /// <code>
@@ -75,11 +75,11 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Updates a posted Notification.
+        /// Updates a posted notification.
         /// </summary>
-        /// <param name="notification">Notification to update</param>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <param name="notification">Notification to update.</param>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <example>
         /// <code>
@@ -130,7 +130,7 @@ namespace Tizen.Applications.Notifications
         /// </example>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         /// <pre>
-        /// Post method should be called on the Notification object.
+        /// Post method should be called on the notification object.
         /// </pre>
         public static void Update(Notification notification)
         {
@@ -148,11 +148,11 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Deletes a posted Notification.
+        /// Deletes a posted notification.
         /// </summary>
-        /// <param name="notification">Notification to remove</param>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <param name="notification">Notification to remove.</param>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <example>
         /// <code>
@@ -172,7 +172,7 @@ namespace Tizen.Applications.Notifications
         /// </example>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         /// <pre>
-        /// Post method should be called on the Notification object.
+        /// Post method should be called on the notification object.
         /// </pre>
         public static void Delete(Notification notification)
         {
@@ -189,9 +189,9 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Removes all posted Notification of calling application.
+        /// Removes all posted notifications of calling application.
         /// </summary>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <example>
         /// <code>
@@ -237,12 +237,12 @@ namespace Tizen.Applications.Notifications
         /// Searches for a posted notification which has the specified tag and has not been deleted yet.
         /// </summary>
         /// <remarks>
-        /// Load method should be called only for notifications which have been posted using NotificationManager.Post method.
+        /// Load method should be called only for notifications, which have been posted using the NotificationManager.Post method.
         /// If two or more notifications share the same tag, the notification posted most recently is returned.
         /// </remarks>
-        /// <param name="tag">Tag used to query</param>
-        /// <returns>Notification Object with specified tag</returns>
-        /// <exception cref="ArgumentException">Throwing the same exception when argument is invalid and when the tag does not exist is misleading</exception>
+        /// <param name="tag">Tag used to query.</param>
+        /// <returns>Notification Object with specified tag.</returns>
+        /// <exception cref="ArgumentException">Throwing the same exception when argument is invalid and when the tag does not exist is misleading.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <example>
@@ -296,13 +296,13 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Saves a notification template to the notification database
+        /// Saves a notification template to the notification database.
         /// </summary>
-        /// <param name="notification">Notification to save as template</param>
-        /// <param name="name">Template name</param>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when can't save as template</exception>
+        /// <param name="notification">Notification to save as template.</param>
+        /// <param name="name">Template name.</param>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it can't be saved as a template.</exception>
         /// <example>
         /// <code>
         /// Notification notification = new Notification
@@ -352,11 +352,11 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Loads a notification template from the notification database
+        /// Loads a notification template from the notification database.
         /// </summary>
-        /// <param name="name">Template name</param>
-        /// <returns>Notification Object with inputted template name</returns>
-        /// <exception cref="ArgumentException">Throwing the same exception when argument is invalid and when the template does not exist is misleading</exception>
+        /// <param name="name">Template name.</param>
+        /// <returns>Notification Object with inputted template name.</returns>
+        /// <exception cref="ArgumentException">Throwing the same exception when argument is invalid and when the template does not exist is misleading.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <example>
@@ -429,11 +429,11 @@ namespace Tizen.Applications.Notifications
         /// <remarks>
         /// The user can set the notification block state in settings.
         /// The block state indicates whether or not notifications can be posted.
-        /// Additionally only notifications to the notification panel are allowed in "Do not disturb mode".
-        /// Sound, Vibrate and Active notifications are blocked.
+        /// Additionally, only notifications to the notification panel are allowed in "Do not disturb mode".
+        /// Sound, vibrate, and active notifications are blocked.
         /// </remarks>
-        /// <returns>NotificationBlockState is state if notification is posted</returns>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <returns>NotificationBlockState is a state if notification is posted.</returns>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
         public static NotificationBlockState GetBlockState()

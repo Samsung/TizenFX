@@ -303,9 +303,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the information of the specified application with the application id.
+        /// Gets the information of the specified application with the application ID.
         /// </summary>
-        /// <param name="applicationId">Application id.</param>
+        /// <param name="applicationId">Application ID.</param>
         public static ApplicationInfo GetInstalledApplication(string applicationId)
         {
             IntPtr infoHandle = IntPtr.Zero;
@@ -321,7 +321,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Returns if the specified application is running or not.
         /// </summary>
-        /// <param name="applicationId">The application Id.</param>
+        /// <param name="applicationId">The application ID.</param>
         /// <returns>Returns true if the given application is running, otherwise false.</returns>
         /// <exception cref="ArgumentException">Thrown when the given parameter is invalid.</exception>
         public static bool IsRunning(string applicationId)
@@ -422,8 +422,8 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the information of the recent applications.
         /// </summary>
-        /// <returns>Returns a dictionary containing all recent application info.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of invalid operation</exception>
+        /// <returns>Returns a dictionary containing all the recent application info.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static IEnumerable<RecentApplicationInfo> GetRecentApplications()
         {

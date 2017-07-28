@@ -36,11 +36,11 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// A constructor of ApplicationRunningContext that takes the application id.
+        /// A constructor of ApplicationRunningContext that takes the application ID.
         /// </summary>
-        /// <param name="applicationId">application id.</param>
-        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of application not exist error or system error.</exception>
+        /// <param name="applicationId">Application ID.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of the "application not exist" error or the system error.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
         public ApplicationRunningContext(string applicationId)
         {
@@ -96,7 +96,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Destructor of the class
+        /// Destructor of the class.
         /// </summary>
         ~ApplicationRunningContext()
         {
@@ -104,12 +104,12 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Enumeration for the Application State.
+        /// Enumeration for the application state.
         /// </summary>
         public enum AppState
         {
             /// <summary>
-            /// The undefined state
+            /// The undefined state.
             /// </summary>
             Undefined = 0,
 
@@ -124,7 +124,7 @@ namespace Tizen.Applications
             Background,
 
             /// <summary>
-            /// The Service application is running.
+            /// The service application is running.
             /// </summary>
             Service,
 
@@ -135,7 +135,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the application id.
+        /// Gets the application ID.
         /// </summary>
         public string ApplicationId
         {
@@ -152,7 +152,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the package id of the application.
+        /// Gets the package ID of the application.
         /// </summary>
         public string PackageId
         {
@@ -169,7 +169,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the application's process id.
+        /// Gets the application's process ID.
         /// </summary>
         public int ProcessId
         {

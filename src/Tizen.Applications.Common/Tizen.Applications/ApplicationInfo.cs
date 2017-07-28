@@ -41,16 +41,16 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// A constructor of ApplicationInfo that takes the application id.
+        /// A constructor of ApplicationInfo that takes the application ID.
         /// </summary>
-        /// <param name="applicationId">application id.</param>
+        /// <param name="applicationId">Application ID.</param>
         public ApplicationInfo(string applicationId)
         {
             _applicationId = applicationId;
         }
 
         /// <summary>
-        /// Destructor of the class
+        /// Destructor of the class.
         /// </summary>
         ~ApplicationInfo()
         {
@@ -58,7 +58,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the application id.
+        /// Gets the application ID.
         /// </summary>
         public string ApplicationId
         {
@@ -81,7 +81,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the package id of the application.
+        /// Gets the package ID of the application.
         /// </summary>
         public string PackageId
         {
@@ -217,7 +217,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Checks whether application information is nodisplay. If the application icon is not displayed on the menu screen, true; otherwise, false.
+        /// Checks whether the application information is nodisplay. If the application icon is not displayed on the menu screen, true; otherwise, false.
         /// </summary>
         public bool IsNoDisplay
         {
@@ -239,7 +239,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Checks whether application is launched on booting time. If the application will be automatically start on boot, true; otherwise, false.
+        /// Checks whether the application is launched on booting time. If the application automatically starts on boot, true; otherwise, false.
         /// </summary>
         public bool IsOnBoot
         {
@@ -260,7 +260,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Checks whether application is preloaded. If the application is preloaded, true; otherwise, false.
+        /// Checks whether the application is preloaded. If the application is preloaded, true; otherwise, false.
         /// </summary>
         public bool IsPreload
         {
@@ -349,9 +349,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the localized label of application for the given locale.
+        /// Gets the localized label of the application for the given locale.
         /// </summary>
-        /// <param name="locale">locale.</param>
+        /// <param name="locale">Locale.</param>
         public string GetLocalizedLabel(string locale)
         {
             string label = string.Empty;

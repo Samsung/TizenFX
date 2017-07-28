@@ -17,12 +17,12 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for package manager event state.
+    /// Enumeration for the package manager event state.
     /// </summary>
     public enum PackageEventState
     {
         /// <summary>
-        /// Processing started
+        /// Processing started.
         /// </summary>
         Started = Interop.PackageManager.PackageEventState.Started,
         /// <summary>
@@ -30,11 +30,11 @@ namespace Tizen.Applications
         /// </summary>
         Processing = Interop.PackageManager.PackageEventState.Processing,
         /// <summary>
-        /// Processing Completed.
+        /// Processing completed.
         /// </summary>
         Completed = Interop.PackageManager.PackageEventState.Completed,
         /// <summary>
-        /// Processing Failed.
+        /// Processing failed.
         /// </summary>
         Failed = Interop.PackageManager.PackageEventState.Failed
     }

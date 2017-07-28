@@ -25,7 +25,7 @@ namespace Tizen.Applications
     /// PackageManager class. This class has the methods and events of the PackageManager.
     /// </summary>
     /// <remarks>
-    /// The package manager is one of the core modules of Tizen application framework, and responsible for getting their information.
+    /// The package manager is one of the core modules of the Tizen application framework and responsible for getting their information.
     /// You can also retrieve information related to the packages that are installed on the device.
     /// </remarks>
     public static class PackageManager
@@ -43,13 +43,13 @@ namespace Tizen.Applications
         private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback;
 
         /// <summary>
-        /// Event Callback Method for the request.
+        /// Event callback method for the request.
         /// </summary>
-        /// <param name="type">Type of the package which was requested</param>
-        /// <param name="packageId">ID of the package which was requested</param>
-        /// <param name="eventType">Event type of the request</param>
-        /// <param name="eventState">Current event state of the request</param>
-        /// <param name="progress">Progress for the request being processed by the package manager (in percent)</param>
+        /// <param name="type">Type of the package which was requested.</param>
+        /// <param name="packageId">ID of the package which was requested.</param>
+        /// <param name="eventType">Event type of the request.</param>
+        /// <param name="eventState">Current event state of the request.</param>
+        /// <param name="progress">Progress for the request being processed by the package manager (in percent).</param>
         public delegate void RequestEventCallback(string type, string packageId, PackageEventType eventType, PackageEventState eventState, int progress);
 
         private static Dictionary<int, RequestEventCallback> RequestCallbacks = new Dictionary<int, RequestEventCallback>();
@@ -59,7 +59,7 @@ namespace Tizen.Applications
         private delegate Interop.PackageManager.ErrorCode InstallMethod(SafePackageManagerRequestHandle requestHandle, string pkgPath, out int requestID);
 
         /// <summary>
-        /// InstallProgressChanged event. This event is occurred when a package is getting installed and the progress of the request to the package manager changes.
+        /// InstallProgressChanged event. This event occurs when a package is getting installed and the progress of the request to the package manager is changed.
         /// </summary>
         public static event EventHandler<PackageManagerEventArgs> InstallProgressChanged
         {
@@ -78,7 +78,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// UninstallProgressChanged event. This event is occurred when a package is getting uninstalled and the progress of the request to the package manager changes.
+        /// UninstallProgressChanged event. This event occurs when a package is getting uninstalled and the progress of the request to the package manager is changed.
         /// </summary>
         public static event EventHandler<PackageManagerEventArgs> UninstallProgressChanged
         {
@@ -97,7 +97,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// UpdateProgressChanged event. This event is occurred when a package is getting updated and the progress of the request to the package manager changes.
+        /// UpdateProgressChanged event. This event occurs when a package is getting updated and the progress of the request to the package manager is changed.
         /// </summary>
         public static event EventHandler<PackageManagerEventArgs> UpdateProgressChanged
         {
@@ -116,7 +116,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// MoveProgressChanged event. This event is occurred when a package is getting moved and the progress of the request to the package manager changes.
+        /// MoveProgressChanged event. This event occurs when a package is getting moved and the progress of the request to the package manager is changed.
         /// </summary>
         public static event EventHandler<PackageManagerEventArgs> MoveProgressChanged
         {
@@ -135,7 +135,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// ClearDataProgressChanged event. This event is occurred when data directories are cleared in the given package.
+        /// ClearDataProgressChanged event. This event occurs when data directories are cleared in the given package.
         /// </summary>
         public static event EventHandler<PackageManagerEventArgs> ClearDataProgressChanged
         {
@@ -195,12 +195,12 @@ namespace Tizen.Applications
         };
 
         /// <summary>
-        /// Gets the package ID for the given app ID.
+        /// Gets the package ID for the given application ID.
         /// </summary>
-        /// <param name="applicationId">The ID of the application</param>
-        /// <returns>Returns the ID of the package. Empty string if App ID does not exist</returns>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
+        /// <param name="applicationId">The ID of the application.</param>
+        /// <returns>Returns the ID of the package. Empty string if the application ID does not exist.</returns>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         public static string GetPackageIdByApplicationId(string applicationId)
         {
@@ -220,12 +220,12 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the package information for the given package.
         /// </summary>
-        /// <param name="packageId">The ID of the package</param>
+        /// <param name="packageId">The ID of the package.</param>
         /// <returns>Returns the package information for the given package ID.</returns>
-        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
-        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
+        /// <exception cref="ArgumentException">Thrown when the failed input package ID is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method fails due to an internal I/O error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         public static Package GetPackage(string packageId)
         {
@@ -233,13 +233,13 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Clears the application's internal and external cache directory.
+        /// Clears the application's internal and external cache directories.
         /// </summary>
-        /// <param name="packageId">Id of the package</param>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
-        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
-        /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
+        /// <param name="packageId">ID of the package.</param>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method fails due to an internal I/O error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+        /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.clearcache</privilege>
         public static void ClearCacheDirectory(string packageId)
         {
@@ -252,12 +252,12 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Clears all application's internal and external cache directory.
+        /// Clears all the application's internal and external cache directories.
         /// </summary>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
-        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
-        /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method fails due to an internal IO error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+        /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
         public static void ClearAllCacheDirectory()
@@ -271,17 +271,17 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Clears the application's internal and external data directories
+        /// Clears the application's internal and external data directories.
         /// </summary>
         /// <remarks>
-        /// All files under data, shared/data and shared/trusted in the internal storage are removed.
-        /// And, If external storeage exists, then all files under data and shared/trusted in the external storage are removed.
+        /// All files under data, shared/data, and shared/trusted in the internal storage are removed.
+        /// And, if the external storage exists, then all files under data and shared/trusted in the external storage are removed.
         /// </remarks>
-        /// <param name="packageId">Id of the package</param>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
-        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
-        /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
+        /// <param name="packageId">ID of the package.</param>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal IO error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+        /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
         public static void ClearDataDirectory(string packageId)
@@ -295,7 +295,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Retrieves package information of all installed packages.
+        /// Retrieves the package information of all installed packages.
         /// </summary>
         /// <returns>Returns the list of packages.</returns>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
@@ -305,9 +305,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Retrieves package information of all installed packages satisfying filter conditions.
+        /// Retrieves the package information of all the installed packages satisfying the filter conditions.
         /// </summary>
-        /// <param name="filter">Optional - package filters</param>
+        /// <param name="filter">Optional - package filters.</param>
         /// <returns>Returns the list of packages.</returns>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         public static IEnumerable<Package> GetPackages(PackageFilter filter)
@@ -383,13 +383,13 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Installs package located at the given path
+        /// Installs the package located at the given path.
         /// </summary>
-        /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
+        /// <param name="packagePath">Absolute path for the package to be installed.</param>
+        /// <returns>Returns true if the installation request is successful, otherwise false.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of installation is seccessful.
-        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
+        /// The 'true' means that the request for installation is successful.
+        /// To check the result of the installation, the caller should check the progress using the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -399,15 +399,15 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Installs package located at the given path
+        /// Installs the package located at the given path.
         /// </summary>
-        /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="eventCallback">The event callback will be invoked only for the current request</param>
-        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
+        /// <param name="packagePath">Absolute path for the package to be installed.</param>
+        /// <param name="eventCallback">The event callback will be invoked only for the current request.</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of installation is seccessful.
-        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
+        /// The 'true' means that the request for installation is successful.
+        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -417,15 +417,15 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Installs package located at the given path
+        /// Installs the package located at the given path.
         /// </summary>
-        /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="type">Package type for the package to be installed</param>
-        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
+        /// <param name="packagePath">Absolute path for the package to be installed.</param>
+        /// <param name="type">Package type for the package to be installed.</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of installation is seccessful.
-        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
+        /// The 'true' means that the request for installation is successful.
+        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -435,15 +435,15 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Installs package located at the given path
+        /// Installs the package located at the given path.
         /// </summary>
-        /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed</param>
-        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
+        /// <param name="packagePath">Absolute path for the package to be installed.</param>
+        /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed.</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of installation is seccessful.
-        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
+        /// The 'true' means that the request for installation is successful.
+        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -453,16 +453,16 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Installs package located at the given path
+        /// Installs the package located at the given path.
         /// </summary>
-        /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="type">Package type for the package to be installed</param>
-        /// <param name="eventCallback">The event callback will be invoked only for the current request</param>
-        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
+        /// <param name="packagePath">Absolute path for the package to be installed.</param>
+        /// <param name="type">Package type for the package to be installed.</param>
+        /// <param name="eventCallback">The event callback will be invoked only for the current request.</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of installation is seccessful.
-        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
+        /// The 'true' means that the request for installation is successful.
+        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -472,16 +472,16 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Installs package located at the given path
+        /// Installs the package located at the given path.
         /// </summary>
-        /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed</param>
-        /// <param name="eventCallback">The event callback will be invoked only for the current request</param>
-        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
+        /// <param name="packagePath">Absolute path for the package to be installed.</param>
+        /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed.</param>
+        /// <param name="eventCallback">The event callback will be invoked only for the current request.</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of installation is seccessful.
-        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
+        /// The 'true' means that the request for installation is successful.
+        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -491,16 +491,16 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Installs package located at the given path
+        /// Installs the package located at the given path.
         /// </summary>
-        /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed</param>
-        /// <param name="type">Package type for the package to be installed</param>
-        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
+        /// <param name="packagePath">Absolute path for the package to be installed.</param>
+        /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed.</param>
+        /// <param name="type">Package type for the package to be installed.</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of installation is seccessful.
-        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
+        /// The 'true' means that the request for installation is successful.
+        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -510,17 +510,17 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Installs package located at the given path
+        /// Installs the package located at the given path.
         /// </summary>
-        /// <param name="packagePath">Absolute path for the package to be installed</param>
-        /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed</param>
-        /// <param name="type">Package type for the package to be installed</param>
-        /// <param name="eventCallback">The event callback will be invoked only for the current request</param>
-        /// <param name="installMode">Optional parameter to indicate special installation mode</param>
+        /// <param name="packagePath">Absolute path for the package to be installed.</param>
+        /// <param name="expansionPackagePath">Absolute path for the expansion package to be installed.</param>
+        /// <param name="type">Package type for the package to be installed.</param>
+        /// <param name="eventCallback">The event callback will be invoked only for the current request.</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installtion request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of installation is seccessful.
-        /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
+        /// The 'true' means that the request for installation is successful.
+        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -615,13 +615,13 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Uninstalls package with the given name.
+        /// Uninstalls the package with the given name.
         /// </summary>
-        /// <param name="packageId">Id of the package to be uninstalled</param>
-        /// <returns>Returns true if uninstallation request is successful, false otherwise.</returns>
+        /// <param name="packageId">ID of the package to be uninstalled.</param>
+        /// <returns>Returns true if the uninstallation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of uninstallation is seccessful.
-        /// To check the result of uninstallation, the caller should check the progress using UninstallProgressChanged event.
+        /// The 'true' means that the request for uninstallation is successful.
+        /// To check the result of uninstallation, the caller should check the progress using the UninstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -631,14 +631,14 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Uninstalls package with the given name.
+        /// Uninstalls package with the given names.
         /// </summary>
-        /// <param name="packageId">Id of the package to be uninstalled</param>
-        /// <param name="type">Optional - Package type for the package to be uninstalled</param>
-        /// <returns>Returns true if uninstalltion request is successful, false otherwise.</returns>
+        /// <param name="packageId">ID of the package to be uninstalled.</param>
+        /// <param name="type">Optional - Package type for the package to be uninstalled.</param>
+        /// <returns>Returns true if the uninstalltion request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of uninstallation is seccessful.
-        /// To check the result of uninstallation, the caller should check the progress using UninstallProgressChanged event.
+        /// The 'true' means that the request for uninstallation is successful.
+        /// To check the result of uninstallation, the caller should check the progress using the UninstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -648,14 +648,14 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Uninstalls package with the given name.
+        /// Uninstalls the package with the given name.
         /// </summary>
-        /// <param name="packageId">Id of the package to be uninstalled</param>
-        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
-        /// <returns>Returns true if uninstalltion request is successful, false otherwise.</returns>
+        /// <param name="packageId">ID of the package to be uninstalled.</param>
+        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request.</param>
+        /// <returns>Returns true if the uninstallation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of uninstallation is seccessful.
-        /// To check the result of uninstallation, the caller should check the progress using UninstallProgressChanged event OR eventCallback.
+        /// The 'true' means that the request for uninstallation is successful.
+        /// To check the result of uninstallation, the caller should check the progress using the UninstallProgressChanged event or eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -665,15 +665,15 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Uninstalls package with the given name.
+        /// Uninstalls the package with the given name.
         /// </summary>
-        /// <param name="packageId">Id of the package to be uninstalled</param>
-        /// <param name="type">Optional - Package type for the package to be uninstalled</param>
-        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
-        /// <returns>Returns true if uninstalltion request is successful, false otherwise.</returns>
+        /// <param name="packageId">ID of the package to be uninstalled</param>
+        /// <param name="type">Optional - Package type for the package to be uninstalled.</param>
+        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request.</param>
+        /// <returns>Returns true if the uninstallation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of uninstallation is seccessful.
-        /// To check the result of uninstallation, the caller should check the progress using UninstallProgressChanged event OR eventCallback.
+        /// The 'true' means that the request for uninstallation is successful.
+        /// To check the result of uninstallation, the caller should check the progress using the UninstallProgressChanged event or eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -736,14 +736,14 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Move package to given storage.
+        /// Moves the package to the given storage.
         /// </summary>
-        /// <param name="packageId">Id of the package to be moved</param>
-        /// <param name="newStorage">Storage, package should be moved to</param>
-        /// <returns>Returns true if move request is successful, false otherwise.</returns>
+        /// <param name="packageId">ID of the package to be moved.</param>
+        /// <param name="newStorage">Storage package should be moved to.</param>
+        /// <returns>Returns true if the move request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of move is seccessful.
-        /// To check the result of move, the caller should check the progress using MoveProgressChanged event.
+        /// The 'true' means that the request for move is successful.
+        /// To check the result of move, the caller should check the progress using the MoveProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -753,15 +753,15 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Move package to given storage.
+        /// Moves the package to the given storage.
         /// </summary>
-        /// <param name="packageId">Id of the package to be moved</param>
-        /// <param name="type">Optional - Package type for the package to be moved</param>
-        /// <param name="newStorage">Storage, package should be moved to</param>
-        /// <returns>Returns true if move request is successful, false otherwise.</returns>
+        /// <param name="packageId">ID of the package to be moved.</param>
+        /// <param name="type">Optional - Package type for the package to be moved.</param>
+        /// <param name="newStorage">Storage package should be moved to.</param>
+        /// <returns>Returns true if the move request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of move is seccessful.
-        /// To check the result of move, the caller should check the progress using MoveProgressChanged event.
+        /// The 'true' means that the request for move is successful.
+        /// To check the result of move, the caller should check the progress using the MoveProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -771,15 +771,15 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Move package to given storage.
+        /// Moves the package to the given storage.
         /// </summary>
-        /// <param name="packageId">Id of the package to be moved</param>
-        /// <param name="newStorage">Storage, package should be moved to</param>
-        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <param name="packageId">ID of the package to be moved.</param>
+        /// <param name="newStorage">Storage package should be moved to.</param>
+        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request.</param>
         /// <returns>Returns true if move request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of move is seccessful.
-        /// To check the result of move, the caller should check the progress using MoveProgressChanged event.
+        /// The 'true' means that the request for move is successful.
+        /// To check the result of move, the caller should check the progress using the MoveProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -789,16 +789,16 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Move package to given storage.
+        /// Moves the package to the given storage.
         /// </summary>
-        /// <param name="packageId">Id of the package to be moved</param>
-        /// <param name="type">Optional - Package type for the package to be moved</param>
-        /// <param name="newStorage">Storage, package should be moved to</param>
-        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request</param>
+        /// <param name="packageId">ID of the package to be moved.</param>
+        /// <param name="type">Optional - Package type for the package to be moved.</param>
+        /// <param name="newStorage">Storage, package should be moved to.</param>
+        /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request.</param>
         /// <returns>Returns true if move request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that just the request of move is seccessful.
-        /// To check the result of move, the caller should check the progress using MoveProgressChanged event.
+        /// The 'true' means that the request for move is successful.
+        /// To check the result of move, the caller should check the progress using the MoveProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -862,13 +862,13 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets permission type of package which has given application id
+        /// Gets the permission type of the package which has a given application ID.
         /// </summary>
-        /// <param name="applicationId">Id of the application</param>
-        /// <returns>Returns permission type.</returns>
+        /// <param name="applicationId">ID of the application.</param>
+        /// <returns>Returns the permission type.</returns>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
-        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
+        /// <exception cref="ArgumentException">Thrown when the failed input package ID is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public static PermissionType GetPermissionTypeByApplicationId(string applicationId)
         {
             Interop.PackageManager.PackageManagerPermissionType permissionType;
@@ -882,13 +882,13 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets package's preload attribute which contain given applicion id
+        /// Gets the package's preload attribute which contains a given application ID.
         /// </summary>
-        /// <param name="applicationId">Id of the application</param>
-        /// <returns>Returns true if package is preloaded. Otherwise return false.</returns>
+        /// <param name="applicationId">ID of the application.</param>
+        /// <returns>Returns true if the package is preloaded, otherwise false.</returns>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
-        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
+        /// <exception cref="ArgumentException">Thrown when the failed input package ID is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public static bool IsPreloadPackageByApplicationId(string applicationId)
         {
             bool isPreloadPackage;
@@ -902,13 +902,13 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Compare certificate of two packages
+        /// Compares the certificate of the two packages.
         /// </summary>
-        /// <param name="lhsPackageId">package id to compare</param>
-        /// <param name="rhsPackageId">package id to be compared</param>
+        /// <param name="lhsPackageId">Package ID to compare.</param>
+        /// <param name="rhsPackageId">Package ID to be compared.</param>
         /// <returns>Returns certificate comparison result.</returns>
-        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
-        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error</exception>
+        /// <exception cref="ArgumentException">Thrown when the failed input package ID is invalid.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
         public static CertCompareResultType CompareCertInfo(string lhsPackageId, string rhsPackageId)
         {
             Interop.PackageManager.CertCompareResultType compareResult;
@@ -922,13 +922,13 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Compare certificate of two packages which contain each given application id
+        /// Compares the certificate of the two packages which contain each given application ID.
         /// </summary>
-        /// <param name="lhsApplicationId">application id to compare</param>
-        /// <param name="rhsApplicationId">application id to be compared</param>
+        /// <param name="lhsApplicationId">Application ID to compare.</param>
+        /// <param name="rhsApplicationId">Application ID to be compared.</param>
         /// <returns>Returns certificate comparison result.</returns>
-        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
-        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error</exception>
+        /// <exception cref="ArgumentException">Thrown when the failed input package ID is invalid.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
         public static CertCompareResultType CompareCertInfoByApplicationId(string lhsApplicationId, string rhsApplicationId)
         {
             Interop.PackageManager.CertCompareResultType compareResult;
@@ -947,16 +947,16 @@ namespace Tizen.Applications
         public static class Drm
         {
             /// <summary>
-            /// Generates request for getting license
+            /// Generates a request for getting the license.
             /// </summary>
-            /// <param name="responseData">Response data string of the purchase request</param>
-            /// <returns>Returns package drm information of given response data which contains require data and license url</returns>
+            /// <param name="responseData">Response data string of the purchase request.</param>
+            /// <returns>Returns the package DRM information of a given response data which contains the required data and license URL.</returns>
             /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
             /// <privlevel>platform</privlevel>
-            /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
-            /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
-            /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
-            /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
+            /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid.</exception>
+            /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+            /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+            /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
             public static PackageDrm GenerateLicenseRequest(string responseData)
             {
                 return PackageDrm.GenerateLicenseRequest(responseData);
@@ -964,16 +964,16 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            /// Registers encrypted license
+            /// Registers the encrypted license.
             /// </summary>
-            /// <param name="responseData">The response data string of the rights request</param>
-            /// <returns>Returns true if succeed. Otherwise return false</returns>
+            /// <param name="responseData">The response data string of the rights request.</param>
+            /// <returns>Returns true if succeeds, otherwise false.</returns>
             /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
             /// <privlevel>platform</privlevel>
-            /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
-            /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
-            /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
-            /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
+            /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid.</exception>
+            /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+            /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+            /// <exception cref="SystemException">Thrown when the method failed due to internal system error.</exception>
             public static bool RegisterLicense(string responseData)
             {
                 Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerDrmRegisterLicense(responseData);
@@ -986,17 +986,17 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            /// Decrypts contents which is encrypted
+            /// Decrypts the contents which are encrypted.
             /// </summary>
-            /// <param name="drmFilePath">Drm file path</param>
-            /// <param name="decryptedFilePath">Decrypted file path</param>
-            /// <returns>Returns true if succeed. Otherwise return false</returns>
+            /// <param name="drmFilePath">Drm file path.</param>
+            /// <param name="decryptedFilePath">Decrypted file path.</param>
+            /// <returns>Returns true if succeeds, otherwise false.</returns>
             /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
             /// <privlevel>platform</privlevel>
-            /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
-            /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
-            /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
-            /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
+            /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid.</exception>
+            /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+            /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+            /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
             public static bool DecryptPackage(string drmFilePath, string decryptedFilePath)
             {
                 Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerDrmDecryptPackage(drmFilePath, decryptedFilePath);

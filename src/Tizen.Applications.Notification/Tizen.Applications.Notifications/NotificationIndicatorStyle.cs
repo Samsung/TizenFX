@@ -17,7 +17,7 @@
 namespace Tizen.Applications.Notifications
 {
     /// <summary>
-    /// Class containing common properties and methods of Notifications
+    /// The class contains common properties and methods of notifications.
     /// </summary>
     /// <remarks>
     /// A notification is a message that is displayed on the notification area.
@@ -27,7 +27,7 @@ namespace Tizen.Applications.Notifications
     public sealed partial class Notification
     {
         /// <summary>
-        ///  Class for generating Indicator style notification
+        ///  Class for generating indicator style notification.
         /// </summary>
         public sealed class IndicatorStyle : StyleBase
         {
@@ -38,12 +38,12 @@ namespace Tizen.Applications.Notifications
             public string IconPath { get; set; }
 
             /// <summary>
-            /// Gets or sets a sub text for displaying Indicator style
+            /// Gets or sets a sub text for displaying indicator style.
             /// </summary>
             public string SubText { get; set; }
 
             /// <summary>
-            /// Gets the key of IndicatorStyle
+            /// Gets the key of IndicatorStyle.
             /// </summary>
             internal override string Key
             {

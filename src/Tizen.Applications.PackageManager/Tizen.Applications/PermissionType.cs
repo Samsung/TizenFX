@@ -19,20 +19,20 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for permission type.
+    /// Enumeration for the permission types.
     /// </summary>
     public enum PermissionType
     {
         /// <summary>
-        /// Permission is normal
+        /// Permission is normal.
         /// </summary>
         Normal,
         /// <summary>
-        /// Permission is signature
+        /// Permission is signature.
         /// </summary>
         Signature,
         /// <summary>
-        /// Permission is privilege
+        /// Permission is privilege.
         /// </summary>
         Privilege
     }

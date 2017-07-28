@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// This class has the read only properties to get package size information.
+    /// This class has read-only properties to get the package size information.
     /// </summary>
     public class PackageSizeInformation
     {
@@ -33,32 +33,32 @@ namespace Tizen.Applications
         private PackageSizeInformation() { }
 
         /// <summary>
-        /// Data size for package.
+        /// Data size for the package.
         /// </summary>
         public long DataSize { get { return _dataSize; } }
 
         /// <summary>
-        /// Cache size for package.
+        /// Cache size for the package.
         /// </summary>
         public long CacheSize { get { return _cacheSize; } }
 
         /// <summary>
-        /// Application size for package.
+        /// Application size for the package.
         /// </summary>
         public long AppSize { get { return _appSize; } }
 
         /// <summary>
-        /// External data size for package.
+        /// External data size for the package.
         /// </summary>
         public long ExternalDataSize { get { return _externalDataSize; } }
 
         /// <summary>
-        /// External cache size for package.
+        /// External cache size for the package.
         /// </summary>
         public long ExternalCacheSize { get { return _externalCacheSize; } }
 
         /// <summary>
-        /// External application size for package.
+        /// External application size for the package.
         /// </summary>
         public long ExternalAppSize { get { return _externalAppSize; } }
 

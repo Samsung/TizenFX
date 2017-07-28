@@ -21,10 +21,10 @@ using Tizen.Applications;
 namespace Tizen.Applications.Messages
 {
     /// <summary>
-    /// The Message Port API provides functions to send and receive messages between applications.
+    /// The message port API provides functions to send and receive messages between applications.
     /// </summary>
     /// <remarks>
-    /// The Message Port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
+    /// The message port API provides functions for passing messages between applications. An application should register its own local port to receive messages from remote applications.
     /// If a remote application sends a message, the registered callback function of the local port is called.
     /// The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.
     /// </remarks>
@@ -50,9 +50,9 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// Initializes the instance of the MessagePort class.
         /// </summary>
-        /// <param name="portName">The name of the local message port</param>
-        /// <param name="trusted">If true is the trusted message port of application, otherwise false</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when portName is null or empty</exception>
+        /// <param name="portName">The name of the local message port.</param>
+        /// <param name="trusted">If true, it is the trusted message port of application, otherwise false.</param>
+        /// <exception cref="System.InvalidOperationException">Thrown when portName is null or empty.</exception>
         /// <code>
         /// MessagePort messagePort = new MessagePort("SenderPort", true);
         /// </code>
@@ -91,7 +91,7 @@ namespace Tizen.Applications.Messages
         public event EventHandler<MessageReceivedEventArgs> MessageReceived;
 
         /// <summary>
-        /// The name of the local message port
+        /// The name of the local message port.
         /// </summary>
         public string PortName
         {
@@ -101,7 +101,7 @@ namespace Tizen.Applications.Messages
             }
         }
         /// <summary>
-        /// If true the message port is a trusted port, otherwise false it is not
+        /// If true, the message port is a trusted port, otherwise false.
         /// </summary>
         public bool Trusted
         {
@@ -112,7 +112,7 @@ namespace Tizen.Applications.Messages
         }
 
         /// <summary>
-        /// If true the message port is listening, otherwise false it is not
+        /// If true, the message port is listening, otherwise false.
         /// </summary>
         public bool Listening
         {
@@ -125,7 +125,7 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// Register the local message port.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when portName is already used, when there is an invalid parameter, when out of memory, when there is an I/O error</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when portName is already used, when there is an invalid parameter, when out of memory, when there is an I/O error.</exception>
         /// <code>
         /// MessagePort messagePort = new MessagePort("SenderPort", true);
         /// messagePort.MessageReceived += MessageReceivedCallback;
@@ -173,7 +173,7 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// Unregisters the local message port.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when messageport is already stopped, when there is an invalid parameter, when the port is not found, when out of memory, when there is an I/O error</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when messageport is already stopped, when there is an invalid parameter, when the port is not found, when out of memory, when there is an I/O error.</exception>
         /// <code>
         /// MessagePort messagePort = new MessagePort("SenderPort", true);
         /// messagePort.MessageReceived += MessageReceivedCallback;
@@ -210,13 +210,13 @@ namespace Tizen.Applications.Messages
         }
 
         /// <summary>
-        /// Sends a untrusted message to the message port of a remote application.
+        /// Sends an untrusted message to the message port of a remote application.
         /// </summary>
-        /// <param name="message">The message to be passed to the remote application, the recommended message size is under 4KB</param>
-        /// <param name="remoteAppId">The ID of the remote application</param>
-        /// <param name="remotePortName">The name of the remote message port</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when there is an invalid parameter, when the port is not found, when out of memory, when there is an I/O error</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">Thrown when message has exceeded the maximum limit(4KB)</exception>
+        /// <param name="message">The message to be passed to the remote application, the recommended message size is under 4KB.</param>
+        /// <param name="remoteAppId">The ID of the remote application.</param>
+        /// <param name="remotePortName">The name of the remote message port.</param>
+        /// <exception cref="System.InvalidOperationException">Thrown when there is an invalid parameter, when the port is not found, when out of memory, when there is an I/O error.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">Thrown when message has exceeded the maximum limit(4KB).</exception>
         /// <code>
         /// MessagePort messagePort = new MessagePort("SenderPort", true);
         /// messagePort.MessageReceived += MessageReceivedCallback;
@@ -235,12 +235,12 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// Sends a message to the message port of a remote application.
         /// </summary>
-        /// <param name="message">The message to be passed to the remote application, the recommended message size is under 4KB</param>
-        /// <param name="remoteAppId">The ID of the remote application</param>
-        /// <param name="remotePortName">The name of the remote message port</param>
-        /// <param name="trusted">If true the trusted message port of remote application otherwise false</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when there is an invalid parameter, when the port is not found, when out of memory, when there is an I/O error</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">Thrown when message has exceeded the maximum limit(4KB)</exception>
+        /// <param name="message">The message to be passed to the remote application, the recommended message size is under 4KB.</param>
+        /// <param name="remoteAppId">The ID of the remote application.</param>
+        /// <param name="remotePortName">The name of the remote message port.</param>
+        /// <param name="trusted">If true, it is the trusted message port of remote application, otherwise false.</param>
+        /// <exception cref="System.InvalidOperationException">Thrown when there is an invalid parameter, when the port is not found, when out of memory, when there is an I/O error.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">Thrown when message has exceeded the maximum limit(4KB).</exception>
         /// <code>
         /// MessagePort messagePort = new MessagePort("SenderPort", true);
         /// messagePort.MessageReceived += MessageReceivedCallback;
@@ -276,7 +276,7 @@ namespace Tizen.Applications.Messages
         }
 
         /// <summary>
-        /// Releases the unmanaged resourced used by the MessagePort class specifying whether to perform a normal dispose operation.
+        /// Releases the unmanaged resource used by the MessagePort class specifying whether to perform a normal dispose operation.
         /// </summary>
         /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
         protected virtual void Dispose(bool disposing)

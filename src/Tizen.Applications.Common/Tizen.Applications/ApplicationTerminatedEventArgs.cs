@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Arguments for the event that is raised when the application is terminated.
+    /// Arguments for the event raised when the application is terminated.
     /// </summary>
     public class ApplicationTerminatedEventArgs : EventArgs
     {

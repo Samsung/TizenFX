@@ -17,23 +17,23 @@
 namespace Tizen.Applications.NotificationEventListener
 {
     /// <summary>
-    /// This class provides the methods and properties to get information about the posted or updated notification.
+    /// This class provides methods and properties to get information about the posted or updated notification.
     /// </summary>
     public partial class NotificationEventArgs
     {
         /// <summary>
-        ///  Class to get infomation about Notification ReplyAction.
+        ///  Class to get infomation about notification ReplyAction.
         /// </summary>
         public class ReplyActionArgs
         {
             /// <summary>
-            /// Gets Index of Button which is appeared at Notification.
+            /// Gets index of button, which appears at notification.
             /// If there is no ParentIndex, the ReplyAction should be displayed directly on the active notification.
             /// </summary>
             public ButtonIndex ParentIndex { get; internal set; } = ButtonIndex.None;
 
             /// <summary>
-            /// Gets the PlaceHolderText of ReplyAction which is appeared at Notification.
+            /// Gets the PlaceHolderText of ReplyAction, which appears at notification.
             /// It will be displayed to the text input box on the active notification.
             /// </summary>
             public string PlaceHolderText { get; internal set; }

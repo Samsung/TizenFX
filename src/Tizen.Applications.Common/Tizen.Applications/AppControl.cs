@@ -59,7 +59,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Initializes the instance of the AppControl class.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when failed to create AppControl handle.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed to create the AppControl handle.</exception>
         public AppControl()
         {
             Interop.AppControl.ErrorCode err = Interop.AppControl.Create(out _handle);
@@ -70,10 +70,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Initializes the instance of the AppControl class with parameter.
+        /// Initializes the instance of the AppControl class with a parameter.
         /// </summary>
-        /// <param name="enableAppStartedResultEvent">The flag value to receive an additional launch result event on launch request.</param>
-        /// <exception cref="InvalidOperationException">Thrown when failed to create AppControl handle.</exception>
+        /// <param name="enableAppStartedResultEvent">The flag value to receive an additional launch result event on the launch request.</param>
+        /// <exception cref="InvalidOperationException">Thrown when failed to create the AppControl handle.</exception>
         public AppControl(bool enableAppStartedResultEvent)
         {
             Interop.AppControl.ErrorCode err = Interop.AppControl.Create(out _handle);
@@ -222,7 +222,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <value>
         /// Since Tizen 2.4, if the parameter 'uri' is started with 'file://' and
-        /// it is a regular file in this application's data path which can be obtained
+        /// it is a regular file in this application's data path, which can be obtained
         /// by property DataPath in ApplicationInfo class,
         /// it will be shared to the callee application.
         /// Framework will grant a temporary permission to the callee application for this file and
@@ -308,10 +308,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets and sets the application id to explicitly launch.
+        /// Gets and sets the application ID to explicitly launch.
         /// </summary>
         /// <value>
-        /// (if the application id is null for setter, it clears the previous value.)
+        /// (if the application ID is null for setter, it clears the previous value.)
         /// </value>
         /// <example>
         /// <code>
@@ -352,13 +352,13 @@ namespace Tizen.Applications
         /// Gets and sets the launch mode of the application.
         /// </summary>
         /// <value>
-        /// Although LaunchMode were set as AppControlLaunchMode.Group,
-        /// callee application would be launched as single mode
+        /// Although, LaunchMode were set as AppControlLaunchMode.Group, the
+        /// callee application would be launched as a single mode
         /// if the manifest file of callee application defined the launch mode as "single".
-        /// This property can just set the preference of caller application to launch an application.
-        /// Sub-applications which were launched as group mode always have own process.
-        /// Since Tizen 3.0, if launch mode not set in the caller app control,
-        /// this property returns AppControlLaunchMode.Single launch mode.
+        /// This property can just set the preference of the caller application to launch an application.
+        /// Sub-applications, which were launched as a group mode always have own process.
+        /// Since Tizen 3.0, if launch mode is not set in the caller application control,
+        /// this property returns the AppControlLaunchMode.Single launch mode.
         /// </value>
         /// <example>
         /// <code>
@@ -416,9 +416,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Retrieves all applications that can be launched to handle the given app_control request.
         /// </summary>
-        /// <param name="control">The AppControl</param>
-        /// <returns>ApplicationIds</returns>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of invalid parameter</exception>
+        /// <param name="control">The AppControl.</param>
+        /// <returns>ApplicationIds.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid parameter.</exception>
         /// <example>
         /// <code>
         /// IEnumerable<string> applicationIds = AppControl.GetMatchedApplicationIds(control);
@@ -468,12 +468,12 @@ namespace Tizen.Applications
         /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application. \n
         /// Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform.
         /// Also, implicit launch requests are NOT delivered to service applications since 2.4.
-        /// To launch a service application, an explicit launch request with application ID given by property ApplicationId MUST be sent.
+        /// To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.
         /// </remarks>
-        /// <param name="launchRequest">The AppControl</param>
-        /// <exception cref="ArgumentNullException">Thrown when failed because of a null arguament</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of invalid operation</exception>
-        /// <exception cref="TimeoutException">Thrown when failed because of timeout</exception>
+        /// <param name="launchRequest">The AppControl.</param>
+        /// <exception cref="ArgumentNullException">Thrown when failed because of a null argument.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <example>
         /// <code>
@@ -496,13 +496,13 @@ namespace Tizen.Applications
         /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application. \n
         /// Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform.
         /// Also, implicit launch requests are NOT delivered to service applications since 2.4.
-        /// To launch a service application, an explicit launch request with application ID given by property ApplicationId MUST be sent.
+        /// To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.
         /// </remarks>
-        /// <param name="launchRequest">The AppControl</param>
-        /// <param name="replyAfterLaunching">The callback function to be called when the reply is delivered</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of arguament is invalid</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of invalid operation</exception>
-        /// <exception cref="TimeoutException">Thrown when failed because of timeout</exception>
+        /// <param name="launchRequest">The AppControl.</param>
+        /// <param name="replyAfterLaunching">The callback function to be called when the reply is delivered.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <example>
         /// <code>
@@ -570,14 +570,14 @@ namespace Tizen.Applications
         /// </summary>
         /// <remarks>
         /// You are not allowed to terminate other general applications using this API.
-        /// This API can be used to terminate sub-applications which were launched as group mode by caller application.
-        /// Once callee application is being terminated by this API,
-        /// other applications which were launched by callee application as group mode will be terminated as well
+        /// This API can be used to terminate sub-applications, which were launched as a group mode by the caller application.
+        /// Once the callee application is being terminated by this API,
+        /// other applications, which were launched by the callee application as a group mode will be terminated as well.
         /// </remarks>
-        /// <param name="terminateRequest">The AppControl</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of arguament is invalid</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of invalid operation</exception>
-        /// <exception cref="TimeoutException">Thrown when failed because of timeout</exception>
+        /// <param name="terminateRequest">The AppControl.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
         /// <example>
         /// <code>
         /// AppControl terminateRequest = new AppControl();
@@ -610,7 +610,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Class for Extra Data
+        /// Class for extra data.
         /// </summary>
         public class ExtraDataCollection
         {
@@ -627,10 +627,10 @@ namespace Tizen.Applications
             /// <remarks>
             /// The function replaces any existing value for the given key.
             /// </remarks>
-            /// <param name="key">The name of the extra data</param>
-            /// <param name="value">The value associated with the given key</param>
-            /// <exception cref="ArgumentNullException">Thrown when key or value is a zero-length string</exception>
-            /// <exception cref="ArgumentException">Thrown when the application tries to use the same key with system-defined key</exception>
+            /// <param name="key">The name of the extra data.</param>
+            /// <param name="value">The value associated with the given key.</param>
+            /// <exception cref="ArgumentNullException">Thrown when a key or a value is a zero-length string.</exception>
+            /// <exception cref="ArgumentException">Thrown when the application tries to use the same key with the system-defined key.</exception>
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();
@@ -668,10 +668,10 @@ namespace Tizen.Applications
             /// <remarks>
             /// The function replaces any existing value for the given key.
             /// </remarks>
-            /// <param name="key">The name of the extra data</param>
-            /// <param name="value">The value associated with the given key</param>
-            /// <exception cref="ArgumentNullException">Thrown when key or value is a zero-length string</exception>
-            /// <exception cref="ArgumentException">Thrown when the application tries to use the same key with system-defined key</exception>
+            /// <param name="key">The name of the extra data.</param>
+            /// <param name="value">The value associated with the given key.</param>
+            /// <exception cref="ArgumentNullException">Thrown when key or value is a zero-length string.</exception>
+            /// <exception cref="ArgumentException">Thrown when the application tries to use the same key with the system-defined key.</exception>
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();
@@ -709,11 +709,11 @@ namespace Tizen.Applications
             /// Gets the extra data.
             /// </summary>
             /// <typeparam name="T">Only string and IEnumerable&lt;string&gt;</typeparam>
-            /// <param name="key">The name of extra data</param>
-            /// <returns>The value associated with the given key</returns>
-            /// <exception cref="ArgumentNullException">Thrown when the key is invalid parameter</exception>
-            /// <exception cref="KeyNotFoundException">Thrown when the key is not found</exception>
-            /// <exception cref="ArgumentException">Thrown when the key is rejected</exception>
+            /// <param name="key">The name of extra data.</param>
+            /// <returns>The value associated with the given key.</returns>
+            /// <exception cref="ArgumentNullException">Thrown when the key is an invalid parameter.</exception>
+            /// <exception cref="KeyNotFoundException">Thrown when the key is not found.</exception>
+            /// <exception cref="ArgumentException">Thrown when the key is rejected.</exception>
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();
@@ -729,11 +729,11 @@ namespace Tizen.Applications
             /// <summary>
             /// Gets the extra data.
             /// </summary>
-            /// <param name="key">The name of extra data</param>
-            /// <returns>The value associated with the given key</returns>
-            /// <exception cref="ArgumentNullException">Thrown when the key is invalid parameter</exception>
-            /// <exception cref="KeyNotFoundException">Thrown when the key is not found</exception>
-            /// <exception cref="ArgumentException">Thrown when the key is rejected</exception>
+            /// <param name="key">The name of extra data.</param>
+            /// <returns>The value associated with the given key.</returns>
+            /// <exception cref="ArgumentNullException">Thrown when the key is an invalid parameter.</exception>
+            /// <exception cref="KeyNotFoundException">Thrown when the key is not found.</exception>
+            /// <exception cref="ArgumentException">Thrown when the key is rejected.</exception>
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();
@@ -759,8 +759,8 @@ namespace Tizen.Applications
             /// <summary>
             /// Gets all keys in extra data.
             /// </summary>
-            /// <returns>The keys in the AppControl</returns>
-            /// <exception cref="InvalidOperationException">Thrown when invalid parameter</exception>
+            /// <returns>The keys in the AppControl.</returns>
+            /// <exception cref="InvalidOperationException">Thrown when the key is an invalid parameter.</exception>
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();
@@ -800,12 +800,12 @@ namespace Tizen.Applications
             /// <summary>
             /// Tries getting the extra data.
             /// </summary>
-            /// <param name="key">The name of extra data</param>
-            /// <param name="value">The value associated with the given key</param>
-            /// <returns>The result whether getting the value is done</returns>
-            /// <exception cref="ArgumentNullException">Thrown when the key is invalid parameter</exception>
-            /// <exception cref="KeyNotFoundException">Thrown when the key is not found</exception>
-            /// <exception cref="ArgumentException">Thrown when the key is rejected</exception>
+            /// <param name="key">The name of extra data.</param>
+            /// <param name="value">The value associated with the given key.</param>
+            /// <returns>The result whether getting the value is done.</returns>
+            /// <exception cref="ArgumentNullException">Thrown when the key is an invalid parameter.</exception>
+            /// <exception cref="KeyNotFoundException">Thrown when the key is not found.</exception>
+            /// <exception cref="ArgumentException">Thrown when the key is rejected.</exception>
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();
@@ -838,12 +838,12 @@ namespace Tizen.Applications
             /// <summary>
             /// Tries getting the extra data.
             /// </summary>
-            /// <param name="key">The name of extra data</param>
-            /// <param name="value">The value associated with the given key</param>
-            /// <returns>The result whether getting the value is done</returns>
-            /// <exception cref="ArgumentNullException">Thrown when the key is invalid parameter</exception>
-            /// <exception cref="KeyNotFoundException">Thrown when the key is not found</exception>
-            /// <exception cref="ArgumentException">Thrown when the key is rejected</exception>
+            /// <param name="key">The name of extra data.</param>
+            /// <param name="value">The value associated with the given key.</param>
+            /// <returns>The result whether getting the value is done.</returns>
+            /// <exception cref="ArgumentNullException">Thrown when the key is an invalid parameter.</exception>
+            /// <exception cref="KeyNotFoundException">Thrown when the key is not found.</exception>
+            /// <exception cref="ArgumentException">Thrown when the key is rejected.</exception>
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();
@@ -890,10 +890,10 @@ namespace Tizen.Applications
             /// <summary>
             /// Removes the extra data.
             /// </summary>
-            /// <param name="key">The name of the extra data</param>
-            /// <exception cref="ArgumentNullException">Thrown when the key is a zero-length string</exception>
-            /// <exception cref="KeyNotFoundException">Thrown when the key is not found</exception>
-            /// <exception cref="ArgumentException">Thrown when the key is rejected</exception>
+            /// <param name="key">The name of the extra data.</param>
+            /// <exception cref="ArgumentNullException">Thrown when the key is a zero-length string.</exception>
+            /// <exception cref="KeyNotFoundException">Thrown when the key is not found.</exception>
+            /// <exception cref="ArgumentException">Thrown when the key is rejected.</exception>
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();
@@ -926,8 +926,8 @@ namespace Tizen.Applications
             /// <summary>
             /// Counts keys in the extra data.
             /// </summary>
-            /// <returns>The number of counting keys</returns>
-            /// <exception cref="InvalidOperationException">Thrown when invalid parameter</exception>
+            /// <returns>The number of counting keys.</returns>
+            /// <exception cref="InvalidOperationException">Thrown when the key is an invalid parameter.</exception>
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();
@@ -940,12 +940,12 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            /// Checks whether the extra data associated with the given key is of collection data type.
+            /// Checks whether the extra data associated with the given key is of the collection data type.
             /// </summary>
-            /// <param name="key">The name of the extra data</param>
-            /// <returns>If true the extra data is of array data type, otherwise false</returns>
-            /// <exception cref="ArgumentNullException">Thrown when the key is a zero-length string</exception>
-            /// <exception cref="InvalidOperationException">Thrown when failed to check the key</exception>
+            /// <param name="key">The name of the extra data.</param>
+            /// <returns>If true, the extra data is of the array data type, otherwise false.</returns>
+            /// <exception cref="ArgumentNullException">Thrown when the key is a zero-length string.</exception>
+            /// <exception cref="InvalidOperationException">Thrown when failed to check the key.</exception>
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();

@@ -21,7 +21,7 @@ namespace Tizen.Applications.Notifications
     using System.ComponentModel;
 
     /// <summary>
-    /// Class containing common properties and methods of Notifications
+    /// This class contains common properties and methods of notifications.
     /// </summary>
     /// <remarks>
     /// A notification is a message that is displayed on the notification area.
@@ -49,51 +49,51 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Gets or sets Tag of Notification.
+        /// Gets or sets the tag of notification.
         /// </summary>
         public string Tag { get; set; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets Title of Notification.
+        /// Gets or sets the title of notification.
         /// </summary>
         public string Title { get; set; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets icon of Notification.
-        /// An absolute path for an image file.
+        /// Gets or sets the icon of notification.
+	/// You should set an absolute path for an image file.
         /// </summary>
         public string Icon { get; set; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets sub icon of Notification.
-        /// An absolute path for an image file.
-        /// The SubIcon is superimposed on the lower right of the icon.
+        /// Gets or sets the sub icon of notification.
+        /// This SubIcon is displayed in Icon you set.
+	/// You should set an absolute path for an image file.
         /// </summary>
         public string SubIcon { get; set; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets content of Notification.
+        /// Gets or sets the content of notification.
         /// </summary>
         public string Content { get; set; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets a value indicating whether TimeStamp of Notification is Visible or not.
+        /// Gets or sets a value indicating whether TimeStamp of the notification is Visible or not.
         /// Default to true.
         /// </summary>
         public bool IsTimeStampVisible { get; set; } = true;
 
         /// <summary>
-        /// Gets or sets TimeStamp of Notification.
+        /// Gets or sets the TimeStamp of notification.
         /// </summary>
         /// <remarks>
-        /// If you don't set TimeStamp, It will be set value that time when the notification is posted.
+        /// If you don't set TimeStamp, it will set the value when the notification is posted.
         /// TimeStamp requires NotificationManager.Post() to be called.
-        /// If you set IsVisibleTimeStamp property is false, TimeStamp is not Visible in Notification.
+        /// If you set IsVisibleTimeStamp property to false, TimeStamp is not visible in notification.
         /// </remarks>
         public DateTime TimeStamp { get; set; }
 
         /// <summary>
-        /// Gets or sets Action which is invoked when notification is clicked
+        /// Gets or sets action, which is invoked when the notification is clicked.
         /// </summary>
         /// <remarks>
         /// If you set it to null, the already set AppControl will be removed and nothing will happen when you click on notification.
@@ -102,13 +102,13 @@ namespace Tizen.Applications.Notifications
         public AppControl Action { get; set; }
 
         /// <summary>
-        /// Gets or sets Count which is displayed at the right side of notification.
+        /// Gets or sets count, which is displayed at the right side of the notification.
         /// </summary>
         /// <remarks>
         /// You must set only positive number.
-        /// If you set count to negative number, This property throw exception.
+        /// If you set count to negative number, this property throws exception.
         /// </remarks>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
+        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
         public int Count
         {
             get
@@ -132,19 +132,19 @@ namespace Tizen.Applications.Notifications
         public bool IsOngoing { get; set; } = false;
 
         /// <summary>
-        /// Gets or sets property
+        /// Gets or sets property.
         /// </summary>
         /// <seealso cref="Tizen.Applications.Notifications.NotificationProperty"></seealso>
         public NotificationProperty Property { get; set; } = NotificationProperty.None;
 
         /// <summary>
-        /// Gets or sets <see cref="Notification.ProgressType"/> object for display at notification
+        /// Gets or sets <see cref="Notification.ProgressType"/> object for display at notification.
         /// </summary>
         /// <seealso cref="Tizen.Applications.Notifications.Notification.ProgressType"></seealso>
         public ProgressType Progress { get; set; }
 
         /// <summary>
-        /// Gets or sets <see cref="Notification.AccessorySet"/> which is included vibration, led and sound option to be applied at Notification.
+        /// Gets or sets <see cref="Notification.AccessorySet"/> which is included vibration, LED and sound option to be applied at notification.
         /// </summary>
         /// <remarks>
         /// If you set it to null, the already set AccessorySet will be initialized.
@@ -178,13 +178,13 @@ namespace Tizen.Applications.Notifications
         public AccessorySet Accessory { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether notification is displayed on default viewer.
-        /// If you set false and add style, It will be shown only on the style you added.
+        /// Gets or sets a value indicating whether notification is displayed on the default viewer.
+        /// If you set false and add style, you can see only style notification.
         /// </summary>
         public bool IsVisible { get; set; } = true;
 
         /// <summary>
-        /// Gets or sets NotificationSafeHandle
+        /// Gets or sets NotificationSafeHandle.
         /// </summary>
         internal NotificationSafeHandle Handle
         {
@@ -206,19 +206,19 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Gets or sets Private ID
+        /// Gets or sets private ID.
         /// </summary>
         internal int PrivID { get; set; } = -1;
 
         /// <summary>
-        /// Method to add various style to be applied to notification.
+        /// Method for adding various styles to be applied to notification.
         /// </summary>
         /// <remarks>
-        /// The user always see about valid notification style. If you add style which is not supported in platform,
+        /// The user always see about valid notification style. If you add a style which is not supported in platform,
         /// this method has no effect.
         /// </remarks>
-        /// <param name="style">The style to be applied to notification</param>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
+        /// <param name="style">The style to be applied to notification.</param>
+        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
         /// <example>
         /// <code>
         /// Notification notification = new Notification
@@ -262,8 +262,8 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Method to remove style you already added.
         /// </summary>
-        /// <typeparam name="T">Type of notification style to be queried</typeparam>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
+        /// <typeparam name="T">Type of notification style to be queried.</typeparam>
+        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
         public void RemoveStyle<T>() where T : Notification.StyleBase, new()
         {
             T type = new T();
@@ -282,11 +282,11 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Method to get style you already added.
         /// </summary>
-        /// <typeparam name="T">Type of notification style to be queried</typeparam>
+        /// <typeparam name="T">Type of notification style to be queried.</typeparam>
         /// <returns>
-        /// The Notification.Style object associated with the given style
+        /// The Notification.Style object associated with the given style.
         /// </returns>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
+        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
         public T GetStyle<T>() where T : Notification.StyleBase, new()
         {
             T type = new T();
@@ -306,14 +306,14 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Method to set extra data to add extra data
+        /// Method to set extra data to add extra data.
         /// </summary>
         /// <remarks>
-        /// The type of extra data is Bundle.
+        /// The type of extra data is bundle.
         /// </remarks>
         /// <param name="key">The key of the extra data you want to add.</param>
         /// <param name="value">The value you want to add.</param>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
+        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
         /// <example>
         /// <code>
         /// Notification notification = new Notification
@@ -352,10 +352,10 @@ namespace Tizen.Applications.Notifications
         /// Method to remove extra you already added.
         /// </summary>
         /// <remarks>
-        /// The type of extra data is Bundle.
+        /// The type of extra data is bundle.
         /// </remarks>
         /// <param name="key">The key of the extra data to add.</param>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
+        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
         public void RemoveExtraData(string key)
         {
             if (string.IsNullOrEmpty(key))
@@ -374,11 +374,11 @@ namespace Tizen.Applications.Notifications
         }
 
         /// <summary>
-        /// Method to get extra data you already set
+        /// Method to get extra data you already set.
         /// </summary>
         /// <param name="key">The key of the extra data to get.</param>
         /// <returns>Bundle Object that include extra data</returns>
-        /// <exception cref="ArgumentException">Thrown when argument is invalid</exception>
+        /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
         public Bundle GetExtraData(string key)
         {
             if (string.IsNullOrEmpty(key))

@@ -17,22 +17,22 @@
 namespace Tizen.Applications.NotificationEventListener
 {
     /// <summary>
-    /// This class provides the methods and properties to get information about the posted or updated notification.
+    /// This class provides methods and properties to get information about the posted or updated notification.
     /// </summary>
     public partial class NotificationEventArgs
     {
         /// <summary>
-        ///  Class to generate the Indicator style notification.
+        ///  Class to generate the indicator style notification.
         /// </summary>
         public class IndicatorStyleArgs : StyleArgs
         {
             /// <summary>
-            /// Gets the path of the image file to display on the icon of Indicator style.
+            /// Gets the path of the image file to display on the icon of indicator style.
             /// </summary>
             public string IconPath { get; internal set; }
 
             /// <summary>
-            /// Gets the sub text to display Indicator style.
+            /// Gets the sub text to display indicator style.
             /// </summary>
             public string SubText { get; internal set; }
 

@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications.CoreBackend
 {
     /// <summary>
-    /// Interface that represents the backend lifecycles.
+    /// An interface that represents the backend lifecycles.
     /// </summary>
     public interface ICoreBackend : IDisposable
     {
@@ -39,13 +39,13 @@ namespace Tizen.Applications.CoreBackend
         void AddEventHandler<TEventArgs>(EventType evType, Action<TEventArgs> handler) where TEventArgs : EventArgs;
 
         /// <summary>
-        /// Runs the mainloop of backend.
+        /// Runs the mainloop of the backend.
         /// </summary>
         /// <param name="args"></param>
         void Run(string[] args);
 
         /// <summary>
-        /// Exits the mainloop of backend.
+        /// Exits the mainloop of the backend.
         /// </summary>
         void Exit();
     }

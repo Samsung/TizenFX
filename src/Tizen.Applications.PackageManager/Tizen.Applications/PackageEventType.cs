@@ -17,7 +17,7 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for package manager event type.
+    /// Enumeration for the package manager event types.
     /// </summary>
     public enum PackageEventType
     {

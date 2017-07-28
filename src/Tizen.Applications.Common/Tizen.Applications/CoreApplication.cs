@@ -21,7 +21,7 @@ using Tizen.Applications.CoreBackend;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Class that represents an application controlled lifecycles by the backend system.
+    /// This class represents an application controlled lifecycles by the backend system.
     /// </summary>
     public class CoreApplication : Application
     {

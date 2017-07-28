@@ -17,20 +17,20 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for certification type.
+    /// Enumeration for the certification types.
     /// </summary>
     public enum CertificateType
     {
         /// <summary>
-        /// Author Certificate.
+        /// Author certificate.
         /// </summary>
         Author,
         /// <summary>
-        /// Distributor Certificate.
+        /// Distributor certificate.
         /// </summary>
         Distributor,
         /// <summary>
-        /// Distributor2 Certificate.
+        /// Distributor2 certificate.
         /// </summary>
         Distributor2,
     }

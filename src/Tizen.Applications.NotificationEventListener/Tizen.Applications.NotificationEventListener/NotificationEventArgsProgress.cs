@@ -17,12 +17,12 @@
 namespace Tizen.Applications.NotificationEventListener
 {
     /// <summary>
-    /// This class provides the methods and properties to get information about the posted or updated notification.
+    /// This class provides methods and properties to get information about the posted or updated notification.
     /// </summary>
     public partial class NotificationEventArgs
     {
         /// <summary>
-        ///  Class to get infomation about Progress Notification.
+        ///  Class to get infomation about progress notification.
         /// </summary>
         public class ProgressArgs
         {

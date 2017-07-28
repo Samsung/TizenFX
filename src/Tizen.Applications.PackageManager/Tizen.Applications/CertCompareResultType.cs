@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for certificate compare result type.
+    /// Enumeration for the certificate compare result type.
     /// </summary>
     public enum CertCompareResultType
     {
@@ -32,15 +32,15 @@ namespace Tizen.Applications
         /// </summary>
         Mismatch = Interop.PackageManager.CertCompareResultType.Mismatch,
         /// <summary>
-        /// First package doesn't have certificate.
+        /// First package does not have the certificate.
         /// </summary>
         LhsNoCert = Interop.PackageManager.CertCompareResultType.LhsNoCert,
         /// <summary>
-        /// Second package doesn't have certificate.
+        /// Second package does not have the certificate.
         /// </summary>
         RhsNoCert = Interop.PackageManager.CertCompareResultType.RhsNoCert,
         /// <summary>
-        /// Certificates of both packages are not exist.
+        /// Certificates for both the packages do not exist.
         /// </summary>
         BothNoCert = Interop.PackageManager.CertCompareResultType.BothNoCert
     }

@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// This class provide methods and properties to get information about packages.
+    /// This class provides the methods and properties to get information about the packages.
     /// </summary>
     public class Package
     {
@@ -50,7 +50,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Package ID.
+        /// The package ID.
         /// </summary>
         public string Id { get { return _id; } }
 
@@ -92,7 +92,7 @@ namespace Tizen.Applications
         public string TizenExpansionPackageName { get { return _expansionPackageName; } }
 
         /// <summary>
-        /// Checks whether the package is system package.
+        /// Checks whether the package is a system package.
         /// </summary>
         public bool IsSystemPackage { get { return _isSystemPackage; } }
 
@@ -112,12 +112,12 @@ namespace Tizen.Applications
         public bool IsAccessible { get { return _isAccessible; } }
 
         /// <summary>
-        /// Certificate information for the package
+        /// Certificate information for the package.
         /// </summary>
         public IReadOnlyDictionary<CertificateType, PackageCertificate> Certificates { get { return _certificates; } }
 
         /// <summary>
-        /// Requested privilege for the package
+        /// Requested privilege for the package.
         /// </summary>
         public IEnumerable<string> Privileges { get { return _privileges; } }
 
@@ -127,19 +127,19 @@ namespace Tizen.Applications
         public int InstalledTime { get { return _installedTime; } }
 
         /// <summary>
-        /// Retrieves all application IDs of this package.
+        /// Retrieves all the application IDs of this package.
         /// </summary>
-        /// <returns>Returns a dictionary containing all application info for given application type.</returns>
+        /// <returns>Returns a dictionary containing all the application information for a given application type.</returns>
         public IEnumerable<ApplicationInfo> GetApplications()
         {
             return GetApplications(ApplicationType.All);
         }
 
         /// <summary>
-        /// Retrieves all application IDs of this package.
+        /// Retrieves all the application IDs of this package.
         /// </summary>
-        /// <param name="type">Optional: AppType enum value</param>
-        /// <returns>Returns a dictionary containing all application info for given application type.</returns>
+        /// <param name="type">Optional: AppType enumeration value.</param>
+        /// <returns>Returns a dictionary containing all the application information for a given application type.</returns>
         public IEnumerable<ApplicationInfo> GetApplications(ApplicationType type)
         {
             List<ApplicationInfo> appInfoList = new List<ApplicationInfo>();
@@ -171,9 +171,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets size information for this package.
+        /// Gets the package size information.
         /// </summary>
-        /// <returns>package size information</returns>
+        /// <returns>Package size information.</returns>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         public async Task<PackageSizeInformation> GetSizeInformationAsync()
         {
@@ -196,12 +196,12 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Compare certificate information with given package id.
+        /// Compares the certificate information with the given package ID.
         /// </summary>
-        /// <param name="packageId">Id of the package</param>
-        /// <returns>Certificate comparison result</returns>
-        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
-        /// <exception cref="System.IO.IOException">Thrown when method failed due to internal IO error</exception>
+        /// <param name="packageId">ID of the package.</param>
+        /// <returns>Certificate comparison result.</returns>
+        /// <exception cref="ArgumentException">Thrown when a failed input package ID is invalid.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
         public CertCompareResultType CompareCertInfo(string packageId)
         {
             Interop.PackageManager.CertCompareResultType compareResult;

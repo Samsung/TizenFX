@@ -17,27 +17,27 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for low memory status.
+    /// Enumeration for the low memory status.
     /// </summary>
     public enum LowMemoryStatus
     {
         /// <summary>
-        /// Not initialized status
+        /// Not initialized status.
         /// </summary>
         None = 0x00,
 
         /// <summary>
-        /// Normal status
+        /// Normal status.
         /// </summary>
         Normal = 0x01,
 
         /// <summary>
-        /// Soft warning status
+        /// Soft warning status.
         /// </summary>
         SoftWarning = 0x02,
 
         /// <summary>
-        /// Hard warning status
+        /// Hard warning status.
         /// </summary>
         HardWarning = 0x04,
     }
