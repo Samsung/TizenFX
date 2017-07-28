@@ -10,3 +10,4 @@ Tizen.NUI/obj
 Tizen.NUI/bin
 *.lock.json
 Tizen.NUI/.vs/
+Tizen.NUI.Code/
