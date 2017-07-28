@@ -9281,6 +9281,9 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TextLabel_Property_TEXT_COLOR_get")]
   public static extern int TextLabel_Property_TEXT_COLOR_get();
 
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TextLabel_Property_TEXT_COLOR_ANIMATABLE_get")]
+  public static extern int TextLabel_Property_TEXT_COLOR_ANIMATABLE_get();
+
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TextLabel_Property_SHADOW_OFFSET_get")]
   public static extern int TextLabel_Property_SHADOW_OFFSET_get();
 
