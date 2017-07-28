@@ -19,7 +19,6 @@ using System.ComponentModel;
 
 namespace ElmSharp
 {
-
     /// <summary>
     /// The type of item's part type.
     /// </summary>
@@ -175,12 +174,6 @@ namespace ElmSharp
             }
         }
 
-        /// <summary>
-        /// Gets or sets the type of mouse pointer/cursor decoration to be shown, when the mouse pointer is over the given genlist widget item.
-        /// <remarks>
-        /// The cursor's changing area is restricted to the item's area, and not the whole widget's. Note that that item cursors have precedence over widget cursors, so that a mouse over item will always show cursor type.
-        /// </remarks>>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string Cursor
         {
@@ -201,9 +194,6 @@ namespace ElmSharp
             }
         }
 
-        /// <summary>
-        /// Gets or sets custom cursor for genlist item.
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string CursorStyle
         {
@@ -217,9 +207,6 @@ namespace ElmSharp
             }
         }
 
-        /// <summary>
-        /// Gets or sets whether to rely on the rendering engine.
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool IsUseEngineCursor
         {
@@ -326,6 +313,5 @@ namespace ElmSharp
                 IntPtr.Zero,
                 null);
         }
-
     }
 }
