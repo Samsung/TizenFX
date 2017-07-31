@@ -94,14 +94,20 @@ namespace Tizen.NUI
             return ret;
        }
 
-        [Obsolete("Please do not use! this will be internal method")]
+        /// <summary>
+        /// Sets whether window accepts focus or not.
+        /// </summary>
+        /// <param name="accept">If focus is accepted or not. Default is true.</param>
         public void SetAcceptFocus(bool accept)
         {
             NDalicPINVOKE.SetAcceptFocus(swigCPtr, accept);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        [Obsolete("Please do not use! this will be internal method")]
+        /// <summary>
+        /// Returns whether window accepts focus or not.
+        /// </summary>
+        /// <returns>True if the window accept focus, false otherwise</returns>
         public bool IsFocusAcceptable()
         {
             return NDalicPINVOKE.IsFocusAcceptable(swigCPtr);
@@ -1337,7 +1343,7 @@ namespace Tizen.NUI
         private delegate void WindowFocusChangedEventCallbackType2(bool focusGained);
         private event EventHandler<WindowFocusChangedEventArgs> _windowFocusChangedEventHandler2;
 
-        [Obsolete("Please do not use! this will be deprecated")]
+        [Obsolete("Please do not use! this will be deprecated. Please use 'FocusChanged' event instead")]
         public event EventHandler<WindowFocusChangedEventArgs> WindowFocusChanged
         {
             add

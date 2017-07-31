@@ -20,18 +20,6 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
 
-    //This version should be updated and synced for every Dali native release
-    internal static class Version
-    {
-        public const int ver1 = 1;
-        public const int ver2 = 2;
-        public const int ver3 = 46;
-        public const int nuiVer1 = 0;
-        public const int nuiVer2 = 2;
-        public const int nuiVer3 = 47;
-        public const string nuiRelease = "";
-    }
-
     /**
       * @brief Event arguments that passed via NUIApplicationInit signal
       *
@@ -1078,37 +1066,6 @@ namespace Tizen.NUI
 
         public static Application NewApplication(string stylesheet, Application.WindowMode windowMode)
         {
-            {
-                int ver1 = -1;
-                int ver2 = -1;
-                int ver3 = -1;
-
-                try
-                {
-                    if (NDalicManualPINVOKE.NativeVersionCheck(ref ver1, ref ver2, ref ver3))
-                    {
-                        if (ver1 != Version.ver1 || ver2 != Version.ver2 || ver3 != Version.ver3)
-                        {
-                            //throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
-                            NUILog.Error("Dali native version mismatch error! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease + " but native dali=" + ver1 + "." + ver2 + "." + ver3);
-                        }
-                    }
-                    else
-                    {
-                        //throw new System.InvalidOperationException("Dali native version mismatch error! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3 + " but dali=" + ver1 + "." + ver2 + "." + ver3);
-                        NUILog.Error("Dali native version mismatch error! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease + " but native dali=" + ver1 + "." + ver2 + "." + ver3);
-                    }
-                }
-                catch (Exception exc)
-                {
-                    //throw new System.InvalidOperationException("Dali native version is very old! nui=" + Version.ver1 + "." + Version.ver2 + "." + Version.ver3);
-                    NUILog.Error("Dali native version is very old! nui=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease);
-                    NUILog.Error("exception occured! =" + exc.Message);
-                }
-                NUILog.Debug(" Dali native version=" + ver1 + "." + ver2 + "." + ver3 + "	NUI version=" + Version.nuiVer1 + "." + Version.nuiVer2 + "." + Version.nuiVer3 + Version.nuiRelease);
-            }
-            NUILog.Debug(" NewApplication(string stylesheet, Application.WindowMode windowMode) is called! ");
-
             // register all Views with the type registry, so that can be created / styled via JSON
             //ViewRegistryHelper.Initialize(); //moved to Application side.
 
