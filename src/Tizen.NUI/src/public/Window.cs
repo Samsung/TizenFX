@@ -1453,6 +1453,11 @@ namespace Tizen.NUI
             }
         }
 
+        public static void FeedKeyEvent(Key keyEvent)
+        {
+            NDalicManualPINVOKE.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
     }
 }
