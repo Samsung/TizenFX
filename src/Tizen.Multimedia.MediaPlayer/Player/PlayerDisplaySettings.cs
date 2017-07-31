@@ -25,19 +25,19 @@ namespace Tizen.Multimedia
     /// </summary>
     public class PlayerDisplaySettings
     {
-        internal PlayerDisplaySettings(Player player)
+        protected PlayerDisplaySettings(Player player)
         {
-            Debug.Assert(player != null);
+            if (player == null)
+            {
+                throw new ArgumentNullException(nameof(player));
+            }
 
             Player = player;
         }
 
-        private Player Player
-        {
-            get;
-        }
+        internal static PlayerDisplaySettings Create(Player player) => new PlayerDisplaySettings(player);
 
-        private PlayerDisplayMode _displayMode = PlayerDisplayMode.LetterBox;
+        protected Player Player { get; }
 
         /// <summary>
         /// Gets or sets the <see cref="PlayerDisplayMode"/>.
@@ -53,25 +53,19 @@ namespace Tizen.Multimedia
         {
             get
             {
-                return _displayMode;
+                Native.GetMode(Player.Handle, out var value).
+                    ThrowIfFailed("Failed to get display mode");
+
+                return value;
             }
             set
             {
-                if (_displayMode == value)
-                {
-                    return;
-                }
-
                 ValidationUtil.ValidateEnum(typeof(PlayerDisplayMode), value);
 
                 Native.SetMode(Player.Handle, value).
                     ThrowIfFailed("Failed to set display mode");
-
-                _displayMode = value;
             }
         }
-
-        private bool _isVisible = true;
 
         /// <summary>
         /// Gets or sets the value indicating whether the display is visible.
@@ -87,23 +81,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                return _isVisible;
+                Native.IsVisible(Player.Handle, out var value).
+                    ThrowIfFailed("Failed to get the visible state of the display");
+
+                return value;
             }
             set
             {
-                if (_isVisible == value)
-                {
-                    return;
-                }
-
-                Native.SetVisible(Player.Handle, value).
-                    ThrowIfFailed("Failed to set the visible state of the display");
-
-                _isVisible = value;
+                Native.SetVisible(Player.Handle, value).ThrowIfFailed("Failed to set the visible state of the display");
             }
         }
-
-        private Rotation _rotation = Rotation.Rotate0;
 
         /// <summary>
         /// Gets or sets the rotation of the display.
@@ -121,21 +108,17 @@ namespace Tizen.Multimedia
         {
             get
             {
-                return _rotation;
+                Native.GetRotation(Player.Handle, out var value).
+                    ThrowIfFailed("Failed to get the rotation state of the display");
+
+                return value;
             }
             set
             {
-                if (_rotation == value)
-                {
-                    return;
-                }
-
                 ValidationUtil.ValidateEnum(typeof(Rotation), value);
 
                 Native.SetRotation(Player.Handle, value).
                     ThrowIfFailed("Failed to set the rotation state of the display");
-
-                _rotation = value;
             }
         }
 
@@ -151,17 +134,12 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     Operation failed; internal error.\n
         ///     -or-\n
-        ///     <see cref="Mode"/> is not set to <see cref="PlayerDisplayMode.Roi"/>
+        ///     <see cref="Mode"/> is not set to <see cref="PlayerDisplayMode.Roi"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">width or height is less than or equal to zero.</exception>
         public void SetRoi(Rectangle roi)
         {
-            if (_displayMode != PlayerDisplayMode.Roi)
-            {
-                throw new InvalidOperationException("Mode is not set to Roi");
-            }
-
             if (roi.Width <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(roi), roi.Width,
@@ -171,6 +149,11 @@ namespace Tizen.Multimedia
             {
                 throw new ArgumentOutOfRangeException(nameof(roi), roi.Height,
                     $"The height of the roi can't be less than or equal to zero.");
+            }
+
+            if (Mode != PlayerDisplayMode.Roi)
+            {
+                throw new InvalidOperationException("Mode is not set to Roi");
             }
 
             Native.SetRoi(Player.Handle, roi.X, roi.Y, roi.Width, roi.Height).

@@ -115,6 +115,8 @@ namespace Tizen.Multimedia
             {
                 RegisterVideoFrameDecodedCallback();
             }
+
+            DisplaySettings = PlayerDisplaySettings.Create(this);
         }
 
         private void RetrieveProperties()
