@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 using Handle = Interop.ThumbnailExtractorHandle;
 using Native = Interop.ThumbnailExtractor;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Util
 {
     /// <summary>
     /// Provides the ability to extract the thumbnail from media files.

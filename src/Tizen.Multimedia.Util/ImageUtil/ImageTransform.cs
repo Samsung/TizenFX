@@ -30,6 +30,10 @@ namespace Tizen.Multimedia.Util
     /// </summary>
     public abstract class ImageTransform
     {
+        internal ImageTransform()
+        {
+        }
+
         internal async Task<MediaPacket> RunAsync(TransformHandle handle, MediaPacket source)
         {
             var tcs = new TaskCompletionSource<MediaPacket>();
