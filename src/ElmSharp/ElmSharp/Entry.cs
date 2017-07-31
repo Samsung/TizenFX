@@ -754,20 +754,6 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the color of color class for a given widget.
-        /// </summary>
-        /// <param name="part">The name of color class.</param>
-        /// <param name="color">The struct of color</param>
-        public override void SetPartColor(string part, Color color)
-        {
-            IntPtr handle = (part == "bg") ? Handle : RealHandle;
-            Interop.Elementary.elm_object_color_class_color_set(handle, part, color.R * color.A / 255,
-                                                                                color.G * color.A / 255,
-                                                                                color.B * color.A / 255,
-                                                                                color.A);
-        }
-
-        /// <summary>
         /// Forces calculation of the entry size and text layouting.
         /// </summary>
         public void ForceCalculation()
@@ -1033,13 +1019,7 @@ namespace ElmSharp
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
-            Interop.Elementary.elm_layout_theme_set(handle, "layout", "background", "default");
-
-            RealHandle = Interop.Elementary.elm_entry_add(handle);
-            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
-
-            return handle;
+            return Interop.Elementary.elm_entry_add(parent.Handle);
         }
     }
 }
