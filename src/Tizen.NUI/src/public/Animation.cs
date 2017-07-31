@@ -904,6 +904,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Play the animation after a given delay time.<br/>
+        /// The delay time is not included in the looping time.<br/>
+        /// When the delay time is negative value, it would treat as play immediately.<br/>
+        /// </summary>
+        /// <param name="delayMiliSeconds">The delay time</param>
+        public void PlayAfter(int delayMiliSeconds)
+        {
+            NDalicPINVOKE.Animation_PlayAfter(swigCPtr, MilliSecondsToSeconds(delayMiliSeconds));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Pauses the animation.
         /// </summary>
         public void Pause()

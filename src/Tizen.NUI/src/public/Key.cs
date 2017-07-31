@@ -126,6 +126,10 @@ namespace Tizen.NUI
             {
                 return keyPressedName;
             }
+            set
+            {
+                keyPressedName = value;
+            }
         }
 
         /* duplicated with KeyPressedName : removed
@@ -147,6 +151,10 @@ namespace Tizen.NUI
             {
                 return keyCode;
             }
+            set
+            {
+                keyCode = value;
+            }
         }
 
         /// <summary>
@@ -157,6 +165,10 @@ namespace Tizen.NUI
             get
             {
                 return keyModifier;
+            }
+            set
+            {
+                keyModifier = value;
             }
         }
 
@@ -169,6 +181,10 @@ namespace Tizen.NUI
             {
                 return time;
             }
+            set
+            {
+                time = value;
+            }
         }
 
         /// <summary>
@@ -179,6 +195,10 @@ namespace Tizen.NUI
             get
             {
                 return state;
+            }
+            set
+            {
+                state = value;
             }
         }
 
