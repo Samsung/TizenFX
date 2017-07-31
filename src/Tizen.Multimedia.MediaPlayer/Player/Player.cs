@@ -1316,5 +1316,11 @@ namespace Tizen.Multimedia
         }
 
         #endregion
+
+        /// <summary>
+        /// This method supports the product infrastructure and is not intended to be used directly from application code.
+        /// </summary>
+        protected static Exception GetException(int errorCode, string message) =>
+            ((PlayerErrorCode) errorCode).GetException(message);
     }
 }

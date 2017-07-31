@@ -59,6 +59,16 @@ namespace Tizen.Multimedia
                 return;
             }
 
+            throw err.GetException(message);
+        }
+
+        internal static Exception GetException(this PlayerErrorCode err, string message)
+        {
+            if (err == PlayerErrorCode.None)
+            {
+                return null;
+            }
+
             string msg = $"{ (message ?? "Operation failed") } : { err.ToString() }.";
 
             switch (err)
@@ -89,7 +99,7 @@ namespace Tizen.Multimedia
                 case PlayerErrorCode.DrmNoLicense:
                 case PlayerErrorCode.DrmFutureUse:
                 case PlayerErrorCode.DrmNotPermitted:
-                    // TODO consider another exception.
+                // TODO consider another exception.
                 case PlayerErrorCode.InvalidOperation:
                 case PlayerErrorCode.InvalidState:
                 case PlayerErrorCode.SeekFailed:
@@ -111,7 +121,7 @@ namespace Tizen.Multimedia
 
             }
 
-            throw new Exception(msg);
+            throw new InvalidOperationException(msg);
         }
     }
 
