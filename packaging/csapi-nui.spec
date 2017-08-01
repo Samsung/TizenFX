@@ -5,7 +5,7 @@ Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0 and BSD-3-Clause and MIT
 URL:        https://www.tizen.org
-Source0:    %{name}-%{version}.tar.gz
+Source0:    %{name}-%{version}-pre1.tar.gz
 Source1:    %{name}.manifest
 
 AutoReqProv: no
