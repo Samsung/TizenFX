@@ -94,7 +94,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The address ainformation for IPv6.
+        /// The address information for IPv6.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>IP address information for IPv6 type.</value>
