@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>0.2.48-pre1</Version>
+    <Version>0.2.49-pre1</Version>
     <Authors>Samsung Electronics</Authors>
     <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
     <Description>
