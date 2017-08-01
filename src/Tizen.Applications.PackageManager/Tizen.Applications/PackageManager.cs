@@ -259,6 +259,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
         /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static void ClearAllCacheDirectory()
         {
             var err = Interop.PackageManager.PackageManagerClearAllCacheDir();
@@ -282,6 +283,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
         /// <exception cref="SystemException">Thrown when method failed due to internal system error</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static void ClearDataDirectory(string packageId)
         {
             Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerClearDataDir(packageId);
@@ -390,6 +392,7 @@ namespace Tizen.Applications
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Install(string packagePath, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, null, PackageType.UNKNOWN, null, installMode);
@@ -407,6 +410,7 @@ namespace Tizen.Applications
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Install(string packagePath, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, null, PackageType.UNKNOWN, eventCallback, installMode);
@@ -424,6 +428,7 @@ namespace Tizen.Applications
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Install(string packagePath, PackageType type, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, null, type, null, installMode);
@@ -441,6 +446,7 @@ namespace Tizen.Applications
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Install(string packagePath, string expansionPackagePath, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, expansionPackagePath, PackageType.UNKNOWN, null, installMode);
@@ -459,6 +465,7 @@ namespace Tizen.Applications
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Install(string packagePath, PackageType type, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, null, type, eventCallback, installMode);
@@ -477,6 +484,7 @@ namespace Tizen.Applications
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Install(string packagePath, string expansionPackagePath, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, expansionPackagePath, PackageType.UNKNOWN, eventCallback, installMode);
@@ -495,6 +503,7 @@ namespace Tizen.Applications
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Install(string packagePath, string expansionPackagePath, PackageType type, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, expansionPackagePath, type, null, installMode);
@@ -514,6 +523,7 @@ namespace Tizen.Applications
         /// To check the result of installation, the caller should check the progress using InstallProgressChanged event OR eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Install(string packagePath, string expansionPackagePath, PackageType type, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
         {
             SafePackageManagerRequestHandle RequestHandle;
@@ -614,6 +624,7 @@ namespace Tizen.Applications
         /// To check the result of uninstallation, the caller should check the progress using UninstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Uninstall(string packageId)
         {
             return Uninstall(packageId, PackageType.UNKNOWN, null);
@@ -630,6 +641,7 @@ namespace Tizen.Applications
         /// To check the result of uninstallation, the caller should check the progress using UninstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Uninstall(string packageId, PackageType type)
         {
             return Uninstall(packageId, type, null);
@@ -646,6 +658,7 @@ namespace Tizen.Applications
         /// To check the result of uninstallation, the caller should check the progress using UninstallProgressChanged event OR eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Uninstall(string packageId, RequestEventCallback eventCallback)
         {
             return Uninstall(packageId, PackageType.UNKNOWN, eventCallback);
@@ -663,6 +676,7 @@ namespace Tizen.Applications
         /// To check the result of uninstallation, the caller should check the progress using UninstallProgressChanged event OR eventCallback.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Uninstall(string packageId, PackageType type, RequestEventCallback eventCallback)
         {
             SafePackageManagerRequestHandle RequestHandle;
@@ -732,6 +746,7 @@ namespace Tizen.Applications
         /// To check the result of move, the caller should check the progress using MoveProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Move(string packageId, StorageType newStorage)
         {
             return Move(packageId, PackageType.UNKNOWN, newStorage, null);
@@ -749,6 +764,7 @@ namespace Tizen.Applications
         /// To check the result of move, the caller should check the progress using MoveProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Move(string packageId, PackageType type, StorageType newStorage)
         {
             return Move(packageId, type, newStorage, null);
@@ -766,6 +782,7 @@ namespace Tizen.Applications
         /// To check the result of move, the caller should check the progress using MoveProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Move(string packageId, StorageType newStorage, RequestEventCallback eventCallback)
         {
             return Move(packageId, PackageType.UNKNOWN, newStorage, eventCallback);
@@ -784,6 +801,7 @@ namespace Tizen.Applications
         /// To check the result of move, the caller should check the progress using MoveProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Move(string packageId, PackageType type, StorageType newStorage, RequestEventCallback eventCallback)
         {
             SafePackageManagerRequestHandle RequestHandle;
@@ -934,6 +952,7 @@ namespace Tizen.Applications
             /// <param name="responseData">Response data string of the purchase request</param>
             /// <returns>Returns package drm information of given response data which contains require data and license url</returns>
             /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+            /// <privlevel>platform</privlevel>
             /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
             /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
             /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
@@ -950,6 +969,7 @@ namespace Tizen.Applications
             /// <param name="responseData">The response data string of the rights request</param>
             /// <returns>Returns true if succeed. Otherwise return false</returns>
             /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+            /// <privlevel>platform</privlevel>
             /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
             /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
             /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>
@@ -972,6 +992,7 @@ namespace Tizen.Applications
             /// <param name="decryptedFilePath">Decrypted file path</param>
             /// <returns>Returns true if succeed. Otherwise return false</returns>
             /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+            /// <privlevel>platform</privlevel>
             /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid</exception>
             /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method</exception>
             /// <exception cref="UnauthorizedAccessException">Thrown when app does not have privilege to access this method</exception>

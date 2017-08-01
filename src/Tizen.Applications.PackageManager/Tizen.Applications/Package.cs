@@ -87,6 +87,8 @@ namespace Tizen.Applications
         /// <summary>
         /// Expansion package name for the package.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public string TizenExpansionPackageName { get { return _expansionPackageName; } }
 
         /// <summary>
