@@ -827,7 +827,6 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="handle">Handle to an object</param>
         /// <returns>A handle to a View or an uninitialized handle</returns>
-        [Obsolete("Please do not use! this will be deprecated")]
         public new static View DownCast(BaseHandle handle)
         {
             View ret = new View(NDalicPINVOKE.View_DownCast(BaseHandle.getCPtr(handle)), true);
@@ -838,7 +837,8 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("Please do not use! this will be deprecated")]
         public static T DownCast<T>(View view) where T : View
         {
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
+            //View ret = ViewRegistry.GetViewFromBaseHandle(view);
+            View ret = View.DownCast(view);
             if (ret != null)
             {
                 return (T)ret;
