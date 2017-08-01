@@ -25,14 +25,14 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal ImfManager(IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.ImfManager_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ImfManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.ImfManager_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ImfManager obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
         protected override void Dispose(DisposeTypes type)
@@ -54,14 +54,14 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            if (swigCPtr.Handle != IntPtr.Zero)
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
                     NDalicManualPINVOKE.delete_ImfManager(swigCPtr);
                 }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
             base.Dispose(type);
@@ -75,7 +75,7 @@ namespace Tizen.NUI
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
             protected bool swigCMemOwn;
 
-            internal ImfEventData(IntPtr cPtr, bool cMemoryOwn)
+            internal ImfEventData(global::System.IntPtr cPtr, bool cMemoryOwn)
             {
                 swigCMemOwn = cMemoryOwn;
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -83,7 +83,7 @@ namespace Tizen.NUI
 
             internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ImfEventData obj)
             {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
             }
 
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
@@ -142,20 +142,20 @@ namespace Tizen.NUI
                 //You should not access any managed member here except static instance.
                 //because the execution order of Finalizes is non-deterministic.
 
-                if (swigCPtr.Handle != IntPtr.Zero)
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
                 {
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
                         NDalicManualPINVOKE.delete_ImfManager_ImfEventData(swigCPtr);
                     }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
 
                 disposed = true;
             }
 
-            internal static ImfEventData GetImfEventDataFromPtr(IntPtr cPtr)
+            internal static ImfEventData GetImfEventDataFromPtr(global::System.IntPtr cPtr)
             {
                 ImfEventData ret = new ImfEventData(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -185,25 +185,6 @@ namespace Tizen.NUI
             /// <summary>
             /// The pre-edit or commit string.
             /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
-            public string predictiveString
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfEventData_predictiveString_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    string ret = NDalicManualPINVOKE.ImfManager_ImfEventData_predictiveString_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The pre-edit or commit string.
-            /// </summary>
             public string PredictiveString
             {
                 set
@@ -214,25 +195,6 @@ namespace Tizen.NUI
                 get
                 {
                     string ret = NDalicManualPINVOKE.ImfManager_ImfEventData_predictiveString_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The name of the event from the IMF.
-            /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
-            public ImfManager.ImfEvent eventName
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfEventData_eventName_set(swigCPtr, (int)value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    ImfManager.ImfEvent ret = (ImfManager.ImfEvent)NDalicManualPINVOKE.ImfManager_ImfEventData_eventName_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -259,25 +221,6 @@ namespace Tizen.NUI
             /// <summary>
             /// Start position from the current cursor position to start deleting characters.
             /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
-            public int cursorOffset
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfEventData_cursorOffset_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    int ret = NDalicManualPINVOKE.ImfManager_ImfEventData_cursorOffset_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// Start position from the current cursor position to start deleting characters.
-            /// </summary>
             public int CursorOffset
             {
                 set
@@ -288,25 +231,6 @@ namespace Tizen.NUI
                 get
                 {
                     int ret = NDalicManualPINVOKE.ImfManager_ImfEventData_cursorOffset_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// Number of characters to delete from the cursorOffset.
-            /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
-            public int numberOfChars
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfEventData_numberOfChars_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    int ret = NDalicManualPINVOKE.ImfManager_ImfEventData_numberOfChars_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -345,7 +269,7 @@ namespace Tizen.NUI
                 return (IntPtr)swigCPtr;
             }
 
-            internal ImfCallbackData(IntPtr cPtr, bool cMemoryOwn)
+            internal ImfCallbackData(global::System.IntPtr cPtr, bool cMemoryOwn)
             {
                 swigCMemOwn = cMemoryOwn;
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -353,7 +277,7 @@ namespace Tizen.NUI
 
             internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ImfCallbackData obj)
             {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
             }
 
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
@@ -412,20 +336,20 @@ namespace Tizen.NUI
                 //You should not access any managed member here except static instance.
                 //because the execution order of Finalizes is non-deterministic.
 
-                if (swigCPtr.Handle != IntPtr.Zero)
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
                 {
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
                         NDalicManualPINVOKE.delete_ImfManager_ImfCallbackData(swigCPtr);
                     }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
 
                 disposed = true;
             }
 
-            internal static ImfCallbackData GetImfCallbackDataFromPtr(IntPtr cPtr)
+            internal static ImfCallbackData GetImfCallbackDataFromPtr(global::System.IntPtr cPtr)
             {
                 ImfCallbackData ret = new ImfCallbackData(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -455,25 +379,6 @@ namespace Tizen.NUI
             /// <summary>
             /// Current text string.
             /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
-            public string currentText
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfCallbackData_currentText_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    string ret = NDalicManualPINVOKE.ImfManager_ImfCallbackData_currentText_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// Current text string.
-            /// </summary>
             public string CurrentText
             {
                 set
@@ -484,25 +389,6 @@ namespace Tizen.NUI
                 get
                 {
                     string ret = NDalicManualPINVOKE.ImfManager_ImfCallbackData_currentText_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// Current text string.
-            /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
-            public int cursorPosition
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfCallbackData_cursorPosition_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    int ret = NDalicManualPINVOKE.ImfManager_ImfCallbackData_cursorPosition_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -529,25 +415,6 @@ namespace Tizen.NUI
             /// <summary>
             /// If cursor position needs to be updated.
             /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
-            public bool update
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfCallbackData_update_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    bool ret = NDalicManualPINVOKE.ImfManager_ImfCallbackData_update_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// If cursor position needs to be updated.
-            /// </summary>
             public bool Update
             {
                 set
@@ -558,25 +425,6 @@ namespace Tizen.NUI
                 get
                 {
                     bool ret = NDalicManualPINVOKE.ImfManager_ImfCallbackData_update_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// Flag if preedit reset is required.
-            /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
-            public bool preeditResetRequired
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfCallbackData_preeditResetRequired_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    bool ret = NDalicManualPINVOKE.ImfManager_ImfCallbackData_preeditResetRequired_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -860,7 +708,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static ImfManager GetImfManagerFromPtr(IntPtr cPtr)
+        internal static ImfManager GetImfManagerFromPtr(global::System.IntPtr cPtr)
         {
             ImfManager ret = new ImfManager(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -870,7 +718,6 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager activated event arguments.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
         public class ImfManagerActivatedEventArgs : EventArgs
         {
             public ImfManager ImfManager
@@ -883,12 +730,12 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ImfManagerActivatedEventCallbackType(global::System.IntPtr data);
         private ImfManagerActivatedEventCallbackType _imfManagerActivatedEventCallback;
+
         private event EventHandler<ImfManagerActivatedEventArgs> _imfManagerActivatedEventHandler;
 
         /// <summary>
-        /// ImfManager activated event.
+        /// ImfManager activated.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
         public event EventHandler<ImfManagerActivatedEventArgs> ImfManagerActivated
         {
             add
@@ -924,66 +771,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// ImfManager activated event arguments.
-        /// </summary>
-        public class ActivatedEventArgs : EventArgs
-        {
-            public ImfManager ImfManager
-            {
-                get;
-                set;
-            }
-        }
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void ActivatedEventCallbackType(IntPtr data);
-        private ActivatedEventCallbackType _activatedEventCallback;
-        private event EventHandler<ActivatedEventArgs> _activatedEventHandler;
-
-        /// <summary>
-        /// ImfManager activated.
-        /// </summary>
-        public event EventHandler<ActivatedEventArgs> Activated
-        {
-            add
-            {
-                if (_activatedEventHandler == null)
-                {
-                    _activatedEventCallback = OnActivated;
-                    ActivatedSignal().Connect(_activatedEventCallback);
-                }
-
-                _activatedEventHandler += value;
-            }
-            remove
-            {
-                _activatedEventHandler -= value;
-
-                if (_activatedEventHandler == null && _activatedEventCallback != null)
-                {
-                    ActivatedSignal().Disconnect(_activatedEventCallback);
-                }
-            }
-        }
-
-        private void OnActivated(IntPtr data)
-        {
-            ActivatedEventArgs e = new ActivatedEventArgs();
-
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
-
-            if (_activatedEventHandler != null)
-            {
-                _activatedEventHandler(this, e);
-            }
-        }
-
-        /// <summary>
-        /// ImfManager activated signal.
-        /// </summary>
-        [Obsolete("Please do not use! this will be internal")]
-        public ActivatedSignalType ActivatedSignal()
+        internal ActivatedSignalType ActivatedSignal()
         {
             ActivatedSignalType ret = new ActivatedSignalType(NDalicManualPINVOKE.ImfManager_ActivatedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -993,7 +781,6 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager event received event arguments.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
         public class ImfManagerEventReceivedEventArgs : EventArgs
         {
             public ImfManager ImfManager
@@ -1001,17 +788,22 @@ namespace Tizen.NUI
                 get;
                 set;
             }
+
+            public ImfEventData ImfEventData
+            {
+                get;
+                set;
+            }
         }
 
-        private delegate void ImfManagerEventReceivedEventCallbackType(global::System.IntPtr data);
+        private delegate global::System.IntPtr ImfManagerEventReceivedEventCallbackType(global::System.IntPtr imfManager, global::System.IntPtr imfEventData);
         private ImfManagerEventReceivedEventCallbackType _imfManagerEventReceivedEventCallback;
-        private event EventHandler<ImfManagerEventReceivedEventArgs> _imfManagerEventReceivedEventHandler;
 
+        private event EventHandlerWithReturnType<object, ImfManagerEventReceivedEventArgs, ImfCallbackData> _imfManagerEventReceivedEventHandler;
         /// <summary>
         /// ImfManager event received.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
-        public event EventHandler<ImfManagerEventReceivedEventArgs> ImfManagerEventReceived
+        public event EventHandlerWithReturnType<object, ImfManagerEventReceivedEventArgs, ImfCallbackData> ImfManagerEventReceived
         {
             add
             {
@@ -1034,78 +826,18 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnImfManagerEventReceived(global::System.IntPtr data)
-        {
-            ImfManagerEventReceivedEventArgs e = new ImfManagerEventReceivedEventArgs();
-
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
-
-            if (_imfManagerEventReceivedEventHandler != null)
-            {
-                _imfManagerEventReceivedEventHandler(this, e);
-            }
-        }
-
-        /// <summary>
-        /// ImfManager event received event arguments.
-        /// </summary>
-        public class EventReceivedEventArgs : EventArgs
-        {
-            public ImfManager ImfManager
-            {
-                get;
-                set;
-            }
-
-            public ImfEventData ImfEventData
-            {
-                get;
-                set;
-            }
-        }
-
-        private delegate IntPtr EventReceivedEventCallbackType(IntPtr imfManager, IntPtr imfEventData);
-        private EventReceivedEventCallbackType _eventReceivedEventCallback;
-        private event EventHandlerWithReturnType<object, EventReceivedEventArgs, ImfCallbackData> _eventReceivedEventHandler;
-
-        /// <summary>
-        /// ImfManager event received.
-        /// </summary>
-        public event EventHandlerWithReturnType<object, EventReceivedEventArgs, ImfCallbackData> EventReceived
-        {
-            add
-            {
-                if (_eventReceivedEventHandler == null)
-                {
-                    _eventReceivedEventCallback = OnEventReceived;
-                    EventReceivedSignal().Connect(_eventReceivedEventCallback);
-                }
-
-                _eventReceivedEventHandler += value;
-            }
-            remove
-            {
-                _eventReceivedEventHandler -= value;
-
-                if (_eventReceivedEventHandler == null && _eventReceivedEventCallback != null)
-                {
-                    EventReceivedSignal().Disconnect(_eventReceivedEventCallback);
-                }
-            }
-        }
-
-        private IntPtr OnEventReceived(IntPtr imfManager, IntPtr imfEventData)
+        private global::System.IntPtr OnImfManagerEventReceived(global::System.IntPtr imfManager, global::System.IntPtr imfEventData)
         {
             ImfCallbackData imfCallbackData = null;
 
-            EventReceivedEventArgs e = new EventReceivedEventArgs();
+            ImfManagerEventReceivedEventArgs e = new ImfManagerEventReceivedEventArgs();
 
             e.ImfManager = ImfManager.GetImfManagerFromPtr(imfManager);
             e.ImfEventData = ImfEventData.GetImfEventDataFromPtr(imfEventData);
 
-            if (_eventReceivedEventHandler != null)
+            if (_imfManagerEventReceivedEventHandler != null)
             {
-                imfCallbackData = _eventReceivedEventHandler(this, e);
+                imfCallbackData = _imfManagerEventReceivedEventHandler(this, e);
             }
             if (imfCallbackData != null)
             {
@@ -1117,11 +849,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// ImfManager event received signal.
-        /// </summary>
-        [Obsolete("Please do not use! this will be internal")]
-        public ImfEventSignalType EventReceivedSignal()
+        internal ImfEventSignalType EventReceivedSignal()
         {
             ImfEventSignalType ret = new ImfEventSignalType(NDalicManualPINVOKE.ImfManager_EventReceivedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1131,24 +859,22 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager status changed event arguments.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
         public class ImfManagerStatusChangedEventArgs : EventArgs
         {
-            public ImfManager ImfManager
+            public bool StatusChanged
             {
                 get;
                 set;
             }
         }
 
-        private delegate void ImfManagerStatusChangedEventCallbackType(global::System.IntPtr data);
+        private delegate void ImfManagerStatusChangedEventCallbackType(bool statusChanged);
         private ImfManagerStatusChangedEventCallbackType _imfManagerStatusChangedEventCallback;
-        private event EventHandler<ImfManagerStatusChangedEventArgs> _imfManagerStatusChangedEventHandler;
 
+        private event EventHandler<ImfManagerStatusChangedEventArgs> _imfManagerStatusChangedEventHandler;
         /// <summary>
         /// ImfManager status changed.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
         public event EventHandler<ImfManagerStatusChangedEventArgs> ImfManagerStatusChanged
         {
             add
@@ -1172,11 +898,11 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnImfManagerStatusChanged(global::System.IntPtr data)
+        private void OnImfManagerStatusChanged(bool statusChanged)
         {
             ImfManagerStatusChangedEventArgs e = new ImfManagerStatusChangedEventArgs();
 
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
+            e.StatusChanged = statusChanged;
 
             if (_imfManagerStatusChangedEventHandler != null)
             {
@@ -1184,93 +910,21 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// ImfManager status changed event arguments.
-        /// </summary>
-        public class StatusChangedEventArgs : EventArgs
-        {
-            public bool StatusChanged
-            {
-                get;
-                set;
-            }
-        }
-
-        private delegate void StatusChangedEventCallbackType(bool statusChanged);
-        private StatusChangedEventCallbackType _statusChangedEventCallback;
-        private event EventHandler<StatusChangedEventArgs> _statusChangedEventHandler;
-
-        /// <summary>
-        /// ImfManager status changed.
-        /// </summary>
-        public event EventHandler<StatusChangedEventArgs> StatusChanged
-        {
-            add
-            {
-                if (_statusChangedEventHandler == null)
-                {
-                    _statusChangedEventCallback = OnStatusChanged;
-                    StatusChangedSignal().Connect(_statusChangedEventCallback);
-                }
-
-                _statusChangedEventHandler += value;
-            }
-            remove
-            {
-                _statusChangedEventHandler -= value;
-
-                if (_statusChangedEventHandler == null && _statusChangedEventCallback != null)
-                {
-                    StatusChangedSignal().Disconnect(_statusChangedEventCallback);
-                }
-            }
-        }
-
-        private void OnStatusChanged(bool statusChanged)
-        {
-            StatusChangedEventArgs e = new StatusChangedEventArgs();
-
-            e.StatusChanged = statusChanged;
-
-            if (_statusChangedEventHandler != null)
-            {
-                _statusChangedEventHandler(this, e);
-            }
-        }
-
-        /// <summary>
-        /// ImfManager status changed signal.
-        /// </summary>
-        [Obsolete("Please do not use! this will be internal")]
-        public StatusSignalType StatusChangedSignal()
+        internal StatusSignalType StatusChangedSignal()
         {
             StatusSignalType ret = new StatusSignalType(NDalicManualPINVOKE.ImfManager_StatusChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        /// <summary>
-        /// ImfManager resized event arguments.
-        /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
-        public class ImfManagerResizedEventArgs : EventArgs
-        {
-            public ImfManager ImfManager
-            {
-                get;
-                set;
-            }
-        }
-
-        private delegate void ImfManagerResizedEventCallbackType(IntPtr data);
+        private delegate void ImfManagerResizedEventCallbackType();
         private ImfManagerResizedEventCallbackType _imfManagerResizedEventCallback;
-        private event EventHandler<ImfManagerResizedEventArgs> _imfManagerResizedEventHandler;
 
+        private event EventHandler _imfManagerResizedEventHandler;
         /// <summary>
-        /// ImfManager resized event.
+        /// ImfManager resized.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
-        public event EventHandler<ImfManagerResizedEventArgs> ImfManagerResized
+        public event EventHandler ImfManagerResized
         {
             add
             {
@@ -1293,89 +947,29 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnImfManagerResized(IntPtr data)
+        private void OnImfManagerResized()
         {
-            ImfManagerResizedEventArgs e = new ImfManagerResizedEventArgs();
-
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
-
             if (_imfManagerResizedEventHandler != null)
             {
-                _imfManagerResizedEventHandler(this, e);
+                _imfManagerResizedEventHandler(this, null);
             }
         }
 
-        private delegate void ResizedEventCallbackType();
-        private ResizedEventCallbackType _resizedEventCallback;
-        private event EventHandler _resizedEventHandler;
-
-        /// <summary>
-        /// ImfManager resized.
-        /// </summary>
-        public event EventHandler Resized
-        {
-            add
-            {
-                if (_resizedEventHandler == null)
-                {
-                    _resizedEventCallback = OnResized;
-                    ResizedSignal().Connect(_resizedEventCallback);
-                }
-
-                _resizedEventHandler += value;
-            }
-            remove
-            {
-                _resizedEventHandler -= value;
-
-                if (_resizedEventHandler == null && _resizedEventCallback != null)
-                {
-                    ResizedSignal().Disconnect(_resizedEventCallback);
-                }
-            }
-        }
-
-        private void OnResized()
-        {
-            if (_resizedEventHandler != null)
-            {
-                _resizedEventHandler(this, null);
-            }
-        }
-
-        /// <summary>
-        /// ImfManager resized signal.
-        /// </summary>
-        [Obsolete("Please do not use! this will be internal")]
-        public ImfVoidSignalType ResizedSignal()
+        internal ImfVoidSignalType ResizedSignal()
         {
             ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_ResizedSignal(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        /// <summary>
-        /// ImfManager language changed event arguments.
-        /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
-        public class ImfManagerLanguageChangedEventArgs : EventArgs
-        {
-            public ImfManager ImfManager
-            {
-                get;
-                set;
-            }
-        }
-
-        private delegate void ImfManagerLanguageChangedEventCallbackType(IntPtr data);
+        private delegate void ImfManagerLanguageChangedEventCallbackType();
         private ImfManagerLanguageChangedEventCallbackType _imfManagerLanguageChangedEventCallback;
-        private event EventHandler<ImfManagerLanguageChangedEventArgs> _imfManagerLanguageChangedEventHandler;
 
+        private event EventHandler _imfManagerLanguageChangedEventHandler;
         /// <summary>
-        /// ImfManager language changed event.
+        /// ImfManager language changed.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
-        public event EventHandler<ImfManagerLanguageChangedEventArgs> ImfManagerLanguageChanged
+        public event EventHandler ImfManagerLanguageChanged
         {
             add
             {
@@ -1398,61 +992,15 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnImfManagerLanguageChanged(IntPtr data)
+        private void OnImfManagerLanguageChanged()
         {
-            ImfManagerLanguageChangedEventArgs e = new ImfManagerLanguageChangedEventArgs();
-
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
-
             if (_imfManagerLanguageChangedEventHandler != null)
             {
-                _imfManagerLanguageChangedEventHandler(this, e);
+                _imfManagerLanguageChangedEventHandler(this, null);
             }
         }
 
-        private delegate void LanguageChangedEventCallbackType();
-        private LanguageChangedEventCallbackType _languageChangedEventCallback;
-        private event EventHandler _languageChangedEventHandler;
-
-        /// <summary>
-        /// ImfManager language changed.
-        /// </summary>
-        public event EventHandler LanguageChanged
-        {
-            add
-            {
-                if (_languageChangedEventHandler == null)
-                {
-                    _languageChangedEventCallback = OnLanguageChanged;
-                    LanguageChangedSignal().Connect(_languageChangedEventCallback);
-                }
-
-                _languageChangedEventHandler += value;
-            }
-            remove
-            {
-                _languageChangedEventHandler -= value;
-
-                if (_languageChangedEventHandler == null && _languageChangedEventCallback != null)
-                {
-                    LanguageChangedSignal().Disconnect(_languageChangedEventCallback);
-                }
-            }
-        }
-
-        private void OnLanguageChanged()
-        {
-            if (_languageChangedEventHandler != null)
-            {
-                _languageChangedEventHandler(this, null);
-            }
-        }
-
-        /// <summary>
-        /// ImfManager language changed signal.
-        /// </summary>
-        [Obsolete("Please do not use! this will be internal")]
-        public ImfVoidSignalType LanguageChangedSignal()
+        internal ImfVoidSignalType LanguageChangedSignal()
         {
             ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_LanguageChangedSignal(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1462,7 +1010,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager keyboard type changed event arguments.
         /// </summary>
-        public class KeyboardTypeChangedEventArgs : EventArgs
+        public class ImfKeyboardTypeChangedEventArgs : EventArgs
         {
             public KeyboardType KeyboardType
             {
@@ -1471,45 +1019,45 @@ namespace Tizen.NUI
             }
         }
 
-        private delegate void KeyboardTypeChangedEventCallbackType(KeyboardType type);
-        private KeyboardTypeChangedEventCallbackType _keyboardTypeChangedEventCallback;
-        private event EventHandler<KeyboardTypeChangedEventArgs> _keyboardTypeChangedEventHandler;
+        private delegate void ImfKeyboardTypeChangedEventCallbackType(KeyboardType type);
+        private ImfKeyboardTypeChangedEventCallbackType _imfKeyboardTypeChangedEventCallback;
 
+        private event EventHandler<ImfKeyboardTypeChangedEventArgs> _imfKeyboardTypeChangedEventHandler;
         /// <summary>
         /// ImfManager keyboard type changed.
         /// </summary>
-        public event EventHandler<KeyboardTypeChangedEventArgs> KeyboardTypeChanged
+        public event EventHandler<ImfKeyboardTypeChangedEventArgs> ImfKeyboardTypeChanged
         {
             add
             {
-                if (_keyboardTypeChangedEventHandler == null)
+                if (_imfKeyboardTypeChangedEventHandler == null)
                 {
-                    _keyboardTypeChangedEventCallback = OnKeyboardTypeChanged;
-                    KeyboardTypeChangedSignal().Connect(_keyboardTypeChangedEventCallback);
+                    _imfKeyboardTypeChangedEventCallback = OnImfKeyboardTypeChanged;
+                    KeyboardTypeChangedSignal().Connect(_imfKeyboardTypeChangedEventCallback);
                 }
 
-                _keyboardTypeChangedEventHandler += value;
+                _imfKeyboardTypeChangedEventHandler += value;
             }
             remove
             {
-                _keyboardTypeChangedEventHandler -= value;
+                _imfKeyboardTypeChangedEventHandler -= value;
 
-                if (_keyboardTypeChangedEventHandler == null && _keyboardTypeChangedEventCallback != null)
+                if (_imfKeyboardTypeChangedEventHandler == null && _imfKeyboardTypeChangedEventCallback != null)
                 {
-                    KeyboardTypeChangedSignal().Disconnect(_keyboardTypeChangedEventCallback);
+                    KeyboardTypeChangedSignal().Disconnect(_imfKeyboardTypeChangedEventCallback);
                 }
             }
         }
 
-        private void OnKeyboardTypeChanged(KeyboardType type)
+        private void OnImfKeyboardTypeChanged(KeyboardType type)
         {
-            KeyboardTypeChangedEventArgs e = new KeyboardTypeChangedEventArgs();
+            ImfKeyboardTypeChangedEventArgs e = new ImfKeyboardTypeChangedEventArgs();
 
             e.KeyboardType = type;
 
-            if (_keyboardTypeChangedEventHandler != null)
+            if (_imfKeyboardTypeChangedEventHandler != null)
             {
-                _keyboardTypeChangedEventHandler(this, e);
+                _imfKeyboardTypeChangedEventHandler(this, e);
             }
         }
 

@@ -13,13 +13,11 @@
 * limitations under the License.
 *
 */
-using System;
-using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
-    [Obsolete("Please do not use! this will be internal")]
-    public class ConnectionTrackerInterface : SignalObserver
+
+    internal class ConnectionTrackerInterface : SignalObserver
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

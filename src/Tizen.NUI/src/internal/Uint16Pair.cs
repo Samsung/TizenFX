@@ -14,13 +14,10 @@
 *
 */
 
-using System;
-
 namespace Tizen.NUI
 {
 
-    [Obsolete("Please do not use! this will be deprecated")]
-    public class Uint16Pair : global::System.IDisposable
+    internal class Uint16Pair : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
