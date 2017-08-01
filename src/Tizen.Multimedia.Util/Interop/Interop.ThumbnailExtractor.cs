@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen;
-using Tizen.Multimedia;
+using Tizen.Multimedia.Util;
 
 internal static partial class Interop
 {

@@ -14,8 +14,7 @@
 * limitations under the License.
 */
 
-
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Util
 {
     /// <summary>
     /// Represents the result of thumbnail extraction.
