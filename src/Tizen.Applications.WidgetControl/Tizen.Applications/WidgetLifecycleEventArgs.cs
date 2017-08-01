@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Class for event arguments of the widget lifecycle.
+    /// The class for event arguments of the widget lifecycle.
     /// </summary>
     public class WidgetLifecycleEventArgs : EventArgs
     {
@@ -28,7 +28,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Enumeration for event type.
+        /// Enumeration for the event type.
         /// </summary>
         public enum EventType
         {
@@ -54,17 +54,17 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Widget ID.
+        ///  The widget ID.
         /// </summary>
         public string WidgetId { get; internal set; }
 
         /// <summary>
-        /// Widget instnace ID.
+        /// The widget instance ID.
         /// </summary>
         public string InstanceId { get; internal set; }
 
         /// <summary>
-        /// Event type.
+        /// The event type.
         /// </summary>
         public EventType Type { get; internal set; }
     }
