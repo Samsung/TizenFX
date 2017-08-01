@@ -64,10 +64,10 @@ namespace UserAlphaFunctionTest
             Log("Initialize() is called!");
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
-            window.TouchEvent += OnWindowTouched;
-            window.TouchEvent += OnWindowTouched2;
+            window.Touched += OnWindowTouched;
+            window.Touched += OnWindowTouched2;
             //window.EventProcessingFinished += OnEventProcessingFinished;
-            window.WheelEvent += OnWindowWheelEvent;
+            window.WheelRolled += OnWindowWheelEvent;
 
             // Add a _text label to the window
             _text = new TextLabel("Hello Mono World");
@@ -150,7 +150,7 @@ namespace UserAlphaFunctionTest
         }
 
         // Callback for window touched signal handling
-        public void OnWindowTouched(object source, Window.TouchEventArgs e)
+        public void OnWindowTouched(object source, Window.TouchedEventArgs e)
         {
             // Only animate the _text label when touch down happens
             if (e.Touch.GetState(0) == PointStateType.Down)
@@ -166,7 +166,7 @@ namespace UserAlphaFunctionTest
         }
 
         // Callback for window touched signal handling
-        public void OnWindowTouched2(object source, Window.TouchEventArgs e)
+        public void OnWindowTouched2(object source, Window.TouchedEventArgs e)
         {
             Log("OnWindowTouched2() is called!state=" + e.Touch.GetState(0));
         }
@@ -176,7 +176,7 @@ namespace UserAlphaFunctionTest
             Log("OnEventProcessingFinished() is called!");
         }
 
-        public void OnWindowWheelEvent(object source, Window.WheelEventArgs e)
+        public void OnWindowWheelEvent(object source, Window.WheelRolledEventArgs e)
         {
             Log("OnWindowWheelEvent() is called!");
             //Log("OnWindowWheelEvent() is called!direction="+ e.WheelEvent.direction + " timeStamp=" + e.WheelEvent.timeStamp );
