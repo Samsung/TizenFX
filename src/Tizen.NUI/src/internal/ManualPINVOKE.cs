@@ -629,9 +629,6 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_PLACEHOLDER_get")]
         public static extern int TextEditor_Property_PLACEHOLDER_get();
 
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextEditor_Property_LINE_WRAP_MODE_get")]
-        public static extern int TextEditor_Property_LINE_WRAP_MODE_get();
-
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextField_Property_HIDDEN_INPUT_SETTINGS_get")]
         public static extern int TextField_Property_HIDDEN_INPUT_SETTINGS_get();
 
@@ -655,12 +652,6 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get")]
         public static extern int TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextLabel_Property_LINE_COUNT_get")]
-        public static extern int TextLabel_Property_LINE_COUNT_get();
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextLabel_Property_LINE_WRAP_MODE_get")]
-        public static extern int TextLabel_Property_LINE_WRAP_MODE_get();
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_MODE_get")]
         public static extern int HIDDENINPUT_PROPERTY_MODE_get();
