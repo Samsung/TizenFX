@@ -26,9 +26,9 @@ namespace Tizen.Applications
     public class WidgetApplication : CoreApplication
     {
         /// <summary>
-        /// Initializes WidgetApplication class with Type and application id.
+        /// Initializes the WidgetApplication class with the type and application ID.
         /// </summary>
-        /// <param name="typeInfo">map structure for derived class type and widget id</param>
+        /// <param name="typeInfo">Map structure for the derived class type and widget ID.</param>
         public WidgetApplication(IDictionary<Type, string> typeInfo) : base(new WidgetCoreBackend())
         {
             WidgetCoreBackend core = Backend as WidgetCoreBackend;
@@ -37,10 +37,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Initializes WidgetApplication class with Type.
+        /// Initializes the WidgetApplication class with the type.
         /// </summary>
-        /// <remarks> Widget id will be replaced as application id</remarks>
-        /// <param name="type">derived class type</param>
+        /// <remarks>Widget ID will be replaced as the application ID.</remarks>
+        /// <param name="type">Derived class type.</param>
         public WidgetApplication(Type type) : base(new WidgetCoreBackend())
         {
             WidgetCoreBackend core = Backend as WidgetCoreBackend;
@@ -49,9 +49,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets all instances of the widget associated with the type
+        /// Gets all instances of the widget associated with the type.
         /// </summary>
-        /// <param name="type">Class type for the widget</param>
+        /// <param name="type">Class type for the widget.</param>
         public IEnumerable<WidgetBase> GetInstances(Type type)
         {
             WidgetCoreBackend core = Backend as WidgetCoreBackend;
@@ -73,7 +73,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Runs the widget application's main loop.
         /// </summary>
-        /// <param name="args">Arguments from commandline.</param>
+        /// <param name="args">Arguments from the commandline.</param>
         public override void Run(string[] args)
         {
             base.Run(args);

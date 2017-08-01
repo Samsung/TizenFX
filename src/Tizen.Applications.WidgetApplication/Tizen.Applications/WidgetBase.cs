@@ -20,7 +20,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Abstract class for widget instances
+    /// The abstract class for widget instances.
     /// </summary>
     public abstract class WidgetBase
     {
@@ -31,12 +31,12 @@ namespace Tizen.Applications
 
         /// <summary>
         /// Window object for this widget instance.
-        /// It wii be created after OnCreate method is invoked.
+        /// It will be created after OnCreate method is invoked.
         /// </summary>
         protected Widget Window;
 
         /// <summary>
-        /// Delete type
+        /// Delete type.
         /// </summary>
         public enum WidgetDestroyType
         {
@@ -46,25 +46,25 @@ namespace Tizen.Applications
             Permanent = 0,
 
             /// <summary>
-            /// Widget is deleted because of other reasons. (e.g. widget process is terminated temporarily by the system)
+            /// Widget is deleted because of other reasons. (For e.g., widget process is terminated temporarily by the system)
             /// </summary>
             Temporary
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         public WidgetBase()
         {
         }
 
         /// <summary>
-        /// Sets the content info to the widget.
+        /// Sets the content information to the widget.
         /// </summary>
-        /// <param name="info">The data set to save</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
-        /// <exception cref="NotSupportedException">Thrown when API is not supported in this device</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of unrecoverable error</exception>
+        /// <param name="info">The data set to save.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the API is not supported in this device.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of an unrecoverable error.</exception>
         public void SetContent(Bundle info)
         {
             Interop.Widget.ErrorCode err = Interop.Widget.SetContent(Handle, info.SafeBundleHandle);
@@ -92,10 +92,10 @@ namespace Tizen.Applications
         /// <summary>
         /// Sends the title to the widget.
         /// </summary>
-        /// <param name="title">When an accessibility mode is turned on, this string will be read</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
-        /// <exception cref="NotSupportedException">Thrown when API is not supported in this device</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of unrecoverable error</exception>
+        /// <param name="title">When an accessibility mode is turned on, this string will be read.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the API is not supported in this device.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of an unrecoverable error.</exception>
         public void SetTitle(string title)
         {
             Interop.Widget.ErrorCode err = Interop.Widget.SetTitle(Handle, title);
@@ -120,10 +120,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Finishes context for the widget instance.
+        /// Finishes the context for the widget instance.
         /// </summary>
-        /// <exception cref="NotSupportedException">Thrown when API is not supported in this device</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of unrecoverable error</exception>
+        /// <exception cref="NotSupportedException">Thrown when the API is not supported in this device.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of an unrecoverable error.</exception>
         public void Exit()
         {
             Interop.Widget.ErrorCode err = Interop.Widget.TerminateContext(Handle);
@@ -151,11 +151,11 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the widget instance is started.
+        /// Overrides this method if want to handle the behavior when the widget instance is started.
         /// </summary>
-        /// <param name="content">The data set for the previous status</param>
-        /// <param name="w">The pixel value for widget width</param>
-        /// <param name="h">The pixel value for widget height</param>
+        /// <param name="content">The data set for the previous status.</param>
+        /// <param name="w">The pixel value for the widget width.</param>
+        /// <param name="h">The pixel value for the widget height.</param>
         public virtual void OnCreate(Bundle content, int w, int h)
         {
             IntPtr win;
@@ -169,42 +169,42 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the widget instance is destroyed.
+        /// Overrides this method if want to handle the behavior when the widget instance is destroyed.
         /// </summary>
-        /// <param name="reason">The reason for destruction</param>
-        /// <param name="content">The data set to save</param>
+        /// <param name="reason">The reason for destruction.</param>
+        /// <param name="content">The data set to save.</param>
         public virtual void OnDestroy(WidgetDestroyType reason, Bundle content)
         {
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the widget instance is paused.
+        /// Overrides this method if want to handle the behavior when the widget instance is paused.
         /// </summary>
         public virtual void OnPause()
         {
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the widget instance is resumed.
+        /// Overrides this method if want to handle the behavior when the widget instance is resumed.
         /// </summary>
         public virtual void OnResume()
         {
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the widget instance is resized.
+        /// Overrides this method if want to handle the behavior when the widget instance is resized.
         /// </summary>
-        /// <param name="w">Widget width</param>
-        /// <param name="h">Widget height</param>
+        /// <param name="w">Widget width.</param>
+        /// <param name="h">Widget height.</param>
         public virtual void OnResize(int w, int h)
         {
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the widget instance should be updated.
+        /// Overrides this method if want to handle the behavior when the widget instance is updated.
         /// </summary>
-        /// <param name="content">The data set for updating this widget. It will be provided by requester.</param>
-        /// <param name="isForce">Although the widget is paused, if it is TRUE, the widget can be updated</param>
+        /// <param name="content">The data set for updating this widget will be provided by the requester.</param>
+        /// <param name="isForce">Although the widget is paused, if it is true, the widget can be updated.</param>
         public virtual void OnUpdate(Bundle content, bool isForce)
         {
         }
