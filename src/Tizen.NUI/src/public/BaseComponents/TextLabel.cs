@@ -131,7 +131,7 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("Please do not use! this will be deprecated")]
         public new static TextLabel DownCast(BaseHandle handle)
         {
-            TextLabel ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TextLabel;
+            TextLabel ret = new TextLabel(NDalicPINVOKE.TextLabel_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

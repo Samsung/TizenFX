@@ -183,7 +183,7 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("Please do not use! this will be deprecated")]
         public new static ImageView DownCast(BaseHandle handle)
         {
-            ImageView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;
+            ImageView ret = new ImageView(NDalicPINVOKE.ImageView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

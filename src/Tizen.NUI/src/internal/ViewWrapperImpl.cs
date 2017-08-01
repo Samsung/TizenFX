@@ -214,9 +214,7 @@ namespace Tizen.NUI
 
         public VisualBase GetVisual(int index)
         {
-            System.IntPtr cPtr = NDalicManualPINVOKE.ViewWrapperImpl_GetVisual(swigCPtr, index);
-            VisualBase ret = Registry.GetManagedBaseHandleFromRefObject(cPtr) as VisualBase;
-
+            VisualBase ret = new VisualBase(NDalicManualPINVOKE.ViewWrapperImpl_GetVisual(swigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -309,20 +307,12 @@ namespace Tizen.NUI
 
         private void DirectorOnChildAdd(global::System.IntPtr child)
         {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                OnChildAdd(view);
-            }
+            OnChildAdd(new View(child, false));
         }
 
         private void DirectorOnChildRemove(global::System.IntPtr child)
         {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                OnChildRemove(view);
-            }
+            OnChildRemove(new View(child, false));
         }
 
         private void DirectorOnPropertySet(int index, global::System.IntPtr propertyValue)
@@ -380,12 +370,7 @@ namespace Tizen.NUI
 
         private float DirectorCalculateChildSize(global::System.IntPtr child, int dimension)
         {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                return CalculateChildSize(view, (DimensionType)dimension);
-            }
-            return 0.0f;
+            return CalculateChildSize(new View(child, false), (DimensionType)dimension);
         }
 
         private float DirectorGetHeightForWidth(float width)
@@ -424,20 +409,12 @@ namespace Tizen.NUI
 
         private void DirectorOnControlChildAdd(global::System.IntPtr child)
         {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                OnControlChildAdd(view);
-            }
+            OnControlChildAdd(new View(child, false));
         }
 
         private void DirectorOnControlChildRemove(global::System.IntPtr child)
         {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                OnControlChildRemove(view);
-            }
+            OnControlChildRemove(new View(child, false));
         }
 
         private void DirectorOnStyleChange(global::System.IntPtr styleManager, int change)
@@ -485,20 +462,12 @@ namespace Tizen.NUI
 
         private global::System.IntPtr DirectorGetNextFocusableActor(global::System.IntPtr currentFocusedActor, int direction, bool loopEnabled)
         {
-            View view = GetNextFocusableView(Registry.GetManagedBaseHandleFromNativePtr(currentFocusedActor) as View, (View.FocusDirection)direction, loopEnabled);
-            if (view)
-            {
-                return View.getCPtr(view).Handle;
-            }
-            else
-            {
-                return currentFocusedActor;
-            }
+            return View.getCPtr(GetNextFocusableView(new View(currentFocusedActor, false), (View.FocusDirection)direction, loopEnabled)).Handle;
         }
 
         private void DirectorOnFocusChangeCommitted(global::System.IntPtr commitedFocusableView)
         {
-            OnFocusChangeCommitted(Registry.GetManagedBaseHandleFromNativePtr(commitedFocusableView) as View);
+            OnFocusChangeCommitted(new View(commitedFocusableView, false));
         }
 
         private bool DirectorOnKeyboardEnter()

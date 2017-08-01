@@ -107,9 +107,7 @@ namespace Tizen.NUI
 
         public Geometry GetGeometry()
         {
-            System.IntPtr cPtr = NDalicPINVOKE.Renderer_GetGeometry(swigCPtr);
-            Geometry ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Geometry;
-
+            Geometry ret = new Geometry(NDalicPINVOKE.Renderer_GetGeometry(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -128,9 +126,7 @@ namespace Tizen.NUI
 
         public TextureSet GetTextures()
         {
-            System.IntPtr cPtr = NDalicPINVOKE.Renderer_GetTextures(swigCPtr);
-            TextureSet ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as TextureSet;
-
+            TextureSet ret = new TextureSet(NDalicPINVOKE.Renderer_GetTextures(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -143,9 +139,7 @@ namespace Tizen.NUI
 
         public Shader GetShader()
         {
-            System.IntPtr cPtr = NDalicPINVOKE.Renderer_GetShader(swigCPtr);
-            Shader ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Shader;
-
+            Shader ret = new Shader(NDalicPINVOKE.Renderer_GetShader(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

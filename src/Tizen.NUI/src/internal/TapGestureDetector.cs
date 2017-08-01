@@ -172,7 +172,7 @@ namespace Tizen.NUI
         }
         public new static TapGestureDetector DownCast(BaseHandle handle)
         {
-            TapGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TapGestureDetector;
+            TapGestureDetector ret = new TapGestureDetector(NDalicPINVOKE.TapGestureDetector_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

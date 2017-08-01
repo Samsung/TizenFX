@@ -87,7 +87,7 @@ namespace Tizen.NUI
 
             // Create image visual for the arrow keys
             _arrowVisualPropertyIndex = RegisterProperty("ArrowImage", new PropertyValue(_arrowImage), Tizen.NUI.PropertyAccessMode.ReadWrite);
-            _arrowVisual = VisualFactory.Instance.CreateVisual(
+            _arrowVisual = VisualFactory.Get().CreateVisual(
                 new PropertyMap().Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
                                  .Add(ImageVisualProperty.URL, new PropertyValue(_arrowImage))
                                  .Add(ImageVisualProperty.DesiredHeight, new PropertyValue(150))
@@ -187,8 +187,9 @@ namespace Tizen.NUI
             }
             else
             {
-                // Return null
-                return null;
+                // Return a native empty handle as nothing can be focused in the left or right
+                nextFocusedView = new View();
+                nextFocusedView.Reset();
             }
 
             return nextFocusedView;
@@ -377,7 +378,7 @@ namespace Tizen.NUI
             set
             {
                 _arrowImage = value;
-                _arrowVisual = VisualFactory.Instance.CreateVisual(
+                _arrowVisual = VisualFactory.Get().CreateVisual(
                     new PropertyMap().Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
                                  .Add(ImageVisualProperty.URL, new PropertyValue(_arrowImage))
                                  .Add(ImageVisualProperty.DesiredHeight, new PropertyValue(150))

@@ -145,7 +145,7 @@ namespace Tizen.NUI
         [Obsolete("Please do not use! this will be deprecated")]
         public static Timer DownCast(BaseHandle handle)
         {
-            Timer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Timer;
+            Timer ret = new Timer(NDalicPINVOKE.Timer_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

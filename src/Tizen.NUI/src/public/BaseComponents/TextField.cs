@@ -296,7 +296,7 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("Please do not use! this will be deprecated")]
         public new static TextField DownCast(BaseHandle handle)
         {
-            TextField ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TextField;
+            TextField ret = new TextField(NDalicPINVOKE.TextField_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

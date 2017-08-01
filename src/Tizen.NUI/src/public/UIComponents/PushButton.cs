@@ -93,7 +93,7 @@ namespace Tizen.NUI.UIComponents
         [Obsolete("Please do not use! this will be deprecated")]
         public new static PushButton DownCast(BaseHandle handle)
         {
-            PushButton ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PushButton;
+            PushButton ret = new PushButton(NDalicPINVOKE.PushButton_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

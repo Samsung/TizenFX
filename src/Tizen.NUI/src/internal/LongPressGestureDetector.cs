@@ -177,7 +177,7 @@ namespace Tizen.NUI
         }
         public new static LongPressGestureDetector DownCast(BaseHandle handle)
         {
-            LongPressGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as LongPressGestureDetector;
+            LongPressGestureDetector ret = new LongPressGestureDetector(NDalicPINVOKE.LongPressGestureDetector_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

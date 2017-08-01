@@ -343,7 +343,7 @@ namespace Tizen.NUI
         }
         public new static PanGestureDetector DownCast(BaseHandle handle)
         {
-            PanGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PanGestureDetector;
+            PanGestureDetector ret = new PanGestureDetector(NDalicPINVOKE.PanGestureDetector_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -352,7 +352,7 @@ namespace Tizen.NUI.UIComponents
         [Obsolete("Please do not use! this will be deprecated")]
         public new static Popup DownCast(BaseHandle handle)
         {
-            Popup ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Popup;
+            Popup ret = new Popup(NDalicPINVOKE.Popup_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -369,9 +369,7 @@ namespace Tizen.NUI.UIComponents
 
         internal View GetTitle()
         {
-            IntPtr cPtr = NDalicPINVOKE.Popup_GetTitle(swigCPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
+            View ret = new View(NDalicPINVOKE.Popup_GetTitle(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -388,9 +386,7 @@ namespace Tizen.NUI.UIComponents
 
         internal View GetContent()
         {
-            IntPtr cPtr = NDalicPINVOKE.Popup_GetContent(swigCPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
+            View ret = new View(NDalicPINVOKE.Popup_GetContent(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -407,9 +403,7 @@ namespace Tizen.NUI.UIComponents
 
         internal View GetFooter()
         {
-            IntPtr cPtr = NDalicPINVOKE.Popup_GetFooter(swigCPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
+            View ret = new View(NDalicPINVOKE.Popup_GetFooter(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

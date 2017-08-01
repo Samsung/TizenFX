@@ -174,7 +174,7 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("Please do not use! this will be deprecated")]
         public new static VideoView DownCast(BaseHandle handle)
         {
-            VideoView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as VideoView;
+            VideoView ret = new VideoView(NDalicPINVOKE.VideoView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

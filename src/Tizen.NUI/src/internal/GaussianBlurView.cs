@@ -168,7 +168,7 @@ namespace Tizen.NUI
 
         public new static GaussianBlurView DownCast(BaseHandle handle)
         {
-            GaussianBlurView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as GaussianBlurView;
+            GaussianBlurView ret = new GaussianBlurView(NDalicPINVOKE.GaussianBlurView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

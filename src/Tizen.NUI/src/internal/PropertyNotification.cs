@@ -161,7 +161,7 @@ namespace Tizen.NUI
 
         public static PropertyNotification DownCast(BaseHandle handle)
         {
-            PropertyNotification ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PropertyNotification;
+            PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.PropertyNotification_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
