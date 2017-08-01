@@ -17,6 +17,7 @@
 
 using System;
 using Tizen.Applications;
+using Tizen.Applications.CoreBackend;
 using Tizen.NUI;
 
 namespace Tizen.NUI
@@ -25,123 +26,81 @@ namespace Tizen.NUI
     /// <summary>
     /// Represents an application that have UI screen. The NUIApplication class has a default stage.
     /// </summary>
-    public class NUIApplication : CoreUIApplication
+    public class NUIApplication : CoreApplication
     {
-        /// <summary>
-        /// The instance of the Application.
-        /// </summary>
-        /// <remarks>
-        /// This application is created before OnCreate() or created event. And the NUIApplication will be terminated when this application is closed.
-        /// </remarks>
-        private Application _application;
-
-        /// <summary>
-        /// The instance of the Dali Application extension.
-        /// </summary>
-        private ApplicationExtensions _applicationExt;
-
-        /// <summary>
-        /// Store the stylesheet value.
-        /// </summary>
-        private string _stylesheet;
-
-        /// <summary>
-        /// Store the window mode value.
-        /// </summary>
-        private Application.WindowMode _windowMode;
-
-        /// <summary>
-        /// Store the app mode value.
-        /// </summary>
-        private AppMode _appMode;
-
-        /// <summary>
-        /// The instance of the Dali Stage.
-        /// </summary>
-        private Window _window;
-
         /// <summary>
         /// The default constructor.
         /// </summary>
-        public NUIApplication() : base()
+        public NUIApplication() : base(new NUICoreBackend())
         {
-            _appMode = AppMode.Default;
         }
 
         /// <summary>
         /// The constructor with stylesheet.
         /// </summary>
-        public NUIApplication(string stylesheet) : base()
+        public NUIApplication(string stylesheet) : base(new NUICoreBackend(stylesheet))
         {
-            //handle the stylesheet
-            _appMode = AppMode.StyleSheetOnly;
-            _stylesheet = stylesheet;
         }
 
         /// <summary>
         /// The constructor with stylesheet and window mode.
         /// </summary>
-        public NUIApplication(string stylesheet, WindowMode windowMode) : base()
+        public NUIApplication(string stylesheet, WindowMode windowMode) : base(new NUICoreBackend(stylesheet,windowMode))
         {
-            //handle the stylesheet and windowMode
-            _appMode = AppMode.StyleSheetWithWindowMode;
-            _stylesheet = stylesheet;
-            _windowMode = (Application.WindowMode)windowMode;
         }
 
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
-        protected override void OnPause()
+        protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
-            base.OnPause();
-            _applicationExt.Pause();
-            NUILog.Debug("OnPause() is called!");
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior before calling OnCreate().<br>
-        /// stage property is initialized in this overrided method.<br>
-        /// </summary>
-        protected override void OnPreCreate()
-        {
-            // Initialize DisposeQueue Singleton class.
-            DisposeQueue disposeQ = DisposeQueue.Instance;
-            NUILog.Debug("1) DisposeQueue.Instance.Initialize()!");
-            switch (_appMode)
-            {
-                case AppMode.Default:
-                    _application = Tizen.NUI.Application.NewApplication();
-                    break;
-                case AppMode.StyleSheetOnly:
-                    _application = Tizen.NUI.Application.NewApplication(_stylesheet);
-                    break;
-                case AppMode.StyleSheetWithWindowMode:
-                    _application = Tizen.NUI.Application.NewApplication(_stylesheet, _windowMode);
-                    break;
-                default:
-                    break;
-            }
-            _applicationExt = new ApplicationExtensions(_application);
-            _applicationExt.Init();
-            _applicationExt.Start();
-
-            // This is also required to create DisposeQueue on main thread.
-            disposeQ.Initialize();
-            NUILog.Debug("2) DisposeQueue.Instance.Initialize()!");
-            _window = Window.Instance;
-            _window.SetBackgroundColor(Color.White);
-            NUILog.Debug("OnPreCreate() is called!");
         }
 
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
-        protected override void OnResume()
+        protected override void OnLowBattery(LowBatteryEventArgs e)
         {
-            base.OnResume();
-            _applicationExt.Resume();
-            NUILog.Debug("OnResume() is called!");
+            Log.Debug("NUI", "OnLowBattery() is called!");
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
+        protected override void OnLowMemory(LowMemoryEventArgs e)
+        {
+            Log.Debug("NUI", "OnLowMemory() is called!");
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
+        protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
+        {
+            Log.Debug("NUI", "OnRegionFormatChanged() is called!");
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
+        protected override void OnTerminate()
+        {
+            Log.Debug("NUI", "OnTerminate() is called!");
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
+        protected void OnPause()
+        {
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle behavior.
+        /// </summary>
+        protected void OnResume()
+        {
+            Log.Debug("NUI", "OnResume() is called!");
         }
 
         /// <summary>
@@ -149,12 +108,11 @@ namespace Tizen.NUI
         /// </summary>
         protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
-            base.OnAppControlReceived(e);
-            NUILog.Debug("OnAppControlReceived() is called!");
+            Log.Debug("NUI", "OnAppControlReceived() is called!");
             if (e != null)
             {
-                NUILog.Debug("OnAppControlReceived() is called! ApplicationId=" + e.ReceivedAppControl.ApplicationId);
-                NUILog.Debug("CallerApplicationId=" + e.ReceivedAppControl.CallerApplicationId + "   IsReplyRequest=" + e.ReceivedAppControl.IsReplyRequest);
+                Log.Debug("NUI", "OnAppControlReceived() is called! ApplicationId=" + e.ReceivedAppControl.ApplicationId);
+                Log.Debug("NUI", "CallerApplicationId=" + e.ReceivedAppControl.CallerApplicationId + "   IsReplyRequest=" + e.ReceivedAppControl.IsReplyRequest);
             }
         }
 
@@ -163,65 +121,50 @@ namespace Tizen.NUI
         /// </summary>
         protected override void OnCreate()
         {
-            base.OnCreate();
-            NUILog.Debug("OnCreate() is called!");
+            // This is also required to create DisposeQueue on main thread.
+            DisposeQueue disposeQ = DisposeQueue.Instance;
+            disposeQ.Initialize();
+            Log.Debug("NUI","OnCreate() is called!");
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Run NUIApplication.
         /// </summary>
-        protected override void OnLocaleChanged(LocaleChangedEventArgs e)
+        /// <param name="args">Arguments from commandline.</param>
+        public override void Run(string[] args)
         {
-            base.OnLocaleChanged(e);
-            _applicationExt.LanguageChange();
-            NUILog.Debug("OnLocaleChanged() is called!");
+            string[] argsClone = null;
+
+            if (args == null)
+            {
+                argsClone = new string[1];
+            }
+            else
+            {
+                argsClone = new string[args.Length + 1];
+                args.CopyTo(argsClone, 1);
+            }
+            argsClone[0] = string.Empty;
+
+            Backend.AddEventHandler(EventType.Resumed, OnResume);
+            Backend.AddEventHandler<AppControlReceivedEventArgs>(EventType.AppControlReceived, OnAppControlReceived);
+            Backend.AddEventHandler(EventType.Paused, OnPause);
+            Backend.AddEventHandler(EventType.Terminated, OnTerminate);
+            Backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
+            Backend.AddEventHandler<LowMemoryEventArgs>(EventType.LowMemory, OnLowMemory);
+            Backend.AddEventHandler<LowBatteryEventArgs>(EventType.LowBattery, OnLowBattery);
+            Backend.AddEventHandler<LocaleChangedEventArgs>(EventType.LocaleChanged, OnLocaleChanged);
+            Backend.AddEventHandler(EventType.Created, OnCreate);
+
+            Backend.Run(argsClone);
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Exit NUIApplication.
         /// </summary>
-        protected override void OnLowBattery(LowBatteryEventArgs e)
+        public override void Exit()
         {
-            base.OnLowBattery(e);
-            NUILog.Debug("OnLowBattery() is called!");
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior.
-        /// </summary>
-        protected override void OnLowMemory(LowMemoryEventArgs e)
-        {
-            base.OnLowMemory(e);
-            NUILog.Debug("OnLowMemory() is called!");
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior.
-        /// </summary>
-        protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
-        {
-            base.OnRegionFormatChanged(e);
-            NUILog.Debug("OnRegionFormatChanged() is called!");
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior.
-        /// </summary>
-        protected override void OnTerminate()
-        {
-            base.OnTerminate();
-            _applicationExt.Terminate();
-            NUILog.Debug("OnTerminate() is called!");
-        }
-
-        /// <summary>
-        /// The mode of creating NUI application.
-        /// </summary>
-        private enum AppMode
-        {
-            Default = 0,
-            StyleSheetOnly = 1,
-            StyleSheetWithWindowMode = 2
+            Backend.Exit();
         }
 
         /// <summary>
@@ -233,23 +176,14 @@ namespace Tizen.NUI
             Transparent = 1
         }
 
-        /// <summary>
-        /// Get the window instance.
-        /// </summary>
-        public Window Window
-        {
-            get
-            {
-                return _application.GetWindow();
-            }
-        }
 
         internal Application ApplicationHandle
         {
             get
             {
-                return _application;
+                return ((NUICoreBackend)this.Backend).ApplicationHandle;
             }
         }
+
     }
 }
