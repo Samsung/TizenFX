@@ -19,12 +19,12 @@ using System.Collections.Generic;
 namespace Tizen.System
 {
     /// <summary>
-    /// The Vibrator class provides properties and methods to control a vibrator.
+    /// The Vibrator class provides the properties and methods to control a vibrator.
     /// </summary>
     /// <remarks>
-    /// The Vibrator API provides the way to access the Vibrators in the device.
+    /// The Vibrator API provides the way to access the vibrators in the device.
     /// It allows the management of the device's vibrator parameters, such as the vibration count and level.
-    /// It provides methods to Vibrate and Stop the vibration.
+    /// It provides the methods to vibrate and stop the vibration.
     /// </remarks>
     /// <privilege>
     /// http://tizen.org/privilege/haptic
@@ -60,7 +60,7 @@ namespace Tizen.System
             Dispose(false);
         }
         /// <summary>
-        /// Get the number of avaialble vibrators.
+        /// Gets the number of the available vibrators.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static int NumberOfVibrators
@@ -77,7 +77,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Get all the avaialble vibrators.
+        /// Gets all the available vibrators.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static IReadOnlyList<Vibrator> Vibrators
@@ -109,12 +109,12 @@ namespace Tizen.System
         /// This function can be used to start monotonous vibration for the specified time.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="duration">The play duration in milliseconds </param>
-        /// <param name="feedback">The amount of the intensity variation (0 ~ 100) </param>
-        /// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
-        /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
-        /// <exception cref = "InvalidOperationException"> In case of any system error.</exception>
-        /// <exception cref = "NotSupportedException"> In case of device does not support this behavior.</exception>
+        /// <param name="duration">The play duration in milliseconds.</param>
+        /// <param name="feedback">The amount of the intensity variation (0 ~ 100).</param>
+        /// <exception cref="ArgumentException"> When an invalid parameter value is set.</exception>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+        /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
         /// <code>
         ///     Vibrator vibrator = Vibrator.Vibrators[0];
         ///     try
@@ -146,14 +146,14 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Stops all vibration effects which are being played.
-        /// This function can be used to stop all effects started by Vibrate().
+        /// Stops all the vibration effects which are being played.
+        /// This function can be used to stop all the effects started by Vibrate().
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ArgumentException"> In case of invalid vibrator instance is used.</exception>
-        /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
-        /// <exception cref = "InvalidOperationException"> In case of any system error.</exception>
-        /// <exception cref = "NotSupportedException"> In case of device does not support this behavior.</exception>
+        /// <exception cref="ArgumentException"> In case an invalid vibrator instance is used.</exception>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+        /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
         /// <code>
         ///     Vibrator vibrator = Vibrator.Vibrators[0];
         ///     try
@@ -177,7 +177,7 @@ namespace Tizen.System
         }
         /// <summary>
         /// Dispose API for closing the internal resources.
-        /// This function can be used to stop all effects started by Vibrate().
+        /// This function can be used to stop all the effects started by Vibrate().
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Dispose()

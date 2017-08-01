@@ -23,7 +23,7 @@ namespace Tizen.System
     /// </summary>
     /// <remarks>
     /// The Power API provides the way to control the power service.
-    /// It can be made to hold the specific state to avoid CPU state internally.
+    /// It can be made to hold the specific state to avoid the CPU state internally.
     /// </remarks>
     /// <privilege>
     /// http://tizen.org/privilege/display
@@ -39,12 +39,12 @@ namespace Tizen.System
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="timeout">
-        /// The positive number in milliseconds or 0 for permanent lock
-        /// So you must release the permanent lock of power state with ReleaseCpuLock() if timeout_ms is zero.
+        /// The positive number in milliseconds or 0 for the permanent lock.
+        /// So you must release the permanent lock of the power state with ReleaseCpuLock() if timeout_ms is zero.
         /// </param>
-        /// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
-        /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
-        /// <exception cref = "InvalidOperationException"> In case of any system error.</exception>
+        /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <code>
         /// Tizen.System.Power.RequestCpuLock(2000);
         /// </code>
@@ -61,8 +61,8 @@ namespace Tizen.System
         /// Releases the CPU lock state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
-        /// <exception cref = "InvalidOperationException"> In case of any system error.</exception>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <code>
         /// Tizen.System.Power.ReleaseCpuLock();
         /// </code>

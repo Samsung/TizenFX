@@ -21,19 +21,19 @@ using System.Linq;
 namespace Tizen.System
 {
     /// <summary>
-    /// The IR API provides functions to control a IR transmitter.
-    /// The IR API provides the way to get the information whether IR is available and transmit IR command.
+    /// The IR API provides the functions to control the IR transmitter.
+    /// The IR API provides the way to get the information if IR is available and then transmit the IR command.
     /// </summary>
     /// <privilege>
     /// http://tizen.org/privilege/use_ir
     /// </privilege>
     /// <code>
-    ///     Console.WriteLine("IR availablity for this device is: {0}", IR.IsAvailable);
+    ///     Console.WriteLine("IR availability for this device is: {0}", IR.IsAvailable);
     /// </code>
     public static class IR
     {
         /// <summary>
-        /// Gets the information whether IR module is available.
+        /// Gets the information whether the IR module is available.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static bool IsAvailable
@@ -51,19 +51,19 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Transmits IR command.
+        /// Transmits the IR command.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="carrierFreequency">
-        /// Carrier frequency to transmit IR command (Hertz).
+        /// The carrier frequency to transmit the IR command (Hertz).
         /// </param>
         /// <param name="pattern">
-        /// IR command list of type interger.
+        /// The IR command list of type integer.
         /// </param>
-        /// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
-        /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
-        /// <exception cref = "InvalidOperationException"> In case of any system error.</exception>
-        /// <exception cref = "NotSupportedException"> In case of device does not support this behavior.</exception>
+        /// <exception cref="ArgumentException"> When an invalid parameter value is set.</exception>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+        /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
         /// <code>
         ///    try
         ///    {

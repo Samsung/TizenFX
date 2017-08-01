@@ -19,37 +19,37 @@ using System.Collections.Generic;
 namespace Tizen.System
 {
     /// <summary>
-    /// Enumeration for the available Display states.
+    /// Enumeration for the available display states.
     /// An application cannot put the device into the power off state or the suspend state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum DisplayState
     {
         /// <summary>
-        /// Normal state
+        /// Normal state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Normal = 0,
         /// <summary>
-        /// Screen dim state
+        /// Screen dim state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Dim,
         /// <summary>
-        /// Screen off state
+        /// Screen off state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Off
     }
 
     /// <summary>
-    /// The Display class provides Properties and Events to control the display status and brightness.
+    /// The Display class provides the properties and events to control the display status and brightness.
     /// </summary>
     /// <remarks>
-    /// The Display API provides the way to get the current Display brightness value,
-    /// display state and toal number of available displayes.
-    /// It also provides Events for an application to receive the Display state change events from the device.
-    /// To receive the Display event, application should register with assocated EventHandler.
+    /// The Display API provides the way to get the current display brightness value,
+    /// the display state, and the total number of available displays.
+    /// It also provides the events for an application to receive the display state change events from the device.
+    /// To receive the display event, the application should register with an associated EventHandler.
     /// </remarks>
     /// <privilege>
     /// http://tizen.org/privilege/display
@@ -86,8 +86,8 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Get all the avaialble Displays.
-        /// The Display at index zero is always assigned to the main display.
+        /// Gets all the available displays.
+        /// The display at the index zero is always assigned to the main display.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static IReadOnlyList<Display> Displays
@@ -112,7 +112,7 @@ namespace Tizen.System
 
         }
         /// <summary>
-        /// The maximum brightness value that can be set for the specific Display.
+        /// The maximum brightness value that can be set for the specific display.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <code>
@@ -134,14 +134,14 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The display brightness valu of the Display.
+        /// The brightness value of the display.
         /// </summary>
         /// <remarks>
-        /// Brightness value should be less than are equal to MaxBrightness value.
+        /// The brightness value should be less than or equal to the MaxBrightness value.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
-        /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
+        /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <code>
         ///     Display display = Display.Displays[0];
         ///     Console.WriteLine("Display current Brightness is: {0}", display.Brightness);
@@ -188,11 +188,11 @@ namespace Tizen.System
 
         private static event EventHandler<DisplayStateChangedEventArgs> s_stateChanged;
         /// <summary>
-        /// StateChanged is raised when the state of the display is changed
+        ///  StateChanged is raised when the state of the display is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="sender"></param>
-        /// <param name="e">An DisplayStateChangedEventArgs object that contains the changed state</param>
+        /// <param name="e">DisplayStateChangedEventArgs is an object that contains the changed state.</param>
         /// <code>
         /// public static async Task DisplayEventHandler()
         /// {

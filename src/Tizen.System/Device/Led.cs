@@ -21,15 +21,15 @@ using Tizen.Common;
 namespace Tizen.System
 {
     /// <summary>
-    /// The Led class provides properties and methods to control the attached led device.
+    /// The LED class provides the properties and methods to control the attached LED device.
     /// </summary>
     /// <remarks>
-    /// The Led API provides the way to control the attached LED device such as the camera flash and service LED.It supports to turn on the camera flash and set the pattern to the service LED which is located to the front of a device.
-    /// Related Features
+    /// The LED API provides the way to control the attached LED device, such as the camera flash and service LED. It supports to turn on the camera flash and set the pattern to the service LED which is located at the front of the device.
+    /// Related features:
     ///    http://tizen.org/feature/led
     ///    http://tizen.org/feature/camera.back.flash
-    /// It is recommended to design feature related codes in your application for reliability.
-    /// You can check if a device supports the related features for this API by using System Information, thereby controlling the procedure of your application.
+    /// It is recommended to design the feature related codes in your application for reliability.
+    /// You can check if a device supports the related features for this API by using system information, thereby controlling the procedure of your application.
     /// </remarks>
     /// <privilege>
     ///  http://tizen.org/privilege/led
@@ -41,11 +41,11 @@ namespace Tizen.System
     public static class Led
     {
         /// <summary>
-        /// Gets the max brightness value of a LED that is located next to the camera.
+        /// Gets the maximum brightness value of the LED that is located next to the camera.
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
-        /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
-        /// <exception cref = "NotSupportedException"> In case of device does not support this behavior.</exception>
+        /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
         /// </summary>
         public static int MaxBrightness
         {
@@ -64,15 +64,15 @@ namespace Tizen.System
         private static readonly object s_lock = new object();
 
         /// <summary>
-        /// Gets the brightness value of a LED that is located next to the camera.
+        /// Gets the brightness value of the LED that is located next to the camera.
         /// </summary>
-        /// <remarks>The brightness value range of LED is 0 to Tizen.System.Led.MaxBrightness value.
-        /// Changing the brightness value will invoke the registered EventHandler for led BrightnessChanged (If any).
+        /// <remarks>The brightness value range of the LED is 0 to Tizen.System.Led.MaxBrightness value.
+        /// Changing the brightness value will invoke the registered EventHandler for the LED BrightnessChanged (if any).
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
-        /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
-        /// <exception cref = "NotSupportedException"> In case of device does not support this behavior.</exception>
+        /// <exception cref="ArgumentException"> When an invalid parameter value is set.</exception>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
         /// <code>
         ///     Console.WriteLine("Led current Brightness is: {0}", Tizen.System.Led.Brightness);
         ///     Tizen.System.Led.Brightness = 50;
@@ -102,19 +102,19 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Plays the LED that is located to the front of a device.
+        /// Plays the LED that is located at the front of the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="on">Turn on time in milliseconds </param>
-        /// <param name="off">Turn off time in milliseconds </param>
+        /// <param name="on">Turn on time in milliseconds.</param>
+        /// <param name="off">Turn off time in milliseconds.</param>
         /// <param name="color">
         /// The Color value
-        /// The first byte means opaque and the other 3 bytes are RGB values.
+        /// The first byte means opaque and the other 3 bytes are the RGB values.
         /// </param>
-        /// <exception cref="ArgumentException"> When the invalid parameter value is set.</exception>
-        /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
-        /// <exception cref = "InvalidOperationException"> In case of any system error.</exception>
-        /// <exception cref = "NotSupportedException"> In case of device does not support this behavior.</exception>
+        /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+        /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
         /// <code>
         ///     try
         ///     {
@@ -135,12 +135,12 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Stops the LED that is located to the front of a device.
+        /// Stops the LED that is located at the front of the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref = "UnauthorizedAccessException"> If the privilege is not set.</exception>
-        /// <exception cref = "InvalidOperationException"> In case of any system error.</exception>
-        /// <exception cref = "NotSupportedException"> In case of device does not support this behavior.</exception>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+        /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
         /// <code>
         ///     try
         ///     {
@@ -165,11 +165,11 @@ namespace Tizen.System
 
         private static EventHandler<LedBrightnessChangedEventArgs> s_brightnessChanged;
         /// <summary>
-        /// StateChanged is raised when the LED state is changed
+        /// StateChanged is raised when the LED state is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">An LedBrightnessChangedEventArgs object that contains the changed brightness.</param>
+        /// <param name="e">LedBrightnessChangedEventArgs is an object that contains the changed brightness.</param>
         public static event EventHandler<LedBrightnessChangedEventArgs> BrightnessChanged
         {
             add

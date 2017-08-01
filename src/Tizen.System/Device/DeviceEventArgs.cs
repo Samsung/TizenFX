@@ -19,60 +19,60 @@ using System;
 namespace Tizen.System
 {
     /// <summary>
-    /// BatteryPercentChangedEventArgs is an extended EventArgs class. This class contains event arguments for BatteryPercentChanged event from Battery class.
+    /// BatteryPercentChangedEventArgs is an extended EventArgs class. This class contains event arguments for the BatteryPercentChanged event from the battery class.
     /// </summary>
     public class BatteryPercentChangedEventArgs : EventArgs
     {
         internal BatteryPercentChangedEventArgs(){}
         /// <summary>
         /// The current capacity of the battery.
-        /// Capacity is an integer value from 0 to 100, that indicates remaining battery charge as a percentage of the maximum level.
+        /// Capacity is an integer value from 0 to 100 that indicates the remaining battery charge as a percentage of the maximum level.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int Percent { get; internal set; }
     }
 
     /// <summary>
-    /// BatteryLevelChangedEventArgs is an extended EventArgs class. This class contains event arguments for BatteryLevelChanged event from Battery class.
+    /// BatteryLevelChangedEventArgs is an extended EventArgs class. This class contains event arguments for the BatteryLevelChanged event from the battery class.
     /// </summary>
     public class BatteryLevelChangedEventArgs : EventArgs
     {
         internal BatteryLevelChangedEventArgs(){}
         /// <summary>
-        /// Level indicates the Current battery level status which is of type BatteryLevelStatus.
+        ///  The level indicates the current battery level status which is a type of the BatteryLevelStatus.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public BatteryLevelStatus Level { get; internal set; }
     }
 
     /// <summary>
-    /// BatteryChargingStateChangedEventArgs is an extended EventArgs class. This class contains event arguments for BatteryChargingStateChanged event from Battery class.
+    /// BatteryChargingStateChangedEventArgs is an extended EventArgs class. This class contains event arguments for the BatteryChargingStateChanged event from the battery class.
     /// </summary>
     public class BatteryChargingStateChangedEventArgs : EventArgs
     {
         internal BatteryChargingStateChangedEventArgs() {}
         /// <summary>
-        /// The charging state of the battery. Charging is of type boolean which indicates true/false based on currrent charging status.
+        /// The charging state of the battery. Charging is a type of a boolean which indicates true/false based on the current charging status.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool IsCharging { get; internal set; }
     }
 
     /// <summary>
-    /// DisplayStateChangedEventArgs is an extended EventArgs class. This class contains event arguments for DisplayStateChanged event from Display class.
+    /// DisplayStateChangedEventArgs is an extended EventArgs class. This class contains event arguments for the DisplayStateChanged event from the display class.
     /// </summary>
     public class DisplayStateChangedEventArgs : EventArgs
     {
         internal DisplayStateChangedEventArgs() {}
         /// <summary>
-        /// State indicates the current display state of the device which is an enum of type DisplayState.
+        /// The state indicates the current display state of the device which is an enumeration of the type DisplayState.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public DisplayState State { get; internal set; }
     }
 
     /// <summary>
-    /// LedBrightnessChangedEventArgs is an extended EventArgs class. This class contains event arguments for LedBrightnessChanged event from Led class.
+    /// LedBrightnessChangedEventArgs is an extended EventArgs class. This class contains event arguments for the LedBrightnessChanged event from the LED class.
     /// </summary>
     public class LedBrightnessChangedEventArgs : EventArgs
     {
