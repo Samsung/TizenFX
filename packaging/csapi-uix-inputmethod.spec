@@ -15,6 +15,7 @@ BuildRequires: dotnet-build-tools
 
 # C# API Requires
 BuildRequires: csapi-tizen-nuget
+BuildRequires: elm-sharp-nuget
 
 %define Assemblies Tizen.Uix.InputMethod
 
