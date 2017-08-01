@@ -82,7 +82,7 @@ namespace Tizen.NUI
 
         public static AsyncImageLoader DownCast(BaseHandle handle)
         {
-            AsyncImageLoader ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as AsyncImageLoader;
+            AsyncImageLoader ret = new AsyncImageLoader(NDalicPINVOKE.AsyncImageLoader_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

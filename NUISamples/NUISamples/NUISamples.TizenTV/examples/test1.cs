@@ -161,7 +161,7 @@ namespace Test1
                         .Add(TextVisualProperty.PointSize, new PropertyValue(10))
                         .Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"))
                         .Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
-                    _textVisual = VisualFactory.Instance.CreateVisual(textVisual);
+                    _textVisual = VisualFactory.Get().CreateVisual(textVisual);
                     RegisterVisual(TextVisualPropertyIndex, _textVisual);
                     _textVisual.DepthIndex = TextVisualPropertyIndex;
                 }

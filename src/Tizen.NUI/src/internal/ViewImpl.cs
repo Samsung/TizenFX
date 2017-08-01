@@ -616,22 +616,12 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnChildAdd(global::System.IntPtr child)
         {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-
-            if (view)
-            {
-                OnChildAdd(view);
-            }
+            OnChildAdd(new View(child, false));
         }
 
         private void SwigDirectorOnChildRemove(global::System.IntPtr child)
         {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-
-            if (view)
-            {
-                OnChildRemove(view);
-            }
+            OnChildRemove(new View(child, false));
         }
 
         private void SwigDirectorOnPropertySet(int index, global::System.IntPtr propertyValue)
@@ -686,12 +676,7 @@ namespace Tizen.NUI
 
         private float SwigDirectorCalculateChildSize(global::System.IntPtr child, int dimension)
         {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                return CalculateChildSize(view, (DimensionType)dimension);
-            }
-            return 0.0f;
+            return CalculateChildSize(new View(child, false), (DimensionType)dimension);
         }
 
         private float SwigDirectorGetHeightForWidth(float width)
@@ -731,29 +716,17 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnControlChildAdd(global::System.IntPtr child)
         {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                OnControlChildAdd(view);
-            }
+            OnControlChildAdd(new View(child, false));
         }
 
         private void SwigDirectorOnControlChildRemove(global::System.IntPtr child)
         {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
-            {
-                OnControlChildRemove(view);
-            }
+            OnControlChildRemove(new View(child, false));
         }
 
         private void SwigDirectorOnStyleChange(global::System.IntPtr styleManager, int change)
         {
-            StyleManager stManager = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
-            if (stManager)
-            {
-                OnStyleChange(stManager, (StyleChangeType)change);
-            }
+            OnStyleChange(new StyleManager(styleManager, true), (StyleChangeType)change);
         }
 
         private bool SwigDirectorOnAccessibilityActivated()
@@ -793,12 +766,12 @@ namespace Tizen.NUI
 
         private global::System.IntPtr SwigDirectorGetNextKeyboardFocusableView(global::System.IntPtr currentFocusedView, int direction, bool loopEnabled)
         {
-            return View.getCPtr(GetNextFocusableView(Registry.GetManagedBaseHandleFromNativePtr(currentFocusedView) as View, (View.FocusDirection)direction, loopEnabled)).Handle;
+            return View.getCPtr(GetNextFocusableView(new View(currentFocusedView, true), (View.FocusDirection)direction, loopEnabled)).Handle;
         }
 
         private void SwigDirectorOnKeyboardFocusChangeCommitted(global::System.IntPtr commitedFocusableView)
         {
-            OnFocusChangeCommitted(Registry.GetManagedBaseHandleFromNativePtr(commitedFocusableView) as View);
+            OnFocusChangeCommitted(new View(commitedFocusableView, true));
         }
 
         private bool SwigDirectorOnKeyboardEnter()

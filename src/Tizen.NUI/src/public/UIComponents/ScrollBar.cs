@@ -225,7 +225,7 @@ namespace Tizen.NUI.UIComponents
         [Obsolete("Please do not use! this will be deprecated")]
         public new static ScrollBar DownCast(BaseHandle handle)
         {
-            ScrollBar ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as ScrollBar;
+            ScrollBar ret = new ScrollBar(NDalicPINVOKE.ScrollBar_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -80,7 +80,7 @@ namespace Tizen.NUI
         }
         public new static EncodedBufferImage DownCast(BaseHandle handle)
         {
-            EncodedBufferImage ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as EncodedBufferImage;
+            EncodedBufferImage ret = new EncodedBufferImage(NDalicPINVOKE.EncodedBufferImage_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -53,7 +53,7 @@ namespace VisualsUsingCustomView
             CustomViewRegistry.Instance.Register( CreateInstance, typeof(ContactView));
         }
 
-        public ContactView() : base(typeof(ContactView).FullName, CustomViewBehaviour.RequiresKeyboardNavigationSupport)
+        public ContactView() : base(typeof(ContactView).Name, CustomViewBehaviour.RequiresKeyboardNavigationSupport)
         {
         }
 
@@ -79,7 +79,7 @@ namespace VisualsUsingCustomView
                 imageVisual.Add( Visual.Property.Type, new PropertyValue( (int)Visual.Type.Image ))
                     .Add( ImageVisualProperty.URL, new PropertyValue( _imageURL ) )
                     .Add( ImageVisualProperty.AlphaMaskURL, new PropertyValue( _maskURL ));
-                _imageVisual =  VisualFactory.Instance.CreateVisual( imageVisual );
+                _imageVisual =  VisualFactory.Get().CreateVisual( imageVisual );
 
                 RegisterVisual( GetPropertyIndex("ImageURL"), _imageVisual );
 
@@ -107,7 +107,7 @@ namespace VisualsUsingCustomView
                     .Add(TextVisualProperty.PointSize, new PropertyValue(7))
                     .Add( TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"))
                     .Add( TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
-                _textVisual =  VisualFactory.Instance.CreateVisual( textVisual );
+                _textVisual =  VisualFactory.Get().CreateVisual( textVisual );
 
                 RegisterVisual( GetPropertyIndex("Name"), _textVisual );
 
@@ -149,7 +149,7 @@ namespace VisualsUsingCustomView
                     .Add( PrimitiveVisualProperty.BevelSmoothness, new PropertyValue(0.0f))
                     .Add( PrimitiveVisualProperty.ScaleDimensions, new PropertyValue(new Vector3(1.0f,1.0f,0.3f)))
                     .Add( PrimitiveVisualProperty.MixColor, new PropertyValue(new Vector4((245.0f/255.0f), (188.0f/255.0f), (73.0f/255.0f), 1.0f)));
-                _primitiveVisual =  VisualFactory.Instance.CreateVisual( primitiveVisual );
+                _primitiveVisual =  VisualFactory.Get().CreateVisual( primitiveVisual );
                 RegisterVisual( GetPropertyIndex("Shape"), _primitiveVisual );
 
                 // Set the depth index for Primitive visual

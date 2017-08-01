@@ -104,9 +104,9 @@ namespace SiblingOrderTest
                 _view.ParentOrigin = ParentOrigin.TopLeft;
                 _view.PivotPoint = PivotPoint.TopLeft;
                 _view.Position2D = _myPos + new Position2D(20 * i, 10 * i);
+                _view.SiblingOrder = i;
 
                 _window.Add(_view);
-                _view.SiblingOrder = i;
             }
         }
 
@@ -124,9 +124,9 @@ namespace SiblingOrderTest
                 _view.ParentOrigin = ParentOrigin.TopLeft;
                 _view.PivotPoint = PivotPoint.TopLeft;
                 _view.Position2D = _myPos + new Position2D(20 * i, 10 * i);
+                _view.SiblingOrder = 10-i;
 
                 _window.Add(_view);
-                _view.SiblingOrder = 10-i;
             }
         }
 
@@ -144,9 +144,6 @@ namespace SiblingOrderTest
                 _view.ParentOrigin = ParentOrigin.TopLeft;
                 _view.PivotPoint = PivotPoint.TopLeft;
                 _view.Position2D = _myPos + new Position2D(20 * i, 10 * i);
-
-                _window.Add(_view);
-
                 if (i<5)
                 {
                     _view.SiblingOrder = 5-i;
@@ -155,6 +152,8 @@ namespace SiblingOrderTest
                 {
                     _view.SiblingOrder = i-5;
                 }
+
+                _window.Add(_view);
             }
         }
 
@@ -172,9 +171,6 @@ namespace SiblingOrderTest
                 _view.ParentOrigin = ParentOrigin.TopLeft;
                 _view.PivotPoint = PivotPoint.TopLeft;
                 _view.Position2D = _myPos + new Position2D(20 * i, 10 * i);
-
-                _window.Add(_view);
-
                 if (i<5)
                 {
                     _view.SiblingOrder = i;
@@ -183,6 +179,8 @@ namespace SiblingOrderTest
                 {
                     _view.SiblingOrder = 10-i;
                 }
+
+                _window.Add(_view);
             }
         }
 

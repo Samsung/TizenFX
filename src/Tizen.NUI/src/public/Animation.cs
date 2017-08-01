@@ -767,7 +767,7 @@ namespace Tizen.NUI
         /// <returns>Handle to an Animation object or an uninitialized handle</returns>
         public static Animation DownCast(BaseHandle handle)
         {
-            Animation ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Animation;
+            Animation ret = new Animation(NDalicPINVOKE.Animation_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

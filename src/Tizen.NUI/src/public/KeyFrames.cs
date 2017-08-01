@@ -105,7 +105,7 @@ namespace Tizen.NUI
         [Obsolete("Please do not use! this will be deprecated")]
         public static KeyFrames DownCast(BaseHandle handle)
         {
-            KeyFrames ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as KeyFrames;
+            KeyFrames ret = new KeyFrames(NDalicPINVOKE.KeyFrames_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

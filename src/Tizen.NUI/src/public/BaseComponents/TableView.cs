@@ -318,7 +318,7 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("Please do not use! this will be deprecated")]
         public new static TableView DownCast(BaseHandle handle)
         {
-            TableView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TableView;
+            TableView ret = new TableView(NDalicPINVOKE.TableView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -344,9 +344,7 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>Child that was in the cell or an uninitialized handle</returns>
         public View GetChildAt(TableView.CellPosition position)
         {
-            IntPtr cPtr = NDalicPINVOKE.TableView_GetChildAt(swigCPtr, TableView.CellPosition.getCPtr(position));
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
+            View ret = new View(NDalicPINVOKE.TableView_GetChildAt(swigCPtr, TableView.CellPosition.getCPtr(position)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -358,9 +356,7 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>Child that was removed or an uninitialized handle</returns>
         public View RemoveChildAt(TableView.CellPosition position)
         {
-            IntPtr cPtr = NDalicPINVOKE.TableView_RemoveChildAt(swigCPtr, TableView.CellPosition.getCPtr(position));
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
+            View ret = new View(NDalicPINVOKE.TableView_RemoveChildAt(swigCPtr, TableView.CellPosition.getCPtr(position)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

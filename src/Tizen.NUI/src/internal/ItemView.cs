@@ -107,7 +107,7 @@ namespace Tizen.NUI
 
         internal new static ItemView DownCast(BaseHandle handle)
         {
-            ItemView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as ItemView;
+            ItemView ret = new ItemView(NDalicPINVOKE.ItemView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
