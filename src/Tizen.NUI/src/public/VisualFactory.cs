@@ -70,7 +70,7 @@ namespace Tizen.NUI
         /// Create or retrieve VisualFactory singleton.
         /// </summary>
         /// <returns>A handle to the VisualFactory control.</returns>
-        public static VisualFactory Get()
+        private static VisualFactory Get()
         {
             VisualFactory ret = new VisualFactory(NDalicPINVOKE.VisualFactory_Get(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

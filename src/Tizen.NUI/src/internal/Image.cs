@@ -177,7 +177,7 @@ namespace Tizen.NUI
 
         public static Image DownCast(BaseHandle handle)
         {
-            Image ret = new Image(NDalicPINVOKE.Image_DownCast(BaseHandle.getCPtr(handle)), true);
+            Image ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Image;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

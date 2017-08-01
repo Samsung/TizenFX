@@ -53,12 +53,12 @@ namespace HelloWorldTest
         {
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
-            window.Touched += OnWindowTouched;
-            window.KeyPressed += OnWindowKeyEvent;
+            window.TouchEvent += OnWindowTouched;
+            window.KeyEvent += OnWindowKeyEvent;
             window.Resized += (obj, e) =>
             {
-                Tizen.Log.Debug("NUI", "Height: " + e.Height);
-                Tizen.Log.Debug("NUI", "Width: " + e.Width);
+                Tizen.Log.Debug("NUI", "Height: " + e.WindowSize.Height);
+                Tizen.Log.Debug("NUI", "Width: " + e.WindowSize.Width);
             };
 
             TextLabel pixelLabel = new TextLabel("Test Pixel Size 32.0f");
@@ -151,7 +151,7 @@ namespace HelloWorldTest
             }
         }
 
-        public void OnWindowTouched(object sender, Window.TouchedEventArgs e)
+        public void OnWindowTouched(object sender, Window.TouchEventArgs e)
         {
             if (e.Touch.GetState(0) == PointStateType.Down)
             {

@@ -162,7 +162,7 @@ namespace Tizen.NUI
         }
         internal new static LinearConstrainer DownCast(BaseHandle handle)
         {
-            LinearConstrainer ret = new LinearConstrainer(NDalicPINVOKE.LinearConstrainer_DownCast(BaseHandle.getCPtr(handle)), true);
+            LinearConstrainer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as LinearConstrainer;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
