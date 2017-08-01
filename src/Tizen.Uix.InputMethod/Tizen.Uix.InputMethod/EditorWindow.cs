@@ -39,6 +39,11 @@ namespace Tizen.Uix.InputMethod
             return _handle;
         }
 
+        public IntPtr GetHandle()
+        {
+            return _handle;
+        }
+
         /// <summary>
         /// This API updates the input panel window's size information.
         /// </summary>
