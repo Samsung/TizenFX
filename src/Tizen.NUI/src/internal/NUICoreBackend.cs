@@ -234,5 +234,14 @@ namespace Tizen.NUI
             handler?.Invoke();
         }
 
+
+	internal Application ApplicationHandle
+	{
+		get
+		{
+			return _application;
+		}
+	}
+
     }
 }
