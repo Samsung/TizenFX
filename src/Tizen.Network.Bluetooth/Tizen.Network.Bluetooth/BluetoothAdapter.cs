@@ -29,6 +29,8 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// A property to check whether Bluetooth is enabled.
         /// </summary>
+        /// <exception cref="System.NotSupportedException">Thrown when the BT/BTLE is not Supported.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not Enabled.</exception>
         static public bool IsBluetoothEnabled
         {
             get
