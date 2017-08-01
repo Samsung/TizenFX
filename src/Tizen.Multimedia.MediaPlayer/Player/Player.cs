@@ -72,7 +72,7 @@ namespace Tizen.Multimedia
         /// Occurs when the subtitle is updated.
         /// </summary>
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
-        public EventHandler<SubtitleUpdatedEventArgs> SubtitleUpdated;
+        public event EventHandler<SubtitleUpdatedEventArgs> SubtitleUpdated;
         private NativePlayer.SubtitleUpdatedCallback _subtitleUpdatedCallback;
 
         /// <summary>
