@@ -169,13 +169,11 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="url">The url of the image resource to display</param>
         public ImageView(string url) : this(NDalicPINVOKE.ImageView_New__SWIG_2(url), true)
         {
-            _url = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         internal ImageView(string url, Uint16Pair size) : this(NDalicPINVOKE.ImageView_New__SWIG_3(url, Uint16Pair.getCPtr(size)), true)
         {
-            _url = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
@@ -194,13 +192,11 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="url">The URL to the image resource to display</param>
         public void SetImage(string url)
         {
-            _url = url;
             NDalicPINVOKE.ImageView_SetImage__SWIG_1(swigCPtr, url);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         internal void SetImage(string url, Uint16Pair size)
         {
-            _url = url;
             NDalicPINVOKE.ImageView_SetImage__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
