@@ -824,6 +824,12 @@ namespace Tizen.NUI
         public static readonly int WrapModeU = NDalic.IMAGE_VISUAL_WRAP_MODE_U;
         public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
         public static readonly int Border = NDalic.IMAGE_VISUAL_BORDER;
+        public static readonly int MaskContentScale = NDalic.IMAGE_VISUAL_MASK_CONTENT_SCALE;
+        public static readonly int CropToMask = NDalic.IMAGE_VISUAL_CROP_TO_MASK;
+        public static readonly int BatchSize = NDalic.IMAGE_VISUAL_BATCH_SIZE;
+        public static readonly int CacheSize = NDalic.IMAGE_VISUAL_CACHE_SIZE;
+        public static readonly int FrameDelay = NDalic.IMAGE_VISUAL_FRAME_DELAY;
+
     }
 
     /// <summary>

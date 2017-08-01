@@ -558,7 +558,9 @@ namespace Tizen.NUI
 
         public Layer GetLayer(uint depth)
         {
-            Layer ret = new Layer(NDalicPINVOKE.Stage_GetLayer(stageCPtr, depth), true);
+            IntPtr cPtr = NDalicPINVOKE.Stage_GetLayer(stageCPtr, depth);
+            Layer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Layer;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -661,7 +663,7 @@ namespace Tizen.NUI
 
         internal ResizedSignal ResizedSignal()
         {
-            ResizedSignal ret = new ResizedSignal(NDalicManualPINVOKE.Window_ResizedSignal(stageCPtr), false);
+            ResizedSignal ret = new ResizedSignal(NDalicManualPINVOKE.Window_ResizedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1179,7 +1181,7 @@ namespace Tizen.NUI
 
         private WindowResizedEventCallbackType _windowResizedEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WindowResizedEventCallbackType(Size2D windowSize);
+        private delegate void WindowResizedEventCallbackType(IntPtr windowSize);
         private event EventHandler<ResizedEventArgs> _windowResizedEventHandler;
 
         public event EventHandler<ResizedEventArgs> Resized
@@ -1205,10 +1207,12 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnResized(Size2D windowSize)
+        private void OnResized(IntPtr windowSize)
         {
             ResizedEventArgs e = new ResizedEventArgs();
-            e.WindowSize = windowSize;
+            var val = new Uint16Pair(windowSize, false);
+            e.WindowSize = new Size2D(val.GetWidth(), val.GetHeight());
+            val.Dispose();
 
             if (_windowResizedEventHandler != null)
             {
@@ -1224,7 +1228,10 @@ namespace Tizen.NUI
 
         internal Size2D GetWindowSize()
         {
-            Size2D ret = new Size2D(NDalicManualPINVOKE.GetSize(swigCPtr), true);
+            var val = new Uint16Pair(NDalicManualPINVOKE.GetSize(swigCPtr), false);
+            Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
+            val.Dispose();
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

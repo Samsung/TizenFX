@@ -474,7 +474,7 @@ namespace Tizen.NUI.UIComponents
         /// <returns>Handle to a Slider or an uninitialized handle</returns>
         public new static Slider DownCast(BaseHandle handle)
         {
-            Slider ret = new Slider(NDalicPINVOKE.Slider_DownCast(BaseHandle.getCPtr(handle)), true);
+            Slider ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Slider;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
