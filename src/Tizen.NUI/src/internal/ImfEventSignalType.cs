@@ -13,13 +13,11 @@
 * limitations under the License.
 *
 */
-using System;
-using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
-    [Obsolete("Please do not use! this will be deprecated")]
-    public class ImfEventSignalType : global::System.IDisposable
+
+    internal class ImfEventSignalType : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
