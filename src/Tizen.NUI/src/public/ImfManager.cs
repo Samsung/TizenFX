@@ -264,11 +264,6 @@ namespace Tizen.NUI
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
             protected bool swigCMemOwn;
 
-            internal IntPtr GetImfCallbackDataPtr()
-            {
-                return (IntPtr)swigCPtr;
-            }
-
             internal ImfCallbackData(global::System.IntPtr cPtr, bool cMemoryOwn)
             {
                 swigCMemOwn = cMemoryOwn;
@@ -796,7 +791,7 @@ namespace Tizen.NUI
             }
         }
 
-        private delegate global::System.IntPtr ImfManagerEventReceivedEventCallbackType(global::System.IntPtr imfManager, global::System.IntPtr imfEventData);
+        private delegate ImfCallbackData ImfManagerEventReceivedEventCallbackType(global::System.IntPtr imfManager, global::System.IntPtr imfEventData);
         private ImfManagerEventReceivedEventCallbackType _imfManagerEventReceivedEventCallback;
 
         private event EventHandlerWithReturnType<object, ImfManagerEventReceivedEventArgs, ImfCallbackData> _imfManagerEventReceivedEventHandler;
@@ -826,10 +821,8 @@ namespace Tizen.NUI
             }
         }
 
-        private global::System.IntPtr OnImfManagerEventReceived(global::System.IntPtr imfManager, global::System.IntPtr imfEventData)
+        private ImfCallbackData OnImfManagerEventReceived(global::System.IntPtr imfManager, global::System.IntPtr imfEventData)
         {
-            ImfCallbackData imfCallbackData = null;
-
             ImfManagerEventReceivedEventArgs e = new ImfManagerEventReceivedEventArgs();
 
             e.ImfManager = ImfManager.GetImfManagerFromPtr(imfManager);
@@ -837,16 +830,9 @@ namespace Tizen.NUI
 
             if (_imfManagerEventReceivedEventHandler != null)
             {
-                imfCallbackData = _imfManagerEventReceivedEventHandler(this, e);
+                return _imfManagerEventReceivedEventHandler(this, e);
             }
-            if (imfCallbackData != null)
-            {
-                return imfCallbackData.GetImfCallbackDataPtr();
-            }
-            else
-            {
-                return new ImfCallbackData().GetImfCallbackDataPtr();
-            }
+            return null;
         }
 
         internal ImfEventSignalType EventReceivedSignal()
