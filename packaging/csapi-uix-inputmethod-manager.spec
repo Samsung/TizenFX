@@ -1,6 +1,6 @@
 Name:       csapi-uix-inputmethod-manager
 Summary:    Tizen Uix InputMethod-Manager API for C#
-Version:    1.0.4
+Version:    1.0.7
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
