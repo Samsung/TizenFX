@@ -1208,18 +1208,7 @@ namespace Tizen.NUI
         {
             NUILog.Debug("New(string[] args) is called!");
             int argc = args.Length;
-            string argvStr = "";
-            for (int index = 0; index < args.Length; index++)
-            {
-                if(index == (args.Length - 1))
-                {
-                    argvStr = argvStr + args[index];
-                }
-                else
-                {
-                    argvStr = argvStr + args[index] + " ";
-                }
-            }
+            string argvStr = string.Join(" ", args);
 
             Application ret = new Application(NDalicPINVOKE.Application_New__MANUAL_4(argc, argvStr, stylesheet, (int)windowMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
