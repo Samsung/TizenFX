@@ -19,22 +19,22 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// 
+    /// The class for the argument of the RegionFormatChanged EventHandler
     /// </summary>
     public class RegionFormatChangedEventArgs : EventArgs
     {
 
         /// <summary>
-        /// 
+        /// Initializes RegionFormatChangedEventArgs class
         /// </summary>
-        /// <param name="region"></param>
+        /// <param name="region">The information of the Region</param>
         public RegionFormatChangedEventArgs(string region)
         {
             Region = region;
         }
 
         /// <summary>
-        /// 
+        /// The property to get the intformation of the Region
         /// </summary>
         public string Region { get; private set; }
     }

@@ -19,21 +19,21 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// 
+    /// The class for the argument of the LowMemory EventHandler
     /// </summary>
     public class LowMemoryEventArgs : EventArgs
     {
         /// <summary>
-        /// 
+        /// Initializes LowMemoryEventArgs class
         /// </summary>
-        /// <param name="status"></param>
+        /// <param name="status">The information of the LowMemoryStatus</param>
         public LowMemoryEventArgs(LowMemoryStatus status)
         {
             LowMemoryStatus = status;
         }
 
         /// <summary>
-        /// 
+        /// The property to get the intformation of the LowMemoryStatus
         /// </summary>
         public LowMemoryStatus LowMemoryStatus { get; private set; }
     }

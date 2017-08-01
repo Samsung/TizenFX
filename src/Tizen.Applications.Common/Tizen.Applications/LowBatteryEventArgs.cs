@@ -19,21 +19,21 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// 
+    /// The class for the argument of the LowBattery EventHandler
     /// </summary>
     public class LowBatteryEventArgs : EventArgs
     {
         /// <summary>
-        /// 
+        /// Initializes LowBatteryEventArgs class
         /// </summary>
-        /// <param name="status"></param>
+        /// <param name="status">The information of the LowBatteryEventArgs</param>
         public LowBatteryEventArgs(LowBatteryStatus status)
         {
             LowBatteryStatus = status;
         }
 
         /// <summary>
-        /// 
+        /// The property to get the intformation of the LowBatteryStatus
         /// </summary>
         public LowBatteryStatus LowBatteryStatus { get; private set; }
     }
