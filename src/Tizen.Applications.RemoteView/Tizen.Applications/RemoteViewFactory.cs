@@ -20,7 +20,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Represents a factory class for making RemoveView objects.
+    /// Represents a factory class for making the RemoteView objects.
     /// </summary>
     public static class RemoteViewFactory
     {
@@ -33,9 +33,9 @@ namespace Tizen.Applications
         /// All the remote views will be located in the specified window object.
         /// </param>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <exception cref="InvalidOperationException">Thrown when this operation failed</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when this operation was denied</exception>
-        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device</exception>
+        /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
         public static void Init(EvasObject win)
         {
             if (_ready)
@@ -45,20 +45,20 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Creates RemoteView object.
+        /// Creates a RemoteView object.
         /// </summary>
-        /// <param name="parent">Parent object</param>
-        /// <param name="widgetId">Widget ID</param>
-        /// <param name="content">Contents that will be given to the widget instance</param>
-        /// <param name="period">Update period</param>
-        /// <param name="previewImage">True if you want to show preview image</param>
-        /// <param name="overlayText">True if you want to show overlay text</param>
-        /// <param name="loadingMessage">True if you want to show loading message</param>
+        /// <param name="parent">Parent object.</param>
+        /// <param name="widgetId">Widget ID.</param>
+        /// <param name="content">Contents that will be given to the widget instance.</param>
+        /// <param name="period">Update period.</param>
+        /// <param name="previewImage">True if you want to show the preview image.</param>
+        /// <param name="overlayText">True if you want to show the overlay text.</param>
+        /// <param name="loadingMessage">True if you want to show the loading message.</param>
         /// <returns>RemoteView object.</returns>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <exception cref="InvalidOperationException">Thrown when this operation failed</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when this operation was denied</exception>
-        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device</exception>
+        /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
         public static RemoteView Create(EvasObject parent, string widgetId, string content, double period,
             bool previewImage = true, bool overlayText = true, bool loadingMessage = true)
         {
@@ -83,12 +83,12 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Finalizes RemoteViewFactory.
+        /// Finalizes the RemoteViewFactory.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <exception cref="InvalidOperationException">Thrown when this operation failed</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when this operation was denied</exception>
-        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device</exception>
+        /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
         public static void Shutdown()
         {
             if (!_ready)

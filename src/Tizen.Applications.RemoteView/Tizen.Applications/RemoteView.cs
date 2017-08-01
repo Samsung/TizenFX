@@ -21,12 +21,12 @@ using System.Runtime.InteropServices;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Represents proxy class for widget application.
+    /// Represents the proxy class for the widget application.
     /// </summary>
     public class RemoteView
     {
         /// <summary>
-        /// Event types to send.
+        /// The event types to send.
         /// </summary>
         public enum Event
         {
@@ -36,19 +36,19 @@ namespace Tizen.Applications
             FeedMouseUp,
 
             /// <summary>
-            /// Type for cancelling click event procedure.
+            /// Type for canceling the click event procedure.
             /// </summary>
             CancelClick
         }
 
         /// <summary>
-        /// Layout object including preview image, overlay text, loading text and remote screen image.
+        /// Layout object including preview image, overlay text, loading text, and remote screen image.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         public Layout Layout { get; internal set; }
 
         /// <summary>
-        /// Widget ID.
+        /// The widget ID.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         public string Id
@@ -62,7 +62,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Update period.
+        /// The update period.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         public double Period
@@ -74,10 +74,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Contents of widget.
+        /// Contents of the widget.
         /// </summary>
         /// <remarks>
-        /// This string can be used for creating contents of widget again after rebooting a device or it can be recovered from crash(abnormal status).
+        /// This string can be used for creating contents of the widget again after rebooting a device or it can be recovered from a crash (abnormal status).
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         public string Content
@@ -133,24 +133,24 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Pauses all connected widget applications.
+        /// Pauses all the connected widget applications.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <exception cref="InvalidOperationException">Thrown when this operation failed</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when this operation was denied</exception>
-        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device</exception>
+        /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
         public static void PauseAll()
         {
             CheckException(Interop.WidgetViewerEvas.NotifyPausedStatusOfViewer());
         }
 
         /// <summary>
-        /// Resumes all connected widget applications.
+        /// Resumes all the connected widget applications.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <exception cref="InvalidOperationException">Thrown when this operation failed</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when this operation was denied</exception>
-        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device</exception>
+        /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device<./exception>
         public static void ResumeAll()
         {
             CheckException(Interop.WidgetViewerEvas.NotifyResumedStatusOfViewer());
@@ -160,9 +160,9 @@ namespace Tizen.Applications
         /// Pauses the widget application which is connected on this proxy.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <exception cref="InvalidOperationException">Thrown when this operation failed</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when this operation was denied</exception>
-        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device</exception>
+        /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
         public void Pause()
         {
             CheckException(Interop.WidgetViewerEvas.PauseWidget(Layout));
@@ -172,20 +172,20 @@ namespace Tizen.Applications
         /// Resumes the widget application which is connected on this proxy.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <exception cref="InvalidOperationException">Thrown when this operation failed</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when this operation was denied</exception>
-        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device</exception>
+        /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
         public void Resume()
         {
             CheckException(Interop.WidgetViewerEvas.ResumeWidget(Layout));
         }
 
         /// <summary>
-        /// Sends event to the widget application which is connected on this proxy.
+        /// Sends the event to the widget application which is connected on this proxy.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <exception cref="UnauthorizedAccessException">Thrown when this operation was denied</exception>
-        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
         public void SendEvent(Event ev)
         {
             switch (ev)
