@@ -166,6 +166,15 @@
     <Compile Include="TC\Wearable\IndexTest1.cs" />
     <Compile Include="TC\Wearable\IndexTest2.cs" />
     <Compile Include="TC\Wearable\ListTest1.cs" />
+    <Compile Include="TC\Wearable\NaviframeTest1.cs" />
+    <Compile Include="TC\Wearable\NaviframeTest2.cs" />
+    <Compile Include="TC\Wearable\NaviframeTest3.cs" />
+    <Compile Include="TC\Wearable\PanelTest1.cs" />
+    <Compile Include="TC\Wearable\PanelTest2.cs" />
+    <Compile Include="TC\Wearable\PanesTest1.cs" />
+    <Compile Include="TC\Wearable\PerformanceTest.cs" />
+    <Compile Include="TC\Wearable\PolygonTest1.cs" />
+    <Compile Include="TC\Wearable\PopupTest1.cs" />
     <Compile Include="TC\Wearable\ProgressBarTest1.cs" />
     <Compile Include="TC\Wearable\ProgressBarTest2.cs" />
     <Compile Include="TC\Wearable\RadioTest1.cs" />
