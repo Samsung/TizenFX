@@ -1298,6 +1298,7 @@ namespace Tizen.NUI.BaseComponents
         /// <code>
         /// PropertyMap propertyMap = new PropertyMap();
         /// propertyMap.Add("placeholderText", new PropertyValue("Setting Placeholder Text"));
+        /// propertyMap.Add("placeholderTextFocused", new PropertyValue("Setting Placeholder Text Focused"));
         /// propertyMap.Add("placeholderColor", new PropertyValue(Color.Red));
         /// propertyMap.Add("placeholderFontFamily", new PropertyValue("Arial"));
         /// propertyMap.Add("placeholderPointSize", new PropertyValue(12.0f));
