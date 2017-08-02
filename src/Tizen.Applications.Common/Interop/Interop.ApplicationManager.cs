@@ -166,6 +166,14 @@ internal static partial class Interop
         internal static extern ErrorCode AppManagerEventDestroy(IntPtr handle);
         //int app_manager_event_destroy (app_manager_event_h handle);
 
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_terminate_app")]
+        internal static extern ErrorCode AppManagerTerminateApp(IntPtr handle);
+        //int app_manager_terminate_app (app_context_h app_context);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_app_context_by_instance_id")]
+        internal static extern ErrorCode AppManagerGetAppContextByInstanceId(string applicationId, string instanceId, out IntPtr handle);
+        //int app_manager_get_app_context_by_instance_id (const char *app_id, const char *instance_id, app_context_h *app_context);
+
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_destroy")]
         internal static extern ErrorCode AppContextDestroy(IntPtr handle);
         //int app_context_destroy(app_context_h app_context)

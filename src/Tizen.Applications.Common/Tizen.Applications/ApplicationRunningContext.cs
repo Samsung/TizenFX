@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.Applications
 {
@@ -45,6 +46,37 @@ namespace Tizen.Applications
         {
             IntPtr contextHandle = IntPtr.Zero;
             err = Interop.ApplicationManager.AppManagerGetAppContext(applicationId, out contextHandle);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, "Failed to get the handle of the ApplicationRunningContext. err = " + err);
+                switch (err)
+                {
+                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid Parameter.");
+                    case Interop.ApplicationManager.ErrorCode.NoSuchApp:
+                        throw new InvalidOperationException("No such application.");
+                    case Interop.ApplicationManager.ErrorCode.OutOfMemory:
+                        throw new OutOfMemoryException("Out of memory");
+                    default:
+                        throw new InvalidOperationException("Invalid Operation.");
+                }
+            }
+            _contextHandle = contextHandle;
+        }
+
+        /// <summary>
+        /// A constructor of ApplicationRunningContext that takes the application id.
+        /// </summary>
+        /// <param name="applicationId">application id.</param>
+        /// <param name="instanceId">instance id.</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of application not exist error or system error.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ApplicationRunningContext(string applicationId, string instanceId)
+        {
+            IntPtr contextHandle = IntPtr.Zero;
+            err = Interop.ApplicationManager.AppManagerGetAppContextByInstanceId(applicationId, instanceId, out contextHandle);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, "Failed to get the handle of the ApplicationRunningContext. err = " + err);
@@ -185,6 +217,30 @@ namespace Tizen.Applications
                     Log.Warn(LogTag, "Failed to get the IsSubApp value. err = " + err);
                 }
                 return subapp;
+            }
+        }
+
+        /// <summary>
+        /// Terminates the application.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of permission denied or system error.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.kill</privilege>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Terminate()
+        {
+            err = Interop.ApplicationManager.AppManagerTerminateApp(_contextHandle);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid argument.");
+                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
+                        throw new InvalidOperationException("Permission denied.");
+                    default:
+                        throw new InvalidOperationException("Invalid Operation.");
+                }
             }
         }
 
