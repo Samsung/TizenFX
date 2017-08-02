@@ -14,14 +14,11 @@
 *
 */
 
-extern alias TizenSystemSettings;
-using TizenSystemSettings.Tizen.System;
 namespace Tizen.NUI.BaseComponents
 {
 
     using System;
     using System.Runtime.InteropServices;
-    using System.Globalization;
 
     /// <summary>
     /// A control which provides a multi-line editable text editor.
@@ -29,9 +26,6 @@ namespace Tizen.NUI.BaseComponents
     public class TextEditor : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        private string textEditorTextSid = null;
-        private string textEditorPlaceHolderTextSid = null;
-        private bool systemlangTextFlag = false;
 
         internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TextEditor_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -348,81 +342,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// TranslatableText property.<br>
-        /// The text can be set SID value.<br>
-        /// </summary>
-        /// <exception cref='ArgumentNullException'>
-        /// ResourceManager about multilingual is null
-        /// </exception>
-        public string TranslatableText
-        {
-            get
-            {
-                return textEditorTextSid;
-            }
-            set
-            {
-                if (NUIApplication.MultilingualResourceManager == null)
-                {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
-                }
-                textEditorTextSid = value;
-                Text = SetTranslatable(textEditorTextSid);
-            }
-        }
-        /// <summary>
-        /// TranslatablePlaceholderText property.<br>
-        /// The text can be set SID value.<br>
-        /// </summary>
-        /// <exception cref='ArgumentNullException'>
-        /// ResourceManager about multilingual is null
-        /// </exception>
-        public string TranslatablePlaceholderText
-        {
-            get
-            {
-                return textEditorPlaceHolderTextSid;
-            }
-            set
-            {
-                if (NUIApplication.MultilingualResourceManager == null)
-                {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
-                }
-                textEditorPlaceHolderTextSid = value;
-                PlaceholderText = SetTranslatable(textEditorPlaceHolderTextSid);
-            }
-        }
-        private string SetTranslatable(string textEditorSid)
-        {
-            string translatableText = null;
-            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textEditorSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
-            if (translatableText != null)
-            {
-                if (systemlangTextFlag == false)
-                {
-                    SystemSettings.LocaleLanguageChanged += new WeakEventHandler<LocaleLanguageChangedEventArgs>(SystemSettings_LocaleLanguageChanged).Handler;
-                    systemlangTextFlag = true;
-                }
-                return translatableText;
-            }
-            else
-            {
-                translatableText = "";
-                return translatableText;
-            }
-        }
-        private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
-        {
-            if (textEditorTextSid != null)
-            {
-                Text = NUIApplication.MultilingualResourceManager?.GetString(textEditorTextSid, new CultureInfo(e.Value.Replace("_", "-")));
-            }
-            if (textEditorPlaceHolderTextSid != null)
-            {
-                PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textEditorPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
-            }
-        }
         /// Text property.
         /// </summary>
         public string Text
