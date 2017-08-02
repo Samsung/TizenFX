@@ -436,6 +436,8 @@ namespace Tizen.Network.Bluetooth
         /// The Bluetooth must be enabled and remote device must be discoverable by StartDiscovery().The bond can be destroyed by DestroyBond().
         /// The bonding request can be cancelled by CancelBonding().If this succeeds, BondCreated event will be invoked.
         /// </remarks>
+        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not Enabled
+        /// or when create bond to remote device fails.</exception>
         public void CreateBond()
         {
             if (BluetoothAdapter.IsBluetoothEnabled)
@@ -455,6 +457,8 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>
         /// Bonding must be in progress by CreateBond().
         /// </remarks>
+        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not Enabled
+        /// or when cancel bonding procedure to remote device fails.</exception>
         public void CancelBonding()
         {
             int ret = Interop.Bluetooth.CancelBonding();
@@ -472,6 +476,8 @@ namespace Tizen.Network.Bluetooth
         /// The Bluetooth must be enabled and the bond must be created by CreateBond().
         /// If this succeeds, BondDestroyed event will be invoked.
         /// </remarks>
+        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not Enabled
+        /// or when destroy bond procedure fails.</exception>
         public void DestroyBond()
         {
             if (BluetoothAdapter.IsBluetoothEnabled)
@@ -492,6 +498,8 @@ namespace Tizen.Network.Bluetooth
         /// The Bluetooth must be enabled and the bond must be created by CreateBond().
         /// </remarks>
         /// <param name="aliasName">Alias name of remote device.</param>
+        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not Enabled
+        /// or when set alias name to remote device fails.</exception>
         public void SetAlias(string aliasName)
         {
             if (BluetoothAdapter.IsBluetoothEnabled)
@@ -513,6 +521,8 @@ namespace Tizen.Network.Bluetooth
         /// If this succeeds, AuthorizationChanged event will be invoked.
         /// </remarks>
         /// <param name="authorizationState">Authorization state.</param>
+        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not Enabled
+        /// or when Set authorization to remote device fails.</exception>
         public void SetAuthorization(BluetoothAuthorizationType authorizationState)
         {
             if (BluetoothAdapter.IsBluetoothEnabled)
@@ -531,6 +541,8 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <returns>The service mask list converted from the given UUID list.</returns>
         /// <param name="uuids">Uuid list of the device.</param>
+        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not Enabled
+        /// or when get Mask from UUID fails.</exception>
         public BluetoothServiceClassType GetMaskFromUuid(string[] uuids)
         {
             BluetoothServiceClassType serviceMask;
@@ -551,6 +563,8 @@ namespace Tizen.Network.Bluetooth
         /// The Bluetooth must be enabled and remote device must be discoverable by StartDiscovery().The bond must be created by CreateBond().
         /// If this succeeds, ServiceSearched will be invoked.
         /// </remarks>
+        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not Enabled
+        /// or when remote device service search fails.</exception>
         public void StartServiceSearch()
         {
             Log.Info(Globals.LogTag, "startservicesearch entry");
@@ -572,6 +586,8 @@ namespace Tizen.Network.Bluetooth
         /// The Bluetooth must be enabled.
         /// </remarks>
         /// <returns>The connected Bluetooth profiles.</returns>
+        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not Enabled
+        /// or when there is no BT connection.</exception>
         public IEnumerable<BluetoothProfileType> GetConnectedProfiles()
         {
             if (BluetoothAdapter.IsBluetoothEnabled)
@@ -607,6 +623,8 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <returns><c>true</c> if profile is connected; otherwise, <c>false</c>.</returns>
         /// <param name="profileType">Bluetooth Profile type.</param>
+        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not Enabled
+        /// or when there is no BT connection.</exception>
         public bool IsProfileConnected(BluetoothProfileType profileType)
         {
             if (BluetoothAdapter.IsBluetoothEnabled)

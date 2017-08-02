@@ -33,6 +33,8 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// (event) AcceptStateChanged is raised when socket connection state is changed.
         /// </summary>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not Enabled
+        /// or when register accpet state changed callback fails.</exception>
         public event EventHandler<AcceptStateChangedEventArgs> AcceptStateChanged
         {
             add
@@ -98,6 +100,8 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>
         /// The socket must be created with CreateServerSocket(). This API invokes ConnectionStateChanged event.
         /// </remarks>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not Enabled
+        /// or when listen on socket procedure fails.</exception>
         public void Listen()
         {
             int ret = Interop.Bluetooth.Listen(socketFd, 1);
