@@ -20,7 +20,7 @@ namespace Tizen.Multimedia
 {
     /// <summary>
     /// Represents a size in 2D space.
-    /// <summary>
+    /// </summary>
     public struct Size
     {
         /// <summary>
