@@ -61,6 +61,17 @@ namespace Tizen.NUI
                 //You should release all of your own disposable objects here.
             }
 
+            if (_animationFinishedEventCallback != null)
+            {
+                FinishedSignal().Disconnect(_animationFinishedEventCallback);
+            }
+
+            if (_animationProgressReachedEventCallback != null)
+            {
+
+                ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
+            }
+
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -184,7 +195,7 @@ namespace Tizen.NUI
                     Tizen.Log.Debug("NUI", "discon1) ProgressReachedSignal().Empty = " + ProgressReachedSignal().Empty());
                     Tizen.Log.Debug("NUI", "discon2) ProgressReachedSignal().GetConnectionCount = " + ProgressReachedSignal().GetConnectionCount());
 #endif
-                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventHandler);
+                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
 #if DEBUG_ON
                     Tizen.Log.Debug("NUI", "discon3) ProgressReachedSignal().Empty = " + ProgressReachedSignal().Empty());
                     Tizen.Log.Debug("NUI", "discon4) ProgressReachedSignal().GetConnectionCount = " + ProgressReachedSignal().GetConnectionCount());

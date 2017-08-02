@@ -58,6 +58,31 @@ namespace Tizen.NUI.UIComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_popUpHiddenEventCallbackDelegate != null)
+            {
+                HiddenSignal().Disconnect(_popUpHiddenEventCallbackDelegate);
+            }
+
+            if (_popUpHidingEventCallbackDelegate != null)
+            {
+                HidingSignal().Disconnect(_popUpHidingEventCallbackDelegate);
+            }
+
+            if (_popUpShownEventCallbackDelegate != null)
+            {
+                ShownSignal().Disconnect(_popUpShownEventCallbackDelegate);
+            }
+
+            if (_popUpShowingEventCallbackDelegate != null)
+            {
+                ShowingSignal().Disconnect(_popUpShowingEventCallbackDelegate);
+            }
+
+            if (_popUpOutsideTouchedEventCallbackDelegate != null)
+            {
+                this.OutsideTouchedSignal().Disconnect(_popUpOutsideTouchedEventCallbackDelegate);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)

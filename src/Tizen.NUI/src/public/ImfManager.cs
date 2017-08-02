@@ -54,6 +54,36 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_imfKeyboardTypeChangedEventCallback != null)
+            {
+                KeyboardTypeChangedSignal().Disconnect(_imfKeyboardTypeChangedEventCallback);
+            }
+
+            if (_imfManagerLanguageChangedEventCallback != null)
+            {
+                LanguageChangedSignal().Disconnect(_imfManagerLanguageChangedEventCallback);
+            }
+
+            if (_imfManagerResizedEventCallback != null)
+            {
+                ResizedSignal().Disconnect(_imfManagerResizedEventCallback);
+            }
+
+            if (_imfManagerStatusChangedEventCallback != null)
+            {
+                StatusChangedSignal().Disconnect(_imfManagerStatusChangedEventCallback);
+            }
+
+            if (_imfManagerEventReceivedEventCallback != null)
+            {
+                EventReceivedSignal().Disconnect(_imfManagerEventReceivedEventCallback);
+            }
+
+            if (_imfManagerActivatedEventCallback != null)
+            {
+                ActivatedSignal().Disconnect(_imfManagerActivatedEventCallback);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)

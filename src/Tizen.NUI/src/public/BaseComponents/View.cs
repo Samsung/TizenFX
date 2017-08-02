@@ -59,6 +59,86 @@ namespace Tizen.NUI.BaseComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_onRelayoutEventCallback != null)
+            {
+                this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
+            }
+
+            if (_offWindowEventCallback != null)
+            {
+                this.OffWindowSignal().Disconnect(_offWindowEventCallback);
+            }
+
+            if (_onWindowEventCallback != null)
+            {
+                this.OnWindowSignal().Disconnect(_onWindowEventCallback);
+            }
+
+            if (_wheelEventCallback != null)
+            {
+                this.WheelEventSignal().Disconnect(_wheelEventCallback);
+            }
+
+            if (_hoverEventCallback != null)
+            {
+                this.HoveredSignal().Disconnect(_hoverEventCallback);
+            }
+
+            if (_touchDataCallback != null)
+            {
+                this.TouchSignal().Disconnect(_touchDataCallback);
+            }
+
+            if (_ResourcesLoadedCallback != null)
+            {
+                this.ResourcesLoadedSignal().Disconnect(_ResourcesLoadedCallback);
+            }
+
+            if (_offWindowEventCallback != null)
+            {
+                this.OffWindowSignal().Disconnect(_offWindowEventCallback);
+            }
+
+            if (_onWindowEventCallback != null)
+            {
+                this.OnWindowSignal().Disconnect(_onWindowEventCallback);
+            }
+
+            if (_wheelEventCallback != null)
+            {
+                this.WheelEventSignal().Disconnect(_wheelEventCallback);
+            }
+
+            if (_hoverEventCallback != null)
+            {
+                this.HoveredSignal().Disconnect(_hoverEventCallback);
+            }
+
+            if (_touchDataCallback != null)
+            {
+                this.TouchSignal().Disconnect(_touchDataCallback);
+            }
+
+            if (_onRelayoutEventCallback != null)
+            {
+                this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
+            }
+
+            if (_keyCallback != null)
+            {
+                this.KeyEventSignal().Disconnect(_keyCallback);
+            }
+
+            if (_keyInputFocusLostCallback != null)
+            {
+                this.KeyInputFocusLostSignal().Disconnect(_keyInputFocusLostCallback);
+            }
+
+            if (_keyInputFocusGainedCallback != null)
+            {
+                this.KeyInputFocusGainedSignal().Disconnect(_keyInputFocusGainedCallback);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)

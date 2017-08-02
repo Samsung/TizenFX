@@ -72,6 +72,26 @@ namespace Tizen.NUI.UIComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_stateChangedCallback != null)
+            {
+                StateChangedSignal().Disconnect(_stateChangedCallback);
+            }
+
+            if (_releasedCallback != null)
+            {
+                ReleasedSignal().Disconnect(_releasedCallback);
+            }
+
+            if (_pressedCallback != null)
+            {
+                this.PressedSignal().Disconnect(_pressedCallback);
+            }
+
+            if (_clickedCallback != null)
+            {
+                ClickedSignal().Disconnect(_clickedCallback);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)

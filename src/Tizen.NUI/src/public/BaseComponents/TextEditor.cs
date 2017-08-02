@@ -58,6 +58,11 @@ namespace Tizen.NUI.BaseComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_textEditorTextChangedCallbackDelegate != null)
+            {
+                TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
