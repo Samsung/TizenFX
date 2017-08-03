@@ -190,8 +190,13 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_genlist_selected_item_get(IntPtr obj);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_genlist_item_cursor_get(IntPtr obj);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_genlist_item_cursor_get")]
+        internal static extern IntPtr _elm_genlist_item_cursor_get(IntPtr obj);
+
+        internal static string elm_genlist_item_cursor_get(IntPtr obj)
+        {
+            return Marshal.PtrToStringAnsi(_elm_genlist_item_cursor_get(obj));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_genlist_item_cursor_set(IntPtr obj, string cursor);
@@ -205,8 +210,13 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_genlist_item_cursor_engine_only_set(IntPtr obj, bool engineOnly);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_genlist_item_cursor_style_get(IntPtr obj);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_genlist_item_cursor_style_get")]
+        internal static extern IntPtr _elm_genlist_item_cursor_style_get(IntPtr obj);
+
+        internal static string elm_genlist_item_cursor_style_get(IntPtr obj)
+        {
+            return Marshal.PtrToStringAnsi(_elm_genlist_item_cursor_style_get(obj));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_genlist_item_cursor_style_set(IntPtr obj, string style);
@@ -226,8 +236,13 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_genlist_item_tooltip_unset(IntPtr obj);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_genlist_item_tooltip_style_get(IntPtr obj);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_genlist_item_tooltip_style_get")]
+        internal static extern IntPtr _elm_genlist_item_tooltip_style_get(IntPtr obj);
+
+        internal static string elm_genlist_item_tooltip_style_get(IntPtr obj)
+        {
+            return Marshal.PtrToStringAnsi(_elm_genlist_item_tooltip_style_get(obj));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_genlist_item_tooltip_style_set(IntPtr obj, string style);

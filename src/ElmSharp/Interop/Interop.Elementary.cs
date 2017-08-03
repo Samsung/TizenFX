@@ -88,8 +88,7 @@ internal static partial class Interop
 
         internal static string elm_config_profile_get()
         {
-            var str = _elm_config_profile_get();
-            return Marshal.PtrToStringAnsi(str);
+            return Marshal.PtrToStringAnsi(_elm_config_profile_get());
         }
 
         [DllImport(Libraries.Elementary)]
@@ -176,10 +175,10 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_conformant_add(IntPtr obj);
 
-        [DllImport(Libraries.Elementary, EntryPoint = "elm_object_part_text_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_object_part_text_get")]
         internal static extern IntPtr _elm_object_part_text_get(IntPtr obj, IntPtr part);
 
-        [DllImport(Libraries.Elementary, EntryPoint = "elm_object_part_text_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_object_part_text_get")]
         internal static extern IntPtr _elm_object_part_text_get(IntPtr obj, string part);
 
         [DllImport(Libraries.Elementary)]
@@ -188,13 +187,12 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_object_tooltip_unset(IntPtr obj);
 
-        [DllImport(Libraries.Elementary, EntryPoint = "elm_object_tooltip_style_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_object_tooltip_style_get")]
         internal static extern IntPtr _elm_object_tooltip_style_get(IntPtr obj);
 
         internal static string elm_object_tooltip_style_get(IntPtr obj)
         {
-            var style = _elm_object_tooltip_style_get(obj);
-            return Marshal.PtrToStringAnsi(style);
+            return Marshal.PtrToStringAnsi(_elm_object_tooltip_style_get(obj));
         }
 
         [DllImport(Libraries.Elementary)]
@@ -235,14 +233,12 @@ internal static partial class Interop
 
         internal static string elm_object_part_text_get(IntPtr obj, string part)
         {
-            var text = _elm_object_part_text_get(obj, part);
-            return Marshal.PtrToStringAnsi(text);
+            return Marshal.PtrToStringAnsi(_elm_object_part_text_get(obj, part));
         }
 
         internal static string elm_object_part_text_get(IntPtr obj)
         {
-            var text = _elm_object_part_text_get(obj, IntPtr.Zero);
-            return Marshal.PtrToStringAnsi(text);
+            return Marshal.PtrToStringAnsi(_elm_object_part_text_get(obj, IntPtr.Zero));
         }
 
         [DllImport(Libraries.Elementary)]
@@ -282,13 +278,12 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_layout_text_set(IntPtr obj, string part, string text);
 
-        [DllImport(Libraries.Elementary, EntryPoint = "elm_layout_text_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_layout_text_get")]
         internal static extern IntPtr _elm_layout_text_get(IntPtr obj, string part);
 
         internal static string elm_layout_text_get(IntPtr obj, string part)
         {
-            var text = _elm_layout_text_get(obj, part);
-            return Marshal.PtrToStringAnsi(text);
+            return Marshal.PtrToStringAnsi(_elm_layout_text_get(obj, part));
         }
 
         [DllImport(Libraries.Elementary)]
@@ -324,8 +319,13 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_layout_box_remove_all(IntPtr obj, string part, bool clear);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_layout_data_get(IntPtr obj, string key);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_layout_data_get")]
+        internal static extern IntPtr _elm_layout_data_get(IntPtr obj, string key);
+
+        internal static string elm_layout_data_get(IntPtr obj, string key)
+        {
+            return Marshal.PtrToStringAnsi(_elm_layout_data_get(obj, key));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_layout_text_valign_set(IntPtr obj, string part, double valign);
@@ -360,13 +360,12 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_object_style_set(IntPtr obj, string style);
 
-        [DllImport(Libraries.Elementary, EntryPoint = "elm_object_style_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_object_style_get")]
         internal static extern IntPtr _elm_object_style_get(IntPtr obj);
 
         internal static string elm_object_style_get(IntPtr obj)
         {
-            var text = _elm_object_style_get(obj);
-            return Marshal.PtrToStringAnsi(text);
+            return Marshal.PtrToStringAnsi(_elm_object_style_get(obj));
         }
 
         [DllImport(Libraries.Elementary)]
@@ -433,7 +432,7 @@ internal static partial class Interop
         internal static extern void elm_theme_overlay_add(IntPtr theme, string path);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern string elm_language_set(string lang);
+        internal static extern void elm_language_set(string lang);
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_policy_set(uint policy, int value);
@@ -536,8 +535,13 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern bool edje_object_part_box_prepend(IntPtr obj, string part, IntPtr child);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string edje_object_part_state_get(IntPtr obj, string part, out double value);
+        [DllImport(Libraries.Elementary, EntryPoint = "edje_object_part_state_get")]
+        internal static extern IntPtr _edje_object_part_state_get(IntPtr obj, string part, out double value);
+
+        internal static string edje_object_part_state_get(IntPtr obj, string part, out double value)
+        {
+            return Marshal.PtrToStringAnsi(_edje_object_part_state_get(obj, part, out value));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void edje_object_signal_callback_add(IntPtr obj, string emission, string source, Edje_Signal_Cb func, IntPtr data);
@@ -754,14 +758,24 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_layout_part_cursor_engine_only_set(IntPtr obj, string part, bool engineOnly);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_layout_part_cursor_get(IntPtr obj, string part);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_layout_part_cursor_get")]
+        internal static extern IntPtr _elm_layout_part_cursor_get(IntPtr obj, string part);
+
+        internal static string elm_layout_part_cursor_get(IntPtr obj, string part)
+        {
+            return Marshal.PtrToStringAnsi(_elm_layout_part_cursor_get(obj, part));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_layout_part_cursor_set(IntPtr obj, string part, string cursor);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_layout_part_cursor_style_get(IntPtr obj, string part);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_layout_part_cursor_style_get")]
+        internal static extern IntPtr _elm_layout_part_cursor_style_get(IntPtr obj, string part);
+
+        internal static string elm_layout_part_cursor_style_get(IntPtr obj, string part)
+        {
+            return Marshal.PtrToStringAnsi(_elm_layout_part_cursor_style_get(obj, part));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_layout_part_cursor_style_set(IntPtr obj, string part, string style);

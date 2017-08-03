@@ -349,8 +349,13 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_anchor_hover_end(IntPtr obj);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_entry_anchor_hover_style_get(IntPtr obj);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_entry_anchor_hover_style_get")]
+        internal static extern IntPtr _elm_entry_anchor_hover_style_get(IntPtr obj);
+
+        internal static string elm_entry_anchor_hover_style_get(IntPtr obj)
+        {
+            return Marshal.PtrToStringAnsi(_elm_entry_anchor_hover_style_get(obj));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_anchor_hover_style_set(IntPtr obj, string style);
@@ -382,10 +387,15 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_selection_handler_disabled_set(IntPtr obj, bool disabled);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_entry_selection_get(IntPtr obj);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_entry_selection_get")]
+        internal static extern IntPtr _elm_entry_selection_get(IntPtr obj);
+
+        internal static string elm_entry_selection_get(IntPtr obj)
+        {
+            return Marshal.PtrToStringAnsi(_elm_entry_selection_get(obj));
+        }
 
         [DllImport(Libraries.Elementary)]
-        internal static extern string elm_entry_select_region_set(IntPtr obj, int start, int end);
+        internal static extern void elm_entry_select_region_set(IntPtr obj, int start, int end);
     }
 }

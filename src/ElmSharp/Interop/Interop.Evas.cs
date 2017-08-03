@@ -465,8 +465,13 @@ internal static partial class Interop
         [DllImport(Libraries.Evas)]
         internal static extern void evas_image_cache_set(IntPtr obj, int size);
 
-        [DllImport(Libraries.Evas)]
-        internal static extern string evas_load_error_str(LoadError error);
+        [DllImport(Libraries.Evas, EntryPoint = "evas_load_error_str")]
+        internal static extern IntPtr _evas_load_error_str(LoadError error);
+
+        internal static string evas_load_error_str(LoadError error)
+        {
+            return Marshal.PtrToStringAnsi(_evas_load_error_str(error));
+        }
 
         [DllImport(Libraries.Evas)]
         internal static extern IntPtr evas_object_data_del(IntPtr obj, string key);
@@ -579,11 +584,16 @@ internal static partial class Interop
         [DllImport(Libraries.Evas)]
         internal static extern IntPtr evas_smart_class_new(IntPtr obj);
 
-        [DllImport(Libraries.Evas)]
-        internal static extern string evas_device_name_get(IntPtr obj);
+        [DllImport(Libraries.Evas, EntryPoint = "evas_device_name_get")]
+        internal static extern IntPtr _evas_device_name_get(IntPtr obj);
+
+        internal static string evas_device_name_get(IntPtr obj)
+        {
+            return Marshal.PtrToStringAnsi(_evas_device_name_get(obj));
+        }
 
         [DllImport(Libraries.Evas)]
-        internal static extern string evas_font_path_global_clear();
+        internal static extern void evas_font_path_global_clear();
 
         [DllImport(Libraries.Evas)]
         internal static extern IntPtr evas_object_above_get(IntPtr obj);

@@ -76,8 +76,13 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_role_set(IntPtr obj, string role);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_win_focus_highlight_style_get(IntPtr obj);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_win_focus_highlight_style_get")]
+        internal static extern IntPtr _elm_win_focus_highlight_style_get(IntPtr obj);
+
+        internal static string elm_win_focus_highlight_style_get(IntPtr obj)
+        {
+            return Marshal.PtrToStringAnsi(_elm_win_focus_highlight_style_get(obj));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_focus_highlight_style_set(IntPtr obj, string style);
@@ -273,8 +278,13 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_focus_highlight_animate_set(IntPtr obj, bool animate);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_win_icon_name_get(IntPtr obj);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_win_icon_name_get")]
+        internal static extern IntPtr _elm_win_icon_name_get(IntPtr obj);
+
+        internal static string elm_win_icon_name_get(IntPtr obj)
+        {
+            return Marshal.PtrToStringAnsi(_elm_win_icon_name_get(obj));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_icon_name_set(IntPtr obj, string iconName);
@@ -315,8 +325,13 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_norender_push(IntPtr obj);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_win_profile_get(IntPtr obj);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_win_profile_get")]
+        internal static extern IntPtr _elm_win_profile_get(IntPtr obj);
+
+        internal static string elm_win_profile_get(IntPtr obj)
+        {
+            return Marshal.PtrToStringAnsi(_elm_win_profile_get(obj));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_profile_set(IntPtr obj, string profile);

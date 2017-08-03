@@ -141,8 +141,13 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_gengrid_last_item_get(IntPtr obj);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_gengrid_item_cursor_get(IntPtr obj);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_gengrid_item_cursor_get")]
+        internal static extern IntPtr _elm_gengrid_item_cursor_get(IntPtr obj);
+
+        internal static string elm_gengrid_item_cursor_get(IntPtr obj)
+        {
+            return Marshal.PtrToStringAnsi(_elm_gengrid_item_cursor_get(obj));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_gengrid_item_cursor_set(IntPtr obj, string cursor);
@@ -150,8 +155,13 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_gengrid_item_cursor_unset(IntPtr obj);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_gengrid_item_cursor_style_get(IntPtr obj);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_gengrid_item_cursor_style_get")]
+        internal static extern IntPtr _elm_gengrid_item_cursor_style_get(IntPtr obj);
+
+        internal static string elm_gengrid_item_cursor_style_get(IntPtr obj)
+        {
+            return Marshal.PtrToStringAnsi(_elm_gengrid_item_cursor_style_get(obj));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_gengrid_item_cursor_style_set(IntPtr obj, string cursor);
@@ -168,8 +178,13 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_gengrid_item_tooltip_unset(IntPtr obj);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_gengrid_item_tooltip_style_get(IntPtr obj);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_gengrid_item_tooltip_style_get")]
+        internal static extern IntPtr _elm_gengrid_item_tooltip_style_get(IntPtr obj);
+
+        internal static string elm_gengrid_item_tooltip_style_get(IntPtr obj)
+        {
+            return Marshal.PtrToStringAnsi(_elm_gengrid_item_tooltip_style_get(obj));
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_gengrid_item_tooltip_style_set(IntPtr obj, string style);
