@@ -188,8 +188,14 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_object_tooltip_unset(IntPtr obj);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern string elm_object_tooltip_style_get(IntPtr obj);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_object_tooltip_style_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern IntPtr _elm_object_tooltip_style_get(IntPtr obj);
+
+        internal static string elm_object_tooltip_style_get(IntPtr obj)
+        {
+            var style = _elm_object_tooltip_style_get(obj);
+            return Marshal.PtrToStringAnsi(style);
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_object_tooltip_style_set(IntPtr obj, string style);
