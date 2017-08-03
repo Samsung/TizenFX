@@ -113,6 +113,14 @@ namespace XamarinForTizen.Tizen
             };
             setMuteStBtn.Clicked += SetMuteStBtn_Clicked;
 
+            var getMuteStBtn = new Button
+            {
+                Text = "GetCallMuteStatus",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getMuteStBtn.Clicked += GetMuteStBtn_Clicked;
+
             var setVolumeInfoBtn = new Button
             {
                 Text = "SetCallVolumeInfo",
@@ -120,6 +128,14 @@ namespace XamarinForTizen.Tizen
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
             setVolumeInfoBtn.Clicked += SetVolumeInfoBtn_Clicked;
+
+            var getVolumeInfoBtn = new Button
+            {
+                Text = "GetCallVolumeInfo",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getVolumeInfoBtn.Clicked += GetVolumeInfoBtn_Clicked;
 
             var setSoundPathBtn = new Button
             {
@@ -144,6 +160,22 @@ namespace XamarinForTizen.Tizen
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
             getAllCallBtn.Clicked += GetAllCallBtn_Clicked;
+
+            var startstopContDtmfBtn = new Button
+            {
+                Text = "StartStopContDtmf",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            startstopContDtmfBtn.Clicked += StartStopContDtmfBtn_Clicked;
+
+            var sendBurstDtmfBtn = new Button
+            {
+                Text = "SendBurstDtmf",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            sendBurstDtmfBtn.Clicked += SendBurstDtmfBtn_Clicked;
 
             var preferredCallSubscriptionBtn = new Button
             {
@@ -170,7 +202,7 @@ namespace XamarinForTizen.Tizen
                     VerticalOptions = LayoutOptions.Center,
                     Children = {
                         getCallBtn, getAllCallBtn, preferredCallSubscriptionBtn, dialCallBtn, entry, ansCallBtn, endCallBtn, holdCallBtn, activeCallBtn, swapCallBtn, joinCallBtn, transferCallBtn,
-                        splitCallBtn, setMuteStBtn, setVolumeInfoBtn, setSoundPathBtn
+                        startstopContDtmfBtn, sendBurstDtmfBtn, splitCallBtn, setMuteStBtn, getMuteStBtn, setVolumeInfoBtn, getVolumeInfoBtn, setSoundPathBtn
                     }
                 },
                 VerticalOptions = LayoutOptions.Center
@@ -443,6 +475,37 @@ namespace XamarinForTizen.Tizen
             }
         }
 
+        private async void GetVolumeInfoBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Get call volume info start");
+                var actionDev = await DisplayActionSheet("Device", "Cancel", null, Enum.GetNames(typeof(SoundDevice)));
+                var actionType = await DisplayActionSheet("Type", "Cancel", null, Enum.GetNames(typeof(SoundType)));
+                Log.Debug(Globals.LogTag, "Action: Device = " + actionDev + ", type = " + actionType);
+                if (actionDev != null && actionType != null)
+                {
+                    SoundDevice device = (SoundDevice)Enum.Parse(typeof(SoundDevice), actionDev);
+                    SoundType type = (SoundType)Enum.Parse(typeof(SoundType), actionType);
+                    CallVolumeInfo info = await call.GetCallVolumeInfo(device, type);
+                    Log.Debug(Globals.LogTag, "Get call volume info ends with success, id = "+info.RecordId);
+                    var list = info.Records.ToList();
+                    if(list != null)
+                    {
+                        foreach(CallVolumeRecord record in list)
+                        {
+                            Log.Debug(Globals.LogTag, "Callvolumerecord: device = " + record.Device + ",type = "+record.Type +", volume = "+ record.Volume);
+                        }
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Get call volume info ,exception = " + ex.ToString());
+            }
+        }
+
         private async void SetMuteStBtn_Clicked(object sender, EventArgs e)
         {
             try
@@ -464,6 +527,62 @@ namespace XamarinForTizen.Tizen
             catch (Exception ex)
             {
                 Log.Debug(Globals.LogTag, "Set mute status, exception = " + ex.ToString());
+            }
+        }
+
+        private async void GetMuteStBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Get call mute status start");
+                CallMuteStatusRecord record = await call.GetCallMuteStatus();
+                Log.Debug(Globals.LogTag, "Get call mute status ends, mute status = "+ record.Status + ", mute path = " + record.Path);
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Get mute status, exception = " + ex.ToString());
+            }
+        }
+
+        private async void StartStopContDtmfBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Continuous Dtmf starts");
+                await call.StartContDtmfCall(1);
+                await Task.Delay(15000);
+                await call.StopContDtmfCall();
+                Log.Debug(Globals.LogTag, "Continuous Dtmf stops");
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Start and stop continuous Dtmf, exception = " + ex.ToString());
+            }
+        }
+
+        private async void SendBurstDtmfBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Send burst Dtmf starts");
+                var actionWidth = await DisplayActionSheet("Width", "Cancel", null, Enum.GetNames(typeof(CallDtmfPulseWidth)));
+                var actionInterval = await DisplayActionSheet("Interval", "Cancel", null, Enum.GetNames(typeof(CallDtmfDigitInterval)));
+                Log.Debug(Globals.LogTag, "Action: width = " + actionWidth + ", interval = " + actionInterval);
+                if (actionWidth != null && actionInterval != null)
+                {
+                    CallDtmfPulseWidth width = (CallDtmfPulseWidth)Enum.Parse(typeof(CallDtmfPulseWidth), actionWidth);
+                    CallDtmfDigitInterval interval = (CallDtmfDigitInterval)Enum.Parse(typeof(CallDtmfDigitInterval), actionInterval);
+                    CallBurstDtmfData data = new CallBurstDtmfData("12345", width, interval);
+                    await call.SendBurstDtmfCall(data);
+                    Log.Debug(Globals.LogTag, "Send burst Dtmf ends");
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Send burst Dtmf, exception = " + ex.ToString());
             }
         }
 
