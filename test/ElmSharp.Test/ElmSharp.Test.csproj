@@ -165,6 +165,7 @@
     <Compile Include="TC\Wearable\ImageTest4.cs" />
     <Compile Include="TC\Wearable\IndexTest1.cs" />
     <Compile Include="TC\Wearable\IndexTest2.cs" />
+    <Compile Include="TC\LabelTest6.cs" />
     <Compile Include="TC\Wearable\ListTest1.cs" />
     <Compile Include="TC\Wearable\ProgressBarTest1.cs" />
     <Compile Include="TC\Wearable\ProgressBarTest2.cs" />
