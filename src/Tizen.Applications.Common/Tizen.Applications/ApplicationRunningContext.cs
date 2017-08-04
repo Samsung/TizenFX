@@ -245,6 +245,30 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Resumes the running application.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        public void Resume()
+        {
+            err = Interop.ApplicationManager.AppManagerResumeApp(_contextHandle);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid argument.");
+                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
+                        throw new UnauthorizedAccessException("Permission denied.");
+                    default:
+                        throw new InvalidOperationException("Invalid Operation.");
+                }
+            }
+        }
+
+        /// <summary>
         /// Releases all resources used by the ApplicationRunningContext class.
         /// </summary>
         public void Dispose()
