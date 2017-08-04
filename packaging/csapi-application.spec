@@ -1,6 +1,6 @@
 Name:       csapi-application
 Summary:    Tizen Application API for C#
-Version:    1.5.8
+Version:    1.5.9
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -21,12 +21,12 @@ BuildRequires: csapi-tizen-nuget
 %description
 %{summary}
 
-%define ApplicationCommon 1.5.9
+%define ApplicationCommon 1.5.10
 %define MessagePort 1.5.8
-%define PackageManager 1.5.8
+%define PackageManager 1.5.9
 %define Notification 1.5.9
 %define NotificationEventListener 1.5.9
-%define Alarm 1.5.8
+%define Alarm 1.5.9
 %define Preference 1.5.8
 %define ApplicationService 1.5.8
 %define ApplicationUI 1.5.8
