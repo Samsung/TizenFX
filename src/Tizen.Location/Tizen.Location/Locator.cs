@@ -100,7 +100,6 @@ namespace Tizen.Location
         /// </summary>
         /// <since_tizen>3</since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public int Interval
         {
             get
@@ -129,7 +128,6 @@ namespace Tizen.Location
         /// </summary>
         /// <since_tizen>3</since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public int StayInterval
         {
             get
@@ -158,7 +156,6 @@ namespace Tizen.Location
         /// </summary>
         /// <since_tizen>3</since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public int BatchInterval
         {
             get
@@ -182,12 +179,11 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The time interval between batch callback updates. The BatchPeriod should be greater than or equal to the BatchInterval. If BatchPeriod is zero or smaller than BatchInterval, then batch mode will not working.
+        /// The time interval between batch callback updates. The BatchPeriod should be greater than or equal to the BatchInterval. If BatchPeriod is zero or smaller than BatchInterval, then batch mode will not working. In addition, sometimes the period may not work as you intended, the maximum permissible value for batch_period is device specific.
         /// Should be in the range [0~60000] seconds.
         /// </summary>
         /// <since_tizen>3</since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public int BatchPeriod
         {
             get
@@ -216,7 +212,6 @@ namespace Tizen.Location
         /// </summary>
         /// <since_tizen>3</since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public double Distance
         {
             get
@@ -559,7 +554,6 @@ namespace Tizen.Location
         /// </summary>
         /// <since_tizen>3</since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public void Dispose()
         {
             Dispose(true);
@@ -857,18 +851,15 @@ namespace Tizen.Location
             add
             {
                 Log.Info(Globals.LogTag, "Adding LocationChanged EventHandler");
-                if (_locationChanged == null)
+                if (_batchPeriod > 0 && _batchPeriod > _batchInterval)
                 {
-                    if (_batchPeriod > 0 && _batchPeriod > _batchInterval)
-                    {
-                        Log.Info(Globals.LogTag, "Calling function SetLocationBatchCallback");
-                        SetLocationBatchCallback();
-                    }
-                    else
-                    {
-                        Log.Info(Globals.LogTag, "Calling function SetLocationChangedCallback");
-                        SetLocationChangedCallback();
-                    }
+                    Log.Info(Globals.LogTag, "Calling function SetLocationBatchCallback");
+                    SetLocationBatchCallback();
+                }
+                else
+                {
+                    Log.Info(Globals.LogTag, "Calling function SetLocationChangedCallback");
+                    SetLocationChangedCallback();
                 }
                 _locationChanged += value;
             }

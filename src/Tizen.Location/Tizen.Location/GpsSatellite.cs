@@ -40,7 +40,6 @@ namespace Tizen.Location
         /// </summary>
         /// <since_tizen>3</since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public int Interval
         {
             get

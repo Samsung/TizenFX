@@ -1,6 +1,6 @@
 Name:       csapi-location
 Summary:    Tizen Location API for C#
-Version:    1.0.8
+Version:    1.0.9
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0 and SAMSUNG
