@@ -83,6 +83,8 @@ namespace TextTest
             field.Position2D = new Position2D(10, 400);
             field.BackgroundColor = Color.Cyan;
             field.PlaceholderText = "input someth...";
+            field.PlaceholderTextFocused = "input someth... focused";
+            field.Focusable = true;
             PropertyMap hiddenMap = new PropertyMap();
             hiddenMap.Add(HiddenInputProperty.Mode, new PropertyValue((int)HiddenInputModeType.ShowLastCharacter));
             hiddenMap.Add(HiddenInputProperty.ShowDuration, new PropertyValue(2));
@@ -101,9 +103,10 @@ namespace TextTest
             field.InputMethodSettings = inputMethod.OutputMap;
 
             PropertyMap propertyMap = new PropertyMap();
-            propertyMap.Add("placeholderText", new PropertyValue("Setting Placeholder Text"));
+            propertyMap.Add("placeholderText", new PropertyValue("Placeholder Text"));
+            propertyMap.Add("placeholderTextFocused", new PropertyValue("Placeholder Text Focused"));
             propertyMap.Add("placeholderColor", new PropertyValue(Color.Red));
-            propertyMap.Add("placeholderPointSize", new PropertyValue(12.0f));
+            propertyMap.Add("placeholderPointSize", new PropertyValue(15.0f));
 
             PropertyMap fontStyleMap = new PropertyMap();
             fontStyleMap.Add("weight", new PropertyValue("bold"));
@@ -119,7 +122,6 @@ namespace TextTest
             editor.EnableSelection = true;
             editor.Focusable = true;
             editor.Placeholder = propertyMap;
-            FocusManager.Instance.SetCurrentFocusView(editor);
             window.Add(editor);
             editor.TextChanged += (obj, e) => {
                 Tizen.Log.Debug("NUI", "editor line count: " + e.TextEditor.LineCount);
@@ -130,6 +132,10 @@ namespace TextTest
             };
 
             Tizen.Log.Debug("NUI",  "editor id: " + editor.ID);
+
+            FocusManager.Instance.SetCurrentFocusView(editor);
+            editor.UpFocusableView = field;
+            field.DownFocusableView = editor;
         }
 
         [STAThread]
