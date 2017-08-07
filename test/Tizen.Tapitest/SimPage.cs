@@ -63,6 +63,102 @@ namespace XamarinForTizen.Tizen
             };
             langPrefBtn.Clicked += langPrefBtn_Clicked;
 
+            var getCfBtn = new Button
+            {
+                Text = "Get call forward info",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getCfBtn.Clicked += getCfBtn_Clicked;
+
+            var getMwBtn = new Button
+            {
+                Text = "Get message waiting info",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getMwBtn.Clicked += getMwBtn_Clicked;
+
+            var getMbBtn = new Button
+            {
+                Text = "Get mailbox info",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getMbBtn.Clicked += getMbBtn_Clicked;
+
+            var getCphsBtn = new Button
+            {
+                Text = "Get CPHS info",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getCphsBtn.Clicked += getCphsBtn_Clicked;
+
+            var getCphsNetNameBtn = new Button
+            {
+                Text = "Get CPHS operator name",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getCphsNetNameBtn.Clicked += getCphsNetNameBtn_Clicked;
+
+            var getFacilityBtn = new Button
+            {
+                Text = "Get sim facility",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getFacilityBtn.Clicked += getFacilityBtn_Clicked;
+
+            var getLockInfoBtn = new Button
+            {
+                Text = "Get sim lock status",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getLockInfoBtn.Clicked += getLockInfoBtn_Clicked;
+
+            var getImpiBtn = new Button
+            {
+                Text = "Get sim IMPI",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getImpiBtn.Clicked += getImpiBtn_Clicked;
+
+            var getImpuBtn = new Button
+            {
+                Text = "Get sim IMPU",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getImpuBtn.Clicked += getImpuBtn_Clicked;
+
+            var getDomainBtn = new Button
+            {
+                Text = "Get sim domain",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getDomainBtn.Clicked += getDomainBtn_Clicked;
+
+            var getPcscfBtn = new Button
+            {
+                Text = "Get sim P-CSCF",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getPcscfBtn.Clicked += getPcscfBtn_Clicked;
+
+            var getIsimSvcTableBtn = new Button
+            {
+                Text = "Get ISIM service table",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            getIsimSvcTableBtn.Clicked += getIsimSvcTableBtn_Clicked;
+
             var msisdnBtn = new Button
             {
                 Text = "Get sim MSISDN",
@@ -119,14 +215,20 @@ namespace XamarinForTizen.Tizen
             };
             atrBtn.Clicked += atrBtn_Clicked;
 
-            Content = new StackLayout
+            ScrollView scrollView = new ScrollView()
             {
-                VerticalOptions = LayoutOptions.Center,
-                Children = {
-                        SimInitInfoBtn, SimPropertiesBtn, appListBtn, iccIdBtn, langPrefBtn, msisdnBtn, oplmnwactBtn,
-                        spnBtn, autnBtn, powerBtn, apduBtn, atrBtn
+                Content = new StackLayout
+                {
+                    VerticalOptions = LayoutOptions.Center,
+                    Children = {
+                        SimInitInfoBtn, SimPropertiesBtn, appListBtn, iccIdBtn, langPrefBtn, getCfBtn, getCphsBtn, getMbBtn,
+                        getMwBtn, getCphsNetNameBtn, getFacilityBtn, getLockInfoBtn, getImpiBtn, getImpuBtn, getDomainBtn,
+                        getPcscfBtn, getIsimSvcTableBtn, msisdnBtn, oplmnwactBtn, spnBtn, autnBtn, powerBtn, apduBtn, atrBtn
                     }
+                },
+                VerticalOptions = LayoutOptions.Center
             };
+            Content = scrollView;
         }
 
         private async void atrBtn_Clicked(object sender, EventArgs e)
@@ -289,6 +391,269 @@ namespace XamarinForTizen.Tizen
             catch (Exception ex)
             {
                 Log.Debug(Globals.LogTag, "Sim get msisdn exception: " + ex.ToString());
+            }
+        }
+
+        private async void getIsimSvcTableBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Sim get ISIM service table start");
+                Log.Debug(Globals.LogTag, "ISIM service: " + Encoding.UTF8.GetString(await sim.SimGetIsimServiceTable()));
+                Log.Debug(Globals.LogTag, "Sim get ISIM service table success");
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Sim get ISIM service table exception: " + ex.ToString());
+            }
+        }
+
+        private async void getPcscfBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Sim get P-CSCF start");
+                SimPcscfList pcsf = await sim.SimGetPcscf();
+                Log.Debug(Globals.LogTag, "Data count: " + pcsf.Count);
+                List<SimPcscf> list = pcsf.List.ToList();
+                for (int i = 0; i < pcsf.Count; i++)
+                {
+                    Log.Debug(Globals.LogTag, "PcscfList[" + i + "].Type: " + list[i].Type);
+                    Log.Debug(Globals.LogTag, "PcscfList[" + i + "].Data: " + list[i].Pcscf);
+                }
+
+                Log.Debug(Globals.LogTag, "Sim get P-CSCF success");
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Sim get P-CSCF exception: " + ex.ToString());
+            }
+        }
+
+        private async void getDomainBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Sim get domain start");
+                Log.Debug(Globals.LogTag, "Domain: " + await sim.SimGetDomain());
+                Log.Debug(Globals.LogTag, "Sim get domain success");
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Sim get domain exception: " + ex.ToString());
+            }
+        }
+
+        private async void getImpuBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Sim get IMPU start");
+                SimImpuList impu = await sim.SimGetImpu();
+                Log.Debug(Globals.LogTag, "Data count: " + impu.Count);
+                List<string> list = impu.List.ToList();
+                for (int i = 0; i < impu.Count; i++)
+                {
+                    Log.Debug(Globals.LogTag, "Data count[" + i + "]: " + list[i]);
+                }
+
+                Log.Debug(Globals.LogTag, "Sim get IMPU success");
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Sim get IMPU exception: " + ex.ToString());
+            }
+        }
+
+        private async void getImpiBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Sim get IMPI start");
+                string impi = await sim.SimGetImpi();
+                Log.Debug(Globals.LogTag, "IMPI: " + impi);
+                Log.Debug(Globals.LogTag, "Sim get IMPI success");
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Sim get IMPI exception: " + ex.ToString());
+            }
+        }
+
+        private async void getLockInfoBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Sim get lock status start");
+                SimLockInfo info = await sim.SimGetLockInfo(SimLockType.PS);
+                Log.Debug(Globals.LogTag, "Lock type: " + info.Type);
+                Log.Debug(Globals.LogTag, "Status: " + info.Status);
+                Log.Debug(Globals.LogTag, "Retry counts: " + info.RetryCount);
+                Log.Debug(Globals.LogTag, "Sim get lock status success");
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Sim get lock status exception: " + ex.ToString());
+            }
+        }
+
+        private async void getFacilityBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Sim get facility start");
+                SimFacilityInfo info = await sim.SimGetFacility(SimLockType.PS);
+                Log.Debug(Globals.LogTag, "Lock type: " + info.Type);
+                Log.Debug(Globals.LogTag, "Status: " + info.Status);
+                Log.Debug(Globals.LogTag, "Sim get facility success");
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Sim get facility exception: " + ex.ToString());
+            }
+        }
+
+        private async void getCphsNetNameBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Sim get CPHS net name start");
+                SimCphsNetName name = await sim.SimGetCphsNetName();
+                Log.Debug(Globals.LogTag, "Full name: " + name.FullName);
+                Log.Debug(Globals.LogTag, "Short name: " + name.ShortName);
+                Log.Debug(Globals.LogTag, "Sim get CPHS net name success");
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Sim get CPHS net name exception: " + ex.ToString());
+            }
+        }
+
+        private async void getCphsBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Sim get CPHS info start");
+                SimCphsInfo info = await sim.SimGetCphsInfo();
+                Log.Debug(Globals.LogTag, "CPHS phase: " + info.CphsPhase);
+                Log.Debug(Globals.LogTag, "CPHS CSP: " + info.CphsServiceTable.CustomerServiceProfile);
+                Log.Debug(Globals.LogTag, "CPHS SST: " + info.CphsServiceTable.ServiceStringTable);
+                Log.Debug(Globals.LogTag, "CPHS Mailboxnumbers: " + info.CphsServiceTable.MailboxNumbers);
+                Log.Debug(Globals.LogTag, "CPHS Operator short form name: " + info.CphsServiceTable.OperatorNameShortForm);
+                Log.Debug(Globals.LogTag, "CPHS information numbers: " + info.CphsServiceTable.InformationNumbers);
+                Log.Debug(Globals.LogTag, "Sim get CPHS info success");
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Sim get CPHS info exception: " + ex.ToString());
+            }
+        }
+
+        private async void getMbBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Sim get mailbox info start");
+                SimMailboxList mbList = await sim.SimGetMailboxInfo();
+                Log.Debug(Globals.LogTag, "Mb count: " + mbList.Count);
+                List<SimMailboxNumber> list = mbList.List.ToList();
+                for (int i = 0; i < mbList.Count; i++)
+                {
+                    Log.Debug(Globals.LogTag, "MbList[" + i + "].IsCphs: " + list[i].IsCphs);
+                    Log.Debug(Globals.LogTag, "MbList[" + i + "].RecIndex: " + list[i].RecIndex);
+                    Log.Debug(Globals.LogTag, "MbList[" + i + "].ProfileNumber: " + list[i].ProfileNumber);
+                    Log.Debug(Globals.LogTag, "MbList[" + i + "].MbType: " + list[i].MbType);
+                    Log.Debug(Globals.LogTag, "MbList[" + i + "].AlphaMaxLength: " + list[i].AlphaMaxLength);
+                    Log.Debug(Globals.LogTag, "MbList[" + i + "].AlphaId: " + list[i].AlphaId);
+                    Log.Debug(Globals.LogTag, "MbList[" + i + "].Ton: " + list[i].Ton);
+                    Log.Debug(Globals.LogTag, "MbList[" + i + "].Npi: " + list[i].Npi);
+                    Log.Debug(Globals.LogTag, "MbList[" + i + "].Number: " + list[i].Number);
+                    Log.Debug(Globals.LogTag, "MbList[" + i + "].CcId: " + list[i].CcId);
+                    Log.Debug(Globals.LogTag, "MbList[" + i + "].Ext1Id: " + list[i].Ext1Id);
+                }
+
+                Log.Debug(Globals.LogTag, "Sim get mailbox info success");
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Sim get mailbox info exception: " + ex.ToString());
+            }
+        }
+
+        private async void getMwBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Sim get message waiting info start");
+                SimMessageWaitingResponse resp = await sim.SimGetMessageWaitingInfo();
+                Log.Debug(Globals.LogTag, "Is CPHS: " + resp.IsCphs);
+                Log.Debug(Globals.LogTag, "MWIS profile count: " + resp.MwList.ProfileCount);
+                List<SimMwis> mwis = resp.MwList.MwList.ToList();
+                for (int i = 0; i < resp.MwList.ProfileCount; i++)
+                {
+                    Log.Debug(Globals.LogTag, "MWisList[" + i + "].RecIndex: " + mwis[i].RecIndex);
+                    Log.Debug(Globals.LogTag, "MWisList[" + i + "].IndicatorStatus: " + mwis[i].IndicatorStatus);
+                    Log.Debug(Globals.LogTag, "MWisList[" + i + "].VoiceCount: " + mwis[i].VoiceCount);
+                    Log.Debug(Globals.LogTag, "MWisList[" + i + "].FaxCount: " + mwis[i].FaxCount);
+                    Log.Debug(Globals.LogTag, "MWisList[" + i + "].EmailCount: " + mwis[i].EmailCount);
+                    Log.Debug(Globals.LogTag, "MWisList[" + i + "].OtherCount: " + mwis[i].OtherCount);
+                    Log.Debug(Globals.LogTag, "MWisList[" + i + "].VideoCount: " + mwis[i].VideoCount);
+                }
+
+                Log.Debug(Globals.LogTag, "CPHSMW.Voice1: " + resp.CphsMw.IsVoice1);
+                Log.Debug(Globals.LogTag, "CPHSMW.Voice2: " + resp.CphsMw.IsVoice2);
+                Log.Debug(Globals.LogTag, "CPHSMW.Fax: " + resp.CphsMw.IsFax);
+                Log.Debug(Globals.LogTag, "CPHSMW.Data: " + resp.CphsMw.IsData);
+                Log.Debug(Globals.LogTag, "Sim get message waiting info success");
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Sim get message waiting info exception: " + ex.ToString());
+            }
+        }
+
+        private async void getCfBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Log.Debug(Globals.LogTag, "Sim get call forward info start");
+                SimCallForwardResponse resp = await sim.SimGetCallForwardInfo();
+                Log.Debug(Globals.LogTag, "Is CPHS: " + resp.IsCphs);
+                Log.Debug(Globals.LogTag, "CFIS profile count: " + resp.CfList.ProfileCount);
+                List<SimCfis> cfis = resp.CfList.CfisList.ToList();
+                for (int i = 0; i < resp.CfList.ProfileCount; i++)
+                {
+                    Log.Debug(Globals.LogTag, "CfisList[" + i + "].RecIndex: " + cfis[i].RecIndex);
+                    Log.Debug(Globals.LogTag, "CfisList[" + i + "].MspNum: " + cfis[i].MspNum);
+                    Log.Debug(Globals.LogTag, "CfisList[" + i + "].CfuStatus: " + cfis[i].CfuStatus);
+                    Log.Debug(Globals.LogTag, "CfisList[" + i + "].Ton: " + cfis[i].Ton);
+                    Log.Debug(Globals.LogTag, "CfisList[" + i + "].Npi: " + cfis[i].Npi);
+                    Log.Debug(Globals.LogTag, "CfisList[" + i + "].CfuNum: " + cfis[i].CfuNum);
+                    Log.Debug(Globals.LogTag, "CfisList[" + i + "].Cc2Id: " + cfis[i].Cc2Id);
+                    Log.Debug(Globals.LogTag, "CfisList[" + i + "].Ext7Id: " + cfis[i].Ext7Id);
+                }
+
+                Log.Debug(Globals.LogTag, "CPHSCF.Line1: " + resp.CphsCf.Line1);
+                Log.Debug(Globals.LogTag, "CPHSCF.Line2: " + resp.CphsCf.Line2);
+                Log.Debug(Globals.LogTag, "CPHSCF.Fax: " + resp.CphsCf.Fax);
+                Log.Debug(Globals.LogTag, "CPHSCF.Data: " + resp.CphsCf.Data);
+                Log.Debug(Globals.LogTag, "Sim get call forward info success");
+            }
+
+            catch (Exception ex)
+            {
+                Log.Debug(Globals.LogTag, "Sim get call forward info exception: " + ex.ToString());
             }
         }
 
