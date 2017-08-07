@@ -22,9 +22,9 @@ namespace ElmSharp
 {
     /// <summary>
     /// The GestureLayer is used to detect gestures.
-    /// Inherits EvasObject
+    /// Inherits Widget
     /// </summary>
-    public class GestureLayer : EvasObject
+    public class GestureLayer : Widget
     {
         private readonly Interop.Elementary.GestureEventCallback _gestureCallback;
 
@@ -51,34 +51,42 @@ namespace ElmSharp
             /// N fingers single taps
             /// </summary>
             Tap = 1,
+
             /// <summary>
             /// N fingers single long-taps
             /// </summary>
             LongTap,
+
             /// <summary>
             /// N fingers double-single taps
             /// </summary>
             DoubleTap,
+
             /// <summary>
             /// N fingers triple-single taps
             /// </summary>
             TripleTap,
+
             /// <summary>
             /// Reports momentum in the direction of move
             /// </summary>
             Momentum,
+
             /// <summary>
             /// N fingers line gesture
             /// </summary>
             Line,
+
             /// <summary>
             /// N fingers flick gesture
             /// </summary>
             Flick,
+
             /// <summary>
             /// Zoom
             /// </summary>
             Zoom,
+
             /// <summary>
             /// Rotate
             /// </summary>
@@ -94,18 +102,22 @@ namespace ElmSharp
             /// Gesture not started
             /// </summary>
             Undefined = -1,
+
             /// <summary>
             /// Gesture started
             /// </summary>
             Start,
+
             /// <summary>
             /// Gesture is ongoing
             /// </summary>
             Move,
+
             /// <summary>
             /// Gesture completed
             /// </summary>
             End,
+
             /// <summary>
             /// Ongoing gesture is aborted
             /// </summary>
@@ -113,6 +125,7 @@ namespace ElmSharp
         }
 
         #region Properties
+
         /// <summary>
         /// Sets or gets the repeat-events setting.
         /// </summary>
@@ -337,6 +350,7 @@ namespace ElmSharp
                 Interop.Elementary.elm_gesture_layer_zoom_wheel_factor_set(Handle, value);
             }
         }
+
         #endregion Properties
 
         /// <summary>
@@ -416,6 +430,7 @@ namespace ElmSharp
         }
 
         #region Typed callback setting methods
+
         // Following methods have been added for convenience, so the user will not have to convert Info structures himself
         /// <summary>
         /// Set the tap callback.
@@ -477,6 +492,7 @@ namespace ElmSharp
         {
             SetCallback(GestureType.Rotate, state, action);
         }
+
         #endregion Typed callback setting methods
 
         /// <summary>
@@ -525,16 +541,20 @@ namespace ElmSharp
                 case GestureType.TripleTap:
                     action(Marshal.PtrToStructure<TapData>(event_info));
                     break;
+
                 case GestureType.Momentum:
                     action(Marshal.PtrToStructure<MomentumData>(event_info));
                     break;
+
                 case GestureType.Line:
                 case GestureType.Flick:
                     action(Marshal.PtrToStructure<LineData>(event_info));
                     break;
+
                 case GestureType.Zoom:
                     action(Marshal.PtrToStructure<ZoomData>(event_info));
                     break;
+
                 case GestureType.Rotate:
                     action(Marshal.PtrToStructure<RotateData>(event_info));
                     break;
@@ -542,6 +562,7 @@ namespace ElmSharp
         }
 
         #region Info structures
+
         /// <summary>
         /// The struct of TapData
         /// </summary>
@@ -559,6 +580,7 @@ namespace ElmSharp
             public Int32 Y;
 
 #pragma warning disable 3003
+
             /// <summary>
             /// The number of fingers tapped.
             /// </summary>
@@ -568,6 +590,7 @@ namespace ElmSharp
             /// The timestamp.
             /// </summary>
             public UInt32 Timestamp;
+
 #pragma warning restore 3003
         }
 
@@ -598,6 +621,7 @@ namespace ElmSharp
             public Int32 Y2;
 
 #pragma warning disable 3003
+
             /// <summary>
             /// Timestamp of start of final x-swipe.
             /// </summary>
@@ -622,6 +646,7 @@ namespace ElmSharp
             /// Number of fingers.
             /// </summary>
             public UInt32 FingersCount;
+
 #pragma warning restore 3003
         }
 
@@ -652,6 +677,7 @@ namespace ElmSharp
             public Int32 Y2;
 
 #pragma warning disable 3003
+
             /// <summary>
             /// Timestamp of start of final x-swipe.
             /// </summary>
@@ -676,6 +702,7 @@ namespace ElmSharp
             /// Number of fingers.
             /// </summary>
             public UInt32 FingersCount;
+
 #pragma warning restore 3003
 
             /// <summary>
@@ -754,6 +781,7 @@ namespace ElmSharp
         }
 
         #endregion Info structures
+
         /// <summary>
         /// Config is a static class, it provides gestureLayer's timeout information.
         /// </summary>
