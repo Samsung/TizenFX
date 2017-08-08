@@ -54,7 +54,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
-        /// <value>A string that represents the current object.</value>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString() =>
             $"Region={Region}, Message={Message}, Type={Type.ToString()}";
     }

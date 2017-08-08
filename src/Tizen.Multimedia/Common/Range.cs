@@ -75,13 +75,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
-        /// <value>A string that represents the current object.</value>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString() => $"Min={Min.ToString()}, Max={Max.ToString()}";
 
         /// <summary>
         /// Gets the hash code for this instance of <see cref="Range"/>.
         /// </summary>
-        /// <value>The hash code for this instance of <see cref="Range"/>.</value>
+        /// <returns>The hash code for this instance of <see cref="Range"/>.</returns>
         public override int GetHashCode()
         {
             return new { Min, Max }.GetHashCode();

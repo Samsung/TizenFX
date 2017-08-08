@@ -127,13 +127,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
-        /// <value>A string that represents the current object.</value>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString() => $"{_location.ToString()}, {_size.ToString()}";
 
         /// <summary>
         /// Gets the hash code for this instance of <see cref="Rectangle"/>.
         /// </summary>
-        /// <value>The hash code for this instance of <see cref="Rectangle"/>.</value>
+        /// <returns>The hash code for this instance of <see cref="Rectangle"/>.</returns>
         public override int GetHashCode()
         {
             return new { Location, Size }.GetHashCode();
