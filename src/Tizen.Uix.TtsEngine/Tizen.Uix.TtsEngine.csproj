@@ -1,5 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
- 
+
+  <PropertyGroup>
+    <Version>1.0.2</Version>
+    <Authors>Samsung Electronics</Authors>
+    <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
+    <Description>TTS Engine Uix API for Tizen .NET</Description>
+    <PackageProjectUrl>https://www.tizen.org/</PackageProjectUrl>
+    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
+  </PropertyGroup>
+
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -8,9 +18,9 @@
     <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
     <GenerateReferenceAssembly>True</GenerateReferenceAssembly>
   </PropertyGroup>
- 
+
   <ItemGroup>
     <PackageReference Include="Tizen" Version="1.0.5" />
   </ItemGroup>
- 
+
 </Project>
