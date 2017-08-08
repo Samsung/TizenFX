@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.Bluetooth
 {
     /// <summary>
-    /// IBluetoothServerSocket interface. Handles the server socket operations.
+    /// The IBluetoothServerSocket interface handles the server socket operations.
     /// </summary>
     public interface IBluetoothServerSocket
     {
@@ -31,7 +31,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// IBluetoothClientSocket interface. Handles the client socket operations.
+    /// The IBluetoothClientSocket interface handles the client socket operations.
     /// </summary>
     public interface IBluetoothClientSocket : IBluetoothServerSocket
     {
@@ -51,10 +51,10 @@ namespace Tizen.Network.Bluetooth
         internal string serviceUuid;
 
         /// <summary>
-        /// This event occurs when socket server received data from client.
+        /// This event occurs when the socket server receives data from the client.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not Enabled
-        /// or when register data received callback fails.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// or when the register data received callback fails.</exception>
         public event EventHandler<SocketDataReceivedEventArgs> DataReceived
         {
             add
@@ -76,10 +76,10 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// This event occurs when connection state between two devices is changed.
+        /// This event occurs when the connection state between two devices is changed.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not Enabled
-        /// or when register connection changed callback fails.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// or when the register connection changed callback fails.</exception>
         public event EventHandler<SocketConnectionStateChangedEventArgs> ConnectionStateChanged
         {
             add
@@ -167,12 +167,12 @@ namespace Tizen.Network.Bluetooth
         /// Connects to a specific RFCOMM based service on a remote Bluetooth device UUID.
         /// </summary>
         /// <remarks>
-        /// The bluetooth must be enabled, discoverable with StartDiscovery(), bonded with the remote device using CreateBond(). ConnectionStateChanged event is raised once this API is called.
+        /// The bluetooth must be enabled, discoverable with StartDiscovery(), and bonded with the remote device using CreateBond(). The ConnectionStateChanged event is raised once this API is called.
         /// </remarks>
         /// <param name="address">The address of the remote Bluetooth device.</param>
-        /// <param name="serviceUuid">The UUID of service provided by the remote Bluetooth device.</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not Enabled
-        /// or when connect socket attempt to remote device fails or when the service uuid is not supported by the remote device.</exception>
+        /// <param name="serviceUuid">The UUID of the service provided by the remote Bluetooth device.</param>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// or when the connect socket attempt to remote device fails, or when the service UUID is not supported by the remote device.</exception>
         void IBluetoothClientSocket.Connect()
         {
             int ret = Interop.Bluetooth.ConnectSocket(remoteAddress, serviceUuid);
@@ -184,14 +184,14 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Disconnects the RFCOMM connection with the given file descriptor of conneted socket.
+        /// Disconnects the RFCOMM connection with the given file descriptor of the conneted socket.
         /// </summary>
         /// <remarks>
         /// The connection must be established.
         /// </remarks>
-        /// <param name="socketFd">The file descriptor of socket to close.</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not Enabled
-        /// or when socket disconnect to remote device fails.</exception>
+        /// <param name="socketFd">The file descriptor of the socket to close.</param>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// or when the socket disconnect to remote device fails.</exception>
         void IBluetoothClientSocket.Disconnect()
         {
             int ret = Interop.Bluetooth.DisconnectSocket(connectedSocket);
@@ -209,10 +209,10 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>
         /// The connection must be established.
         /// </remarks>
-        /// <param name="socketFd">The file descriptor of connected socket.</param>
+        /// <param name="socketFd">The file descriptor of the connected socket.</param>
         /// <param name="data">The data to be sent.</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not Enabled
-        /// or when remote device is not connected or send data procedure fails.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// or when the remote device is not connected, or the send data procedure fails.</exception>
         public int SendData(string data)
         {
             int ret = Interop.Bluetooth.SendData(connectedSocket, data, data.Length);

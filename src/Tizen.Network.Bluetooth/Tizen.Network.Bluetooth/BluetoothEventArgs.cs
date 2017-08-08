@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Bluetooth
 {
     /// <summary>
-    /// An extended EventArgs class which contains changed Bluetooth state.
+    /// An extended EventArgs class contains the changed Bluetooth state.
     /// </summary>
     public class StateChangedEventArgs : EventArgs
     {
@@ -57,7 +57,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed Bluetooth name.
+    /// An extended EventArgs class contains the changed Bluetooth name.
     /// </summary>
     public class NameChangedEventArgs : EventArgs
     {
@@ -81,7 +81,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed Bluetooth visibility mode.
+    /// An extended EventArgs class contains the changed Bluetooth visibility mode.
     /// </summary>
     public class VisibilityModeChangedEventArgs : EventArgs
     {
@@ -118,7 +118,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains the duration until the visibility mode is changed from TimeLimitedDiscoverable to NonDiscoverable.
+    /// An extended EventArgs class contains the duration until the visibility mode is changed from TimeLimitedDiscoverable to NonDiscoverable.
     /// </summary>
     public class VisibilityDurationChangedEventArgs : EventArgs
     {
@@ -142,7 +142,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed Bluetooth device discovery state and the discovered device information.
+    /// An extended EventArgs class contains the changed Bluetooth device discovery state and the discovered device information.
     /// </summary>
     public class DiscoveryStateChangedEventArgs : EventArgs
     {
@@ -198,7 +198,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains the bonded device information.
+    /// An extended EventArgs class contains the bonded device information.
     /// </summary>
     public class BondCreatedEventArgs : EventArgs
     {
@@ -235,7 +235,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains the address of the remote Bluetooth device to destroy bond with.
+    /// An extended EventArgs class contains the address of the remote Bluetooth device to destroy bond with.
     /// </summary>
     public class BondDestroyedEventArgs : EventArgs
     {
@@ -273,7 +273,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains the authorization state and address of the remote Bluetooth device.
+    /// An extended EventArgs class contains the authorization state and the address of the remote Bluetooth device.
     /// </summary>
     public class AuthorizationChangedEventArgs : EventArgs
     {
@@ -311,7 +311,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains the service lists found on the remote Bluetooth device.
+    /// An extended EventArgs class contains the service lists found on the remote Bluetooth device.
     /// </summary>
     public class ServiceSearchedEventArgs : EventArgs
     {
@@ -347,7 +347,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains the connection state and connection information of the remote device.
+    /// An extended EventArgs class contains the connection state and the connection information of the remote device.
     /// </summary>
     public class DeviceConnectionStateChangedEventArgs : EventArgs
     {
@@ -384,7 +384,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains data received information.
+    /// An extended EventArgs class contains the data received information.
     /// </summary>
     public class SocketDataReceivedEventArgs : EventArgs
     {
@@ -408,7 +408,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed connection state.
+    /// An extended EventArgs class contains the changed connection state.
     /// </summary>
     public class SocketConnectionStateChangedEventArgs : EventArgs
     {
@@ -518,7 +518,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains the connection state,remote address and the type of audio profile.
+    /// An extended EventArgs class contains the connection state, remote address, and the type of audio profile.
     /// </summary>
     public class AudioConnectionStateChangedEventArgs : EventArgs
     {
@@ -581,7 +581,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains the connection state and address of the remote Bluetooth device.
+    /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
     /// </summary>
     public class HidConnectionStateChangedEventArgs : EventArgs
     {
@@ -631,7 +631,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains the changed equalizer state.
+    /// An extended EventArgs class contains the changed equalizer state.
     /// </summary>
     public class EqualizerStateChangedEventArgs : EventArgs
     {
@@ -643,7 +643,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// The state of equalizer.
+        /// The state of the equalizer.
         /// </summary>
         public EqualizerState State
         {
@@ -655,7 +655,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains the changed repeat mode.
+    /// An extended EventArgs class contains the changed repeat mode.
     /// </summary>
     public class RepeatModeChangedEventArgs : EventArgs
     {
@@ -679,7 +679,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains the changed shuffle mode.
+    /// An extended EventArgs class contains the changed shuffle mode.
     /// </summary>
     public class ShuffleModeChangedeventArgs : EventArgs
     {
@@ -703,7 +703,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains the changed scan mode.
+    /// An extended EventArgs class contains the changed scan mode.
     /// </summary>
     public class ScanModeChangedEventArgs : EventArgs
     {
@@ -727,7 +727,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains the connection state and the remote device address.
+    /// An extended EventArgs class contains the connection state and the remote device address.
     /// </summary>
     public class TargetConnectionStateChangedEventArgs : EventArgs
     {
@@ -764,7 +764,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed Bluetooth LE advertising state changed information.
+    /// An extended EventArgs class contains the changed Bluetooth LE advertising state changed information.
     /// </summary>
     public class AdvertisingStateChangedEventArgs : EventArgs
     {
@@ -804,7 +804,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// The Le advertising state.
+        /// The LE advertising state.
         /// </summary>
         public BluetoothLeAdvertisingState State
         {
@@ -816,7 +816,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed Bluetooth LE scan result information.
+    /// An extended EventArgs class contains the changed Bluetooth LE scan result information.
     /// </summary>
     public class AdapterLeScanResultChangedEventArgs : EventArgs
     {
@@ -841,7 +841,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// The Le device data.
+        /// The LE device data.
         /// </summary>
         public BluetoothLeDevice DeviceData
         {
@@ -853,7 +853,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed Bluetooth LE GATT connection state.
+    /// An extended EventArgs class contains the changed Bluetooth LE GATT connection state.
     /// </summary>
     public class GattConnectionStateChangedEventArgs : EventArgs
     {
@@ -903,7 +903,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed attribute value.
+    /// An extended EventArgs class contains the changed attribute value.
     /// </summary>
     public class ValueChangedEventArgs : EventArgs
     {
@@ -919,7 +919,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains read value request data.
+    /// An extended EventArgs class contains the read value request data.
     /// </summary>
     public class ReadRequestedEventArgs : EventArgs
     {
@@ -932,7 +932,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// The gatt server instance.
+        /// The GATT server instance.
         /// </summary>
         public BluetoothGattServer Server { get; }
         /// <summary>
@@ -950,7 +950,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains read value request data.
+    /// An extended EventArgs class contains the read value request data.
     /// </summary>
     public class WriteRequestedEventArgs : EventArgs
     {
@@ -965,7 +965,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// The gatt server instance.
+        /// The GATT server instance.
         /// </summary>
         public BluetoothGattServer Server { get; }
         /// <summary>
@@ -991,7 +991,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains client preference to enables or disables the Notification/Indication.
+    /// An extended EventArgs class contains the client preference to enable or disable the Notification/Indication.
     /// </summary>
     public class NotificationStateChangedEventArg : EventArgs
     {
@@ -1002,17 +1002,17 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// The gatt server instance.
+        /// The GATT server instance.
         /// </summary>
         public BluetoothGattServer Server { get; }
         /// <summary>
-        /// A value indicating whether the notification is enabled
+        /// A value indicating whether the notification is enabled.
         /// </summary>
         public bool Value { get; }
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains read value request data.
+    /// An extended EventArgs class contains the read value request data.
     /// </summary>
     public class NotificationSentEventArg : EventArgs
     {
@@ -1025,7 +1025,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// The gatt server instance.
+        /// The GATT server instance.
         /// </summary>
         public BluetoothGattServer Server { get; }
         /// <summary>
@@ -1037,7 +1037,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         public int Result { get; }
         /// <summary>
-        /// Gets a value indicating whether notification sent is completed.
+        /// Gets a value indicating whether the notification sent is completed.
         /// </summary>
         public bool Completed { get; }
     }

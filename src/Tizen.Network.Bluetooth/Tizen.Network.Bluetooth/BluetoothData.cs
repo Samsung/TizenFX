@@ -24,7 +24,7 @@ using System.Collections.Specialized;
 namespace Tizen.Network.Bluetooth
 {
     /// <summary>
-    /// A class to handle device class type and service.
+    /// This class is used to handle the device class types and the service.
     /// </summary>
     public class BluetoothClass
     {
@@ -37,7 +37,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Type of the major device class.
+        /// The type of the major device class.
         /// </summary>
         public BluetoothMajorDeviceClassType MajorDeviceClassType
         {
@@ -47,7 +47,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
         /// <summary>
-        /// Type of the minor device class.
+        /// The type of the minor device class.
         /// </summary>
         public BluetoothMinorDeviceClassType MinorDeviceClassType
         {
@@ -57,7 +57,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
         /// <summary>
-        /// Major service class mask.
+        /// The major service class mask.
         /// </summary>
         public int MajorServiceClassMask
         {
@@ -69,19 +69,19 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// A class containing the information of Bluetooth oob data.
+    /// This class contains the information of the Bluetooth OOB data.
     /// </summary>
     public class BluetoothOobData
     {
         /// <summary>
-        /// Default Constructor.Initializes an object of BluetoothOobData
+        /// The default constructor. Initializes an object of the BluetoothOobData.
         /// </summary>
         public BluetoothOobData()
         {
         }
 
         /// <summary>
-        /// Hash value.
+        /// The hash value.
         /// </summary>
         public byte[] HashValue
         {
@@ -89,7 +89,7 @@ namespace Tizen.Network.Bluetooth
             set;
         }
         /// <summary>
-        /// Randomizer value.
+        /// The randomizer value.
         /// </summary>
         public byte[] RandomizerValue
         {
@@ -99,7 +99,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// A class containing the information of Bluetooth device sdp data.
+    /// This class contains the information of the Bluetooth device SDP data.
     /// </summary>
     public class BluetoothDeviceSdpData
     {
@@ -133,7 +133,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// A class containing the information of Bluetooth device connection data.
+    /// This class contains the information of the Bluetooth device connection data.
     /// </summary>
     public class BluetoothDeviceConnectionData
     {
@@ -178,19 +178,19 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// A class containing the information of track data.
+    /// This class contains the information of the track data.
     /// </summary>
     public class Track
     {
         /// <summary>
-        /// Default Constructor.Initializes an object of Track
+        /// The default constructor. Initializes an object of the track.
         /// </summary>
         public Track()
         {
         }
 
         /// <summary>
-        /// Title of track.
+        /// The title of the track.
         /// </summary>
         public string Title
         {
@@ -198,7 +198,7 @@ namespace Tizen.Network.Bluetooth
             set;
         }
         /// <summary>
-        /// Artist of track.
+        /// The artist of the track.
         /// </summary>
         public string Artist
         {
@@ -206,7 +206,7 @@ namespace Tizen.Network.Bluetooth
             set;
         }
         /// <summary>
-        /// Album of track.
+        /// The album of the track.
         /// </summary>
         public string Album
         {
@@ -214,7 +214,7 @@ namespace Tizen.Network.Bluetooth
             set;
         }
         /// <summary>
-        /// Genre of track.
+        /// The genre of the track.
         /// </summary>
         public string Genre
         {
@@ -222,7 +222,7 @@ namespace Tizen.Network.Bluetooth
             set;
         }
         /// <summary>
-        /// Track number.
+        /// The track number.
         /// </summary>
         public uint TrackNum
         {
@@ -230,7 +230,7 @@ namespace Tizen.Network.Bluetooth
             set;
         }
         /// <summary>
-        /// Number of all tracks.
+        /// The number of all tracks.
         /// </summary>
         public uint TotalTracks
         {
@@ -238,7 +238,7 @@ namespace Tizen.Network.Bluetooth
             set;
         }
         /// <summary>
-        /// Duration of track in milliseconds.
+        /// The duration of the track in milliseconds.
         /// </summary>
         public uint Duration
         {
@@ -248,19 +248,19 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// A class containing the information of Manufacturer data.
+    /// This class contains the information of the manufacturer data.
     /// </summary>
     public class ManufacturerData
     {
         /// <summary>
-        /// Default Constructor.Initializes an object of ManufacturerData
+        /// The default Constructor. Initializes an object of the ManufacturerData.
         /// </summary>
         public ManufacturerData()
         {
         }
 
         /// <summary>
-        /// The manufacturer id.
+        /// The manufacturer ID.
         /// </summary>
         public int Id
         {
@@ -325,19 +325,19 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// A class containing the information of Bluetooth service data.
+    /// This class contains the information of the Bluetooth service data.
     /// </summary>
     public class BluetoothServiceData
     {
         /// <summary>
-        /// Default Constructor.Initializes an object of BluetoothServiceData
+        /// The default constructor. Initializes an object of the BluetoothServiceData.
         /// </summary>
         public BluetoothServiceData()
         {
         }
 
         /// <summary>
-        /// The Uuid of service.
+        /// The UUID of the service.
         /// </summary>
         public string Uuid
         {
@@ -363,7 +363,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// A class containing the service data information.
+    /// This class contains the service data information.
     /// </summary>
     public class BluetoothLeServiceData
     {
@@ -376,7 +376,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Bluetooth Le service uuid.
+        /// The Bluetooth LE service UUID.
         /// </summary>
         public string ServiceUuid
         {
@@ -386,7 +386,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
         /// <summary>
-        /// Bluetooth Le service data
+        /// The Bluetooth LE service data.
         /// </summary>
         public byte[] ServiceData
         {
@@ -408,7 +408,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// A class containing the information of Socket data.
+    /// This class contains the information of the socket data.
     /// </summary>
     public class SocketData
     {
@@ -421,7 +421,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// The socket fd.
+        /// The socket FD.
         /// </summary>
         public int SocketFd
         {
@@ -453,7 +453,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// A class containing the information of Socket connection.
+    /// This class contains the information of the socket connection.
     /// </summary>
     public class SocketConnection
     {
@@ -466,7 +466,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// The connected socket fd.
+        /// The connected socket FD.
         /// </summary>
         public int SocketFd
         {
@@ -486,7 +486,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
         /// <summary>
-        /// The service Uuid.
+        /// The service UUID.
         /// </summary>
         public string ServiceUuid
         {

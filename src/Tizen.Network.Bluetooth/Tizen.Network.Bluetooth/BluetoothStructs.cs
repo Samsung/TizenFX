@@ -25,78 +25,78 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.Bluetooth
 {
     /// <summary>
-    /// Structure of device class type and service.
+    /// The structure of the device class type and service.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothClassStruct
     {
         /// <summary>
-        /// Type of the major device class.
+        /// The type of the major device class.
         /// </summary>
         internal BluetoothMajorDeviceClassType MajorDeviceClassType;
         /// <summary>
-        /// Type of the minor device class.
+        /// The type of the minor device class.
         /// </summary>
         internal BluetoothMinorDeviceClassType MinorDeviceClassType;
         /// <summary>
-        /// Major service class mask.
+        /// The major service class mask.
         /// </summary>
         internal int MajorServiceClassMask;
     }
 
     /// <summary>
-    /// Structure containing the information of Bluetooth device.
+    /// This structure contains the information of the Bluetooth device.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothDeviceStruct
     {
         /// <summary>
-        /// Address of device.
+        /// The address of the device.
         /// </summary>
         [MarshalAsAttribute(UnmanagedType.LPStr)]
         internal string Address;
 
         /// <summary>
-        /// Name of device.
+        /// The name of the device.
         /// </summary>
         [MarshalAsAttribute(UnmanagedType.LPStr)]
         internal string Name;
 
         /// <summary>
-        /// Class of device.
+        /// The class of the device.
         /// </summary>
         internal BluetoothClassStruct Class;
 
         /// <summary>
-        /// Service UUID list of device.
+        /// The service UUID list of the device.
         /// </summary>
         internal IntPtr ServiceUuidList;
 
         /// <summary>
-        /// Service count of device.
+        /// The service count of the device.
         /// </summary>
         internal int ServiceCount;
 
         /// <summary>
-        /// The paired state of device.
+        /// The paired state of the device.
         /// </summary>
         [MarshalAsAttribute(UnmanagedType.I1)]
         internal bool IsPaired;
 
         /// <summary>
-        /// The connection state of device.
+        /// The connection state of the device.
         /// </summary>
         [MarshalAsAttribute(UnmanagedType.I1)]
         internal bool IsConnected;
 
         /// <summary>
-        /// The authorization state of device.
+        /// The authorization state of the device.
         /// </summary>
         [MarshalAsAttribute(UnmanagedType.I1)]
         internal bool IsAuthorized;
 
         /// <summary>
-        /// The length of the manufacturer data.
+        /// The length of the manufacturer the data.
         /// </summary>
         internal int ManufacturerDataLength;
 
@@ -190,12 +190,12 @@ namespace Tizen.Network.Bluetooth
     internal struct BluetoothLeServiceDataStruct
     {
         /// <summary>
-        /// Bluetooth Le service uuid.
+        /// The Bluetooth LE service UUID.
         /// </summary>
         [MarshalAs(UnmanagedType.LPStr)]
         internal string ServiceUuid;
         /// <summary>
-        /// Bluetooth Le service data
+        /// The Bluetooth LE service data.
         /// </summary>
         internal IntPtr ServiceData;
 

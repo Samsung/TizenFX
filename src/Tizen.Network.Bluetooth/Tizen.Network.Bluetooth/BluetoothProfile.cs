@@ -17,8 +17,8 @@
 namespace Tizen.Network.Bluetooth
 {
     /// <summary>
-    /// A generic class to represent all Bluetooth profiles.<br>
-    /// Any common properties/functions to be added in this class in future.
+    /// This generic class represents all Bluetooth profiles.<br>
+    /// Any common properties/functions can be added in this class in future.
     /// </summary>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
     public abstract class BluetoothProfile

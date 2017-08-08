@@ -13,7 +13,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// (event) HidConnectionStateChanged is called when hid host connection state is changed.
+        /// The HidConnectionStateChanged event is called when the HID host connection state is changed.
         /// </summary>
         public event EventHandler<HidConnectionStateChangedEventArgs> HidConnectionStateChanged
         {
@@ -28,14 +28,14 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Connect the remote device with the Hid service.
+        /// Connects the remote device with the HID service.
         /// </summary>
         /// <remarks>
-        /// The device must be bonded with remote device by CreateBond().
-        /// If connection request succeeds, HidConnectionStateChanged event will be invoked.
+        /// The device must be bonded with the remote device by CreateBond().
+        /// If connection request succeeds, the HidConnectionStateChanged event will be invoked.
         /// </remarks>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not Enabled
-        /// or when connection attempt to remote device fails.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// or when the connection attempt to the remote device fails.</exception>
         public void Connect()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -54,10 +54,10 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Disconnects the remote device with the Hid service.
+        /// Disconnects the remote device with the HID service.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not Enabled
-        /// or when disconnection attempt to remote device fails.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// or when the disconnection attempt to the remote device fails.</exception>
         public void Disconnect()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)

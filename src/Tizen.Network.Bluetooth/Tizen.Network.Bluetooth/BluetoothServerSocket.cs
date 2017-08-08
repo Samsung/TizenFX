@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.Bluetooth
 {
     /// <summary>
-    /// BluetoothSocket provides functions for managing connections to other devices and exchanging data.
+    /// The BluetoothSocket provides functions for managing connections to other devices and exchanging data.
     /// </summary>
     public class BluetoothServerSocket : IDisposable
     {
@@ -31,10 +31,10 @@ namespace Tizen.Network.Bluetooth
         private bool disposed = false;
 
         /// <summary>
-        /// (event) AcceptStateChanged is raised when socket connection state is changed.
+        /// The AcceptStateChanged event is raised when the socket connection state is changed.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not Enabled
-        /// or when register accpet state changed callback fails.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// or when the register accpet state changed callback fails.</exception>
         public event EventHandler<AcceptStateChangedEventArgs> AcceptStateChanged
         {
             add
@@ -95,13 +95,13 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Starts listening on passed rfcomm socket and accepts connection requests.
+        /// Starts listening on the passed RFCOMM socket and accepts connection requests.
         /// </summary>
         /// <remarks>
-        /// The socket must be created with CreateServerSocket(). This API invokes ConnectionStateChanged event.
+        /// The socket must be created with CreateServerSocket(). This API invokes the ConnectionStateChanged event.
         /// </remarks>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not Enabled
-        /// or when listen on socket procedure fails.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// or when the listen on socket procedure fails.</exception>
         public void Listen()
         {
             int ret = Interop.Bluetooth.Listen(socketFd, 1);

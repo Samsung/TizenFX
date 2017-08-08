@@ -20,249 +20,249 @@ using Tizen.Internals.Errors;
 namespace Tizen.Network.Bluetooth
 {
     /// <summary>
-    /// Enumeration for Bluetooth state.
+    /// Enumeration for the Bluetooth states.
     /// </summary>
     public enum BluetoothState
     {
         /// <summary>
-        /// Disabled state.
+        /// The disabled state.
         /// </summary>
         Disabled = 0,
         /// <summary>
-        /// Enabled state.
+        /// The enabled state.
         /// </summary>
         Enabled
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth errors.
+    /// Enumeration for the Bluetooth errors.
     /// </summary>
     public enum BluetoothError
     {
         /// <summary>
-        /// Successful
+        /// Successful.
         /// </summary>
         None = ErrorCode.None,
         /// <summary>
-        /// Operation cancelled
+        /// Operation canceled.
         /// </summary>
         Cancelled = ErrorCode.Canceled,
         /// <summary>
-        /// Invalid parameter
+        /// Invalid parameter.
         /// </summary>
         InvalidParameter = ErrorCode.InvalidParameter,
         /// <summary>
-        /// Out of memory
+        /// Out of memory.
         /// </summary>
         OutOfMemory = ErrorCode.OutOfMemory,
         /// <summary>
-        /// Device or resource busy
+        /// Device or resource busy.
         /// </summary>
         ResourceBusy = ErrorCode.ResourceBusy,
         /// <summary>
-        /// Timeout error
+        /// Timeout error.
         /// </summary>
         TimedOut = ErrorCode.TimedOut,
         /// <summary>
-        /// Operation now in progress
+        /// Operation now in progress.
         /// </summary>
         NowInProgress = ErrorCode.NowInProgress,
         /// <summary>
-        /// Bluetooth is Not Supported
+        /// Bluetooth is not supported.
         /// </summary>
         NotSupported = ErrorCode.NotSupported,
         /// <summary>
-        /// Permission denied
+        /// Permission denied.
         /// </summary>
         PermissionDenied = ErrorCode.PermissionDenied,
         /// <summary>
-        /// Quota exceeded
+        /// Quota exceeded.
         /// </summary>
         QuotaExceeded = ErrorCode.QuotaExceeded,
         /// <summary>
-        /// No data available
+        /// No data available.
         /// </summary>
         NoData = ErrorCode.NoData,
         /// <summary>
-        /// Local adapter not initialized
+        /// Local adapter not initialized.
         /// </summary>
         NotInitialized = -0x01C00000 | 0x0101,
         /// <summary>
-        /// Local adapter not enabled
+        /// Local adapter not enabled.
         /// </summary>
         NotEnabled = -0x01C00000 | 0x0102,
         /// <summary>
-        /// Operation already done
+        /// Operation already done.
         /// </summary>
         AlreadyDone = -0x01C00000 | 0x0103,
         /// <summary>
-        /// Operation failed
+        /// Operation failed.
         /// </summary>
         OperationFailed = -0x01C00000 | 0x0104,
         /// <summary>
-        /// Operation not in progress
+        /// Operation not in progress.
         /// </summary>
         NotInProgress = -0x01C00000 | 0x0105,
         /// <summary>
-        /// Remote device not bonded
+        /// Remote device not bonded.
         /// </summary>
         RemoteDeviceNotBonded = -0x01C00000 | 0x0106,
         /// <summary>
-        /// Authentication rejected
+        /// Authentication rejected.
         /// </summary>
         AuthRejected = -0x01C00000 | 0x0107,
         /// <summary>
-        /// Authentication failed
+        /// Authentication failed.
         /// </summary>
         AuthFailed = -0x01C00000 | 0x0108,
         /// <summary>
-        /// Remote device not found
+        /// Remote device not found.
         /// </summary>
         RemoteDeviceNotFound = -0x01C00000 | 0x0109,
         /// <summary>
-        /// Service search failed
+        /// Service search failed.
         /// </summary>
         ServiceSearchFailed = -0x01C00000 | 0x010A,
         /// <summary>
-        /// Remote device is not connected
+        /// Remote device is not connected.
         /// </summary>
         RemoteDeviceNotConnected = -0x01C00000 | 0x010B,
         /// <summary>
-        /// Resource temporarily unavailable
+        /// Resource temporarily unavailable.
         /// </summary>
         ResourceUnavailable = -0x01C00000 | 0x010C,
         /// <summary>
-        /// Service Not Found
+        /// Service Not Found.
         /// </summary>
         ServiceNotFound = -0x01C00000 | 0x010D
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth visibility mode.
+    /// Enumeration for the Bluetooth visibility modes.
     /// </summary>
     public enum VisibilityMode
     {
         /// <summary>
-        /// Non discoverable mode.
+        /// The non-discoverable mode.
         /// </summary>
         NonDiscoverable = 0,
         /// <summary>
-        /// Discoverable mode.
+        /// The discoverable mode.
         /// </summary>
         Discoverable = 1,
         /// <summary>
-        /// Discoverable mode with limited time.
+        /// The discoverable mode with limited time.
         /// </summary>
         TimeLimitedDiscoverable = 2
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth major device class type.
+    /// Enumeration for the Bluetooth major device class types.
     /// </summary>
     public enum BluetoothMajorDeviceClassType
     {
         /// <summary>
-        /// Miscellaneous major class type.
+        /// The miscellaneous major class type.
         /// </summary>
         Misc = 0x00,
         /// <summary>
-        /// Computer major class type.
+        /// The computer major class type.
         /// </summary>
         Computer = 0x01,
         /// <summary>
-        /// Phone major class type.
+        /// The phone major class type.
         /// </summary>
         Phone = 0x02,
         /// <summary>
-        /// LAN/Network access point major class type.
+        /// The LAN/Network access point major class type.
         /// </summary>
         LanNetworkAccessPoint = 0x03,
         /// <summary>
-        /// Audio/Video major class type.
+        /// The audio/video major class type.
         /// </summary>
         AudioVideo = 0x04,
         /// <summary>
-        /// Peripheral major class type.
+        /// The peripheral major class type.
         /// </summary>
         Peripheral = 0x05,
         /// <summary>
-        /// Imaging major class type.
+        /// The imaging major class type.
         /// </summary>
         Imaging = 0x06,
         /// <summary>
-        /// Wearable major class type.
+        /// The wearable major class type.
         /// </summary>
         Wearable = 0x07,
         /// <summary>
-        /// Toy major class type.
+        /// The toy major class type.
         /// </summary>
         Toy = 0x08,
         /// <summary>
-        /// Health major class type.
+        /// The health major class type.
         /// </summary>
         Health = 0x09,
         /// <summary>
-        /// Uncategorized major class type.
+        /// The uncategorized major class type.
         /// </summary>
         Uncategorized = 0x1F
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth minor device class type.
+    /// Enumeration for the Bluetooth minor device class types.
     /// </summary>
     public enum BluetoothMinorDeviceClassType
     {
         /// <summary>
-        /// Uncategorized computer minor class type.
+        /// The uncategorized computer minor class type.
         /// </summary>
         ComputerUncategorized = 0x00,
         /// <summary>
-        /// Desktop workstation computer minor class type.
+        /// The desktop workstation computer minor class type.
         /// </summary>
         ComputerDesktopWorkstation = 0x04,
         /// <summary>
-        /// Server computer minor class type.
+        /// The server computer minor class type.
         /// </summary>
         ComputerServer = 0x08,
         /// <summary>
-        /// Laptop computer minor class type.
+        /// The laptop computer minor class type.
         /// </summary>
         ComputerLaptop = 0x0C,
         /// <summary>
-        /// Handheld PC/PDA computer minor class type.
+        /// The handheld PC/PDA computer minor class type.
         /// </summary>
         ComputerHandheldPcOrPda = 0x10,
         /// <summary>
-        /// Palm sized PC/PDA  computer minor class type.
+        /// The palm sized PC/PDA computer minor class type.
         /// </summary>
         ComputerPalmSizedPcOrPda = 0x14,
         /// <summary>
-        /// Wearable computer minor class type.
+        /// The wearable computer minor class type.
         /// </summary>
         ComputerWearableComputer = 0x18,
 
         /// <summary>
-        /// Unclassified phone minor class type.
+        /// The unclassified phone minor class type.
         /// </summary>
         PhoneUncategorized = 0x00,
         /// <summary>
-        /// Cellular phone minor class type.
+        /// The cellular phone minor class type.
         /// </summary>
         PhoneCellular = 0x04,
         /// <summary>
-        /// Cordless phone minor class type.
+        /// The cordless phone minor class type.
         /// </summary>
         PhoneCordless = 0x08,
         /// <summary>
-        /// SmartPhone phone minor class type.
+        /// The smartphone phone minor class type.
         /// </summary>
         PhoneSmartPhone = 0x0C,
         /// <summary>
-        /// Wired modem or voice gateway phone minor class type.
+        /// The wired modem or voice gateway phone minor class type.
         /// </summary>
         PhoneWiredModemOrVoiceGateway = 0x10,
         /// <summary>
-        /// ISDN phone minor class type.
+        /// The ISDN phone minor class type.
         /// </summary>
         PhoneCommonIsdnAccess = 0x14,
 
@@ -300,51 +300,51 @@ namespace Tizen.Network.Bluetooth
         LanNetworkAccessPointNoServiceAvailable = 0xE0,
 
         /// <summary>
-        /// Uncategorized audio/video minor class type.
+        /// The uncategorized audio/video minor class type.
         /// </summary>
         AudioVideoUncategorized = 0x00,
         /// <summary>
-        /// Wearable headset audio/video minor class type.
+        /// The wearable headset audio/video minor class type.
         /// </summary>
         AudioVideoWearableHeadset = 0x04,
         /// <summary>
-        /// Hands free audio/video minor class type.
+        /// The hands free audio/video minor class type.
         /// </summary>
         AudioVideoHandsFree = 0x08,
         /// <summary>
-        /// Microphone audio/video minor class type.
+        /// The microphone audio/video minor class type.
         /// </summary>
         AudioVideoMicrophone = 0x10,
         /// <summary>
-        /// Loudspeaker audio/video minor class type.
+        /// The loudspeaker audio/video minor class type.
         /// </summary>
         AudioVideoLoudspeaker = 0x14,
         /// <summary>
-        /// Headphones audio/video minor class type.
+        /// The headphones audio/video minor class type.
         /// </summary>
         AudioVideoHeadphones = 0x18,
         /// <summary>
-        /// Portable audio audio/video minor class type.
+        /// The portable audio audio/video minor class type.
         /// </summary>
         AudioVideoPortableAudio = 0x1C,
         /// <summary>
-        /// Car audio audio/video minor class type.
+        /// The car audio audio/video minor class type.
         /// </summary>
         AudioVideoCarAudio = 0x20,
         /// <summary>
-        /// SetTopbox audio/video minor class type.
+        /// The SetTopbox audio/video minor class type.
         /// </summary>
         AudioVideoSetTopBox = 0x24,
         /// <summary>
-        /// Hifi audio audio/video minor class type.
+        /// The Hi-Fi audio/video minor class type.
         /// </summary>
         AudioVideoHifiAudioDevice = 0x28,
         /// <summary>
-        /// VCR audio/video minor class type.
+        /// The VCR audio/video minor class type.
         /// </summary>
         AudioVideoVcr = 0x2C,
         /// <summary>
-        /// Video camera audio/video minor class type.
+        /// The video camera audio/video minor class type.
         /// </summary>
         AudioVideoVideoCamera = 0x30,
         /// <summary>
@@ -352,203 +352,203 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         AudioVideoCamcorder = 0x34,
         /// <summary>
-        /// Video monitor audio/video minor class type.
+        /// The video monitor audio/video minor class type.
         /// </summary>
         AudioVideoVideoMonitor = 0x38,
         /// <summary>
-        /// Video display and loudspeaker audio/video minor class type.
+        /// The video display and loudspeaker audio/video minor class type.
         /// </summary>
         AudioVideoVideoDisplayLoudspeaker = 0x3C,
         /// <summary>
-        /// Video conferencing audio/video minor class type.
+        /// The video conferencing audio/video minor class type.
         /// </summary>
         AudioVideoVideoConferencing = 0x40,
         /// <summary>
-        /// Gaming/toy audio/video minor class type.
+        /// The gaming/toy audio/video minor class type.
         /// </summary>
         AudioVideoGamingToy = 0x48,
 
         /// <summary>
-        /// Uncategorized peripheral minor class type.
+        /// The uncategorized peripheral minor class type.
         /// </summary>
         PeripheralUncategorized = 0x00,
         /// <summary>
-        /// Keyboard peripheral minor class type.
+        /// The keyboard peripheral minor class type.
         /// </summary>
         PeripheralKeyBoard = 0x40,
         /// <summary>
-        /// Pointing device peripheral minor class type.
+        /// The pointing device peripheral minor class type.
         /// </summary>
         PeripheralPointingDevice = 0x80,
         /// <summary>
-        /// Combo keyboard peripheral minor class type.
+        /// The combo keyboard peripheral minor class type.
         /// </summary>
         PeripheralComboKeyboardPointingDevice = 0xC0,
         /// <summary>
-        /// Joystick peripheral minor class type.
+        /// The joystick peripheral minor class type.
         /// </summary>
         PeripheralJoystick = 0x04,
         /// <summary>
-        /// Game pad peripheral minor class type.
+        /// The game pad peripheral minor class type.
         /// </summary>
         PeripheralGamePad = 0x08,
         /// <summary>
-        /// Remote control peripheral minor class type.
+        /// The remote control peripheral minor class type.
         /// </summary>
         PeripheralRemoteControl = 0x0C,
         /// <summary>
-        /// Sensing device peripheral minor class type.
+        /// The sensing device peripheral minor class type.
         /// </summary>
         PeripheralSensingDevice = 0x10,
         /// <summary>
-        /// Digitizer peripheral minor class type.
+        /// The digitizer peripheral minor class type.
         /// </summary>
         PeripheralDigitizerTablet = 0x14,
         /// <summary>
-        /// Card reader peripheral minor class type.
+        /// The card reader peripheral minor class type.
         /// </summary>
         PeripheralCardReader = 0x18,
         /// <summary>
-        /// Digital pen peripheral minor class type.
+        /// The digital pen peripheral minor class type.
         /// </summary>
         PeripheralDigitalPen = 0x1C,
         /// <summary>
-        /// Handheld scanner peripheral minor class type.
+        /// The handheld scanner peripheral minor class type.
         /// </summary>
         PeripheralHandheldScanner = 0x20,
         /// <summary>
-        /// Handheld gestural input computer minor class type.
+        /// The handheld gestural input computer minor class type.
         /// </summary>
         PeripheralHandheldGesturalInputDevice = 0x24,
 
         /// <summary>
-        /// Display imaging minor class type.
+        /// The display imaging minor class type.
         /// </summary>
         ImagingDisplay = 0x10,
         /// <summary>
-        /// Camera imaging minor class type.
+        /// The camera imaging minor class type.
         /// </summary>
         ImagingCamera = 0x20,
         /// <summary>
-        /// Scanner imaging minor class type.
+        /// The scanner imaging minor class type.
         /// </summary>
         ImagingScanner = 0x40,
         /// <summary>
-        /// Printer imaging minor class type.
+        /// The printer imaging minor class type.
         /// </summary>
         ImagingPrinter = 0x80,
 
         /// <summary>
-        /// Wrist watch wearable minor class type.
+        /// The wrist watch wearable minor class type.
         /// </summary>
         WearableWristWatch = 0x04,
         /// <summary>
-        /// Pager wearable minor class type.
+        /// The pager wearable minor class type.
         /// </summary>
         WearablePager = 0x08,
         /// <summary>
-        /// Jacket wearable minor class type.
+        /// The jacket wearable minor class type.
         /// </summary>
         WearableJacket = 0x0C,
         /// <summary>
-        /// Helmet wearable minor class type.
+        /// The helmet wearable minor class type.
         /// </summary>
         WearableHelmet = 0x10,
         /// <summary>
-        /// Glasses wearable minor class type.
+        /// The glasses wearable minor class type.
         /// </summary>
         WearableGlasses = 0x14,
 
         /// <summary>
-        /// Robot toy minor class type.
+        /// The robot toy minor class type.
         /// </summary>
         ToyRobot = 0x04,
         /// <summary>
-        /// Vehicle toy minor class type.
+        /// The vehicle toy minor class type.
         /// </summary>
         ToyVehicle = 0x08,
         /// <summary>
-        /// Doll toy minor class type.
+        /// The doll toy minor class type.
         /// </summary>
         ToyDollAction = 0x0C,
         /// <summary>
-        /// Controller toy minor class type.
+        /// The controller toy minor class type.
         /// </summary>
         ToyController = 0x10,
         /// <summary>
-        /// Game toy minor class type.
+        /// The game toy minor class type.
         /// </summary>
         ToyGame = 0x14,
 
         /// <summary>
-        /// Uncategorized health minor class type.
+        /// The uncategorized health minor class type.
         /// </summary>
         HealthUncategorized = 0x00,
         /// <summary>
-        /// BP monitor health minor class type.
+        /// The BP monitor health minor class type.
         /// </summary>
         HealthBloodPressureMonitor = 0x04,
         /// <summary>
-        /// Thermometer health minor class type.
+        /// The thermometer health minor class type.
         /// </summary>
         HealthThermometer = 0x08,
         /// <summary>
-        /// Scale health minor class type.
+        /// The scale health minor class type.
         /// </summary>
         HealthWeighingScale = 0x0C,
         /// <summary>
-        /// Glucose meter health minor class type.
+        /// The glucose meter health minor class type.
         /// </summary>
         HealthGlucoseMeter= 0x10,
         /// <summary>
-        /// Pulse oximeter health minor class type.
+        /// The pulse oximeter health minor class type.
         /// </summary>
         HealthPulseOximeter = 0x14,
         /// <summary>
-        /// Heart/Pulse rate monitor health minor class type.
+        /// The heart/pulse rate monitor health minor class type.
         /// </summary>
         HealthHeartPulseRateMonitor = 0x18,
         /// <summary>
-        /// Display health minor class type.
+        /// The display health minor class type.
         /// </summary>
         HealthDataDisplay = 0x1C,
         /// <summary>
-        /// Step counter health minor class type.
+        /// The step counter health minor class type.
         /// </summary>
         HealthStepCounter = 0x20,
         /// <summary>
-        /// Body composition analyzer health minor class type.
+        /// The body composition analyzer health minor class type.
         /// </summary>
         HealthBodyCompositionAnalyzer = 0x24,
         /// <summary>
-        /// Peak flow monitor health minor class type.
+        /// The peak flow monitor health minor class type.
         /// </summary>
         HealthPeakFlowMonitor = 0x28,
         /// <summary>
-        /// Medication monitor health minor class type.
+        /// The medication monitor health minor class type.
         /// </summary>
         HealthMedicationMonitor = 0x2C,
         /// <summary>
-        /// Knee prosthesis health minor class type.
+        /// The knee prosthesis health minor class type.
         /// </summary>
         HealthKneeProsthesis = 0x30,
         /// <summary>
-        /// Ankle prosthesis health minor class type.
+        /// The ankle prosthesis health minor class type.
         /// </summary>
         HealthAnkleProsthesis = 0x34
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth device discovery state.
+    /// Enumeration for the Bluetooth device discovery states.
     /// </summary>
     public enum BluetoothDeviceDiscoveryState
     {
         /// <summary>
-        /// Device discovery is started.
+        /// The device discovery is started.
         /// </summary>
         Started = 0,
         /// <summary>
-        /// Device discovery is finished.
+        /// The device discovery is finished.
         /// </summary>
         Finished,
         /// <summary>
@@ -558,7 +558,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth appearance type.
+    /// Enumeration for the Bluetooth appearance types.
     /// </summary>
     public enum BluetoothAppearanceType
     {
@@ -581,7 +581,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth audio profile type.
+    /// Enumeration for the Bluetooth audio profile types.
     /// </summary>
     public enum BluetoothAudioProfileType
     {
@@ -590,25 +590,25 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         All = 0,
         /// <summary>
-        /// Headset and Hands-Free profile.
+        /// The Headset and Hands-Free profile.
         /// </summary>
         HspHfp,
         /// <summary>
-        /// Advanced audio distribution profile.
+        /// The Advanced Audio Distribution profile.
         /// </summary>
         AdvancedAudioDistribution,
         /// <summary>
-        /// Audio Gateway profile.
+        /// The Audio Gateway profile.
         /// </summary>
         AudioGateway,
         /// <summary>
-        /// Advanced Audio Distribution profile sink role.
+        /// The Advanced Audio Distribution profile sink role.
         /// </summary>
         AdvancedAudioDistributionSink
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth service class type.
+    /// Enumeration for the Bluetooth service class types.
     /// </summary>
     public enum BluetoothServiceClassType
     {
@@ -617,95 +617,95 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         None = 0,
         /// <summary>
-        /// Res service class.
+        /// The RES service class.
         /// </summary>
         Res = 0x00000001,
         /// <summary>
-        /// Spp service class.
+        /// The SPP service class.
         /// </summary>
         Spp = 0x00000002,
         /// <summary>
-        /// Dun service class.
+        /// The DUN service class.
         /// </summary>
         Dun = 0x00000004,
         /// <summary>
-        /// Fax service class.
+        /// The FAX service class.
         /// </summary>
         Fax = 0x00000008,
         /// <summary>
-        /// Lap service class.
+        /// The LAP service class.
         /// </summary>
         Lap = 0x00000010,
         /// <summary>
-        /// Hsp service class.
+        /// The HSP service class.
         /// </summary>
         Hsp = 0x00000020,
         /// <summary>
-        /// Hfp service class.
+        /// The HFPservice class.
         /// </summary>
         Hfp = 0x00000040,
         /// <summary>
-        /// Opp service class.
+        /// The OPP service class.
         /// </summary>
         Opp = 0x00000080,
         /// <summary>
-        /// Ftp service class.
+        /// The FTP service class.
         /// </summary>
         Ftp = 0x00000100,
         /// <summary>
-        /// Ctp service class.
+        /// The CTP service class.
         /// </summary>
         Ctp = 0x00000200,
         /// <summary>
-        /// Icp service class.
+        /// The ICP service class.
         /// </summary>
         Icp = 0x00000400,
         /// <summary>
-        /// Sync service class.
+        /// The Sync service class.
         /// </summary>
         Sync = 0x00000800,
         /// <summary>
-        /// Bpp service class.
+        /// The BPP service class.
         /// </summary>
         Bpp = 0x00001000,
         /// <summary>
-        /// Bip service class.
+        /// The BPP service class.
         /// </summary>
         Bip = 0x00002000,
         /// <summary>
-        /// Panu service class.
+        /// The Panu service class.
         /// </summary>
         Panu = 0x00004000,
         /// <summary>
-        /// Nap service class.
+        /// The NAP service class.
         /// </summary>
         Nap = 0x00008000,
         /// <summary>
-        /// Gn service class.
+        /// The GN service class.
         /// </summary>
         Gn = 0x00010000,
         /// <summary>
-        /// Sap service class.
+        /// The SAP service class.
         /// </summary>
         Sap = 0x00020000,
         /// <summary>
-        /// A2dp service class.
+        /// The A2DP service class.
         /// </summary>
         A2dp = 0x00040000,
         /// <summary>
-        /// Avrcp service class.
+        /// The AVRCP service class.
         /// </summary>
         Avrcp = 0x00080000,
         /// <summary>
-        /// Pbap service class.
+        /// The PBAP service class.
         /// </summary>
         Pbap = 0x00100000,
         /// <summary>
-        /// Hid service class.
+        /// The HID service class.
         /// </summary>
         Hid = 0x00200000,
         /// <summary>
-        /// A2dp Source service class.
+        /// The A2DP Source service class.
         /// </summary>
         A2dpSource = 0x00400000,
         /// <summary>
@@ -713,80 +713,80 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         All = 0x00FFFFFF,
         /// <summary>
-        /// Max service class.
+        /// The Max service class.
         /// </summary>
         Max
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth profile type.
+    /// Enumeration for the Bluetooth profile types.
     /// </summary>
     public enum BluetoothProfileType
     {
         /// <summary>
-        /// Rfcomm profile.
+        /// The RFCOMM profile.
         /// </summary>
         Rfcomm = 0,
         /// <summary>
-        /// Advanced Audio Distribution Profile Source role
+        /// The Advanced Audio Distribution Profile Source role.
         /// </summary>
         AdvancedAudioDistribution,
         /// <summary>
-        /// Headset profile.
+        /// The Headset profile.
         /// </summary>
         Headset,
         /// <summary>
-        /// Human Interface Device profile.
+        /// The Human Interface Device profile.
         /// </summary>
         HumanInterfaceDevice,
         /// <summary>
-        /// Network Access Point profile.
+        /// The Network Access Point profile.
         /// </summary>
         NetworkAccessPoint,
         /// <summary>
-        /// Audio Gateway profile.
+        /// The Audio Gateway profile.
         /// </summary>
         AudioGateway,
         /// <summary>
-        /// Generic Attribute profile.
+        /// The Generic Attribute profile.
         /// </summary>
         GenericAttribute,
         /// <summary>
-        /// Nap Server profile.
+        /// The Nap Server profile.
         /// </summary>
         NapServer,
         /// <summary>
-        /// Advanced Audio Distribution profile sink role.
+        /// The advanced Audio Distribution profile sink role.
         /// </summary>
         AdvancedAudioDistributionSink
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth authorization type.
+    /// Enumeration for the Bluetooth authorization types.
     /// </summary>
     public enum BluetoothAuthorizationType
     {
         /// <summary>
-        /// Authorized type.
+        /// The authorized type.
         /// </summary>
         Authorized = 0,
         /// <summary>
-        /// Unauthorized type.
+        /// The unauthorized type.
         /// </summary>
         Unauthorized
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth connection link type.
+    /// Enumeration for the Bluetooth connection link types.
     /// </summary>
     public enum BluetoothConnectionLinkType
     {
         /// <summary>
-        /// BR/EDR link.
+        /// The BR/EDR link.
         /// </summary>
         BrEdr = 0,
         /// <summary>
-        /// LE link.
+        /// The LE link.
         /// </summary>
         Le,
         /// <summary>
@@ -796,30 +796,30 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth disconnect reason.
+    /// Enumeration for the Bluetooth disconnect reason.
     /// </summary>
     public enum BluetoothDisconnectReason
     {
         /// <summary>
-        /// Disconnected by unknown reason.
+        /// The disconnected by unknown reason.
         /// </summary>
         Unknown = 0,
         /// <summary>
-        /// Disconnected by timeout.
+        /// The disconnected by timeout.
         /// </summary>
         Timeout,
         /// <summary>
-        /// Disconnected by local host.
+        /// The disconnected by local host.
         /// </summary>
         LocalHost,
         /// <summary>
-        /// Disconnected by remote.
+        /// The disconnected by remote.
         /// </summary>
         Remote
     }
 
     /// <summary>
-    /// Enumerations of connected Bluetooth device event role.
+    /// Enumeration for the connected Bluetooth device event roles.
     /// </summary>
     public enum BluetoothSocketRole
     {
@@ -828,32 +828,32 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         Unknown,
         /// <summary>
-        /// Server role.
+        /// The server role.
         /// </summary>
         Server,
         /// <summary>
-        /// Client role.
+        /// The client role.
         /// </summary>
         Client
     }
 
     /// <summary>
-    /// Enumerations of Bluetooth socket connection state.
+    /// Enumeration for the Bluetooth socket connection states.
     /// </summary>
     public enum BluetoothSocketState
     {
         /// <summary>
-        /// RFCOMM is connected.
+        /// The RFCOMM is connected.
         /// </summary>
         Connected,
         /// <summary>
-        /// RFCOMM is disconnected.
+        /// The RFCOMM is disconnected.
         /// </summary>
         Disconnected
     }
 
     /// <summary>
-    /// Enumeration for equalizer state.
+    /// Enumeration for the equalizer states.
     /// </summary>
     public enum EqualizerState
     {
@@ -868,7 +868,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// Enumeration for repeat mode.
+    /// Enumeration for the repeat modes.
     /// </summary>
     public enum RepeatMode
     {
@@ -891,7 +891,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// Enumeration for shuffle mode.
+    /// Enumeration for the shuffle modes.
     /// </summary>
     public enum ShuffleMode
     {
@@ -910,7 +910,7 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// Enumeration for scan mode.
+    /// Enumeration for the scan modes.
     /// </summary>
     public enum ScanMode
     {
@@ -929,233 +929,233 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// Enumeration for player state.
+    /// Enumeration for the player states.
     /// </summary>
     public enum PlayerState
     {
         /// <summary>
-        /// Stopped state.
+        /// The stopped state.
         /// </summary>
         Stopped = 0,
         /// <summary>
-        /// Playing state.
+        /// The playing state.
         /// </summary>
         Playing,
         /// <summary>
-        /// Paused state.
+        /// The paused state.
         /// </summary>
         Paused,
         /// <summary>
-        /// Seek forward state.
+        /// The seek forward state.
         /// </summary>
         SeekForward,
         /// <summary>
-        /// Seek rewind state.
+        /// The seek rewind state.
         /// </summary>
         SeekRewind
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth Le device address type.
+    /// Enumeration for the Bluetooth LE device address types.
     /// </summary>
     public enum BluetoothLeDeviceAddressType
     {
         /// <summary>
-        /// The bluetooth le public address.
+        /// The Buetooth LE public address.
         /// </summary>
         BluetoothLePublicAddress,
         /// <summary>
-        /// The bluetooth le private address.
+        /// The Bluetooth LE private address.
         /// </summary>
         BluetoothLePrivateAddress
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth LePacket type.
+    /// Enumeration for the Bluetooth LePacket types.
     /// </summary>
     public enum BluetoothLePacketType
     {
         /// <summary>
-        /// The bluetooth le advertising packet.
+        /// The Bluetooth LE advertising packet.
         /// </summary>
         BluetoothLeAdvertisingPacket,
         /// <summary>
-        /// The bluetooth le scan response packet.
+        /// The Bluetooth LE scan response packet.
         /// </summary>
         BluetoothLeScanResponsePacket
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth Le data type.
+    /// Enumeration for the Bluetooth LE data types.
     /// </summary>
     public enum BluetoothLeDataType
     {
         /// <summary>
-        /// The bluetooth le packet data list 16 bit service uuid.
+        /// The Bluetooth LE packet data list 16 bit service uuid.
         /// </summary>
         BluetoothLePacketDataList16BitServiceUuid,
         /// <summary>
-        /// The bluetooth le packet manufacturer data.
+        /// The Bluetooth LE packet manufacturer data.
         /// </summary>
         BluetoothLePacketManufacturerData
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth Le Advertising mode type.
+    /// Enumeration for the Bluetooth LE advertising mode types.
     /// </summary>
     public enum BluetoothLeAdvertisingMode
     {
         /// <summary>
-        /// The bluetooth le advertising balanced mode.
+        /// The Bluetooth LE advertising balanced mode.
         /// </summary>
         BluetoothLeAdvertisingBalancedMode,
         /// <summary>
-        /// The bluetooth le advertising low latency mode.
+        /// The Bluetooth LE advertising low latency mode.
         /// </summary>
         BluetoothLeAdvertisingLowLatencyMode,
         /// <summary>
-        /// The bluetooth le advertising low energy mode.
+        /// The Bluetooth LE advertising low energy mode.
         /// </summary>
         BluetoothLeAdvertisingLowEnergyMode
     }
 
     /// <summary>
-    /// Enumeration for Bluetooth Le Advertising mode type.
+    /// Enumeration for the Bluetooth LE advertising mode type.
     /// </summary>
     public enum BluetoothLeAdvertisingState
     {
         /// <summary>
-        /// The bluetooth le advertising stopped.
+        /// The Bluetooth LE advertising stopped.
         /// </summary>
         BluetoothLeAdvertisingStopped,
         /// <summary>
-        /// The bluetooth le advertising started.
+        /// The Bluetooth LE advertising started.
         /// </summary>
         BluetoothLeAdvertisingStarted
     }
 
     /// <summary>
-    /// Enumerations of the integer type for GATT handle's value.
+    /// Enumeration for the integer type for GATT handle's values.
     /// </summary>
     public enum IntDataType
     {
         /// <summary>
-        /// 8 bit signed int type.
+        /// The 8-bit signed integer type.
         /// </summary>
         SignedInt8,
         /// <summary>
-        /// 16 bit signed int type.
+        /// The 16-bit signed integer type.
         /// </summary>
         SignedInt16,
         /// <summary>
-        /// 32 bit signed int type.
+        /// The 32-bit signed integer type.
         /// </summary>
         SignedInt32,
         /// <summary>
-        /// 8 bit unsigned int type.
+        /// The 8-bit unsigned integer type.
         /// </summary>
         UnsignedInt8,
         /// <summary>
-        /// 16 bit unsigned int type.
+        /// The 16-bit unsigned integer type.
         /// </summary>
         UnsignedInt16,
         /// <summary>
-        /// 32 bit unsigned int type.
+        /// The 32-bit unsigned integer type.
         /// </summary>
         UnsignedInt32
     }
 
     /// <summary>
-    /// Enumerations of the float type for GATT handle's value.
+    /// Enumerations of the float type for GATT handle's values.
     /// </summary>
     public enum FloatDataType
     {
         /// <summary>
-        /// 32 bit float type.
+        /// The 32-bit float type.
         /// </summary>
         Float,
         /// <summary>
-        /// 16 bit float type.
+        /// The 16-bit float type.
         /// </summary>
         SFloat,
     }
 
     /// <summary>
-    /// Enumerations of the GATT handle's type.
+    /// Enumeration for the GATT handle's types.
     /// </summary>
     public enum GattHandleType
     {
         /// <summary>
-        /// GATT service type.
+        /// The GATT service type.
         /// </summary>
         Service,
         /// <summary>
-        /// GATT characteristic type.
+        /// The GATT characteristic type.
         /// </summary>
         Characteristic,
         /// <summary>
-        /// GATT descriptor type.
+        /// The GATT descriptor type.
         /// </summary>
         Descriptor
     }
 
     /// <summary>
-    /// Enumerations of the service type.
+    /// Enumeration for the service types.
     /// </summary>
     public enum BluetoothGattServiceType
     {
         /// <summary>
-        /// GATT primary service type.
+        /// The GATT primary service type.
         /// </summary>
         Primary,
         /// <summary>
-        /// GATT secondary service type.
+        /// The GATT secondary service type.
         /// </summary>
         Secondary
     }
 
     /// <summary>
-    /// Enumerations of the characteristic's property.
+    /// Enumeration for the characteristic's property.
     /// </summary>
     [Flags]
     public enum BluetoothGattProperty
     {
         /// <summary>
-        /// Broadcast property.
+        /// The broadcast property.
         /// </summary>
         Broadcast = 1,
         /// <summary>
-        /// Read property.
+        /// The read property.
         /// </summary>
         Read = 2,
         /// <summary>
-        /// Write without response property.
+        /// The write without response property.
         /// </summary>
         WriteWithoutResponse = 4,
         /// <summary>
-        /// Write property.
+        /// The write property.
         /// </summary>
         Write = 8,
         /// <summary>
-        /// Notify property.
+        /// The notify property.
         /// </summary>
         Notify = 16,
         /// <summary>
-        /// Indicate property.
+        /// The indicate property.
         /// </summary>
         Indicate = 32,
         /// <summary>
-        /// Authenticated signed writes property.
+        /// The authenticated signed writes property.
         /// </summary>
         AuthenticatedSignedWrites = 64,
         /// <summary>
-        /// Extended properties.
+        /// The extended properties.
         /// </summary>
         ExtendedProperties = 128,
     }
 
     /// <summary>
-    /// Enumerations of bluetooth gatt permission type.
+    /// Enumeration for the Bluetooth GATT permission types.
     /// </summary>
     [Flags]
     public enum BluetoothGattPermission
@@ -1171,31 +1171,31 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
-    /// Enumerations of the write type.
+    /// Enumeration for the write types.
     /// </summary>
     public enum BluetoothGattWriteType
     {
         /// <summary>
-        /// Write without response.
+        /// The write without response.
         /// </summary>
         NoResponse,
         /// <summary>
-        /// Write with response.
+        /// The write with response.
         /// </summary>
         WriteWithResponse
     }
 
     /// <summary>
-    /// Enumerations of the remote device request types for attributes
+    /// Enumeration for the remote device request types for attributes.
     /// </summary>
     public enum BluetoothGattRequestType
     {
         /// <summary>
-        /// Read Requested.
+        /// Read requested.
         /// </summary>
         Read = 0,
         /// <summary>
-        /// Write Requested.
+        /// Write requested.
         /// </summary>
         Write = 1,
     }

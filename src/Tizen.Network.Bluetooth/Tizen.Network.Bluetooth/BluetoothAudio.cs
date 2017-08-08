@@ -19,8 +19,8 @@ using System;
 namespace Tizen.Network.Bluetooth
 {
     /// <summary>
-    /// A class which is used to handle the connection with other Bluetooth audio devices
-    /// like headset, hands-free and headphone.
+    /// This class is used to handle the connection with other Bluetooth audio devices
+    /// like headset, hands-free, and headphone.
     /// </summary>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
     public class BluetoothAudio : BluetoothProfile
@@ -30,7 +30,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// (event) AudioConnectionStateChanged is called when audio connection state is changed.
+        /// The AudioConnectionStateChanged event is called when the audio connection state is changed.
         /// </summary>
         public event EventHandler<AudioConnectionStateChangedEventArgs> AudioConnectionStateChanged
         {
@@ -45,16 +45,16 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Connect the remote device with the given audio profile.
+        /// Connects the remote device with the given audio profile.
         /// </summary>
         /// <remarks>
-        /// The device must be bonded with remote device by CreateBond().If connection request succeeds, AudioConnectionStateChanged event will be invoked.
-        /// If audio profile type is All and this request succeeds, then AudioConnectionStateChanged event will be called twice when HspHfp <br>
+        /// The device must be bonded with the remote device by CreateBond(). If connection request succeeds, the AudioConnectionStateChanged event will be invoked.
+        /// If audio profile type is All and this request succeeds, then the AudioConnectionStateChanged event will be called twice when HspHfp <br>
         /// and AdvancedAudioDistribution is connected.
         /// </remarks>
-        /// <param name="profileType">Type of audio profile.</param>
+        /// <param name="profileType">The type of the audio profile.</param>
         /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not Enabled
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when the connection attempt fails.</exception>
         public void Connect(BluetoothAudioProfileType profileType)
         {
@@ -77,13 +77,13 @@ namespace Tizen.Network.Bluetooth
         /// Disconnects the remote device with the given audio profile.
         /// </summary>
         /// <remarks>
-        /// The device must be connected by Connect().If the disconnection request succeeds, AudioConnectionStateChanged event will be invoked.
-        /// If audio profile type is All and this request succeeds, then AudioConnectionStateChanged event will be called twice when HspHfp <br>
+        /// The device must be connected by Connect(). If the disconnection request succeeds, the AudioConnectionStateChanged event will be invoked.
+        /// If audio profile type is All and this request succeeds, then the AudioConnectionStateChanged event will be called twice when HspHfp <br>
         /// and AdvancedAudioDistribution is disconnected.
         /// </remarks>
-        /// <param name="type">Type of audio profile.</param>
+        /// <param name="type">The type of the audio profile.</param>
         /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not Enabled
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when Disconnection attempt fails.</exception>
         public void Disconnect(BluetoothAudioProfileType type)
         {
