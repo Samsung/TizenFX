@@ -30,6 +30,8 @@ namespace Tizen.NUI
         /// Application instance to connect event.
         /// </summary>
         protected Application _application;
+        private string _stylesheet = "";
+        private NUIApplication.WindowMode _windowMode = NUIApplication.WindowMode.Opaque;
 
         /// <summary>
         /// Dictionary to contain each type of event callback.
@@ -41,7 +43,6 @@ namespace Tizen.NUI
         /// </summary>
         public NUICoreBackend()
         {
-            _application = Application.NewApplication();
         }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace Tizen.NUI
         /// </summary>
         public NUICoreBackend(string stylesheet)
         {
-            _application = Application.NewApplication(stylesheet);
+            _stylesheet = stylesheet;
         }
 
         /// <summary>
@@ -57,7 +58,8 @@ namespace Tizen.NUI
         /// </summary>
         public NUICoreBackend(string stylesheet, NUIApplication.WindowMode windowMode)
         {
-            _application = Application.NewApplication(stylesheet, (Application.WindowMode)windowMode );
+            _stylesheet = stylesheet;
+            _windowMode = windowMode;
         }
 
         /// <summary>
@@ -89,7 +91,10 @@ namespace Tizen.NUI
         /// </summary>
         public void Dispose()
         {
-            _application.Dispose();
+            if(_application != null)
+            {
+                _application.Dispose();
+            }
         }
 
         /// <summary>
@@ -97,7 +102,10 @@ namespace Tizen.NUI
         /// </summary>
         public void Exit()
         {
-            _application.Quit();
+            if(_application != null)
+            {
+                _application.Quit();
+            }
         }
 
         /// <summary>
@@ -107,6 +115,17 @@ namespace Tizen.NUI
         public void Run(string[] args)
         {
             TizenSynchronizationContext.Initialize();
+
+            args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
+            if (args.Length == 1)
+            {
+                _application = Application.NewApplication();
+            }
+            else if (args.Length > 1)
+            {
+                _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode);
+            }
+
             _application.BatteryLow += OnBatteryLow;
             _application.LanguageChanged += OnLanguageChanged;
             _application.MemoryLow += OnMemoryLow;

@@ -1134,6 +1134,21 @@ namespace Tizen.NUI
             return ret;
         }
 
+
+        public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode)
+        {
+            NUILog.Debug(" NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode) is called! ");
+
+            Application ret = New(args, stylesheet, (Application.WindowMode)windowMode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            // we've got an application now connect the signals
+            ret.SetupDelegates();
+            // set the singleton
+            _instance = ret;
+            return _instance;
+        }
+
         //Removed from v0.2.33
         /*public bool AddIdle(System.Delegate func)
         {
@@ -1183,6 +1198,28 @@ namespace Tizen.NUI
             NUILog.Debug("New(int argc, string stylesheet, Application.WindowMode windowMode) is called!");
 
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static Application New(string[] args, string stylesheet, Application.WindowMode windowMode)
+        {
+            NUILog.Debug("New(string[] args) is called!");
+            int argc = args.Length;
+            string argvStr = "";
+            for (int index = 0; index < args.Length; index++)
+            {
+                if(index == (args.Length - 1))
+                {
+                    argvStr = argvStr + args[index];
+                }
+                else
+                {
+                    argvStr = argvStr + args[index] + " ";
+                }
+            }
+
+            Application ret = new Application(NDalicPINVOKE.Application_New__MANUAL_4(argc, argvStr, stylesheet, (int)windowMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
