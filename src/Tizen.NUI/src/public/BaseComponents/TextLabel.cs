@@ -799,12 +799,12 @@ namespace Tizen.NUI.BaseComponents
                 {
                     case LineWrapMode.Word:
                     {
-                        temp = "WORD";
+                        temp = "WRAP_MODE_WORD";
                         break;
                     }
                     case LineWrapMode.Character:
                     {
-                        temp = "CHARACTER";
+                        temp = "WRAP_MODE_CHARACTER";
                         break;
                     }
                 }
