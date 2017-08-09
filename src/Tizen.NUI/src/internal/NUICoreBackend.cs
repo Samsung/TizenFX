@@ -106,6 +106,7 @@ namespace Tizen.NUI
         /// <param name="args">Arguments from commandline.</param>
         public void Run(string[] args)
         {
+            TizenSynchronizationContext.Initialize();
             _application.BatteryLow += OnBatteryLow;
             _application.LanguageChanged += OnLanguageChanged;
             _application.MemoryLow += OnMemoryLow;
