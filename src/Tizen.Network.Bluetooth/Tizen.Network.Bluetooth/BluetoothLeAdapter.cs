@@ -429,7 +429,7 @@ namespace Tizen.Network.Bluetooth {
         /// </remarks>
         /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
-        /// or when the gatt disconnection attempt to remote device fails.</exception>
+        /// or when the GATT disconnection attempt to remote device fails.</exception>
         public void GattDisconnect()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)

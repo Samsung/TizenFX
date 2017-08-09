@@ -669,11 +669,11 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         Bpp = 0x00001000,
         /// <summary>
-        /// The BPP service class.
+        /// The BIP service class.
         /// </summary>
         Bip = 0x00002000,
         /// <summary>
-        /// The Panu service class.
+        /// The PANU service class.
         /// </summary>
         Panu = 0x00004000,
         /// <summary>
@@ -752,7 +752,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         GenericAttribute,
         /// <summary>
-        /// The Nap Server profile.
+        /// The NAP Server profile.
         /// </summary>
         NapServer,
         /// <summary>
