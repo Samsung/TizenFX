@@ -43,8 +43,6 @@ namespace Tizen.Multimedia
         /// Gets or sets the <see cref="PlayerDisplayMode"/>.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     The display is not assigned.\n
-        ///     -or-\n
         ///     Operation failed; internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
@@ -72,8 +70,6 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>true if the display is visible; otherwise false.</value>
         /// <exception cref="InvalidOperationException">
-        ///     The display is not assigned.\n
-        ///     -or-\n
         ///     Operation failed; internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
@@ -98,8 +94,6 @@ namespace Tizen.Multimedia
         /// <value><see cref="Rotation.Rotate0"/>, <see cref="Rotation.Rotate90"/>, <see cref="Rotation.Rotate180"/>,
         ///     <see cref="Rotation.Rotate270"/></value>
         /// <exception cref="InvalidOperationException">
-        ///     The display is not assigned.\n
-        ///     -or-\n
         ///     Operation failed; internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
@@ -130,8 +124,6 @@ namespace Tizen.Multimedia
         /// To set roi, <see cref="Mode"/> must be set to <see cref="PlayerDisplayMode.Roi"/> first.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The display is not assigned.\n
-        ///     -or-\n
         ///     Operation failed; internal error.\n
         ///     -or-\n
         ///     <see cref="Mode"/> is not set to <see cref="PlayerDisplayMode.Roi"/>.
