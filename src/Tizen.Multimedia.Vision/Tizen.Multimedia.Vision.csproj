@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../build/build.props" />
+
+  <PropertyGroup>
+    <Version>1.0.1</Version>
+    <Description>Provides the Multimedia Vision API for Tizen .NET</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>Tizen.Multimedia.Vision.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <DelaySign>False</DelaySign>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tizen.Multimedia\Tizen.Multimedia.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../build/build.props" />
+
+  <PropertyGroup>
+    <Version>1.2.1</Version>
+    <Description>Common classes and interfaces for the Tizen .NET Multimedia</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>Tizen.Multimedia.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <DelaySign>False</DelaySign>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ElmSharp" Version="$(ElmSharpVersion)" />
+    <PackageReference Include="Tizen" Version="$(TizenVersion)" />
+    <PackageReference Include="Tizen.Applications.Common" Version="$(ApplicationsVersion)" />
+    <PackageReference Include="Tizen.System.Information" Version="$(SystemInfoVersion)" />
+  </ItemGroup>
+
+</Project>
