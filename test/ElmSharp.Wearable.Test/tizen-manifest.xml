@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="ElmSharpTest.Wearable" version="1.0.0">
+	<profile name="wearable" />
+	<ui-application appid="org.tizen.ElmSharp.Wearable.Test"
+					exec="ElmSharp.Wearable.Test.exe"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					launch_mode="single">
+	<icon>ElmSharp.Wearable.Test.png</icon>
+	<label>ElmSharp.Wearable.Test</label>
+	</ui-application>
+</manifest>

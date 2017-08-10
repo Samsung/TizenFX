@@ -1,0 +1,1058 @@
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+
+namespace ElmSharp
+{
+    /// <summary>
+    /// Enumeration for the display rotation of window.
+    /// </summary>
+    [Flags]
+    public enum DisplayRotation
+    {
+        /// <summary>
+        /// Rotation value of window is 0 degree
+        /// </summary>
+        Degree_0 = 1,
+
+        /// <summary>
+        /// Rotation value of window is 90 degree
+        /// </summary>
+        Degree_90 = 2,
+
+        /// <summary>
+        /// Rotation value of window is 180 degree
+        /// </summary>
+        Degree_180 = 4,
+
+        /// <summary>
+        /// Rotation value of window is 270 degree
+        /// </summary>
+        Degree_270 = 8
+    };
+
+    /// <summary>
+    /// Enumeration for the indicator opacity
+    /// </summary>
+    public enum StatusBarMode
+    {
+        /// <summary>
+        /// Opacifies the status bar
+        /// </summary>
+        Opaque = 1,
+
+        /// <summary>
+        /// Be translucent the status bar
+        /// </summary>
+        /// <remarks>
+        /// Not supported.
+        /// </remarks>
+        Translucent = 2,
+
+        /// <summary>
+        /// Transparentizes the status bar
+        /// </summary>
+        Transparent = 3,
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum KeyGrabMode
+    {
+        Shared = 256,
+        Topmost = 512,
+        Exclusive = 1024,
+        OverrideExclusive = 2048,
+    }
+
+    /// <summary>
+    /// Enumeration for the indicator mode.
+    /// </summary>
+    public enum IndicatorMode
+    {
+        /// <summary>
+        /// Unknown indicator state.
+        /// </summary>
+        Unknown = 0,
+
+        /// <summary>
+        /// Hides the indicator.
+        /// </summary>
+        Hide,
+
+        /// <summary>
+        /// Shows the indicator.
+        /// </summary>
+        Show,
+    };
+
+    /// <summary>
+    /// Enumeration for the keyboard mode
+    /// </summary>
+    public enum KeyboardMode
+    {
+        /// <summary>
+        /// Unknown keyboard state
+        /// </summary>
+        Unknown,
+
+        /// <summary>
+        /// Request to deactivate the keyboard
+        /// </summary>
+        Off,
+
+        /// <summary>
+        /// Enable keyboard with default layout
+        /// </summary>
+        On,
+
+        /// <summary>
+        /// Alpha (a-z) keyboard layout
+        /// </summary>
+        Alpha,
+
+        /// <summary>
+        /// Numeric keyboard layout
+        /// </summary>
+        Numeric,
+
+        /// <summary>
+        /// PIN keyboard layout
+        /// </summary>
+        Pin,
+
+        /// <summary>
+        /// Phone keyboard layout
+        /// </summary>
+        PhoneNumber,
+
+        /// <summary>
+        /// Hexadecimal numeric keyboard layout
+        /// </summary>
+        Hex,
+
+        /// <summary>
+        /// Full (QWERTY) keyboard layout
+        /// </summary>
+        QWERTY,
+
+        /// <summary>
+        /// Password keyboard layout
+        /// </summary>
+        Password,
+
+        /// <summary>
+        /// IP keyboard layout
+        /// </summary>
+        IP,
+
+        /// <summary>
+        /// Host keyboard layout
+        /// </summary>
+        Host,
+
+        /// <summary>
+        /// File keyboard layout
+        /// </summary>
+        File,
+
+        /// <summary>
+        /// URL keyboard layout
+        /// </summary>
+        URL,
+
+        /// <summary>
+        /// Keypad layout
+        /// </summary>
+        Keypad,
+
+        /// <summary>
+        /// J2ME keyboard layout
+        /// </summary>
+        J2ME,
+    };
+
+    /// <summary>
+    /// Enumeration for the window type
+    /// </summary>
+    public enum WindowType
+    {
+        /// <summary>
+        /// Unknown
+        /// </summary>
+        Unknown,
+
+        /// <summary>
+        /// A normal window. Indicates a normal, top-level window. Almost every window will be created with this type.
+        /// </summary>
+        Basic,
+
+        /// <summary>
+        /// Used for simple dialog windows.
+        /// </summary>
+        Dialog,
+
+        /// <summary>
+        /// For special desktop windows, like a background window holding desktop icons.
+        /// </summary>
+        Desktop,
+
+        /// <summary>
+        /// The window is used as a dock or panel. Usually would be kept on top of any other window by the Window Manager.
+        /// </summary>
+        Dock,
+
+        /// <summary>
+        /// The window is used to hold a floating toolbar, or similar.
+        /// </summary>
+        Toolbar,
+
+        /// <summary>
+        /// Similar to Toolbar.
+        /// </summary>
+        Menu,
+
+        /// <summary>
+        /// A persistent utility window, like a toolbox or palette.
+        /// </summary>
+        Utility,
+
+        /// <summary>
+        /// Splash window for a starting up application.
+        /// </summary>
+        Splash,
+
+        /// <summary>
+        /// The window is a dropdown menu, as when an entry in a menubar is clicked.
+        /// </summary>
+        DropdownMenu,
+
+        /// <summary>
+        /// Like DropdownMenu, but for the menu triggered by right-clicking an object.
+        /// </summary>
+        PopupMenu,
+
+        /// <summary>
+        /// The window is a tooltip. A short piece of explanatory text that typically appear after the mouse cursor hovers over an object for a while.
+        /// </summary>
+        Tooltip,
+
+        /// <summary>
+        /// A notification window, like a warning about battery life or a new E-Mail received.
+        /// </summary>
+        Notification,
+
+        /// <summary>
+        /// A window holding the contents of a combo box.
+        /// </summary>
+        Combo,
+
+        /// <summary>
+        /// Used to indicate the window is a representation of an object being dragged across different windows, or even applications.
+        /// </summary>
+        DragAndDrop,
+
+        /// <summary>
+        /// The window is rendered onto an image buffer. No actual window is created for this type, instead the window and all of its contents will be rendered to an image buffer.
+        /// This allows to have children window inside a parent one just like any other object would be, and do other things like applying Evas_Map effects to it.
+        /// </summary>
+        InlinedImage,
+
+        /// <summary>
+        /// The window is rendered onto an image buffer and can be shown other process's plug image object.
+        /// No actual window is created for this type, instead the window and all of its contents will be rendered to an image buffer and can be shown other process's plug image object.
+        /// </summary>
+        SocketImage,
+
+        /// <summary>
+        /// This window was created using a pre-existing canvas. The window widget can be deleted, but the canvas must be managed externally.
+        /// </summary>
+        Fake,
+    };
+
+    /// <summary>
+    /// The Window is container that contain the graphical user interface of a program.
+    /// </summary>
+    public class Window : Widget
+    {
+        SmartEvent _deleteRequest;
+        SmartEvent _rotationChanged;
+        HashSet<EvasObject> _referenceHolder = new HashSet<EvasObject>();
+
+        /// <summary>
+        /// Creates and initializes a new instance of the Window class.
+        /// </summary>
+        /// <param name="name">Window name.</param>
+        public Window(string name) : this(null, name)
+        {
+        }
+
+        /// <summary>
+        /// Creates and initializes a new instance of the Window class.
+        /// </summary>
+        /// <param name="parent">
+        /// Parent widget which this widow created on.
+        /// </param>
+        /// <param name="name">
+        /// Window name.
+        /// </param>
+        /// <remarks>
+        /// Window constructor.show window indicator,set callback
+        /// When closing the window in any way outside the program control,
+        /// and set callback when window rotation changed.
+        /// </remarks>
+        public Window(Window parent, string name) : this(parent, name, WindowType.Basic)
+        {
+        }
+
+        /// <summary>
+        /// Creates and initializes a new instance of the Window class.
+        /// </summary>
+        /// <param name="parent">
+        /// Parent widget which this widow created on.
+        /// </param>
+        /// <param name="name">
+        /// Window name.
+        /// </param>
+        /// <param name="type">
+        /// Window type
+        /// </param>
+        /// <remarks>
+        /// Window constructor.show window indicator,set callback
+        /// When closing the window in any way outside the program control,
+        /// and set callback when window rotation changed.
+        /// </remarks>
+        public Window(Window parent, string name, WindowType type)
+        {
+            Name = name;
+            Type = type;
+            Realize(parent);
+            IndicatorMode = IndicatorMode.Show;
+
+            _deleteRequest = new SmartEvent(this, "delete,request");
+            _rotationChanged = new SmartEvent(this, "wm,rotation,changed");
+            _deleteRequest.On += (s, e) => CloseRequested?.Invoke(this, EventArgs.Empty);
+            _rotationChanged.On += (s, e) => RotationChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected Window()
+        {
+        }
+
+        /// <summary>
+        /// CloseRequested will be triggered when Window close.
+        /// </summary>
+        public event EventHandler CloseRequested;
+
+        /// <summary>
+        /// RotationChanged will be triggered when Window do rotation.
+        /// </summary>
+        public event EventHandler RotationChanged;
+
+        /// <summary>
+        /// Sets or gets Window name.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets the Window type.
+        /// </summary>
+        public WindowType Type { get; } = WindowType.Basic;
+
+        /// <summary>
+        /// Gets Window size with Size value(w,h)
+        /// </summary>
+        public Size ScreenSize
+        {
+            get
+            {
+                int x, y, w, h;
+                Interop.Elementary.elm_win_screen_size_get(Handle, out x, out y, out w, out h);
+                return new Size(w, h);
+            }
+        }
+
+        /// <summary>
+        /// Gets the screen dpi for the screen that a Window is on.
+        /// </summary>
+        public Point ScreenDpi
+        {
+            get
+            {
+                Point point = default(Point);
+                Interop.Elementary.elm_win_screen_dpi_get(Handle, out point.X, out point.Y);
+                return point;
+            }
+        }
+
+        /// <summary>
+        /// Gets the rotation of the Window.The rotation of the window in degrees (0-360).
+        /// </summary>
+        public int Rotation
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_rotation_get(Handle);
+            }
+        }
+
+        /// <summary>
+        /// Gets whether window manager supports window rotation or not.
+        /// </summary>
+        public bool IsRotationSupported
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_wm_rotation_supported_get(Handle);
+            }
+        }
+
+        [Obsolete("Sorry, it's error typo of AvailableRotations, please use AvailableRotations")]
+        public DisplayRotation AavailableRotations { get; set; }
+
+        /// <summary>
+        /// Sets or gets available rotation degree.
+        /// </summary>
+        public DisplayRotation AvailableRotations
+        {
+            get
+            {
+                int[] rotations;
+                Interop.Elementary.elm_win_wm_rotation_available_rotations_get(Handle, out rotations);
+                if (rotations == null)
+                {
+                    return 0;
+                }
+                return ConvertToDisplayRotation(rotations);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_wm_rotation_available_rotations_set(Handle, ConvertDegreeArray(value));
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets whether auto deletion function is enable.
+        /// </summary>
+        /// <remarks>
+        /// If you enable auto deletion, the window is automatically destroyed after the signal is emitted.
+        /// If auto deletion is disabled, the window is not destroyed and the program has to handle it.
+        /// </remarks>
+        public bool AutoDeletion
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_autodel_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_autodel_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the alpha channel state of a window.
+        /// </summary>
+        /// <remarks>
+        /// True if the window alpha channel is enabled, false otherwise.
+        /// If alpha is true, the alpha channel of the canvas will be enabled possibly making parts of the window completely or partially transparent.
+        /// </remarks>
+        public bool Alpha
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_alpha_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_alpha_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the role of the window.
+        /// </summary>
+        /// <remarks>
+        /// The Role will be invalid if a new role is set or if the window is destroyed.
+        /// </remarks>
+        public string Role
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_role_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_role_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the mode of status bar.
+        /// </summary>
+        public StatusBarMode StatusBarMode
+        {
+            get
+            {
+                return (StatusBarMode)Interop.Elementary.elm_win_indicator_opacity_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_indicator_opacity_set(Handle, (int)value);
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Iconified
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_iconified_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_iconified_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the window's indicator mode.
+        /// </summary>
+        /// <value>The indicator mode.</value>
+        public IndicatorMode IndicatorMode
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_indicator_mode_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_indicator_mode_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the aspect ratio of a window.
+        /// </summary>
+        public double Aspect
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_aspect_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_aspect_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Window's autohide state.
+        /// </summary>
+        public bool AutoHide
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_autohide_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_autohide_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Get the borderless state of a window.
+        /// This function requests the Window Manager to not draw any decoration around the window.
+        /// </summary>
+        public bool Borderless
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_borderless_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_borderless_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the demand attention state of a window.
+        /// </summary>
+        public bool DemandAttention
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_demand_attention_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_demand_attention_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the floating mode of a window.
+        /// </summary>
+        public bool FloatingMode
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_floating_mode_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_floating_mode_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the animate status for the focus highlight for this window.
+        /// This function will enable or disable the animation of focus highlight only for the given window, regardless of the global setting for it.
+        /// </summary>
+        public bool FocusHighlightAnimation
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_focus_highlight_animate_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_focus_highlight_animate_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the enabled status for the focus highlight in a window.
+        /// This function will enable or disable the focus highlight only for the given window, regardless of the global setting for it.
+        /// </summary>
+        public bool FocusHighlightEnabled
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_focus_highlight_enabled_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_focus_highlight_enabled_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the style for the focus highlight on this window.
+        /// Sets the style to use for theming the highlight of focused objects on the given window.If style is NULL, the default will be used.
+        /// </summary>
+        public string FocusHighlightStyle
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_focus_highlight_style_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_focus_highlight_style_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Get the keyboard mode of the window.
+        /// </summary>
+        public KeyboardMode KeyboardMode
+        {
+            get
+            {
+                return (KeyboardMode)Interop.Elementary.elm_win_keyboard_mode_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_keyboard_mode_set(RealHandle, (int)value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the layer of the window.
+        /// What this means exactly will depend on the underlying engine used.
+        /// In the case of X11 backed engines, the value in layer has the following meanings
+        /// less than 3 means that the window will be placed below all others,
+        /// more than 5 means that the window will be placed above all others,
+        /// and anything else means that the window will be placed in the default layer.
+        /// </summary>
+        public override int Layer
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_layer_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_layer_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the maximized state of a window.
+        /// </summary>
+        public bool Maximized
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_maximized_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_maximized_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the modal state of a window.
+        /// </summary>
+        public bool Modal
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_modal_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_modal_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the noblank property of a window.
+        /// This is a way to request the display on which the windowis shown does not blank, screensave or otherwise hide or obscure the window.It is intended for uses such as media playback on a television where a user may not want to be interrupted by an idle screen.
+        /// The noblank property may have no effect if the window is iconified/minimized or hidden.
+        /// </summary>
+        public bool NoBlank
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_noblank_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_noblank_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Get the profile of a window.
+        /// </summary>
+        public string Profile
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_profile_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_profile_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Get the constraints on the maximum width and height of a window relative to the width and height of its screen.
+        /// When this function returns true, obj will never resize larger than the screen.
+        /// </summary>
+        public bool ScreenConstrain
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_screen_constrain_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_screen_constrain_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the base size of a window.
+        /// </summary>
+        public Size BaseSize
+        {
+            get
+            {
+                int w, h;
+                Interop.Elementary.elm_win_size_base_get(RealHandle, out w, out h);
+                return new Size(w, h);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_size_base_set(RealHandle, value.Width, value.Height);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the step size of a window.
+        /// </summary>
+        public Size StepSize
+        {
+            get
+            {
+                int w, h;
+                Interop.Elementary.elm_win_size_step_get(RealHandle, out w, out h);
+                return new Size(w, h);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_size_step_set(RealHandle, value.Width, value.Height);
+            }
+        }
+
+        /// <summary>
+        /// Get the screen position X of a window.
+        /// </summary>
+        public int ScreenPositionX
+        {
+            get
+            {
+                int x, y;
+                Interop.Elementary.elm_win_screen_position_get(Handle, out x, out y);
+                return x;
+            }
+        }
+
+        /// <summary>
+        /// Get the screen position Y of a window.
+        /// </summary>
+        public int ScreenPositionY
+        {
+            get
+            {
+                int x, y;
+                Interop.Elementary.elm_win_screen_position_get(Handle, out x, out y);
+                return y;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the title of the window.
+        /// </summary>
+        public string Title
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_title_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_title_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the urgent state of a window.
+        /// </summary>
+        public bool Urgent
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_urgent_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_urgent_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the withdrawn state of a window.
+        /// </summary>
+        public bool Withdrawn
+        {
+            get
+            {
+                return Interop.Elementary.elm_win_urgent_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_win_urgent_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Create a socket to provide the service for Plug widget.
+        /// </summary>
+        /// <param name="serviceName">A service name</param>
+        /// <param name="serviceNumber">A number (any value, 0 being the common default) to differentiate multiple instances of services with the same name.</param>
+        /// <param name="systemWide">A boolean that if true, specifies to create a system-wide service all users can connect to, otherwise the service is private to the user id that created the service.</param>
+        /// <returns></returns>
+        public bool CreateServiceSocket(string name, int number, bool systemWide)
+        {
+            return Interop.Elementary.elm_win_socket_listen(RealHandle, name, number, systemWide);
+        }
+
+        /// <summary>
+        /// Set the rotation of the window.
+        /// </summary>
+        /// <param name="degree">The rotation of the window, in degrees (0-360), counter-clockwise.</param>
+        /// <param name="resize">Resizes the window's contents so that they fit inside the current window geometry.</param>
+        public void SetRotation(int degree, bool resize)
+        {
+            if (resize)
+                Interop.Elementary.elm_win_rotation_with_resize_set(RealHandle, degree);
+            else
+                Interop.Elementary.elm_win_rotation_set(RealHandle, degree);
+        }
+
+        /// <summary>
+        /// Set the window to be skipped by focus.
+        /// This sets the window to be skipped by normal input.
+        /// This means a window manager will be asked to not focus this window as well as omit it from things like the taskbar, pager etc.
+        /// Call this and enable it on a window BEFORE you show it for the first time, otherwise it may have no effect.
+        /// Use this for windows that have only output information or might only be interacted with by the mouse or fingers, and never for typing input.
+        /// Be careful that this may have side-effects like making the window non-accessible in some cases unless the window is specially handled. Use this with care.
+        /// </summary>
+        public void FocusSkip(bool skip)
+        {
+            Interop.Elementary.elm_win_prop_focus_skip_set(Handle, skip);
+        }
+
+        /// <summary>
+        /// Pull up the window object.
+        /// Places the window pointed by obj at the top of the stack, so that it's not covered by any other window.
+        /// </summary>
+        public void PullUp()
+        {
+            Interop.Elementary.elm_win_raise(Handle);
+        }
+
+        /// <summary>
+        /// Bring down the window object.
+        /// Places the window pointed by obj at the bottom of the stack, so that no other window is covered by it.
+        /// </summary>
+        public void BringDown()
+        {
+            Interop.Elementary.elm_win_lower(Handle);
+        }
+
+        /// <summary>
+        /// This function sends a request to the Windows Manager to activate the Window.
+        /// If honored by the WM, the window receives the keyboard focus.
+        /// </summary>
+        /// <remarks>
+        /// This is just a request that a Window Manager may ignore, so calling this function does not ensure
+        /// in any way that the window is going to be the active one after it.
+        /// </remarks>
+        public void Active()
+        {
+            Interop.Elementary.elm_win_activate(Handle);
+        }
+
+        /// <summary>
+        /// Delete subobj as a resize object of window obj.
+        /// This function removes the object subobj from the resize objects of the window obj.
+        /// It will not delete the object itself, which will be left unmanaged and should be deleted by the developer, manually handled or set as child of some other container.
+        /// </summary>
+        /// <param name="obj">Resize object.</param>
+        public void DeleteResizeObject(EvasObject obj)
+        {
+            Interop.Elementary.elm_win_resize_object_del(Handle, obj);
+        }
+
+        /// <summary>
+        /// Adds obj as a resize object of the Window.
+        /// </summary>
+        /// <remarks>
+        /// Setting an object as a resize object of the window means that the obj child's size and
+        /// position is controlled by the window directly. That is, the obj is resized to match the window size
+        /// and should never be moved or resized manually by the developer.In addition,
+        /// resize objects of the window control the minimum size of it as well as whether it can or cannot be resized by the user.
+        /// </remarks>
+        /// <param name="obj">
+        /// Resize object.
+        /// </param>
+        public void AddResizeObject(EvasObject obj)
+        {
+            Interop.Elementary.elm_win_resize_object_add(Handle, obj);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void WinKeyGrab(string keyname, KeyGrabMode mode)
+        {
+            Interop.Elementary.elm_win_keygrab_set(RealHandle, keyname, 0, 0, 0, mode);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void WinKeyUngrab(string keyname)
+        {
+            Interop.Elementary.elm_win_keygrab_unset(RealHandle, keyname, 0, 0);
+        }
+
+        /// <summary>
+        /// Set the keygrab of the window.
+        /// </summary>
+        /// <param name="keyname">keyname string to set keygrab</param>
+        public void KeyGrabEx(string keyname)
+        {
+            Interop.Elementary.eext_win_keygrab_set(RealHandle, keyname);
+        }
+
+        /// <summary>
+        /// Unset the keygrab of the window.
+        /// </summary>
+        /// <param name="keyname">keyname string to unset keygrab</param>
+        public void KeyUngrabEx(string keyname)
+        {
+            Interop.Elementary.eext_win_keygrab_unset(RealHandle, keyname);
+        }
+
+        protected override IntPtr CreateHandle(EvasObject parent)
+        {
+            Interop.Elementary.elm_config_accel_preference_set("3d");
+            return Interop.Elementary.elm_win_add(parent != null ? parent.Handle : IntPtr.Zero, Name, (int)Type);
+        }
+
+        internal void AddChild(EvasObject obj)
+        {
+            _referenceHolder.Add(obj);
+        }
+
+        internal void RemoveChild(EvasObject obj)
+        {
+            _referenceHolder.Remove(obj);
+        }
+
+        static int[] ConvertDegreeArray(DisplayRotation value)
+        {
+            List<int> rotations = new List<int>();
+            if (value.HasFlag(DisplayRotation.Degree_0))
+                rotations.Add(0);
+            if (value.HasFlag(DisplayRotation.Degree_90))
+                rotations.Add(90);
+            if (value.HasFlag(DisplayRotation.Degree_180))
+                rotations.Add(180);
+            if (value.HasFlag(DisplayRotation.Degree_270))
+                rotations.Add(270);
+            return rotations.ToArray();
+        }
+
+        static DisplayRotation ConvertToDisplayRotation(int[] values)
+        {
+            int orientation = 0;
+            foreach (int v in values)
+            {
+                orientation |= (1 << (v / 90));
+            }
+            return (DisplayRotation)orientation;
+        }
+    }
+}

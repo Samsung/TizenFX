@@ -1,0 +1,126 @@
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
+
+namespace ElmSharp
+{
+    /// <summary>
+    /// The NaviItem is a widget to contain the contents to show in Naviframe.
+    /// Inherits ItemObject
+    /// </summary>
+    public class NaviItem : ItemObject
+    {
+        EvasObject _content;
+        bool _isPopped;
+        Color _barBackgroundColor = Color.Default;
+        Interop.Elementary.Elm_Naviframe_Item_Pop_Cb _popped;
+
+        NaviItem(IntPtr handle, EvasObject content) : base(handle)
+        {
+            _isPopped = false;
+            _content = content;
+            _popped = (d, i) =>
+            {
+                _isPopped = true;
+                Popped?.Invoke(this, EventArgs.Empty);
+                return true;
+            };
+            Interop.Elementary.elm_naviframe_item_pop_cb_set(handle, _popped, IntPtr.Zero);
+        }
+
+        /// <summary>
+        /// Popped will be triggered when NaviItem is removed.
+        /// </summary>
+        public event EventHandler Popped;
+
+        /// <summary>
+        /// Gets the content object. The name of content part is "elm.swallow.content".
+        /// </summary>
+        public EvasObject Content
+        {
+            get { return _content; }
+        }
+
+        /// <summary>
+        /// Sets or gets a value whether title area is enabled or not.
+        /// </summary>
+        public bool TitleBarVisible
+        {
+            get
+            {
+                return Interop.Elementary.elm_naviframe_item_title_enabled_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_naviframe_item_title_enabled_set(Handle, value, false);
+            }
+        }
+
+        /// <summary>
+        ///  Sets or gets the title bar background color
+        /// </summary>
+        public Color TitleBarBackgroundColor
+        {
+            get
+            {
+                return _barBackgroundColor;
+            }
+            set
+            {
+                if (value.IsDefault)
+                {
+                    Interop.Elementary.elm_object_item_color_class_del(Handle, "bg_title");
+                }
+                else
+                {
+                    SetPartColor("bg_title", value);
+                    _barBackgroundColor = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets an item style.
+        /// </summary>
+        public string Style
+        {
+            get
+            {
+                return Interop.Elementary.elm_naviframe_item_style_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_naviframe_item_style_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Invalidate the EventArgs if _isPopped is false.
+        /// The method should be overridden in children class.
+        /// </summary>
+        protected override void OnInvalidate()
+        {
+            if (!_isPopped)
+                Popped?.Invoke(this, EventArgs.Empty);
+        }
+
+        internal static NaviItem FromNativeHandle(IntPtr handle, EvasObject content)
+        {
+            return new NaviItem(handle, content);
+        }
+    }
+}
