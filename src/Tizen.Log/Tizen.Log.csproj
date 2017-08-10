@@ -1,20 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../../build/common.props" />
 
   <PropertyGroup>
-    <Version>1.0.0</Version>
-    <Authors>Samsung Electronics</Authors>
-    <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
-    <Description>Provides functions for sending log output.</Description>
-    <PackageProjectUrl>https://www.tizen.org/</PackageProjectUrl>
-    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
+    <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>Tizen.Log.snk</AssemblyOriginatorKeyFile>
-    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
-  </PropertyGroup>
-
+  <Import Project="../../build/common.targets" />
 </Project>

@@ -1,27 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="../build/build.props" />
-
-  <PropertyGroup>
-    <Version>1.0.1</Version>
-    <Description>Provides the Multimedia Metadata API for Tizen .NET</Description>
-  </PropertyGroup>
+  <Import Project="../../build/common.props" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>Tizen.Multimedia.Metadata.snk</AssemblyOriginatorKeyFile>
-    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
-    <DelaySign>False</DelaySign>
+    <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Tizen" Version="$(TizenVersion)" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Tizen.Multimedia\Tizen.Multimedia.csproj" />
   </ItemGroup>
 
+  <Import Project="../../build/common.targets" />
 </Project>

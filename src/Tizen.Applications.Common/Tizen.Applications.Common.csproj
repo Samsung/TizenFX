@@ -1,18 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="../build/build.props" />
+  <Import Project="../../build/common.props" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
-    <Version>1.5.10</Version>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>Tizen.Applications.Common.snk</AssemblyOriginatorKeyFile>
-    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen" Version="$(TizenVersion)" />
+    <ProjectReference Include="..\Tizen\Tizen.csproj" />
+    <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
   </ItemGroup>
 
+  <Import Project="../../build/common.targets" />
 </Project>

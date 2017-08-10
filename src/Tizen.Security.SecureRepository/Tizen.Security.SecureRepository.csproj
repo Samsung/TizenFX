@@ -1,26 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="../build/build.props" />
-
-  <PropertyGroup>
-    <Version>1.0.9</Version>
-    <Description>
-      Provides the secure repository protected by Tizen platform for keys, certificates, and sensitive data of users and/or their apps.
-      Additionally, secure cryptographic operations for non-exportable keys without revealing key values to clients are provided.
-    </Description>
-  </PropertyGroup>
+  <Import Project="../../build/common.props" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>Tizen.Security.SecureRepository.snk</AssemblyOriginatorKeyFile>
-    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen" Version="$(TizenVersion)" />
+    <ProjectReference Include="..\Tizen\Tizen.csproj" />
+    <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
   </ItemGroup>
 
+  <Import Project="../../build/common.targets" />
 </Project>
-

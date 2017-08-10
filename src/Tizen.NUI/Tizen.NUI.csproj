@@ -1,33 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <Version>0.2.50</Version>
-    <Authors>Samsung Electronics</Authors>
-    <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
-    <Description>
-      Tizen NUI is the UI Framework based on DALi (Dynamic Animation Library) 3D Graphic engine.
-      It is a quick and easy way of allowing developers to create Rich UI Applications like Image/Video galleries,
-      Music players, Games, Homescreens/launch pads, and so on.
-    </Description>
-    <PackageProjectUrl>https://www.tizen.org/</PackageProjectUrl>
-    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
-  </PropertyGroup>
+  <Import Project="../../build/common.props" />
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <DefineConstants>$(DefineConstants)DEBUG_ON</DefineConstants>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>TizenTVNUI.snk</AssemblyOriginatorKeyFile>
-    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <DefineConstants>$(DefineConstants);DEBUG_ON</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" PrivateAssets="All" />
-    <PackageReference Include="Tizen.Applications.Common" Version="1.5.8" />
-    <PackageReference Include="Tizen.System.SystemSettings" Version="1.0.4" PrivateAssets="All"/>
+    <ProjectReference Include="..\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
+    <ProjectReference Include="..\Tizen.System.SystemSettings\Tizen.System.SystemSettings.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="$(SystemPackageVersion)" PrivateAssets="All" />
+  </ItemGroup>
+
   <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
     <ItemGroup>
       <ReferencePath Condition="'%(FileName)' == 'Tizen.System.SystemSettings'">
@@ -35,5 +22,6 @@
       </ReferencePath>
     </ItemGroup>
   </Target>
-</Project>
 
+  <Import Project="../../build/common.targets" />
+</Project>

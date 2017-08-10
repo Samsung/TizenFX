@@ -1,27 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../../build/common.props" />
 
   <PropertyGroup>
-    <Version>1.2.3</Version>
-    <Authors>Samsung Electronics</Authors>
-    <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
-    <Description>
-      ElmSharp is the top-most library based on the Tizen Native UI Framwork (EFL).
-      It provides a variety of pre-built UI components, such as layout objects and widgets,
-      that allow you to build rich graphical user interfaces.
-      This is in the beta stage and will be refined based on developer feedback.
-      Backward compatibility issues may be raised when updating the platform version.
-    </Description>
-    <PackageProjectUrl>https://www.tizen.org/</PackageProjectUrl>
-    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
+    <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>ElmSharp.snk</AssemblyOriginatorKeyFile>
-    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
-  </PropertyGroup>
-
+  <Import Project="../../build/common.targets" />
 </Project>

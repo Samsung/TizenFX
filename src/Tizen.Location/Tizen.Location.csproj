@@ -1,25 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../../build/common.props" />
 
   <PropertyGroup>
-    <Version>1.0.9</Version>
-    <Authors>Samsung Electronics</Authors>
-    <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
-    <Description>Provides the Location API for Tizen .NET</Description>
-    <PackageProjectUrl>https://www.tizen.org/</PackageProjectUrl>
-    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>Tizen.Location.snk</AssemblyOriginatorKeyFile>
-    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen" Version="1.0.5" />
+    <ProjectReference Include="..\Tizen\Tizen.csproj" />
+    <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
   </ItemGroup>
 
+  <Import Project="../../build/common.targets" />
 </Project>

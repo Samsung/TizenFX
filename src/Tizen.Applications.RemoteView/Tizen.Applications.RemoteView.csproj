@@ -1,26 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../../build/common.props" />
 
   <PropertyGroup>
-    <Version>1.0.3</Version>
-    <Authors>Samsung Electronics</Authors>
-    <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
-    <Description>Provides the Widget Viewer API for Tizen .NET</Description>
-    <PackageProjectUrl>https://www.tizen.org/</PackageProjectUrl>
-    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>Tizen.Applications.RemoteView.snk</AssemblyOriginatorKeyFile>
-    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen" Version="1.0.5" />
-    <PackageReference Include="ElmSharp" Version="1.2.1" />
+    <ProjectReference Include="..\Tizen\Tizen.csproj" />
+    <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
+    <ProjectReference Include="..\ElmSharp\ElmSharp.csproj" />
   </ItemGroup>
 
+  <Import Project="../../build/common.targets" />
 </Project>
