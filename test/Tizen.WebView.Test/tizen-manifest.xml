@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="Tizen.WebView.Test" version="1.0.0">
+	<profile name="common" />
+	<ui-application appid="org.tizen.Tizen.WebView.Test"
+					exec="Tizen.WebView.Test.exe"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					launch_mode="single">
+	<icon>Tizen.WebView.Test.png</icon>
+	<label>Tizen.WebView.Test</label>
+	</ui-application>
+	<privileges>
+		<privilege>http://tizen.org/privilege/mediastorage</privilege>
+		<privilege>http://tizen.org/privilege/externalstorage</privilege>
+		<privilege>http://tizen.org/privilege/network.get</privilege>
+		<privilege>http://tizen.org/privilege/internet</privilege>
+	</privileges>
+</manifest>
