@@ -424,7 +424,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetClass(string name, string klass)
+        /// <summary>
+        /// Sets the window name and class string.
+        /// </summary>
+        /// <param name="name">The name of the window</param>
+        /// <param name="klass">The class of the window</param>
+        public void SetClass(string name, string klass)
         {
             NDalicPINVOKE.Window_SetClass(swigCPtr, name, klass);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
