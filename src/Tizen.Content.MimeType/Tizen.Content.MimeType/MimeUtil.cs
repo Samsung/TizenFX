@@ -23,16 +23,16 @@ using System.Runtime.InteropServices;
 namespace Tizen.Content.MimeType
 {
     /// <summary>
-    /// The MimeUtil API provides functions to map MIME types to file extensions and vice versa.</summary>
+    /// The MimeUtil API provides functions to map the MIME types to file extensions and vice versa.</summary>
     /// <remarks>
-    /// Conversions are provided from file extensions to MIME types and from MIME types to file extensions.</remarks>
+    /// Conversions are provided from the file extensions to MIME types and from the MIME types to file extensions.</remarks>
     public static class MimeUtil
     {
         /// <summary>
         /// Gets the MIME type for the given file extension.
-        /// The MIME type is 'application/octet-stream' if the given file extension is not associated with specific file formats
+        /// The MIME type is 'application/octet-stream' if the given file extension is not associated with specific file formats.
         /// </summary>
-        /// <param name="fileExtension"> The file Extension</param>
+        /// <param name="fileExtension"> The file extension.</param>
         /// <example>
         /// <code>
         /// string mimeType = MimeUtil.GetMimeType("png");
@@ -50,11 +50,11 @@ namespace Tizen.Content.MimeType
         }
 
         /// <summary>
-        /// Gets file extensions for the given MIME type. </summary>
+        /// Gets the file extensions for the given MIME type.</summary>
         /// <returns>
-        /// If Successfull, return's the list of file extension strings for the given MIME type.
-        /// The array of file extension are without the leading dot ('.')</returns>
-        /// <param name="mime"> The mime type</param>
+        /// If successful, returns the list of file extension strings for the given MIME type.
+        /// The array of file extension is without the leading dot ('.').</returns>
+        /// <param name="mime"> The MIME type.</param>
         /// <example>
         /// <code>
         /// IEnumerable<string> extColl = MimeUtil.GetFileExtension("video/mpeg");
