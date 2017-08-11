@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Tizen.NET.Private</id>
+    <version>4.0.0-preview1</version>
+    <authors>Samsung Electronics</authors>
+    <owners>Samsung Electronics</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://www.tizen.org/</projectUrl>
+    <iconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</iconUrl>
+    <description>A set of Tizen.NET APIs. This includes all of the APIs built on top of Tizen Platform.</description>
+    <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
+  </metadata>
+  <files>
+    <file src="bin/*.dll" target="lib/netstandard1.6" />
+    <file src="bin/*.pdb" target="lib/netstandard1.6" />
+    <file src="bin/*.xml" target="lib/netstandard1.6" />
+  </files>
+</package>
