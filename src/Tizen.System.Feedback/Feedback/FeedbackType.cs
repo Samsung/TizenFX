@@ -23,17 +23,17 @@ namespace Tizen.System
     public enum FeedbackType
     {
         /// <summary>
-        ///  Sound and Vibration
+        /// Sound and vibration.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         All = 0,
         /// <summary>
-        /// Sound feedback
+        /// Sound feedback.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Sound = Interop.Feedback.FeedbackType.Sound,
         /// <summary>
-        /// Vibration
+        /// Vibration feedback.
         /// /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Vibration = Interop.Feedback.FeedbackType.Vibration,

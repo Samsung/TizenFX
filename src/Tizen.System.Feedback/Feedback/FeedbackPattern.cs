@@ -17,7 +17,7 @@
 namespace Tizen.System
 {
     /// <summary>
-    /// String and Enumeration for feedback patterns.
+    /// String and enumeration for feedback patterns.
     /// </summary>
     internal struct FeedbackPattern
     {

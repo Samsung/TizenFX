@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.System
 {
     /// <summary>
-    /// Class for constants
+    /// The class for constants.
     /// </summary>
     internal static class Constants
     {
@@ -30,8 +30,8 @@ namespace Tizen.System
 
     /// <summary>
     /// The Feedback API provides functions to control haptic and sound.
-    /// The Feedback API provides the way to play and stop feedback and get the information whether specific pattern is supported.
-    /// Below is supported pattern string.
+    /// The Feedback API provides the way to play and stop feedback, and get the information whether a specific pattern is supported.
+    /// Below is the supported pattern string:
     /// Tap
     /// SoftInputPanel
     /// Key0
@@ -73,9 +73,9 @@ namespace Tizen.System
     /// VolumeKeyPressed
     /// </summary>
     /// <privilege>
-    /// For controlling haptic device:
+    /// For controlling the haptic device:
     /// http://tizen.org/privilege/haptic
-    /// For controlling sound, previlege is not needed.
+    /// For controlling the sound, privilege is not needed.
     /// </privilege>
     /// <code>
     /// Feedback feedback = new Feedback();
@@ -198,23 +198,23 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Get supported information about specific type and pattern
+        /// Gets the supported information about a specific type and pattern.
         /// </summary>
         /// <remarks>
         /// Now, IsSupportedPattern is not working for FeedbackType.All.
         /// This API is working for FeedbackType.Sound and FeedbackType.Vibration only.
         /// If you use FeedbackType.All for type parameter, this API will throw ArgumentException.
-        /// To get supported information for Vibration type, app should have http://tizen.org/privilege/haptic privilege.
+        /// To get the supported information for Vibration type, the application should have http://tizen.org/privilege/haptic privilege.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="type">Feedback type</param>
-        /// <param name="pattern">Feedback pattern string</param>
-        /// <returns>Information whether pattern is supported</returns>
-        /// <exception cref="Exception">Thrown when failed because feedback is not initialized</exception>
-        /// <exception cref="ArgumentException">Thrown when failed because of a invalid arguament</exception>
-        /// <exception cref="NotSupportedException">Thrown when failed becuase device(haptic, sound) is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when failed because access is not granted(No privilege)</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of system error</exception>
+        /// <param name="type">The feedback type.</param>
+        /// <param name="pattern">The feedback pattern string.</param>
+        /// <returns>Information whether a pattern is supported.</returns>
+        /// <exception cref="Exception">Thrown when failed because the feedback is not initialized.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because the access is not granted (No privilege).</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
         /// <privilege>http://tizen.org/privilege/haptic</privilege>
         /// <example>
         /// <code>
@@ -266,19 +266,19 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Play specific feedback pattern
+        /// Plays a specific feedback pattern.
         /// </summary>
         /// <remarks>
         /// To play Vibration type, app should have http://tizen.org/privilege/haptic privilege.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="type">Feedback type</param>
-        /// <param name="pattern">Feedback pattern string</param>
-        /// <exception cref="Exception">Thrown when failed because feedback is not initialized</exception>
-        /// <exception cref="ArgumentException">Thrown when failed because of a invalid arguament</exception>
-        /// <exception cref="NotSupportedException">Thrown when failed because device(haptic, sound) or specific pattern is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when failed because access is not granted(No privilege)</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of system error</exception>
+        /// <param name="type">The feedback type.</param>
+        /// <param name="pattern">The feedback pattern string.</param>
+        /// <exception cref="Exception">Thrown when failed because feedback is not initialized.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed because the device (haptic, sound) or a specific pattern is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because the access is not granted(No privilege)</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
         /// <privilege>http://tizen.org/privilege/haptic</privilege>
         /// <example>
         /// <code>
@@ -330,17 +330,17 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Stop to play feedback
+        /// Stops to play the feedback.
         /// </summary>
         /// <remarks>
-        /// To stop vibration, app should have http://tizen.org/privilege/haptic privilege.
+        /// To stop vibration, the application should have http://tizen.org/privilege/haptic privilege.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="Exception">Thrown when failed because feedback is not initialized</exception>
-        /// <exception cref="ArgumentException">Thrown when failed because of a invalid arguament</exception>
-        /// <exception cref="NotSupportedException">Thrown when failed because device(haptic, sound) or specific pattern is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when failed because access is not granted(No privilege)</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of system error</exception>
+        /// <exception cref="Exception">Thrown when failed because the feedback is not initialized.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed because the device (haptic, sound) or a specific pattern is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because the access is not granted (No privilege).</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
         /// <privilege>http://tizen.org/privilege/haptic</privilege>
         /// <example>
         /// <code>
