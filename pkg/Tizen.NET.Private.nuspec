@@ -13,8 +13,8 @@
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
   </metadata>
   <files>
-    <file src="bin/*.dll" target="lib/netstandard1.6" />
-    <file src="bin/*.pdb" target="lib/netstandard1.6" />
-    <file src="bin/*.xml" target="lib/netstandard1.6" />
+    <file src="bin\*.dll" target="lib\netstandard1.6" />
+    <file src="bin\*.pdb" target="lib\netstandard1.6" />
+    <file src="bin\*.xml" target="lib\netstandard1.6" />
   </files>
 </package>
