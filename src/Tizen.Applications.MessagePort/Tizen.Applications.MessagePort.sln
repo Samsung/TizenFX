@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.MessagePort", "Tizen.Applications.MessagePort.csproj", "{D4D1B081-7D62-4FD7-B474-216527AFC076}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen", "..\Tizen\Tizen.csproj", "{C1AF9022-830D-4FEB-B308-050568624979}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\Tizen.Log\Tizen.Log.csproj", "{48373A14-DFEF-49CF-984F-7ED985EBF802}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.Common", "..\Tizen.Applications.Common\Tizen.Applications.Common.csproj", "{3CA3AD79-049D-42EB-B9A7-3C24BB418855}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4D1B081-7D62-4FD7-B474-216527AFC076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4D1B081-7D62-4FD7-B474-216527AFC076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4D1B081-7D62-4FD7-B474-216527AFC076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4D1B081-7D62-4FD7-B474-216527AFC076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1AF9022-830D-4FEB-B308-050568624979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1AF9022-830D-4FEB-B308-050568624979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1AF9022-830D-4FEB-B308-050568624979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1AF9022-830D-4FEB-B308-050568624979}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48373A14-DFEF-49CF-984F-7ED985EBF802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48373A14-DFEF-49CF-984F-7ED985EBF802}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48373A14-DFEF-49CF-984F-7ED985EBF802}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48373A14-DFEF-49CF-984F-7ED985EBF802}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CA3AD79-049D-42EB-B9A7-3C24BB418855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CA3AD79-049D-42EB-B9A7-3C24BB418855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CA3AD79-049D-42EB-B9A7-3C24BB418855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CA3AD79-049D-42EB-B9A7-3C24BB418855}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

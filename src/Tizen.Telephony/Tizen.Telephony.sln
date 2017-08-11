@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Telephony", "Tizen.Telephony.csproj", "{EF90160B-8DCD-4E41-84D2-0E600DE11A2B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen", "..\Tizen\Tizen.csproj", "{5EEFBC22-B72B-4691-8374-54B68A69427D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\Tizen.Log\Tizen.Log.csproj", "{E0AB6C62-2F27-4DD0-A7B9-CF6D35343124}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF90160B-8DCD-4E41-84D2-0E600DE11A2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF90160B-8DCD-4E41-84D2-0E600DE11A2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF90160B-8DCD-4E41-84D2-0E600DE11A2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF90160B-8DCD-4E41-84D2-0E600DE11A2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EEFBC22-B72B-4691-8374-54B68A69427D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EEFBC22-B72B-4691-8374-54B68A69427D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EEFBC22-B72B-4691-8374-54B68A69427D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EEFBC22-B72B-4691-8374-54B68A69427D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0AB6C62-2F27-4DD0-A7B9-CF6D35343124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0AB6C62-2F27-4DD0-A7B9-CF6D35343124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0AB6C62-2F27-4DD0-A7B9-CF6D35343124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0AB6C62-2F27-4DD0-A7B9-CF6D35343124}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

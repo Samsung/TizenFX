@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Uix.InputMethodManager", "Tizen.Uix.InputMethodManager.csproj", "{2599421D-2A39-4EB1-B2C8-41126B6EE803}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen", "..\Tizen\Tizen.csproj", "{9853E1C3-E95E-4AE9-855A-0B32C36DCB80}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\Tizen.Log\Tizen.Log.csproj", "{A9FA0DB6-0919-4E3A-92F5-186486B8928D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2599421D-2A39-4EB1-B2C8-41126B6EE803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2599421D-2A39-4EB1-B2C8-41126B6EE803}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2599421D-2A39-4EB1-B2C8-41126B6EE803}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2599421D-2A39-4EB1-B2C8-41126B6EE803}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9853E1C3-E95E-4AE9-855A-0B32C36DCB80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9853E1C3-E95E-4AE9-855A-0B32C36DCB80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9853E1C3-E95E-4AE9-855A-0B32C36DCB80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9853E1C3-E95E-4AE9-855A-0B32C36DCB80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9FA0DB6-0919-4E3A-92F5-186486B8928D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9FA0DB6-0919-4E3A-92F5-186486B8928D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9FA0DB6-0919-4E3A-92F5-186486B8928D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9FA0DB6-0919-4E3A-92F5-186486B8928D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Security", "Tizen.Security.csproj", "{6A821E85-59E5-42E6-9AC9-B4764B24119E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen", "..\Tizen\Tizen.csproj", "{E62A797A-D04B-49ED-AEA0-A7AC99583944}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\Tizen.Log\Tizen.Log.csproj", "{65691173-8279-4E5A-98FE-566A69865837}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.Common", "..\Tizen.Applications.Common\Tizen.Applications.Common.csproj", "{55E14C3C-6D5F-42A0-A79C-C17A10090189}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.PackageManager", "..\Tizen.Applications.PackageManager\Tizen.Applications.PackageManager.csproj", "{F6B24357-F790-463D-BB16-CDF228742C20}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A821E85-59E5-42E6-9AC9-B4764B24119E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A821E85-59E5-42E6-9AC9-B4764B24119E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A821E85-59E5-42E6-9AC9-B4764B24119E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A821E85-59E5-42E6-9AC9-B4764B24119E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E62A797A-D04B-49ED-AEA0-A7AC99583944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E62A797A-D04B-49ED-AEA0-A7AC99583944}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E62A797A-D04B-49ED-AEA0-A7AC99583944}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E62A797A-D04B-49ED-AEA0-A7AC99583944}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65691173-8279-4E5A-98FE-566A69865837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65691173-8279-4E5A-98FE-566A69865837}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65691173-8279-4E5A-98FE-566A69865837}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65691173-8279-4E5A-98FE-566A69865837}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55E14C3C-6D5F-42A0-A79C-C17A10090189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55E14C3C-6D5F-42A0-A79C-C17A10090189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55E14C3C-6D5F-42A0-A79C-C17A10090189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55E14C3C-6D5F-42A0-A79C-C17A10090189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6B24357-F790-463D-BB16-CDF228742C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6B24357-F790-463D-BB16-CDF228742C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6B24357-F790-463D-BB16-CDF228742C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6B24357-F790-463D-BB16-CDF228742C20}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

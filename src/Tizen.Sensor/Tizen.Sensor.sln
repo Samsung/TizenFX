@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Sensor", "Tizen.Sensor.csproj", "{91E5DA56-23A7-4828-B425-EB6C40E1A3C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Information", "..\Tizen.System.Information\Tizen.System.Information.csproj", "{E4BF60C5-0708-492F-91D9-84F34F5E3355}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen", "..\Tizen\Tizen.csproj", "{F6DEA95B-9E6F-4EF1-BD11-40BCA7BEB5EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\Tizen.Log\Tizen.Log.csproj", "{94DB8186-F970-4298-A321-6FFD12F47DBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91E5DA56-23A7-4828-B425-EB6C40E1A3C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91E5DA56-23A7-4828-B425-EB6C40E1A3C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91E5DA56-23A7-4828-B425-EB6C40E1A3C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91E5DA56-23A7-4828-B425-EB6C40E1A3C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4BF60C5-0708-492F-91D9-84F34F5E3355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4BF60C5-0708-492F-91D9-84F34F5E3355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4BF60C5-0708-492F-91D9-84F34F5E3355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4BF60C5-0708-492F-91D9-84F34F5E3355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6DEA95B-9E6F-4EF1-BD11-40BCA7BEB5EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6DEA95B-9E6F-4EF1-BD11-40BCA7BEB5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6DEA95B-9E6F-4EF1-BD11-40BCA7BEB5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6DEA95B-9E6F-4EF1-BD11-40BCA7BEB5EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94DB8186-F970-4298-A321-6FFD12F47DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94DB8186-F970-4298-A321-6FFD12F47DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94DB8186-F970-4298-A321-6FFD12F47DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94DB8186-F970-4298-A321-6FFD12F47DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
