@@ -19,104 +19,104 @@ using System;
 namespace Tizen.System
 {
     /// <summary>
-    /// Class for event arguments of the media key.
+    /// The class for event arguments of the media key.
     /// </summary>
     public class MediaKeyEventArgs : EventArgs
     {
         /// <summary>
-        /// Enumeration for Key value.
+        /// Enumeration for the key value.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public enum KeyValue
         {
             /// <summary>
-            /// Play key.
+            /// The play key.
             /// </summary>
             Play,
 
             /// <summary>
-            /// Stop key.
+            /// The stop key.
             /// </summary>
             Stop,
 
             /// <summary>
-            /// Pause key.
+            /// The pause key.
             /// </summary>
             Pause,
 
             /// <summary>
-            /// Previous key.
+            /// The previous key.
             /// </summary>
             Previous,
 
             /// <summary>
-            /// Next key.
+            /// The next key.
             /// </summary>
             Next,
 
             /// <summary>
-            /// Fast forward key.
+            /// The fast forward key.
             /// </summary>
             FastForward,
 
             /// <summary>
-            /// Rewind key.
+            /// The rewind key.
             /// </summary>
             Rewind,
 
             /// <summary>
-            /// Play-pause key.
+            /// The play-pause key.
             /// </summary>
             PlayPause,
 
             /// <summary>
-            /// Media key for earjack.
+            /// The media key for the earjack.
             /// </summary>
             Media,
 
             /// <summary>
-            /// Unknown key.
+            /// The unknown key.
             /// </summary>
             Unknown
         }
 
         /// <summary>
-        /// Enumeration for Key status.
+        /// Enumeration for the key status.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public enum KeyStatus
         {
             /// <summary>
-            /// Pressed status.
+            /// The pressed status.
             /// </summary>
             Pressed,
 
             /// <summary>
-            /// Released status.
+            /// The released status.
             /// </summary>
             Released,
 
             /// <summary>
-            /// Unknown status.
+            /// The unknown status.
             /// </summary>
             Unknown
         }
 
         /// <summary>
-        /// Key value.
+        /// The key value.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public KeyValue Value { get; internal set; }
 
         /// <summary>
-        /// Key status.
+        /// The key status.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public KeyStatus Status { get; internal set; }
     }
 
     /// <summary>
-    /// Class for receiving events of media keys.
+    /// The class for receiving events of media keys.
     /// </summary>
     public static class MediaKey
     {
@@ -135,8 +135,8 @@ namespace Tizen.System
         /// <summary>
         /// Adds or removes events for all media keys.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <exception cref="InvalidOperationException">Failed to reserve or release key.</exception>
+        /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="InvalidOperationException">Failed to reserve or release the key.</exception>
         public static event EventHandler<MediaKeyEventArgs> Event
         {
             add
