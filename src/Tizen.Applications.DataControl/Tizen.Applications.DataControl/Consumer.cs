@@ -21,7 +21,7 @@ using System.Threading;
 namespace Tizen.Applications.DataControl
 {
     /// <summary>
-    /// Represents Consumer class for DataControl consumer application.
+    /// Represents the Consumer class for the DataControl consumer application.
     /// </summary>
     public abstract class Consumer : IDisposable
     {
@@ -443,13 +443,13 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Sends insert request to provider application.
+        /// Sends the insert request to the provider application.
         /// </summary>
-        /// <remarks>OnInsertResult will recieve result of this API</remarks>
-        /// <param name="insertData">Insert data</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when message has exceeded the maximum limit(1MB)</exception>
+        /// <remarks>The OnInsertResult will recieve the result of this API.</remarks>
+        /// <param name="insertData">The insert data.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case if a permission is denied.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the message has exceeded the maximum limit (1MB).</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
@@ -475,16 +475,16 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Sends select request to provider application.
+        /// Sends the select request to the provider application.
         /// </summary>
-        /// <remarks>OnSelectResult will recieve result of this API</remarks>
-        /// <param name="columnList">Select target column list</param>
-        /// <param name="where">Where statement for select query</param>
-        /// <param name="order">Order statement for select query</param>
-        /// <param name="pageNumber">Select target page number</param>
-        /// <param name="countPerPage">Select row count per page</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <remarks>The OnSelectResult will recieve the result of this API.</remarks>
+        /// <param name="columnList">Select the target column list.</param>
+        /// <param name="where">The Where statement for the select query.</param>
+        /// <param name="order">The Order statement for the select query.</param>
+        /// <param name="pageNumber">Select the target page number.</param>
+        /// <param name="countPerPage">Select the row count per page.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case if a permission is denied..</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
@@ -518,11 +518,11 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Sends delete request to provider application.
+        /// Sends the delete request to the provider application.
         /// </summary>
-        /// <remarks>OnDeleteResult will recieve result of this API</remarks>
-        /// <param name="where">Where statement for delete query</param>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <remarks>The OnDeleteResult will recieve the result of this API</remarks>
+        /// <param name="where">The Where statement for the delete query.</param>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case if a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
@@ -543,14 +543,14 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Sends update request to provider application.
+        /// Sends the update request to the provider application.
         /// </summary>
-        /// <remarks>OnUpdateResult will recieve result of this API</remarks>
-        /// <param name="updateData">Update data</param>
-        /// <param name="where">Where statement for query</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when message has exceeded the maximum limit(1MB)</exception>
+        /// <remarks>The OnUpdateResult will recieve result of this API.</remarks>
+        /// <param name="updateData">The update data.</param>
+        /// <param name="where">The Where statement for the query.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case if a permission is denied.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the message has exceeded the maximum limit (1MB).</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
@@ -581,13 +581,13 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Sends bulk insert request to provider application.
+        /// Sends the bulk insert request to the provider application.
         /// </summary>
-        /// <remarks>OnBulkInsertResult will recieve result of this API</remarks>
-        /// <param name="insertData">Bulk insert data</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when message has exceeded the maximum limit(1MB)</exception>
+        /// <remarks>The OnBulkInsertResult will recieve the result of this API.</remarks>
+        /// <param name="insertData">The bulk insert data.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case oif a permission is denied.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the message has exceeded the maximum limit (1MB).</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
@@ -613,14 +613,14 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Sends map add request to provider application.
+        /// Sends the map add request to the provider application.
         /// </summary>
-        /// <remarks>OnMapAddResult will recieve result of this API</remarks>
-        /// <param name="key">The key of the value to add</param>
-        /// <param name="value">The value to add</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when message has exceeded the maximum limit(1MB)</exception>
+        /// <remarks>The OnMapAddResult will recieve the result of this API.</remarks>
+        /// <param name="key">The key of the value to add.</param>
+        /// <param name="value">The value to add.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of if a permission is denied.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the message has exceeded the maximum limit (1MB).</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
@@ -646,14 +646,14 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Sends map get request to provider application.
+        /// Sends the map get request to the provider application.
         /// </summary>
-        /// <remarks>OnMapGetResult will recieve result of this API</remarks>
-        /// <param name="key">The key of the value list to obtain</param>
-        /// <param name="pageNumber">The page number of the value set</param>
-        /// <param name="countPerPage">The desired maximum count of the data items per page</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <remarks>The OnMapGetResult will recieve the result of this API.</remarks>
+        /// <param name="key">The key of the value list to obtain.</param>
+        /// <param name="pageNumber">The page number of the value set.</param>
+        /// <param name="countPerPage">The desired maximum count of the data items per page.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case if a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
@@ -679,13 +679,13 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Sends map remove request to provider application.
+        /// Sends the map remove request to the provider application.
         /// </summary>
-        /// <remarks>OnMapRemoveResult will recieve result of this API</remarks>
-        /// <param name="key">The key of the value to remove</param>
-        /// <param name="value">The value to remove</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <remarks>The OnMapRemoveResult will recieve the result of this API.</remarks>
+        /// <param name="key">The key of the value to remove.</param>
+        /// <param name="value">The value to remove.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case if a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
@@ -711,15 +711,15 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Sends map set request to provider application.
+        /// Sends the map set request to the provider application.
         /// </summary>
-        /// <remarks>OnMapSetResult will recieve result of this API</remarks>
-        /// <param name="key">The key of the value to replace</param>
-        /// <param name="oldValue">The value to be replaced</param>
-        /// <param name="newValue"> The new value that replaces the existing value</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when message has exceeded the maximum limit(1MB)</exception>
+        /// <remarks>The OnMapSetResult will recieve the result of this API.</remarks>
+        /// <param name="key">The key of the value to replace.</param>
+        /// <param name="oldValue">The value to be replaced.</param>
+        /// <param name="newValue"> The new value that replaces the existing value.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case if a permission is denied.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when message has exceeded the maximum limit (1MB).</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
@@ -745,13 +745,13 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Sends map bulk add request to provider application.
+        /// Sends the map bulk add request to the provider application.
         /// </summary>
-        /// <remarks>OnMapBulkAddResult will recieve result of this API</remarks>
-        /// <param name="addData">Map bulk add data</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when message has exceeded the maximum limit(1MB)</exception>
+        /// <remarks>The OnMapBulkAddResult will recieve the result of this API.</remarks>
+        /// <param name="addData">The map bulk add data.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case if a permission is denied.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the message has exceeded the maximum limit (1MB).</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
@@ -787,11 +787,11 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Listen DataChange event
+        /// Listens the DataChange event.
         /// </summary>
-        /// <remarks>OnDataChangeListenResult will recieve result of this API</remarks>
-        /// <remarks>If success, OnDataChange will recieve DataChange event</remarks>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <remarks>The OnDataChangeListenResult will recieve the result of this API.</remarks>
+        /// <remarks>If success, the OnDataChange will recieve the DataChange event.</remarks>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case if a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
@@ -817,11 +817,11 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes Consumer class with providerId and dataId.
+        /// Initializes the Consumer class with the providerId and the ataId.
         /// </summary>
-        /// <param name="providerId">DataControl Provider ID</param>
-        /// <param name="dataId">DataControl Data ID</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <param name="providerId">The DataControl Provider ID.</param>
+        /// <param name="dataId">The DataControl Data ID.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public Consumer(string providerId, string dataId)
         {
@@ -856,7 +856,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the DataChangeListen result is received.
+        /// Overrides this method if you want to handle the behavior when the DataChangeListen result is received.
         /// </summary>
         protected virtual void OnDataChangeListenResult(DataChangeListenResult result)
         {
@@ -864,7 +864,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the data change event is received.
+        /// Overrides this method if you want to handle the behavior when the data change event is received.
         /// </summary>
         protected virtual void OnDataChange(ChangeType type, Bundle data)
         {
@@ -872,26 +872,26 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the select response is received.
+        /// Overrides this method if you want to handle the behavior when the select response is received.
         /// </summary>
         protected abstract void OnSelectResult(SelectResult result);
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the insert response is received.
+        /// Overrides this method if you want to handle the behavior when the insert response is received.
         /// </summary>
         protected abstract void OnInsertResult(InsertResult result);
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the update response is received.
+        /// Overrides this method if you want to handle the behavior when the update response is received.
         /// </summary>
         protected abstract void OnUpdateResult(UpdateResult result);
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the delete response is received.
+        /// Overrides this method if want to handle the behavior when the delete response is received.
         /// </summary>
         protected abstract void OnDeleteResult(DeleteResult result);
         /// <summary>
-        /// Overrides this method if want to handle behavior when the BulkInsert response is received.
+        /// Overrides this method if you want to handle the behavior when the BulkInsert response is received.
         /// </summary>
         protected virtual void OnBulkInsertResult(BulkInsertResult result)
         {
@@ -899,7 +899,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the map get response is received.
+        /// Overrides this method if you want to handle the behavior when the map get response is received.
         /// </summary>
         protected virtual void OnMapGetResult(MapGetResult result)
         {
@@ -907,7 +907,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the map add response is received.
+        /// Overrides this method if you want to handle the behavior when the map add response is received.
         /// </summary>
         protected virtual void OnMapAddResult(MapAddResult result)
         {
@@ -915,7 +915,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the map set response is received.
+        /// Overrides this method if you want to handle the behavior when the map set response is received.
         /// </summary>
         protected virtual void OnMapSetResult(MapSetResult result)
         {
@@ -923,7 +923,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the map remove response is received.
+        /// Overrides this method if you want to handle the behavior when the map remove response is received.
         /// </summary>
         protected virtual void OnMapRemoveResult(MapRemoveResult result)
         {
@@ -931,7 +931,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the BulkAdd response is received.
+        /// Overrides this method if you want to handle the behavior when the BulkAdd response is received.
         /// </summary>
         protected virtual void OnMapBulkAddResult(MapBulkAddResult result)
         {
@@ -939,7 +939,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Releases the unmanaged resourced used by the Consumer class specifying whether to perform a normal dispose operation.
+        /// Releases the unmanaged resources used by the Consumer class specifying whether to perform a normal dispose operation.
         /// </summary>
         /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
         protected virtual void Dispose(bool disposing)

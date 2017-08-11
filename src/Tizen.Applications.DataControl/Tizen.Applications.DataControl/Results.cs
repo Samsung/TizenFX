@@ -19,12 +19,12 @@ using System;
 namespace Tizen.Applications.DataControl
 {
     /// <summary>
-    /// This class is for containing insert operation result.
+    /// This class contains the insert operation result.
     /// </summary>
     public class InsertResult
     {
         /// <summary>
-        /// Gets the insert data's row id.
+        /// Gets the insert data's row ID.
         /// </summary>
         public long RowID
         {
@@ -42,10 +42,10 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes InsertResult class with columnNames and columnTypes.
+        /// Initializes the InsertResult class with columnNames and columnTypes.
         /// </summary>
-        /// <param name="rowID">Inserted row ID</param>
-        /// <param name="result">Insert request result</param>
+        /// <param name="rowID">The inserted row ID.</param>
+        /// <param name="result">The insert request result.</param>
         public InsertResult(long rowID, bool result)
         {
             RowID = rowID;
@@ -54,7 +54,7 @@ namespace Tizen.Applications.DataControl
     }
 
     /// <summary>
-    /// This class is for containing bulk insert operation result.
+    /// This class contains the bulk insert operation result.
     /// </summary>
     public class BulkInsertResult
     {
@@ -77,11 +77,11 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes InsertResult class with bulkResultData and result.
+        /// Initializes the InsertResult class with the bulkResultData and the result.
         /// </summary>
-        /// <param name="bulkResultData">Bulk insert request result data</param>
-        /// <param name="result">Bulk insert request result</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <param name="bulkResultData">The bulk insert request result data.</param>
+        /// <param name="result">The bulk insert request result.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public BulkInsertResult(BulkResultData bulkResultData, bool result)
         {
             if (result == true && (bulkResultData == null || bulkResultData.SafeBulkDataHandle.IsInvalid))
@@ -95,7 +95,7 @@ namespace Tizen.Applications.DataControl
     }
 
     /// <summary>
-    /// This class is for containing update operation result.
+    /// This class contains the update operation result.
     /// </summary>
     public class UpdateResult
     {
@@ -109,9 +109,9 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes UpdateResult class with result.
+        /// Initializes the UpdateResult class with the result.
         /// </summary>
-        /// <param name="result">Update request result</param>
+        /// <param name="result">The update request result.</param>
         public UpdateResult(bool result)
         {
             Result = result;
@@ -119,7 +119,7 @@ namespace Tizen.Applications.DataControl
     }
 
     /// <summary>
-    /// This class is for containing delete operation result.
+    /// This class contains the delete operation result.
     /// </summary>
     public class DeleteResult
     {
@@ -133,9 +133,9 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes DeleteResult class with result.
+        /// Initializes the DeleteResult class with the result.
         /// </summary>
-        /// <param name="result">Delete request result</param>
+        /// <param name="result">The delete request result.</param>
         public DeleteResult(bool result)
         {
             Result = result;
@@ -143,7 +143,7 @@ namespace Tizen.Applications.DataControl
     }
 
     /// <summary>
-    /// This class is for containing select operation result.
+    /// This class contains the select operation result.
     /// </summary>
     public class SelectResult
     {
@@ -165,11 +165,11 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes SelectResult class with cursor and result.
+        /// Initializes the SelectResult class with the cursor and the result.
         /// </summary>
-        /// <param name="cursor">Cursor with selected data</param>
-        /// <param name="result">Select request result</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <param name="cursor">The cursor with the selected data.</param>
+        /// <param name="result">The select request result.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public SelectResult(ICursor cursor, bool result)
         {
             int i;
@@ -206,7 +206,7 @@ namespace Tizen.Applications.DataControl
     }
 
     /// <summary>
-    /// This class is for containing MapAdd operation result.
+    /// This class contains the MapAdd operation result.
     /// </summary>
     public class MapAddResult
     {
@@ -221,9 +221,9 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes MapAddResult class with result.
+        /// Initializes the MapAddResult class with the result.
         /// </summary>
-        /// <param name="result">MapAdd request result</param>
+        /// <param name="result">The MapAdd request result.</param>
         public MapAddResult(bool result)
         {
             Result = result;
@@ -231,7 +231,7 @@ namespace Tizen.Applications.DataControl
     }
 
     /// <summary>
-    /// This class is for containing MapBulkAdd operation result.
+    /// This class contains the MapBulkAdd operation result.
     /// </summary>
     public class MapBulkAddResult
     {
@@ -254,11 +254,11 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes MapBulkAddResult class with bulkResultData and result.
+        /// Initializes the MapBulkAddResult class with the bulkResultData and the result.
         /// </summary>
-        /// <param name="bulkResultData">MapBulkAdd request result data</param>
-        /// <param name="result">MapBulkAdd request result</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <param name="bulkResultData">The MapBulkAdd request result data.</param>
+        /// <param name="result">The MapBulkAdd request result.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public MapBulkAddResult(BulkResultData bulkResultData, bool result)
         {
             if (result == true && (bulkResultData == null || bulkResultData.SafeBulkDataHandle.IsInvalid))
@@ -272,7 +272,7 @@ namespace Tizen.Applications.DataControl
     }
 
     /// <summary>
-    /// This class is for containing MapSet operation result.
+    /// This class contains the MapSet operation result.
     /// </summary>
     public class MapSetResult
     {
@@ -286,7 +286,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes MapSetResult class with result.
+        /// Initializes the MapSetResult class with the result.
         /// </summary>
         /// <param name="result">MapSet request result</param>
         public MapSetResult(bool result)
@@ -296,7 +296,7 @@ namespace Tizen.Applications.DataControl
     }
 
     /// <summary>
-    /// This class is for containing MapRemove operation result.
+    /// This class contains the MapRemove operation result.
     /// </summary>
     public class MapRemoveResult
     {
@@ -310,9 +310,9 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes MapRemoveResult class with result.
+        /// Initializes the MapRemoveResult class with the result.
         /// </summary>
-        /// <param name="result">MapRemove request result</param>
+        /// <param name="result">The MapRemove request result.</param>
         public MapRemoveResult(bool result)
         {
             Result = result;
@@ -320,7 +320,7 @@ namespace Tizen.Applications.DataControl
     }
 
     /// <summary>
-    /// This class is for containing MapGet operation result.
+    /// This class contains the MapGet operation result.
     /// </summary>
     public class MapGetResult
     {
@@ -342,11 +342,11 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes MapGetResult class with data and result.
+        /// Initializes the MapGetResult class with the data and the result.
         /// </summary>
-        /// <param name="valueLIst">MapGet request result data</param>
-        /// <param name="result">MapGet request result</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <param name="valueLIst">The MapGet request result data.</param>
+        /// <param name="result">The MapGet request result.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public MapGetResult(string[] valueLIst, bool result)
         {
             if (result == true && valueLIst == null)
@@ -360,7 +360,7 @@ namespace Tizen.Applications.DataControl
     }
 
     /// <summary>
-    /// This class is for containing DataChangeListen operation result.
+    /// This class contains the DataChangeListen operation result.
     /// </summary>
     public class DataChangeListenResult
     {
@@ -374,9 +374,9 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes DataChangeListenResult class with result.
+        /// Initializes the DataChangeListenResult class with the result.
         /// </summary>
-        /// <param name="result">DataChangeListen request result</param>
+        /// <param name="result">The DataChangeListen request result.</param>
         public DataChangeListenResult(ResultType result)
         {
             Result = result;

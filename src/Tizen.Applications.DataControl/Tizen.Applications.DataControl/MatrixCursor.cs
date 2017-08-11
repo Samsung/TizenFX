@@ -24,7 +24,7 @@ using System.Diagnostics;
 namespace Tizen.Applications.DataControl
 {
     /// <summary>
-    /// Represents MatrixCursor class for DataControl provider's matrix cursor.
+    /// Represents the MatrixCursor class for the DataControl provider's matrix cursor.
     /// </summary>
     public class MatrixCursor : IDisposable, ICursor
     {
@@ -164,7 +164,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Gets column count of MatrixCursor.
+        /// Gets the column count of the MatrixCursor.
         /// </summary>
         public int GetColumnCount()
         {
@@ -175,7 +175,7 @@ namespace Tizen.Applications.DataControl
         /// Returns the column type at the given zero-based column index.
         /// </summary>
         /// <param name="index">Target column index</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public ColumnType GetColumnType(int index)
         {
             if (index < 0 || index >= _columnTypes.Length)
@@ -189,8 +189,8 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Returns the column name at the given zero-based column index.
         /// </summary>
-        /// <param name="index">Target column index</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <param name="index">The target column index.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public string GetColumnName(int index)
         {
             if (index < 0 || index >= _columnTypes.Length)
@@ -202,7 +202,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Gets MatrixCursor's row count.
+        /// Gets the MatrixCursor's row count.
         /// </summary>
         public long GetRowCount()
         {
@@ -247,9 +247,9 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Returns the value of the requested column as a int.
+        /// Returns the value of the requested column as an integer.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public int GetIntValue(int index)
         {
             int ret;
@@ -271,9 +271,9 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Returns the value of the requested column as a int64.
+        /// Returns the value of the requested column as int64.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public Int64 GetInt64Value(int index)
         {
             Int64 ret;
@@ -297,7 +297,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Returns the value of the requested column as a double.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public double GetDoubleValue(int index)
         {
             double ret;
@@ -321,7 +321,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Returns the value of the requested column as a string.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public string GetStringValue(int index)
         {
             string ret;
@@ -345,9 +345,9 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Returns the value of the requested column as a blob.
+        /// Returns the value of the requested column as a BLOB.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public byte[] GetBlobValue(int index)
         {
             byte[] byte_array;
@@ -392,11 +392,11 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes MatrixCursor class with columnNames and columnTypes.
+        /// Initializes the MatrixCursor class with columnNames and columnTypes.
         /// </summary>
-        /// <param name="columnNames">MatrixCursor's column name list</param>
-        /// <param name="columnTypes">MatrixCursor's column type list</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <param name="columnNames">The MatrixCursor's column name list.</param>
+        /// <param name="columnTypes">The MatrixCursor's column type list.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         ///  <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public MatrixCursor(string[] columnNames, ColumnType[] columnTypes)
         {
@@ -485,7 +485,7 @@ namespace Tizen.Applications.DataControl
         /// Adds a new row to the end with the given column values.
         /// </summary>
         /// <param name="columnValues">New column values</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public void AddRow(object[] columnValues)
         {
             int i, size = 0;
@@ -586,7 +586,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Releases all resources used by the MatrixCursor class.
+        /// Releases all the resources used by the MatrixCursor class.
         /// </summary>
         public void Dispose()
         {

@@ -24,7 +24,7 @@ using System.Threading;
 namespace Tizen.Applications.DataControl
 {
     /// <summary>
-    /// Represents Provider class for DataControl provider application.
+    /// Represents the Provider class for the DataControl provider application.
     /// </summary>
     public abstract class Provider : IDisposable
     {
@@ -43,7 +43,7 @@ namespace Tizen.Applications.DataControl
         private bool _isRunning = false;
 
         /// <summary>
-        /// Gets the data ID
+        /// Gets the data ID.
         /// </summary>
         public string DataID
         {
@@ -834,10 +834,10 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Sends a data change notification to consumer applications which have successfully added a data change listen.
         /// </summary>
-        /// <param name="type">Changed data type</param>
-        /// <param name="changedData">Customized information about changed data</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <param name="type">The changed data type.</param>
+        /// <param name="changedData">Customized information about the changed data.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         public void SendDataChange(ChangeType type, Bundle changedData)
@@ -862,10 +862,10 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Initializes Provider class with dataID.
+        /// Initializes the Provider class with the dataID.
         /// </summary>
-        /// <param name="dataID">DataControl Data ID</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <param name="dataID">The DataControl Data ID.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public Provider(string dataID)
         {
             if (string.IsNullOrEmpty(dataID))
@@ -877,10 +877,10 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Starts Provider service.
+        /// Starts the Provider service.
         /// </summary>
-        /// <remarks>Only one Provider service can be ran for each process</remarks>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
+        /// <remarks>Only one Provider service can be run for each process.</remarks>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         public void Run()
@@ -963,7 +963,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Stop Provider service.
+        /// Stops the Provider service.
         /// </summary>
         public void Stop()
         {
@@ -981,27 +981,27 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the select request is received.
+        /// Overrides this method if you want to handle the behavior when the select request is received.
         /// </summary>
         protected abstract SelectResult OnSelect(string query, string where, string[] columList, int columnCount, string order, int pageNum, int countPerPage);
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the insert request is received.
+        /// Overrides this method if you want to handle the behavior when the insert request is received.
         /// </summary>
         protected abstract InsertResult OnInsert(string query, Bundle insertData);
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the update request is received.
+        /// Overrides this method if you want to handle the behavior when the update request is received.
         /// </summary>
         protected abstract UpdateResult OnUpdate(string query, string where, Bundle updateData);
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the delete request is received.
+        /// Overrides this method if you want to handle the behavior when the delete request is received.
         /// </summary>
         protected abstract DeleteResult OnDelete(string query, string where);
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the bulk insert request is received.
+        /// Overrides this method if you want to handle the behavior when the bulk insert request is received.
         /// </summary>
         protected virtual BulkInsertResult OnBulkInsert(IEnumerable<string> query, BulkData bulkInsertData)
         {
@@ -1010,7 +1010,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the map get request is received.
+        /// Overrides this method if you want to handle the behavior when the map get request is received.
         /// </summary>
         protected virtual MapGetResult OnMapGet(string key)
         {
@@ -1019,7 +1019,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the map add request is received.
+        /// Overrides this method if you want to handle the behavior when the map add request is received.
         /// </summary>
         protected virtual MapAddResult OnMapAdd(string key, string value)
         {
@@ -1028,7 +1028,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the update request is received.
+        /// Overrides this method if you want to handle the behavior when the update request is received.
         /// </summary>
         protected virtual MapSetResult OnMapSet(string key, string oldValue, string newValue)
         {
@@ -1037,7 +1037,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the delete request is received.
+        /// Overrides this method if you want to handle the behavior when the delete request is received.
         /// </summary>
         protected virtual MapRemoveResult OnMapRemove(string key, string value)
         {
@@ -1046,7 +1046,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the bulk add request is received.
+        /// Overrides this method if you want to handle the behavior when the bulk add request is received.
         /// </summary>
         protected virtual MapBulkAddResult OnMapBulkAdd(BulkData bulkAddData)
         {
@@ -1055,7 +1055,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the data change listen request is received.
+        /// Overrides this method if you want to handle the behavior when the data change listen request is received.
         /// </summary>
         protected virtual DataChangeListenResult OnDataChangeListenRequest(string requestAppID)
         {
@@ -1064,7 +1064,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Releases the unmanaged resourced used by the Provider class specifying whether to perform a normal dispose operation.
+        /// Releases unmanaged resources used by the Provider class specifying whether to perform a normal dispose operation.
         /// </summary>
         /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
         protected virtual void Dispose(bool disposing)
@@ -1081,7 +1081,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Releases all resources used by the Provider class.
+        /// Releases all the resources used by the Provider class.
         /// </summary>
         public void Dispose()
         {

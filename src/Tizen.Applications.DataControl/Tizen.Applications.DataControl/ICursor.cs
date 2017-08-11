@@ -18,7 +18,7 @@ using System;
 namespace Tizen.Applications.DataControl
 {
     /// <summary>
-    /// This interface is for DataControl cursor.
+    /// This interface is for the DataControl cursor.
     /// </summary>
     public interface ICursor
     {
@@ -53,27 +53,27 @@ namespace Tizen.Applications.DataControl
         /// </summary>
         bool Reset();
         /// <summary>
-        /// / Gets an int value.
+        /// Gets an integer value.
         /// </summary>
         /// <param name="index">The index of row.</param>
         int GetIntValue(int index);
         /// <summary>
-        /// / Gets an int64 value.
+        /// Gets an int64 value.
         /// </summary>
         /// <param name="index">The index of row.</param>
         Int64 GetInt64Value(int index);
         /// <summary>
-        /// Gets an double value.
+        /// Gets a double value.
         /// </summary>
         /// <param name="index">The index of row.</param>
         double GetDoubleValue(int index);
         /// <summary>
-        /// Gets an string value.
+        /// Gets a string value.
         /// </summary>
         /// <param name="index">The index of row.</param>
         string GetStringValue(int index);
         /// <summary>
-        /// Gets a blob value.
+        /// Gets a BLOB value.
         /// </summary>
         /// <param name="index">The index of row.</param>
         byte[] GetBlobValue(int index);

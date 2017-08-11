@@ -19,7 +19,7 @@ using System.Collections.Generic;
 namespace Tizen.Applications.DataControl
 {
     /// <summary>
-    /// Represents BulkData class for DataControl bulk request.
+    /// Represents the BulkData class for the DataControl bulk request.
     /// </summary>
     public class BulkData : IDisposable
     {
@@ -27,7 +27,7 @@ namespace Tizen.Applications.DataControl
         private Interop.DataControl.SafeBulkDataHandle _handle;
 
         /// <summary>
-        /// Initializes BulkData class.
+        /// Initializes the BulkData class.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public BulkData()
@@ -80,10 +80,10 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Adds bulk data.
+        /// Adds the bulk data.
         /// </summary>
         /// <param name="data">Bulk data</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public void Add(Bundle data)
         {
             ResultType ret;
@@ -101,7 +101,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Gets current data count.
+        /// Gets the current data count.
         /// </summary>
         public int GetCount()
         {
@@ -120,8 +120,8 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Returns the data at the given zero-based data index.
         /// </summary>
-        /// <param name="index">Target data index</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <param name="index">The target data index.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public Bundle GetData(int index)
         {
             IntPtr bundlePtr;
@@ -144,7 +144,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Releases all resources used by the BulkData class.
+        /// Releases all the resources used by the BulkData class.
         /// </summary>
         public void Dispose()
         {
@@ -176,7 +176,7 @@ namespace Tizen.Applications.DataControl
     }
 
     /// <summary>
-    /// Represents BulkResultData class for DataControl bulk request.
+    /// Represents the BulkResultData class for the DataControl bulk request.
     /// </summary>
     public class BulkResultData : IDisposable
     {
@@ -184,7 +184,7 @@ namespace Tizen.Applications.DataControl
         private bool _disposed = false;
         private Interop.DataControl.SafeBulkResultDataHandle _handle;
         /// <summary>
-        /// Initializes BulkResultData class.
+        /// Initializes the BulkResultData class.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public BulkResultData()
@@ -232,11 +232,11 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Adds bulk operation result data.
+        /// Adds the bulk operation result data.
         /// </summary>
-        /// <param name="data">Result data</param>
-        /// <param name="result">Result</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <param name="data">The result data.</param>
+        /// <param name="result">Result.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public void Add(Bundle data, int result)
         {
             ResultType ret;
@@ -259,7 +259,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Gets current result data count.
+        /// Gets the current result data count.
         /// </summary>
         public int GetCount()
         {
@@ -278,8 +278,8 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Returns the result data at the given zero-based data index.
         /// </summary>
-        /// <param name="index">Target result data index</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <param name="index">The target result data index.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public Bundle GetData(int index)
         {
             IntPtr bundlePtr;
@@ -305,8 +305,8 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Returns the result at the given zero-based data index.
         /// </summary>
-        /// <param name="index">Target result index</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid parmaeter.</exception>
+        /// <param name="index">The target result index.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         public int GetResult(int index)
         {
             IntPtr bundlePtr;
@@ -328,7 +328,7 @@ namespace Tizen.Applications.DataControl
         }
 
         /// <summary>
-        /// Releases all resources used by the BulkResultData class.
+        /// Releases all the resources used by the BulkResultData class.
         /// </summary>
         public void Dispose()
         {
