@@ -14,8 +14,10 @@
 *
 */
 
+extern alias TizenSystemSettings;
+using TizenSystemSettings.Tizen.System;
 using System;
-
+using System.Globalization;
 namespace Tizen.NUI.BaseComponents
 {
 
@@ -26,7 +28,8 @@ namespace Tizen.NUI.BaseComponents
     public class TextLabel : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
+        private string textLabelSid = null;
+        private bool systemlangTextFlag = false;
         internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TextLabel_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -138,6 +141,47 @@ namespace Tizen.NUI.BaseComponents
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+        /// <summary>
+        /// TranslatableText property.<br>
+        /// The text can be set SID value.<br>
+        /// </summary>
+        /// <exception cref='ArgumentNullException'>
+        /// ResourceManager about multilingual is null
+        /// </exception>
+        public string TranslatableText
+        {
+            get
+            {
+                return textLabelSid;
+            }
+            set
+            {
+                if (NUIApplication.MultilingualResourceManager == null)
+                {
+                    throw new ArgumentNullException("ResourceManager about multilingual is null");
+                }
+                string translatableText = null;
+                textLabelSid = value;
+                translatableText = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
+                if (translatableText != null)
+                {
+                    Text = translatableText;
+                    if (systemlangTextFlag == false)
+                    {
+                        SystemSettings.LocaleLanguageChanged += new WeakEventHandler<LocaleLanguageChangedEventArgs>(SystemSettings_LocaleLanguageChanged).Handler;
+                        systemlangTextFlag = true;
+                    }
+                }
+                else
+                {
+                    Text = "";
+                }      
+            }
+        }
+        private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
+        {
+            Text = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(e.Value.Replace("_", "-")));
         }
 
         /// <summary>
