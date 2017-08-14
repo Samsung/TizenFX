@@ -53,29 +53,12 @@ namespace Tizen.NUI
             {
                 return;
             }
+
             if(type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
-                NUILog.Debug("Animation.Dispose(Explicit)! GetState=" + this.GetState());
-                if(this.GetState() != States.Stopped)
-                {
-                    this.Clear();
-                    this.Reset();
-                    NUILog.Error("Now Animation is playing! Clear and Reset here!");
-                }
-            }
-            else if(type == DisposeTypes.Implicit)
-            {
-                NUILog.Debug("Animation.Dispose(Implicit)! GetState=" + this.GetState());
-                if(this.GetState() != States.Stopped)
-                {
-                    this.Clear();
-                    this.Reset();
-                    NUILog.Error("Now Animation is playing! Clear and Reset here!");
-                    //throw new System.InvalidOperationException("Animation Instance should not be disposed until getting Finished event. Should be a global variable");
-                }
             }
 
             //Release your own unmanaged resources here.
