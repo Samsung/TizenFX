@@ -210,5 +210,17 @@ namespace Tizen.NUI
                 resourceManager = value;
             }
         }
+
+        /// <summary>
+        /// Get the window instance.
+        /// </summary>
+        [Obsolete("Please do not use! this will be deprecated")]
+        public Window Window
+        {
+            get
+            {
+                return Window.Instance;
+            }
+        }
     }
 }
