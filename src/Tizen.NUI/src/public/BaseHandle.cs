@@ -55,6 +55,15 @@ namespace Tizen.NUI
             }
         }
 
+        internal BaseHandle(global::System.IntPtr cPtr)
+        {
+            _registerMe = swigCMemOwn = true;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+
+            // Register this instance of BaseHandle in the registry.
+            Registry.Register(this);
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(BaseHandle obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
