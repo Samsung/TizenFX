@@ -26,7 +26,14 @@
   <ItemGroup>
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" PrivateAssets="All" />
     <PackageReference Include="Tizen.Applications.Common" Version="1.5.9" />
+    <PackageReference Include="Tizen.System.SystemSettings" Version="1.0.4" PrivateAssets="All"/>
   </ItemGroup>
-
+  <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'Tizen.System.SystemSettings'">
+        <Aliases>TizenSystemSettings</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
 </Project>
 
