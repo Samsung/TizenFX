@@ -469,6 +469,11 @@ namespace Tizen.NUI
         /// <returns>Whether the focus is successful or not</returns>
         public bool SetCurrentFocusView(View view)
         {
+            if(view == null)
+            {
+                throw new ArgumentNullException("the target view should not be null");
+            }
+
             bool ret = NDalicManualPINVOKE.FocusManager_SetCurrentFocusActor(swigCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
