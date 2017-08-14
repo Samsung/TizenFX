@@ -18,37 +18,37 @@ namespace System
 {
     public class ApplicationException : Exception
     {
-        public ApplicationException()
+        public ApplicationException(): base()
         {
-            new global::System.ApplicationException();
+            //new global::System.ApplicationException();
         }
 
-        public ApplicationException(string message)
+        public ApplicationException(string message): base(message)
         {
-            new global::System.ApplicationException(message);
+            //new global::System.ApplicationException(message);
         }
 
-        public ApplicationException(string message, Exception innerException)
+        public ApplicationException(string message, Exception innerException): base(message, innerException)
         {
-            new global::System.ApplicationException(message, innerException);
+            //new global::System.ApplicationException(message, innerException);
         }
     }
 
     public class SystemException : Exception
     {
-        public SystemException()
+        public SystemException(): base()
         {
-            new global::System.SystemException();
+            //new global::System.SystemException();
         }
 
-        public SystemException(string message)
+        public SystemException(string message): base(message)
         {
-            new global::System.SystemException(message);
+            //new global::System.SystemException(message);
         }
 
-        public SystemException(string message, Exception innerException)
+        public SystemException(string message, Exception innerException): base(message, innerException)
         {
-            new global::System.SystemException(message, innerException);
+            //new global::System.SystemException(message, innerException);
         }
     }
 }

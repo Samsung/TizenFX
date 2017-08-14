@@ -25,12 +25,16 @@ namespace Tizen.NUI
 
         internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
+            //to catch derived classes dali native exceptions
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
             _registerMe = swigCMemOwn = cMemoryOwn;
 
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             // using copy constructor to create another native handle so Registry.Unregister works fine.
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.new_BaseHandle__SWIG_2(swigCPtr));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if (_registerMe)
             {
@@ -47,6 +51,7 @@ namespace Tizen.NUI
 
             // using copy constructor to create another native handle so Registry.Unregister works fine.
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.new_BaseHandle__SWIG_2(swigCPtr));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if (_registerMe)
             {
