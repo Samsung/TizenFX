@@ -2220,6 +2220,47 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        /*internal View GetParent()
+        {
+            View ret;
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
+
+            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
+
+            if(basehandle is Layer)
+            {
+                ret = new View(cPtr,false);
+            }
+            else
+            {
+                ret = basehandle as View;
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }*/
+
+        internal View GetParent()
+        {
+            View ret;
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
+
+            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
+
+            if(basehandle is Layer)
+            {
+                View ret2 = new View(cPtr,false);
+                return ret2;
+            }
+
+            ret = basehandle as View;
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal void SetParentOrigin(Vector3 origin)
         {
             NDalicPINVOKE.Actor_SetParentOrigin(swigCPtr, Vector3.getCPtr(origin));
