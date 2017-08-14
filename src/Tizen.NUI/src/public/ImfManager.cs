@@ -890,13 +890,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static ImfManager GetImfManagerFromPtr(IntPtr cPtr)
-        {
-            ImfManager ret = new ImfManager(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// ImfManager activated event arguments.
         /// </summary>
@@ -946,7 +939,10 @@ namespace Tizen.NUI
         {
             ImfManagerActivatedEventArgs e = new ImfManagerActivatedEventArgs();
 
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
+            if (data != null)
+            {
+                e.ImfManager = Registry.GetManagedBaseHandleFromNativePtr(data) as ImfManager;
+            }
 
             if (_imfManagerActivatedEventHandler != null)
             {
@@ -1001,7 +997,10 @@ namespace Tizen.NUI
         {
             ActivatedEventArgs e = new ActivatedEventArgs();
 
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
+            if (data != null)
+            {
+                e.ImfManager = Registry.GetManagedBaseHandleFromNativePtr(data) as ImfManager;
+            }
 
             if (_activatedEventHandler != null)
             {
@@ -1068,7 +1067,10 @@ namespace Tizen.NUI
         {
             ImfManagerEventReceivedEventArgs e = new ImfManagerEventReceivedEventArgs();
 
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
+            if (data != null)
+            {
+                e.ImfManager = Registry.GetManagedBaseHandleFromNativePtr(data) as ImfManager;
+            }
 
             if (_imfManagerEventReceivedEventHandler != null)
             {
@@ -1130,8 +1132,14 @@ namespace Tizen.NUI
 
             EventReceivedEventArgs e = new EventReceivedEventArgs();
 
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(imfManager);
-            e.ImfEventData = ImfEventData.GetImfEventDataFromPtr(imfEventData);
+            if (imfManager != null)
+            {
+                e.ImfManager = Registry.GetManagedBaseHandleFromNativePtr(imfManager) as ImfManager;
+            }
+            if (imfEventData != null)
+            {
+                e.ImfEventData = ImfEventData.GetImfEventDataFromPtr(imfEventData);
+            }
 
             if (_eventReceivedEventHandler != null)
             {
@@ -1206,7 +1214,10 @@ namespace Tizen.NUI
         {
             ImfManagerStatusChangedEventArgs e = new ImfManagerStatusChangedEventArgs();
 
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
+            if (data != null)
+            {
+                e.ImfManager = Registry.GetManagedBaseHandleFromNativePtr(data) as ImfManager;
+            }
 
             if (_imfManagerStatusChangedEventHandler != null)
             {
@@ -1327,7 +1338,10 @@ namespace Tizen.NUI
         {
             ImfManagerResizedEventArgs e = new ImfManagerResizedEventArgs();
 
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
+            if (data != null)
+            {
+                e.ImfManager = Registry.GetManagedBaseHandleFromNativePtr(data) as ImfManager;
+            }
 
             if (_imfManagerResizedEventHandler != null)
             {
@@ -1379,7 +1393,7 @@ namespace Tizen.NUI
         [Obsolete("Please do not use! this will be internal")]
         public ImfVoidSignalType ResizedSignal()
         {
-            ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_ResizedSignal(swigCPtr), true);
+            ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_ResizedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1432,7 +1446,10 @@ namespace Tizen.NUI
         {
             ImfManagerLanguageChangedEventArgs e = new ImfManagerLanguageChangedEventArgs();
 
-            e.ImfManager = ImfManager.GetImfManagerFromPtr(data);
+            if (data != null)
+            {
+                e.ImfManager = Registry.GetManagedBaseHandleFromNativePtr(data) as ImfManager;
+            }
 
             if (_imfManagerLanguageChangedEventHandler != null)
             {
@@ -1484,7 +1501,7 @@ namespace Tizen.NUI
         [Obsolete("Please do not use! this will be internal")]
         public ImfVoidSignalType LanguageChangedSignal()
         {
-            ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_LanguageChangedSignal(swigCPtr), true);
+            ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_LanguageChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
