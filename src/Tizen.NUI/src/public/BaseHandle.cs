@@ -26,7 +26,6 @@ namespace Tizen.NUI
         internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
             _registerMe = swigCMemOwn = cMemoryOwn;
-
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             // using copy constructor to create another native handle so Registry.Unregister works fine.
@@ -42,22 +41,18 @@ namespace Tizen.NUI
         internal BaseHandle(global::System.IntPtr cPtr)
         {
             _registerMe = swigCMemOwn = true;
-
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             // using copy constructor to create another native handle so Registry.Unregister works fine.
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.new_BaseHandle__SWIG_2(swigCPtr));
 
-            if (_registerMe)
-            {
-                // Register this instance of BaseHandle in the registry.
-                Registry.Register(this);
-            }
+            // Register this instance of BaseHandle in the registry.
+            Registry.Register(this);
         }
 
         internal BaseHandle(global::System.IntPtr cPtr)
         {
-            _registerMe = swigCMemOwn = true;
+            swigCMemOwn = true;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             // Register this instance of BaseHandle in the registry.
