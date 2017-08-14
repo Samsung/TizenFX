@@ -221,10 +221,9 @@ namespace Tizen.NUI
         private void OnAppControl(object source, NUIApplicationAppControlEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnAppControl Called");
-            /* can invoke after making new api which getting control handle at application.
             var handler = Handlers[EventType.AppControlReceived] as Action<AppControlReceivedEventArgs>;
-            handler?.Invoke();
-            */
+            SafeAppControlHandle handle = new SafeAppControlHandle(e.VoidP,false);
+            handler?.Invoke( new AppControlReceivedEventArgs(new ReceivedAppControl(handle)) );
         }
 
         /// <summary>
