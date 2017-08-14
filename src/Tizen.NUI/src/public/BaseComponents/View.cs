@@ -2011,7 +2011,13 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        [Obsolete("Please do not use! this will be internal property")]
+        /// <summary>
+        /// Returns the natural size of the view.
+        /// </summary>
+        /// <remarks>
+        /// Deriving classes stipulate the natural size and by default a view has a ZERO natural size.
+        /// </remarks>
+        [Obsolete("Please do not use! this will be deprecated, please use NaturalSize2D instead")]
         public Vector3 NaturalSize
         {
             get
@@ -2020,6 +2026,24 @@ namespace Tizen.NUI.BaseComponents
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
+            }
+        }
+
+        /// <summary>
+        /// Returns the natural size (Size2D) of the view.
+        /// </summary>
+        /// <remarks>
+        /// Deriving classes stipulate the natural size and by default a view has a ZERO natural size.
+        /// </remarks>
+        public Size2D NaturalSize2D
+        {
+            get
+            {
+                Vector3 temp = new Vector3(NDalicPINVOKE.Actor_GetNaturalSize(swigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                return new Size2D((int)temp.Width, (int)temp.Height);
             }
         }
 
@@ -3865,7 +3889,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        [Obsolete("Please do not use! this will be deprecated")]
+        [Obsolete("Please do not use! this will be deprecated, please use Size2D instead")]
         public Size Size
         {
             get
