@@ -29,9 +29,20 @@ namespace Tizen.NUI
     public class NUIApplication : CoreApplication
     {
         /// <summary>
+        /// Occurs whenever the application is resumed.
+        /// </summary>
+        public event EventHandler Resumed;
+
+        /// <summary>
+        /// Occurs whenever the application is paused.
+        /// </summary>
+        public event EventHandler Paused;
+
+        /// <summary>
         /// The instance of ResourceManager.
         /// </summary>
         private static System.Resources.ResourceManager resourceManager = null;
+
         /// <summary>
         /// The default constructor.
         /// </summary>
@@ -58,6 +69,8 @@ namespace Tizen.NUI
         /// </summary>
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
+            Log.Debug("NUI", "OnLocaleChanged() is called!");
+            base.OnLocaleChanged(e);
         }
 
         /// <summary>
@@ -66,6 +79,7 @@ namespace Tizen.NUI
         protected override void OnLowBattery(LowBatteryEventArgs e)
         {
             Log.Debug("NUI", "OnLowBattery() is called!");
+            base.OnLowBattery(e);
         }
 
         /// <summary>
@@ -74,6 +88,7 @@ namespace Tizen.NUI
         protected override void OnLowMemory(LowMemoryEventArgs e)
         {
             Log.Debug("NUI", "OnLowMemory() is called!");
+            base.OnLowMemory(e);
         }
 
         /// <summary>
@@ -82,6 +97,7 @@ namespace Tizen.NUI
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
             Log.Debug("NUI", "OnRegionFormatChanged() is called!");
+            base.OnRegionFormatChanged(e);
         }
 
         /// <summary>
@@ -90,6 +106,7 @@ namespace Tizen.NUI
         protected override void OnTerminate()
         {
             Log.Debug("NUI", "OnTerminate() is called!");
+            base.OnTerminate();
         }
 
         /// <summary>
@@ -97,6 +114,8 @@ namespace Tizen.NUI
         /// </summary>
         protected virtual void OnPause()
         {
+            Log.Debug("NUI", "OnPause() is called!");
+            Paused?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -104,6 +123,8 @@ namespace Tizen.NUI
         /// </summary>
         protected virtual void OnResume()
         {
+            Log.Debug("NUI", "OnResume() is called!");
+            Resumed?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -111,6 +132,7 @@ namespace Tizen.NUI
         /// </summary>
         protected virtual void OnPreCreate()
         {
+            Log.Debug("NUI", "OnPreCreate() is called!");
         }
 
         /// <summary>
@@ -124,6 +146,7 @@ namespace Tizen.NUI
                 Log.Debug("NUI", "OnAppControlReceived() is called! ApplicationId=" + e.ReceivedAppControl.ApplicationId);
                 Log.Debug("NUI", "CallerApplicationId=" + e.ReceivedAppControl.CallerApplicationId + "   IsReplyRequest=" + e.ReceivedAppControl.IsReplyRequest);
             }
+            base.OnAppControlReceived(e);
         }
 
         /// <summary>
@@ -135,6 +158,7 @@ namespace Tizen.NUI
             DisposeQueue disposeQ = DisposeQueue.Instance;
             disposeQ.Initialize();
             Log.Debug("NUI","OnCreate() is called!");
+            base.OnCreate();
         }
 
         /// <summary>
