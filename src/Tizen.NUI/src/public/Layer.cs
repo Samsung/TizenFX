@@ -429,35 +429,5 @@ namespace Tizen.NUI
                 return ret;
             }
         }
-
-        /// <summary>
-        /// Gets/Sets the Layer's name.
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return GetName();
-            }
-            set
-            {
-                SetName(value);
-            }
-        }
-
-        internal string GetName()
-        {
-            string ret = NDalicPINVOKE.Actor_GetName(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetName(string name)
-        {
-            NDalicPINVOKE.Actor_SetName(swigCPtr, name);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
     }
 }
