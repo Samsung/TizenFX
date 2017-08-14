@@ -784,9 +784,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 switch (temp)
                 {
-                    case "WRAP_MODE_WORD":
+                    case "WORD":
                     return LineWrapMode.Word;
-                    case "WRAP_MODE_CHARACTER":
+                    case "CHARACTER":
                     return LineWrapMode.Character;
                     default:
                     return LineWrapMode.Word;
