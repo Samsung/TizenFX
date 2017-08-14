@@ -166,58 +166,32 @@ namespace HelloWorldTest
 
         private TextLabel myTextLabel;
         private TextLabel myTextLabel2;
-        private TextEditor myTextEditor;
-        private TextEditor myTextEditor2;
         public void TextLabelLineWrapModeTest()
         {
             NUILog.Debug("WrapModeTest START!");
             myTextLabel = new TextLabel();
             myTextLabel.Position2D = new Position2D(10, 600);
-            myTextLabel.Size2D = new Size2D(400, 90);
+            myTextLabel.Size2D = new Size2D(400, 100);
             myTextLabel.BackgroundColor = Color.Blue;
             myTextLabel.PointSize = 20;
             myTextLabel.TextColor = Color.White;
             myTextLabel.MultiLine = true;
             myTextLabel.LineWrapMode = LineWrapMode.Character;
-            myTextLabel.Text = $"[TextLabel LineWrapMode.Character] hello ABCDEFGHI is my name, it is very very long beautiful hansome awesome name.";
+            myTextLabel.Text = $"[LineWrapMode.Character] hello my name is ABCDEFGHI, it is very very long beautiful hansome awesome name.";
             Window.Instance.GetDefaultLayer().Add(myTextLabel);
 
             myTextLabel2 = new TextLabel();
-            myTextLabel2.Position2D = new Position2D(450, 600);
-            myTextLabel2.Size2D = new Size2D(400, 90);
+            myTextLabel2.Position2D = new Position2D(10, 800);
+            myTextLabel2.Size2D = new Size2D(400, 100);
             myTextLabel2.BackgroundColor = Color.Blue;
             myTextLabel2.PointSize = 20;
             myTextLabel2.TextColor = Color.White;
             myTextLabel2.MultiLine = true;
             myTextLabel2.LineWrapMode = LineWrapMode.Word;
-            myTextLabel2.Text = $"[TextLabel LineWrapMode.Word] hello ABCDEFGHI is my name, it is very very long beautiful hansome awesome name.";
+            myTextLabel2.Text = $"[LineWrapMode.Word] hello my name is ABCDEFGHI, it is very very long beautiful hansome awesome name.";
             Window.Instance.GetDefaultLayer().Add(myTextLabel2);
 
-            NUILog.Debug($"TextLabel LineWrapMode 1st={ myTextLabel?.LineWrapMode} 2nd={ myTextLabel2?.LineWrapMode}");
-
-            myTextEditor = new TextEditor();
-            myTextEditor.Position2D = new Position2D(10, 700);
-            myTextEditor.Size2D = new Size2D(400, 90);
-            myTextEditor.BackgroundColor = Color.Red;
-            myTextEditor.PointSize = 20;
-            myTextEditor.TextColor = Color.White;
-            //myTextEditor.MultiLine = true;
-            myTextEditor.LineWrapMode = LineWrapMode.Character;
-            myTextEditor.Text = $"[TextEditor LineWrapMode.Character] hello ABCDEFGHI is my name, it is very very long beautiful hansome awesome name.";
-            Window.Instance.GetDefaultLayer().Add(myTextEditor);
-
-            myTextEditor2 = new TextEditor();
-            myTextEditor2.Position2D = new Position2D(450, 700);
-            myTextEditor2.Size2D = new Size2D(400, 90);
-            myTextEditor2.BackgroundColor = Color.Red;
-            myTextEditor2.PointSize = 20;
-            myTextEditor2.TextColor = Color.White;
-            //myTextEditor2.MultiLine = true;
-            myTextEditor2.LineWrapMode = LineWrapMode.Word;
-            myTextEditor2.Text = $"[TextEditor LineWrapMode.Word] hello ABCDEFGHI is my name, it is very very long beautiful hansome awesome name.";
-            Window.Instance.GetDefaultLayer().Add(myTextEditor2);
-
-            NUILog.Debug($"TextEditor LineWrapMode 1st={ myTextEditor?.LineWrapMode} 2nd={ myTextEditor2?.LineWrapMode}");
+            NUILog.Debug($"LineWrapMode 1st={ myTextLabel?.LineWrapMode} 2nd={ myTextLabel2?.LineWrapMode}");
         }
 
         [STAThread]
