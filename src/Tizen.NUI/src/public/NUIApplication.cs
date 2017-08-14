@@ -167,10 +167,31 @@ namespace Tizen.NUI
         /// <param name="args">Arguments from commandline.</param>
         public override void Run(string[] args)
         {
+            string[] argsClone = null;
+
+            if (args == null)
+            {
+                argsClone = new string[1];
+            }
+            else
+            {
+                argsClone = new string[args.Length + 1];
+                args.CopyTo(argsClone, 1);
+            }
+            argsClone[0] = string.Empty;
+
             Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
+            Backend.AddEventHandler(EventType.Created, OnCreate);
+            Backend.AddEventHandler<AppControlReceivedEventArgs>(EventType.AppControlReceived, OnAppControlReceived);
             Backend.AddEventHandler(EventType.Resumed, OnResume);
             Backend.AddEventHandler(EventType.Paused, OnPause);
-            base.Run(args);
+            Backend.AddEventHandler(EventType.Terminated, OnTerminate);
+            Backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
+            Backend.AddEventHandler<LowMemoryEventArgs>(EventType.LowMemory, OnLowMemory);
+            Backend.AddEventHandler<LowBatteryEventArgs>(EventType.LowBattery, OnLowBattery);
+            Backend.AddEventHandler<LocaleChangedEventArgs>(EventType.LocaleChanged, OnLocaleChanged);
+
+            Backend.Run(argsClone);
         }
 
         /// <summary>
@@ -178,7 +199,7 @@ namespace Tizen.NUI
         /// </summary>
         public override void Exit()
         {
-            base.Exit();
+            Backend.Exit();
         }
 
         /// <summary>
