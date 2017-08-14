@@ -58,21 +58,25 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
-
+                NUILog.Debug("Animation.Dispose(Explicit)! GetState=" + this.GetState());
+                if(this.GetState() != States.Stopped)
+                {
+                    this.Clear();
+                    this.Reset();
+                    NUILog.Error("Now Animation is playing! Clear and Reset here!");
+                }
             }
             else if(type == DisposeTypes.Implicit)
             {
-
+                NUILog.Debug("Animation.Dispose(Implicit)! GetState=" + this.GetState());
+                if(this.GetState() != States.Stopped)
+                {
+                    this.Clear();
+                    this.Reset();
+                    NUILog.Error("Now Animation is playing! Clear and Reset here!");
+                    //throw new System.InvalidOperationException("Animation Instance should not be disposed until getting Finished event. Should be a global variable");
+                }
             }
-
-            if(this)
-            {
-                this.Clear();
-                this.Reset();
-                NUILog.Error("Now Animation is playing! Clear and Reset here!");
-                //throw new System.InvalidOperationException("Animation Instance should not be disposed until getting Finished event. Should be a global variable");
-            }
-
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
@@ -118,11 +122,18 @@ namespace Tizen.NUI
             {
                 if (_animationFinishedEventHandler == null)
                 {
-                    NUILog.Debug("[add before]FinishedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+#if DEBUG_ON
+                    Tizen.Log.Debug("NUI", "con1) FinishedSignal().Empty = " + FinishedSignal().Empty());
+                    Tizen.Log.Debug("NUI", "con2) FinishedSignal().GetConnectionCount = " + FinishedSignal().GetConnectionCount());
+#endif
                     _animationFinishedEventCallback = OnFinished;
                     FinishedSignal().Connect(_animationFinishedEventCallback);
-                    NUILog.Debug("[add after]FinishedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+#if DEBUG_ON
+                    Tizen.Log.Debug("NUI", "con3) FinishedSignal().Empty = " + FinishedSignal().Empty());
+                    Tizen.Log.Debug("NUI", "con4) FinishedSignal().GetConnectionCount = " + FinishedSignal().GetConnectionCount());
+#endif
                 }
+
                 _animationFinishedEventHandler += value;
             }
             remove
@@ -131,9 +142,15 @@ namespace Tizen.NUI
 
                 if (_animationFinishedEventHandler == null && FinishedSignal().Empty() == false)
                 {
-                    NUILog.Debug("[remove before]FinishedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+#if DEBUG_ON
+                    Tizen.Log.Debug("NUI", "discon1) FinishedSignal().Empty = " + FinishedSignal().Empty());
+                    Tizen.Log.Debug("NUI", "discon2) FinishedSignal().GetConnectionCount = " + FinishedSignal().GetConnectionCount());
+#endif
                     FinishedSignal().Disconnect(_animationFinishedEventCallback);
-                    NUILog.Debug("[remove after]FinishedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+#if DEBUG_ON
+                    Tizen.Log.Debug("NUI", "discon3) FinishedSignal().Empty = " + FinishedSignal().Empty());
+                    Tizen.Log.Debug("NUI", "discon4) FinishedSignal().GetConnectionCount = " + FinishedSignal().GetConnectionCount());
+#endif
                 }
             }
         }
@@ -160,10 +177,16 @@ namespace Tizen.NUI
             {
                 if (_animationProgressReachedEventHandler == null)
                 {
-                    NUILog.Debug("[add before]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+#if DEBUG_ON
+                    Tizen.Log.Debug("NUI", "con1) ProgressReachedSignal().Empty = " + ProgressReachedSignal().Empty());
+                    Tizen.Log.Debug("NUI", "con2) ProgressReachedSignal().GetConnectionCount = " + ProgressReachedSignal().GetConnectionCount());
+#endif
                     _animationProgressReachedEventCallback = OnProgressReached;
                     ProgressReachedSignal().Connect(_animationProgressReachedEventCallback);
-                    NUILog.Debug("[add after]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+#if DEBUG_ON
+                    Tizen.Log.Debug("NUI", "con3) ProgressReachedSignal().Empty = " + ProgressReachedSignal().Empty());
+                    Tizen.Log.Debug("NUI", "con4) ProgressReachedSignal().GetConnectionCount = " + ProgressReachedSignal().GetConnectionCount());
+#endif
                 }
 
                 _animationProgressReachedEventHandler += value;
@@ -174,9 +197,15 @@ namespace Tizen.NUI
 
                 if (_animationProgressReachedEventHandler == null && ProgressReachedSignal().Empty() == false)
                 {
-                    NUILog.Debug("[remove before]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+#if DEBUG_ON
+                    Tizen.Log.Debug("NUI", "discon1) ProgressReachedSignal().Empty = " + ProgressReachedSignal().Empty());
+                    Tizen.Log.Debug("NUI", "discon2) ProgressReachedSignal().GetConnectionCount = " + ProgressReachedSignal().GetConnectionCount());
+#endif
                     ProgressReachedSignal().Disconnect(_animationProgressReachedEventHandler);
-                    NUILog.Debug("[remove after]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+#if DEBUG_ON
+                    Tizen.Log.Debug("NUI", "discon3) ProgressReachedSignal().Empty = " + ProgressReachedSignal().Empty());
+                    Tizen.Log.Debug("NUI", "discon4) ProgressReachedSignal().GetConnectionCount = " + ProgressReachedSignal().GetConnectionCount());
+#endif
                 }
             }
         }
