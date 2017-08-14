@@ -29,10 +29,6 @@ namespace Tizen.NUI
     public class NUIApplication : CoreApplication
     {
         /// <summary>
-        /// The instance of ResourceManager.
-        /// </summary>
-        private static System.Resources.ResourceManager resourceManager = null;
-        /// <summary>
         /// The default constructor.
         /// </summary>
         public NUIApplication() : base(new NUICoreBackend())
@@ -189,19 +185,5 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// ResourceManager to handle multilingual
-        /// </summary>
-        public static System.Resources.ResourceManager MultilingualResourceManager
-        {
-            get
-            {
-                return resourceManager;
-            }
-            set
-            {
-                resourceManager = value;
-            }
-        }
     }
 }
