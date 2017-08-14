@@ -103,8 +103,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AUTO_SCROLL_LOOP_DELAY = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
             internal static readonly int LINE_COUNT = NDalicManualPINVOKE.TextLabel_Property_LINE_COUNT_get();
             internal static readonly int LINE_WRAP_MODE = NDalicManualPINVOKE.TextLabel_Property_LINE_WRAP_MODE_get();
-            internal static readonly int TEXT_COLOR_ANIMATABLE = NDalicPINVOKE.TextLabel_Property_TEXT_COLOR_ANIMATABLE_get();
-
         }
 
         /// <summary>
@@ -135,7 +133,6 @@ namespace Tizen.NUI.BaseComponents
         public new static TextLabel DownCast(BaseHandle handle)
         {
             TextLabel ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TextLabel;
-
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -765,25 +762,6 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
                 SetProperty(TextLabel.Property.LINE_WRAP_MODE, new Tizen.NUI.PropertyValue(temp));
-            }
-        }
-
-        /// TextColorAnimatable property.<br>
-        /// The color of the text that can be animatated.<br>
-        /// Animation framework can be used to change the color of the text when not using mark up.<br>
-        /// Not possible when text is auto scrolling. <br>
-        /// </summary>
-        public Color TextColorAnimatable
-        {
-            get
-            {
-                Color animatableColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(TextLabel.Property.TEXT_COLOR_ANIMATABLE).Get(animatableColor);
-                return animatableColor;
-            }
-            set
-            {
-                SetProperty(TextLabel.Property.TEXT_COLOR_ANIMATABLE, new Tizen.NUI.PropertyValue(value));
             }
         }
 

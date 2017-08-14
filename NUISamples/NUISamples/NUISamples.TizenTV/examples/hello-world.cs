@@ -49,9 +49,6 @@ namespace HelloWorldTest
             Initialize();
         }
 
-        TextLabel pixelLabel;
-        TextLabel pointLabel;
-
         public void Initialize()
         {
             Window window = Window.Instance;
@@ -60,16 +57,16 @@ namespace HelloWorldTest
             window.KeyEvent += OnWindowKeyEvent;
             window.Resized += (obj, e) =>
             {
-                Tizen.Log.Fatal("NUI", "Height: " + e.WindowSize.Height);
-                Tizen.Log.Fatal("NUI", "Width: " + e.WindowSize.Width);
+                Tizen.Log.Debug("NUI", "Height: " + e.WindowSize.Height);
+                Tizen.Log.Debug("NUI", "Width: " + e.WindowSize.Width);
             };
 
-            pixelLabel = new TextLabel("Test Pixel Size 32.0f");
+            TextLabel pixelLabel = new TextLabel("Test Pixel Size 32.0f");
             pixelLabel.Position2D = new Position2D(10, 10);
             pixelLabel.PixelSize = 32.0f;
             window.Add(pixelLabel);
 
-            pointLabel = new TextLabel("Test Point Size 32.0f");
+            TextLabel pointLabel = new TextLabel("Test Point Size 32.0f");
             pointLabel.Position2D = new Position2D(10, 100);
             pointLabel.PointSize = 32.0f;
             window.Add(pointLabel);
@@ -101,7 +98,7 @@ namespace HelloWorldTest
             _view = new View();
             _view.Size2D = new Size2D(100, 100);
             _view.SizeWidth = 50;
-            Tizen.Log.Fatal("NUI", "[1]_view SizeWidth=" + _view.SizeWidth);
+            Tizen.Log.Debug("NUI", "[1]_view SizeWidth=" + _view.SizeWidth);
 
             _animation = new Animation
             {
@@ -115,25 +112,22 @@ namespace HelloWorldTest
             _animation.Finished += AnimationFinished;
 
             _view.SizeWidth = 50;
-            Tizen.Log.Fatal("NUI", "[2]_view SizeWidth=" + _view.SizeWidth);
+            Tizen.Log.Debug("NUI", "[2]_view SizeWidth=" + _view.SizeWidth);
         }
 
         public void AnimationFinished(object sender, EventArgs e)
         {
-            Tizen.Log.Fatal("NUI", "AnimationFinished()! cnt=" + (cnt));
+            Tizen.Log.Debug("NUI", "AnimationFinished()! cnt=" + (cnt));
             if (_animation)
             {
-                Tizen.Log.Fatal("NUI", "Duration= " + _animation.Duration + "EndAction= " + _animation.EndAction);
+                Tizen.Log.Debug("NUI", "Duration= " + _animation.Duration + "EndAction= " + _animation.EndAction);
             }
             _view.SizeWidth = 50;
-            Tizen.Log.Fatal("NUI", "[3]_view SizeWidth=" + _view.SizeWidth);
+            Tizen.Log.Debug("NUI", "[3]_view SizeWidth=" + _view.SizeWidth);
         }
 
         public void OnWindowKeyEvent(object sender, Window.KeyEventArgs e)
         {
-            Tizen.Log.Fatal("NUI", "e.Key.KeyPressedName=" + e.Key.KeyPressedName);
-
-
             if (e.Key.State == Key.StateType.Down)
             {
                 if (e.Key.KeyPressedName == "Up")
@@ -142,11 +136,8 @@ namespace HelloWorldTest
                     {
                         _animation.Finished += AnimationFinished;
                         cnt++;
-                        Tizen.Log.Fatal("NUI", "AnimationFinished added!");
+                        Tizen.Log.Debug("NUI", "AnimationFinished added!");
                     }
-                    pointLabel.TextColorAnimatable = Color.Blue;
-                    pixelLabel.TextColorAnimatable = Color.Blue;
-
                 }
                 else if (e.Key.KeyPressedName == "Down")
                 {
@@ -154,26 +145,11 @@ namespace HelloWorldTest
                     {
                         _animation.Finished -= AnimationFinished;
                         cnt--;
-                        Tizen.Log.Fatal("NUI", "AnimationFinished removed!");
+                        Tizen.Log.Debug("NUI", "AnimationFinished removed!");
                     }
-                    pointLabel.TextColorAnimatable = Color.Red;
-                    pixelLabel.TextColorAnimatable = Color.Red;
-
                 }
-                else if (e.Key.KeyPressedName == "Return")
-                {
-                    if (_animation)
-                    {
-                        //_animation.Stop(Dali.Constants.Animation.EndAction.Stop);
-                        //_animation.Reset();
-                    }
-                    _animation.Play();
-                    Tizen.Log.Fatal("NUI", "_animation play here!");
-
             }
         }
-        }
-
 
         public void OnWindowTouched(object sender, Window.TouchEventArgs e)
         {
@@ -191,7 +167,7 @@ namespace HelloWorldTest
         [STAThread]
         static void _Main(string[] args)
         {
-            Tizen.Log.Fatal("NUI", "Main() called!");
+            //Tizen.Log.Debug("NUI", "Main() called!");
             Example example = new Example();
             example.Run(args);
         }
