@@ -1278,7 +1278,9 @@ namespace Tizen.NUI
 
         internal void SetWindowSize(Size2D size)
         {
-            NDalicManualPINVOKE.SetSize(swigCPtr, Size2D.getCPtr(size));
+            var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
+            NDalicManualPINVOKE.SetSize(swigCPtr, Uint16Pair.getCPtr(val));
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1286,7 +1288,6 @@ namespace Tizen.NUI
         {
             var val = new Uint16Pair(NDalicManualPINVOKE.GetSize(swigCPtr), false);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
-            val.Dispose();
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1294,13 +1295,17 @@ namespace Tizen.NUI
 
         internal void SetPosition(Position2D position)
         {
-            NDalicManualPINVOKE.SetPosition(swigCPtr, Position2D.getCPtr(position));
+            var val = new Uint16Pair( (uint)position.X, (uint)position.Y );
+            NDalicManualPINVOKE.SetPosition(swigCPtr, Uint16Pair.getCPtr(val));
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Position2D GetPosition()
         {
-            Position2D ret = new Position2D(NDalicManualPINVOKE.GetPosition(swigCPtr), true);
+            var val = new Uint16Pair(NDalicManualPINVOKE.GetPosition(swigCPtr), true);
+            Position2D ret = new Position2D(val.GetX(), val.GetY());
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
