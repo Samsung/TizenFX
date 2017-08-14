@@ -284,7 +284,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int PLACEHOLDER_TEXT_COLOR = NDalicManualPINVOKE.TextEditor_Property_PLACEHOLDER_TEXT_COLOR_get();
             internal static readonly int ENABLE_SELECTION = NDalicManualPINVOKE.TextEditor_Property_ENABLE_SELECTION_get();
             internal static readonly int PLACEHOLDER = NDalicManualPINVOKE.TextEditor_Property_PLACEHOLDER_get();
-
+            internal static readonly int LINE_WRAP_MODE = NDalicManualPINVOKE.TextEditor_Property_LINE_WRAP_MODE_get();
         }
 
         internal class InputStyle
@@ -1248,6 +1248,49 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.PLACEHOLDER, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// LineWrapMode property.<br>
+        /// line wrap mode when the text lines over layout width.<br>
+        /// </summary>
+        public LineWrapMode LineWrapMode
+        {
+            get
+            {
+                string temp;
+                if(GetProperty(TextEditor.Property.LINE_WRAP_MODE).Get(out temp) == false)
+                {
+                    NUILog.Error("LineWrapMode get error!");
+                }
+                switch (temp)
+                {
+                    case "WORD":
+                    return LineWrapMode.Word;
+                    case "CHARACTER":
+                    return LineWrapMode.Character;
+                    default:
+                    return LineWrapMode.Word;
+                }
+            }
+            set
+            {
+                string temp = "";
+                switch (value)
+                {
+                    case LineWrapMode.Word:
+                    {
+                        temp = "WORD";
+                        break;
+                    }
+                    case LineWrapMode.Character:
+                    {
+                        temp = "CHARACTER";
+                        break;
+                    }
+                }
+                SetProperty(TextEditor.Property.LINE_WRAP_MODE, new Tizen.NUI.PropertyValue(temp));
             }
         }
 

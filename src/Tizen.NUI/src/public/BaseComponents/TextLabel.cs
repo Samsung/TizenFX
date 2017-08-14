@@ -101,8 +101,13 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int ELLIPSIS = NDalicManualPINVOKE.TextLabel_Property_ELLIPSIS_get();
             internal static readonly int AUTO_SCROLL_STOP_MODE = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_STOP_MODE_get();
             internal static readonly int AUTO_SCROLL_LOOP_DELAY = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
+<<<<<<< HEAD
             internal static readonly int TEXT_COLOR_ANIMATABLE = NDalicPINVOKE.TextLabel_Property_TEXT_COLOR_ANIMATABLE_get();
             internal static readonly int LINE_COUNT = OUTLINE + 5;
+=======
+            internal static readonly int LINE_COUNT = NDalicManualPINVOKE.TextLabel_Property_LINE_COUNT_get();
+            internal static readonly int LINE_WRAP_MODE = NDalicManualPINVOKE.TextLabel_Property_LINE_WRAP_MODE_get();
+>>>>>>> parent of b621f76... Revert "[Tizen] Add properties of TextLabel/Editor"
         }
 
         /// <summary>
@@ -738,6 +743,49 @@ namespace Tizen.NUI.BaseComponents
                 int temp = 0;
                 GetProperty(TextLabel.Property.LINE_COUNT).Get(out temp);
                 return temp;
+            }
+        }
+
+        /// <summary>
+        /// LineWrapMode property.<br>
+        /// line wrap mode when the text lines over layout width.<br>
+        /// </summary>
+        public LineWrapMode LineWrapMode
+        {
+            get
+            {
+                string temp;
+                if(GetProperty(TextLabel.Property.LINE_WRAP_MODE).Get(out temp) == false)
+                {
+                    NUILog.Error("LineWrapMode get error!");
+                }
+                switch (temp)
+                {
+                    case "WORD":
+                    return LineWrapMode.Word;
+                    case "CHARACTER":
+                    return LineWrapMode.Character;
+                    default:
+                    return LineWrapMode.Word;
+                }
+            }
+            set
+            {
+                string temp = "";
+                switch (value)
+                {
+                    case LineWrapMode.Word:
+                    {
+                        temp = "WORD";
+                        break;
+                    }
+                    case LineWrapMode.Character:
+                    {
+                        temp = "CHARACTER";
+                        break;
+                    }
+                }
+                SetProperty(TextLabel.Property.LINE_WRAP_MODE, new Tizen.NUI.PropertyValue(temp));
             }
         }
     }
