@@ -175,25 +175,5 @@ namespace Tizen.NUI
             Opaque = 0,
             Transparent = 1
         }
-
-        /// <summary>
-        /// Get the window instance.
-        /// </summary>
-        public Window Window
-        {
-            get
-            {
-                return _application.GetWindow();
-            }
-        }
-
-        internal Application ApplicationHandle
-        {
-            get
-            {
-                return _application;
-            }
-        }
-
     }
 }
