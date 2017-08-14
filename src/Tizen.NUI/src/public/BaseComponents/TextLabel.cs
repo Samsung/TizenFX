@@ -107,7 +107,12 @@ namespace Tizen.NUI.BaseComponents
 =======
             internal static readonly int LINE_COUNT = NDalicManualPINVOKE.TextLabel_Property_LINE_COUNT_get();
             internal static readonly int LINE_WRAP_MODE = NDalicManualPINVOKE.TextLabel_Property_LINE_WRAP_MODE_get();
+<<<<<<< HEAD
 >>>>>>> parent of b621f76... Revert "[Tizen] Add properties of TextLabel/Editor"
+=======
+            internal static readonly int TEXT_COLOR_ANIMATABLE = NDalicPINVOKE.TextLabel_Property_TEXT_COLOR_ANIMATABLE_get();
+
+>>>>>>> parent of bb0612e... Revert "[Tizen] Animatable TextColor Property for TextLabel"
         }
 
         /// <summary>
@@ -138,6 +143,7 @@ namespace Tizen.NUI.BaseComponents
         public new static TextLabel DownCast(BaseHandle handle)
         {
             TextLabel ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TextLabel;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
