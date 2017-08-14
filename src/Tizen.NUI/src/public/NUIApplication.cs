@@ -95,22 +95,16 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
-        protected virtual void OnPause()
+        protected void OnPause()
         {
         }
 
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
-        protected virtual void OnResume()
+        protected void OnResume()
         {
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior.
-        /// </summary>
-        protected virtual void OnPreCreate()
-        {
+            Log.Debug("NUI", "OnResume() is called!");
         }
 
         /// <summary>
@@ -156,16 +150,15 @@ namespace Tizen.NUI
             }
             argsClone[0] = string.Empty;
 
-            Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
-            Backend.AddEventHandler(EventType.Created, OnCreate);
-            Backend.AddEventHandler<AppControlReceivedEventArgs>(EventType.AppControlReceived, OnAppControlReceived);
             Backend.AddEventHandler(EventType.Resumed, OnResume);
+            Backend.AddEventHandler<AppControlReceivedEventArgs>(EventType.AppControlReceived, OnAppControlReceived);
             Backend.AddEventHandler(EventType.Paused, OnPause);
             Backend.AddEventHandler(EventType.Terminated, OnTerminate);
             Backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
             Backend.AddEventHandler<LowMemoryEventArgs>(EventType.LowMemory, OnLowMemory);
             Backend.AddEventHandler<LowBatteryEventArgs>(EventType.LowBattery, OnLowBattery);
             Backend.AddEventHandler<LocaleChangedEventArgs>(EventType.LocaleChanged, OnLocaleChanged);
+            Backend.AddEventHandler(EventType.Created, OnCreate);
 
             Backend.Run(argsClone);
         }

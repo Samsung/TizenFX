@@ -179,13 +179,9 @@ namespace Tizen.NUI
         /// <param name="e">Event argument for Initialized</param>
         private void OnInitialized(object source, NUIApplicationInitEventArgs e)
         {
-            Log.Debug("NUI", "NUICorebackend OnPreCreated Called");
-            var preCreateHandler = Handlers[EventType.PreCreated] as Action;
-            preCreateHandler?.Invoke();
-
-            Log.Debug("NUI", "NUICorebackend OnCreate Called");
-            var createHandler = Handlers[EventType.Created] as Action;
-            createHandler?.Invoke();
+            Log.Debug("NUI", "NUICorebackend OnInitialized Called");
+            var handler = Handlers[EventType.Created] as Action;
+            handler?.Invoke();
         }
 
         /// <summary>
