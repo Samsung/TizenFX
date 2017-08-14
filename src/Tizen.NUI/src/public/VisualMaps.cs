@@ -2002,7 +2002,7 @@ namespace Tizen.NUI
         {
             get
             {
-                if( _urls != null )
+                if( _urls == null )
                 {
                     return _urls[0];
                 }
