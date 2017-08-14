@@ -224,7 +224,8 @@ namespace Tizen.Applications
         /// Terminates the application.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of permission denied or system error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.kill</privilege>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Terminate()
@@ -237,7 +238,7 @@ namespace Tizen.Applications
                     case Interop.ApplicationManager.ErrorCode.InvalidParameter:
                         throw new ArgumentException("Invalid argument.");
                     case Interop.ApplicationManager.ErrorCode.PermissionDenied:
-                        throw new InvalidOperationException("Permission denied.");
+                        throw new UnauthorizedAccessException("Permission denied.");
                     default:
                         throw new InvalidOperationException("Invalid Operation.");
                 }
