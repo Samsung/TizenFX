@@ -13,23 +13,19 @@
 * limitations under the License.
 *
 */
-extern alias TizenSystemSettings;
-using TizenSystemSettings.Tizen.System;
+
 namespace Tizen.NUI.BaseComponents
 {
 
     using System;
     using System.Runtime.InteropServices;
-    using System.Globalization;
+
     /// <summary>
     /// A control which provides a single-line editable text field.
     /// </summary>
     public class TextField : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        private string textFieldTextSid = null;
-        private string textFieldPlaceHolderTextSid = null;
-        private bool systemlangTextFlag = false;
 
         internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TextField_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -333,81 +329,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// TranslatableText property.<br>
-        /// The text can be set SID value.<br>
-        /// </summary>
-        /// <exception cref='ArgumentNullException'>
-        /// ResourceManager about multilingual is null
-        /// </exception>
-        public string TranslatableText
-        {
-            get
-            {
-                return textFieldTextSid;
-            }
-            set
-            {
-                if (NUIApplication.MultilingualResourceManager == null)
-                {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
-                }
-                textFieldTextSid = value;
-                Text = SetTranslatable(textFieldTextSid);
-            }
-        }
-        /// <summary>
-        /// TranslatablePlaceholderText property.<br>
-        /// The text can be set SID value.<br>
-        /// </summary>
-        /// <exception cref='ArgumentNullException'>
-        /// ResourceManager about multilingual is null
-        /// </exception>
-        public string TranslatablePlaceholderText
-        {
-            get
-            {
-                return textFieldPlaceHolderTextSid;
-            }
-            set
-            {
-                if (NUIApplication.MultilingualResourceManager == null)
-                {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
-                }
-                textFieldPlaceHolderTextSid = value;
-                PlaceholderText = SetTranslatable(textFieldPlaceHolderTextSid);
-            }
-        }
-        private string SetTranslatable(string textFieldSid)
-        {
-            string translatableText = null;
-            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textFieldSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
-            if (translatableText != null)
-            {
-                if (systemlangTextFlag == false)
-                {
-                    SystemSettings.LocaleLanguageChanged += new WeakEventHandler<LocaleLanguageChangedEventArgs>(SystemSettings_LocaleLanguageChanged).Handler;
-                    systemlangTextFlag = true;
-                }
-                return translatableText;
-            }
-            else
-            {
-                translatableText = "";
-                return translatableText;
-            }
-        }
-        private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
-        {
-            if (textFieldTextSid != null)
-            {
-                Text = NUIApplication.MultilingualResourceManager?.GetString(textFieldTextSid, new CultureInfo(e.Value.Replace("_", "-")));
-            }
-            if (textFieldPlaceHolderTextSid != null)
-            {
-                PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textFieldPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
-            }
-        }
         /// Text property.
         /// </summary>
         public string Text
