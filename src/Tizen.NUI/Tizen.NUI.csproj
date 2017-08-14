@@ -16,9 +16,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <DefineConstants>$(DefineConstants);DEBUG_ON;DOT_NET_CORE</DefineConstants>
+    <DefineConstants>$(DefineConstants)DEBUG_ON</DefineConstants>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <SignAssembly>False</SignAssembly>
+    <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>TizenTVNUI.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
   </PropertyGroup>

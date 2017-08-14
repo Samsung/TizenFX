@@ -102,7 +102,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AUTO_SCROLL_STOP_MODE = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_STOP_MODE_get();
             internal static readonly int AUTO_SCROLL_LOOP_DELAY = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
             internal static readonly int TEXT_COLOR_ANIMATABLE = NDalicPINVOKE.TextLabel_Property_TEXT_COLOR_ANIMATABLE_get();
-
+            internal static readonly int LINE_COUNT = OUTLINE + 5;
         }
 
         /// <summary>
@@ -726,6 +726,18 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextLabel.Property.TEXT_COLOR_ANIMATABLE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// The line count of text.
+        /// </summary>
+        public int LineCount
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(TextLabel.Property.LINE_COUNT).Get(out temp);
+                return temp;
             }
         }
     }
