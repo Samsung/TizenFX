@@ -1533,20 +1533,4 @@ namespace Tizen.NUI
         Finished
     }
 
-     /// <summary>
-    /// An enum of line wrap mode of text controls.
-    /// </summary>
-    public enum LineWrapMode
-    {
-        /// <summary>
-        /// Word mode will move word to next line
-        /// </summary>
-        Word,
-
-        /// <summary>
-        /// character will move character by character to next line
-        /// </summary>
-        Character
-    }
-
 }
