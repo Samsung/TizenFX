@@ -54,6 +54,11 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_scrollViewSnapStartedCallbackDelegate != null)
+            {
+                this.SnapStartedSignal().Disconnect(_scrollViewSnapStartedCallbackDelegate);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)

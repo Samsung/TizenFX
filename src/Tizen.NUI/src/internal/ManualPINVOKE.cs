@@ -785,5 +785,8 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Window_GetPosition")]
         public static extern global::System.IntPtr GetPosition(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Adaptor_FeedKeyEvent")]
+        public static extern void Window_FeedKeyEvent(global::System.Runtime.InteropServices.HandleRef jarg1);
     }
 }

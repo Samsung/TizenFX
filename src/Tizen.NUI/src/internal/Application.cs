@@ -346,6 +346,61 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_applicationInitEventCallbackDelegate != null)
+            {
+                this.InitSignal().Disconnect(_applicationInitEventCallbackDelegate);
+            }
+
+            if (_applicationTerminateEventCallbackDelegate != null)
+            {
+                this.TerminateSignal().Disconnect(_applicationTerminateEventCallbackDelegate);
+            }
+
+            if (_applicationPauseEventCallbackDelegate != null)
+            {
+                this.PauseSignal().Disconnect(_applicationPauseEventCallbackDelegate);
+            }
+
+            if (_applicationResumeEventCallbackDelegate != null)
+            {
+                this.ResumeSignal().Disconnect(_applicationResumeEventCallbackDelegate);
+            }
+
+            if (_applicationResetEventCallbackDelegate != null)
+            {
+                this.ResetSignal().Disconnect(_applicationResetEventCallbackDelegate);
+            }
+
+            if (_applicationResizeEventCallbackDelegate != null)
+            {
+                this.ResizeSignal().Disconnect(_applicationResizeEventCallbackDelegate);
+            }
+
+            if (_applicationLanguageChangedEventCallbackDelegate != null)
+            {
+                this.LanguageChangedSignal().Disconnect(_applicationLanguageChangedEventCallbackDelegate);
+            }
+
+            if (_applicationRegionChangedEventCallbackDelegate != null)
+            {
+                this.RegionChangedSignal().Disconnect(_applicationRegionChangedEventCallbackDelegate);
+            }
+
+            if (_applicationBatteryLowEventCallbackDelegate != null)
+            {
+                this.BatteryLowSignal().Disconnect(_applicationBatteryLowEventCallbackDelegate);
+            }
+
+            if (_applicationMemoryLowEventCallbackDelegate != null)
+            {
+                this.MemoryLowSignal().Disconnect(_applicationMemoryLowEventCallbackDelegate);
+            }
+
+            if (_applicationAppControlEventCallbackDelegate != null)
+            {
+                this.AppControlSignal().Disconnect(_applicationAppControlEventCallbackDelegate);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)

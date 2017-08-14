@@ -4493,6 +4493,7 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TimePeriod_durationSeconds_get")]
   public static extern float TimePeriod_durationSeconds_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  //Animation Pinvoke
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_Animation__SWIG_0")]
   public static extern global::System.IntPtr new_Animation__SWIG_0();
 
@@ -4597,6 +4598,9 @@ class NDalicPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Animation_ProgressReachedSignal")]
   public static extern global::System.IntPtr Animation_ProgressReachedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Animation_PlayAfter")]
+  public static extern void Animation_PlayAfter(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Animation_AnimateBy__SWIG_0")]
   public static extern void Animation_AnimateBy__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
@@ -9276,6 +9280,9 @@ class NDalicPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TextLabel_Property_TEXT_COLOR_get")]
   public static extern int TextLabel_Property_TEXT_COLOR_get();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TextLabel_Property_TEXT_COLOR_ANIMATABLE_get")]
+  public static extern int TextLabel_Property_TEXT_COLOR_ANIMATABLE_get();
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TextLabel_Property_SHADOW_OFFSET_get")]
   public static extern int TextLabel_Property_SHADOW_OFFSET_get();

@@ -61,6 +61,17 @@ namespace Tizen.NUI
                 //You should release all of your own disposable objects here.
             }
 
+            if (_animationFinishedEventCallback != null)
+            {
+                FinishedSignal().Disconnect(_animationFinishedEventCallback);
+            }
+
+            if (_animationProgressReachedEventCallback != null)
+            {
+
+                ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
+            }
+
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -184,7 +195,7 @@ namespace Tizen.NUI
                     Tizen.Log.Debug("NUI", "discon1) ProgressReachedSignal().Empty = " + ProgressReachedSignal().Empty());
                     Tizen.Log.Debug("NUI", "discon2) ProgressReachedSignal().GetConnectionCount = " + ProgressReachedSignal().GetConnectionCount());
 #endif
-                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventHandler);
+                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
 #if DEBUG_ON
                     Tizen.Log.Debug("NUI", "discon3) ProgressReachedSignal().Empty = " + ProgressReachedSignal().Empty());
                     Tizen.Log.Debug("NUI", "discon4) ProgressReachedSignal().GetConnectionCount = " + ProgressReachedSignal().GetConnectionCount());
@@ -912,6 +923,18 @@ namespace Tizen.NUI
         public void PlayFrom(float progress)
         {
             NDalicPINVOKE.Animation_PlayFrom(swigCPtr, progress);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Play the animation after a given delay time.<br/>
+        /// The delay time is not included in the looping time.<br/>
+        /// When the delay time is negative value, it would treat as play immediately.<br/>
+        /// </summary>
+        /// <param name="delayMilliseconds">The delay time</param>
+        public void PlayAfter(int delayMilliseconds)
+        {
+            NDalicPINVOKE.Animation_PlayAfter(swigCPtr, MilliSecondsToSeconds(delayMilliseconds));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

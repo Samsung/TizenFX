@@ -65,6 +65,31 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_focusedViewEnterKeyEventCallback2 != null)
+            {
+                FocusedViewEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback2);
+            }
+
+            if (_focusedViewEnterKeyEventCallback != null)
+            {
+                FocusedViewEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback);
+            }
+
+            if (_focusGroupChangedEventCallback != null)
+            {
+                FocusGroupChangedSignal().Disconnect(_focusGroupChangedEventCallback);
+            }
+
+            if (_focusChangedEventCallback != null)
+            {
+                FocusChangedSignal().Disconnect(_focusChangedEventCallback);
+            }
+
+            if (_preFocusChangeCallback != null)
+            {
+                PreFocusChangeSignal().Disconnect(_preFocusChangeCallback);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -403,7 +428,7 @@ namespace Tizen.NUI
             {
                 _focusedViewEnterKeyEventHandler -= value;
 
-                if (_focusedViewEnterKeyEventCallback == null && FocusedViewEnterKeySignal().Empty() == false)
+                if (_focusedViewEnterKeyEventCallback != null && FocusedViewEnterKeySignal().Empty() == false)
                 {
                     FocusedViewEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback);
                 }
@@ -724,7 +749,7 @@ namespace Tizen.NUI
             {
                 _focusedViewEnterKeyEventHandler2 -= value;
 
-                if (_focusedViewEnterKeyEventCallback2 == null && FocusedViewEnterKeySignal().Empty() == false)
+                if (_focusedViewEnterKeyEventCallback2 != null && FocusedViewEnterKeySignal().Empty() == false)
                 {
                     FocusedViewEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback2);
                 }

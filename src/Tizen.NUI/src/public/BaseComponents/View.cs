@@ -20,12 +20,10 @@ namespace Tizen.NUI.BaseComponents
     using System;
     using System.Runtime.InteropServices;
 
-
-
     /// <summary>
     /// View is the base class for all views.
     /// </summary>
-    public class View : Animatable //CustomActor => Animatable
+    public class View : Container
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -39,6 +37,89 @@ namespace Tizen.NUI.BaseComponents
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
+
+        // From Container Base class
+
+        /// <summary>
+        /// Adds a child view to this View.
+        /// </summary>
+        /// <seealso cref="Container::Add()">
+        /// </seealso>
+        public override void Add(View child)
+        {
+            NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes a child View from this View. If the view was not a child of this view, this is a no-op.
+        /// </summary>
+        /// <seealso cref="Container::Remove()">
+        /// </seealso>
+        public override void Remove(View child)
+        {
+            NDalicPINVOKE.Actor_Remove(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves child view by index.
+        /// </summary>
+        /// <seealso cref="Container::GetChildAt()">
+        /// </seealso>
+        public override View GetChildAt(uint index)
+        {
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
+
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret ?? null;
+        }
+
+        /// <summary>
+        /// Retrieves the number of children held by the view.
+        /// </summary>
+        /// <seealso cref="Container::GetChildCount()">
+        /// </seealso>
+        protected override uint GetChildCount()
+        {
+            uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Get the Views parent
+        /// </summary>
+        /// <seealso cref="Container::GetParent()">
+
+        protected override Container GetParent()
+        {
+            Container ret;
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
+
+            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
+
+            if(basehandle is Layer)
+            {
+                ret = basehandle as Layer;
+            }
+            else
+            {
+                ret = basehandle as View;
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        ///
 
         // you can override it to clean-up your own resources.
         protected override void Dispose(DisposeTypes type)
@@ -58,6 +139,86 @@ namespace Tizen.NUI.BaseComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
+
+            if (_onRelayoutEventCallback != null)
+            {
+                this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
+            }
+
+            if (_offWindowEventCallback != null)
+            {
+                this.OffWindowSignal().Disconnect(_offWindowEventCallback);
+            }
+
+            if (_onWindowEventCallback != null)
+            {
+                this.OnWindowSignal().Disconnect(_onWindowEventCallback);
+            }
+
+            if (_wheelEventCallback != null)
+            {
+                this.WheelEventSignal().Disconnect(_wheelEventCallback);
+            }
+
+            if (_hoverEventCallback != null)
+            {
+                this.HoveredSignal().Disconnect(_hoverEventCallback);
+            }
+
+            if (_touchDataCallback != null)
+            {
+                this.TouchSignal().Disconnect(_touchDataCallback);
+            }
+
+            if (_ResourcesLoadedCallback != null)
+            {
+                this.ResourcesLoadedSignal().Disconnect(_ResourcesLoadedCallback);
+            }
+
+            if (_offWindowEventCallback != null)
+            {
+                this.OffWindowSignal().Disconnect(_offWindowEventCallback);
+            }
+
+            if (_onWindowEventCallback != null)
+            {
+                this.OnWindowSignal().Disconnect(_onWindowEventCallback);
+            }
+
+            if (_wheelEventCallback != null)
+            {
+                this.WheelEventSignal().Disconnect(_wheelEventCallback);
+            }
+
+            if (_hoverEventCallback != null)
+            {
+                this.HoveredSignal().Disconnect(_hoverEventCallback);
+            }
+
+            if (_touchDataCallback != null)
+            {
+                this.TouchSignal().Disconnect(_touchDataCallback);
+            }
+
+            if (_onRelayoutEventCallback != null)
+            {
+                this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
+            }
+
+            if (_keyCallback != null)
+            {
+                this.KeyEventSignal().Disconnect(_keyCallback);
+            }
+
+            if (_keyInputFocusLostCallback != null)
+            {
+                this.KeyInputFocusLostSignal().Disconnect(_keyInputFocusLostCallback);
+            }
+
+            if (_keyInputFocusGainedCallback != null)
+            {
+                this.KeyInputFocusGainedSignal().Disconnect(_keyInputFocusGainedCallback);
+            }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -842,9 +1003,10 @@ namespace Tizen.NUI.BaseComponents
         {
             View view = null;
 
-            if (Parent)
+            if (Parent is View)
             {
-                view = Parent.FindChildById(id);
+                View parentView = Parent as View;
+                view = parentView.FindChildById(id);
             }
 
             if (!view)
@@ -1691,17 +1853,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// <summary>
-        /// Retrieves the view's parent.<br>
-        /// </summary>
-        public View Parent
-        {
-            get
-            {
-                return GetParent();
-            }
-        }
-
         public bool Visibility
         {
             get
@@ -2022,32 +2173,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Adds a child view to this View.
-        /// </summary>
-        /// <pre>This View(the parent) has been initialized. The child view has been initialized. The child view is not the same as the parent view.</pre>
-        /// <post>The child will be referenced by its parent. This means that the child will be kept alive, even if the handle passed into this method is reset or destroyed.</post>
-        /// <remarks>If the child already has a parent, it will be removed from old parent and reparented to this view. This may change child's position, color, scale etc as it now inherits them from this view.</remarks>
-        /// <param name="child">The child</param>
-        public void Add(View child)
-        {
-            NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Removes a child View from this View. If the view was not a child of this view, this is a no-op.
-        /// </summary>
-        /// <pre>This View(the parent) has been initialized. The child view is not the same as the parent view.</pre>
-        /// <param name="child">The child</param>
-        public void Remove(View child)
-        {
-            NDalicPINVOKE.Actor_Remove(swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
         /// Removes a View from its Parent View / Layer. If the View has no parent, this method does nothing.
         /// </summary>
         /// <pre>The (child) View has been initialized. </pre>
@@ -2056,36 +2181,6 @@ namespace Tizen.NUI.BaseComponents
             NDalicPINVOKE.Actor_Unparent(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Retrieves the number of children held by the view.
-        /// </summary>
-        /// <pre>The View has been initialized.</pre>
-        /// <returns>The number of children</returns>
-        internal uint GetChildCount()
-        {
-            uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Retrieves child view by index.
-        /// </summary>
-        /// <pre>The View has been initialized.</pre>
-        /// <param name="index">The index of the child to retrieve</param>
-        /// <returns>The view for the given index or empty handle if children not initialized</returns>
-        public View GetChildAt(uint index)
-        {
-            IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
-
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret ?? null;
         }
 
         /// <summary>
@@ -2111,27 +2206,6 @@ namespace Tizen.NUI.BaseComponents
             IntPtr cPtr = NDalicPINVOKE.Actor_FindChildById(swigCPtr, id);
 
             View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal View GetParent()
-        {
-            View ret;
-            IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
-
-            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
-
-            if(basehandle is Layer)
-            {
-                ret = new View(cPtr,false);
-            }
-            else
-            {
-                ret = basehandle as View;
-            }
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -3231,17 +3305,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.NAME, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Get the number of children held by the view.
-        /// </summary>
-        public uint ChildCount
-        {
-            get
-            {
-                return GetChildCount();
             }
         }
 

@@ -215,7 +215,7 @@ namespace Tizen.NUI
         public VisualBase GetVisual(int index)
         {
             System.IntPtr cPtr = NDalicManualPINVOKE.ViewWrapperImpl_GetVisual(swigCPtr, index);
-            VisualBase ret = Registry.GetManagedBaseHandleFromRefObject(cPtr) as VisualBase;
+            VisualBase ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as VisualBase;
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

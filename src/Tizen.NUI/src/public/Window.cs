@@ -66,6 +66,56 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_windowFocusChangedEventCallback != null)
+            {
+                WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback);
+            }
+
+            if (_stageTouchCallbackDelegate != null)
+            {
+                TouchSignal().Disconnect(_stageTouchCallbackDelegate);
+            }
+
+            if (_stageWheelCallbackDelegate != null)
+            {
+                WheelEventSignal().Disconnect(_stageWheelCallbackDelegate);
+            }
+
+            if (_stageKeyCallbackDelegate != null)
+            {
+                KeyEventSignal().Disconnect(_stageKeyCallbackDelegate);
+            }
+
+            if (_stageEventProcessingFinishedEventCallbackDelegate != null)
+            {
+                EventProcessingFinishedSignal().Disconnect(_stageEventProcessingFinishedEventCallbackDelegate);
+            }
+
+            if (_stageContextLostEventCallbackDelegate != null)
+            {
+                ContextLostSignal().Disconnect(_stageContextLostEventCallbackDelegate);
+            }
+
+            if (_stageContextRegainedEventCallbackDelegate != null)
+            {
+                this.ContextRegainedSignal().Disconnect(_stageContextRegainedEventCallbackDelegate);
+            }
+
+            if (_stageSceneCreatedEventCallbackDelegate != null)
+            {
+                SceneCreatedSignal().Disconnect(_stageSceneCreatedEventCallbackDelegate);
+            }
+
+            if (_windowResizedEventCallback != null)
+            {
+                ResizedSignal().Disconnect(_windowResizedEventCallback);
+            }
+
+            if (_windowFocusChangedEventCallback2 != null)
+            {
+                WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback2);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -1403,6 +1453,11 @@ namespace Tizen.NUI
             }
         }
 
+        public static void FeedKeyEvent(Key keyEvent)
+        {
+            NDalicManualPINVOKE.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
     }
 }

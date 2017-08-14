@@ -26,6 +26,9 @@ namespace TextTest
 {
     class Example : NUIApplication
     {
+        TextLabel _pointLabel;
+        Boolean _colorToggle;
+
         public Example() : base()
         {
         }
@@ -44,6 +47,27 @@ namespace TextTest
             Initialize();
         }
 
+        private bool LabelTouched(object sender, View.TouchEventArgs e)
+        {
+            if (e.Touch.GetState(0) == PointStateType.Down)
+            {
+                Animation textColorAnimation = new Animation(1000);
+                if (_colorToggle)
+                {
+                    textColorAnimation.AnimateTo(_pointLabel, "TextColorAnimatable", Color.Blue );
+                    _colorToggle = false;
+                }
+                else
+                {
+                     textColorAnimation.AnimateTo(_pointLabel, "TextColorAnimatable", Color.Green );
+                    _colorToggle = true;
+                }
+                textColorAnimation.Play();
+            }
+            return true;
+        }
+
+
         public void Initialize()
         {
             Window window = Window.Instance;
@@ -55,11 +79,16 @@ namespace TextTest
             pixelLabel.BackgroundColor = Color.Magenta;
             window.Add(pixelLabel);
 
-            TextLabel pointLabel = new TextLabel("Test Point Size 32.0f");
-            pointLabel.Position2D = new Position2D(10, 100);
-            pointLabel.PointSize = 32.0f;
-            pointLabel.BackgroundColor = Color.Red;
-            window.Add(pointLabel);
+            _pointLabel = new TextLabel("Test Point Size 32.0f");
+            _pointLabel.Position2D = new Position2D(10, 100);
+            _pointLabel.PointSize = 32.0f;
+            _pointLabel.BackgroundColor = Color.Red;
+            _pointLabel.TextColorAnimatable = Color.Green; // Set initial text color using animatable property
+            _pointLabel.TouchEvent += LabelTouched;
+            _colorToggle = true;
+
+            window.Add(_pointLabel);
+
 
             TextLabel ellipsis = new TextLabel("Ellipsis of TextLabel is enabled.");
             ellipsis.Size2D = new Size2D(100, 80);
@@ -83,6 +112,8 @@ namespace TextTest
             field.Position2D = new Position2D(10, 400);
             field.BackgroundColor = Color.Cyan;
             field.PlaceholderText = "input someth...";
+            field.PlaceholderTextFocused = "input someth... focused";
+            field.Focusable = true;
             PropertyMap hiddenMap = new PropertyMap();
             hiddenMap.Add(HiddenInputProperty.Mode, new PropertyValue((int)HiddenInputModeType.ShowLastCharacter));
             hiddenMap.Add(HiddenInputProperty.ShowDuration, new PropertyValue(2));
@@ -101,9 +132,10 @@ namespace TextTest
             field.InputMethodSettings = inputMethod.OutputMap;
 
             PropertyMap propertyMap = new PropertyMap();
-            propertyMap.Add("placeholderText", new PropertyValue("Setting Placeholder Text"));
+            propertyMap.Add("placeholderText", new PropertyValue("Placeholder Text"));
+            propertyMap.Add("placeholderTextFocused", new PropertyValue("Placeholder Text Focused"));
             propertyMap.Add("placeholderColor", new PropertyValue(Color.Red));
-            propertyMap.Add("placeholderPointSize", new PropertyValue(12.0f));
+            propertyMap.Add("placeholderPointSize", new PropertyValue(15.0f));
 
             PropertyMap fontStyleMap = new PropertyMap();
             fontStyleMap.Add("weight", new PropertyValue("bold"));
@@ -119,7 +151,6 @@ namespace TextTest
             editor.EnableSelection = true;
             editor.Focusable = true;
             editor.Placeholder = propertyMap;
-            FocusManager.Instance.SetCurrentFocusView(editor);
             window.Add(editor);
             editor.TextChanged += (obj, e) => {
                 Tizen.Log.Debug("NUI", "editor line count: " + e.TextEditor.LineCount);
@@ -130,6 +161,10 @@ namespace TextTest
             };
 
             Tizen.Log.Debug("NUI",  "editor id: " + editor.ID);
+
+            FocusManager.Instance.SetCurrentFocusView(editor);
+            editor.UpFocusableView = field;
+            field.DownFocusableView = editor;
         }
 
         [STAThread]

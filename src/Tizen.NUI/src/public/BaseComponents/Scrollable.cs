@@ -53,6 +53,21 @@ namespace Tizen.NUI.BaseComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_scrollableCompletedCallbackDelegate != null)
+            {
+                this.ScrollCompletedSignal().Disconnect(_scrollableCompletedCallbackDelegate);
+            }
+
+            if (_scrollableUpdatedCallbackDelegate != null)
+            {
+                this.ScrollUpdatedSignal().Disconnect(_scrollableUpdatedCallbackDelegate);
+            }
+
+            if (_scrollableStartedCallbackDelegate != null)
+            {
+                this.ScrollStartedSignal().Disconnect(_scrollableStartedCallbackDelegate);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)

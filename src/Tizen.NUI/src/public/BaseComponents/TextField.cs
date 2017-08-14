@@ -59,6 +59,16 @@ namespace Tizen.NUI.BaseComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_textFieldMaxLengthReachedCallbackDelegate != null)
+            {
+                this.MaxLengthReachedSignal().Disconnect(_textFieldMaxLengthReachedCallbackDelegate);
+            }
+
+            if (_textFieldTextChangedCallbackDelegate != null)
+            {
+                TextChangedSignal().Disconnect(_textFieldTextChangedCallbackDelegate);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -1246,6 +1256,7 @@ namespace Tizen.NUI.BaseComponents
         /// <code>
         /// PropertyMap propertyMap = new PropertyMap();
         /// propertyMap.Add("placeholderText", new PropertyValue("Setting Placeholder Text"));
+        /// propertyMap.Add("placeholderTextFocused", new PropertyValue("Setting Placeholder Text Focused"));
         /// propertyMap.Add("placeholderColor", new PropertyValue(Color.Red));
         /// propertyMap.Add("placeholderFontFamily", new PropertyValue("Arial"));
         /// propertyMap.Add("placeholderPointSize", new PropertyValue(12.0f));

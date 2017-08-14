@@ -60,6 +60,16 @@ namespace Tizen.NUI.UIComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_scrollBarScrollPositionIntervalReachedEventCallbackDelegate != null)
+            {
+                ScrollPositionIntervalReachedSignal().Disconnect(_scrollBarScrollPositionIntervalReachedEventCallbackDelegate);
+            }
+
+            if (_scrollBarPanFinishedEventCallbackDelegate != null)
+            {
+                PanFinishedSignal().Disconnect(_scrollBarPanFinishedEventCallbackDelegate);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)

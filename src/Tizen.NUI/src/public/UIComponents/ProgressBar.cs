@@ -60,6 +60,11 @@ namespace Tizen.NUI.UIComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_progressBarValueChangedCallbackDelegate != null)
+            {
+                ValueChangedSignal().Disconnect(_progressBarValueChangedCallbackDelegate);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
