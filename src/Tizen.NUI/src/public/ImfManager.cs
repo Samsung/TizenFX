@@ -54,9 +54,9 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            if (_imfKeyboardTypeChangedEventCallback != null)
+            if (_keyboardTypeChangedEventCallback != null)
             {
-                KeyboardTypeChangedSignal().Disconnect(_imfKeyboardTypeChangedEventCallback);
+                KeyboardTypeChangedSignal().Disconnect(_keyboardTypeChangedEventCallback);
             }
 
             if (_imfManagerLanguageChangedEventCallback != null)

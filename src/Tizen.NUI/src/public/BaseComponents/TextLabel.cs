@@ -104,18 +104,10 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int ELLIPSIS = NDalicManualPINVOKE.TextLabel_Property_ELLIPSIS_get();
             internal static readonly int AUTO_SCROLL_STOP_MODE = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_STOP_MODE_get();
             internal static readonly int AUTO_SCROLL_LOOP_DELAY = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
-<<<<<<< HEAD
-            internal static readonly int TEXT_COLOR_ANIMATABLE = NDalicPINVOKE.TextLabel_Property_TEXT_COLOR_ANIMATABLE_get();
-            internal static readonly int LINE_COUNT = OUTLINE + 5;
-=======
             internal static readonly int LINE_COUNT = NDalicManualPINVOKE.TextLabel_Property_LINE_COUNT_get();
             internal static readonly int LINE_WRAP_MODE = NDalicManualPINVOKE.TextLabel_Property_LINE_WRAP_MODE_get();
-<<<<<<< HEAD
->>>>>>> parent of b621f76... Revert "[Tizen] Add properties of TextLabel/Editor"
-=======
             internal static readonly int TEXT_COLOR_ANIMATABLE = NDalicPINVOKE.TextLabel_Property_TEXT_COLOR_ANIMATABLE_get();
 
->>>>>>> parent of bb0612e... Revert "[Tizen] Animatable TextColor Property for TextLabel"
         }
 
         /// <summary>

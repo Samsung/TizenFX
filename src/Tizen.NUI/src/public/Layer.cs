@@ -431,8 +431,6 @@ namespace Tizen.NUI
                 SetProperty(View.Property.VISIBLE, new Tizen.NUI.PropertyValue(value));
             }
         }
-<<<<<<< HEAD
-=======
 
         /// <summary>
         /// Get the number of children held by the layer.
@@ -477,6 +475,5 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
->>>>>>> parent of a941a95... Revert "[Tizen] add Name in Layer, LineCount in TextLabel"
     }
 }
