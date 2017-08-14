@@ -361,25 +361,6 @@ namespace Tizen.NUI
             return new Size2D((int)vec.X, (int)vec.Y);
         }
 
-        /// <summary>
-        /// Type cast operator, Size2D to Uint16Pair.
-        /// </summary>
-        /// <param name="size2d">Object of Size2D type</param>
-        public static implicit operator Uint16Pair(Size2D size2d)
-        {
-            return new Uint16Pair((uint)size2d.Width, (uint)size2d.Height);
-        }
-
-        /// <summary>
-        /// Type cast operator, Uint16Pair to Size2D type.
-        /// </summary>
-        /// <param name="pair">Object of Vector2 type</param>
-        public static implicit operator Size2D(Uint16Pair pair)
-        {
-            return new Size2D((int)pair.GetWidth(), (int)pair.GetWidth());
-        }
-
-
     }
 
 }
