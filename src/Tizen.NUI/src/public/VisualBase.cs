@@ -14,9 +14,6 @@
 *
 */
 
-using System;
-using System.Runtime.InteropServices;
-
 namespace Tizen.NUI
 {
 
