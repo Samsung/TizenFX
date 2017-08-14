@@ -185,13 +185,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Create the property map representing this visual.
         /// </summary>
-        [Obsolete("Please be caution! this will be readonly.")]
         public PropertyMap Creation
         {
-            set
-            {
-                CreatePropertyMap(value);
-            }
             get
             {
                 PropertyMap map = new PropertyMap();
@@ -199,7 +194,6 @@ namespace Tizen.NUI
                 return map;
             }
         }
-
         internal void CreatePropertyMap(PropertyMap map)
         {
             NDalicPINVOKE.VisualBase_CreatePropertyMap(swigCPtr, PropertyMap.getCPtr(map));
