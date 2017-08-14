@@ -1861,7 +1861,19 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        public bool Visibility
+        /// <summary>
+        /// Retrieves the view's parent.<br>
+        /// </summary>
+        public View Parent
+        {
+            get
+            {
+                return GetParent();
+            }
+        }
+
+        [Obsolete("Please do not use! this will be deprecated. Please use Visibility instead.")]
+        public bool Visible
         {
             get
             {
@@ -3327,18 +3339,14 @@ namespace Tizen.NUI.BaseComponents
         /// If an view is not visible, then the view and its children will not be rendered.
         /// This is regardless of the individual visibility values of the children i.e.an view will only be rendered if all of its parents have visibility set to true.
         /// </remarks>
-        public bool Visible
+        public bool Visibility
         {
             get
             {
                 bool temp = false;
                 GetProperty(View.Property.VISIBLE).Get(out temp);
                 return temp;
-            }/* only get is required : removed
-            set
-            {
-                SetProperty(View.Property.VISIBLE, new Tizen.NUI.PropertyValue(value));
-            }*/
+            }
         }
 
         /// <summary>
