@@ -16,6 +16,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
@@ -58,12 +59,22 @@ namespace HelloWorldTest
             pointLabel.PointSize = 32.0f;
             window.Add(pointLabel);
 
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
             TextLabel ellipsis = new TextLabel("Ellipsis of TextLabel is enabled.");
             ellipsis.Size2D = new Size2D(100, 100);
             ellipsis.Position2D = new Position2D(10, 250);
             ellipsis.PointSize = 20.0f;
             ellipsis.Ellipsis = true;
             window.Add(ellipsis);
+                }
+                catch (Exception e)
+                {
+                    NUILog.Debug($"exception caught! e={e}");
+                }
+            }).Wait();
 
             TextLabel autoScrollStopMode = new TextLabel("AutoScrollStopMode is finish-loop.");
             autoScrollStopMode.Size2D = new Size2D(400, 100);
