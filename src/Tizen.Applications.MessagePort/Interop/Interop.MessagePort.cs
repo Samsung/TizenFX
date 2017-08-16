@@ -41,7 +41,25 @@ internal static partial class Interop
         [DllImport(Libraries.MessagePort, EntryPoint = "message_port_send_trusted_message_with_local_port", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int SendTrustedMessageWithLocalPort(string remote_app_id, string remote_port, SafeBundleHandle message, int local_port_id);
 
+        [DllImport(Libraries.MessagePort, EntryPoint = "message_port_check_remote_port", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int CheckRemotePort(string remote_app_id, string remote_port, out bool exist);
+
+        [DllImport(Libraries.MessagePort, EntryPoint = "message_port_check_trusted_remote_port", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int CheckTrustedRemotePort(string remote_app_id, string remote_port, out bool exist);
+
+        [DllImport(Libraries.MessagePort, EntryPoint = "message_port_add_registered_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int AddRegisteredCallback(string remote_app_id, string remote_port, bool trusted_remote_port, message_port_registration_event_cb callback, IntPtr userData, out int watcher_id);
+
+        [DllImport(Libraries.MessagePort, EntryPoint = "message_port_add_unregistered_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int AddUnregisteredCallback(string remote_app_id, string remote_port, bool trusted_remote_port, message_port_registration_event_cb callback, IntPtr userData, out int watcher_id);
+
+        [DllImport(Libraries.MessagePort, EntryPoint = "message_port_remove_registration_event_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int RemoveRegistrationCallback(int watcher_id);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void message_port_message_cb(int local_port_id, string remote_app_id, string remote_port, bool trusted_remote_port, IntPtr message, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void message_port_registration_event_cb(string remote_app_id, string remote_port, bool trusted_remote_port, IntPtr userData);
     }
 }

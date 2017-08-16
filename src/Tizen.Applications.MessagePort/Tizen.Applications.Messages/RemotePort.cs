@@ -1,0 +1,313 @@
+/*
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.\
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Tizen.Applications.Messages
+{
+    using System;
+
+    /// <summary>
+    /// The RemotePort Class provides functions to get if the remote port is running and to get whether the remote port is registered or unregistered.
+    /// </summary>
+    /// <since_tizen> 4 </since_tizen>
+    public class RemotePort : IDisposable
+    {
+        private int _watcherIdForRegistered = -1;
+        private int _watcherIdForUnRegistered = -1;
+        private bool _disposed = false;
+
+        private Interop.MessagePort.message_port_registration_event_cb _registeredCallBack;
+        private Interop.MessagePort.message_port_registration_event_cb _unregisteredCallBack;
+
+        private EventHandler<RemotePortStateChangedEventArgs> _remotePortRegistered;
+        private EventHandler<RemotePortStateChangedEventArgs> _remotePortUnregistered;
+
+        private readonly string _portName = null;
+        private readonly string _appId = null;
+        private readonly bool _trusted = false;
+
+        private bool _isRunning = false;
+
+        /// <summary>
+        /// Constructor of the RemotePort class.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <param name="appId">The Id of the remote application</param>
+        /// <param name="portName">The name of the remote message port</param>
+        /// <param name="trusted">If true is the trusted message port of application, otherwise false</param>
+        /// <exception cref="System.InvalidOperationException">Thrown when appId is null or empty, when portName is null or empty</exception>
+        /// <code>
+        /// RemotePort remotePort = new RemotePort("org.tizen.example.messageport", "SenderPort", false);
+        /// </code>
+        public RemotePort(String appId, string portName, bool trusted)
+        {
+            if (String.IsNullOrEmpty(appId) || String.IsNullOrEmpty(portName))
+            {
+                MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidParameter, "Remote Port", "AppId or PortName");
+            }
+
+            _appId = appId;
+            _portName = portName;
+            _trusted = trusted;
+
+            _registeredCallBack = (string remoteAppId, string remotePortName, bool remoteTrusted, IntPtr userData) =>
+            {
+                RemotePortStateChangedEventArgs args = new RemotePortStateChangedEventArgs()
+                {
+                    Status = State.Registered
+                };
+
+                _remotePortRegistered?.Invoke(this, args);
+            };
+
+            _unregisteredCallBack = (string remoteAppId, string remotePortName, bool remoteTrusted, IntPtr userData) =>
+            {
+                RemotePortStateChangedEventArgs args = new RemotePortStateChangedEventArgs()
+                {
+                    Status = State.Unregistered
+                };
+
+                _remotePortUnregistered?.Invoke(this, args);
+            };
+        }
+
+        /// <summary>
+        /// Destructor of the RemotePort class.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        ~RemotePort()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// The AppId of the remote port
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <returns> Return appid of RemotePort </returns>
+        public string AppId
+        {
+            get
+            {
+                return _appId;
+            }
+        }
+
+        /// <summary>
+        /// The name of the remote message port
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <returns> Return name of RemotePort </returns>
+        public string PortName
+        {
+            get
+            {
+                return _portName;
+            }
+        }
+
+        /// <summary>
+        /// If true the remote port is a trusted port, otherwise if false it is not
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        ///  <returns> Return true if RemotePort is trusted </returns>
+        public bool Trusted
+        {
+            get
+            {
+                return _trusted;
+            }
+        }
+
+        /// <summary>
+        /// Check if the remote message port is running.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <exception cref="System.InvalidOperationException">Thrown when out of memory, when there is an I/O error</exception>
+        /// <code>
+        /// Remote remotePort = new RemotePort("org.tizen.example", "SenderPort", true);
+        /// bool isRunning = remotePort.isRunning();
+        /// </code>
+        /// <returns> Return true if Remote Port is running </returns>
+        public bool IsRunning()
+        {
+            int ret;
+
+            ret = _trusted ?
+                Interop.MessagePort.CheckTrustedRemotePort(_appId, _portName, out _isRunning) :
+                Interop.MessagePort.CheckRemotePort(_appId, _portName, out _isRunning);
+
+            if (ret != (int)MessagePortError.None)
+            {
+                MessagePortErrorFactory.ThrowException(ret);
+            }
+
+            return _isRunning;
+        }
+
+        /// <summary>
+        /// Called when the remote port is registered or unregistered.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <exception cref="System.InvalidOperationException">Thrown when out of memory, when there is an I/O error</exception>
+        /// <code>
+        /// Remote remotePort = new RemotePort("org.tizen.example", "SenderPort", true);
+        /// remotePort.RemotePortStateChanged += RemotePortStateChangedCallback;
+        /// static void RemotePortStateChangedCallback(object sender, MessageReceivedEventArgs e)
+        /// {
+        ///     switch (e.Status)
+        ///     {
+        ///     case State.Registered :
+        ///         Console.WriteLine("Remote Port Registered ");
+        ///         break;
+        ///     case State.Unregistered :
+        ///         Console.WriteLine("Remote Port Unregistered ");
+        ///         break;
+        ///     default :
+        ///         break;
+        ///     }
+        /// }
+        /// </code>
+        public event EventHandler<RemotePortStateChangedEventArgs> RemotePortStateChanged
+        {
+            add
+            {
+                if (_remotePortRegistered == null)
+                {
+                    int ret = AddRegistrationCallback();
+
+                    if (ret != (int)MessagePortError.None)
+                    {
+                        MessagePortErrorFactory.ThrowException(ret);
+                    }
+                }
+
+                _remotePortRegistered += value;
+                _remotePortUnregistered += value;
+            }
+
+            remove
+            {
+                if (_remotePortRegistered?.GetInvocationList()?.Length > 0)
+                {
+                    _remotePortRegistered -= value;
+                    _remotePortUnregistered -= value;
+
+                    if (_remotePortRegistered == null)
+                    {
+                        RemoveRegistrationCallback();
+                    }
+                }
+            }
+        }
+
+        private int AddRegistrationCallback()
+        {
+            if (_watcherIdForRegistered != -1)
+            {
+                Interop.MessagePort.RemoveRegistrationCallback(_watcherIdForRegistered);
+                _watcherIdForRegistered = -1;
+            }
+
+            int ret = Interop.MessagePort.AddRegisteredCallback(_appId, _portName, _trusted, _registeredCallBack, IntPtr.Zero, out _watcherIdForRegistered);
+
+            if (ret != (int)MessagePortError.None)
+            {
+                return ret;
+            }
+
+            if (_watcherIdForUnRegistered != -1)
+            {
+                Interop.MessagePort.RemoveRegistrationCallback(_watcherIdForUnRegistered);
+                _watcherIdForUnRegistered = -1;
+            }
+
+            ret = Interop.MessagePort.AddUnregisteredCallback(_appId, _portName, _trusted, _unregisteredCallBack, IntPtr.Zero, out _watcherIdForUnRegistered);
+
+            if (ret != (int)MessagePortError.None)
+            {
+                return ret;
+            }
+
+            return ret;
+        }
+
+        private void RemoveRegistrationCallback()
+        {
+            if (_watcherIdForRegistered != -1 && _watcherIdForUnRegistered != -1)
+            {
+                int ret = Interop.MessagePort.RemoveRegistrationCallback(_watcherIdForRegistered);
+
+                if (ret != (int)MessagePortError.None)
+                {
+                    MessagePortErrorFactory.ThrowException(ret);
+                }
+
+                _watcherIdForRegistered = -1;
+
+                ret = Interop.MessagePort.RemoveRegistrationCallback(_watcherIdForUnRegistered);
+
+                if (ret != (int)MessagePortError.None)
+                {
+                    MessagePortErrorFactory.ThrowException(ret);
+                }
+
+                _watcherIdForUnRegistered = -1;
+            }
+        }
+
+        /// <summary>
+        /// Releases the unmanaged resources used by the RemotePort class specifying whether to perform a normal dispose operation.
+        /// </summary>
+        /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            RemoveRegistrationCallback();
+
+            _disposed = true;
+        }
+
+        /// <summary>
+        /// Releases all resources used by the RemotePort class.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+    }
+
+    /// <summary>
+    /// Enumeration for Remote Message Port state type
+    /// </summary>
+    /// <since_tizen> 4 </since_tizen>
+    public enum State : Byte
+    {
+        /// <summary>
+        /// Value representing Remote Port state is unregistered
+        /// </summary>
+        Unregistered = 0,
+        /// <summary>
+        /// Value representing Remote Port state is registered
+        /// </summary>
+        Registered = 1
+    }
+}

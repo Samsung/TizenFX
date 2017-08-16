@@ -183,7 +183,7 @@ namespace Tizen.Applications.Messages
         ///     message.AddItem("message", "a_string");
         ///     messagePort.Send(message, "ReceiverAppID", "ReceiverPort");
         /// }
-        /// messageProt.StopListening();
+        /// messagePort.StopListening();
         /// </code>
         public void StopListening()
         {
@@ -276,7 +276,7 @@ namespace Tizen.Applications.Messages
         }
 
         /// <summary>
-        /// Releases the unmanaged resource used by the MessagePort class specifying whether to perform a normal dispose operation.
+        /// Releases the unmanaged resources used by the MessagePort class specifying whether to perform a normal dispose operation.
         /// </summary>
         /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
         protected virtual void Dispose(bool disposing)
