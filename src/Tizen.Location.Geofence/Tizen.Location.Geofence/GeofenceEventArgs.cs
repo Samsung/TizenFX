@@ -19,16 +19,16 @@ using System;
 namespace Tizen.Location.Geofence
 {
     /// <summary>
-    /// Event arguments passed when Event is triggered to notify proximity state change.
+    /// Event arguments are passed when an event is triggered to notify the proximity state change.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class ProximityStateEventArgs : EventArgs
     {
         /// <summary>
-        /// Internal constructor.
+        /// The internal constructor.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="id">The geofence id.</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="id">The geofence ID.</param>
         /// <param name="state">The proximity state.</param>
         /// <param name="provider">The proximity provider.</param>
         internal ProximityStateEventArgs(int id, ProximityState state, ProximityProvider provider)
@@ -39,9 +39,9 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The geofence id.
+        /// The geofence ID.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public int GeofenceId
         {
             get;
@@ -50,7 +50,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// The proximity state.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public ProximityState State
         {
             get;
@@ -59,7 +59,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// The proximity provider.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public ProximityProvider Provider
         {
             get;
@@ -67,16 +67,16 @@ namespace Tizen.Location.Geofence
     };
 
     /// <summary>
-    /// Event arguments passed when Event is triggered to notify Geofence state change.
+    /// Event arguments are passed when an event is triggered to notify the geofence state change.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class GeofenceStateEventArgs : EventArgs
     {
         /// <summary>
-        /// Internal constructor.
+        /// The internal constructor.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="fenceId">The specified geofence id.</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="fenceId">The specified geofence ID.</param>
         /// <param name="state">The geofence state.</param>
         internal GeofenceStateEventArgs(int fenceId, GeofenceState state)
         {
@@ -85,9 +85,9 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The specified geofence id.
+        /// The specified geofence ID.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public int GeofenceId
         {
             get;
@@ -96,7 +96,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// The geofence state.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public GeofenceState State
         {
             get;
@@ -104,17 +104,17 @@ namespace Tizen.Location.Geofence
     }
 
     /// <summary>
-    /// Event arguments passed when Event occurs in geofence and place such as add, update, etc..
+    /// Event arguments are passed when an event occurs in geofence and the place, such as add, update, etc..
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class GeofenceResponseEventArgs : EventArgs
     {
         /// <summary>
-        /// Internal constructor.
+        /// The internal constructor.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="placeId">The place id.</param>
-        /// <param name="fenceId">The specified geofence id.</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="placeId">The place ID.</param>
+        /// <param name="fenceId">The specified geofence ID.</param>
         /// <param name="error">The error code for the particular action.</param>
         /// <param name="eventType">The result code for the particular place and geofence management.</param>
         internal GeofenceResponseEventArgs(int placeId, int fenceId, GeofenceError error, GeofenceEventType eventType)
@@ -126,18 +126,18 @@ namespace Tizen.Location.Geofence
         }
 
         /// <summary>
-        /// The place id.
+        /// The place ID.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public int PlaceId
         {
             get;
         }
 
         /// <summary>
-        /// The specified geofence id.
+        /// The specified geofence ID.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public int FenceId
         {
             get;
@@ -146,7 +146,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// The error code for the particular action.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public GeofenceError ErrorCode
         {
             get;
@@ -155,7 +155,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// The result code for the particular place and geofence management.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public GeofenceEventType EventType
         {
             get;

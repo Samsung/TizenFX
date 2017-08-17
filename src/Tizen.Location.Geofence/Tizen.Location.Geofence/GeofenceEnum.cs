@@ -17,181 +17,181 @@
 namespace Tizen.Location.Geofence
 {
     /// <summary>
-    /// Enumeration for geofence type.
+    /// Enumeration for the geofence types.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum FenceType
     {
         /// <summary>
-        /// Geofence is specified by geospatial coordinate.
+        /// Geofence is specified by the geospatial coordinate.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         GeoPoint = 1,
 
         /// <summary>
-        /// Geofence is specified by Wi-Fi access point.
+        /// Geofence is specified by the Wi-Fi access point.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Wifi,
 
         /// <summary>
-        /// Geofence is specified by Bluetooth device.
+        /// Geofence is specified by the Bluetooth device.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Bluetooth
     };
 
     /// <summary>
-    /// Enumerations for the state of geofence.
+    /// Enumeration for the state of geofence.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum GeofenceState
     {
         /// <summary>
         /// Uncertain state of geofence.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Uncertain = 0,
 
         /// <summary>
         /// Geofence In state.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         In,
 
         /// <summary>
         /// Geofence Out state.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Out
     };
 
     /// <summary>
-    /// Enumerations for geofence management events.
+    /// Enumeration for the geofence management events.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum GeofenceEventType
     {
         /// <summary>
         /// Geofence is added.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         FenceAdded = 0,
 
         /// <summary>
         /// Geofence is removed.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         FenceRemoved,
 
         /// <summary>
         /// Geofencing is started.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         FenceStarted,
 
         /// <summary>
         /// Geofencing is stopped.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         FenceStopped,
 
         /// <summary>
         /// Place is added.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         PlaceAdded = 0x10,
 
         /// <summary>
         /// Place is removed.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         PlaceRemoved,
 
         /// <summary>
         /// Place is updated.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         PlaceUpdated,
 
         /// <summary>
         /// Setting for geofencing is enabled.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         SettingEnabled = 0x20,
 
         /// <summary>
         /// Setting for geofencing is disabled.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         SettingDisabled
     };
 
     /// <summary>
     /// Enumeration for the provider of proximity.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum ProximityProvider
     {
         /// <summary>
-        /// Proximity is specified by geospatial coordinate.
+        /// Proximity is specified by the geospatial coordinate.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Location = 0,
 
         /// <summary>
-        /// Proximity is specified by Wi-Fi access point.
+        /// Proximity is specified by the Wi-Fi access point.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Wifi,
 
         /// <summary>
-        /// Proximity is specified by Bluetooth device.
+        /// Proximity is specified by the Bluetooth device.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Bluetooth,
 
         /// <summary>
-        /// Proximity is specified by Bluetooth low energy device.
+        /// Proximity is specified by the Bluetooth low-energy device.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         BLE,
 
         /// <summary>
-        /// Proximity is specified by Sensor.
+        /// Proximity is specified by the sensor.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Sensor
     }
 
     /// <summary>
     /// Enumeration for the state of proximity.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum ProximityState
     {
         /// <summary>
         /// Uncertain state of proximity.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Uncertain = 0,
 
         /// <summary>
         /// Far state of proximity.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Far,
 
         /// <summary>
         /// Far state of proximity.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Near,
 
         /// <summary>
         /// Immediate state of proximity.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Immediate
     }
 }
