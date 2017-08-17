@@ -19,9 +19,9 @@ using System;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Place Attributes information, used in Place Discovery and Search requests
+    /// Place attributes information, used in place discovery and search requests.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class PlaceAttribute
     {
         private string _id;
@@ -43,25 +43,25 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets an ID for the place attribute.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Id { get { return _id; } }
 
         /// <summary>
         /// Gets a label for the place attribute.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Label { get { return _label; } }
 
         /// <summary>
         /// Gets a text for the place attribute.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Text { get { return _text; } }
 
         /// <summary>
         /// Returns a string that represents this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Returns a string which presents this object.</returns>
         public override string ToString()
         {

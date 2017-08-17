@@ -19,9 +19,9 @@ using System;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Place Rating information, used in Place Discovery and Search requests
+    /// Place rating information, used in place discovery and search requests.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class PlaceRating
     {
         private int _count;
@@ -36,19 +36,19 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets the number of users rated for this place rating.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public int UserCount { get { return _count; } }
 
         /// <summary>
-        /// Gets average value of this place rating.
+        /// Gets the average value of this place rating.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public double Average { get { return _average; } }
 
         /// <summary>
         /// Returns a string that represents this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Returns a string which presents this object.</returns>
         public override string ToString()
         {

@@ -101,7 +101,7 @@ area of the maps application GUI.<p/>
 Zoom and rotation: Changing zoom and orientation of the view in response
 to user gestures, such as scrolling, tapping, zooming, rotating, etc.<p/>
 
-Conversion of screen coordinates to geographical and vise versa.<p/>
+Conversion of screen coordinates to geographical and vice versa.<p/>
 
 User's gesture support:<br/>
  - Receive the event of the user gesture.<br/>

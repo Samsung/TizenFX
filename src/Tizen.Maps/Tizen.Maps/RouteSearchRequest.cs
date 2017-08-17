@@ -21,9 +21,9 @@ using System.Linq;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Route search request for Tizen map service requests
+    /// Routes the search request for Tizen map service requests.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class RouteSearchRequest : MapServiceRequest<Route>
     {
         private Interop.SearchRouteCallback _routeCallback;
@@ -93,9 +93,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets or sets a list of way-points to cover between origin and destination.
+        /// Gets or sets a list of way-points to cover between the origin and destination.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<Geocoordinates> Waypoints
         {
             get

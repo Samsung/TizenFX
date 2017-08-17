@@ -19,36 +19,36 @@ using System;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Class representing geographical area
+    /// The class representing a geographical area.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class Area : IDisposable
     {
         internal Interop.AreaHandle handle;
 
         /// <summary>
-        /// Constructs rectangular area.
+        /// Constructs a rectangular area.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="topLeft">Top-left coordinates of the area</param>
-        /// <param name="bottomRight">Bottom-left coordinate of the area</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="topLeft">Top-left coordinates of the area.</param>
+        /// <param name="bottomRight">Bottom-left coordinates of the area.</param>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a native operation fails to allocate memory.</exception>
         public Area(Geocoordinates topLeft, Geocoordinates bottomRight)
         {
             handle = new Interop.AreaHandle(topLeft?.handle, bottomRight?.handle);
         }
 
         /// <summary>
-        /// Constructs circular area.
+        /// Constructs a circular area.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="center">Coordinates for center of the area</param>
-        /// <param name="radius">Radius of the area</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="center">Coordinates for center of the area.</param>
+        /// <param name="radius">Radius of the area.</param>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a native operation fails to allocate memory.</exception>
         public Area(Geocoordinates center, double radius)
         {
             handle = new Interop.AreaHandle(center?.handle, radius);
@@ -72,9 +72,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Releases all resources used by this object.
+        /// Releases all the resources used by this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

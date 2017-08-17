@@ -17,17 +17,17 @@
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Enumeration for snapshot file formats
+    /// Enumeration for the snapshot file formats.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum SnapshotType
     {
         /// <summary>
-        /// Indicates BMP file format.
+        /// Indicates the BMP file format.
         /// </summary>
         BMP = Interop.ViewSnapshotFormatType.ViewSnapshotBmp,
         /// <summary>
-        /// Indicates JPEG file format.
+        /// Indicates the JPEG file format.
         /// </summary>
         JPEG = Interop.ViewSnapshotFormatType.ViewSnapshotJpeg,
     }

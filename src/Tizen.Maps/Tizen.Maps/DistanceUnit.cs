@@ -17,9 +17,9 @@
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Allowed distance units
+    /// The allowed distance units.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum DistanceUnit
     {
         /// <summary>

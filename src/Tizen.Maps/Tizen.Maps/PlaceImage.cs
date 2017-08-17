@@ -19,9 +19,9 @@ using System;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Place Image information, used in Place Discovery and Search requests
+    /// Place image information, used in place discovery and search requests.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class PlaceImage
     {
         private string _id;
@@ -44,37 +44,37 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets an ID for this place image.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Id { get { return _id; } }
 
         /// <summary>
         /// Gets an URL for this place image.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Url { get { return _url; } }
 
         /// <summary>
-        /// Gets width for this place image.
+        /// Gets the width for this place image.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public int Width { get { return _width; } }
 
         /// <summary>
-        /// Gets height for this place image.
+        /// Gets the height for this place image.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public int Height { get { return _height; } }
 
         /// <summary>
-        /// Gets an object which representing user link for this place image.
+        /// Gets an object representing the user link for this place image.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public PlaceLink UserLink { get { return _userLink; } }
 
         /// <summary>
-        /// Gets an object which representing image media for this place image.
+        /// Gets an object representing the image media for this place image.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public PlaceMedia ImageMedia { get { return _media; } }
     }
 }

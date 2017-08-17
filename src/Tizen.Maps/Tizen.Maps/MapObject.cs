@@ -18,9 +18,9 @@
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Map object
+    /// The map object.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class MapObject
     {
         internal MapObject() { }
@@ -28,7 +28,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets or sets visibility of the map object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public abstract bool IsVisible { get; set; }
 
         internal abstract void HandleClickedEvent();

@@ -17,13 +17,13 @@
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Route features, used for route search requests
+    /// Route features used for route search requests.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum RouteFeature
     {
         /// <summary>
-        /// Indicates no route features (are selected).
+        /// Indicates no route features are selected.
         /// </summary>
         None = Interop.RouteRequestFeature.None,
         /// <summary>
@@ -31,7 +31,7 @@ namespace Tizen.Maps
         /// </summary>
         Toll = Interop.RouteRequestFeature.Toll,
         /// <summary>
-        /// Indicates motorway.
+        /// Indicates a motorway.
         /// </summary>
         Motorway = Interop.RouteRequestFeature.MotorWay,
         /// <summary>
@@ -39,23 +39,23 @@ namespace Tizen.Maps
         /// </summary>
         BoatFerry = Interop.RouteRequestFeature.BoatFerry,
         /// <summary>
-        /// Indicates rail (train) ferry.
+        /// Indicates a rail (train) ferry.
         /// </summary>
         RailFerry = Interop.RouteRequestFeature.RailFerry,
         /// <summary>
-        /// Indicates public transport.
+        /// Indicates a public transport.
         /// </summary>
         PublicTransit = Interop.RouteRequestFeature.PublicTransit,
         /// <summary>
-        /// Indicates tunnel.
+        /// Indicates a tunnel.
         /// </summary>
         Tunnel = Interop.RouteRequestFeature.Tunnel,
         /// <summary>
-        /// Indicates dirt road.
+        /// Indicates a dirt road.
         /// </summary>
         DirtRoad = Interop.RouteRequestFeature.DirtRoad,
         /// <summary>
-        /// Indicates park.
+        /// Indicates a park.
         /// </summary>
         Parks = Interop.RouteRequestFeature.Parks,
         /// <summary>

@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// List of <see cref="Geocoordinates"/> objects to be used in <see cref="MapService"/> APIs
+    /// List of <see cref="Geocoordinates"/> objects to be used in <see cref="MapService"/> APIs.
     /// </summary>
     internal class GeocoordinatesList : IDisposable
     {
@@ -36,7 +36,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Iterator for coordinates in this list
+        /// The iterator for coordinates in this list.
         /// </summary>
         internal IEnumerable<Geocoordinates> Coordinates
         {
@@ -61,9 +61,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Releases all resources used by this object.
+        /// Releases all the resources used by this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

@@ -20,9 +20,9 @@ using System;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Place Contact information, used in Place Discovery and Search requests
+    /// Place contact information, used in place discovery and search requests.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class PlaceContact
     {
         private string _label;
@@ -43,25 +43,25 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets an ID for this place contact.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Id { get { return _type; } }
 
         /// <summary>
         /// Gets a label for this place contact.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Label { get { return _label; } }
 
         /// <summary>
         /// Gets a value for this place contact.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Value { get { return _value; } }
 
         /// <summary>
         /// Returns a string that represents this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Returns a string which presents this object.</returns>
         public override string ToString()
         {

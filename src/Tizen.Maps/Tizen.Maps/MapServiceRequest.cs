@@ -21,9 +21,9 @@ using System.Threading.Tasks;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Base class for map service request
+    /// Base class for a map service request.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     /// <typeparam name="T"></typeparam>
     public abstract class MapServiceRequest<T> : IDisposable
     {
@@ -40,8 +40,8 @@ namespace Tizen.Maps
         /// <summary>
         /// Creates a map service request.
         /// </summary>
-        /// <param name="service">map service object</param>
-        /// <param name="type">Request type</param>
+        /// <param name="service">Map service object.</param>
+        /// <param name="type">Request type.</param>
         internal MapServiceRequest(MapService service, ServiceRequestType type)
         {
             _service = service;
@@ -49,17 +49,17 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Sends a request to map service provider.
+        /// Sends a request to the map service provider.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <returns>Response from map service provider</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <returns>Response from the map service provider.</returns>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when the result is invalid.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when arguments are invalid</exception>
+        /// <exception cref="System.ArgumentException">Thrown when arguments are invalid.</exception>
         public async Task<IEnumerable<T>> GetResponseAsync()
         {
             IEnumerable<T> task = null;
@@ -105,9 +105,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Releases all resources used by this object.
+        /// Releases all the resources used by this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

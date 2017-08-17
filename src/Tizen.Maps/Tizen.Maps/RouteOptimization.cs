@@ -17,36 +17,36 @@
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Allowed route optimization option used in route search requests
+    /// Allowed route optimization option used in route search requests.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     /// <remarks>
-    /// Depending on loaded maps plug-in using <see cref="MapService"/>, some features may have no effect or differences with descriptions.
+    /// Depending on the loaded maps plug-in using <see cref="MapService"/>, some features might have no effect or differences with the descriptions.
     /// </remarks>
     public enum RouteOptimization
     {
         /// <summary>
-        /// Indicates that searching for fastest routes.
+        /// Indicates searching for the fastest routes.
         /// </summary>
         Fastest = Interop.RouteOptimization.Fastest,
         /// <summary>
-        /// Indicates that searching for shortest routes (car mode only).
+        /// Indicates searching for the shortest routes (car mode only).
         /// </summary>
         Shortest = Interop.RouteOptimization.Shortest,
         /// <summary>
-        /// Indicates that searching for most economic routes (car mode only).
+        /// Indicates searching for the most economic routes (car mode only).
         /// </summary>
         Economic = Interop.RouteOptimization.Economic,
         /// <summary>
-        /// Indicates that searching for most scenic routes.
+        /// Indicates searching for the most scenic routes.
         /// </summary>
         Scenic = Interop.RouteOptimization.Scenic,
         /// <summary>
-        /// Indicates that searching for most fastest routes now, based on current traffic condition.
+        /// Indicates searching for most the fastest routes now, based on the current traffic condition.
         /// </summary>
         FastestNow = Interop.RouteOptimization.FastestNow,
         /// <summary>
-        /// Indicates that searching for direct drive routes.
+        /// Indicates searching for the direct drive routes.
         /// </summary>
         DirectDrive = Interop.RouteOptimization.DirectDrive,
     }

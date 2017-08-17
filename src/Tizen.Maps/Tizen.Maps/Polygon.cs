@@ -23,9 +23,9 @@ using Color = ElmSharp.Color;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Polygon map object
+    /// The polygon map object.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class Polygon : MapObject, IDisposable
     {
         internal Interop.PolygonHandle handle;
@@ -34,9 +34,9 @@ namespace Tizen.Maps
         /// <summary>
         /// Creates a polygon visual object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="coordinates">List of geographical coordinates</param>
-        /// <param name="color">Background color</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="coordinates">List of geographical coordinates.</param>
+        /// <param name="color">Background color.</param>
         /// <exception cref="ArgumentException">Thrown when input values are invalid.</exception>
         public Polygon(IEnumerable<Geocoordinates> coordinates, Color color) : base()
         {
@@ -51,15 +51,15 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Adds or removes clicked event handlers.
+        /// Adds or removes the clicked event handlers.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler Clicked;
 
         /// <summary>
         /// Gets or sets visibility for the polygon.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public override bool IsVisible
         {
             get { return handle.IsVisible; }
@@ -67,9 +67,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets or sets a list of geographical coordinates of polygon vertices.
+        /// Gets or sets a list of geographical coordinates for polygon vertices.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<Geocoordinates> Coordinates
         {
             get
@@ -94,9 +94,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets or sets background color to fill the polygon.
+        /// Gets or sets a background color to fill the polygon.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Color FillColor
         {
             get
@@ -141,9 +141,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Releases all resources used by this object.
+        /// Releases all the resources used by this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

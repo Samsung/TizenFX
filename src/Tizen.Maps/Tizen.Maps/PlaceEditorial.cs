@@ -19,9 +19,9 @@ using System;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Place Editorial information, used in Place Discovery and Search requests
+    /// Place editorial information, used in place discovery and search requests.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class PlaceEditorial
     {
         private string _description;
@@ -42,25 +42,25 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a description for this place editorial.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Description { get { return _description; } }
 
         /// <summary>
         /// Gets a language for this place editorial.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Language { get { return _language; } }
 
         /// <summary>
         /// Gets an instance of <see cref="PlaceMedia"/> object which representing media for this place editorial.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public PlaceMedia Media { get { return _media; } }
 
         /// <summary>
         /// Returns a string that represents this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <returns>Returns a string which presents this object.</returns>
         public override string ToString()
         {

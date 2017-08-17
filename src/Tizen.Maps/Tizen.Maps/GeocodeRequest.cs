@@ -20,9 +20,9 @@ using System.Collections.Generic;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Geocode request for map service
+    /// Geocode request for the map service.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class GeocodeRequest : MapServiceRequest<Geocoordinates>
     {
         private Interop.GeocodeCallback _geocodeCallback;
@@ -92,7 +92,7 @@ namespace Tizen.Maps
                 }
                 else
                 {
-                    // If search is failed, the value of total is 0 and coordinates is NULL
+                    // If the search fails, the value of total is 0 and coordinates is NULL.
                     _requestTask?.TrySetException(result.GetException(errMessage));
                     return false;
                 }

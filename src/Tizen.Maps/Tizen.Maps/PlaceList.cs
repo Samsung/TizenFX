@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// List of <see cref="Place"/> objects to be used in <see cref="MapService"/> APIs
+    /// List of <see cref="Place"/> objects to be used in <see cref="MapService"/> APIs.
     /// </summary>
     internal class PlaceList : IDisposable
     {
@@ -33,7 +33,7 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets an iterator for addresses in this list.
+        /// Gets an iterator for the addresses in this list.
         /// </summary>
         public IEnumerable<Place> Places
         {
@@ -61,9 +61,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Releases all resources used by this object.
+        /// Releases all the resources used by this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

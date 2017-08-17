@@ -20,9 +20,9 @@ using System.Collections.Generic;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Reverse geocode request for map service.
+    /// Reverses the geocode request for a map service.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class ReverseGeocodeRequest : MapServiceRequest<PlaceAddress>
     {
         private Interop.ReverseGeocodeCallback _geocodeCallback;

@@ -18,24 +18,24 @@
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Preferences for geocode searches
+    /// The preference for geocode searches.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public interface IGeocodePreference
     {
         /// <summary>
-        /// Gets or sets a string that presents preferred language.
+        /// Gets or sets a string that presents the preferred language.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <remarks>Language should be specified as an ISO 3166 alpha-2 two letter country-code
+        /// <since_tizen> 3 </since_tizen>
+        /// <remarks>Language should be specified as an ISO 3166 alpha-2 two-letter country-code
         /// followed by ISO 639-1 for the two-letter language code.<br/>e.g. "ko-KR", "en-US".</remarks>
         string Language { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum number of results.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <remarks>Setting negative value will not have any effect on MaxResults value.</remarks>
+        /// <since_tizen> 3 </since_tizen>
+        /// <remarks>Setting a negative value will not have any effect on MaxResults value.</remarks>
         int MaxResults { get; set; }
     }
 }

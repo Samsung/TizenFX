@@ -17,13 +17,13 @@
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Turn Instruction type for route maneuver
+    /// Turns the Instruction type for route maneuver.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum TurnInstruction
     {
         /// <summary>
-        /// Indicates unknown instruction.
+        /// Indicates an unknown instruction.
         /// </summary>
         None = Interop.RouteTurnType.None,
         /// <summary>
@@ -47,11 +47,11 @@ namespace Tizen.Maps
         /// </summary>
         HardRight = Interop.RouteTurnType.HardRight,
         /// <summary>
-        /// Indicates instruction to u-turn to the right.
+        /// Indicates instruction to U-turn to the right.
         /// </summary>
         UturnRight = Interop.RouteTurnType.UturnRight,
         /// <summary>
-        /// Indicates instruction to u-turn to the left.
+        /// Indicates instruction to U-turn to the left.
         /// </summary>
         UturnLeft = Interop.RouteTurnType.UturnLeft,
         /// <summary>

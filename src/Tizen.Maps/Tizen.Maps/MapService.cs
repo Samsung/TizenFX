@@ -21,9 +21,9 @@ using System.Threading.Tasks;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Map service class for service request
+    /// Map service class for service request.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public partial class MapService : IDisposable
     {
         internal Interop.ServiceHandle handle;
@@ -36,16 +36,16 @@ namespace Tizen.Maps
 
 
         /// <summary>
-        /// Creates a new Maps Service object for given service provider.
+        /// Creates a new maps service object for given service provider.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="serviceProvider">A string which representing name of map service provider</param>
-        /// <param name="serviceProviderKey">A string which representing certificate key to use the map service provider</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="serviceProvider">A string representing the name of the map service provider.</param>
+        /// <param name="serviceProviderKey">A string representing a certificate key to use the map service provider.</param>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown when parameters are invalid.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory, connect to service.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a native operation failed to allocate memory and connect to the service.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         public MapService(string serviceProvider, string serviceProviderKey)
         {
@@ -57,13 +57,13 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets list of available map service providers.
+        /// Gets the list of available map service providers.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>The list of map service providers.</value>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
-        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have privileges to access this property.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have privilege to access this property.</exception>
         public static IEnumerable<string> Providers
         {
             get
@@ -77,13 +77,13 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets name of map service provider.
+        /// Gets the name of the map service provider.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Provider { get { return _serviceProvider; } }
 
         /// <summary>
-        /// Gets a user consent for map service provider
+        /// Gets a user consent for the map service provider
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
@@ -96,11 +96,11 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets and sets a string representing keys for map service provider
+        /// Gets and sets a string representing keys for the map service provider.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <remarks>Typically, the provider key is issued by each maps provider, after signing up for a plan in the web site.
-        /// Depending on the plan and its provider which you have signed, you might pay for the network traffic.</remarks>
+        /// <since_tizen> 3 </since_tizen>
+        /// <remarks>Typically, the provider key is issued by each maps provider after signing up for a plan in the website.
+        /// Depending on the plan and its provider which you have signed, you might have to pay for the network traffic.</remarks>
         public string ProviderKey
         {
             get
@@ -114,9 +114,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets and sets a filter used for place search result.
+        /// Gets and sets a filter used for the place search result.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public PlaceFilter PlaceSearchFilter
         {
             get
@@ -133,9 +133,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets search preferences used for <see cref="GeocodeRequest"/> or <see cref="ReverseGeocodeRequest"/>.
+        /// Gets the search preferences used for <see cref="GeocodeRequest"/> or <see cref="ReverseGeocodeRequest"/>.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public IGeocodePreference GeocodePreferences
         {
             get
@@ -145,9 +145,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets search preferences used for <see cref="PlaceSearchRequest"/>.
+        /// Gets the search preferences used for <see cref="PlaceSearchRequest"/>.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public IPlaceSearchPreference PlaceSearchPreferences
         {
             get
@@ -157,9 +157,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets search preferences used for <see cref="RouteSearchRequest"/>.
+        /// Gets the search preferences used for <see cref="RouteSearchRequest"/>.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public IRouteSearchPreference RouteSearchPreferences
         {
             get
@@ -169,9 +169,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets and sets search preferences.
+        /// Gets and sets the search preferences.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public SearchPreference Preferences
         {
             get
@@ -217,11 +217,11 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Checks if the Maps Service supports given request.
+        /// Checks if the maps service supports the given request.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="type">Request type to check</param>
-        /// <returns>Returns true if the Maps Service supports a request, otherwise false.</returns>
+        /// <returns>Returns true if the maps service supports a request, otherwise false.</returns>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
@@ -234,11 +234,11 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Checks if the Maps Service supports given data feature.
+        /// Checks if the maps service supports a given data feature.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="data">Data feature to check</param>
-        /// <returns>Returns true if the Maps Service supports a data feature, otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
+	    /// <param name="data">Data feature to check.</param>
+        /// <returns>Returns true if the maps service supports a data feature, otherwise false.</returns>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
@@ -251,105 +251,105 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Creates geocode search request for given free-formed address string.
+        /// Creates a geocode search request for the given free-formed address string.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="address">A string which representing free-formed address</param>
-        /// <returns>GeocodeRequest object created with address string</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="address">A string representing free-formed address.</param>
+        /// <returns>Returns a GeocodeRequest object created with an address string.</returns>
         public GeocodeRequest CreateGeocodeRequest(string address)
         {
             return new GeocodeRequest(this, address);
         }
 
         /// <summary>
-        /// Creates geocode search request for given free-formed address string, within the specified boundary.
+        /// Creates a geocode search request for the given free-formed address string, within the specified boundary.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="address">A string which representing free-formed address</param>
-        /// <param name="boundary">An instance of Area object which representing interested area</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="address">A string representing the free-formed address.</param>
+        /// <param name="boundary">An instance of Area object representing the interested area.</param>
         /// <seealso cref="Area"/>
-        /// <returns>GeocodeRequest object created with address string and specified boundary</returns>
+        /// <returns>Returns a GeocodeRequest object created with an address string and a specified boundary.</returns>
         public GeocodeRequest CreateGeocodeRequest(string address, Area boundary)
         {
             return new GeocodeRequest(this, address, boundary);
         }
 
         /// <summary>
-        /// Creates geocode search request for given structured address.
+        /// Creates a geocode search request for the given structured address.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="address">A string which representing address of interest</param>
-        /// <returns>Returns GeocodeRequest object created with structured address</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="address">A string representing the address of interest.</param>
+        /// <returns>Returns a GeocodeRequest object created with a structured address.</returns>
         public GeocodeRequest CreateGeocodeRequest(PlaceAddress address)
         {
             return new GeocodeRequest(this, address);
         }
 
         /// <summary>
-        /// Creates a reverse geocode search request for given latitude and longitude.
+        /// Creates a reverse geocode search request for the given latitude and longitude.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="latitude">Latitude of interested place</param>
-        /// <param name="longitude">Longitude of interested place</param>
-        /// <returns>Returns ReverseGeocodeRequest object created with location coordinates</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="latitude">Latitude of the interested place.</param>
+        /// <param name="longitude">Longitude of the interested place.</param>
+        /// <returns>Returns a ReverseGeocodeRequest object created with the location coordinates.</returns>
         public ReverseGeocodeRequest CreateReverseGeocodeRequest(double latitude, double longitude)
         {
             return new ReverseGeocodeRequest(this, latitude, longitude);
         }
 
         /// <summary>
-        /// Creates a reverse geocode search request for given position coordinates list.
+        /// Creates a reverse geocode search request for the given position coordinates list.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="coordinates">Coordinates list with [2 ~ 100] coordinates</param>
-        /// <returns>Returns MultiReverseGeocodeRequest object created with list of location coordinates</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="coordinates">Coordinates list with [2 ~ 100] coordinates.</param>
+        /// <returns>Returns a MultiReverseGeocodeRequest object created with a list of location coordinates.</returns>
         public MultiReverseGeocodeRequest CreateMultiReverseGeocodeRequest(IEnumerable<Geocoordinates> coordinates)
         {
             return new MultiReverseGeocodeRequest(this, coordinates);
         }
 
         /// <summary>
-        /// Creates a route search request for origin and destination points.
+        /// Creates a route search request for the origin and destination points.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="from">Starting point</param>
-        /// <param name="to">Destination</param>
-        /// <returns>Returns RouteSearchRequest object created with origin and destination coordinates</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="from">Starting point.</param>
+        /// <param name="to">Destination.</param>
+        /// <returns>Returns a RouteSearchRequest object created with the origin and destination coordinates.</returns>
         public RouteSearchRequest CreateRouteSearchRequest(Geocoordinates from, Geocoordinates to)
         {
             return new RouteSearchRequest(this, from, to);
         }
 
         /// <summary>
-        /// Creates a place search request for specified search radius around a given coordinates position.
+        /// Creates a place search request for a specified search radius around a given coordinates position.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="coordinates">A geographical coordinates of center</param>
-        /// <param name="distance">A double value which representing radius of area to search places</param>
-        /// <returns>Returns PlaceSearchRequest object created with location coordinates and search radius</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="coordinates">Geographical coordinates of the center.</param>
+        /// <param name="distance">A double value representing the radius of an area to search places.</param>
+        /// <returns>Returns a PlaceSearchRequest object created with the location coordinates and search radius.</returns>
         public PlaceSearchRequest CreatePlaceSearchRequest(Geocoordinates coordinates, int distance)
         {
             return new PlaceSearchRequest(this, coordinates, distance);
         }
 
         /// <summary>
-        /// Creates a place search request for places within specified boundary.
+        /// Creates a place search request for places within a specified boundary.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="boundary">An instance of Area object which representing area to search interested places</param>
-        /// <returns>Returns PlaceSearchRequest object created with specified boundary</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="boundary">An instance of Area object representing and area to search interested places.</param>
+        /// <returns>Returns a PlaceSearchRequest object created with a specified boundary.</returns>
         public PlaceSearchRequest CreatePlaceSearchRequest(Area boundary)
         {
             return new PlaceSearchRequest(this, boundary);
         }
 
         /// <summary>
-        /// Creates a place search request for free-formed address within boundary.
+        /// Creates a place search request for a free-formed address within the boundary.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="address">A string which representing free-formed address</param>
-        /// <param name="boundary">An instance of Area object which representing area to search interested places</param>
-        /// <returns>Returns PlaceSearchRequest object created with address string and specified boundary</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="address">A string which represents a free-formed address.</param>
+        /// <param name="boundary">An instance of area object representing an area to search interested places.</param>
+        /// <returns>Returns a PlaceSearchRequest object created with an address string and a specified boundary.</returns>
         public PlaceSearchRequest CreatePlaceSearchRequest(string address, Area boundary)
         {
             return new PlaceSearchRequest(this, address, boundary);
@@ -372,9 +372,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Releases all resources used by this object.
+        /// Releases all the resources used by this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

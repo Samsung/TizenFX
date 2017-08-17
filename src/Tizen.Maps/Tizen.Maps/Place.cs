@@ -20,9 +20,9 @@ using System.Collections.Generic;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Place information, used in Place Discovery and Search
+    /// Place information, used in place discovery and search requests.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class Place : IDisposable
     {
         internal Interop.PlaceHandle handle;
@@ -33,9 +33,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets ID string for the place.
+        /// Gets an ID string for the place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Id
         {
             get
@@ -47,7 +47,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets name string for the place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Name
         {
             get
@@ -57,9 +57,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets view URI for the place.
+        /// Gets a view URI for the place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string Uri
         {
             get
@@ -69,9 +69,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets distance for the place from the center.
+        /// Gets a distance for the place from the center.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public int Distance
         {
             get
@@ -81,9 +81,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets geographical location for the place.
+        /// Gets a geographical location for the place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Geocoordinates Coordinates
         {
             get
@@ -93,9 +93,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets address for the place.
+        /// Gets an address for the place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public PlaceAddress Address
         {
             get
@@ -105,9 +105,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets rating for the place.
+        /// Gets a rating for the place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public PlaceRating Rating
         {
             get
@@ -117,9 +117,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets supplier link for the place.
+        /// Gets a supplier link for the place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public PlaceLink Supplier
         {
             get
@@ -129,9 +129,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets related link for the place.
+        /// Gets a related link for the place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public PlaceLink Related
         {
             get
@@ -141,9 +141,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets all properties attached to this place.
+        /// Gets all the properties attached to this place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public IDictionary<string, string> Properties
         {
             get
@@ -155,9 +155,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets all categories attached to this place.
+        /// Gets all the categories attached to this place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<PlaceCategory> Categories
         {
             get
@@ -169,9 +169,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets all attributes attached to this place.
+        /// Gets all the attributes attached to this place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<PlaceAttribute> Attributes
         {
             get
@@ -183,9 +183,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets all contacts attached to this place.
+        /// Gets all the contacts attached to this place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<PlaceContact> Contacts
         {
             get
@@ -197,9 +197,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets all editorials attached to this place.
+        /// Gets all the editorials attached to this place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<PlaceEditorial> Editorials
         {
             get
@@ -211,9 +211,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets all images attached to this place.
+        /// Gets all the images attached to this place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<PlaceImage> Images
         {
             get
@@ -225,9 +225,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets all reviews attached to this place.
+        /// Gets all the reviews attached to this place.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<PlaceReview> Reviews
         {
             get
@@ -251,9 +251,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Releases all resources used by this object.
+        /// Releases all the resources used by this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

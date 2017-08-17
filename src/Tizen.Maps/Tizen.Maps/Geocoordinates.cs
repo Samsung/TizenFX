@@ -19,21 +19,21 @@ using System;
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Class representing geographical coordinates.
+    /// A class representing geographical coordinates.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class Geocoordinates : IDisposable
     {
         internal Interop.CoordinatesHandle handle;
 
         /// <summary>
-        /// Constructs map coordinates object.
+        /// Constructs the map coordinates object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="latitude">Latitude value, must be between (-90.0 ~ 90.0) degrees</param>
-        /// <param name="longitude">Longitude value, must be between (-180.0 ~ 180.0) degrees</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="latitude">Latitude value must be between (-90.0 ~ 90.0) degrees.</param>
+        /// <param name="longitude">Longitude value must be between (-180.0 ~ 180.0) degrees.</param>
         /// <exception cref="System.ArgumentException">Thrown when values for latitude and longitude are not valid.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a native operation fails to allocate memory.</exception>
         public Geocoordinates(double latitude, double longitude)
         {
             handle = new Interop.CoordinatesHandle(latitude, longitude);
@@ -45,9 +45,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets latitude of the coordinates.
+        /// Gets the latitude coordinates.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public double Latitude
         {
             get
@@ -57,9 +57,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Gets longitude of the coordinates.
+        /// Gets the longitude coordinates.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public double Longitude
         {
             get
@@ -71,8 +71,8 @@ namespace Tizen.Maps
         /// <summary>
         /// Returns a string that represents this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <returns>Returns a string which presents this object.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <returns>Returns a string that represents this object.</returns>
         public override string ToString()
         {
             return $"[{Latitude}, {Longitude}]";
@@ -91,9 +91,9 @@ namespace Tizen.Maps
         }
 
         /// <summary>
-        /// Releases all resources used by this object.
+        /// Releases all the resources used by this object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

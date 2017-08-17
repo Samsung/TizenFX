@@ -18,45 +18,45 @@
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Preferences for route searches
+    /// The preferences for route search.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public interface IRouteSearchPreference
     {
         /// <summary>
-        /// Gets or sets distance unit.
+        /// Gets or sets the distance unit.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         DistanceUnit Unit { get; set; }
 
         /// <summary>
-        /// Gets or sets route optimization.
+        /// Gets or sets the route optimization.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         RouteOptimization Optimization { get; set; }
 
         /// <summary>
-        /// Gets or sets route transport mode.
+        /// Gets or sets the route transport mode.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         TransportMode Mode { get; set; }
 
         /// <summary>
-        /// Gets or sets route feature weight.
+        /// Gets or sets the route feature weight.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         RouteFeatureWeight RouteFeatureWeight { get; set; }
 
         /// <summary>
-        /// Gets or sets route feature.
+        /// Gets or sets the route feature.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         RouteFeature RouteFeature { get; set; }
 
         /// <summary>
-        /// Gets or sets if searching for alternative routes is enabled.
+        /// Gets or sets if a search for alternative routes is enabled.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         bool SearchAlternativeRoutes { get; set; }
     }
 }

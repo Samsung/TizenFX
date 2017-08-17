@@ -17,13 +17,13 @@
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Enumeration of user gestures over map view
+    /// Enumeration for the user gesture over a map view.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum GestureType
     {
         /// <summary>
-        /// Indicates empty gesture.
+        /// Indicates the empty gesture.
         /// </summary>
         None = Interop.ViewGesture.None,
         /// <summary>
@@ -35,15 +35,15 @@ namespace Tizen.Maps
         /// </summary>
         Zoom = Interop.ViewGesture.Zoom,
         /// <summary>
-        /// Indicates the click user gesture
+        /// Indicates the click user gesture.
         /// </summary>
         Click = Interop.ViewGesture.Click,
         /// <summary>
-        /// Indicates the double click user gesture
+        /// Indicates the double click user gesture.
         /// </summary>
         DoubleClick = Interop.ViewGesture.DoubleClick,
         /// <summary>
-        /// Indicates the two-finger click user gesture
+        /// Indicates the two-finger click user gesture.
         /// </summary>
         TwoFingerClick = Interop.ViewGesture.TwoFingerClick,
         /// <summary>

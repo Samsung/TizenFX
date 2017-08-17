@@ -17,13 +17,13 @@
 namespace Tizen.Maps
 {
     /// <summary>
-    /// Service Requests available in the Maps Service
+    /// Service requests available in the maps service.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum ServiceRequestType
     {
         /// <summary>
-        /// Indicates that service request to get position <see cref="Geocoordinates"/> for a given free-formed address string is allowed.
+        /// Indicates the service request to get position <see cref="Geocoordinates"/> for a given free-formed address string is allowed.
         /// </summary>
         Geocode = Interop.ServiceType.Geocode,
         /// <summary>
