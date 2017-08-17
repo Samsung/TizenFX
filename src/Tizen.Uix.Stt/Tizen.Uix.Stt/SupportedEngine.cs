@@ -18,7 +18,7 @@
 namespace Tizen.Uix.Stt
 {
     /// <summary>
-    /// This Class provideds the Information related to STT Engine.
+    /// This class provides the information related to STT engine.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class SupportedEngine
@@ -32,11 +32,11 @@ namespace Tizen.Uix.Stt
             this._engineName = name;
         }
         /// <summary>
-        /// The Engine Id
+        /// The engine ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
-        /// The string Engine Id
+        /// The string engine ID.
         /// </returns>
         public string EngineId
         {
@@ -47,11 +47,11 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
-        /// The Engine Name
+        /// The engine name.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
-        /// The string Engine Name
+        /// The string engine name.
         /// </returns>
         public string EngineName
         {

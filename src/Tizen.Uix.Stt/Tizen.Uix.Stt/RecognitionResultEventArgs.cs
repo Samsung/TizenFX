@@ -99,7 +99,7 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
-        /// The result event
+        /// The result event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ResultEvent Result
@@ -111,7 +111,7 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
-        /// Result texts.
+        /// The result text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public IEnumerable<string> Data
@@ -123,7 +123,7 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
-        /// Returns the Result text count.
+        /// Returns the result text count.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int DataCount
@@ -135,7 +135,7 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
-        /// Engine message
+        /// The engine message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ResultMessage Message

@@ -1,4 +1,4 @@
-﻿/*
+﻿﻿/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -21,12 +21,12 @@ using Tizen;
 using Tizen.Uix.VoiceControl;
 
 /// <summary>
-/// Partial Interop Class
+/// Partial interop class.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// VoiceControlCommand Interop Class
+    /// VoiceControlCommand interop class.
     /// </summary>
     internal static class VoiceControlCommand
     {

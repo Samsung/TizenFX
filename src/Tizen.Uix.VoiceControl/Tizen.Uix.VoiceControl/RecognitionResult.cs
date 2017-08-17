@@ -24,8 +24,8 @@ namespace Tizen.Uix.VoiceControl
 {
     /// <summary>
     /// The recognition result from the engine.
-    /// If the duplicated commands are recognized, the event(e.g. Result.Rejected) of command may be rejected
-    /// for selecting command as priority.If you set similar or same commands or the recognized results are multi-results, CommandList has the multi commands.
+    /// If the duplicated commands are recognized, the event(e.g. Result.Rejected) of a command may be rejected
+    /// for selecting the command as a priority. If you set similar or same commands, or the recognized results are multi-results, the CommandList has multi commands.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class RecognitionResult
@@ -44,7 +44,7 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// The result event
+        /// The result event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ResultEvent Result
@@ -56,7 +56,7 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// The spoken text
+        /// The spoken text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string ResultMessage
@@ -69,7 +69,7 @@ namespace Tizen.Uix.VoiceControl
 
 
         /// <summary>
-        /// The recognized command list
+        /// The recognized command list.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public VoiceCommandList CommandList

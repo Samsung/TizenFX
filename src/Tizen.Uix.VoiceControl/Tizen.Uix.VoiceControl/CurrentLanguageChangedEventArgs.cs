@@ -17,7 +17,7 @@
 namespace Tizen.Uix.VoiceControl
 {
     /// <summary>
-    /// This class holds information about the CurrentLanguageChanged Event
+    /// This class holds information about the CurrentLanguageChanged event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class CurrentLanguageChangedEventArgs
@@ -29,7 +29,7 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// The previous language
+        /// The previous language.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string PreviousLanguage
@@ -39,7 +39,7 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// The current language
+        /// The current language.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string CurrentLanguage

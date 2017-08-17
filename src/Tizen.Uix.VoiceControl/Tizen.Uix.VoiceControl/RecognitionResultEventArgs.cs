@@ -31,7 +31,7 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// Gets the Recognition result
+        /// Gets the recognition result.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public RecognitionResult Result

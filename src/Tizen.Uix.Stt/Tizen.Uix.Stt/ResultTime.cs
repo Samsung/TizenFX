@@ -20,7 +20,7 @@ using static Interop.Stt;
 namespace Tizen.Uix.Stt
 {
     /// <summary>
-    /// This Class represents the result of recognition result from the engine.
+    /// This class represents the result of recognition result from the engine.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ResultTime
@@ -35,7 +35,7 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
-        /// The result index
+        /// The result index.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int Index
@@ -45,7 +45,7 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
-        /// The token event
+        /// The token event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public TimeEvent TokenEvent
@@ -55,7 +55,7 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
-        /// The result text
+        /// The result text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Text
@@ -65,7 +65,7 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
-        /// The start time of result text
+        /// The start time of result text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public long StartTime
@@ -75,7 +75,7 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
-        /// The end time of result text
+        /// The end time of result text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public long EndTime

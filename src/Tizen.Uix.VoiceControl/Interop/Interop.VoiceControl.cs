@@ -21,12 +21,12 @@ using Tizen.Uix.VoiceControl;
 using static Interop.VoiceControlCommand;
 
 /// <summary>
-/// Partial Interop Class
+/// Partial interop class.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// VoiceControl Interop Class
+    /// VoiceControl interop class.
     /// </summary>
     internal static class VoiceControl
     {

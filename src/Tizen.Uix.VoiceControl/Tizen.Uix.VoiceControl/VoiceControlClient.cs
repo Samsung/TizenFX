@@ -23,85 +23,85 @@ using static Interop.VoiceControlCommand;
 namespace Tizen.Uix.VoiceControl
 {
     /// <summary>
-    /// Enum for Error values that can occur
+    /// Enumeration for the error values that can occur.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum Error
     {
         /// <summary>
-        /// Successful, No error
+        /// Successful, no error.
         /// </summary>
         None,
         /// <summary>
-        /// Out of Memory
+        /// Out of memory.
         /// </summary>
         OutOfMemory,
         /// <summary>
-        /// I/O error
+        /// I/O error.
         /// </summary>
         IoError,
         /// <summary>
-        /// Invalid parameter
+        /// Invalid parameter.
         /// </summary>
         InvalidParameter,
         /// <summary>
-        /// No answer from the STT service
+        /// No answer from the STT service.
         /// </summary>
         TimedOut,
         /// <summary>
-        /// Device or resource busy
+        /// Device or resource busy.
         /// </summary>
         RecorderBusy,
         /// <summary>
-        /// Permission denied
+        /// Permission denied.
         /// </summary>
         PermissionDenied,
         /// <summary>
-        /// VC NOT supported
+        /// VC NOT supported.
         /// </summary>
         NotSupported,
         /// <summary>
-        /// Invalid state
+        /// Invalid state.
         /// </summary>
         InvalidState,
         /// <summary>
-        /// Invalid language
+        /// Invalid language.
         /// </summary>
         InvalidLanguage,
         /// <summary>
-        /// No available engine
+        /// No available engine.
         /// </summary>
         EngineNotFound,
         /// <summary>
-        /// Operation failed
+        /// Operation failed.
         /// </summary>
         OperationFailed,
         /// <summary>
-        /// Operation Rejected
+        /// Operation rejected.
         /// </summary>
         OperationRejected,
         /// <summary>
-        /// List reached end
+        /// List reached end.
         /// </summary>
         IterationEnd,
         /// <summary>
-        /// List Empty
+        /// List empty.
         /// </summary>
         Empty,
         /// <summary>
-        /// Service reset
+        /// Service reset.
         /// </summary>
         ServiceReset,
         /// <summary>
-        /// Progress to ready is not finished
+        /// Progress to ready is not finished.
         /// </summary>
         InProgressToReady,
         /// <summary>
-        /// Progress to recording is not finished
+        /// Progress to recording is not finished.
         /// </summary>
         InProgressToRecording,
         /// <summary>
-        /// Progress to processing is not finished
+        /// Progress to processing is not finished.
         /// </summary>
         InProgressToProcessing
     };
@@ -113,106 +113,94 @@ namespace Tizen.Uix.VoiceControl
     public enum State
     {
         /// <summary>
-        /// 'None' state
+        /// 'None' state.
         /// </summary>
         None = 0,
         /// <summary>
-        /// 'Initialized' state
+        /// 'Initialized' state.
         /// </summary>
         Initialized = 1,
         /// <summary>
-        /// 'Ready' state
+        /// 'Ready' state.
         /// </summary>
         Ready = 2,
         /// <summary>
-        /// state cannot be determined
+        /// The state cannot be determined.
         /// </summary>
         Unavailable
     };
 
     /// <summary>
-    /// Enumerations of service state.
+    /// Enumeration for the service state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum ServiceState
     {
         /// <summary>
-        /// 'None' state
+        /// 'None' state.
         /// </summary>
         None = 0,
         /// <summary>
-        /// 'Ready' state
+        /// 'Ready' state.
         /// </summary>
         Ready = 1,
         /// <summary>
-        /// 'Recording' state
+        /// 'Recording' state.
         /// </summary>
         Recording = 2,
         /// <summary>
-        /// 'Processing' state
+        /// 'Processing' state.
         /// </summary>
         Processing = 3,
         /// <summary>
-        /// state cannot be determined
+        /// The state cannot be determined.
         /// </summary>
         Unavailable
     };
 
     /// <summary>
-    /// Enumerations of result event.
+    /// Enumeration for the result event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum ResultEvent
     {
         /// <summary>
-        /// Normal result
+        /// Normal result.
         /// </summary>
         Success = 0,
         /// <summary>
-        /// Rejected result
+        /// Rejected result.
         /// </summary>
         Rejected = 1
     };
 
     /// <summary>
-    /// Enumerations of command type.
+    /// Enumeration for the command type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum CommandType
     {
         /// <summary>
-        /// Foreground command by client
+        /// Foreground command by the client.
         /// </summary>
         Foreground = 1,
         /// <summary>
-        /// Background command by client
+        /// Background command by the client.
         /// </summary>
         Background = 2,
         /// <summary>
-        /// Undefined command
+        /// The undefined command.
         /// </summary>
         Undefined = -1
     };
 
     /// <summary>
-    /// A main function of Voice Control API register command and gets notification for recognition result. 
-    /// Applications can add their own commands and be provided result when their command is recognized by user voice input.
+    /// A main function of the voice control API registers the command and gets a notification for the recognition result. 
+    /// Applications can add their own commands and provide results when their command is recognized by the user voice input.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public static class VoiceControlClient
     {
-        /// <summary>
-        /// Called when client gets the recognition result.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <remarks>
-        /// If the duplicated commands are recognized, the event(e.g. Result.Rejected) of command may be rejected
-        /// for selecting command as priority.If you set similar or same commands or the recognized results are multi-results, cmdList has the multi commands.
-        /// </remarks>
-        /// <param name="evt">The ResultEvent</param>
-        /// <param name="cmdList">Command List</param>
-        /// <param name="result">Result</param>
-
         private static event EventHandler<RecognitionResultEventArgs> _recognitionResult;
         private static event EventHandler<StateChangedEventArgs> _stateChanged;
         private static event EventHandler<ServiceStateChangedEventArgs> _serviceStateChanged;
@@ -229,21 +217,21 @@ namespace Tizen.Uix.VoiceControl
         private static RecognitionResult s_recognitionResult;
 
         /// <summary>
-        /// Gets current language.
+        /// Gets the current language.
         /// A language is specified as an ISO 3166 alpha-2 two letter country-code
         /// followed by ISO 639-1 for the two-letter language code.
         /// For example, "ko_KR" for Korean, "en_US" for American English.
-        /// Empty string is returned incase of some internal error
+        /// An empty string is returned in case of some internal error.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// Current language in voice control.
+        /// The current language in voice control.
         /// </value>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
         /// <pre>
-        /// The State must be Initialized or Ready.
+        /// The state must be initialized or ready.
         /// </pre>
         public static string CurrentLanguage
         {
@@ -263,17 +251,17 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// Gets current state of voice control client.
+        /// Gets the current state of the voice control client.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// Current state of voice control client.
+        /// The current state of the voice control client.
         /// </value>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
         /// <pre>
-        /// The State must be Initialized or Ready.
+        /// The state must be initialized or ready.
         /// </pre>
         public static State State
         {
@@ -293,17 +281,17 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// Gets current state of voice control service.
+        /// Gets the current state of the voice control service.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// Current state of voice control service.
+        /// The current state of the voice control service.
         /// </value>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
         /// <pre>
-        /// The State must be Ready.
+        /// The state must be ready.
         /// </pre>
         public static ServiceState ServiceState
         {
@@ -337,20 +325,20 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/microphone
         /// </feature>
         /// <remarks>
-        /// Invocation name is used to activate background commands. The invocation name can be the same as the application name or any other phrase.
+        /// The invocation name is used to activate background commands. The invocation name can be same as the application name or any other phrase.
         /// For example, an application "Tizen Sample" has a background command, "Play music", and the invocation name of the application is set to "Tizen Sample".
         /// In order to activate the background command, users can say "Tizen Sample, Play music". The invocation name is dependent on the current language.
         /// For example, if the current language is "en_US"(English), the invocation name is also "en_US".
         /// If the current language is "ja_JP"(Japanese) and the invocation name is "en_US", the invocation name will not be recognized.
-        /// This function should be called before SetCommandList().
+        /// This function should be called before the SetCommandList().
         /// </remarks>
-        /// <param name="name">Invocation name that an application wants to be invoked by</param>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
-        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
-        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
-        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <param name="name">Invocation name to be invoked by an application.</param>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <pre>
-        /// The State must be Ready.
+        /// The state must be ready.
         /// </pre>
         public static void SetInvocationName(string name)
         {
@@ -363,7 +351,7 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// Initializes voice control.
+        /// Initializes the voice control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>
@@ -376,12 +364,12 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
-        /// <exception cref="OutOfMemoryException"> This Exception can be due to Out Of Memory. </exception>
-        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
-        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
+        /// <exception cref="OutOfMemoryException">This exception can be due to out Of memory.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <post>
-        /// The State will be Initialized.
+        /// The state will be initialized.
         /// </post>
         public static void Initialize()
         {
@@ -394,7 +382,7 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// Deinitializes voice control.
+        /// Deinitializes the voice control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>
@@ -407,10 +395,10 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
-        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
-        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         public static void Deinitialize()
         {
             ErrorCode error = VcDeinitialize();
@@ -435,15 +423,15 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
-        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
-        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <pre>
-        /// The State should be Initialized
+        /// The state must be initialized.
         /// </pre>
         /// <post>
-        /// The State will be Ready
+        /// The state must be ready.
         /// </post>
         public static void Prepare()
         {
@@ -469,14 +457,14 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
-        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
-        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <pre>
-        /// The State should be Ready
+        /// The state must be ready.
         /// </pre>
         /// <post>
-        /// The State should be Initialized
+        /// The state must be initialized.
         /// </post>
         public static void Unprepare()
         {
@@ -489,7 +477,7 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// Retrieves all supported languages.
+        /// Retrieves all the supported languages.
         /// A language is specified as an ISO 3166 alpha-2 two letter country-code
         /// followed by ISO 639-1 for the two-letter language code.
         /// For example, "ko_KR" for Korean, "en_US" for American English.
@@ -505,12 +493,12 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
-        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
-        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <pre>
-        /// The State should be Ready or Initialized
+        /// The state must be ready or initialized.
         /// </pre>
         public static IEnumerable<string> GetSupportedLanguages()
         {
@@ -536,13 +524,13 @@ namespace Tizen.Uix.VoiceControl
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
-        /// The Command List else null in case of no System Commands
+        /// The command list, else null in case of no system commands.
         /// </returns>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
         /// <privlevel>
-        /// public
+        /// public.
         /// </privlevel>
         /// <feature>
         /// http://tizen.org/feature/speech.control
@@ -550,14 +538,14 @@ namespace Tizen.Uix.VoiceControl
         /// </feature>
         /// <remarks>
         /// In the system command list, there are system commands predefined by product manufacturers.
-        /// Those commands have the highest priority. Therefore, the user can not set any commands same with the system commands.
+        /// Those commands have the highest priority. Therefore, the user cannot set any commands similar to system commands.
         /// </remarks>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Operation Failed. </exception>
-        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
-        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <pre>
-        /// The State should be Ready
+        /// The state must be ready.
         /// </pre>
         public static VoiceCommandList GetSystemCommandList()
         {
@@ -581,11 +569,11 @@ namespace Tizen.Uix.VoiceControl
 
         /// <summary>
         /// Requests to start the dialogue.
-        /// Using this function, the developer can request starting the dialogue to the framework.
-        /// When the developer requests the dialogue, two types of texts, dispText and uttText, can be sent by this function.dispText is a text for displaying, and uttText is that for uttering.
+        /// By using this function, the developer can start requesting the dialogue to the framework.
+        /// When the developer requests the dialogue, two types of texts, dispText and uttText can be sent by this function. dispText is a text for displaying and uttText is that for uttering.
         /// For example, if dispText is "October 10th" and uttText is "Today is October 10th.", "October 10th" will be displayed on the screen and "Today is October 10th." will be spoken.
         /// Also, the developer can set whether the dialogue starts automatically or not, using autoStart.
-        /// If the developer sets autoStart as true, the framework will start to record next speech and continue the dialogue.
+        /// If the developer sets autoStart as True, the framework will start to record the next speech and continue the dialogue.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>
@@ -599,17 +587,17 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/microphone
         /// </feature>
         /// <remarks>
-        /// If autoStart is true, the recognition will start again. In this case, it can be restarted up to 4 times.
+        /// If autoStart is True, the recognition will start again. In this case, it can be restarted up to 4 times.
         /// </remarks>
-        /// <param name="dispText"> Text to be displayed on the screen/// </param>
-        /// <param name="uttText">Text to be spoken</param>
-        /// <param name="autoStart">A variable for setting whether the dialog session will be restarted automatically or not</param>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
-        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
-        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
-        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <param name="dispText">Text to be displayed on the screen.</param>
+        /// <param name="uttText">Text to be spoken.</param>
+        /// <param name="autoStart">A variable for setting whether the dialog session will be restarted automatically or not.</param>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <pre>
-        /// The State should be Ready
+        /// The state must be ready.
         /// </pre>
         public static void RequestDialog(string dispText, string uttText, bool autoStart)
         {
@@ -622,7 +610,7 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// Sets command list.
+        /// Sets the command list.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>
@@ -637,16 +625,16 @@ namespace Tizen.Uix.VoiceControl
         /// </feature>
         /// <remarks>
         /// The command type is valid for CommandType 'Foreground' or 'Background'.
-        /// The matched commands of command list should be set and they should include type and command text at least.
+        /// The matched commands of the command list should be set and they should include type and command text at least.
         /// </remarks>
         /// <param name="list">Command list</param>
         /// <param name="type">Command type</param>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
-        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
-        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
-        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <pre>
-        /// The State should be Ready
+        /// The state must be ready.
         /// </pre>
         public static void SetCommandList(VoiceCommandList list, CommandType type)
         {
@@ -667,7 +655,7 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// Unsets command list.
+        /// Unsets the command list.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>
@@ -681,12 +669,12 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/microphone
         /// </feature>
         /// <param name="type">Command type</param>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
-        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
-        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
-        /// <exception cref="UnauthorizedAccessException"> This Exception can be due to Permission Denied. </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <pre>
-        /// The State should be Ready
+        /// The state should be ready.
         /// </pre>
         public static void UnsetCommandList(CommandType type)
         {
@@ -723,12 +711,12 @@ namespace Tizen.Uix.VoiceControl
         /// http://tizen.org/feature/speech.control
         /// http://tizen.org/feature/microphone
         /// </feature>
-        /// <exception cref="InvalidOperationException"> This Exception can be due to Invalid State. </exception>
-        /// <exception cref="ArgumentException"> This Exception can be due to Invalid Parameter. </exception>
-        /// <exception cref="NotSupportedException"> This Exception can be due to Not Supported. </exception>
-        /// <returns>The Recognition Result if possible else a null object</returns>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <returns>The recognition result if possible, else a null object.</returns>
         /// <pre>
-        /// The State should be Ready
+        /// The state must be ready.
         /// </pre>
         public static RecognitionResult GetResult()
         {
@@ -752,7 +740,7 @@ namespace Tizen.Uix.VoiceControl
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <pre>
-        /// The State should be Initialized
+        /// The state must be initialized.
         /// </pre>
         public static event EventHandler<RecognitionResultEventArgs> RecognitionResult
         {
@@ -795,11 +783,11 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// Event to be invoked when VoiceControl service state changes.
+        /// Event to be invoked when the VoiceControl service state changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <pre>
-        /// The State should be Initialized
+        /// The state must be initialized.
         /// </pre>
         public static event EventHandler<ServiceStateChangedEventArgs> ServiceStateChanged
         {
@@ -834,11 +822,11 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// Event to be invoked when VoiceControl client state changes.
+        /// Event to be invoked when the VoiceControl client state changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <pre>
-        /// The State should be Initialized
+        /// The state must be initialized.
         /// </pre>
         public static event EventHandler<StateChangedEventArgs> StateChanged
         {
@@ -877,7 +865,7 @@ namespace Tizen.Uix.VoiceControl
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <pre>
-        /// The State should be Initialized
+        /// The state must be initialized.
         /// </pre>
         public static event EventHandler<ErrorOccuredEventArgs> ErrorOccured
         {
@@ -914,11 +902,11 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// Event to be invoked when default laungage change.
+        /// Event to be invoked when the default language changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <pre>
-        /// The State should be Initialized
+        /// The state must be initialized.
         /// </pre>
         public static event EventHandler<CurrentLanguageChangedEventArgs> CurrentLanguageChanged
         {

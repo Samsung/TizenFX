@@ -21,7 +21,7 @@ using static Interop.Stt;
 namespace Tizen.Uix.Stt
 {
     /// <summary>
-    /// This class holds information related to the STT ErrorOccurred Event
+    /// This class holds information related to the STT ErrorOccurred event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ErrorOccurredEventArgs
@@ -157,7 +157,7 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
-        /// The Error Value
+        /// The error value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Error ErrorValue
@@ -171,7 +171,7 @@ namespace Tizen.Uix.Stt
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
-        /// string error message
+        /// String error message.
         /// </returns>
         public string ErrorMessage
         {

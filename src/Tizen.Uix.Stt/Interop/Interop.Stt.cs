@@ -19,12 +19,12 @@ using System;
 using System.Runtime.InteropServices;
 
 /// <summary>
-/// Partial Interop Class
+/// Partial interop class.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Stt Interop Class
+    /// Stt interop class.
     /// </summary>
     internal static class Stt
     {

@@ -20,7 +20,7 @@ using static Interop.VoiceControl;
 namespace Tizen.Uix.VoiceControl
 {
     /// <summary>
-    /// This class holds information related to the VoiceControl ErrorOccured Event
+    /// This class holds information related to the VoiceControl ErrorOccured event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ErrorOccuredEventArgs
@@ -146,7 +146,7 @@ namespace Tizen.Uix.VoiceControl
         }
 
         /// <summary>
-        /// The Error Value
+        /// The error value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Error ErrorValue
