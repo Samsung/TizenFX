@@ -28,11 +28,11 @@ namespace Tizen.Location
     }
 
     /// <summary>
-    /// A class which contains the functionality for obtaining geographical infomation and setting boundary condition.
-    /// Notifications on events like service becoming enabled or disabled, new position data being available
+    /// This class contains the functionality for obtaining the geographical infomation and setting the boundary condition.
+    /// Notifications on events like service becoming enabled or disabled, new position data being available,
     /// and others can also be acquired.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class Locator : IDisposable
     {
         private int _interval = 1;
@@ -64,9 +64,9 @@ namespace Tizen.Location
         private EventHandler<LocationChangedEventArgs> _locationChanged;
 
         /// <summary>
-        /// The constructor of Locator class.
+        /// The constructor of the Locator class.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="locationType"> The back-end positioning method to be used for LBS.</param>
         /// <feature>http://tizen.org/feature/location</feature>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
@@ -86,9 +86,9 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The destructor of Locator class.
+        /// The destructor of the Locator class.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         ~Locator()
         {
             Dispose(false);
@@ -96,9 +96,9 @@ namespace Tizen.Location
 
         /// <summary>
         /// The time interval between callback updates.
-        /// Should be in the range [1~120] seconds.
+        /// Should be in the range of 1~120 seconds.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         public int Interval
         {
@@ -123,10 +123,10 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The time interval between Distance based location callback updates.
-        /// Should be in the range [1~120] seconds.
+        /// The time interval between the distance-based location callback updates.
+        /// Should be in the range of 1~120 seconds.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         public int StayInterval
         {
@@ -151,10 +151,10 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The time interval between position collection in batch mode.
-        /// Should be in the range [1~255] seconds.
+        /// The time interval between the position collection in batch mode.
+        /// Should be in the range of 1~255 seconds.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         public int BatchInterval
         {
@@ -179,10 +179,10 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The time interval between batch callback updates. The BatchPeriod should be greater than or equal to the BatchInterval. If BatchPeriod is zero or smaller than BatchInterval, then batch mode will not working. In addition, sometimes the period may not work as you intended, the maximum permissible value for batch_period is device specific.
-        /// Should be in the range [0~60000] seconds.
+        /// The time interval between batch callback updates. The BatchPeriod should be greater than or equal to the BatchInterval. If the BatchPeriod is zero or smaller than the BatchInterval, then the batch mode will not work. In addition, sometimes the period may not work as you intended, the maximum permissible value for the batch period is device specific.
+        /// Should be in the range of 0~60000 seconds.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         public int BatchPeriod
         {
@@ -208,9 +208,9 @@ namespace Tizen.Location
 
         /// <summary>
         /// The distance between callback updates.
-        /// Should be in the range [1-120] meters.
+        /// Should be in the range of 1-120 meters.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         public double Distance
         {
@@ -235,9 +235,9 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// Gets the Location object.
+        /// Gets the location object.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Location Location
         {
             get
@@ -248,9 +248,9 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// Gets the type used to obtain Location data.
+        /// Gets the type used to obtain the location data.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public LocationType LocationType
         {
             get
@@ -261,11 +261,11 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// Gets the status whether mock location is enabled or not.
+        /// Gets the status whether the mock location is enabled or not.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location</privilege>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public bool EnableMock
         {
@@ -312,11 +312,11 @@ namespace Tizen.Location
         /// <summary>
         /// Starts the Location Manager which has been created using the specified method.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public void Start()
         {
@@ -346,7 +346,7 @@ namespace Tizen.Location
         /// Stops the Location Manager which has been activated using the specified method.
         /// Does not destroy the manager.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
@@ -365,12 +365,12 @@ namespace Tizen.Location
         /// <summary>
         /// Sets a mock location for the given location method.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="location"> The location object containing the mock location details.</param>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public void SetMockLocation(Location location)
         {
@@ -395,11 +395,11 @@ namespace Tizen.Location
         /// <summary>
         /// Clears a mock location for the given location method.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public void ClearMock()
         {
@@ -415,13 +415,13 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the details of the location asynchronously.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="timeout"> Timeout to stop requesting single location after(seconds).</param>
-        /// <returns> A task which contains the current location details</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="timeout"> Timeout to stop requesting a single location after (seconds).</param>
+        /// <returns> A task which contains the current location details.</returns>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public Task<Location> GetLocationAsync(int timeout)
         {
@@ -462,12 +462,12 @@ namespace Tizen.Location
         /// <summary>
         /// Gets the details of the location.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <returns> which contains the current location details.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <returns> Which contains the current location details.</returns>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public Location GetLocation()
         {
@@ -511,10 +511,10 @@ namespace Tizen.Location
 
 
         /// <summary>
-        /// Adds a bounds for a given locator.
+        /// Adds a bound for a given locator.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="locationBoundary"> The boundary object to be added to the locator.</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="locationBoundary">The boundary object to be added to the locator.</param>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
@@ -531,9 +531,9 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// Deletes a bounds for a given locator.
+        /// Deletes a bound for a given locator.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="locationBoundary"> The boundary object to be removed from the locator.</param>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
@@ -552,7 +552,7 @@ namespace Tizen.Location
         /// <summary>
         /// The overidden Dispose method of the IDisposable class.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         public void Dispose()
         {
@@ -582,9 +582,9 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// (event) ServiceStateChanged Event is invoked when the location service state is changed.
+        /// The ServiceStateChanged event is invoked when the location service state is changed.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public event EventHandler<ServiceStateChangedEventArgs> ServiceStateChanged
@@ -644,9 +644,9 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// (event) ZoneChanged is  invoked when the previously set boundary area is entered or left.
+        /// The ZoneChanged event is invoked when the previously set boundary area is entered or left.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public event EventHandler<ZoneChangedEventArgs> ZoneChanged
@@ -711,9 +711,9 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// (event) SetttingChanged is raised when the location setting is changed.
+        /// The SetttingChanged event is raised when the location setting is changed.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
@@ -774,10 +774,10 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// (event) DistanceBasedLocationChanged is raised with updated location information.
-        /// The callback will be invoked at minimum interval or minimum distance with updated position information.
+        /// The DistanceBasedLocationChanged event is raised with the updated location information.
+        /// The callback will be invoked at a minimum interval or minimum distance with the updated position information.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public event EventHandler<LocationChangedEventArgs> DistanceBasedLocationChanged
@@ -840,10 +840,10 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// (event)LocationUpdated is raised at defined intervals of time with updated location information.
+        /// The LocationUpdated event is raised at defined intervals of time with the updated location information.
         /// The callback will be invoked periodically.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public event EventHandler<LocationChangedEventArgs> LocationChanged

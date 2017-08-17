@@ -28,7 +28,7 @@ namespace Tizen.Location
     /// <summary>
     /// Location Manager error codes.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum LocationError
     {
         None = ErrorCode.None,/**< Successful */
@@ -46,7 +46,7 @@ namespace Tizen.Location
     /// <summary>
     /// Location Boundary error codes.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum LocationBoundError
     {
         None = ErrorCode.None,/**< Successful */

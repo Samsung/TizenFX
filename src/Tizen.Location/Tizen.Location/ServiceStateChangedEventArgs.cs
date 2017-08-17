@@ -19,14 +19,14 @@ using System;
 namespace Tizen.Location
 {
     /// <summary>
-    /// An extended EventArgs class which contains the changed location service state.
+    /// An extended EventArgs class contains the changed location service state.
     /// </summary>
     public class ServiceStateChangedEventArgs : EventArgs
     {
         /// <summary>
-        /// Class Constructor for ServiceStateChangedEventArgs class.
+        /// The class constructor for the ServiceStateChangedEventArgs class.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="state"> An enumeration of type LocationServiceState.</param>
         public ServiceStateChangedEventArgs(ServiceState state)
         {
@@ -34,9 +34,9 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// Get the Service state.
+        /// Get the service state.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public ServiceState ServiceState { get; private set; }
     }
 }

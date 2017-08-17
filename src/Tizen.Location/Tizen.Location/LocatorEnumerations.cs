@@ -22,7 +22,7 @@ namespace Tizen.Location
     /// <summary>
     /// Enumeration for the state of the location service.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum ServiceState
     {
         Disabled = 0, /**<Service is disabled.*/
@@ -30,9 +30,9 @@ namespace Tizen.Location
     }
 
     /// <summary>
-    /// Enumeration for the type of connection used in acquiring Location data.
+    /// Enumeration for the type of connection used in acquiring the location data.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum LocationType
     {
         Hybrid = 0, /**<This method selects the best method available at the moment.*/
@@ -44,7 +44,7 @@ namespace Tizen.Location
     /// <summary>
     /// Enumeration for the created boundary type.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum BoundaryType
     {
         Rectangle = 0, /**<Rectangular geographical area type. */
@@ -53,9 +53,9 @@ namespace Tizen.Location
     }
 
     /// <summary>
-    /// Enumeration for error code for Location manager.
+    /// Enumeration for the error code for location manager.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum BoundaryState
     {
         In = 0, /**< Boundary In (Zone In) */

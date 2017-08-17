@@ -21,12 +21,12 @@ namespace Tizen.Location
     public class ZoneChangedEventArgs : EventArgs
     {
         /// <summary>
-        /// Class Constructor for ZoneChangedEventArgs class.
+        /// The class constructor for the ZoneChangedEventArgs class.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="state"> An enumeration of type BoundaryState.</param>
-        /// <param name="latitude"> The latitude value[-90.0 ~ 90.0] (degrees).</param>
-        /// <param name="longitude"> The longitude value[-180.0 ~ 180.0] (degrees).</param>
+        /// <param name="latitude">The latitude value [-90.0 ~ 90.0] (degrees).</param>
+        /// <param name="longitude">The longitude value [-180.0 ~ 180.0] (degrees).</param>
         /// <param name="altitude"> The altitude value.</param>
         /// <param name="timestamp"> The timestamp value.</param>
         public ZoneChangedEventArgs(BoundaryState state, double latitude, double longitude, double altitude, DateTime timestamp)
@@ -39,33 +39,33 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// Get the Boundary State.
+        /// Gets the boundary state.
         /// </summary>
         /// <since_tizen>3</since_tizen>
         public BoundaryState BoundState { get; private set; }
 
         /// <summary>
-        /// Get the latitude.
+        /// Gets the latitude.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public double Latitude { get; private set; }
 
         /// <summary>
-        /// Get the longitude.
+        /// Gets the longitude.
         /// </summary>
         /// <since_tizen>3</since_tizen>
         public double Longitude { get; private set; }
 
         /// <summary>
-        /// Get the altitude.
+        /// Gets the altitude.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public double Altitude { get; private set; }
 
         /// <summary>
         /// Method to get the timestamp.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public DateTime Timestamp { get; private set; }
     }
 }

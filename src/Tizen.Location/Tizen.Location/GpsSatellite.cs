@@ -21,9 +21,9 @@ using System.Runtime.InteropServices;
 namespace Tizen.Location
 {
     /// <summary>
-    /// A class which contains the functionality for obtaining information about Gps satellites in range and in use.
+    /// This class contains the functionality for obtaining information about GPS satellites in the range and in use.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class GpsSatellite
     {
         private int _interval = 1;
@@ -36,10 +36,10 @@ namespace Tizen.Location
 
         /// <summary>
         /// The time interval between callback updates.
-        /// Should be in the range [1~120] seconds.
+        /// Should be in the range of 1~120 seconds.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="ArgumentException">Thrown when an an invalid argument is used.</exception>
         public int Interval
         {
             get
@@ -63,12 +63,12 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The NMEAData from the Satellite.
+        /// The NMEA data from the satellite.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public string Nmea
         {
@@ -94,13 +94,13 @@ namespace Tizen.Location
 
 
         /// <summary>
-        /// The Count of Active satellites.
+        /// The count of active satellites.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public int ActiveCount
         {
@@ -126,13 +126,13 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The Count of satellites in view.
+        /// The count of satellites in view.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public int InViewCount
         {
@@ -158,13 +158,13 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The list of satellites/last recorded satellites in view.
+        /// The list of satellites or last recorded satellites in view.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public IList<SatelliteInformation> Satellites
         {
@@ -199,10 +199,10 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The constructor of GpsSatellite class.
+        /// The constructor of the GpsSatellite class.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="locator"> Locator object initilized using Gps.</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="locator">The locator object initilized using GPS.</param>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         public GpsSatellite(Locator locator)
         {
@@ -227,13 +227,13 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// (event) SatelliteStatusUpdated is raised whenever satellite information is updated.
+        /// The SatelliteStatusUpdated event is raised whenever the satellite information is updated.
         /// The callback will be invoked periodically (every Interval seconds).
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the location.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public event EventHandler<SatelliteStatusChangedEventArgs> SatelliteStatusUpdated
         {
@@ -300,20 +300,20 @@ namespace Tizen.Location
     }
 
     /// <summary>
-    /// A class which contains the information of the Satellite under consideration.
+    /// This class contains the information of the satellite under consideration.
     /// </summary>
-    /// <since_tizen>3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class SatelliteInformation
     {
         /// <summary>
-        /// Class Constructor for SatelliteInformation class.
+        /// The Class constructor for the SatelliteInformation class.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
-        /// <param name="azimuth"> The azimuth value of the satellite in degrees.</param>
-        /// <param name="elevation"> The elevation of the satellite in meters.</param>
-        /// <param name="prn"> The Prn value of the satellite.</param>
-        /// <param name="snr"> The SNR value of the satellite in dB.</param>
-        /// <param name="active"> The flag signaling if satellite is in use.</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="azimuth">The azimuth value of the satellite in degrees.</param>
+        /// <param name="elevation">The elevation of the satellite in meters.</param>
+        /// <param name="prn">The PRN value of the satellite.</param>
+        /// <param name="snr">The SNR value of the satellite in dB.</param>
+        /// <param name="active">The flag signaling if the satellite is in use.</param>
         public SatelliteInformation(uint azimuth, uint elevation, uint prn, uint snr, bool active)
         {
             Azimuth = azimuth;
@@ -324,36 +324,36 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The Azimuth information of the Satellite.
+        /// The azimuth information of the satellite.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="azimuth"> The azimuth value of the satellite in degrees.</param>
         public uint Azimuth { get; private set; }
 
         /// <summary>
-        /// The Elevation information of the Satellite.
+        /// The elevation information of the satellite.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="azimuth"> The azimuth value of the satellite in degrees.</param>
         public uint Elevation { get; private set; }
 
         /// <summary>
-        /// The PRN of the Satellite.
+        /// The PRN of the satellite.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         /// <param name="azimuth"> The azimuth value of the satellite in degrees.</param>
         public uint Prn { get; private set; }
 
         /// <summary>
-        /// The SNR of the Satellite.
+        /// The SNR of the satellite.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public uint Snr { get; private set; }
 
         /// <summary>
-        /// The operational status of the Satellite.
+        /// The operational status of the satellite.
         /// </summary>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public bool Active { get; private set; }
     }
 }
