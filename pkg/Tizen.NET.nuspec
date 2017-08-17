@@ -196,6 +196,9 @@
     <file src="bin\Tizen.Tracer.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Tracer.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Tracer.xml" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Uix.InputMethod.dll" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Uix.InputMethod.pdb" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Uix.InputMethod.xml" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Uix.InputMethodManager.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Uix.InputMethodManager.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Uix.InputMethodManager.xml" target="lib\netstandard1.6" />
