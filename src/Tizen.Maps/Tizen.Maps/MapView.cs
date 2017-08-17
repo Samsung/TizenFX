@@ -540,7 +540,7 @@ namespace Tizen.Maps
         /// Gets a list of the map object added to map view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public IEnumerable<MapObject> Children
+        public new IEnumerable<MapObject> Children
         {
             get
             {
