@@ -38,7 +38,6 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the all devices currently connected.
         /// </summary>
-        /// <param name="options">The audio device options.</param>
         /// <returns>An IEnumerable&lt;AudioDevice&gt; that contains connected devices.</returns>
         public static IEnumerable<AudioDevice> GetConnectedDevices()
         {

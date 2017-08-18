@@ -36,6 +36,7 @@ namespace Tizen.Multimedia
         /// be passed to other APIs related to playback or recording. (e.g., <see cref="Player"/>, <see cref="WavPlayer"/> , etc.)
         /// </remarks>
         /// <param name="streamType">Type of sound stream for which policy needs to be created.</param>
+        /// <exception cref="ArgumentException"><paramref name="streamType"/> is invalid.</exception>
         public AudioStreamPolicy(AudioStreamType streamType)
         {
             ValidationUtil.ValidateEnum(typeof(AudioStreamType), streamType, nameof(streamType));
@@ -70,6 +71,7 @@ namespace Tizen.Multimedia
         /// it returns <see cref="AudioVolumeType.None"/>.
         /// </remarks>
         /// <value>The <see cref="AudioVolumeType"/> of the policy instance.</value>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         public AudioVolumeType VolumeType
         {
             get
@@ -99,12 +101,14 @@ namespace Tizen.Multimedia
         /// Gets the state of focus for playback.
         /// </summary>
         /// <value>The state of focus for playback.</value>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         public AudioStreamFocusState PlaybackFocusState => GetFocusState(true);
 
         /// <summary>
         /// Gets the state of focus for recording.
         /// </summary>
         /// <value>The state of focus for recording.</value>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         public AudioStreamFocusState RecordingFocusState => GetFocusState(false);
 
         /// <summary>
@@ -118,6 +122,7 @@ namespace Tizen.Multimedia
         /// If you don't want to reacquire the focus you've lost automatically,
         /// disable the focus reacquisition.
         /// </remarks>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         public bool FocusReacquisitionEnabled
         {
             get
@@ -152,6 +157,15 @@ namespace Tizen.Multimedia
         /// <param name="options">The focuses that you want to acquire.</param>
         /// <param name="behaviors">The requesting behaviors.</param>
         /// <param name="extraInfo">The extra information for this request. This value can be null.</param>
+        /// <exception cref="ArgumentException"><paramref name="options"/> is zero.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <paramref name="options"/> contain a invalid bit.\n
+        ///     -or-\n
+        ///     <paramref name="behaviors"/> contain a invalid bit.\n
+        /// </exception>
+        /// <exception cref="InvalidOperationException">The focus has already been acquired.</exception>
+        /// <exception cref="AudioPolicyException">Called in <see cref="FocusStateChanged"/> raised by releasing focus.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         public void AcquireFocus(AudioStreamFocusOptions options, AudioStreamBehaviors behaviors, string extraInfo)
         {
             if (options == 0)
@@ -179,6 +193,14 @@ namespace Tizen.Multimedia
         /// <param name="options">The focus mask that you want to release.</param>
         /// <param name="behaviors">The requesting behaviors.</param>
         /// <param name="extraInfo">The extra information for this request. This value can be null.</param>
+        /// <exception cref="ArgumentException"><paramref name="options"/> is zero.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <paramref name="options"/> contain a invalid bit.\n
+        ///     -or-\n
+        ///     <paramref name="behaviors"/> contain a invalid bit.\n
+        /// </exception>
+        /// <exception cref="InvalidOperationException">The focus has not been acquired.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         public void ReleaseFocus(AudioStreamFocusOptions options, AudioStreamBehaviors behaviors, string extraInfo)
         {
             if (options == 0)
@@ -208,6 +230,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <seealso cref="AddDeviceForStreamRouting(AudioDevice)"/>
         /// <seealso cref="RemoveDeviceForStreamRouting(AudioDevice)"/>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         public void ApplyStreamRouting()
         {
             Interop.AudioStreamPolicy.ApplyStreamRouting(Handle).Validate("Failed to apply stream routing");
@@ -220,6 +243,13 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// The available <see cref="AudioStreamType"/> is <see cref="AudioStreamType.Voip"/> and <see cref="AudioStreamType.MediaExternalOnly"/>.
         /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        ///     The device is not connected.\n
+        ///     -or-\n
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="device"> is null.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <seealso cref="AudioManager.GetConnectedDevices()"/>
         /// <seealso cref="ApplyStreamRouting"/>
         public void AddDeviceForStreamRouting(AudioDevice device)
@@ -228,11 +258,12 @@ namespace Tizen.Multimedia
             {
                 throw new ArgumentNullException(nameof(device));
             }
+
             var ret = Interop.AudioStreamPolicy.AddDeviceForStreamRouting(Handle, device.Id);
 
             if (ret == AudioManagerError.NoData)
             {
-                throw new ArgumentException("The device seems not connected.", nameof(device));
+                throw new InvalidOperationException("The device seems not connected.");
             }
 
             ret.Validate("Failed to add device for stream routing");
@@ -245,6 +276,10 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// The available <see cref="AudioStreamType"/> is <see cref="AudioStreamType.Voip"/> and <see cref="AudioStreamType.MediaExternalOnly"/>.
         /// </remarks>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="device"> is null.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <seealso cref="AudioManager.GetConnectedDevices()"/>
         public void RemoveDeviceForStreamRouting(AudioDevice device)
         {
             if (device == null)
