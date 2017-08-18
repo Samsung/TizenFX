@@ -200,7 +200,7 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Event that occurs when there is change in HDR capture progress.
-        /// Check whether <see cref="IsHdrCaptureSupported"/> is supported or not before add this EventHandler.
+        /// Check whether <see cref="CameraCapabilities.IsHdrCaptureSupported"/> is supported or not before add this EventHandler.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="NotSupportedException">In case of HDR feature is not supported.</exception>
@@ -598,8 +598,7 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Starts capturing and drawing preview frames on the screen.
-        /// The display handle must be set using <see cref="CameraDisplaySettings.SetInfo"/>
-        /// before using this method.
+        /// The display property must be set using <see cref="Display"/> before using this method.
         /// If needed set fps <see cref="CameraSettings.PreviewFps"/>, preview resolution
         /// <see cref="CameraSettings.PreviewResolution"/>, or preview format <see cref="CameraSettings.PreviewPixelFormat"/>
         /// before using this method.
@@ -688,7 +687,7 @@ namespace Tizen.Multimedia
         /// <param name="count">The number of still images.</param>
         /// <param name="interval">The interval of the capture(milliseconds).</param>
         /// <param name="cancellationToken">The cancellation token to cancel capturing.</param>
-        /// <seealso cref="System.Threading.CancellationToken"/>
+        /// <seealso cref="CancellationToken"/>
         /// <remarks>
         /// If this is not supported zero shutter lag occurs. The capture resolution could be
         /// changed to the preview resolution. This function causes the transition of the camera state

@@ -500,7 +500,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
-        /// It returns a list containing all the supported <see cref="CameraFlip"/>.
+        /// It returns a list containing all the supported <see cref="Flips"/>.
         /// </returns>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public IEnumerable<Flips> SupportedStreamFlips

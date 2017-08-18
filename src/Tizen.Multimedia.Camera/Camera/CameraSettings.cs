@@ -780,7 +780,7 @@ namespace Tizen.Multimedia
         /// The stream flip.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>A <see cref="CameraFlip"/> that specifies camera flip type.</value>
+        /// <value>A <see cref="Flips"/> that specifies camera flip type.</value>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
         public Flips StreamFlip
         {

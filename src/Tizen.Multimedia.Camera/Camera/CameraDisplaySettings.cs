@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 using Native = Interop.CameraDisplay;
 
 namespace Tizen.Multimedia
@@ -123,7 +124,7 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
-        /// <value>A <see cref="CameraFlip"/> that specifies camera flip type.</value>
+        /// <value>A <see cref="Flips"/> that specifies camera flip type.</value>
         /// <exception cref="InvalidOperationException">Display type is incorrect.</exception>
         /// <exception cref="ObjectDisposedException" > The camera already has been disposed.</exception>
         public Flips Flip
