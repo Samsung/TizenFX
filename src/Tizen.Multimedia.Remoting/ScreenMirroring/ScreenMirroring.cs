@@ -41,10 +41,7 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
-                if (_disposed)
-                {
-                    throw new ObjectDisposedException(nameof(ScreenMirroring));
-                }
+                ThrowIfDisposed();
 
                 return _handle;
             }
@@ -138,6 +135,8 @@ namespace Tizen.Multimedia.Remoting
 
         internal void ThrowIfNotConnected()
         {
+            ThrowIfDisposed();
+
             if (IsConnected == false)
             {
                 throw new InvalidOperationException("ScreenMirroring is not connected.");
@@ -396,6 +395,14 @@ namespace Tizen.Multimedia.Remoting
             Native.Unprepare(Handle).ThrowIfError("Failed to reset.");
 
             DetachDisplay();
+        }
+
+        private void ThrowIfDisposed()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(ScreenMirroring));
+            }
         }
 
         /// <summary>
