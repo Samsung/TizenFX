@@ -342,6 +342,14 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal global::System.Runtime.InteropServices.HandleRef GetBaseHandleCPtrHandleRef
+        {
+            get
+            {
+                return swigCPtr;
+            }
+        }
+
     }
 
 }
