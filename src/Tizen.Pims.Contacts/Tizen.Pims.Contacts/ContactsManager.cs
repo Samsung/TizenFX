@@ -15,8 +15,7 @@
 */
 
 using System;
-using System.Collections.Generic;
-using static Interop.Contacts;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Contacts
 {
@@ -57,8 +56,8 @@ namespace Tizen.Pims.Contacts
     {
         private ContactsDatabase _db = null;
         private Object thisLock = new Object();
-        private Interop.Setting.DisplayOrderChangedCallback _displayOrderDelegate;
-        private Interop.Setting.SortingOrderChangedCallback _sortingOrderDelegate;
+        private Interop.Setting.DisplayOrderChangedCallback _displayOrderChangedCallback;
+        private Interop.Setting.SortingOrderChangedCallback _sortingOrderChangedCallback;
 
         /// <summary>
         /// Creates a ContactsManager.
@@ -66,7 +65,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public ContactsManager()
         {
-            int error = Interop.Contacts.Connect();
+            int error = Interop.Service.Connect();
             if ((int)ContactsError.None != error)
             {
                 Log.Error(Globals.LogTag, "Connect Failed with error " + error);
@@ -75,6 +74,9 @@ namespace Tizen.Pims.Contacts
             _db = new ContactsDatabase();
         }
 
+        /// <summary>
+        /// Destructor
+        /// </summary>
         ~ContactsManager()
         {
             Dispose(false);
@@ -83,11 +85,22 @@ namespace Tizen.Pims.Contacts
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 
+        /// <summary>
+        /// Releases all resources used by the ContactsManager.
+        /// </summary>
+        /// <param name="disposing">Disposing by User</param>
         protected virtual void Dispose(bool disposing)
         {
+            if (disposing)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here
+            }
+
             if (!disposedValue)
             {
-                int error = Interop.Contacts.Disconnect();
+                int error = Interop.Service.Disconnect();
                 if ((int)ContactsError.None != error)
                 {
                     Log.Error(Globals.LogTag, "Disconnect Failed with error " + error);
@@ -104,11 +117,12 @@ namespace Tizen.Pims.Contacts
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
         #endregion
 
-        private event EventHandler<NameDisplayOrderChangedEventArgs> _nameDisplayOrderChanged;
-        private event EventHandler<NameSortingOrderChangedEventArgs> _nameSortingOrderChanged;
+        private EventHandler<NameDisplayOrderChangedEventArgs> _nameDisplayOrderChanged;
+        private EventHandler<NameSortingOrderChangedEventArgs> _nameSortingOrderChanged;
 
         /// <summary>
         /// (event) NameDisplayOrderChanged is raised when changing setting value of contacts name display order
@@ -120,9 +134,9 @@ namespace Tizen.Pims.Contacts
             {
                 lock (thisLock)
                 {
-                    if (_displayOrderDelegate == null)
+                    if (_displayOrderChangedCallback == null)
                     {
-                        _displayOrderDelegate = (ContactDisplayOrder nameDisplayOrder, IntPtr userData) =>
+                        _displayOrderChangedCallback = (ContactDisplayOrder nameDisplayOrder, IntPtr userData) =>
                         {
                             NameDisplayOrderChangedEventArgs args = new NameDisplayOrderChangedEventArgs(nameDisplayOrder);
                             _nameDisplayOrderChanged?.Invoke(this, args);
@@ -131,7 +145,7 @@ namespace Tizen.Pims.Contacts
 
                     if (_nameDisplayOrderChanged == null)
                     {
-                        int error = Interop.Setting.AddNameDisplayOrderChangedCB(_displayOrderDelegate, IntPtr.Zero);
+                        int error = Interop.Setting.AddNameDisplayOrderChangedCB(_displayOrderChangedCallback, IntPtr.Zero);
                         if ((int)ContactsError.None != error)
                         {
                             Log.Error(Globals.LogTag, "Add NameDisplayOrderChangedCB Failed with error " + error);
@@ -150,7 +164,7 @@ namespace Tizen.Pims.Contacts
 
                     if (_nameDisplayOrderChanged == null)
                     {
-                        int error = Interop.Setting.RemoveNameDisplayOrderChangedCB(_displayOrderDelegate, IntPtr.Zero);
+                        int error = Interop.Setting.RemoveNameDisplayOrderChangedCB(_displayOrderChangedCallback, IntPtr.Zero);
                         if ((int)ContactsError.None != error)
                         {
                             Log.Error(Globals.LogTag, "Remove StateChanged Failed with error " + error);
@@ -170,9 +184,9 @@ namespace Tizen.Pims.Contacts
             {
                 lock (thisLock)
                 {
-                    if (_sortingOrderDelegate == null)
+                    if (_sortingOrderChangedCallback == null)
                     {
-                        _sortingOrderDelegate = (ContactSortingOrder nameSortingOrder, IntPtr userData) =>
+                        _sortingOrderChangedCallback = (ContactSortingOrder nameSortingOrder, IntPtr userData) =>
                         {
                             NameSortingOrderChangedEventArgs args = new NameSortingOrderChangedEventArgs(nameSortingOrder);
                             _nameSortingOrderChanged?.Invoke(this, args);
@@ -181,7 +195,7 @@ namespace Tizen.Pims.Contacts
 
                     if (_nameSortingOrderChanged == null)
                     {
-                        int error = Interop.Setting.AddNameSortingOrderChangedCB(_sortingOrderDelegate, IntPtr.Zero);
+                        int error = Interop.Setting.AddNameSortingOrderChangedCB(_sortingOrderChangedCallback, IntPtr.Zero);
                         if ((int)ContactsError.None != error)
                         {
                             Log.Error(Globals.LogTag, "Add NameSortingOrderChangedCB Failed with error " + error);
@@ -200,7 +214,7 @@ namespace Tizen.Pims.Contacts
 
                     if (_nameSortingOrderChanged == null)
                     {
-                        int error = Interop.Setting.RemoveNameSortingOrderChangedCB(_sortingOrderDelegate, IntPtr.Zero);
+                        int error = Interop.Setting.RemoveNameSortingOrderChangedCB(_sortingOrderChangedCallback, IntPtr.Zero);
                         if ((int)ContactsError.None != error)
                         {
                             Log.Error(Globals.LogTag, "Remove StateChanged Failed with error " + error);
@@ -213,6 +227,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// A ContactsDatabase
         /// </summary>
+        /// <value>A ContactsDatabase</value>
         public ContactsDatabase Database
         {
             get
@@ -224,11 +239,13 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// A setting value of contacts name display order
         /// </summary>
+        /// <value>A setting value of contacts name display order</value>
         /// <remarks>
         /// DisplayName of contacts returned from database are determined by this property
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public ContactDisplayOrder NameDisplayOrder
         {
             get
@@ -254,11 +271,13 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// A setting value of contacts name sorting order
         /// </summary>
+        /// <value>A setting value of contacts name sorting order</value>
         /// <remarks>
         /// Contacts returned from database are first sorted based on the first name or last name by this property
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public ContactSortingOrder NameSortingOrder
         {
             get

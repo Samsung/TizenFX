@@ -14,18 +14,23 @@
 * limitations under the License.
 */
 
+using System;
+
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
     /// Event arguments passed when setting value of contacts name sorting order is changed
     /// </summary>
-    public class NameSortingOrderChangedEventArgs
+    public class NameSortingOrderChangedEventArgs : EventArgs
     {
         internal NameSortingOrderChangedEventArgs(ContactSortingOrder SortingOrder)
         {
             this.NameSortingOrder = SortingOrder;
         }
 
+        /// <summary>
+        /// A setting value of contacts name sorting order
+        /// </summary>
         public ContactSortingOrder NameSortingOrder
         {
             get;

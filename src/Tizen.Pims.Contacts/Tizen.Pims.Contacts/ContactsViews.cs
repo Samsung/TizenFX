@@ -14,13 +14,14 @@
 * limitations under the License.
 */
 
+
 using System;
-using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
-    /// This class provides information about views with properties.
+    /// This namespace provides information about views with properties.
     /// </summary>
     /// <remarks>
     ///  Views are provided to access and handle entities. A view is a structure, which has property elements.
@@ -28,356 +29,366 @@ namespace Tizen.Pims.Contacts
     ///  A "record" represents a single row of the views.
     ///  A record can have basic properties of five types: integer, string, boolean, long, double.
     /// </remarks>
-    public static class ContactsViews
+    namespace ContactsViews
     {
-        private const uint PropertyAddressBook = 0x00100000;
-        private const uint PropertyGroup = 0x00200000;
-        private const uint PropertyPerson = 0x00300000;
-        private const uint PropertyData = 0x00600000;
-        private const uint PropertySpeedDial =  0x00700000;
-        private const uint PropertyPhonelog = 0x00800000;
-        private const uint PropertyUpdateInfo = 0x00900000;
-        private const uint PropertyPhonelogStat = 0x00B00000;
-
-        private const uint PropertyContact = 0x01000000;
-        private const uint PropertyName = 0x01100000;
-        private const uint PropertyNumber = 0x01200000;
-        private const uint PropertyEmail = 0x01300000;
-        private const uint PropertyAddress = 0x01400000;
-        private const uint PropertyUrl = 0x01500000;
-        private const uint PropertyEvent = 0x01600000;
-        private const uint PropertyGroupRelation = 0x01700000;
-        private const uint PropertyRelationship = 0x01800000;
-        private const uint PropertyCompany = 0x01900000;
-        private const uint PropertyNickname = 0x01A00000;
-        private const uint PropertyMessenger = 0x01B00000;
-        private const uint PropertyNote = 0x01C00000;
-        private const uint PropertyProfile = 0x01D00000;
-        private const uint PropertyImage = 0x01E00000;
-        private const uint PropertyExtension = 0x01F00000;
-        private const uint PropertyMyProfile = 0x02000000;
-        private const uint PropertyActivityPhoto = 0x02100000;
-        private const uint PropertySip = 0x02200000;
-
-	/* data_type mask 0x000FF000 */
-        private const uint DataTypeBool = 0x00010000;
-        private const uint DataTypeInt = 0x00020000;
-        private const uint DataTypeLong = 0x00030000;
-        private const uint DataTypeString = 0x00040000;
-        private const uint DataTypeDouble = 0x00050000;
-        private const uint DataTypeRecord = 0x00060000;
-
-        private const uint ReadOnly = 0x00001000;
-
-        private enum PropertyIds : uint
+        internal static class Property
         {
-            /* addressbook */
-            AddressbookId = (PropertyAddressBook | DataTypeInt | ReadOnly),
-            AddressbookAccountId = (PropertyAddressBook | DataTypeInt) + 1,
-            AddressbookName = (PropertyAddressBook | DataTypeString) + 2,
-            AddressbookMode = (PropertyAddressBook | DataTypeInt) + 3,
+            private const uint AddressBook = 0x00100000;
+            private const uint Group = 0x00200000;
+            private const uint Person = 0x00300000;
+            private const uint Data = 0x00600000;
+            private const uint SpeedDial = 0x00700000;
+            private const uint Phonelog = 0x00800000;
+            private const uint UpdateInfo = 0x00900000;
+            private const uint PhonelogStat = 0x00B00000;
 
-            /* group */
-            GroupId = (PropertyGroup | DataTypeInt | ReadOnly),
-            GroupAddressbookId = (PropertyGroup | DataTypeInt) + 1,
-            GroupName = (PropertyGroup | DataTypeString) + 2,
-            GroupRingtone = (PropertyGroup | DataTypeString) + 3,
-            GroupImage = (PropertyGroup | DataTypeString) + 4,
-            GroupVibration = (PropertyGroup | DataTypeString) + 5,
-            GroupExtraData = (PropertyGroup | DataTypeString) + 6,
-            GroupIsReadOnly = (PropertyGroup | DataTypeBool) + 7,
-            GroupMessageAlert = (PropertyGroup | DataTypeString) + 8,
+            private const uint Contact = 0x01000000;
+            private const uint Name = 0x01100000;
+            private const uint Number = 0x01200000;
+            private const uint Email = 0x01300000;
+            private const uint Address = 0x01400000;
+            private const uint URL = 0x01500000;
+            private const uint Event = 0x01600000;
+            private const uint GroupRelation = 0x01700000;
+            private const uint Relationship = 0x01800000;
+            private const uint Company = 0x01900000;
+            private const uint Nickname = 0x01A00000;
+            private const uint Messenger = 0x01B00000;
+            private const uint Note = 0x01C00000;
+            private const uint Profile = 0x01D00000;
+            private const uint Image = 0x01E00000;
+            private const uint Extension = 0x01F00000;
+            private const uint MyProfile = 0x02000000;
+            private const uint ActivityPhoto = 0x02100000;
+            private const uint Sip = 0x02200000;
 
-            /* person */
-            PersonId = (PropertyPerson | DataTypeInt | ReadOnly),
-            PersonDisplayName = (PropertyPerson | DataTypeString | ReadOnly) + 1,
-            PersonDisplayContactId = (PropertyPerson | DataTypeInt) + 2,
-            PersonRingtone = (PropertyPerson | DataTypeString) + 3,
-            PersonThumbnail = (PropertyPerson | DataTypeString | ReadOnly) + 4,
-            PersonVibration = (PropertyPerson | DataTypeString) + 5,
-            PersonIsFavorite = (PropertyPerson | DataTypeBool) + 6,
-            PersonFavoritePriority = (PropertyPerson | DataTypeDouble | ReadOnly) + 7,
-            PersonLinkCount = (PropertyPerson | DataTypeInt | ReadOnly) + 8,
-            PersonAddressbookIds = (PropertyPerson | DataTypeString | ReadOnly) + 9,
-            PersonHasPhoneNumber = (PropertyPerson | DataTypeBool | ReadOnly) + 10,
-            PersonHasEmail = (PropertyPerson | DataTypeBool | ReadOnly) + 11,
-            PersonDisplayNameIndex = (PropertyPerson | DataTypeString | ReadOnly) + 12,
-            PersonStatus = (PropertyPerson | DataTypeString | ReadOnly) + 13,
-            PersonMessageAlert = (PropertyPerson | DataTypeString) + 14,
-            PersonSnippetType = (PropertyPerson | DataTypeInt | ReadOnly) + 15,
-            PersonSnippetString = (PropertyPerson | DataTypeString | ReadOnly) + 16,
+            /* data_type mask 0x000FF000 */
+            private const uint DataTypeBool = 0x00010000;
+            private const uint DataTypeInt = 0x00020000;
+            private const uint DataTypeLong = 0x00030000;
+            private const uint DataTypeString = 0x00040000;
+            private const uint DataTypeDouble = 0x00050000;
+            private const uint DataTypeRecord = 0x00060000;
 
-            /* person-stat */
-            PersonUsageType = (PropertyPerson | DataTypeInt) + 100,
-            PersonTimesUsed = (PropertyPerson | DataTypeInt) + 101,
+            private const uint ReadOnly = 0x00001000;
 
-            /* simple contact : read only */
-            /* contact */
-            ContactId = (PropertyContact | DataTypeInt | ReadOnly),
-            ContactDisplayName = (PropertyContact | DataTypeString | ReadOnly) + 1,
-            ContactDisplaySourceDataId = (PropertyContact | DataTypeInt | ReadOnly) + 2,
-            ContactAddressbookId = (PropertyContact | DataTypeInt) + 3,
-            ContactRingtone = (PropertyContact | DataTypeString) + 4,
-            ContactImage = (PropertyContact | DataTypeRecord) + 5,
-            ContactThumbnail = (PropertyContact | DataTypeString | ReadOnly) + 6,
-            ContactIsFavorite = (PropertyContact | DataTypeBool) + 7,
-            ContactHasPhoneNumber = (PropertyContact | DataTypeBool | ReadOnly) + 8,
-            ContactHasEmail = (PropertyContact | DataTypeBool | ReadOnly) + 9,
-            ContactPersonId = (PropertyContact | DataTypeInt) + 10,
-            ContactUid = (PropertyContact | DataTypeString) + 11,
-            ContactVibration = (PropertyContact | DataTypeString) + 12,
-            ContactChangedTime = (PropertyContact | DataTypeInt | ReadOnly) + 13,
-            ContactName = (PropertyContact | DataTypeRecord) + 14,
-            ContactCompany = (PropertyContact | DataTypeRecord) + 15,
-            ContactNote = (PropertyContact | DataTypeRecord) + 16,
-            ContactNumber = (PropertyContact | DataTypeRecord) + 17,
-            ContactEmail = (PropertyContact | DataTypeRecord) + 18,
-            ContactEvent = (PropertyContact | DataTypeRecord) + 19,
-            ContactMessenger = (PropertyContact | DataTypeRecord) + 20,
-            ContactAddress = (PropertyContact | DataTypeRecord) + 21,
-            ContactUrl = (PropertyContact | DataTypeRecord) + 22,
-            ContactNickname = (PropertyContact | DataTypeRecord) + 23,
-            ContactProfile = (PropertyContact | DataTypeRecord) + 24,
-            ContactRelationship = (PropertyContact | DataTypeRecord) + 25,
-            ContactGroupRelation = (PropertyContact | DataTypeRecord) + 26,
-            ContactExtension = (PropertyContact | DataTypeRecord) + 27,
-            ContactLinkMode = (PropertyContact | DataTypeInt) + 28,
-            ContactMessageAlert = (PropertyContact | DataTypeString) + 29,
-            ContactSip = (PropertyContact | DataTypeRecord) + 30,
+            internal enum Id : uint
+            {
+                None,
 
-            /* my_profile */
-            MyProfileId = (PropertyMyProfile | DataTypeInt | ReadOnly),
-            MyProfileDisplayName = (PropertyMyProfile | DataTypeString | ReadOnly) + 1,
-            MyProfileAddressbookId = (PropertyMyProfile | DataTypeInt) + 2,
-            MyProfileImage = (PropertyMyProfile | DataTypeRecord) + 3,
-            MyProfileThumbnail = (PropertyMyProfile | DataTypeString | ReadOnly) + 4,
-            MyProfileUid = (PropertyMyProfile | DataTypeString) + 5,
-            MyProfileChangedTime = (PropertyMyProfile | DataTypeInt) + 6,
-            MyProfileName = (PropertyMyProfile | DataTypeRecord) + 7,
-            MyProfileCompany = (PropertyMyProfile | DataTypeRecord) + 8,
-            MyProfileNote = (PropertyMyProfile | DataTypeRecord) + 9,
-            MyProfileNumber = (PropertyMyProfile | DataTypeRecord) + 10,
-            MyProfileEmail = (PropertyMyProfile | DataTypeRecord) + 11,
-            MyProfileEvent = (PropertyMyProfile | DataTypeRecord) + 12,
-            MyProfileMessenger = (PropertyMyProfile | DataTypeRecord) + 13,
-            MyProfileAddress = (PropertyMyProfile | DataTypeRecord) + 14,
-            MyProfileUrl = (PropertyMyProfile | DataTypeRecord) + 15,
-            MyProfileNickname = (PropertyMyProfile | DataTypeRecord) + 16,
-            MyProfileProfile = (PropertyMyProfile | DataTypeRecord) + 17,
-            MyProfileRelationship = (PropertyMyProfile | DataTypeRecord) + 18,
-            MyProfileExtension = (PropertyMyProfile | DataTypeRecord) + 19,
-            MyProfileSip = (PropertyMyProfile | DataTypeRecord) + 20,
+                /* address book */
+                AddressBookId = (AddressBook | DataTypeInt | ReadOnly),
+                AddressBookAccountId = (AddressBook | DataTypeInt) + 1,
+                AddressBookName = (AddressBook | DataTypeString) + 2,
+                AddressBookMode = (AddressBook | DataTypeInt) + 3,
 
-            /* data */
-            DataId = (PropertyData | DataTypeInt),
-            DataContactId = (PropertyData | DataTypeInt) + 1,
-            DataType = (PropertyData | DataTypeInt) + 2,
-            DataIsPrimaryDefault = (PropertyData | DataTypeBool) + 3,
-            DataIsDefault = (PropertyData | DataTypeBool) + 4,
-            DataData1 = (PropertyData | DataTypeInt) + 5,
-            DataData2 = (PropertyData | DataTypeString) + 6,
-            DataData3 = (PropertyData | DataTypeString) + 7,
-            DataData4 = (PropertyData | DataTypeString) + 8,
-            DataData5 = (PropertyData | DataTypeString) + 9,
-            DataData6 = (PropertyData | DataTypeString) + 10,
-            DataData7 = (PropertyData | DataTypeString) + 11,
-            DataData8 = (PropertyData | DataTypeString) + 12,
-            DataData9 = (PropertyData | DataTypeString) + 13,
-            DataData10 = (PropertyData | DataTypeString) + 14,
+                /* group */
+                GroupId = (Group | DataTypeInt | ReadOnly),
+                GroupAddressBookId = (Group | DataTypeInt) + 1,
+                GroupName = (Group | DataTypeString) + 2,
+                GroupRingtone = (Group | DataTypeString) + 3,
+                GroupImage = (Group | DataTypeString) + 4,
+                GroupVibration = (Group | DataTypeString) + 5,
+                GroupExtraData = (Group | DataTypeString) + 6,
+                GroupIsReadOnly = (Group | DataTypeBool) + 7,
+                GroupMessageAlert = (Group | DataTypeString) + 8,
 
-            /* contact_name */
-            NameId = (PropertyName | DataTypeInt | ReadOnly),
-            NameContactId = (PropertyName | DataTypeInt) + 1,
-            NameFirst = (PropertyName | DataTypeString) + 2,
-            NameLast = (PropertyName | DataTypeString) + 3,
-            NameAddition = (PropertyName | DataTypeString) + 4,
-            NameSuffix = (PropertyName | DataTypeString) + 5,
-            NamePrefix = (PropertyName | DataTypeString) + 6,
-            NamePhoneticFirst = (PropertyName | DataTypeString) + 7,
-            NamePhoneticMiddle = (PropertyName | DataTypeString) + 8,
-            NamePhoneticLast = (PropertyName | DataTypeString) + 9,
+                /* person */
+                PersonId = (Person | DataTypeInt | ReadOnly),
+                PersonDisplayName = (Person | DataTypeString | ReadOnly) + 1,
+                PersonDisplayContactId = (Person | DataTypeInt) + 2,
+                PersonRingtone = (Person | DataTypeString) + 3,
+                PersonThumbnail = (Person | DataTypeString | ReadOnly) + 4,
+                PersonVibration = (Person | DataTypeString) + 5,
+                PersonIsFavorite = (Person | DataTypeBool) + 6,
+                PersonFavoritePriority = (Person | DataTypeDouble | ReadOnly) + 7,
+                PersonLinkCount = (Person | DataTypeInt | ReadOnly) + 8,
+                PersonAddressBookIds = (Person | DataTypeString | ReadOnly) + 9,
+                PersonHasPhoneNumber = (Person | DataTypeBool | ReadOnly) + 10,
+                PersonHasEmail = (Person | DataTypeBool | ReadOnly) + 11,
+                PersonDisplayNameIndex = (Person | DataTypeString | ReadOnly) + 12,
+                PersonStatus = (Person | DataTypeString | ReadOnly) + 13,
+                PersonMessageAlert = (Person | DataTypeString) + 14,
+                PersonSnippetType = (Person | DataTypeInt | ReadOnly) + 15,
+                PersonSnippetString = (Person | DataTypeString | ReadOnly) + 16,
 
-            /* contact_number */
-            NumberId = (PropertyNumber | DataTypeInt | ReadOnly),
-            NumberContactId = (PropertyNumber | DataTypeInt) + 1,
-            NumberType = (PropertyNumber | DataTypeInt) + 2,
-            NumberLabel = (PropertyNumber | DataTypeString) + 3,
-            NumberIsDefault = (PropertyNumber | DataTypeBool) + 4,
-            NumberNumber = (PropertyNumber | DataTypeString) + 5,
-            NumberNumberFilter = (PropertyNumber | DataTypeString) + 6,
-            NumberNormalizedNumber = (PropertyNumber | DataTypeString | ReadOnly) + 7,
-            NumberCleanedNumber = (PropertyNumber | DataTypeString | ReadOnly) + 8,
+                /* person-stat */
+                PersonUsageType = (Person | DataTypeInt) + 100,
+                PersonTimesUsed = (Person | DataTypeInt) + 101,
 
-            /* contact_email */
-            EmailId = (PropertyEmail | DataTypeInt | ReadOnly),
-            EmailContactId = (PropertyEmail | DataTypeInt) + 1,
-            EmailType = (PropertyEmail | DataTypeInt) + 2,
-            EmailLabel = (PropertyEmail | DataTypeString) + 3,
-            EmailIsDefault = (PropertyEmail | DataTypeBool) + 4,
-            EmailEmail = (PropertyEmail | DataTypeString) + 5,
+                /* simple contact : read only */
+                /* contact */
+                ContactId = (Contact | DataTypeInt | ReadOnly),
+                ContactDisplayName = (Contact | DataTypeString | ReadOnly) + 1,
+                ContactDisplaySourceDataId = (Contact | DataTypeInt | ReadOnly) + 2,
+                ContactAddressBookId = (Contact | DataTypeInt) + 3,
+                ContactRingtone = (Contact | DataTypeString) + 4,
+                ContactImage = (Contact | DataTypeRecord) + 5,
+                ContactThumbnail = (Contact | DataTypeString | ReadOnly) + 6,
+                ContactIsFavorite = (Contact | DataTypeBool) + 7,
+                ContactHasPhoneNumber = (Contact | DataTypeBool | ReadOnly) + 8,
+                ContactHasEmail = (Contact | DataTypeBool | ReadOnly) + 9,
+                ContactPersonId = (Contact | DataTypeInt) + 10,
+                ContactUId = (Contact | DataTypeString) + 11,
+                ContactVibration = (Contact | DataTypeString) + 12,
+                ContactChangedTime = (Contact | DataTypeInt | ReadOnly) + 13,
+                ContactName = (Contact | DataTypeRecord) + 14,
+                ContactCompany = (Contact | DataTypeRecord) + 15,
+                ContactNote = (Contact | DataTypeRecord) + 16,
+                ContactNumber = (Contact | DataTypeRecord) + 17,
+                ContactEmail = (Contact | DataTypeRecord) + 18,
+                ContactEvent = (Contact | DataTypeRecord) + 19,
+                ContactMessenger = (Contact | DataTypeRecord) + 20,
+                ContactAddress = (Contact | DataTypeRecord) + 21,
+                ContactURL = (Contact | DataTypeRecord) + 22,
+                ContactNickname = (Contact | DataTypeRecord) + 23,
+                ContactProfile = (Contact | DataTypeRecord) + 24,
+                ContactRelationship = (Contact | DataTypeRecord) + 25,
+                ContactGroupRelation = (Contact | DataTypeRecord) + 26,
+                ContactExtension = (Contact | DataTypeRecord) + 27,
+                ContactLinkMode = (Contact | DataTypeInt) + 28,
+                ContactMessageAlert = (Contact | DataTypeString) + 29,
+                ContactSip = (Contact | DataTypeRecord) + 30,
 
-            /* contact_address */
-            AddressId = (PropertyAddress | DataTypeInt | ReadOnly),
-            AddressContactId = (PropertyAddress | DataTypeInt) + 1,
-            AddressType = (PropertyAddress | DataTypeInt) + 2,
-            AddressLabel = (PropertyAddress | DataTypeString) + 3,
-            AddressPostbox = (PropertyAddress | DataTypeString) + 4,
-            AddressPostalCode = (PropertyAddress | DataTypeString) + 5,
-            AddressRegion = (PropertyAddress | DataTypeString) + 6,
-            AddressLocality = (PropertyAddress | DataTypeString) + 7,
-            AddressStreet = (PropertyAddress | DataTypeString) + 8,
-            AddressCountry = (PropertyAddress | DataTypeString) + 9,
-            AddressExtended = (PropertyAddress | DataTypeString) + 10,
-            AddressIsDefault = (PropertyAddress | DataTypeBool) + 11,
+                /* my_profile */
+                MyProfileId = (MyProfile | DataTypeInt | ReadOnly),
+                MyProfileDisplayName = (MyProfile | DataTypeString | ReadOnly) + 1,
+                MyProfileAddressBookId = (MyProfile | DataTypeInt) + 2,
+                MyProfileImage = (MyProfile | DataTypeRecord) + 3,
+                MyProfileThumbnail = (MyProfile | DataTypeString | ReadOnly) + 4,
+                MyProfileUId = (MyProfile | DataTypeString) + 5,
+                MyProfileChangedTime = (MyProfile | DataTypeInt) + 6,
+                MyProfileName = (MyProfile | DataTypeRecord) + 7,
+                MyProfileCompany = (MyProfile | DataTypeRecord) + 8,
+                MyProfileNote = (MyProfile | DataTypeRecord) + 9,
+                MyProfileNumber = (MyProfile | DataTypeRecord) + 10,
+                MyProfileEmail = (MyProfile | DataTypeRecord) + 11,
+                MyProfileEvent = (MyProfile | DataTypeRecord) + 12,
+                MyProfileMessenger = (MyProfile | DataTypeRecord) + 13,
+                MyProfileAddress = (MyProfile | DataTypeRecord) + 14,
+                MyProfileURL = (MyProfile | DataTypeRecord) + 15,
+                MyProfileNickname = (MyProfile | DataTypeRecord) + 16,
+                MyProfileProfile = (MyProfile | DataTypeRecord) + 17,
+                MyProfileRelationship = (MyProfile | DataTypeRecord) + 18,
+                MyProfileExtension = (MyProfile | DataTypeRecord) + 19,
+                MyProfileSip = (MyProfile | DataTypeRecord) + 20,
 
-            /* contact_url */
-            UrlId = (PropertyUrl | DataTypeInt | ReadOnly),
-            UrlContactId = (PropertyUrl | DataTypeInt) + 1,
-            UrlType = (PropertyUrl | DataTypeInt) + 2,
-            UrlLabel = (PropertyUrl | DataTypeString) + 3,
-            UrlUrl = (PropertyUrl | DataTypeString) + 4,
+                /* data */
+                DataId = (Data | DataTypeInt),
+                DataContactId = (Data | DataTypeInt) + 1,
+                DataType = (Data | DataTypeInt) + 2,
+                DataIsPrimaryDefault = (Data | DataTypeBool) + 3,
+                DataIsDefault = (Data | DataTypeBool) + 4,
+                DataData1 = (Data | DataTypeInt) + 5,
+                DataData2 = (Data | DataTypeString) + 6,
+                DataData3 = (Data | DataTypeString) + 7,
+                DataData4 = (Data | DataTypeString) + 8,
+                DataData5 = (Data | DataTypeString) + 9,
+                DataData6 = (Data | DataTypeString) + 10,
+                DataData7 = (Data | DataTypeString) + 11,
+                DataData8 = (Data | DataTypeString) + 12,
+                DataData9 = (Data | DataTypeString) + 13,
+                DataData10 = (Data | DataTypeString) + 14,
 
-            /* contact_event */
-            EventId = (PropertyEvent | DataTypeInt | ReadOnly),
-            EventContactId = (PropertyEvent | DataTypeInt) + 1,
-            EventType = (PropertyEvent | DataTypeInt) + 2,
-            EventLabel = (PropertyEvent | DataTypeString) + 3,
-            EventDate = (PropertyEvent | DataTypeInt) + 4,
-            EventCalendarType = (PropertyEvent | DataTypeInt) + 5,
-            EventIsLeapMonth = (PropertyEvent | DataTypeBool) + 6,
+                /* contact_name */
+                NameId = (Name | DataTypeInt | ReadOnly),
+                NameContactId = (Name | DataTypeInt) + 1,
+                NameFirst = (Name | DataTypeString) + 2,
+                NameLast = (Name | DataTypeString) + 3,
+                NameAddition = (Name | DataTypeString) + 4,
+                NameSuffix = (Name | DataTypeString) + 5,
+                NamePrefix = (Name | DataTypeString) + 6,
+                NamePhoneticFirst = (Name | DataTypeString) + 7,
+                NamePhoneticMiddle = (Name | DataTypeString) + 8,
+                NamePhoneticLast = (Name | DataTypeString) + 9,
 
-            /* contact_grouprelation */
-            GroupRelationId = (PropertyGroupRelation | DataTypeInt | ReadOnly),
-            GroupRelationGroupId = (PropertyGroupRelation | DataTypeInt) + 1,
-            GroupRelationContactId = (PropertyGroupRelation | DataTypeInt) + 2,
-            GroupRelationGroupName = (PropertyGroupRelation | DataTypeString) + 3,
+                /* contact_number */
+                NumberId = (Number | DataTypeInt | ReadOnly),
+                NumberContactId = (Number | DataTypeInt) + 1,
+                NumberType = (Number | DataTypeInt) + 2,
+                NumberLabel = (Number | DataTypeString) + 3,
+                NumberIsDefault = (Number | DataTypeBool) + 4,
+                NumberNumber = (Number | DataTypeString) + 5,
+                NumberNumberFilter = (Number | DataTypeString) + 6,
+                NumberNormalizedNumber = (Number | DataTypeString | ReadOnly) + 7,
+                NumberCleanedNumber = (Number | DataTypeString | ReadOnly) + 8,
 
-            /* contact_relationship */
-            RelationshipId = (PropertyRelationship | DataTypeInt | ReadOnly),
-            RelationshipContactId = (PropertyRelationship | DataTypeInt) + 1,
-            RelationshipType = (PropertyRelationship | DataTypeInt) + 2,
-            RelationshipLabel = (PropertyRelationship | DataTypeString) + 3,
-            RelationshipName = (PropertyRelationship | DataTypeString) + 4,
+                /* contact_email */
+                EmailId = (Email | DataTypeInt | ReadOnly),
+                EmailContactId = (Email | DataTypeInt) + 1,
+                EmailType = (Email | DataTypeInt) + 2,
+                EmailLabel = (Email | DataTypeString) + 3,
+                EmailIsDefault = (Email | DataTypeBool) + 4,
+                EmailEmail = (Email | DataTypeString) + 5,
 
-            /* contact_image */
-            ImageId = (PropertyImage | DataTypeInt | ReadOnly),
-            ImageContactId = (PropertyImage | DataTypeInt) + 1,
-            ImageType = (PropertyImage | DataTypeInt) + 2,
-            ImageLabel = (PropertyImage | DataTypeString) + 3,
-            ImagePath = (PropertyImage | DataTypeString) + 4,
-            ImageIsDefault = (PropertyImage | DataTypeBool) + 5,
+                /* contact_address */
+                AddressId = (Address | DataTypeInt | ReadOnly),
+                AddressContactId = (Address | DataTypeInt) + 1,
+                AddressType = (Address | DataTypeInt) + 2,
+                AddressLabel = (Address | DataTypeString) + 3,
+                AddressPostbox = (Address | DataTypeString) + 4,
+                AddressPostalCode = (Address | DataTypeString) + 5,
+                AddressRegion = (Address | DataTypeString) + 6,
+                AddressLocality = (Address | DataTypeString) + 7,
+                AddressStreet = (Address | DataTypeString) + 8,
+                AddressCountry = (Address | DataTypeString) + 9,
+                AddressExtended = (Address | DataTypeString) + 10,
+                AddressIsDefault = (Address | DataTypeBool) + 11,
 
-            /* contact_company */
-            CompanyId = (PropertyCompany | DataTypeInt | ReadOnly),
-            CompanyContactId = (PropertyCompany | DataTypeInt) + 1,
-            CompanyType = (PropertyCompany | DataTypeInt) + 2,
-            CompanyLabel = (PropertyCompany | DataTypeString) + 3,
-            CompanyName = (PropertyCompany | DataTypeString) + 4,
-            CompanyDepartment = (PropertyCompany | DataTypeString) + 5,
-            CompanyJobTitle = (PropertyCompany | DataTypeString) + 6,
-            CompanyRole = (PropertyCompany | DataTypeString) + 7,
-            CompanyAssistantName = (PropertyCompany | DataTypeString) + 8,
-            CompanyLogo = (PropertyCompany | DataTypeString) + 9,
-            CompanyLocation = (PropertyCompany | DataTypeString) + 10,
-            CompanyDescription = (PropertyCompany | DataTypeString) + 11,
-            CompanyPhoneticName = (PropertyCompany | DataTypeString) + 12,
+                /* contact_url */
+                URLId = (URL | DataTypeInt | ReadOnly),
+                URLContactId = (URL | DataTypeInt) + 1,
+                URLType = (URL | DataTypeInt) + 2,
+                URLLabel = (URL | DataTypeString) + 3,
+                URLData = (URL | DataTypeString) + 4,
 
-            /* contact_nickname */
-            NicknameId = (PropertyNickname | DataTypeInt | ReadOnly),
-            NicknameContactId = (PropertyNickname | DataTypeInt) + 1,
-            NicknameName = (PropertyNickname | DataTypeString) + 2,
+                /* contact_event */
+                EventId = (Event | DataTypeInt | ReadOnly),
+                EventContactId = (Event | DataTypeInt) + 1,
+                EventType = (Event | DataTypeInt) + 2,
+                EventLabel = (Event | DataTypeString) + 3,
+                EventDate = (Event | DataTypeInt) + 4,
+                EventCalendarType = (Event | DataTypeInt) + 5,
+                EventIsLeapMonth = (Event | DataTypeBool) + 6,
 
-            /* contact_messenger */
-            MessengerId = (PropertyMessenger | DataTypeInt | ReadOnly),
-            MessengerContactId = (PropertyMessenger | DataTypeInt) + 1,
-            MessengerType = (PropertyMessenger | DataTypeInt) + 2,
-            MessengerLabel = (PropertyMessenger | DataTypeString) + 3,
-            MessengerIMId = (PropertyMessenger | DataTypeString) + 4,
+                /* contact_grouprelation */
+                GroupRelationId = (GroupRelation | DataTypeInt | ReadOnly),
+                GroupRelationGroupId = (GroupRelation | DataTypeInt) + 1,
+                GroupRelationContactId = (GroupRelation | DataTypeInt) + 2,
+                GroupRelationGroupName = (GroupRelation | DataTypeString) + 3,
 
-            /* contact_note */
-            NoteId = (PropertyNote | DataTypeInt | ReadOnly),
-            NoteContactId = (PropertyNote | DataTypeInt) + 1,
-            NoteNote = (PropertyNote | DataTypeString) + 2,
+                /* contact_relationship */
+                RelationshipId = (Relationship | DataTypeInt | ReadOnly),
+                RelationshipContactId = (Relationship | DataTypeInt) + 1,
+                RelationshipType = (Relationship | DataTypeInt) + 2,
+                RelationshipLabel = (Relationship | DataTypeString) + 3,
+                RelationshipName = (Relationship | DataTypeString) + 4,
 
-            /* contact sip */
-            SipId = (PropertySip | DataTypeInt | ReadOnly),
-            SipContactId = (PropertySip | DataTypeInt) + 1,
-            SipAddress = (PropertySip | DataTypeString) + 2,
-            SipType = (PropertySip | DataTypeInt) + 3,
-            SipLabel = (PropertySip | DataTypeString) + 4,
+                /* contact_image */
+                ImageId = (Image | DataTypeInt | ReadOnly),
+                ImageContactId = (Image | DataTypeInt) + 1,
+                ImageType = (Image | DataTypeInt) + 2,
+                ImageLabel = (Image | DataTypeString) + 3,
+                ImagePath = (Image | DataTypeString) + 4,
+                ImageIsDefault = (Image | DataTypeBool) + 5,
 
-            /* contact_profile */
-            ProfileId = (PropertyProfile | DataTypeInt | ReadOnly),
-            ProfileContactId = (PropertyProfile | DataTypeInt) + 1,
-            ProfileUid = (PropertyProfile | DataTypeString) + 2,
-            ProfileText = (PropertyProfile | DataTypeString) + 3,
-            ProfileOrder = (PropertyProfile | DataTypeInt) + 4,
-            ProfileServiceOperation = (PropertyProfile | DataTypeString) + 5,
-            ProfileMIME = (PropertyProfile | DataTypeString) + 6,
-            ProfileAppId = (PropertyProfile | DataTypeString) + 7,
-            ProfileUri = (PropertyProfile | DataTypeString) + 8,
-            ProfileCategory = (PropertyProfile | DataTypeString) + 9,
-            ProfileExtraData = (PropertyProfile | DataTypeString) + 10,
+                /* contact_company */
+                CompanyId = (Company | DataTypeInt | ReadOnly),
+                CompanyContactId = (Company | DataTypeInt) + 1,
+                CompanyType = (Company | DataTypeInt) + 2,
+                CompanyLabel = (Company | DataTypeString) + 3,
+                CompanyName = (Company | DataTypeString) + 4,
+                CompanyDepartment = (Company | DataTypeString) + 5,
+                CompanyJobTitle = (Company | DataTypeString) + 6,
+                CompanyRole = (Company | DataTypeString) + 7,
+                CompanyAssistantName = (Company | DataTypeString) + 8,
+                CompanyLogo = (Company | DataTypeString) + 9,
+                CompanyLocation = (Company | DataTypeString) + 10,
+                CompanyDescription = (Company | DataTypeString) + 11,
+                CompanyPhoneticName = (Company | DataTypeString) + 12,
 
-            ExtensionId = (PropertyExtension | DataTypeInt | ReadOnly),
-            ExtensionContactId = (PropertyExtension | DataTypeInt) +1,
-            ExtensionData1 = (PropertyExtension | DataTypeInt) +2,
-            ExtensionData2 = (PropertyExtension | DataTypeString) +3,
-            ExtensionData3 = (PropertyExtension | DataTypeString) +4,
-            ExtensionData4 = (PropertyExtension | DataTypeString) +5,
-            ExtensionData5 = (PropertyExtension | DataTypeString) +6,
-            ExtensionData6 = (PropertyExtension | DataTypeString) +7,
-            ExtensionData7 = (PropertyExtension | DataTypeString) +8,
-            ExtensionData8 = (PropertyExtension | DataTypeString) +9,
-            ExtensionData9 = (PropertyExtension | DataTypeString) +10,
-            ExtensionData10 = (PropertyExtension | DataTypeString) +11,
-            ExtensionData11 = (PropertyExtension | DataTypeString) +12,
-            ExtensionData12 = (PropertyExtension | DataTypeString) +13,
+                /* contact_nickname */
+                NicknameId = (Nickname | DataTypeInt | ReadOnly),
+                NicknameContactId = (Nickname | DataTypeInt) + 1,
+                NicknameName = (Nickname | DataTypeString) + 2,
 
-            /* speeddial */
-            SpeedDialDialNumber = (PropertySpeedDial | DataTypeInt),
-            SpeedDialNumberId = (PropertySpeedDial | DataTypeInt) +1,
-            SpeedDialNumber = (PropertySpeedDial | DataTypeString | ReadOnly) +2,
-            SpeedDialNumberLabel = (PropertySpeedDial | DataTypeString | ReadOnly) +3,
-            SpeedDialNumberType = (PropertySpeedDial | DataTypeInt | ReadOnly) +4,
-            SpeedDialPersonId = (PropertySpeedDial | DataTypeInt | ReadOnly) +5,
-            SpeedDialDisplayName = (PropertySpeedDial | DataTypeString | ReadOnly) +6,
-            SpeedDialThumbnail = (PropertySpeedDial | DataTypeString | ReadOnly) +7,
-            SpeedDialNormalizedNumber = (PropertySpeedDial | DataTypeString | ReadOnly) +8,
-            SpeedDialCleanedNumber = (PropertySpeedDial | DataTypeString | ReadOnly) +9,
-            SpeedDialNumberFilter = (PropertySpeedDial | DataTypeString | ReadOnly) +10,
+                /* contact_messenger */
+                MessengerId = (Messenger | DataTypeInt | ReadOnly),
+                MessengerContactId = (Messenger | DataTypeInt) + 1,
+                MessengerType = (Messenger | DataTypeInt) + 2,
+                MessengerLabel = (Messenger | DataTypeString) + 3,
+                MessengerIMId = (Messenger | DataTypeString) + 4,
 
-            /* phonelog */
-            PhonelogId = (PropertyPhonelog | DataTypeInt | ReadOnly),
-            PhonelogPersonId = (PropertyPhonelog | DataTypeInt) + 1,
-            PhonelogAddress = (PropertyPhonelog | DataTypeString) + 2,
-            PhonelogLogTime = (PropertyPhonelog | DataTypeInt) + 3,
-            PhonelogLogType = (PropertyPhonelog | DataTypeInt) + 4,
-            PhonelogExtraData1 = (PropertyPhonelog | DataTypeInt) + 5,   /* duration, message_id, email_id */
-            PhonelogExtraData2 = (PropertyPhonelog | DataTypeString) + 6,   /* short message, subject */
-            PhonelogNormalizedAddress = (PropertyPhonelog | DataTypeString | ReadOnly) + 7,   /* for search by calllog number */
-            PhonelogCleanedAddress = (PropertyPhonelog | DataTypeString | ReadOnly) + 8,   /* for search by calllog number */
-            PhonelogAddressFilter = (PropertyPhonelog | DataTypeString | ReadOnly) + 9,   /* for search by calllog number */
-            PhonelogSIMSlotNo = (PropertyPhonelog | DataTypeInt) + 10,
+                /* contact_note */
+                NoteId = (Note | DataTypeInt | ReadOnly),
+                NoteContactId = (Note | DataTypeInt) + 1,
+                NoteNote = (Note | DataTypeString) + 2,
 
-            /* phonelog_stat */
-            PhonelogStatLogCount = (PropertyPhonelogStat | DataTypeInt | ReadOnly),
-            PhonelogStatLogType = (PropertyPhonelogStat | DataTypeInt | ReadOnly) + 1,
-            PhonelogStatSIMSlotNo = (PropertyPhonelogStat | DataTypeInt | ReadOnly) + 2,
+                /* contact sip */
+                SipId = (Sip | DataTypeInt | ReadOnly),
+                SipContactId = (Sip | DataTypeInt) + 1,
+                SipAddress = (Sip | DataTypeString) + 2,
+                SipType = (Sip | DataTypeInt) + 3,
+                SipLabel = (Sip | DataTypeString) + 4,
 
-            /* updated_info : read only */
-            UpdateInfoId = (PropertyUpdateInfo | DataTypeInt),
-            UpdateInfoAddressbookId = (PropertyUpdateInfo | DataTypeInt) +1,
-            UpdateInfoType = (PropertyUpdateInfo | DataTypeInt) +2,
-            UpdateInfoVersion = (PropertyUpdateInfo | DataTypeInt) +3,
-            UpdateInfoImageChanged = (PropertyUpdateInfo | DataTypeBool) +4,
-            UpdateInfoLastChangedType = (PropertyUpdateInfo | DataTypeInt)+5,   /* now, it is used for _contacts_my_profile_updated_info */
+                /* contact_profile */
+                ProfileId = (Profile | DataTypeInt | ReadOnly),
+                ProfileContactId = (Profile | DataTypeInt) + 1,
+                ProfileUId = (Profile | DataTypeString) + 2,
+                ProfileText = (Profile | DataTypeString) + 3,
+                ProfileOrder = (Profile | DataTypeInt) + 4,
+                ProfileServiceOperation = (Profile | DataTypeString) + 5,
+                ProfileMIME = (Profile | DataTypeString) + 6,
+                ProfileAppId = (Profile | DataTypeString) + 7,
+                ProfileUri = (Profile | DataTypeString) + 8,
+                ProfileCategory = (Profile | DataTypeString) + 9,
+                ProfileExtraData = (Profile | DataTypeString) + 10,
+
+                ExtensionId = (Extension | DataTypeInt | ReadOnly),
+                ExtensionContactId = (Extension | DataTypeInt) + 1,
+                ExtensionData1 = (Extension | DataTypeInt) + 2,
+                ExtensionData2 = (Extension | DataTypeString) + 3,
+                ExtensionData3 = (Extension | DataTypeString) + 4,
+                ExtensionData4 = (Extension | DataTypeString) + 5,
+                ExtensionData5 = (Extension | DataTypeString) + 6,
+                ExtensionData6 = (Extension | DataTypeString) + 7,
+                ExtensionData7 = (Extension | DataTypeString) + 8,
+                ExtensionData8 = (Extension | DataTypeString) + 9,
+                ExtensionData9 = (Extension | DataTypeString) + 10,
+                ExtensionData10 = (Extension | DataTypeString) + 11,
+                ExtensionData11 = (Extension | DataTypeString) + 12,
+                ExtensionData12 = (Extension | DataTypeString) + 13,
+
+                /* speeddial */
+                SpeedDialDialNumber = (SpeedDial | DataTypeInt),
+                SpeedDialNumberId = (SpeedDial | DataTypeInt) + 1,
+                SpeedDialNumber = (SpeedDial | DataTypeString | ReadOnly) + 2,
+                SpeedDialNumberLabel = (SpeedDial | DataTypeString | ReadOnly) + 3,
+                SpeedDialNumberType = (SpeedDial | DataTypeInt | ReadOnly) + 4,
+                SpeedDialPersonId = (SpeedDial | DataTypeInt | ReadOnly) + 5,
+                SpeedDialDisplayName = (SpeedDial | DataTypeString | ReadOnly) + 6,
+                SpeedDialThumbnail = (SpeedDial | DataTypeString | ReadOnly) + 7,
+                SpeedDialNormalizedNumber = (SpeedDial | DataTypeString | ReadOnly) + 8,
+                SpeedDialCleanedNumber = (SpeedDial | DataTypeString | ReadOnly) + 9,
+                SpeedDialNumberFilter = (SpeedDial | DataTypeString | ReadOnly) + 10,
+
+                /* phonelog */
+                PhonelogId = (Phonelog | DataTypeInt | ReadOnly),
+                PhonelogPersonId = (Phonelog | DataTypeInt) + 1,
+                PhonelogAddress = (Phonelog | DataTypeString) + 2,
+                PhonelogLogTime = (Phonelog | DataTypeInt) + 3,
+                PhonelogLogType = (Phonelog | DataTypeInt) + 4,
+                PhonelogExtraData1 = (Phonelog | DataTypeInt) + 5,
+                PhonelogExtraData2 = (Phonelog | DataTypeString) + 6,
+                PhonelogNormalizedAddress = (Phonelog | DataTypeString | ReadOnly) + 7,
+                PhonelogCleanedAddress = (Phonelog | DataTypeString | ReadOnly) + 8,
+                PhonelogAddressFilter = (Phonelog | DataTypeString | ReadOnly) + 9,
+                PhonelogSIMSlotNo = (Phonelog | DataTypeInt) + 10,
+
+                /* phonelog_stat */
+                PhonelogStatLogCount = (PhonelogStat | DataTypeInt | ReadOnly),
+                PhonelogStatLogType = (PhonelogStat | DataTypeInt | ReadOnly) + 1,
+                PhonelogStatSIMSlotNo = (PhonelogStat | DataTypeInt | ReadOnly) + 2,
+
+                /* updated_info : read only */
+                UpdateInfoId = (UpdateInfo | DataTypeInt),
+                UpdateInfoAddressBookId = (UpdateInfo | DataTypeInt) + 1,
+                UpdateInfoType = (UpdateInfo | DataTypeInt) + 2,
+                UpdateInfoVersion = (UpdateInfo | DataTypeInt) + 3,
+                UpdateInfoImageChanged = (UpdateInfo | DataTypeBool) + 4,
+                UpdateInfoLastChangedType = (UpdateInfo | DataTypeInt) + 5,
+            }
+        }
+
+        internal static class Record
+        {
+            internal const uint AverageSize = 120;  /* average size of person record */
         }
 
         /// <summary>
         /// Enumeration for contact change state.
         /// </summary>
-        public enum ChangeTypes
+        public enum ChangeType
         {
             /// <summary>
             /// Inserted
@@ -393,38 +404,36 @@ namespace Tizen.Pims.Contacts
             Deleted,
         }
 
-        internal const uint AverageSizeOfRecord = 120;  /* average size of person record */
-
         /// <summary>
-        /// Describes properies of a Address book record.
+        /// Describes properties of a Address book record.
         /// </summary>
-        public static class Addressbook
+        public static class AddressBook
         {
             /// <summary>
-            /// Identifier of this contacts addressbook view
+            /// Identifier of this contacts address book view
             /// </summary>
             public const string Uri = "tizen.contacts_view.addressbook";
             /// <summary>
-            /// integer, read only,  DB record ID of the addressbook
+            /// integer, read only,  DB record ID of the address book
             /// </summary>
-            public const uint Id = (uint)PropertyIds.AddressbookId;
+            public const uint Id = (uint)Property.Id.AddressBookId;
             /// <summary>
-            /// integer, read/write once, Account ID that the addressbook belongs to
+            /// integer, read/write once, Account ID that the address book belongs to
             /// </summary>
-            public const uint AccountId = (uint)PropertyIds.AddressbookAccountId;
+            public const uint AccountId = (uint)Property.Id.AddressBookAccountId;
             /// <summary>
             /// string, read/write, It cannot be NULL. Duplicate names are not allowed.
             /// </summary>
-            public const uint Name = (uint)PropertyIds.AddressbookName;
+            public const uint Name = (uint)Property.Id.AddressBookName;
             /// <summary>
-            /// integer, read/write, Addressbook mode, refer to the Modes
+            /// integer, read/write, AddressBook mode, refer to the ModeValue
             /// </summary>
-            public const uint Mode = (uint)PropertyIds.AddressbookMode;
+            public const uint Mode = (uint)Property.Id.AddressBookMode;
 
             /// <summary>
             /// Enumeration for Address book mode.
             /// </summary>
-            public enum Modes
+            public enum ModeValue
             {
                 /// <summary>
                 /// All module can read and write contacts of this address_book
@@ -438,7 +447,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Describes properies of a Group record.
+        /// Describes properties of a Group record.
         /// </summary>
         public static class Group
         {
@@ -449,43 +458,43 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the group
             /// </summary>
-            public const uint Id = (uint)PropertyIds.GroupId;
+            public const uint Id = (uint)Property.Id.GroupId;
             /// <summary>
-            /// Addressbook ID that the group belongs to
+            /// AddressBook ID that the group belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.GroupAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.GroupAddressBookId;
             /// <summary>
             /// Group name
             /// </summary>
-            public const uint Name = (uint)PropertyIds.GroupName;
+            public const uint Name = (uint)Property.Id.GroupName;
             /// <summary>
             /// Ringtone path of the group
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.GroupRingtone;
+            public const uint RingtonePath = (uint)Property.Id.GroupRingtone;
             /// <summary>
             /// Image path of the group
             /// </summary>
-            public const uint ImagePath = (uint)PropertyIds.GroupImage;
+            public const uint ImagePath = (uint)Property.Id.GroupImage;
             /// <summary>
             /// Vibration path of the group
             /// </summary>
-            public const uint Vibration = (uint)PropertyIds.GroupVibration;
+            public const uint Vibration = (uint)Property.Id.GroupVibration;
             /// <summary>
             /// Extra data for default group name
             /// </summary>
-            public const uint ExtraData = (uint)PropertyIds.GroupExtraData;
+            public const uint ExtraData = (uint)Property.Id.GroupExtraData;
             /// <summary>
             /// The group is read only or not
             /// </summary>
-            public const uint IsReadOnly = (uint)PropertyIds.GroupIsReadOnly;
+            public const uint IsReadOnly = (uint)Property.Id.GroupIsReadOnly;
             /// <summary>
             /// Message alert path of the group
             /// </summary>
-            public const uint MessageAlert = (uint)PropertyIds.GroupMessageAlert;
+            public const uint MessageAlert = (uint)Property.Id.GroupMessageAlert;
         }
 
         /// <summary>
-        /// Describes properies of a Person record.
+        /// Describes properties of a Person record.
         /// </summary>
         public static class Person
         {
@@ -496,75 +505,75 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the person
             /// </summary>
-            public const uint Id = (uint)PropertyIds.PersonId;
+            public const uint Id = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.PersonDisplayName;
+            public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
-            /// The first character of first string for grouping. This is normalized using icu (projection)
+            /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
-            public const uint DisplayNameIndex = (uint)PropertyIds.PersonDisplayNameIndex;
+            public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to
             /// </summary>
-            public const uint DisplayContactId = (uint)PropertyIds.PersonDisplayContactId;
+            public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.PersonRingtone;
+            public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.PersonThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person
             /// </summary>
-            public const uint Vibration = (uint)PropertyIds.PersonVibration;
+            public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person
             /// </summary>
-            public const uint MessageAlert = (uint)PropertyIds.PersonMessageAlert;
+            public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// Status of social account
             /// </summary>
-            public const uint Status = (uint)PropertyIds.PersonStatus;
+            public const uint Status = (uint)Property.Id.PersonStatus;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
-            public const uint IsFavorite = (uint)PropertyIds.PersonIsFavorite;
+            public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The priority of favorite contacts. it can be used as sorting key
             /// </summary>
-            public const uint FavoritePriority = (uint)PropertyIds.PersonFavoritePriority;
+            public const uint FavoritePriority = (uint)Property.Id.PersonFavoritePriority;
             /// <summary>
             /// Link count of contact records (projection)
             /// </summary>
-            public const uint LinkCount = (uint)PropertyIds.PersonLinkCount;
+            public const uint LinkCount = (uint)Property.Id.PersonLinkCount;
             /// <summary>
-            /// Addressbook IDs that the person belongs to (projection)
+            /// AddressBook IDs that the person belongs to (projection)
             /// </summary>
-            public const uint AddressbookIds = (uint)PropertyIds.PersonAddressbookIds;
+            public const uint AddressBookIds = (uint)Property.Id.PersonAddressBookIds;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
+            public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
-            public const uint HasEmail = (uint)PropertyIds.PersonHasEmail;
+            public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
-            /// kerword matched data type
+            /// keyword matched data type
             /// </summary>
-            public const uint SnippetType = (uint)PropertyIds.PersonSnippetType;
+            public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
-            public const uint SnippetString = (uint)PropertyIds.PersonSnippetString;
+            public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         }
 
         /// <summary>
-        /// Describes properies of a Contact record.
+        /// Describes properties of a Contact record.
         /// </summary>
         public static class Contact
         {
@@ -575,132 +584,132 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the contact
             /// </summary>
-            public const uint Id = (uint)PropertyIds.ContactId;
+            public const uint Id = (uint)Property.Id.ContactId;
             /// <summary>
             /// Display name of the contact
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.ContactDisplayName;
+            public const uint DisplayName = (uint)Property.Id.ContactDisplayName;
             /// <summary>
-            /// The source type of display name, refer to the DisplayNameSourceTypes
+            /// The source type of display name, refer to the DisplayNameSourceType
             /// </summary>
-            public const uint DisplaySourceType = (uint)PropertyIds.ContactDisplaySourceDataId;
+            public const uint DisplaySourceType = (uint)Property.Id.ContactDisplaySourceDataId;
             /// <summary>
-            /// Addressbook ID that the contact belongs to
+            /// AddressBook ID that the contact belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.ContactAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// Ringtone path of the contact
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.ContactRingtone;
+            public const uint RingtonePath = (uint)Property.Id.ContactRingtone;
             /// <summary>
             /// Image thumbnail path of the contact
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.ContactThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.ContactThumbnail;
             /// <summary>
             /// The contact is favorite or not
             /// </summary>
-            public const uint IsFavorite = (uint)PropertyIds.ContactIsFavorite;
+            public const uint IsFavorite = (uint)Property.Id.ContactIsFavorite;
             /// <summary>
             /// The contact has phone number or not
             /// </summary>
-            public const uint HasPhoneNumber = (uint)PropertyIds.ContactHasPhoneNumber;
+            public const uint HasPhoneNumber = (uint)Property.Id.ContactHasPhoneNumber;
             /// <summary>
             /// The contact has email or not
             /// </summary>
-            public const uint HasEmail = (uint)PropertyIds.ContactHasEmail;
+            public const uint HasEmail = (uint)Property.Id.ContactHasEmail;
             /// <summary>
             /// Person ID that the contact belongs to. If set when inserting, a contact will be linked to person
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.ContactPersonId;
+            public const uint PersonId = (uint)Property.Id.ContactPersonId;
             /// <summary>
             /// Unique identifier
             /// </summary>
-            public const uint Uid = (uint)PropertyIds.ContactUid;
+            public const uint UId = (uint)Property.Id.ContactUId;
             /// <summary>
             /// Vibration path of the contact
             /// </summary>
-            public const uint Vibration = (uint)PropertyIds.ContactVibration;
+            public const uint Vibration = (uint)Property.Id.ContactVibration;
             /// <summary>
             /// Message alert path of the contact
             /// </summary>
-            public const uint MessageAlert = (uint)PropertyIds.ContactMessageAlert;
+            public const uint MessageAlert = (uint)Property.Id.ContactMessageAlert;
             /// <summary>
             /// Last changed contact time
             /// </summary>
-            public const uint ChangedTime = (uint)PropertyIds.ContactChangedTime;
+            public const uint ChangedTime = (uint)Property.Id.ContactChangedTime;
             /// <summary>
-            /// The link mode, refer to the LinkModes. If the person_id was set, this value will be ignored
+            /// The link mode, refer to the LinkModeValue. If the person_id was set, this value will be ignored
             /// </summary>
-            public const uint LinkMode = (uint)PropertyIds.ContactLinkMode;
+            public const uint LinkMode = (uint)Property.Id.ContactLinkMode;
             /// <summary>
             /// Name child record (single)
             /// </summary>
-            public const uint Name = (uint)PropertyIds.ContactName;
+            public const uint Name = (uint)Property.Id.ContactName;
             /// <summary>
             /// Company child record (multiple)
             /// </summary>
-            public const uint Company = (uint)PropertyIds.ContactCompany;
+            public const uint Company = (uint)Property.Id.ContactCompany;
             /// <summary>
             /// Note child record (multiple)
             /// </summary>
-            public const uint Note = (uint)PropertyIds.ContactNote;
+            public const uint Note = (uint)Property.Id.ContactNote;
             /// <summary>
             /// Number child record (multiple)
             /// </summary>
-            public const uint Number = (uint)PropertyIds.ContactNumber;
+            public const uint Number = (uint)Property.Id.ContactNumber;
             /// <summary>
             /// Email child record (multiple)
             /// </summary>
-            public const uint Email = (uint)PropertyIds.ContactEmail;
+            public const uint Email = (uint)Property.Id.ContactEmail;
             /// <summary>
             /// Event child record (multiple)
             /// </summary>
-            public const uint Event = (uint)PropertyIds.ContactEvent;
+            public const uint Event = (uint)Property.Id.ContactEvent;
             /// <summary>
             /// Messenger child record (multiple)
             /// </summary>
-            public const uint Messenger = (uint)PropertyIds.ContactMessenger;
+            public const uint Messenger = (uint)Property.Id.ContactMessenger;
             /// <summary>
             /// Address child record (multiple)
             /// </summary>
-            public const uint Address = (uint)PropertyIds.ContactAddress;
+            public const uint Address = (uint)Property.Id.ContactAddress;
             /// <summary>
-            /// Url child record (multiple)
+            /// URL child record (multiple)
             /// </summary>
-            public const uint Url = (uint)PropertyIds.ContactUrl;
+            public const uint URL = (uint)Property.Id.ContactURL;
             /// <summary>
             /// Nickname child record (multiple)
             /// </summary>
-            public const uint Nickname = (uint)PropertyIds.ContactNickname;
+            public const uint Nickname = (uint)Property.Id.ContactNickname;
             /// <summary>
             /// Profile child record (multiple)
             /// </summary>
-            public const uint Profile = (uint)PropertyIds.ContactProfile;
+            public const uint Profile = (uint)Property.Id.ContactProfile;
             /// <summary>
             /// Relationship child record (multiple)
             /// </summary>
-            public const uint Relationship = (uint)PropertyIds.ContactRelationship;
+            public const uint Relationship = (uint)Property.Id.ContactRelationship;
             /// <summary>
             /// Image child record (multiple)
             /// </summary>
-            public const uint Image = (uint)PropertyIds.ContactImage;
+            public const uint Image = (uint)Property.Id.ContactImage;
             /// <summary>
             /// GroupRelation child record (multiple)
             /// </summary>
-            public const uint GroupRelation = (uint)PropertyIds.ContactGroupRelation;
+            public const uint GroupRelation = (uint)Property.Id.ContactGroupRelation;
             /// <summary>
             /// Extension child record (multiple)
             /// </summary>
-            public const uint Extension = (uint)PropertyIds.ContactExtension;
+            public const uint Extension = (uint)Property.Id.ContactExtension;
             /// <summary>
             /// Sip child record (multiple)
             /// </summary>
-            public const uint Sip = (uint)PropertyIds.ContactSip;
+            public const uint Sip = (uint)Property.Id.ContactSip;
 
             /// <summary>
             /// Enumeration for link mode when inserting contact.
             /// </summary>
-            public enum LinkModes
+            public enum LinkModeValue
             {
                 /// <summary>
                 /// Auto link immediately
@@ -715,7 +724,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Contact display name source type.
             /// </summary>
-            public enum DisplayNameSourceTypes
+            public enum DisplayNameSourceType
             {
                 /// <summary>
                 /// Invalid source of display name
@@ -746,28 +755,77 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for contacts data type.
             /// </summary>
-            public enum DataTypes
+            public enum DataType
             {
+                /// <summary>
+                /// None
+                /// </summary>
+                None,
+                /// <summary>
+                /// Name
+                /// </summary>
                 Name = 1,
+                /// <summary>
+                /// Address
+                /// </summary>
                 Address = 2,
+                /// <summary>
+                /// Messenger
+                /// </summary>
                 Messenger = 3,
-                Url = 4,
+                /// <summary>
+                /// URL
+                /// </summary>
+                URL = 4,
+                /// <summary>
+                /// Event
+                /// </summary>
                 Event = 5,
+                /// <summary>
+                /// Company
+                /// </summary>
                 Company = 6,
+                /// <summary>
+                /// Nickname
+                /// </summary>
                 Nickname = 7,
+                /// <summary>
+                /// Number
+                /// </summary>
                 Number = 8,
+                /// <summary>
+                /// Email
+                /// </summary>
                 Email = 9,
+                /// <summary>
+                /// Profile
+                /// </summary>
                 Profile = 10,
-                Relationsip = 11,
+                /// <summary>
+                /// Relationship
+                /// </summary>
+                Relationship = 11,
+                /// <summary>
+                /// Note
+                /// </summary>
                 Note = 12,
+                /// <summary>
+                /// Image
+                /// </summary>
                 Image = 13,
+                /// <summary>
+                /// SIP
+                /// </summary>
                 Sip = 14,
+                /// <summary>
+                /// Extension
+                /// </summary>
                 Extension = 100
             }
         }
 
         /// <summary>
-        /// Describes properies of a Simple contact record.
+        /// Describes properties of a Simple contact record.
         /// </summary>
         public static class SimpleContact
         {
@@ -778,63 +836,63 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the contact
             /// </summary>
-            public const uint Id = (uint)PropertyIds.ContactId;
+            public const uint Id = (uint)Property.Id.ContactId;
             /// <summary>
             /// Display name of the contact
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.ContactDisplayName;
+            public const uint DisplayName = (uint)Property.Id.ContactDisplayName;
             /// <summary>
-            /// The source type of display name, refer to the Contact.DisplayNameSourceTypes
+            /// The source type of display name, refer to the Contact.DisplayNameSourceType
             /// </summary>
-            public const uint DisplaySourceType = (uint)PropertyIds.ContactDisplaySourceDataId;
+            public const uint DisplaySourceType = (uint)Property.Id.ContactDisplaySourceDataId;
             /// <summary>
-            /// Addressbook that the contact belongs to
+            /// AddressBook that the contact belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.ContactAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// Ringtone path of the contact
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.ContactRingtone;
+            public const uint RingtonePath = (uint)Property.Id.ContactRingtone;
             /// <summary>
             /// Image thumbnail path of the contact
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.ContactThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.ContactThumbnail;
             /// <summary>
             /// The contact is favorite or not
             /// </summary>
-            public const uint IsFavorite = (uint)PropertyIds.ContactIsFavorite;
+            public const uint IsFavorite = (uint)Property.Id.ContactIsFavorite;
             /// <summary>
             /// The contact has phone number or not
             /// </summary>
-            public const uint HasPhoneNumber = (uint)PropertyIds.ContactHasPhoneNumber;
+            public const uint HasPhoneNumber = (uint)Property.Id.ContactHasPhoneNumber;
             /// <summary>
             /// The contact has email or not
             /// </summary>
-            public const uint HasEmail = (uint)PropertyIds.ContactHasEmail;
+            public const uint HasEmail = (uint)Property.Id.ContactHasEmail;
             /// <summary>
             /// Person ID that the contact belongs to
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.ContactPersonId;
+            public const uint PersonId = (uint)Property.Id.ContactPersonId;
             /// <summary>
             /// Unique identifier
             /// </summary>
-            public const uint Uid = (uint)PropertyIds.ContactUid;
+            public const uint UId = (uint)Property.Id.ContactUId;
             /// <summary>
             /// Vibration path of the contact
             /// </summary>
-            public const uint Vibration = (uint)PropertyIds.ContactVibration;
+            public const uint Vibration = (uint)Property.Id.ContactVibration;
             /// <summary>
             /// Message alert path of the contact
             /// </summary>
-            public const uint MessageAlert = (uint)PropertyIds.ContactMessageAlert;
+            public const uint MessageAlert = (uint)Property.Id.ContactMessageAlert;
             /// <summary>
             /// Last changed contact time
             /// </summary>
-            public const uint ChangedTime = (uint)PropertyIds.ContactChangedTime;
+            public const uint ChangedTime = (uint)Property.Id.ContactChangedTime;
         }
 
         /// <summary>
-        /// Describes properies of a My profile record.
+        /// Describes properties of a My profile record.
         /// </summary>
         public static class MyProfile
         {
@@ -845,91 +903,91 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the my profile
             /// </summary>
-            public const uint Id = (uint)PropertyIds.MyProfileId;
+            public const uint Id = (uint)Property.Id.MyProfileId;
             /// <summary>
             /// Display name of the profile
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.MyProfileDisplayName;
+            public const uint DisplayName = (uint)Property.Id.MyProfileDisplayName;
             /// <summary>
-            /// Addressbook ID that the profile belongs to
+            /// AddressBook ID that the profile belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.MyProfileAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.MyProfileAddressBookId;
             /// <summary>
             /// Image thumbnail path of the profile
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.MyProfileThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.MyProfileThumbnail;
             /// <summary>
             /// Unique identifier
             /// </summary>
-            public const uint Uid = (uint)PropertyIds.MyProfileUid;
+            public const uint UId = (uint)Property.Id.MyProfileUId;
             /// <summary>
             /// Last changed profile time
             /// </summary>
-            public const uint ChangedTime = (uint)PropertyIds.MyProfileChangedTime;
+            public const uint ChangedTime = (uint)Property.Id.MyProfileChangedTime;
             /// <summary>
             /// Name child record (single)
             /// </summary>
-            public const uint Name = (uint)PropertyIds.MyProfileName;
+            public const uint Name = (uint)Property.Id.MyProfileName;
             /// <summary>
             /// Company child record (multiple)
             /// </summary>
-            public const uint Company = (uint)PropertyIds.MyProfileCompany;
+            public const uint Company = (uint)Property.Id.MyProfileCompany;
             /// <summary>
             /// Note child record (multiple)
             /// </summary>
-            public const uint Note = (uint)PropertyIds.MyProfileNote;
+            public const uint Note = (uint)Property.Id.MyProfileNote;
             /// <summary>
             /// Number child record (multiple)
             /// </summary>
-            public const uint Number = (uint)PropertyIds.MyProfileNumber;
+            public const uint Number = (uint)Property.Id.MyProfileNumber;
             /// <summary>
             /// Email child record (multiple)
             /// </summary>
-            public const uint Email = (uint)PropertyIds.MyProfileEmail;
+            public const uint Email = (uint)Property.Id.MyProfileEmail;
             /// <summary>
             /// Event child record (multiple)
             /// </summary>
-            public const uint Event = (uint)PropertyIds.MyProfileEvent;
+            public const uint Event = (uint)Property.Id.MyProfileEvent;
             /// <summary>
             /// Messenger child record (multiple)
             /// </summary>
-            public const uint Messenger = (uint)PropertyIds.MyProfileMessenger;
+            public const uint Messenger = (uint)Property.Id.MyProfileMessenger;
             /// <summary>
             /// Address child record (multiple)
             /// </summary>
-            public const uint Address = (uint)PropertyIds.MyProfileAddress;
+            public const uint Address = (uint)Property.Id.MyProfileAddress;
             /// <summary>
-            /// Url child record (multiple)
+            /// URL child record (multiple)
             /// </summary>
-            public const uint Url = (uint)PropertyIds.MyProfileUrl;
+            public const uint URL = (uint)Property.Id.MyProfileURL;
             /// <summary>
             /// Nickname child record (multiple)
             /// </summary>
-            public const uint Nickname = (uint)PropertyIds.MyProfileNickname;
+            public const uint Nickname = (uint)Property.Id.MyProfileNickname;
             /// <summary>
             /// Profile child record (multiple)
             /// </summary>
-            public const uint Profile = (uint)PropertyIds.MyProfileProfile;
+            public const uint Profile = (uint)Property.Id.MyProfileProfile;
             /// <summary>
             /// Relationship child record (multiple)
             /// </summary>
-            public const uint Relationship = (uint)PropertyIds.MyProfileRelationship;
+            public const uint Relationship = (uint)Property.Id.MyProfileRelationship;
             /// <summary>
             /// Image child record (multiple)
             /// </summary>
-            public const uint Image = (uint)PropertyIds.MyProfileImage;
+            public const uint Image = (uint)Property.Id.MyProfileImage;
             /// <summary>
             /// Extension child record (multiple)
             /// </summary>
-            public const uint Extension = (uint)PropertyIds.MyProfileExtension;
+            public const uint Extension = (uint)Property.Id.MyProfileExtension;
             /// <summary>
             /// Sip child record (multiple)
             /// </summary>
-            public const uint Sip = (uint)PropertyIds.MyProfileSip;
+            public const uint Sip = (uint)Property.Id.MyProfileSip;
         }
 
         /// <summary>
-        /// Describes properies of a Name record.
+        /// Describes properties of a Name record.
         /// </summary>
         public static class Name
         {
@@ -940,47 +998,47 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the name
             /// </summary>
-            public const uint Id = (uint)PropertyIds.NameId;
+            public const uint Id = (uint)Property.Id.NameId;
             /// <summary>
             /// Contacts ID that the name record belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.NameContactId;
+            public const uint ContactId = (uint)Property.Id.NameContactId;
             /// <summary>
             /// First name
             /// </summary>
-            public const uint First = (uint)PropertyIds.NameFirst;
+            public const uint First = (uint)Property.Id.NameFirst;
             /// <summary>
             /// Last name
             /// </summary>
-            public const uint Last = (uint)PropertyIds.NameLast;
+            public const uint Last = (uint)Property.Id.NameLast;
             /// <summary>
             /// Middle name
             /// </summary>
-            public const uint Addition = (uint)PropertyIds.NameAddition;
+            public const uint Addition = (uint)Property.Id.NameAddition;
             /// <summary>
             /// Suffix
             /// </summary>
-            public const uint Suffix = (uint)PropertyIds.NameSuffix;
+            public const uint Suffix = (uint)Property.Id.NameSuffix;
             /// <summary>
             /// Prefix
             /// </summary>
-            public const uint Prefix = (uint)PropertyIds.NamePrefix;
+            public const uint Prefix = (uint)Property.Id.NamePrefix;
             /// <summary>
             /// Pronounce the first name
             /// </summary>
-            public const uint PhoneticFirst = (uint)PropertyIds.NamePhoneticFirst;
+            public const uint PhoneticFirst = (uint)Property.Id.NamePhoneticFirst;
             /// <summary>
             /// Pronounce the middle name
             /// </summary>
-            public const uint PhoneticMiddle = (uint)PropertyIds.NamePhoneticMiddle;
+            public const uint PhoneticMiddle = (uint)Property.Id.NamePhoneticMiddle;
             /// <summary>
             /// Pronounce the last name
             /// </summary>
-            public const uint PhoneticLast = (uint)PropertyIds.NamePhoneticLast;
+            public const uint PhoneticLast = (uint)Property.Id.NamePhoneticLast;
         }
 
         /// <summary>
-        /// Describes properies of a Number record.
+        /// Describes properties of a Number record.
         /// </summary>
         public static class Number
         {
@@ -991,43 +1049,44 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the number
             /// </summary>
-            public const uint Id = (uint)PropertyIds.NumberId;
+            public const uint Id = (uint)Property.Id.NumberId;
             /// <summary>
             /// Contact ID that the number belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.NumberContactId;
+            public const uint ContactId = (uint)Property.Id.NumberContactId;
             /// <summary>
             /// Number type, refer to the Types
             /// </summary>
-            public const uint Type = (uint)PropertyIds.NumberType;
+            public const uint Type = (uint)Property.Id.NumberType;
             /// <summary>
             /// Custom number type label, when the number type is Types.Custom
             /// </summary>
-            public const uint Label = (uint)PropertyIds.NumberLabel;
+            public const uint Label = (uint)Property.Id.NumberLabel;
             /// <summary>
             /// The number is default number or not
             /// </summary>
-            public const uint IsDefault = (uint)PropertyIds.NumberIsDefault;
+            public const uint IsDefault = (uint)Property.Id.NumberIsDefault;
             /// <summary>
             /// Number
             /// </summary>
-            public const uint NumberData = (uint)PropertyIds.NumberNumber;
+            public const uint NumberData = (uint)Property.Id.NumberNumber;
             /// <summary>
             /// You can only use this property for search filter.
             /// </summary>
-            public const uint NormalizedNumber = (uint)PropertyIds.NumberNormalizedNumber;
+            public const uint NormalizedNumber = (uint)Property.Id.NumberNormalizedNumber;
             /// <summary>
             /// You can only use this property for search filter.
             /// </summary>
-            public const uint CleanedNumber = (uint)PropertyIds.NumberCleanedNumber;
+            public const uint CleanedNumber = (uint)Property.Id.NumberCleanedNumber;
             /// <summary>
             /// You can only use this property for search filter.
             /// </summary>
-            public const uint NumberFilter = (uint)PropertyIds.NumberNumberFilter;
+            public const uint NumberFilter = (uint)Property.Id.NumberNumberFilter;
 
             /// <summary>
             /// Enumeration for number type.
             /// </summary>
+            [Flags]
             public enum Types
             {
                 /// <summary>
@@ -1110,7 +1169,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Describes properies of a Email record.
+        /// Describes properties of a Email record.
         /// </summary>
         public static class Email
         {
@@ -1121,31 +1180,32 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the email
             /// </summary>
-            public const uint Id = (uint)PropertyIds.EmailId;
+            public const uint Id = (uint)Property.Id.EmailId;
             /// <summary>
             /// Contact ID that the email belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.EmailContactId;
+            public const uint ContactId = (uint)Property.Id.EmailContactId;
             /// <summary>
             /// Email type, refer to the Types
             /// </summary>
-            public const uint Type = (uint)PropertyIds.EmailType;
+            public const uint Type = (uint)Property.Id.EmailType;
             /// <summary>
             /// Custom mail type label, when the email type is Types.Custom
             /// </summary>
-            public const uint Label = (uint)PropertyIds.EmailLabel;
+            public const uint Label = (uint)Property.Id.EmailLabel;
             /// <summary>
             /// The email is default email or not
             /// </summary>
-            public const uint IsDefault = (uint)PropertyIds.EmailIsDefault;
+            public const uint IsDefault = (uint)Property.Id.EmailIsDefault;
             /// <summary>
             /// Email address
             /// </summary>
-            public const uint Address = (uint)PropertyIds.EmailEmail;
+            public const uint Address = (uint)Property.Id.EmailEmail;
 
             /// <summary>
             /// Enumeration for Contact email type.
             /// </summary>
+            [Flags]
             public enum Types
             {
                 /// <summary>
@@ -1172,7 +1232,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Describes properies of a Address record.
+        /// Describes properties of a Address record.
         /// </summary>
         public static class Address
         {
@@ -1183,55 +1243,56 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the address
             /// </summary>
-            public const uint Id = (uint)PropertyIds.AddressId;
+            public const uint Id = (uint)Property.Id.AddressId;
             /// <summary>
             /// Contact ID that the address belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.AddressContactId;
+            public const uint ContactId = (uint)Property.Id.AddressContactId;
             /// <summary>
             /// Address type, refer to the Types
             /// </summary>
-            public const uint Type = (uint)PropertyIds.AddressType;
+            public const uint Type = (uint)Property.Id.AddressType;
             /// <summary>
             /// Address type label, when the address type is Types.Custom
             /// </summary>
-            public const uint Label = (uint)PropertyIds.AddressLabel;
+            public const uint Label = (uint)Property.Id.AddressLabel;
             /// <summary>
             /// Post office box
             /// </summary>
-            public const uint Postbox = (uint)PropertyIds.AddressPostbox;
+            public const uint Postbox = (uint)Property.Id.AddressPostbox;
             /// <summary>
             /// Postal code
             /// </summary>
-            public const uint PostalCode = (uint)PropertyIds.AddressPostalCode;
+            public const uint PostalCode = (uint)Property.Id.AddressPostalCode;
             /// <summary>
             /// Region
             /// </summary>
-            public const uint Region = (uint)PropertyIds.AddressRegion;
+            public const uint Region = (uint)Property.Id.AddressRegion;
             /// <summary>
             /// Locality
             /// </summary>
-            public const uint Locality = (uint)PropertyIds.AddressLocality;
+            public const uint Locality = (uint)Property.Id.AddressLocality;
             /// <summary>
             /// Street
             /// </summary>
-            public const uint Street = (uint)PropertyIds.AddressStreet;
+            public const uint Street = (uint)Property.Id.AddressStreet;
             /// <summary>
             /// Country
             /// </summary>
-            public const uint Country = (uint)PropertyIds.AddressCountry;
+            public const uint Country = (uint)Property.Id.AddressCountry;
             /// <summary>
             /// Extended address
             /// </summary>
-            public const uint Extended = (uint)PropertyIds.AddressExtended;
+            public const uint Extended = (uint)Property.Id.AddressExtended;
             /// <summary>
             /// The address is default or not
             /// </summary>
-            public const uint IsDefault = (uint)PropertyIds.AddressIsDefault;
+            public const uint IsDefault = (uint)Property.Id.AddressIsDefault;
 
             /// <summary>
             /// Enumeration for Contact address type.
             /// </summary>
+            [Flags]
             public enum Types
             {
                 /// <summary>
@@ -1270,7 +1331,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Describes properies of a Note record.
+        /// Describes properties of a Note record.
         /// </summary>
         public static class Note
         {
@@ -1281,21 +1342,21 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the note
             /// </summary>
-            public const uint Id = (uint)PropertyIds.NoteId;
+            public const uint Id = (uint)Property.Id.NoteId;
             /// <summary>
             /// Contact ID that the note belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.NoteContactId;
+            public const uint ContactId = (uint)Property.Id.NoteContactId;
             /// <summary>
             /// Note contents
             /// </summary>
-            public const uint Contents = (uint)PropertyIds.NoteNote;
+            public const uint Contents = (uint)Property.Id.NoteNote;
         }
 
         /// <summary>
-        /// Describes properies of a Url record.
+        /// Describes properties of a URL record.
         /// </summary>
-        public static class Url
+        public static class URL
         {
             /// <summary>
             /// Identifier of this contacts URL view
@@ -1304,28 +1365,28 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the URL
             /// </summary>
-            public const uint Id = (uint)PropertyIds.UrlId;
+            public const uint Id = (uint)Property.Id.URLId;
             /// <summary>
             /// Contact ID that the URL belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.UrlContactId;
+            public const uint ContactId = (uint)Property.Id.URLContactId;
             /// <summary>
-            /// URL type, refer to the Types
+            /// URL type, refer to the TypeValue
             /// </summary>
-            public const uint Type = (uint)PropertyIds.UrlType;
+            public const uint Type = (uint)Property.Id.URLType;
             /// <summary>
-            /// Custom URL type label, when the URL type is Types.Custom
+            /// Custom URL type label, when the URL type is TypeValue.Custom
             /// </summary>
-            public const uint Label = (uint)PropertyIds.UrlLabel;
+            public const uint Label = (uint)Property.Id.URLLabel;
             /// <summary>
             /// URL
             /// </summary>
-            public const uint UrlData = (uint)PropertyIds.UrlUrl;
+            public const uint URLData = (uint)Property.Id.URLData;
 
             /// <summary>
             /// Enumeration for Contact URL type.
             /// </summary>
-            public enum Types
+            public enum TypeValue
             {
                 /// <summary>
                 /// Other URL type
@@ -1347,8 +1408,9 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Describes properies of a Event record.
+        /// Describes properties of a Event record.
         /// </summary>
+        [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
         public static class Event
         {
             /// <summary>
@@ -1358,32 +1420,32 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the event
             /// </summary>
-            public const uint Id = (uint)PropertyIds.EventId;
+            public const uint Id = (uint)Property.Id.EventId;
             /// <summary>
             /// Contact ID that the event belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.EventContactId;
+            public const uint ContactId = (uint)Property.Id.EventContactId;
             /// <summary>
-            /// Event type, refer to the Types
+            /// Event type, refer to the TypeValue
             /// </summary>
-            public const uint Type = (uint)PropertyIds.EventType;
+            public const uint Type = (uint)Property.Id.EventType;
             /// <summary>
-            /// Custom event type label, when the event type is Types.Custom
+            /// Custom event type label, when the event type is TypeValue.Custom
             /// </summary>
-            public const uint Label = (uint)PropertyIds.EventLabel;
+            public const uint Label = (uint)Property.Id.EventLabel;
             /// <summary>
             /// Event date(YYYYMMDD). e.g. 2014/1/1 : 20140101. Even if the calendar_type is set as CONTACTS_EVENT_CALENDAR_TYPE_CHINESE, you SHOULD set Gregorian date
             /// </summary>
-            public const uint Date = (uint)PropertyIds.EventDate;
+            public const uint Date = (uint)Property.Id.EventDate;
             /// <summary>
-            /// Calendar type, refer to the CalendarTypes
+            /// Calendar type, refer to the CalendarType
             /// </summary>
-            public const uint IsLeapMonth = (uint)PropertyIds.EventIsLeapMonth;
+            public const uint IsLeapMonth = (uint)Property.Id.EventIsLeapMonth;
 
             /// <summary>
             /// Enumeration for Contact event type.
             /// </summary>
-            public enum Types
+            public enum TypeValue
             {
                 /// <summary>
                 /// Other event type
@@ -1406,21 +1468,21 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Contact event calendar type.
             /// </summary>
-            public enum CalendarTypes
+            public enum CalendarType
             {
                 /// <summary>
                 /// Gregorian calendar
                 /// </summary>
                 Gregorian,
                 /// <summary>
-                /// Chinese calenadr
+                /// Chinese calendar
                 /// </summary>
                 Chinese
             }
         }
 
         /// <summary>
-        /// Describes properies of a Relationship record.
+        /// Describes properties of a Relationship record.
         /// </summary>
         public static class Relationship
         {
@@ -1431,28 +1493,28 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the relationship
             /// </summary>
-            public const uint Id = (uint)PropertyIds.RelationshipId;
+            public const uint Id = (uint)Property.Id.RelationshipId;
             /// <summary>
             /// Contact ID that the relationship belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.RelationshipContactId;
+            public const uint ContactId = (uint)Property.Id.RelationshipContactId;
             /// <summary>
-            /// Relationship type, refer to the Types
+            /// Relationship type, refer to the TypeValue
             /// </summary>
-            public const uint Type = (uint)PropertyIds.RelationshipType;
+            public const uint Type = (uint)Property.Id.RelationshipType;
             /// <summary>
-            /// Custom relationship type label, when the relationship type is Types.Custom
+            /// Custom relationship type label, when the relationship type is TypeValue.Custom
             /// </summary>
-            public const uint Label = (uint)PropertyIds.RelationshipLabel;
+            public const uint Label = (uint)Property.Id.RelationshipLabel;
             /// <summary>
             /// Selected contact name that the relationship belongs to
             /// </summary>
-            public const uint Name = (uint)PropertyIds.RelationshipName;
+            public const uint Name = (uint)Property.Id.RelationshipName;
 
             /// <summary>
             /// Enumeration for Contact relationship type.
             /// </summary>
-            public enum Types
+            public enum TypeValue
             {
                 /// <summary>
                 /// Other relationship type
@@ -1522,7 +1584,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Describes properies of a Image record.
+        /// Describes properties of a Image record.
         /// </summary>
         public static class Image
         {
@@ -1533,32 +1595,32 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the image
             /// </summary>
-            public const uint Id = (uint)PropertyIds.ImageId;
+            public const uint Id = (uint)Property.Id.ImageId;
             /// <summary>
             /// Contact ID that the image belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.ImageContactId;
+            public const uint ContactId = (uint)Property.Id.ImageContactId;
             /// <summary>
-            /// Image type, refer to the Types
+            /// Image type, refer to the TypeValue
             /// </summary>
-            public const uint Type = (uint)PropertyIds.ImageType;
+            public const uint Type = (uint)Property.Id.ImageType;
             /// <summary>
-            /// Custom image type label, when the image type is Types.Custom
+            /// Custom image type label, when the image type is TypeValue.Custom
             /// </summary>
-            public const uint Label = (uint)PropertyIds.ImageLabel;
+            public const uint Label = (uint)Property.Id.ImageLabel;
             /// <summary>
             /// Image thumbnail path
             /// </summary>
-            public const uint Path = (uint)PropertyIds.ImagePath;
+            public const uint Path = (uint)Property.Id.ImagePath;
             /// <summary>
             /// The Image is default or not
             /// </summary>
-            public const uint IsDefault = (uint)PropertyIds.ImageIsDefault;
+            public const uint IsDefault = (uint)Property.Id.ImageIsDefault;
 
             /// <summary>
             /// Enumeration for Contact image type.
             /// </summary>
-            public enum Types
+            public enum TypeValue
             {
                 /// <summary>
                 /// Other type
@@ -1572,7 +1634,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Describes properies of a Company record.
+        /// Describes properties of a Company record.
         /// </summary>
         public static class Company
         {
@@ -1583,69 +1645,78 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the company
             /// </summary>
-            public const uint Id = (uint)PropertyIds.CompanyId;
+            public const uint Id = (uint)Property.Id.CompanyId;
             /// <summary>
             /// Contact ID that the company belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.CompanyContactId;
+            public const uint ContactId = (uint)Property.Id.CompanyContactId;
             /// <summary>
-            /// Company type, refer to the Types
+            /// Company type, refer to the TypeValue
             /// </summary>
-            public const uint Type = (uint)PropertyIds.CompanyType;
+            public const uint Type = (uint)Property.Id.CompanyType;
             /// <summary>
-            /// Custom company type label, when the company type is Types.Custom
+            /// Custom company type label, when the company type is TypeValue.Custom
             /// </summary>
-            public const uint Label = (uint)PropertyIds.CompanyLabel;
+            public const uint Label = (uint)Property.Id.CompanyLabel;
             /// <summary>
             /// Company name
             /// </summary>
-            public const uint Name = (uint)PropertyIds.CompanyName;
+            public const uint Name = (uint)Property.Id.CompanyName;
             /// <summary>
             /// Department
             /// </summary>
-            public const uint Department = (uint)PropertyIds.CompanyDepartment;
+            public const uint Department = (uint)Property.Id.CompanyDepartment;
             /// <summary>
             /// Job title
             /// </summary>
-            public const uint JobTitle = (uint)PropertyIds.CompanyJobTitle;
+            public const uint JobTitle = (uint)Property.Id.CompanyJobTitle;
             /// <summary>
             /// Assistant name
             /// </summary>
-            public const uint AssistantName = (uint)PropertyIds.CompanyAssistantName;
+            public const uint AssistantName = (uint)Property.Id.CompanyAssistantName;
             /// <summary>
             /// Role
             /// </summary>
-            public const uint Role = (uint)PropertyIds.CompanyRole;
+            public const uint Role = (uint)Property.Id.CompanyRole;
             /// <summary>
             /// Company logo image file path
             /// </summary>
-            public const uint Logo = (uint)PropertyIds.CompanyLogo;
+            public const uint Logo = (uint)Property.Id.CompanyLogo;
             /// <summary>
             /// Company location
             /// </summary>
-            public const uint Location = (uint)PropertyIds.CompanyLocation;
+            public const uint Location = (uint)Property.Id.CompanyLocation;
             /// <summary>
             /// Description
             /// </summary>
-            public const uint Description = (uint)PropertyIds.CompanyDescription;
+            public const uint Description = (uint)Property.Id.CompanyDescription;
             /// <summary>
             /// Pronounce the company name
             /// </summary>
-            public const uint PhoneticName = (uint)PropertyIds.CompanyPhoneticName;
+            public const uint PhoneticName = (uint)Property.Id.CompanyPhoneticName;
 
             /// <summary>
             /// Enumeration for Contact company type.
             /// </summary>
-            public enum Types
+            public enum TypeValue
             {
-                Other = 0, /**< Other company type */
-                Custom = 1 << 0, /**< Custom company type */
-                Work = 1 << 1, /**< Work company type */
+                /// <summary>
+                /// Other type
+                /// </summary>
+                Other = 0,
+                /// <summary>
+                /// Custom type
+                /// </summary>
+                Custom = 1 << 0,
+                /// <summary>
+                /// Work type
+                /// </summary>
+                Work = 1 << 1,
             }
         }
 
         /// <summary>
-        /// Describes properies of a Nickname record.
+        /// Describes properties of a Nickname record.
         /// </summary>
         public static class Nickname
         {
@@ -1656,19 +1727,19 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the nickname
             /// </summary>
-            public const uint Id = (uint)PropertyIds.NicknameId;
+            public const uint Id = (uint)Property.Id.NicknameId;
             /// <summary>
             /// Contact ID that the nickname belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.NicknameContactId;
+            public const uint ContactId = (uint)Property.Id.NicknameContactId;
             /// <summary>
             /// Nickname
             /// </summary>
-            public const uint Name = (uint)PropertyIds.NicknameName;
+            public const uint Name = (uint)Property.Id.NicknameName;
         }
 
         /// <summary>
-        /// Describes properies of a Messenger record.
+        /// Describes properties of a Messenger record.
         /// </summary>
         public static class Messenger
         {
@@ -1679,28 +1750,28 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the messenger
             /// </summary>
-            public const uint Id = (uint)PropertyIds.MessengerId;
+            public const uint Id = (uint)Property.Id.MessengerId;
             /// <summary>
             /// Contact ID that the messenger belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.MessengerContactId;
+            public const uint ContactId = (uint)Property.Id.MessengerContactId;
             /// <summary>
-            /// Messenger type, refer to the Types
+            /// Messenger type, refer to the TypeValue
             /// </summary>
-            public const uint Type = (uint)PropertyIds.MessengerType;
+            public const uint Type = (uint)Property.Id.MessengerType;
             /// <summary>
-            /// Custom messenger type label, when the messenger type is Types.Custom
+            /// Custom messenger type label, when the messenger type is TypeValue.Custom
             /// </summary>
-            public const uint Label = (uint)PropertyIds.MessengerLabel;
+            public const uint Label = (uint)Property.Id.MessengerLabel;
             /// <summary>
             /// Messenger ID (email address or email ID...)
             /// </summary>
-            public const uint IMId = (uint)PropertyIds.MessengerIMId;
+            public const uint IMId = (uint)Property.Id.MessengerIMId;
 
             /// <summary>
             /// Enumeration for Contact messenger type.
             /// </summary>
-            public enum Types
+            public enum TypeValue
             {
                 /// <summary>
                 /// Other messenger type
@@ -1754,8 +1825,9 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Describes properies of a Profile record.
+        /// Describes properties of a Profile record.
         /// </summary>
+        [SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces")]
         public static class Profile
         {
             /// <summary>
@@ -1765,51 +1837,51 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of profile
             /// </summary>
-            public const uint Id = (uint)PropertyIds.ProfileId;
+            public const uint Id = (uint)Property.Id.ProfileId;
             /// <summary>
             /// Contacts ID that the profile belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.ProfileContactId;
+            public const uint ContactId = (uint)Property.Id.ProfileContactId;
             /// <summary>
             /// Unique identifier
             /// </summary>
-            public const uint Uid = (uint)PropertyIds.ProfileUid;
+            public const uint UId = (uint)Property.Id.ProfileUId;
             /// <summary>
             /// Profile contents
             /// </summary>
-            public const uint Text = (uint)PropertyIds.ProfileText;
+            public const uint Text = (uint)Property.Id.ProfileText;
             /// <summary>
             /// Priority to display the profile
             /// </summary>
-            public const uint Order = (uint)PropertyIds.ProfileOrder;
+            public const uint Order = (uint)Property.Id.ProfileOrder;
             /// <summary>
             /// Data for app_control_set_operation
             /// </summary>
-            public const uint ServiceOperation = (uint)PropertyIds.ProfileServiceOperation;
+            public const uint ServiceOperation = (uint)Property.Id.ProfileServiceOperation;
             /// <summary>
             /// Data for app_control_set_mime
             /// </summary>
-            public const uint Mime = (uint)PropertyIds.ProfileMIME;
+            public const uint Mime = (uint)Property.Id.ProfileMIME;
             /// <summary>
             /// Data for app_control_set_app_id
             /// </summary>
-            public const uint AppId = (uint)PropertyIds.ProfileAppId;
+            public const uint AppId = (uint)Property.Id.ProfileAppId;
             /// <summary>
             /// Data for app_control_set_uri
             /// </summary>
-            public const uint ProfileUri = (uint)PropertyIds.ProfileUri;
+            public const uint ProfileUri = (uint)Property.Id.ProfileUri;
             /// <summary>
             /// Data for app_control_set_category
             /// </summary>
-            public const uint Category = (uint)PropertyIds.ProfileCategory;
+            public const uint Category = (uint)Property.Id.ProfileCategory;
             /// <summary>
             /// It includes "key:value,key:value," pairs. You should parse it. And you must base64 encode each key and value
             /// </summary>
-            public const uint ExtraData = (uint)PropertyIds.ProfileExtraData;
+            public const uint ExtraData = (uint)Property.Id.ProfileExtraData;
         }
 
         /// <summary>
-        /// Describes properies of a Sip record.
+        /// Describes properties of a Sip record.
         /// </summary>
         public static class Sip
         {
@@ -1820,28 +1892,28 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the sip
             /// </summary>
-            public const uint Id = (uint)PropertyIds.SipId;
+            public const uint Id = (uint)Property.Id.SipId;
             /// <summary>
             /// Contact ID that the sip belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.SipContactId;
+            public const uint ContactId = (uint)Property.Id.SipContactId;
             /// <summary>
             /// SIP address
             /// </summary>
-            public const uint Address = (uint)PropertyIds.SipAddress;
+            public const uint Address = (uint)Property.Id.SipAddress;
             /// <summary>
-            /// sip type, refer to the Types
+            /// sip type, refer to the TypeValue
             /// </summary>
-            public const uint Type = (uint)PropertyIds.SipType;
+            public const uint Type = (uint)Property.Id.SipType;
             /// <summary>
-            /// Custom sip type label, when the sip type is Types.Custom
+            /// Custom sip type label, when the sip type is TypeValue.Custom
             /// </summary>
-            public const uint Label = (uint)PropertyIds.SipLabel;
+            public const uint Label = (uint)Property.Id.SipLabel;
 
             /// <summary>
             /// Enumeration for Contact SIP type.
             /// </summary>
-            public enum Types
+            public enum TypeValue
             {
                 /// <summary>
                 /// Other SIP type
@@ -1863,7 +1935,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Describes properies of a Extension record.
+        /// Describes properties of a Extension record.
         /// </summary>
         public static class Extension
         {
@@ -1874,63 +1946,63 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the contact extension
             /// </summary>
-            public const uint Id = (uint)PropertyIds.ExtensionId;
+            public const uint Id = (uint)Property.Id.ExtensionId;
             /// <summary>
             /// Contact ID that the contact extension belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.ExtensionContactId;
+            public const uint ContactId = (uint)Property.Id.ExtensionContactId;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
-            public const uint Data1 = (uint)PropertyIds.ExtensionData1;
+            public const uint Data1 = (uint)Property.Id.ExtensionData1;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
-            public const uint Data2 = (uint)PropertyIds.ExtensionData2;
+            public const uint Data2 = (uint)Property.Id.ExtensionData2;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
-            public const uint Data3 = (uint)PropertyIds.ExtensionData3;
+            public const uint Data3 = (uint)Property.Id.ExtensionData3;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
-            public const uint Data4 = (uint)PropertyIds.ExtensionData4;
+            public const uint Data4 = (uint)Property.Id.ExtensionData4;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
-            public const uint Data5 = (uint)PropertyIds.ExtensionData5;
+            public const uint Data5 = (uint)Property.Id.ExtensionData5;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
-            public const uint Data6 = (uint)PropertyIds.ExtensionData6;
+            public const uint Data6 = (uint)Property.Id.ExtensionData6;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
-            public const uint Data7 = (uint)PropertyIds.ExtensionData7;
+            public const uint Data7 = (uint)Property.Id.ExtensionData7;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
-            public const uint Data8 = (uint)PropertyIds.ExtensionData8;
+            public const uint Data8 = (uint)Property.Id.ExtensionData8;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
-            public const uint Data9 = (uint)PropertyIds.ExtensionData9;
+            public const uint Data9 = (uint)Property.Id.ExtensionData9;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
-            public const uint Data10 = (uint)PropertyIds.ExtensionData10;
+            public const uint Data10 = (uint)Property.Id.ExtensionData10;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
-            public const uint Data11 = (uint)PropertyIds.ExtensionData11;
+            public const uint Data11 = (uint)Property.Id.ExtensionData11;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
-            public const uint Data12 = (uint)PropertyIds.ExtensionData12;
+            public const uint Data12 = (uint)Property.Id.ExtensionData12;
         }
 
         /// <summary>
-        /// Describes properies of a Group relation record.
+        /// Describes properties of a Group relation record.
         /// </summary>
         public static class GroupRelation
         {
@@ -1941,23 +2013,23 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the group relation (can not be used as filter)
             /// </summary>
-            public const uint Id = (uint)PropertyIds.GroupRelationId;
+            public const uint Id = (uint)Property.Id.GroupRelationId;
             /// <summary>
             /// DB record ID of the group
             /// </summary>
-            public const uint GroupId = (uint)PropertyIds.GroupRelationGroupId;
+            public const uint GroupId = (uint)Property.Id.GroupRelationGroupId;
             /// <summary>
             /// DB record ID of the contact
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.GroupRelationContactId;
+            public const uint ContactId = (uint)Property.Id.GroupRelationContactId;
             /// <summary>
             /// Group name
             /// </summary>
-            public const uint Name = (uint)PropertyIds.GroupRelationGroupName;
+            public const uint Name = (uint)Property.Id.GroupRelationGroupName;
         }
 
         /// <summary>
-        /// Describes properies of a Speed dial record.
+        /// Describes properties of a Speed dial record.
         /// </summary>
         public static class SpeedDial
         {
@@ -1968,51 +2040,51 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Stored speed dial number
             /// </summary>
-            public const uint SpeedDialNumber = (uint)PropertyIds.SpeedDialDialNumber;
+            public const uint SpeedDialNumber = (uint)Property.Id.SpeedDialDialNumber;
             /// <summary>
             /// Number ID that the speed dial belongs to
             /// </summary>
-            public const uint NumberId = (uint)PropertyIds.SpeedDialNumberId;
+            public const uint NumberId = (uint)Property.Id.SpeedDialNumberId;
             /// <summary>
             /// Contact number of specified speed dial
             /// </summary>
-            public const uint Number = (uint)PropertyIds.SpeedDialNumber;
+            public const uint Number = (uint)Property.Id.SpeedDialNumber;
             /// <summary>
             /// Contact number label of specified speed dial, when the number type is Number.Types.Custom
             /// </summary>
-            public const uint NumberLabel = (uint)PropertyIds.SpeedDialNumberLabel;
+            public const uint NumberLabel = (uint)Property.Id.SpeedDialNumberLabel;
             /// <summary>
             /// Contact number type, refer to the Number.Types
             /// </summary>
-            public const uint NumberType = (uint)PropertyIds.SpeedDialNumberType;
+            public const uint NumberType = (uint)Property.Id.SpeedDialNumberType;
             /// <summary>
             ///	Person ID that the speed dial belongs to
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.SpeedDialPersonId;
+            public const uint PersonId = (uint)Property.Id.SpeedDialPersonId;
             /// <summary>
             /// Display name that the speed dial belongs to
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.SpeedDialDisplayName;
+            public const uint DisplayName = (uint)Property.Id.SpeedDialDisplayName;
             /// <summary>
             /// Image thumbnail path that the speed dial belongs to
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.SpeedDialThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.SpeedDialThumbnail;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
-            public const uint NormalizedNumber = (uint)PropertyIds.SpeedDialNormalizedNumber;
+            public const uint NormalizedNumber = (uint)Property.Id.SpeedDialNormalizedNumber;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
-            public const uint CleanedNumber = (uint)PropertyIds.SpeedDialCleanedNumber;
+            public const uint CleanedNumber = (uint)Property.Id.SpeedDialCleanedNumber;
             /// <summary>
-            /// If you add filter with this property, the string will be normalized as minmatch length internally and the match rule will be applied ContactsFilter.StringMatchType.Exactly
+            /// If you add filter with this property, the string will be normalized as minimal match length internally and the match rule will be applied ContactsFilter.StringMatchType.Exactly
             /// </summary>
-            public const uint NumberFilter = (uint)PropertyIds.SpeedDialNumberFilter;
+            public const uint NumberFilter = (uint)Property.Id.SpeedDialNumberFilter;
         }
 
         /// <summary>
-        /// Describes properies of a Phone log record.
+        /// Describes properties of a Phone log record.
         /// </summary>
         public static class PhoneLog
         {
@@ -2023,52 +2095,52 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of phone log
             /// </summary>
-            public const uint Id = (uint)PropertyIds.PhonelogId;
+            public const uint Id = (uint)Property.Id.PhonelogId;
             /// <summary>
             /// Person ID that the phone log belongs to
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.PhonelogPersonId;
+            public const uint PersonId = (uint)Property.Id.PhonelogPersonId;
             /// <summary>
             /// Number or Email that the phone log displays
             /// </summary>
-            public const uint Address = (uint)PropertyIds.PhonelogAddress;
+            public const uint Address = (uint)Property.Id.PhonelogAddress;
             /// <summary>
             /// Call end time. The value means number of seconds since 1970-01-01 00:00:00 (UTC)
             /// </summary>
-            public const uint LogTime = (uint)PropertyIds.PhonelogLogTime;
+            public const uint LogTime = (uint)Property.Id.PhonelogLogTime;
             /// <summary>
-            /// Log type, refer to the Types
+            /// Log type, refer to the Type
             /// </summary>
-            public const uint LogType = (uint)PropertyIds.PhonelogLogType;
+            public const uint LogType = (uint)Property.Id.PhonelogLogType;
             /// <summary>
             /// You can set the related integer data (e.g. message_id, email_id or duration(seconds) of call)
             /// </summary>
-            public const uint ExtraData1 = (uint)PropertyIds.PhonelogExtraData1;
+            public const uint ExtraData1 = (uint)Property.Id.PhonelogExtraData1;
             /// <summary>
             /// You can set the related string data (e.g. short message, subject)
             /// </summary>
-            public const uint ExtraData2 = (uint)PropertyIds.PhonelogExtraData2;
+            public const uint ExtraData2 = (uint)Property.Id.PhonelogExtraData2;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
-            public const uint NormalizedAddress = (uint)PropertyIds.PhonelogNormalizedAddress;
+            public const uint NormalizedAddress = (uint)Property.Id.PhonelogNormalizedAddress;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
-            public const uint CleanedAddress = (uint)PropertyIds.PhonelogCleanedAddress;
+            public const uint CleanedAddress = (uint)Property.Id.PhonelogCleanedAddress;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
-            public const uint AddressFilter = (uint)PropertyIds.PhonelogAddressFilter;
+            public const uint AddressFilter = (uint)Property.Id.PhonelogAddressFilter;
             /// <summary>
-            /// You can set the related SIM slot number. sim_slot_no 0 means first SIM card, sim_slot_no 1 means second SIM. It is same with handle index of telephony handle list. Refer to the telephony_init()
+            /// You can set the related SIM slot number. SimSlotNo 0 means first SIM card, SimSlotNo 1 means second SIM.
             /// </summary>
-            public const uint SimSlotNo = (uint)PropertyIds.PhonelogSIMSlotNo;
+            public const uint SimSlotNo = (uint)Property.Id.PhonelogSIMSlotNo;
 
             /// <summary>
             /// Enumeration for Phone log type.
             /// </summary>
-            public enum Types
+            public enum Type
             {
                 /// <summary>
                 /// None
@@ -2105,7 +2177,7 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Confirmed missed video call
                 /// </summary>
-                VidoeMissedSeen = 8,
+                VideoMissedSeen = 8,
                 /// <summary>
                 /// Rejected call
                 /// </summary>
@@ -2125,27 +2197,27 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Incoming MMS
                 /// </summary>
-                MmsIncoming = 101,
+                MMSIncoming = 101,
                 /// <summary>
                 /// Outgoing MMS
                 /// </summary>
-                MmsOutgoing = 102,
+                MMSOutgoing = 102,
                 /// <summary>
                 /// Incoming SMS
                 /// </summary>
-                SmsIncoming = 103,
+                SMSIncoming = 103,
                 /// <summary>
                 /// Outgoing SMS
                 /// </summary>
-                SmsOutgoing = 104,
+                SMSOutgoing = 104,
                 /// <summary>
                 /// Blocked SMS
                 /// </summary>
-                SmsBlocked = 105,
+                SMSBlocked = 105,
                 /// <summary>
                 /// Blocked MMS
                 /// </summary>
-                MmsBlocked = 106,
+                MMSBlocked = 106,
                 /// <summary>
                 /// Received email
                 /// </summary>
@@ -2159,7 +2231,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Describes properies of a Contact updated information record.
+        /// Describes properties of a Contact updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class ContactUpdatedInfo
@@ -2171,27 +2243,27 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Updated contact ID
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.UpdateInfoId;
+            public const uint ContactId = (uint)Property.Id.UpdateInfoId;
             /// <summary>
-            /// Addressbook ID that the updated contact belongs to
+            /// AddressBook ID that the updated contact belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.UpdateInfoAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.UpdateInfoAddressBookId;
             /// <summary>
-            /// Contact change type, refer to the ContactsViews.ChangeTypes
+            /// Contact change type, refer to the ContactsViews.ChangeType
             /// </summary>
-            public const uint Type = (uint)PropertyIds.UpdateInfoType;
+            public const uint Type = (uint)Property.Id.UpdateInfoType;
             /// <summary>
             /// Updated version
             /// </summary>
-            public const uint Version = (uint)PropertyIds.UpdateInfoVersion;
+            public const uint Version = (uint)Property.Id.UpdateInfoVersion;
             /// <summary>
             /// Contact image is changed or not
             /// </summary>
-            public const uint ImageChanged = (uint)PropertyIds.UpdateInfoImageChanged;
+            public const uint ImageChanged = (uint)Property.Id.UpdateInfoImageChanged;
         }
 
         /// <summary>
-        /// Describes properies of a My profile updated information record.
+        /// Describes properties of a My profile updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class MyProfileUpdatedInfo
@@ -2203,19 +2275,19 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Address book ID that the updated my profile belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.UpdateInfoAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.UpdateInfoAddressBookId;
             /// <summary>
-            /// MyProfile change type, refer to the ContactsViews.ChangeTypes
+            /// MyProfile change type, refer to the ContactsViews.ChangeType
             /// </summary>
-            public const uint LastChangedType = (uint)PropertyIds.UpdateInfoLastChangedType;
+            public const uint LastChangedType = (uint)Property.Id.UpdateInfoLastChangedType;
             /// <summary>
             /// Updated version
             /// </summary>
-            public const uint Version = (uint)PropertyIds.UpdateInfoVersion;
+            public const uint Version = (uint)Property.Id.UpdateInfoVersion;
         }
 
         /// <summary>
-        /// Describes properies of a Group updated information record.
+        /// Describes properties of a Group updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class GroupUpdatedInfo
@@ -2227,23 +2299,23 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Updated group ID
             /// </summary>
-            public const uint GroupId = (uint)PropertyIds.UpdateInfoId;
+            public const uint GroupId = (uint)Property.Id.UpdateInfoId;
             /// <summary>
             /// Address book ID that the updated group belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.UpdateInfoAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.UpdateInfoAddressBookId;
             /// <summary>
-            /// Group change type, refer to the ContactsViews.ChangeTypes
+            /// Group change type, refer to the ContactsViews.ChangeType
             /// </summary>
-            public const uint Type = (uint)PropertyIds.UpdateInfoType;
+            public const uint Type = (uint)Property.Id.UpdateInfoType;
             /// <summary>
             /// Updated version
             /// </summary>
-            public const uint Version = (uint)PropertyIds.UpdateInfoVersion;
+            public const uint Version = (uint)Property.Id.UpdateInfoVersion;
         }
 
         /// <summary>
-        /// Describes properies of a Group Member updated information record.
+        /// Describes properties of a Group Member updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class GroupMemberUpdatedInfo
@@ -2255,19 +2327,19 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Updated group ID
             /// </summary>
-            public const uint GroupId = (uint)PropertyIds.UpdateInfoId;
+            public const uint GroupId = (uint)Property.Id.UpdateInfoId;
             /// <summary>
             /// Address book ID that the updated group belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.UpdateInfoAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.UpdateInfoAddressBookId;
             /// <summary>
             /// Updated version
             /// </summary>
-            public const uint Version = (uint)PropertyIds.UpdateInfoVersion;
+            public const uint Version = (uint)Property.Id.UpdateInfoVersion;
         }
 
         /// <summary>
-        /// Describes properies of a Relation updated information record.
+        /// Describes properties of a Relation updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class GroupRelationUpdatedInfo
@@ -2279,27 +2351,27 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Group ID of group relation
             /// </summary>
-            public const uint GroupId = (uint)PropertyIds.GroupId;
+            public const uint GroupId = (uint)Property.Id.GroupId;
             /// <summary>
             /// Contact ID of the updated group relation
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.ContactId;
+            public const uint ContactId = (uint)Property.Id.ContactId;
             /// <summary>
             /// Address book ID of contact that the updated group relation
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.AddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.AddressBookId;
             /// <summary>
-            /// Group relation change type, refer to the ContactsViews.ChangeTypes
+            /// Group relation change type, refer to the ContactsViews.ChangeType
             /// </summary>
-            public const uint Type = (uint)PropertyIds.UpdateInfoType;
+            public const uint Type = (uint)Property.Id.UpdateInfoType;
             /// <summary>
             /// Updated version
             /// </summary>
-            public const uint Version = (uint)PropertyIds.UpdateInfoVersion;
+            public const uint Version = (uint)Property.Id.UpdateInfoVersion;
         }
 
         /// <summary>
-        /// Describes properies of a Person & Contact record.
+        /// Describes properties of a PersonContact record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonContact
@@ -2311,87 +2383,87 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the person
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.PersonId;
+            public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.PersonDisplayName;
+            public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
-            /// The first character of first string for grouping. This is normalized using icu (projection)
+            /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
-            public const uint DisplayNameIndex = (uint)PropertyIds.PersonDisplayNameIndex;
+            public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
-            public const uint DisplayContactId = (uint)PropertyIds.PersonDisplayContactId;
+            public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.PersonRingtone;
+            public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.PersonThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
-            public const uint Vibration = (uint)PropertyIds.PersonVibration;
+            public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
-            public const uint MessageAlert = (uint)PropertyIds.PersonMessageAlert;
+            public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// Status of social account (projection)
             /// </summary>
-            public const uint Status = (uint)PropertyIds.PersonStatus;
+            public const uint Status = (uint)Property.Id.PersonStatus;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
-            public const uint IsFavorite = (uint)PropertyIds.PersonIsFavorite;
+            public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// Link count of contact records (projection)
             /// </summary>
-            public const uint LinkCount = (uint)PropertyIds.PersonLinkCount;
+            public const uint LinkCount = (uint)Property.Id.PersonLinkCount;
             /// <summary>
             /// Contact ID that the person belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.ContactId;
+            public const uint ContactId = (uint)Property.Id.ContactId;
             /// <summary>
-            /// Addressbook IDs that the person belongs to (projection)
+            /// AddressBook IDs that the person belongs to (projection)
             /// </summary>
-            public const uint AddressbookIds = (uint)PropertyIds.PersonAddressbookIds;
+            public const uint AddressBookIds = (uint)Property.Id.PersonAddressBookIds;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
+            public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
-            public const uint HasEmail = (uint)PropertyIds.PersonHasEmail;
+            public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
-            /// Addressbook ID that the person belongs to
+            /// AddressBook ID that the person belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.ContactAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
-            /// Addressbook mode, refer to the Addressbook.Modes
+            /// AddressBook mode, refer to the AddressBook.Mode
             /// </summary>
-            public const uint AddressbookMode = (uint)PropertyIds.AddressbookMode;
+            public const uint AddressBookMode = (uint)Property.Id.AddressBookMode;
             /// <summary>
-            ///	Addressbook name that the person belongs to
+            ///	AddressBook name that the person belongs to
             /// </summary>
-            public const uint AddressbookName = (uint)PropertyIds.AddressbookName;
+            public const uint AddressBookName = (uint)Property.Id.AddressBookName;
             /// <summary>
-            /// kerword matched data type, refer to the Contact.DataTypes
+            /// keyword matched data type, refer to the Contact.DataType
             /// </summary>
-            public const uint SnippetType = (uint)PropertyIds.PersonSnippetType;
+            public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
-            public const uint SnippetString = (uint)PropertyIds.PersonSnippetString;
+            public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         };
 
         /// <summary>
-        /// Describes properies of a Person & Number record.
+        /// Describes properties of a PersonNumber record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonNumber
@@ -2403,91 +2475,91 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the person
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.PersonId;
+            public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.PersonDisplayName;
+            public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
-            /// The first character of first string for grouping. This is normalized using icu (projection)
+            /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
-            public const uint DisplayNameIndex = (uint)PropertyIds.PersonDisplayNameIndex;
+            public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
-            public const uint DisplayContactId = (uint)PropertyIds.PersonDisplayContactId;
+            public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.PersonRingtone;
+            public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.PersonThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
-            public const uint Vibration = (uint)PropertyIds.PersonVibration;
+            public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
-            public const uint MessageAlert = (uint)PropertyIds.PersonMessageAlert;
+            public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
-            public const uint IsFavorite = (uint)PropertyIds.PersonIsFavorite;
+            public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
+            public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
-            public const uint HasEmail = (uint)PropertyIds.PersonHasEmail;
+            public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
             /// Number ID that the person belongs to
             /// </summary>
-            public const uint NumberId = (uint)PropertyIds.NumberId;
+            public const uint NumberId = (uint)Property.Id.NumberId;
             /// <summary>
             /// Number type, refer to the Number.Types (projection)
             /// </summary>
-            public const uint Type = (uint)PropertyIds.NumberType;
+            public const uint Type = (uint)Property.Id.NumberType;
             /// <summary>
             /// Custom number type label, when the number type is Number.Types.Custom (projection)
             /// </summary>
-            public const uint Label = (uint)PropertyIds.NumberLabel;
+            public const uint Label = (uint)Property.Id.NumberLabel;
             /// <summary>
             /// The number is default number or not
             /// </summary>
-            public const uint IsPrimaryDefault = (uint)PropertyIds.DataIsPrimaryDefault;
+            public const uint IsPrimaryDefault = (uint)Property.Id.DataIsPrimaryDefault;
             /// <summary>
             /// Number
             /// </summary>
-            public const uint Number = (uint)PropertyIds.NumberNumber;
+            public const uint Number = (uint)Property.Id.NumberNumber;
             /// <summary>
-            /// If you add filter with this property, the string will be normalized as minmatch length internally and the match rule will be applied ContactsFilter.StringMatchType.Exactly.
+            /// If you add filter with this property, the string will be normalized as minimal match length internally and the match rule will be applied ContactsFilter.StringMatchType.Exactly.
             /// </summary>
-            public const uint NumberFilter = (uint)PropertyIds.NumberNumberFilter;
-            /// <summary>
-            /// You can only use this property for search filter
-            /// </summary>
-            public const uint NormalizedNumber = (uint)PropertyIds.NumberNormalizedNumber;
+            public const uint NumberFilter = (uint)Property.Id.NumberNumberFilter;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
-            public const uint CleanedNumber = (uint)PropertyIds.NumberCleanedNumber;
+            public const uint NormalizedNumber = (uint)Property.Id.NumberNormalizedNumber;
             /// <summary>
-            /// kerword matched data type, refer to they Contact.DataTypes
+            /// You can only use this property for search filter
             /// </summary>
-            public const uint SnippetType = (uint)PropertyIds.PersonSnippetType;
+            public const uint CleanedNumber = (uint)Property.Id.NumberCleanedNumber;
+            /// <summary>
+            /// keyword matched data type, refer to they Contact.DataType
+            /// </summary>
+            public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
-            public const uint SnippetString = (uint)PropertyIds.PersonSnippetString;
+            public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         };
 
         /// <summary>
-        /// Describes properies of a Person & Email record.
+        /// Describes properties of a PersonEmail record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonEmail
@@ -2499,79 +2571,79 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the person
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.PersonId;
+            public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.PersonDisplayName;
+            public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
-            /// The first character of first string for grouping. This is normalized using icu (projection)
+            /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
-            public const uint DisplayNameIndex = (uint)PropertyIds.PersonDisplayNameIndex;
+            public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
-            public const uint DisplayContactId = (uint)PropertyIds.PersonDisplayContactId;
+            public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.PersonRingtone;
+            public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.PersonThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
-            public const uint Vibration = (uint)PropertyIds.PersonVibration;
+            public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
-            public const uint MessageAlert = (uint)PropertyIds.PersonMessageAlert;
+            public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
-            public const uint IsFavorite = (uint)PropertyIds.PersonIsFavorite;
+            public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
+            public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
-            public const uint HasEmail = (uint)PropertyIds.PersonHasEmail;
+            public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
             /// Email ID that the person belongs to
             /// </summary>
-            public const uint EmailId = (uint)PropertyIds.EmailId;
+            public const uint EmailId = (uint)Property.Id.EmailId;
             /// <summary>
             /// Email type, refer to the Email.Types (projection)
             /// </summary>
-            public const uint Type = (uint)PropertyIds.EmailType;
+            public const uint Type = (uint)Property.Id.EmailType;
             /// <summary>
             /// Custom mail type label, when the email type is Email.Types.Custom (projection)
             /// </summary>
-            public const uint Label = (uint)PropertyIds.EmailLabel;
+            public const uint Label = (uint)Property.Id.EmailLabel;
             /// <summary>
             /// The email is default email or not
             /// </summary>
-            public const uint IsPrimaryDefault = (uint)PropertyIds.DataIsPrimaryDefault;
+            public const uint IsPrimaryDefault = (uint)Property.Id.DataIsPrimaryDefault;
             /// <summary>
             /// Email address
             /// </summary>
-            public const uint Email = (uint)PropertyIds.EmailEmail;
+            public const uint Email = (uint)Property.Id.EmailEmail;
             /// <summary>
-            /// kerword matched data type, refer to they Contact.DataTypes
+            /// keyword matched data type, refer to they Contact.DataType
             /// </summary>
-            public const uint SnippetType = (uint)PropertyIds.PersonSnippetType;
+            public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
-            public const uint SnippetString = (uint)PropertyIds.PersonSnippetString;
+            public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         };
 
         /// <summary>
-        /// Describes properies of a Person & Group Relation record.
+        /// Describes properties of a PersonGroupRelation record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonGroupRelation
@@ -2583,91 +2655,91 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the person
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.PersonId;
+            public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.PersonDisplayName;
+            public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
-            /// The first character of first string for grouping. This is normalized using icu (projection)
+            /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
-            public const uint DisplayNameIndex = (uint)PropertyIds.PersonDisplayNameIndex;
+            public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
-            public const uint DisplayContactId = (uint)PropertyIds.PersonDisplayContactId;
+            public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.PersonRingtone;
+            public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.PersonThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
-            public const uint Vibration = (uint)PropertyIds.PersonVibration;
+            public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
-            public const uint MessageAlert = (uint)PropertyIds.PersonMessageAlert;
+            public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// Status of social account (projection)
             /// </summary>
-            public const uint Status = (uint)PropertyIds.PersonStatus;
+            public const uint Status = (uint)Property.Id.PersonStatus;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
-            public const uint IsFavorite = (uint)PropertyIds.PersonIsFavorite;
+            public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
+            public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
-            public const uint HasEmail = (uint)PropertyIds.PersonHasEmail;
+            public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
-            /// Link count of contat records (projection)
+            /// Link count of contact records (projection)
             /// </summary>
-            public const uint LinkCount = (uint)PropertyIds.PersonLinkCount;
+            public const uint LinkCount = (uint)Property.Id.PersonLinkCount;
             /// <summary>
-            /// Addressbook IDs that the person belongs to (projection)
+            /// AddressBook IDs that the person belongs to (projection)
             /// </summary>
-            public const uint AddressbookIds = (uint)PropertyIds.PersonAddressbookIds;
+            public const uint AddressBookIds = (uint)Property.Id.PersonAddressBookIds;
             /// <summary>
-            /// Addressbook ID that the person belongs to
+            /// AddressBook ID that the person belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.ContactAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
-            /// Addressbook name that the person belongs to
+            /// AddressBook name that the person belongs to
             /// </summary>
-            public const uint AddressbookName = (uint)PropertyIds.AddressbookName;
+            public const uint AddressBookName = (uint)Property.Id.AddressBookName;
             /// <summary>
-            /// Addressbook mode, refer to the Addressbook.Modes
+            /// AddressBook mode, refer to the AddressBook.Mode
             /// </summary>
-            public const uint AddressbookMode = (uint)PropertyIds.AddressbookMode;
+            public const uint AddressBookMode = (uint)Property.Id.AddressBookMode;
             /// <summary>
             /// Group ID that the person belongs to
             /// </summary>
-            public const uint GroupId = (uint)PropertyIds.GroupRelationGroupId;
+            public const uint GroupId = (uint)Property.Id.GroupRelationGroupId;
             /// <summary>
             /// Contact ID that the person belongs to (projection)
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.GroupRelationContactId;
+            public const uint ContactId = (uint)Property.Id.GroupRelationContactId;
             /// <summary>
-            /// kerword matched data type, refer to they Contact.DataTypes
+            /// keyword matched data type, refer to they Contact.DataType
             /// </summary>
-            public const uint SnippetType = (uint)PropertyIds.PersonSnippetType;
+            public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
-            public const uint SnippetString = (uint)PropertyIds.PersonSnippetString;
+            public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         };
 
         /// <summary>
-        /// Describes properies of a Person & Group Assigned record.
+        /// Describes properties of a PersonGroupAssignedrecord.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonGroupAssigned
@@ -2679,87 +2751,87 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the person
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.PersonId;
+            public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.PersonDisplayName;
+            public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
-            /// The first character of first string for grouping. This is normalized using icu (projection)
+            /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
-            public const uint DisplayNameIndex = (uint)PropertyIds.PersonDisplayNameIndex;
+            public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
-            public const uint DisplayContactId = (uint)PropertyIds.PersonDisplayContactId;
+            public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.PersonRingtone;
+            public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.PersonThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
-            public const uint Vibration = (uint)PropertyIds.PersonVibration;
+            public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
-            public const uint MessageAlert = (uint)PropertyIds.PersonMessageAlert;
+            public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// Status of social account (projection)
             /// </summary>
-            public const uint Status = (uint)PropertyIds.PersonStatus;
+            public const uint Status = (uint)Property.Id.PersonStatus;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
-            public const uint IsFavorite = (uint)PropertyIds.PersonIsFavorite;
+            public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
+            public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
-            public const uint HasEmail = (uint)PropertyIds.PersonHasEmail;
+            public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
             /// Link count of contact records (projection)
             /// </summary>
-            public const uint LinkCount = (uint)PropertyIds.PersonLinkCount;
+            public const uint LinkCount = (uint)Property.Id.PersonLinkCount;
             /// <summary>
-            /// Addressbook IDs that the linked person belongs to (projection)
+            /// AddressBook IDs that the linked person belongs to (projection)
             /// </summary>
-            public const uint AddressbookIds = (uint)PropertyIds.PersonAddressbookIds;
+            public const uint AddressBookIds = (uint)Property.Id.PersonAddressBookIds;
             /// <summary>
-            /// Addressbook ID that the person belongs to
+            /// AddressBook ID that the person belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.ContactAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
-            /// Addressbook mode, refer to the Addressbook.Modes
+            /// AddressBook mode, refer to the AddressBook.Mode
             /// </summary>
-            public const uint AddressbookMode = (uint)PropertyIds.AddressbookMode;
+            public const uint AddressBookMode = (uint)Property.Id.AddressBookMode;
             /// <summary>
             /// Group ID that the person belongs to
             /// </summary>
-            public const uint GroupId = (uint)PropertyIds.GroupRelationGroupId;
+            public const uint GroupId = (uint)Property.Id.GroupRelationGroupId;
             /// <summary>
             /// Contact ID that the person belongs to (projection)
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.GroupRelationContactId;
+            public const uint ContactId = (uint)Property.Id.GroupRelationContactId;
             /// <summary>
-            /// kerword matched data type, refer to they Contact.DataTypes
+            /// keyword matched data type, refer to they Contact.DataType
             /// </summary>
-            public const uint SnippetType = (uint)PropertyIds.PersonSnippetType;
+            public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
-            public const uint SnippetString = (uint)PropertyIds.PersonSnippetString;
+            public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         };
 
         /// <summary>
-        /// Describes properies of a Person & Group Not Assigned record.
+        /// Describes properties of a PersonGroupNotAssigned record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonGroupNotAssigned
@@ -2771,86 +2843,86 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the person
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.PersonId;
+            public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.PersonDisplayName;
+            public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
-            /// The first character of first string for grouping. This is normalized using icu (projection)
+            /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
-            public const uint DisplayNameIndex = (uint)PropertyIds.PersonDisplayNameIndex;
+            public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
-            public const uint DisplayContactId = (uint)PropertyIds.PersonDisplayContactId;
+            public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.PersonRingtone;
+            public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.PersonThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
-            public const uint Vibration = (uint)PropertyIds.PersonVibration;
+            public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
-            public const uint MessageAlert = (uint)PropertyIds.PersonMessageAlert;
+            public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// Status of social account (projection)
             /// </summary>
-            public const uint Status = (uint)PropertyIds.PersonStatus;
+            public const uint Status = (uint)Property.Id.PersonStatus;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
-            public const uint IsFavorite = (uint)PropertyIds.PersonIsFavorite;
+            public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
+            public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
-            public const uint HasEmail = (uint)PropertyIds.PersonHasEmail;
+            public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
             /// Link count of contact records (projection)
             /// </summary>
-            public const uint LinkCount = (uint)PropertyIds.PersonLinkCount;
+            public const uint LinkCount = (uint)Property.Id.PersonLinkCount;
             /// <summary>
-            /// Addressbook IDs that the linked person belongs to (projection)
+            /// AddressBook IDs that the linked person belongs to (projection)
             /// </summary>
-            public const uint AddressbookIds = (uint)PropertyIds.PersonAddressbookIds;
+            public const uint AddressBookIds = (uint)Property.Id.PersonAddressBookIds;
             /// <summary>
-            /// Addressbook ID that the person belongs to
+            /// AddressBook ID that the person belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.ContactAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
-            /// Addressbook mode, refer to the Addressbook.Modes
+            /// AddressBook mode, refer to the AddressBook.Mode
             /// </summary>
-            public const uint AddressbookMode = (uint)PropertyIds.AddressbookMode;
+            public const uint AddressBookMode = (uint)Property.Id.AddressBookMode;
             /// <summary>
             /// Contact ID that the person belongs to (projection)
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.ContactId;
+            public const uint ContactId = (uint)Property.Id.ContactId;
             /// <summary>
-            /// kerword matched data type, refer to they Contact.DataTypes
+            /// keyword matched data type, refer to they Contact.DataType
             /// </summary>
-            public const uint SnippetType = (uint)PropertyIds.PersonSnippetType;
+            public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
-            public const uint SnippetString = (uint)PropertyIds.PersonSnippetString;
+            public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         };
 
         /// <summary>
-        /// Describes properies of a Person & Phone Log record.
+        /// Describes properties of a PersonPhoneLog record.
         /// </summary>
         /// <remarks>Read only view</remarks>
-        public static class PersonPhonelog
+        public static class PersonPhoneLog
         {
             /// <summary>
             /// Identifier of this phone log view
@@ -2859,63 +2931,63 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the person
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.PersonId;
+            public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.PersonDisplayName;
+            public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.PersonThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// DB record ID of phone log
             /// </summary>
-            public const uint LogId = (uint)PropertyIds.PhonelogId;
+            public const uint LogId = (uint)Property.Id.PhonelogId;
             /// <summary>
             /// Number or Email that the phone log displays
             /// </summary>
-            public const uint Address = (uint)PropertyIds.PhonelogAddress;
+            public const uint Address = (uint)Property.Id.PhonelogAddress;
             /// <summary>
             /// Number or Email type (projection)
             /// </summary>
-            public const uint AddressType = (uint)PropertyIds.DataData1;
+            public const uint AddressType = (uint)Property.Id.DataData1;
             /// <summary>
             /// Call end time. The value means number of seconds since 1970-01-01 00:00:00 (UTC)
             /// </summary>
-            public const uint LogTime = (uint)PropertyIds.PhonelogLogTime;
+            public const uint LogTime = (uint)Property.Id.PhonelogLogTime;
             /// <summary>
             /// Log type, refer to the PhoneLog.Types
             /// </summary>
-            public const uint LogType = (uint)PropertyIds.PhonelogLogType;
+            public const uint LogType = (uint)Property.Id.PhonelogLogType;
             /// <summary>
             /// You can set the related integer data (e.g. message_id, email_id or duration(seconds) of call) (projection)
             /// </summary>
-            public const uint ExtraData1 = (uint)PropertyIds.PhonelogExtraData1;
+            public const uint ExtraData1 = (uint)Property.Id.PhonelogExtraData1;
             /// <summary>
             /// You can set the related string data (e.g. short message, subject) (projection)
             /// </summary>
-            public const uint ExtraData2 = (uint)PropertyIds.PhonelogExtraData2;
+            public const uint ExtraData2 = (uint)Property.Id.PhonelogExtraData2;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
-            public const uint NormalizedAddress = (uint)PropertyIds.PhonelogNormalizedAddress;
+            public const uint NormalizedAddress = (uint)Property.Id.PhonelogNormalizedAddress;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
-            public const uint CleanedAddress = (uint)PropertyIds.PhonelogCleanedAddress;
+            public const uint CleanedAddress = (uint)Property.Id.PhonelogCleanedAddress;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
-            public const uint AddressFilter = (uint)PropertyIds.PhonelogAddressFilter;
+            public const uint AddressFilter = (uint)Property.Id.PhonelogAddressFilter;
             /// <summary>
-            /// It is related to the SIM slot number. sim_slot_no 0 means first SIM card, sim_slot_no 1 means second SIM. It is same with handle index of telephony handle list. Refer to the telephony_init()
+            /// It is related to the SIM slot number. SimSlotNo 0 means first SIM card, SimSlotNo 1 means second SIM.
             /// </summary>
-            public const uint SIMSlotNo = (uint)PropertyIds.PhonelogSIMSlotNo;
+            public const uint SIMSlotNo = (uint)Property.Id.PhonelogSIMSlotNo;
         };
 
         /// <summary>
-        /// Describes properies of a Person Usage record.
+        /// Describes properties of a Person Usage record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class PersonUsage
@@ -2927,60 +2999,60 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// DB record ID of the person
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.PersonId;
+            public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.PersonDisplayName;
+            public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
-            /// The first character of first string for grouping. This is normalized using icu (projection)
+            /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
-            public const uint DisplayNameIndex = (uint)PropertyIds.PersonDisplayNameIndex;
+            public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
-            public const uint DisplayContactId = (uint)PropertyIds.PersonDisplayContactId;
+            public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.PersonRingtone;
+            public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.PersonThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
-            public const uint Vibration = (uint)PropertyIds.PersonVibration;
+            public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
-            public const uint MessageAlert = (uint)PropertyIds.PersonMessageAlert;
+            public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
-            public const uint IsFavorite = (uint)PropertyIds.PersonIsFavorite;
+            public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
-            public const uint HasPhoneNumber = (uint)PropertyIds.PersonHasPhoneNumber;
+            public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
-            public const uint HasEmail = (uint)PropertyIds.PersonHasEmail;
+            public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
-            /// Usage type, refer to the UsageTypes
+            /// Usage type, refer to the Type
             /// </summary>
-            public const uint UsageType = (uint)PropertyIds.PersonUsageType;
+            public const uint UsageType = (uint)Property.Id.PersonUsageType;
             /// <summary>
             /// Usage number of person
             /// </summary>
-            public const uint TimesUsed = (uint)PropertyIds.PersonTimesUsed;
+            public const uint TimesUsed = (uint)Property.Id.PersonTimesUsed;
 
             /// <summary>
             /// Enumeration for Person usage type.
             /// </summary>
-            public enum Types
+            public enum Type
             {
                 /// <summary>
                 /// None
@@ -3030,7 +3102,7 @@ namespace Tizen.Pims.Contacts
         };
 
         /// <summary>
-        /// Describes properies of a Contact & Number record.
+        /// Describes properties of a ContactNumber record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class ContactNumber
@@ -3042,67 +3114,67 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Contact ID that the number belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.ContactId;
+            public const uint ContactId = (uint)Property.Id.ContactId;
             /// <summary>
             /// Display name of contact that the number belongs to
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.ContactDisplayName;
+            public const uint DisplayName = (uint)Property.Id.ContactDisplayName;
             /// <summary>
-            /// The source type of display name, refer to the Contact.DisplayNameSourceTypes (projection)
+            /// The source type of display name, refer to the Contact.DisplayNameSourceType (projection)
             /// </summary>
-            public const uint DisplaySourceType = (uint)PropertyIds.ContactDisplaySourceDataId;
+            public const uint DisplaySourceType = (uint)Property.Id.ContactDisplaySourceDataId;
             /// <summary>
-            /// Addressbook ID that the number belongs to
+            /// AddressBook ID that the number belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.ContactAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// Person ID that the number belongs to
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.ContactPersonId;
+            public const uint PersonId = (uint)Property.Id.ContactPersonId;
             /// <summary>
             /// Ringtone path that the number belongs to (projection)
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.ContactRingtone;
+            public const uint RingtonePath = (uint)Property.Id.ContactRingtone;
             /// <summary>
             /// Image thumbnail path that the number belongs to (projection)
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.ContactThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.ContactThumbnail;
             /// <summary>
             /// DB record ID of the number
             /// </summary>
-            public const uint NumberId = (uint)PropertyIds.NumberId;
+            public const uint NumberId = (uint)Property.Id.NumberId;
             /// <summary>
             /// Number type, refer to the Number.Types (projection)
             /// </summary>
-            public const uint Type = (uint)PropertyIds.NumberType;
+            public const uint Type = (uint)Property.Id.NumberType;
             /// <summary>
             /// Custom number type label, when the number type is Number.Types.Custom (projection)
             /// </summary>
-            public const uint Label = (uint)PropertyIds.NumberLabel;
+            public const uint Label = (uint)Property.Id.NumberLabel;
             /// <summary>
             /// The number is default number or not
             /// </summary>
-            public const uint IsDefault = (uint)PropertyIds.NumberIsDefault;
+            public const uint IsDefault = (uint)Property.Id.NumberIsDefault;
             /// <summary>
             /// Number
             /// </summary>
-            public const uint Number = (uint)PropertyIds.NumberNumber;
+            public const uint Number = (uint)Property.Id.NumberNumber;
             /// <summary>
-            /// If you add filter with this property, the string will be normalized as minmatch length internally and the match rule will be applied ContactsFilter.StringMatchType.Exactly
+            /// If you add filter with this property, the string will be normalized as minimal match length internally and the match rule will be applied ContactsFilter.StringMatchType.Exactly
             /// </summary>
-            public const uint NumberFilter = (uint)PropertyIds.NumberNumberFilter;
-            /// <summary>
-            /// You can only use this property for search filter
-            /// </summary>
-            public const uint NormalizedNumber = (uint)PropertyIds.NumberNormalizedNumber;
+            public const uint NumberFilter = (uint)Property.Id.NumberNumberFilter;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
-            public const uint CleanedNumber = (uint)PropertyIds.NumberCleanedNumber;
+            public const uint NormalizedNumber = (uint)Property.Id.NumberNormalizedNumber;
+            /// <summary>
+            /// You can only use this property for search filter
+            /// </summary>
+            public const uint CleanedNumber = (uint)Property.Id.NumberCleanedNumber;
         };
 
         /// <summary>
-        /// Describes properies of a Contact & Email record.
+        /// Describes properties of a ContactEmail record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class ContactEmail
@@ -3114,106 +3186,106 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Contact ID that the number belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.ContactId;
+            public const uint ContactId = (uint)Property.Id.ContactId;
             /// <summary>
             /// Display name of contact that the number belongs to
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.ContactDisplayName;
+            public const uint DisplayName = (uint)Property.Id.ContactDisplayName;
             /// <summary>
-            /// The source type of display name, refer to the Contact.DisplayNameSourceTypes (projection)
+            /// The source type of display name, refer to the Contact.DisplayNameSourceType (projection)
             /// </summary>
-            public const uint DisplaySourceType = (uint)PropertyIds.ContactDisplaySourceDataId;
+            public const uint DisplaySourceType = (uint)Property.Id.ContactDisplaySourceDataId;
             /// <summary>
-            /// Addressbook ID that the number belongs to
+            /// AddressBook ID that the number belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.ContactAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// Person ID that the number belongs to
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.ContactPersonId;
+            public const uint PersonId = (uint)Property.Id.ContactPersonId;
             /// <summary>
             /// Ringtone path that the number belongs to (projection)
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.ContactRingtone;
+            public const uint RingtonePath = (uint)Property.Id.ContactRingtone;
             /// <summary>
             /// Image thumbnail path that the number belongs to (projection)
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.ContactThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.ContactThumbnail;
             /// <summary>
             /// DB record ID of the email
             /// </summary>
-            public const uint EmailId = (uint)PropertyIds.EmailId;
+            public const uint EmailId = (uint)Property.Id.EmailId;
             /// <summary>
             /// Email type, refer to the Email.Types (projection)
             /// </summary>
-            public const uint Type = (uint)PropertyIds.EmailType;
+            public const uint Type = (uint)Property.Id.EmailType;
             /// <summary>
             /// Custom mail type label, when the email type is Email.Types.Custom (projection)
             /// </summary>
-            public const uint Label = (uint)PropertyIds.EmailLabel;
+            public const uint Label = (uint)Property.Id.EmailLabel;
             /// <summary>
             /// Email is default email or not
             /// </summary>
-            public const uint IsDefault = (uint)PropertyIds.EmailIsDefault;
+            public const uint IsDefault = (uint)Property.Id.EmailIsDefault;
             /// <summary>
             /// Email address
             /// </summary>
-            public const uint Email = (uint)PropertyIds.EmailEmail;
+            public const uint Email = (uint)Property.Id.EmailEmail;
         };
 
         /// <summary>
-        /// Describes properies of a Contact & Group Relation record.
+        /// Describes properties of a ContactGroupRelation record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class ContactGroupRelation
         {
             /// <summary>
-            /// Identifier of this contact grouprel view
+            /// Identifier of this contact group relation view
             /// </summary>
             public const string Uri = "tizen.contacts_view.simple_contact/group";
             /// <summary>
             /// Contact ID that the number belongs to
             /// </summary>
-            public const uint ContactId = (uint)PropertyIds.ContactId;
+            public const uint ContactId = (uint)Property.Id.ContactId;
             /// <summary>
             /// Display name of contact that the number belongs to
             /// </summary>
-            public const uint DisplayName = (uint)PropertyIds.ContactDisplayName;
+            public const uint DisplayName = (uint)Property.Id.ContactDisplayName;
             /// <summary>
-            /// The source type of display name, refer to the Contact.DisplayNameSourceTypes (projection)
+            /// The source type of display name, refer to the Contact.DisplayNameSourceType (projection)
             /// </summary>
-            public const uint DisplaySourceType = (uint)PropertyIds.ContactDisplaySourceDataId;
+            public const uint DisplaySourceType = (uint)Property.Id.ContactDisplaySourceDataId;
             /// <summary>
-            /// Addressbook ID that the number belongs to
+            /// AddressBook ID that the number belongs to
             /// </summary>
-            public const uint AddressbookId = (uint)PropertyIds.ContactAddressbookId;
+            public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// Person ID that the number belongs to
             /// </summary>
-            public const uint PersonId = (uint)PropertyIds.ContactPersonId;
+            public const uint PersonId = (uint)Property.Id.ContactPersonId;
             /// <summary>
             /// Ringtone path that the number belongs to (projection)
             /// </summary>
-            public const uint RingtonePath = (uint)PropertyIds.ContactRingtone;
+            public const uint RingtonePath = (uint)Property.Id.ContactRingtone;
             /// <summary>
             /// Image thumbnail path that the number belongs to (projection)
             /// </summary>
-            public const uint ThumbnailPath = (uint)PropertyIds.ContactThumbnail;
+            public const uint ThumbnailPath = (uint)Property.Id.ContactThumbnail;
             /// <summary>
             /// DB record ID of the group relation
             /// </summary>
-            public const uint GroupId = (uint)PropertyIds.GroupRelationGroupId;
+            public const uint GroupId = (uint)Property.Id.GroupRelationGroupId;
             /// <summary>
             /// Group name (projection)
             /// </summary>
-            public const uint GroupName = (uint)PropertyIds.GroupRelationGroupName;
+            public const uint GroupName = (uint)Property.Id.GroupRelationGroupName;
         };
 
         /// <summary>
-        /// Describes properies of a Phone Log Statistics record.
+        /// Describes properties of a Phone Log Statistics record.
         /// </summary>
         /// <remarks>Read only view</remarks>
-        public static class PhonelogStatistics
+        public static class PhoneLogStatistics
         {
             /// <summary>
             /// Identifier of this log statistics view
@@ -3222,15 +3294,15 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Log count (projection)
             /// </summary>
-            public const uint LogCount = (uint)PropertyIds.PhonelogStatLogCount;
+            public const uint LogCount = (uint)Property.Id.PhonelogStatLogCount;
             /// <summary>
             /// Log type, see the contacts_phone_log_type_e
             /// </summary>
-            public const uint LogType = (uint)PropertyIds.PhonelogStatLogType;
+            public const uint LogType = (uint)Property.Id.PhonelogStatLogType;
             /// <summary>
             /// It is related to the SIM slot number. sim_slot_no 0 means first SIM card, sim_slot_no 1 means second SIM. It is same with handle index of telephony handle list. Refer to the telephony_init()
             /// </summary>
-            public const uint SIMSlotNo = (uint)PropertyIds.PhonelogStatSIMSlotNo;
+            public const uint SIMSlotNo = (uint)Property.Id.PhonelogStatSIMSlotNo;
         };
     }
 }

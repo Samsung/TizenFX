@@ -16,10 +16,21 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Pims.Contacts
 {
+    /// <summary>
+    /// Delegate for detecting the contacts database changes
+    /// </summary>
+    /// <param name="uri">The contacts view URI</param>
+    /// <remarks>
+    /// The delegate must be registered using AddDBChangedDelegate.
+    /// It's invoked when the designated view changes.
+    /// </remarks>
+    public delegate void ContactsDBChanged(string uri);
+
     /// <summary>
     /// ContactsDatabase provides methods to manage contacts information from/to the database.
     /// </summary>
@@ -30,24 +41,14 @@ namespace Tizen.Pims.Contacts
     {
         private Object thisLock = new Object();
         private Interop.Database.ContactsDBStatusChangedCallback _contactsDBStatusChangedCallback;
-        private event EventHandler<DBStatusChangedEventArgs> _dbStatusChanged;
-        private Dictionary<string, ContactsDBChangedDelegate> _callbackMap = new Dictionary<string, ContactsDBChangedDelegate>();
-        private Dictionary<string, Interop.Database.ContactsDBChangedCallback> _delegateMap = new Dictionary<string, Interop.Database.ContactsDBChangedCallback>();
+        private EventHandler<DBStatusChangedEventArgs> _dbStatusChanged;
+        private Dictionary<string, ContactsDBChanged> _delegateMap = new Dictionary<string, ContactsDBChanged>();
+        private Dictionary<string, Interop.Database.ContactsDBChangedCallback> _callbackMap = new Dictionary<string, Interop.Database.ContactsDBChangedCallback>();
         private Interop.Database.ContactsDBChangedCallback _dbChangedDelegate;
-        /// <summary>
-        /// Delegete for detecting the contacts database changes
-        /// </summary>
-        /// <param name="uri">The contacts view URI</param>
-        /// <remarks>
-        /// The delegate must be registered using AddDBChangedDelegate.
-        /// It's invoked when the designated view changes.
-        /// </remarks>
-        /// <see cref="AddDBChangedDelegate"/>
-        public delegate void ContactsDBChangedDelegate(string uri);
 
         internal ContactsDatabase()
         {
-            ///To be created in ContactsManager only.
+            /*To be created in ContactsManager only.*/
         }
 
         /// <summary>
@@ -68,8 +69,13 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Enumeration for Contacts search range.
         /// </summary>
-        public enum SearchRange
+        [Flags]
+        public enum SearchRanges
         {
+            /// <summary>
+            /// None
+            /// </summary>
+            None = 0,
             /// <summary>
             /// Search record from name
             /// </summary>
@@ -97,21 +103,25 @@ namespace Tizen.Pims.Contacts
             {
                 lock (thisLock)
                 {
-                    _contactsDBStatusChangedCallback = (DBStatus status, IntPtr userData) =>
+                    if (_contactsDBStatusChangedCallback == null)
                     {
-                        DBStatusChangedEventArgs args = new DBStatusChangedEventArgs(status);
-                        _dbStatusChanged?.Invoke(this, args);
-                    };
+                        _contactsDBStatusChangedCallback = (DBStatus status, IntPtr userData) =>
+                        {
+                            DBStatusChangedEventArgs args = new DBStatusChangedEventArgs(status);
+                            _dbStatusChanged?.Invoke(this, args);
+                        };
+                    }
 
-                    int error = Interop.Database.AddStatusChangedCb(_contactsDBStatusChangedCallback, IntPtr.Zero);
-                    if ((int)ContactsError.None != error)
+                    if (_dbStatusChanged == null)
                     {
-                        Log.Error(Globals.LogTag, "Add StatusChanged Failed with error " + error);
+                        int error = Interop.Database.AddStatusChangedCb(_contactsDBStatusChangedCallback, IntPtr.Zero);
+                        if ((int)ContactsError.None != error)
+                        {
+                            Log.Error(Globals.LogTag, "Add StatusChanged Failed with error " + error);
+                        }
                     }
-                    else
-                    {
-                        _dbStatusChanged += value;
-                    }
+
+                    _dbStatusChanged += value;
                 }
 
             }
@@ -120,13 +130,16 @@ namespace Tizen.Pims.Contacts
             {
                 lock (thisLock)
                 {
-                    int error = Interop.Database.RemoveStatusChangedCb(_contactsDBStatusChangedCallback, IntPtr.Zero);
-                    if ((int)ContactsError.None != error)
-                    {
-                        Log.Error(Globals.LogTag, "Remove StatusChanged Failed with error " + error);
-                    }
-
                     _dbStatusChanged -= value;
+
+                    if (_dbStatusChanged == null)
+                    {
+                        int error = Interop.Database.RemoveStatusChangedCb(_contactsDBStatusChangedCallback, IntPtr.Zero);
+                        if ((int)ContactsError.None != error)
+                        {
+                            Log.Error(Globals.LogTag, "Remove StatusChanged Failed with error " + error);
+                        }
+                    }
                 }
             }
 
@@ -135,6 +148,8 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// The current contacts database version.
         /// </summary>
+        /// <value>The current contacts database version.</value>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int Version
         {
             get
@@ -152,6 +167,8 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// The last successful changed contacts database version on the current connection.
         /// </summary>
+        /// <value>The last successful changed contacts database version on the current connection.</value>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int LastChangeVersion
         {
             get
@@ -169,6 +186,8 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// The contacts database status.
         /// </summary>
+        /// <value>The contacts database status.</value>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public DBStatus Status
         {
             get
@@ -195,6 +214,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int Insert(ContactsRecord record)
         {
             int id = -1;
@@ -219,6 +239,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int[] Insert(ContactsList list)
         {
             IntPtr ids;
@@ -249,6 +270,8 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsRecord Get(string viewUri, int recordId)
         {
             IntPtr handle;
@@ -272,6 +295,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Update(ContactsRecord record)
         {
             int error = Interop.Database.Update(record._recordHandle);
@@ -293,6 +317,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Update(ContactsList list)
         {
             int error = Interop.Database.UpdateRecords(list._listHandle);
@@ -315,6 +340,8 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public void Delete(string viewUri, int recordId)
         {
             int error = Interop.Database.Delete(viewUri, recordId);
@@ -337,6 +364,8 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public void Delete(string viewUri, int[] idArray)
         {
             int error = Interop.Database.DeleteRecords(viewUri, idArray, idArray.Length);
@@ -359,6 +388,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Replace(ContactsRecord record, int recordId)
         {
             int error = Interop.Database.Replace(record._recordHandle, recordId);
@@ -381,6 +411,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Replace(ContactsList list, int[] idArray)
         {
             int error = Interop.Database.ReplaceRecords(list._listHandle, idArray, idArray.Length);
@@ -407,6 +438,8 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsList GetAll(string viewUri, int offset, int limit)
         {
             IntPtr handle;
@@ -435,6 +468,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public ContactsList GetRecordsWithQuery(ContactsQuery query, int offset, int limit)
         {
             IntPtr handle;
@@ -451,7 +485,7 @@ namespace Tizen.Pims.Contacts
         /// Retrieves records changes since the given database version.
         /// </summary>
         /// <param name="viewUri">The view URI to get records</param>
-        /// <param name="addressbookId">The address book ID to filter</param>
+        /// <param name="addressBookId">The address book ID to filter</param>
         /// <param name="contactsDBVersion">The contacts database version</param>
         /// <param name="currentDBVersion">The current contacts database version</param>
         /// <returns>
@@ -463,10 +497,12 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
-        public ContactsList GetChangesByVersion(string viewUri, int addressbookId, int contactsDBVersion, out int currentDBVersion)
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
+        public ContactsList GetChangesByVersion(string viewUri, int addressBookId, int contactsDBVersion, out int currentDBVersion)
         {
             IntPtr recordList;
-            int error = Interop.Database.GetChangesByVersion(viewUri, addressbookId, contactsDBVersion, out recordList,out currentDBVersion);
+            int error = Interop.Database.GetChangesByVersion(viewUri, addressBookId, contactsDBVersion, out recordList,out currentDBVersion);
             if ((int)ContactsError.None != error)
             {
                 Log.Error(Globals.LogTag, "GetChangesByVersion Failed with error " + error);
@@ -486,8 +522,10 @@ namespace Tizen.Pims.Contacts
         /// <param name="keyword">The keyword</param>
         /// <param name="offset">The index from which to get results</param>
         /// <param name="limit">The number to limit results(value 0 is used for get all records)</param>
-        /// <returns></returns>
+        /// <returns>The record list</returns>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsList Search(string viewUri, string keyword, int offset, int limit)
         {
             IntPtr recordList;
@@ -512,6 +550,7 @@ namespace Tizen.Pims.Contacts
         /// <param name="offset">The index from which to get results</param>
         /// <param name="limit">The number to limit results(value 0 used for get all records)</param>
         /// <returns>The record list</returns>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public ContactsList Search(ContactsQuery query, string keyword, int offset, int limit)
         {
             IntPtr recordList;
@@ -537,6 +576,8 @@ namespace Tizen.Pims.Contacts
         /// <param name="limit">The number to limit results(value 0 is used for get all records)</param>
         /// <param name="range">The search range, it should be a element of SearchRange or bitwise OR operation of them</param>
         /// <returns>The record list</returns>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsList Search(string viewUri, string keyword, int offset, int limit, int range)
         {
             IntPtr recordList;
@@ -565,6 +606,8 @@ namespace Tizen.Pims.Contacts
         /// <param name="endMatch">The text which is inserted into the fragment after the keyword(If NULL, default is "]")</param>
         /// <param name="tokenNumber">The one side extra number of tokens near keyword(If negative value, full sentence is printed. e.g. if token number is 3 with 'abc' keyword, "my name is [abc]de and my home")</param>
         /// <returns>The record list</returns>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsList Search(string viewUri, string keyword, int offset, int limit, string startMatch, string endMatch, int tokenNumber)
         {
             IntPtr recordList;
@@ -593,6 +636,7 @@ namespace Tizen.Pims.Contacts
         /// <param name="endMatch">The text which is inserted into the fragment after the keyword(If NULL, default is "]")</param>
         /// <param name="tokenNumber">The one side extra number of tokens near keyword(If negative value, full sentence is printed. e.g. if token number is 3 with 'abc' keyword, "my name is [abc]de and my home")</param>
         /// <returns>The record list</returns>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public ContactsList Search(ContactsQuery query, string keyword, int offset, int limit, string startMatch, string endMatch, int tokenNumber)
         {
             IntPtr recordList;
@@ -622,6 +666,8 @@ namespace Tizen.Pims.Contacts
         /// <param name="endMatch">The text which is inserted into the fragment after the keyword(If NULL, default is "]")</param>
         /// <param name="tokenNumber">The one side extra number of tokens near keyword(If negative value, full sentence is printed. e.g. if token number is 3 with 'abc' keyword, "my name is [abc]de and my home")</param>
         /// <returns>The record list</returns>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsList Search(string viewUri, string keyword, int offset, int limit, int range, string startMatch, string endMatch, int tokenNumber)
         {
             IntPtr recordList;
@@ -639,6 +685,8 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="viewUri">The view URI</param>
         /// <returns>The count of records</returns>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public int GetCount(string viewUri)
         {
             int count = -1;
@@ -656,6 +704,7 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="query">The query used for filtering the results</param>
         /// <returns>The count of records</returns>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int GetCount(ContactsQuery query)
         {
             int count = -1;
@@ -673,37 +722,47 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="viewUri">The view URI of records whose changes are monitored</param>
         /// <param name="callback">The callback function to register</param>
-        public void AddDBChangedDelegate(string viewUri, ContactsDBChangedDelegate callback)
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
+        public void AddDBChangedDelegate(string viewUri, ContactsDBChanged callback)
         {
-            _dbChangedDelegate = (string uri, IntPtr userData) =>
+            if (_callbackMap[viewUri] == null)
             {
-                _callbackMap[uri](uri);
-            };
-            int error = Interop.Database.AddChangedCb(viewUri, _dbChangedDelegate, IntPtr.Zero);
-            if ((int)ContactsError.None != error)
-            {
-                Log.Error(Globals.LogTag, "AddDBChangedDelegate Failed with error " + error);
-                throw ContactsErrorFactory.CheckAndCreateException(error);
+                _callbackMap[viewUri] = (string uri, IntPtr userData) =>
+                {
+                    _delegateMap[uri](uri);
+                };
+
+                int error = Interop.Database.AddChangedCb(viewUri, _callbackMap[viewUri], IntPtr.Zero);
+                if ((int)ContactsError.None != error)
+                {
+                    Log.Error(Globals.LogTag, "AddDBChangedDelegate Failed with error " + error);
+                    throw ContactsErrorFactory.CheckAndCreateException(error);
+                }
             }
-            _callbackMap[viewUri] = callback;
-            _delegateMap[viewUri] = _dbChangedDelegate;
+
+            _delegateMap[viewUri] += callback;
         }
 
         /// <summary>
-        /// Unregisters a callback function.
+        /// Deregisters a callback function.
         /// </summary>
         /// <param name="viewUri">The view URI of records whose changes are monitored</param>
         /// <param name="callback">The callback function to register</param>
-        public void RemoveDBChangedDelegate(string viewUri, ContactsDBChangedDelegate callback)
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
+        public void RemoveDBChangedDelegate(string viewUri, ContactsDBChanged callback)
         {
-            int error = Interop.Database.RemoveChangedCb(viewUri, _delegateMap[viewUri], IntPtr.Zero);
-            if ((int)ContactsError.None != error)
+            _delegateMap[viewUri] -= callback;
+
+            if (_delegateMap[viewUri] == null)
             {
-                Log.Error(Globals.LogTag, "RemoveDBChangedDelegate Failed with error " + error);
-                throw ContactsErrorFactory.CheckAndCreateException(error);
+                int error = Interop.Database.RemoveChangedCb(viewUri, _callbackMap[viewUri], IntPtr.Zero);
+                if ((int)ContactsError.None != error)
+                {
+                    Log.Error(Globals.LogTag, "RemoveDBChangedDelegate Failed with error " + error);
+                    throw ContactsErrorFactory.CheckAndCreateException(error);
+                }
+                _callbackMap.Remove(viewUri);
             }
-            _callbackMap.Remove(viewUri);
-            _delegateMap.Remove(viewUri);
         }
     }
 }
