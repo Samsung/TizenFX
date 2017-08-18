@@ -76,7 +76,7 @@ internal static partial class Interop
         internal static extern PlayerErrorCode SetUri(IntPtr player, string uri);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_display")]
-        internal static extern PlayerErrorCode SetDisplay(IntPtr player, DisplayType type, IntPtr display);
+        internal static extern PlayerErrorCode SetDisplay(IntPtr player, PlayerDisplayType type, IntPtr display);
 
         [DllImport(Libraries.Player, EntryPoint = "player_start")]
         internal static extern PlayerErrorCode Start(IntPtr player);
