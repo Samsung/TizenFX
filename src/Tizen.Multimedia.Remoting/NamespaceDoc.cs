@@ -14,18 +14,9 @@
  * limitations under the License.
  */
 
-using System.Diagnostics;
-
-namespace Tizen.Multimedia
+/// <summary>
+/// The System.Runtime.Remoting namespace provides classes and interfaces that work with remote process or device.
+/// </summary>
+namespace Tizen.Multimedia.Remoting
 {
-    internal class MultimediaDebug
-    {
-        [Conditional("DEBUG")]
-        internal static void AssertNoError(int errorCode)
-        {
-            Debug.Assert(errorCode == (int)Internals.Errors.ErrorCode.None,
-                $"The API is supposed not to return an error! But it returns error({ errorCode }).",
-                "Implementation of core may have been changed, modify the call to throw if the return code is not ok.");
-        }
-    }
 }

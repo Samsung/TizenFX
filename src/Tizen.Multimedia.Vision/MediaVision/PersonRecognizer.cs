@@ -17,7 +17,7 @@
 using System;
 using static Interop.MediaVision.Surveillance;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Provides the ability to recognize person on image sources.

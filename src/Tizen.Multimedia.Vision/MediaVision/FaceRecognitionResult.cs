@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Represents result of <see cref="FaceRecognizer"/> operations.

@@ -27,7 +27,7 @@ namespace Tizen.Multimedia.MediaCodec
     {
         private const int CodecTypeMask = 0xFFFF;
         private const int CodecKindMask = 0x3000;
-//        private const int CodecKindAudio = 0x1000; // Not used
+        // private const int CodecKindAudio = 0x1000; // Not used
         private const int CodecKindVideo = 0x2000;
 
         private IntPtr _handle;
@@ -444,6 +444,7 @@ namespace Tizen.Multimedia.MediaCodec
         #region OutputAvailable event
         private EventHandler<OutputAvailableEventArgs> _outputAvailable;
         private Interop.MediaCodec.OutputBufferAvailableCallback _outputBufferAvailableCb;
+        private object _outputAvailableLock = new object();
 
         /// <summary>
         /// Occurs when an output buffer is available.
@@ -455,21 +456,27 @@ namespace Tizen.Multimedia.MediaCodec
             {
                 ValidateNotDisposed();
 
-                if (_outputAvailable == null)
+                lock (_outputAvailableLock)
                 {
-                    RegisterOutputAvailableCallback();
+                    if (_outputAvailable == null)
+                    {
+                        RegisterOutputAvailableCallback();
+                    }
+                    _outputAvailable += value;
                 }
-                _outputAvailable += value;
-
             }
             remove
             {
                 ValidateNotDisposed();
 
-                _outputAvailable -= value;
-                if (_outputAvailable == null)
+                lock (_outputAvailableLock)
                 {
-                    UnregisterOutputAvailableCallback();
+                    _outputAvailable -= value;
+                    if (_outputAvailable == null)
+                    {
+                        // We can remove handler first, because we know the method that unregisters callback does not throw.
+                        UnregisterOutputAvailableCallback();
+                    }
                 }
             }
         }
@@ -478,26 +485,31 @@ namespace Tizen.Multimedia.MediaCodec
         {
             _outputBufferAvailableCb = (packetHandle, _) =>
             {
-                OutputAvailableEventArgs args = null;
+                if (_outputAvailable == null)
+                {
+                    Interop.MediaPacket.Destroy(packetHandle);
+                    return;
+                }
 
+                OutputAvailableEventArgs args = null;
                 try
                 {
                     args = new OutputAvailableEventArgs(packetHandle);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     Interop.MediaPacket.Destroy(packetHandle);
 
-                    // TODO should we throw it to unmanaged code?
-                    throw;
+                    MultimediaLog.Error(typeof(MediaCodec).FullName, "Failed to raise OutputAvailable event", e);
                 }
 
-                //TODO dispose if no event handler registered
-                _outputAvailable?.Invoke(this, args);
+                if (args != null)
+                {
+                    _outputAvailable?.Invoke(this, args);
+                }
             };
 
-            int ret = Interop.MediaCodec.SetOutputBufferAvailableCb(_handle,
-                _outputBufferAvailableCb, IntPtr.Zero);
+            int ret = Interop.MediaCodec.SetOutputBufferAvailableCb(_handle, _outputBufferAvailableCb);
 
             MultimediaDebug.AssertNoError(ret);
         }
@@ -538,15 +550,7 @@ namespace Tizen.Multimedia.MediaCodec
                 InputProcessed?.Invoke(this, new InputProcessedEventArgs(packet));
             };
 
-            int ret = Interop.MediaCodec.SetInputBufferUsedCb(_handle,
-                _inputBufferUsedCb, IntPtr.Zero);
-
-            MultimediaDebug.AssertNoError(ret);
-        }
-
-        private void UnregisterInputProcessed()
-        {
-            int ret = Interop.MediaCodec.UnsetInputBufferUsedCb(_handle);
+            int ret = Interop.MediaCodec.SetInputBufferUsedCb(_handle, _inputBufferUsedCb);
 
             MultimediaDebug.AssertNoError(ret);
         }
@@ -569,100 +573,38 @@ namespace Tizen.Multimedia.MediaCodec
 
                 ErrorOccurred?.Invoke(this, new MediaCodecErrorOccurredEventArgs(error));
             };
-            int ret = Interop.MediaCodec.SetErrorCb(_handle, _errorCb, IntPtr.Zero);
-
-            MultimediaDebug.AssertNoError(ret);
-        }
-
-        private void UnregisterErrorOccurred()
-        {
-            int ret = Interop.MediaCodec.UnsetErrorCb(_handle);
+            int ret = Interop.MediaCodec.SetErrorCb(_handle, _errorCb);
 
             MultimediaDebug.AssertNoError(ret);
         }
         #endregion
 
         #region EosReached event
-        private EventHandler<EventArgs> _eosReached;
         private Interop.MediaCodec.EosCallback _eosCb;
 
-        // TODO replace
         /// <summary>
         /// Occurs when the codec processes all input data.
         /// </summary>
-        public event EventHandler<EventArgs> EosReached
-        {
-            add
-            {
-                ValidateNotDisposed();
-
-                if (_eosReached == null)
-                {
-                    RegisterEosReached();
-                }
-                _eosReached += value;
-
-            }
-            remove
-            {
-                ValidateNotDisposed();
-
-                _eosReached -= value;
-                if (_eosReached == null)
-                {
-                    UnregisterEosReached();
-                }
-            }
-        }
+        public event EventHandler<EventArgs> EosReached;
 
         private void RegisterEosReached()
         {
-            _eosCb = _ => _eosReached?.Invoke(this, EventArgs.Empty);
+            _eosCb = _ => EosReached?.Invoke(this, EventArgs.Empty);
 
-            int ret = Interop.MediaCodec.SetEosCb(_handle, _eosCb, IntPtr.Zero);
-
-            MultimediaDebug.AssertNoError(ret);
-        }
-
-        private void UnregisterEosReached()
-        {
-            int ret = Interop.MediaCodec.UnsetEosCb(_handle);
+            int ret = Interop.MediaCodec.SetEosCb(_handle, _eosCb);
 
             MultimediaDebug.AssertNoError(ret);
         }
+
         #endregion
 
         #region BufferStatusChanged event
-        private EventHandler<BufferStatusChangedEventArgs> _bufferStatusChanged;
         private Interop.MediaCodec.BufferStatusCallback _bufferStatusCb;
 
         /// <summary>
         /// Occurs when the codec needs more data or has enough data.
         /// </summary>
-        public event EventHandler<BufferStatusChangedEventArgs> BufferStatusChanged
-        {
-            add
-            {
-                ValidateNotDisposed();
-
-                if (_bufferStatusChanged == null)
-                {
-                    RegisterBufferStatusChanged();
-                }
-                _bufferStatusChanged += value;
-
-            }
-            remove
-            {
-                ValidateNotDisposed();
-
-                _bufferStatusChanged -= value;
-                if (_bufferStatusChanged == null)
-                {
-                    UnregisterBufferStatusChanged();
-                }
-            }
-        }
+        public event EventHandler<BufferStatusChangedEventArgs> BufferStatusChanged;
 
         private void RegisterBufferStatusChanged()
         {
@@ -671,18 +613,11 @@ namespace Tizen.Multimedia.MediaCodec
                 Debug.Assert(Enum.IsDefined(typeof(MediaCodecStatus), statusCode),
                     $"{ statusCode } is not defined in MediaCodecStatus!");
 
-                _bufferStatusChanged?.Invoke(this,
+                BufferStatusChanged?.Invoke(this,
                     new BufferStatusChangedEventArgs((MediaCodecStatus)statusCode));
             };
 
-            int ret = Interop.MediaCodec.SetBufferStatusCb(_handle, _bufferStatusCb, IntPtr.Zero);
-
-            MultimediaDebug.AssertNoError(ret);
-        }
-
-        private void UnregisterBufferStatusChanged()
-        {
-            int ret = Interop.MediaCodec.UnsetBufferStatusCb(_handle);
+            int ret = Interop.MediaCodec.SetBufferStatusCb(_handle, _bufferStatusCb);
 
             MultimediaDebug.AssertNoError(ret);
         }

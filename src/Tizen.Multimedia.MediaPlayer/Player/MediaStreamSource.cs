@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -58,7 +59,7 @@ namespace Tizen.Multimedia
 
         private MediaStreamConfiguration CreateAudioConfiguration(AudioMediaFormat format)
         {
-            if( format == null )
+            if (format == null)
             {
                 return null;
             }

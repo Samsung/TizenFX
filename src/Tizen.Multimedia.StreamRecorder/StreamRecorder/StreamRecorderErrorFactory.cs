@@ -37,22 +37,24 @@ namespace Tizen.Multimedia
         internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null)
         {
             StreamRecorderError err = (StreamRecorderError)errorCode;
-            if(string.IsNullOrEmpty(errorMessage)) {
+            if (string.IsNullOrEmpty(errorMessage))
+            {
                 errorMessage = err.ToString();
             }
-            switch((StreamRecorderError)errorCode) {
-            case StreamRecorderError.InvalidParameter:
-                throw new ArgumentException(errorMessage, paramName);
-            case StreamRecorderError.OutOfMemory:
-                throw new OutOfMemoryException(errorMessage);
-            case StreamRecorderError.PermissionDenied:
-                throw new UnauthorizedAccessException(errorMessage);
-            case StreamRecorderError.NotSupported:
-                throw new NotSupportedException(errorMessage);
-            case StreamRecorderError.InvalidState:
-            case StreamRecorderError.InvalidOperation:
-            case StreamRecorderError.OutOfStorage:
-                throw new InvalidOperationException(errorMessage);
+            switch ((StreamRecorderError)errorCode)
+            {
+                case StreamRecorderError.InvalidParameter:
+                    throw new ArgumentException(errorMessage, paramName);
+                case StreamRecorderError.OutOfMemory:
+                    throw new OutOfMemoryException(errorMessage);
+                case StreamRecorderError.PermissionDenied:
+                    throw new UnauthorizedAccessException(errorMessage);
+                case StreamRecorderError.NotSupported:
+                    throw new NotSupportedException(errorMessage);
+                case StreamRecorderError.InvalidState:
+                case StreamRecorderError.InvalidOperation:
+                case StreamRecorderError.OutOfStorage:
+                    throw new InvalidOperationException(errorMessage);
             }
         }
     }

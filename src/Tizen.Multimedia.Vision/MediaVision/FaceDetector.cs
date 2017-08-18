@@ -18,7 +18,7 @@ using System;
 using System.Threading.Tasks;
 using InteropFace = Interop.MediaVision.Face;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Provides the ability to detect faces on image sources.

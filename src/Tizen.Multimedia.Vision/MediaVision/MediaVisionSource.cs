@@ -18,7 +18,7 @@ using System;
 using System.Diagnostics;
 using InteropSource = Interop.MediaVision.MediaSource;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Represents the media vision source to keep information on image or video frame data as raw buffer.
@@ -41,7 +41,7 @@ namespace Tizen.Multimedia
             {
                 fillAction(_handle);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 InteropSource.Destroy(_handle);
                 _disposed = true;

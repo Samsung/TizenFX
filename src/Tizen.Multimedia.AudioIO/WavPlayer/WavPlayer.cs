@@ -18,6 +18,7 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Native = Interop.WavPlayer;
 
 namespace Tizen.Multimedia
 {
@@ -39,7 +40,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exists.</exception>
-        /// <exception cref="FileFormatException">The format of <paramref name=""/> is not supported.</exception>
+        /// <exception cref="FileFormatException">The format of <paramref name="path"/> is not supported.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed of.</exception>
         public static Task StartAsync(string path, AudioStreamPolicy streamPolicy)
         {
@@ -60,7 +61,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exists.</exception>
-        /// <exception cref="FileFormatException">The format of <paramref name=""/> is not supported.</exception>
+        /// <exception cref="FileFormatException">The format of <paramref name="path"/> is not supported.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed.</exception>
         public static Task StartAsync(string path, AudioStreamPolicy streamPolicy,
             CancellationToken cancellationToken)
@@ -89,14 +90,17 @@ namespace Tizen.Multimedia
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            Interop.WavPlayer.WavPlayerCompletedCallback cb = (id_, _) => tcs.TrySetResult(true);
+            Native.WavPlayerCompletedCallback cb = (id_, _) => tcs.TrySetResult(true);
 
-            Interop.WavPlayer.Start(path, streamPolicy.Handle, cb, IntPtr.Zero, out var id).
-                Validate("Failed to play.");
-
-            using (RegisterCancellationAction(tcs, cancellationToken, id))
+            using (ObjectKeeper.Get(cb))
             {
-                await tcs.Task;
+                Native.Start(path, streamPolicy.Handle, cb, IntPtr.Zero, out var id).
+                    Validate("Failed to play.");
+
+                using (RegisterCancellationAction(tcs, cancellationToken, id))
+                {
+                    await tcs.Task;
+                }
             }
         }
 
@@ -110,7 +114,7 @@ namespace Tizen.Multimedia
 
             return cancellationToken.Register(() =>
             {
-                Interop.WavPlayer.Stop(id).Validate("Failed to cancel");
+                Native.Stop(id).Validate("Failed to cancel");
                 tcs.TrySetCanceled();
             });
         }

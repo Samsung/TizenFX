@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System;
 using System.Diagnostics;
 using Native = Interop.AudioEffect;
@@ -56,9 +57,7 @@ namespace Tizen.Multimedia
         /// <param name="value">The value indicating new gain in decibel(dB).</param>
         /// <exception cref="ObjectDisposedException">The player that this EqualizerBand belongs to has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="value"/> is less than <see cref="AudioEffect.MinBandLevel"/>.\n
-        ///     -or-\n
-        ///     <paramref name="value"/> is greater than <see cref="AudioEffect.MaxBandLevel"/>.
+        ///     <paramref name="value"/> is not inside of <see cref="AudioEffect.BandLevelRange"/>.
         /// </exception>
         public int Level
         {

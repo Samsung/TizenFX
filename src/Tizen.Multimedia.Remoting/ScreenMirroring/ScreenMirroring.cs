@@ -21,7 +21,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Native = Interop.ScreenMirroring;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
     /// Provides the ability to connect to and disconnect from a screen mirroring source,

@@ -1,4 +1,4 @@
-﻿ /*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -18,27 +18,37 @@ using System;
 
 namespace Tizen.Multimedia
 {
-    internal static class MaxVolumeLog
-    {
-        internal const string Tag = "Tizen.Multimedia.MaxVolume";
-    }
-
     /// <summary>
-    /// This is a indexer class which is used to get the maximum volume level
-    /// supported for a particular sound type.
+    /// Provides a means to get max volume levels.
     /// </summary>
     public class MaxVolumeLevel
     {
-        public int this [AudioVolumeType type] {
-            get {
-                if(type == AudioVolumeType.None)
-                    throw new ArgumentException("Wrong Audio volume type. Cannot get max volume level for AudioVolumeType.None");
-                int maxVolume;
-                int ret = Interop.AudioVolume.GetMaxVolume(type, out maxVolume);
-                if(ret != 0) {
-                    Tizen.Log.Info(MaxVolumeLog.Tag, "Max Level Error: " + (AudioManagerError)ret);
-                    return -1;
+        internal MaxVolumeLevel()
+        {
+        }
+
+        /// <summary>
+        /// Gets the max volume level of the specified <see cref="AudioVolumeType"/>
+        /// </summary>
+        /// <param name="type">The <see cref="AudioVolumeType"/> to query.</param>
+        /// <value>The maximum volume level.</value>
+        /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="type"/> is <see cref="AudioVolumeType.None"/>.</exception>
+        public int this[AudioVolumeType type]
+        {
+            get
+            {
+                ValidationUtil.ValidateEnum(typeof(AudioVolumeType), type, nameof(type));
+
+                if (type == AudioVolumeType.None)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(type),
+                        "Cannot get max volume level for AudioVolumeType.None");
                 }
+
+                Interop.AudioVolume.GetMaxVolume(type, out var maxVolume).
+                    Validate("Failed to get the max volume level");
+
                 return maxVolume;
             }
         }

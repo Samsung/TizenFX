@@ -15,10 +15,10 @@
  */
 
 using System;
-using static Tizen.Multimedia.InteropHelper;
+using static Tizen.Multimedia.Remoting.InteropHelper;
 using Native = Interop.ScreenMirroring;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
     /// Provides a means to retrieve the audio information which is negotiated with the source device.

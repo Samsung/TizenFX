@@ -1,4 +1,4 @@
-﻿ /*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Class extending EventArgs which contains parameters to be passed to event handler of DeviceConnected event
+    /// Provides data for the <see cref="AudioManager.DeviceConnectionChanged"/> event.
     /// </summary>
     public class AudioDeviceConnectionChangedEventArgs : EventArgs
     {
@@ -30,13 +30,15 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The object of sound device
+        /// Gets the device.
         /// </summary>
+        /// <value>The <see cref="AudioDevice"/>.</value>
         public AudioDevice Device { get; }
 
         /// <summary>
-        /// The state of device connection: (true = connected, false = disconnected)
+        /// Gets the connection state of the device.
         /// </summary>
+        /// <value>true if the device is connected; otherwise, false.</value>
         public bool IsConnected { get; }
     }
 }

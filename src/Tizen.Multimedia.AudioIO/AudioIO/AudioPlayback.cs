@@ -15,6 +15,7 @@
 */
 
 using System;
+using static Interop.AudioIO;
 
 namespace Tizen.Multimedia
 {
@@ -23,7 +24,16 @@ namespace Tizen.Multimedia
     /// </summary>
     public class AudioPlayback : IDisposable
     {
+        /// <summary>
+        /// Specifies the minimum value allowed for the audio capture, in Hertz (Hz).
+        /// </summary>
+        /// <seealso cref="SampleRate"/>
         public static readonly int MinSampleRate = 8000;
+
+        /// <summary>
+        /// Specifies the maximum value allowed for the audio capture, in Hertz (Hz).
+        /// </summary>
+        /// <seealso cref="SampleRate"/>
         public static readonly int MaxSampleRate = 48000;
 
         private IntPtr _handle = IntPtr.Zero;
@@ -37,7 +47,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Write(byte[])"/>
         public event EventHandler<AudioPlaybackBufferAvailableEventArgs> BufferAvailable;
 
-        private Interop.AudioIO.AudioStreamCallback _streamCallback;
+        private AudioStreamCallback _streamCallback;
 
         private void RegisterStreamCallback()
         {
@@ -47,7 +57,7 @@ namespace Tizen.Multimedia
             };
 
             AudioIOUtil.ThrowIfError(
-                Interop.AudioIO.AudioOutput.SetStreamChangedCallback(_handle, _streamCallback, IntPtr.Zero),
+                AudioOutput.SetStreamChangedCallback(_handle, _streamCallback, IntPtr.Zero),
                 $"Failed to create {nameof(AudioPlayback)}");
         }
 
@@ -56,7 +66,7 @@ namespace Tizen.Multimedia
         /// </summary>
         public event EventHandler<AudioIOStateChangedEventArgs> StateChanged;
 
-        private Interop.AudioIO.AudioStateChangedCallback _stateChangedCallback;
+        private AudioStateChangedCallback _stateChangedCallback;
 
         private void RegisterStateChangedCallback()
         {
@@ -69,7 +79,7 @@ namespace Tizen.Multimedia
             };
 
             AudioIOUtil.ThrowIfError(
-                Interop.AudioIO.AudioOutput.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero),
+                AudioOutput.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero),
                 $"Failed to create {nameof(AudioPlayback)}");
         }
         #endregion
@@ -106,7 +116,7 @@ namespace Tizen.Multimedia
             SampleType = sampleType;
 
             AudioIOUtil.ThrowIfError(
-                Interop.AudioIO.AudioOutput.Create(SampleRate, (int)Channel, (int)SampleType, out _handle),
+                AudioOutput.Create(SampleRate, (int)Channel, (int)SampleType, out _handle),
                 $"Failed to create {nameof(AudioPlayback)}");
 
             RegisterStreamCallback();
@@ -147,7 +157,7 @@ namespace Tizen.Multimedia
                     }
                 }
 
-                Interop.AudioIO.AudioOutput.Destroy(_handle);
+                AudioOutput.Destroy(_handle);
                 _handle = IntPtr.Zero;
                 _isDisposed = true;
             }
@@ -170,7 +180,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the sample rate of the audio output data stream.
+        /// Gets the sample rate of the audio output data stream, in Hertz (Hz).
         /// </summary>
         public int SampleRate { get; }
 
@@ -195,7 +205,7 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
 
                 int audioType = 0;
-                int ret = Interop.AudioIO.AudioOutput.GetSoundType(_handle, out audioType);
+                int ret = AudioOutput.GetSoundType(_handle, out audioType);
                 MultimediaDebug.AssertNoError(ret);
 
                 return (AudioStreamType)audioType;
@@ -208,13 +218,13 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed.</exception>
         public int GetBufferSize()
         {
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioOutput.GetBufferSize(_handle, out var size));
+            AudioIOUtil.ThrowIfError(AudioOutput.GetBufferSize(_handle, out var size));
             return size;
         }
 
         /// <summary>
         /// Drains buffered audio data from the output stream.
-        /// It blocks the calling thread until draining the stream buffer completely. (e.g end of playback)
+        /// It blocks the calling thread until draining the stream buffer completely. (e.g. end of playback)
         /// </summary>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed.</exception>
         /// <exception cref="InvalidOperationException">The current state is <see cref="AudioIOState.Idle"/>.</exception>
@@ -222,7 +232,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
 
-            int ret = Interop.AudioIO.AudioOutput.Drain(_handle);
+            int ret = AudioOutput.Drain(_handle);
 
             MultimediaDebug.AssertNoError(ret);
         }
@@ -250,7 +260,7 @@ namespace Tizen.Multimedia
                 throw new ArgumentException("buffer has no data.(the Length is zero.)", nameof(buffer));
             }
 
-            int ret = Interop.AudioIO.AudioOutput.Write(_handle, buffer, (uint)buffer.Length);
+            int ret = AudioOutput.Write(_handle, buffer, (uint)buffer.Length);
 
             AudioIOUtil.ThrowIfError(ret, "Failed to write buffer");
 
@@ -274,7 +284,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Idle);
 
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioOutput.Prepare(_handle),
+            AudioIOUtil.ThrowIfError(AudioOutput.Prepare(_handle),
                 $"Failed to prepare the {nameof(AudioPlayback)}");
         }
 
@@ -292,7 +302,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
 
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioOutput.Unprepare(_handle),
+            AudioIOUtil.ThrowIfError(AudioOutput.Unprepare(_handle),
                 $"Failed to unprepare the {nameof(AudioPlayback)}");
         }
 
@@ -315,7 +325,7 @@ namespace Tizen.Multimedia
             }
             ValidateState(AudioIOState.Running);
 
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioOutput.Pause(_handle));
+            AudioIOUtil.ThrowIfError(AudioOutput.Pause(_handle));
         }
 
         /// <summary>
@@ -337,7 +347,7 @@ namespace Tizen.Multimedia
             }
             ValidateState(AudioIOState.Paused);
 
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioOutput.Resume(_handle));
+            AudioIOUtil.ThrowIfError(AudioOutput.Resume(_handle));
         }
 
         /// <summary>
@@ -349,7 +359,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
 
-            int ret = Interop.AudioIO.AudioOutput.Flush(_handle);
+            int ret = AudioOutput.Flush(_handle);
 
             MultimediaDebug.AssertNoError(ret);
         }
@@ -373,14 +383,9 @@ namespace Tizen.Multimedia
                 throw new ArgumentNullException(nameof(streamPolicy));
             }
 
-            if (streamPolicy.Handle == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException(nameof(streamPolicy));
-            }
-
             ValidateNotDisposed();
 
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioOutput.SetStreamInfo(_handle, streamPolicy.Handle));
+            AudioIOUtil.ThrowIfError(AudioOutput.SetStreamInfo(_handle, streamPolicy.Handle));
         }
     }
 }

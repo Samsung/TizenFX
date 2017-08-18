@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using InteropFace = Interop.MediaVision.Face;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Provides the ability to recognize faces, face expressions and eye condition on image sources.
@@ -303,15 +303,15 @@ namespace Tizen.Multimedia
 
             TaskCompletionSource<FacialExpression> tcsResult = new TaskCompletionSource<FacialExpression>();
 
-           InteropFace.MvFaceFacialExpressionRecognizedCallback cb = (IntPtr sourceHandle, IntPtr engineCfgHandle,
-               global::Interop.MediaVision.Rectangle faceLocation, FacialExpression facialExpression, IntPtr _) =>
-            {
-                Log.Info(MediaVisionLog.Tag, $"Facial expression recognized, expression : {facialExpression}");
-                if (!tcsResult.TrySetResult(facialExpression))
-                {
-                    Log.Error(MediaVisionLog.Tag, "Failed to set facial result");
-                }
-            };
+            InteropFace.MvFaceFacialExpressionRecognizedCallback cb = (IntPtr sourceHandle, IntPtr engineCfgHandle,
+                global::Interop.MediaVision.Rectangle faceLocation, FacialExpression facialExpression, IntPtr _) =>
+             {
+                 Log.Info(MediaVisionLog.Tag, $"Facial expression recognized, expression : {facialExpression}");
+                 if (!tcsResult.TrySetResult(facialExpression))
+                 {
+                     Log.Error(MediaVisionLog.Tag, "Failed to set facial result");
+                 }
+             };
 
             using (var cbKeeper = ObjectKeeper.Get(cb))
             {

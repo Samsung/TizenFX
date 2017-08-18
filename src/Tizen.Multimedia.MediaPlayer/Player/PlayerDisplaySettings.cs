@@ -25,6 +25,9 @@ namespace Tizen.Multimedia
     /// </summary>
     public class PlayerDisplaySettings
     {
+        /// <summary>
+        /// This constructor supports the product infrastructure and is not intended to be used directly from application code.
+        /// </summary>
         protected PlayerDisplaySettings(Player player)
         {
             if (player == null)
@@ -37,6 +40,10 @@ namespace Tizen.Multimedia
 
         internal static PlayerDisplaySettings Create(Player player) => new PlayerDisplaySettings(player);
 
+        /// <summary>
+        /// Gets the player of this instance.
+        /// </summary>
+        /// <value>The <see cref="Player"/> of this <see cref="PlayerDisplaySettings"/> instance.</value>
         protected Player Player { get; }
 
         /// <summary>

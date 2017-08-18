@@ -1,4 +1,4 @@
-﻿ /*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,24 +19,26 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Class extending EventArgs which contains parameters to be passed to event handler of DeviceInformationChanged event
+    /// Provides data for the <see cref="AudioManager.DeviceStateChanged"/> event.
     /// </summary>
     public class AudioDeviceStateChangedEventArgs : EventArgs
     {
         internal AudioDeviceStateChangedEventArgs(AudioDevice device, AudioDeviceState changedState)
         {
             Device = device;
-            ChangedState = changedState;
+            State = changedState;
         }
 
         /// <summary>
-        /// The object of sound device
+        /// Gets the device.
         /// </summary>
+        /// <value>The <see cref="AudioDevice"/>.</value>
         public AudioDevice Device { get; }
 
         /// <summary>
-        /// The entry of sound device state
+        /// Gets the state of the device.
         /// </summary>
-        public AudioDeviceState ChangedState { get; }
+        /// <value>The <see cref="AudioDeviceState"/> of the device.</value>
+        public AudioDeviceState State { get; }
     }
 }

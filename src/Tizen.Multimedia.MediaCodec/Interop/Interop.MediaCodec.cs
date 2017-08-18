@@ -82,33 +82,33 @@ namespace Tizen.Multimedia.MediaCodec
 
             [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_input_buffer_used_cb")]
             internal static extern int SetInputBufferUsedCb(IntPtr handle,
-                InputBufferUsedCallback cb, IntPtr arg);
+                InputBufferUsedCallback cb, IntPtr arg = default(IntPtr));
 
             [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_input_buffer_used_cb")]
             internal static extern int UnsetInputBufferUsedCb(IntPtr handle);
 
             [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_output_buffer_available_cb")]
             internal static extern int SetOutputBufferAvailableCb(IntPtr handle,
-                OutputBufferAvailableCallback cb, IntPtr arg);
+                OutputBufferAvailableCallback cb, IntPtr arg = default(IntPtr));
 
             [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_output_buffer_available_cb")]
             internal static extern int UnsetOutputBufferAvailableCb(IntPtr handle);
 
             [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_error_cb")]
-            internal static extern int SetErrorCb(IntPtr handle, ErrorCallback cb, IntPtr arg);
+            internal static extern int SetErrorCb(IntPtr handle, ErrorCallback cb, IntPtr arg = default(IntPtr));
 
             [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_error_cb")]
             internal static extern int UnsetErrorCb(IntPtr handle);
 
             [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_eos_cb")]
-            internal static extern int SetEosCb(IntPtr handle, EosCallback cb, IntPtr arg);
+            internal static extern int SetEosCb(IntPtr handle, EosCallback cb, IntPtr arg = default(IntPtr));
 
             [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_eos_cb")]
             internal static extern int UnsetEosCb(IntPtr handle);
 
             [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_set_buffer_status_cb")]
             internal static extern int SetBufferStatusCb(IntPtr handle, BufferStatusCallback cb,
-                IntPtr arg);
+                IntPtr arg = default(IntPtr));
 
             [DllImport(Libraries.MediaCodec, EntryPoint = "mediacodec_unset_buffer_status_cb")]
             internal static extern int UnsetBufferStatusCb(IntPtr handle);

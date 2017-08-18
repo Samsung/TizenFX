@@ -17,7 +17,7 @@
 using System;
 using InteropBarcode = Interop.MediaVision.BarcodeGenerator;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Provides the ability to generate barcodes and QR codes.

@@ -1,36 +1,36 @@
-﻿ /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
- *
- * Licensed under the Apache License, Version 2.0 (the License);
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an AS IS BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+/*
+* Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+*
+* Licensed under the Apache License, Version 2.0 (the License);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an AS IS BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
 using System;
 
 namespace Tizen.Multimedia
 {
-    internal static class AudioVolumeLog
-    {
-        internal const string Tag = "Tizen.Multimedia.AudioVolume";
-    }
-
     /// <summary>
-    /// The AudioVolume API provides functions to check and control volumes.
+    /// Provides the ability to control the volume levels.
     /// </summary>
+    /// <seealso cref="AudioManager"/>
     public class AudioVolume
     {
-        private static int _volumeChangedCallbackId = -1;
+        private const string Tag = "Tizen.Multimedia.AudioVolume";
+
+        private int _volumeChangedCallbackId = -1;
         private EventHandler<VolumeChangedEventArgs> _volumeChanged;
-        private Interop.SoundManagerVolumeChangedCallback _volumeChangedCallback;
+        private Interop.AudioVolume.VolumeChangedCallback _volumeChangedCallback;
+
+        private object _eventLock = new object();
 
         internal AudioVolume()
         {
@@ -39,69 +39,87 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Registers a function to be invoked when the volume level is changed.
+        /// Occurs when the volume level is changed.
         /// </summary>
-        public event EventHandler<VolumeChangedEventArgs> Changed {
-            add {
-                Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Changed Event added....");
-                if(_volumeChanged == null) {
-                    RegisterVolumeChangedEvent();
+        public event EventHandler<VolumeChangedEventArgs> Changed
+        {
+            add
+            {
+                lock (_eventLock)
+                {
+                    if (_volumeChanged == null)
+                    {
+                        RegisterVolumeChangedEvent();
+                    }
+                    _volumeChanged += value;
                 }
-                _volumeChanged += value;
             }
-            remove {
-                Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Changed Event removed....");
-                if(_volumeChanged?.GetInvocationList()?.GetLength(0) == 1) {
-                    UnregisterVolumeChangedEvent();
+            remove
+            {
+                if (value == null)
+                {
+                    return;
                 }
-                _volumeChanged -= value;
+
+                lock (_eventLock)
+                {
+                    if (_volumeChanged == value)
+                    {
+                        UnregisterVolumeChangedEvent();
+                    }
+                    _volumeChanged -= value;
+                }
             }
         }
 
         /// <summary>
-        /// The Audio Manager has predefined volume types.(system, notification, alarm, ringtone, media, call, voip, voice).
-        /// The volume type of the sound being currently played.
+        /// Gets the volume type of the sound being currently played.
         /// </summary>
-        public AudioVolumeType CurrentPlaybackType {
-            get {
-                AudioVolumeType currentType;
-                int ret = Interop.AudioVolume.GetCurrentSoundType(out currentType);
-                if(ret != 0) {
-                    Tizen.Log.Info(AudioVolumeLog.Tag, "Unable to get current playback sound type" + (AudioManagerError)ret);
+        /// <value>The volume type of the sound being currently played.</value>
+        public AudioVolumeType CurrentPlaybackType
+        {
+            get
+            {
+                var ret = Interop.AudioVolume.GetCurrentSoundType(out var currentType);
+                if (ret == AudioManagerError.NoPlayingSound)
+                {
                     return AudioVolumeType.None;
                 }
+                ret.Validate("Failed to get current volume type");
+
                 return currentType;
             }
         }
 
         /// <summary>
-        /// The indexer class which is used to get/set volume level specified for a particular sound type.
+        /// Gets the <see cref="VolumeLevel"/>.
         /// </summary>
-        public VolumeLevel Level;
+        /// <value>The <see cref="VolumeLevel"/>.</value>
+        public VolumeLevel Level { get; }
 
         /// <summary>
-        /// The indexer class which is used to get maximum volume level supported for a particular sound type.
+        /// Gets the <see cref="MaxVolumeLevel"/>.
         /// </summary>
-        public MaxVolumeLevel MaxLevel;
+        /// <value>The <see cref="MaxVolumeLevel"/>.</value>
+        public MaxVolumeLevel MaxLevel { get; }
 
         private void RegisterVolumeChangedEvent()
         {
-            _volumeChangedCallback = (AudioVolumeType type, uint volume, IntPtr userData) => {
-                VolumeChangedEventArgs eventArgs = new VolumeChangedEventArgs(type, volume);
-                _volumeChanged.Invoke(this, eventArgs);
+            _volumeChangedCallback = (AudioVolumeType type, uint volume, IntPtr userData) =>
+            {
+                _volumeChanged?.Invoke(this, new VolumeChangedEventArgs(type, volume));
             };
-            int error = Interop.AudioVolume.AddVolumeChangedCallback(_volumeChangedCallback, IntPtr.Zero, out _volumeChangedCallbackId);
-            Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Add Changed Event return id:" + _volumeChangedCallbackId + "error:" + error);
-            AudioManagerErrorFactory.CheckAndThrowException(error, "unable to add level changed callback");
+            var error = Interop.AudioVolume.AddVolumeChangedCallback(_volumeChangedCallback, IntPtr.Zero,
+                out _volumeChangedCallbackId);
+            Log.Info(Tag, $"VolumeController callback id:{_volumeChangedCallbackId}");
+
+            error.Validate("Failed to add volume changed event");
         }
 
         private void UnregisterVolumeChangedEvent()
         {
-            if (_volumeChangedCallbackId > 0) {
-                int error = Interop.AudioVolume.RemoveVolumeChangedCallback(_volumeChangedCallbackId);
-                Tizen.Log.Info(AudioVolumeLog.Tag, "VolumeController Remove Changed Event(id:" + _volumeChangedCallbackId + ") return error: " + error);
-                AudioManagerErrorFactory.CheckAndThrowException(error, "unable to remove level changed callback");
-            }
+            Interop.AudioVolume.RemoveVolumeChangedCallback(_volumeChangedCallbackId).
+                Validate("Failed to remove volume changed event");
         }
     }
 }

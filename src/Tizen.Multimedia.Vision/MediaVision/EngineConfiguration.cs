@@ -19,7 +19,7 @@ using Tizen.System;
 using System.Runtime.InteropServices;
 using static Interop.MediaVision;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// A base class for configuration classes.

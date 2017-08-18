@@ -16,23 +16,26 @@
 
 using System;
 using System.Runtime.InteropServices;
+using static Interop.AudioIO;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
     /// Provides the ability to directly manage the system audio input devices.
     /// </summary>
-    /// <remarks>The recorder privilege(http://tizen.org/privilege/recorder) is required.</remarks>
+    /// <privilege>http://tizen.org/privilege/recorder</privilege>
     public abstract class AudioCaptureBase : IDisposable
     {
         /// <summary>
-        /// Specifies the minimum value allowed for the audio capture.
+        /// Specifies the minimum value allowed for the audio capture, in Hertz (Hz).
         /// </summary>
+        /// <seealso cref="SampleRate"/>
         public static readonly int MinSampleRate = 8000;
 
         /// <summary>
-        /// Specifies the maximum value allowed for the audio capture.
+        /// Specifies the maximum value allowed for the audio capture, in Hertz (Hz).
         /// </summary>
+        /// <seealso cref="SampleRate"/>
         public static readonly int MaxSampleRate = 48000;
 
         internal IntPtr _handle = IntPtr.Zero;
@@ -55,7 +58,7 @@ namespace Tizen.Multimedia
             SampleType = sampleType;
 
             AudioIOUtil.ThrowIfError(
-                Interop.AudioIO.AudioInput.Create(SampleRate, (int)Channel, (int)SampleType, out _handle));
+                AudioInput.Create(SampleRate, (int)Channel, (int)SampleType, out _handle));
 
             RegisterStateChangedCallback();
         }
@@ -70,7 +73,7 @@ namespace Tizen.Multimedia
         /// </summary>
         public event EventHandler<AudioIOStateChangedEventArgs> StateChanged;
 
-        private Interop.AudioIO.AudioStateChangedCallback _stateChangedCallback;
+        private AudioStateChangedCallback _stateChangedCallback;
 
         private void RegisterStateChangedCallback()
         {
@@ -83,7 +86,7 @@ namespace Tizen.Multimedia
             };
 
             AudioIOUtil.ThrowIfError(
-                Interop.AudioIO.AudioInput.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero));
+                AudioInput.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero));
         }
 
         #region Dispose support
@@ -115,7 +118,7 @@ namespace Tizen.Multimedia
                     }
                 }
 
-                Interop.AudioIO.AudioInput.Destroy(_handle);
+                AudioInput.Destroy(_handle);
                 _handle = IntPtr.Zero;
                 _isDisposed = true;
             }
@@ -138,7 +141,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the sample rate of the audio input data stream.
+        /// Gets the sample rate of the audio input data stream, in Hertz (Hz).
         /// </summary>
         public int SampleRate { get; }
 
@@ -158,7 +161,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed.</exception>
         public int GetBufferSize()
         {
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.GetBufferSize(_handle, out var size));
+            AudioIOUtil.ThrowIfError(AudioInput.GetBufferSize(_handle, out var size));
             return size;
         }
 
@@ -175,7 +178,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Idle);
 
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.Prepare(_handle),
+            AudioIOUtil.ThrowIfError(AudioInput.Prepare(_handle),
                 "Failed to prepare the AudioCapture");
         }
 
@@ -184,7 +187,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <exception cref="InvalidOperationException">
         ///     Operation failed due to internal error.\n
-        ///     \n
+        ///     -or-\n
         ///     The current state is <see cref="AudioIOState.Idle"/>.
         /// </exception>
         /// <seealso cref="Prepare"/>
@@ -192,7 +195,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
 
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.Unprepare(_handle),
+            AudioIOUtil.ThrowIfError(AudioInput.Unprepare(_handle),
                 "Failed to unprepare the AudioCapture");
         }
 
@@ -200,7 +203,7 @@ namespace Tizen.Multimedia
         /// Pauses buffering of audio data from the device.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is <see cref="AudioState.Idle"/>.\n
+        ///     The current state is <see cref="AudioIOState.Idle"/>.\n
         ///     -or-\n
         ///     The method is called in the <see cref="AsyncAudioCapture.DataAvailable"/> event handler.
         /// </exception>
@@ -213,13 +216,13 @@ namespace Tizen.Multimedia
             }
             ValidateState(AudioIOState.Running);
 
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.Pause(_handle));
+            AudioIOUtil.ThrowIfError(AudioInput.Pause(_handle));
         }
         /// <summary>
         /// Resumes buffering audio data from the device.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is <see cref="AudioState.Idle"/>.\n
+        ///     The current state is <see cref="AudioIOState.Idle"/>.\n
         ///     -or-\n
         ///     The method is called in the <see cref="AsyncAudioCapture.DataAvailable"/> event handler.
         /// </exception>
@@ -232,17 +235,17 @@ namespace Tizen.Multimedia
             }
             ValidateState(AudioIOState.Paused);
 
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.Resume(_handle));
+            AudioIOUtil.ThrowIfError(AudioInput.Resume(_handle));
         }
         /// <summary>
         /// Flushes and discards buffered audio data from the input stream.
         /// </summary>
-        /// <exception cref="InvalidOperationException">The current state is <see cref="AudioState.Idle"/>.</exception>
+        /// <exception cref="InvalidOperationException">The current state is <see cref="AudioIOState.Idle"/>.</exception>
         public void Flush()
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
 
-            int ret = Interop.AudioIO.AudioInput.Flush(_handle);
+            int ret = AudioInput.Flush(_handle);
 
             MultimediaDebug.AssertNoError(ret);
         }
@@ -262,14 +265,9 @@ namespace Tizen.Multimedia
                 throw new ArgumentNullException(nameof(streamPolicy));
             }
 
-            if (streamPolicy.Handle == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException(nameof(streamPolicy));
-            }
-
             ValidateNotDisposed();
 
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.SetStreamInfo(_handle, streamPolicy.Handle));
+            AudioIOUtil.ThrowIfError(AudioInput.SetStreamInfo(_handle, streamPolicy.Handle));
         }
     }
 
@@ -286,9 +284,9 @@ namespace Tizen.Multimedia
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="sampleRate"/> is less than <see cref="MinSampleRate"/>.\n
+        ///     <paramref name="sampleRate"/> is less than <see cref="AudioCaptureBase.MinSampleRate"/>.\n
         ///     -or-\n
-        ///     <paramref name="sampleRate"/> is greater than <see cref="MaxSampleRate"/>.
+        ///     <paramref name="sampleRate"/> is greater than <see cref="AudioCaptureBase.MaxSampleRate"/>.
         /// </exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="channel"/> is invalid.\n
@@ -320,7 +318,7 @@ namespace Tizen.Multimedia
 
             byte[] buffer = new byte[count];
 
-            AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.Read(_handle, buffer, count),
+            AudioIOUtil.ThrowIfError(AudioInput.Read(_handle, buffer, count),
                 "Failed to read");
 
             return buffer;
@@ -346,9 +344,9 @@ namespace Tizen.Multimedia
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="sampleRate"/> is less than <see cref="MinSampleRate"/>.\n
+        ///     <paramref name="sampleRate"/> is less than <see cref="AudioCaptureBase.MinSampleRate"/>.\n
         ///     -or-\n
-        ///     <paramref name="sampleRate"/> is greater than <see cref="MaxSampleRate"/>.
+        ///     <paramref name="sampleRate"/> is greater than <see cref="AudioCaptureBase.MaxSampleRate"/>.
         /// </exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="channel"/> is invalid.\n
@@ -363,11 +361,11 @@ namespace Tizen.Multimedia
             _streamCallback = (IntPtr handle, uint length, IntPtr _) => { OnInputDataAvailable(handle, length); };
 
             AudioIOUtil.ThrowIfError(
-                Interop.AudioIO.AudioInput.SetStreamCallback(_handle, _streamCallback, IntPtr.Zero),
+                AudioInput.SetStreamCallback(_handle, _streamCallback, IntPtr.Zero),
                 $"Failed to initialize a { nameof(AsyncAudioCapture) }");
         }
 
-        private Interop.AudioIO.AudioStreamCallback _streamCallback;
+        private AudioStreamCallback _streamCallback;
 
         private void OnInputDataAvailable(IntPtr handle, uint length)
         {
@@ -379,12 +377,12 @@ namespace Tizen.Multimedia
             IntPtr ptr = IntPtr.Zero;
             try
             {
-                AudioIOUtil.ThrowIfError(Interop.AudioIO.AudioInput.Peek(_handle, out ptr, ref length));
+                AudioIOUtil.ThrowIfError(AudioInput.Peek(_handle, out ptr, ref length));
 
                 byte[] buffer = new byte[length];
                 Marshal.Copy(ptr, buffer, 0, (int)length);
 
-                Interop.AudioIO.AudioInput.Drop(_handle);
+                AudioInput.Drop(_handle);
 
                 DataAvailable?.Invoke(this, new AudioDataAvailableEventArgs(buffer));
             }

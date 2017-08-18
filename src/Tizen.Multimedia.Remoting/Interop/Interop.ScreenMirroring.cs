@@ -16,7 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Tizen.Multimedia;
+using Tizen.Multimedia.Remoting;
 
 internal static partial class Interop
 {

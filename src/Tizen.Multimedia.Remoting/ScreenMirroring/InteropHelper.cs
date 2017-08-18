@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Remoting
 {
     internal static class InteropHelper
     {

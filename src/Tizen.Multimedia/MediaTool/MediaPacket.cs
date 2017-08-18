@@ -25,7 +25,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a packet for multimedia.
     /// </summary>
-    public abstract class MediaPacket : IDisposable
+    public abstract partial class MediaPacket : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
 
@@ -467,21 +467,6 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Validate the current object is not locked.
-        /// </summary>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The MediaPacket is in use by another module.</exception>
-        private void ValidateNotLocked()
-        {
-            ValidateNotDisposed();
-
-            if (_lock.IsLocked)
-            {
-                throw new InvalidOperationException("Can't perform any writing operation." +
-                    "The packet is in use, internally.");
-            }
-        }
-        /// <summary>
         /// Ensures whether the packet is writable.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The MediaPacket already has been disposed of.</exception>
@@ -557,169 +542,6 @@ namespace Tizen.Multimedia
 
             return new MediaPacketBuffer(this, dataHandle, size);
         }
-
-        #region Lock operations
-        private readonly LockState _lock = new LockState();
-
-        /// <summary>
-        /// Provides a thread-safe lock state controller.
-        /// </summary>
-        private sealed class LockState
-        {
-            const int LOCKED = 1;
-            const int UNLOCKED = 0;
-
-            private int _locked = UNLOCKED;
-
-            internal void SetLock()
-            {
-                if (Interlocked.CompareExchange(ref _locked, LOCKED, UNLOCKED) == LOCKED)
-                {
-                    throw new InvalidOperationException("The packet is already locked.");
-                }
-            }
-
-            internal void SetUnlock()
-            {
-                if (Interlocked.CompareExchange(ref _locked, UNLOCKED, LOCKED) == UNLOCKED)
-                {
-                    Debug.Fail("The packet to unlock is not locked. " +
-                        "There must be an error somewhere that a lock isn't disposed correctly.");
-                }
-            }
-
-            internal bool IsLocked
-            {
-                get
-                {
-                    return Interlocked.CompareExchange(ref _locked, 0, 0) == LOCKED;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Provides a thread-safe lock controller.
-        /// </summary>
-        /// <example>
-        /// using (var lock = BaseMediaPacket.Lock(mediaPacket))
-        /// {
-        ///     ....
-        /// }
-        /// </example>
-        internal sealed class Lock : IDisposable
-        {
-            private readonly MediaPacket _packet;
-            private readonly GCHandle _gcHandle;
-            private int _lockCount;
-
-            internal static Lock Get(MediaPacket packet)
-            {
-                Debug.Assert(packet != null);
-
-                lock (packet)
-                {
-                    Lock lck = FromHandle(packet._handle);
-
-                    if (lck == null)
-                    {
-                        lck = new Lock(packet);
-                    }
-
-                    lck._lockCount++;
-
-                    return lck;
-                }
-            }
-
-            private Lock(MediaPacket packet)
-            {
-                Debug.Assert(packet != null, "The packet is null!");
-
-                packet.ValidateNotDisposed();
-
-                _packet = packet;
-
-                _packet._lock.SetLock();
-
-                _gcHandle = GCHandle.Alloc(this);
-
-                SetExtra(GCHandle.ToIntPtr(_gcHandle));
-            }
-
-            internal static Lock FromHandle(IntPtr handle)
-            {
-                Debug.Assert(handle != IntPtr.Zero);
-
-                IntPtr extra = GetExtra(handle);
-
-                if (extra == IntPtr.Zero)
-                {
-                    return null;
-                }
-
-                return (Lock)GCHandle.FromIntPtr(extra).Target;
-            }
-
-            private void SetExtra(IntPtr ptr)
-            {
-                int ret = Interop.MediaPacket.SetExtra(_packet._handle, ptr);
-
-                MultimediaDebug.AssertNoError(ret);
-            }
-
-            private static IntPtr GetExtra(IntPtr handle)
-            {
-                IntPtr value;
-
-                int ret = Interop.MediaPacket.GetExtra(handle, out value);
-
-                MultimediaDebug.AssertNoError(ret);
-
-                return value;
-            }
-
-            internal IntPtr GetHandle()
-            {
-                return _packet.GetHandle();
-            }
-
-            internal MediaPacket MediaPacket
-            {
-                get
-                {
-                    return _packet;
-                }
-            }
-
-            private bool _isDisposed = false;
-
-            public void Dispose()
-            {
-                if (!_isDisposed)
-                {
-                    lock (_packet)
-                    {
-                        _lockCount--;
-
-                        if (_lockCount == 0)
-                        {
-                            SetExtra(IntPtr.Zero);
-
-                            if (_gcHandle.IsAllocated)
-                            {
-                                _gcHandle.Free();
-                            }
-
-                            //We can assure that at this point '_packet' is always locked by this lock.
-                            _packet._lock.SetUnlock();
-                        }
-                    }
-
-                    _isDisposed = true;
-                }
-            }
-        }
-        #endregion
 
         /// <summary>
         /// Creates an object of the MediaPacket with the specified <see cref="MediaFormat"/>.

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System;
 
 namespace Tizen.Multimedia
@@ -22,13 +23,13 @@ namespace Tizen.Multimedia
     /// </summary>
     public class MediaStreamSeekingOccurredEventArgs : EventArgs
     {
-       /// <summary>
+        /// <summary>
         /// Initializes a new instance of the MediaStreamSeekingOccurredEventArgs class.
         /// </summary>
         /// <param name="offset">The value indicating the new position to seek.</param>
         public MediaStreamSeekingOccurredEventArgs(ulong offset)
         {
-           Offset = offset;
+            Offset = offset;
         }
 
         /// <summary>
@@ -36,6 +37,10 @@ namespace Tizen.Multimedia
         /// </summary>
 		public ulong Offset { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString() => $"Offset : { Offset.ToString() }";
     }
 }

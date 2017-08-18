@@ -989,6 +989,7 @@ namespace Tizen.Multimedia
                 {
                     throw new NotSupportedException("Pan is not supported.");
                 }
+
                 return _panRange.Value;
             }
         }
@@ -1009,6 +1010,7 @@ namespace Tizen.Multimedia
                 {
                     throw new NotSupportedException("Tilt is not supported.");
                 }
+
                 return _tiltRange.Value;
             }
         }

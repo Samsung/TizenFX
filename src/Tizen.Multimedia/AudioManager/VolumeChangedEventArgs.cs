@@ -1,4 +1,4 @@
-﻿ /*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,24 +19,26 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Extnded EventArgs which contains the parameteres to be passed to the AudioVolume Changed event
+    /// Provides data for the <see cref="AudioVolume.Changed"/> event.
     /// </summary>
     public class VolumeChangedEventArgs : EventArgs
     {
         internal VolumeChangedEventArgs(AudioVolumeType type, uint level)
         {
             Type = type;
-            Level = level;
+            Level = (int)level;
         }
 
         /// <summary>
-        ///  The sound type of the changed volume
+        /// Gets the sound type that volume is changed.
         /// </summary>
+        /// <value>The sound type that volume is changed.</value>
         public AudioVolumeType Type { get; }
 
         /// <summary>
-        /// The new volume value
+        /// Gets the new volume.
         /// </summary>
-        public uint Level { get; }
+        /// <value>The new volume level.</value>
+        public int Level { get; }
     }
 }

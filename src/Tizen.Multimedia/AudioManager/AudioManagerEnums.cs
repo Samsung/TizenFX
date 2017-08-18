@@ -1,4 +1,4 @@
-﻿ /*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -15,312 +15,341 @@
  */
 
 using System;
+
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for audio device options.
+    /// Specifies the flag for audio device options.
+    /// <para>
+    /// This enumeration has a <see cref="FlagsAttribute"/> attribute that allows a bitwise combination of its member values.
+    /// </para>
     /// </summary>
-    public enum AudioDeviceOptions
+    [Flags]
+    internal enum AudioDeviceOptions
     {
         /// <summary>
-        /// Mask for input devices
+        /// Input devices.
         /// </summary>
         Input = 0x0001,
         /// <summary>
-        /// Mask for output devices
+        /// Output devices.
         /// </summary>
         Output = 0x0002,
         /// <summary>
-        /// Mask for input/output devices (both directions are available)
+        /// Input and output devices (both directions are available).
         /// </summary>
         InputAndOutput = 0x0004,
         /// <summary>
-        /// Mask for built-in devices
+        /// Built-in devices.
         /// </summary>
         Internal = 0x00010,
         /// <summary>
-        /// Mask for external devices
+        /// External devices.
         /// </summary>
         External = 0x0020,
         /// <summary>
-        /// Mask for deactivated devices
+        /// Deactivated devices.
         /// </summary>
         Deactivated = 0x1000,
         /// <summary>
-        /// Mask for activated devices
+        /// Activated devices.
         /// </summary>
         Activated = 0x2000,
+
         /// <summary>
-        /// Mask for all devices
+        /// All devices.
         /// </summary>
         All = 0xFFFF
     }
 
     /// <summary>
-    /// Enumeration for audio device type.
+    /// Specifies audio device type.
     /// </summary>
     public enum AudioDeviceType
     {
         /// <summary>
-        /// Built-in speaker
+        /// Built-in speaker.
         /// </summary>
         BuiltinSpeaker,
         /// <summary>
-        /// Built-in receiver
+        /// Built-in receiver.
         /// </summary>
         BuiltinReceiver,
         /// <summary>
-        /// Built-in mic
+        /// Built-in microphone.
         /// </summary>
         BuiltinMic,
         /// <summary>
-        /// Audio jack that can be connected to wired accessory such as headphones and headsets
+        /// Audio jack that can be connected to wired accessory such as headphones and headsets.
         /// </summary>
         AudioJack,
         /// <summary>
-        /// Bluetooth Media (A2DP)
+        /// Bluetooth Media (A2DP).
         /// </summary>
         BluetoothMedia,
         /// <summary>
-        /// HDMI
+        /// HDMI.
         /// </summary>
         Hdmi,
         /// <summary>
-        /// Device for forwarding
+        /// Device for forwarding.
         /// </summary>
         Forwarding,
         /// <summary>
-        /// USB Audio
+        /// USB Audio.
         /// </summary>
         UsbAudio,
         /// <summary>
-        /// Bluetooth Voice (SCO)
+        /// Bluetooth Voice (SCO).
         /// </summary>
         BluetoothVoice
     }
 
     /// <summary>
-    /// Enumeration for audio device direction.
+    /// Specifies audio device direction.
     /// </summary>
     public enum AudioDeviceIoDirection
     {
         /// <summary>
-        /// Input device
+        /// Input device.
         /// </summary>
         Input,
         /// <summary>
-        /// Output device
+        /// Output device.
         /// </summary>
         Output,
         /// <summary>
-        /// Input/output device (both directions are available)
+        /// Input/output device (both directions are available).
         /// </summary>
         InputAndOutput
     }
 
     /// <summary>
-    /// Enumeration for audio device state.
+    /// Specifies audio device state.
     /// </summary>
     public enum AudioDeviceState
     {
         /// <summary>
-        /// Deactivated state
+        /// Deactivated state.
         /// </summary>
         Deactivated,
         /// <summary>
-        /// Activated state
+        /// Activated state.
         /// </summary>
         Activated
     }
 
     /// <summary>
-    /// Enumeration for audio volume type.
+    /// Specifies audio volume type.
     /// </summary>
     public enum AudioVolumeType
     {
         /// <summary>
-        /// Volume type for system
+        /// System.
         /// </summary>
         System,
         /// <summary>
-        /// Volume type for notification
+        /// Notification.
         /// </summary>
         Notification,
         /// <summary>
-        /// Volume type for alarm
+        /// Alarm.
         /// </summary>
         Alarm,
         /// <summary>
-        /// Volume type for ringtone
+        /// Ringtone.
         /// </summary>
         Ringtone,
         /// <summary>
-        /// Volume type for media
+        /// Media.
         /// </summary>
         Media,
         /// <summary>
-        /// Volume type for call
+        /// Call.
         /// </summary>
         Call,
         /// <summary>
-        /// Volume type for voip
+        /// VoIP.
         /// </summary>
         Voip,
         /// <summary>
-        /// Volume type for voice
+        /// Voice.
         /// </summary>
         Voice,
         /// <summary>
-        /// Volume type None
+        /// No volume exists.
         /// </summary>
+        /// <seealso cref="AudioStreamPolicy.VolumeType"/>
         None
     }
 
     /// <summary>
-    /// Enumeration for audio stream type.
+    /// Specifies audio stream type.
     /// </summary>
     public enum AudioStreamType
     {
         /// <summary>
-        /// Audio stream type for media
+        /// Media.
         /// </summary>
         Media,
         /// <summary>
-        /// Audio stream type for system
+        /// System.
         /// </summary>
         System,
         /// <summary>
-        /// Audio stream type for alarm
+        /// Alarm.
         /// </summary>
         Alarm,
         /// <summary>
-        /// Audio stream type for notification
+        /// Notification.
         /// </summary>
         Notification,
         /// <summary>
-        /// Audio stream type for emergency
+        /// Emergency.
         /// </summary>
         Emergency,
         /// <summary>
-        /// Audio stream type for voice information
+        /// Voice information.
         /// </summary>
         VoiceInformation,
         /// <summary>
-        /// Audio stream type for voice recognition
+        /// Voice recognition.
         /// </summary>
         VoiceRecognition,
         /// <summary>
-        /// Audio stream type for ringtone for VoIP
+        /// Ringtone for VoIP.
         /// </summary>
         RingtoneVoip,
         /// <summary>
-        /// Audio stream type for VoIP
+        /// VoIP.
         /// </summary>
         Voip,
         /// <summary>
-        /// Audio stream type for media only for external devices
+        /// Media only for external devices.
         /// </summary>
         MediaExternalOnly
     }
 
     /// <summary>
-    /// Enumeration for change reason of audio stream focus state.
+    /// Specifies change reason of audio stream focus state.
     /// </summary>
     public enum AudioStreamFocusChangedReason
     {
         /// <summary>
-        /// Changed by the stream type for media
+        /// Media.
         /// </summary>
         Media,
         /// <summary>
-        /// Changed by the stream type for system
+        /// System.
         /// </summary>
         System,
         /// <summary>
-        /// Changed by the stream type for alarm
+        /// Alarm.
         /// </summary>
         Alarm,
         /// <summary>
-        /// Changed by the stream type for notification
+        /// Notification.
         /// </summary>
         Notification,
         /// <summary>
-        /// Changed by the stream type for emergency
+        /// Emergency.
         /// </summary>
         Emergency,
         /// <summary>
-        /// Changed by the stream type for voice information
+        /// Voice information.
         /// </summary>
         VoiceInformation,
         /// <summary>
-        /// Changed by the stream type for voice recognition
+        /// Voice recognition.
         /// </summary>
         VoiceRecognition,
         /// <summary>
-        /// Changed by the stream type for ringtone
+        /// Ringtone.
         /// </summary>
         RingtoneVoip,
         /// <summary>
-        /// Changed by the stream type for VoIP
+        /// VoIP.
         /// </summary>
         Voip,
         /// <summary>
-        /// Changed by the stream type for voice-call or video-call
+        /// Voice-call or video-call.
         /// </summary>
         Call,
         /// <summary>
-        /// Changed by the stream type for media only for external devices
+        /// Media only for external devices.
         /// </summary>
         MediaExternalOnly
     }
 
     /// <summary>
-    /// Enumeration for audio stream focus options.
+    /// Specifies the flag for audio stream focus options.
+    /// <para>
+    /// This enumeration has a <see cref="FlagsAttribute"/> attribute that allows a bitwise combination of its member values.
+    /// </para>
     /// </summary>
+    [Flags]
     public enum AudioStreamFocusOptions
     {
         /// <summary>
-        /// Mask for playback focus
+        /// Playback focus.
         /// </summary>
         Playback = 0x0001,
         /// <summary>
-        /// Mask for recording focus
+        /// Recording focus.
         /// </summary>
         Recording = 0x0002
     }
 
     /// <summary>
-    /// Enumeration for audio stream focus state.
+    /// Specifies audio stream focus state.
     /// </summary>
     public enum AudioStreamFocusState
     {
         /// <summary>
-        /// Focus state for release
+        /// Focus state for release.
         /// </summary>
         Released,
         /// <summary>
-        ///Focus state for acquisition
+        /// Focus state for acquisition.
         /// </summary>
         Acquired
     }
 
     /// <summary>
-    /// Enumeration for audio stream behavior
+    /// Specifies the flag for audio stream behaviors.
+    /// <para>
+    /// This enumeration has a <see cref="FlagsAttribute"/> attribute that allows a bitwise combination of its member values.
+    /// </para>
     /// </summary>
     [Flags]
-    public enum AudioStreamBehavior
+    public enum AudioStreamBehaviors
     {
         /// <summary>
-        /// Audio Stream Behavior NONE
-        /// </summary>
-        None = 0x0000,
-        /// <summary>
-        /// Audio Stream Behavior No Resume
+        /// No Resume.
         /// </summary>
         NoResume = 0x0001,
         /// <summary>
-        /// Audio Stream Behavior Fading
+        /// Fading.
         /// </summary>
         Fading = 0x0002
     }
+
+
+    internal static class AudioManagerEnumExtensions
+    {
+        internal static bool IsValid(this AudioStreamFocusOptions value)
+        {
+            int mask = (int)(AudioStreamFocusOptions.Playback | AudioStreamFocusOptions.Recording);
+
+            return (mask & (int)value) != 0;
+        }
+
+        internal static bool IsValid(this AudioStreamBehaviors value)
+        {
+            int mask = (int)(AudioStreamBehaviors.NoResume | AudioStreamBehaviors.Fading);
+
+            return ((~mask) & (int)value) == 0;
+        }
+    }
+
 }

@@ -1,4 +1,4 @@
-﻿ /*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,180 +19,185 @@ using System.Collections.Generic;
 
 namespace Tizen.Multimedia
 {
-    internal static class AudioManagerLog
-    {
-        internal const string Tag = "Tizen.Multimedia.AudioManager";
-    }
-
     /// <summary>
-    /// The Audio Manager class provides functions to get and set sound parameters like volume and devices.
+    /// Provides the ability to control volume levels and monitor audio devices.
     /// </summary>
     public static class AudioManager
     {
-        private static int _deviceConnectionChangedCallbackId = -1;
-        private static int _deviceStateChangedCallbackId = -1;
-
-        private static Interop.SoundDeviceConnectionChangedCallback _audioDeviceConnectionChangedCallback;
-        private static Interop.SoundDeviceStateChangedCallback _audioDeviceStateChangedCallback;
-
-        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _audioDeviceConnectionChanged;
-        private static EventHandler<AudioDeviceStateChangedEventArgs> _audioDeviceStateChanged;
-
-        /// <summary>
-        /// Constructor for AudioManager. Initializes the VolumeController property etc.
-        /// </summary>
         static AudioManager()
         {
             VolumeController = new AudioVolume();
         }
 
         /// <summary>
-        /// Registers/Unregisters a function to be invoked when the state of connection of an Audio device was changed.
+        /// Gets the volume controller.
+        /// </summary>
+        /// <value>The <see cref="AudioVolume"/>.</value>
+        public static AudioVolume VolumeController { get; }
+
+        /// <summary>
+        /// Gets the all devices currently connected.
+        /// </summary>
+        /// <param name="options">The audio device options.</param>
+        /// <returns>An IEnumerable&lt;AudioDevice&gt; that contains connected devices.</returns>
+        public static IEnumerable<AudioDevice> GetConnectedDevices()
+        {
+            IntPtr deviceListHandle = IntPtr.Zero;
+
+            try
+            {
+                var ret = Interop.AudioDevice.GetDeviceList(AudioDeviceOptions.All, out deviceListHandle);
+
+                List<AudioDevice> result = new List<AudioDevice>();
+
+                if (ret == AudioManagerError.NoData)
+                {
+                    return result;
+                }
+
+                ret.Validate("Failed to get connected devices");
+
+                while (ret == AudioManagerError.None)
+                {
+                    ret = Interop.AudioDevice.GetNextDevice(deviceListHandle, out var deviceHandle);
+
+                    if (ret == AudioManagerError.NoData)
+                    {
+                        break;
+                    }
+
+                    ret.Validate("Failed to get connected devices");
+
+                    result.Add(new AudioDevice(deviceHandle));
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.AudioDevice.FreeDeviceList(deviceListHandle);
+            }
+        }
+
+        #region DeviceConnectionChanged event
+        private static int _deviceConnectionChangedCallbackId = -1;
+
+        private static Interop.AudioDevice.ConnectionChangedCallback _audioDeviceConnectionChangedCallback;
+        private static EventHandler<AudioDeviceConnectionChangedEventArgs> _audioDeviceConnectionChanged;
+        private static object _audioDeviceConnectionLock = new object();
+
+        /// <summary>
+        /// Occurs when the state of connection of an audio device changes.
         /// </summary>
         public static event EventHandler<AudioDeviceConnectionChangedEventArgs> DeviceConnectionChanged
         {
             add
             {
-                if (_audioDeviceConnectionChanged == null)
+                lock (_audioDeviceConnectionLock)
                 {
-                    RegisterAudioDeviceEvent();
-                    Tizen.Log.Info(AudioManagerLog.Tag, "DeviceConnectionChanged event registered");
+                    if (_audioDeviceConnectionChanged == null)
+                    {
+                        RegisterAudioDeviceEvent();
+                    }
+                    _audioDeviceConnectionChanged += value;
                 }
-                _audioDeviceConnectionChanged += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "DeviceConnectionChanged event added");
             }
             remove
             {
-                if (_audioDeviceConnectionChanged?.GetInvocationList()?.GetLength(0) == 1)
+                if (value == null)
                 {
-                    UnregisterDeviceConnectionChangedEvent();
-                }
-                _audioDeviceConnectionChanged -= value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "DeviceConnectionChanged event removed");
-            }
-        }
-
-        /// <summary>
-        /// Registers/Unregisters a callback function to be invoked when the state of an Audio sound device was changed.
-        /// </summary>
-        public static event EventHandler<AudioDeviceStateChangedEventArgs> DeviceStateChanged
-        {
-            add
-            {
-                if (_audioDeviceStateChanged == null)
-                {
-                    RegisterDeviceStateChangedEvent();
-                }
-                _audioDeviceStateChanged += value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "DeviceStateChanged event added");
-            }
-            remove
-            {
-                if (_audioDeviceStateChanged?.GetInvocationList()?.GetLength(0) == 1)
-                {
-                    UnregisterDeviceStateChangedEvent();
-                }
-                _audioDeviceStateChanged -= value;
-                Tizen.Log.Info(AudioManagerLog.Tag, "DeviceStateChanged event removed");
-            }
-        }
-
-        /// <summary>
-        /// The VolumeController object (singleton) is-a part of SoundManager and its properties and methods are used via AudioManager
-        /// </summary>
-        public static AudioVolume VolumeController { get; }
-
-        /// <summary>
-        /// Gets the list consisting of all devices currently connected.
-        /// </summary>
-        /// <param name="options">The audio device options</param>
-        /// <returns>The list of connected devices: IEnumerable of Device objects</returns>
-        public static IEnumerable<AudioDevice> GetCurrentDevices(AudioDeviceOptions options)
-        {
-            List<AudioDevice> audioDeviceList = new List<AudioDevice>();
-            IntPtr deviceListHandle;
-            IntPtr handlePosition;
-            AudioDeviceIoDirection ioDirection;
-
-            int ret = Interop.AudioDevice.GetCurrentDeviceList(options, out deviceListHandle);
-            if (ret != (int)AudioManagerError.NoData)
-            {
-                AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to get next device");
-            }
-            while (ret == (int)AudioManagerError.None)
-            {
-                ret = Interop.AudioDevice.GetNextDevice(deviceListHandle, out handlePosition);
-                if (ret == (int)AudioManagerError.NoData)
-                {
-                    break;
-                }
-                else if (ret != (int)AudioManagerError.None)
-                {
-                    AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to get next device");
+                    return;
                 }
 
-                if (options == AudioDeviceOptions.Input || (options == AudioDeviceOptions.Output))
+                lock (_audioDeviceConnectionLock)
                 {
-                    ret = Interop.AudioDevice.GetDeviceIoDirection(handlePosition, out ioDirection);
-                    if (ret != 0)
+                    if (_audioDeviceConnectionChanged == value)
                     {
-                        Tizen.Log.Error(AudioManagerLog.Tag, "Unable to get device IoDirection" + (AudioManagerError)ret);
-                        AudioManagerErrorFactory.CheckAndThrowException(ret, handlePosition, "Unable to get device IO Direction");
+                        UnregisterDeviceConnectionChangedEvent();
                     }
-                    else if (ioDirection == AudioDeviceIoDirection.InputAndOutput)
-                    {
-                        continue;
-                    }
+                    _audioDeviceConnectionChanged -= value;
                 }
-                audioDeviceList.Add(new AudioDevice(handlePosition));
             }
-            return audioDeviceList;
         }
 
         private static void RegisterAudioDeviceEvent()
         {
             _audioDeviceConnectionChangedCallback = (IntPtr device, bool isConnected, IntPtr userData) =>
             {
-                AudioDeviceConnectionChangedEventArgs eventArgs = new AudioDeviceConnectionChangedEventArgs(new AudioDevice(device), isConnected);
-                _audioDeviceConnectionChanged?.Invoke(null, eventArgs);
+                _audioDeviceConnectionChanged?.Invoke(null,
+                    new AudioDeviceConnectionChangedEventArgs(new AudioDevice(device), isConnected));
             };
-            int ret = Interop.AudioDevice.AddDeviceConnectionChangedCallback(AudioDeviceOptions.All, _audioDeviceConnectionChangedCallback, IntPtr.Zero, out _deviceConnectionChangedCallbackId);
-            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to add device connection changed callback");
-            Tizen.Log.Info(AudioManagerLog.Tag, "AudioDeviceConnectionChanged Event registered");
+
+            Interop.AudioDevice.AddDeviceConnectionChangedCallback(AudioDeviceOptions.All,
+                _audioDeviceConnectionChangedCallback, IntPtr.Zero, out _deviceConnectionChangedCallbackId).
+                Validate("Unable to add device connection changed callback");
+        }
+
+        private static void UnregisterDeviceConnectionChangedEvent()
+        {
+            Interop.AudioDevice.RemoveDeviceConnectionChangedCallback(_deviceConnectionChangedCallbackId).
+                Validate("Unable to remove device connection changed callback");
+        }
+        #endregion
+
+        #region DeviceStateChanged event
+        private static int _deviceStateChangedCallbackId = -1;
+
+        private static Interop.AudioDevice.StateChangedCallback _audioDeviceStateChangedCallback;
+        private static EventHandler<AudioDeviceStateChangedEventArgs> _audioDeviceStateChanged;
+        private static object _audioDeviceStateLock = new object();
+
+        /// <summary>
+        /// Occurs when the state of an audio device changes.
+        /// </summary>
+        public static event EventHandler<AudioDeviceStateChangedEventArgs> DeviceStateChanged
+        {
+            add
+            {
+                lock (_audioDeviceStateLock)
+                {
+                    if (_audioDeviceStateChanged == null)
+                    {
+                        RegisterDeviceStateChangedEvent();
+                    }
+                    _audioDeviceStateChanged += value;
+                }
+            }
+            remove
+            {
+                if (value == null)
+                {
+                    return;
+                }
+
+                lock (_audioDeviceStateLock)
+                {
+                    if (_audioDeviceStateChanged == value)
+                    {
+                        UnregisterDeviceStateChangedEvent();
+                    }
+                    _audioDeviceStateChanged -= value;
+                }
+            }
         }
 
         private static void RegisterDeviceStateChangedEvent()
         {
             _audioDeviceStateChangedCallback = (IntPtr device, AudioDeviceState changedState, IntPtr userData) =>
             {
-                AudioDeviceStateChangedEventArgs eventArgs = new AudioDeviceStateChangedEventArgs(new AudioDevice(device), changedState);
-                _audioDeviceStateChanged?.Invoke(null, eventArgs);
+                _audioDeviceStateChanged?.Invoke(null,
+                    new AudioDeviceStateChangedEventArgs(new AudioDevice(device), changedState));
             };
-            int ret = Interop.AudioDevice.AddDeviceStateChangedCallback(AudioDeviceOptions.All, _audioDeviceStateChangedCallback, IntPtr.Zero, out _deviceStateChangedCallbackId);
-            AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to add device state changed callback");
-            Tizen.Log.Info(AudioManagerLog.Tag, "AudioDeviceStateChangedEvent callback registered");
-        }
 
-        private static void UnregisterDeviceConnectionChangedEvent()
-        {
-            if (_deviceConnectionChangedCallbackId > 0)
-            {
-                int ret = Interop.AudioDevice.RemoveDeviceConnectionChangedCallback(_deviceConnectionChangedCallbackId);
-                AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to remove device connection changed callback");
-                Tizen.Log.Info(AudioManagerLog.Tag, "AudioDeviceConnectionChangedEvent callback unregistered");
-                _deviceConnectionChangedCallbackId = -1;
-            }
+            Interop.AudioDevice.AddDeviceStateChangedCallback(AudioDeviceOptions.All,
+                _audioDeviceStateChangedCallback, IntPtr.Zero, out _deviceStateChangedCallbackId).
+                Validate("Failed to add device state changed event");
         }
 
         private static void UnregisterDeviceStateChangedEvent()
         {
-            if (_deviceStateChangedCallbackId > 0)
-            {
-                int ret = Interop.AudioDevice.RemoveDeviceStateChangedCallback(_deviceStateChangedCallbackId);
-                AudioManagerErrorFactory.CheckAndThrowException(ret, "Unable to remove device state changed callback");
-                Tizen.Log.Info(AudioManagerLog.Tag, "AudioDeviceStateChanged callback unregistered");
-                _deviceStateChangedCallbackId = -1;
-            }
+            Interop.AudioDevice.RemoveDeviceStateChangedCallback(_deviceStateChangedCallbackId).
+                Validate("Failed to remove device state changed event");
         }
+        #endregion
     }
 }

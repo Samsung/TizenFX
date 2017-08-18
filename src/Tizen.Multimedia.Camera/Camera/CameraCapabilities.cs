@@ -281,6 +281,8 @@ namespace Tizen.Multimedia
         /// Retrieves all the fps by resolution supported by the camera.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <param name="width">The width of required preview resolution.</param>
+        /// <param name="height">The height of required preview resolution.</param>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraFps"/> by resolution.
         /// </returns>
@@ -294,6 +296,7 @@ namespace Tizen.Multimedia
         /// Retrieves all the fps by resolution supported by the camera.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <param name="size">The size of required preview resolution.</param>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraFps"/> by resolution.
         /// </returns>
