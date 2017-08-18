@@ -1,4 +1,4 @@
-﻿ /*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,25 +19,46 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Class extending EventArgs and contains the necessary parameters to passed to FocusStateChanged event handler
+    /// Provides data for the <see cref="AudioStreamPolicy.StreamFocusStateChanged"/> event.
     /// </summary>
     public class StreamFocusStateChangedEventArgs : EventArgs
     {
-        /* FIXME */
-        internal StreamFocusStateChangedEventArgs(AudioStreamFocusChangedReason reason, string extraInformation)
+        internal StreamFocusStateChangedEventArgs(AudioStreamFocusOptions options,
+            AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInfo)
         {
-            FocusChangedReason = reason;
-            ExtraInformation = extraInformation;
+            FocusOptions = options;
+            FocusState = focusState;
+            Reason = reason;
+            ExtraInfo = extraInfo;
         }
 
         /// <summary>
-        /// The reason for state change of the focus
+        /// Gets the focus options.
         /// </summary>
-        public AudioStreamFocusChangedReason FocusChangedReason { get; }
+        /// <value>The focus options.</value>
+        public AudioStreamFocusOptions FocusOptions { get; }
 
         /// <summary>
-        /// The extra information
+        /// Gets the changed focus state.
         /// </summary>
-        public string ExtraInformation { get; }
+        /// <value>The focus state.</value>
+        public AudioStreamFocusState FocusState { get; }
+
+        /// <summary>
+        /// Gets the reason for state change of the focus.
+        /// </summary>
+        /// <value>The reason for state change of the focus.</value>
+        public AudioStreamFocusChangedReason Reason { get; }
+
+        /// <summary>
+        /// Gets the extra information.
+        /// </summary>
+        /// <value>
+        /// The extra information specified in <see cref="AudioStreamPolicy.AcquireFocus(AudioStreamFocusOptions, AudioStreamBehaviors, string)"/> or
+        /// <see cref="AudioStreamPolicy.ReleaseFocus(AudioStreamFocusOptions, AudioStreamBehaviors, string)"/>.
+        /// </value>
+        /// <seealso cref="AudioStreamPolicy.AcquireFocus(AudioStreamFocusOptions, AudioStreamBehaviors, string)"/>
+        /// <seealso cref="AudioStreamPolicy.ReleaseFocus(AudioStreamFocusOptions, AudioStreamBehaviors, string)"/>
+        public string ExtraInfo { get; }
     }
 }

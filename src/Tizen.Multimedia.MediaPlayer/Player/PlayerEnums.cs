@@ -165,7 +165,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies display modes for <see cref="Player"/>
     /// </summary>
-    /// <seealso cref="Display.Mode"/>
+    /// <seealso cref="PlayerDisplaySettings.Mode"/>
     public enum PlayerDisplayMode
     {
         /// <summary>
@@ -195,7 +195,7 @@ namespace Tizen.Multimedia
         OriginalOrFull,
 
         /// <summary>
-        /// Region of interest, See <see cref="Display.SetRoi(Rectangle)"/>.
+        /// Region of interest, See <see cref="PlayerDisplaySettings.SetRoi(Rectangle)"/>.
         /// </summary>
         Roi
     }

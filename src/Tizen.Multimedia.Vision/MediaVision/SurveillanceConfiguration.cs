@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// SurveillanceEngineConfiguration is a base class for surveillance configurations.

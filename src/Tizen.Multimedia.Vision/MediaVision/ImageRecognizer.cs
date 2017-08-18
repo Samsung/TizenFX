@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using InteropImage = Interop.MediaVision.Image;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Provides the ability to recognize images on image sources.

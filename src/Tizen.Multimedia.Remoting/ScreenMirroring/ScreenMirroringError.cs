@@ -17,7 +17,7 @@
 using System;
 using Tizen.Internals.Errors;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Remoting
 {
     internal enum ScreenMirroringErrorCode
     {

@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 using InteropBarcode = Interop.MediaVision.BarcodeDetector;
 using Unmanaged = Interop.MediaVision;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Provides the ability to detect barcodes on image sources.

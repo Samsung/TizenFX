@@ -18,7 +18,7 @@ using System;
 using System.IO;
 using InteropModel = Interop.MediaVision.ImageTrackingModel;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Represents the image tracking model interface.

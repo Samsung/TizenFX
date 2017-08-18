@@ -18,7 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 using static Interop.MediaVision.Surveillance;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// SurveillanceEngine is a base class for surveillance event triggers.

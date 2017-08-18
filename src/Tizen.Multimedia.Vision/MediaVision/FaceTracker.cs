@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using InteropFace = Interop.MediaVision.Face;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Provides the ability to track faces on image sources.

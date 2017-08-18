@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Represents a configuration of <see cref="PersonAppearanceDetector"/> instances.

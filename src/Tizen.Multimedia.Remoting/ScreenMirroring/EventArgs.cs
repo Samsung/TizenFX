@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
     /// Provides data for the <see cref="ScreenMirroring.StateChanged"/> event.

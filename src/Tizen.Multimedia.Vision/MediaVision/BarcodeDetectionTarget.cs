@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Specifies the target of <see cref="BarcodeDetector"/>.

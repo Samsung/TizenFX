@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System;
 
 namespace Tizen.Multimedia
@@ -36,6 +37,10 @@ namespace Tizen.Multimedia
         /// </summary>
         public PlaybackInterruptionReason Reason { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
             return $"Reason : { Reason.ToString() }";

@@ -1,6 +1,3 @@
-/// This File contains VideoStreamEventArgs class
-///
-/// Copyright 2016 by Samsung Electronics, Inc.,
 /*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
@@ -25,7 +22,6 @@ namespace Tizen.Multimedia
     /// </summary>
     public class VideoStreamChangedEventArgs : EventArgs
     {
-
         /// <summary>
         /// Initializes a new instance of the VideoStreamChangedEventArgs class.
         /// </summary>
@@ -51,6 +47,10 @@ namespace Tizen.Multimedia
         /// </summary>
         public int BitRate { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
             return $"Size=({ Size.ToString() }), Fps={ Fps.ToString() }, BitRate={ BitRate.ToString() }";

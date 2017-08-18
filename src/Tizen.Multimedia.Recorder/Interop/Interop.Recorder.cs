@@ -74,7 +74,7 @@ internal static partial class Interop
         internal static extern RecorderError GetState(IntPtr handle, out RecorderState state);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_sound_stream_info")]
-        internal static extern RecorderError SetAudioStreamPolicy(IntPtr handle, IntPtr streamInfoHandle);
+        internal static extern RecorderError SetAudioStreamPolicy(IntPtr handle, AudioStreamPolicyHandle streamInfoHandle);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_error_cb")]
         internal static extern RecorderError SetErrorCallback(IntPtr handle, RecorderErrorCallback callback, IntPtr userData);

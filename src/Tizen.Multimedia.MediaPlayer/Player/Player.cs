@@ -38,68 +38,15 @@ namespace Tizen.Multimedia
     /// It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
     /// Note that only one video player can be played at one time.
     /// </remarks>
-    public class Player : IDisposable, IDisplayable<PlayerErrorCode>
+    public partial class Player : IDisposable, IDisplayable<PlayerErrorCode>
     {
         private PlayerHandle _handle;
-
-        /// <summary>
-        /// Occurs when playback of a media is finished.
-        /// </summary>
-        public event EventHandler<EventArgs> PlaybackCompleted;
-        private NativePlayer.PlaybackCompletedCallback _playbackCompletedCallback;
-
-        /// <summary>
-        /// Occurs when playback of a media is interrupted.
-        /// </summary>
-        public event EventHandler<PlaybackInterruptedEventArgs> PlaybackInterrupted;
-        private NativePlayer.PlaybackInterruptedCallback _playbackInterruptedCallback;
-
-        /// <summary>
-        /// Occurs when any error occurs.
-        /// </summary>
-        /// <remarks>The event handler will be executed on an internal thread.</remarks>
-        public event EventHandler<PlayerErrorOccurredEventArgs> ErrorOccurred;
-        private NativePlayer.PlaybackErrorCallback _playbackErrorCallback;
-
-        /// <summary>
-        /// Occurs when the video stream changed.
-        /// </summary>
-        /// <remarks>The event handler will be executed on an internal thread.</remarks>
-        public event EventHandler<VideoStreamChangedEventArgs> VideoStreamChanged;
-        private NativePlayer.VideoStreamChangedCallback _videoStreamChangedCallback;
-
-        /// <summary>
-        /// Occurs when the subtitle is updated.
-        /// </summary>
-        /// <remarks>The event handler will be executed on an internal thread.</remarks>
-        public event EventHandler<SubtitleUpdatedEventArgs> SubtitleUpdated;
-        private NativePlayer.SubtitleUpdatedCallback _subtitleUpdatedCallback;
-
-        /// <summary>
-        /// Occurs when there is a change in the buffering status of streaming.
-        /// </summary>
-        public event EventHandler<BufferingProgressChangedEventArgs> BufferingProgressChanged;
-        private NativePlayer.BufferingProgressCallback _bufferingProgressCallback;
-
-        internal event EventHandler<MediaStreamBufferStatusChangedEventArgs> MediaStreamAudioBufferStatusChanged;
-        private NativePlayer.MediaStreamBufferStatusCallback _mediaStreamAudioBufferStatusChangedCallback;
-
-        internal event EventHandler<MediaStreamBufferStatusChangedEventArgs> MediaStreamVideoBufferStatusChanged;
-        private NativePlayer.MediaStreamBufferStatusCallback _mediaStreamVideoBufferStatusChangedCallback;
-
-        internal event EventHandler<MediaStreamSeekingOccurredEventArgs> MediaStreamAudioSeekingOccurred;
-        private NativePlayer.MediaStreamSeekCallback _mediaStreamAudioSeekCallback;
-
-        internal event EventHandler<MediaStreamSeekingOccurredEventArgs> MediaStreamVideoSeekingOccurred;
-        private NativePlayer.MediaStreamSeekCallback _mediaStreamVideoSeekCallback;
 
         /// <summary>
         /// Initialize a new instance of the Player class.
         /// </summary>
         public Player()
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-
             NativePlayer.Create(out _handle).ThrowIfFailed("Failed to create player");
 
             Debug.Assert(_handle != null);
@@ -119,54 +66,6 @@ namespace Tizen.Multimedia
             DisplaySettings = PlayerDisplaySettings.Create(this);
         }
 
-        private void RetrieveProperties()
-        {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-
-            NativePlayer.GetAudioLatencyMode(Handle, out _audioLatencyMode).
-                ThrowIfFailed("Failed to initialize the player");
-
-            NativePlayer.IsLooping(Handle, out _isLooping).ThrowIfFailed("Failed to initialize the player");
-
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
-        }
-
-        private bool _callbackRegistered;
-
-        private void RegisterCallbacks()
-        {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-
-            if (_callbackRegistered)
-            {
-                return;
-            }
-            RegisterSubtitleUpdatedCallback();
-            RegisterErrorOccurredCallback();
-            RegisterPlaybackInterruptedCallback();
-            RegisterVideoStreamChangedCallback();
-            RegisterBufferingCallback();
-            RegisterMediaStreamBufferStatusCallback();
-            RegisterMediaStreamSeekCallback();
-            RegisterPlaybackCompletedCallback();
-
-            _callbackRegistered = true;
-        }
-
-        /// <summary>
-        /// Gets the native handle of the player.
-        /// </summary>
-        /// <value>An IntPtr that contains the native handle of the player.</value>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        public IntPtr Handle
-        {
-            get
-            {
-                ValidateNotDisposed();
-                return _handle.DangerousGetHandle();
-            }
-        }
-
         internal void ValidatePlayerState(params PlayerState[] desiredStates)
         {
             Debug.Assert(desiredStates.Length > 0);
@@ -183,320 +82,6 @@ namespace Tizen.Multimedia
                 $"Current State : { curState }, Valid State : { string.Join(", ", desiredStates) }.");
         }
 
-        #region Properties
-        #region Network configuration
-        private string _cookie = "";
-        private string _userAgent = "";
-
-        /// <summary>
-        /// Gets or Sets the cookie for streaming playback.
-        /// </summary>
-        /// <remarks>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="ArgumentNullException">The value to set is null.</exception>
-        public string Cookie
-        {
-            get
-            {
-                Log.Info(PlayerLog.Tag, "get cookie : " + _cookie);
-                return _cookie;
-            }
-            set
-            {
-                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-                ValidatePlayerState(PlayerState.Idle);
-
-                if (value == null)
-                {
-                    Log.Error(PlayerLog.Tag, "cookie can't be null");
-                    throw new ArgumentNullException(nameof(value), "Cookie can't be null.");
-                }
-
-                NativePlayer.SetStreamingCookie(Handle, value, value.Length).
-                    ThrowIfFailed("Failed to set the cookie to the player");
-
-                _cookie = value;
-                Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
-            }
-        }
-
-        /// <summary>
-        /// Gets or Sets the user agent for streaming playback.
-        /// </summary>
-        /// <remarks>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="ArgumentNullException">The value to set is null.</exception>
-        public string UserAgent
-        {
-            get
-            {
-                Log.Info(PlayerLog.Tag, "get useragent : " + _userAgent);
-                return _userAgent;
-            }
-            set
-            {
-                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-                ValidatePlayerState(PlayerState.Idle);
-
-                if (value == null)
-                {
-                    Log.Error(PlayerLog.Tag, "UserAgent can't be null");
-                    throw new ArgumentNullException(nameof(value), "UserAgent can't be null.");
-                }
-
-                NativePlayer.SetStreamingUserAgent(Handle, value, value.Length).
-                    ThrowIfFailed("Failed to set the user agent to the player");
-
-                _userAgent = value;
-                Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
-            }
-        }
-        #endregion
-
-        /// <summary>
-        /// Gets the state of the player.
-        /// </summary>
-        /// <value>The current state of the player.</value>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        public PlayerState State
-        {
-            get
-            {
-                ValidateNotDisposed();
-
-                if (IsPreparing())
-                {
-                    return PlayerState.Preparing;
-                }
-
-                int state = 0;
-                NativePlayer.GetState(Handle, out state).ThrowIfFailed("Failed to retrieve the state of the player");
-
-                Debug.Assert(Enum.IsDefined(typeof(PlayerState), state));
-
-                return (PlayerState)state;
-            }
-        }
-
-        private AudioLatencyMode _audioLatencyMode;
-
-        /// <summary>
-        /// Gets or sets the audio latency mode.
-        /// </summary>
-        /// <value>A <see cref="AudioLatencyMode"/> that specifies the mode. The default is <see cref="AudioLatencyMode.Mid"/>.</value>
-        /// <remarks>
-        /// If the mode is <see cref="AudioLatencyMode.High"/>,
-        /// audio output interval can be increased so, it can keep more audio data to play.
-        /// But, state transition like pause or resume can be more slower than default(<see cref="AudioLatencyMode.Mid"/>).
-        /// </remarks>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="ArgumentException">The value is not valid.</exception>
-        public AudioLatencyMode AudioLatencyMode
-        {
-            get
-            {
-                Log.Info(PlayerLog.Tag, "get audio latency mode : " + _audioLatencyMode);
-                return _audioLatencyMode;
-            }
-            set
-            {
-                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-                ValidateNotDisposed();
-
-                if (_audioLatencyMode == value)
-                {
-                    return;
-                }
-                ValidationUtil.ValidateEnum(typeof(AudioLatencyMode), value);
-
-                NativePlayer.SetAudioLatencyMode(Handle, value).
-                    ThrowIfFailed("Failed to set the audio latency mode of the player");
-
-                _audioLatencyMode = value;
-            }
-        }
-
-        private bool _isLooping;
-
-        /// <summary>
-        /// Gets or sets the looping state.
-        /// </summary>
-        /// <value>true if the playback is looping; otherwise, false. The default value is false.</value>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        public bool IsLooping
-        {
-            get
-            {
-                Log.Info(PlayerLog.Tag, "get looping : " + _isLooping);
-                return _isLooping;
-            }
-            set
-            {
-                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-                ValidateNotDisposed();
-
-                if (_isLooping == value)
-                {
-                    return;
-                }
-
-                NativePlayer.SetLooping(Handle, value).ThrowIfFailed("Failed to set the looping state of the player");
-
-                _isLooping = value;
-            }
-        }
-
-        #region Display methods
-        /// <summary>
-        /// Gets the display settings.
-        /// </summary>
-        /// <value>A <see cref="PlayerDisplaySettings"/> that specifies the display settings.</value>
-        public PlayerDisplaySettings DisplaySettings { get; }
-
-        private Display _display;
-
-        private PlayerErrorCode SetDisplay(Display display)
-        {
-            if (display == null)
-            {
-                Log.Info(PlayerLog.Tag, "set display to none");
-                return NativePlayer.SetDisplay(Handle, DisplayType.None, IntPtr.Zero);
-            }
-
-            return display.ApplyTo(this);
-        }
-
-        private void ReplaceDisplay(Display newDisplay)
-        {
-            _display?.SetOwner(null);
-            _display = newDisplay;
-            _display?.SetOwner(this);
-        }
-
-        /// <summary>
-        /// Gets or sets the display.
-        /// </summary>
-        /// <value>A <see cref="Multimedia.Display"/> that specifies the display.</value>
-        /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="ArgumentException">The value has already been assigned to another player.</exception>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        public Display Display
-        {
-            get
-            {
-                return _display;
-            }
-            set
-            {
-                ValidatePlayerState(PlayerState.Idle);
-
-                if (value?.Owner != null)
-                {
-                    if (ReferenceEquals(this, value.Owner))
-                    {
-                        return;
-                    }
-
-                    throw new ArgumentException("The display has already been assigned to another.");
-                }
-                SetDisplay(value).ThrowIfFailed("Failed to set the display to the player");
-
-                ReplaceDisplay(value);
-            }
-        }
-
-        PlayerErrorCode IDisplayable<PlayerErrorCode>.ApplyEvasDisplay(DisplayType type, ElmSharp.EvasObject evasObject)
-        {
-            Debug.Assert(IsDisposed == false);
-
-            Debug.Assert(Enum.IsDefined(typeof(DisplayType), type));
-
-            return NativePlayer.SetDisplay(Handle, type, evasObject);
-        }
-        #endregion
-
-        private PlayerTrackInfo _audioTrack;
-
-        /// <summary>
-        /// Gets the track info for audio.
-        /// </summary>
-        /// <value>A <see cref="PlayerTrackInfo"/> for audio.</value>
-        public PlayerTrackInfo AudioTrackInfo
-        {
-            get
-            {
-                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-                if (_audioTrack == null)
-                {
-                    _audioTrack = new PlayerTrackInfo(this, StreamType.Audio);
-                }
-                return _audioTrack;
-            }
-        }
-
-        private PlayerTrackInfo _subtitleTrackInfo;
-
-        /// <summary>
-        /// Gets the track info for subtitle.
-        /// </summary>
-        /// <value>A <see cref="PlayerTrackInfo"/> for subtitle.</value>
-        public PlayerTrackInfo SubtitleTrackInfo
-        {
-            get
-            {
-                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-                if (_subtitleTrackInfo == null)
-                {
-                    _subtitleTrackInfo = new PlayerTrackInfo(this, StreamType.Text);
-                }
-                return _subtitleTrackInfo;
-            }
-        }
-
-        private StreamInfo _streamInfo;
-
-        /// <summary>
-        /// Gets the stream information.
-        /// </summary>
-        /// <value>A <see cref="StreamInfo"/> for this player.</value>
-        public StreamInfo StreamInfo
-        {
-            get
-            {
-                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-                if (_streamInfo == null)
-                {
-                    _streamInfo = new StreamInfo(this);
-                }
-                return _streamInfo;
-            }
-        }
-
-        private readonly AudioEffect _audioEffect;
-
-        /// <summary>
-        /// Gets the audio effect.
-        /// </summary>
-        /// <feature>http://tizen.org/feature/multimedia.custom_audio_effect</feature>
-        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        public AudioEffect AudioEffect
-        {
-            get
-            {
-                if (_audioEffect == null)
-                {
-                    throw new NotSupportedException($"The feature({Features.AudioEffect}) is not supported.");
-                }
-
-                return _audioEffect;
-            }
-        }
-
-        #endregion
-
         #region Dispose support
         private bool _disposed;
 
@@ -505,7 +90,6 @@ namespace Tizen.Multimedia
         /// </summary>
         public void Dispose()
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             Dispose(true);
         }
 
@@ -551,30 +135,6 @@ namespace Tizen.Multimedia
         #region Methods
 
         /// <summary>
-        /// Gets or sets the mute state.
-        /// </summary>
-        /// <value>true if the player is muted; otherwise, false.</value>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        public bool Muted
-        {
-            get
-            {
-                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-
-                bool value = false;
-                NativePlayer.IsMuted(Handle, out value).ThrowIfFailed("Failed to get the mute state of the player");
-
-                Log.Info(PlayerLog.Tag, "get mute : " + value);
-
-                return value;
-            }
-            set
-            {
-                NativePlayer.SetMute(Handle, value).ThrowIfFailed("Failed to set the mute state of the player");
-            }
-        }
-
-        /// <summary>
         /// Gets the streaming download Progress.
         /// </summary>
         /// <returns>The <see cref="DownloadProgress"/> containing current download progress.</returns>
@@ -599,41 +159,6 @@ namespace Tizen.Multimedia
 
             return new DownloadProgress(start, current);
         }
-
-        #region Volume
-        /// <summary>
-        /// Gets or sets the current volume.
-        /// </summary>
-        /// <remarks>Valid volume range is from 0 to 1.0, inclusive.</remarks>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="value"/> is less than zero.\n
-        ///     -or-\n
-        ///     <paramref name="value"/> is greater than 1.0.
-        /// </exception>
-        public float Volume
-        {
-            get
-            {
-                float value = 0.0F;
-                NativePlayer.GetVolume(Handle, out value, out value).
-                    ThrowIfFailed("Failed to get the volume of the player");
-                return value;
-            }
-            set
-            {
-                if (value < 0F || 1.0F < value)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(value), value,
-                        $"Valid volume range is 0 <= value <= 1.0, but got { value }.");
-                }
-
-                NativePlayer.SetVolume(Handle, value, value).
-                    ThrowIfFailed("Failed to set the volume of the player");
-            }
-        }
-
-        #endregion
 
         /// <summary>
         /// Sets the subtitle path for playback.
@@ -702,7 +227,6 @@ namespace Tizen.Multimedia
         /// <seealso cref="SetSubtitle(string)"/>
         public void SetSubtitleOffset(int offset)
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
 
             var err = NativePlayer.SetSubtitlePositionOffset(Handle, offset);
@@ -718,13 +242,15 @@ namespace Tizen.Multimedia
 
         private void Prepare()
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             NativePlayer.Prepare(Handle).ThrowIfFailed("Failed to prepare the player");
         }
 
+        /// <summary>
+        /// Called when the <see cref="Prepare"/> is invoked.
+        /// </summary>
         protected virtual void OnPreparing()
         {
-            RegisterCallbacks();
+            RegisterEvents();
         }
 
         /// <summary>
@@ -799,6 +325,10 @@ namespace Tizen.Multimedia
             OnUnprepared();
         }
 
+        /// <summary>
+        /// Called after the <see cref="Player"/> is unprepared.
+        /// </summary>
+        /// <seealso cref="Unprepare"/>
         protected virtual void OnUnprepared()
         {
             _source?.DetachFrom(this);
@@ -1075,7 +605,15 @@ namespace Tizen.Multimedia
         /// Applies the audio stream policy.
         /// </summary>
         /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
-        /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
+        /// <remarks>
+        /// The player must be in the <see cref="PlayerState.Idle"/> state.\n
+        /// \n
+        /// <see cref="Player"/> does not support all <see cref="AudioStreamType"/>.\n
+        /// Supported types are <see cref="AudioStreamType.Media"/>, <see cref="AudioStreamType.System"/>,
+        /// <see cref="AudioStreamType.Alarm"/>, <see cref="AudioStreamType.Notification"/>,
+        /// <see cref="AudioStreamType.Emergency"/>, <see cref="AudioStreamType.VoiceInformation"/>,
+        /// <see cref="AudioStreamType.RingtoneVoip"/> and <see cref="AudioStreamType.MediaExternalOnly"/>.
+        /// </remarks>
         /// <exception cref="ObjectDisposedException">
         ///     The player has already been disposed of.\n
         ///     -or-\n
@@ -1083,216 +621,21 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>
+        /// <exception cref="NotSupportedException">
+        ///     <see cref="AudioStreamType"/> of <paramref name="policy"/> is not supported by <see cref="Player"/>.
+        /// </exception>
+        /// <seealso cref="AudioStreamPolicy"/>
         public void ApplyAudioStreamPolicy(AudioStreamPolicy policy)
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (policy == null)
             {
                 throw new ArgumentNullException(nameof(policy));
-            }
-
-            if (policy.Handle == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException(nameof(policy));
             }
 
             ValidatePlayerState(PlayerState.Idle);
 
             NativePlayer.SetAudioPolicyInfo(Handle, policy.Handle).
                 ThrowIfFailed("Failed to set the audio stream policy to the player");
-        }
-        #endregion
-
-        #region Callback registrations
-        private void RegisterSubtitleUpdatedCallback()
-        {
-            _subtitleUpdatedCallback = (duration, text, _) =>
-            {
-                Log.Debug(PlayerLog.Tag, "duration : " + duration + ", text : " + text);
-                SubtitleUpdated?.Invoke(this, new SubtitleUpdatedEventArgs(duration, text));
-            };
-
-            NativePlayer.SetSubtitleUpdatedCb(Handle, _subtitleUpdatedCallback).
-                ThrowIfFailed("Failed to initialize the player");
-        }
-
-        private void RegisterPlaybackCompletedCallback()
-        {
-            _playbackCompletedCallback = _ =>
-            {
-                Log.Debug(PlayerLog.Tag, "completed callback");
-                PlaybackCompleted?.Invoke(this, EventArgs.Empty);
-            };
-            NativePlayer.SetCompletedCb(Handle, _playbackCompletedCallback).
-                ThrowIfFailed("Failed to set PlaybackCompleted");
-        }
-
-        private void RegisterPlaybackInterruptedCallback()
-        {
-            _playbackInterruptedCallback = (code, _) =>
-            {
-                if (!Enum.IsDefined(typeof(PlaybackInterruptionReason), code))
-                {
-                    return;
-                }
-
-                if (code == PlaybackInterruptionReason.ResourceConflict)
-                {
-                    OnUnprepared();
-                }
-
-                Log.Warn(PlayerLog.Tag, "interrupted reason : " + code);
-                PlaybackInterrupted?.Invoke(this, new PlaybackInterruptedEventArgs(code));
-            };
-
-            NativePlayer.SetInterruptedCb(Handle, _playbackInterruptedCallback).
-                ThrowIfFailed("Failed to set PlaybackInterrupted");
-        }
-
-        private void RegisterErrorOccurredCallback()
-        {
-            _playbackErrorCallback = (code, _) =>
-            {
-                //TODO handle service disconnected error.
-                Log.Warn(PlayerLog.Tag, "error code : " + code);
-                ErrorOccurred?.Invoke(this, new PlayerErrorOccurredEventArgs((PlayerError)code));
-            };
-
-            NativePlayer.SetErrorCb(Handle, _playbackErrorCallback).
-                ThrowIfFailed("Failed to set PlaybackError");
-        }
-
-        #region VideoFrameDecoded event
-
-        private EventHandler<VideoFrameDecodedEventArgs> _videoFrameDecoded;
-
-        private NativePlayer.VideoFrameDecodedCallback _videoFrameDecodedCallback;
-
-        /// <summary>
-        /// Occurs when a video frame is decoded.
-        /// </summary>
-        /// <remarks>
-        ///     <para>The event handler will be executed on an internal thread.</para>
-        ///     <para>The <see cref="VideoFrameDecodedEventArgs.Packet"/> in event args should be disposed after use.</para>
-        /// </remarks>
-        /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
-        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <seealso cref="VideoFrameDecodedEventArgs.Packet"/>
-        public event EventHandler<VideoFrameDecodedEventArgs> VideoFrameDecoded
-        {
-            add
-            {
-                ValidationUtil.ValidateFeatureSupported(Features.RawVideo);
-
-                _videoFrameDecoded += value;
-            }
-            remove
-            {
-                ValidationUtil.ValidateFeatureSupported(Features.RawVideo);
-
-                _videoFrameDecoded -= value;
-            }
-        }
-
-        private void RegisterVideoFrameDecodedCallback()
-        {
-            _videoFrameDecodedCallback = (packetHandle, _) =>
-            {
-                var handler = _videoFrameDecoded;
-                if (handler != null)
-                {
-                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle);
-                    handler.Invoke(this,
-                        new VideoFrameDecodedEventArgs(MediaPacket.From(packetHandle)));
-                }
-                else
-                {
-                    MediaPacket.From(packetHandle).Dispose();
-                }
-            };
-
-            NativePlayer.SetVideoFrameDecodedCb(Handle, _videoFrameDecodedCallback).
-                ThrowIfFailed("Failed to register the VideoFrameDecoded");
-        }
-        #endregion
-
-        private void RegisterVideoStreamChangedCallback()
-        {
-            ValidatePlayerState(PlayerState.Idle);
-
-            _videoStreamChangedCallback = (width, height, fps, bitrate, _) =>
-            {
-                Log.Debug(PlayerLog.Tag, "height : " + height + ", width : " + width
-                + ", fps : " + fps + ", bitrate : " + bitrate);
-
-                VideoStreamChanged?.Invoke(this, new VideoStreamChangedEventArgs(height, width, fps, bitrate));
-            };
-
-            NativePlayer.SetVideoStreamChangedCb(Handle, _videoStreamChangedCallback).
-                ThrowIfFailed("Failed to set the video stream changed callback");
-        }
-
-        private void RegisterBufferingCallback()
-        {
-            _bufferingProgressCallback = (percent, _) =>
-            {
-                Log.Debug(PlayerLog.Tag, $"Buffering callback with percent { percent }");
-                BufferingProgressChanged?.Invoke(this, new BufferingProgressChangedEventArgs(percent));
-            };
-
-            NativePlayer.SetBufferingCb(Handle, _bufferingProgressCallback).
-                ThrowIfFailed("Failed to set BufferingProgress");
-        }
-
-        private void RegisterMediaStreamBufferStatusCallback()
-        {
-            _mediaStreamAudioBufferStatusChangedCallback = (status, _) =>
-            {
-                Debug.Assert(Enum.IsDefined(typeof(MediaStreamBufferStatus), status));
-                Log.Debug(PlayerLog.Tag, "audio buffer status : " + status);
-                MediaStreamAudioBufferStatusChanged?.Invoke(this,
-                    new MediaStreamBufferStatusChangedEventArgs(status));
-            };
-            _mediaStreamVideoBufferStatusChangedCallback = (status, _) =>
-            {
-                Debug.Assert(Enum.IsDefined(typeof(MediaStreamBufferStatus), status));
-                Log.Debug(PlayerLog.Tag, "video buffer status : " + status);
-                MediaStreamVideoBufferStatusChanged?.Invoke(this,
-                    new MediaStreamBufferStatusChangedEventArgs(status));
-            };
-
-            RegisterMediaStreamBufferStatusCallback(StreamType.Audio, _mediaStreamAudioBufferStatusChangedCallback);
-            RegisterMediaStreamBufferStatusCallback(StreamType.Video, _mediaStreamVideoBufferStatusChangedCallback);
-        }
-
-        private void RegisterMediaStreamBufferStatusCallback(StreamType streamType,
-            NativePlayer.MediaStreamBufferStatusCallback cb)
-        {
-            NativePlayer.SetMediaStreamBufferStatusCb(Handle, streamType, cb).
-                ThrowIfFailed("Failed to SetMediaStreamBufferStatus");
-        }
-
-        private void RegisterMediaStreamSeekCallback()
-        {
-            _mediaStreamAudioSeekCallback = (offset, _) =>
-            {
-                Log.Debug(PlayerLog.Tag, "audio seeking offset : " + offset);
-                MediaStreamAudioSeekingOccurred?.Invoke(this, new MediaStreamSeekingOccurredEventArgs(offset));
-            };
-            _mediaStreamVideoSeekCallback = (offset, _) =>
-            {
-                Log.Debug(PlayerLog.Tag, "video seeking offset : " + offset);
-                MediaStreamVideoSeekingOccurred?.Invoke(this, new MediaStreamSeekingOccurredEventArgs(offset));
-            };
-
-            RegisterMediaStreamSeekCallback(StreamType.Audio, _mediaStreamAudioSeekCallback);
-            RegisterMediaStreamSeekCallback(StreamType.Video, _mediaStreamVideoSeekCallback);
-        }
-
-        private void RegisterMediaStreamSeekCallback(StreamType streamType, NativePlayer.MediaStreamSeekCallback cb)
-        {
-            NativePlayer.SetMediaStreamSeekCb(Handle, streamType, cb).
-                ThrowIfFailed("Failed to SetMediaStreamSeek");
         }
         #endregion
 
@@ -1321,6 +664,6 @@ namespace Tizen.Multimedia
         /// This method supports the product infrastructure and is not intended to be used directly from application code.
         /// </summary>
         protected static Exception GetException(int errorCode, string message) =>
-            ((PlayerErrorCode) errorCode).GetException(message);
+            ((PlayerErrorCode)errorCode).GetException(message);
     }
 }

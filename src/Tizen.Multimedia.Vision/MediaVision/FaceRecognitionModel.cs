@@ -19,7 +19,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using InteropModel = Interop.MediaVision.FaceRecognitionModel;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Represents the face recognition model interface.

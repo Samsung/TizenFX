@@ -18,7 +18,7 @@ using System;
 using System.IO;
 using Tizen.Internals.Errors;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     internal static class MediaVisionLog
     {

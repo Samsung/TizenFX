@@ -14,18 +14,12 @@
  * limitations under the License.
  */
 
-using System;
-
-namespace Tizen.Multimedia
+/// <summary>
+/// The Tizen.Multimedia.Vision namespace contains classes and interfaces that support vision processing including
+/// face detection, face recognition, face tracking, barcode detection, barcode generation, flat image detection,
+/// flat image recognition, flat image tracking, flat image features extraction, movement detection,
+/// person appearance/disappearance detection and person recognition.
+/// </summary>
+namespace Tizen.Multimedia.Vision
 {
-    internal static class ValidationUtil
-    {
-        internal static void ValidateEnum(Type enumType, object value, string paramName)
-        {
-            if (!Enum.IsDefined(enumType, value))
-            {
-                throw new ArgumentException($"Invalid { enumType.Name } value : { value }", paramName);
-            }
-        }
-    }
 }

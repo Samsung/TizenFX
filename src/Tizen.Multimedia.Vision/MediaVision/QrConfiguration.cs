@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Represents a QR configuration of <see cref="BarcodeGenerator"/>.

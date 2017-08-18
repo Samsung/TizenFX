@@ -49,5 +49,4 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_audio_effect_equalizer_is_available")]
         internal static extern PlayerErrorCode EqualizerIsAvailable(IntPtr player, out bool available);
     }
-    
 }

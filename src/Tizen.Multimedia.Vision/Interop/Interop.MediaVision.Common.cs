@@ -16,7 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Tizen.Multimedia;
+using Tizen.Multimedia.Vision;
 
 /// <summary>
 /// Interop APIs
@@ -44,17 +44,17 @@ internal static partial class Interop
     }
 
 
-    internal static Tizen.Multimedia.Quadrangle ToApiStruct(this MediaVision.Quadrangle quadrangle)
+    internal static Quadrangle ToApiStruct(this MediaVision.Quadrangle quadrangle)
     {
         Tizen.Multimedia.Point[] points = new Tizen.Multimedia.Point[4];
         for (int i = 0; i < 4; ++i)
         {
             points[i] = quadrangle.points[i].ToApiStruct();
         }
-        return new Tizen.Multimedia.Quadrangle(points);
+        return new Quadrangle(points);
     }
 
-    internal static MediaVision.Quadrangle ToMarshalable(this Tizen.Multimedia.Quadrangle quadrangle)
+    internal static MediaVision.Quadrangle ToMarshalable(this Quadrangle quadrangle)
     {
         MediaVision.Point[] points = new MediaVision.Point[4];
         for (int i = 0; i < 4; ++i)
@@ -150,7 +150,7 @@ internal static partial class Interop
             internal static extern int GetWidth(IntPtr source, out uint imageWidth);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_source_get_colorspace")]
-            internal static extern int GetColorspace(IntPtr /* mv_source_h */ source, out Tizen.Multimedia.Colorspace colorspace);
+            internal static extern int GetColorspace(IntPtr /* mv_source_h */ source, out Colorspace colorspace);
         }
 
         /// <summary>
@@ -165,28 +165,28 @@ internal static partial class Interop
             internal static extern int Destroy(IntPtr handle);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_set_double_attribute")]
-            internal static extern Tizen.Multimedia.MediaVisionError SetDouble(IntPtr handle, string name, double value);
+            internal static extern MediaVisionError SetDouble(IntPtr handle, string name, double value);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_set_int_attribute")]
-            internal static extern Tizen.Multimedia.MediaVisionError SetInt(IntPtr handle, string name, int value);
+            internal static extern MediaVisionError SetInt(IntPtr handle, string name, int value);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_set_bool_attribute")]
-            internal static extern Tizen.Multimedia.MediaVisionError SetBool(IntPtr handle, string name, bool value);
+            internal static extern MediaVisionError SetBool(IntPtr handle, string name, bool value);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_set_string_attribute")]
-            internal static extern Tizen.Multimedia.MediaVisionError SetString(IntPtr handle, string name, string value);
+            internal static extern MediaVisionError SetString(IntPtr handle, string name, string value);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_double_attribute")]
-            internal static extern Tizen.Multimedia.MediaVisionError GetDouble(IntPtr handle, string name, out double value);
+            internal static extern MediaVisionError GetDouble(IntPtr handle, string name, out double value);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_int_attribute")]
-            internal static extern Tizen.Multimedia.MediaVisionError GetInt(IntPtr handle, string name, out int value);
+            internal static extern MediaVisionError GetInt(IntPtr handle, string name, out int value);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_bool_attribute")]
-            internal static extern Tizen.Multimedia.MediaVisionError GetBool(IntPtr handle, string name, out bool value);
+            internal static extern MediaVisionError GetBool(IntPtr handle, string name, out bool value);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_string_attribute")]
-            internal static extern Tizen.Multimedia.MediaVisionError GetString(IntPtr handle, string name, out IntPtr value);
+            internal static extern MediaVisionError GetString(IntPtr handle, string name, out IntPtr value);
         }
     }
 }

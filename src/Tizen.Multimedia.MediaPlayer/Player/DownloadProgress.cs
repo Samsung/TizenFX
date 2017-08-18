@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Tizen.Multimedia
 {
 
@@ -53,6 +54,10 @@ namespace Tizen.Multimedia
             set;
         }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
             return $"Start={ Start.ToString() }, Current={ Current.ToString() }";

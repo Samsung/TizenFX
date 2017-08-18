@@ -17,7 +17,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tizen.Multimedia
+namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Provides data for the <see cref="PersonRecognizer.Recognized"/> event.

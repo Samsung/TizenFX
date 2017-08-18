@@ -67,6 +67,10 @@ namespace Tizen.Multimedia
             set;
         }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString() =>
             $"SampleRate={ SampleRate.ToString() }, Channels={ Channels.ToString() }, BitRate={ BitRate.ToString() }";
     }
@@ -132,6 +136,10 @@ namespace Tizen.Multimedia
             set;
         }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
             return $"Fps={ Fps.ToString() }, BitRate={ BitRate.ToString() }, Size=[{ Size.ToString() }]";

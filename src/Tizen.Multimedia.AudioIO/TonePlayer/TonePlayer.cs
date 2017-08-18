@@ -17,6 +17,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Native = Interop.TonePlayer;
 
 namespace Tizen.Multimedia
 {
@@ -88,7 +89,7 @@ namespace Tizen.Multimedia
 
             var tcs = new TaskCompletionSource<bool>();
 
-            Interop.TonePlayer.Start(tone, streamPolicy.Handle, durationMilliseconds, out var id).
+            Native.Start(tone, streamPolicy.Handle, durationMilliseconds, out var id).
                 Validate("Failed to play tone.");
 
             using (RegisterCancellationAction(tcs, cancellationToken, id))
@@ -127,7 +128,7 @@ namespace Tizen.Multimedia
 
             return cancellationToken.Register(() =>
             {
-                Interop.TonePlayer.Stop(id).Validate("Failed to cancel");
+                Native.Stop(id).Validate("Failed to cancel");
                 tcs.TrySetCanceled();
             });
         }

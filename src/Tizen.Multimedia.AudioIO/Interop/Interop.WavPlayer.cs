@@ -26,7 +26,7 @@ internal static partial class Interop
         internal delegate void WavPlayerCompletedCallback(int playerId, IntPtr userData);
 
         [DllImport(Libraries.WavPlayer, EntryPoint = "wav_player_start_new")]
-        internal static extern WavPlayerError Start(string filePath, IntPtr streamInfoHandle,
+        internal static extern WavPlayerError Start(string filePath, AudioStreamPolicyHandle streamInfoHandle,
             WavPlayerCompletedCallback completedCallback, IntPtr userData, out int id);
 
         [DllImport(Libraries.WavPlayer, EntryPoint = "wav_player_stop")]

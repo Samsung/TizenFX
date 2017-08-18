@@ -37,6 +37,10 @@ namespace Tizen.Multimedia
         /// <value>The percentage of the buffering.</value>
         public int Percent { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
             return $"Percent={ Percent.ToString() }";

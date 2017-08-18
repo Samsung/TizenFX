@@ -1,4 +1,4 @@
- /*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,11 +19,8 @@ using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia
 {
-    /// <summary>
-    /// Enumeration for sound manager's error codes.
-    /// </summary>
-    internal enum AudioManagerError{
-
+    internal enum AudioManagerError
+    {
         SoundManagerError = -0x01960000,
         /// <summary>
         /// Successful
@@ -71,49 +68,47 @@ namespace Tizen.Multimedia
         InvalidState = SoundManagerError | 04
     }
 
-    internal static class AudioManagerErrorFactory
+    internal static class AudioManagerErrorExtensions
     {
-        static internal void CheckAndThrowException(int error, string msg)
+        internal static void Validate(this AudioManagerError err, string msg)
         {
-            AudioManagerError e = (AudioManagerError) error;
-            switch (e)
+            if (err == AudioManagerError.None)
             {
-                case AudioManagerError.None:
-                    return;
-                case AudioManagerError.OutOfMemory:
-                    throw new InvalidOperationException("Out of Memory: " + msg);
-                case AudioManagerError.InvalidParameter:
-                    throw new ArgumentException("Invalid Parameter: " + msg);
-                case AudioManagerError.InvalidOperation:
-                    throw new InvalidOperationException("Invalid Opertation: " + msg);
-                case AudioManagerError.PermissionDenied:
-                    throw new InvalidOperationException("Permission Denied: " + msg);
-                case AudioManagerError.NotSupported:
-                    throw new InvalidOperationException("Not Supported: " + msg);
-                case AudioManagerError.NoData:
-                    throw new InvalidOperationException("No Data: " + msg);
-                case AudioManagerError.Internal:
-                    throw new InvalidOperationException("Internal Error: " + msg);
-                case AudioManagerError.Policy:
-                    throw new InvalidOperationException("Noncomplaince with System Sound Policy error: " + msg);
-                case AudioManagerError.NoPlayingSound:
-                    throw new InvalidOperationException("No playing sound: " + msg);
-                case AudioManagerError.InvalidState:
-                    throw new InvalidOperationException("Invalid State: " + msg);
-                default:
-                    throw new InvalidOperationException("Unknown Error Code: " + msg);
+                return;
             }
-        }
 
-        static internal void CheckAndThrowException(int error, IntPtr handle, string msg)
-        {
-            if (handle == IntPtr.Zero)
+            msg = msg ?? "";
+            msg += $" : {err}.";
+
+            switch (err)
             {
-                throw new InvalidOperationException("Invalid instance (object may have been disposed or released)");
-            }
-            else
-            {
-                CheckAndThrowException(error, msg);
+                case AudioManagerError.OutOfMemory:
+                    throw new OutOfMemoryException(msg);
+
+                case AudioManagerError.InvalidParameter:
+                    throw new ArgumentException(msg);
+
+                case AudioManagerError.PermissionDenied:
+                    throw new UnauthorizedAccessException(msg);
+
+                case AudioManagerError.NotSupported:
+                    throw new NotSupportedException(msg);
+
+                case AudioManagerError.Policy:
+                    throw new AudioPolicyException(msg);
+
+                case AudioManagerError.NoData:
+                    // TODO check when it is thrown
+                    throw new InvalidOperationException(msg);
+
+                case AudioManagerError.Internal:
+                case AudioManagerError.InvalidOperation:
+                case AudioManagerError.NoPlayingSound:
+                case AudioManagerError.InvalidState:
+                    throw new InvalidOperationException(msg);
+
+                default:
+                    throw new InvalidOperationException("Unknown Error : " + msg);
             }
         }
     }

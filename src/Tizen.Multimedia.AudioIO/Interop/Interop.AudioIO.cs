@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Multimedia;
 
 internal static partial class Interop
 {
@@ -42,7 +43,7 @@ internal static partial class Interop
             internal static extern int Destroy(IntPtr handle);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_set_sound_stream_info")]
-            internal static extern int SetStreamInfo(IntPtr handle, IntPtr streamInfoHandle);
+            internal static extern int SetStreamInfo(IntPtr handle, AudioStreamPolicyHandle streamInfoHandle);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_in_prepare")]
             internal static extern int Prepare(IntPtr handle);
@@ -125,7 +126,7 @@ internal static partial class Interop
             internal static extern int Resume(IntPtr handle);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_out_set_sound_stream_info")]
-            internal static extern int SetStreamInfo(IntPtr handle, IntPtr streamInfoHandle);
+            internal static extern int SetStreamInfo(IntPtr handle, AudioStreamPolicyHandle streamInfoHandle);
 
             [DllImport(Libraries.AudioIO, EntryPoint = "audio_out_unprepare")]
             internal static extern int Unprepare(IntPtr handle);
