@@ -175,21 +175,21 @@ namespace Tizen.Applications.Notifications
 
                 appcontrol = null;
                 Interop.Notification.GetExtensionAction(notification.Handle, NotificationEventType.HiddenByUser, out appcontrol);
-                if (appcontrol != null)
+                if (appcontrol != null && appcontrol.IsInvalid == false)
                 {
                     active.HiddenByUserAction = new AppControl(appcontrol);
                 }
 
                 appcontrol = null;
                 Interop.Notification.GetExtensionAction(notification.Handle, NotificationEventType.HiddenByTimeout, out appcontrol);
-                if (appcontrol != null)
+                if (appcontrol != null && appcontrol.IsInvalid == false)
                 {
                     active.HiddenByTimeoutAction = new AppControl(appcontrol);
                 }
 
                 appcontrol = null;
                 Interop.Notification.GetExtensionAction(notification.Handle, NotificationEventType.HiddenByExternal, out appcontrol);
-                if (appcontrol != null)
+                if (appcontrol != null && appcontrol.IsInvalid == false)
                 {
                     active.HiddenByExternalAction = new AppControl(appcontrol);
                 }
