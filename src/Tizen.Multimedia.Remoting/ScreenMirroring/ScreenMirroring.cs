@@ -29,12 +29,8 @@ namespace Tizen.Multimedia.Remoting
     /// </summary>
     public class ScreenMirroring : IDisposable, IDisplayable<ScreenMirroringErrorCode>
     {
-        private const string LogTag = "Tizen.Multimedia.ScreenMirroring";
-
         private const int Port = 2022;
 
-        private ScreenMirroringVideoInfo _videoInfo;
-        private ScreenMirroringAudioInfo _audioInfo;
         private IntPtr _handle;
 
         private AtomicState _state;
@@ -65,12 +61,10 @@ namespace Tizen.Multimedia.Remoting
 
             _state = new AtomicState();
 
-            _audioInfo = new ScreenMirroringAudioInfo(this);
-            _videoInfo = new ScreenMirroringVideoInfo(this);
+            AudioInfo = new ScreenMirroringAudioInfo(this);
+            VideoInfo = new ScreenMirroringVideoInfo(this);
 
             RegisterStateChangedEvent();
-
-            Log.Debug(LogTag, "screen mirroring sink created : " + _handle);
         }
 
         ~ScreenMirroring()
@@ -126,36 +120,12 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the negotiated audio info.
         /// </summary>
-        /// <value>The <see cref="ScreenMirroringAudioInfo"/> if it has been connected, otherwise null.</value>
-        public ScreenMirroringAudioInfo AudioInfo
-        {
-            get
-            {
-                if (IsConnected == false)
-                {
-                    return null;
-                }
-
-                return _audioInfo;
-            }
-        }
+        public ScreenMirroringAudioInfo AudioInfo { get; }
 
         /// <summary>
         /// Gets the negotiated video info.
         /// </summary>
-        /// <value>The <see cref="ScreenMirroringVideoInfo"/> if it has been connected, otherwise null.</value>
-        public ScreenMirroringVideoInfo VideoInfo
-        {
-            get
-            {
-                if (IsConnected == false)
-                {
-                    return null;
-                }
-
-                return _videoInfo;
-            }
-        }
+        public ScreenMirroringVideoInfo VideoInfo { get; }
 
         private bool IsConnected
         {
@@ -163,6 +133,14 @@ namespace Tizen.Multimedia.Remoting
             {
                 return _state.IsOneOf(ScreenMirroringState.Connected, ScreenMirroringState.Playing,
                     ScreenMirroringState.Paused);
+            }
+        }
+
+        internal void ThrowIfNotConnected()
+        {
+            if (IsConnected == false)
+            {
+                throw new InvalidOperationException("ScreenMirroring is not connected.");
             }
         }
 

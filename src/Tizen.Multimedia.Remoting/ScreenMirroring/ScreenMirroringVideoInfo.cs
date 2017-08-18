@@ -35,12 +35,18 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the negotiated video codec.
         /// </summary>
-        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Not connected to a source.\n
+        ///     \n
+        ///     An internal error occurs.
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         public ScreenMirroringVideoCodec Codec
         {
             get
             {
+                _owner.ThrowIfNotConnected();
+
                 GetValue(Native.GetNegotiatedVideoCodec, _owner.Handle, out ScreenMirroringVideoCodec value).
                     ThrowIfError("Failed to get video codec.");
 
@@ -51,12 +57,18 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the negotiated video resolution.
         /// </summary>
-        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Not connected to a source.\n
+        ///     \n
+        ///     An internal error occurs.
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         public Size Resolution
         {
             get
             {
+                _owner.ThrowIfNotConnected();
+
                 var handle = _owner.Handle;
                 Native.GetNegotiatedVideoResolution(ref handle, out var width, out var height).
                     ThrowIfError("Failed to get resolution.");
@@ -68,12 +80,18 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the negotiated video frame rate.
         /// </summary>
-        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Not connected to a source.\n
+        ///     \n
+        ///     An internal error occurs.
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         public int FrameRate
         {
             get
             {
+                _owner.ThrowIfNotConnected();
+
                 GetValue(Native.GetNegotiatedVideoFrameRate, _owner.Handle, out int value).
                     ThrowIfError("Failed to get video frame rate.");
 
