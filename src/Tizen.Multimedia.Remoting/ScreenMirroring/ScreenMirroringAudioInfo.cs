@@ -36,12 +36,18 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the negotiated audio codec.
         /// </summary>
-        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Not connected to a source.\n
+        ///     \n
+        ///     An internal error occurs.
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         public ScreenMirroringAudioCodec Codec
         {
             get
             {
+                _owner.ThrowIfNotConnected();
+
                 GetValue(Native.GetNegotiatedAudioCodec, _owner.Handle, out ScreenMirroringAudioCodec value).
                     ThrowIfError("Failed to get audio codec.");
 
@@ -52,12 +58,18 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the negotiated audio channels.
         /// </summary>
-        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Not connected to a source.\n
+        ///     \n
+        ///     An internal error occurs.
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         public int Channels
         {
             get
             {
+                _owner.ThrowIfNotConnected();
+
                 GetValue(Native.GetNegotiatedAudioChannel, _owner.Handle, out int value).
                     ThrowIfError("Failed to get audio channels.");
 
@@ -68,12 +80,18 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the negotiated audio sample rate.
         /// </summary>
-        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Not connected to a source.\n
+        ///     \n
+        ///     An internal error occurs.
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         public int SampleRate
         {
             get
             {
+                _owner.ThrowIfNotConnected();
+
                 GetValue(Native.GetNegotiatedAudioSampleRate, _owner.Handle, out int value).
                     ThrowIfError("Failed to get audio sample rate.");
 
@@ -84,12 +102,18 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the negotiated audio bit width.
         /// </summary>
-        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Not connected to a source.\n
+        ///     \n
+        ///     An internal error occurs.
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         public int BitWidth
         {
             get
             {
+                _owner.ThrowIfNotConnected();
+
                 GetValue(Native.GetNegotiatedAudioBitwidth, _owner.Handle, out int value).
                     ThrowIfError("Failed to get audio bit width.");
 
