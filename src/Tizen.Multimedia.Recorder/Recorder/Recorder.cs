@@ -17,217 +17,116 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using Native = Interop.Recorder;
+using NativeHandle = Interop.RecorderHandle;
 
 namespace Tizen.Multimedia
 {
-    static internal class RecorderLog
-    {
-        internal const string Tag = "Tizen.Multimedia.Recorder";
-    }
-
     /// <summary>
-    /// The recorder class provides methods to create audio/video recorder,
-    ///  to start, stop and save the recorded content. It also provides methods
-    ///  to get/set various attributes and capabilities of recorder.
+    /// Recorder is a base class for audio and video recorders that
+    /// provides the ability to control the recording of a multimedia content.\n
+    /// \n
+    /// Simple audio and audio/video are supported.
     /// </summary>
-    public class Recorder : IDisposable
+    public abstract partial class Recorder : IDisposable
     {
-        private IntPtr _handle = IntPtr.Zero;
-        private bool _disposed = false;
-        private RecorderState _state = RecorderState.None;
+        private readonly NativeHandle _handle;
+        private RecorderState _state;
+        private ThreadLocal<bool> _isInAudioStreamStoring = new ThreadLocal<bool>();
 
-        /// <summary>
-        /// Audio recorder constructor.
-        /// </summary>
-        public Recorder()
+        internal Recorder(NativeHandle handle)
         {
-            RecorderErrorFactory.ThrowIfError(Native.Create(out _handle),
-                "Failed to create Audio recorder");
+            _handle = handle;
 
-            Feature = new RecorderFeatures(this);
-            Setting = new RecorderSettings(this);
+            try
+            {
+                RegisterEvents();
 
-            RegisterCallbacks();
-
-            SetState(RecorderState.Created);
+                SetState(State);
+            }
+            catch (Exception)
+            {
+                _handle.Dispose();
+                throw;
+            }
         }
 
-        /// <summary>
-        /// Video recorder constructor.
-        /// </summary>
-        /// <param name="camera">
-        /// The camera object.
-        /// </param>
-        public Recorder(Camera camera)
+        internal NativeHandle Handle
         {
-            RecorderErrorFactory.ThrowIfError(Native.CreateVideo(camera.Handle, out _handle),
-                "Failed to create Video recorder.");
+            get
+            {
+                if (_disposed)
+                {
+                    throw new ObjectDisposedException(nameof(Recorder));
+                }
 
-            Feature = new RecorderFeatures(this);
-            Setting = new RecorderSettings(this);
-
-            RegisterCallbacks();
-
-            SetState(RecorderState.Created);
-        }
-
-        /// <summary>
-        /// Recorder destructor.
-        /// </summary>
-        ~Recorder()
-        {
-            Dispose (false);
-        }
-
-        internal IntPtr GetHandle()
-        {
-            ValidateNotDisposed();
-            return _handle;
+                return _handle;
+            }
         }
 
         #region Dispose support
+        private bool _disposed;
+
         /// <summary>
         /// Releases the unmanaged resources used by the Recorder.
         /// </summary>
-        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        /// <summary>
+        /// Releases the resources used by the Recorder.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
             {
-                if (disposing)
+                if (_handle != null)
                 {
-                    // to be used if there are any other disposable objects
+                    _handle.Dispose();
                 }
-                if (_handle != IntPtr.Zero)
-                {
-                    Native.Destroy(_handle);
-                    _handle = IntPtr.Zero;
-                }
+
                 _disposed = true;
-            }
-        }
-
-        /// <summary>
-        /// Releases all resources used by the Recorder.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        internal void ValidateNotDisposed()
-        {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException(nameof(Recorder));
             }
         }
         #endregion Dispose support
 
-        #region Check recorder state
+        #region State validation
         internal void ValidateState(params RecorderState[] required)
         {
-            ValidateNotDisposed();
-
             Debug.Assert(required.Length > 0);
 
             var curState = _state;
             if (!required.Contains(curState))
             {
-                throw new InvalidOperationException($"The recorder is not in a valid state. " +
+                throw new InvalidOperationException("The recorder is not in a valid state. " +
                     $"Current State : { curState }, Valid State : { string.Join(", ", required) }.");
             }
         }
 
-        internal void SetState(RecorderState state)
+        private void SetState(RecorderState state)
         {
             _state = state;
         }
-        #endregion Check recorder state
-
-        #region EventHandlers
-        /// <summary>
-        /// Event that occurs when an error occurs during recorder operation.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<RecordingErrorOccurredEventArgs> ErrorOccurred;
-        private Native.RecorderErrorCallback _errorOccuredCallback;
-
-        /// <summary>
-        /// Event that occurs when recorder is interrupted.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<RecorderInterruptedEventArgs> Interrupted;
-        private Native.InterruptedCallback _interruptedCallback;
-
-        /// <summary>
-        /// This event occurs when recorder state is changed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<RecorderStateChangedEventArgs> StateChanged;
-        private Native.StatechangedCallback _stateChangedCallback;
-
-        /// <summary>
-        /// Event that occurs when recording information changes.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<RecordingProgressEventArgs> RecordingProgress;
-        private Native.RecordingProgressCallback _recordingProgressCallback;
-
-        /// <summary>
-        /// Event that occurs when audio stream data is being delivered.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<AudioStreamDeliveredEventArgs> AudioStreamDelivered;
-        private Native.AudioStreamCallback _audioStreamCallback;
-
-        /// <summary>
-        /// Event that occurs when recording limit is reached.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<RecordingLimitReachedEventArgs> RecordingLimitReached;
-        private Native.RecordingLimitReachedCallback _recordingLimitReachedCallback;
-
-        /// <summary>
-        /// Event that occurs when muxed stream data is being delivered.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<MuxedStreamDeliveredEventArgs> MuxedStreamDelivered;
-        private Native.MuxedStreamCallback _muxedStreamCallback;
-        #endregion EventHandlers
+        #endregion
 
         #region Properties
-        /// <summary>
-        /// Gets the various recorder features.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public RecorderFeatures Feature { get; }
 
         /// <summary>
-        /// Get/Set the various recorder settings.
+        /// Gets the current state of the recorder.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public RecorderSettings Setting { get; }
-
-        /// <summary>
-        /// The current state of the recorder.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="RecorderState"/> that specifies the state of recorder.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
         public RecorderState State
         {
             get
             {
-                ValidateNotDisposed();
-
-                RecorderState val = 0;
-
-                RecorderErrorFactory.ThrowIfError(Native.GetState(_handle, out val),
-                    "Failed to get recorder state.");
+                Native.GetState(Handle, out var val).ThrowIfError("Failed to get recorder state.");
 
                 return val;
             }
@@ -237,246 +136,291 @@ namespace Tizen.Multimedia
         #region Methods
         /// <summary>
         /// Prepare the media recorder for recording.
-        /// The recorder must be in the <see cref="RecorderState.Created"/> state.
-        /// After this method is finished without any exception,
-        /// The state of recorder will be changed to <see cref="RecorderState.Ready"/> state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// Before calling the function, it is required to set AudioEncoder,
-        /// videoencoder and fileformat properties of recorder.
+        /// The recorder should be in the <see cref="RecorderState.Idle"/> state.\n
+        /// The state of the recorder will be the <see cref="RecorderState.Ready"/> after this.\n
+        /// It has no effect if the current state is the <see cref="RecorderState.Ready"/>.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The recorder is not in the valid state.\n
+        ///     -or-\n
+        ///     An internal error occurred.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
         public void Prepare()
         {
-            ValidateState(RecorderState.Created);
+            if (_state == RecorderState.Ready)
+            {
+                return;
+            }
 
-            RecorderErrorFactory.ThrowIfError(Native.Prepare(_handle),
-                "Failed to prepare media recorder for recording");
+            ValidateState(RecorderState.Idle);
+
+            Native.Prepare(Handle).ThrowIfError("Failed to prepare media recorder");
 
             SetState(RecorderState.Ready);
         }
 
+        private void ThrowIfAccessedInAudioStreamStoring()
+        {
+            if (_isInAudioStreamStoring.Value)
+            {
+                throw new InvalidOperationException("The method can't be called in the AudioStreamStoring event");
+            }
+        }
+
         /// <summary>
         /// Resets the media recorder.
-        /// The recorder must be in the <see cref="RecorderState.Ready"/> state.
-        /// After this method is finished without any exception,
-        /// The state of recorder will be changed to <see cref="RecorderState.Created"/> state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <remarks>
+        /// The recorder should be in the <see cref="RecorderState.Ready"/> state.
+        /// The state of recorder will be <see cref="RecorderState.Idle"/> after this.
+        /// It has no effect if the current state is the <see cref="RecorderState.Idle"/>.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        ///     The recorder is not in the valid state.\n
+        ///     -or-\n
+        ///     An internal error occurred.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
         public void Unprepare()
         {
+            ThrowIfAccessedInAudioStreamStoring();
+
+            if (_state == RecorderState.Idle)
+            {
+                return;
+            }
+
             ValidateState(RecorderState.Ready);
 
-            RecorderErrorFactory.ThrowIfError(Native.Unprepare(_handle),
-                "Failed to reset the media recorder");
+            Native.Unprepare(Handle).ThrowIfError("Failed to reset the media recorder");
 
-            SetState(RecorderState.Created);
+            SetState(RecorderState.Idle);
         }
 
         /// <summary>
         /// Starts the recording.
-        /// The recorder must be in the <see cref="RecorderState.Ready"/> state.
-        /// After this method is finished without any exception,
-        /// The state of recorder will be changed to <see cref="RecorderState.Recording"/> state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// If file path has been set to an existing file, this file is removed automatically and updated by new one.
-        /// In the video recorder, some preview format does not support record mode. It will return InvalidOperation error.
-        ///	You should use default preview format or CameraPixelFormatNv12 in the record mode.
-        ///	The filename should be set before this function is invoked.
+        /// The recorder must be in the <see cref="RecorderState.Ready"/> state.
+        /// The state of recorder will be <see cref="RecorderState.Recording"/> after this. \n
+        /// \n
+        /// If the specified path exists, the file is removed automatically and updated by new one.\n
+        /// The mediastorage privilege(http://tizen.org/privilege/mediastorage) is required if the path is relevant to media storage.\n
+        /// The externalstorage privilege(http://tizen.org/privilege/externalstorage) is required if the path is relevant to external storage.\n
+        /// \n
+        /// In the video recorder, some preview format does not support record mode.
+        ///	You should use default preview format or <see cref="CameraPixelFormat.Nv12"/> in the record mode.
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
-        public void Start()
+        /// <param name="savePath">The file path for recording result.</param>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <exception cref="InvalidOperationException">
+        ///     The recorder is not in the valid state.\n
+        ///     -or-\n
+        ///     The preview format of the camera is not supported.
+        ///     -or-\n
+        ///     An internal error occurred.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="savePath"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="savePath"/> is a zero-length string, contains only white space.</exception>
+        /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege.</exception>
+        /// <seealso cref="Commit"/>
+        /// <seealso cref="Cancel"/>
+        public void Start(string savePath)
         {
-            ValidateState(RecorderState.Ready, RecorderState.Paused);
+            ValidateState(RecorderState.Ready);
 
-            RecorderErrorFactory.ThrowIfError(Native.Start(_handle),
-                "Failed to start the media recorder");
+            if (savePath == null)
+            {
+                throw new ArgumentNullException(nameof(savePath));
+            }
+
+            if (string.IsNullOrWhiteSpace(savePath))
+            {
+                throw new ArgumentException($"{nameof(savePath)} is an empty string.", nameof(savePath));
+            }
+
+            Native.SetFileName(Handle, savePath).ThrowIfError("Failed to set save path.");
+
+            Native.Start(Handle).ThrowIfError("Failed to start the media recorder");
+
+            SetState(RecorderState.Recording);
+        }
+
+        /// <summary>
+        /// Resumes the recording.
+        /// </summary>
+        /// <remarks>
+        /// The recorder should be in the <see cref="RecorderState.Paused"/> state.
+        /// The state of recorder will be <see cref="RecorderState.Recording"/> after this.
+        /// It has no effect if the current state is the <see cref="RecorderState.Recording"/>.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        ///     The recorder is not in the valid state.\n
+        ///     -or-\n
+        ///     An internal error occurred.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        public void Resume()
+        {
+            if (_state == RecorderState.Recording)
+            {
+                return;
+            }
+
+            ValidateState(RecorderState.Paused);
+
+            Native.Start(Handle).ThrowIfError("Failed to resume the media recorder");
 
             SetState(RecorderState.Recording);
         }
 
         /// <summary>
         /// Pause the recording.
-        /// The recorder must be in the <see cref="RecorderState.Recording"/> state.
-        /// After this method is finished without any exception,
-        /// The state of recorder will be changed to <see cref="RecorderState.Paused"/> state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// Recording can be resumed with Start().
+        /// The recorder should be in the <see cref="RecorderState.Recording"/> state.
+        /// The state of recorder will be <see cref="RecorderState.Paused"/> after this.
+        /// It has no effect if the current state is the <see cref="RecorderState.Paused"/>.
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The recorder is not in the valid state.\n
+        ///     -or-\n
+        ///     An internal error occurred.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
         public void Pause()
         {
+            if (_state == RecorderState.Paused)
+            {
+                return;
+            }
+
             ValidateState(RecorderState.Recording);
 
-            RecorderErrorFactory.ThrowIfError(Native.Pause(_handle),
-                "Failed to pause the media recorder");
+            Native.Pause(Handle).ThrowIfError("Failed to pause the media recorder");
 
             SetState(RecorderState.Paused);
         }
 
         /// <summary>
         /// Stops recording and saves the result.
-        /// The recorder must be in the <see cref="RecorderState.Recording"/> or <see cref="RecorderState.Paused"/> state.
-        /// After this method is finished without any exception,
-        /// The state of recorder will be changed to <see cref="RecorderState.Ready"/> state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
+        /// <remarks>
+        /// The recorder must be in the <see cref="RecorderState.Recording"/> or <see cref="RecorderState.Paused"/> state.
+        /// The state of recorder will be <see cref="RecorderState.Ready"/> after the operation.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        ///     The recorder is not in the valid state.\n
+        ///     -or-\n
+        ///     The method is called in <see cref="AudioStreamStoring"/> event.
+        ///     -or-\n
+        ///     An internal error occurred.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
         public void Commit()
         {
+            ThrowIfAccessedInAudioStreamStoring();
+
             ValidateState(RecorderState.Recording, RecorderState.Paused);
 
-            RecorderErrorFactory.ThrowIfError(Native.Commit(_handle),
-                "Failed to save the recorded content");
+            Native.Commit(Handle).ThrowIfError("Failed to save the recorded content");
 
             SetState(RecorderState.Ready);
         }
 
         /// <summary>
-        /// Cancels the recording.
+        /// Cancels the recording.\n
         /// The recording data is discarded and not written in the recording file.
-        /// The recorder must be in the <see cref="RecorderState.Recording"/> or <see cref="RecorderState.Paused"/> state.
-        /// After this method is finished without any exception,
-        /// The state of recorder will be changed to <see cref="RecorderState.Ready"/> state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
+        /// <remarks>
+        /// The recorder must be in the <see cref="RecorderState.Recording"/> or <see cref="RecorderState.Paused"/> state.
+        /// The state of recorder will be <see cref="RecorderState.Ready"/> after the operation.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        ///     The recorder is not in the valid state.\n
+        ///     -or-\n
+        ///     The method is called in <see cref="AudioStreamStoring"/> event.
+        ///     -or-\n
+        ///     An internal error occurred.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
         public void Cancel()
         {
+            ThrowIfAccessedInAudioStreamStoring();
+
             ValidateState(RecorderState.Recording, RecorderState.Paused);
 
-            RecorderErrorFactory.ThrowIfError(Native.Cancel(_handle),
-                "Failed to cancel the recording");
+            Native.Cancel(Handle).ThrowIfError("Failed to cancel the recording");
 
             SetState(RecorderState.Ready);
         }
 
         /// <summary>
-        /// Sets the audio stream policy.
+        /// Apply the audio stream policy.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <param name="policy">Policy.</param>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        public void SetAudioStreamPolicy(AudioStreamPolicy policy)
+        /// <remarks>
+        /// The recorder must be in the <see cref="RecorderState.Idle"/> or <see cref="RecorderState.Ready"/> state.
+        /// </remarks>
+        /// <param name="policy">The policy to apply.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The recorder is not in the valid state.\n
+        ///     -or-\n
+        ///     <paramref name="policy"/> is not supported for the recorder.
+        ///     -or-\n
+        ///     An internal error occurred.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     The recorder already has been disposed of.\n
+        ///     -or-\n
+        ///     <paramref name="policy"/> already has been disposed of.
+        /// </exception>
+        public void ApplyAudioStreamPolicy(AudioStreamPolicy policy)
         {
-            ValidateNotDisposed();
-
-            RecorderErrorFactory.ThrowIfError(Native.SetAudioStreamPolicy(_handle, policy.Handle),
-                "Failed to set audio stream policy");
-        }
-        #endregion Methods
-
-        #region Callback registrations
-        private void RegisterCallbacks()
-        {
-            RegisterErrorCallback();
-            RegisterInterruptedCallback();
-            RegisterStateChangedCallback();
-            RegisterRecordingProgressCallback();
-            RegisterAudioStreamDeliveredCallback();
-            RegisterRecordingLimitReachedEvent();
-            RegisterMuxedStreamEvent();
-        }
-
-        private void RegisterErrorCallback()
-        {
-            _errorOccuredCallback = (RecorderErrorCode error, RecorderState current, IntPtr userData) =>
+            if (policy == null)
             {
-                ErrorOccurred?.Invoke(this, new RecordingErrorOccurredEventArgs(error, current));
-            };
-            RecorderErrorFactory.ThrowIfError(Native.SetErrorCallback(_handle, _errorOccuredCallback, IntPtr.Zero),
-                "Setting Error callback failed");
+                throw new ArgumentNullException(nameof(policy));
+            }
+
+            ValidateState(RecorderState.Idle, RecorderState.Ready);
+
+            Native.SetAudioStreamPolicy(Handle, policy.Handle).ThrowIfError("Failed to apply the audio stream policy.");
         }
 
-        private void RegisterInterruptedCallback()
+        /// <summary>
+        /// Returns the peak audio input level in dB since the last call to this method.
+        /// </summary>
+        /// <remarks>
+        /// 0dB indicates maximum input level, -300dB indicates minimum input level.\n
+        /// \n
+        /// The recorder must be in the <see cref="RecorderState.Recording"/> or <see cref="RecorderState.Paused"/> state.
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        public double GetPeakAudioLevel()
         {
-            _interruptedCallback = (RecorderPolicy policy, RecorderState previous, RecorderState current, IntPtr userData) =>
-            {
-                Interrupted?.Invoke(this, new RecorderInterruptedEventArgs(policy, previous, current));
-            };
-            RecorderErrorFactory.ThrowIfError(Native.SetInterruptedCallback(_handle, _interruptedCallback, IntPtr.Zero),
-                "Setting Interrupted callback failed");
+            ValidateState(RecorderState.Recording, RecorderState.Paused);
+
+            Native.GetAudioLevel(Handle, out var level).ThrowIfError("Failed to get audio level.");
+
+            return level;
         }
 
-        private void RegisterStateChangedCallback()
+        /// <summary>
+        /// Returns the state of recorder device.
+        /// </summary>
+        /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
+        public static RecorderDeviceState GetDeviceState(RecorderType type)
         {
-            _stateChangedCallback = (RecorderState previous, RecorderState current, bool byPolicy, IntPtr userData) =>
-            {
-                SetState(current);
-                Log.Info(RecorderLog.Tag, "Recorder state changed " + previous.ToString() + " -> " + current.ToString());
-                StateChanged?.Invoke(this, new RecorderStateChangedEventArgs(previous, current, byPolicy));
-            };
-            RecorderErrorFactory.ThrowIfError(Native.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero),
-                "Setting state changed callback failed");
-        }
+            ValidationUtil.ValidateEnum(typeof(RecorderType), type, nameof(type));
 
-        private void RegisterRecordingProgressCallback()
-        {
-            _recordingProgressCallback = (ulong elapsedTime, ulong fileSize, IntPtr userData) =>
-            {
-                RecordingProgress?.Invoke(this, new RecordingProgressEventArgs(elapsedTime, fileSize));
-            };
-            RecorderErrorFactory.ThrowIfError(Native.SetRecordingProgressCallback(_handle, _recordingProgressCallback, IntPtr.Zero),
-                "Setting status changed callback failed");
-        }
+            Native.GetDeviceState(type, out var state).ThrowIfError("Failed to get device state");
 
-        private void RegisterAudioStreamDeliveredCallback()
-        {
-            _audioStreamCallback = (IntPtr stream, int streamSize, AudioSampleType type, int channel, uint recordingTime, IntPtr userData) =>
-            {
-                AudioStreamDelivered?.Invoke(this, new AudioStreamDeliveredEventArgs(stream, streamSize, type, channel, recordingTime));
-            };
-            RecorderErrorFactory.ThrowIfError(Native.SetAudioStreamCallback(_handle, _audioStreamCallback, IntPtr.Zero),
-                "Setting audiostream callback failed");
+            return state;
         }
-
-        private void RegisterRecordingLimitReachedEvent()
-        {
-            _recordingLimitReachedCallback = (RecordingLimitType type, IntPtr userData) =>
-            {
-                RecordingLimitReached?.Invoke(this, new RecordingLimitReachedEventArgs(type));
-            };
-            RecorderErrorFactory.ThrowIfError(Native.SetLimitReachedCallback(_handle, _recordingLimitReachedCallback, IntPtr.Zero),
-                "Setting limit reached callback failed");
-        }
-
-        private void RegisterMuxedStreamEvent()
-        {
-            _muxedStreamCallback = (IntPtr stream, int streamSize, ulong offset, IntPtr userData) =>
-            {
-                MuxedStreamDelivered?.Invoke(this, new MuxedStreamDeliveredEventArgs(stream, streamSize, offset));
-            };
-            RecorderErrorFactory.ThrowIfError(Native.SetMuxedStreamCallback(_handle, _muxedStreamCallback, IntPtr.Zero),
-                "Setting muxed stream callback failed");
-        }
-        #endregion Callback registrations
+        #endregion
     }
 }

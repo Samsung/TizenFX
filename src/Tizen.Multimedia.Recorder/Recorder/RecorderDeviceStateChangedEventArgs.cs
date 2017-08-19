@@ -19,26 +19,24 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extened EventArgs class which contain the details of current recording status.
+    /// Provides data for the <see cref="Recorder.DeviceStateChanged"/> event.
     /// </summary>
-    public class RecordingProgressEventArgs : EventArgs
+    public class RecorderDeviceStateChangedEventArgs : EventArgs
     {
-        public RecordingProgressEventArgs(ulong elapsedTime, ulong fileSize)
+        internal RecorderDeviceStateChangedEventArgs(RecorderType type, RecorderDeviceState state)
         {
-            ElapsedTime = elapsedTime;
-            FileSize = fileSize;
+            Type = type;
+            DeviceState = state;
         }
 
         /// <summary>
-        /// The time of recording in milliseconds.
+        /// Gets the recorder type.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public ulong ElapsedTime { get; }
+        public RecorderType Type { get; }
 
         /// <summary>
-        /// The size of the recording file in Kilobyte.
+        /// Gets the device state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public ulong FileSize { get; }
+        public RecorderDeviceState DeviceState { get; }
     }
 }

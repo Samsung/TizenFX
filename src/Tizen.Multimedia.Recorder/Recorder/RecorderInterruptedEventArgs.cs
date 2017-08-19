@@ -15,39 +15,34 @@
  */
 
 using System;
-using System.Collections.Generic;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended Eventargs class which contains interrupted policy details, previous and current
-    /// state of the recorder.
+    /// Provides data for the <see cref="Recorder.Interrupted"/> event.
     /// </summary>
     public class RecorderInterruptedEventArgs : EventArgs
     {
         internal RecorderInterruptedEventArgs(RecorderPolicy policy, RecorderState previous, RecorderState current)
         {
-            Policy = policy;
+            Reason = policy;
             Previous = previous;
             Current = current;
         }
 
         /// <summary>
-        /// The policy that interrupted the recorder.
+        /// Gets the policy that interrupted the recorder.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public RecorderPolicy Policy { get; }
+        public RecorderPolicy Reason { get; }
 
         /// <summary>
-        /// The previous state of the recorder.
+        /// Gets the previous state of the recorder.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         public RecorderState Previous { get; }
 
         /// <summary>
-        /// The current state of the recorder.
+        /// Gets the current state of the recorder.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         public RecorderState Current { get; }
     }
 }

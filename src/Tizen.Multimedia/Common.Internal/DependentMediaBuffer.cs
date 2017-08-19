@@ -15,22 +15,35 @@
  */
 
 using System;
+using System.Diagnostics;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides data for the <see cref="Recorder.ErrorOccurred"/> event.
+    /// Represents a buffer that is dependent on the owner object.
     /// </summary>
-    public class RecordingErrorOccurredEventArgs : EventArgs
+    internal class DependentMediaBuffer : MediaBufferBase
     {
-        internal RecordingErrorOccurredEventArgs(RecorderError error, RecorderState state)
+        private readonly IBufferOwner _owner;
+
+        internal DependentMediaBuffer(IBufferOwner owner, IntPtr dataHandle, int size)
+            : base(dataHandle, size)
         {
-            Error = error;
+            Debug.Assert(owner != null, "Owner is null!");
+            Debug.Assert(!owner.IsDisposed, "Owner has been already disposed!");
+
+            _owner = owner;
         }
 
-        /// <summary>
-        /// Gets the error.
-        /// </summary>
-        public RecorderError Error { get; }
+
+        internal override void ValidateBufferReadable()
+        {
+            _owner.ValidateBufferReadable(this);
+        }
+
+        internal override void ValidateBufferWritable()
+        {
+            _owner.ValidateBufferWritable(this);
+        }
     }
 }

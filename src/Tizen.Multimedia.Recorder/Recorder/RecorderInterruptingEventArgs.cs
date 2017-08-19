@@ -19,18 +19,24 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides data for the <see cref="Recorder.ErrorOccurred"/> event.
+    /// Provides data for the <see cref="Recorder.Interrupting"/> event.
     /// </summary>
-    public class RecordingErrorOccurredEventArgs : EventArgs
+    public class RecorderInterruptingEventArgs : EventArgs
     {
-        internal RecordingErrorOccurredEventArgs(RecorderError error, RecorderState state)
+        internal RecorderInterruptingEventArgs(RecorderPolicy policy, RecorderState state)
         {
-            Error = error;
+            Reason = policy;
+            State = state;
         }
 
         /// <summary>
-        /// Gets the error.
+        /// Gets the reason of the interrupt.
         /// </summary>
-        public RecorderError Error { get; }
+        public RecorderPolicy Reason { get; }
+
+        /// <summary>
+        /// Gets the previous state of the recorder.
+        /// </summary>
+        public RecorderState State { get; }
     }
 }

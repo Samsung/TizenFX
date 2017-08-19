@@ -15,39 +15,34 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class containing details of muxed stream(Audio + Video).
+    /// The exception that is thrown when a recorder device-related error occurs.
     /// </summary>
-    public class MuxedStreamDeliveredEventArgs : EventArgs
+    public class RecorderDeviceException : Exception
     {
-        internal MuxedStreamDeliveredEventArgs(IntPtr stream, int streamLength, ulong offset)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RecorderDeviceException"/> class.
+        /// </summary>
+        public RecorderDeviceException() : base()
         {
-            Stream = new byte[streamLength];
-            Marshal.Copy(stream, Stream, 0, streamLength);
-            StreamLength = streamLength;
-            Offset = offset;
         }
 
         /// <summary>
-        /// The muexed stream data.
+        /// Initializes a new instance of the <see cref="RecorderDeviceException"/> class with a specified error message.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public byte[] Stream { get; }
+        public RecorderDeviceException(string message) : base(message)
+        {
+        }
 
         /// <summary>
-        /// The length of muxed stream data.
+        /// Initializes a new instance of the <see cref="RecorderDeviceException"/> class with
+        /// a specified error message and inner exception.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int StreamLength { get; }
-
-        /// <summary>
-        /// The offset of the stream data.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public ulong Offset { get; }
+        public RecorderDeviceException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

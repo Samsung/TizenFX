@@ -19,18 +19,28 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides data for the <see cref="Recorder.ErrorOccurred"/> event.
+    /// Provides data for the <see cref="Recorder.MuxedStreamDelivered"/> event.
     /// </summary>
-    public class RecordingErrorOccurredEventArgs : EventArgs
+    public class MuxedStreamDeliveredEventArgs : EventArgs
     {
-        internal RecordingErrorOccurredEventArgs(RecorderError error, RecorderState state)
+        internal MuxedStreamDeliveredEventArgs(IMediaBuffer stream, ulong offset)
         {
-            Error = error;
+            Stream = stream;
+            Offset = (long)offset;
         }
 
         /// <summary>
-        /// Gets the error.
+        /// Gets the stream buffer that will be recordered.
         /// </summary>
-        public RecorderError Error { get; }
+        /// <remarks>
+        /// This buffer is read-only and only valid in the event.\n
+        /// Any attempt to access to this buffer after the event ends will throw an exception.
+        /// </remarks>
+        public IMediaBuffer Stream { get; }
+
+        /// <summary>
+        /// The file offset where the buffer will be written.
+        /// </summary>
+        public long Offset { get; }
     }
 }
