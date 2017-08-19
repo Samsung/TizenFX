@@ -15,11 +15,12 @@
  */
 
 using System;
+using System.IO;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia
 {
-    internal enum StreamRecorderError
+    internal enum StreamRecorderErrorCode
     {
         None = ErrorCode.None,
         InvalidParameter = ErrorCode.InvalidParameter,
@@ -32,29 +33,40 @@ namespace Tizen.Multimedia
         NotSupported = ErrorCode.NotSupported,
     }
 
-    internal static class StreamRecorderErrorFactory
+    internal static class StreamRecorderErrorExtensions
     {
-        internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null)
+        internal static StreamRecorderErrorCode Ignore(this StreamRecorderErrorCode errorCode, StreamRecorderErrorCode ignore)
         {
-            StreamRecorderError err = (StreamRecorderError)errorCode;
-            if (string.IsNullOrEmpty(errorMessage))
+            return (ignore == errorCode) ? StreamRecorderErrorCode.None : errorCode;
+        }
+
+        internal static void ThrowIfError(this StreamRecorderErrorCode err, string errorMessage)
+        {
+            if (err == StreamRecorderErrorCode.None)
             {
-                errorMessage = err.ToString();
+                return;
             }
-            switch ((StreamRecorderError)errorCode)
+
+            switch (err)
             {
-                case StreamRecorderError.InvalidParameter:
-                    throw new ArgumentException(errorMessage, paramName);
-                case StreamRecorderError.OutOfMemory:
+                case StreamRecorderErrorCode.InvalidParameter:
+                    throw new ArgumentException(errorMessage);
+
+                case StreamRecorderErrorCode.OutOfMemory:
                     throw new OutOfMemoryException(errorMessage);
-                case StreamRecorderError.PermissionDenied:
+
+                case StreamRecorderErrorCode.PermissionDenied:
                     throw new UnauthorizedAccessException(errorMessage);
-                case StreamRecorderError.NotSupported:
+
+                case StreamRecorderErrorCode.NotSupported:
                     throw new NotSupportedException(errorMessage);
-                case StreamRecorderError.InvalidState:
-                case StreamRecorderError.InvalidOperation:
-                case StreamRecorderError.OutOfStorage:
+
+                case StreamRecorderErrorCode.InvalidState:
+                case StreamRecorderErrorCode.InvalidOperation:
                     throw new InvalidOperationException(errorMessage);
+
+                case StreamRecorderErrorCode.OutOfStorage:
+                    throw new IOException(errorMessage);
             }
         }
     }

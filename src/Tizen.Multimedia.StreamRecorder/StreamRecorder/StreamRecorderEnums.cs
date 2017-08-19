@@ -14,12 +14,52 @@
  * limitations under the License.
  */
 
+using System;
+using System.Diagnostics;
+
 namespace Tizen.Multimedia
 {
+
+    /// <summary>
+    /// Specifies errors for <see cref="StreamRecorder"/>/
+    /// </summary>
+    public enum StreamRecorderError
+    {
+        /// <summary>
+        /// Internal error.
+        /// </summary>
+        InternalError = StreamRecorderErrorCode.InvalidOperation,
+        /// <summary>
+        /// Out of storage.
+        /// </summary>
+        OutOfStorage = StreamRecorderErrorCode.OutOfStorage
+    }
+
+    /// <summary>
+    /// Specifies the video source formats for <see cref="StreamRecorder"/>.
+    /// </summary>
+    public enum StreamRecorderVideoFormat
+    {
+        /// <summary>
+        /// Nv12 format.
+        /// </summary>
+        Nv12,
+        /// <summary>
+        /// Nv21 format.
+        /// </summary>
+        Nv21,
+        /// <summary>
+        /// I420 format.
+        /// </summary>
+        I420
+    }
+
+    #region Internal enums
+
     /// <summary>
     /// Enumeration for Audio Codec.
     /// </summary>
-    public enum StreamRecorderAudioCodec
+    internal enum StreamRecorderAudioCodec
     {
         /// <summary>
         /// AMR codec.
@@ -38,7 +78,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the file container format.
     /// </summary>
-    public enum StreamRecorderFileFormat
+    internal enum StreamRecorderFileFormat
     {
         /// <summary>
         /// 3GP file format.
@@ -65,64 +105,22 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for the recorder notify type.
     /// </summary>
-    public enum StreamRecorderNotify
+    internal enum StreamRecorderNotify
     {
         /// <summary>
         /// None.
         /// </summary>
         None = 0,
         /// <summary>
-        /// State changed noti.
+        /// State changed.
         /// </summary>
         StateChanged
     }
 
     /// <summary>
-    /// Enumeration for the recording limit type.
-    /// </summary>
-    public enum StreamRecordingLimitType
-    {
-        /// <summary>
-        /// Time limit in seconds of recording file
-        /// </summary>
-        Time,
-        /// <summary>
-        /// Size limit in KB(KiloBytes) of recording file.
-        /// </summary>
-        Size
-    }
-
-    /// <summary>
-    /// Enumeration for stream recorder states.
-    /// </summary>
-    public enum StreamRecorderState
-    {
-        /// <summary>
-        /// Stream recorder is not created.
-        /// </summary>
-        None,
-        /// <summary>
-        /// Stream recorder is created, but not prepared.
-        /// </summary>
-        Created,
-        /// <summary>
-        /// Stream recorder is ready to record.
-        /// </summary>
-        Prepared,
-        /// <summary>
-        /// Stream recorder is recording pushed packet.
-        /// </summary>
-        Recording,
-        /// <summary>
-        /// Stream recorder is paused.
-        /// </summary>
-        Paused
-    }
-
-    /// <summary>
     /// Enumeration for video codec.
     /// </summary>
-    public enum StreamRecorderVideoCodec
+    internal enum StreamRecorderVideoCodec
     {
         /// <summary>
         /// H263 codec.
@@ -137,7 +135,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for source type.
     /// </summary>
-    public enum StreamRecorderSourceType
+    internal enum StreamRecorderSourceType
     {
         /// <summary>
         /// Video source
@@ -153,45 +151,122 @@ namespace Tizen.Multimedia
         VideoAudio
     }
 
-    /// <summary>
-    /// Enumeration for video source format.
-    /// </summary>
-    public enum StreamRecorderVideoSourceFormat
+    internal static class StreamRecorderEnumExtensions
     {
-        /// <summary>
-        /// Nv12 Video source format
-        /// </summary>
-        Nv12,
-        /// <summary>
-        /// Nv21 video source format
-        /// </summary>
-        Nv21,
-        /// <summary>
-        /// I420 video source format
-        /// </summary>
-        I420
-    }
+        internal static RecorderVideoCodec ToRecorderEnum(this StreamRecorderVideoCodec value)
+        {
+            switch (value)
+            {
+                case StreamRecorderVideoCodec.H263:
+                    return RecorderVideoCodec.H263;
 
-    /// <summary>
-    /// Enumeration for stream recorder failure error.
-    /// </summary>
-    public enum StreamRecorderErrorCode
-    {
-        /// <summary>
-        /// Sucessful.
-        /// </summary>
-        None = StreamRecorderError.None,
-        /// <summary>
-        /// Internal error.
-        /// </summary>
-        InvalidParameter = StreamRecorderError.InvalidParameter,
-        /// <summary>
-        /// Internal error.
-        /// </summary>
-        InvalidOperation = StreamRecorderError.InvalidOperation,
-        /// <summary>
-        /// Out of memory.
-        /// </summary>
-        OutOfMemory = StreamRecorderError.OutOfMemory
+                case StreamRecorderVideoCodec.Mpeg4:
+                    return RecorderVideoCodec.Mpeg4;
+            }
+
+            Debug.Fail("Unknown video codec value.");
+            return 0;
+        }
+
+        internal static StreamRecorderVideoCodec ToStreamRecorderEnum(this RecorderVideoCodec value)
+        {
+            switch (value)
+            {
+                case RecorderVideoCodec.H263:
+                    return StreamRecorderVideoCodec.H263;
+
+                case RecorderVideoCodec.Mpeg4:
+                    return StreamRecorderVideoCodec.Mpeg4;
+            }
+
+            throw new NotSupportedException($"{value.ToString()} is not supported.");
+        }
+
+
+        internal static RecorderAudioCodec ToRecorderEnum(this StreamRecorderAudioCodec value)
+        {
+            switch (value)
+            {
+                case StreamRecorderAudioCodec.Aac:
+                    return RecorderAudioCodec.Aac;
+
+                case StreamRecorderAudioCodec.Amr:
+                    return RecorderAudioCodec.Amr;
+
+                case StreamRecorderAudioCodec.Pcm:
+                    return RecorderAudioCodec.Pcm;
+            }
+
+            Debug.Fail("Unknown audio codec value.");
+            return 0;
+        }
+
+
+        internal static StreamRecorderAudioCodec ToStreamRecorderEnum(this RecorderAudioCodec value)
+        {
+            switch (value)
+            {
+                case RecorderAudioCodec.Aac:
+                    return StreamRecorderAudioCodec.Aac;
+
+                case RecorderAudioCodec.Amr:
+                    return StreamRecorderAudioCodec.Amr;
+
+                case RecorderAudioCodec.Pcm:
+                    return StreamRecorderAudioCodec.Pcm;
+            }
+
+            throw new NotSupportedException($"{value.ToString()} is not supported.");
+        }
+
+
+        internal static RecorderFileFormat ToRecorderEnum(this StreamRecorderFileFormat value)
+        {
+            switch (value)
+            {
+                case StreamRecorderFileFormat.ThreeGp:
+                    return RecorderFileFormat.ThreeGp;
+
+                case StreamRecorderFileFormat.Mp4:
+                    return RecorderFileFormat.Mp4;
+
+                case StreamRecorderFileFormat.Amr:
+                    return RecorderFileFormat.Amr;
+
+                case StreamRecorderFileFormat.Adts:
+                    return RecorderFileFormat.Adts;
+
+                case StreamRecorderFileFormat.Wav:
+                    return RecorderFileFormat.Wav;
+            }
+
+            Debug.Fail("Unknown file format value.");
+            return 0;
+        }
+
+
+        internal static StreamRecorderFileFormat ToStreamRecorderEnum(this RecorderFileFormat value)
+        {
+            switch (value)
+            {
+                case RecorderFileFormat.ThreeGp:
+                    return StreamRecorderFileFormat.ThreeGp;
+
+                case RecorderFileFormat.Mp4:
+                    return StreamRecorderFileFormat.Mp4;
+
+                case RecorderFileFormat.Amr:
+                    return StreamRecorderFileFormat.Amr;
+
+                case RecorderFileFormat.Adts:
+                    return StreamRecorderFileFormat.Adts;
+
+                case RecorderFileFormat.Wav:
+                    return StreamRecorderFileFormat.Wav;
+            }
+
+            throw new NotSupportedException($"{value.ToString()} is not supported.");
+        }
     }
+    #endregion
 }
