@@ -16,12 +16,31 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen;
+using Tizen.Content.MediaContent;
 
 internal static partial class Interop
 {
-    internal static partial class Libc
+    internal abstract class MediaContentCriticalHandle : CriticalHandle
     {
-        [DllImport(Libraries.Libc, EntryPoint = "free", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int Free(IntPtr ptr);
+        public MediaContentCriticalHandle() : base(IntPtr.Zero)
+        {
+        }
+
+        public override bool IsInvalid => handle == IntPtr.Zero;
+
+        protected override bool ReleaseHandle()
+        {
+            var result = DestroyHandle();
+            if (result != MediaContentError.None)
+            {
+                Log.Error(GetType().Name, $"Failed to destroy handle : {result}");
+                return false;
+            }
+
+            return true;
+        }
+
+        protected abstract MediaContentError DestroyHandle();
     }
 }

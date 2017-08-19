@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
+using System;
+using System.Runtime.InteropServices;
+
 internal static partial class Interop
 {
-    internal static partial class Libraries
+    internal static partial class Common
     {
-        public const string MediaContent = "libcapi-content-media-content.so.0";
-        public const string Libc = "libc.so.6";
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool ItemCallback(IntPtr itemHandle, IntPtr data);
     }
 }

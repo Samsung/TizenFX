@@ -14,11 +14,18 @@
  * limitations under the License.
  */
 
-internal static partial class Interop
+using Tizen.System;
+
+static internal class Features
 {
-    internal static partial class Libraries
+    internal const string FaceRecognition = "http://tizen.org/feature/vision.face_recognition";
+
+    internal static bool IsSupported(string key)
     {
-        public const string MediaContent = "libcapi-content-media-content.so.0";
-        public const string Libc = "libc.so.6";
+        if (SystemInfo.TryGetValue(key, out bool value))
+        {
+            return value;
+        }
+        return false;
     }
 }

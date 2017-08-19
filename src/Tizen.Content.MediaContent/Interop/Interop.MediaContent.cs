@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-
 using System;
 using System.Runtime.InteropServices;
 using Tizen.Content.MediaContent;
-
 
 internal static partial class Interop
 {
@@ -36,19 +34,22 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_content_cancel_scan_folder")]
         internal static extern MediaContentError CancelScanFolder(string folderPath);
 
-        // Callback
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void MediaScanCompletedCallback(MediaContentError error, IntPtr data);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void MediaContentDBUpdatedCallback(MediaContentError error, int pid, MediaContentUpdateItemType updateItem, MediaContentDBUpdateType updateType, MediaContentType mediaType, string uuid, string filePath, string mimeType, IntPtr data);
+        internal delegate void MediaContentDBUpdatedCallback(MediaContentError error, int pid, ItemType updateItem,
+            OperationType updateType, MediaType mediaType, string uuid, string filePath, string mimeType, IntPtr data);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_content_scan_folder")]
-        internal static extern MediaContentError ScanFolder(string folderPath, bool is_recursive, MediaScanCompletedCallback scanCompletedCallback, IntPtr userData);
+        internal static extern MediaContentError ScanFolder(string folderPath,
+            bool recursive, MediaScanCompletedCallback scanCompletedCallback, IntPtr userData = default(IntPtr));
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_content_add_db_updated_cb")]
-        internal static extern MediaContentError AddDbUpdatedCb(MediaContentDBUpdatedCallback mediaContentDBUpdatedCallback, IntPtr userData, out IntPtr noti_handle);
+        internal static extern MediaContentError AddDbUpdatedCb(MediaContentDBUpdatedCallback mediaContentDBUpdatedCallback,
+            IntPtr userData, out IntPtr notiHandle);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_content_remove_db_updated_cb")]
-        internal static extern MediaContentError RemoveDbUpdatedCb(IntPtr noti_handle);
+        internal static extern MediaContentError RemoveDbUpdatedCb(IntPtr notiHandle);
     }
 }
