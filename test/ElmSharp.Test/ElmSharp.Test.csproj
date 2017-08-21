@@ -1,296 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+
+  <!-- Setting Tizen Extension Path -->
+  <PropertyGroup Label="Globals">
+    <TizenProjectExtensionsPath>$(MSBuildExtensionsPath)\Tizen\VisualStudio\</TizenProjectExtensionsPath>
+  </PropertyGroup>
+
+  <!-- Import Tizen property in Tizen.NET SDK -->
+  <Import Project="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props" Condition="Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props')" />
+
+  <!-- Property Group for .NET Core Project -->
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectTypeGuids>{2F98DAC9-6F16-457B-AED7-D43CAC379341};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{E901BB06-632D-489E-86AC-66AD2EF85BCC}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ElmSharp.Test</RootNamespace>
-    <AssemblyName>ElmSharp.Test</AssemblyName>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
+
+  <!-- Property Group for Tizen Project -->
   <PropertyGroup>
-    <TargetFrameworkIdentifier>.NETCoreApp</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <NuGetTargetMoniker>.NETCoreApp,Version=v1.0</NuGetTargetMoniker>
-    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
-    <NoStdLib>true</NoStdLib>
-    <NoWarn>$(NoWarn);1701;1702</NoWarn>
+    <TizenCreateTpkOnBuild>true</TizenCreateTpkOnBuild>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+wp80+win81+wpa81</PackageTargetFallback>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>portable</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>None</DebugType>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="Log.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TC\AccessibilityRelationTest.cs" />
-    <Compile Include="TC\AccessibilityRoleTest.cs" />
-    <Compile Include="TC\AccessibilityTest.cs" />
-    <Compile Include="TC\BackgroundTest1.cs" />
-    <Compile Include="TC\BackgroundTest2.cs" />
-    <Compile Include="TC\BackgroundTest3.cs" />
-    <Compile Include="TC\FocusAutoScrollModeTest.cs" />
-    <Compile Include="TC\KeyEventTest1.cs" />
-    <Compile Include="TC\GestureLayerTest1.cs" />
-    <Compile Include="TC\ProgressBarTest2.cs" />
-    <Compile Include="TC\ScrollerTest3.cs" />
-    <Compile Include="TC\Wearable\CircleTool.cs" />
-    <Compile Include="TC\TransitTest.cs" />
-    <Compile Include="TC\EcoreTimerTest1.cs" />
-    <Compile Include="TC\EntryTest3.cs" />
-    <Compile Include="TC\EvasMapTest2.cs" />
-    <Compile Include="TC\GenListTest10.cs" />
-    <Compile Include="TC\ImageTest4.cs" />
-    <Compile Include="TC\LabelTest4.cs" />
-    <Compile Include="TC\LabelTest5.cs" />
-    <Compile Include="TC\MultibuttonEntryTest1.cs" />
-    <Compile Include="TC\DateTimeSelectorTest2.cs" />
-    <Compile Include="TC\EntryTest2.cs" />
-    <Compile Include="TC\FlipSelectorTest.cs" />
-    <Compile Include="TC\FloatingButtonTest.cs" />
-    <Compile Include="TC\GenListTest9.cs" />
-    <Compile Include="TC\FocusTest1.cs" />
-    <Compile Include="TC\HoverselTest1.cs" />
-    <Compile Include="TC\MultibuttonEntryTest2.cs" />
-    <Compile Include="TC\NaviframeTest3.cs" />
-    <Compile Include="TC\ScreenInformationTest.cs" />
-    <Compile Include="TC\BoxLayoutTest1.cs" />
-    <Compile Include="TC\BoxTest1.cs" />
-    <Compile Include="TC\BackgroundColorTest1.cs" />
-    <Compile Include="TC\ButtonTest1.cs" />
-    <Compile Include="TC\CalendarTest1.cs" />
-    <Compile Include="TC\CheckTest1.cs" />
-    <Compile Include="TC\ClipperTest1.cs" />
-    <Compile Include="TC\ColorSelectorTest1.cs" />
-    <Compile Include="TC\ContextPopupTest1.cs" />
-    <Compile Include="TC\DateTimeSelectorTest1.cs" />
-    <Compile Include="TC\EvasMapTest1.cs" />
-    <Compile Include="TC\EntryTest1.cs" />
-    <Compile Include="TC\GenGridTest1.cs" />
-    <Compile Include="TC\GenGridTest2.cs" />
-    <Compile Include="TC\GenListTest7.cs" />
-    <Compile Include="TC\GenListTest1.cs" />
-    <Compile Include="TC\GenListTest2.cs" />
-    <Compile Include="TC\GenListTest3.cs" />
-    <Compile Include="TC\GenListTest4.cs" />
-    <Compile Include="TC\GenListTest6.cs" />
-    <Compile Include="TC\LabelTest3.cs" />
-    <Compile Include="TC\ImageTest3.cs" />
-    <Compile Include="TC\ImageTest2.cs" />
-    <Compile Include="TC\LabelTest2.cs" />
-    <Compile Include="TC\TableTest1.cs" />
-    <Compile Include="TC\GenListTest8.cs" />
-    <Compile Include="TC\PerformanceTest.cs" />
-    <Compile Include="TC\GenListTest5.cs" />
-    <Compile Include="TC\IconTest1.cs" />
-    <Compile Include="TC\ImageTest1.cs" />
-    <Compile Include="TC\IndexTest1.cs" />
-    <Compile Include="TC\IndexTest2.cs" />
-    <Compile Include="TC\LabelTest1.cs" />
-    <Compile Include="TC\LabelValignTest1.cs" />
-    <Compile Include="TC\ListTest1.cs" />
-    <Compile Include="TC\NaviframeTest1.cs" />
-    <Compile Include="TC\NaviframeTest2.cs" />
-    <Compile Include="TC\PanelTest1.cs" />
-    <Compile Include="TC\PanelTest2.cs" />
-    <Compile Include="TC\PanesTest1.cs" />
-    <Compile Include="TC\PolygonTest1.cs" />
-    <Compile Include="TC\PopupTest1.cs" />
-    <Compile Include="TC\ProgressBarTest1.cs" />
-    <Compile Include="TC\RadioTest1.cs" />
-    <Compile Include="TC\RectangleTest1.cs" />
-    <Compile Include="TC\ScrollerTest1.cs" />
-    <Compile Include="TC\ScrollerTest2.cs" />
-    <Compile Include="TC\SliderTest1.cs" />
-    <Compile Include="TC\SliderTest2.cs" />
-    <Compile Include="TC\SpinnerTest1.cs" />
-    <Compile Include="TC\ToolbarTest1.cs" />
-    <Compile Include="TC\ToolbarTest2.cs" />
-    <Compile Include="TC\ToolbarTest3.cs" />
-    <Compile Include="TC\ToolbarTest4.cs" />
-    <Compile Include="TC\Wearable\BackgroundColorTest1.cs" />
-    <Compile Include="TC\Wearable\BackgroundTest1.cs" />
-    <Compile Include="TC\Wearable\BackgroundTest2.cs" />
-    <Compile Include="TC\Wearable\BoxLayoutTest1.cs" />
-    <Compile Include="TC\Wearable\ButtonTest1.cs" />
-    <Compile Include="TC\Wearable\ButtonTest2.cs" />
-    <Compile Include="TC\Wearable\CheckTest1.cs" />
-    <Compile Include="TC\Wearable\ClipperTest1.cs" />
-    <Compile Include="TC\Wearable\ContextPopupTest1.cs" />
-    <Compile Include="TC\Wearable\DateTimeSelectorTest1.cs" />
-    <Compile Include="TC\Wearable\DateTimeSelectorTest2.cs" />
-    <Compile Include="TC\Wearable\EcoreTimerTest1.cs" />
-    <Compile Include="TC\Wearable\EntryTest1.cs" />
-    <Compile Include="TC\Wearable\EntryTest2.cs" />
-    <Compile Include="TC\Wearable\EntryTest3.cs" />
-    <Compile Include="TC\Wearable\EntryTest4.cs" />
-    <Compile Include="TC\Wearable\EvasMapTest1.cs" />
-    <Compile Include="TC\Wearable\EvasMapTest2.cs" />
-    <Compile Include="TC\Wearable\FocusTest1.cs" />
-    <Compile Include="TC\Wearable\GenGridTest1.cs" />
-    <Compile Include="TC\Wearable\GenGridTest2.cs" />
-    <Compile Include="TC\Wearable\GenListTest1.cs" />
-    <Compile Include="TC\Wearable\GenListTest10.cs" />
-    <Compile Include="TC\Wearable\GenListTest9.cs" />
-    <Compile Include="TC\Wearable\GenListTest2.cs" />
-    <Compile Include="TC\Wearable\GenListTest3.cs" />
-    <Compile Include="TC\Wearable\GenListTest4.cs" />
-    <Compile Include="TC\Wearable\GenListTest5.cs" />
-    <Compile Include="TC\Wearable\GenListTest6.cs" />
-    <Compile Include="TC\Wearable\GenListTest7.cs" />
-    <Compile Include="TC\Wearable\GenListTest8.cs" />
-    <Compile Include="TC\Wearable\GestureLayerTest1.cs" />
-    <Compile Include="TC\Wearable\IconTest1.cs" />
-    <Compile Include="TC\Wearable\ImageTest1.cs" />
-    <Compile Include="TC\Wearable\ImageTest2.cs" />
-    <Compile Include="TC\Wearable\ImageTest3.cs" />
-    <Compile Include="TC\Wearable\ImageTest4.cs" />
-    <Compile Include="TC\Wearable\IndexTest1.cs" />
-    <Compile Include="TC\Wearable\IndexTest2.cs" />
-    <Compile Include="TC\LabelTest6.cs" />
-    <Compile Include="TC\Wearable\ListTest1.cs" />
-    <Compile Include="TC\Wearable\NaviframeTest1.cs" />
-    <Compile Include="TC\Wearable\NaviframeTest2.cs" />
-    <Compile Include="TC\Wearable\NaviframeTest3.cs" />
-    <Compile Include="TC\Wearable\PanelTest1.cs" />
-    <Compile Include="TC\Wearable\PanelTest2.cs" />
-    <Compile Include="TC\Wearable\PanesTest1.cs" />
-    <Compile Include="TC\Wearable\PerformanceTest.cs" />
-    <Compile Include="TC\Wearable\PolygonTest1.cs" />
-    <Compile Include="TC\Wearable\PopupTest1.cs" />
-    <Compile Include="TC\Wearable\ProgressBarTest1.cs" />
-    <Compile Include="TC\Wearable\ProgressBarTest2.cs" />
-    <Compile Include="TC\Wearable\RadioTest1.cs" />
-    <Compile Include="TC\Wearable\RectangleTest1.cs" />
-    <Compile Include="TC\Wearable\ScreenInformationTest.cs" />
-    <Compile Include="TC\Wearable\ScrollerTest1.cs" />
-    <Compile Include="TC\Wearable\ScrollerTest2.cs" />
-    <Compile Include="TC\Wearable\ScrollerTest3.cs" />
-    <Compile Include="TC\Wearable\SliderTest1.cs" />
-    <Compile Include="TC\Wearable\SliderTest2.cs" />
-    <Compile Include="TC\Wearable\SpinnerTest1.cs" />
-    <Compile Include="TC\Wearable\TransitTest.cs" />
-    <Compile Include="TC\Wearable\WindowInternalTest.cs" />
-    <Compile Include="TC\Wearable\LabelTest1.cs" />
-    <Compile Include="TC\Wearable\LabelTest2.cs" />
-    <Compile Include="TC\Wearable\LabelTest3.cs" />
-    <Compile Include="TC\Wearable\LabelTest4.cs" />
-    <Compile Include="TC\Wearable\LabelTest5.cs" />
-    <Compile Include="TC\Wearable\LabelValignTest1.cs" />
-    <Compile Include="TC\Wearable\TableTest1.cs" />
-    <Compile Include="TC\WindowInternalTest.cs" />
-    <Compile Include="TestCaseBase.cs" />
-    <Compile Include="TestRunner.cs" />
+    <Folder Include="shared\" />
+    <Folder Include="res\" />
+  </ItemGroup>
+
+  <!-- Include Nuget Package for Tizen Project building -->
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="3.0.0" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="0.9.16-pre1" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ElmSharp.Test.project.json" />
-    <None Include="test.sh" />
+    <ProjectReference Include="..\..\src\ElmSharp\ElmSharp.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="res\btn_delete.png" />
-    <Content Include="res\picture.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\app_icn_ted.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\large\a.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\large\b.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\large\c.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\large\d.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\large\e.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\large\f.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\large\g.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\thumbnail\a.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\thumbnail\b.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\thumbnail\c.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\thumbnail\d.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\thumbnail\e.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\thumbnail\f.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="res\TED\thumbnail\g.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="shared\res\ElmSharp.Test.png" />
-    <Content Include="tizen-manifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="ElmSharp, Version=1.2.0.0, Culture=neutral, PublicKeyToken=3836ec6cd2c91e8b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ElmSharp\bin\Debug\netstandard1.3\ElmSharp.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+  <Import Project="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets" Condition="Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets')" />
+
+  <!-- Install Check 'Visual Studio for Tizen' for developing on Visual Studio -->
+  <Target Name="TizenVsixInstallCheck" BeforeTargets="CompileDesignTime">
+    <Warning Condition="!Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props')" Text="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props is not exist.&#xA; you need to check if 'Visual Studio for Tizen' is installed" />
+    <Warning Condition="!Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets')" Text="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets is not exist.\&#xA; you need to check if 'Visual Studio for Tizen' is installed" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <PropertyGroup>
-    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
-       https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
-    -->
-    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
-       properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
-       to prevent it from outputting a warning (MSB3644).
-    -->
-    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
-    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
-    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
-  </PropertyGroup>
-  <ProjectExtensions>
-    <VisualStudio>
-      <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Debug|Any CPU">
-        <ProjectCommonFlavorCfg />
-      </FlavorProperties>
-      <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Release|Any CPU">
-        <ProjectCommonFlavorCfg />
-      </FlavorProperties>
-    </VisualStudio>
-  </ProjectExtensions>
 </Project>

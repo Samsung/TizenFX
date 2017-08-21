@@ -1,9 +1,28 @@
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ElmSharp.Wearable
 {
+    /// <summary>
+    /// A instance to the Rotary Selector Item added. And an item can be selected by rotary event or user item click.
+    /// </summary>
     public class RotarySelectorItem
     {
         const string MainTextPartName = "selector,main_text";
@@ -37,6 +56,9 @@ namespace ElmSharp.Wearable
 
         IntPtr _handle;
 
+        /// <summary>
+        /// Sets or gets the handle of a rotary selector item object.
+        /// </summary>
         public IntPtr Handle
         {
             set
@@ -128,28 +150,89 @@ namespace ElmSharp.Wearable
             }
         }
 
+        /// <summary>
+        /// Sets or gets the main text of a rotary selector item object.
+        /// </summary>
         public string MainText { set => setPart(ref _mainText, MainTextPartName, value); get => _mainText; }
+
+        /// <summary>
+        /// Sets or gets the sub text of a rotary selector item object.
+        /// </summary>
         public string SubText { set => setPart(ref _subText, SubTextPartName, value); get => _subText; }
 
+        /// <summary>
+        /// Sets or gets the sub text color of a rotary selector item object.
+        /// </summary>
         public Color MainTextColor { set => setPart(ref _mainTextColor, MainTextPartName, ItemState.Normal, value); get => _mainTextColor; }
-        public Color SubextColor { set => setPart(ref _subTextColor, SubTextPartName, ItemState.Normal, value); get => _subTextColor; }
 
+        /// <summary>
+        /// Sets or gets the sub text color of a rotary selector item object.
+        /// </summary>
+        public Color SubTextColor { set => setPart(ref _subTextColor, SubTextPartName, ItemState.Normal, value); get => _subTextColor; }
+
+        /// <summary>
+        /// Sets or gets the normal icon image of a rotary selector item object.
+        /// </summary>
         public Image NormalIconImage { set => setPart(ref _normalIconImage, IconPartName, ItemState.Normal, value); get => _normalIconImage; }
+
+        /// <summary>
+        /// Sets or gets the press icon image of a rotary selector item object.
+        /// </summary>
         public Image PressedIconImage { set => setPart(ref _pressedIconImage, IconPartName, ItemState.Pressed, value); get => _pressedIconImage; }
+
+        /// <summary>
+        /// Sets or gets the disable icon image of a rotary selector item object.
+        /// </summary>
         public Image DisabledIconImage { set => setPart(ref _disabledIconImage, IconPartName, ItemState.Disabled, value); get => _disabledIconImage; }
+
+        /// <summary>
+        /// Sets or gets the selected icon image of a rotary selector item object.
+        /// </summary>
         public Image SelectedIconImage { set => setPart(ref _selectedIconImage, IconPartName, ItemState.Selected, value); get => _selectedIconImage; }
 
-
+        /// <summary>
+        /// Sets or gets the normal background image of a rotary selector item object.
+        /// </summary>
         public Image NormalBackgroundImage { set => setPart(ref _normalBgImage, BgPartName, ItemState.Normal, value); get => _normalBgImage; }
+
+        /// <summary>
+        /// Sets or gets the pressed background image of a rotary selector item object.
+        /// </summary>
         public Image PressedBackgroundImage { set => setPart(ref _pressedBgImage, BgPartName, ItemState.Pressed, value); get => _pressedBgImage; }
+
+        /// <summary>
+        /// Sets or gets the disabled background image of a rotary selector item object.
+        /// </summary>
         public Image DisabledBackgroundImage { set => setPart(ref _disabledBgImage, BgPartName, ItemState.Disabled, value); get => _disabledBgImage; }
+
+        /// <summary>
+        /// Sets or gets the selected background image of a rotary selector item object.
+        /// </summary>
         public Image SelectedBackgroundImage { set => setPart(ref _selectedBgImage, BgPartName, ItemState.Selected, value); get => _selectedBgImage; }
 
+        /// <summary>
+        /// Sets or gets the normal background color of a rotary selector item object.
+        /// </summary>
         public Color NormalBackgroundColor { set => setPart(ref _normalBgColor, BgPartName, ItemState.Normal, value); get => _normalBgColor; }
+
+        /// <summary>
+        /// Sets or gets the pressed background color of a rotary selector item object.
+        /// </summary>
         public Color PressedBackgroundColor { set => setPart(ref _pressedBgColor, BgPartName, ItemState.Pressed, value); get => _pressedBgColor; }
+
+        /// <summary>
+        /// Sets or gets the disabled background color of a rotary selector item object.
+        /// </summary>
         public Color DisabledBackgroundColor { set => setPart(ref _disabledBgColor, BgPartName, ItemState.Disabled, value); get => _disabledBgColor; }
+
+        /// <summary>
+        /// Sets or gets the selected background color of a rotary selector item object.
+        /// </summary>
         public Color SelectedBackgroundColor { set => setPart(ref _selectedBgColor, BgPartName, ItemState.Selected, value); get => _selectedBgColor; }
 
+        /// <summary>
+        /// Sets or gets the selector icon image of a rotary selector item object.
+        /// </summary>
         public Image SelectorIconImage { set => setPart(ref _selectorIconImage, SelectorIconPartName, ItemState.Normal, value); get => _selectorIconImage; }
 
         internal enum ItemState

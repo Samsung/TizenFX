@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElmSharp.Wearable", "ElmSharp.Wearable.csproj", "{01AE2E3A-C08E-431C-97B3-A18D536FCD52}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElmSharp", "..\ElmSharp\ElmSharp.csproj", "{393A27E0-A1FF-4BC7-9B44-2B2803080AC2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElmSharp.Test", "..\..\test\ElmSharp.Test\ElmSharp.Test.csproj", "{7FD75973-F5CE-4D17-81CB-A5905A62D138}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElmSharp.Wearable.Test", "..\..\test\ElmSharp.Wearable.Test\ElmSharp.Wearable.Test.csproj", "{DC7126DF-8ED8-448A-B7D8-15C7441B6929}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +25,19 @@ Global
 		{393A27E0-A1FF-4BC7-9B44-2B2803080AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{393A27E0-A1FF-4BC7-9B44-2B2803080AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{393A27E0-A1FF-4BC7-9B44-2B2803080AC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FD75973-F5CE-4D17-81CB-A5905A62D138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FD75973-F5CE-4D17-81CB-A5905A62D138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FD75973-F5CE-4D17-81CB-A5905A62D138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FD75973-F5CE-4D17-81CB-A5905A62D138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC7126DF-8ED8-448A-B7D8-15C7441B6929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC7126DF-8ED8-448A-B7D8-15C7441B6929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC7126DF-8ED8-448A-B7D8-15C7441B6929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC7126DF-8ED8-448A-B7D8-15C7441B6929}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DCFCB5BF-47F2-4C3E-AB44-B126B259C9AA}
 	EndGlobalSection
 EndGlobal

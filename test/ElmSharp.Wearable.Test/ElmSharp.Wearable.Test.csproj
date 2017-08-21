@@ -1,151 +1,54 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+
+  <!-- Setting Tizen Extension Path -->
+  <PropertyGroup Label="Globals">
+    <TizenProjectExtensionsPath>$(MSBuildExtensionsPath)\Tizen\VisualStudio\</TizenProjectExtensionsPath>
+  </PropertyGroup>
+
+  <!-- Import Tizen property in Tizen.NET SDK -->
+  <Import Project="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props" Condition="Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props')" />
+
+  <!-- Property Group for .NET Core Project -->
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectTypeGuids>{2F98DAC9-6F16-457B-AED7-D43CAC379341};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{C6E111B7-21E2-4CD6-93BF-2CD5ED255749}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ElmSharp.Wearable.Test</RootNamespace>
-    <AssemblyName>ElmSharp.Wearable.Test</AssemblyName>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
+
+  <!-- Property Group for Tizen Project -->
   <PropertyGroup>
-    <TargetFrameworkIdentifier>.NETCoreApp</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <NuGetTargetMoniker>.NETCoreApp,Version=v1.0</NuGetTargetMoniker>
-    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
-    <NoStdLib>true</NoStdLib>
-    <NoWarn>$(NoWarn);1701;1702</NoWarn>
+    <TizenCreateTpkOnBuild>true</TizenCreateTpkOnBuild>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+wp80+win81+wpa81</PackageTargetFallback>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>portable</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>None</DebugType>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TC\CircleDateTimeSelectorTest1.cs" />
-    <Compile Include="TC\CircleDateTimeSelectorTest2.cs" />
-    <Compile Include="TC\CircleDateTimeSelectorTest3.cs" />
-    <Compile Include="TC\CircleDateTimeSelectorTest4.cs" />
-    <Compile Include="TC\CircleGenListTest1.cs" />
-    <Compile Include="TC\CircleGenListTest2.cs" />
-    <Compile Include="TC\CircleGenListTest3.cs" />
-    <Compile Include="TC\CircleGenListTest4.cs" />
-    <Compile Include="TC\CircleScrollerTest1.cs" />
-    <Compile Include="TC\CircleScrollerTest2.cs" />
-    <Compile Include="TC\CircleScrollerTest3.cs" />
-    <Compile Include="TC\CircleScrollerTest4.cs" />
-    <Compile Include="TC\CircleSliderTest1.cs" />
-    <Compile Include="TC\CircleSliderTest2.cs" />
-    <Compile Include="TC\CircleProgressBarTest1.cs" />
-    <Compile Include="TC\CircleProgressBarTest2.cs" />
-    <Compile Include="TC\CircleProgressBarTest3.cs" />
-    <Compile Include="TC\CircleProgressBarTest4.cs" />
-    <Compile Include="TC\CircleSpinnerTest1.cs" />
-    <Compile Include="TC\CircleSpinnerTest2.cs" />
-    <Compile Include="TC\Log.cs" />
-    <Compile Include="TC\MoreOptionTest.cs" />
-    <Compile Include="TC\RotarySelectorTest.cs" />
-    <Compile Include="TestCaseBase.cs" />
-    <Compile Include="TestRunner.cs" />
+    <Folder Include="shared\" />
+    <Folder Include="res\" />
+  </ItemGroup>
+
+  <!-- Include Nuget Package for Tizen Project building -->
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="3.0.0" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="0.9.16-pre1" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ElmSharp.Wearable.Test.project.json" />
+    <ProjectReference Include="..\..\src\ElmSharp\ElmSharp.csproj" />
+    <ProjectReference Include="..\..\src\ElmSharp.Wearable\ElmSharp.Wearable.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="res\icons\bg_black.png" />
-    <Content Include="res\icons\bg_red.png" />
-    <Content Include="res\icons\bg_white.png" />
-    <Content Include="res\icons\icon_aquamarine_260_me.png" />
-    <Content Include="res\icons\icon_auamarine_260_me.png" />
-    <Content Include="res\icons\icon_azure_215_me.png" />
-    <Content Include="res\icons\icon_beige_330_me.png" />
-    <Content Include="res\icons\icon_blue_45_me.png" />
-    <Content Include="res\icons\icon_brown_90_me.png" />
-    <Content Include="res\icons\icon_cyan_230_me.png" />
-    <Content Include="res\icons\icon_firebrick_95_me.png" />
-    <Content Include="res\icons\icon_gold_75_me.png" />
-    <Content Include="res\icons\icon_green_60_me.png" />
-    <Content Include="res\icons\icon_honeydew_285_me.png" />
-    <Content Include="res\icons\icon_ivory_315_me.png" />
-    <Content Include="res\icons\icon_khaki_360_me.png" />
-    <Content Include="res\icons\icon_lime_300_me.png" />
-    <Content Include="res\icons\icon_maroon_120_me.png" />
-    <Content Include="res\icons\icon_me.png" />
-    <Content Include="res\icons\icon_orchid_160_me.png" />
-    <Content Include="res\icons\icon_pink_145_me.png" />
-    <Content Include="res\icons\icon_purple_200_me.png" />
-    <Content Include="res\icons\icon_red_30_me.png" />
-    <Content Include="res\icons\icon_snow_75_me.png" />
-    <Content Include="res\icons\icon_snow_80_me.png" />
-    <Content Include="res\icons\icon_teal_245_me.png" />
-    <Content Include="res\icons\icon_violet_180_me.png" />
-    <Content Include="res\icons\icon_yellow_345_me.png" />
-    <Content Include="res\icons\pressed.png" />
-    <Content Include="res\icons\round_bg_green.png" />
-    <Content Include="res\icons\round_bg_white.png" />
-    <Content Include="res\icons\round_bg_yellow.png" />
-    <Content Include="res\icons\round_content_black.png" />
-    <Content Include="res\icons\round_content_blue.png" />
-    <Content Include="res\icons\round_content_red.png" />
-    <Content Include="shared\res\ElmSharp.Test.png" />
-    <Content Include="tizen-manifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ElmSharp.Wearable\ElmSharp.Wearable.csproj">
-      <Project>{9a1c45ac-93e3-4b09-b896-769df60cf1b2}</Project>
-      <Name>ElmSharp.Wearable</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ElmSharp\ElmSharp.csproj">
-      <Project>{d00c29dd-4b2e-41c0-a323-bad1a74c69bf}</Project>
-      <Name>ElmSharp</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+  <Import Project="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets" Condition="Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets')" />
+
+  <!-- Install Check 'Visual Studio for Tizen' for developing on Visual Studio -->
+  <Target Name="TizenVsixInstallCheck" BeforeTargets="CompileDesignTime">
+    <Warning Condition="!Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props')" Text="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props is not exist.&#xA; you need to check if 'Visual Studio for Tizen' is installed" />
+    <Warning Condition="!Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets')" Text="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets is not exist.\&#xA; you need to check if 'Visual Studio for Tizen' is installed" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <PropertyGroup>
-    <!-- https://github.com/dotnet/corefxlab/tree/master/samples/NetCoreSample and
-       https://docs.microsoft.com/en-us/dotnet/articles/core/tutorials/target-dotnetcore-with-msbuild
-    -->
-    <!-- We don't use any of MSBuild's resolution logic for resolving the framework, so just set these two
-       properties to any folder that exists to skip the GetReferenceAssemblyPaths task (not target) and
-       to prevent it from outputting a warning (MSB3644).
-    -->
-    <_TargetFrameworkDirectories>$(MSBuildThisFileDirectory)</_TargetFrameworkDirectories>
-    <_FullFrameworkReferenceAssemblyPaths>$(MSBuildThisFileDirectory)</_FullFrameworkReferenceAssemblyPaths>
-    <AutoUnifyAssemblyReferences>true</AutoUnifyAssemblyReferences>
-  </PropertyGroup>
-  <ProjectExtensions>
-    <VisualStudio>
-      <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Debug|Any CPU">
-        <ProjectCommonFlavorCfg />
-      </FlavorProperties>
-      <FlavorProperties GUID="{2F98DAC9-6F16-457B-AED7-D43CAC379341}" Configuration="Release|Any CPU">
-        <ProjectCommonFlavorCfg />
-      </FlavorProperties>
-    </VisualStudio>
-  </ProjectExtensions>
 </Project>

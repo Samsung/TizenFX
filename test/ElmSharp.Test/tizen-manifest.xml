@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="ElmSharpTest" version="1.0.0">
-	<profile name="common" />
-	<ui-application appid="org.tizen.ElmSharp.Test"
-					exec="ElmSharp.Test.exe"
-					type="dotnet"
-					multiple="false"
-					taskmanage="true"
-					launch_mode="single">
-	<icon>ElmSharp.Test.png</icon>
-	<label>ElmSharp.Test</label>
-	</ui-application>
+<manifest package="ElmSharpTest" version="1.0.0" api-version="3.0" xmlns="http://tizen.org/ns/packages">
+  <profile name="common" />
+  <ui-application appid="org.tizen.ElmSharp.Test" exec="ElmSharp.Test.dll" multiple="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+    <icon>ElmSharp.Test.png</icon>
+    <label>ElmSharp.Test</label>
+  </ui-application>
+  <shortcut-list />
 </manifest>

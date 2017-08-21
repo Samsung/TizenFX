@@ -387,8 +387,6 @@ namespace ElmSharp
 
         /// <summary>
         /// Gets or sets date format the string that will be used to display month and year.
-        /// By default it uses strftime with "%B %Y" format string.
-        /// It should allocate the memory that will be used by the string, that will be freed by the widget after usage.A pointer to the string and a pointer to the time struct will be provided.
         /// </summary>
         public DateFormatDelegate DateFormat
         {

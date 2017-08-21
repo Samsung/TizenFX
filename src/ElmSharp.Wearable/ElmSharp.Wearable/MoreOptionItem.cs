@@ -4,6 +4,9 @@ using System.Text;
 
 namespace ElmSharp.Wearable
 {
+    /// <summary>
+    /// The MoreOptionItem is a item of MoreOption widget.
+    /// </summary>
     public class MoreOptionItem
     {
         const string MainTextPartName = "selector,main_text";
@@ -15,6 +18,9 @@ namespace ElmSharp.Wearable
         Image _icon;
         IntPtr _handle;
 
+        /// <summary>
+        /// Sets or gets the more option item handle.
+        /// </summary>
         public IntPtr Handle
         {
             get
@@ -34,11 +40,17 @@ namespace ElmSharp.Wearable
             }
         }
 
+        /// <summary>
+        /// Set the icon to null
+        /// </summary>
         public MoreOptionItem()
         {
             _icon = null;
         }
 
+        /// <summary>
+        /// Sets or gets the main text of a more option object.
+        /// </summary>
         public string MainText
         {
             set
@@ -57,6 +69,9 @@ namespace ElmSharp.Wearable
             }
         }
 
+        /// <summary>
+        /// Sets or gets the sub text of a more option object.
+        /// </summary>
         public string SubText
         {
             set
@@ -75,6 +90,9 @@ namespace ElmSharp.Wearable
             }
         }
 
+        /// <summary>
+        /// Sets or gets the icon image
+        /// </summary>
         public Image Icon
         {
             set

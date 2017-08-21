@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,6 +21,11 @@ using System.Text;
 
 namespace ElmSharp.Wearable
 {
+    /// <summary>
+    /// The Rotary Selector is a widget to display a selector and multiple items surrounding the selector.
+    /// And an item can be selected by rotary event or user item click.
+    /// Inherits <see cref="Layout"/>.
+    /// </summary>
     public class RotarySelector : Layout
     {
         const string IconPartName = "selector,icon";
@@ -14,15 +35,29 @@ namespace ElmSharp.Wearable
         const string ItemSelectedEventName = "item,selected";
         const string ItemClickedEventName = "item,clicked";
 
+        /// <summary>
+        /// Selected will be triggered when selected an item.
+        /// </summary>
         public event EventHandler<RotarySelectorItemEventArgs> Selected;
+
+        /// <summary>
+        /// Clicked will be triggered when selecting again the alredy selected item or selecting a selector.
+        /// </summary>
         public event EventHandler<RotarySelectorItemEventArgs> Clicked;
 
         SmartEvent<PointerEventArgs> _selectedEvent;
         SmartEvent<PointerEventArgs> _clickedEvent;
         Image _normalBgImage;
 
+        /// <summary>
+        /// Gets the rotary selector item list of a rotary selector object.
+        /// </summary>
         public IList<RotarySelectorItem> Items { get; private set; }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Rotary Selector class.
+        /// </summary>
+        /// <param name="parent">The parent of new Rotary Selector instance</param>
         public RotarySelector(EvasObject parent) : base(parent)
         {
             Items = new RotarySelectorList(this);
@@ -42,6 +77,9 @@ namespace ElmSharp.Wearable
             };
         }
 
+        /// <summary>
+        /// Sets or gets the selected item of a rotary selector object.
+        /// </summary>
         public RotarySelectorItem SelectedItem
         {
             get
@@ -77,6 +115,9 @@ namespace ElmSharp.Wearable
             }
         }
 
+        /// <summary>
+        /// Sets or gets the background image of a rotary selector object.
+        /// </summary>
         public Image BackgroundImage { set => setPart(ref _normalBgImage, BgPartName, State.Normal, value); get => _normalBgImage; }
 
         protected override IntPtr CreateHandle(EvasObject parent)

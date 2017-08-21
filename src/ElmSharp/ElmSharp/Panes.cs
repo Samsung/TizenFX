@@ -94,8 +94,9 @@ namespace ElmSharp
         /// Sets or gets the orientation of a given Panes widget.
         /// </summary>
         /// <remarks>
-        /// Uses this function to change how your panes are to be disposed: vertically or horizontally.
-        /// By default it's displayed horizontally.
+        /// Use this function to change how your panes is to be disposed: vertically or horizontally.
+        /// Horizontal panes have "top" and "bottom" contents, vertical panes have "left" and "right" contents.
+        /// By default panes is in a vertical mode.
         /// </remarks>
         public bool IsHorizontal
         {

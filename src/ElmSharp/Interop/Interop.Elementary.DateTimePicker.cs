@@ -33,7 +33,7 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_datetime_format_set(IntPtr obj, string format);
 
-        [DllImport(Libraries.Elementary)]
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_datetime_format_get")]
         internal static extern IntPtr _elm_datetime_format_get(IntPtr obj);
 
         internal static string elm_datetime_format_get(IntPtr obj)

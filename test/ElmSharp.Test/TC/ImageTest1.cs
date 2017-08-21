@@ -169,16 +169,24 @@ namespace ElmSharp.Test
                 Console.WriteLine("Image has been clicked. (IsFixedAspect = {0}", image.IsFixedAspect);
                 image.IsFixedAspect = image.IsFixedAspect == true ? false : true;
             };
+            image.LoadingCompleted += (s, e) =>
+            {
+                Console.WriteLine("Image has been loaded successfully.");
+            };
+            image.LoadingFailed += (s, e) =>
+            {
+                Console.WriteLine("Image loading has been failed.");
+            };
 
             btnFile1.Clicked += (s, e) => LoadFile("TED/large/a.jpg");
             btnFile2.Clicked += (s, e) => LoadFile("TED/large/b.jpg");
             btnUri1.Clicked += (s, e) => LoadUri("http://pe.tedcdn.com/images/ted/2e306b9655267cee35e45688ace775590b820510_615x461.jpg");
-            btnStream1.Clicked += (s, e) => LoadStream(new FileStream(Path.Combine(TestRunner.ResourceDir, "TED/large/c.jpg"), FileMode.Open));
+            btnStream1.Clicked += (s, e) => LoadStream(new FileStream(Path.Combine(TestRunner.ResourceDir, "TED/large/c.jpg"), FileMode.Open, FileAccess.Read));
 
             btnFileAsync1.Clicked += (s, e) => LoadFileAsync("TED/large/d.jpg");
             btnFileAsync2.Clicked += (s, e) => LoadFileAsync("TED/large/e.jpg");
             btnUriAsync1.Clicked += (s, e) => LoadUriAsync("http://pe.tedcdn.com/images/ted/2e306b9655267cee35e45688ace775590b820510_615x461.jpg");
-            btnStreamAsync1.Clicked += (s, e) => LoadStreamAsync(new FileStream(Path.Combine(TestRunner.ResourceDir, "TED/large/f.jpg"), FileMode.Open));
+            btnStreamAsync1.Clicked += (s, e) => LoadStreamAsync(new FileStream(Path.Combine(TestRunner.ResourceDir, "TED/large/f.jpg"), FileMode.Open, FileAccess.Read));
             box.PackEnd(buttonBox1);
             box.PackEnd(buttonBox2);
             box.PackEnd(lbInfo);

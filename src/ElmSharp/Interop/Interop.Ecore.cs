@@ -21,9 +21,25 @@ internal static partial class Interop
 {
     internal static partial class Ecore
     {
+        internal enum PositionMap
+        {
+            Linear,
+            Accelerate,
+            Decelerate,
+            Sinusoidal,
+            AccelerateFactor,
+            DecelerateFactor,
+            SinusoidalFactor,
+            DivisorInterp,
+            Bounce,
+            Spring,
+            CubicBezier
+        }
+
         internal delegate void EcoreCallback(IntPtr data);
         internal delegate bool EcoreTaskCallback(IntPtr data);
         internal delegate void EcoreEventCallback(IntPtr data, int type, IntPtr evt);
+        internal delegate bool EcoreTimelineCallback(IntPtr data, double pos);
 
         [DllImport(Libraries.Ecore)]
         internal static extern int ecore_init();
@@ -72,5 +88,26 @@ internal static partial class Interop
 
         [DllImport(Libraries.Ecore)]
         internal static extern IntPtr ecore_event_handler_del(IntPtr handler);
+
+        [DllImport(Libraries.Ecore)]
+        internal static extern IntPtr ecore_animator_timeline_add(double runtime, EcoreTimelineCallback func, IntPtr data);
+
+        [DllImport(Libraries.Ecore)]
+        internal static extern void ecore_animator_freeze(IntPtr animator);
+
+        [DllImport(Libraries.Ecore)]
+        internal static extern void ecore_animator_thaw(IntPtr animator);
+
+        [DllImport(Libraries.Ecore)]
+        internal static extern void ecore_animator_frametime_set(double frametime);
+
+        [DllImport(Libraries.Ecore)]
+        internal static extern void ecore_animator_frametime_get();
+
+        [DllImport(Libraries.Ecore)]
+        internal static extern double ecore_animator_pos_map(double pos, PositionMap map, double v1, double v2);
+
+        [DllImport(Libraries.Ecore)]
+        internal static extern double ecore_animator_pos_map_n(double pos, PositionMap map, int v_size, double[] v);
     }
 }

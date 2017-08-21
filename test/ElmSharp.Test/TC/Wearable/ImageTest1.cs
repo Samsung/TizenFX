@@ -77,12 +77,12 @@ namespace ElmSharp.Test.Wearable
             btns[0].Clicked += (s, e) => LoadFile("TED/large/a.jpg");
             btns[1].Clicked += (s, e) => LoadFile("TED/large/b.jpg");
             btns[2].Clicked += (s, e) => LoadUri("http://pe.tedcdn.com/images/ted/2e306b9655267cee35e45688ace775590b820510_615x461.jpg");
-            btns[3].Clicked += (s, e) => LoadStream(new FileStream(Path.Combine(TestRunner.ResourceDir, "TED/large/c.jpg"), FileMode.Open));
+            btns[3].Clicked += (s, e) => LoadStream(new FileStream(Path.Combine(TestRunner.ResourceDir, "TED/large/c.jpg"), FileMode.Open, FileAccess.Read));
 
             btns[4].Clicked += (s, e) => LoadFileAsync("TED/large/d.jpg");
             btns[5].Clicked += (s, e) => LoadFileAsync("TED/large/e.jpg");
             btns[6].Clicked += (s, e) => LoadUriAsync("http://pe.tedcdn.com/images/ted/2e306b9655267cee35e45688ace775590b820510_615x461.jpg");
-            btns[7].Clicked += (s, e) => LoadStreamAsync(new FileStream(Path.Combine(TestRunner.ResourceDir, "TED/large/f.jpg"), FileMode.Open));
+            btns[7].Clicked += (s, e) => LoadStreamAsync(new FileStream(Path.Combine(TestRunner.ResourceDir, "TED/large/f.jpg"), FileMode.Open, FileAccess.Read));
         }
 
         void LoadFile(string file)
