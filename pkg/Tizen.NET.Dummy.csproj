@@ -104,6 +104,7 @@
         TargetType="$(OutputType)"
         NoStandardLib="$(NoCompilerStandardLib)"
         References="@(FilteredReferencePath)"
+        Deterministic="true"
         ToolExe="$(CscToolExe)"
         ToolPath="$(CscToolPath)" />
 
