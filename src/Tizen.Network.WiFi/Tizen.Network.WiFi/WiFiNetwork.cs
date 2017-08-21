@@ -208,6 +208,27 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
+        /// The Received signal strength indication(RSSI).
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <value>Represents Rssi level of WiFi.</value>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
+        public WiFiRssiLevel RssiLevel
+        {
+            get
+            {
+                int rssi;
+                int ret = Interop.WiFi.AP.GetRssiLevel(_apHandle, out rssi);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get rssi level, Error - " + (WiFiError)ret);
+                }
+                return (WiFiRssiLevel)rssi;
+            }
+        }
+
+        /// <summary>
         /// The max speed (Mbps).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>

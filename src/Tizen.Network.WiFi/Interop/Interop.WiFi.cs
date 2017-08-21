@@ -121,6 +121,8 @@ internal static partial class Interop
             internal static extern int GetBssid(SafeWiFiAPHandle ap, out IntPtr bssid);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_rssi")]
             internal static extern int GetRssi(SafeWiFiAPHandle ap, out int rssi);
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_rssi_level")]
+            internal static extern int GetRssiLevel(SafeWiFiAPHandle ap, out int rssi_level);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_frequency")]
             internal static extern int GetFrequency(SafeWiFiAPHandle ap, out int frequency);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_max_speed")]
