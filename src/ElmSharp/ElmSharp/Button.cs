@@ -96,7 +96,7 @@ namespace ElmSharp
         {
             get
             {
-                return !Interop.Elementary.elm_button_autorepeat_get(RealHandle);
+                return Interop.Elementary.elm_button_autorepeat_get(RealHandle);
             }
             set
             {
