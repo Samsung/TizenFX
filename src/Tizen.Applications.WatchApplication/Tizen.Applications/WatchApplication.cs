@@ -49,7 +49,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Instance for the window
         /// </summary>
-        protected Widget Window;
+        protected Window Window;
 
         /// <summary>
         /// Occurs whenever the application is resumed.
@@ -103,6 +103,7 @@ namespace Tizen.Applications
 
             Interop.Watch.GetWin(out win);
             Window = new WatchWindow(win);
+            Window.Show();
         }
 
         /// <summary>
