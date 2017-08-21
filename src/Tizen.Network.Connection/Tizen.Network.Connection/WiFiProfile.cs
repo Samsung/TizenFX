@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.Connection
 {
     /// <summary>
-    /// This Class is WiFiProfile. It provides functions to manage the WiFi profile.
+    /// This is the WiFiProfile class. It provides functions to manage the WiFi profile.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class WiFiProfile : ConnectionProfile
@@ -216,13 +216,13 @@ namespace Tizen.Network.Connection
         /// Sets the passphrase of the Wi-Fi WPA.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="passphrase">The passphrase of Wi-Fi security</param>
+        /// <param name="passphrase">The passphrase of Wi-Fi security.</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
-        /// <exception cref="System.ArgumentNullException">Thrown when passphrase is null.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when profile instance is invalid or when method failed due to invalid operation.</exception>
-        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when a passphrase is null.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when an operation is performed on a disposed object.</exception>
         public void SetPassphrase(string passphrase)
         {
             CheckDisposed();

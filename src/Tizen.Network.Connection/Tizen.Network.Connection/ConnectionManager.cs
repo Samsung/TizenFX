@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
 /// <summary>
-/// The Connection API provides functions, enumerations to get the status of network and current profile and manage profiles.
+/// The Connection API provides functions and enumerations to get the status of network and current profile and manages profiles.
 /// </summary>
 namespace Tizen.Network.Connection
 {
@@ -61,7 +61,7 @@ namespace Tizen.Network.Connection
     }
 
     /// <summary>
-    /// This class is ConnectionManager. It provides functions to manage data connections.
+    /// This is the ConnectionManager class. It provides functions to manage data connections.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public static class ConnectionManager
@@ -69,7 +69,7 @@ namespace Tizen.Network.Connection
         private static ConnectionItem _currentConnection = null;
 
         /// <summary>
-        /// Event that is called when the type of the current connection is changed.
+        /// An event is called when the type of the current connection is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -91,7 +91,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Event for ethernet cable is plugged [in/out] event.
+        /// An event for the ethernet cable is plugged [in/out] event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -110,7 +110,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Event that is called when the IP address is changed.
+        /// An event is called when the IP address is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -132,7 +132,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Event that is called when the proxy address is changed.
+        /// An event is called when the proxy address is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -157,7 +157,7 @@ namespace Tizen.Network.Connection
         /// Gets the connection handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>Instance of SafeConnectionHandle</returns>
+        /// <returns>Instance of SafeConnectionHandle.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static SafeConnectionHandle GetConnectionHandle()
         {
@@ -169,39 +169,39 @@ namespace Tizen.Network.Connection
         /// Gets the IP address of the current connection.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="family">The address family</param>
+        /// <param name="family">The address family.</param>
         /// <returns>IP address of the connection (global address in case of IPv6).</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
-        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</exception>
         public static System.Net.IPAddress GetIPAddress(AddressFamily family)
         {
             return ConnectionInternalManager.Instance.GetIPAddress(family);
         }
 
         /// <summary>
-        /// Gets the all IPv6 addresses of the current connection.
+        /// Gets all the IPv6 addresses of the current connection.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="type">The type of current network connection</param>
+        /// <param name="type">The type of current network connection.</param>
         /// <returns>A list of IPv6 addresses of the connection.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
-        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</exception>
         public static IEnumerable<System.Net.IPAddress> GetAllIPv6Addresses(ConnectionType type)
         {
             return ConnectionInternalManager.Instance.GetAllIPv6Addresses(type);
@@ -211,18 +211,18 @@ namespace Tizen.Network.Connection
         /// Gets the proxy address of the current connection.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="family">The address family</param>
+        /// <param name="family">The address family.</param>
         /// <returns>Proxy address of the connection.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
-        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</exception>
         public static string GetProxy(AddressFamily family)
         {
             return ConnectionInternalManager.Instance.GetProxy(family);
@@ -232,18 +232,18 @@ namespace Tizen.Network.Connection
         /// Gets the MAC address of the Wi-Fi or ethernet.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="type">The type of current network connection</param>
+        /// <param name="type">The type of current network connection.</param>
         /// <returns>MAC address of the Wi-Fi or ethernet.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
-        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is an invalid parameter.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</exception>
         public static string GetMacAddress(ConnectionType type)
         {
             return ConnectionInternalManager.Instance.GetMacAddress(type);
@@ -253,19 +253,19 @@ namespace Tizen.Network.Connection
         /// Gets the statistics information.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="connectionType">The type of connection (only WiFi and Cellular are supported)</param>
-        /// <param name="statisticsType">The type of statistics</param>
-        /// <returns>The statistics information associated with statisticsType</returns>
+        /// <param name="connectionType">The type of connection (only WiFi and Cellular are supported).</param>
+        /// <param name="statisticsType">The type of statistics.</param>
+        /// <returns>The statistics information associated with statisticsType.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
-        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when value is an invalid parameter.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a connection instance is invalid or when a method fails due to invalid operation.</exception>
         public static long GetStatistics(ConnectionType connectionType, StatisticsType statisticsType)
         {
             return ConnectionInternalManager.Instance.GetStatistics(connectionType, statisticsType);
@@ -275,19 +275,19 @@ namespace Tizen.Network.Connection
         /// Resets the statistics information.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="connectionType">The type of connection (only WiFi and Cellular are supported)</param>
-        /// <param name="statisticsType">The type of statistics</param>
+        /// <param name="connectionType">The type of connection (only WiFi and Cellular are supported).</param>
+        /// <param name="statisticsType">The type of statistics.</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
-        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</exception>
         public static void ResetStatistics(ConnectionType connectionType, StatisticsType statisticsType)
         {
             ConnectionInternalManager.Instance.ResetStatistics(connectionType, statisticsType);
@@ -296,22 +296,22 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Adds a route to the routing table.
         /// </summary>
-        /// <param name="family">The address family</param>
-        /// <param name="interfaceName">The name of network interface</param>
-        /// <param name="hostAddress">The IP address of the host</param>
-        /// <param name="gateway">The gateway address</param>
+        /// <param name="family">The address family.</param>
+        /// <param name="interfaceName">The name of the network interface.</param>
+        /// <param name="hostAddress">The IP address of the host.</param>
+        /// <param name="gateway">The gateway address.</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
-        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
-        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
-        /// <exception cref="System.ArgumentNullException">Thrown when interfaceName or hostAddress or gateway is null.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when an interfaceName or a hostAddress or a gateway is null.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</exception>
         public static void AddRoute(AddressFamily family, string interfaceName, System.Net.IPAddress hostAddress, System.Net.IPAddress gateway)
         {
             ConnectionInternalManager.Instance.AddRoute(family, interfaceName, hostAddress, gateway);
@@ -320,32 +320,32 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Removes a route from the routing table.
         /// </summary>
-        /// <param name="family">The address family</param>
-        /// <param name="interfaceName">The name of network interface</param>
-        /// <param name="hostAddress">The IP address of the host</param>
-        /// <param name="gateway">The gateway address</param>
+        /// <param name="family">The address family.</param>
+        /// <param name="interfaceName">The name of network interface.</param>
+        /// <param name="hostAddress">The IP address of the host.</param>
+        /// <param name="gateway">The gateway address.</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
-        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
-        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
-        /// <exception cref="System.ArgumentNullException">Thrown when interfaceName or hostAddress or gateway is null.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when an interfaceName or a hostAddress or a gateway is null.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when connection instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</exception>
         public static void RemoveRoute(AddressFamily family, string interfaceName, System.Net.IPAddress hostAddress, System.Net.IPAddress gateway)
         {
             ConnectionInternalManager.Instance.RemoveRoute(family, interfaceName, hostAddress, gateway);
         }
 
         /// <summary>
-        /// Type and state of the current profile for data connection
+        /// The type and state of the current profile for data connection.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Instance of ConnectionItem</value>
+        /// <value>Instance of ConnectionItem.</value>
         public static ConnectionItem CurrentConnection
         {
             get
@@ -365,15 +365,15 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <param name="type">The type of profile. Cellular profile type is supported.</param>
         /// <param name="keyword">The keyword included in profile name.</param>
-        /// <returns>CellularProfile object</returns>
+        /// <returns>CellularProfile object.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
-        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
-        /// <exception cref="System.ArgumentNullException">Thrown when keyword value is null.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when a keyword value is null.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a method fails due to invalid operation.</exception>
         public static CellularProfile CreateCellularProfile(ConnectionProfileType type, string keyword)
         {
             IntPtr profileHandle = IntPtr.Zero;
@@ -392,7 +392,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The state of cellular connection.
+        /// The state of the cellular connection.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular network state.</value>
@@ -406,7 +406,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The state of the Wi-Fi.
+        /// The state of the Wi-Fi connection.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>WiFi connection state.</value>
@@ -420,7 +420,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The state of the Bluetooth.
+        /// The state of the Bluetooth connection.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Bluetooth connection state.</value>
@@ -448,7 +448,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Checks for ethernet cable is attached or not.
+        /// Checks if the ethernet cable is attached or not.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Ethernet cable state.</value>
@@ -464,7 +464,7 @@ namespace Tizen.Network.Connection
     } // class ConnectionManager
 
     /// <summary>
-    /// This class contains connection information such as connection type and state.
+    /// This class contains connection information, such as connection type and state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ConnectionItem
@@ -531,7 +531,7 @@ namespace Tizen.Network.Connection
     } // class ConnectionItem
 
     /// <summary>
-    /// An extended EventArgs class which contains changed connection type.
+    /// An extended EventArgs class, which contains changed connection type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ConnectionTypeEventArgs : EventArgs
@@ -558,7 +558,7 @@ namespace Tizen.Network.Connection
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed ethernet cable state.
+    /// An extended EventArgs class, which contains changed ethernet cable state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class EthernetCableStateEventArgs : EventArgs
@@ -585,7 +585,7 @@ namespace Tizen.Network.Connection
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed address.
+    /// An extended EventArgs class, which contains changed address.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class AddressEventArgs : EventArgs
@@ -600,10 +600,10 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The  IPV4 address.
+        /// The IPV4 address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>IP address in the format of IPV4 syntax.</value>
+        /// <value>IP address in the format of the IPV4 syntax.</value>
         public string IPv4Address
         {
             get
@@ -613,10 +613,10 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The  IPV6 address.
+        /// The IPV6 address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>IP address in the format of IPV6 syntax.</value>
+        /// <value>IP address in the format of the IPV6 syntax.</value>
         public string IPv6Address
         {
             get
