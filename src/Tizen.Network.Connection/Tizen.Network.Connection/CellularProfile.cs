@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.Connection
 {
     /// <summary>
-    /// This Class is CellularProfile. It provides functions to manage the cellular profile.
+    /// This is the CellularProfile class. It provides functions to manage the cellular profile.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class CellularProfile : ConnectionProfile
@@ -43,11 +43,11 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular access point name.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.ArgumentNullException">Thrown during set when value is null.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
-        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown during set when a value is null.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when an operation is performed on a disposed object.</exception>
         public string Apn
         {
             get
@@ -92,11 +92,11 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular home URL.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.ArgumentNullException">Thrown during set when value is null.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
-        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown during set when a value is null.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when an operation is performed on a disposed object.</exception>
         public string HomeUri
         {
             get
@@ -141,10 +141,10 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular service type.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
-        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when an operation is performed on a disposed object.</exception>
         public CellularServiceType ServiceType
         {
             get
@@ -179,10 +179,10 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular pdn type.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
-        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when an operation is performed on a disposed object.</exception>
         public CellularPdnType PdnType
         {
             get
@@ -217,10 +217,10 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular roaming pdn type.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
-        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when a operation is performed on a disposed object.</exception>
         public CellularPdnType RoamingPdnType
         {
             get
@@ -251,15 +251,15 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Cellular Authentication Information.
+        /// The cellular authentication information.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Instance of CellularAuthInformation.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.ArgumentNullException">Thrown during set when value is null.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
-        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown during set when a value is null.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when an operation is performed on a disposed object.</exception>
         public CellularAuthInformation CellularAuthInfo
         {
             get
@@ -367,13 +367,13 @@ namespace Tizen.Network.Connection
     }
 
     /// <summary>
-    /// This Class is CellularAuthInformation. It provides the properties to get and set the cellular authentication information.
+    /// This is the CellularAuthInformation class. It provides the properties to get and set the cellular authentication information.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class CellularAuthInformation
     {
         /// <summary>
-        /// Default Constructor.Initializes an object of CellularAuthInformation.
+        /// Default constructor. Initializes an object of the CellularAuthInformation.
         /// </summary>
         public CellularAuthInformation()
         {
@@ -381,19 +381,19 @@ namespace Tizen.Network.Connection
 
         /// <summary>
         /// The user name.
-        /// <since_tizen> 3 </since_tizen>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular user name.</value>
         public string UserName { get; set;}
         /// <summary>
-        /// The password
+        /// The password.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular password.</value>
         public string Password { get; set; }
 
         /// <summary>
-        /// The authentication type
+        /// The authentication type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Cellular authentication type.</value>

@@ -35,9 +35,9 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>First DNS address of the connection.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
         System.Net.IPAddress Dns1 { get; set; }
 
         /// <summary>
@@ -45,9 +45,9 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Second DNS address of the connection.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
         System.Net.IPAddress Dns2 { get; set; }
 
         /// <summary>
@@ -55,9 +55,9 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Gateway address of the connection.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
         System.Net.IPAddress Gateway { get; set; }
 
         /// <summary>
@@ -65,9 +65,9 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Subnet mask of the connection.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
         System.Net.IPAddress SubnetMask { get; set; }
 
         /// <summary>
@@ -75,9 +75,9 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>IP address of the connection.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
         System.Net.IPAddress IP { get; set; }
 
         /// <summary>
@@ -85,9 +85,9 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>IP config type of the connection.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
         IPConfigType IPConfigType { get; set; }
 
         /// <summary>
@@ -95,9 +95,9 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Prefix length of the connection.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
         int PrefixLength { get; set; }
 
         /// <summary>
@@ -105,13 +105,13 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Config type of the DNS.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
         DnsConfigType DnsConfigType { get; set; }
 
         /// <summary>
-        /// The DHCP server address. It is only supported for IPV4 address family.
+        /// The DHCP server address. It is only supported for the IPV4 address family.
         /// </summary>
         /// <value>Server address of the DHCP.</value>
         System.Net.IPAddress DhcpServerAddress { get; }

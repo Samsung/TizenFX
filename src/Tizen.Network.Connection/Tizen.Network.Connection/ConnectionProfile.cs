@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.Connection
 {
     /// <summary>
-    /// This Class is ConnectionProfile. It provides event and propeties of the connection profile.
+    /// This is the ConnectionProfile class. It provides event and propeties of the connection profile.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ConnectionProfile : IDisposable
@@ -42,7 +42,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The event that is called when the state of profile is changed.
+        /// The event is called when the state of profile is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
@@ -223,7 +223,7 @@ namespace Tizen.Network.Connection
         /// The name of the network interface.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Network interface name, e.g. eth0 and pdp0.</value>
+        /// <value>Network interface name, for example, eth0 and pdp0.</value>
         public string InterfaceName
         {
             get
@@ -249,11 +249,11 @@ namespace Tizen.Network.Connection
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
-        /// <exception cref="System.UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when profile instance is invalid or when method failed due to invalid operation</exception>
-        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when an operation is performed on a disposed object.</exception>
         public void Refresh()
         {
             CheckDisposed();
@@ -269,19 +269,19 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Get the network state.
+        /// Gets the network state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="family">The address family</param>
+        /// <param name="family">The address family.</param>
         /// <returns>The network state.</returns>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="System.NotSupportedException">Thrown when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when profile instance is invalid or when method failed due to invalid operation</exception>
-        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when an operation is performed on a disposed object.</exception>
         public ProfileState GetState(AddressFamily family)
         {
             CheckDisposed();
@@ -313,10 +313,10 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Proxy type of the connection.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
-        /// <exception cref="System.ObjectDisposedException">Thrown during set when operation is performed on a disposed object.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown during set when a operation is performed on a disposed object.</exception>
         public ProxyType ProxyType
         {
             get
@@ -350,11 +350,11 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Proxy address of the connection.</value>
-        /// <exception cref="System.NotSupportedException">Thrown during set when feature is not supported.</exception>
-        /// <exception cref="System.ArgumentException">Thrown during set when value is invalid parameter.</exception>
-        /// <exception cref="System.ArgumentNullException">Thrown during set when value is null.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown during set when profile instance is invalid or when method failed due to invalid operation.</exception>
-        /// <exception cref="System.ObjectDisposedException">Thrown when operation is performed on a disposed object.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown during set when a feature is not supported.</exception>
+        /// <exception cref="System.ArgumentException">Thrown during set when a value is an invalid parameter.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown during set when a value is null.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown during set when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
+        /// <exception cref="System.ObjectDisposedException">Thrown when an operation is performed on a disposed object.</exception>
         public string ProxyAddress
         {
             get
@@ -394,7 +394,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The address information (IPv4)
+        /// The address information (IPv4).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Instance of IAddressInformation with IPV4 address.</value>
@@ -408,7 +408,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The address information (IPv6)
+        /// The address information (IPv6).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Instance of IAddressInformation with IPV6 address.</value>
@@ -422,7 +422,7 @@ namespace Tizen.Network.Connection
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed profile state.
+    /// An extended EventArgs class, which contains changed profile state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ProfileStateEventArgs : EventArgs
