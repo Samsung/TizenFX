@@ -249,6 +249,7 @@ namespace Tizen.Multimedia
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="device"> is null.</exception>
+        /// <exception cref="AudioPolicyException"><see cref="AudioStreamType"/> of <paramref name="device"/> is unavailable for this.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <seealso cref="AudioManager.GetConnectedDevices()"/>
         /// <seealso cref="ApplyStreamRouting"/>
