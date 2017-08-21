@@ -40,6 +40,20 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Gets the current known default pointer coordinates.
+        /// This function returns the current known canvas unit coordinates of the mouse pointer.
+        /// </summary>
+        public Point Pointer
+        {
+            get
+            {
+                int mx, my;
+                Interop.Evas.evas_pointer_canvas_xy_get(_handle, out mx, out my);
+                return new Point { X = mx, Y = my };
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the image cache.
         /// This function returns the image cache size of canvas in bytes.
         /// </summary>

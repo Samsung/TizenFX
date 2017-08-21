@@ -465,6 +465,9 @@ internal static partial class Interop
         [DllImport(Libraries.Evas)]
         internal static extern void evas_image_cache_set(IntPtr obj, int size);
 
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_pointer_canvas_xy_get(IntPtr obj, out int mx, out int my);
+
         [DllImport(Libraries.Evas, EntryPoint = "evas_load_error_str")]
         internal static extern IntPtr _evas_load_error_str(LoadError error);
 
