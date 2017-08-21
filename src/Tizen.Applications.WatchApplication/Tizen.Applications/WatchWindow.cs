@@ -19,7 +19,7 @@ using System;
 
 namespace Tizen.Applications
 {
-    internal class WatchWindow : Widget
+    internal class WatchWindow : Window
     {
         private IntPtr _handle;
 
