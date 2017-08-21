@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Network.WiFi
 {
     /// <summary>
-    /// An abstract class for WiFi EAP information.
+    /// An abstract class for the Wi-Fi EAP information.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     internal interface IWiFiEap
@@ -31,13 +31,13 @@ namespace Tizen.Network.WiFi
         string CaCertificationFile { get; set; }
 
         /// <summary>
-        /// The EAP type of wifi.
+        /// The EAP type of the Wi-Fi.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         WiFiEapType EapType { get; set; }
 
         /// <summary>
-        /// The type of EAP phase2 authentication of Wi-Fi.
+        /// The type of EAP phase2 authentication of the Wi-Fi.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         WiFiAuthenticationType AuthenticationType { get; set; }

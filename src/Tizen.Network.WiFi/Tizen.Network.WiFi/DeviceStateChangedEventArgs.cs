@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Network.WiFi
 {
     /// <summary>
-    /// An extended EventArgs class which contains changed device state.
+    /// An extended EventArgs class which contains the changed device state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class DeviceStateChangedEventArgs : EventArgs
@@ -32,7 +32,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The wifi device state.
+        /// The Wi-Fi device state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public WiFiDeviceState State

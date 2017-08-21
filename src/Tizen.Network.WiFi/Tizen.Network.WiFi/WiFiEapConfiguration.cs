@@ -28,13 +28,13 @@ namespace Tizen.Network.WiFi
         private Interop.WiFi.SafeWiFiConfigHandle _configHandle;
 
         /// <summary>
-        /// The file path of CA Certificate of EAP.
+        /// The file path of CA certificate of EAP.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>CA certification file of EAP.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this value when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown while setting this value when Wi-Fi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public string CaCertificationFile
         {
             get
@@ -60,13 +60,13 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The EAP type of wifi.
+        /// The EAP type of the Wi-Fi.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Type of EAP.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this value when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown while setting this value when Wi-Fi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public WiFiEapType EapType
         {
             get
@@ -91,13 +91,13 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The type of EAP phase2 authentication of Wi-Fi.
+        /// The type of EAP phase2 authentication of the Wi-Fi.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Authentication type of WiFi.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this value when WiFi is not supported.</exception>
+        /// <value>Authentication type of the Wi-Fi.</value>
+        /// <exception cref="NotSupportedException">Thrown while setting this value when Wi-Fi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public WiFiAuthenticationType AuthenticationType
         {
             get
@@ -122,13 +122,13 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The anonymous identity of access point(AP).
+        /// The anonymous identity of the access point (AP).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Represents the anonymous identity of the access point.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this value when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown while setting this value when Wi-Fi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public string AnonymousIdentify
         {
             get
@@ -154,13 +154,13 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The identity of access point(AP).
+        /// The identity of the access point (AP).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Represents the identity of the access point.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this value when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown while setting this value when Wi-Fi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public string Identity
         {
             get
@@ -186,13 +186,13 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The subject match of access point(AP).
+        /// The subject match of the access point (AP).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Represents the subject match of AP.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this value when WiFi is not supported.</exception>
+        /// <value>Represents the subject match of the AP.</value>
+        /// <exception cref="NotSupportedException">Thrown while setting this value when Wi-Fi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public string SubjectMatch
         {
             get
@@ -223,14 +223,14 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Gets access point client cert file from configuration.
+        /// Gets the access point client certificate file from the configuration.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>The certification authority(CA) certificates file of access point.</returns>
+        /// <returns>The certification authority (CA) certificates file of the access point.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public string GetClientCertFile()
         {
             IntPtr strPtr;
@@ -244,15 +244,15 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Sets access point client cert file to configuration.
+        /// Sets the access point client certificate file to configuration.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="privateKey">The private key file.</param>
-        /// <param name="clientCert">The certification authority(CA) certificates file of access point.</param>
+        /// <param name="clientCert">The certification authority(CA) certifies the files of access points.</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public void SetClientCertFile(string privateKey, string clientCert)
         {
             int ret = Interop.WiFi.Config.SetEapClientCertFile(_configHandle, privateKey, clientCert);

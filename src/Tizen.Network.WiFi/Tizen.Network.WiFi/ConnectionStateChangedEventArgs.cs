@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Network.WiFi
 {
     /// <summary>
-    /// An extended EventArgs class which contains changed connection state.
+    /// An extended EventArgs class which contains the changed connection state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ConnectionStateChangedEventArgs : EventArgs
@@ -34,7 +34,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The wifi connection state.
+        /// The Wi-Fi connection state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public WiFiConnectionState State
@@ -46,7 +46,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The access point
+        /// The access point.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public WiFiAP AP

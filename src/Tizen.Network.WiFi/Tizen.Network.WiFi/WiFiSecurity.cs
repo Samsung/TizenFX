@@ -20,7 +20,7 @@ using Tizen.Network.Connection;
 namespace Tizen.Network.WiFi
 {
     /// <summary>
-    /// A class for managing the WiFi security information.
+    /// A class for managing the Wi-Fi security information.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class WiFiSecurity
@@ -32,10 +32,10 @@ namespace Tizen.Network.WiFi
         /// The type of Wi-Fi security.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Represents the security type of WiFi.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
+        /// <value>Represents the security type of the Wi-Fi.</value>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when Wi-Fi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public WiFiSecurityType SecurityType
         {
             get
@@ -60,13 +60,13 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The type of Wi-Fi encryption
+        /// The type of Wi-Fi encryption.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Represents the encryption type of WiFi.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
+        /// <value>Represents the encryption type of the Wi-Fi.</value>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when Wi-Fi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public WiFiEncryptionType EncryptionType
         {
             get
@@ -91,10 +91,10 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The EAP information
+        /// The EAP information.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Eap information of WiFi.</value>
+        /// <value>EAP information of the Wi-Fi.</value>
         public WiFiEap EapInformation
         {
             get
@@ -107,7 +107,7 @@ namespace Tizen.Network.WiFi
         /// A property to check whether the passphrase is required or not.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Boolean value to check if passphrase is required or not.</value>
+        /// <value>Boolean value to check if the passphrase is required or not.</value>
         public bool IsPassphraseRequired
         {
             get
@@ -123,10 +123,10 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// A property to check whether the Wi-Fi Protected Setup(WPS) is supported or not.
+        /// A property to check whether Wi-Fi Protected Setup (WPS) is supported.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Boolean value to check if wps is supported or not.</value>
+        /// <value>Boolean value to check if WPS is supported.</value>
         public bool IsWpsSupported
         {
             get
@@ -153,10 +153,10 @@ namespace Tizen.Network.WiFi
         /// <since_tizen> 3 </since_tizen>
         /// <param name="passphrase">The passphrase of the access point.</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when passphrase is passed as null.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when Wi-Fi is not supported.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the passphrase is passed as null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public void SetPassphrase(string passphrase)
         {
             if (passphrase == null)

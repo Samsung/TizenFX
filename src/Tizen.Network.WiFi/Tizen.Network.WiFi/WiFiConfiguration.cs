@@ -33,10 +33,10 @@ namespace Tizen.Network.WiFi
         private WiFiEapConfiguration _eapConfig;
 
         /// <summary>
-        /// The name of access point(AP).
+        /// The name of the access point (AP).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Name assigned to AP in WiFi configuration.</value>
+        /// <value>Name assigned to AP in the Wi-Fi configuration.</value>
         public string Name
         {
             get
@@ -53,10 +53,10 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The security type of access point(AP).
+        /// The security type of the access point (AP).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Security type of AP in WiFi configuration.</value>
+        /// <value>Security type of AP in the Wi-Fi configuration.</value>
         public WiFiSecurityType SecurityType
         {
             get
@@ -76,9 +76,9 @@ namespace Tizen.Network.WiFi
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Proxy address of the access point.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when Wi-Fi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public string ProxyAddress
         {
             get
@@ -109,13 +109,13 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// A property check whether the access point(AP) is hidden or not.
+        /// A property check whether the access point (AP) is hidden.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Boolean value indicating whether AP is hidden or not.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
+        /// <value>Boolean value indicating whether the AP is hidden.</value>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when the Wi-Fi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public bool IsHidden
         {
             get
@@ -144,10 +144,10 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The EAP Configuration.
+        /// EAP configuration.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>EAP configuration assigned to WiFi.</value>
+        /// <value>EAP configuration assigned to the Wi-Fi.</value>
         public WiFiEapConfiguration EapConfiguration
         {
             get
@@ -164,20 +164,20 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Creates a WiFiConfiguration object with the given name, passphrase and securetype.
+        /// Creates a WiFiConfiguration object with the given name, passphrase, and securetype.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="name">Name of the WiFi.</param>
-        /// <param name="passPhrase">Password to access the WiFi.</param>
-        /// <param name="type">Security type of the WiFi.</param>
+        /// <param name="name">Name of the Wi-Fi.</param>
+        /// <param name="passPhrase">Password to access the Wi-Fi.</param>
+        /// <param name="type">Security type of the Wi-Fi.</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the object is constructed with name as null.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public WiFiConfiguration(string name, string passPhrase, WiFiSecurityType type)
         {
             if (name == null)
@@ -202,7 +202,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// A method to destroy the managed objects in WiFiConfiguration.
+        /// A method to destroy the managed objects in the WiFiConfiguration.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Dispose()

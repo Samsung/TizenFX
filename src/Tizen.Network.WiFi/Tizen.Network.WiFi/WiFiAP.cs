@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.WiFi
 {
     /// <summary>
-    /// A class for managing the network information of the access point(AP).
+    /// A class for managing the network information of the access point (AP).
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class WiFiAP : IDisposable
@@ -36,10 +36,10 @@ namespace Tizen.Network.WiFi
         private bool _disposed = false;
 
         /// <summary>
-        /// The network information of the access point(AP).
+        /// The network information of the access point (AP).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>WiFiNetwork instance containing network information of AP.</value>
+        /// <value>The WiFiNetwork instance containing the network information of the AP.</value>
         public WiFiNetwork NetworkInformation
         {
             get
@@ -49,10 +49,10 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The security information of the access point(AP).
+        /// The security information of the access point (AP).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>WiFiSecurity instance containing security information of AP.</value>
+        /// <value>The WiFiSecurity instance containing security information of the AP.</value>
         public WiFiSecurity SecurityInformation
         {
             get
@@ -75,12 +75,12 @@ namespace Tizen.Network.WiFi
         /// <param name="essid">The Extended Service Set Identifier of the access point.</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when Essid is passed as null.</exception>
-        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the ESSID is passed as null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public WiFiAP(string essid)
         {
             Log.Debug(Globals.LogTag, "New WiFiAP. Essid: " + essid);
@@ -93,15 +93,15 @@ namespace Tizen.Network.WiFi
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="essid">The Extended Service Set Identifier of the access point.</param>
-        /// <param name="hidden">The value to set hidden AP</param>
+        /// <param name="hidden">The value to set a hidden AP.</param>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when Essid is passed as null.</exception>
-        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the ESSID is passed as null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public WiFiAP(string essid, bool hidden)
         {
             createHandle(essid, hidden);
@@ -174,11 +174,11 @@ namespace Tizen.Network.WiFi
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="ObjectDisposedException">Thrown when object instance is disposed or released.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="ObjectDisposedException">Thrown when the object instance is disposed or released.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public void Refresh()
         {
             Log.Debug(Globals.LogTag, "Refresh");
@@ -198,16 +198,16 @@ namespace Tizen.Network.WiFi
         /// Connects the access point asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns> A task indicating whether the Connect method is done or not.</returns>
+        /// <returns> A task indicating whether the connect method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="ObjectDisposedException">Thrown when object instance is disposed or released.</exception>
+        /// <exception cref="ObjectDisposedException">Thrown when the object instance is disposed or released.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public Task ConnectAsync()
         {
             Log.Debug(Globals.LogTag, "ConnectAsync");
@@ -247,22 +247,22 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Connects the access point with WPS asynchronously.
+        /// Connects the access point with the WPS asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="info">A WpsInfo instance which is of type WpsPbcInfo or WpsPinInfo.</param>
+        /// <param name="info">A WpsInfo instance which is type of WpsPbcInfo or WpsPinInfo.</param>
         /// <returns>A task indicating whether the ConnectWps method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="ObjectDisposedException">Thrown when object instance is disposed or released.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when WpsPinInfo object is constructed with null pin.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when WpsPinInfo object is constructed with pin which is an empty string or more than 7 characters.</exception>
+        /// <exception cref="ObjectDisposedException">Thrown when the object instance is disposed or released.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the WpsPinInfo object is constructed with a null pin.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the WpsPinInfo object is constructed with a pin which is an empty string or more than 7 characters.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public Task ConnectWpsAsync(WpsInfo info)
         {
             Log.Debug(Globals.LogTag, "ConnectWpsAsync");
@@ -323,7 +323,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Connects the access point with WPS without ssid asynchronously.
+        /// Connects the access point with WPS without SSID asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="info">A WpsInfo instance which is of type WpsPbcInfo or WpsPinInfo.</param>
@@ -335,13 +335,13 @@ namespace Tizen.Network.WiFi
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
-        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when WpsPinInfo object is constructed with null pin.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when WpsPinInfo object is constructed with pin which is not of 4 or 8 characters long.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the WpsPinInfo object is constructed with a null pin.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the WpsPinInfo object is constructed with a pin which is not of 4 or 8 characters long.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public static Task<WiFiAP> ConnectWpsWithoutSsidAsync(WpsInfo info)
         {
             TaskCompletionSource<WiFiAP> task = new TaskCompletionSource<WiFiAP>();
@@ -401,16 +401,16 @@ namespace Tizen.Network.WiFi
         /// Disconnects the access point asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns> A task indicating whether the Disconnect method is done or not.</returns>
+        /// <returns> A task indicating whether the disconnect method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="ObjectDisposedException">Thrown when object instance is disposed or released.</exception>
+        /// <exception cref="ObjectDisposedException">Thrown when the object instance is disposed or released.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public Task DisconnectAsync()
         {
             Log.Debug(Globals.LogTag, "DisconnectAsync");
@@ -448,19 +448,19 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Deletes the information of stored access point and disconnects it when it is connected.<br>
-        /// If an AP is connected, then connection information will be stored. This information is used when a connection to that AP is established automatically.
+        /// Deletes the information of a stored access point and disconnects it when the AP is connected.<br>
+        /// If an AP is connected, then the connection information will be stored. This information is used when a connection to that AP is established automatically.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
-        /// <exception cref="ObjectDisposedException">Thrown when object instance is disposed or released.</exception>
+        /// <exception cref="ObjectDisposedException">Thrown when the object instance is disposed or released.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public void ForgetAP()
         {
             Log.Debug(Globals.LogTag, "ForgetAP");
@@ -478,7 +478,7 @@ namespace Tizen.Network.WiFi
     }
 
     /// <summary>
-    /// An abstract class which is used to represent WPS information of access point.
+    /// An abstract class which is used to represent the WPS information of the access point.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public abstract class WpsInfo
@@ -486,14 +486,14 @@ namespace Tizen.Network.WiFi
     }
 
     /// <summary>
-    /// A class which is used to represent WPS PBC information of access point.
+    /// A class which is used to represent WPS PBC information of the access point.
     /// </summary>
     public class WpsPbcInfo : WpsInfo
     {
     }
 
     /// <summary>
-    /// A class which is used to represent WPS PIN information of access point.
+    /// A class which is used to represent WPS PIN information of the access point.
     /// </summary>
     public class WpsPinInfo : WpsInfo
     {

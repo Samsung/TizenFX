@@ -34,10 +34,10 @@ namespace Tizen.Network.WiFi
         private string _essid;
 
         /// <summary>
-        /// The Extended Service Set Identifier(ESSID).
+        /// The Extended Service Set Identifier (ESSID).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Essid of the WiFi.</value>
+        /// <value>ESSID of the Wi-Fi.</value>
         public string Essid
         {
             get
@@ -61,10 +61,10 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The Basic Service Set Identifier(BSSID).
+        /// The Basic Service Set Identifier (BSSID).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Bssid of the WiFi.</value>
+        /// <value>BSSID of the Wi-Fi.</value>
         public string Bssid
         {
             get
@@ -81,7 +81,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The address informaiton for IPv4.
+        /// The address information for IPv4.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>IP address information for IPv4 type.</value>
@@ -110,10 +110,10 @@ namespace Tizen.Network.WiFi
         /// The proxy address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Represents proxy address of WiFi.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
+        /// <value>Represents the proxy address of the Wi-Fi.</value>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when Wi-Fi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public string ProxyAddress
         {
             get
@@ -139,13 +139,13 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The proxy type(IPv6).
+        /// The proxy type (IPv6).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Represents proxy type of WiFi.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
+        /// <value>Represents the proxy type of the Wi-Fi.</value>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when Wi-Fi is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown while setting this property due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public WiFiProxyType ProxyType
         {
             get
@@ -170,7 +170,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The frequency band(MHz).
+        /// The frequency band (MHz).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Represents the frequency band value.</value>
@@ -189,10 +189,10 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The Received signal strength indication(RSSI).
+        /// The received signal strength indicator (RSSI).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Represents Rssi of WiFi(dbm).</value>
+        /// <value>Represents RSSI of Wi-Fi (dbm).</value>
         public int Rssi
         {
             get
@@ -211,7 +211,7 @@ namespace Tizen.Network.WiFi
         /// The max speed (Mbps).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Represents max speed value.</value>
+        /// <value>Represents the max speed value.</value>
         public int MaxSpeed
         {
             get
@@ -227,10 +227,10 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// A property to check whether the access point is favorite or not.
+        /// A property to check whether the access point is a favorite or not.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Boolean value to check if the access point is favorite or not.</value>
+        /// <value>Boolean value to check if the access point is a favorite or not.</value>
         public bool IsFavorite
         {
             get
@@ -246,10 +246,10 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// A property to check whether the access point is passpoint or not.
+        /// A property to check whether the access point is a passpoint or not.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Boolean value to check if the access point is passpoint or not.</value>
+        /// <value>Boolean value to check if the access point is a passpoint or not.</value>
         public bool IsPasspoint
         {
             get
@@ -269,7 +269,7 @@ namespace Tizen.Network.WiFi
         /// The connection state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Represents the connection state of WiFi.</value>
+        /// <value>Represents the connection state of the Wi-Fi.</value>
         public WiFiConnectionState ConnectionState
         {
             get
@@ -285,14 +285,14 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Gets the all IPv6 addresses of the access point
+        /// Gets all IPv6 addresses of the access point.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A list of IPv6 addresses of the access point.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        /// <exception cref="NotSupportedException">Thrown when WiFi is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public IEnumerable<System.Net.IPAddress> GetAllIPv6Addresses()
         {
             Log.Debug(Globals.LogTag, "GetAllIPv6Addresses");
