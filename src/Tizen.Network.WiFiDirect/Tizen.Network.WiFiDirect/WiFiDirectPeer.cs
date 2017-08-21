@@ -24,7 +24,7 @@ using System.Collections.Specialized;
 namespace Tizen.Network.WiFiDirect
 {
     /// <summary>
-    /// WiFiDirectPeer class is used to handle the connection with remote devices using WiFi Direct.
+    /// The WiFiDirectPeer class is used to handle the connection with remote devices using Wi-Fi Direct.
     /// </summary>
     /// <privilege> http://tizen.org/privilege/wifidirect </privilege>
     public class WiFiDirectPeer
@@ -58,7 +58,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Name of Peer device.
+        /// The name of the peer device.
         /// </summary>
         public string Name
         {
@@ -69,7 +69,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Ip address of the peer device.
+        /// The IP address of the peer device.
         /// </summary>
         public string IpAddress
         {
@@ -80,7 +80,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Mac address of the peer device.
+        /// The MAC address of the peer device.
         /// </summary>
         public string MacAddress
         {
@@ -91,7 +91,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Interface address of the peer device.
+        /// The Interface address of the peer device.
         /// </summary>
         public string InterfaceAddress
         {
@@ -102,7 +102,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Listening channel of the peer device.
+        /// The listening channel of the peer device.
         /// </summary>
         public int Channel
         {
@@ -113,7 +113,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Connected state of the peer device.
+        /// The connected state of the peer device.
         /// </summary>
         public bool IsConnected
         {
@@ -124,7 +124,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// P2P group state of the peer device.
+        /// The P2P group state of the peer device.
         /// </summary>
         public bool IsGroupOwner
         {
@@ -135,7 +135,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// P2P state of the peer device.
+        /// The P2P state of the peer device.
         /// </summary>
         public bool P2PSupport
         {
@@ -146,7 +146,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Primary catagory of the peer device.
+        /// The primary catagory of the peer device.
         /// </summary>
         public WiFiDirectPrimaryDeviceType PrimaryType
         {
@@ -157,7 +157,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Sub category of the peer device.
+        /// The sub category of the peer device.
         /// </summary>
         public WiFiDirectSecondaryDeviceType SecondaryType
         {
@@ -168,7 +168,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// List of supported WPS type of the peer device.
+        /// The list of the supported WPS type of the peer device.
         /// </summary>
         public int WpsTypes
         {
@@ -179,7 +179,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// P2P invitation state of the peer device.
+        /// The P2P invitation state of the peer device.
         /// </summary>
         public bool IsP2PInvitationSupported
         {
@@ -190,7 +190,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Number of registered services of the peer device.
+        /// The number of registered services of the peer device.
         /// </summary>
         public uint ServiceCount
         {
@@ -201,7 +201,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// List of registered services of the peer device.
+        /// The list of registered services of the peer device.
         /// </summary>
         public IEnumerable<string> ServiceList
         {
@@ -212,7 +212,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Checks if peer device is a wifi display device.
+        /// Checks if the peer device is a Wi-Fi display device.
         /// </summary>
         public bool IsMiracastDevice
         {
@@ -223,11 +223,11 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Wi-Fi Display device type of the peer device.
+        /// The Wi-Fi display device type of the peer device.
         /// </summary>
         /// <remarks>
         /// Wi-Fi Direct must be activated.
-        /// If there is any error, default value of WiFiDirectDisplayType will be returned.
+        /// If there is any error, a default value of WiFiDirectDisplayType will be returned.
         /// </remarks>
         public WiFiDirectDisplayType Display
         {
@@ -253,7 +253,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Wi-Fi Display Session Availability of the peer device.
+        /// The Wi-Fi display session availability of the peer device.
         /// </summary>
         /// <remarks>
         /// Wi-Fi Direct must be activated.
@@ -283,7 +283,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Hdcp information of the peer device.
+        /// The HDCP information of the peer device.
         /// </summary>
         /// <remarks>
         /// Wi-Fi Direct must be activated.
@@ -314,7 +314,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Port of the connected peer device.
+        /// The port of the connected peer device.
         /// </summary>
         /// <remarks>
         /// Wi-Fi Direct must be activated.
@@ -345,7 +345,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// WiFi Display max throughput of the peer device.
+        /// The Wi-Fi display maximum throughput of the peer device.
         /// </summary>
         /// <remarks>
         /// Wi-Fi Direct must be activated.
@@ -376,7 +376,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// WiFi RSSI value of the peer device.
+        /// The Wi-Fi RSSI value of the peer device.
         /// </summary>
         /// <remarks>
         /// Wi-Fi Direct must be activated.
@@ -406,7 +406,7 @@ namespace Tizen.Network.WiFiDirect
             }
         }
         /// <summary>
-        /// (event) ConnectionStateChanged event is raised when the connection state of the peer device changes.
+        /// The ConnectionStateChanged event is raised when the connection state of the peer device changes.
         /// </summary>
         public event EventHandler<ConnectionStateChangedEventArgs> ConnectionStateChanged
         {
@@ -437,7 +437,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// (event) IpAddressAssigned event is raised when ip address of the peer device is assigned.
+        /// The IpAddressAssigned event is raised when the IP address of the peer device is assigned.
         /// </summary>
         public event EventHandler<IpAddressAssignedEventArgs> IpAddressAssigned
         {
@@ -468,7 +468,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// (event) ServiceStateChanged is raised when state of service discovery is changed.
+        /// The ServiceStateChanged event is raised when the state of service discovery is changed.
         /// </summary>
         public event EventHandler<ServiceStateChangedEventArgs> ServiceStateChanged
         {
@@ -587,9 +587,9 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         /// <remarks>
         /// Wi-Fi Direct must be activated.
-        /// If this succeeds, ConnectionStateChanged event will be invoked.
+        /// If this succeeds, the ConnectionStateChanged event will be invoked.
         /// </remarks>
-        /// <exception cref="NotSupportedException">Thrown when the wifidirect is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi Direct is not supported</exception>
         public void Connect()
         {
             if (Globals.IsActivated)
@@ -615,7 +615,7 @@ namespace Tizen.Network.WiFiDirect
         /// <remarks>
         /// Wi-Fi Direct must be activated.
         /// </remarks>
-        /// <exception cref="NotSupportedException">Thrown when the wifidirect is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi Direct is not supported.</exception>
         public void CancelConnection()
         {
             if (Globals.IsActivated)
@@ -640,9 +640,9 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         /// <remarks>
         /// Wi-Fi Direct must be activated.
-        /// If this succeeds, ConnectionStateChanged event will be invoked.
+        /// If this succeeds, the ConnectionStateChanged event will be invoked.
         /// </remarks>
-        /// <exception cref="NotSupportedException">Thrown when the wifidirect is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi Direct is not supported.</exception>
         public void Disconnect()
         {
             if (Globals.IsActivated)
@@ -668,7 +668,7 @@ namespace Tizen.Network.WiFiDirect
         /// <remarks>
         /// Wi-Fi Direct must be activated.
         /// </remarks>
-        /// <exception cref="NotSupportedException">Thrown when the wifidirect is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi Direct is not supported.</exception>
         public void SetAutoConnect()
         {
             if (Globals.IsActivated)
@@ -693,14 +693,14 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         /// <remarks>
         /// Wi-Fi Direct must be activated.
-        /// If this succeeds, ServiceStateChanged event will be invoked.
+        /// If this succeeds, the ServiceStateChanged event will be invoked.
         /// </remarks>
         /// <exception cref="NotSupportedException">
-        /// Thrown during one of the following cases :
-        /// 1. When the wifidirect is not supported
-        /// 2. When the wifidirect service discovery is not supported
+        /// Thrown during one of the following cases:
+        /// 1. When the Wi-Fi Direct is not supported.
+        /// 2. When the Wi-Fi Direct service discovery is not supported.
         /// </exception>
-        /// <param name="type">Type of service.</param>
+        /// <param name="type">The type of the service.</param>
         public void StartServiceDiscovery(WiFiDirectServiceType type)
         {
             if (Globals.IsActivated)
@@ -727,11 +727,11 @@ namespace Tizen.Network.WiFiDirect
         /// Wi-Fi Direct must be activated.
         /// </remarks>
         /// <exception cref="NotSupportedException">
-        /// Thrown during one of the following cases :
-        /// 1. When the wifidirect is not supported
-        /// 2. When the wifidirect service discovery is not supported
+        /// Thrown during one of the following cases:
+        /// 1. When the Wi-Fi Direct is not supported.
+        /// 2. When the Wi-Fi Direct service discovery is not supported.
         /// </exception>
-        /// <param name="type">Type of service.</param>
+        /// <param name="type">The type of the service.</param>
         public void CancelServiceDiscovery(WiFiDirectServiceType type)
         {
             if (Globals.IsActivated)

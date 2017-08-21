@@ -20,7 +20,7 @@ using Tizen.Internals.Errors;
 namespace Tizen.Network.WiFiDirect
 {
     /// <summary>
-    /// Enumeration for Wi-Fi Direct discovery state.
+    /// Enumeration for the Wi-Fi Direct discovery state.
     /// </summary>
     public enum WiFiDirectDiscoveryState
     {
@@ -47,30 +47,30 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// Enumeration for Wi-Fi Direct display device type.
+    /// Enumeration for the Wi-Fi Direct display device types.
     /// </summary>
     public enum WiFiDirectDisplayType
     {
         /// <summary>
-        /// Configure as WFD source.
+        /// Configure as the WFD source.
         /// </summary>
         Source = 0,
         /// <summary>
-        /// Configure as WFD primary sink.
+        /// Configure as the WFD primary sink.
         /// </summary>
         Prisink,
         /// <summary>
-        /// Configure as WFD secondary sink.
+        /// Configure as the WFD secondary sink.
         /// </summary>
         Secsink,
         /// <summary>
-        /// Configure as WFD dual role.
+        /// Configure as the WFD dual role.
         /// </summary>
         Dual
     }
 
     /// <summary>
-    /// Enumeration for Wi-Fi Discovery channel.
+    /// Enumeration for the Wi-Fi Discovery channel.
     /// </summary>
     public enum WiFiDirectDiscoveryChannel
     {
@@ -97,7 +97,7 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// Enumeration for Wi-Fi Direct connection state.
+    /// Enumeration for the Wi-Fi Direct connection state.
     /// </summary>
     public enum WiFiDirectConnectionState
     {
@@ -106,7 +106,7 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         ConnectionRequest,
         /// <summary>
-        /// Wps is requested.
+        /// WPS is requested.
         /// </summary>
         ConnectionWpsRequest,
         /// <summary>
@@ -114,19 +114,19 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         ConnectionInProgress,
         /// <summary>
-        /// Connected   .
+        /// Connected.
         /// </summary>
         ConnectionRsp,
         /// <summary>
-        /// Disconnected by remote group client.
+        /// Disconnected by the remote group client.
         /// </summary>
         DisassociationInd,
         /// <summary>
-        /// Disconnected by local device.
+        /// Disconnected by the local device.
         /// </summary>
         DisconnectRsp,
         /// <summary>
-        /// Disconnected by remote group owner.
+        /// Disconnected by the remote group owner.
         /// </summary>
         DisconnectInd,
         /// <summary>
@@ -140,7 +140,7 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// Enumeration for Wi-Fi Direct primary device type.
+    /// Enumeration for the Wi-Fi Direct primary device type.
     /// </summary>
     public enum WiFiDirectPrimaryDeviceType
     {
@@ -195,7 +195,7 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// Enumeration for Wi-Fi Direct secondary device type.
+    /// Enumeration for the Wi-Fi Direct secondary device type.
     /// </summary>
     public enum WiFiDirectSecondaryDeviceType
     {
@@ -220,7 +220,7 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         ComputerNotebook = 5,
         /// <summary>
-        /// Computer desktop
+        /// Computer desktop.
         /// </summary>
         ComputerDesktop = 6,
         /// <summary>
@@ -252,7 +252,7 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         InputController = 5,
         /// <summary>
-        /// Inpute remote.
+        /// Input remote.
         /// </summary>
         InputRemote = 6,
         /// <summary>
@@ -308,7 +308,7 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         StorageNas = 1,
         /// <summary>
-        /// Network ap.
+        /// Network AP.
         /// </summary>
         NetworkAp = 1,
         /// <summary>
@@ -324,7 +324,7 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         NetworkGateway = 4,
         /// <summary>
-        /// Display tv.
+        /// Display TV.
         /// </summary>
         DisplayTv = 1,
         /// <summary>
@@ -356,7 +356,7 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         MultimediaStb = 4,
         /// <summary>
-        /// Media Server / Media Adapter / Media Extender.
+        /// Media Server/Media Adapter/Media Extender.
         /// </summary>
         MultimediaMsMaMe = 5,
         /// <summary>
@@ -368,7 +368,7 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         GameXbox = 1,
         /// <summary>
-        /// The game xbox 360.
+        /// Game xbox 360.
         /// </summary>
         GameXbox360,
         /// <summary>
@@ -396,11 +396,11 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         TelephonePhoneDual = 3,
         /// <summary>
-        /// Smart Phone - single mode.
+        /// Smartphone - single mode.
         /// </summary>
         TelephoneSmartphoneSingle = 4,
         /// <summary>
-        /// Smart Phone - dual mode.
+        /// Smartphone - dual mode.
         /// </summary>
         TelephoneSmartphoneDual = 5,
         /// <summary>
@@ -412,7 +412,7 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         AudioSpeaker = 2,
         /// <summary>
-        /// Audio pmp.
+        /// Audio PMP.
         /// </summary>
         AudioPmp = 3,
         /// <summary>
@@ -430,7 +430,7 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// Enumeration for Wi-Fi Direct link status.
+    /// Enumeration for the Wi-Fi Direct link status.
     /// </summary>
     public enum WiFiDirectState
     {
@@ -473,7 +473,7 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// Enumeration for Wi-Fi WPS type.
+    /// Enumeration for the Wi-Fi WPS type.
     /// </summary>
     public enum WiFiDirectWpsType
     {
@@ -496,65 +496,65 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// Enumeration for Service Discovery type.
+    /// Enumeration for the service discovery type.
     /// </summary>
     public enum WiFiDirectServiceType
     {
         /// <summary>
-        /// Service discovery Type all.
+        /// The service discovery type All.
         /// </summary>
         All,
         /// <summary>
-        /// Service discovery Type bonjour.
+        /// The service discovery type Bonjour.
         /// </summary>
         Bonjour,
         /// <summary>
-        /// Service discovery Type UPNP.
+        /// The service discovery type UPNP.
         /// </summary>
         Upnp,
         /// <summary>
-        /// Service discovery Type ws discovery.
+        /// The service discovery type WS Discovery.
         /// </summary>
         WsDiscovery,
         /// <summary>
-        /// Service discovery Type wifi-display.
+        /// The service discovery type Wi-Fi Display.
         /// </summary>
         WiFiDisplay,
         /// <summary>
-        /// Service discovery Type bt address.
+        /// The service discovery type BT Address.
         /// </summary>
         BtAddress,
         /// <summary>
-        /// Service discovery Type contact info.
+        /// The service discovery type Contact Info.
         /// </summary>
         ContactInfo,
         /// <summary>
-        /// Service discovery Type vendor-specific.
+        /// The service discovery type vendor-specific.
         /// </summary>
         Vendor
     }
 
     /// <summary>
-    /// Enumeration for Wi-Fi Direct service Discovery state.
+    /// Enumeration for the Wi-Fi Direct service discovery state.
     /// </summary>
     public enum WiFiDirectServiceDiscoveryState
     {
         /// <summary>
-        /// Service discovery started.
+        /// The service discovery Started.
         /// </summary>
         Started,
         /// <summary>
-        /// Service discovery found.
+        /// The service discovery Found.
         /// </summary>
         Found,
         /// <summary>
-        /// Service discovery finished.
+        /// The service discovery Finished.
         /// </summary>
         Finished
     }
 
     /// <summary>
-    /// Enumeration for Wi-Fi Direct device state.
+    /// Enumeration for the Wi-Fi Direct device state.
     /// </summary>
     public enum WiFiDirectDeviceState
     {
@@ -569,7 +569,7 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// Enumeration for Wi-Fi Direct error code.
+    /// Enumeration for the Wi-Fi Direct error code.
     /// </summary>
     public enum WiFiDirectError
     {
@@ -590,7 +590,7 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         PermissionDenied = ErrorCode.PermissionDenied,
         /// <summary>
-        /// Device or resource busy.
+        /// Device or the resource is busy.
         /// </summary>
         ResourceBusy = ErrorCode.ResourceBusy,
         /// <summary>
@@ -614,7 +614,7 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         CommunicationFailed = -0x01C60000 | 0x02,
         /// <summary>
-        /// WiFi is being used.
+        /// Wi-Fi is being used.
         /// </summary>
         WiFiUsed = -0x01C60000 | 0x03,
         /// <summary>
@@ -634,15 +634,15 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         OperationFailed = -0x01C60000 | 0x07,
         /// <summary>
-        /// Too many client.
+        /// Too many clients.
         /// </summary>
         TooManyClient = -0x01C60000 | 0x08,
         /// <summary>
-        /// Already initialized client.
+        /// Already initialized the client.
         /// </summary>
         AlreadyInitialized = -0x01C60000 | 0x09,
         /// <summary>
-        /// Connection cancelled by local device.
+        /// Connection cancelled by the local device.
         /// </summary>
         ConnectionCancelled = -0x01C60000 | 0x10
     }

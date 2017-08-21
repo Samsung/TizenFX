@@ -1347,7 +1347,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Initializes or Deintializes the WiFi-Direct Display(MIRACAST) service.
+        /// Initializes or Deintializes the Wi-Fi Direct Display(MIRACAST) service.
         /// </summary>
         /// <param name="enable">Enables/Disables service.</param>
         /// <privilege>

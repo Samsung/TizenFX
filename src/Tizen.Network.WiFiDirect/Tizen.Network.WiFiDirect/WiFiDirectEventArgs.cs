@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.WiFiDirect
 {
     /// <summary>
-    /// An extended EventArgs class which contains changed connection state during connecting or disconnecting peer device.
+    /// An extended EventArgs class which contains the changed connection state during connecting or disconnecting the peer device.
     /// </summary>
     public class ConnectionStateChangedEventArgs : EventArgs
     {
@@ -36,7 +36,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Wi-Fi Direct result.
+        /// The Wi-Fi Direct result.
         /// </summary>
         public WiFiDirectError Error
         {
@@ -47,7 +47,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Wi-Fi Direct connection state of peer.
+        /// The Wi-Fi Direct connection state of the peer.
         /// </summary>
         public WiFiDirectConnectionState State
         {
@@ -58,7 +58,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// MacAddress of peer.
+        /// The MacAddress of the peer.
         /// </summary>
         public string MacAddress
         {
@@ -86,7 +86,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// MacAddress of connected peer.
+        /// The MacAddress of the connected peer.
         /// </summary>
         public string MacAddress
         {
@@ -97,7 +97,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// IpAddress of connected peer.
+        /// The IpAddress of the connected peer.
         /// </summary>
         public string IpAddress
         {
@@ -108,7 +108,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// InterfaceAddress of connected peer.
+        /// The InterfaceAddress of the connected peer.
         /// </summary>
         public string InterfaceAddress
         {
@@ -120,7 +120,7 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed Wi-Fi Direct state of local device.
+    /// An extended EventArgs class which contains the changed Wi-Fi Direct state of the local device.
     /// </summary>
     public class StateChangedEventArgs : EventArgs
     {
@@ -132,7 +132,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Wi-Fi Direct state.
+        /// The Wi-Fi Direct state.
         /// </summary>
         public WiFiDirectState State
         {
@@ -144,7 +144,7 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed Wi-Fi Direct discovery state during Wi-Fi Direct scan operation.
+    /// An extended EventArgs class which contains the changed Wi-Fi Direct discovery state during the Wi-Fi Direct scan operation.
     /// </summary>
     public class DiscoveryStateChangedEventArgs : EventArgs
     {
@@ -158,7 +158,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Wi-Fi Direct result.
+        /// The Wi-Fi Direct result.
         /// </summary>
         public WiFiDirectError Error
         {
@@ -169,7 +169,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Wi-Fi Direct Discovery state.
+        /// The Wi-Fi Direct discovery state.
         /// </summary>
         public WiFiDirectDiscoveryState DiscoveryState
         {
@@ -181,7 +181,7 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains found peer information during Wi-Fi Direct scan operation.
+    /// An extended EventArgs class which contains the found peer information during the Wi-Fi Direct scan operation.
     /// </summary>
     public class PeerFoundEventArgs : EventArgs
     {
@@ -197,7 +197,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Wi-Fi Direct result.
+        /// The Wi-Fi Direct result.
         /// </summary>
         public WiFiDirectError Error
         {
@@ -208,7 +208,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Wi-Fi Direct Discovery state.
+        /// The Wi-Fi Direct discovery state.
         /// </summary>
         public WiFiDirectDiscoveryState DiscoveryState
         {
@@ -219,7 +219,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Found peer.
+        /// The found peer.
         /// </summary>
         public WiFiDirectPeer Peer
         {
@@ -231,7 +231,7 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed device state during activation or deactivation.
+    /// An extended EventArgs class which contains the changed device state during activation or deactivation.
     /// </summary>
     public class DeviceStateChangedEventArgs : EventArgs
     {
@@ -245,7 +245,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Wi-Fi Direct result.
+        /// The Wi-Fi Direct result.
         /// </summary>
         public WiFiDirectError Error
         {
@@ -256,7 +256,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// State of the device.
+        /// The state of the device.
         /// </summary>
         public WiFiDirectDeviceState DeviceState
         {
@@ -268,7 +268,7 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed service information during service discovery.
+    /// An extended EventArgs class which contains the changed service information during the service discovery.
     /// </summary>
     public class ServiceStateChangedEventArgs : EventArgs
     {
@@ -288,7 +288,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Wi-Fi Direct result.
+        /// The Wi-Fi Direct result.
         /// </summary>
         public WiFiDirectError Error
         {
@@ -299,7 +299,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Service discovery state.
+        /// The service discovery state.
         /// </summary>
         public WiFiDirectServiceDiscoveryState ServiceDiscoveryState
         {
@@ -310,7 +310,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Types of service.
+        /// The types of service.
         /// </summary>
         public WiFiDirectServiceType ServiceType
         {
@@ -321,7 +321,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Received response.
+        /// The received response.
         /// </summary>
         public string Response
         {
@@ -332,7 +332,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Peer servicing device.
+        /// The peer servicing device.
         /// </summary>
         public WiFiDirectPeer Peer
         {
@@ -344,7 +344,7 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed connection state during disconnect all peers or group related operations.
+    /// An extended EventArgs class which contains the changed connection state during disconnecting of all peers or grouping related operations.
     /// </summary>
     public class ConnectionStatusChangedEventArgs : EventArgs
     {
@@ -358,7 +358,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Wi-Fi Direct result.
+        /// The Wi-Fi Direct result.
         /// </summary>
         public WiFiDirectError Error
         {
@@ -369,7 +369,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Connection state.
+        /// The connection state.
         /// </summary>
         public WiFiDirectConnectionState ConnectionState
         {

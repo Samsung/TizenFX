@@ -19,12 +19,12 @@ using Tizen.Network.WiFiDirect;
 using System.Runtime.InteropServices;
 
 /// <summary>
-/// Interop class for Wi-Fi Direct
+/// The Interop class for Wi-Fi Direct.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Wi-Fi Direct Native Apis
+    /// The Wi-Fi Direct native APIs.
     /// </summary>
     internal static partial class WiFiDirect
     {

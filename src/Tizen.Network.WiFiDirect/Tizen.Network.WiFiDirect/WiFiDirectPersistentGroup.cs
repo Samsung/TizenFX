@@ -33,7 +33,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// MAC address of the persistent group owner.
+        /// The MAC address of the persistent group owner.
         /// </summary>
         public string MacAddress
         {
@@ -44,7 +44,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// SSID (Service Set Identifier) of the persistent group owner.
+        /// The SSID (Service Set Identifier) of the persistent group owner.
         /// </summary>
         public string Ssid
         {

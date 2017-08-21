@@ -120,7 +120,7 @@ namespace Tizen.Network.WiFiDirect
     }
 
     /// <summary>
-    /// Implementation of Wi-Fi Direct Apis
+    /// The implementation of Wi-Fi Direct APIs.
     /// </summary>
     internal partial class WiFiDirectManagerImpl : IDisposable
     {
