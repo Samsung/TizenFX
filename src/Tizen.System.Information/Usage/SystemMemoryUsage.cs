@@ -23,7 +23,7 @@ namespace Tizen.System
     /// </summary>
     public class SystemMemoryUsage
     {
-        internal Interop.RuntimeInfo.MemoryInfo Info;
+        private Interop.RuntimeInfo.MemoryInfo Info;
 
         /// <summary>
         /// The constructor of MemoryInformation class.

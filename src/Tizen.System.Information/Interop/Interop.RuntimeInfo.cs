@@ -22,7 +22,7 @@ internal static partial class Interop
 {
     internal static partial class RuntimeInfo
     {
-        public delegate void RuntimeInformationChangedCallback(RuntimeInformationKey key, IntPtr userData);
+        public delegate void RuntimeInformationChangedCallback(RuntimeInfoKey key, IntPtr userData);
 
         [StructLayout(LayoutKind.Sequential)]
         public struct MemoryInfo
@@ -63,16 +63,16 @@ internal static partial class Interop
         }
 
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_int")]
-        public static extern InformationError GetValue(RuntimeInformationKey key, out int status);
+        public static extern InformationError GetValue(RuntimeInfoKey key, out int status);
 
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_bool")]
-        public static extern InformationError GetValue(RuntimeInformationKey key, out bool status);
+        public static extern InformationError GetValue(RuntimeInfoKey key, out bool status);
 
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_double")]
-        public static extern InformationError GetValue(RuntimeInformationKey key, out double status);
+        public static extern InformationError GetValue(RuntimeInfoKey key, out double status);
 
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_string")]
-        public static extern InformationError GetValue(RuntimeInformationKey key, out string status);
+        public static extern InformationError GetValue(RuntimeInfoKey key, out string status);
 
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_system_memory_info")]
         public static extern InformationError GetSystemMemoryInfo(out MemoryInfo memoryInfo);
@@ -96,9 +96,9 @@ internal static partial class Interop
         public static extern InformationError GetProcessorMaxFrequency(int coreId, out int cpuFreq);
 
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_set_changed_cb")]
-        public static extern InformationError SetRuntimeInfoChangedCallback(RuntimeInformationKey runtimeInfoKey, RuntimeInformationChangedCallback cb, IntPtr userData);
+        public static extern InformationError SetRuntimeInfoChangedCallback(RuntimeInfoKey runtimeInfoKey, RuntimeInformationChangedCallback cb, IntPtr userData);
 
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_unset_changed_cb")]
-        public static extern InformationError UnsetRuntimeInfoChangedCallback(RuntimeInformationKey runtimeInfoKey);
+        public static extern InformationError UnsetRuntimeInfoChangedCallback(RuntimeInfoKey runtimeInfoKey);
     }
 }

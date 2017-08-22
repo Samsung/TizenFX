@@ -22,16 +22,16 @@ namespace Tizen.System
     [EditorBrowsable(EditorBrowsableState.Never)]
     internal class RuntimeInfoEventHandler
     {
-        private RuntimeInformationKey Key;
-        private event EventHandler<RuntimeKeyStatusChangedEventArgs> Handler;
+        private RuntimeInfoKey Key;
+        private event EventHandler<RuntimeFeatureStatusChangedEventArgs> Handler;
 
-        internal RuntimeInfoEventHandler(RuntimeInformationKey key)
+        internal RuntimeInfoEventHandler(RuntimeInfoKey key)
         {
             Key = key;
             Handler = null;
         }
 
-        internal event EventHandler<RuntimeKeyStatusChangedEventArgs> EventHandler
+        internal event EventHandler<RuntimeFeatureStatusChangedEventArgs> EventHandler
         {
             add
             {
@@ -61,11 +61,11 @@ namespace Tizen.System
             }
         }
 
-        private void RuntimeInformationChangedCallback(RuntimeInformationKey key, IntPtr userData)
+        private void RuntimeInformationChangedCallback(RuntimeInfoKey key, IntPtr userData)
         {
-            RuntimeKeyStatusChangedEventArgs eventArgs = new RuntimeKeyStatusChangedEventArgs()
+            RuntimeFeatureStatusChangedEventArgs eventArgs = new RuntimeFeatureStatusChangedEventArgs()
             {
-                Key = key
+                Key = Information.HttpPrefix + Information.RuntimeInfoStringKeyPrefix + (Information.EnumStringMapping.ContainsKey(key) ? Information.EnumStringMapping[key] : "Invalid")
             };
 
             Handler?.Invoke(null, eventArgs);

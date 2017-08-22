@@ -25,26 +25,26 @@ namespace Tizen.System
     {
         private static int is_TV_product = -1;
 
-        private static readonly Dictionary<RuntimeInformationKey, int> s_keyTVkeyMapping = new Dictionary<RuntimeInformationKey, int>
+        private static readonly Dictionary<RuntimeInfoKey, int> s_keyTVkeyMapping = new Dictionary<RuntimeInfoKey, int>
         {
-            [RuntimeInformationKey.Bluetooth] = 5,
-            [RuntimeInformationKey.WifiHotspot] = 6,
-            [RuntimeInformationKey.BluetoothTethering] = 7,
-            [RuntimeInformationKey.UsbTethering] = 8,
-            [RuntimeInformationKey.PacketData] = 13,
-            [RuntimeInformationKey.DataRoaming] = 14,
-            [RuntimeInformationKey.Vibration] = 16,
-            [RuntimeInformationKey.AudioJack] = 20,
-            [RuntimeInformationKey.BatteryIsCharging] = 22,
-            [RuntimeInformationKey.TvOut] = 18,
-            [RuntimeInformationKey.Charger] = 26,
-            [RuntimeInformationKey.AutoRotation] = 28,
-            [RuntimeInformationKey.Gps] = 21,
-            [RuntimeInformationKey.AudioJackConnector] = 20
+            [RuntimeInfoKey.Bluetooth] = 5,
+            [RuntimeInfoKey.WifiHotspot] = 6,
+            [RuntimeInfoKey.BluetoothTethering] = 7,
+            [RuntimeInfoKey.UsbTethering] = 8,
+            [RuntimeInfoKey.PacketData] = 13,
+            [RuntimeInfoKey.DataRoaming] = 14,
+            [RuntimeInfoKey.Vibration] = 16,
+            [RuntimeInfoKey.AudioJack] = 20,
+            [RuntimeInfoKey.BatteryIsCharging] = 22,
+            [RuntimeInfoKey.TvOut] = 18,
+            [RuntimeInfoKey.Charger] = 26,
+            [RuntimeInfoKey.AutoRotation] = 28,
+            [RuntimeInfoKey.Gps] = 21,
+            [RuntimeInfoKey.AudioJackConnector] = 20
         };
 
         /// This function is for a TV product. It will be removed.
-        internal static RuntimeInformationKey ConvertKeyIfTvProduct(RuntimeInformationKey key)
+        internal static RuntimeInfoKey ConvertKeyIfTvProduct(RuntimeInfoKey key)
         {
             bool is_key_existed = false;
             string profile;
@@ -73,7 +73,7 @@ namespace Tizen.System
                 {
                     InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
                 }
-                return (RuntimeInformationKey)key_TV;
+                return (RuntimeInfoKey)key_TV;
             }
         }
     }
