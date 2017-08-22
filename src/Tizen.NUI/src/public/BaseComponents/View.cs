@@ -20,10 +20,12 @@ namespace Tizen.NUI.BaseComponents
     using System;
     using System.Runtime.InteropServices;
 
+
+
     /// <summary>
     /// View is the base class for all views.
     /// </summary>
-    public class View : Container
+    public class View : Animatable //CustomActor => Animatable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -37,89 +39,6 @@ namespace Tizen.NUI.BaseComponents
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-
-        // From Container Base class
-
-        /// <summary>
-        /// Adds a child view to this View.
-        /// </summary>
-        /// <seealso cref="Container::Add()">
-        /// </seealso>
-        public override void Add(View child)
-        {
-            NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Removes a child View from this View. If the view was not a child of this view, this is a no-op.
-        /// </summary>
-        /// <seealso cref="Container::Remove()">
-        /// </seealso>
-        public override void Remove(View child)
-        {
-            NDalicPINVOKE.Actor_Remove(swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Retrieves child view by index.
-        /// </summary>
-        /// <seealso cref="Container::GetChildAt()">
-        /// </seealso>
-        public override View GetChildAt(uint index)
-        {
-            IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
-
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret ?? null;
-        }
-
-        /// <summary>
-        /// Retrieves the number of children held by the view.
-        /// </summary>
-        /// <seealso cref="Container::GetChildCount()">
-        /// </seealso>
-        protected override uint GetChildCount()
-        {
-            uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Get the Views parent
-        /// </summary>
-        /// <seealso cref="Container::GetParent()">
-
-        protected override Container GetParent()
-        {
-            Container ret;
-            IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
-
-            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
-
-            if(basehandle is Layer)
-            {
-                ret = basehandle as Layer;
-            }
-            else
-            {
-                ret = basehandle as View;
-            }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        ///
 
         // you can override it to clean-up your own resources.
         protected override void Dispose(DisposeTypes type)
@@ -1026,10 +945,9 @@ namespace Tizen.NUI.BaseComponents
         {
             View view = null;
 
-            if (Parent is View)
+            if (Parent)
             {
-                View parentView = Parent as View;
-                view = parentView.FindChildById(id);
+                view = Parent.FindChildById(id);
             }
 
             if (!view)
@@ -1883,7 +1801,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetParent() as View;
+                return GetParent();
             }
         }
 
@@ -2232,6 +2150,32 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Adds a child view to this View.
+        /// </summary>
+        /// <pre>This View(the parent) has been initialized. The child view has been initialized. The child view is not the same as the parent view.</pre>
+        /// <post>The child will be referenced by its parent. This means that the child will be kept alive, even if the handle passed into this method is reset or destroyed.</post>
+        /// <remarks>If the child already has a parent, it will be removed from old parent and reparented to this view. This may change child's position, color, scale etc as it now inherits them from this view.</remarks>
+        /// <param name="child">The child</param>
+        public void Add(View child)
+        {
+            NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes a child View from this View. If the view was not a child of this view, this is a no-op.
+        /// </summary>
+        /// <pre>This View(the parent) has been initialized. The child view is not the same as the parent view.</pre>
+        /// <param name="child">The child</param>
+        public void Remove(View child)
+        {
+            NDalicPINVOKE.Actor_Remove(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Removes a View from its Parent View / Layer. If the View has no parent, this method does nothing.
         /// </summary>
         /// <pre>The (child) View has been initialized. </pre>
@@ -2240,6 +2184,36 @@ namespace Tizen.NUI.BaseComponents
             NDalicPINVOKE.Actor_Unparent(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves the number of children held by the view.
+        /// </summary>
+        /// <pre>The View has been initialized.</pre>
+        /// <returns>The number of children</returns>
+        internal uint GetChildCount()
+        {
+            uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Retrieves child view by index.
+        /// </summary>
+        /// <pre>The View has been initialized.</pre>
+        /// <param name="index">The index of the child to retrieve</param>
+        /// <returns>The view for the given index or empty handle if children not initialized</returns>
+        public View GetChildAt(uint index)
+        {
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
+
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret ?? null;
         }
 
         /// <summary>
@@ -2271,7 +2245,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        /*internal View GetParent()
+        internal View GetParent()
         {
             View ret;
             IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
@@ -2290,7 +2264,7 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }*/
+        }
 
         internal void SetParentOrigin(Vector3 origin)
         {
@@ -3381,6 +3355,17 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.NAME, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Get the number of children held by the view.
+        /// </summary>
+        public uint ChildCount
+        {
+            get
+            {
+                return GetChildCount();
             }
         }
 
