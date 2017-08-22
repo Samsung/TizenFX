@@ -77,7 +77,9 @@ namespace Tizen.Network.Connection
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        public static event EventHandler ConnectionTypeChanged
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        public static event EventHandler<ConnectionTypeEventArgs> ConnectionTypeChanged
         {
             add
             {
@@ -96,7 +98,9 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
-        public static event EventHandler EthernetCableStateChanged
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        public static event EventHandler<EthernetCableStateEventArgs> EthernetCableStateChanged
         {
             add
             {
@@ -118,7 +122,9 @@ namespace Tizen.Network.Connection
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        public static event EventHandler IPAddressChanged
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        public static event EventHandler<AddressEventArgs> IPAddressChanged
         {
             add
             {
@@ -140,7 +146,9 @@ namespace Tizen.Network.Connection
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        public static event EventHandler ProxyAddressChanged
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        public static event EventHandler<AddressEventArgs> ProxyAddressChanged
         {
             add
             {
