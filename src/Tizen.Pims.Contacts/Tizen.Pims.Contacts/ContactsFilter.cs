@@ -15,8 +15,7 @@
 */
 
 using System;
-using System.Collections.Generic;
-using static Interop.Contacts;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Contacts
 {
@@ -37,6 +36,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsFilter(string viewUri, uint propertyId, StringMatchType matchType, string matchValue)
         {
             int error = Interop.Filter.ContactsFilterCreate(viewUri, out _filterHandle);
@@ -64,6 +64,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsFilter(string viewUri, uint propertyId, IntegerMatchType matchType, int matchValue)
         {
             int error = Interop.Filter.ContactsFilterCreate(viewUri, out _filterHandle);
@@ -91,6 +92,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsFilter(string viewUri, uint propertyId, IntegerMatchType matchType, long matchValue)
         {
             int error = Interop.Filter.ContactsFilterCreate(viewUri, out _filterHandle);
@@ -118,6 +120,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsFilter(string viewUri, uint propertyId, IntegerMatchType matchType, double matchValue)
         {
             int error = Interop.Filter.ContactsFilterCreate(viewUri, out _filterHandle);
@@ -144,6 +147,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsFilter(string viewUri, uint propertyId, bool matchValue)
         {
             int error = Interop.Filter.ContactsFilterCreate(viewUri, out _filterHandle);
@@ -161,6 +165,9 @@ namespace Tizen.Pims.Contacts
             }
         }
 
+        /// <summary>
+        /// Destructor
+        /// </summary>
         ~ContactsFilter()
         {
             Dispose(false);
@@ -237,15 +244,32 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         public enum LogicalOperator
         {
+            /// <summary>
+            /// AND
+            /// </summary>
             And,
+            /// <summary>
+            /// OR
+            /// </summary>
             Or,
         }
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 
+        /// <summary>
+        /// Releases all resources used by the ContactsFilter.
+        /// </summary>
+        /// <param name="disposing">Disposing by User</param>
         protected virtual void Dispose(bool disposing)
         {
+            if (disposing)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here
+            }
+
             if (!disposedValue)
             {
                 int error = Interop.Filter.ContactsFilterDestroy(_filterHandle);
@@ -265,6 +289,7 @@ namespace Tizen.Pims.Contacts
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
         #endregion
 

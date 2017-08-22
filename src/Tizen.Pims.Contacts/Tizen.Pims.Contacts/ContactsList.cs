@@ -36,7 +36,7 @@ namespace Tizen.Pims.Contacts
                 Log.Error(Globals.LogTag, "ContactsList Failed with error " + error);
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
-            _memoryPressure += count * ContactsViews.AverageSizeOfRecord;
+            _memoryPressure += count * ContactsViews.Record.AverageSize;
             GC.AddMemoryPressure(_memoryPressure);
         }
 
@@ -56,6 +56,9 @@ namespace Tizen.Pims.Contacts
             GC.AddMemoryPressure(_memoryPressure);
         }
 
+        /// <summary>
+        /// Destructor
+        /// </summary>
         ~ContactsList()
         {
             Dispose(false);
@@ -64,6 +67,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// The count of contact entity.
         /// </summary>
+        /// <value>The count of contact entity.</value>
         public int Count
         {
             get
@@ -81,8 +85,19 @@ namespace Tizen.Pims.Contacts
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 
+        /// <summary>
+        /// Releases all resources used by the ContactsList.
+        /// </summary>
+        /// <param name="disposing">Disposing by User</param>
         protected virtual void Dispose(bool disposing)
         {
+            if (disposing)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here
+            }
+
             if (!disposedValue)
             {
                 int error = Interop.List.ContactsListDestroy(_listHandle, true);
@@ -103,6 +118,7 @@ namespace Tizen.Pims.Contacts
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
         #endregion
 
@@ -121,7 +137,7 @@ namespace Tizen.Pims.Contacts
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             record._disposedValue = true;
-            _memoryPressure += ContactsViews.AverageSizeOfRecord;
+            _memoryPressure += ContactsViews.Record.AverageSize;
         }
 
         /// <summary>
@@ -139,7 +155,7 @@ namespace Tizen.Pims.Contacts
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             record._disposedValue = false;
-            _memoryPressure -= ContactsViews.AverageSizeOfRecord;
+            _memoryPressure -= ContactsViews.Record.AverageSize;
         }
 
         /// <summary>

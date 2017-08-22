@@ -14,18 +14,23 @@
 * limitations under the License.
 */
 
+using System;
+
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
     /// Event arguments passed when setting value of contacts name display order is changed
     /// </summary>
-    public class NameDisplayOrderChangedEventArgs
+    public class NameDisplayOrderChangedEventArgs : EventArgs
     {
         internal NameDisplayOrderChangedEventArgs(ContactDisplayOrder displayOrder)
         {
             this.NameDisplayOrder = displayOrder;
         }
 
+        /// <summary>
+        /// A setting value of contacts name display order
+        /// </summary>
         public ContactDisplayOrder NameDisplayOrder
         {
             get;

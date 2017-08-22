@@ -29,17 +29,17 @@ internal static partial class Interop
 
     internal enum  ContactsUsageType
     {
-        None,          /**< None */
-        OutgoingCall, /**< Outgoing Call */
-        OutgoingMsg,   /**< Outgoing message */
-        OutgoingEmail, /**< Outgoing Email (Since 3.0) */
-        IncomingCall, /**< Incoming Call (Since 3.0) */
-        IncomingMsg,  /**< Incoming message (Since 3.0) */
-        IncomingEmail,/**< Incoming Email (Since 3.0) */
-        MissedCall,     /**< Missed Call (Since 3.0) */
-        RejectedCall, /**< Rejected Call (Since 3.0) */
-        BlockedCall, /**< Blocked Call (Since 3.0) */
-        BlockedMsg /**< Blocked message (Since 3.0) */
+        None,
+        OutgoingCall,
+        OutgoingMsg,
+        OutgoingEmail,
+        IncomingCall,
+        IncomingMsg,
+        IncomingEmail,
+        MissedCall,
+        RejectedCall,
+        BlockedCall,
+        BlockedMsg
     };
 
     internal static partial class Person

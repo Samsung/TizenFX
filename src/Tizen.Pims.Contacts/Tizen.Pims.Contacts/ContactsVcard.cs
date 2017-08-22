@@ -15,12 +15,18 @@
 */
 
 using System;
-using System.Collections.Generic;
-using static Interop.Contacts;
 
 namespace Tizen.Pims.Contacts
 {
-    using static ContactsViews;
+    using ContactsViews;
+
+    /// <summary>
+    /// Delegate for getting a record parsed from a vCard file
+    /// </summary>
+    /// <param name="record">The contacts record</param>
+    /// <returns></returns>
+    public delegate bool ParseCallback(ContactsRecord record);
+
     /// <summary>
     /// A class for parsing and making vCards.
     /// </summary>
@@ -29,8 +35,6 @@ namespace Tizen.Pims.Contacts
     /// </remarks>
     public static class ContactsVcard
     {
-        public delegate bool ParseDelegate(ContactsRecord record);
-
         /// <summary>
         /// Retrieves the vCard stream from a contacts record.
         /// </summary>
@@ -103,7 +107,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        public static void ParseForEach(string path, ParseDelegate callback)
+        public static void ParseForEach(string path, ParseCallback callback)
         {
             Interop.Vcard.ContactsVcardParseCallback cb = (IntPtr handle, IntPtr data) =>
             {

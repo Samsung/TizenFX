@@ -15,7 +15,7 @@
 */
 
 using System;
-using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Pims.Contacts
@@ -32,7 +32,7 @@ namespace Tizen.Pims.Contacts
     {
         private string _uri = null;
         private uint _id;
-        private Int64 _memoryPressure = ContactsViews.AverageSizeOfRecord;
+        private Int64 _memoryPressure = ContactsViews.Record.AverageSize;
         internal IntPtr _recordHandle;
 
         internal ContactsRecord(IntPtr handle)
@@ -88,6 +88,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsRecord(string viewUri)
         {
             int error = Interop.Record.Create(viewUri, out _recordHandle);
@@ -100,6 +101,9 @@ namespace Tizen.Pims.Contacts
             GC.AddMemoryPressure(_memoryPressure);
         }
 
+        /// <summary>
+        /// Destructor
+        /// </summary>
         ~ContactsRecord()
         {
             Dispose(false);
@@ -108,6 +112,8 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// The URI of the record
         /// </summary>
+        /// <value>The URI of the record</value>
+        [SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings")]
         public string Uri
         {
             get
@@ -119,8 +125,19 @@ namespace Tizen.Pims.Contacts
         #region IDisposable Support
         internal bool _disposedValue = false; // To detect redundant calls
 
+        /// <summary>
+        /// Releases all resources used by the ContactsRecord.
+        /// </summary>
+        /// <param name="disposing">Disposing by User</param>
         protected virtual void Dispose(bool disposing)
         {
+            if (disposing)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here
+            }
+
             if (!_disposedValue)
             {
                 int error = Interop.Record.Destroy(_recordHandle, true);
@@ -140,6 +157,7 @@ namespace Tizen.Pims.Contacts
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
         #endregion
 

@@ -15,7 +15,7 @@
 */
 
 using System;
-using static Interop.Contacts;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Contacts
 {
@@ -37,6 +37,7 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")] 
         public ContactsQuery(string viewUri)
         {
             int error = Interop.Query.ContactsQueryCreate(viewUri, out _queryHandle);
@@ -52,6 +53,9 @@ namespace Tizen.Pims.Contacts
             _queryHandle = handle;
         }
 
+        /// <summary>
+        /// Destructor
+        /// </summary>
         ~ContactsQuery()
         {
             Dispose(false);
@@ -59,8 +63,19 @@ namespace Tizen.Pims.Contacts
         #region IDisposable Support
         private bool disposedValue = false;
 
+        /// <summary>
+        /// Releases all resources used by the ContactsQuery.
+        /// </summary>
+        /// <param name="disposing">Disposing by User</param>
         protected virtual void Dispose(bool disposing)
         {
+            if (disposing)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here
+            }
+
             if (!disposedValue)
             {
                 int error = Interop.Query.ContactsQueryDestroy(_queryHandle);
@@ -80,6 +95,7 @@ namespace Tizen.Pims.Contacts
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
         #endregion
 

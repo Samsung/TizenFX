@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-using System;
 using System.Runtime.InteropServices;
 
 /// <summary>
@@ -25,7 +24,7 @@ internal static partial class Interop
     /// <summary>
     /// Contacts Interop Class
     /// </summary>
-    internal static class Contacts
+    internal static class Service
     {
         [DllImport(Libraries.Contacts, EntryPoint = "contacts_connect")]
         internal static extern int Connect();
