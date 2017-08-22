@@ -15,12 +15,12 @@
  */
 
 /// <summary>
-/// Partial Interop Class
+/// The Partial Interop class.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Libraries Interop Class
+    /// The Libraries Interop class.
     /// </summary>
     internal static partial class Libraries
     {

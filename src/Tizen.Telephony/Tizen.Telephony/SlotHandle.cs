@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Telephony
 {
     /// <summary>
-    /// This Class provides API's that provides functionality related to slot handle.
+    /// This class provides APIs that provide functionality related to the slot handle.
     /// </summary>
     public class SlotHandle
     {
@@ -34,8 +34,8 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// Event Handler for Receiving the Telephony State Changes
-        /// this event will be triggered for the NotificationId's given in the SetNotificationId API
+        /// The event handler for receiving the Telephony state changes.
+        /// This event will be triggered for the NotificationIds given in the SetNotificationId API.
         /// </summary>
         public event EventHandler<ChangeNotificationEventArgs> ChangeNotification;
 
@@ -48,18 +48,18 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// The Notification Id's for which the ChangeNotification event will be triggered
+        /// The notification IDs for which the ChangeNotification event will be triggered.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="list">
-        /// The List of Notification Id's for which the ChangeNotification event will be triggered
+        /// The list of notification IDs for which the ChangeNotification event will be triggered.
         /// </param>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">
         /// This Exception can occur due to:
-        /// 1. Operation Not Supported
-        /// 2. Operation Failed
+        /// 1. Operation not supported.
+        /// 2. Operation failed.
         /// </exception>
         public void SetNotificationId(IEnumerable<ChangeNotificationEventArgs.Notification> list)
         {
@@ -78,18 +78,18 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// The Notification Id's for which the ChangeNotification event will not be triggered
+        /// The notification IDs for which the ChangeNotification event will not be triggered.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="list">
-        /// The List of Notification Id's for which the ChangeNotification event will be not be triggered
+        /// The list of notification IDs for which the ChangeNotification event will be not be triggered.
         /// </param>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">
         /// This Exception can occur due to:
-        /// 1. Operation Not Supported
-        /// 2. Operation Failed
+        /// 1. Operation not supported.
+        /// 2. Operation failed.
         /// </exception>
         public void RemoveNotificationId(IEnumerable<ChangeNotificationEventArgs.Notification> list)
         {

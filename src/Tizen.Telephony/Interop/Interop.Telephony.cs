@@ -19,12 +19,12 @@ using System.Runtime.InteropServices;
 using Tizen.Telephony;
 
 /// <summary>
-/// Partial Interop Class
+/// The Partial Interop class.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Telephony Interop Class
+    /// The Telephony Interop class.
     /// </summary>
     internal static class Telephony
   {

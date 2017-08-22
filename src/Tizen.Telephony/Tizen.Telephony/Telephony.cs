@@ -22,20 +22,20 @@ using static Interop.Telephony;
 namespace Tizen.Telephony
 {
     /// <summary>
-    /// Enumeration for the telephony state.
+    /// Enumeration for the telephony states.
     /// </summary>
     public enum State
     {
         /// <summary>
-        /// Telephony state is not ready
+        /// The telephony state is not ready.
         /// </summary>
         NotReady,
         /// <summary>
-        /// Telephony state is ready
+        /// The telephony state is ready.
         /// </summary>
         Ready,
         /// <summary>
-        /// Unavailable
+        /// Unavailable.
         /// </summary>
         Unavailable
     };
@@ -46,30 +46,30 @@ namespace Tizen.Telephony
     public enum CallPreferredVoiceSubscription
     {
         /// <summary>
-        /// Unknown status
+        /// Unknown status.
         /// </summary>
         Unknown = -1,
         /// <summary>
-        /// Current network
+        /// Current network.
         /// </summary>
         CurrentNetwork = 0,
         /// <summary>
-        /// ASK Always
+        /// Ask Always.
         /// </summary>
         AskAlways,
         /// <summary>
-        /// SIM 1
+        /// SIM 1.
         /// </summary>
         Sim1,
         /// <summary>
-        /// SIM 2
+        /// SIM 2.
         /// </summary>
         Sim2
     };
 
     /// <summary>
-    /// This Class provides API's to Initialize and Deinitialize the framework
-    /// it also provides API's to get the SlotHandle's which can then be used to get other Network/Sim/Call/Modem Information.
+    /// This class provides APIs to initialize and deinitialize the framework.
+    /// It also provides APIs to get the SlotHandles, which can then be used to get other Network/Sim/Call/Modem information.
     /// </summary>
     public static class Manager
     {
@@ -84,7 +84,7 @@ namespace Tizen.Telephony
         };
 
         /// <summary>
-        /// Event Handler to be invoked when the telephony state changes.
+        /// The event handler to be invoked when the telephony state changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<StateEventArgs> StateChanged
@@ -145,21 +145,21 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// Acquires the Number of available handles to use the telephony API.
+        /// Acquires the number of available handles to use the telephony API.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
-        /// A List of Telephony handles.
-        /// You will get 2 SlotHandles in case of dual SIM device.
-        /// where,SlotHandle at Index '0' represents Primary SIM and Index '1' represents Secondary SIM.
+        /// A list of telephony handles.
+        /// You will get 2 SlotHandles in case of the dual SIM device.
+        /// Where, SlotHandle at Index '0' represents the primary SIM and Index '1' represents the secondary SIM.
         /// </returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can will be generated in the following cases
-        /// 1. System is out of memory
-        /// 2. If the operation is not supported on device
-        /// 3. If the Operation Failed
+        /// This exception will be generated in the following cases:
+        /// 1. The system is out of memory.
+        /// 2. If the operation is not supported on the device.
+        /// 3. If the operation failed.
         /// </exception>
         public static IEnumerable<SlotHandle> Init()
         {
@@ -201,9 +201,9 @@ namespace Tizen.Telephony
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">
-        /// This Exception can be generated in the following cases
-        /// 1. If the operation is not supported on device
-        /// 2. If the Operation Failed
+        /// This exception can be generated in the following cases:
+        /// 1. If the operation is not supported on the device.
+        /// 2. If the operation failed.
         /// </exception>
         public static void Deinit()
         {

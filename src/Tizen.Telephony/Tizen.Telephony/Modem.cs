@@ -19,23 +19,23 @@ using static Interop.Telephony;
 namespace Tizen.Telephony
 {
     /// <summary>
-    /// This Class provides API's to obtain information from the modem.
+    /// This class provides APIs to obtain information from the modem.
     /// </summary>
     public class Modem
     {
         internal IntPtr _handle;
 
         /// <summary>
-        /// Modem Class Constructor
+        /// The Modem class constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="handle">
-        /// SlotHandle received in the Manager.Init API
+        /// SlotHandle received in the Manager.Init API.
         /// </param>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ArgumentNullException">
-        /// This exception occurs if handle provided is null
+        /// This exception occurs if the handle provided is null.
         /// </exception>
         public Modem(SlotHandle handle)
         {
@@ -48,41 +48,41 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// Enumeration for Modem Power Status.
+        /// Enumeration for the Modem Power Status.
         /// </summary>
         public enum PowerStatus
         {
             /// <summary>
-            /// Unknown
+            /// Unknown.
             /// </summary>
             Unknown = -1,
             /// <summary>
-            /// Modem power ON
+            /// Modem power ON.
             /// </summary>
             On,
             /// <summary>
-            /// Modem power OFF
+            /// Modem power OFF.
             /// </summary>
             Off,
             /// <summary>
-            /// Modem power RESET
+            /// Modem power RESET.
             /// </summary>
             Reset,
             /// <summary>
-            /// Modem power LOW
+            /// Modem power LOW.
             /// </summary>
             Low
         };
 
         /// <summary>
         /// Gets the IMEI (International Mobile Station Equipment Identity) of a mobile phone.
-        /// The IMEI number is used by a GSM network to identify valid devices and therefore can be used for stopping a stolen phone from accessing that network.
+        /// The IMEI number is used by a GSM network to identify valid devices and therefore, can be used for stopping a stolen phone from accessing that network.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The International Mobile Station Equipment Identity
-        /// empty string if unable to complete the operation
+        /// The International Mobile Station Equipment Identity.
+        /// Empty string if unable to complete the operation.
         /// </value>
         public string Imei
         {
@@ -106,7 +106,7 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The Modem power status (0=on,1=off,2=reset,3=low)
+        /// The Modem power status (0=on,1=off,2=reset,3=low).
         /// </value>
         public PowerStatus CurrentPowerStatus
         {
@@ -126,13 +126,13 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// Gets the MEID (Mobile Equipment Identifier) of a mobile phone. (for CDMA)
+        /// Gets the MEID (Mobile Equipment Identifier) of a mobile phone (for CDMA).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The Mobile Equipment Identifier
-        /// empty string if unable to complete the operation
+        /// The Mobile Equipment Identifier.
+        /// Empty string if unable to complete the operation.
         /// </value>
         public string Meid
         {

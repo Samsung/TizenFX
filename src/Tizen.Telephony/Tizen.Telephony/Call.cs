@@ -22,8 +22,8 @@ using static Interop.Telephony;
 namespace Tizen.Telephony
 {
     /// <summary>
-    /// The Call API's allows you to get the voice and video call states.
-    /// It provides the List of CallHandle which can be used to get the information about call related actions.
+    /// The Call APIs allow you to get the voice and video call states.
+    /// It provides the list of CallHandle which can be used to get the information about call related actions.
     /// </summary>
     public class Call
     {
@@ -34,16 +34,16 @@ namespace Tizen.Telephony
         private Interop.Call.SafeCallList _safeCallList;
 
         /// <summary>
-        /// Public Constructor
+        /// The public constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="handle">
-        /// SlotHandle received in the Manager.Init API
+        /// SlotHandle received in the Manager.Init API.
         /// </param>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ArgumentNullException">
-        /// This exception occurs if handle provided is null
+        /// This exception occurs if the handle provided is null.
         /// </exception>
         public Call(SlotHandle handle)
         {
@@ -84,15 +84,15 @@ namespace Tizen.Telephony
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
-        /// List of CallHandle for existing calls.
+        /// The list of the CallHandle for existing calls.
         /// </returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <exception cref="ArgumentException">Incase of Invalid parameter</exception>
-        /// <exception cref="InvalidOperationException">Incase of any System error</exception>
-        /// <exception cref="UnauthorizedAccessException">Incase of Privileges are not defined</exception>
-        /// <exception cref="OutOfMemoryException">Incase of Out of Memory</exception>
+        /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+        /// <exception cref="UnauthorizedAccessException">In case of privileges not defined.</exception>
+        /// <exception cref="OutOfMemoryException">In case of out of memory.</exception>
         public IEnumerable<CallHandle> GetCallHandleList()
         {
             uint count;
