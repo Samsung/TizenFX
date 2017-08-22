@@ -18,12 +18,12 @@ using System;
 using System.Runtime.InteropServices;
 
 /// <summary>
-/// Partial Interop Class
+/// The Partial Interop class.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Sim Interop Class
+    /// The SIM Interop class.
     /// </summary>
     internal static partial class Sim
   {

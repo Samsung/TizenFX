@@ -20,23 +20,23 @@ using static Interop.Telephony;
 namespace Tizen.Telephony
 {
     /// <summary>
-    /// This Class provides API's that allows you to extract information stored on a SIM card
+    /// This class provides APIs that allow you to extract the information stored on a SIM card.
     /// </summary>
     public class Sim
     {
         internal IntPtr _handle;
 
         /// <summary>
-        /// Sim Class Constructor
+        /// The SIM class constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="handle">
-        /// SlotHandle received in the Manager.Init API
+        /// SlotHandle received in the Manager.Init API.
         /// </param>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ArgumentNullException">
-        /// This exception occurs if handle provided is null
+        /// This exception occurs if the handle provided is null.
         /// </exception>
         public Sim(SlotHandle handle)
         {
@@ -49,74 +49,74 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// Enumeration for the state of SIM card.
+        /// Enumeration for the state of the SIM card.
         /// </summary>
         public enum State
         {
             /// <summary>
-            /// SIM is not available on this device
+            /// The SIM is not available on this device.
             /// </summary>
             Unavailable,
             /// <summary>
-            /// SIM is locked
+            /// The SIM is locked.
             /// </summary>
             Locked,
             /// <summary>
-            /// SIM is available on this device (SIM is not locked)
+            /// The SIM is available on this device (SIM is not locked).
             /// </summary>
             Available,
             /// <summary>
-            /// SIM is in transition between states
+            /// The SIM is in transition between states.
             /// </summary>
             Unknown
         }
 
         /// <summary>
-        /// Enumeration for the lock state of SIM card.
+        /// Enumeration for the lock state of the SIM card.
         /// </summary>
         public enum LockState
         {
             /// <summary>
-            /// SIM is not in lock
+            /// The SIM is not in lock.
             /// </summary>
             Unknown,
             /// <summary>
-            /// SIM is PIN(Personal Identification Number) locked
+            /// The SIM is PIN (Personal Identification Number) locked.
             /// </summary>
             PinRequired,
             /// <summary>
-            /// SIM is PUK(Personal Unblocking Code) locked
+            /// The SIM is PUK (Personal Unblocking Code) locked.
             /// </summary>
             PukRequired,
             /// <summary>
-            /// SIM is permanently blocked(All the attempts for PIN/PUK failed)
+            /// The SIM is permanently blocked (All the attempts for PIN/PUK failed).
             /// </summary>
             PermLocked,
             /// <summary>
-            /// SIM is NCK(Network Control Key) locked
+            /// The SIM is NCK (Network Control Key) locked.
             /// </summary>
             NckRequired
         }
 
         /// <summary>
-        /// Enumeration for the type of SIM card.
+        /// Enumeration for the type of the SIM card.
         /// </summary>
         public enum ApplicationType
         {
             /// <summary>
-            /// SIM(GSM) Application
+            /// SIM (GSM) application.
             /// </summary>
             Sim = 0x01,
             /// <summary>
-            /// USIM Application
+            /// USIM application.
             /// </summary>
             Usim = 0x02,
             /// <summary>
-            /// CDMA Application
+            /// CDMA application.
             /// </summary>
             Csim = 0x04,
             /// <summary>
-            /// ISIM Application
+            /// ISIM application.
             /// </summary>
             Isim = 0x08
         }
@@ -128,11 +128,11 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The Integrated Circuit Card Identification
-        /// empty string if unable to complete the operation
+        /// The Integrated Circuit Card Identification.
+        /// Empty string if unable to complete the operation.
         /// </value>
         /// <precondition>
-        /// The SIM state must be Available
+        /// The SIM state must be Available.
         /// </precondition>
         public string IccId
         {
@@ -157,11 +157,11 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The SIM Operator
-        /// empty string if unable to complete the operation
+        /// The SIM Operator.
+        /// Empty string if unable to complete the operation.
         /// </value>
         /// <precondition>
-        /// The SIM state must be Available
+        /// The SIM state must be Available.
         /// </precondition>
         public string Operator
         {
@@ -185,11 +185,11 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The Mobile Subscription Identification Number
-        /// empty string if unable to complete the operation
+        /// The Mobile Subscription Identification Number.
+        /// Empty string if unable to complete the operation.
         /// </value>
         /// <precondition>
-        /// The SIM state must be Available
+        /// The SIM state must be Available.
         /// </precondition>
         public string Msin
         {
@@ -209,16 +209,16 @@ namespace Tizen.Telephony
 
         /// <summary>
         /// Gets the Service Provider Name (SPN) of the SIM card.
-        /// Gets Service Provider Name embedded in the SIM card.If this value is not stored in SIM card, empty string will be returned.
+        /// Gets Service Provider Name embedded in the SIM card. If this value is not stored in the SIM card, an empty string will be returned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The Service Provider Name
-        /// empty string if unable to complete the operation
+        /// The Service Provider Name.
+        /// Empty string if unable to complete the operation.
         /// </value>
         /// <precondition>
-        /// The SIM state must be Available
+        /// The SIM state must be Available.
         /// </precondition>
         public string Spn
         {
@@ -242,10 +242,10 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// true if the current SIM card is different from the previous SIM card, otherwise false if the SIM card is not changed
+        /// true if the current SIM card is different from the previous SIM card, otherwise false if the SIM card is not changed.
         /// </value>
         /// <precondition>
-        /// The SIM state must be Available
+        /// The SIM state must be Available.
         /// </precondition>
         public bool IsChanged
         {
@@ -275,7 +275,7 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The current state of the SIM
+        /// The current state of the SIM.
         /// </value>
         public State CurrentState
         {
@@ -294,16 +294,16 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// Gets the count of application on UICC.
+        /// Gets the count of an application on the UICC.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The masking value for below values are provided by the enum ApplicationType
-        /// 0 if unable to complete the operation
+        /// The masking value for below values are provided by the enumeration ApplicationType.
+        /// 0 if unable to complete the operation.
         /// </value>
         /// <precondition>
-        /// The SIM state must be Available
+        /// The SIM state must be Available.
         /// </precondition>
         public uint ApplicationList
         {
@@ -322,17 +322,17 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// Gets subscriber number embedded in the SIM card. This value contains MSISDN related to the subscriber.
-        /// If this value is not stored in SIM card, empty string will be returned.
+        /// Gets the subscriber number embedded in the SIM card. This value contains the MSISDN related to the subscriber.
+        /// If this value is not stored in SIM card, an empty string will be returned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The subscriber number in the SIM
-        /// empty string if unable to complete the operation
+        /// The subscriber number in the SIM.
+        /// Empty string if unable to complete the operation.
         /// </value>
         /// <precondition>
-        /// The SIM state must be Available
+        /// The SIM state must be Available.
         /// </precondition>
         public string SubscriberNumber
         {
@@ -351,16 +351,16 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// Gets the Subscriber ID.
+        /// Gets the subscriber ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The subscriber ID
-        /// empty string if unable to complete the operation
+        /// The subscriber ID.
+        /// Empty string if unable to complete the operation.
         /// </value>
         /// <precondition>
-        /// The SIM state must be Available
+        /// The SIM state must be Available.
         /// </precondition>
         public string SubscriberId
         {
@@ -384,10 +384,10 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The current lock state of the SIM
+        /// The current lock state of the SIM.
         /// </value>
         /// <precondition>
-        /// The SIM state must be Available
+        /// The SIM state must be Available.
         /// </precondition>
         public LockState CurrentLockState
         {
@@ -407,16 +407,16 @@ namespace Tizen.Telephony
 
         /// <summary>
         /// Gets the GID1 (Group Identifier Level 1).
-        /// Gets Group Identifier Level 1(GID1) embedded in the SIM card.If this value is not stored in SIM card, empty string will be returned.
+        /// Gets Group Identifier Level 1 (GID1) embedded in the SIM card. If this value is not stored in SIM card, an empty string will be returned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The GID1 (Group Identifier Level 1)
-        /// empty string if unable to complete the operation
+        /// The GID1 (Group Identifier Level 1).
+        /// Empty string if unable to complete the operation.
         /// </value>
         /// <precondition>
-        /// The SIM state must be Available
+        /// The SIM state must be Available.
         /// </precondition>
         public string GroupId1
         {
@@ -436,15 +436,15 @@ namespace Tizen.Telephony
 
         /// <summary>
         /// Gets the call forwarding indicator state of the SIM.
-        /// If the state is true, incoming call will be forwarded to the selected number.state indicates the CFU(Call Forwarding Unconditional) indicator status - Voice. (3GPP TS 31.102 4.2.64 EF CFIS)
+        /// If the state is true, the incoming call will be forwarded to the selected number. State indicates the CFU (Call Forwarding Unconditional) indicator status - Voice (3GPP TS 31.102 4.2.64 EF CFIS).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The value whether incoming call will be forwarded or not. (true: forwarded, false: not forwarded)
+        /// The value whether the incoming call will be forwarded or not (true: forwarded, false: not forwarded).
         /// </value>
         /// <precondition>
-        /// The SIM state must be Available
+        /// The SIM state must be Available.
         /// </precondition>
         public bool CallForwardingIndicatorState
         {

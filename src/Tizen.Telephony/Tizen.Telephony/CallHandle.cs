@@ -20,7 +20,7 @@ using static Interop.Telephony;
 namespace Tizen.Telephony
 {
     /// <summary>
-    /// This Class provides API's to get the information about calls.
+    /// This class provides the APIs to get the information about calls.
     /// </summary>
     public class CallHandle
     {
@@ -32,31 +32,31 @@ namespace Tizen.Telephony
         public enum CallStatus
         {
             /// <summary>
-            /// Idle status
+            /// Idle status.
             /// </summary>
             Idle,
             /// <summary>
-            /// Active status
+            /// Active status.
             /// </summary>
             Active,
             /// <summary>
-            /// Held status
+            /// Held status.
             /// </summary>
             Held,
             /// <summary>
-            /// Dialing status
+            /// Dialing status.
             /// </summary>
             Dialing,
             /// <summary>
-            /// Alerting status
+            /// Alerting status.
             /// </summary>
             Alerting,
             /// <summary>
-            /// Incoming status
+            /// Incoming status.
             /// </summary>
             Incoming,
             /// <summary>
-            /// Unavailable
+            /// Unavailable.
             /// </summary>
             Unavailable
         };
@@ -67,19 +67,19 @@ namespace Tizen.Telephony
         public enum CallType
         {
             /// <summary>
-            /// Voice call
+            /// Voice call.
             /// </summary>
             Voice,
             /// <summary>
-            /// Video call
+            /// Video call.
             /// </summary>
             Video,
             /// <summary>
-            /// Emergency call
+            /// Emergency call.
             /// </summary>
             E911,
             /// <summary>
-            /// Unavailable
+            /// Unavailable.
             /// </summary>
             Unavailable
         };
@@ -90,15 +90,15 @@ namespace Tizen.Telephony
         public enum CallDirection
         {
             /// <summary>
-            /// MO(Mobile Originated) call
+            /// MO(Mobile Originated) call.
             /// </summary>
             Mo,
             /// <summary>
-            /// MT(Mobile Terminated) call
+            /// MT(Mobile Terminated) call.
             /// </summary>
             Mt,
             /// <summary>
-            /// Unavailable
+            /// Unavailable.
             /// </summary>
             Unavailable
         };
@@ -108,8 +108,8 @@ namespace Tizen.Telephony
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// The id of the call handle
-        /// 0 if unable to complete the operation
+        /// The ID of the call handle.
+        /// 0 if unable to complete the operation.
         /// </value>
         public uint HandleId
         {
@@ -132,8 +132,8 @@ namespace Tizen.Telephony
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// The number of the call
-        /// empty string if unable to complete the operation
+        /// The number of the call.
+        /// Empty string if unable to complete the operation.
         /// </value>
         public string Number
         {
@@ -156,7 +156,7 @@ namespace Tizen.Telephony
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// The type of the call
+        /// The type of the call.
         /// </value>
         public CallType Type
         {
@@ -179,7 +179,7 @@ namespace Tizen.Telephony
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// The status of the call
+        /// The status of the call.
         /// </value>
         public CallStatus Status
         {
@@ -198,15 +198,15 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// Gets whether the call is MO(Mobile Originated) call or MT(Mobile Terminated).
+        /// Gets whether the call is MO(Mobile Originated) call or MT(Mobile Terminated) call.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// The direction of the call
+        /// The direction of the call.
         /// </value>
         /// <exception cref="InvalidOperationException">
         /// This Exception can occur due to:
-        /// 1. Operation Not Supported
+        /// 1. Operation Not Supported.
         /// </exception>
         public CallDirection Direction
         {
@@ -226,11 +226,11 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// Gets whether the call is conference call or not.
+        /// Gets whether the call is a conference call or not.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// The value whether the call is conference call or not. (true: Conference call, false: Single call)
+        /// The value whether the call is a conference call or not (true: Conference call, false: Single call).
         /// </value>
         public bool ConferenceStatus
         {

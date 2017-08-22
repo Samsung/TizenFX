@@ -19,23 +19,23 @@ using static Interop.Telephony;
 namespace Tizen.Telephony
 {
     /// <summary>
-    /// The Network class provides API's to obtain information about the current telephony service network.
+    /// The Network class provides APIs to obtain information about the current telephony service network.
     /// </summary>
     public class Network
     {
         internal IntPtr _handle;
 
         /// <summary>
-        /// Network Class Constructor
+        /// The Network class constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="handle">
-        /// SlotHandle received in the Manager.Init API
+        /// SlotHandle received in the Manager.Init API.
         /// </param>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ArgumentNullException">
-        /// This exception occurs if handle provided is null
+        /// This exception occurs if the handle provided is null.
         /// </exception>
         public Network(SlotHandle handle)
         {
@@ -48,238 +48,238 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// Enumeration for RSSI (Receive Signal Strength Indicator).
+        /// Enumeration for the RSSI (Receive Signal Strength Indicator).
         /// Rssi6 indicates the highest strength.
         /// </summary>
         public enum Rssi
         {
             /// <summary>
-            /// Strength 0
+            /// Strength 0.
             /// </summary>
             Rssi0,
             /// <summary>
-            /// Strength 1
+            /// Strength 1.
             /// </summary>
             Rssi1,
             /// <summary>
-            /// Strength 2
+            /// Strength 2.
             /// </summary>
             Rssi2,
             /// <summary>
-            /// Strength 3
+            /// Strength 3.
             /// </summary>
             Rssi3,
             /// <summary>
-            /// Strength 4
+            /// Strength 4.
             /// </summary>
             Rssi4,
             /// <summary>
-            /// Strength 5
+            /// Strength 5.
             /// </summary>
             Rssi5,
             /// <summary>
-            /// Strength 6
+            /// Strength 6.
             /// </summary>
             Rssi6,
             /// <summary>
-            /// Unavailable
+            /// Unavailable.
             /// </summary>
             Unavailable
         }
 
         /// <summary>
-        /// Enumeration for Network Type.
+        /// Enumeration for the network types.
         /// </summary>
         public enum Type
         {
             /// <summary>
-            /// Unknown
+            /// Unknown.
             /// </summary>
             Unknown,
             /// <summary>
-            /// 2G GSM network type
+            /// 2G GSM network type.
             /// </summary>
             Gsm,
             /// <summary>
-            /// 2.5G GPRS network type
+            /// 2.5G GPRS network type.
             /// </summary>
             Gprs,
             /// <summary>
-            /// 2.5G EDGE network type
+            /// 2.5G EDGE network type.
             /// </summary>
             Edge,
             /// <summary>
-            /// 3G UMTS network type
+            /// 3G UMTS network type.
             /// </summary>
             Umts,
             /// <summary>
-            /// HSDPA network type
+            /// HSDPA network type.
             /// </summary>
             Hsdpa,
             /// <summary>
-            /// LTE network type
+            /// LTE network type.
             /// </summary>
             Lte,
             /// <summary>
-            /// IS95A network type
+            /// IS95A network type.
             /// </summary>
             Is95a,
             /// <summary>
-            /// IS95B network type
+            /// IS95B network type.
             /// </summary>
             Is95b,
             /// <summary>
-            /// CDMA 1x network type
+            /// CDMA 1x network type.
             /// </summary>
             Cdma1X,
             /// <summary>
-            /// EVDO revision 0 network type
+            /// EVDO revision 0 network type.
             /// </summary>
             EvdoRev0,
             /// <summary>
-            /// EVDO revision A network type
+            /// EVDO revision A network type.
             /// </summary>
             EvdoRevA,
             /// <summary>
-            /// EVDO revision B network type
+            /// EVDO revision B network type.
             /// </summary>
             EvdoRevB,
             /// <summary>
-            /// EVDV network type
+            /// EVDV network type.
             /// </summary>
             Evdv,
             /// <summary>
-            /// EHRPD network type
+            /// EHRPD network type.
             /// </summary>
             Ehrpd
         }
 
         /// <summary>
-        /// Enumeration for PS Type.
+        /// Enumeration for the PS types.
         /// </summary>
         public enum PsType
         {
             /// <summary>
-            /// Unknown
+            /// Unknown.
             /// </summary>
             Unknown,
             /// <summary>
-            /// HSDPA ps type
+            /// HSDPA PS type.
             /// </summary>
             Hsdpa,
             /// <summary>
-            /// HSUPA ps type
+            /// HSUPA PS type.
             /// </summary>
             Hsupa,
             /// <summary>
-            /// HSPA ps type
+            /// HSPA PS type.
             /// </summary>
             Hspa,
             /// <summary>
-            /// HSPAP ps type
+            /// HSPAP PS type.
             /// </summary>
             Hspap
         }
 
         /// <summary>
-        /// Enumeration for Network Service State.
+        /// Enumeration for the network service states.
         /// </summary>
         public enum ServiceState
         {
             /// <summary>
-            /// In service
+            /// In service.
             /// </summary>
             InService,
             /// <summary>
-            /// Out of service
+            /// Out of service.
             /// </summary>
             OutOfService,
             /// <summary>
-            /// Only emergency call is allowed
+            /// Only emergency call is allowed.
             /// </summary>
             EmergencyOnly,
             /// <summary>
-            /// Unavailable
+            /// Unavailable.
             /// </summary>
             Unavailable
         }
 
         /// <summary>
-        /// Enumeration for Network Name Priority.
+        /// Enumeration for the network name priority.
         /// </summary>
         public enum NameOption
         {
             /// <summary>
-            /// Unknown
+            /// Unknown.
             /// </summary>
             Unknown,
             /// <summary>
-            /// Network name displayed by SPN
+            /// The network name displayed by the SPN.
             /// </summary>
             Spn,
             /// <summary>
-            /// Network name displayed by Network
+            /// The network name displayed by the Network.
             /// </summary>
             Network,
             /// <summary>
-            /// Network name displayed by SPN or Network
+            /// The network name displayed by the SPN or the Network.
             /// </summary>
             Any
         }
 
         /// <summary>
-        /// Enumeration for the possible 'default' Data Subscriptions for Packet Switched(PS).
+        /// Enumeration for the possible 'default' Data Subscriptions for the Packet Switched(PS).
         /// </summary>
         public enum DefaultDataSubscription
         {
             /// <summary>
-            /// Unknown status
+            /// Unknown status.
             /// </summary>
             Unknown = -1,
             /// <summary>
-            /// SIM 1
+            /// SIM 1.
             /// </summary>
             Sim1,
             /// <summary>
-            /// SIM 2
+            /// SIM 2.
             /// </summary>
             Sim2
         }
 
         /// <summary>
-        /// Enumeration defines possible 'default' Subscriptions for Circuit Switched(CS).
+        /// Enumeration for defining the possible 'default' Subscriptions for the Circuit Switched(CS).
         /// </summary>
         public enum DefaultSubscription
         {
             /// <summary>
-            /// Unknown status
+            /// Unknown status.
             /// </summary>
             Unknown = -1,
             /// <summary>
-            /// SIM 1 network
+            /// SIM 1 network.
             /// </summary>
             Sim1,
             /// <summary>
-            /// SIM 2 network
+            /// SIM 2 network.
             /// </summary>
             Sim2
         }
 
         /// <summary>
-        /// Enumeration for network selection mode.
+        /// Enumeration for the network selection modes.
         /// </summary>
         public enum SelectionMode
         {
             /// <summary>
-            /// Automatic mode
+            /// Automatic mode.
             /// </summary>
             Automatic,
             /// <summary>
-            /// Manual mode
+            /// Manual mode.
             /// </summary>
             Manual,
             /// <summary>
-            /// Unavailable
+            /// Unavailable.
             /// </summary>
             Unavailable
         }
@@ -290,10 +290,10 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
-        /// This API can be used in GSM / WCDMA network.
+        /// This API can be used in the GSM/WCDMA network.
         /// </remarks>
         /// <value>
-        /// The Location Area Code, -1 if unknown
+        /// The Location Area Code, -1 if unknown.
         /// </value>
         public int Lac
         {
@@ -319,10 +319,10 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
-        /// This API can be used in GSM / WCDMA / LTE network.
+        /// This API can be used in the GSM/WCDMA/LTE network.
         /// </remarks>
         /// <value>
-        /// The cell identification number, -1 if unknown
+        /// The cell identification number, -1 if unknown.
         /// </value>
         public int CellId
         {
@@ -347,7 +347,7 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The Received Signal Strength Indicator
+        /// The Received Signal Strength Indicator.
         /// Higher the received number, the stronger the signal strength.
         /// </value>
         public Rssi CurrentRssi
@@ -373,7 +373,7 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// true if roaming, otherwise false if not roaming
+        /// true if roaming, otherwise false if not roaming.
         /// </value>
         public bool RoamingStatus
         {
@@ -397,11 +397,11 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <remarks>
-        /// This API can be used in GSM / WCDMA / LTE network.
+        /// This API can be used in the GSM/WCDMA/LTE network.
         /// </remarks>
         /// <value>
-        /// The Mobile Country Code (three digits) Mobile Country Code (MCC) identifies the country where the cell is being used.
-        /// empty string if unknown.
+        /// The Mobile Country Code (three digits). The Mobile Country Code (MCC) identifies the country where the cell is being used.
+        /// Empty string if unknown.
         /// </value>
         public string Mcc
         {
@@ -425,11 +425,11 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <remarks>
-        /// This API can be used in GSM / WCDMA / LTE network.
+        /// This API can be used in the GSM/WCDMA/LTE network.
         /// </remarks>
         /// <value>
-        /// The Mobile Network Code (three digits) The Mobile Network Code (MNC) identifies the mobile phone operator and network provider.
-        /// empty string if unknown.
+        /// The Mobile Network Code (three digits). The Mobile Network Code (MNC) identifies the mobile phone operator and the network provider.
+        /// Empty string if unknown.
         /// </value>
         public string Mnc
         {
@@ -453,11 +453,11 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <remarks>
-        /// This API can be used in GSM / WCDMA / LTE network.
+        /// This API can be used in the GSM/WCDMA/LTE network.
         /// </remarks>
         /// <value>
-        /// The name of the current registered network
-        /// empty string if unknown.
+        /// The name of the current registered network.
+        /// Empty string if unknown.
         /// </value>
         public string NetworkName
         {
@@ -481,10 +481,10 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <remarks>
-        /// This API can be used in case network is in service.
+        /// This API can be used in case the network is in service.
         /// </remarks>
         /// <value>
-        /// The network service type
+        /// The network service type.
         /// </value>
         public Type NetworkType
         {
@@ -508,10 +508,10 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <remarks>
-        /// This API can be used in HSDPA network.
+        /// This API can be used in the HSDPA network.
         /// </remarks>
         /// <value>
-        /// The type of packet service
+        /// The type of the packet service.
         /// </value>
         public PsType NetworkPsType
         {
@@ -536,7 +536,7 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The network name display option
+        /// The network name display option.
         /// </value>
         public NameOption NetworkNameOption
         {
@@ -561,7 +561,7 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The current network state
+        /// The current network state.
         /// </value>
         public ServiceState NetworkServiceState
         {
@@ -581,12 +581,12 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// Gets the current default subscription for data service (Packet Switched).
+        /// Gets the current default subscription for the data service (Packet Switched).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The current default data subscription
+        /// The current default data subscription.
         /// </value>
         public DefaultDataSubscription NetworkDefaultDataSubscription
         {
@@ -606,12 +606,12 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// Gets the current default subscription for voice service (Circuit Switched).
+        /// Gets the current default subscription for the voice service (Circuit Switched).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <value>
-        /// The current default voice subscription
+        /// The current default voice subscription.
         /// </value>
         public DefaultSubscription NetworkDefaultSubscription
         {
@@ -661,11 +661,11 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
-        /// This API can be used in LTE network.
+        /// This API can be used in the LTE network.
         /// </remarks>
         /// <value>
-        /// The Tracking Area Code
-        /// -1 if unknown
+        /// The Tracking Area Code.
+        /// -1 if unknown.
         /// </value>
         public int Tac
         {
@@ -690,11 +690,11 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
-        /// This API can be used in CDMA network.
+        /// This API can be used in the CDMA network.
         /// </remarks>
         /// <value>
-        /// The system ID
-        /// -1 if unknown
+        /// The system ID.
+        /// -1 if unknown.
         /// </value>
         public int SystemId
         {
@@ -719,11 +719,11 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
-        /// This API can be used in CDMA network.
+        /// This API can be used in the CDMA network.
         /// </remarks>
         /// <value>
-        /// The network ID
-        /// -1 if unknown
+        /// The network ID.
+        /// -1 if unknown.
         /// </value>
         public int NetworkId
         {
@@ -748,11 +748,11 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location.coarse</privilege>>
         /// <remarks>
-        /// This API can be used in CDMA network.
+        /// This API can be used in the CDMA network.
         /// </remarks>
         /// <value>
-        /// The base station ID
-        /// -1 if unknown
+        /// The base station ID.
+        /// -1 if unknown.
         /// </value>
 
         public int BaseStationId
@@ -778,11 +778,11 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
-        /// This API can be used in CDMA network.
+        /// This API can be used in the CDMA network.
         /// </remarks>
         /// <value>
-        /// The base station latitude
-        /// 0x7FFFFFFF if unknown
+        /// The base station latitude.
+        /// 0x7FFFFFFF if unknown.
         /// </value>
         public int BaseStationLatitude
         {
@@ -806,11 +806,11 @@ namespace Tizen.Telephony
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location.coarse</privilege>
         /// <remarks>
-        /// This API can be used in CDMA network.
+        /// This API can be used in the CDMA network.
         /// </remarks>
         /// <value>
-        /// The base station latitude
-        /// 0x7FFFFFFF if unknown
+        /// The base station latitude.
+        /// 0x7FFFFFFF if unknown.
         /// </value>
         public int BaseStationLongitude
         {

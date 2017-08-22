@@ -18,7 +18,7 @@ using System;
 namespace Tizen.Telephony
 {
     /// <summary>
-    /// This class contain the data related to the State changed event
+    /// This class contains the data related to the State changed event.
     /// </summary>
     public class StateEventArgs : EventArgs
     {
@@ -28,7 +28,7 @@ namespace Tizen.Telephony
         }
 
         /// <summary>
-        /// The Current State
+        /// The Current State.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public State CurrentState

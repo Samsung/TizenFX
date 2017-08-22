@@ -20,12 +20,12 @@ using Tizen.Telephony;
 using static Tizen.Telephony.CallHandle;
 
 /// <summary>
-/// Partial Interop Class
+/// The Partial Interop class.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Call Interop Class
+    /// The Call Interop class.
     /// </summary>
     internal static partial class Call
     {
