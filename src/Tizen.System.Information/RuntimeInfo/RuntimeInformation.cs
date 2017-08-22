@@ -21,6 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.System
 {
@@ -306,11 +307,18 @@ namespace Tizen.System
             int[] processArray = pid.ToArray<int>();
             Interop.RuntimeInfo.ProcessMemoryInfo[] processMemoryArray = new Interop.RuntimeInfo.ProcessMemoryInfo[pid.Count<int>()];
             Dictionary<int, ProcessMemoryInformation> map = new Dictionary<int, ProcessMemoryInformation>();
-            int ret = Interop.RuntimeInfo.GetProcessMemoryInfo(processArray, pid.Count<int>(), out processMemoryArray);
+            IntPtr ptr = new IntPtr();
+            int ret = Interop.RuntimeInfo.GetProcessMemoryInfo(processArray, pid.Count<int>(), ref ptr);
             if (ret != (int)RuntimeInfoError.None)
             {
                 Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get Process memory information");
                 RuntimeInfoErrorFactory.ThrowException(ret);
+            }
+
+            for (int i = 0; i < pid.Count<int>(); i++)
+            {
+                processMemoryArray[i] = Marshal.PtrToStructure<Interop.RuntimeInfo.ProcessMemoryInfo>(ptr);
+                ptr += Marshal.SizeOf<Interop.RuntimeInfo.ProcessCpuUsage>();
             }
 
             int idx = 0;
@@ -358,11 +366,18 @@ namespace Tizen.System
             int[] processArray = pid.ToArray<int>();
             Interop.RuntimeInfo.ProcessCpuUsage[] processCpuUsageArray = new Interop.RuntimeInfo.ProcessCpuUsage[pid.Count<int>()];
             Dictionary<int, ProcessCpuUsage> map = new Dictionary<int, ProcessCpuUsage>();
-            int ret = Interop.RuntimeInfo.GetProcessCpuUsage(processArray, pid.Count<int>(), out processCpuUsageArray);
+            IntPtr ptr = new IntPtr();
+            int ret = Interop.RuntimeInfo.GetProcessCpuUsage(processArray, pid.Count<int>(), ref ptr);
             if (ret != (int)RuntimeInfoError.None)
             {
                 Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get Process cpu usage");
                 RuntimeInfoErrorFactory.ThrowException(ret);
+            }
+
+            for (int i = 0; i < pid.Count<int>(); i++)
+            {
+                processCpuUsageArray[i] = Marshal.PtrToStructure<Interop.RuntimeInfo.ProcessCpuUsage>(ptr);
+                ptr += Marshal.SizeOf<Interop.RuntimeInfo.ProcessCpuUsage>();
             }
 
             int idx = 0;
@@ -403,7 +418,7 @@ namespace Tizen.System
         /// <since_tizen> 3 </since_tizen>
         /// <param name="coreId">The index (from 0) of the CPU core that you want to know the frequency of.</param>
         /// <returns>The current frequency(MHz) of processor.</returns>
-        /// <exception cref="ArgumentException">Thrown when the <paramref name="coreid"/> is invalid.</exception>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="coreId"/> is invalid.</exception>
         /// <exception cref="IOException">Thrown when an I/O error occurs while reading from system.</exception>
         /// <exception cref="NotSupportedException">Thrown when this system does not store the current CPU frequency.</exception>
         public static int GetProcessorCurrentFrequency(int coreId)
@@ -424,7 +439,7 @@ namespace Tizen.System
         /// <since_tizen> 3 </since_tizen>
         /// <param name="coreId">The index (from 0) of CPU core that you want to know the frequency of.</param>
         /// <returns>The max frequency(MHz) of processor.</returns>
-        /// <exception cref="ArgumentException">Thrown when the <paramref name="coreid"/> is invalid.</exception>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="coreId"/> is invalid.</exception>
         /// <exception cref="IOException">Thrown when an I/O error occurs while reading from system.</exception>
         /// <exception cref="NotSupportedException">Thrown when this system does not store the max CPU frequency.</exception>
         public static int GetProcessorMaxFrequency(int coreId)
