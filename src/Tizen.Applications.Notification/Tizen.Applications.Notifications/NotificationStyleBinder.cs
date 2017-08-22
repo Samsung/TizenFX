@@ -125,12 +125,12 @@ namespace Tizen.Applications.Notifications
 
             if (style.HiddenByTimeoutAction != null)
             {
-                Interop.Notification.SetExtensionAction(notification.Handle, NotificationEventType.HiddenByTimeout, style.HiddenByUserAction.SafeAppControlHandle);
+                Interop.Notification.SetExtensionAction(notification.Handle, NotificationEventType.HiddenByTimeout, style.HiddenByTimeoutAction.SafeAppControlHandle);
             }
 
             if (style.HiddenByExternalAction != null)
             {
-                Interop.Notification.SetExtensionAction(notification.Handle, NotificationEventType.HiddenByExternal, style.HiddenByUserAction.SafeAppControlHandle);
+                Interop.Notification.SetExtensionAction(notification.Handle, NotificationEventType.HiddenByExternal, style.HiddenByExternalAction.SafeAppControlHandle);
             }
         }
 
