@@ -102,11 +102,11 @@ namespace Tizen.System
         /// <exception cref="IOException">Thrown when I/O error occurs while reading from the system.</exception>
         public void Update()
         {
-            int ret = Interop.RuntimeInfo.GetSystemMemoryInfo(out Info);
-            if (ret != (int)RuntimeInfoError.None)
+            InformationError ret = Interop.RuntimeInfo.GetSystemMemoryInfo(out Info);
+            if (ret != InformationError.None)
             {
-                Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get System memory information");
-                RuntimeInfoErrorFactory.ThrowException(ret);
+                Log.Error(InformationErrorFactory.LogTag, "Interop failed to get System memory information");
+                InformationErrorFactory.ThrowException(ret);
             }
         }
     }

@@ -22,7 +22,7 @@ using Tizen.Internals.Errors;
 namespace Tizen.System
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal enum RuntimeInfoError
+    internal enum InformationError
     {
         None = ErrorCode.None,
         InvalidParameter = ErrorCode.InvalidParameter,
@@ -35,38 +35,38 @@ namespace Tizen.System
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal static class RuntimeInfoErrorFactory
+    internal static class InformationErrorFactory
     {
-        internal const string LogTag = "Tizen.System.RuntimeInformation";
+        internal const string LogTag = "Tizen.System.Information";
 
-        internal static void ThrowException(int err)
+        internal static void ThrowException(InformationError err)
         {
-            RuntimeInfoError error = (RuntimeInfoError)err;
-            if (error == RuntimeInfoError.InvalidParameter)
+            InformationError error = (InformationError)err;
+            if (error == InformationError.InvalidParameter)
             {
                 throw new ArgumentException("Invalid parameter");
             }
-            else if (error == RuntimeInfoError.OutOfMemory)
+            else if (error == InformationError.OutOfMemory)
             {
                 throw new OutOfMemoryException("Out of memory");
             }
-            else if (error == RuntimeInfoError.Io)
+            else if (error == InformationError.Io)
             {
                 throw new IOException("I/O Error");
             }
-            else if (error == RuntimeInfoError.RemoteIo)
+            else if (error == InformationError.RemoteIo)
             {
                 throw new IOException("Remote I/O Error");
             }
-            else if (error == RuntimeInfoError.PermissionDenied)
+            else if (error == InformationError.PermissionDenied)
             {
                 throw new UnauthorizedAccessException("Permission denied");
             }
-            else if (error == RuntimeInfoError.NotSupported)
+            else if (error == InformationError.NotSupported)
             {
                 throw new NotSupportedException("Not supported");
             }
-            else if (error == RuntimeInfoError.NoData)
+            else if (error == InformationError.NoData)
             {
                 throw new NotSupportedException("No data");
             }

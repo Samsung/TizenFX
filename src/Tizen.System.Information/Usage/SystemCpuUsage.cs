@@ -104,8 +104,8 @@ namespace Tizen.System
         {
             if(coreId < 0 || coreId >= ProcessorCount)
             {
-                Log.Error(RuntimeInfoErrorFactory.LogTag, "Invalid core ID " + coreId);
-                RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
+                Log.Error(InformationErrorFactory.LogTag, "Invalid core ID " + coreId);
+                InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
             }
 
             return CurrentFrequencies[coreId];
@@ -122,8 +122,8 @@ namespace Tizen.System
         {
             if (coreId < 0 || coreId >= ProcessorCount)
             {
-                Log.Error(RuntimeInfoErrorFactory.LogTag, "Invalid core ID " + coreId);
-                RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
+                Log.Error(InformationErrorFactory.LogTag, "Invalid core ID " + coreId);
+                InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
             }
 
             return MaxFrequencies[coreId];
@@ -137,21 +137,21 @@ namespace Tizen.System
         /// <exception cref="NotSupportedException">Thrown when this system does not store the current CPU frequency.</exception>
         public void Update()
         {
-            int ret;
+            InformationError ret;
             int count;
 
             ret = Interop.RuntimeInfo.GetCpuUsage(out Usage);
-            if (ret != (int)RuntimeInfoError.None)
+            if (ret != InformationError.None)
             {
-                Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get cpu usage");
-                RuntimeInfoErrorFactory.ThrowException(ret);
+                Log.Error(InformationErrorFactory.LogTag, "Interop failed to get cpu usage");
+                InformationErrorFactory.ThrowException(ret);
             }
 
             ret = Interop.RuntimeInfo.GetProcessorCount(out count);
-            if (ret != (int)RuntimeInfoError.None)
+            if (ret != InformationError.None)
             {
-                Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get Processor count");
-                RuntimeInfoErrorFactory.ThrowException(ret);
+                Log.Error(InformationErrorFactory.LogTag, "Interop failed to get Processor count");
+                InformationErrorFactory.ThrowException(ret);
                 return;
             }
 
@@ -162,17 +162,17 @@ namespace Tizen.System
             for (int coreId = 0; coreId < ProcessorCount; coreId++)
             {
                 ret = Interop.RuntimeInfo.GetProcessorCurrentFrequency(coreId, out CurrentFrequencies[coreId]);
-                if (ret != (int)RuntimeInfoError.None)
+                if (ret != InformationError.None)
                 {
-                    Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get the current frequency of processor " + coreId);
-                    RuntimeInfoErrorFactory.ThrowException(ret);
+                    Log.Error(InformationErrorFactory.LogTag, "Interop failed to get the current frequency of processor " + coreId);
+                    InformationErrorFactory.ThrowException(ret);
                 }
 
                 ret = Interop.RuntimeInfo.GetProcessorMaxFrequency(coreId, out MaxFrequencies[coreId]);
-                if (ret != (int)RuntimeInfoError.None)
+                if (ret != InformationError.None)
                 {
-                    Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get the max frequency of processor " + coreId);
-                    RuntimeInfoErrorFactory.ThrowException(ret);
+                    Log.Error(InformationErrorFactory.LogTag, "Interop failed to get the max frequency of processor " + coreId);
+                    InformationErrorFactory.ThrowException(ret);
                 }
             }
         }

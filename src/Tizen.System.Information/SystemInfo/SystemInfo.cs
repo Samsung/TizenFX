@@ -24,25 +24,23 @@ namespace Tizen.System
     /// </summary>
     public static class SystemInfo
     {
-        private const string LogTag = "Tizen.System";
-
         [EditorBrowsable(EditorBrowsableState.Never)]
         private static Interop.SystemInfo.SystemInfoType GetValueType(string key, out Interop.SystemInfo.SystemInfoValueType valueType)
         {
-            Interop.SystemInfo.ErrorCode err = Interop.SystemInfo.SystemInfoGetPlatformType(key, out valueType);
-            if (err == Interop.SystemInfo.ErrorCode.None)
+            InformationError err = Interop.SystemInfo.SystemInfoGetPlatformType(key, out valueType);
+            if (err == InformationError.None)
             {
                 return Interop.SystemInfo.SystemInfoType.platform;
             }
 
-            Log.Debug(LogTag, string.Format("Key {0} not in platform system info", key));
+            Log.Debug(InformationErrorFactory.LogTag, string.Format("Key {0} not in platform system info", key));
             err = Interop.SystemInfo.SystemInfoGetCustomType(key, out valueType);
-            if (err == Interop.SystemInfo.ErrorCode.None)
+            if (err == InformationError.None)
             {
                 return Interop.SystemInfo.SystemInfoType.Custom;
             }
 
-            Log.Debug(LogTag, string.Format("Key {0} not in custom system info", key));
+            Log.Debug(InformationErrorFactory.LogTag, string.Format("Key {0} not in custom system info", key));
             return Interop.SystemInfo.SystemInfoType.None;
         }
 
@@ -142,7 +140,7 @@ namespace Tizen.System
             Interop.SystemInfo.SystemInfoValueType valueType;
             Interop.SystemInfo.SystemInfoType keyType = GetValueType(key, out valueType);
 
-            Interop.SystemInfo.ErrorCode err = Interop.SystemInfo.ErrorCode.InvalidParameter;
+            InformationError err = InformationError.InvalidParameter;
             if (keyType == Interop.SystemInfo.SystemInfoType.platform)
             {
                 err = Interop.SystemInfo.SystemInfoGetPlatformBool(key, out value);
@@ -155,9 +153,9 @@ namespace Tizen.System
                 value = false;
             }
 
-            if (err != Interop.SystemInfo.ErrorCode.None)
+            if (err != InformationError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get value for key: {0}. err = {1}", key, err));
+                Log.Warn(InformationErrorFactory.LogTag, string.Format("Failed to get value for key: {0}. err = {1}", key, err));
                 return false;
             }
 
@@ -176,7 +174,7 @@ namespace Tizen.System
             Interop.SystemInfo.SystemInfoValueType valueType;
             Interop.SystemInfo.SystemInfoType keyType = GetValueType(key, out valueType);
 
-            Interop.SystemInfo.ErrorCode err = Interop.SystemInfo.ErrorCode.InvalidParameter;
+            InformationError err = InformationError.InvalidParameter;
             if (keyType == Interop.SystemInfo.SystemInfoType.platform)
             {
                 err = Interop.SystemInfo.SystemInfoGetPlatformInt(key, out value);
@@ -190,9 +188,9 @@ namespace Tizen.System
                 value = 0;
             }
 
-            if (err != Interop.SystemInfo.ErrorCode.None)
+            if (err != InformationError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get value for key: {0}. err = {1}", key, err));
+                Log.Warn(InformationErrorFactory.LogTag, string.Format("Failed to get value for key: {0}. err = {1}", key, err));
                 return false;
             }
 
@@ -211,7 +209,7 @@ namespace Tizen.System
             Interop.SystemInfo.SystemInfoValueType valueType;
             Interop.SystemInfo.SystemInfoType keyType = GetValueType(key, out valueType);
 
-            Interop.SystemInfo.ErrorCode err = Interop.SystemInfo.ErrorCode.InvalidParameter;
+            InformationError err = InformationError.InvalidParameter;
             if (keyType == Interop.SystemInfo.SystemInfoType.platform)
             {
                 err = Interop.SystemInfo.SystemInfoGetPlatformDouble(key, out value);
@@ -225,9 +223,9 @@ namespace Tizen.System
                 value = 0;
             }
 
-            if (err != Interop.SystemInfo.ErrorCode.None)
+            if (err != InformationError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get value for key: {0}. err = {1}", key, err));
+                Log.Warn(InformationErrorFactory.LogTag, string.Format("Failed to get value for key: {0}. err = {1}", key, err));
                 return false;
             }
 
@@ -246,7 +244,7 @@ namespace Tizen.System
             Interop.SystemInfo.SystemInfoValueType valueType;
             Interop.SystemInfo.SystemInfoType keyType = GetValueType(key, out valueType);
 
-            Interop.SystemInfo.ErrorCode err = Interop.SystemInfo.ErrorCode.InvalidParameter;
+            InformationError err = InformationError.InvalidParameter;
             if (keyType == Interop.SystemInfo.SystemInfoType.platform)
             {
                 err = Interop.SystemInfo.SystemInfoGetPlatformString(key, out value);
@@ -260,9 +258,9 @@ namespace Tizen.System
                 value = string.Empty;
             }
 
-            if (err != Interop.SystemInfo.ErrorCode.None)
+            if (err != InformationError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get value for key: {0}. err = {1}", key, err));
+                Log.Warn(InformationErrorFactory.LogTag, string.Format("Failed to get value for key: {0}. err = {1}", key, err));
                 return false;
             }
 
