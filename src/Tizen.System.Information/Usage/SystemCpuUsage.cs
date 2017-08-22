@@ -1,0 +1,180 @@
+﻿/*
+* Copyright (c) 2016 - 2017 Samsung Electronics Co., Ltd All Rights Reserved
+*
+* Licensed under the Apache License, Version 2.0 (the License);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an AS IS BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+using System;
+using System.IO;
+
+namespace Tizen.System
+{
+    /// <summary>
+    /// The class for system CPU usage.
+    /// </summary>
+    public class SystemCpuUsage
+    {
+        internal Interop.RuntimeInfo.CpuUsage Usage;
+        internal int[] CurrentFrequencies;
+        internal int[] MaxFrequencies;
+
+        /// <summary>
+        /// The constructor of SystemCpuUsage class.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <exception cref="IOException">Thrown when an I/O error occurs while reading from the system.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this system does not store the current CPU frequency.</exception>
+        public SystemCpuUsage()
+        {
+            Update();
+        }
+
+        /// <summary>
+        /// Running time of un-niced user processes (Percent).
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public double User
+        {
+            get
+            {
+                return Usage.User;
+            }
+        }
+
+        /// <summary>
+        /// Running time of kernel processes (Percent).
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public double System
+        {
+            get
+            {
+                return Usage.System;
+            }
+        }
+
+        /// <summary>
+        /// Running time of niced user processes (Percent).
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public double Nice
+        {
+            get
+            {
+                return Usage.Nice;
+            }
+        }
+
+        /// <summary>
+        /// Time waiting for I/O completion (Percent).
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public double IoWait
+        {
+            get
+            {
+                return Usage.IoWait;
+            }
+        }
+
+        /// <summary>
+        /// The number of processors.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public int ProcessorCount { get; internal set; }
+
+        /// <summary>
+        /// Gets the current frequency of the processor.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <param name="coreId">The index (from 0) of the CPU core that you want to know the frequency of.</param>
+        /// <returns>The current frequency(MHz) of processor.</returns>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="coreId"/> is invalid.</exception>
+        public int GetCurrentFrequency(int coreId)
+        {
+            if(coreId < 0 || coreId >= ProcessorCount)
+            {
+                Log.Error(RuntimeInfoErrorFactory.LogTag, "Invalid core ID " + coreId);
+                RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
+            }
+
+            return CurrentFrequencies[coreId];
+        }
+
+        /// <summary>
+        /// Gets the max frequency of the processor.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <param name="coreId">The index (from 0) of CPU core that you want to know the frequency of.</param>
+        /// <returns>The max frequency(MHz) of processor.</returns>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="coreId"/> is invalid.</exception>
+        public int GetMaxFrequency(int coreId)
+        {
+            if (coreId < 0 || coreId >= ProcessorCount)
+            {
+                Log.Error(RuntimeInfoErrorFactory.LogTag, "Invalid core ID " + coreId);
+                RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
+            }
+
+            return MaxFrequencies[coreId];
+        }
+
+        /// <summary>
+        /// Update the system CPU usage to the latest.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <exception cref="IOException">Thrown when an I/O error occurs while reading from the system.</exception>
+        /// <exception cref="NotSupportedException">Thrown when this system does not store the current CPU frequency.</exception>
+        public void Update()
+        {
+            int ret;
+            int count;
+
+            ret = Interop.RuntimeInfo.GetCpuUsage(out Usage);
+            if (ret != (int)RuntimeInfoError.None)
+            {
+                Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get cpu usage");
+                RuntimeInfoErrorFactory.ThrowException(ret);
+            }
+
+            ret = Interop.RuntimeInfo.GetProcessorCount(out count);
+            if (ret != (int)RuntimeInfoError.None)
+            {
+                Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get Processor count");
+                RuntimeInfoErrorFactory.ThrowException(ret);
+                return;
+            }
+
+            ProcessorCount = count;
+            CurrentFrequencies = new int[ProcessorCount];
+            MaxFrequencies = new int[ProcessorCount];
+
+            for (int coreId = 0; coreId < ProcessorCount; coreId++)
+            {
+                ret = Interop.RuntimeInfo.GetProcessorCurrentFrequency(coreId, out CurrentFrequencies[coreId]);
+                if (ret != (int)RuntimeInfoError.None)
+                {
+                    Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get the current frequency of processor " + coreId);
+                    RuntimeInfoErrorFactory.ThrowException(ret);
+                }
+
+                ret = Interop.RuntimeInfo.GetProcessorMaxFrequency(coreId, out MaxFrequencies[coreId]);
+                if (ret != (int)RuntimeInfoError.None)
+                {
+                    Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get the max frequency of processor " + coreId);
+                    RuntimeInfoErrorFactory.ThrowException(ret);
+                }
+            }
+        }
+    }
+}
