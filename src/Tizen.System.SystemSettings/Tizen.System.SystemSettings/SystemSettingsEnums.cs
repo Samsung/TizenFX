@@ -17,81 +17,81 @@
 namespace Tizen.System
 {
     /// <summary>
-    /// Enumeration for all available system settings
+    /// Enumeration for all the available system settings.
     /// </summary>
     public enum SystemSettingsKeys : int
     {
         /// <summary>
-        /// (string) The file path of the current ringtone
+        /// GET (string) The file path of the current ringtone.
         /// </summary>
         IncomingCallRingtone = 0,
         /// <summary>
-        /// (string) The file path of the current home screen wallpaper
+        /// GET (string) The file path of the current home-screen wallpaper.
         /// </summary>
         WallpaperHomeScreen,
         /// <summary>
-        /// (string) The file path of the current lock screen wallpaper
+        /// GET (string) The file path of the current lock-screen wallpaper.
         /// </summary>
         WallpaperLockScreen,
         /// <summary>
-        /// (int) The current system font size
+        /// GET (int) The current system font size.
         /// </summary>
         FontSize,
         /// <summary>
-        /// (string) The current system font type
+        /// GET (string) The current system font type.
         /// </summary>
         FontType,
         /// <summary>
-        /// (bool) Indicates whether the motion service is activated
+        /// GET (bool) Indicates whether the motion service is activated.
         /// </summary>
         MotionActivationEnabled,
         /// <summary>
-        /// (string) The file path of the current email alert ringtone
+        /// GET (string) The file path of the current email alert ringtone.
         /// </summary>
         EmailAlertRingtone,
         /// <summary>
-        /// (bool) Indicates whether the USB debugging is enabled
+        /// GET (bool) Indicates whether the USB debugging is enabled.
         /// </summary>
         UsbDebuggingEnabled,
         /// <summary>
-        /// (bool) Indicates whether the 3G data network is enabled
+        /// GET (bool) Indicates whether the 3G-data network is enabled.
         /// </summary>
         Data3GNetworkEnabled,
         /// <summary>
-        /// (string) Indicates lockscreen app pkg name
+        /// GET (string) Indicates the lock-screen application package name.
         /// </summary>
         LockscreenApp = Data3GNetworkEnabled + 2,
         /// <summary>
-        /// (string) The current system default font type (only support Get)
+        /// GET (string) The current system default font type (only supports Get).
         /// </summary>
         DefaultFontType,
         /// <summary>
-        /// (string) Indicates the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
+        /// GET (string) Indicates the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
         /// The country setting is in the ISO 639-2 format,
-        /// and the region setting is in the ISO 3166-1 alpha-2 format
+        /// and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
         LocaleCountry,
         /// <summary>
-        /// (string) Indicates the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
-        /// The language setting is in the ISO 639-2 format
+        /// GET (string) Indicates the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
+        /// The language setting is in the ISO 639-2 format,
         /// and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
         LocaleLanguage,
         /// <summary>
-        /// (bool) Indicates whether the 24-hour clock is used.
+        /// GET (bool) Indicates whether the 24-hour clock is used.
         /// If the value is false, the 12-hour clock is used.
         /// </summary>
         LocaleTimeFormat24HourEnabled,
         /// <summary>
-        /// (string) Indicates the current time zone. Eg. Pacific/Tahiti
+        /// GET (string) Indicates the current time zone, for example, Pacific/Tahiti.
         /// </summary>
         LocaleTimeZone,
         /// <summary>
-        /// (int) Once System changes time, this event occurs to notify time change.
+        /// GET (int) Once system changes the time, this event occurs to notify the time change.
         /// </summary>
         Time,
         /// <summary>
-        /// GET (bool) Indicates whether the screen lock sound is enabled on the device. ex) LCD on/off sound
+        /// GET (bool) Indicates whether the screen lock sound is enabled on the device, for example, the LCD on or off sound.
         /// </summary>
         SoundLockEnabled,
         /// <summary>
@@ -103,19 +103,19 @@ namespace Tizen.System
         /// </summary>
         SoundTouchEnabled,
         /// <summary>
-        /// GET (bool) Indicates whether rotation control is automatic.
+        /// GET (bool) Indicates whether the rotation control is automatic.
         /// </summary>
         DisplayScreenRotationAutoEnabled,
         /// <summary>
-        /// GET (string) Indicates device name.
+        /// GET (string) Indicates the device name.
         /// </summary>
         DeviceName,
         /// <summary>
-        /// GET (bool) Indicates whether the device user has enabled motion feature.
+        /// GET (bool) Indicates whether the device user has the enabled motion feature.
         /// </summary>
         MotionEnabled,
         /// <summary>
-        /// GET (bool) Indicates whether Wi-Fi-related notifications are enabled on the device.
+        /// GET (bool) Indicates whether WiFi-related notifications are enabled on the device.
         /// </summary>
         NetworkWifiNotificationEnabled,
         /// <summary>
@@ -123,93 +123,93 @@ namespace Tizen.System
         /// </summary>
         NetworkFlightModeEnabled,
         /// <summary>
-        /// (int) Indicates the backlight time (in seconds). The following values can be used: 15, 30, 60, 120, 300, and 600.
+        /// GET (int) Indicates the backlight time (in seconds). The following values can be used: 15, 30, 60, 120, 300, and 600.
         /// </summary>
         ScreenBacklightTime,
         /// <summary>
-        /// (string) Indicates the file path of the current notification tone set by the user.
+        /// GET (string) Indicates the file path of the current notification tone set by the user.
         /// </summary>
         SoundNotification,
         /// <summary>
-        /// (int) Indicates the time period for notification repetitions.
+        /// GET (int) Indicates the time period for notification repetitions.
         /// </summary>
         SoundNotificationRepetitionPeriod,
         /// <summary>
-        /// (int) Indicates the current lock state
+        /// GET (int) Indicates the current lock state.
         /// </summary>
         LockState,
         /// <summary>
-        /// (string)  Indicates Ads ID for each device
+        /// GET (string) Indicates the ADS ID for each device.
         /// </summary>
         AdsId,
         /// <summary>
-        /// (int) Indicates Ultra Data Save status, one of #SystemSettingsUdsState values
+        /// GET (int) Indicates the Ultra Data Save status, one of the #SystemSettingsUdsState values.
         /// </summary>
         UltraDataSave,
         /// <summary>
-        /// (string) Indicates Ultra Data Save Package List (Since 4.0), the list is a string containing whitelisted package names separated with semicolons (;)
+        /// GET (string) Indicates the Ultra Data Save Package List. Since 4.0, the list is a string containing whitelisted package names separated with semicolons (;).
         /// </summary>
         UltraDataSavePackageList
     }
     /// <summary>
-    /// Enumeration for Idle Lock State.
+    /// Enumeration for the Idle Lock State.
     /// </summary>
     public enum SystemSettingsIdleLockState : int
     {
         /// <summary>
-        /// Device is unlocked
+        /// The device is unlocked.
         /// </summary>
         Unlock = 0,
         /// <summary>
-        /// Device is locked
+        /// The device is locked.
         /// </summary>
         Lock,
         /// <summary>
-        /// Device is being locked
+        /// The device is being locked.
         /// </summary>
         LaunchingLock
     }
     /// <summary>
-    /// Enumeration for font size.
+    /// Enumeration for the font size.
     /// </summary>
     public enum SystemSettingsFontSize : int
     {
         /// <summary>
-        /// A small size
+        /// A small size.
         /// </summary>
         Small = 0,
         /// <summary>
-        /// A normal size
+        /// A normal size.
         /// </summary>
         Normal,
         /// <summary>
-        /// A large size
+        /// A large size.
         /// </summary>
         Large,
         /// <summary>
-        /// A huge size
+        /// A huge size.
         /// </summary>
         Huge,
         /// <summary>
-        /// A giant size
+        /// A giant size.
         /// </summary>
         Giant
     }
     /// <summary>
-    /// Enumeration for ultra data save
+    /// Enumeration for the ultra data save.
     /// </summary>
     public enum SystemSettingsUdsState : int
     {
         /// <summary>
-        /// UDS Off
+        /// UDS Off.
         /// </summary>
         UdsOff = 0,
         /// <summary>
-        /// UDS On
+        /// UDS On.
         /// </summary>
         UdsOn,
         /// <summary>
-        /// UDS On and the app is whitelisted
+        /// UDS On and the application is whitelisted.
         /// </summary>
         UdsOnWhitelisted,
     }
