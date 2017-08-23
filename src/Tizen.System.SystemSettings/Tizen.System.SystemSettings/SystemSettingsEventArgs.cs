@@ -19,7 +19,7 @@ using System;
 namespace Tizen.System
 {
     /// <summary>
-    /// EventArgs type for the event IncomingCallRingtoneChanged
+    /// EventArgs type for the IncomingCallRingtoneChanged event.
     /// </summary>
     public class IncomingCallRingtoneChangedEventArgs : EventArgs
     {
@@ -30,7 +30,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The file path of the current ringtone
+        /// The file path of the current ringtone.
         /// </summary>
         public string Value
         {
@@ -42,7 +42,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event WallpaperHomeScreenChanged
+    /// EventArgs type for the WallpaperHomeScreenChanged event.
     /// </summary>
     public class WallpaperHomeScreenChangedEventArgs : EventArgs
     {
@@ -53,7 +53,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The file path of the current home screen wallpaper
+        /// The file path of the current home screen wallpaper.
         /// </summary>
         public string Value
         {
@@ -65,7 +65,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event WallpaperLockScreenChanged
+    /// EventArgs type for the WallpaperLockScreenChanged event.
     /// </summary>
     public class WallpaperLockScreenChangedEventArgs : EventArgs
     {
@@ -76,7 +76,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The file path of the current lock screen wallpaper
+        /// The file path of the current lock screen wallpaper.
         /// </summary>
         public string Value
         {
@@ -88,7 +88,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event FontSizeChanged
+    /// EventArgs type for the FontSizeChanged event.
     /// </summary>
     public class FontSizeChangedEventArgs : EventArgs
     {
@@ -99,7 +99,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The current system font size
+        /// The current system font size.
         /// </summary>
         public SystemSettingsFontSize Value
         {
@@ -111,7 +111,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event FontTypeChanged
+    /// EventArgs type for the FontTypeChanged event.
     /// </summary>
     public class FontTypeChangedEventArgs : EventArgs
     {
@@ -122,7 +122,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The current system font type
+        /// The current system font type.
         /// </summary>
         public string Value
         {
@@ -134,7 +134,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event MotionActivationChanged
+    /// EventArgs type for the MotionActivationChanged event.
     /// </summary>
     public class MotionActivationSettingChangedEventArgs : EventArgs
     {
@@ -145,7 +145,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the motion service is activated
+        /// Indicates whether the motion service is activated.
         /// </summary>
         public bool Value
         {
@@ -157,7 +157,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event EmailAlertRingtoneChanged
+    /// EventArgs type for the EmailAlertRingtoneChanged event.
     /// </summary>
     public class EmailAlertRingtoneChangedEventArgs : EventArgs
     {
@@ -168,7 +168,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The file path of the current email alert ringtone
+        /// The file path of the current email alert ringtone.
         /// </summary>
         public string Value
         {
@@ -180,7 +180,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event UsbDebuggingSettingChanged
+    /// EventArgs type for the UsbDebuggingSettingChanged event.
     /// </summary>
     public class UsbDebuggingSettingChangedEventArgs : EventArgs
     {
@@ -191,7 +191,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the USB debugging is enabled
+        /// Indicates whether the USB debugging is enabled.
         /// </summary>
         public bool Value
         {
@@ -203,7 +203,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event Data3GNetworkSettingChanged
+    /// EventArgs type for the Data3GNetworkSettingChanged event.
     /// </summary>
     public class Data3GNetworkSettingChangedEventArgs : EventArgs
     {
@@ -214,7 +214,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the 3G data network is enabled
+        /// Indicates whether the 3G data network is enabled.
         /// </summary>
         public bool Value
         {
@@ -226,7 +226,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event LockscreenAppChanged
+    /// EventArgs type for the LockscreenAppChanged event.
     /// </summary>
     public class LockscreenAppChangedEventArgs : EventArgs
     {
@@ -237,7 +237,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates lockscreen app pkg name
+        /// Indicates the lock screen application package name.
         /// </summary>
         public string Value
         {
@@ -249,7 +249,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event LocaleCountryChanged
+    /// EventArgs type for the LocaleCountryChanged event.
     /// </summary>
     public class LocaleCountryChangedEventArgs : EventArgs
     {
@@ -261,7 +261,7 @@ namespace Tizen.System
 
         /// <summary>
         /// Indicates the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
-        /// The country setting is in the ISO 639-2 format, and the region setting is in the ISO 3166-1 alpha-2 format
+        /// The country setting is in the ISO 639-2 format, and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
         public string Value
         {
@@ -273,7 +273,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event LocaleLanguageChanged
+    /// EventArgs type for the LocaleLanguageChanged event.
     /// </summary>
     public class LocaleLanguageChangedEventArgs : EventArgs
     {
@@ -285,7 +285,7 @@ namespace Tizen.System
 
         /// <summary>
         /// Indicates the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
-        /// The language setting is in the ISO 639-2 format and the region setting is in the ISO 3166-1 alpha-2 format
+        /// The language setting is in the ISO 639-2 format and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
         public string Value
         {
@@ -297,7 +297,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event LocaleTimeFormat24HourChanged
+    /// EventArgs type for the LocaleTimeFormat24HourChanged event.
     /// </summary>
     public class LocaleTimeFormat24HourSettingChangedEventArgs : EventArgs
     {
@@ -320,7 +320,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event LocaleTimeZoneChanged
+    /// EventArgs type for the LocaleTimeZoneChanged event.
     /// </summary>
     public class LocaleTimeZoneChangedEventArgs : EventArgs
     {
@@ -331,7 +331,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current time zone
+        /// Indicates the current time zone.
         /// </summary>
         public string Value
         {
@@ -343,7 +343,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event TimeChanged
+    /// EventArgs type for the TimeChanged event.
     /// </summary>
     public class TimeChangedEventArgs : EventArgs
     {
@@ -354,7 +354,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current time
+        /// Indicates the current time.
         /// </summary>
         public int Value
         {
@@ -366,7 +366,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event SoundLockChanged
+    /// EventArgs type for the SoundLockChanged event.
     /// </summary>
     public class SoundLockSettingChangedEventArgs : EventArgs
     {
@@ -377,7 +377,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        ///  Indicates whether the screen lock sound is enabled on the device. ex) LCD on/off sound
+        /// Indicates whether the screen lock sound is enabled on the device, for example, the LCD on or off sound.
         /// </summary>
         public bool Value
         {
@@ -389,7 +389,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event SoundSilentModeChanged
+    /// EventArgs type for the SoundSilentModeChanged event.
     /// </summary>
     public class SoundSilentModeSettingChangedEventArgs : EventArgs
     {
@@ -412,7 +412,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event SoundTouchChanged
+    /// EventArgs type for the SoundTouchChanged event.
     /// </summary>
     public class SoundTouchSettingChangedEventArgs : EventArgs
     {
@@ -435,7 +435,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event DisplayScreenRotationAutoChanged
+    /// EventArgs type for the DisplayScreenRotationAutoChanged event.
     /// </summary>
     public class DisplayScreenRotationAutoSettingChangedEventArgs : EventArgs
     {
@@ -446,7 +446,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether rotation control is automatic
+        /// Indicates whether the rotation control is automatic.
         /// </summary>
         public bool Value
         {
@@ -458,7 +458,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event DeviceNameChanged
+    /// EventArgs type for the DeviceNameChanged event.
     /// </summary>
     public class DeviceNameChangedEventArgs : EventArgs
     {
@@ -469,7 +469,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates device name
+        /// Indicates the device name.
         /// </summary>
         public string Value
         {
@@ -481,7 +481,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event MotionSettingChanged
+    /// EventArgs type for the MotionSettingChanged event.
     /// </summary>
     public class MotionSettingChangedEventArgs : EventArgs
     {
@@ -492,7 +492,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the device user has enabled motion feature
+        /// Indicates whether the device user has enabled the motion feature.
         /// </summary>
         public bool Value
         {
@@ -504,7 +504,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event NetworkWifiNotificationChanged
+    /// EventArgs type for the NetworkWifiNotificationChanged event.
     /// </summary>
     public class NetworkWifiNotificationSettingChangedEventArgs : EventArgs
     {
@@ -515,7 +515,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether Wi-Fi-related notifications are enabled on the device
+        /// Indicates whether Wi-Fi-related notifications are enabled on the device.
         /// </summary>
         public bool Value
         {
@@ -527,7 +527,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event NetworkFlightModeChanged
+    /// EventArgs type for the NetworkFlightModeChanged event.
     /// </summary>
     public class NetworkFlightModeSettingChangedEventArgs : EventArgs
     {
@@ -538,7 +538,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the device is in the flight mode
+        /// Indicates whether the device is in the flight mode.
         /// </summary>
         public bool Value
         {
@@ -550,7 +550,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event ScreenBacklightTimeChanged
+    /// EventArgs type for the ScreenBacklightTimeChanged event.
     /// </summary>
     public class ScreenBacklightTimeChangedEventArgs : EventArgs
     {
@@ -561,7 +561,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the backlight time (in seconds)
+        /// Indicates the backlight time (in seconds).
         /// </summary>
         public int Value
         {
@@ -573,7 +573,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event SoundNotificationChanged
+    /// EventArgs type for the SoundNotificationChanged event.
     /// </summary>
     public class SoundNotificationChangedEventArgs : EventArgs
     {
@@ -584,7 +584,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the file path of the current notification tone set by the user
+        /// Indicates the file path of the current notification tone set by the user.
         /// </summary>
         public string Value
         {
@@ -596,7 +596,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event SoundNotificationRepetitionPeriodChanged
+    /// EventArgs type for the SoundNotificationRepetitionPeriodChanged event.
     /// </summary>
     public class SoundNotificationRepetitionPeriodChangedEventArgs : EventArgs
     {
@@ -607,7 +607,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the time period for notification repetitions
+        /// Indicates the time period for notification repetitions.
         /// </summary>
         public int Value
         {
@@ -619,7 +619,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event LockStateChanged
+    /// EventArgs type for the LockStateChanged event.
     /// </summary>
     public class LockStateChangedEventArgs : EventArgs
     {
@@ -630,7 +630,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current lock state
+        /// Indicates the current lock state.
         /// </summary>
         public SystemSettingsIdleLockState Value
         {
@@ -642,7 +642,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event AdsIdChanged
+    /// EventArgs type for the AdsIdChanged event.
     /// </summary>
     public class AdsIdChangedEventArgs : EventArgs
     {
@@ -653,7 +653,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current lock state
+        /// Indicates the current lock state.
         /// </summary>
         public string Value
         {
@@ -665,7 +665,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event UltraDataSaveChanged
+    /// EventArgs type for the UltraDataSaveChanged event.
     /// </summary>
     public class UltraDataSaveChangedEventArgs : EventArgs
     {
@@ -676,7 +676,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current lock state
+        /// Indicates the current lock state.
         /// </summary>
         public SystemSettingsUdsState Value
         {
@@ -688,7 +688,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the event UltraDataSavePackageListChanged
+    /// EventArgs type for the UltraDataSavePackageListChanged event.
     /// </summary>
     public class UltraDataSavePackageListChangedEventArgs : EventArgs
     {
@@ -699,7 +699,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current lock state
+        /// Indicates the current lock state.
         /// </summary>
         public string Value
         {

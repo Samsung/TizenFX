@@ -19,16 +19,16 @@ using System;
 namespace Tizen.System
 {
     /// <summary>
-    /// The System Settings API provides APIs for sharing configuration over a system
+    /// The System Settings API provides APIs for sharing the configuration over a system.
     /// </summary>
     /// <remarks>
-    /// System Settings API provides functions for getting the system configuration related to user preferences.
-    /// The main features of the System Settings API include accessing system-wide configurations, such as ringtones, wallpapers, and etc
+    /// The System Settings API provides functions for getting the system configuration related to user preferences.
+    /// The main features of the System Settings API include accessing system-wide configurations, such as ringtones, wallpapers, and so on.
     /// </remarks>
     public static class SystemSettings
     {
         /// <summary>
-        /// The file path of the current ringtone
+        /// The file path of the current ringtone.
         /// </summary>
         public static string IncomingCallRingtone
         {
@@ -53,7 +53,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The file path of the current home screen wallpaper
+        /// The file path of the current home-screen wallpaper.
         /// </summary>
         public static string WallpaperHomeScreen
         {
@@ -78,7 +78,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The file path of the current lock screen wallpaper
+        /// The file path of the current lock-screen wallpaper.
         /// </summary>
         public static string WallpaperLockScreen
         {
@@ -103,7 +103,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The current system font size
+        /// The current system font size.
         /// </summary>
         public static SystemSettingsFontSize FontSize
         {
@@ -128,7 +128,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The current system font type
+        /// The current system font type.
         /// </summary>
         public static string FontType
         {
@@ -153,7 +153,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the motion service is activated
+        /// Indicates whether the motion service is activated.
         /// </summary>
         public static bool MotionActivationEnabled
         {
@@ -178,7 +178,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The file path of the current email alert ringtone
+        /// The file path of the current email alert ringtone.
         /// </summary>
         public static string EmailAlertRingtone
         {
@@ -202,7 +202,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Indicates whether the USB debugging is enabled
+        /// Indicates whether the USB debugging is enabled.
         /// </summary>
         public static bool UsbDebuggingEnabled
         {
@@ -227,7 +227,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the 3G data network is enabled
+        /// Indicates whether the 3G data network is enabled.
         /// </summary>
         public static bool Data3GNetworkEnabled
         {
@@ -252,7 +252,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates lockscreen app pkg name
+        /// Indicates the lock-screen application package name.
         /// </summary>
         public static string LockscreenApp
         {
@@ -277,7 +277,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The current system default font type (only support Get)
+        /// The current system default font type (only supports Get).
         /// </summary>
         public static string DefaultFontType
         {
@@ -296,7 +296,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
         /// The country setting is in the ISO 639-2 format,
-        /// and the region setting is in the ISO 3166-1 alpha-2 format
+        /// and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
         public static string LocaleCountry
         {
@@ -322,7 +322,7 @@ namespace Tizen.System
 
         /// <summary>
         /// Indicates the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
-        /// The language setting is in the ISO 639-2 format
+        /// The language setting is in the ISO 639-2 format,
         /// and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
         public static string LocaleLanguage
@@ -374,7 +374,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current time zone. Eg. "Pacific/Tahiti"
+        /// Indicates the current time zone, for example, Pacific/Tahiti.
         /// </summary>
         public static string LocaleTimeZone
         {
@@ -399,7 +399,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Once System changes time, this event occurs to notify time change.
+        /// Once the system changes time, this event occurs to notify the time change.
         /// </summary>
         public static int Time
         {
@@ -415,7 +415,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Indicates whether the screen lock sound is enabled on the device. ex) LCD on/off sound
+        /// Indicates whether the screen lock sound is enabled on the device, for example, the LCD on or off sound.
         /// </summary>
         public static bool SoundLockEnabled
         {
@@ -466,7 +466,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether rotation control is automatic.
+        /// Indicates whether the rotation control is automatic.
         /// </summary>
         public static bool DisplayScreenRotationAutoEnabled
         {
@@ -483,7 +483,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates device name.
+        /// Indicates the device name.
         /// </summary>
         public static string DeviceName
         {
@@ -499,7 +499,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Indicates whether the device user has enabled motion feature.
+        /// Indicates whether the device user has enabled the motion feature.
         /// </summary>
         public static bool MotionEnabled
         {
@@ -516,7 +516,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether Wi-Fi-related notifications are enabled on the device.
+        /// Indicates whether Wi-Fi related notifications are enabled on the device.
         /// </summary>
         public static bool NetworkWifiNotificationEnabled
         {
@@ -625,7 +625,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current lock state
+        /// Indicates the current lock state.
         /// </summary>
         public static SystemSettingsIdleLockState LockState
         {
@@ -650,7 +650,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The current system ADS ID
+        /// The current system ADS ID.
         /// </summary>
         public static string AdsId
         {
@@ -702,10 +702,10 @@ namespace Tizen.System
         };
         private static event EventHandler<IncomingCallRingtoneChangedEventArgs> s_incomingCallRingtoneChanged;
         /// <summary>
-        /// IncomingCallRingtoneChanged event is triggered when the file path of the incoming ringtone is changed
+        /// The IncomingCallRingtoneChanged event is triggered when the file path of the incoming ringtone is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A IncomingCallRingtoneChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The IncomingCallRingtoneChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<IncomingCallRingtoneChangedEventArgs> IncomingCallRingtoneChanged
         {
             add
@@ -743,10 +743,10 @@ namespace Tizen.System
         };
         private static event EventHandler<WallpaperHomeScreenChangedEventArgs> s_wallpaperHomeScreenChanged;
         /// <summary>
-        /// WallpaperHomeScreenChanged event is triggered when the file path of the current home screen wallpaper is changed
+        /// THe WallpaperHomeScreenChanged event is triggered when the file path of the current home screen wallpaper is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A WallpaperHomeScreenChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The WallpaperHomeScreenChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<WallpaperHomeScreenChangedEventArgs> WallpaperHomeScreenChanged
         {
             add
@@ -784,10 +784,10 @@ namespace Tizen.System
         };
         private static event EventHandler<WallpaperLockScreenChangedEventArgs> s_wallpaperLockScreenChanged;
         /// <summary>
-        /// WallpaperLockScreenChanged event is triggered when the file path of the current lock screen wallpaper is changed
+        /// The WallpaperLockScreenChanged event is triggered when the file path of the current lock screen wallpaper is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A WallpaperLockScreenChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The WallpaperLockScreenChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<WallpaperLockScreenChangedEventArgs> WallpaperLockScreenChanged
         {
             add
@@ -825,10 +825,10 @@ namespace Tizen.System
         };
         private static event EventHandler<FontSizeChangedEventArgs> s_fontSizeChanged;
         /// <summary>
-        /// FontSizeChanged event is triggered when the current system font size is changed
+        /// The FontSizeChanged event is triggered when the current system font size is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A FontSizeChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The FontSizeChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<FontSizeChangedEventArgs> FontSizeChanged
         {
             add
@@ -866,10 +866,10 @@ namespace Tizen.System
         };
         private static event EventHandler<FontTypeChangedEventArgs> s_fontTypeChanged;
         /// <summary>
-        /// FontTypeChanged event is triggered when the current system font type is changed
+        /// The FontTypeChanged event is triggered when the current system font type is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A FontTypeChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The FontTypeChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<FontTypeChangedEventArgs> FontTypeChanged
         {
             add
@@ -907,10 +907,10 @@ namespace Tizen.System
         };
         private static event EventHandler<MotionActivationSettingChangedEventArgs> s_motionActivationChanged;
         /// <summary>
-        /// MotionActivationChanged event is triggered when the motion service status is changed
+        /// The MotionActivationChanged event is triggered when the motion service status is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A MotionActivationChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The MotionActivationChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<MotionActivationSettingChangedEventArgs> MotionActivationSettingChanged
         {
             add
@@ -948,10 +948,10 @@ namespace Tizen.System
         };
         private static event EventHandler<EmailAlertRingtoneChangedEventArgs> s_emailAlertRingtoneChanged;
         /// <summary>
-        /// EmailAlertRingtoneChanged event is triggered when the file path of the current email alert ringtone is changed
+        /// The EmailAlertRingtoneChanged event is triggered when the file path of the current email alert ringtone is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A EmailAlertRingtoneChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The EmailAlertRingtoneChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<EmailAlertRingtoneChangedEventArgs> EmailAlertRingtoneChanged
         {
             add
@@ -989,10 +989,10 @@ namespace Tizen.System
         };
         private static event EventHandler<UsbDebuggingSettingChangedEventArgs> s_usbDebuggingSettingChanged;
         /// <summary>
-        /// UsbDebuggingSettingChangedEventArgs event is triggered when the USB debugging status is changed
+        /// The UsbDebuggingSettingChangedEventArgs event is triggered when the USB debugging status is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A UsbDebuggingSettingChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The UsbDebuggingSettingChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<UsbDebuggingSettingChangedEventArgs> UsbDebuggingSettingChanged
         {
             add
@@ -1030,10 +1030,10 @@ namespace Tizen.System
         };
         private static event EventHandler<Data3GNetworkSettingChangedEventArgs> s_data3GNetworkSettingChanged;
         /// <summary>
-        /// Data3GNetworkSettingChanged event is triggered when the 3G data network status is changed
+        /// The Data3GNetworkSettingChanged event is triggered when the 3G data network status is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A Data3GNetworkSettingChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The Data3GNetworkSettingChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<Data3GNetworkSettingChangedEventArgs> Data3GNetworkSettingChanged
         {
             add
@@ -1071,10 +1071,10 @@ namespace Tizen.System
         };
         private static event EventHandler<LockscreenAppChangedEventArgs> s_lockscreenAppChanged;
         /// <summary>
-        /// LockscreenAppChanged event is triggered when the lockscreen app pkg name is changed
+        /// The LockscreenAppChanged event is triggered when the lockscreen application package name is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A LockscreenAppChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The LockscreenAppChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<LockscreenAppChangedEventArgs> LockscreenAppChanged
         {
             add
@@ -1112,10 +1112,10 @@ namespace Tizen.System
         };
         private static event EventHandler<LocaleCountryChangedEventArgs> s_localeCountryChanged;
         /// <summary>
-        /// LocaleCountryChanged event is triggered when the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax, is changed
+        /// The LocaleCountryChanged event is triggered when the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax, is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A LocaleCountryChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The LocaleCountryChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<LocaleCountryChangedEventArgs> LocaleCountryChanged
         {
             add
@@ -1153,10 +1153,10 @@ namespace Tizen.System
         };
         private static event EventHandler<LocaleLanguageChangedEventArgs> s_localeLanguageChanged;
         /// <summary>
-        /// LocaleLanguageChanged event is triggered when the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax, is changed
+        /// The LocaleLanguageChanged event is triggered when the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax, is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A LocaleLanguageChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The LocaleLanguageChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<LocaleLanguageChangedEventArgs> LocaleLanguageChanged
         {
             add
@@ -1194,10 +1194,10 @@ namespace Tizen.System
         };
         private static event EventHandler<LocaleTimeFormat24HourSettingChangedEventArgs> s_localeTimeFormat24HourChanged;
         /// <summary>
-        /// LocaleTimeFormat24HourChanged event is triggered when the time format is changed
+        /// The LocaleTimeFormat24HourChanged event is triggered when the time format is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A LocaleTimeFormat24HourChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The LocaleTimeFormat24HourChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<LocaleTimeFormat24HourSettingChangedEventArgs> LocaleTimeFormat24HourSettingChanged
         {
             add
@@ -1235,10 +1235,10 @@ namespace Tizen.System
         };
         private static event EventHandler<LocaleTimeZoneChangedEventArgs> s_localeTimeZoneChanged;
         /// <summary>
-        /// LocaleTimeZoneChanged event is triggered when the  current time zone is changed
+        /// The LocaleTimeZoneChanged event is triggered when the current time zone is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A LocaleTimeZoneChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The LocaleTimeZoneChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<LocaleTimeZoneChangedEventArgs> LocaleTimeZoneChanged
         {
             add
@@ -1277,10 +1277,10 @@ namespace Tizen.System
         };
         private static event EventHandler<TimeChangedEventArgs> s_timeChanged;
         /// <summary>
-        /// TimeChanged event is triggered when the system time is changed
+        /// The TimeChanged event is triggered when the system time is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A TimeChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The TimeChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<TimeChangedEventArgs> TimeChanged
         {
             add
@@ -1318,10 +1318,10 @@ namespace Tizen.System
         };
         private static event EventHandler<SoundLockSettingChangedEventArgs> s_soundLockChanged;
         /// <summary>
-        /// SoundLockChanged event is triggered when the screen lock sound enabled status is changed
+        /// The SoundLockChanged event is triggered when the screen lock sound enabled status is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A SoundLockChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The SoundLockChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<SoundLockSettingChangedEventArgs> SoundLockSettingChanged
         {
             add
@@ -1359,10 +1359,10 @@ namespace Tizen.System
         };
         private static event EventHandler<SoundSilentModeSettingChangedEventArgs> s_soundSilentModeChanged;
         /// <summary>
-        /// SoundSilentModeChanged event is triggered when the silent mode status is changed
+        /// The SoundSilentModeChanged event is triggered when the silent mode status is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A SoundSilentModeChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The SoundSilentModeChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<SoundSilentModeSettingChangedEventArgs> SoundSilentModeSettingChanged
         {
             add
@@ -1400,10 +1400,10 @@ namespace Tizen.System
         };
         private static event EventHandler<SoundTouchSettingChangedEventArgs> s_soundTouchChanged;
         /// <summary>
-        /// SoundTouchChanged event is triggered when the screen touch sound enabled status is changed
+        /// THe SoundTouchChanged event is triggered when the screen touch sound enabled status is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A SoundTouchChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The SoundTouchChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<SoundTouchSettingChangedEventArgs> SoundTouchSettingChanged
         {
             add
@@ -1441,10 +1441,10 @@ namespace Tizen.System
         };
         private static event EventHandler<DisplayScreenRotationAutoSettingChangedEventArgs> s_displayScreenRotationAutoChanged;
         /// <summary>
-        /// DisplayScreenRotationAutoChanged event is triggered when the automatic rotation control status is changed
+        /// The DisplayScreenRotationAutoChanged event is triggered when the automatic rotation control status is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A DisplayScreenRotationAutoChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The DisplayScreenRotationAutoChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<DisplayScreenRotationAutoSettingChangedEventArgs> DisplayScreenRotationAutoSettingChanged
         {
             add
@@ -1482,10 +1482,10 @@ namespace Tizen.System
         };
         private static event EventHandler<DeviceNameChangedEventArgs> s_deviceNameChanged;
         /// <summary>
-        /// DeviceNameChanged event is triggered when the device name is changed
+        /// The DeviceNameChanged event is triggered when the device name is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A DeviceNameChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The DeviceNameChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<DeviceNameChangedEventArgs> DeviceNameChanged
         {
             add
@@ -1523,10 +1523,10 @@ namespace Tizen.System
         };
         private static event EventHandler<MotionSettingChangedEventArgs> s_motionSettingChanged;
         /// <summary>
-        /// MotionSettingChanged event is triggered when the motion feature enabled status is changed
+        /// The MotionSettingChanged event is triggered when the motion feature enabled status is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A MotionSettingChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The MotionSettingChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<MotionSettingChangedEventArgs> MotionSettingChanged
         {
             add
@@ -1564,10 +1564,10 @@ namespace Tizen.System
         };
         private static event EventHandler<NetworkWifiNotificationSettingChangedEventArgs> s_networkWifiNotificationChanged;
         /// <summary>
-        /// NetworkWifiNotificationChanged event is triggered when the Wi-Fi-related notifications enabled status is changed
+        /// The NetworkWifiNotificationChanged event is triggered when the WiFi-related notifications enabled status is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A NetworkWifiNotificationChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The NetworkWifiNotificationChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<NetworkWifiNotificationSettingChangedEventArgs> NetworkWifiNotificationSettingChanged
         {
             add
@@ -1605,10 +1605,10 @@ namespace Tizen.System
         };
         private static event EventHandler<NetworkFlightModeSettingChangedEventArgs> s_networkFlightModeChanged;
         /// <summary>
-        /// NetworkFlightModeChanged event is triggered when the flight mode status is changed
+        /// The NetworkFlightModeChanged event is triggered when the flight mode status is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A NetworkFlightModeChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The NetworkFlightModeChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<NetworkFlightModeSettingChangedEventArgs> NetworkFlightModeSettingChanged
         {
             add
@@ -1646,10 +1646,10 @@ namespace Tizen.System
         };
         private static event EventHandler<ScreenBacklightTimeChangedEventArgs> s_screenBacklightTimeChanged;
         /// <summary>
-        /// ScreenBacklightTimeChanged event is triggered when the backlight time is changed.
+        /// THe ScreenBacklightTimeChanged event is triggered when the backlight time is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A ScreenBacklightTimeChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The ScreenBacklightTimeChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<ScreenBacklightTimeChangedEventArgs> ScreenBacklightTimeChanged
         {
             add
@@ -1687,10 +1687,10 @@ namespace Tizen.System
         };
         private static event EventHandler<SoundNotificationChangedEventArgs> s_soundNotificationChanged;
         /// <summary>
-        /// SoundNotificationChanged event is triggered when the file path of the current notification tone set by the user is changed
+        /// The SoundNotificationChanged event is triggered when the file path of the current notification tone set by the user is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A SoundNotificationChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The SoundNotificationChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<SoundNotificationChangedEventArgs> SoundNotificationChanged
         {
             add
@@ -1728,10 +1728,10 @@ namespace Tizen.System
         };
         private static event EventHandler<SoundNotificationRepetitionPeriodChangedEventArgs> s_soundNotificationRepetitionPeriodChanged;
         /// <summary>
-        /// SoundNotificationRepetitionPeriodChanged event is triggered when the time period for notification repetitions is changed
+        /// The SoundNotificationRepetitionPeriodChanged event is triggered when the time period for notification repetitions is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A SoundNotificationRepetitionPeriodChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The SoundNotificationRepetitionPeriodChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<SoundNotificationRepetitionPeriodChangedEventArgs> SoundNotificationRepetitionPeriodChanged
         {
             add
@@ -1769,10 +1769,10 @@ namespace Tizen.System
         };
         private static event EventHandler<LockStateChangedEventArgs> s_lockStateChanged;
         /// <summary>
-        /// LockStateChanged event is triggered when the current lock state is changed
+        /// The LockStateChanged event is triggered when the current lock state is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A LockStateChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The LockStateChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<LockStateChangedEventArgs> LockStateChanged
         {
             add
@@ -1810,10 +1810,10 @@ namespace Tizen.System
         };
         private static event EventHandler<AdsIdChangedEventArgs> s_adsIdChanged;
         /// <summary>
-        /// AdsIdChanged event is triggered when the current ADS ID state is changed
+        /// The AdsIdChanged event is triggered when the current ADS ID state is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A AdsIdChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The AdsIdChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<AdsIdChangedEventArgs> AdsIdChanged
         {
             add
@@ -1851,10 +1851,10 @@ namespace Tizen.System
         };
         private static event EventHandler<UltraDataSaveChangedEventArgs> s_ultraDataSaveChanged;
         /// <summary>
-        /// UltraDataSaveChanged event is triggered when the current Ultra Data Save state is changed
+        /// The UltraDataSaveChanged event is triggered when the current Ultra Data Save state is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A UltraDataSaveChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The UltraDataSaveChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<UltraDataSaveChangedEventArgs> UltraDataSaveChanged
         {
             add
@@ -1892,10 +1892,10 @@ namespace Tizen.System
         };
         private static event EventHandler<UltraDataSavePackageListChangedEventArgs> s_ultraDataSavePackageListChanged;
         /// <summary>
-        /// UltraDataSavePackageListChanged event is triggered when the current ADS ID state is changed
+        /// The UltraDataSavePackageListChanged event is triggered when the current ADS ID state is changed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">A UltraDataSavePackageListChangedEventArgs object that contains the key & changed value</param>
+        /// <param name="e">The UltraDataSavePackageListChangedEventArgs object that contains the key and the changed value.</param>
         public static event EventHandler<UltraDataSavePackageListChangedEventArgs> UltraDataSavePackageListChanged
         {
             add
