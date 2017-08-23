@@ -19,22 +19,19 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class Calendar
+    internal static partial class Query
     {
-        internal static partial class Query
-        {
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_query_create")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_query_create")]
             internal static extern int Create(string uri, out IntPtr queryHandle);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_query_destroy")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_query_destroy")]
             internal static extern int Destroy(IntPtr queryHandle);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_query_set_projection")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_query_set_projection")]
             internal static extern int SetProjection(IntPtr queryHandle, uint[] propertyIdArray, int count);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_query_set_distinct")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_query_set_distinct")]
             internal static extern int SetDistinct(IntPtr queryHandle, bool set);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_query_set_filter")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_query_set_filter")]
             internal static extern int SetFilter(IntPtr queryHandle, IntPtr filterHandle);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_query_set_sort")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_query_set_sort")]
             internal static extern int SetSort(IntPtr queryHandle, uint propertyId, bool isAscending);
-        }
     }
 }

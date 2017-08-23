@@ -14,26 +14,21 @@
  * limitations under the License.
  */
 
-using System;
 using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class Calendar
+    internal static partial class Service
     {
-        internal static partial class Service
-        {
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_connect")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_connect")]
             internal static extern int Connect();
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_disconnect")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_disconnect")]
             internal static extern int Disconnect();
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_connect_on_thread")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_connect_on_thread")]
             internal static extern int ConnectOnThread();
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_disconnect_on_thread")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_disconnect_on_thread")]
             internal static extern int DisconnectOnThread();
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_connect_with_flags")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_connect_with_flags")]
             internal static extern int ConnectWithFlags(uint flags);
-        }
     }
 }
-

@@ -15,7 +15,6 @@
  */
 
 using System;
-using static Interop.Calendar.Reminder;
 
 namespace Tizen.Pims.Calendar
 {
@@ -25,7 +24,7 @@ namespace Tizen.Pims.Calendar
     /// <remarks>
     /// The client who wants to be alerted at specific time should register MIME("application/x-tizen.calendar.reminder") type in manifest.xml file.
     /// </remarks>
-    public class CalendarReminder : IDisposable
+    public class CalendarReminder:IDisposable
     {
 #region IDisposable Support
         private bool disposedValue = false;
@@ -34,6 +33,10 @@ namespace Tizen.Pims.Calendar
         {
         }
 
+        /// <summary>
+        /// Disposes of the resources (other than memory) used by the CalendarReminder.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -44,7 +47,7 @@ namespace Tizen.Pims.Calendar
 
         /// <summary>
         /// Releases all resources used by the CalendarReminder.
-        /// It should be called after finished using of the object.
+        /// It should be called after having finished using of the object.
         /// </summary>
         public void Dispose()
         {
@@ -52,7 +55,7 @@ namespace Tizen.Pims.Calendar
         }
 #endregion
 
-        private static readonly Interop.Calendar.Reminder.ReminderAlertedCallback _reminderAlertedCallback = (string param, IntPtr userData) =>
+        private static readonly Interop.Reminder.ReminderAlertedCallback _reminderAlertedCallback = (string param, IntPtr userData) =>
         {
             ReminderAlertedEventArgs args = new ReminderAlertedEventArgs(param);
             s_reminderAlerted?.Invoke(null, args);
@@ -71,7 +74,7 @@ namespace Tizen.Pims.Calendar
 
                 if (s_reminderAlerted == null)
                 {
-                    int error = Interop.Calendar.Reminder.Add(_reminderAlertedCallback, IntPtr.Zero);
+                    int error = Interop.Reminder.Add(_reminderAlertedCallback, IntPtr.Zero);
                     if (CalendarError.None != (CalendarError)error)
                     {
                         Log.Error(Globals.LogTag, "Add reminder Failed with error " + error);
@@ -89,7 +92,7 @@ namespace Tizen.Pims.Calendar
                 if (s_reminderAlerted == null)
                 {
                     /// _reminderAlertedCallback is removed by .Net Core
-                    int error = Interop.Calendar.Reminder.Remove(_reminderAlertedCallback, IntPtr.Zero);
+                    int error = Interop.Reminder.Remove(_reminderAlertedCallback, IntPtr.Zero);
                     if (CalendarError.None != (CalendarError)error)
                     {
                         Log.Error(Globals.LogTag, "Remove reminder Failed with error " + error);

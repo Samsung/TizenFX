@@ -16,33 +16,29 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Tizen.Pims.Calendar;
 using static Tizen.Pims.Calendar.CalendarFilter;
 
 internal static partial class Interop
 {
-    internal static partial class Calendar
+    internal static partial class Filter
     {
-        internal static partial class Filter
-        {
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_create")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_create")]
             internal static extern int Create(string uri, out IntPtr filterHandle);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_destroy")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_destroy")]
             internal static extern int Destroy(IntPtr filterHandle);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_str")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_str")]
             internal static extern int AddString(IntPtr filterHandle, uint propertyId, StringMatchType match, string value);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_int")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_int")]
             internal static extern int AddInteger(IntPtr filterHandle, uint propertyId, IntegerMatchType match, int value);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_double")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_double")]
             internal static extern int AddDouble(IntPtr filterHandle, uint propertyId, IntegerMatchType match, double value);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_lli")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_lli")]
             internal static extern int AddLong(IntPtr filterHandle, uint propertyId, IntegerMatchType match, long value);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_caltime")]
-            internal static extern int AddCalendarTime(IntPtr filterHandle, uint propertyId, IntegerMatchType match, Interop.Calendar.Record.DateTime value);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_filter")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_caltime")]
+            internal static extern int AddCalendarTime(IntPtr filterHandle, uint propertyId, IntegerMatchType match, Interop.Record.DateTime value);
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_filter")]
             internal static extern int AddFilter(IntPtr parentFilterHandle, IntPtr childFilterHandle);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_operator")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_operator")]
             internal static extern int AddOperator(IntPtr filterHandle, LogicalOperator type);
-        }
     }
 }

@@ -15,25 +15,23 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Tizen.Pims.Calendar
 {
+    /// <summary>
+    /// Parsing vcalendar file callback function.
+    /// </summary>
+    /// <param name="record">The record</param>
+    public delegate bool ParseCallback(CalendarRecord record);
+
     /// <summary>
     /// A class for parsing and composing vCalendar.
     /// </summary>
     /// <remarks>
     /// It's based on the vCalendar v2.0 specification
     /// </remarks>
-    public class CalendarVcalendar
+    public static class CalendarVcalendar
     {
-        internal CalendarVcalendar()
-        {
-        }
-
-        public delegate bool ParseDelegate(CalendarRecord record);
-
         /// <summary>
         /// Retrieves a vcalendar stream from a calendar list.
         /// </summary>
@@ -46,7 +44,7 @@ namespace Tizen.Pims.Calendar
         public static string Compose(CalendarList list)
         {
             string stream;
-            int error = Interop.Calendar.Vcalendar.Compose(list._listHandle, out stream);
+            int error = Interop.Vcalendar.Compose(list._listHandle, out stream);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "MakeVcalendar Failed with error " + error);
@@ -68,7 +66,7 @@ namespace Tizen.Pims.Calendar
         {
             int error = 0;
             IntPtr _listHandle;
-            error = Interop.Calendar.Vcalendar.Parse(stream, out _listHandle);
+            error = Interop.Vcalendar.Parse(stream, out _listHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "Parse Vcalendar Failed [" + error + "]");
@@ -85,16 +83,16 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        public static void ParseForEach(string path, ParseDelegate callback)
+        public static void ParseForEach(string path, ParseCallback callback)
         {
             int error = 0;
 
-            Interop.Calendar.Vcalendar.ParseCallback cb = (IntPtr handle, IntPtr data) =>
+            Interop.Vcalendar.ParseCallback cb = (IntPtr handle, IntPtr data) =>
             {
                 return callback(new CalendarRecord(handle, true));
             };
 
-            error = Interop.Calendar.Vcalendar.ParseForEach(path, cb, IntPtr.Zero);
+            error = Interop.Vcalendar.ParseForEach(path, cb, IntPtr.Zero);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "Parse foreach Vcalendar Failed [" + error + "]");

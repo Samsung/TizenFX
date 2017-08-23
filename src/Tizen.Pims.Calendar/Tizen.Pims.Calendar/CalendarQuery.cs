@@ -15,10 +15,11 @@
  */
 
 using System;
-using static Interop.Calendar.Query;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Calendar
 {
+    /// <summary>
     /// A query is used to retrieve data which satisfies given criteria.
     /// </summary>
     /// <remarks>
@@ -27,7 +28,7 @@ namespace Tizen.Pims.Calendar
     /// or a string property containing a given substring.
     /// A query needs a filter which can set the conditions for the search.
     /// </remarks>
-    public class CalendarQuery : IDisposable
+    public class CalendarQuery:IDisposable
     {
         internal IntPtr _queryHandle;
 
@@ -38,9 +39,10 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarQuery(string viewUri)
         {
-            int error = Interop.Calendar.Query.Create(viewUri, out _queryHandle);
+            int error = Interop.Query.Create(viewUri, out _queryHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CalendarQuery Failed with error " + error);
@@ -53,6 +55,9 @@ namespace Tizen.Pims.Calendar
             _queryHandle = handle;
         }
 
+        /// <summary>
+        /// Destructor
+        /// </summary>
         ~CalendarQuery()
         {
             Dispose(false);
@@ -61,13 +66,17 @@ namespace Tizen.Pims.Calendar
 #region IDisposable Support
         private bool disposedValue = false;
 
+        /// <summary>
+        /// Disposes of the resources (other than memory) used by the CalendarQuery.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
                 Log.Debug(Globals.LogTag, "Dispose :" + disposing);
 
-                int error = Interop.Calendar.Query.Destroy(_queryHandle);
+                int error = Interop.Query.Destroy(_queryHandle);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "CalendarQueryDestroy Failed with error " + error);
@@ -79,11 +88,12 @@ namespace Tizen.Pims.Calendar
 
         /// <summary>
         /// Releases all resources used by the CalendarQuery.
-        /// It should be called after finished using of the object.
+        /// It should be called after having finished using of the object.
         /// </summary>
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 #endregion
 
@@ -94,7 +104,7 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetProjection(uint[] propertyIdArray)
         {
-            int error = Interop.Calendar.Query.SetProjection(_queryHandle, propertyIdArray, propertyIdArray.Length);
+            int error = Interop.Query.SetProjection(_queryHandle, propertyIdArray, propertyIdArray.Length);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "SetProjection Failed with error " + error);
@@ -109,7 +119,7 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetDistinct(bool set)
         {
-            int error = Interop.Calendar.Query.SetDistinct(_queryHandle, set);
+            int error = Interop.Query.SetDistinct(_queryHandle, set);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "SetDistinct Failed with error " + error);
@@ -124,7 +134,7 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetFilter(CalendarFilter filter)
         {
-            int error = Interop.Calendar.Query.SetFilter(_queryHandle, filter._filterHandle);
+            int error = Interop.Query.SetFilter(_queryHandle, filter._filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "SetFilter Failed with error " + error);
@@ -140,7 +150,7 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetSort(uint propertyId, bool isAscending)
         {
-            int error = Interop.Calendar.Query.SetSort(_queryHandle, propertyId, isAscending);
+            int error = Interop.Query.SetSort(_queryHandle, propertyId, isAscending);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "SetSort Failed with error " + error);
