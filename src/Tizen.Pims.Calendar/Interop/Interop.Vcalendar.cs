@@ -19,18 +19,15 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class Calendar
+    internal static partial class Vcalendar
     {
-        internal static partial class Vcalendar
-        {
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate bool ParseCallback(IntPtr recordHandle, IntPtr userData);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_vcalendar_make_from_records")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_vcalendar_make_from_records")]
             internal static extern int Compose(IntPtr listHandle, out string stream);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_vcalendar_parse_to_calendar")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_vcalendar_parse_to_calendar")]
             internal static extern int Parse(string stream, out IntPtr listHandle);
-            [DllImport(Libraries.Calendar, EntryPoint = "calendar_vcalendar_parse_to_calendar_foreach")]
+        [DllImport(Libraries.Calendar, EntryPoint = "calendar_vcalendar_parse_to_calendar_foreach")]
             internal static extern int ParseForEach(string filePath, ParseCallback parseCb, IntPtr userData);
-        }
     }
 }

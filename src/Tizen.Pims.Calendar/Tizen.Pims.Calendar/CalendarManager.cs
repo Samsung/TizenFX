@@ -15,8 +15,7 @@
  */
 
 using System;
-using System.Collections.Generic;
-using static Interop.Calendar.Service;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Calendar
 {
@@ -33,7 +32,7 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public CalendarManager()
         {
-            int error = Interop.Calendar.Service.Connect();
+            int error = Interop.Service.Connect();
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "Connect Failed with error " + error);
@@ -42,6 +41,9 @@ namespace Tizen.Pims.Calendar
             _db = new CalendarDatabase();
         }
 
+        /// <summary>
+        /// Destory CalendarManager resource.
+        /// </summary>
         ~CalendarManager()
         {
             Dispose(false);
@@ -51,13 +53,17 @@ namespace Tizen.Pims.Calendar
         /// To detect redundant calls
         private bool disposedValue = false;
 
+        /// <summary>
+        /// Disposes of the resources (other than memory) used by the CalendarManager.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
                 Log.Debug(Globals.LogTag, "Dispose :" + disposing);
 
-                int error = Interop.Calendar.Service.Disconnect();
+                int error = Interop.Service.Disconnect();
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Disconnect Failed with error " + error);
@@ -69,17 +75,19 @@ namespace Tizen.Pims.Calendar
 
         /// <summary>
         /// Releases all resources used by the CalendarManager.
-        /// It should be called after finished using of the object.
+        /// It should be called after having finished using of the object.
         /// </summary>
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 #endregion
 
         /// <summary>
         /// Get database.
         /// </summary>
+        /// <value>The database instance</value>
         public CalendarDatabase Database
         {
             get

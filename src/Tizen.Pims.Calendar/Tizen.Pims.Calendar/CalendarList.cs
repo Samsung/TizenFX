@@ -15,8 +15,6 @@
  */
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Tizen.Pims.Calendar
 {
@@ -33,7 +31,7 @@ namespace Tizen.Pims.Calendar
         {
             _listHandle = handle;
 
-            _memoryPressure += this.Count * CalendarViews.AverageSizeOfRecord;
+            _memoryPressure += this.Count * CalendarViews.Record.AverageSize;
             GC.AddMemoryPressure(_memoryPressure);
         }
 
@@ -44,7 +42,7 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public CalendarList()
         {
-            int error = Interop.Calendar.List.Create(out _listHandle);
+            int error = Interop.List.Create(out _listHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CalendarList Failed with error " + error);
@@ -53,14 +51,10 @@ namespace Tizen.Pims.Calendar
             GC.AddMemoryPressure(_memoryPressure);
         }
 
-        ~CalendarList()
-        {
-            Dispose(false);
-        }
-
         /// <summary>
         /// The count of the calendar entity.
         /// </summary>
+        /// <value>The count of calendar entity.</value>
         public int Count
         {
             get
@@ -68,7 +62,7 @@ namespace Tizen.Pims.Calendar
                 if (_count == -1)
                 {
                     int count = -1;
-                    int error = Interop.Calendar.List.GetCount(_listHandle, out count);
+                    int error = Interop.List.GetCount(_listHandle, out count);
                     if (CalendarError.None != (CalendarError)error)
                     {
                         Log.Error(Globals.LogTag, "GetCount Failed with error " + error);
@@ -79,16 +73,28 @@ namespace Tizen.Pims.Calendar
             }
         }
 
+        /// <summary>
+        /// Destory CalendarList resource.
+        /// </summary>
+        ~CalendarList()
+        {
+            Dispose(false);
+        }
+
 #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 
+        /// <summary>
+        /// Disposes of the resources (other than memory) used by the CalendarList.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
                 Log.Debug(Globals.LogTag, "Dispose :" + disposing);
 
-                int error = Interop.Calendar.List.Destroy(_listHandle, true);
+                int error = Interop.List.Destroy(_listHandle, true);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Destroy Failed with error " + error);
@@ -101,11 +107,12 @@ namespace Tizen.Pims.Calendar
 
         /// <summary>
         /// Releases all resources used by the CalendarList.
-        /// It should be called after finished using of the object.
+        /// It should be called after having finished using of the object.
         /// </summary>
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 #endregion
 
@@ -117,7 +124,7 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddRecord(CalendarRecord record)
         {
-            int error = Interop.Calendar.List.Add(_listHandle, record._recordHandle);
+            int error = Interop.List.Add(_listHandle, record._recordHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddRecord Failed with error " + error);
@@ -125,7 +132,7 @@ namespace Tizen.Pims.Calendar
             }
             record._disposedValue = true;
             _count = -1;
-            _memoryPressure += CalendarViews.AverageSizeOfRecord;
+            _memoryPressure += CalendarViews.Record.AverageSize;
         }
 
         /// <summary>
@@ -136,7 +143,7 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void RemoveRecord(CalendarRecord record)
         {
-            int error = Interop.Calendar.List.Remove(_listHandle, record._recordHandle);
+            int error = Interop.List.Remove(_listHandle, record._recordHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "RemoveRecord Failed with error " + error);
@@ -144,7 +151,7 @@ namespace Tizen.Pims.Calendar
             }
             record._disposedValue = false;
             _count = -1;
-            _memoryPressure -= CalendarViews.AverageSizeOfRecord;
+            _memoryPressure -= CalendarViews.Record.AverageSize;
         }
 
         /// <summary>
@@ -156,7 +163,7 @@ namespace Tizen.Pims.Calendar
         public CalendarRecord GetCurrentRecord()
         {
             IntPtr handle;
-            int error = Interop.Calendar.List.GetCurrentRecordP(_listHandle, out handle);
+            int error = Interop.List.GetCurrentRecordP(_listHandle, out handle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "GetCurrentRecord Failed with error " + error);
@@ -173,7 +180,7 @@ namespace Tizen.Pims.Calendar
         /// </returns>
         public bool MovePrevious()
         {
-            int error = Interop.Calendar.List.Prev(_listHandle);
+            int error = Interop.List.Prev(_listHandle);
             if (CalendarError.None == (CalendarError)error)
             {
                 return true;
@@ -198,7 +205,7 @@ namespace Tizen.Pims.Calendar
         /// </returns>
         public bool MoveNext()
         {
-            int error = Interop.Calendar.List.Next(_listHandle);
+            int error = Interop.List.Next(_listHandle);
             if (CalendarError.None == (CalendarError)error)
             {
                 return true;
@@ -220,7 +227,7 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         public void MoveFirst()
         {
-            int error = Interop.Calendar.List.First(_listHandle);
+            int error = Interop.List.First(_listHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "MoveFirst Failed with error " + error);
@@ -233,7 +240,7 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         public void MoveLast()
         {
-            int error = Interop.Calendar.List.Last(_listHandle);
+            int error = Interop.List.Last(_listHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "MoveLast Failed with error " + error);

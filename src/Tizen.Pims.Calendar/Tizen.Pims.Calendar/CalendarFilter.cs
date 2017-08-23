@@ -15,7 +15,7 @@
  */
 
 using System;
-using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Calendar
 {
@@ -36,17 +36,18 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarFilter(string viewUri, uint propertyId, StringMatchType matchType, string matchValue)
         {
             int error = 0;
-            error = Interop.Calendar.Filter.Create(viewUri, out _filterHandle);
+            error = Interop.Filter.Create(viewUri, out _filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            error = Interop.Calendar.Filter.AddString(_filterHandle, propertyId, matchType, matchValue);
+            error = Interop.Filter.AddString(_filterHandle, propertyId, matchType, matchValue);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
@@ -64,17 +65,18 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarFilter(string viewUri, uint propertyId, IntegerMatchType matchType, int matchValue)
         {
             int error = 0;
-            error = Interop.Calendar.Filter.Create(viewUri, out _filterHandle);
+            error = Interop.Filter.Create(viewUri, out _filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            error = Interop.Calendar.Filter.AddInteger(_filterHandle, propertyId, matchType, matchValue);
+            error = Interop.Filter.AddInteger(_filterHandle, propertyId, matchType, matchValue);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
@@ -92,17 +94,18 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarFilter(string viewUri, uint propertyId, IntegerMatchType matchType, long matchValue)
         {
             int error = 0;
-            error = Interop.Calendar.Filter.Create(viewUri, out _filterHandle);
+            error = Interop.Filter.Create(viewUri, out _filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            error = Interop.Calendar.Filter.AddLong(_filterHandle, propertyId, matchType, matchValue);
+            error = Interop.Filter.AddLong(_filterHandle, propertyId, matchType, matchValue);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
@@ -120,17 +123,18 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarFilter(string viewUri, uint propertyId, IntegerMatchType matchType, double matchValue)
         {
             int error = 0;
-            error = Interop.Calendar.Filter.Create(viewUri, out _filterHandle);
+            error = Interop.Filter.Create(viewUri, out _filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            error = Interop.Calendar.Filter.AddDouble(_filterHandle, propertyId, matchType, matchValue);
+            error = Interop.Filter.AddDouble(_filterHandle, propertyId, matchType, matchValue);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
@@ -148,18 +152,19 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarFilter(string viewUri, uint propertyId, IntegerMatchType matchType, CalendarTime matchValue)
         {
             int error = 0;
-            error = Interop.Calendar.Filter.Create(viewUri, out _filterHandle);
+            error = Interop.Filter.Create(viewUri, out _filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            Interop.Calendar.Record.DateTime time = CalendarRecord.ConvertCalendarTimeToStruct(matchValue);
-            error = Interop.Calendar.Filter.AddCalendarTime(_filterHandle, propertyId, matchType, time);
+            Interop.Record.DateTime time = CalendarRecord.ConvertCalendarTimeToStruct(matchValue);
+            error = Interop.Filter.AddCalendarTime(_filterHandle, propertyId, matchType, time);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CalendarFilter Failed with error " + error);
@@ -167,6 +172,9 @@ namespace Tizen.Pims.Calendar
             }
         }
 
+        /// <summary>
+        /// Destroy filter.
+        /// </summary>
         ~CalendarFilter()
         {
             Dispose(false);
@@ -184,7 +192,7 @@ namespace Tizen.Pims.Calendar
             /// <summary>
             /// Full string, case-insensitive
             /// </summary>
-            Fullstring,
+            FullString,
             /// <summary>
             /// Sub string, case-insensitive
             /// </summary>
@@ -192,11 +200,11 @@ namespace Tizen.Pims.Calendar
             /// <summary>
             /// Start with, case-insensitive
             /// </summary>
-            Startswith,
+            StartsWith,
             /// <summary>
             /// End with, case-insensitive
             /// </summary>
-            Endswith,
+            EndsWith,
             /// <summary>
             /// IS NOT NUL
             /// </summary>
@@ -256,13 +264,16 @@ namespace Tizen.Pims.Calendar
 #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
                 Log.Debug(Globals.LogTag, "Dispose :" + disposing);
 
-                int error = Interop.Calendar.Filter.Destroy(_filterHandle);
+                int error = Interop.Filter.Destroy(_filterHandle);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Destroy Failed with error " + error);
@@ -274,11 +285,12 @@ namespace Tizen.Pims.Calendar
 
         /// <summary>
         /// Releases all resources used by the CalendarFilter.
-        /// It should be called after finished using of the object.
+        /// It should be called after having finished using of the object.
         /// </summary>
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 #endregion
 
@@ -288,19 +300,19 @@ namespace Tizen.Pims.Calendar
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match valu</param>
+        /// <param name="matchValue">The match value</param>
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, StringMatchType matchType, string matchValue)
         {
-            int error = Interop.Calendar.Filter.AddOperator(_filterHandle, logicalOperator);
+            int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            error = Interop.Calendar.Filter.AddString(_filterHandle, propertyId, matchType, matchValue);
+            error = Interop.Filter.AddString(_filterHandle, propertyId, matchType, matchValue);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
@@ -314,19 +326,19 @@ namespace Tizen.Pims.Calendar
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match valu</param>
+        /// <param name="matchValue">The match value</param>
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, IntegerMatchType matchType, int matchValue)
         {
-            int error = Interop.Calendar.Filter.AddOperator(_filterHandle, logicalOperator);
+            int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            error = Interop.Calendar.Filter.AddInteger(_filterHandle, propertyId, matchType, matchValue);
+            error = Interop.Filter.AddInteger(_filterHandle, propertyId, matchType, matchValue);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
@@ -340,19 +352,19 @@ namespace Tizen.Pims.Calendar
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match valu</param>
+        /// <param name="matchValue">The match value</param>
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, IntegerMatchType matchType, long matchValue)
         {
-            int error = Interop.Calendar.Filter.AddOperator(_filterHandle, logicalOperator);
+            int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            error = Interop.Calendar.Filter.AddLong(_filterHandle, propertyId, matchType, matchValue);
+            error = Interop.Filter.AddLong(_filterHandle, propertyId, matchType, matchValue);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
@@ -366,19 +378,19 @@ namespace Tizen.Pims.Calendar
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match valu</param>
+        /// <param name="matchValue">The match value</param>
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, IntegerMatchType matchType, double matchValue)
         {
-            int error = Interop.Calendar.Filter.AddOperator(_filterHandle, logicalOperator);
+            int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            error = Interop.Calendar.Filter.AddDouble(_filterHandle, propertyId, matchType, matchValue);
+            error = Interop.Filter.AddDouble(_filterHandle, propertyId, matchType, matchValue);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
@@ -392,20 +404,20 @@ namespace Tizen.Pims.Calendar
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match valu</param>
+        /// <param name="matchValue">The match value</param>
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, IntegerMatchType matchType, CalendarTime matchValue)
         {
-            int error = Interop.Calendar.Filter.AddOperator(_filterHandle, logicalOperator);
+            int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            Interop.Calendar.Record.DateTime time = CalendarRecord.ConvertCalendarTimeToStruct(matchValue);
-            error = Interop.Calendar.Filter.AddCalendarTime(_filterHandle, propertyId, matchType, time);
+            Interop.Record.DateTime time = CalendarRecord.ConvertCalendarTimeToStruct(matchValue);
+            error = Interop.Filter.AddCalendarTime(_filterHandle, propertyId, matchType, time);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
@@ -422,14 +434,14 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddFilter(LogicalOperator logicalOperator, CalendarFilter filter)
         {
-            int error = Interop.Calendar.Filter.AddOperator(_filterHandle, logicalOperator);
+            int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddCondition Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
 
-            error = Interop.Calendar.Filter.AddFilter(_filterHandle, filter._filterHandle);
+            error = Interop.Filter.AddFilter(_filterHandle, filter._filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddFilter Failed with error " + error);

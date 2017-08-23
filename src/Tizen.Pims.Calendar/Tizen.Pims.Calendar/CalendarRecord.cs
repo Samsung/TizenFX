@@ -15,8 +15,8 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Calendar
 {
@@ -36,7 +36,7 @@ namespace Tizen.Pims.Calendar
     {
         internal string _uri;
         internal uint _id;
-        private Int64 _memoryPressure = CalendarViews.AverageSizeOfRecord;
+        private Int64 _memoryPressure = CalendarViews.Record.AverageSize;
         internal IntPtr _recordHandle;
 
         internal CalendarRecord(IntPtr handle)
@@ -44,7 +44,7 @@ namespace Tizen.Pims.Calendar
             _recordHandle = handle;
 
             IntPtr viewUri;
-            int error = Interop.Calendar.Record.GetUriPointer(handle, out viewUri);
+            int error = Interop.Record.GetUriPointer(handle, out viewUri);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "GetUriPointer Failed with error " + error);
@@ -60,7 +60,7 @@ namespace Tizen.Pims.Calendar
             _disposedValue = disposedValue;
 
             IntPtr viewUri;
-            int error = Interop.Calendar.Record.GetUriPointer(handle, out viewUri);
+            int error = Interop.Record.GetUriPointer(handle, out viewUri);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "GetUriPointer Failed with error " + error);
@@ -77,7 +77,7 @@ namespace Tizen.Pims.Calendar
             _id = (uint)id;
 
             IntPtr viewUri;
-            int error = Interop.Calendar.Record.GetUriPointer(handle, out viewUri);
+            int error = Interop.Record.GetUriPointer(handle, out viewUri);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "GetUriPointer Failed with error " + error);
@@ -94,10 +94,11 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarRecord(string viewUri)
         {
             int error = 0;
-            error = Interop.Calendar.Record.Create(viewUri, out _recordHandle);
+            error = Interop.Record.Create(viewUri, out _recordHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CalendarRecord Failed with error " + error);
@@ -107,6 +108,9 @@ namespace Tizen.Pims.Calendar
             GC.AddMemoryPressure(_memoryPressure);
         }
 
+        /// <summary>
+        /// Destructor
+        /// </summary>
         ~CalendarRecord()
         {
             Dispose(false);
@@ -116,13 +120,17 @@ namespace Tizen.Pims.Calendar
         /// To detect redundant calls
         internal bool _disposedValue = false;
 
+        /// <summary>
+        /// Disposes of the resources (other than memory) used by the CalendarRecord.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
             {
                 Log.Debug(Globals.LogTag, "Dispose :" + disposing);
 
-                int error = Interop.Calendar.Record.Destroy(_recordHandle, false);
+                int error = Interop.Record.Destroy(_recordHandle, false);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Destroy Failed with error " + error);
@@ -135,17 +143,18 @@ namespace Tizen.Pims.Calendar
 
         /// <summary>
         /// Releases all resources used by the CalendarRecord.
-        /// It should be called after finished using of the object.
+        /// It should be called after having finished using of the object.
         /// </summary>
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 #endregion
 
-        internal static Interop.Calendar.Record.DateTime ConvertCalendarTimeToStruct(CalendarTime value)
+        internal static Interop.Record.DateTime ConvertCalendarTimeToStruct(CalendarTime value)
         {
-            Interop.Calendar.Record.DateTime time = new Interop.Calendar.Record.DateTime();
+            Interop.Record.DateTime time = new Interop.Record.DateTime();
             time.type = value._type;
 
             if ((int)CalendarTime.Type.Utc == value._type)
@@ -165,7 +174,7 @@ namespace Tizen.Pims.Calendar
             return time;
         }
 
-        internal static CalendarTime ConvertIntPtrToCalendarTime(Interop.Calendar.Record.DateTime time)
+        internal static CalendarTime ConvertIntPtrToCalendarTime(Interop.Record.DateTime time)
         {
             CalendarTime value;
             if ((int)CalendarTime.Type.Utc == time.type)
@@ -191,7 +200,7 @@ namespace Tizen.Pims.Calendar
         public CalendarRecord Clone()
         {
             IntPtr _clonedRecordHandle;
-            int error = Interop.Calendar.Record.Clone(_recordHandle, out _clonedRecordHandle);
+            int error = Interop.Record.Clone(_recordHandle, out _clonedRecordHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "Clone Failed with error " + error);
@@ -201,8 +210,10 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// The URI of the record
+        /// Get record URI.
         /// </summary>
+        /// <value>The URI of the record</value>
+        [SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings")]
         public string Uri
         {
             get
@@ -225,7 +236,7 @@ namespace Tizen.Pims.Calendar
             if (typeof(T) == typeof(string))
             {
                 string val;
-                int error = Interop.Calendar.Record.GetString(_recordHandle, propertyId, out val);
+                int error = Interop.Record.GetString(_recordHandle, propertyId, out val);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Get String Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -236,7 +247,7 @@ namespace Tizen.Pims.Calendar
             else if (typeof(T) == typeof(int))
             {
                 int val;
-                int error = Interop.Calendar.Record.GetInteger(_recordHandle, propertyId, out val);
+                int error = Interop.Record.GetInteger(_recordHandle, propertyId, out val);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Get Intger Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -247,7 +258,7 @@ namespace Tizen.Pims.Calendar
             else if (typeof(T) == typeof(long))
             {
                 long val;
-                int error = Interop.Calendar.Record.GetLli(_recordHandle, propertyId, out val);
+                int error = Interop.Record.GetLli(_recordHandle, propertyId, out val);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Get Long Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -258,7 +269,7 @@ namespace Tizen.Pims.Calendar
             else if (typeof(T) == typeof(double))
             {
                 double val;
-                int error = Interop.Calendar.Record.GetDouble(_recordHandle, propertyId, out val);
+                int error = Interop.Record.GetDouble(_recordHandle, propertyId, out val);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Get Double Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -268,8 +279,8 @@ namespace Tizen.Pims.Calendar
             }
             else if (typeof(T) == typeof(CalendarTime))
             {
-                Interop.Calendar.Record.DateTime time;
-                int error = Interop.Calendar.Record.GetCalendarTime(_recordHandle, propertyId, out time);
+                Interop.Record.DateTime time;
+                int error = Interop.Record.GetCalendarTime(_recordHandle, propertyId, out time);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Get CalendarTime Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -297,7 +308,7 @@ namespace Tizen.Pims.Calendar
             if (typeof(T) == typeof(string))
             {
                 string val = Convert.ToString(value);
-                int error = Interop.Calendar.Record.SetString(_recordHandle, propertyId, val);
+                int error = Interop.Record.SetString(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Set String Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -307,7 +318,7 @@ namespace Tizen.Pims.Calendar
             else if (typeof(T) == typeof(int))
             {
                 int val = Convert.ToInt32(value);
-                int error = Interop.Calendar.Record.SetInteger(_recordHandle, propertyId, val);
+                int error = Interop.Record.SetInteger(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Set Integer Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -317,7 +328,7 @@ namespace Tizen.Pims.Calendar
             else if (typeof(T) == typeof(long))
             {
                 long val = Convert.ToInt64(value);
-                int error = Interop.Calendar.Record.SetLli(_recordHandle, propertyId, val);
+                int error = Interop.Record.SetLli(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Set Long Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -327,7 +338,7 @@ namespace Tizen.Pims.Calendar
             else if (typeof(T) == typeof(double))
             {
                 double val = Convert.ToDouble(value);
-                int error = Interop.Calendar.Record.SetDouble(_recordHandle, propertyId, val);
+                int error = Interop.Record.SetDouble(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Set Double Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -337,8 +348,8 @@ namespace Tizen.Pims.Calendar
             else if (typeof(T) == typeof(CalendarTime))
             {
                 CalendarTime time = (CalendarTime)Convert.ChangeType(value, typeof(CalendarTime));
-                Interop.Calendar.Record.DateTime val = ConvertCalendarTimeToStruct(time);
-                int error = Interop.Calendar.Record.SetCalendarTime(_recordHandle, propertyId, val);
+                Interop.Record.DateTime val = ConvertCalendarTimeToStruct(time);
+                int error = Interop.Record.SetCalendarTime(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Set CalendarTime Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -360,7 +371,7 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddChildRecord(uint propertyId, CalendarRecord childRecord)
         {
-            int error = Interop.Calendar.Record.AddChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
+            int error = Interop.Record.AddChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddChildRecord Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -377,7 +388,7 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void RemoveChildRecord(uint propertyId, CalendarRecord childRecord)
         {
-            int error = Interop.Calendar.Record.RemoveChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
+            int error = Interop.Record.RemoveChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "RemoveChildRecord Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -397,7 +408,7 @@ namespace Tizen.Pims.Calendar
         public int GetChildRecordCount(uint propertyId)
         {
             int count = 0;
-            int error = Interop.Calendar.Record.GetChildRecordCount(_recordHandle, propertyId, out count);
+            int error = Interop.Record.GetChildRecordCount(_recordHandle, propertyId, out count);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "GetChildRecordCount Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -419,7 +430,7 @@ namespace Tizen.Pims.Calendar
         {
             IntPtr handle;
 
-            int error = Interop.Calendar.Record.GetChildRecordPointer(_recordHandle, propertyId, index, out handle);
+            int error = Interop.Record.GetChildRecordPointer(_recordHandle, propertyId, index, out handle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "GetChildRecord Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -439,7 +450,7 @@ namespace Tizen.Pims.Calendar
         public CalendarList CloneChildRecordList(uint propertyId)
         {
             IntPtr listHandle;
-            int error = Interop.Calendar.Record.CloneChildRecordList(_recordHandle, propertyId, out listHandle);
+            int error = Interop.Record.CloneChildRecordList(_recordHandle, propertyId, out listHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "CloneChildRecordList Failed with [" + error + "]" + String.Format("{0:X}", propertyId));

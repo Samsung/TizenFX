@@ -15,14 +15,13 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
 
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
-    /// A class for time to set, get or calcurate.
+    /// A class for time to set, get or calculate.
     /// </summary>
-    public class CalendarTime : IComparable<CalendarTime>
+    public class CalendarTime:IComparable<CalendarTime>
     {
         internal int _type;
         internal const int milliseconds = 10000000;
@@ -71,8 +70,9 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Get utcTime
+        /// Get UtcTime
         /// </summary>
+        /// <value>The Utc time</value>
         public DateTime UtcTime
         {
             get;
@@ -81,6 +81,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Get localTime
         /// </summary>
+        /// <value>The localtime</value>
         public DateTime LocalTime
         {
             get;
@@ -89,24 +90,38 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Compare CalendarTime
         /// </summary>
-        /// <param name="t">The CalendarTime to be compared</param>
+        /// <param name="other">The CalendarTime to be compared</param>
         /// <returns>
         /// A 32-bit signed integer that indicates the relative order of the objects being compared.
         /// </returns>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        public int CompareTo(CalendarTime t)
+        public int CompareTo(CalendarTime other)
         {
-            if (_type != t._type)
+            if (_type != other._type)
             {
                 Log.Error(Globals.LogTag, "Not to compare with different type");
                 throw CalendarErrorFactory.GetException((int)CalendarError.InvalidParameter);
             }
 
             if (_type == (int)Type.Utc)
-                return UtcTime.CompareTo(t.UtcTime);
+                return UtcTime.CompareTo(other.UtcTime);
             else
-                return LocalTime.CompareTo(t.LocalTime);
+                return LocalTime.CompareTo(other.LocalTime);
+        }
+
+        public bool Equals(CalendarTime other)
+        {
+            if (_type != other._type)
+            {
+                Log.Error(Globals.LogTag, "Not to compare with different type");
+                throw CalendarErrorFactory.GetException((int)CalendarError.InvalidParameter);
+            }
+
+            if (_type == (int)Type.Utc)
+                return UtcTime.Equals(other.UtcTime);
+            else
+                return LocalTime.Equals(other.LocalTime);
         }
     }
 }

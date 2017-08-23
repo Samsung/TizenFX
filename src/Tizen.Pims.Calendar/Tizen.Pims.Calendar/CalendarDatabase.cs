@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Diagnostics.CodeAnalysis;
 
 /// <summary>
 /// The Calendar Service API provides functions, enumerations used in the entire Content Service.
@@ -33,7 +34,7 @@ namespace Tizen.Pims.Calendar
     /// CalendarDatabase provides methods to manage calendar information from/to the database.
     /// </summary>
     /// <remarks>
-    /// This class allows usre to access/create/update db operations for calendar information.
+    /// This class allows user to access/create/update db operations for calendar information.
     /// </remarks>
     public class CalendarDatabase
     {
@@ -45,13 +46,12 @@ namespace Tizen.Pims.Calendar
         /// The delegate must be registered using AddDBChangedDelegate.
         /// It's invoked when the designated view changes.
         /// </remarks>
-        /// <see cref="AddDBChangedDelegate"/>
-        public delegate void CalendarDBChangedDelegate(string uri);
+        public delegate void CalendarDBChanged(string uri);
 
         private Object thisLock = new Object();
-        private Dictionary<string, CalendarDBChangedDelegate> _callbackMap = new Dictionary<string, CalendarDBChangedDelegate>();
-        private Dictionary<string, Interop.Calendar.Database.DBChangedCallback> _delegateMap = new Dictionary<string, Interop.Calendar.Database.DBChangedCallback>();
-        private Interop.Calendar.Database.DBChangedCallback _dbChangedDelegate;
+        private Dictionary<string, CalendarDBChanged> _callbackMap = new Dictionary<string, CalendarDBChanged>();
+        private Dictionary<string, Interop.Database.DBChangedCallback> _delegateMap = new Dictionary<string, Interop.Database.DBChangedCallback>();
+        private Interop.Database.DBChangedCallback _dbChangedDelegate;
 
         internal CalendarDatabase()
         {
@@ -61,12 +61,14 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// The calendar database version.
         /// </summary>
+        /// <value>The current calendar database version.</value>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int Version
         {
             get
             {
                 int version = -1;
-                int error = Interop.Calendar.Database.GetCurrentVersion(out version);
+                int error = Interop.Database.GetCurrentVersion(out version);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Version Failed with error " + error);
@@ -83,12 +85,14 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <value>The last successful changed calendar database version on the current connection.</value>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int LastChangeVersion
         {
             get
             {
                 int version = -1;
-                int error = Interop.Calendar.Database.GetLastChangeVersion(out version);
+                int error = Interop.Database.GetLastChangeVersion(out version);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "LastChangeVersion Failed with error " + error);
@@ -108,10 +112,11 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int Insert(CalendarRecord record)
         {
             int id = -1;
-            int error = Interop.Calendar.Database.Insert(record._recordHandle, out id);
+            int error = Interop.Database.Insert(record._recordHandle, out id);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "Insert Failed with error " + error);
@@ -134,10 +139,12 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarRecord Get(string viewUri, int recordId)
         {
             IntPtr handle;
-            int error = Interop.Calendar.Database.Get(viewUri, recordId, out handle);
+            int error = Interop.Database.Get(viewUri, recordId, out handle);
             if (CalendarError.None != (CalendarError)error)
             {
 				if (CalendarError.DBNotFound == (CalendarError)error)
@@ -161,9 +168,10 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Update(CalendarRecord record)
         {
-            int error = Interop.Calendar.Database.Update(record._recordHandle);
+            int error = Interop.Database.Update(record._recordHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "Update Failed with error " + error);
@@ -182,9 +190,11 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public void Delete(string viewUri, int recordId)
         {
-            int error = Interop.Calendar.Database.Delete(viewUri, recordId);
+            int error = Interop.Database.Delete(viewUri, recordId);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "Delete Failed with error " + error);
@@ -203,9 +213,10 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Replace(CalendarRecord record, int id)
         {
-            int error = Interop.Calendar.Database.Replace(record._recordHandle, id);
+            int error = Interop.Database.Replace(record._recordHandle, id);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "Replace Failed with error " + error);
@@ -228,10 +239,12 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarList GetAll(string viewUri, int offset, int limit)
         {
             IntPtr handle;
-            int error = Interop.Calendar.Database.GetAllRecords(viewUri, offset, limit, out handle);
+            int error = Interop.Database.GetAllRecords(viewUri, offset, limit, out handle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "GetAll Failed with error " + error);
@@ -255,10 +268,11 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public CalendarList GetRecordsWithQuery(CalendarQuery query, int offset, int limit)
         {
             IntPtr handle;
-            int error = Interop.Calendar.Database.GetRecords(query._queryHandle, offset, limit, out handle);
+            int error = Interop.Database.GetRecords(query._queryHandle, offset, limit, out handle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "GetAllWithQuery Failed with error " + error);
@@ -280,11 +294,12 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int[] Insert(CalendarList list)
         {
             IntPtr ids;
             int count;
-            int error = Interop.Calendar.Database.InsertRecords(list._listHandle, out ids, out count);
+            int error = Interop.Database.InsertRecords(list._listHandle, out ids, out count);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "Insert Failed with error " + error);
@@ -306,9 +321,10 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Update(CalendarList list)
         {
-            int error = Interop.Calendar.Database.UpdateRecords(list._listHandle);
+            int error = Interop.Database.UpdateRecords(list._listHandle);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "Update Failed with error " + error);
@@ -327,9 +343,11 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public void Delete(string viewUri, int[] idArray)
         {
-            int error = Interop.Calendar.Database.DeleteRecords(viewUri, idArray, idArray.Length);
+            int error = Interop.Database.DeleteRecords(viewUri, idArray, idArray.Length);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "Delete Failed with error " + error);
@@ -395,9 +413,10 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Replace(CalendarList list, int[] idArray)
         {
-            int error = Interop.Calendar.Database.ReplaceRecords(list._listHandle, idArray, idArray.Length);
+            int error = Interop.Database.ReplaceRecords(list._listHandle, idArray, idArray.Length);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "Replace Failed with error " + error);
@@ -421,10 +440,12 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarList GetChangesByVersion(string viewUri, int BookId, int calendarDBVersion, out int currentDBVersion)
         {
             IntPtr recordList;
-            int error = Interop.Calendar.Database.GetChangesByVersion(viewUri, BookId, calendarDBVersion, out recordList, out currentDBVersion);
+            int error = Interop.Database.GetChangesByVersion(viewUri, BookId, calendarDBVersion, out recordList, out currentDBVersion);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "GetChangesByVersion Failed with error " + error);
@@ -441,10 +462,12 @@ namespace Tizen.Pims.Calendar
         /// The count of records
         /// </returns>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
+        [SuppressMessage("Microsoft.Design", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public int GetCount(string viewUri)
         {
             int count = -1;
-            int error = Interop.Calendar.Database.GetCount(viewUri, out count);
+            int error = Interop.Database.GetCount(viewUri, out count);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "GetCount Failed with error " + error);
@@ -461,10 +484,11 @@ namespace Tizen.Pims.Calendar
         /// The count of records
         /// </returns>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
+        [SuppressMessage("Microsoft.Design", "CA1822:MarkMembersAsStatic")]
         public int GetCount(CalendarQuery query)
         {
             int count = -1;
-            int error = Interop.Calendar.Database.GetCountWithQuery(query._queryHandle, out count);
+            int error = Interop.Database.GetCountWithQuery(query._queryHandle, out count);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "GetCount Failed with error " + error);
@@ -479,7 +503,8 @@ namespace Tizen.Pims.Calendar
         /// <param name="viewUri">The view URI of the record to subscribe for change notifications</param>
         /// <param name="callback">The callback function to register</param>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
-        public void AddDBChangedDelegate(string viewUri, CalendarDBChangedDelegate callback)
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
+        public void AddDBChangedDelegate(string viewUri, CalendarDBChanged callback)
         {
             Log.Debug(Globals.LogTag, "AddDBChangedDelegate");
 
@@ -487,7 +512,7 @@ namespace Tizen.Pims.Calendar
             {
                 _callbackMap[uri](uri);
             };
-            int error = Interop.Calendar.Database.AddChangedCallback(viewUri, _dbChangedDelegate, IntPtr.Zero);
+            int error = Interop.Database.AddChangedCallback(viewUri, _dbChangedDelegate, IntPtr.Zero);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "AddDBChangedDelegate Failed with error " + error);
@@ -498,16 +523,17 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Unregisters a callback function.
+        /// Deregisters a callback function.
         /// </summary>
         /// <param name="viewUri">The view URI of the record to subscribe for change notifications</param>
         /// <param name="callback">The callback function to register</param>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
-        public void RemoveDBChangedDelegate(string viewUri, CalendarDBChangedDelegate callback)
+        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
+        public void RemoveDBChangedDelegate(string viewUri, CalendarDBChanged callback)
         {
             Log.Debug(Globals.LogTag, "RemoveDBChangedDelegate");
 
-            int error = Interop.Calendar.Database.RemoveChangedCallback(viewUri, _delegateMap[viewUri], IntPtr.Zero);
+            int error = Interop.Database.RemoveChangedCallback(viewUri, _delegateMap[viewUri], IntPtr.Zero);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "RemoveDBChangedDelegate Failed with error " + error);
@@ -528,10 +554,11 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Design", "CA1822:MarkMembersAsStatic")]
         public void LinkRecord(int baseId, int recordId)
         {
             Log.Debug(Globals.LogTag, "LinkRecord");
-            int error = Interop.Calendar.Database.LinkRecord(baseId, recordId);
+            int error = Interop.Database.LinkRecord(baseId, recordId);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "LinkRecor Failed with error " + error);
@@ -549,10 +576,11 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void UnlinkRecord(int recordId)
         {
             Log.Debug(Globals.LogTag, "UnlinkRecord");
-            int error = Interop.Calendar.Database.UnlinkRecord(recordId);
+            int error = Interop.Database.UnlinkRecord(recordId);
             if (CalendarError.None != (CalendarError)error)
             {
                 Log.Error(Globals.LogTag, "UnlinkRecor Failed with error " + error);

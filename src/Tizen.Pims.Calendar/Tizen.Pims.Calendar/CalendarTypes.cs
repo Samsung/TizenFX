@@ -14,18 +14,15 @@
 * limitations under the License.
 */
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
-/// <summary>
-/// </summary>
-/// <remarks>
-/// </remarks>
 namespace Tizen.Pims.Calendar
 {
 	/// <summary>
+    /// This class provides enumurations about calendar inforamtion.
 	/// </summary>
+    /// <remarks>
+    /// Most enumurations are based on vcalendar, icalendar(ver 2.0) specification.
+    /// https://www.ietf.org/rfc/rfc2445.txt
+    /// </remarks>
 	public static class CalendarTypes
 	{
 		/// <summary>
@@ -99,7 +96,7 @@ namespace Tizen.Pims.Calendar
 			/// </summary>
 			Confirmed = 0x04,
 			/// <summary>
-			/// The event is canceled
+			/// The event is cancelled
 			/// </summary>
 			Cancelled = 0x08,
 		}
@@ -126,9 +123,9 @@ namespace Tizen.Pims.Calendar
 			/// </summary>
 			InProcess = 0x0800,
 			/// <summary>
-			/// Canceled status
+			/// Cancelled status
 			/// </summary>
-			Canceled = 0x1000,
+			Cancelled = 0x1000,
 		}
 
 		/// <summary>
@@ -181,7 +178,7 @@ namespace Tizen.Pims.Calendar
 			/// <summary>
 			/// No meeting
 			/// </summary>
-			Notmeeting,
+			NoMeeting,
 			/// <summary>
 			/// Meeting exists
 			/// </summary>
@@ -191,9 +188,9 @@ namespace Tizen.Pims.Calendar
 			/// </summary>
 			Received,
 			/// <summary>
-			/// Meeting canceled
+			/// Meeting cancelled
 			/// </summary>
-			Canceled,
+			Cancelled,
 		}
 
 		/// <summary>
@@ -331,7 +328,7 @@ namespace Tizen.Pims.Calendar
 			/// <summary>
 			/// Tuesday
 			/// </summary>
-			Thuesday,
+			Tuesday,
 			/// <summary>
 			/// Wednesday
 			/// </summary>
@@ -339,7 +336,7 @@ namespace Tizen.Pims.Calendar
 			/// <summary>
 			/// Thursday
 			/// </summary>
-			Thurday,
+			Thursday,
 			/// <summary>
 			/// Friday
 			/// </summary>
@@ -347,32 +344,32 @@ namespace Tizen.Pims.Calendar
 			/// <summary>
 			/// Saturday
 			/// </summary>
-			Saterday,
+			Saturday,
 		}
 
 		/// <summary>
-		/// Enumeration for the attendee cutype.
+		/// Enumeration to specify the type of calendar user specified by the property.
 		/// </summary>
 		public enum Cutype
 		{
 			/// <summary>
-			/// Individual cutype
+            /// An individual
 			/// </summary>
 			Individual,
 			/// <summary>
-			/// Group cutype
+            /// A group of individuals
 			/// </summary>
 			Group,
 			/// <summary>
-			/// Resource cutype
+            /// A physical resource
 			/// </summary>
-			Recource,
+			Resource,
 			/// <summary>
-			/// Room cutype
+            /// A room resource
 			/// </summary>
 			Room,
 			/// <summary>
-			/// Unknown cutype
+            /// Otherwise not known
 			/// </summary>
 			Unknown,
 		}
