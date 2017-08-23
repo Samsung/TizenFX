@@ -21,11 +21,14 @@ using System.Text;
 namespace ElmSharp.Wearable
 {
     /// <summary>
-    /// <see cref="RotarySelector.Selected"> and <see cref="RotarySelector.Clicked"> events of RotarySelector contain RotarySelectorItemEventArgs as a parameter.
+    /// <see cref="RotarySelector.Selected"/> and <see cref="RotarySelector.Clicked"/> events of RotarySelector contain RotarySelectorItemEventArgs as a parameter.
     /// Inherits <see cref="EventArgs"/>.
     /// </summary>
     public class RotarySelectorItemEventArgs : EventArgs
     {
+        /// <summary>
+        /// Sets or gets the rotary selector item.
+        /// </summary>
         public RotarySelectorItem Item { get; set; }
     }
 }
