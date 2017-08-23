@@ -45,7 +45,7 @@ namespace Tizen.Applications
             Permanent = 0,
 
             /// <summary>
-            /// Widget is deleted because of other reasons. (For e.g., widget process is terminated temporarily by the system)
+            /// Widget is deleted because of other reasons. (For example, widget process is terminated temporarily by the system)
             /// </summary>
             Temporary
         }
