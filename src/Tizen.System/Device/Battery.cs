@@ -51,7 +51,8 @@ namespace Tizen.System
         /// <since_tizen> 3 </since_tizen>
         High,
         /// <summary>
-        /// The battery status is full.
+        /// The battery status is fully charged.
+        /// It means no more charge.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Full
