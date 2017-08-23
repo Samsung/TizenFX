@@ -47,7 +47,7 @@ namespace Tizen.Applications.Messages
         /// <param name="appId">The Id of the remote application</param>
         /// <param name="portName">The name of the remote message port</param>
         /// <param name="trusted">If true is the trusted message port of application, otherwise false</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when appId is null or empty, when portName is null or empty</exception>
+        /// <exception cref="System.ArgumentException">Thrown when appId is null or empty, when portName is null or empty</exception>
         /// <code>
         /// RemotePort remotePort = new RemotePort("org.tizen.example.messageport", "SenderPort", false);
         /// </code>
@@ -135,7 +135,8 @@ namespace Tizen.Applications.Messages
         /// Check if the remote message port is running.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <exception cref="System.InvalidOperationException">Thrown when out of memory, when there is an I/O error</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when there is an I/O error</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory.</exception>
         /// <code>
         /// Remote remotePort = new RemotePort("org.tizen.example", "SenderPort", true);
         /// bool isRunning = remotePort.isRunning();
@@ -161,7 +162,8 @@ namespace Tizen.Applications.Messages
         /// Called when the remote port is registered or unregistered.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <exception cref="System.InvalidOperationException">Thrown when out of memory, when there is an I/O error</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when there is an I/O error</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory.</exception>
         /// <code>
         /// Remote remotePort = new RemotePort("org.tizen.example", "SenderPort", true);
         /// remotePort.RemotePortStateChanged += RemotePortStateChangedCallback;

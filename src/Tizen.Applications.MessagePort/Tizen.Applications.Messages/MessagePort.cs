@@ -52,7 +52,7 @@ namespace Tizen.Applications.Messages
         /// </summary>
         /// <param name="portName">The name of the local message port.</param>
         /// <param name="trusted">If true, it is the trusted message port of application, otherwise false.</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when portName is null or empty.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when portName is null or empty.</exception>
         /// <code>
         /// MessagePort messagePort = new MessagePort("SenderPort", true);
         /// </code>
@@ -125,7 +125,9 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// Register the local message port.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when portName is already used, when there is an invalid parameter, when out of memory, when there is an I/O error.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when portName is already used, when there is an I/O error.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory.</exception>
         /// <code>
         /// MessagePort messagePort = new MessagePort("SenderPort", true);
         /// messagePort.MessageReceived += MessageReceivedCallback;
@@ -137,7 +139,7 @@ namespace Tizen.Applications.Messages
             {
                 if (s_portMap.Contains(_portName))
                 {
-                    throw new InvalidOperationException(_portName + " is already used");
+                    MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidOperation, _portName + "is already used");
                 }
                 _messageCallBack = (int localPortId, string remoteAppId, string remotePortName, bool trusted, IntPtr message, IntPtr userData) =>
                 {
@@ -163,7 +165,7 @@ namespace Tizen.Applications.Messages
                             Interop.MessagePort.RegisterPort(_portName, _messageCallBack, IntPtr.Zero);
 
                 if (_portId <= 0)
-                    throw new InvalidOperationException("Can't Listening with " + _portName);
+                    MessagePortErrorFactory.ThrowException(_portId, "RegisterPort", _portName);
 
                 s_portMap.Add(_portName);
                 _listening = true;
@@ -173,7 +175,9 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// Unregisters the local message port.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when messageport is already stopped, when there is an invalid parameter, when the port is not found, when out of memory, when there is an I/O error.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when messageport is already stopped, when there is an I/O error, when the port is not found.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory.</exception>
         /// <code>
         /// MessagePort messagePort = new MessagePort("SenderPort", true);
         /// messagePort.MessageReceived += MessageReceivedCallback;
@@ -189,7 +193,7 @@ namespace Tizen.Applications.Messages
         {
             if (!_listening)
             {
-                throw new InvalidOperationException("Already stopped");
+                MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidOperation, "Already stopped");
             }
 
             int ret = _trusted ?
@@ -198,7 +202,7 @@ namespace Tizen.Applications.Messages
 
             if (ret != (int)MessagePortError.None)
             {
-                MessagePortErrorFactory.ThrowException(ret);
+                MessagePortErrorFactory.ThrowException(ret, "Error Unregister port");
             }
 
             lock (s_lock)
@@ -215,7 +219,9 @@ namespace Tizen.Applications.Messages
         /// <param name="message">The message to be passed to the remote application, the recommended message size is under 4KB.</param>
         /// <param name="remoteAppId">The ID of the remote application.</param>
         /// <param name="remotePortName">The name of the remote message port.</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when there is an invalid parameter, when the port is not found, when out of memory, when there is an I/O error.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when there is an I/O error, when the port is not found.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory.</exception>
         /// <exception cref="System.ArgumentOutOfRangeException">Thrown when message has exceeded the maximum limit(4KB).</exception>
         /// <code>
         /// MessagePort messagePort = new MessagePort("SenderPort", true);
@@ -239,8 +245,11 @@ namespace Tizen.Applications.Messages
         /// <param name="remoteAppId">The ID of the remote application.</param>
         /// <param name="remotePortName">The name of the remote message port.</param>
         /// <param name="trusted">If true, it is the trusted message port of remote application, otherwise false.</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when there is an invalid parameter, when the port is not found, when out of memory, when there is an I/O error.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when there is an I/O error, when the port is not found.</exception>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory.</exception>
         /// <exception cref="System.ArgumentOutOfRangeException">Thrown when message has exceeded the maximum limit(4KB).</exception>
+        /// <exception cref="System.UnauthorizedAccessException">Thrown when the remote application is not signed with the same certificate.</exception>
         /// <code>
         /// MessagePort messagePort = new MessagePort("SenderPort", true);
         /// messagePort.MessageReceived += MessageReceivedCallback;
@@ -255,11 +264,11 @@ namespace Tizen.Applications.Messages
         {
             if (!_listening)
             {
-                throw new InvalidOperationException("Should start listen before send");
+                MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidOperation, "Should start listen before send");
             }
             if (message == null)
             {
-                throw new ArgumentNullException("message");
+                MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidParameter, "message is null", "Message");
             }
             int ret = trusted ?
                         Interop.MessagePort.SendTrustedMessageWithLocalPort(remoteAppId, remotePortName, message.SafeBundleHandle, _portId) :

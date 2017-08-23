@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Runtime.CompilerServices;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Applications.Messages
@@ -34,22 +35,28 @@ namespace Tizen.Applications.Messages
 
     internal static class MessagePortErrorFactory
     {
-        internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null)
+        private const string LogTag = "Tizen.Applications.MessagePort";
+        internal static void ThrowException(int errorCode, string errorMessage = null, string paramName = null,
+            [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
             MessagePortError err = (MessagePortError)errorCode;
             if (String.IsNullOrEmpty(errorMessage))
             {
                 errorMessage = err.ToString();
             }
+
+            Log.Error(LogTag, $"{memberName}({lineNumber.ToString()}) : {filePath}");
+            Log.Error(LogTag, "Error : " + errorMessage);
+
             switch ((MessagePortError)errorCode)
             {
                 case MessagePortError.IOError:
-                case MessagePortError.OutOfMemory:
                 case MessagePortError.InvalidOperation:
                 case MessagePortError.PortNotFound:
                 case MessagePortError.ResourceUnavailable: throw new InvalidOperationException(errorMessage);
-                case MessagePortError.InvalidParameter:
-                case MessagePortError.CertificateNotMatch: throw new ArgumentException(errorMessage, paramName);
+                case MessagePortError.InvalidParameter: throw new ArgumentException(errorMessage, paramName);
+                case MessagePortError.CertificateNotMatch: throw new UnauthorizedAccessException(errorMessage);
+                case MessagePortError.OutOfMemory: throw new OutOfMemoryException(errorMessage);
                 case MessagePortError.MaxExceeded: throw new ArgumentOutOfRangeException(paramName, errorMessage);
             }
         }
