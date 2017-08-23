@@ -216,7 +216,7 @@ namespace Tizen.Multimedia
             if (display == null)
             {
                 Log.Info(PlayerLog.Tag, "set display to none");
-                return NativePlayer.SetDisplay(Handle, DisplayType.None, IntPtr.Zero);
+                return NativePlayer.SetDisplay(Handle, PlayerDisplayType.None, IntPtr.Zero);
             }
 
             return display.ApplyTo(this);
@@ -267,8 +267,10 @@ namespace Tizen.Multimedia
             Debug.Assert(IsDisposed == false);
 
             Debug.Assert(Enum.IsDefined(typeof(DisplayType), type));
+            Debug.Assert(type != DisplayType.None);
 
-            return NativePlayer.SetDisplay(Handle, type, evasObject);
+            return NativePlayer.SetDisplay(Handle,
+                type == DisplayType.Overlay ? PlayerDisplayType.Overlay : PlayerDisplayType.Evas, evasObject);
         }
         #endregion
 
