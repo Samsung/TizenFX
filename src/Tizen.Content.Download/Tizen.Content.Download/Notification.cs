@@ -20,7 +20,7 @@ using Tizen.Applications;
 namespace Tizen.Content.Download
 {
     /// <summary>
-    /// The Notification class consists of all the properties required to set notifications for download operation.
+    /// The Notification class consists of all the properties required to set notifications for the download operation.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Notification
@@ -34,13 +34,13 @@ namespace Tizen.Content.Download
 
         /// <summary>
         /// Title of the notification.
-        /// If user tries to get before setting, empty string is returned.
+        /// If a user tries to get before the setting, an empty string is returned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public string Title
         {
             get
@@ -66,13 +66,13 @@ namespace Tizen.Content.Download
 
         /// <summary>
         /// Description of the notification.
-        /// If user tries to get before setting, empty string is returned.
+        /// If a user tries to get before the setting, an empty string is returned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public string Description
         {
             get
@@ -97,14 +97,14 @@ namespace Tizen.Content.Download
         }
 
         /// <summary>
-        /// Type of Notification.
-        /// If user tries to get before setting, default NotificationType None is returned.
+        /// Type of the notification.
+        /// If a user tries to get before the setting, the default NotificationType none is returned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public NotificationType Type
         {
             get
@@ -130,16 +130,16 @@ namespace Tizen.Content.Download
 
         /// <summary>
         /// AppControl for an ongoing download notification.
-        /// If user tries to get before setting, null is returned.
+        /// If a user tries to get before the setting, null is returned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
-        /// When the notification message is clicked, the action is decided by the app control.
+        /// When the notification message is clicked, the action is decided by the application control.
         /// </remarks>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public AppControl AppControlOngoing
         {
             get
@@ -165,16 +165,16 @@ namespace Tizen.Content.Download
 
         /// <summary>
         /// AppControl for a completed download notification.
-        /// If user tries to get before setting, null is returned.
+        /// If a user tries to get before the setting, null is returned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
-        /// When the notification message is clicked, the action is decided by the app control
+        /// When the notification message is clicked, the action is decided by the application control.
         /// </remarks>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public AppControl AppControlCompleted
         {
             get
@@ -200,16 +200,16 @@ namespace Tizen.Content.Download
 
         /// <summary>
         /// AppControl for a failed download notification.
-        /// If user tries to get before setting, null is returned.
+        /// If a user tries to get before the setting, null is returned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
         /// <remarks>
-        /// When the notification message is clicked, the action is decided by the app control
+        /// When the notification message is clicked, the action is decided by the application control.
         /// </remarks>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to invalid operation</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         public AppControl AppControlFailed
         {
             get

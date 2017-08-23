@@ -32,7 +32,7 @@ namespace Tizen.Content.Download
         }
 
         /// <summary>
-        /// Present download state.
+        /// The present download state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public DownloadState State
