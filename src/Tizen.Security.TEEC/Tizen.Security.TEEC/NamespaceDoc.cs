@@ -12,7 +12,7 @@ running inside the TEE or exposed externally to Client Applications.
 The TEE Client API concentrates on the interface to enable efficient communications between
 a Client Application and a Trusted Application running inside the TEE.
 Higher level standards and protocol layers may be built on top of the foundation
-provided by the TEE Client API – for example, to cover common tasks such as secure storage,
+provided by the TEE Client API – for example, to cover common tasks, such as secure storage,
 cryptography, and run-time installation of new Trusted Applications.
 The separation between the rich environment and the TEE is guaranted.
 </para>
@@ -24,7 +24,7 @@ The key design principles of the TEE Client API are:
 	<description>
 	Where possible the design of the TEE Client API has placed the responsibility for memory
 	allocation on the calling Client Application code. This gives the Client developer choice of
-	memory allocation locations, enabling simple optimizations such as stack-based allocation
+	memory allocation locations, enabling simple optimizations, such as stack-based allocation
 	or enhanced flexibility using placements in static global memory or thread-local storage.<br />
 	This design choice is evident in the API by the use of pointers to structures rather than
 	opaque handles to represent any manipulated objects.

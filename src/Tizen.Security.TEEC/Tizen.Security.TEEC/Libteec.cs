@@ -22,83 +22,83 @@ using System.Threading.Tasks;
 namespace Tizen.Security.TEEC
 {
     /// <summary>
-    /// This type denotes Session Login Method used in OpenSession
+    /// This type denotes the Session Login Method used in OpenSession.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class LoginMethod
     {
         /// <summary>No login data is provided.</summary>
         public const uint Public      = 0x00000000;
-        /// <summary>Login data about the user running the Client Application process is provided.</summary>
+        /// <summary>Login data about the user running the client application process is provided.</summary>
         public const uint User        = 0x00000001;
-        /// <summary>Login data about the group running the Client Application process is provided.</summary>
+        /// <summary>Login data about the group running the client application process is provided.</summary>
         public const uint Group       = 0x00000002;
-        /// <summary>Login data about the running Client Application itself is provided.</summary>
+        /// <summary>Login data about the running client application itself is provided.</summary>
         public const uint Application = 0x00000003;
     }
 
     /// <summary>
-    /// This type denotes Value parameter
+    /// This type denotes the Value parameter.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum TEFValueType : UInt32
     {
-        /// <summary>The Parameter is a ValueType tagged as input.</summary>
+        /// <summary>The parameter is a ValueType tagged as the input.</summary>
         Input  = 0x00000001,
-        /// <summary>The Parameter is a ValueType tagged as output.</summary>
+        /// <summary>The parameter is a ValueType tagged as the output.</summary>
         Output = 0x00000002,
-        /// <summary>The Parameter is a ValueType tagged as both as input and output.</summary>
+        /// <summary>The parameter is a ValueType tagged as both the input and the output.</summary>
         InOut  = 0x00000003,
     }
 
     /// <summary>
-    /// This type denotes TempMemoryReference parameter
+    /// This type denotes the TempMemoryReference parameter
     /// describing a region of memory which needs to be temporarily registered for the duration of the operation.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum TEFTempMemoryType : UInt32
     {
-        /// <summary>The Parameter is a TempMemoryType and is tagged as input.</summary>
+        /// <summary>The parameter is a TempMemoryType and is tagged as the input.</summary>
         Input  = 0x00000005,
-        /// <summary>Same as Input, but the Memory Reference is tagged as output.</summary>
+        /// <summary>Same as the input, but the Memory Reference is tagged as the output.</summary>
         Output = 0x00000006,
-        /// <summary>A Temporary Memory Reference tagged as both input and output.</summary>
+        /// <summary>A Temporary Memory Reference tagged as both the input and the output.</summary>
         InOut  = 0x00000007,
     }
 
     /// <summary>
-    /// This type denotes SharedMemoryReference parameter
+    /// This type denotes the SharedMemoryReference parameter.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum TEFRegisteredMemoryType : UInt32
     {
-        /// <summary>The Parameter is a Registered Memory Reference that refers to the entirety of its parent Shared Memory block.</summary>
+        /// <summary>The parameter is a registered memory reference that refers to the entirety of its parent shared memory block.</summary>
         Whole         = 0x0000000C,
-        /// <summary>A Registered Memory Reference structure that refers to a partial region of its parent Shared Memory block and is tagged as input.</summary>
+        /// <summary>A registered memory reference structure that refers to a partial region of its parent shared mMemory block and is tagged as the input.</summary>
         PartialInput  = 0x0000000D,
-        /// <summary>A Registered Memory Reference structure that refers to a partial region of its parent Shared Memory block and is tagged as output.</summary>
+        /// <summary>A registered memory reference structure that refers to a partial region of its parent shared memory block and is tagged as the output.</summary>
         PartialOutput = 0x0000000E,
-        /// <summary>A Registered Memory Reference structure that refers to a partial region of its parent Shared Memory block and is tagged as both input and output.</summary>
+        /// <summary>A registered memory reference structure that refers to a partial region of its parent shared memory block and is tagged as both the input and the output.</summary>
         PartialInOut  = 0x0000000F,
     }
 
     /// <summary>
-    /// This type denotes SharedMemory access direction
+    /// This type denotes the SharedMemory access direction.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Flags]
     public enum SharedMemoryFlags : UInt32
     {
-        /// <summary>A flag indicates Shared Memory can be read.</summary>
+        /// <summary>A flag indicates the shared memory can be read.</summary>
         Input  = 0x00000001,
-        /// <summary>A flag indicates Shared Memory can be written.</summary>
+        /// <summary>A flag indicates the shared memory can be written.</summary>
         Output = 0x00000002,
-        /// <summary>A flag indicates Shared Memory can be read and written.</summary>
+        /// <summary>A flag indicates the shared memory can be read and written.</summary>
         InOut = Input | Output,
     }
 
     /// <summary>
-    /// This type denotes a Shared Memory block which has either been registered
+    /// This type denotes a shared memory block which has been either registered
     /// with the implementation or allocated by it.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -110,7 +110,7 @@ namespace Tizen.Security.TEEC
             this.shm=shm;
         }
         /// <summary>
-        /// This property represents shared memory size in bytes.
+        /// This property represents the shared memory size in bytes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public UInt32 Size
@@ -118,7 +118,7 @@ namespace Tizen.Security.TEEC
             get { return shm.size; }
         }
         /// <summary>
-        /// This property represents start address of shared memory block.
+        /// This property represents the start address of the shared memory block.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public IntPtr Address
@@ -128,11 +128,11 @@ namespace Tizen.Security.TEEC
 
         /// <summary>
         /// This function makes a copy and is designed for convenient operations on small buffers.
-        /// For large buffers direct address should be used.
+        /// For large buffers, the direct address should be used.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="data">Source data buffer to copy data from</param>
-        /// <param name="dstOffs">Starting offset in destination shared memory</param>
+        /// <param name="data">The source data buffer to copy data from.</param>
+        /// <param name="dstOffs">The starting offset in the destination shared memory.</param>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public void SetData(byte[] data, int dstOffs)
         {
@@ -141,11 +141,11 @@ namespace Tizen.Security.TEEC
         }
         /// <summary>
         /// This function makes a copy and is designed for convenient operations on small buffers.
-        /// For large buffers direct address should be used.
+        /// For large buffers, the direct address should be used.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="data">Destination data buffer to copy data into</param>
-        /// <param name="srcOffs">Starting offset in source shared memory</param>
+        /// <param name="data">The destination data buffer to copy data into.</param>
+        /// <param name="srcOffs">The starting offset in the source shared memory.</param>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public void GetData(byte[] data, int srcOffs)
         {
@@ -155,9 +155,9 @@ namespace Tizen.Security.TEEC
     };
 
     /// <summary>
-    /// This type defines the payload of either an open Session operation or an invoke Command operation. It is
-    /// also used for cancellation of operations, which may be desirable even if no payload is passed.
-    /// Parameters are used to exchange data between CA and TA
+    /// This type defines the payload of either an open session operation or an invoke command operation. It is
+    /// also used for cancelation of operations, which may be desirable even if no payload is passed.
+    /// Parameters are used to exchange data between CA and TA.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public abstract class Parameter
@@ -170,7 +170,7 @@ namespace Tizen.Security.TEEC
     };
 
     /// <summary>
-    /// This type defines a template for parameter types.
+    /// This type defines a template for the parameter types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public abstract class BaseParameter<TEnum> : Parameter where TEnum : struct, IComparable, IFormattable, IConvertible // as close to Enum as possible
@@ -181,7 +181,7 @@ namespace Tizen.Security.TEEC
         }
 
         /// <summary>
-        /// This property represents access type to this parameter.
+        /// This property represents the access type to this parameter.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public TEnum Type { get; }
@@ -194,12 +194,12 @@ namespace Tizen.Security.TEEC
     public sealed class TempMemoryReference : BaseParameter<TEFTempMemoryType>
     {
         /// <summary>
-        /// Constructs Prameter object which holds info about temporary memory copied to/from TA
+        /// Constructs a parameter object which holds information about the temporary memory copied to or from TA.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="buffer">Address of allocated memory buffer</param>
-        /// <param name="size">Size of the buffer</param>
-        /// <param name="type">Kind of access allowed for TA <see cref="TEFTempMemoryType"/></param>
+        /// <param name="buffer">The address of the allocated memory buffer.</param>
+        /// <param name="size">The size of the buffer.</param>
+        /// <param name="type">The kind of access allowed for TA <see cref="TEFTempMemoryType"/>.</param>
         public TempMemoryReference(IntPtr buffer, uint size, TEFTempMemoryType type) :
                 base(type)
         {
@@ -207,31 +207,31 @@ namespace Tizen.Security.TEEC
             this.Size = size;
         }
         /// <summary>
-        /// This property represents memory address of buffer.
+        /// This property represents the memory address of the buffer.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public IntPtr Buffer { get; }
         /// <summary>
-        /// This property represents size of buffer.
+        /// This property represents the size of the buffer.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public uint Size { get; }
     };
 
     /// <summary>
-    /// This type defines a memory reference that uses a pre-registered or pre-allocated Shared Memory block.
+    /// This type defines a memory reference that uses a pre-registered or pre-allocated shared memory block.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public sealed class RegisteredMemoryReference : BaseParameter<TEFRegisteredMemoryType>
     {
         /// <summary>
-        /// Constructs Prameter object which holds info about registered memory shared with TA
+        /// Constructs a parameter object which holds information about the registered memory shared with TA.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="parent">Shared memory - registered or allocated</param>
-        /// <param name="size">Size of the buffer part</param>
-        /// <param name="offset">Offset of buffer in shared memory</param>
-        /// <param name="type">Kind of access allowed for TA <see cref="TEFRegisteredMemoryType"/></param>
+        /// <param name="parent">The shared memory - registered or allocated.</param>
+        /// <param name="size">The size of the buffer part.</param>
+        /// <param name="offset">The offset of the buffer in the shared memory.</param>
+        /// <param name="type">The kind of access allowed for TA <see cref="TEFRegisteredMemoryType"/>.</param>
         public RegisteredMemoryReference(SharedMemory parent, uint size, uint offset, TEFRegisteredMemoryType type) :
                 base(type)
         {
@@ -240,36 +240,36 @@ namespace Tizen.Security.TEEC
             this.Offset = offset;
         }
         /// <summary>
-        /// This property represents SharedMemory that is referred to.
+        /// This property represents the shared memory that is referred to.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public SharedMemory Parent { get; }
         /// <summary>
-        /// This property represents size (in bytes) of SharedMemory.
+        /// This property represents the size (in bytes) of the shared memory.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public uint Size { get; }
         /// <summary>
-        /// This property represents offset (in bytes) from the begin of SharedMemory.
+        /// This property represents the offset (in bytes) from the start of the shared memory.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public uint Offset { get; }
     };
 
     /// <summary>
-    /// This type defines a parameter that is not referencing shared memory, but carries instead small raw data
-    /// passed by value.
+    /// This type defines a parameter that is not referencing the shared memory, but carries instead small raw data
+    /// passed by a value.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public sealed class Value : BaseParameter<TEFValueType>
     {
         /// <summary>
-        /// Constructs Prameter object which holds info about int values copied to/from TA
+        /// Constructs a parameter object which holds information about integer values copied to or from TA.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="a">User paramter A</param>
-        /// <param name="b">User paramter B</param>
-        /// <param name="type">Kind of access allowed for TA <see cref="TEFValueType"/></param>
+        /// <param name="a">User paramter A.</param>
+        /// <param name="b">User paramter B.</param>
+        /// <param name="type">The kind of access allowed for TA <see cref="TEFValueType"/>.</param>
         public Value(uint a, uint b, TEFValueType type) :
                 base(type)
         {
@@ -277,12 +277,12 @@ namespace Tizen.Security.TEEC
             this.B = b;
         }
         /// <summary>
-        /// This property represents unsigned integer A.
+        /// This property represents an unsigned integer A.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public uint A { get; }
         /// <summary>
-        /// This property represents unsigned integer B.
+        /// This property represents an unsigned integer B.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public uint B { get; }
@@ -290,7 +290,7 @@ namespace Tizen.Security.TEEC
 
 
     /// <summary>
-    /// This type denotes a TEE Session, the logical container linking a Client Application with a particular Trusted Application.
+    /// This type denotes a TEE Session, the logical container linking a client application with a particular trusted application.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public sealed class Session
@@ -320,14 +320,14 @@ namespace Tizen.Security.TEEC
         }
 
         /// <summary>
-        /// This function closes a Session which has been opened with a Trusted Application.
-        /// All Commands within the Session MUST have completed before this function can be called.
+        /// This function closes a session which has been opened with a trusted application.
+        /// All commands within the session must be completed before this function can be called.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public void Close() {
@@ -336,22 +336,22 @@ namespace Tizen.Security.TEEC
         }
 
         /// <summary>
-        /// This function invokes a Command within the specified Session.
-        /// The parameter commandID is an identifier that is used to indicate which of the exposed Trusted
-        /// Application functions should be invoked. The supported command identifier values are defined by the
-        /// Trusted Application's protocol.
-        /// There can be up to four Parameter objects given in the <paramref name="paramlist"/> array
+        /// This function invokes a command within the specified session.
+        /// The parameter commandID is an identifier that is used to indicate which of the exposed trusted
+        /// application functions should be invoked. The supported command identifier values are defined by the
+        /// trusted application's protocol.
+        /// There can be up to four parameter objects given in the <paramref name="paramlist"/> array.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="commandID">The command</param>
-        /// <param name="paramlist">The array of parameters</param>
+        /// <param name="commandID">The command.</param>
+        /// <param name="paramlist">The array of parameters.</param>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
-        /// <exception cref="ArgumentException">The argument <paramref name="paramlist"/> is wrong</exception>
+        /// <exception cref="ArgumentException">The argument <paramref name="paramlist"/> is wrong.</exception>
         public void InvokeCommand(uint commandID, Parameter[] paramlist)
         {
             Interop.TEEC_Operation op = new Interop.TEEC_Operation();
@@ -370,20 +370,20 @@ namespace Tizen.Security.TEEC
         }
 
         /// <summary>
-        /// Asynchronous version of InvokeCommand
+        /// The asynchronous version of the InvokeCommand.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="commandID">The command</param>
-        /// <param name="paramlist">The array of parameters</param>
-        /// <param name="token">The token for task manipulation</param>
-        /// <returns>Returns Task executing invoke command in backgroung</returns>
+        /// <param name="commandID">The command.</param>
+        /// <param name="paramlist">The array of parameters.</param>
+        /// <param name="token">The token for task manipulation.</param>
+        /// <returns>Returns a task executing an invoke command in the background.</returns>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
-        /// <exception cref="ArgumentException">One of arguments is wrong</exception>
+        /// <exception cref="ArgumentException">One of the arguments is wrong.</exception>
         public async Task InvokeCommandAsync(uint commandID, Parameter[] paramlist, CancellationToken token = default(CancellationToken))
         {
             await Task.Factory.StartNew(() => InvokeCommand(commandID, paramlist));
@@ -400,15 +400,15 @@ namespace Tizen.Security.TEEC
         private Interop.TEEC_Context context;
 
         /// <summary>
-        /// This function (constructor) initializes a new TEE Context, forming a connection between this Client Application and the
-        /// TEE identified by the string identifier name (empty or null name denotes default TEE).
+        /// This function (constructor) initializes a new TEE Context, forming a connection between this client application and the
+        /// TEE identified by the string identifier name (empty or null name denotes a default TEE).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="name">The TEE name</param>
+        /// <param name="name">The TEE name.</param>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public Context(string name)
@@ -424,7 +424,7 @@ namespace Tizen.Security.TEEC
         }
 
         /// <summary>
-        /// This function implements IDisposable interface
+        /// This function implements the IDisposable interface.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
@@ -436,23 +436,23 @@ namespace Tizen.Security.TEEC
         }
 
         /// <summary>
-        /// This function opens a new Session between the Client Application and the specified Trusted Application.
-        /// The target Trusted Application is identified by a UUID passed in the parameter destination.
-        /// There can be up to four Parameter objects given in the <paramref name="paramlist"/> array
+        /// This function opens a new session between the client application and the specified trusted application.
+        /// The target trusted application is identified by an UUID passed in the parameter destination.
+        /// There can be up to four parameter objects given in the <paramref name="paramlist"/> array.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="destination">The UUID of destination TA</param>
-        /// <param name="loginMethod">The authentication algorithm <see cref="LoginMethod" /></param>
-        /// <param name="connectionData">The data to be verified by given login method</param>
-        /// <param name="paramlist">The parameters to be passed to TA open-session-callback</param>
-        /// <returns>Returns opened session</returns>
+        /// <param name="destination">The UUID of the destination TA.</param>
+        /// <param name="loginMethod">The authentication algorithm <see cref="LoginMethod" />.</param>
+        /// <param name="connectionData">The data to be verified by a given login method.</param>
+        /// <param name="paramlist">The parameters to be passed to TA open-session-callback.</param>
+        /// <returns>Returns opened session.</returns>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
-        /// <exception cref="ArgumentException">One of arguments is wrong</exception>
+        /// <exception cref="ArgumentException">One of the arguments is wrong.</exception>
         public Session OpenSession(Guid destination, uint loginMethod, byte[] connectionData, Parameter[] paramlist)
         {
             Session ses = new Session(context);
@@ -460,15 +460,15 @@ namespace Tizen.Security.TEEC
             return ses;
         }
         /// <summary>
-        /// @see OpenSession(Guid destination, uint connectionMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token)
+        /// @see OpenSession (Guid destination, uint connectionMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="destination">The UUID of destination TA</param>
-        /// <returns>Returns opened session</returns>
+        /// <param name="destination">The UUID of the destination TA.</param>
+        /// <returns>Returns opened session.</returns>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public Session OpenSession(Guid destination)
@@ -479,23 +479,23 @@ namespace Tizen.Security.TEEC
         }
 
         /// <summary>
-        /// Asynchronous version of OpenSession
-        /// @see OpenSession(Guid destination, uint connectionMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token)
+        /// The asynchronous version of the OpenSession.
+        /// @see OpenSession (Guid destination, uint connectionMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="destination">The UUID of destination TA</param>
-        /// <param name="loginMethod">The authentication algorithm <see cref="LoginMethod" /></param>
-        /// <param name="connectionData">The data to be verified by given login method</param>
-        /// <param name="paramlist">The parameters to be passed to TA open-session-callback</param>
-        /// <param name="token">The token for task manipulation</param>
-        /// <returns>Returns Task executing session open in backgroung</returns>
+        /// <param name="destination">The UUID of the destination TA.</param>
+        /// <param name="loginMethod">The authentication algorithm <see cref="LoginMethod" />.</param>
+        /// <param name="connectionData">The data to be verified by a given login method.</param>
+        /// <param name="paramlist">The parameters to be passed to the TA open-session-callback.</param>
+        /// <param name="token">The token for the task manipulation.</param>
+        /// <returns>Returns a Task executing the session open in the background.</returns>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
-        /// <exception cref="ArgumentException">One of arguments is wrong</exception>
+        /// <exception cref="ArgumentException">One of the arguments is wrong.</exception>
         public async Task<Session> OpenSessionAsync(Guid destination, uint loginMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token = default(CancellationToken))
         {
             Task<Session> task = Task<Session>.Factory.StartNew(() =>
@@ -505,17 +505,17 @@ namespace Tizen.Security.TEEC
             return await task;
         }
         /// <summary>
-        /// Asynchronous version of OpenSession
-        /// @see OpenSession(Guid destination, uint connectionMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token)
+        /// The asynchronous version of the OpenSession.
+        /// @see OpenSession (Guid destination, uint connectionMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="destination">The UUID of destination TA</param>
-        /// <param name="token">The token for task manipulation</param>
-        /// <returns>Returns Task executing session open in backgroung</returns>
+        /// <param name="destination">The UUID of the destination TA.</param>
+        /// <param name="token">The token for a task manipulation.</param>
+        /// <returns>Returns a task executing session open in the background.</returns>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public async Task<Session> OpenSessionAsync(Guid destination, CancellationToken token = default(CancellationToken))
@@ -528,22 +528,22 @@ namespace Tizen.Security.TEEC
         }
 
         /// <summary>
-        /// This function registers a block of existing Client Application memory as a block of Shared Memory within
-        /// the scope of the specified Context, in accordance with the parameters.
-        /// The input <paramref name="memaddr"/> MUST point to the shared memory region to register
+        /// This function registers a block of the existing client application memory as a block of shared memory within
+        /// the scope of the specified context, in accordance with the parameters.
+        /// The input <paramref name="memaddr"/> must point to the shared memory region to register.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="memaddr">The address of shared memory</param>
-        /// <param name="size">The size of shared memory</param>
-        /// <param name="flags">The flags describing access modes (Input and/or Output)</param>
-        /// <returns>Returns SharedMemory handler</returns>
+        /// <param name="memaddr">The address of the shared memory.</param>
+        /// <param name="size">The size of the shared memory.</param>
+        /// <param name="flags">The flags describing the access modes (Input and/or Output).</param>
+        /// <returns>Returns the SharedMemory handler.</returns>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
-        /// <exception cref="ArgumentException">The argument <paramref name="memaddr"/> is wrong</exception>
+        /// <exception cref="ArgumentException">The argument <paramref name="memaddr"/> is wrong.</exception>
         public SharedMemory RegisterSharedMemory(IntPtr memaddr, UInt32 size, SharedMemoryFlags flags)
         {
             Interop.TEEC_SharedMemory shm = new Interop.TEEC_SharedMemory();
@@ -556,17 +556,17 @@ namespace Tizen.Security.TEEC
         }
 
         /// <summary>
-        /// This function allocates a new block of memory as a block of Shared Memory within the scope of the
-        /// specified Context, in accordance with the parameters.
+        /// This function allocates a new block of memory as a block of shared memory within the scope of the
+        /// specified context, in accordance with the parameters.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="size">The size of shared memory</param>
-        /// <param name="flags">The flags describing access modes (Input and/or Output)</param>
-        /// <returns>Returns SharedMemory handler</returns>
+        /// <param name="size">The size of shared memory.</param>
+        /// <param name="flags">The flags describing access modes (Input and/or Output).</param>
+        /// <returns>Returns the Shared Memory handler.</returns>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public SharedMemory AllocateSharedMemory(UInt32 size, SharedMemoryFlags flags)
@@ -580,26 +580,26 @@ namespace Tizen.Security.TEEC
         }
 
         /// <summary>
-        /// This function deregisters or deallocates a previously initialized block of Shared Memory.
+        /// This function deregisters or deallocates a previously initialized block of the shared memory.
         /// </summary>
         /// <remarks>
-        /// For a memory buffer allocated using AllocateSharedMemory the Implementation MUST free the
-        /// underlying memory and the Client Application MUST NOT access this region after this function has been
-        /// called. In this case the Implementation MUST clear the buffer and size fields of the sharedMem
+        /// For a memory buffer allocated using AllocateSharedMemory, the implementation must free the
+        /// underlying memory and the client application must not access this region after this function has been
+        /// called. In this case, the implementation must clear the buffer and size fields of the shared memory
         /// structure before returning.
-        /// For memory registered using RegisterSharedMemory the implementation MUST deregister the
-        /// underlying memory from the TEE, but the memory region will stay available to the Client Application for
+        /// For memory registered using RegisterSharedMemory, the implementation must deregister the
+        /// underlying memory from the TEE, but the memory region will stay available to the client application for
         /// other purposes as the memory is owned by it.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="shm">The shared memory object returned by RegisterSharedMemory or AllocateSharedMemory</param>
+        /// <param name="shm">The shared memory object returned by RegisterSharedMemory or AllocateSharedMemory.</param>
         /// <privilege>http://tizen.org/privilege/tee.client</privilege>
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
-        /// <exception cref="ArgumentException">The argument is wrong</exception>
+        /// <exception cref="ArgumentException">The argument is wrong.</exception>
         public void ReleaseSharedMemory(SharedMemory shm)
         {
             Interop.Libteec.ReleaseSharedMemory(ref shm.shm);
