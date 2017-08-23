@@ -10,7 +10,7 @@
 
   <!-- Properties for directories -->
   <PropertyGroup>
-    <ToolsDir>$(MSBuildThisFileDirectory)..\tools\</ToolsDir>
+    <ToolsDir>$(MSBuildThisFileDirectory)..\tools\GenAPI\</ToolsDir>
     <GenAPISourceDir>$(MSBuildThisFileDirectory)\..\Artifacts\bin\</GenAPISourceDir>
     <GenAPILibDir>$(MSBuildThisFileDirectory)obj\_ref_lib\</GenAPILibDir>
     <GenAPITargetDir>$(MSBuildThisFileDirectory)obj\_ref_api\</GenAPITargetDir>
