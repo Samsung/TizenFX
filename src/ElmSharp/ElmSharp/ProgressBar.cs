@@ -139,7 +139,6 @@ namespace ElmSharp
         /// If not, it sets the format string for the units label's text.
         /// The units label is provided with a floating point value, so the units text displays at most one floating point value.
         /// Note that the units label is optional. Use a format string such as "%1.2f meters" for example.
-        /// The default format string for a progress bar is an integer percentage, as in "%.0f %%".
         /// </remarks>
         public string UnitFormat
         {
