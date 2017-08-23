@@ -38,16 +38,16 @@ Tizen.Messaging.dll                                #mobile #mobile-emul
 Tizen.Messaging.Push.dll                           #mobile #mobile-emul #tv #ivi
 Tizen.Multimedia.AudioIO.dll                       #common #mobile #mobile-emul #tv #ivi
 Tizen.Multimedia.Camera.dll                        #common #mobile #mobile-emul #tv #ivi
-Tizen.Multimedia.dll                               #common #mobile #mobile-emul #tv #ivi
+Tizen.Multimedia.dll                               #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Multimedia.MediaCodec.dll                    #common #mobile #mobile-emul #tv #ivi
 Tizen.Multimedia.MediaPlayer.dll                   #common #mobile #mobile-emul #tv #ivi
-Tizen.Multimedia.Metadata.dll                      #common #mobile #mobile-emul #tv #ivi
+Tizen.Multimedia.Metadata.dll                      #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Multimedia.Radio.dll                         #common #mobile #mobile-emul #tv #ivi
-Tizen.Multimedia.Recorder.dll                      #common #mobile #mobile-emul #tv #ivi
-Tizen.Multimedia.Remoting.dll                      #common #mobile #mobile-emul #tv #ivi
-Tizen.Multimedia.StreamRecorder.dll                #common #mobile #mobile-emul #tv #ivi
-Tizen.Multimedia.Util.dll                          #common #mobile #mobile-emul #tv #ivi
-Tizen.Multimedia.Vision.dll                        #common #mobile #mobile-emul #tv #ivi
+Tizen.Multimedia.Recorder.dll                      #common #mobile #mobile-emul #tv #ivi #wearable
+Tizen.Multimedia.Remoting.dll                      #common #mobile #mobile-emul #tv #ivi #wearable
+Tizen.Multimedia.StreamRecorder.dll                #common #mobile #mobile-emul #tv #ivi #wearable
+Tizen.Multimedia.Util.dll                          #common #mobile #mobile-emul #tv #ivi #wearable
+Tizen.Multimedia.Vision.dll                        #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Network.Bluetooth.dll                        #common #mobile #tv #ivi #wearable
 Tizen.Network.Connection.dll                       #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Network.IoTConnectivity.dll                  #common #mobile #mobile-emul #tv #ivi #wearable
