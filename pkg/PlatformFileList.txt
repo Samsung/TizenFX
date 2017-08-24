@@ -33,7 +33,7 @@ Tizen.dll                                          #common #mobile #mobile-emul 
 Tizen.Location.dll                                 #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Location.Geofence.dll                        #mobile #mobile-emul
 Tizen.Log.dll                                      #common #mobile #mobile-emul #tv #ivi #wearable
-Tizen.Maps.dll                                     #mobile #mobile-emul #tv
+Tizen.Maps.dll                                     #mobile #mobile-emul #tv #wearable
 Tizen.Messaging.dll                                #mobile #mobile-emul
 Tizen.Messaging.Push.dll                           #mobile #mobile-emul #tv #ivi
 Tizen.Multimedia.AudioIO.dll                       #common #mobile #mobile-emul #tv #ivi
