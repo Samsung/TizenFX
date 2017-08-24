@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Nfc
 {
     /// <summary>
-    /// A class for Ndef Record information. It allows applications to use Ndef Record information.
+    /// A class for the NDEF Record information. It allows applications to use the NDEF Record information.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class NfcNdefRecord : IDisposable
@@ -93,7 +93,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The record TNF(Type Name Format) value.
+        /// The record TNF (Type Name Format) value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NfcRecordTypeNameFormat Tnf
@@ -111,7 +111,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The text of text type Ndef record.
+        /// The text of the text type NDEF record.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Text
@@ -129,7 +129,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The language code of text type Ndef record.
+        /// The language code of the text type NDEF record.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string LanguageCode
@@ -147,7 +147,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The encoding type of text type Ndef record.
+        /// The encoding type of the text type NDEF record.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NfcEncodeType EncodeType
@@ -165,7 +165,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The URI of uri type Ndef record.
+        /// The URI of the URI type NDEF record.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Uri
@@ -183,7 +183,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The mime type of mime type Ndef record.
+        /// The mime type of the mime type NDEF record.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string MimeType
@@ -201,17 +201,17 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Creates a record with given parameter value.
+        /// Creates a record with a given parameter value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="format">The type name format.</param>
         /// <param name="type">The specified type name.</param>
         /// <param name="id">The record ID.</param>
         /// <param name="payload">The payload of this record.</param>
-        /// <param name="paloadLength">The byte size of payload.</param>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <param name="paloadLength">The byte size of the payload.</param>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method fails due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public NfcNdefRecord(NfcRecordTypeNameFormat format, byte[] type, byte[] id, byte[] payload, uint paloadLength)
         {
             int ret = Interop.Nfc.NdefRecord.Create(out _recordHandle, (int)format, type, type.Length, id, id.Length, payload, paloadLength);
@@ -224,15 +224,15 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Creates a record with text type payload.
+        /// Creates a record with the text type payload.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="text">The encoded text.</param>
-        /// <param name="languageCode">The language code string value followed by IANA[RFC 3066] (ex: en-US, ko-KR).</param>
+        /// <param name="languageCode">The language code string value followed by the IANA [RFC 3066] (ex: en-US, ko-KR).</param>
         /// <param name="encode">The encoding type.</param>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method fails due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public NfcNdefRecord(string text, string languageCode, NfcEncodeType encode)
         {
             int ret = Interop.Nfc.NdefRecord.CreateText(out _recordHandle, text, languageCode, (int)encode);
@@ -245,13 +245,13 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Creates a record with text type payload.
+        /// Creates a record with the URI type payload.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="uri">The URI string that will be stored in the payload.</param>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method fails due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public NfcNdefRecord(string uri)
         {
             int ret = Interop.Nfc.NdefRecord.CreateUri(out _recordHandle, uri);
@@ -264,15 +264,15 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Creates a record with text type payload.
+        /// Creates a record with the mime type payload.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="mimeType">The mime type [RFC 2046] (ex. text/plain, image/jpeg ) This value is stored in type field.</param>
-        /// <param name="data">The data in form of bytes array.</param>
-        /// <param name="dataSize">The size of data.</param>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <param name="mimeType">The mime type [RFC 2046] (ex. text/plain, image/jpeg ). This value is stored in the type field.</param>
+        /// <param name="data">The data in the form of the bytes array.</param>
+        /// <param name="dataSize">The size of the data.</param>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method fails due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public NfcNdefRecord(string mimeType, byte[] data, uint dataSize)
         {
             int ret = Interop.Nfc.NdefRecord.CreateMime(out _recordHandle, mimeType, data, dataSize);

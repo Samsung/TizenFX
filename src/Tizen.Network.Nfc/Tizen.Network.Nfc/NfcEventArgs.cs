@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Nfc
 {
     /// <summary>
-    /// An extended EventArgs class which contains changed Nfc activation state.
+    /// An extended EventArgs class which contains the changed NFC activation state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ActivationChangedEventArgs : EventArgs
@@ -33,7 +33,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The Nfc activation state.
+        /// The NFC activation state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool Activated
@@ -46,7 +46,7 @@ namespace Tizen.Network.Nfc
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed Nfc tag discovered.
+    /// An extended EventArgs class which contains the changed NFC tag discovered.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class TagDiscoveredEventArgs : EventArgs
@@ -72,7 +72,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Tag object
+        /// The tag object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NfcTag Tag
@@ -85,7 +85,7 @@ namespace Tizen.Network.Nfc
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed Nfc p2p target discovered.
+    /// An extended EventArgs class which contains the changed NFC P2P target discovered.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class P2pTargetDiscoveredEventArgs : EventArgs
@@ -99,7 +99,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The p2p target type.
+        /// The P2P target type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NfcDiscoveredType Type
@@ -111,7 +111,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// P2p object
+        /// The P2P object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NfcP2p P2pTarget
@@ -124,7 +124,7 @@ namespace Tizen.Network.Nfc
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed Nfc ndef discovered.
+    /// An extended EventArgs class which contains the changed NFC NDEF discovered.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class NdefMessageDiscoveredEventArgs : EventArgs
@@ -137,7 +137,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The NdefMessage object that is most recently received via NFC p2p mode or tag mode
+        /// The NdefMessage object that is most recently received via the NFC P2P mode or the tag mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NfcNdefMessage NdefMessage
@@ -150,7 +150,7 @@ namespace Tizen.Network.Nfc
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed Secure element event.
+    /// An extended EventArgs class which contains the changed secure element event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class SecureElementEventArgs : EventArgs
@@ -163,7 +163,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The Nfc secure element event.
+        /// The NFC secure element event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NfcSecureElementEvent EventType
@@ -176,7 +176,7 @@ namespace Tizen.Network.Nfc
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed Secure element trasaction event.
+    /// An extended EventArgs class which contains the changed secure element trasaction event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class SecureElementTranscationEventArgs : EventArgs
@@ -193,7 +193,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The Nfc secure element type.
+        /// The NFC secure element type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NfcSecureElementType SecureElementType
@@ -204,7 +204,7 @@ namespace Tizen.Network.Nfc
             }
         }
         /// <summary>
-        /// The Nfc secure element aid.
+        /// The NFC secure element AID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public byte[] ApplicationID
@@ -215,7 +215,7 @@ namespace Tizen.Network.Nfc
             }
         }
         /// <summary>
-        /// The Nfc secure element param.
+        /// The NFC secure element param.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public byte[] Param
@@ -228,7 +228,7 @@ namespace Tizen.Network.Nfc
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed HCE(Host Card Emulation) event.
+    /// An extended EventArgs class which contains the changed HCE (Host Card Emulation) event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class HostCardEmulationEventArgs : EventArgs
@@ -245,7 +245,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The Nfc secure element.
+        /// The NFC secure element.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NfcSecureElement SecureElement
@@ -256,7 +256,7 @@ namespace Tizen.Network.Nfc
             }
         }
         /// <summary>
-        /// The Nfc hce event.
+        /// The NFC HCE event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NfcHceEvent HceEvent
@@ -267,7 +267,7 @@ namespace Tizen.Network.Nfc
             }
         }
         /// <summary>
-        /// The Nfc apdu(Application Protocol Data Unit)
+        /// The NFC APDU (Application Protocol Data Unit).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public byte[] Apdu
@@ -280,7 +280,7 @@ namespace Tizen.Network.Nfc
     }
 
     /// <summary>
-    /// An extended EventArgs class which contains changed HCE(Host Card Emulation) event.
+    /// An extended EventArgs class which contains the changed HCE (Host Card Emulation) event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class P2pDataReceivedEventArgs : EventArgs
@@ -295,7 +295,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The Nfc p2p target.
+        /// The NFC P2P target.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NfcP2p P2pTarget
@@ -306,7 +306,7 @@ namespace Tizen.Network.Nfc
             }
         }
         /// <summary>
-        /// The Nfc ndef message.
+        /// The NFC NDEF message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NfcNdefMessage NdefMessage

@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Smartcard
 {
     /// <summary>
-    /// A class for Smartcard session informations. It allows applications to handle session informations.
+    /// The class for the Smartcard session information. It allows applications to handle the session information.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
@@ -60,7 +60,7 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// The Answer to Reset(ATR) of this Secure Element.
+        /// The Answer to Reset (ATR) of this secure element.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public byte[] Atr
@@ -151,10 +151,10 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Closes the connection with the Secure Element.
+        /// Closes the connection with the secure element.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="NotSupportedException">Thrown when Smartcard is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public void Close()
         {
@@ -171,8 +171,8 @@ namespace Tizen.Network.Smartcard
         /// Closes any channel opened on the given session.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="NotSupportedException">Thrown when Smartcard is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public void CloseChannels()
         {
             int ret = Interop.Smartcard.Session.SessionCloseChannels(_sessionHandle);
@@ -197,10 +197,10 @@ namespace Tizen.Network.Smartcard
         /// Gets an access to the basic channel, as defined in the ISO/IEC 7816-4 specification (the one that has number 0).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>The SmartcardChannel object for basic channel.</returns>
-        /// <param name="aid">Byte array containing the Application ID(AID) to be selected on the given channel.</param>
+        /// <returns>The SmartcardChannel object for the basic channel.</returns>
+        /// <param name="aid">The byte array containing the Application ID(AID) to be selected on the given channel.</param>
         /// <param name="p2">P2 byte of the SELECT command if executed.</param>
-        /// <exception cref="NotSupportedException">Thrown when Smartcard is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         public SmartcardChannel OpenBasicChannel(byte[] aid, byte p2)
         {
@@ -217,14 +217,14 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Open a logical channel with the Secure Element, selecting the Applet represented by the given Application ID(AID).
+        /// Open a logical channel with the secure element, selecting the Applet represented by the given application ID (AID).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>The SmartcardChannel object for logical channel.</returns>
-        /// <param name="aid">Byte array containing the Application ID(AID) to be selected on the given channel.</param>
+        /// <returns>The SmartcardChannel object for the logical channel.</returns>
+        /// <param name="aid">The byte array containing the Application ID(AID) to be selected on the given channel.</param>
         /// <param name="p2">P2 byte of the SELECT command if executed.</param>
-        /// <exception cref="NotSupportedException">Thrown when Smartcard is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public SmartcardChannel OpenLogicalChannel(byte[] aid, byte p2)
         {
             int ret = Interop.Smartcard.Session.SessionOpenLogicalChannel(_sessionHandle, aid, aid.Length, p2, out _logicalChannel);

@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Smartcard
 {
     /// <summary>
-    /// A class for Smartcard reader informations. It allows applications to handle reader informations.
+    /// The class for Smartcard reader information. It allows applications to handle the reader information.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
@@ -33,7 +33,7 @@ namespace Tizen.Network.Smartcard
         private List<SmartcardSession> _sessionList = new List<SmartcardSession>();
 
         /// <summary>
-        /// The name of reader.
+        /// The name of the reader.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Name
@@ -52,7 +52,7 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// The existence of secure element.
+        /// The existence of a secure element.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool IsSecureElementPresent
@@ -114,7 +114,7 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Connects to a Secure Element in the given reader.
+        /// Connects to a secure element in the given reader.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The SmartcardSession object.</returns>
@@ -135,8 +135,8 @@ namespace Tizen.Network.Smartcard
         /// Closes all the sessions opened on the given reader.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="NotSupportedException">Thrown when Smartcard is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public void CloseSessions()
         {
             int ret = Interop.Smartcard.Reader.ReaderCloseSessions(_readerHandle);

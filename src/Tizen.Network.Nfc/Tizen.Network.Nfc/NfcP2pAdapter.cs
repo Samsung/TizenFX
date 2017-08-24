@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Nfc
 {
     /// <summary>
-    /// A class for NFC P2P(Peer to Peer) mode. It allows applications to handle P2P informations.
+    /// The class for the NFC P2P (Peer-to-Peer) mode. It allows applications to handle P2P informations.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/nfc</privilege>
@@ -35,7 +35,7 @@ namespace Tizen.Network.Nfc
         private Interop.Nfc.P2pTargetDiscoveredCallback _p2pTargetDiscoveredCallback;
 
         /// <summary>
-        /// The event for  receiving NFC peer-to-peer target discovered notification.
+        /// The event for receiving the NFC peer-to-peer target discovered notification.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<P2pTargetDiscoveredEventArgs> P2pTargetDiscovered
@@ -81,13 +81,13 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Gets current connected p2p target.
+        /// Gets the current connected P2P target.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>NfcP2p object.</returns>
+        /// <returns>The NfcP2p object.</returns>
         /// <privilege>http://tizen.org/privilege/nfc</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public NfcP2p GetConnectedTarget()
         {
             IntPtr targetHandle = IntPtr.Zero;
