@@ -484,7 +484,6 @@ namespace ElmSharp
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
         /// <param name="type">The genlist item type.</param>
-        /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
         /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
         public GenListItem Prepend(GenItemClass itemClass, object data, GenListItemType type)
         {
@@ -567,7 +566,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
-        /// <param name="before">The item after which to place this new one.</param>
+        /// <param name="after">The item after which to place this new one.</param>
         /// <param name="type">The genlist item type.</param>
         /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
         /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
@@ -594,7 +593,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
-        /// <param name="func">User defined comparison function that defines the sort order based on genlist item and its data.</param>
+        /// <param name="comparison">User defined comparison function that defines the sort order based on genlist item and its data.</param>
         /// <param name="type">The genlist item type.</param>
         /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
         /// <returns>Return a genlist item that contains data and itemClass.</returns>
