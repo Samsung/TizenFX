@@ -131,8 +131,7 @@ GetFileList tv > tv.filelist
 GetFileList ivi > ivi.filelist
 GetFileList wearable > wearable.filelist
 
-rm -fr %{_tizenfx_bin_path}/bin
-rm -f %{_tizenfx_bin_path}/*.nupkg
+rm -fr %{_tizenfx_bin_path}
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
 ./build.sh --full
 ./build.sh --dummy
