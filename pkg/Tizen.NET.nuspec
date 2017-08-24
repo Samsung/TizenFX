@@ -16,6 +16,9 @@
     <file src="bin\ElmSharp.dll" target="lib\netstandard1.6" />
     <file src="bin\ElmSharp.pdb" target="lib\netstandard1.6" />
     <file src="bin\ElmSharp.xml" target="lib\netstandard1.6" />
+    <file src="bin\ElmSharp.Wearable.dll" target="lib\netstandard1.6" />
+    <file src="bin\ElmSharp.Wearable.pdb" target="lib\netstandard1.6" />
+    <file src="bin\ElmSharp.Wearable.xml" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Account.AccountManager.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Account.AccountManager.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Account.AccountManager.xml" target="lib\netstandard1.6" />
@@ -64,6 +67,9 @@
     <file src="bin\Tizen.Applications.UI.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Applications.UI.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Applications.UI.xml" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Applications.WatchApplication.dll" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Applications.WatchApplication.pdb" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Applications.WatchApplication.xml" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Applications.WidgetApplication.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Applications.WidgetApplication.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Applications.WidgetApplication.xml" target="lib\netstandard1.6" />
@@ -151,6 +157,9 @@
     <file src="bin\Tizen.Network.Nfc.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Network.Nfc.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Network.Nfc.xml" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Network.Nsd.dll" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Network.Nsd.pdb" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Network.Nsd.xml" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Network.Smartcard.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Network.Smartcard.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Network.Smartcard.xml" target="lib\netstandard1.6" />
@@ -160,6 +169,15 @@
     <file src="bin\Tizen.Network.WiFiDirect.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Network.WiFiDirect.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Network.WiFiDirect.xml" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.PhonenumberUtils.dll" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.PhonenumberUtils.pdb" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.PhonenumberUtils.xml" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Pims.Calendar.dll" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Pims.Calendar.pdb" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Pims.Calendar.xml" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Pims.Contacts.dll" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Pims.Contacts.pdb" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Pims.Contacts.xml" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Security.SecureRepository.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Security.SecureRepository.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Security.SecureRepository.xml" target="lib\netstandard1.6" />
