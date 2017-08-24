@@ -31,11 +31,13 @@ cmd_build() {
     echo "No module specified."
     exit 1
   fi
-  dotnet build $SCRIPT_DIR/src/$1 --configuration=Release --output=$OUTDIR/bin
+  dotnet restore $SCRIPT_DIR/src/$1 --source /nuget
+  dotnet build $SCRIPT_DIR/src/$1 --no-restore --configuration=Release --output=$OUTDIR/bin
 }
 
 cmd_full_build() {
-  dotnet build $SCRIPT_DIR/pkg/Tizen.NET.Private.sln --configuration=Release --output=$OUTDIR/bin
+  dotnet restore $SCRIPT_DIR/pkg/Tizen.NET.Private.sln --source /nuget
+  dotnet build $SCRIPT_DIR/pkg/Tizen.NET.Private.sln --no-restore --configuration=Release --output=$OUTDIR/bin
 }
 
 cmd_pack() {
@@ -50,7 +52,8 @@ cmd_pack() {
 }
 
 cmd_dummy_build() {
-  dotnet build $SCRIPT_DIR/pkg/Tizen.NET.Dummy.csproj --configuration=Release
+  dotnet restore $SCRIPT_DIR/pkg/Tizen.NET.Dummy.csproj --source /nuget
+  dotnet build $SCRIPT_DIR/pkg/Tizen.NET.Dummy.csproj --no-restore --configuration=Release
 }
 
 OPTS=`getopt -o hcbfpd --long help,clean,build,full,pack,dummy -n 'build' -- "$@"`
