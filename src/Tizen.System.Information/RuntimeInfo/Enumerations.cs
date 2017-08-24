@@ -30,7 +30,6 @@ namespace Tizen.System
         Bluetooth = 2,
         /// <summary>
         /// Indicates whether Wi-Fi hotspot is enabled.
-        /// <see cref="WifiStatus"/>
         /// </summary>
         WifiHotspot = 3,
         /// <summary>
@@ -83,25 +82,6 @@ namespace Tizen.System
         /// Indicates whether auto rotation is enabled.
         /// </summary>
         AutoRotation = 26
-    }
-
-    /// <summary>
-    /// Enumeration for the Wi-Fi status.
-    /// </summary>
-    public enum WifiStatus
-    {
-        /// <summary>
-        /// The Wi-Fi is disabled.
-        /// </summary>
-        Disabled,
-        /// <summary>
-        /// The Wi-Fi is enabled and the network connection is not established.
-        /// </summary>
-        Unconnected,
-        /// <summary>
-        /// The network connection is established in a Wi-Fi network.
-        /// </summary>
-        Connected
     }
 
     /// <summary>
