@@ -12,10 +12,19 @@ usage() {
   echo "    Options:"
   echo "        -h, --help            Show this usages message"
   echo "        -b, --build [module]  Build a module"
-  echo "        -f, --full            Build all modules in src/ directory. The module should be added in pkg/Tizen.NET.Private.sln"
+  echo "        -f, --full            Build all modules in src/ directory. (pkg/Tizen.NET.Private.sln)"
   echo "        -d, --dummy           Build dummy modules"
   echo "        -p, --pack            Make nuget packages"
   echo "        -c, --clean           Clean all artifacts"
+}
+
+dotnet_build() {
+  if [ -d /nuget ]; then
+    NUGET_SOURCE_OPT="--source /nuget"
+  fi
+  PROJ=$1; shift
+  dotnet restore $PROJ $NUGET_SOURCE_OPT
+  dotnet build $PROJ --no-restore --configuration=Release $@
 }
 
 cmd_clean() {
@@ -31,13 +40,11 @@ cmd_build() {
     echo "No module specified."
     exit 1
   fi
-  dotnet restore $SCRIPT_DIR/src/$1 --source /nuget
-  dotnet build $SCRIPT_DIR/src/$1 --no-restore --configuration=Release --output=$OUTDIR/bin
+  dotnet_build $SCRIPT_DIR/src/$1 --output=$OUTDIR/bin
 }
 
 cmd_full_build() {
-  dotnet restore $SCRIPT_DIR/pkg/Tizen.NET.Private.sln --source /nuget
-  dotnet build $SCRIPT_DIR/pkg/Tizen.NET.Private.sln --no-restore --configuration=Release --output=$OUTDIR/bin
+  dotnet_build $SCRIPT_DIR/pkg/Tizen.NET.Private.sln --output=$OUTDIR/bin
 }
 
 cmd_pack() {
@@ -52,8 +59,7 @@ cmd_pack() {
 }
 
 cmd_dummy_build() {
-  dotnet restore $SCRIPT_DIR/pkg/Tizen.NET.Dummy.csproj --source /nuget
-  dotnet build $SCRIPT_DIR/pkg/Tizen.NET.Dummy.csproj --no-restore --configuration=Release
+  dotnet_build $SCRIPT_DIR/pkg/Tizen.NET.Dummy.csproj
 }
 
 OPTS=`getopt -o hcbfpd --long help,clean,build,full,pack,dummy -n 'build' -- "$@"`
