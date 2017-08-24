@@ -706,21 +706,6 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the maximized state of a window.
-        /// </summary>
-        public bool Maximized
-        {
-            get
-            {
-                return Interop.Elementary.elm_win_maximized_get(RealHandle);
-            }
-            set
-            {
-                Interop.Elementary.elm_win_maximized_set(RealHandle, value);
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the modal state of a window.
         /// </summary>
         public bool Modal
