@@ -32,7 +32,7 @@ namespace Tizen.Content.Download
         }
 
         /// <summary>
-        /// Received data size in bytes.
+        /// The received data size in bytes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ulong ReceivedDataSize

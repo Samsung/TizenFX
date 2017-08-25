@@ -17,99 +17,99 @@
 namespace Tizen.Content.Download
 {
     /// <summary>
-    /// Enumeration for download state.
+    /// Enumeration for the download states.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum DownloadState
     {
         /// <summary>
-        /// Unhandled exception
+        /// Unhandled exception.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         None = 0,
         /// <summary>
-        /// Ready to download
+        /// Ready to download.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Ready,
         /// <summary>
-        /// Queued to start downloading
+        /// Queued to start downloading.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Queued,
         /// <summary>
-        /// Currently downloading
+        /// Currently downloading.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Downloading,
         /// <summary>
-        /// Download is paused and can be resumed
+        /// The download is paused and can be resumed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Paused,
         /// <summary>
-        /// The download is completed
+        /// The download is completed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Completed,
         /// <summary>
-        /// The download failed
+        /// The download failed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Failed,
         /// <summary>
-        /// User canceled the download request
+        /// A user canceled the download request.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Canceled
     }
 
     /// <summary>
-    /// Enumeration for network type.
+    /// Enumeration for the network types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum NetworkType
     {
         /// <summary>
-        /// Download is available through data network
+        /// The download is available through data network.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         DataNetwork = 0,
         /// <summary>
-        /// Download is available through WiFi
+        /// The download is available through Wi-Fi.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Wifi,
         /// <summary>
-        /// Download is available through WiFi-Direct
+        /// The download is available through Wi-Fi Direct.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         WifiDirect,
         /// <summary>
-        /// Download is available through either data network or WiFi
+        /// The download is available either through data network or Wi-Fi.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         All
     }
 
     /// <summary>
-    /// Enumeration for notification type.
+    /// Enumeration for the notification types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum NotificationType
     {
         /// <summary>
-        /// Do not register notification
+        /// Do not register notification.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         None = 0,
         /// <summary>
-        /// Completion notification for success state and failed state
+        /// Completion notification for success state and failed state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         CompleteOnly,
         /// <summary>
-        /// All download notifications for ongoing state, success state and failed state
+        /// All download notifications for ongoing state, success state, and failed state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         All
