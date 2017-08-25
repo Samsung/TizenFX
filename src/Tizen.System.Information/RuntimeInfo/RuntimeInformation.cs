@@ -63,41 +63,6 @@ namespace Tizen.System
             [RuntimeInformationKey.AudioJackConnector] = typeof(int)
         };
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static object GetStatus(RuntimeInformationKey key)
-        {
-            Type value;
-            if (!s_keyDataTypeMapping.TryGetValue(key, out value))
-            {
-                InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
-            }
-
-            if (s_keyDataTypeMapping[key] == typeof(int))
-            {
-                int status;
-                InformationError ret = Interop.RuntimeInfo.GetValue(TvProductHelper.ConvertKeyIfTvProduct(key), out status);
-                if (ret != InformationError.None)
-                {
-                    Log.Error(InformationErrorFactory.LogTag, "Interop failed to get value for key {0}", key.ToString());
-                    InformationErrorFactory.ThrowException(ret);
-                }
-
-                return status;
-            }
-            else
-            {
-                bool status;
-                InformationError ret = Interop.RuntimeInfo.GetValue(TvProductHelper.ConvertKeyIfTvProduct(key), out status);
-                if (ret != InformationError.None)
-                {
-                    Log.Error(InformationErrorFactory.LogTag, "Interop failed to get value for key {0}", key.ToString());
-                    InformationErrorFactory.ThrowException(ret);
-                }
-
-                return status;
-            }
-        }
-
         /// <summary>
         /// Validates the data type of the status represented by the runtime key.
         /// Note that this is a generic method.
@@ -122,16 +87,48 @@ namespace Tizen.System
         /// Gets the status of runtime key.
         /// Note that this is a generic method.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <typeparam name="T">The generic type to return.</typeparam>
         /// <param name="key">The runtime information key for which the current should be read.</param>
-        /// <returns>The current status of the given key.</returns>.
-        /// <exception cref="ArgumentException">Thrown when the <paramref name="key"/> is invalid.</exception>
-        /// <exception cref="IOException">Thrown when I/O error occurs while reading from the system.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the feature related <paramref name="key"/> is not supported.</exception>
-        public static T GetStatus<T>(RuntimeInformationKey key)
+        /// <param name="value">The value of the given feature.</param>
+        /// <returns>Returns true on success, otherwise false.</returns>
+        public static bool TryGetValue<T>(RuntimeInformationKey key, out T value)
         {
-            return (T)GetStatus(key);
+            Type type;
+            value = default(T);
+
+            if (!s_keyDataTypeMapping.TryGetValue(key, out type))
+            {
+                Log.Error(InformationErrorFactory.LogTag, "Invalid key");
+                return false;
+            }
+
+            if (type == typeof(bool))
+            {
+                InformationError ret = Interop.RuntimeInfo.GetValue(TvProductHelper.ConvertKeyIfTvProduct(key), out bool val);
+
+                if (ret != InformationError.None)
+                {
+                    Log.Error(InformationErrorFactory.LogTag, "Interop failed to get value for key {0}", key.ToString());
+                    return false;
+                }
+
+                value = (T)(object)val;
+            }
+            else if(type == typeof(int))
+            {
+                InformationError ret = Interop.RuntimeInfo.GetValue(TvProductHelper.ConvertKeyIfTvProduct(key), out int val);
+
+                if (ret != InformationError.None)
+                {
+                    Log.Error(InformationErrorFactory.LogTag, "Interop failed to get value for key {0}", key.ToString());
+                    return false;
+                }
+
+                value = (T)(object)val;
+            }
+
+            return true;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -210,7 +207,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Unegisters a change event callback for given key.
+        /// Unregisters a change event callback for given key.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="key">The runtime information key which wants to unregister callback.</param>
