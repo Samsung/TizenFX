@@ -109,6 +109,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Ensures that the function passed in is called from the main loop when it is idle.
+        /// </summary>
+        /// <param name="func">The function to call</param>
+        /// <returns>true if added successfully, false otherwise</returns>
+        public bool AddIdle(System.Delegate func)
+        {
+            return _application.AddIdle(func);
+        }
+
+        /// <summary>
         /// Run Application.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>

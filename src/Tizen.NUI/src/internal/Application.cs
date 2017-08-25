@@ -1149,8 +1149,12 @@ namespace Tizen.NUI
             return _instance;
         }
 
-        //Removed from v0.2.33
-        /*public bool AddIdle(System.Delegate func)
+        /// <summary>
+        /// Ensures that the function passed in is called from the main loop when it is idle.
+        /// </summary>
+        /// <param name="func">The function to call</param>
+        /// <returns>true if added successfully, false otherwise</returns>
+        public bool AddIdle(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             System.IntPtr ip2 = NDalicManualPINVOKE.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
@@ -1159,9 +1163,7 @@ namespace Tizen.NUI
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }*/
-
-
+        }
 
         /**
         * Outer::outer_method(int)
