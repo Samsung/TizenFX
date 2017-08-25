@@ -439,11 +439,17 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Evas.evas_object_repeat_events_get(RealHandle);
+                var result = Interop.Evas.evas_object_repeat_events_get(Handle);
+                Debug.Assert(Handle == RealHandle || result == Interop.Evas.evas_object_repeat_events_get(RealHandle));
+                return result;
             }
             set
             {
-                Interop.Evas.evas_object_repeat_events_set(RealHandle, value);
+                if (Handle != RealHandle)
+                {
+                    Interop.Evas.evas_object_repeat_events_set(RealHandle, value);
+                }
+                Interop.Evas.evas_object_repeat_events_set(Handle, value);
             }
         }
 
@@ -454,11 +460,17 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Evas.evas_object_propagate_events_get(RealHandle);
+                var result = Interop.Evas.evas_object_propagate_events_get(Handle);
+                Debug.Assert(Handle == RealHandle || result == Interop.Evas.evas_object_propagate_events_get(RealHandle));
+                return result;
             }
             set
             {
-                Interop.Evas.evas_object_propagate_events_set(RealHandle, value);
+                if (Handle != RealHandle)
+                {
+                    Interop.Evas.evas_object_propagate_events_set(RealHandle, value);
+                }
+                Interop.Evas.evas_object_propagate_events_set(Handle, value);
             }
         }
 
@@ -469,11 +481,17 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Evas.evas_object_pass_events_get(RealHandle);
+                var result = Interop.Evas.evas_object_pass_events_get(Handle);
+                Debug.Assert(Handle == RealHandle || result == Interop.Evas.evas_object_pass_events_get(RealHandle));
+                return result;
             }
             set
             {
-                Interop.Evas.evas_object_pass_events_set(RealHandle, value);
+                if (Handle != RealHandle)
+                {
+                    Interop.Evas.evas_object_pass_events_set(RealHandle, value);
+                }
+                Interop.Evas.evas_object_pass_events_set(Handle, value);
             }
         }
 
@@ -564,11 +582,17 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Evas.evas_object_freeze_events_get(RealHandle);
+                var result = Interop.Evas.evas_object_freeze_events_get(Handle);
+                Debug.Assert(Handle == RealHandle || result == Interop.Evas.evas_object_freeze_events_get(RealHandle));
+                return result;
             }
             set
             {
-                Interop.Evas.evas_object_freeze_events_set(RealHandle, value);
+                if (Handle != RealHandle)
+                {
+                    Interop.Evas.evas_object_freeze_events_set(RealHandle, value);
+                }
+                Interop.Evas.evas_object_freeze_events_set(Handle, value);
             }
         }
 
