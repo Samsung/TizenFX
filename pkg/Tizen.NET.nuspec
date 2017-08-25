@@ -199,6 +199,9 @@
     <file src="bin\Tizen.System.MediaKey.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.System.MediaKey.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.System.MediaKey.xml" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.System.PlatformConfig.dll" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.System.PlatformConfig.pdb" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.System.PlatformConfig.xml" target="lib\netstandard1.6" />
     <file src="bin\Tizen.System.Storage.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.System.Storage.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.System.Storage.xml" target="lib\netstandard1.6" />
