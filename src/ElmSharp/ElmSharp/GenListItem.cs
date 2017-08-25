@@ -121,7 +121,6 @@ namespace ElmSharp
         /// <summary>
         /// Demote an item to the end of the list.
         /// </summary>
-        /// <param name="item">The genlistitem object</param>
         public void DemoteItem()
         {
             Interop.Elementary.elm_genlist_item_demote(Handle);
@@ -285,9 +284,9 @@ namespace ElmSharp
         /// <summary>
         /// Remove all sub-items (children) of the given item.
         /// </summary>
-        /// <remark>
+        /// <remarks>
         /// This removes all items that are children (and their descendants) of the given item it.
-        /// </remark>
+        /// </remarks>
         public void ClearSubitems()
         {
             Interop.Elementary.elm_genlist_item_subitems_clear(Handle);

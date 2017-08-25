@@ -471,7 +471,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
-        /// <param name="func">User defined comparison function that defines the sort order based on gengrid item and its data.</param>
+        /// <param name="comparison">User defined comparison function that defines the sort order based on gengrid item and its data.</param>
         /// <returns>Return a gengrid item that contains data and itemClass.</returns>
         public GenGridItem InsertSorted(GenItemClass itemClass, object data, Comparison<object> comparison)
         {
@@ -543,10 +543,10 @@ namespace ElmSharp
         /// </summary>
         /// <param name="x">The input x coordinate</param>
         /// <param name="y">The input y coordinate</param>
-        /// <param name="positionX">The position relative to the item returned here.
+        /// <param name="portionX">The position relative to the item returned here.
         /// -1, 0 or 1, depending if the coordinate is on the left portion of that item(-1), on the middle section(0) or on the right part(1).
         /// </param>
-        /// <param name="positionY">The position relative to the item returned here
+        /// <param name="portionY">The position relative to the item returned here
         /// -1, 0 or 1, depending if the coordinate is on the upper portion of that item (-1), on the middle section (0) or on the lower part (1).
         /// </param>
         /// <returns></returns>

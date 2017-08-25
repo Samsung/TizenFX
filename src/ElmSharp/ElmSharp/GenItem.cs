@@ -18,6 +18,9 @@ using System;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for select mode of GenItem.
+    /// </summary>
     public enum GenItemSelectionMode
     {
         /// <summary>

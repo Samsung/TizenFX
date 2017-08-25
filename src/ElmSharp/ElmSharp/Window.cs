@@ -891,10 +891,10 @@ namespace ElmSharp
         /// <summary>
         /// Create a socket to provide the service for Plug widget.
         /// </summary>
-        /// <param name="serviceName">A service name</param>
-        /// <param name="serviceNumber">A number (any value, 0 being the common default) to differentiate multiple instances of services with the same name.</param>
+        /// <param name="name">A service name</param>
+        /// <param name="number">A number (any value, 0 being the common default) to differentiate multiple instances of services with the same name.</param>
         /// <param name="systemWide">A boolean that if true, specifies to create a system-wide service all users can connect to, otherwise the service is private to the user id that created the service.</param>
-        /// <returns></returns>
+        /// <returns>If true, create successfull, otherwise false</returns>
         public bool CreateServiceSocket(string name, int number, bool systemWide)
         {
             return Interop.Elementary.elm_win_socket_listen(RealHandle, name, number, systemWide);

@@ -728,10 +728,10 @@ namespace ElmSharp
         /// <summary>
         /// Hides the input panel (virtual keyboard).
         /// </summary>
-        /// <remark>
+        /// <remarks>
         /// Note that the input panel is shown or hidden automatically according to the focus state of the entry widget.
         /// This API can be used in case of manually controlling by using SetInputPanelEnabled(false).
-        /// </remark>
+        /// </remarks>
         public void HideInputPanel()
         {
             Interop.Elementary.elm_entry_input_panel_hide(RealHandle);
@@ -868,7 +868,7 @@ namespace ElmSharp
         /// <summary>
         /// This removes a custom item provider to the list for that entry.
         /// </summary>
-        /// <param name="itemProvider">This function is used to provide items.</param>
+        /// <param name="func">This function is used to provide items.</param>
         public void RemoveItemProvider(Func<string, EvasObject> func)
         {
             if (_itemsProvider.ContainsKey(func))
