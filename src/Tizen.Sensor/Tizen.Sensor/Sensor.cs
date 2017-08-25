@@ -287,7 +287,7 @@ namespace Tizen.Sensor
         internal static bool CheckIfSupported(SensorType type, String key)
         {
             bool isSupported = false;
-            bool error = SystemInfo.TryGetValue(key, out isSupported);
+            bool error = Information.TryGetValue(key, out isSupported);
 
             if (!error || !isSupported)
             {

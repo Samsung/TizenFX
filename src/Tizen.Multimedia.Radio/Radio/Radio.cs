@@ -319,7 +319,7 @@ namespace Tizen.Multimedia
         private void ValidateFeatureSupported(string featurePath)
         {
             bool supported = false;
-            SystemInfo.TryGetValue(featurePath, out supported);
+            Information.TryGetValue(featurePath, out supported);
 
             if (supported == false)
             {

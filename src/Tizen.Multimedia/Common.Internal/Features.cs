@@ -26,7 +26,7 @@ namespace Tizen.Multimedia
         internal static bool IsSupported(string featureKey)
         {
             bool supported = false;
-            SystemInfo.TryGetValue(featureKey, out supported);
+            Information.TryGetValue(featureKey, out supported);
             return supported;
         }
 

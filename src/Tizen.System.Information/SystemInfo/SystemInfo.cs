@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.System
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public static class SystemInfo
+    internal static class SystemInfo
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
         private static Interop.SystemInfo.SystemInfoType GetValueType(string key, out Interop.SystemInfo.SystemInfoValueType valueType)
@@ -129,7 +129,7 @@ namespace Tizen.System
         /// <param name="key">The name of the feature.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
-        public static bool TryGetValue(string key, out bool value)
+        internal static bool TryGetValue(string key, out bool value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
             Interop.SystemInfo.SystemInfoType keyType = GetValueType(key, out valueType);
@@ -162,7 +162,7 @@ namespace Tizen.System
         /// <param name="key">The name of the feature.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
-        public static bool TryGetValue(string key, out int value)
+        internal static bool TryGetValue(string key, out int value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
             Interop.SystemInfo.SystemInfoType keyType = GetValueType(key, out valueType);
@@ -230,7 +230,7 @@ namespace Tizen.System
         /// <param name="key">The name of the feature.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
-        public static bool TryGetValue(string key, out string value)
+        internal static bool TryGetValue(string key, out string value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
             Interop.SystemInfo.SystemInfoType keyType = GetValueType(key, out valueType);

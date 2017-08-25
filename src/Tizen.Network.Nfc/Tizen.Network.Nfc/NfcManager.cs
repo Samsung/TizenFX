@@ -38,7 +38,7 @@ namespace Tizen.Network.Nfc
             {
                 bool isNfcSupported = false;
 
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
 
                 if (!isNfcSupported)
                 {
@@ -66,7 +66,7 @@ namespace Tizen.Network.Nfc
             {
                 bool isNfcSupported = false;
 
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
 
                 if (!isNfcSupported)
                 {
@@ -95,8 +95,8 @@ namespace Tizen.Network.Nfc
                 bool isNfcSupported = false;
                 bool isTagSupported = false;
 
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc.tag", out isTagSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc.tag", out isTagSupported);
 
                 if (!isNfcSupported || !isTagSupported)
                 {
@@ -117,8 +117,8 @@ namespace Tizen.Network.Nfc
                 bool isNfcSupported = false;
                 bool isTagSupported = false;
 
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc.tag", out isTagSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc.tag", out isTagSupported);
 
                 if (!isNfcSupported || !isTagSupported)
                 {
@@ -148,8 +148,8 @@ namespace Tizen.Network.Nfc
                 bool isNfcSupported = false;
                 bool isCeSupported = false;
 
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc.cardemulation", out isCeSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc.cardemulation", out isCeSupported);
 
                 if (!isNfcSupported || !isCeSupported)
                 {
@@ -170,8 +170,8 @@ namespace Tizen.Network.Nfc
                 bool isNfcSupported = false;
                 bool isCeSupported = false;
 
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc.cardemulation", out isCeSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc.cardemulation", out isCeSupported);
 
                 if (!isNfcSupported || !isCeSupported)
                 {
@@ -200,7 +200,7 @@ namespace Tizen.Network.Nfc
             {
                 bool isNfcSupported = false;
 
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
 
                 if (!isNfcSupported)
                 {
@@ -220,7 +220,7 @@ namespace Tizen.Network.Nfc
             {
                 bool isNfcSupported = false;
 
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
 
                 if (!isNfcSupported)
                 {
@@ -248,7 +248,7 @@ namespace Tizen.Network.Nfc
             {
                 bool isNfcSupported = false;
 
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
 
                 if (!isNfcSupported)
                 {
@@ -275,8 +275,8 @@ namespace Tizen.Network.Nfc
             bool isNfcSupported = false;
             bool isTagSupported = false;
 
-            SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
-            SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc.tag", out isTagSupported);
+            Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+            Information.TryGetValue("http://tizen.org/feature/network.nfc.tag", out isTagSupported);
 
             if (!isNfcSupported || !isTagSupported)
             {
@@ -302,8 +302,8 @@ namespace Tizen.Network.Nfc
             bool isNfcSupported = false;
             bool isP2pSupported = false;
 
-            SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
-            SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc.p2p", out isP2pSupported);
+            Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+            Information.TryGetValue("http://tizen.org/feature/network.nfc.p2p", out isP2pSupported);
 
             if (!isNfcSupported || !isP2pSupported)
             {
@@ -329,8 +329,8 @@ namespace Tizen.Network.Nfc
             bool isNfcSupported = false;
             bool isCeSupported = false;
 
-            SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
-            SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc.cardemulation", out isCeSupported);
+            Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+            Information.TryGetValue("http://tizen.org/feature/network.nfc.cardemulation", out isCeSupported);
 
             if (!isNfcSupported || !isCeSupported)
             {
@@ -357,7 +357,7 @@ namespace Tizen.Network.Nfc
         {
             bool isNfcSupported = false;
 
-            SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+            Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
 
             if (!isNfcSupported)
             {
@@ -384,7 +384,7 @@ namespace Tizen.Network.Nfc
             {
                 bool isNfcSupported = false;
 
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
 
                 if (!isNfcSupported)
                 {
@@ -404,7 +404,7 @@ namespace Tizen.Network.Nfc
             {
                 bool isNfcSupported = false;
 
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
 
                 if (!isNfcSupported)
                 {
@@ -432,7 +432,7 @@ namespace Tizen.Network.Nfc
             {
                 bool isNfcSupported = false;
 
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
 
                 if (!isNfcSupported)
                 {
@@ -452,7 +452,7 @@ namespace Tizen.Network.Nfc
             {
                 bool isNfcSupported = false;
 
-                SystemInfo.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
+                Information.TryGetValue("http://tizen.org/feature/network.nfc", out isNfcSupported);
 
                 if (!isNfcSupported)
                 {
