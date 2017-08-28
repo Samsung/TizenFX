@@ -141,6 +141,7 @@ namespace Tizen.Uix.VoiceControl
                     return null;
                 }
 
+                current._ownership = false;
                 return _list[_index];
             }
         }
@@ -223,12 +224,12 @@ namespace Tizen.Uix.VoiceControl
         /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
         public IEnumerable<VoiceCommand> GetAllCommands()
         {
-            List<VoiceCommand> commandList = new List<VoiceCommand>();
             _callback = (IntPtr vcCommand, IntPtr userData) =>
             {
-                SafeCommandHandle handle = new SafeCommandHandle(vcCommand);
-                handle._ownership = false;
-                commandList.Add(new VoiceCommand(handle));
+                if (IntPtr.Zero == vcCommand) {
+                    Log.Error(LogTag, "Invalid command pointer");
+                    return false;
+                }
                 return true;
             };
             ErrorCode error = VcCmdListForeachCommands(_handle, _callback, IntPtr.Zero);
