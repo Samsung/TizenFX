@@ -58,9 +58,9 @@ Tizen.Network.Smartcard.dll                        #mobile #mobile-emul #ivi #we
 Tizen.Network.WiFi.dll                             #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Network.WiFiDirect.dll                       #mobile #tv #ivi
 Tizen.NUI.dll                                      #common #mobile #mobile-emul #tv
-Tizen.PhonenumberUtils.dll                         #mobile #mobile-emul
-Tizen.Pims.Calendar.dll                            #common #mobile #mobile-emul
-Tizen.Pims.Contacts.dll                            #mobile #mobile-emul
+Tizen.PhonenumberUtils.dll                         #mobile #mobile-emul #wearable
+Tizen.Pims.Calendar.dll                            #common #mobile #mobile-emul #tv #wearable
+Tizen.Pims.Contacts.dll                            #mobile #mobile-emul #wearable
 Tizen.Security.dll                                 #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Security.SecureRepository.dll                #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Security.TEEC.dll                            #mobile #mobile-emul #tv #ivi #wearable
