@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 namespace Tizen.Network.Nfc
 {
     /// <summary>
-    /// A class for managing the p2p target information.
+    /// The class for managing the P2P target information.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class NfcP2p : IDisposable
@@ -35,7 +35,7 @@ namespace Tizen.Network.Nfc
         private Interop.Nfc.P2pDataReceivedCallback _p2pDataReceivedCallback;
 
         /// <summary>
-        /// The event for receiving data from NFC peer-to-peer target.
+        /// The event for receiving data from the NFC peer-to-peer target.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<P2pDataReceivedEventArgs> P2pDataReceived
@@ -87,14 +87,14 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Sends data to NFC peer-to-peer target.
+        /// Sends data to the NFC peer-to-peer target.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="ndefMessage">NfcNdefMessage object.</param>
+        /// <param name="ndefMessage">The NfcNdefMessage object.</param>
         /// <privilege>http://tizen.org/privilege/nfc</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method fails due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public Task<NfcError> SendNdefMessageAsync(NfcNdefMessage ndefMessage)
         {
             var task = new TaskCompletionSource<NfcError>();
@@ -137,7 +137,7 @@ namespace Tizen.Network.Nfc
     }
 
     /// <summary>
-    /// A class for managing the snep(Simple NDEF Exchange Protocol) information.
+    /// The class for managing the SNEP (Simple NDEF Exchange Protocol) information.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class NfcSnep : IDisposable

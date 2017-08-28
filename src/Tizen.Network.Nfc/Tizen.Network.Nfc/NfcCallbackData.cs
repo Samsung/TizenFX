@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Nfc
 {
     /// <summary>
-    /// Structure containing the information of Tag data.
+    /// This structure contains the information of the Tag data.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class NfcTagInformation
@@ -59,7 +59,7 @@ namespace Tizen.Network.Nfc
     }
 
     /// <summary>
-    /// Structure containing the information of Secure element Aid(Application Identifier).
+    /// This structure contains the information of the secure element AID (Application Identifier).
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class NfcRegisteredAidInformation
@@ -76,7 +76,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Secure Element Type value.
+        /// The Secure Element Type value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NfcSecureElementType SeType
@@ -88,7 +88,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The targeted Aid (Application Identifier) value.
+        /// The targeted AID (Application Identifier) value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Aid
@@ -100,7 +100,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Read-only value. If this value is false, there are restrictions to the operation on this Aid.
+        /// Read-only value. If this value is false, there are restrictions to the operation on this AID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool ReadOnly

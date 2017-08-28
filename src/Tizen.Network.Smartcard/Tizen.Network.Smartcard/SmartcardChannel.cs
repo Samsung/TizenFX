@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Smartcard
 {
     /// <summary>
-    /// A class for Smartcard channel informations. It allows applications to handle channel informations.
+    /// The class for Smartcard channel information. It allows applications to handle the channel information.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
@@ -143,8 +143,8 @@ namespace Tizen.Network.Smartcard
         /// Closes the given channel to the Secure Element.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="NotSupportedException">Thrown when Smartcard is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public void Close()
         {
             int ret = Interop.Smartcard.Channel.ChannelClose(_channelHandle);
@@ -160,7 +160,7 @@ namespace Tizen.Network.Smartcard
         /// Gets the response to the select command.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>Byte array to retrieve the SELECT response.</returns>
+        /// <returns>Byte array to retrieve the select response.</returns>
         public byte[] GetSelectedResponse()
         {
             byte[] respList;
@@ -182,11 +182,11 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Transmits an APDU command (as per ISO/IEC 7816-4) to the Secure Element.
+        /// Transmits the APDU command (as per ISO/IEC 7816-4) to the secure element.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Byte array for the response APDU plus status words.</returns>
-        /// <param name="cmd">Command APDU to be send to the secure element.</param>
+        /// <param name="cmd">Command APDU to be sent to the secure element.</param>
         public byte[] Transmit(byte[] cmd)
         {
             byte[] atrList;
@@ -209,7 +209,7 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Helper function to retrieves the response APDU of the previous transmit() call.
+        /// Helper function to retrieve the response APDU of the previous transmit() call.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Byte array for the response APDU plus status words.</returns>
@@ -234,10 +234,10 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Performs a selection of the next Applet on the given channel that matches to the partial Application ID(AID).
+        /// Performs a selection of the next applet on the given channel that matches to the partial application ID (AID).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>True or false depending whether another applet with the partial Application ID(AID).</returns>
+        /// <returns>True or false depending whether another applet with the partial application ID (AID).</returns>
         public bool SelectNext()
         {
             bool selectNext;

@@ -20,7 +20,7 @@ using Tizen.Internals.Errors;
 namespace Tizen.Network.Nfc
 {
     /// <summary>
-    /// Enumeration for Nfc Error.
+    /// Enumeration for the NFC Error.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum NfcError

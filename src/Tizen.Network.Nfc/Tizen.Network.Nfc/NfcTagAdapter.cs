@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Nfc
 {
     /// <summary>
-    /// A class for NFC Tag mode. It allows applications to handle Tag informations.
+    /// The class for the NFC tag mode. It allows applications to handle the Tag informations.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/nfc</privilege>
@@ -35,7 +35,7 @@ namespace Tizen.Network.Nfc
         private Interop.Nfc.TagDiscoveredCallback _tagDiscoveredCallback;
 
         /// <summary>
-        /// The event for receiving tag discovered notification.
+        /// The event for receiving the tag discovered notification.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<TagDiscoveredEventArgs> TagDiscovered
@@ -81,13 +81,13 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Gets current connected tag.
+        /// Gets the current connected tag.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>NfcTag object.</returns>
+        /// <returns>The NfcTag object.</returns>
         /// <privilege>http://tizen.org/privilege/nfc</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public NfcTag GetConnectedTag()
         {
             IntPtr tagHandle = IntPtr.Zero;

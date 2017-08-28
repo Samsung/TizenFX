@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Nfc
 {
     /// <summary>
-    /// A class for managing the Secure Element information.
+    /// The class for managing the Secure Element information.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class NfcSecureElement : IDisposable
@@ -59,15 +59,15 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Send APDU(Application Protocol Data Unit) response to CLF(Contactless Front-end).
+        /// Sends the APDU (Application Protocol Data Unit) response to the CLF (Contactless Front-end).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="response">The bytes array of response data.</param>
-        /// <param name="responseLength">The size of response bytes array.</param>
+        /// <param name="response">The bytes array of the response data.</param>
+        /// <param name="responseLength">The size of the response bytes array.</param>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method fails due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public void HceSendApduResponse(byte[] response, uint responseLength)
         {
             int ret = Interop.Nfc.CardEmulation.HceSendApduRespondse(_secureElementHandle, response, responseLength);

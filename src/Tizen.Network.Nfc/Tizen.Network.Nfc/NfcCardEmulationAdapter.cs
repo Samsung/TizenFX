@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Nfc
 {
     /// <summary>
-    /// A class for NFC CardEmulation mode. It allows applications to handle Card Emulation informations.
+    /// A class for the NFC CardEmulation mode. It allows applications to handle Card Emulation informations.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
@@ -38,7 +38,7 @@ namespace Tizen.Network.Nfc
         private Interop.Nfc.HostCardEmulationEventCallback _hostCardEmulationEventCallback;
 
         /// <summary>
-        /// Event that is called when receiving Secure Element (SIM/UICC(Universal Integrated Circuit Card)) event.
+        /// An event that is called when receiving the Secure Element (SIM/UICC(Universal Integrated Circuit Card)) event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
@@ -63,7 +63,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Event that is called when receiving Secure Element(SIM/UICC(Universal Integrated Circuit Card)) transaction event for 'ESE(SmartMX)' type.
+        /// An event that is called when receiving the Secure Element (SIM/UICC (Universal Integrated Circuit Card)) transaction event for the 'ESE(SmartMX)' type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
@@ -88,7 +88,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Event that is called when receiving Secure Element(SIM/UICC(Universal Integrated Circuit Card)) transaction event for 'UICC' type.
+        /// An event that is called when receiving the Secure Element (SIM/UICC (Universal Integrated Circuit Card)) transaction event for the 'UICC' type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
@@ -113,7 +113,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Event that is called when when receiving HCE(Host Card Emulation) event.
+        /// An event that is called when receiving the HCE (Host Card Emulation) event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
@@ -166,12 +166,12 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Enable card emulation mode.
+        /// Enables the card emulation mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public void EnableCardEmulation()
         {
             int ret = Interop.Nfc.CardEmulation.EnableCardEmulation();
@@ -183,12 +183,12 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Disable card emulation mode.
+        /// Disables the card emulation mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public void DisableCardEmulation()
         {
             int ret = Interop.Nfc.CardEmulation.DisableCardEmulatiion();
@@ -200,10 +200,10 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Get the current card emulation mode.
+        /// Gets the current card emulation mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>Enumeration value of NfcSecureElementCardEmulationMode.</returns>
+        /// <returns>Enumeration value for the NfcSecureElementCardEmulationMode.</returns>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
         public NfcSecureElementCardEmulationMode GetCardEmulationMode()
         {
@@ -218,12 +218,12 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Give the priority to the foreground application when dispatching transaction event.
+        /// Gives the priority to the foreground application when dispatching the transaction event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public void EnableTransactionForegroundDispatch()
         {
             int ret = Interop.Nfc.EnableTransactionForegroundDispatch();
@@ -235,12 +235,12 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Disable foreground dispatch for "EVT_TRANSACTION" to the givin application.
+        /// Disables the foreground dispatch for the "EVT_TRANSACTION" to the given application.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public void DisableTransactionForegroundDispatch()
         {
             int ret = Interop.Nfc.DisableTransactionForegroundDispatch();
@@ -252,16 +252,16 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Gets the state whether an application to call this api is currently the activated handler for specific AID.
+        /// Gets the state, whether an application to call this API is currently the activated handler for the specific AID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>'True' when application is currently the activated handler, otherwise 'False'.</returns>
-        /// <param name="seType">The type of Secure Element.</param>
-        /// <param name="aid">Application Id, specified in ISO/IEC 7816-4.</param>
+        /// <param name="seType">The type of the Secure Element.</param>
+        /// <param name="aid">The application ID specified in the ISO/IEC 7816-4.</param>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method fails due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public bool IsActivatedHandlerForAid(NfcSecureElementType seType, string aid)
         {
             bool isActivatedHandle = false;
@@ -276,16 +276,16 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Gets the state whether an application to call this api is currently the activated handler for category.
+        /// Gets the state, whether an application to call this API is currently the activated handler for the category.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>'True' when application is currently the activated handler, otherwise 'False'.</returns>
-        /// <param name="seType">The type of Secure Element.</param>
-        /// <param name="category">Enumeration value of category.</param>
+        /// <param name="seType">The type of the secure element.</param>
+        /// <param name="category">Enumeration value of the category.</param>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method fails due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public bool IsActivatedHandlerForCategory(NfcSecureElementType seType, NfcCardEmulationCategoryType category)
         {
             bool isActivatedHandle = false;
@@ -300,16 +300,16 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Registers a AID for a specific category.
+        /// Registers the AID for a specific category.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="seType">The type of Secure Element.</param>
-        /// <param name="category">Enumeration value of category.</param>
-        /// <param name="aid">Application Id, specified in ISO/IEC 7816-4.</param>
+        /// <param name="seType">The type of the secure element.</param>
+        /// <param name="category">Enumeration value of the category.</param>
+        /// <param name="aid">The application ID specified in the ISO/IEC 7816-4.</param>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method fails due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public void RegisterAid(NfcSecureElementType seType, NfcCardEmulationCategoryType category, string aid)
         {
             int ret = Interop.Nfc.CardEmulation.RegisterAid((int)seType, (int)category, aid);
@@ -324,13 +324,13 @@ namespace Tizen.Network.Nfc
         /// Unregisters a previously registered AID for the specified category.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="seType">The type of Secure Element.</param>
-        /// <param name="category">Enumeration value of category.</param>
-        /// <param name="aid">Application Id, specified in ISO/IEC 7816-4.</param>
+        /// <param name="seType">The type of the secure element.</param>
+        /// <param name="category">Enumeration value of the category.</param>
+        /// <param name="aid">The application ID specified in the ISO/IEC 7816-4.</param>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method fails due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public void UnregisterAid(NfcSecureElementType seType, NfcCardEmulationCategoryType category, string aid)
         {
             int ret = Interop.Nfc.CardEmulation.UnregisterAid((int)seType, (int)category, aid);
@@ -346,8 +346,8 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public void SetPreferredApplication()
         {
             int ret = Interop.Nfc.CardEmulation.SetPreferredHandler();
@@ -363,8 +363,8 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public void UnsetPreferredApplication()
         {
             int ret = Interop.Nfc.CardEmulation.UnsetPreferredHandler();
@@ -376,16 +376,16 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Retrieves all registered AID.
+        /// Retrieves all registered AIDs.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>List of NfcRegisteredAidInformation objects.</returns>
-        /// <param name="seType">The type of Secure Element.</param>
-        /// <param name="category">Enumeration value of category.</param>
+        /// <returns>The list of NfcRegisteredAidInformation objects.</returns>
+        /// <param name="seType">The type of the secure element.</param>
+        /// <param name="category">Enumeration value of the category.</param>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
-        /// <exception cref="NotSupportedException">Thrown when Nfc is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method fails due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public IEnumerable<NfcRegisteredAidInformation> GetRegisteredAidInformation(NfcSecureElementType seType, NfcCardEmulationCategoryType category)
         {
             List<NfcRegisteredAidInformation> infoList = new List<NfcRegisteredAidInformation>();
