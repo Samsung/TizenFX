@@ -31,6 +31,9 @@
     <file src="bin\Tizen.Applications.Alarm.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Applications.Alarm.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Applications.Alarm.xml" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Applications.AttachPanel.dll" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Applications.AttachPanel.pdb" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Applications.AttachPanel.xml" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Applications.Badge.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Applications.Badge.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Applications.Badge.xml" target="lib\netstandard1.6" />
