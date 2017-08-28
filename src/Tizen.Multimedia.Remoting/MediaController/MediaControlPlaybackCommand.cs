@@ -14,28 +14,46 @@
  * limitations under the License.
  */
 
-using System;
-
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Provides data for the <see cref="MediaController.ShuffleModeUpdated"/> event.
+    /// Specifies playback commands.
     /// </summary>
-    public class ShuffleModeUpdatedEventArgs : EventArgs
+    public enum MediaControlPlaybackCommand
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ShuffleModeUpdatedEventArgs"/> class.
+        /// Play.
         /// </summary>
-        /// <param name="enabled">A value indicating whether the shuffle mode is enabled.</param>
-        public ShuffleModeUpdatedEventArgs(bool enabled)
-        {
-            Enabled = enabled;
-        }
+        Play,
 
         /// <summary>
-        /// Gets a value indicating whether the shuffle mode is enabled.
+        /// Pause.
         /// </summary>
-        /// <value>true if the shuffle mode is enabled; otherwise, false.</value>
-        public bool Enabled { get; }
+        Pause,
+
+        /// <summary>
+        /// Stop.
+        /// </summary>
+        Stop,
+
+        /// <summary>
+        /// Skip to next.
+        /// </summary>
+        Next,
+
+        /// <summary>
+        /// Skip to previous.
+        /// </summary>
+        Previous,
+
+        /// <summary>
+        /// Fast forward.
+        /// </summary>
+        FastForward,
+
+        /// <summary>
+        /// Rewind.
+        /// </summary>
+        Rewind,
     }
 }

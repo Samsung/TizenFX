@@ -1,24 +1,24 @@
 /*
-* Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
-*
-* Licensed under the Apache License, Version 2.0 (the License);
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an AS IS BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 using System;
 using System.IO;
 using Tizen.Internals.Errors;
 
-namespace Tizen.Multimedia.MediaController
+namespace Tizen.Multimedia.Remoting
 {
     internal enum MediaControllerError
     {
@@ -28,12 +28,17 @@ namespace Tizen.Multimedia.MediaController
         InvalidOperation = ErrorCode.InvalidOperation,
         NoSpaceOnDevice = ErrorCode.FileNoSpaceOnDevice,
         PermissionDenied = ErrorCode.PermissionDenied,
-    };
+    }
 
-    internal static class MediaControllerValidator
+    internal static class MediaControllerErrorExtensions
     {
-        internal static void ThrowIfError(MediaControllerError error, string errorMessage)
+        internal static void ThrowIfError(this MediaControllerError error, string errorMessage)
         {
+            if (error == MediaControllerError.None)
+            {
+                return;
+            }
+
             switch (error)
             {
                 case MediaControllerError.InvalidParameter:
@@ -46,12 +51,13 @@ namespace Tizen.Multimedia.MediaController
                     throw new InvalidOperationException(errorMessage);
 
                 case MediaControllerError.NoSpaceOnDevice:
-                    throw new IOException(errorMessage);
+                    throw new IOException($"Not enough storage : {errorMessage}");
 
                 case MediaControllerError.PermissionDenied:
                     throw new UnauthorizedAccessException(errorMessage);
             }
+
+            throw new InvalidOperationException($"Unknown error({error}) : {errorMessage}");
         }
     }
 }
-
