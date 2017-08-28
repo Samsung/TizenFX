@@ -16,27 +16,28 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Account.AccountManager;
 
 /// <summary>
-/// Interop for Account class APIs
+/// Interop for Account class APIs.
 /// </summary>
 /// <since_tizen> 3 </since_tizen>
 internal static partial class Interop
 {
     /// <summary>
-    /// Interop for Account class APIs
+    /// Interop for Account class APIs.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     internal static partial class AccountService
     {
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_update_to_db_by_id", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int UpdateAccountToDBById(IntPtr handle, int id);
+        internal static extern int UpdateAccountToDBById(SafeAccountHandle handle, int id);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_update_to_db_by_user_name", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int UpdateAccountToDBByUserName(IntPtr handle, string userName, string packageName);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_query_account_by_account_id", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int QueryAccountById(int accountId, out IntPtr handle);
+        internal static extern int QueryAccountById(int accountId, ref SafeAccountHandle handle);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_query_account_by_user_name", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int QueryAccountByUserName(Interop.Account.AccountCallback callback, string userName, IntPtr userData);
@@ -51,7 +52,7 @@ internal static partial class Interop
         internal static extern int UpdateAccountSyncStatusById(int accoutId, int status);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_insert_to_db", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int AddAccount(IntPtr handle, out int accountId);
+        internal static extern int AddAccount(SafeAccountHandle handle, out int accountId);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_delete_from_db_by_id", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int DeleteAccountById(int accountId);

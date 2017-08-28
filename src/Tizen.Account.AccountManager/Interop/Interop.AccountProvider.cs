@@ -19,13 +19,13 @@ using System.Runtime.InteropServices;
 using Tizen.Account.AccountManager;
 
 /// <summary>
-/// Interop for AccountProvider class APIs
+/// Interop for AccountProvider class APIs.
 /// </summary>
 /// <since_tizen> 3 </since_tizen>
 internal static partial class Interop
 {
     /// <summary>
-    /// Interop for AccountProvider class APIs
+    /// Interop for AccountProvider class APIs.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     internal static partial class AccountProvider

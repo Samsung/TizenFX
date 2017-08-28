@@ -15,13 +15,13 @@
  */
 
 /// <summary>
-/// Interop for Library reference
+/// Interop for the library reference.
 /// </summary>
 /// <since_tizen> 3 </since_tizen>
 internal static partial class Interop
 {
     /// <summary>
-    /// Interop for Library reference
+    /// Interop for the library reference.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     internal static partial class Libraries

@@ -20,7 +20,7 @@ using Tizen;
 namespace Tizen.Account.AccountManager
 {
     /// <summary>
-    /// Enum to give the type of error occured, if any.
+    /// Enumeration for the types of error occured, if any.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum AccountError
@@ -42,22 +42,22 @@ namespace Tizen.Account.AccountManager
         /// <since_tizen> 3 </since_tizen>
         OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
         /// <summary>
-        /// Same user name exists in your application
+        /// Same user name exists in your application.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Duplcated = -0x01000000 | 0x01,
         /// <summary>
-        /// Empty Data
+        /// Empty data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         NoData = Tizen.Internals.Errors.ErrorCode.NoData,
         /// <summary>
-        /// elated record does not exist
+        /// Elated record does not exist.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         RecordNotFound = -0x01000000 | 0x03,
         /// <summary>
-        /// Invalid Operation.
+        /// Invalid operation.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,
@@ -72,17 +72,17 @@ namespace Tizen.Account.AccountManager
         /// <since_tizen> 3 </since_tizen>
         DBNotOpened = -0x01000000 | 0x05,
         /// <summary>
-        /// DB query syntax error
+        /// DB query syntax error.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         QuerySyntaxError = -0x01000000 | 0x06,
         /// <summary>
-        /// Iterator has reached the end
+        /// Iterator has reached the end.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         IteratorEnd = -0x01000000 | 0x07,
         /// <summary>
-        /// Notification failed
+        /// Notification failed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         NotificationFailed = -0x01000000 | 0x08,
@@ -92,12 +92,12 @@ namespace Tizen.Account.AccountManager
         /// <since_tizen> 3 </since_tizen>
         PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
         /// <summary>
-        /// XML parse failed
+        /// XML parse failed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         XMLParseFailed = -0x01000000 | 0x0a,
         /// <summary>
-        /// XML File not found
+        /// XML file not found.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         XMLFileNotFound = -0x01000000 | 0x0b,
@@ -107,7 +107,7 @@ namespace Tizen.Account.AccountManager
         /// <since_tizen> 3 </since_tizen>
         EventSubscriptionFailed = -0x01000000 | 0x0c,
         /// <summary>
-        /// Account provider is not registered
+        /// Account provider is not registered.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         ProviderNotRegistered = -0x01000000 | 0x0d,
@@ -117,7 +117,7 @@ namespace Tizen.Account.AccountManager
         /// <since_tizen> 3 </since_tizen>
         MultipleNotAllowed = -0x01000000 | 0x0e,
         /// <summary>
-        /// SQLite busy handler expired
+        /// SQLite busy handler expired.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         DBBusy = -0x01000000 | 0x10

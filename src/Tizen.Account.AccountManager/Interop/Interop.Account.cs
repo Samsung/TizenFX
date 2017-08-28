@@ -18,127 +18,128 @@ using System;
 using System.Runtime.InteropServices;
 using Tizen.Account.AccountManager;
 /// <summary>
-/// Interop for Account class APIs
+/// Interop for Account class APIs.
 /// </summary>
 /// <since_tizen> 3 </since_tizen>
 internal static partial class Interop
 {
     /// <summary>
-    /// Interop for Account class APIs
+    /// Interop for Account class APIs.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     internal static partial class Account
     {
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_create", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int Create(out IntPtr handle);
+        internal static extern int Create(out SafeAccountHandle handle);
+
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_destroy", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int Destroy(IntPtr handle);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_account_id", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountId(IntPtr data, out int accountId);
+        internal static extern int GetAccountId(SafeAccountHandle data, out int accountId);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_user_name", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountUserName(IntPtr data, out string userName);
+        internal static extern int GetAccountUserName(SafeAccountHandle data, out string userName);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_user_name", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountUserName(IntPtr handle, string userName);
+        internal static extern int SetAccountUserName(SafeAccountHandle handle, string userName);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_display_name", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountDisplayName(IntPtr handle, out string displayName);
+        internal static extern int GetAccountDisplayName(SafeAccountHandle handle, out string displayName);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_display_name", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountDisplayName(IntPtr handle, string displayName);
+        internal static extern int SetAccountDisplayName(SafeAccountHandle handle, string displayName);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_capability", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountCapability(IntPtr handle, string capabilityType, out int capabilityValue);
+        internal static extern int GetAccountCapability(SafeAccountHandle handle, string capabilityType, out int capabilityValue);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_capability", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountCapability(IntPtr handle, string capabilityType, int capabilityValue);
+        internal static extern int SetAccountCapability(SafeAccountHandle handle, string capabilityType, int capabilityValue);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_icon_path", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountIconPath(IntPtr handle, out string iconPath);
+        internal static extern int GetAccountIconPath(SafeAccountHandle handle, out string iconPath);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_icon_path", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountIconPath(IntPtr handle, string iconPath);
+        internal static extern int SetAccountIconPath(SafeAccountHandle handle, string iconPath);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_domain_name", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountDomainName(IntPtr handle, out string domainName);
+        internal static extern int GetAccountDomainName(SafeAccountHandle handle, out string domainName);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_domain_name", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountDomainName(IntPtr handle, string domainName);
+        internal static extern int SetAccountDomainName(SafeAccountHandle handle, string domainName);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_email_address", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountEmail(IntPtr handle, out string email);
+        internal static extern int GetAccountEmail(SafeAccountHandle handle, out string email);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_email_address", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountEmail(IntPtr handle, string email);
+        internal static extern int SetAccountEmail(SafeAccountHandle handle, string email);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_package_name", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountPackageName(IntPtr handle, out string name);
+        internal static extern int GetAccountPackageName(SafeAccountHandle handle, out string name);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_package_name", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountPackageName(IntPtr handle, string name);
+        internal static extern int SetAccountPackageName(SafeAccountHandle handle, string name);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_access_token", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountAccessToken(IntPtr handle, out string accessToken);
+        internal static extern int GetAccountAccessToken(SafeAccountHandle handle, out string accessToken);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_access_token", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountAccessToken(IntPtr handle, string accessToken);
+        internal static extern int SetAccountAccessToken(SafeAccountHandle handle, string accessToken);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_user_text", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountUserText(IntPtr handle, int index, out string userText);
+        internal static extern int GetAccountUserText(SafeAccountHandle handle, int index, out string userText);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_user_text", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountUserText(IntPtr handle, int index, string userText);
+        internal static extern int SetAccountUserText(SafeAccountHandle handle, int index, string userText);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_user_int", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountUserInt(IntPtr handle, int index, out int value);
+        internal static extern int GetAccountUserInt(SafeAccountHandle handle, int index, out int value);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_user_int", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountUserInt(IntPtr handle, int index, int value);
+        internal static extern int SetAccountUserInt(SafeAccountHandle handle, int index, int value);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_auth_type", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountAuthType(IntPtr handle, out int authType);
+        internal static extern int GetAccountAuthType(SafeAccountHandle handle, out int authType);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_auth_type", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountAuthType(IntPtr handle, int authType);
+        internal static extern int SetAccountAuthType(SafeAccountHandle handle, int authType);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_secret", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountSercet(IntPtr handle, out int secretType);
+        internal static extern int GetAccountSercet(SafeAccountHandle handle, out int secretType);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_secret", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountSecret(IntPtr handle, int secretType);
+        internal static extern int SetAccountSecret(SafeAccountHandle handle, int secretType);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_sync_support", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountSyncSupport(IntPtr handle, out int syncType);
+        internal static extern int GetAccountSyncSupport(SafeAccountHandle handle, out int syncType);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_sync_support", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountSyncSupport(IntPtr handle, int syncType);
+        internal static extern int SetAccountSyncSupport(SafeAccountHandle handle, int syncType);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_source", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountSource(IntPtr handle, out string source);
+        internal static extern int GetAccountSource(SafeAccountHandle handle, out string source);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_source", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountSource(IntPtr handle, string source);
+        internal static extern int SetAccountSource(SafeAccountHandle handle, string source);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_custom", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int GetAccountCustomValue(IntPtr handle, string key, out string value);
+        internal static extern int GetAccountCustomValue(SafeAccountHandle handle, string key, out string value);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_set_custom", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SetAccountCustomValue(IntPtr handle, string key, string value);
+        internal static extern int SetAccountCustomValue(SafeAccountHandle handle, string key, string value);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_update_sync_status_by_id", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int UpdateAccountSyncStatusById(int accountId, int status);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_capability_all")]
-        internal static extern int GetAllAccountCapabilities(IntPtr handle, AccountCapabilityCallback callback, IntPtr userData);
+        internal static extern int GetAllAccountCapabilities(SafeAccountHandle handle, AccountCapabilityCallback callback, IntPtr userData);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_query_capability_by_account_id")]
         internal static extern int QueryAccountCapabilityById(AccountCapabilityCallback callback, int accountId, IntPtr userData);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_get_custom_all")]
-        internal static extern int GetAllAccountCustomValues(IntPtr handle, AccountCustomCallback callback, IntPtr userData);
+        internal static extern int GetAllAccountCustomValues(SafeAccountHandle handle, AccountCustomCallback callback, IntPtr userData);
 
         //Callbacks
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

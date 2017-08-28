@@ -17,25 +17,25 @@
 namespace Tizen.Account.AccountManager
 {
     /// <summary>
-    /// Enumeration for the state of capability
+    /// Enumeration for the state of capability.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum CapabilityState
     {
         /// <summary>
-        /// Account capability is invalid
+        /// Account capability is invalid.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         InvalidState,
 
         /// <summary>
-        /// Account capability is disabled
+        /// Account capability is disabled.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Disabled,
 
         /// <summary>
-        /// Account capability is enabled
+        /// Account capability is enabled.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Enabled
@@ -47,19 +47,19 @@ namespace Tizen.Account.AccountManager
     public enum AccountSecrecyState
     {
         /// <summary>
-        /// Account secrecy is invalid
+        /// Account secrecy is invalid.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         InvalidState,
 
         /// <summary>
-        /// Account is not visible
+        /// Account is not visible.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Invisible,
 
         /// <summary>
-        /// Account is visible
+        /// Account is visible.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Visible
@@ -72,31 +72,31 @@ namespace Tizen.Account.AccountManager
     public enum AccountSyncState
     {
         /// <summary>
-        /// Account sync is invalid
+        /// Account sync is invalid.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         InvalidState,
 
         /// <summary>
-        /// Account sync not supported
+        /// Account sync not supported.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         NotSupported,
 
         /// <summary>
-        /// Account sync supported but all synchronization functionalities are off
+        /// Account sync supported, but all the synchronization functionalities are off.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Off,
 
         /// <summary>
-        /// Account sync support and sync status is idle
+        /// Account sync supported and sync status is idle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Idle,
 
         /// <summary>
-        /// Account sync support and sync status is running
+        /// Acount sync supported and sync status is running.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Running
@@ -109,36 +109,36 @@ namespace Tizen.Account.AccountManager
     public enum AccountAuthType
     {
         /// <summary>
-        /// Auth type is invalid
+        /// Auth type is invalid.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Invalid,
 
         /// <summary>
-        /// XAuth type
+        /// XAuth type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         XAuth,
 
         /// <summary>
-        /// OAuth type
+        /// OAuth type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         OAuth,
 
         /// <summary>
-        /// Client-Login type
+        /// ClientLogin type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         ClientLogin
     }
 
     /// <summary>
-    /// Account information change notification type
+    /// Account information change notification types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <remarks>
-    /// When the account database is changed, You can distinguish one event type from the other which are set for subscribing notification.
+    /// When the account database is changed, you can distinguish one event type from the other which are set for subscribing notification.
     /// </remarks>
     public enum AccountNotificationType
     {
