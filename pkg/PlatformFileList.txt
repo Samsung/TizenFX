@@ -4,7 +4,7 @@ res/maps_marker_pin_48.png                         #mobile #mobile-emul #tv
 res/maps_marker_pin_72.png                         #mobile #mobile-emul #tv
 res/maps_marker_sticker_48.png                     #mobile #mobile-emul #tv
 res/maps_marker_sticker_72.png                     #mobile #mobile-emul #tv
-Tizen.Account.AccountManager.dll                   #mobile #mobile-emul #ivi
+Tizen.Account.AccountManager.dll                   #mobile #mobile-emul #ivi #wearable
 Tizen.Account.FidoClient.dll                       #mobile #mobile-emul #wearable
 Tizen.Account.OAuth2.dll                           #mobile #mobile-emul #ivi #wearable
 Tizen.Applications.Alarm.dll                       #common #mobile #mobile-emul #tv #ivi #wearable
