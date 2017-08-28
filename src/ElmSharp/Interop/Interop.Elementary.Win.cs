@@ -299,12 +299,6 @@ internal static partial class Interop
         internal static extern IntPtr elm_win_inlined_image_object_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern bool elm_win_maximized_get(IntPtr obj);
-
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_win_maximized_set(IntPtr obj, bool maximized);
-
-        [DllImport(Libraries.Elementary)]
         internal static extern bool elm_win_modal_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
