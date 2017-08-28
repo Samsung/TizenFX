@@ -30,6 +30,8 @@ namespace Tizen.System
         /// <summary>
         /// The file path of the current ringtone.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static string IncomingCallRingtone
         {
             get
@@ -55,6 +57,8 @@ namespace Tizen.System
         /// <summary>
         /// The file path of the current home-screen wallpaper.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static string WallpaperHomeScreen
         {
             get
@@ -80,6 +84,8 @@ namespace Tizen.System
         /// <summary>
         /// The file path of the current lock-screen wallpaper.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static string WallpaperLockScreen
         {
             get
@@ -105,6 +111,8 @@ namespace Tizen.System
         /// <summary>
         /// The current system font size.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static SystemSettingsFontSize FontSize
         {
             get
@@ -130,6 +138,8 @@ namespace Tizen.System
         /// <summary>
         /// The current system font type.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static string FontType
         {
             get
@@ -155,6 +165,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the motion service is activated.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool MotionActivationEnabled
         {
             get
@@ -180,6 +192,8 @@ namespace Tizen.System
         /// <summary>
         /// The file path of the current email alert ringtone.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static string EmailAlertRingtone
         {
             get
@@ -204,6 +218,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the USB debugging is enabled.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool UsbDebuggingEnabled
         {
             get
@@ -229,6 +245,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the 3G data network is enabled.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool Data3GNetworkEnabled
         {
             get
@@ -254,6 +272,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the lock-screen application package name.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static string LockscreenApp
         {
             get
@@ -279,6 +299,8 @@ namespace Tizen.System
         /// <summary>
         /// The current system default font type (only supports Get).
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static string DefaultFontType
         {
             get
@@ -298,6 +320,8 @@ namespace Tizen.System
         /// The country setting is in the ISO 639-2 format,
         /// and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static string LocaleCountry
         {
             get
@@ -325,6 +349,8 @@ namespace Tizen.System
         /// The language setting is in the ISO 639-2 format,
         /// and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static string LocaleLanguage
         {
             get
@@ -351,6 +377,8 @@ namespace Tizen.System
         /// Indicates whether the 24-hour clock is used.
         /// If the value is false, the 12-hour clock is used.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool LocaleTimeFormat24HourEnabled
         {
             get
@@ -376,6 +404,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the current time zone, for example, Pacific/Tahiti.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static string LocaleTimeZone
         {
             get
@@ -401,6 +431,8 @@ namespace Tizen.System
         /// <summary>
         /// Once the system changes time, this event occurs to notify the time change.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static int Time
         {
             get
@@ -417,6 +449,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the screen lock sound is enabled on the device, for example, the LCD on or off sound.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool SoundLockEnabled
         {
             get
@@ -434,6 +468,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the device is in the silent mode.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool SoundSilentModeEnabled
         {
             get
@@ -451,6 +487,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the screen touch sound is enabled on the device.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool SoundTouchEnabled
         {
             get
@@ -468,6 +506,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the rotation control is automatic.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool DisplayScreenRotationAutoEnabled
         {
             get
@@ -485,6 +525,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the device name.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static string DeviceName
         {
             get
@@ -501,6 +543,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the device user has enabled the motion feature.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool MotionEnabled
         {
             get
@@ -518,6 +562,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether Wi-Fi related notifications are enabled on the device.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool NetworkWifiNotificationEnabled
         {
             get
@@ -535,6 +581,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the device is in the flight mode.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static bool NetworkFlightModeEnabled
         {
             get
@@ -552,6 +600,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the backlight time (in seconds). The following values can be used: 15, 30, 60, 120, 300, and 600.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static int ScreenBacklightTime
         {
             get
@@ -577,6 +627,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the file path of the current notification tone set by the user.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static string SoundNotification
         {
             get
@@ -602,6 +654,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the time period for notification repetitions.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static int SoundNotificationRepetitionPeriod
         {
             get
@@ -627,6 +681,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the current lock state.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static SystemSettingsIdleLockState LockState
         {
             get
@@ -652,6 +708,8 @@ namespace Tizen.System
         /// <summary>
         /// The current system ADS ID.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static string AdsId
         {
             get
@@ -678,6 +736,8 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the time period for notification repetitions.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static SystemSettingsUdsState UltraDataSave
         {
             get
@@ -706,6 +766,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The IncomingCallRingtoneChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<IncomingCallRingtoneChangedEventArgs> IncomingCallRingtoneChanged
         {
             add
@@ -747,6 +809,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The WallpaperHomeScreenChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<WallpaperHomeScreenChangedEventArgs> WallpaperHomeScreenChanged
         {
             add
@@ -788,6 +852,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The WallpaperLockScreenChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<WallpaperLockScreenChangedEventArgs> WallpaperLockScreenChanged
         {
             add
@@ -829,6 +895,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The FontSizeChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<FontSizeChangedEventArgs> FontSizeChanged
         {
             add
@@ -870,6 +938,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The FontTypeChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<FontTypeChangedEventArgs> FontTypeChanged
         {
             add
@@ -911,6 +981,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The MotionActivationChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<MotionActivationSettingChangedEventArgs> MotionActivationSettingChanged
         {
             add
@@ -952,6 +1024,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The EmailAlertRingtoneChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<EmailAlertRingtoneChangedEventArgs> EmailAlertRingtoneChanged
         {
             add
@@ -993,6 +1067,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The UsbDebuggingSettingChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<UsbDebuggingSettingChangedEventArgs> UsbDebuggingSettingChanged
         {
             add
@@ -1034,6 +1110,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The Data3GNetworkSettingChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<Data3GNetworkSettingChangedEventArgs> Data3GNetworkSettingChanged
         {
             add
@@ -1075,6 +1153,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The LockscreenAppChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<LockscreenAppChangedEventArgs> LockscreenAppChanged
         {
             add
@@ -1116,6 +1196,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The LocaleCountryChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<LocaleCountryChangedEventArgs> LocaleCountryChanged
         {
             add
@@ -1157,6 +1239,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The LocaleLanguageChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<LocaleLanguageChangedEventArgs> LocaleLanguageChanged
         {
             add
@@ -1198,6 +1282,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The LocaleTimeFormat24HourChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<LocaleTimeFormat24HourSettingChangedEventArgs> LocaleTimeFormat24HourSettingChanged
         {
             add
@@ -1239,6 +1325,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The LocaleTimeZoneChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<LocaleTimeZoneChangedEventArgs> LocaleTimeZoneChanged
         {
             add
@@ -1281,6 +1369,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The TimeChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<TimeChangedEventArgs> TimeChanged
         {
             add
@@ -1322,6 +1412,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The SoundLockChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<SoundLockSettingChangedEventArgs> SoundLockSettingChanged
         {
             add
@@ -1363,6 +1455,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The SoundSilentModeChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<SoundSilentModeSettingChangedEventArgs> SoundSilentModeSettingChanged
         {
             add
@@ -1404,6 +1498,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The SoundTouchChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<SoundTouchSettingChangedEventArgs> SoundTouchSettingChanged
         {
             add
@@ -1445,6 +1541,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The DisplayScreenRotationAutoChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<DisplayScreenRotationAutoSettingChangedEventArgs> DisplayScreenRotationAutoSettingChanged
         {
             add
@@ -1486,6 +1584,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The DeviceNameChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<DeviceNameChangedEventArgs> DeviceNameChanged
         {
             add
@@ -1527,6 +1627,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The MotionSettingChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<MotionSettingChangedEventArgs> MotionSettingChanged
         {
             add
@@ -1568,6 +1670,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The NetworkWifiNotificationChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<NetworkWifiNotificationSettingChangedEventArgs> NetworkWifiNotificationSettingChanged
         {
             add
@@ -1609,6 +1713,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The NetworkFlightModeChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<NetworkFlightModeSettingChangedEventArgs> NetworkFlightModeSettingChanged
         {
             add
@@ -1650,6 +1756,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The ScreenBacklightTimeChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<ScreenBacklightTimeChangedEventArgs> ScreenBacklightTimeChanged
         {
             add
@@ -1691,6 +1799,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The SoundNotificationChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<SoundNotificationChangedEventArgs> SoundNotificationChanged
         {
             add
@@ -1732,6 +1842,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The SoundNotificationRepetitionPeriodChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<SoundNotificationRepetitionPeriodChangedEventArgs> SoundNotificationRepetitionPeriodChanged
         {
             add
@@ -1773,6 +1885,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The LockStateChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<LockStateChangedEventArgs> LockStateChanged
         {
             add
@@ -1814,6 +1928,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The AdsIdChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<AdsIdChangedEventArgs> AdsIdChanged
         {
             add
@@ -1855,6 +1971,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The UltraDataSaveChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<UltraDataSaveChangedEventArgs> UltraDataSaveChanged
         {
             add
@@ -1896,6 +2014,8 @@ namespace Tizen.System
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">The UltraDataSavePackageListChangedEventArgs object that contains the key and the changed value.</param>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
         public static event EventHandler<UltraDataSavePackageListChangedEventArgs> UltraDataSavePackageListChanged
         {
             add
