@@ -8,7 +8,7 @@ Tizen.Account.AccountManager.dll                   #mobile #mobile-emul #ivi
 Tizen.Account.FidoClient.dll                       #mobile #mobile-emul #wearable
 Tizen.Account.OAuth2.dll                           #mobile #mobile-emul #ivi #wearable
 Tizen.Applications.Alarm.dll                       #common #mobile #mobile-emul #tv #ivi #wearable
-Tizen.Applications.AttachPanel.dll
+Tizen.Applications.AttachPanel.dll                 #mobile #mobile-emul
 Tizen.Applications.Badge.dll                       #mobile #mobile-emul #ivi
 Tizen.Applications.Common.dll                      #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Applications.DataControl.dll                 #common #mobile #mobile-emul #tv #ivi #wearable
