@@ -75,8 +75,8 @@ Tizen.System.SystemSettings.dll                    #common #mobile #mobile-emul 
 Tizen.Tapi.dll
 Tizen.Telephony.dll                                #mobile #mobile-emul #ivi #wearable
 Tizen.Tracer.dll                                   #common #mobile #mobile-emul #tv #ivi #wearable
-Tizen.Uix.InputMethod.dll                          #common #mobile #mobile-emul #ivi
-Tizen.Uix.InputMethodManager.dll                   #common #mobile #mobile-emul #tv #ivi
+Tizen.Uix.InputMethod.dll                          #common #mobile #mobile-emul #tv #ivi #wearable
+Tizen.Uix.InputMethodManager.dll                   #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Uix.Stt.dll                                  #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Uix.SttEngine.dll                            #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Uix.Tts.dll                                  #common #mobile #mobile-emul #tv #ivi #wearable
