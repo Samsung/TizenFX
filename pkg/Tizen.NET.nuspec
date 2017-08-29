@@ -22,6 +22,9 @@
     <file src="bin\Tizen.Account.AccountManager.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Account.AccountManager.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Account.AccountManager.xml" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Account.SyncManager.dll" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Account.SyncManager.pdb" target="lib\netstandard1.6" />
+    <file src="bin\Tizen.Account.SyncManager.xml" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Account.FidoClient.dll" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Account.FidoClient.pdb" target="lib\netstandard1.6" />
     <file src="bin\Tizen.Account.FidoClient.xml" target="lib\netstandard1.6" />

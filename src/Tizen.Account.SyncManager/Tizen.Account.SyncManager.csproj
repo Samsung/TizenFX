@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../../build/common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tizen\Tizen.csproj" />
+    <ProjectReference Include="..\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
+    <ProjectReference Include="..\Tizen.Account.AccountManager\Tizen.Account.AccountManager.csproj" />
+    <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
+  </ItemGroup>
+
+  <Import Project="../../build/common.targets" />
+</Project>

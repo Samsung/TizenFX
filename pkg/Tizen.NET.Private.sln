@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Account.FidoClient", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Account.OAuth2", "..\src\Tizen.Account.OAuth2\Tizen.Account.OAuth2.csproj", "{CDBB2633-FE0B-485E-B864-DCA9240E6F7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Account.SyncManager", "..\src\Tizen.Account.SyncManager\Tizen.Account.SyncManager.csproj", "{219B1BF6-E17C-42BC-82A3-7B0C81E23AA6}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Applications.Alarm", "..\src\Tizen.Applications.Alarm\Tizen.Applications.Alarm.csproj", "{6B8722E8-94A4-4739-B0E3-14F1B158BC81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Applications.AttachPanel", "..\src\Tizen.Applications.AttachPanel\Tizen.Applications.AttachPanel.csproj", "{3BACD1BC-613C-4A68-87F2-789B5937FBF6}"
@@ -240,6 +242,18 @@ Global
 		{CDBB2633-FE0B-485E-B864-DCA9240E6F7D}.Release|x64.Build.0 = Release|x64
 		{CDBB2633-FE0B-485E-B864-DCA9240E6F7D}.Release|x86.ActiveCfg = Release|x86
 		{CDBB2633-FE0B-485E-B864-DCA9240E6F7D}.Release|x86.Build.0 = Release|x86
+		{219B1BF6-E17C-42BC-82A3-7B0C81E23AA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{219B1BF6-E17C-42BC-82A3-7B0C81E23AA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{219B1BF6-E17C-42BC-82A3-7B0C81E23AA6}.Debug|x64.ActiveCfg = Debug|x64
+		{219B1BF6-E17C-42BC-82A3-7B0C81E23AA6}.Debug|x64.Build.0 = Debug|x64
+		{219B1BF6-E17C-42BC-82A3-7B0C81E23AA6}.Debug|x86.ActiveCfg = Debug|x86
+		{219B1BF6-E17C-42BC-82A3-7B0C81E23AA6}.Debug|x86.Build.0 = Debug|x86
+		{219B1BF6-E17C-42BC-82A3-7B0C81E23AA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{219B1BF6-E17C-42BC-82A3-7B0C81E23AA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{219B1BF6-E17C-42BC-82A3-7B0C81E23AA6}.Release|x64.ActiveCfg = Release|x64
+		{219B1BF6-E17C-42BC-82A3-7B0C81E23AA6}.Release|x64.Build.0 = Release|x64
+		{219B1BF6-E17C-42BC-82A3-7B0C81E23AA6}.Release|x86.ActiveCfg = Release|x86
+		{219B1BF6-E17C-42BC-82A3-7B0C81E23AA6}.Release|x86.Build.0 = Release|x86
 		{6B8722E8-94A4-4739-B0E3-14F1B158BC81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6B8722E8-94A4-4739-B0E3-14F1B158BC81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B8722E8-94A4-4739-B0E3-14F1B158BC81}.Debug|x64.ActiveCfg = Debug|x64
