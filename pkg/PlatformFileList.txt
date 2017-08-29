@@ -53,7 +53,7 @@ Tizen.Network.Connection.dll                       #common #mobile #mobile-emul 
 Tizen.Network.IoTConnectivity.dll                  #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Network.Mtp.dll
 Tizen.Network.Nfc.dll                              #mobile #mobile-emul #ivi #wearable
-Tizen.Network.Nsd.dll                              #common #mobile #mobile-emul #wearable
+Tizen.Network.Nsd.dll                              #common #mobile #mobile-emul #tv #wearable
 Tizen.Network.Smartcard.dll                        #mobile #mobile-emul #ivi #wearable
 Tizen.Network.WiFi.dll                             #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Network.WiFiDirect.dll                       #mobile #tv #ivi
