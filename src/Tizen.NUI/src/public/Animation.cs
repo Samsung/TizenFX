@@ -889,6 +889,23 @@ namespace Tizen.NUI
             return ret;
         }
 
+        private static bool? disableAnimation = null;
+        private bool DisableAnimation
+        {
+            get
+            {
+                if (disableAnimation.HasValue == false)
+                {
+                    string type = Environment.GetEnvironmentVariable("PlatformSmartType");
+                    if (type == "Entry")
+                        disableAnimation = true;
+                    else
+                        disableAnimation = false;
+                }
+                return disableAnimation.Value;
+            }
+        }
+
         /// <summary>
         /// Plays the animation.
         /// </summary>
@@ -896,9 +913,9 @@ namespace Tizen.NUI
         {
             NDalicPINVOKE.Animation_Play(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-#if DISABLE_ANIMATION
-            Stop(EndActions.StopFinal);
-#endif
+
+            if (DisableAnimation == true)
+                Stop(EndActions.StopFinal);
         }
 
         /// <summary>
