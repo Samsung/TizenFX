@@ -36,9 +36,52 @@ namespace Tizen.Multimedia
         None,
     }
 
-    internal interface IDisplayable<ErrorType>
+    internal interface IDisplayable<TError>
     {
-        ErrorType ApplyEvasDisplay(DisplayType type, EvasObject evasObject);
+        TError ApplyEvasDisplay(DisplayType type, EvasObject evasObject);
+        TError ApplyEcoreWindow(IntPtr windowHandle);
+    }
+
+    internal interface IDisplaySetter
+    {
+        TError SetDisplay<TError>(IDisplayable<TError> target);
+    }
+
+    internal class EvasDisplaySetter : IDisplaySetter
+    {
+        private readonly DisplayType _type;
+        private readonly EvasObject _target;
+
+        internal EvasDisplaySetter(DisplayType type, EvasObject target)
+        {
+            if (target == IntPtr.Zero)
+            {
+                throw new ArgumentException("The evas object is not realized.");
+            }
+
+            _type = type;
+            _target = target;
+        }
+
+        public TError SetDisplay<TError>(IDisplayable<TError> target)
+        {
+            return target.ApplyEvasDisplay(_type, _target);
+        }
+    }
+
+    internal class EcoreDisplaySetter : IDisplaySetter
+    {
+        private readonly IntPtr _windowHandle;
+
+        internal EcoreDisplaySetter(IntPtr windowHandle)
+        {
+            _windowHandle = windowHandle;
+        }
+
+        public TError SetDisplay<TError>(IDisplayable<TError> target)
+        {
+            return target.ApplyEcoreWindow(_windowHandle);
+        }
     }
 
     /// <summary>
@@ -46,40 +89,59 @@ namespace Tizen.Multimedia
     /// </summary>
     /// <seealso cref="Player"/>
     /// <seealso cref="Camera"/>
-    /// <seealso cref="ScreenMirroring"/>
+    /// <seealso cref="Tizen.Multimedia.Remoting.ScreenMirroring"/>
     public class Display
     {
-        private Display(DisplayType type, EvasObject target)
-        {
-            if (target == null)
-            {
-                throw new ArgumentNullException(nameof(target));
-            }
-
-            if (target == IntPtr.Zero)
-            {
-                throw new ArgumentException("The evas object is not realized.");
-            }
-
-            Type = type;
-            EvasObject = target;
-        }
+        private readonly IDisplaySetter _setter;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Display"/> class with a <see cref="MediaView"/> class.
         /// </summary>
+        /// <param name="mediaView">A <see cref="MediaView"/> to display.</param>
         /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        public Display(MediaView mediaView) : this(DisplayType.Surface, mediaView)
+        public Display(MediaView mediaView)
         {
             ValidationUtil.ValidateFeatureSupported(Features.RawVideo);
+
+            if (mediaView == null)
+            {
+                throw new ArgumentNullException(nameof(mediaView));
+            }
+
+            _setter = new EvasDisplaySetter(DisplayType.Surface, mediaView);
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Display"/> class with a <see cref="Window"/> class.
         /// </summary>
-        public Display(Window window) : this(DisplayType.Overlay, window)
+        /// <param name="window">A <see cref="Window"/> to display.</param>
+        public Display(Window window)
         {
+            if (window == null)
+            {
+                throw new ArgumentNullException(nameof(window));
+            }
+
+            _setter = new EvasDisplaySetter(DisplayType.Overlay, window);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Display"/> class with a <see cref="NUI.Window"/> class.
+        /// </summary>
+        /// <param name="window">A <see cref="NUI.Window"/> to display.</param>
+        /// <remarks>
+        /// The <see cref="NUI.Window.BackgroundColor"/> must be <see cref="NUI.Color.Transparent"/>
+        /// for the <see cref="Display"/> to be rendered correctly.
+        /// </remarks>
+        public Display(NUI.Window window)
+        {
+            if (window == null)
+            {
+                throw new ArgumentNullException(nameof(window));
+            }
+
+            _setter = new EcoreDisplaySetter(window.GetNativeWindowHandler());
         }
 
         private EvasObject EvasObject { get; }
@@ -100,9 +162,9 @@ namespace Tizen.Multimedia
             _owner = newOwner;
         }
 
-        internal ErrorType ApplyTo<ErrorType>(IDisplayable<ErrorType> target)
+        internal TError ApplyTo<TError>(IDisplayable<TError> target)
         {
-            return target.ApplyEvasDisplay(Type, EvasObject);
+            return _setter.SetDisplay(target);
         }
     }
 }
