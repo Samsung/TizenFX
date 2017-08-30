@@ -2,7 +2,7 @@
 <manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="ElmSharpTest.Wearable" version="1.0.0">
 	<profile name="wearable" />
 	<ui-application appid="org.tizen.ElmSharp.Wearable.Test"
-					exec="ElmSharp.Wearable.Test.exe"
+					exec="ElmSharp.Wearable.Test.dll"
 					type="dotnet"
 					multiple="false"
 					taskmanage="true"
