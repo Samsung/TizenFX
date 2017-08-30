@@ -23,6 +23,9 @@ namespace ElmSharp.Wearable
     /// </summary>
     public class CircleSlider : EvasObject
     {
+        /// <summary>
+        /// Changed will be triggered when the circle slider value changes.
+        /// </summary>
         public event EventHandler Changed;
 
         SmartEvent _changedEvent;
