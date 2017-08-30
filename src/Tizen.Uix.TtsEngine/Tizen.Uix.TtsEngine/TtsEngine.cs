@@ -362,14 +362,17 @@ namespace Tizen.Uix.TtsEngine
         /// 1. None
         /// 2. InvalidState
         /// </returns>
-        /// <percondition>
+        /// <precondition>
         /// StartSynthesis should be performed
-        /// </percondition>
+        /// </precondition>
         public abstract Error CancelSynthesis();
 
         /// <summary>
         /// Public Constructor
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         public Engine()
         {
             _engine = this;
@@ -379,6 +382,9 @@ namespace Tizen.Uix.TtsEngine
         /// Main function for Text-To-Speech (TTS) engine.
         /// This function is the main function for operating TTS engine.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <remarks>
         /// ServiceAppMain should be used for working the engine after this function.
         /// </remarks>
@@ -417,6 +423,9 @@ namespace Tizen.Uix.TtsEngine
         /// <summary>
         /// Gets the speed range from Tizen platform
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <remarks>
         /// This API is used when TTS engine wants to get the speed range from Tizen platform
         /// </remarks>
@@ -439,6 +448,9 @@ namespace Tizen.Uix.TtsEngine
         /// <summary>
         /// Gets the pitch range from Tizen platform.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <remarks>
         /// This API is used when TTS engine wants to get the pitch range from Tizen platform.
         /// </remarks>
@@ -461,6 +473,9 @@ namespace Tizen.Uix.TtsEngine
         /// <summary>
         /// Sends the synthesized result to the engine service user.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <remarks>
         /// This API is used in StartSynthesis(), when TTS engine sends the synthesized result to the engine service user.
         /// The synthesized result must be transferred to the engine service user through this function.
@@ -489,6 +504,9 @@ namespace Tizen.Uix.TtsEngine
         /// <summary>
         /// Sends the error to the engine service user.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <param name="error">The error reason</param>
         /// <param name="msg">The error message</param>
         /// <precondition>
@@ -508,6 +526,9 @@ namespace Tizen.Uix.TtsEngine
         /// <summary>
         /// Sets a callback function for setting the private data.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <param name="callback">
         /// Called when the engine service user gets the private data from Tts engine.
         /// In Parameters:
@@ -545,6 +566,9 @@ namespace Tizen.Uix.TtsEngine
         /// <summary>
         /// Sets a callback function for setting the private data.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
         /// <param name="callback">callback function
         /// Called when TTS engine receives the private data from the engine service user.
         /// This callback function is called when the engine service user sends the private data to TTS engine.

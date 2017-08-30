@@ -219,7 +219,7 @@ namespace Tizen.Uix.SttEngine
         /// <param name="text">The result text</param>
         /// <param name="startTime">The time started speaking the result text</param>
         /// <param name="endTime">The time finished speaking the result text</param>
-        /// <param mane="userData">The User data</param>
+        /// <param name="userData">The User data</param>
         /// <returns>true to continue with the next iteration of the loop, false to break out of the loop</returns>
         /// <precondition>SendResult() should be called.</precondition>
         public delegate bool ResultTime(int index, TimeEvent resultEvent, string text, long startTime, long endTime, IntPtr userData);
@@ -231,7 +231,7 @@ namespace Tizen.Uix.SttEngine
         /// <param name="language">The language is specified as an ISO 3166 alpha-2 two letter country-code
         /// followed by ISO 639-1 for the two-letter language code
         /// for example, "ko_KR" for Korean, "en_US" for American English</param>
-        /// <param mane="userData">The User data</param>
+        /// <param name="userData">The User data</param>
         /// <returns>true to continue with the next iteration of the loop, false to break out of the loop</returns>
         /// <precondition>ForEachSupportedLanguages() should be called</precondition>
         public delegate bool SupportedLanguages(string language, IntPtr userData);
@@ -442,8 +442,8 @@ namespace Tizen.Uix.SttEngine
         /// 3. InvalidParameter
         /// 4. OperationFailed
         /// </returns>
-        /// <percondition>
-        /// Start should succeed</percondition>
+        /// <precondition>
+        /// Start should succeed</precondition>
         /// <postcondition>
         /// If the engine supports partial result, SendResult() should be invoked.</postcondition>
         public abstract Error SetRecordingData(string data, uint length);
@@ -458,8 +458,8 @@ namespace Tizen.Uix.SttEngine
         /// 3. OperationFailed
         /// 4. NetworkDown
         /// </returns>
-        /// <percondition>
-        /// Start should succeed</percondition>
+        /// <precondition>
+        /// Start should succeed</precondition>
         /// <postcondition>
         /// After processing of the engine, , SendResult() should be invoked.</postcondition>
         public abstract Error Stop();
@@ -479,6 +479,10 @@ namespace Tizen.Uix.SttEngine
         /// <summary>
         /// Public Constructor
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         public Engine()
         {
             _engine = this;
@@ -491,6 +495,10 @@ namespace Tizen.Uix.SttEngine
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <remarks>
         /// ServiceAppMain should be used for working the engine after this function.
         /// </remarks>
@@ -534,6 +542,10 @@ namespace Tizen.Uix.SttEngine
         /// <summary>
         /// Sends the recognition result to the engine service user.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <remarks>
         /// This API is used in SetRecordingData() and Stop(), when Stt engine sends the recognition result to the engine service user.
         /// This function is called in the following situations; 1) after Stop() is called, 2) the end point of speech is detected from recording, or 3) partial result is occurred.
@@ -610,6 +622,10 @@ namespace Tizen.Uix.SttEngine
         /// <summary>
         /// Sends the error to the engine service user.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <param name="error">The Error Reason</param>
         /// <param name="msg">The error message</param>
         /// <exception cref="ArgumentException">Thrown in case of Invalid Parameter</exception>
@@ -633,6 +649,10 @@ namespace Tizen.Uix.SttEngine
         /// <summary>
         /// Sends the speech status to the engine service user when Stt engine notifies the change of the speech status.
         /// </summary>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <remarks>
         /// This API is invoked when Stt engine wants to notify the change of the speech status anytime. NOTE that this API can be invoked for recognizing the speech.
         /// </remarks>
@@ -661,6 +681,10 @@ namespace Tizen.Uix.SttEngine
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <param name="callback">
         /// Called when Stt engine receives the private data from the engine service user.
         /// This callback function is called when the engine service user sends the private data to Stt engine.
@@ -701,6 +725,10 @@ namespace Tizen.Uix.SttEngine
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/speech.recognition
+        /// http://tizen.org/feature/microphone
+        /// </feature>
         /// <param name="callback">callback function
         /// Called when Stt engine provides the engine service user with the private data.
         /// This callback function is called when the engine service user gets the private data from Stt engine.
