@@ -77,6 +77,15 @@ namespace ElmSharp
         /// Populates source and destination map points to exactly match the object.
         /// </summary>
         /// <param name="obj">The object to use unmapped geometry to populate map coordinates</param>
+        public void PopulatePoints(EvasObject obj)
+        {
+            Interop.Evas.evas_map_util_points_populate_from_object_full(_evasMap, obj, 0);
+        }
+
+        /// <summary>
+        /// Populates source and destination map points to exactly match the object.
+        /// </summary>
+        /// <param name="obj">The object to use unmapped geometry to populate map coordinates</param>
         /// <param name="z">
         /// The point Z coordinate hint (pre-perspective transform)This value is used for all four points.
         /// </param>
@@ -93,6 +102,17 @@ namespace ElmSharp
         public void PopulatePoints(Rect geometry, int z)
         {
             Interop.Evas.evas_map_util_points_populate_from_geometry(_evasMap, geometry.X, geometry.Y, geometry.Width, geometry.Height, z);
+        }
+
+        /// <summary>
+        /// Rotate the map
+        /// </summary>
+        /// <param name="degrees">The abount of degrees from 0.0 to 360.0 to rotate</param>
+        /// <param name="cx">rotation's center horizontal position.</param>
+        /// <param name="cy">rotation's center vertical position.</param>
+        public void Rotate(double degrees, int cx, int cy)
+        {
+            Interop.Evas.evas_map_util_rotate(_evasMap, degrees, cx, cy);
         }
 
         /// <summary>

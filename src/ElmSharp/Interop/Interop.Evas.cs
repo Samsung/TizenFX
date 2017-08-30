@@ -322,6 +322,9 @@ internal static partial class Interop
         internal static extern void evas_map_util_points_populate_from_geometry(IntPtr map, int x, int y, int w, int h, int z);
 
         [DllImport(Libraries.Evas)]
+        internal static extern void evas_map_util_rotate(IntPtr map, double degree, int cx, int cy);
+
+        [DllImport(Libraries.Evas)]
         internal static extern void evas_map_util_3d_rotate(IntPtr map, double dx, double dy, double dz, int cx, int cy, int cz);
 
         [DllImport(Libraries.Evas)]
