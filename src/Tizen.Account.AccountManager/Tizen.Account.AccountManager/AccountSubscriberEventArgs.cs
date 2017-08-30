@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Account.AccountManager
 {
     /// <summary>
-    /// Event arguments passed when Event is triggered to notify that account is updated/removed from the account database.
+    /// Event arguments passed when the event is triggered to notify that the account is updated/removed from the account database.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class AccountSubscriberEventArgs : EventArgs
@@ -51,7 +51,7 @@ namespace Tizen.Account.AccountManager
         }
 
         /// <summary>
-        /// The account event type
+        /// The account event type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public AccountNotificationType EventType
@@ -61,7 +61,7 @@ namespace Tizen.Account.AccountManager
         }
 
         /// <summary>
-        /// The account ID to update
+        /// The account ID to update.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int AccountId

@@ -21,7 +21,7 @@ using Tizen.Internals.Errors;
 namespace Tizen.Account.AccountManager
 {
     /// <summary>
-    ///  Account Id.
+    /// The account ID.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class AccountProvider : IDisposable
@@ -50,7 +50,7 @@ namespace Tizen.Account.AccountManager
             }
         }
         /// <summary>
-        ///  Account Id.
+        /// The account ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string AppId
@@ -69,7 +69,7 @@ namespace Tizen.Account.AccountManager
         }
 
         /// <summary>
-        ///  Serviceprovider Id of the account provider.
+        /// Serviceprovider ID of the account provider.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string ServiceProviderId
@@ -88,7 +88,7 @@ namespace Tizen.Account.AccountManager
         }
 
         /// <summary>
-        ///  Icon path of an account provider.
+        /// Icon path of the account provider.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string IconPath
@@ -107,7 +107,7 @@ namespace Tizen.Account.AccountManager
         }
 
         /// <summary>
-        ///  Small icon path of an account provider.
+        /// Small icon path of the account provider.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string SmallIconPath
@@ -126,7 +126,7 @@ namespace Tizen.Account.AccountManager
         }
 
         /// <summary>
-        ///  Flag for account provider If supports multiple accounts.
+        /// Flag for the account provider if it supports multiple accounts.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool MultipleAccountSupport
@@ -149,11 +149,13 @@ namespace Tizen.Account.AccountManager
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
+        /// <feature>http://tizen.org/feature/account</feature>
         /// <returns>
-        /// list of capability information.
+        /// The list of capability information.
         /// </returns>
-        /// <exception cref="InvalidOperationException">In case of any DB error</exception>
+        /// <exception cref="InvalidOperationException">In case of any DB error.</exception>
         /// <exception cref="UnauthorizedAccessException"> In case of privilege not defined.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public IEnumerable<string> GetAllCapabilities()
         {
             List<string> capabilities = new List<string>();
@@ -174,17 +176,19 @@ namespace Tizen.Account.AccountManager
         }
 
         /// <summary>
-        /// Gets the specific label information detail of an account provider.
+        /// Gets the specific label information detail of the account provider.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="locale">
         /// The locale is specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code.
         /// For example, "ko_KR" or "ko-kr" for Korean, "en_US" or "en-us" for American English.
         /// </param>
-        /// <returns>The label text given for the locale</returns>
+        /// <returns>The label text given for the locale.</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
-        /// <exception cref="InvalidOperationException">In case of any DB error or record not found for given locale</exception>
+        /// <feature>http://tizen.org/feature/account</feature>
+        /// <exception cref="InvalidOperationException">In case of any DB error or record not found for given locale.</exception>
         /// <exception cref="UnauthorizedAccessException"> In case of privilege not defined.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public string GetLabel(string locale)
         {
             string label;
@@ -198,17 +202,19 @@ namespace Tizen.Account.AccountManager
         }
 
         /// <summary>
-        /// Gets the specific label information detail of an account provider.
+        /// Gets the specific label information detail of the account provider.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="appId">
-        /// The application ID to search
+        /// The application ID to search.
         /// </param>
-        /// <returns> All the labels information for the given application Id.</returns>
+        /// <returns> All the labels information for the given application ID.</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
-        /// <exception cref="InvalidOperationException">In case of any DB error or record not found for given appid</exception>
-        /// <exception cref="ArgumentException"> In case of invalid parameter</exception>
+        /// <feature>http://tizen.org/feature/account</feature>
+        /// <exception cref="InvalidOperationException">In case of any DB error or record not found for given the application ID.</exception>
+        /// <exception cref="ArgumentException"> In case of an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException"> In case of privilege not defined.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static Dictionary<string, string> GetLabelsByAppId(string appId)
         {
 
@@ -229,13 +235,15 @@ namespace Tizen.Account.AccountManager
         }
 
         /// <summary>
-        /// Gets the label information detail of an account provider.
+        /// Gets the label information detail of the account provider.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns> All the labels information for the given account provider.</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
-        /// <exception cref="InvalidOperationException">In case of any DB error</exception>
+        /// <feature>http://tizen.org/feature/account</feature>
+        /// <exception cref="InvalidOperationException">In case of any DB error.</exception>
         /// <exception cref="UnauthorizedAccessException"> In case of privilege not defined.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public Dictionary<string, string> GetLabels()
         {
 
@@ -262,9 +270,11 @@ namespace Tizen.Account.AccountManager
         /// <param name="appId">The application ID to check.</param>
         /// <returns>returns true If App is supported </returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
-        /// <exception cref="InvalidOperationException">In case of any DB error or record not found for given appid</exception>
-        /// <exception cref="ArgumentException"> In case of invalid parameter</exception>
+        /// <feature>http://tizen.org/feature/account</feature>
+        /// <exception cref="InvalidOperationException">In case of any DB error or record not found for the given application ID.</exception>
+        /// <exception cref="ArgumentException"> In case of an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException"> In case of privilege not defined.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public bool IsAppSupported(string appId)
         {
             bool isSupported = false;
@@ -286,16 +296,18 @@ namespace Tizen.Account.AccountManager
         /// Checks whether the given application ID supports the capability.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="appId">The application Id</param>
-        /// <param name="capability">The capability information</param>
+        /// <param name="appId">The application ID.</param>
+        /// <param name="capability">The capability information.</param>
         /// <returns>
         /// TRUE if the application supports the given capability,
         /// otherwise FALSE if the application does not support the given capability
         /// </returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
-        /// <exception cref="InvalidOperationException">In case of any DB error</exception>
-        /// <exception cref="ArgumentException"> In case of invalid parameter</exception>
+        /// <feature>http://tizen.org/feature/account</feature>
+        /// <exception cref="InvalidOperationException">In case of any DB error.</exception>
+        /// <exception cref="ArgumentException"> In case of an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException"> In case of privilege not defined.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static bool IsFeatureSupportedByApp(string appId, string capability)
         {
             bool supported = Interop.AccountProvider.IsFeatureSupported(appId, capability);
@@ -313,15 +325,17 @@ namespace Tizen.Account.AccountManager
         }
 
         /// <summary>
-        ///     Retrieves capability information with application ID.
+        /// Retrieves capability information with the application ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="appId">application Id</param>
+        /// <param name="appId">The application ID.</param>
         /// <returns> Capability information list for the given appId.</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
-        /// <exception cref="InvalidOperationException">In case of any DB error or record not found for given appid</exception>
-        /// <exception cref="ArgumentException"> In case of invalid parameter</exception>
+        /// <feature>http://tizen.org/feature/account</feature>
+        /// <exception cref="InvalidOperationException">In case of any DB error or record not found for the given application ID.</exception>
+        /// <exception cref="ArgumentException"> In case of an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException"> In case of privilege not defined.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static IEnumerable<string> GetFeaturesByAppId(string appId)
         {
 
