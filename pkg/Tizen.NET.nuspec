@@ -13,7 +13,6 @@
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
   </metadata>
   <files>
-    <file src="pkg\PlatformFileList.txt" />
     <file src="pkg\build\**" target="build" />
     <file src="Artifacts\bin\ElmSharp.dll" target="lib\netstandard1.6" />
     <file src="Artifacts\bin\ElmSharp.pdb" target="lib\netstandard1.6" />

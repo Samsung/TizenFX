@@ -21,6 +21,20 @@
     </Reference>
   </ItemGroup>
 
+  <!--
+    Tizen platform supports .NETCore 2.0 runtime.
+    In application, NETCoreApp2.0 APIs are also available.
+  -->
+  <PropertyGroup Condition="'$(OutputType)' == 'Exe'">
+    <NoWarn>$(NoWarn);NU1701</NoWarn>
+    <AssetTargetFallback>netcoreapp2.0</AssetTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(OutputType)' == 'Exe'">
+    <PackageReference Include="Microsoft.NETCore.App" Version="2.0.0" IsImplicitlyDefined="true" />
+  </ItemGroup>
+
+  <!-- Import common targets -->
   <Import Project="$(MSBuildThisFileDirectory)..\Tizen.NET.targets" />
 
 </Project>

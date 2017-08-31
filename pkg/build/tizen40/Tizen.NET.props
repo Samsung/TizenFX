@@ -4,12 +4,16 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
 
+  <!--
+    Properties required to use Microsoft.NET.Sdk as is.
+  -->
   <PropertyGroup>
     <TargetFrameworkIdentifier>Tizen</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <_IsNETCoreOrNETStandard>true</_IsNETCoreOrNETStandard>
   </PropertyGroup>
 
+  <!-- Import common props -->
   <Import Project="$(MSBuildThisFileDirectory)..\Tizen.NET.props" />
 
 </Project>
