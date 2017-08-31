@@ -1,0 +1,15 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFrameworkIdentifier>Tizen</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <_IsNETCoreOrNETStandard>true</_IsNETCoreOrNETStandard>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildThisFileDirectory)..\Tizen.NET.props" />
+
+</Project>

@@ -54,8 +54,8 @@ cmd_pack() {
     NUGET_VERSION_SUFFIX=$(cat $VERSION_FILE | grep Suffix | cut -d: -f2 | sed 's/\r$//')
 	  NUGET_VERSION_OPT="-Version $NUGET_VERSION_PREFIX-$NUGET_VERSION_SUFFIX"
   fi
-  $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.Private.nuspec -Symbols -NoPackageAnalysis $NUGET_VERSION_OPT -BasePath $OUTDIR -OutputDirectory $OUTDIR
-  $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.nuspec -Symbols -NoPackageAnalysis $NUGET_VERSION_OPT -BasePath $OUTDIR -OutputDirectory $OUTDIR
+  $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.Private.nuspec -Symbols -NoPackageAnalysis $NUGET_VERSION_OPT -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
+  $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.nuspec -Symbols -NoPackageAnalysis $NUGET_VERSION_OPT -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
 }
 
 cmd_dummy_build() {

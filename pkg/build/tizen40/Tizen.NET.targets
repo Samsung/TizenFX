@@ -1,0 +1,26 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+
+  <!--
+    Tizen4.0 TFM supports NETStandard2.0. However NETStandard.Library does not
+    provide reference assemblies when referenced by other TFMs.
+    So, the same reference assemblies are provided directly from Tizen.NET.
+    These reference assemblies came from NETStandard.Library 2.0.0.
+  -->
+
+  <ItemGroup>
+    <Reference Include="$(MSBuildThisFileDirectory)\ref\*.dll">
+      <Private>false</Private>
+      <Visible>false</Visible>
+      <Facade Condition="'%(FileName)' != 'netstandard'">true</Facade>
+      <NuGetPackageId>$(TizenNETPackageName)</NuGetPackageId>
+      <NuGetPackageVersion>$(TizenNETPackageVersion)</NuGetPackageVersion>
+    </Reference>
+  </ItemGroup>
+
+  <Import Project="$(MSBuildThisFileDirectory)..\Tizen.NET.targets" />
+
+</Project>
