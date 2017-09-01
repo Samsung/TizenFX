@@ -414,6 +414,8 @@ namespace Tizen.Security.TEEC
         public Context(string name)
         {
             context = new Interop.TEEC_Context();
+            if (name != null && name.Length == 0)
+                name = null;
             int ret = Interop.Libteec.InitializeContext(name, ref context);
             Interop.CheckNThrowException(ret, string.Format("InititalizeContext('{0}')", name));
         }
