@@ -30,6 +30,7 @@ namespace Tizen.NUI
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private global::System.Runtime.InteropServices.HandleRef stageCPtr;
         private Layer _rootLayer;
+        private string _windowTitle;
 
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -426,6 +427,22 @@ namespace Tizen.NUI
             if (_windowFocusChangedEventHandler != null)
             {
                 _windowFocusChangedEventHandler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Gets/Sets a window title.
+        /// </summary>
+        public string Title
+        {
+            get
+            {
+                return _windowTitle;
+            }
+            set
+            {
+                _windowTitle = value;
+                SetClass( _windowTitle, "" );
             }
         }
 

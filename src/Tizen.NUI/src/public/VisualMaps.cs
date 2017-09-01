@@ -74,7 +74,7 @@ namespace Tizen.NUI
                 _visualSize = value;
                 if (_visualSizePolicy == null)
                 {
-                    _visualSizePolicy = new Vector2(0.0f, 0.0f);
+                    _visualSizePolicy = new Vector2(1.0f, 1.0f);
                 }
                 UpdateVisual();
             }
@@ -97,7 +97,7 @@ namespace Tizen.NUI
                 _visualOffset = value;
                 if (_visualOffsetPolicy == null)
                 {
-                    _visualOffsetPolicy = new Vector2(0.0f, 0.0f);
+                    _visualOffsetPolicy = new Vector2(1.0f, 1.0f);
                 }
                 UpdateVisual();
             }

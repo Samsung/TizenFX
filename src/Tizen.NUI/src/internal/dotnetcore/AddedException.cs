@@ -20,17 +20,17 @@ namespace System
     {
         public ApplicationException(): base()
         {
-            //new global::System.ApplicationException();
+            //add anything required
         }
 
         public ApplicationException(string message): base(message)
         {
-            //new global::System.ApplicationException(message);
+            //add anything required
         }
 
         public ApplicationException(string message, Exception innerException): base(message, innerException)
         {
-            //new global::System.ApplicationException(message, innerException);
+            //add anything required
         }
     }
 
@@ -38,17 +38,17 @@ namespace System
     {
         public SystemException(): base()
         {
-            //new global::System.SystemException();
+            //add anything required
         }
 
         public SystemException(string message): base(message)
         {
-            //new global::System.SystemException(message);
+            //add anything required
         }
 
         public SystemException(string message, Exception innerException): base(message, innerException)
         {
-            //new global::System.SystemException(message, innerException);
+            //add anything required
         }
     }
 }
