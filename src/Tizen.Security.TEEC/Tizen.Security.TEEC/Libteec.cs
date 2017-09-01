@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -137,7 +138,7 @@ namespace Tizen.Security.TEEC
         public void SetData(byte[] data, int dstOffs)
         {
             if ((shm.flags & (uint)SharedMemoryFlags.Output) == 0) throw new InvalidOperationException("No write access");
-            //TODO copy data into shared memory starting at given offset
+            Marshal.Copy(data, 0, shm.buffer + dstOffs, data.Length);
         }
         /// <summary>
         /// This function makes a copy and is designed for convenient operations on small buffers.
@@ -150,7 +151,7 @@ namespace Tizen.Security.TEEC
         public void GetData(byte[] data, int srcOffs)
         {
             if ((shm.flags & (uint)SharedMemoryFlags.Input) == 0) throw new InvalidOperationException("No read access");
-            //TODO copy data from shared memory starting at given offset
+            Marshal.Copy(shm.buffer + srcOffs, data, 0, data.Length);
         }
     };
 
