@@ -41,7 +41,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Set the icon to null
+        /// Creates and initializes a new instance of MoreOptionItem class.
         /// </summary>
         public MoreOptionItem()
         {
