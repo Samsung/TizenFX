@@ -38,9 +38,11 @@ namespace Tizen.Content.Download
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <feature>http://tizen.org/feature/download</feature>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported.</exception>
         public string Title
         {
             get
@@ -70,9 +72,11 @@ namespace Tizen.Content.Download
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <feature>http://tizen.org/feature/download</feature>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported.</exception>
         public string Description
         {
             get
@@ -102,9 +106,11 @@ namespace Tizen.Content.Download
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <feature>http://tizen.org/feature/download</feature>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported.</exception>
         public NotificationType Type
         {
             get
@@ -134,12 +140,14 @@ namespace Tizen.Content.Download
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <feature>http://tizen.org/feature/download</feature>
         /// <remarks>
         /// When the notification message is clicked, the action is decided by the application control.
         /// </remarks>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported.</exception>
         public AppControl AppControlOngoing
         {
             get
@@ -169,12 +177,14 @@ namespace Tizen.Content.Download
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <feature>http://tizen.org/feature/download</feature>
         /// <remarks>
         /// When the notification message is clicked, the action is decided by the application control.
         /// </remarks>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported.</exception>
         public AppControl AppControlCompleted
         {
             get
@@ -204,12 +214,14 @@ namespace Tizen.Content.Download
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <feature>http://tizen.org/feature/download</feature>
         /// <remarks>
         /// When the notification message is clicked, the action is decided by the application control.
         /// </remarks>
         /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported.</exception>
         public AppControl AppControlFailed
         {
             get
