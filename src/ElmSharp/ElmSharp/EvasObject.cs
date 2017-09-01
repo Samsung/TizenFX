@@ -70,6 +70,7 @@ namespace ElmSharp
             protected set
             {
                 _realHandle = value;
+                Interop.Evas.evas_object_show(_realHandle);
             }
         }
 
