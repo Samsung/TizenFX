@@ -60,55 +60,55 @@ namespace Tizen.Location.Geofence
         /// Geofence manager is not initialized.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        NotInitialized = -0x02C00000 | 0x100 | 0x01,
+        NotInitialized = -0x02C10000 | 0x01,
 
         /// <summary>
         /// Invalid geofence ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        InvalidID = -0x02C00000 | 0x100 | 0x02,
+        InvalidID = -0x02C10000 | 0x02,
 
         /// <summary>
         /// Exception occurs.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        Exception = -0x02C00000 | 0x100 | 0x03,
+        Exception = -0x02C10000 | 0x03,
 
         /// <summary>
         /// Geofencing is already started.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        AlreadyStarted = -0x02C00000 | 0x100 | 0x04,
+        AlreadyStarted = -0x02C10000 | 0x04,
 
         /// <summary>
         /// Too many geofence.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        TooManyGeofence = -0x02C00000 | 0x100 | 0x05,
+        TooManyGeofence = -0x02C10000 | 0x05,
 
         /// <summary>
         /// Error in GPS, Wi-Fi, or BT.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        IPC = -0x02C00000 | 0x100 | 0x06,
+        IPC = -0x02C10000 | 0x06,
 
         /// <summary>
         /// DB error in the server side.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        DBFailed = -0x02C00000 | 0x100 | 0x07,
+        DBFailed = -0x02C10000 | 0x07,
 
         /// <summary>
         /// Access to the specified place is denied.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        PlaceAccessDenied = -0x02C00000 | 0x100 | 0x08,
+        PlaceAccessDenied = -0x02C10000 | 0x08,
 
         /// <summary>
         /// Access to the specified geofence is denied.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        GeofenceAccessDenied = -0x02C00000 | 0x100 | 0x09
+        GeofenceAccessDenied = -0x02C10000 | 0x09
     };
 
     internal class GeofenceErrorFactory
