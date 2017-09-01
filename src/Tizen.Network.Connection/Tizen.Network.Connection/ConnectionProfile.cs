@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Network.Connection
 {
     /// <summary>
-    /// This is the ConnectionProfile class. It provides event and propeties of the connection profile.
+    /// This is the ConnectionProfile class. It provides event and properties of the connection profile.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ConnectionProfile : IDisposable
@@ -32,7 +32,7 @@ namespace Tizen.Network.Connection
         private IAddressInformation IPv4;
         private IAddressInformation IPv6;
         private bool disposed = false;
-        private EventHandler _ProfileStateChanged = null;
+        private EventHandler<ProfileStateEventArgs> _ProfileStateChanged = null;
 
         private Interop.ConnectionProfile.ProfileStateChangedCallback _profileChangedCallback;
 
@@ -49,7 +49,8 @@ namespace Tizen.Network.Connection
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
-        public event EventHandler ProfileStateChanged
+        /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
+        public event EventHandler<ProfileStateEventArgs> ProfileStateChanged
         {
             add
             {

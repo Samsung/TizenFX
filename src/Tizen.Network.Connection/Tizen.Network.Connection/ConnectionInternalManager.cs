@@ -88,10 +88,10 @@ namespace Tizen.Network.Connection
         private bool disposed = false;
         private static ConnectionInternalManager s_instance = null;
 
-        private EventHandler _ConnectionTypeChanged = null;
-        private EventHandler _IPAddressChanged = null;
-        private EventHandler _EthernetCableStateChanged = null;
-        private EventHandler _ProxyAddressChanged = null;
+        private EventHandler<ConnectionTypeEventArgs> _ConnectionTypeChanged = null;
+        private EventHandler<AddressEventArgs> _IPAddressChanged = null;
+        private EventHandler<EthernetCableStateEventArgs> _EthernetCableStateChanged = null;
+        private EventHandler<AddressEventArgs> _ProxyAddressChanged = null;
 
         private Interop.Connection.ConnectionAddressChangedCallback _connectionAddressChangedCallback;
         private Interop.Connection.ConnectionTypeChangedCallback _connectionTypeChangedCallback;
@@ -153,7 +153,7 @@ namespace Tizen.Network.Connection
             return s_threadName.Value.GetHandle();
         }
 
-        internal event EventHandler ConnectionTypeChanged
+        internal event EventHandler<ConnectionTypeEventArgs> ConnectionTypeChanged
         {
             add
             {
@@ -202,7 +202,7 @@ namespace Tizen.Network.Connection
             }
         }
 
-        internal event EventHandler EthernetCableStateChanged
+        internal event EventHandler<EthernetCableStateEventArgs> EthernetCableStateChanged
         {
             add
             {
@@ -250,7 +250,7 @@ namespace Tizen.Network.Connection
             }
         }
 
-        internal event EventHandler IPAddressChanged
+        internal event EventHandler<AddressEventArgs> IPAddressChanged
         {
             add
             {
@@ -303,7 +303,7 @@ namespace Tizen.Network.Connection
             }
         }
 
-        internal event EventHandler ProxyAddressChanged
+        internal event EventHandler<AddressEventArgs> ProxyAddressChanged
         {
             add
             {
