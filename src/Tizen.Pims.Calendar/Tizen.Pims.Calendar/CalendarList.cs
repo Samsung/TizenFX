@@ -74,7 +74,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Destory CalendarList resource.
+        /// Destroy CalendarList resource.
         /// </summary>
         ~CalendarList()
         {

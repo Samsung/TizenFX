@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 
 namespace Tizen.Pims.Calendar
 {
@@ -31,8 +30,11 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// The paramter which data is combinded(Value string like id=value&amp;time=value&amp;tick=value&amp;unit=value&amp;type=value)
+        /// The parameter which data is combinded.
         /// </summary>
+        /// <value>
+        /// The combination of reminder data(Value string like id=value&amp;time=value&amp;tick=value&amp;unit=value&amp;type=value)
+        /// </value>
         public string Param
         {
             get;

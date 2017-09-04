@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Calendar
 {
@@ -42,7 +41,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Destory CalendarManager resource.
+        /// Destroy CalendarManager resource.
         /// </summary>
         ~CalendarManager()
         {
