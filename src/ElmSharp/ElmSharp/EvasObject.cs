@@ -216,7 +216,7 @@ namespace ElmSharp
             remove
             {
                 _renderPost -= value;
-                if (_renderPost?.GetInvocationList().Length == 0)
+                if (_renderPost == null)
                 {
                     Interop.Evas.evas_event_callback_del(Interop.Evas.evas_object_evas_get(RealHandle), Interop.Evas.ObjectCallbackType.RenderPost, _renderPostCallback);
                     _renderPostCallback = null;
