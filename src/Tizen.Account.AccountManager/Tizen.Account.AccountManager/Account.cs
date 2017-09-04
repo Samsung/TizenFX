@@ -27,6 +27,11 @@ namespace Tizen.Account.AccountManager
     {
         private readonly SafeAccountHandle _handle;
 
+	/// <summary>
+	/// Account constructor.
+	/// </summary>
+	/// <since_tizen> 4 </since_tizen>
+	/// <param name="handle"> The account handle.</param>
         public Account(SafeAccountHandle handle)
         {
             _handle = handle;
@@ -607,16 +612,11 @@ namespace Tizen.Account.AccountManager
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (!disposing)
             {
-                //if (_handle != IntPtr.Zero)
-                //{
-                //    _handle = IntPtr.Zero;
-                //}
-                //_handle.Dispose();
-                GC.SuppressFinalize(this);
+                _handle.Dispose();
             }
         }
     }

@@ -96,7 +96,7 @@ namespace Tizen.Account.AccountManager
         Idle,
 
         /// <summary>
-        /// Acount sync supported and sync status is running.
+        /// Account sync supported and sync status is running.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Running
