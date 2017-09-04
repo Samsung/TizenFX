@@ -91,7 +91,7 @@ internal static partial class Interop
         /// </summary>
         //TEEC_Result TEEC_OpenSession(TEEC_Context *context, TEEC_Session *session, const TEEC_UUID *destination, uint connectionMethod, const void *connectionData, TEEC_Operation *operation, uint *returnOrigin);
         [DllImport(Libraries.Libteec, EntryPoint = "TEEC_OpenSession", CallingConvention = CallingConvention.Cdecl)]
-        static public extern int OpenSession(ref TEEC_Context context, ref TEEC_Session session, TEEC_UUID destination, uint connectionMethod, byte[] connectionData, ref TEEC_Operation operation, out uint returnOrigin);
+        static public extern int OpenSession(ref TEEC_Context context, ref TEEC_Session session, ref TEEC_UUID destination, uint connectionMethod, byte[] connectionData, ref TEEC_Operation operation, out uint returnOrigin);
 
         /// <summary>
         /// This function closes a session which has been opened with a trusted application.

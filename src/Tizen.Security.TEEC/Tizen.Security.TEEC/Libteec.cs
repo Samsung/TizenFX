@@ -311,11 +311,11 @@ namespace Tizen.Security.TEEC
 
         internal void Open(Guid destination, uint loginMethod, byte[] connectionData, Parameter[] paramlist)
         {
-            Interop.TEEC_UUID uuid = new Interop.TEEC_UUID();
+            Interop.TEEC_UUID uuid = Interop.TEEC_UUID.ToTeecUuid(destination);
             Interop.TEEC_Operation op = new Interop.TEEC_Operation();
             uint ro;
 
-            int ret = Interop.Libteec.OpenSession(ref context, ref session, uuid, loginMethod, connectionData, ref op, out ro);
+            int ret = Interop.Libteec.OpenSession(ref context, ref session, ref uuid, loginMethod, connectionData, ref op, out ro);
             //MAYBE map origin of return code to specyfic Exception
             Interop.CheckNThrowException(ret, string.Format("OpenSession('{0}')", destination));
         }

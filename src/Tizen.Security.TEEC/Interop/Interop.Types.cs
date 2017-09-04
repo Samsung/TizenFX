@@ -16,6 +16,8 @@
 
 
 using System;
+using System.IO;
+using System.Text;
 using System.Runtime.InteropServices;
 
 internal static partial class Interop
@@ -40,6 +42,18 @@ internal static partial class Interop
         public UInt16 timeHiAndVersion;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
         public byte[] clockSeqAndNode;
+
+        internal static TEEC_UUID ToTeecUuid(Guid guid)
+        {
+            TEEC_UUID uuid = new TEEC_UUID();
+            byte[] bin = guid.ToByteArray();
+            uuid.timeLow = BitConverter.ToUInt32(bin, 0);
+            uuid.timeMid = BitConverter.ToUInt16(bin, 4);
+            uuid.timeHiAndVersion = BitConverter.ToUInt16(bin, 6);
+            uuid.clockSeqAndNode = new byte[8];
+            Array.Copy(bin, 8, uuid.clockSeqAndNode, 0, 8);
+            return uuid;
+        }
     }
 
     [StructLayout(LayoutKind.Sequential)]
