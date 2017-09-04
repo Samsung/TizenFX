@@ -16,6 +16,8 @@
 
 using System;
 using System.Diagnostics;
+using System.Linq;
+using System.Collections.Generic;
 using InteropSource = Interop.MediaVision.MediaSource;
 
 namespace Tizen.Multimedia.Vision
@@ -75,7 +77,7 @@ namespace Tizen.Multimedia.Vision
         {
         }
 
-        private static void FillBuffer(IntPtr handle, byte[] buffer, uint width, uint height, Colorspace colorspace)
+        private static void FillBuffer(IntPtr handle, byte[] buffer, uint width, uint height, ColorSpace colorSpace)
         {
             Debug.Assert(handle != IntPtr.Zero);
 
@@ -89,34 +91,33 @@ namespace Tizen.Multimedia.Vision
                 throw new ArgumentException("Buffer.Length is zero.", nameof(buffer));
             }
 
-            if (colorspace == Colorspace.Invalid)
-            {
-                throw new ArgumentException($"color space must not be {Colorspace.Invalid}.", nameof(colorspace));
-            }
+            ValidationUtil.ValidateEnum(typeof(ColorSpace), colorSpace, nameof(colorSpace));
 
-            ValidationUtil.ValidateEnum(typeof(Colorspace), colorspace, nameof(colorspace));
-
-            InteropSource.FillBuffer(handle, buffer, buffer.Length, width, height, colorspace).
+            InteropSource.FillBuffer(handle, buffer, buffer.Length, width, height, colorSpace.ToVisionColorSpace()).
                 Validate("Failed to fill buffer");
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MediaVisionSource"/> class based on the buffer and <see cref="Colorspace"/>.
+        /// Initializes a new instance of the <see cref="MediaVisionSource"/> class based on the buffer and <see cref="ColorSpace"/>.
         /// </summary>
         /// <param name="buffer">The buffer of image data.</param>
         /// <param name="width">The width of image.</param>
         /// <param name="height">The height of image.</param>
-        /// <param name="colorspace">The image <see cref="Colorspace"/>.</param>
-        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <param name="colorSpace">The image <see cref="ColorSpace"/>.</param>
+        /// <exception cref="NotSupportedException">
+        ///     The feature is not supported.\n
+        ///     -or-\n
+        ///     <paramref name="colorSpace"/> is not supported.
+        /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="buffer"/> has no element.(The length is zero.)\n
         ///     -or-\n
-        ///     <paramref name="colorspace"/> is invalid.
+        ///     <paramref name="colorSpace"/> is invalid.
         /// </exception>
         /// <since_tizen> 3</since_tizen>
-        public MediaVisionSource(byte[] buffer, uint width, uint height, Colorspace colorspace)
-            : this(handle => FillBuffer(handle, buffer, width, height, colorspace))
+        public MediaVisionSource(byte[] buffer, uint width, uint height, ColorSpace colorSpace)
+            : this(handle => FillBuffer(handle, buffer, width, height, colorSpace))
         {
         }
 
@@ -148,6 +149,15 @@ namespace Tizen.Multimedia.Vision
                 }
                 return _buffer;
             }
+        }
+
+        /// <summary>
+        /// Gets MediaVision's supported ColorSpace state.
+        /// true if supported, otherwise false.
+        /// </summary>
+        public static bool IsSupportedColorSpace(ColorSpace colorSpace)
+        {
+            return SupportedColorSpaces.Contains(colorSpace);
         }
 
         /// <summary>
@@ -183,24 +193,36 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets <see cref="Colorspace"/> of the media source.
+        /// Gets <see cref="ColorSpace"/> of the media source.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaVisionSource"/> has already been disposed of.</exception>
         /// <since_tizen> 3</since_tizen>
-        public Colorspace Colorspace
+        public ColorSpace Colorspace
         {
             get
             {
-                Colorspace colorspace = Colorspace.Invalid;
-                var ret = InteropSource.GetColorspace(Handle, out colorspace);
+                VisionColorSpace visionColorSpace;
+
+                var ret = InteropSource.GetColorspace(Handle, out visionColorSpace);
                 MultimediaDebug.AssertNoError(ret);
-                return colorspace;
+                return visionColorSpace.ToCommonColorSpace();
             }
         }
 
         /// <summary>
-        /// Releases all resources used by the <see cref="MediaVisionSource"/> object.
+        /// Gets the supported colorspaces for <see cref="MediaVisionSource"/>.
         /// </summary>
+        public static IEnumerable<ColorSpace> SupportedColorSpaces
+        {
+            get
+            {
+                foreach (VisionColorSpace value in Enum.GetValues(typeof(VisionColorSpace)))
+                {
+                    yield return value.ToCommonColorSpace();
+                }
+            }
+        }
+
         public void Dispose()
         {
             Dispose(true);
