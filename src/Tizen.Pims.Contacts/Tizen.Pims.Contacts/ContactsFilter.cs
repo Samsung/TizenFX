@@ -49,6 +49,7 @@ namespace Tizen.Pims.Contacts
             error = Interop.Filter.ContactsFilterAddStr(_filterHandle, propertyId, matchType, matchValue);
             if ((int)ContactsError.None != error)
             {
+                Interop.Filter.ContactsFilterDestroy(_filterHandle);
                 Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
@@ -77,6 +78,7 @@ namespace Tizen.Pims.Contacts
             error = Interop.Filter.ContactsFilterAddInt(_filterHandle, propertyId, matchType, matchValue);
             if ((int)ContactsError.None != error)
             {
+                Interop.Filter.ContactsFilterDestroy(_filterHandle);
                 Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
@@ -105,6 +107,7 @@ namespace Tizen.Pims.Contacts
             error = Interop.Filter.ContactsFilterAddLli(_filterHandle, propertyId, matchType, matchValue);
             if ((int)ContactsError.None != error)
             {
+                Interop.Filter.ContactsFilterDestroy(_filterHandle);
                 Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
@@ -133,6 +136,7 @@ namespace Tizen.Pims.Contacts
             error = Interop.Filter.ContactsFilterAddDouble(_filterHandle, propertyId, matchType, matchValue);
             if ((int)ContactsError.None != error)
             {
+                Interop.Filter.ContactsFilterDestroy(_filterHandle);
                 Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
@@ -160,6 +164,7 @@ namespace Tizen.Pims.Contacts
             error = Interop.Filter.ContactsFilterAddBool(_filterHandle, propertyId, matchValue);
             if ((int)ContactsError.None != error)
             {
+                Interop.Filter.ContactsFilterDestroy(_filterHandle);
                 Log.Error(Globals.LogTag, "ContactsFilter Failed with error " + error);
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
