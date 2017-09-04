@@ -81,7 +81,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Get localTime
         /// </summary>
-        /// <value>The localtime</value>
+        /// <value>The Localtime</value>
         public DateTime LocalTime
         {
             get;
@@ -110,8 +110,18 @@ namespace Tizen.Pims.Calendar
                 return LocalTime.CompareTo(other.LocalTime);
         }
 
-        public bool Equals(CalendarTime other)
+        /// <summary>
+        /// Equals CalendarTime
+        /// </summary>
+        /// <param name="other">The CalendarTime to be compared</param>
+        /// <returns>
+        /// A 32-bit signed integer that indicates the relative order of the objects being compared.
+        /// </returns>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        public override bool Equals(object obj)
         {
+            var other = obj as CalendarTime;
             if (_type != other._type)
             {
                 Log.Error(Globals.LogTag, "Not to compare with different type");

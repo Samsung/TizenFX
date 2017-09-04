@@ -17,10 +17,10 @@
 namespace Tizen.Pims.Calendar
 {
 	/// <summary>
-    /// This class provides enumurations about calendar inforamtion.
+    /// This class provides enumurations about calendar information.
 	/// </summary>
     /// <remarks>
-    /// Most enumurations are based on vcalendar, icalendar(ver 2.0) specification.
+    /// Most enumerations are based on vcalendar, icalendar(ver 2.0) specification.
     /// https://www.ietf.org/rfc/rfc2445.txt
     /// </remarks>
 	public static class CalendarTypes
@@ -276,7 +276,7 @@ namespace Tizen.Pims.Calendar
 			/// </summary>
 			Gregorian,
 			/// <summary>
-			/// East asian lunisolar calendar
+			/// East Asian lunisolar calendar
 			/// </summary>
 			Lunisolar,
 		}

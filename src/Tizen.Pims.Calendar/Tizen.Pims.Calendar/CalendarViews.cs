@@ -62,6 +62,8 @@ namespace Tizen.Pims.Calendar
 
             internal enum Id : uint
             {
+                None,
+
                 /// book
                 BookId          = (Book|DataTypeInteger|PropertyReadOnly),
                 BookUid         = (Book|DataTypeString) + 1,
@@ -341,7 +343,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Describes properies of a Book record.
+        /// Describes properties of a Book record.
         /// </summary>
         public static class Book
         {
@@ -412,8 +414,9 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Describes properies of a Event record.
+        /// Describes properties of a Event record.
         /// </summary>
+        [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
         public static class Event
         {
             /// <summary>
@@ -659,7 +662,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Describes properies of a Todo record.
+        /// Describes properties of a Todo record.
         /// </summary>
         public static class Todo
         {
@@ -862,7 +865,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Describes properies of a Timezone record.
+        /// Describes properties of a Timezone record.
         /// </summary>
         public static class Timezone
         {
@@ -933,7 +936,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Describes properies of a Attendee record.
+        /// Describes properties of a Attendee record.
         /// </summary>
         public static class Attendee
         {
@@ -1000,7 +1003,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Describes properies of a Alarm record.
+        /// Describes properties of a Alarm record.
         /// </summary>
         public static class Alarm
         {
@@ -1043,7 +1046,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Describes properies of a InstanceUtimeBook record.
+        /// Describes properties of a InstanceUtimeBook record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class InstanceUtimeBook
@@ -1127,7 +1130,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Describes properies of a InstanceLocaltimeBook record.
+        /// Describes properties of a InstanceLocaltimeBook record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class InstanceLocaltimeBook
@@ -1215,7 +1218,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Describes properies of a InstanceUtimeBookExtended record.
+        /// Describes properties of a InstanceUtimeBookExtended record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class InstanceUtimeBookExtended
@@ -1323,7 +1326,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Describes properies of a InstanceLocaltimeBookExtended record.
+        /// Describes properties of a InstanceLocaltimeBookExtended record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class InstanceLocaltimeBookExtended
@@ -1435,7 +1438,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Describes properies of a UpdatedInfo record.
+        /// Describes properties of a UpdatedInfo record.
         /// </summary>
         /// <remarks>Read only view</remarks>
         public static class UpdatedInfo
@@ -1463,7 +1466,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Describes properies of a Extended record.
+        /// Describes properties of a Extended record.
         /// </summary>
         public static class Extended
         {

@@ -19,17 +19,18 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Diagnostics.CodeAnalysis;
 
-/// <summary>
-/// The Calendar Service API provides functions, enumerations used in the entire Content Service.
-/// </summary>
-/// <remarks>
-/// The Calendar Service API provides functions and ienumerations used in the entire Content Service.
-/// The Information about calendar items i.e. book, event, todo, alarm, attendee and extended are managed in the database
-/// and operations that involve database requires an active connection with the calendar service.
-/// </remarks>
-
 namespace Tizen.Pims.Calendar
 {
+    /// <summary>
+    /// Delegate for detecting the calendar database changes.
+    /// </summary>
+    /// <param name="uri">The record uri</param>
+    /// <remarks>
+    /// The delegate must be registered using AddDBChangedDelegate.
+    /// It's invoked when the designated view changes.
+    /// </remarks>
+    public delegate void CalendarDBChanged(string uri);
+
     /// <summary>
     /// CalendarDatabase provides methods to manage calendar information from/to the database.
     /// </summary>
@@ -38,16 +39,6 @@ namespace Tizen.Pims.Calendar
     /// </remarks>
     public class CalendarDatabase
     {
-        /// <summary>
-        /// Delegete for detecting the calendar database changes.
-        /// </summary>
-        /// <param name="uri">The record uri</param>
-        /// <remarks>
-        /// The delegate must be registered using AddDBChangedDelegate.
-        /// It's invoked when the designated view changes.
-        /// </remarks>
-        public delegate void CalendarDBChanged(string uri);
-
         private Object thisLock = new Object();
         private Dictionary<string, CalendarDBChanged> _callbackMap = new Dictionary<string, CalendarDBChanged>();
         private Dictionary<string, Interop.Database.DBChangedCallback> _delegateMap = new Dictionary<string, Interop.Database.DBChangedCallback>();
@@ -430,7 +421,7 @@ namespace Tizen.Pims.Calendar
         /// <param name="viewUri">The view URI to get records from</param>
         /// <param name="BookId">The calendar book ID to filter</param>
         /// <param name="calendarDBVersion">The calendar database version</param>
-        /// <param name="currentDBVersion"The current calendar database versio></param>
+        /// <param name="currentDBVersion">The current calendar database versio></param>
         /// <returns>
         /// The record list
         /// </returns>
@@ -518,7 +509,7 @@ namespace Tizen.Pims.Calendar
                 Log.Error(Globals.LogTag, "AddDBChangedDelegate Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
-            _callbackMap[viewUri] = callback;
+            _callbackMap[viewUri] += callback;
             _delegateMap[viewUri] = _dbChangedDelegate;
         }
 
@@ -539,7 +530,7 @@ namespace Tizen.Pims.Calendar
                 Log.Error(Globals.LogTag, "RemoveDBChangedDelegate Failed with error " + error);
                 throw CalendarErrorFactory.GetException(error);
             }
-            _callbackMap.Remove(viewUri);
+            _callbackMap[viewUri] -= callback;
             _delegateMap.Remove(viewUri);
         }
 

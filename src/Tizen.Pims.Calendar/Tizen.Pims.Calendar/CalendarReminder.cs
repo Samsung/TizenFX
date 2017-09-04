@@ -52,6 +52,7 @@ namespace Tizen.Pims.Calendar
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 #endregion
 
@@ -78,7 +79,6 @@ namespace Tizen.Pims.Calendar
                     if (CalendarError.None != (CalendarError)error)
                     {
                         Log.Error(Globals.LogTag, "Add reminder Failed with error " + error);
-                        throw CalendarErrorFactory.GetException(error);
                     }
                 }
                 s_reminderAlerted += value;
@@ -96,7 +96,6 @@ namespace Tizen.Pims.Calendar
                     if (CalendarError.None != (CalendarError)error)
                     {
                         Log.Error(Globals.LogTag, "Remove reminder Failed with error " + error);
-                        throw CalendarErrorFactory.GetException(error);
                     }
                 }
             }

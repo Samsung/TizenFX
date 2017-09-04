@@ -267,6 +267,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Dispose
         /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)

@@ -22,6 +22,7 @@ namespace Tizen.Pims.Calendar
     /// Parsing vcalendar file callback function.
     /// </summary>
     /// <param name="record">The record</param>
+    /// <returns></returns>
     public delegate bool ParseCallback(CalendarRecord record);
 
     /// <summary>
@@ -76,7 +77,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Parse vcalendar file with foreach
+        /// Parse vcalendar file with ForEach
         /// </summary>
         /// <param name="path">The file path of the vCalendar stream file</param>
         /// <param name="callback">he callback function to invoke</param>
@@ -95,7 +96,7 @@ namespace Tizen.Pims.Calendar
             error = Interop.Vcalendar.ParseForEach(path, cb, IntPtr.Zero);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "Parse foreach Vcalendar Failed [" + error + "]");
+                Log.Error(Globals.LogTag, "Parse ForEach Vcalendar Failed [" + error + "]");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
