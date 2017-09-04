@@ -24,58 +24,42 @@ namespace Tizen.Multimedia
     {
         internal static void ThrowIfError(int errorCode, string msg = null)
         {
-            AudioIOError code = (AudioIOError)errorCode;
-            // 현재는 에러코드 최상위 exception으로 전달, 추후 상황에 맞게 케이스 처리해야 함.
-
-            msg = (msg == null ? "" : msg + " ") + $": { code }";
-
-            if (code > 0)
+            if (errorCode >= 0)
             {
-                Log.Info("Audio", "Code > 0, no error!!!!");
+                Log.Info(nameof(AudioIOUtil), "No error.");
                 return;
             }
 
+            AudioIOError code = (AudioIOError)errorCode;
+
+            msg = $"{(msg == null ? "" : msg + " : ")}{ code }";
+
             switch (code)
             {
-                case AudioIOError.None:
-                    break;
                 case AudioIOError.OutOfMemory:
-                    Log.Info("Audio", "OutOfMemoryException");
                     throw new OutOfMemoryException();
+
                 case AudioIOError.InvalidParameter:
-                    Log.Info("Audio", "ArgumentException");
                     throw new ArgumentException(msg);
-                case AudioIOError.InvalidOperation:
-                    throw new InvalidOperationException(msg);
+
+                case AudioIOError.DevicePolicyRestriction:
                 case AudioIOError.PermissionDenied:
-                    Log.Info("Audio", "Permission Denied Error");
-                    throw new InvalidOperationException(msg);
+                    throw new UnauthorizedAccessException(msg);
+
+                case AudioIOError.SoundPolicy:
+                    throw new AudioPolicyException(msg);
+
+                case AudioIOError.NotSupportedType:
                 case AudioIOError.NotSupported:
                     throw new NotSupportedException(msg);
-                case AudioIOError.DevicePolicyRestriction:
-                    Log.Info("Audio", "Device_policy_restriction");
-                    throw new Exception("Device_policy_restriction");
+
                 case AudioIOError.DeviceNotOpened:
-                    Log.Info("Audio", "Device Not Opened Error");
-                    throw new Exception("Device Not Opened Error");
                 case AudioIOError.DeviceNotClosed:
-                    Log.Info("Audio", "Device Not Closed Error");
-                    throw new Exception("Device Not Closed Error");
                 case AudioIOError.InvalidBuffer:
-                    Log.Info("Audio", "Invalid Buffer Error");
-                    throw new InvalidOperationException(msg);
-                case AudioIOError.SoundPolicy:
-                    Log.Info("Audio", "Sound Policy Error");
-                    throw new Exception(msg);
+                case AudioIOError.InvalidOperation:
                 case AudioIOError.InvalidState:
-                    Log.Info("Audio", "Invalid State Error");
-                    throw new InvalidOperationException(msg);
-                case AudioIOError.NotSupportedType:
-                    Log.Info("Audio", "Not supported stream type Error");
-                    throw new NotSupportedException(msg);
                 default:
-                    Log.Info("Audio", "Unknown Exception" + code);
-                    throw new Exception(msg);
+                    throw new InvalidOperationException(msg);
             }
         }
 
