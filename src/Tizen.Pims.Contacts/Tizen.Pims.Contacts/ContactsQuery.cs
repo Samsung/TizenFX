@@ -106,6 +106,11 @@ namespace Tizen.Pims.Contacts
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetProjection(uint[] propertyIdArray)
         {
+            if (propertyIdArray == null)
+            {
+                throw new ArgumentException("Invalid Parameters Provided");
+            }
+
             int error = Interop.Query.ContactsQuerySetProjection(_queryHandle, propertyIdArray, propertyIdArray.Length);
             if ((int)ContactsError.None != error)
             {
@@ -118,7 +123,6 @@ namespace Tizen.Pims.Contacts
         /// Sets the "distinct" option for projection.
         /// </summary>
         /// <param name="set">If true it is set, otherwise if false it is unset</param>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetDistinct(bool set)
         {
             int error = Interop.Query.ContactsQuerySetDistinct(_queryHandle, set);
