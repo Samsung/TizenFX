@@ -237,6 +237,7 @@ namespace Tizen.Multimedia
 
             AudioIOUtil.ThrowIfError(AudioInput.Resume(_handle));
         }
+
         /// <summary>
         /// Flushes and discards buffered audio data from the input stream.
         /// </summary>

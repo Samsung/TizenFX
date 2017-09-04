@@ -22,7 +22,7 @@ namespace Tizen.Multimedia
     {
         Mono = 0x80,
         Stereo
-    };
+    }
 
     internal enum AudioIOError
     {
@@ -76,5 +76,4 @@ namespace Tizen.Multimedia
         /// </summary>
         S16Le
     }
-
 }
