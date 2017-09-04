@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="../../build/common.props" />
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
@@ -11,5 +10,4 @@
     <ProjectReference Include="..\Tizen.System.Information\Tizen.System.Information.csproj" />
   </ItemGroup>
 
-  <Import Project="../../build/common.targets" />
 </Project>
