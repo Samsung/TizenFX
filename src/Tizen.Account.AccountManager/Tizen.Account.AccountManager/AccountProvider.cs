@@ -69,7 +69,7 @@ namespace Tizen.Account.AccountManager
         }
 
         /// <summary>
-        /// Serviceprovider ID of the account provider.
+        /// ServiceProvider ID of the account provider.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string ServiceProviderId
@@ -365,7 +365,7 @@ namespace Tizen.Account.AccountManager
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (!disposing)
             {

@@ -20,7 +20,7 @@ using Tizen;
 namespace Tizen.Account.AccountManager
 {
     /// <summary>
-    /// Enumeration for the types of error occured, if any.
+    /// Enumeration for the types of error occurred, if any.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum AccountError
@@ -45,7 +45,7 @@ namespace Tizen.Account.AccountManager
         /// Same user name exists in your application.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        Duplcated = -0x01000000 | 0x01,
+        Duplicated = -0x01000000 | 0x01,
         /// <summary>
         /// Empty data.
         /// </summary>

@@ -200,7 +200,7 @@ namespace Tizen.Account.AccountManager
         /// <returns>The AccountProvider instance associated with the given application ID.</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
         /// <feature>http://tizen.org/feature/account</feature>
-        /// <exception cref="InvalidOperationException">In case of any DB error or record not found for given appid.</exception>
+        /// <exception cref="InvalidOperationException">In case of any DB error or record not found for given appId.</exception>
         /// <exception cref="ArgumentException"> In case of an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException"> In case of privilege not defined.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -262,6 +262,7 @@ namespace Tizen.Account.AccountManager
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="account">New Account instance to be added.</param>
+        /// <returns>The account ID of the account instance.</returns>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
         /// <privilege>http://tizen.org/privilege/account.write </privilege>
         /// <feature>http://tizen.org/feature/account</feature>
@@ -590,9 +591,9 @@ namespace Tizen.Account.AccountManager
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// ContentUpdate event is triggered if the MediaInformaion updated/deleted or new information is inserted.
+        /// ContentUpdate event is triggered if the MediaInformation updated/deleted or new information is inserted.
         /// </remarks>
-        /// <param name="sender"></param>
+        /// <param name="sender">An object that contains information about sender</param>
         /// <param name="e">A ContentUpdatedEventArgs object that contains information about the update operation.</param>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
         /// <feature>http://tizen.org/feature/account</feature>
