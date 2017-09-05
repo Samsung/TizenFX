@@ -27,8 +27,8 @@ namespace Tizen.Location
         /// <param name="state"> An enumeration of type BoundaryState.</param>
         /// <param name="latitude">The latitude value [-90.0 ~ 90.0] (degrees).</param>
         /// <param name="longitude">The longitude value [-180.0 ~ 180.0] (degrees).</param>
-        /// <param name="altitude"> The altitude value.</param>
-        /// <param name="timestamp"> The timestamp value.</param>
+        /// <param name="altitude">The altitude value.</param>
+        /// <param name="timestamp">The timestamp value.</param>
         public ZoneChangedEventArgs(BoundaryState state, double latitude, double longitude, double altitude, DateTime timestamp)
         {
             BoundState = state;

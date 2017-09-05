@@ -28,7 +28,7 @@ namespace Tizen.Location
     }
 
     /// <summary>
-    /// This class contains the functionality for obtaining the geographical infomation and setting the boundary condition.
+    /// This class contains the functionality for obtaining the geographical information and setting the boundary condition.
     /// Notifications on events like service becoming enabled or disabled, new position data being available,
     /// and others can also be acquired.
     /// </summary>
@@ -68,7 +68,8 @@ namespace Tizen.Location
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="locationType"> The back-end positioning method to be used for LBS.</param>
-        /// <feature>http://tizen.org/feature/location</feature>
+        /// <feature>http://tizen.org/feature/location.gps</feature>
+        /// <feature>http://tizen.org/feature/location.wps</feature>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
@@ -488,7 +489,7 @@ namespace Tizen.Location
                 int ret = Interop.Locator.GetLocation(_handle, out altitude, out latitude, out longitude, out climb, out direction, out speed, out level, out accuracy, out vertical, out timestamp);
                 if (((LocationError)ret != LocationError.None))
                 {
-                    Log.Error(Globals.LogTag, "Error in get current location infomation," + (LocationError)ret);
+                    Log.Error(Globals.LogTag, "Error in get current location information," + (LocationError)ret);
                     throw LocationErrorFactory.ThrowLocationException(ret);
                 }
             }

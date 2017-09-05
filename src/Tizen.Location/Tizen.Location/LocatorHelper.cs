@@ -18,6 +18,10 @@ using System;
 
 namespace Tizen.Location
 {
+    /// <summary>
+    /// This class contains the functionality for obtaining the geographical positioning type.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class LocatorHelper
     {
         /// <summary>
@@ -25,7 +29,11 @@ namespace Tizen.Location
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="locationType">The back-end positioning method to be used for LBS.</param>
+        /// <feature>http://tizen.org/feature/location.gps</feature>
+        /// <feature>http://tizen.org/feature/location.wps</feature>
         /// <returns>Returns a boolean value indicating whether or not the specified method is supported.</returns>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public static bool IsSupportedType(LocationType locationType)
         {
             bool status = Interop.LocatorHelper.IsSupported((int)locationType);
@@ -38,6 +46,8 @@ namespace Tizen.Location
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="locationType">The back-end positioning method to be used for LBS.</param>
+        /// <feature>http://tizen.org/feature/location.gps</feature>
+        /// <feature>http://tizen.org/feature/location.wps</feature>
         /// <returns>Returns a boolean value indicating whether or not the specified method is supported.</returns>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
@@ -53,6 +63,30 @@ namespace Tizen.Location
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
             return status;
+        }
+
+        /// <summary>
+        /// Sets the specified geographical positioning type.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/location.enable</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <param name="locationType">The back-end positioning method to be used for LBS.</param>
+        /// <param name="status">The location setting value.</param>
+        /// <feature>http://tizen.org/feature/location.gps</feature>
+        /// <feature>http://tizen.org/feature/location.wps</feature>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
+        public static void EnableType(LocationType locationType, bool status)
+        {
+            Log.Info(Globals.LogTag, "Sets the location setting status");
+            int ret = Interop.LocatorHelper.EnableType((int)locationType, status);
+            if (((LocationError)ret != LocationError.None))
+            {
+                Log.Error(Globals.LogTag, "Error Sets the Location type," + (LocationError)ret);
+                throw LocationErrorFactory.ThrowLocationException(ret);
+            }
         }
     }
 }
