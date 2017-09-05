@@ -24,15 +24,15 @@ namespace Tizen.Security.SecureRepository
     public enum Permission : int
     {
         /// <summary>
-        /// Clear permissions
+        /// Clear permissions.
         /// </summary>
         None = 0x00,
         /// <summary>
-        /// Eead allowed
+        /// Read allowed.
         /// </summary>
         Read = 0x01,
         /// <summary>
-        /// Remove allowed
+        /// Remove allowed.
         /// </summary>
         Remove = 0x02
     }

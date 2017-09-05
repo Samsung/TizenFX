@@ -17,13 +17,13 @@
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// A class holding parameters for RSA signature algorithm.
+    /// A class for holding parameters for the RSA signature algorithm.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class RsaSignatureParameters : SignatureParameters
     {
         /// <summary>
-        /// A default constructor
+        /// A default constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>The RsaPadding is set to RsaPaddingAlgorithm.None.</remarks>
@@ -32,7 +32,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         }
 
         /// <summary>
-        /// RSA padding algorithm
+        /// The RSA padding algorithm.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public RsaPaddingAlgorithm RsaPadding

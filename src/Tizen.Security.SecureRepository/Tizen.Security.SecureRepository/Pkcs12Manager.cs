@@ -20,29 +20,29 @@ using static Interop;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// This class provides the methods storing, retrieving Pkcs12 contents.
+    /// This class provides the methods for storing and retrieving the Pkcs12 contents.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Pkcs12Manager : Manager
     {
         /// <summary>
-        /// Gets Pkcs12 contents from secure repository.
+        /// Gets Pkcs12 contents from the secure repository.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of data to retrieve.</param>
         /// <param name="keyPassword">
         /// The password used in decrypting a private key value. If password of
-        /// keyPolicy is provided in SavePkcs12(), the same password should be provided
+        /// keyPolicy is provided in SavePkcs12(), the same password should be provided.
         /// </param>
         /// <param name="cerificatePassword">
         /// The password used in decrypting a certificate value. If password of
         /// certificatePolicy is provided in SavePkcs12(), the same password should be
-        /// provided
+        /// provided.
         /// </param>
         /// <returns>A Pkcs12 data specified by alias.</returns>
-        /// <exception cref="ArgumentNullException">Alias argument is null.</exception>
+        /// <exception cref="ArgumentNullException">The alias argument is null.</exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is invalid format.
+        /// The alias argument is in the invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Pkcs12 does not exist with the alias.
@@ -87,7 +87,7 @@ namespace Tizen.Security.SecureRepository
         /// </param>
         /// <exception cref="ArgumentNullException">Any of argument is null.</exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is invalid format. Pkcs12 argument is invalid format.
+        /// The alias argument is in the invalid format. Pkcs12 argument is in the invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Pkcs12 with alias does already exist.

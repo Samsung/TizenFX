@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// This class provides the methods encrypting and decrypting data.
+    /// This class provides the methods for encrypting and decrypting data.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Cipher
@@ -46,13 +46,13 @@ namespace Tizen.Security.SecureRepository.Crypto
         }
 
         /// <summary>
-        /// Decrypts data using selected key and algorithm.
+        /// Decrypts data using the selected key and the algorithm.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="keyAlias">Alias of the key to be used for decryption.</param>
         /// <param name="password">
         /// The password used in decrypting a key value. If password of policy is
-        /// provided in SaveKey(), the same password should be provided
+        /// provided in SaveKey(), the same password should be provided.
         /// </param>
         /// <param name="cipherText">
         /// Data to be decrypted (some algorithms may require additional information
@@ -60,15 +60,15 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// </param>
         /// <returns>Decrypted data.</returns>
         /// <exception cref="ArgumentNullException">
-        /// keyAlias or cipherText is null.
+        /// The keyAlias or cipherText is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// Mandatory algorithm parameter is missing or invalid.
-        /// Optional algorithm parameter is invalid.
+        /// The mandatory algorithm parameter is missing or invalid.
+        /// The optional algorithm parameter is invalid.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Key-protecting password isn't matched.
-        /// Key does not exist with keyAlias.
+        /// The key-protecting password isn't matched.
+        /// The key does not exist with the keyAlias.
         /// </exception>
         /// <remarks>
         /// The key type specified by keyAlias should be compatible with the algorithm
@@ -109,25 +109,25 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// provided in SaveKey(), the same password should be provided.
         /// </param>
         /// <param name="plainText">
-        /// Data to be encrypted. In case of AES algorithm there are no restrictions on
-        /// the size of data. For RSA the size must be smaller or equal to (key_size_in
-        /// bytes - 42). Example: for 1024 RSA key the maximum data size is
+        /// Data to be encrypted. In case of the AES algorithm, there are no restrictions on
+        /// the size of data. For RSA, the size must be smaller or equal to (key_size_in
+        /// bytes - 42). Example: For 1024 RSA key, the maximum data size is
         /// 1024/8 - 42 = 86.
         /// </param>
         /// <returns>Encrypted data.</returns>
         /// <exception cref="ArgumentNullException">
-        /// keyAlias or plainText is null.
+        /// The keyAlias or plainText is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// Mandatory algorithm parameter is missing or invalid.
-        /// Optional algorithm parameter is invalid.
+        /// The mandatory algorithm parameter is missing or invalid.
+        /// The optional algorithm parameter is invalid.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Key-protecting password isn't matched.
-        /// Key does not exist with keyAlias.
+        /// The key-protecting password isn't matched.
+        /// The key does not exist with the keyAlias.
         /// </exception>
         /// <remarks>
-        /// The key type specified by keyAlias should be compatible with the algorithm
+        /// The key type specified by the keyAlias should be compatible with the algorithm
         /// specified in Parameters.
         /// </remarks>
         public byte[] Encrypt(string keyAlias, string password, byte[] plainText)

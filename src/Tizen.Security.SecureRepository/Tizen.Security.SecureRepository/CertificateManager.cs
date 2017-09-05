@@ -27,10 +27,10 @@ namespace Tizen.Security.SecureRepository
     public class CertificateManager : Manager
     {
         /// <summary>
-        /// Gets a certificate from secure repository.
+        /// Gets a certificate from the secure repository.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="alias">The name of a certificate to retrieve.</param>
+        /// <param name="alias">The name of a certificate to be retrieved.</param>
         /// <param name="password">
         /// The password used in decrypting a certificate value. If password of
         /// policy is provided in SaveCertificate(), the same password should be
@@ -38,13 +38,13 @@ namespace Tizen.Security.SecureRepository
         /// </param>
         /// <returns>A certificate specified by alias.</returns>
         /// <exception cref="ArgumentNullException">
-        /// Alias argument is null
+        /// The alias argument is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is invalid format.
+        /// The alias argument is in an invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Certificate does not exist with the alias or certificate-protecting
+        /// The certificate does not exist with the alias or certificate-protecting
         /// password isn't matched.
         /// </exception>
         static public Certificate Get(string alias, string password)
@@ -69,10 +69,10 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Gets all alias of certificates which the client can access.
+        /// Gets all aliases of certificates, which the client can access.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>All alias of certificates which the client can access.</returns>
+        /// <returns>All aliases of certificates, which the client can access.</returns>
         /// <exception cref="ArgumentException">No alias to get.</exception>
         static public IEnumerable<string> GetAliases()
         {
@@ -93,7 +93,7 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Stores a certificate inside secure repository based on the provided policy.
+        /// Stores a certificate inside the secure repository based on the provided policy.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of a certificate to be stored.</param>
@@ -105,10 +105,10 @@ namespace Tizen.Security.SecureRepository
         /// Any of argument is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is invalid format. cert argument is invalid format.
+        /// The alias argument is in the invalid format. cert argument is in the invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Certificate with alias does already exist.
+        /// The certificate with alias already exist.
         /// </exception>
         static public void Save(string alias, Certificate cert, Policy policy)
         {
@@ -131,22 +131,22 @@ namespace Tizen.Security.SecureRepository
         /// </param>
         /// <returns>A newly created certificate chain.</returns>
         /// <exception cref="ArgumentNullException">
-        /// certificate argument is null.
+        /// The certificate argument is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// Some of certificate in arguments is invalid.
+        /// Some of the certificates in arguments are invalid.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Some of certificate in arguments is expired or not valid yet.
+        /// Some of the certificates in arguments are expired or not valid yet.
         /// Certificate cannot build chain.
-        /// Root certificate is not in trusted system certificate store.
+        /// The root certificate is not in the trusted system certificate store.
         /// </exception>
         /// <remarks>
         /// The trusted root certificate of the chain should exist in the system's
         /// certificate storage.
         /// </remarks>
         /// <remarks>
-        /// The trusted root certificate of the chain in system's certificate storage
+        /// The trusted root certificate of the chain in the system's certificate storage
         /// is added to the certificate chain.
         /// </remarks>
         static public IEnumerable<Certificate> GetCertificateChain(
@@ -201,18 +201,18 @@ namespace Tizen.Security.SecureRepository
         /// </param>
         /// <returns>A newly created certificate chain.</returns>
         /// <exception cref="ArgumentNullException">
-        /// certificate argument is null.
+        /// The certificate argument is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// Some of certificate in arguments is invalid.
+        /// Some of the certificates in arguments are invalid.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Some of certificate in arguments is expired or not valid yet.
+        /// Some of the certificates in arguments are expired or not valid yet.
         /// Certificate cannot build chain.
-        /// Root certificate is not in trusted system certificate store.
+        /// The root certificate is not in the trusted system certificate store.
         /// </exception>
         /// <remarks>
-        /// The trusted root certificate of the chain in system's certificate storage
+        /// The trusted root certificate of the chain in the system's certificate storage
         /// is added to the certificate chain.
         /// </remarks>
         static public IEnumerable<Certificate> GetCertificateChain(
@@ -256,21 +256,21 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Perform OCSP which checks certificate is whether revoked or not.
+        /// Perform OCSP, which checks whether the certificate is revoked or not.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="certificateChain">
-        /// Valid certificate chain to perform OCSP check.
+        /// Valid certificate chain to perform the OCSP check.
         /// </param>
-        /// <returns>A status result of OCSP check.</returns>
+        /// <returns>A status result of the OCSP check.</returns>
         /// <exception cref="ArgumentNullException">
-        /// certificateChain argument is null.
+        /// The certificateChain argument is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// certificateChain is not valid chain or certificate.
+        /// The certificateChain is not valid chain or certificate.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// some of certificate in chain is expired or not valid yet.
+        /// Some of the certificates in chain are expired or not valid yet.
         /// </exception>
         static public OcspStatus CheckOcsp(IEnumerable<Certificate> certificateChain)
         {

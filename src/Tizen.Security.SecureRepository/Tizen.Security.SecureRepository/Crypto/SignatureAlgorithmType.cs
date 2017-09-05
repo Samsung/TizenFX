@@ -23,15 +23,15 @@ namespace Tizen.Security.SecureRepository.Crypto
     public enum SignatureAlgorithmType : int
     {
         /// <summary>
-        /// RSA signature algorithm
+        /// The RSA signature algorithm.
         /// </summary>
         Rsa = 0x01,
         /// <summary>
-        /// DSA signature algorithm
+        /// The DSA signature algorithm.
         /// </summary>
         Dsa,
         /// <summary>
-        /// ECDSA signature algorithm
+        /// The ECDSA signature algorithm.
         /// </summary>
         Ecdsa
     }

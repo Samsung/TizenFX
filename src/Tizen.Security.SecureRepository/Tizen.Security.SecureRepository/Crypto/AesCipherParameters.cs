@@ -17,7 +17,7 @@
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// A abstract class holding parameters for AES algorithm.
+    /// An abstract class for holding parameters for the AES algorithm.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public abstract class AesCipherParameters : CipherParameters

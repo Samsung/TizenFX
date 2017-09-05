@@ -41,7 +41,7 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="password">Used to encrypt data secure repository.</param>
-        /// <param name="extractable">If true key may be extracted from secure repository.</param>
+        /// <param name="extractable">If true, key may be extracted from the secure repository.</param>
         public Policy(String password, bool extractable)
         {
             Password = password;
@@ -50,7 +50,7 @@ namespace Tizen.Security.SecureRepository
 
         /// <summary>
         /// Used to encrypt data secure repository. If it is not null, the data
-        /// (or key, or certificate) is stored encrypted with this password inside secure repository
+        /// (or key, or certificate) is stored encrypted with this password inside secure repository.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public String Password
@@ -59,7 +59,7 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// If true key may be extracted from secure repository.
+        /// If true, key may be extracted from the secure repository.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool Extractable

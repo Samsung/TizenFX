@@ -21,19 +21,19 @@ using static Interop;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// Class that represents a certificate.
+    /// The class that represents a certificate.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Certificate
     {
         /// <summary>
-        /// Load Certificate from the given file path.
+        /// Loads Certificate from the given file path.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="filePath">The path of certificate file to be loaded.</param>
         /// <returns>Loaded certificate class instance.</returns>
         /// <exception cref="ArgumentNullException">
-        /// filePath should not be null
+        /// The filePath should not be null
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Invalid certificate file format. Provided file path does not exist or

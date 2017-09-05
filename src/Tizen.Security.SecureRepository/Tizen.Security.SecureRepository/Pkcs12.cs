@@ -22,7 +22,7 @@ using static Interop;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// Class that represents a PKCS#12 contents.
+    /// The class that represents a PKCS#12 contents.
     /// It has a private key or its certificate or all the members of a chain of trust.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -31,17 +31,17 @@ namespace Tizen.Security.SecureRepository
         private SafeCertificateListHandle _certChainHandle = null;
 
         /// <summary>
-        /// Load Pkcs12 from the given PKCS#12 file path.
+        /// Loads the Pkcs12 from the given PKCS#12 file path.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="filePath">The path of PKCS12 file to be loaded.</param>
+        /// <param name="filePath">The path of the PKCS12 file to be loaded.</param>
         /// <param name="filePassword">The passphrase used to decrypt the PCKS12 file.
-        /// If PKCS12 file is not encrypted, passphrase can be null.</param>
-        /// <exception cref="ArgumentNullException">filePath is null.</exception>
+        /// If the PKCS12 file is not encrypted, passphrase can be null.</param>
+        /// <exception cref="ArgumentNullException">The filePath is null.</exception>
         /// <exception cref="InvalidOperationException">
         /// No file on filePath.
         /// No permission to access file.
-        /// File is invalid PKCS12 format.
+        /// File is in the invalid PKCS12 format.
         /// File cannot be extracted with provided filePassword.
         /// </exception>
         static public Pkcs12 Load(string filePath, string filePassword)
@@ -83,7 +83,7 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="privateKey">A private key.</param>
-        /// <param name="certificate">A certificate corresponding the private key</param>
+        /// <param name="certificate">A certificate corresponding the private key.</param>
         /// <param name="caChain">
         /// A certificate chain of CA(Certificate Authority) that issued the certificate.
         /// </param>
@@ -159,7 +159,7 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// A certificate corresponding the private key.
+        /// A certificate corresponding to the private key.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Certificate Certificate

@@ -21,7 +21,7 @@ using static Interop;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// Class that represents a key.
+    /// The class that represents a key.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Key

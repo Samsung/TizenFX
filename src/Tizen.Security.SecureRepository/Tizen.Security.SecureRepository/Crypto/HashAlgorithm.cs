@@ -17,29 +17,29 @@
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// Enumeration for hash algorithm
+    /// Enumeration for the hash algorithm.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum HashAlgorithm : int
     {
         /// <summary>
-        ///  No Hash Algorithm
+        /// The no hash algorithm.
         /// </summary>
         None = 0,
         /// <summary>
-        /// Hash Algorithm SHA1
+        /// The hash algorithm SHA1.
         /// </summary>
         Sha1,
         /// <summary>
-        /// Hash Algorithm SHA256
+        /// The hash algorithm SHA256.
         /// </summary>
         Sha256,
         /// <summary>
-        /// Hash Algorithm SHA384
+        /// The hash algorithm SHA384.
         /// </summary>
         Sha384,
         /// <summary>
-        /// Hash Algorithm SHA512
+        /// The hash algorithm SHA512.
         /// </summary>
         Sha512
     }

@@ -23,45 +23,45 @@ using System.Threading.Tasks;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// Enumeration for OCSP status.
+    /// Enumeration for the OCSP status.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum OcspStatus : int
     {
         /// <summary>
-        /// OCSP status is good
+        /// The OCSP status is good.
         /// </summary>
         Good = 0x00,
         /// <summary>
-        /// The certificate is revoked
+        /// The certificate is revoked.
         /// </summary>
         Revoked = 0x01,
         /// <summary>
-        /// Unknown error
+        /// Unknown error.
         /// </summary>
         Unknown = 0x02,
         /// <summary>
-        /// The certificate does not provide OCSP extension
+        /// The certificate does not provide the OCSP extension.
         /// </summary>
         Unsupported = 0x03,
         /// <summary>
-        /// The invalid URL in certificate OCSP extension
+        /// The invalid URL in the certificate OCSP extension.
         /// </summary>
         InvalidUrl = 0x04,
         /// <summary>
-        /// The invalid response from OCSP server
+        /// The invalid response from the OCSP server.
         /// </summary>
         InvalidResponse = 0x05,
         /// <summary>
-        /// OCSP remote server error
+        /// The OCSP remote server error.
         /// </summary>
         RemoteError = 0x06,
         /// <summary>
-        /// Network connection error
+        /// The Network connection error.
         /// </summary>
         NetworkError = 0x07,
         /// <summary>
-        /// Internal error
+        /// An Internal error.
         /// </summary>
         InternalError = 0x08
     }
