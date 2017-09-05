@@ -21,15 +21,6 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Pims.Contacts
 {
-    /// <summary>
-    /// Delegate for detecting the contacts database changes
-    /// </summary>
-    /// <param name="uri">The contacts view URI</param>
-    /// <remarks>
-    /// The delegate must be registered using AddDBChangedDelegate.
-    /// It's invoked when the designated view changes.
-    /// </remarks>
-    public delegate void ContactsDBChanged(string uri);
 
     /// <summary>
     /// ContactsDatabase provides methods to manage contacts information from/to the database.
@@ -42,7 +33,7 @@ namespace Tizen.Pims.Contacts
         private Object thisLock = new Object();
         private Interop.Database.ContactsDBStatusChangedCallback _contactsDBStatusChangedCallback;
         private EventHandler<DBStatusChangedEventArgs> _dbStatusChanged;
-        private Dictionary<string, ContactsDBChanged> _delegateMap = new Dictionary<string, ContactsDBChanged>();
+        private Dictionary<string, EventHandler<DBChangedEventArgs>> _delegateMap = new Dictionary<string, EventHandler<DBChangedEventArgs>>();
         private Dictionary<string, Interop.Database.ContactsDBChangedCallback> _callbackMap = new Dictionary<string, Interop.Database.ContactsDBChangedCallback>();
         private Interop.Database.ContactsDBChangedCallback _dbChangedDelegate;
 
@@ -721,15 +712,16 @@ namespace Tizen.Pims.Contacts
         /// Registers a callback function to be invoked when a record changes.
         /// </summary>
         /// <param name="viewUri">The view URI of records whose changes are monitored</param>
-        /// <param name="callback">The callback function to register</param>
+        /// <param name="DBChanged">The EventHandler to register</param>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
-        public void AddDBChangedDelegate(string viewUri, ContactsDBChanged callback)
+        public void AddDBChangedDelegate(string viewUri, EventHandler<DBChangedEventArgs> DBChanged)
         {
             if (_callbackMap[viewUri] == null)
             {
                 _callbackMap[viewUri] = (string uri, IntPtr userData) =>
                 {
-                    _delegateMap[uri](uri);
+                    DBChangedEventArgs args = new DBChangedEventArgs(uri);
+                    _delegateMap[uri]?.Invoke(this, args);
                 };
 
                 int error = Interop.Database.AddChangedCb(viewUri, _callbackMap[viewUri], IntPtr.Zero);
@@ -740,18 +732,18 @@ namespace Tizen.Pims.Contacts
                 }
             }
 
-            _delegateMap[viewUri] += callback;
+            _delegateMap[viewUri] += DBChanged;
         }
 
         /// <summary>
         /// Deregisters a callback function.
         /// </summary>
         /// <param name="viewUri">The view URI of records whose changes are monitored</param>
-        /// <param name="callback">The callback function to register</param>
+        /// <param name="DBChanged">The EventHandler to deregister</param>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
-        public void RemoveDBChangedDelegate(string viewUri, ContactsDBChanged callback)
+        public void RemoveDBChangedDelegate(string viewUri, EventHandler<DBChangedEventArgs> DBChanged)
         {
-            _delegateMap[viewUri] -= callback;
+            _delegateMap[viewUri] -= DBChanged;
 
             if (_delegateMap[viewUri] == null)
             {

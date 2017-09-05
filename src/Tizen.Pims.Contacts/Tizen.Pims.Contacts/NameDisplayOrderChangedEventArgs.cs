@@ -25,7 +25,7 @@ namespace Tizen.Pims.Contacts
     {
         internal NameDisplayOrderChangedEventArgs(ContactDisplayOrder displayOrder)
         {
-            this.NameDisplayOrder = displayOrder;
+            NameDisplayOrder = displayOrder;
         }
 
         /// <summary>

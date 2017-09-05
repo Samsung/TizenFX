@@ -24,7 +24,7 @@ namespace Tizen.Pims.Contacts
     /// Delegate for getting a record parsed from a vCard file
     /// </summary>
     /// <param name="record">The contacts record</param>
-    /// <returns></returns>
+    /// <returns> true to continue with the next iteration of the loop, otherwise false to break out of the loop</returns>
     public delegate bool ParseCallback(ContactsRecord record);
 
     /// <summary>
