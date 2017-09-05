@@ -26,7 +26,7 @@ namespace Tizen.Pims.Contacts
     {
         internal DBStatusChangedEventArgs(DBStatus status)
         {
-            this.Status = status;
+            Status = status;
         }
 
         /// <summary>

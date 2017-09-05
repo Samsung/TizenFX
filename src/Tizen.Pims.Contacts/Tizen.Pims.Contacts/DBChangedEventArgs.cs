@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,19 +19,19 @@ using System;
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
-    /// Event arguments passed when setting value of contacts name sorting order is changed
+    /// Event arguments passed when contacts database is changed
     /// </summary>
-    public class NameSortingOrderChangedEventArgs : EventArgs
+    public class DBChangedEventArgs : EventArgs
     {
-        internal NameSortingOrderChangedEventArgs(ContactSortingOrder SortingOrder)
+        internal DBChangedEventArgs(string viewUri)
         {
-            NameSortingOrder = SortingOrder;
+            ViewUri = viewUri;
         }
 
         /// <summary>
-        /// A setting value of contacts name sorting order
+        /// The contacts view URI changed.
         /// </summary>
-        public ContactSortingOrder NameSortingOrder
+        public string ViewUri
         {
             get;
             internal set;
