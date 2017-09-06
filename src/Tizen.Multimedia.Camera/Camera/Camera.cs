@@ -374,7 +374,7 @@ namespace Tizen.Multimedia
         /// Get/set various camera display properties.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public CameraDisplaySettings DisplaySettings{ get; }
+        public CameraDisplaySettings DisplaySettings { get; }
 
         private Display _display;
 
@@ -441,6 +441,11 @@ namespace Tizen.Multimedia
             ValidationUtil.ValidateEnum(typeof(DisplayType), type, nameof(type));
 
             return CameraDisplay.SetTarget(GetHandle(), type, evasObject);
+        }
+
+        CameraError IDisplayable<CameraError>.ApplyEcoreWindow(IntPtr windowHandle)
+        {
+            throw new NotSupportedException("Camera does not support NUI.Window display.");
         }
 
         /// <summary>

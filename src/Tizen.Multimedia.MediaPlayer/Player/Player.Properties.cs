@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using NativeDisplay = Interop.Display;
 using static Interop;
 
 namespace Tizen.Multimedia
@@ -215,8 +216,7 @@ namespace Tizen.Multimedia
         {
             if (display == null)
             {
-                Log.Info(PlayerLog.Tag, "set display to none");
-                return NativePlayer.SetDisplay(Handle, PlayerDisplayType.None, IntPtr.Zero);
+                return NativeDisplay.SetDisplay(Handle, PlayerDisplayType.None, IntPtr.Zero);
             }
 
             return display.ApplyTo(this);
@@ -269,8 +269,15 @@ namespace Tizen.Multimedia
             Debug.Assert(Enum.IsDefined(typeof(DisplayType), type));
             Debug.Assert(type != DisplayType.None);
 
-            return NativePlayer.SetDisplay(Handle,
+            return NativeDisplay.SetDisplay(Handle,
                 type == DisplayType.Overlay ? PlayerDisplayType.Overlay : PlayerDisplayType.Evas, evasObject);
+        }
+
+        PlayerErrorCode IDisplayable<PlayerErrorCode>.ApplyEcoreWindow(IntPtr windowHandle)
+        {
+            Debug.Assert(IsDisposed == false);
+
+            return NativeDisplay.SetEcoreDisplay(Handle, PlayerDisplayType.Overlay, windowHandle);
         }
         #endregion
 
