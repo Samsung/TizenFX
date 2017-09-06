@@ -1041,4 +1041,254 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         public bool Completed { get; }
     }
+
+    /// <summary>
+    /// An extended EventArgs class which contains the connection state and address of the remote Bluetooth device.
+    /// </summary>
+    public class ConnectionRequestedEventArgs : EventArgs
+    {
+        private string _address;
+
+        internal ConnectionRequestedEventArgs(string address)
+        {
+            _address = address;
+        }
+
+        /// <summary>
+        /// The address.
+        /// </summary>
+        public string Address
+        {
+            get
+            {
+                return _address;
+            }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class which contains the file transfer progress state, file transfer progress by percent.
+    /// </summary>
+    public class TransferProgressEventArgs : EventArgs
+    {
+        private string _file;
+        private long _size;
+        private int _percent;
+
+        internal TransferProgressEventArgs(string file, long size, int percent)
+        {
+            _file = file;
+            _size = size;
+            _percent = percent;
+        }
+
+        /// <summary>
+        /// The File name.
+        /// </summary>
+        public string File
+        {
+            get
+            {
+                return _file;
+            }
+        }
+
+        /// <summary>
+        /// The File size.
+        /// </summary>
+        public long Size
+        {
+            get
+            {
+                return _size;
+            }
+        }
+
+        /// <summary>
+        /// The File transfer percent.
+        /// </summary>
+        public int Percent
+        {
+            get
+            {
+                return _percent;
+            }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class which contains the file transfer finished state and file state.
+    /// </summary>
+    public class TransferFinishedEventArgs : EventArgs
+    {
+        private string _file;
+        private long _size;
+        private int _result;
+
+        internal TransferFinishedEventArgs(int result, string file, long size)
+        {
+            _file = file;
+            _size = size;
+            _result = result;
+        }
+
+        /// <summary>
+        /// The File name.
+        /// </summary>
+        public string File
+        {
+            get
+            {
+                return _file;
+            }
+        }
+
+        /// <summary>
+        /// The File size.
+        /// </summary>
+        public long Size
+        {
+            get
+            {
+                return _size;
+            }
+        }
+
+        /// <summary>
+        /// The return value.
+        /// </summary>
+        public int Result
+        {
+            get
+            {
+                return _result;
+            }
+        }
+    }
+
+    /// <Summary>
+    /// An extended EventArgs class which contains the Push Request respond state
+    /// </Summary>
+
+    public class PushRespondedEventArgs : EventArgs
+    {
+        int _result;
+        string _address;
+
+        internal PushRespondedEventArgs(int result, string address)
+        {
+            _address = address;
+            _result = result;
+        }
+
+        /// <summary>
+        /// The return value.
+        /// </summary>
+        public int Result
+        {
+            get
+            {
+                return _result;
+            }
+        }
+
+        /// <summary>
+        /// The address.
+        /// </summary>
+        public string Address
+        {
+            get
+            {
+                return _address;
+            }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class which contains the file push progress state, push progress by percent.
+    /// </summary>
+    public class PushProgressEventArgs : EventArgs
+    {
+        private string _file;
+        private long _size;
+        private int _percent;
+
+        internal PushProgressEventArgs(string file, long size, int percent)
+        {
+            _file = file;
+            _size = size;
+            _percent = percent;
+        }
+
+        /// <summary>
+        /// The File name.
+        /// </summary>
+        public string File
+        {
+            get
+            {
+                return _file;
+            }
+        }
+
+        /// <summary>
+        /// The File size.
+        /// </summary>
+        public long Size
+        {
+            get
+            {
+                return _size;
+            }
+        }
+
+        /// <summary>
+        /// The File transfer percent.
+        /// </summary>
+        public int Percent
+        {
+            get
+            {
+                return _percent;
+            }
+        }
+    }
+
+    /// <Summary>
+    /// An extended EventArgs class which contains the Push Request respond state
+    /// </Summary>
+
+    public class PushFinishedEventArgs : EventArgs
+    {
+        int _result;
+        string _address;
+
+        internal PushFinishedEventArgs(int result, string address)
+        {
+            _address = address;
+            _result = result;
+        }
+
+        /// <summary>
+        /// The return value.
+        /// </summary>
+        public int Result
+        {
+            get
+            {
+                return _result;
+            }
+        }
+
+        /// <summary>
+        /// The address.
+        /// </summary>
+        public string Address
+        {
+            get
+            {
+                return _address;
+            }
+        }
+    }
 }

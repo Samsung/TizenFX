@@ -26,6 +26,8 @@ namespace Tizen.Network.Bluetooth
         internal static bool IsInitialize = false;
         internal static bool IsAudioInitialize = false;
         internal static bool IsHidInitialize = false;
+        internal static bool IsOppServerInitialized = false;
+        internal static bool IsOppClientInitialized = false;
     }
 
     internal partial class BluetoothAdapterImpl : IDisposable

@@ -672,6 +672,12 @@ namespace Tizen.Network.Bluetooth
                 profile = (hid as T);
             }
 
+            else if (type.Equals("Tizen.Network.Bluetooth.BluetoothOppClient"))
+            {
+                BluetoothOppClient oppClient = new BluetoothOppClient();
+                profile = (oppClient as T);
+            }
+
             if (profile != null)
             {
                 profile.RemoteAddress = RemoteDeviceAddress;

@@ -65,6 +65,23 @@ internal static partial class Interop
         internal delegate void HidConnectionStateChangedCallback(int result, bool connected, string deviceAddress, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ConnectionRequestedCallback(string deviceAddress, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PushRequestedCallback(string file, long size, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void TransferProgressCallback(string file, long size, int percent, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void TransferFinishedCallback(int result, string file, long size, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PushRespondedCallback(int result, string deviceAddress, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PushProgressCallback(string file, long size, int percent, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PushFinishedCallback(int result, string deviceAddress, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void TargetConnectionStateChangedCallback(bool connected, string deviceAddress, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void EqualizerStateChangedCallback(int equalizer, IntPtr userData);
@@ -369,6 +386,48 @@ internal static partial class Interop
         internal static extern int Connect(string deviceAddress);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_hid_host_disconnect")]
         internal static extern int Disconnect(string deviceAddress);
+
+        // Bluetooth OPP
+        // Opp Server
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_server_initialize")]
+        internal static extern int InitializeOppServer(string deviceAddress, PushRequestedCallback pushRequestedCb, IntPtr userData);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_server_deinitialize")]
+        internal static extern int DinitializeOppServer();
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_server_initialize_by_connection_request")]
+        internal static extern int InitializeOppServerCustom(string deviceAddress, ConnectionRequestedCallback connectionRequestedCb, IntPtr userData);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_server_accept")]
+        internal static extern int OppServerAcceptPush(TransferProgressCallback transferProgressCb, TransferFinishedCallback transferFinishedCb, string name, IntPtr userData, out int transferId);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_server_reject")]
+        internal static extern int OppServerRejectPush();
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_server_cancel_transfer")]
+        internal static extern int OppServerCancelTransfer(int transferId);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_server_set_destination")]
+        internal static extern int OppServerSetDestinationPath(string path);
+
+        // Opp Client
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_client_initialize")]
+        internal static extern int InitializeOppClient();
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_client_dinitialize")]
+        internal static extern int DeinitializeOppClient();
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_client_add_file")]
+        internal static extern int OppClientAddFile(string filePath);
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_client_clear_files")]
+        internal static extern int OppClientClearFiles();
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_client_cancel_push")]
+        internal static extern int OppClientCancelPush();
+
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_client_push_files")]
+        internal static extern int OppClientPushFile(string filePath, PushRespondedCallback pushRespondedCb, PushProgressCallback pushProgressCb, PushFinishedCallback pushFinishedCb, IntPtr userData);
 
         //Bluetooth Avrcp
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_avrcp_target_initialize")]
