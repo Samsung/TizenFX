@@ -14,24 +14,22 @@
  * limitations under the License.
  */
 
-using System;
-
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for Audio Codec.
+    /// Specifies audio codecs for <see cref="Recorder"/>.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <seealso cref="Recorder.GetSupportedAudioCodecs"/>
     public enum RecorderAudioCodec
     {
         /// <summary>
-        /// Disable Audio track.
+        /// Disabled.
         /// </summary>
-        Disable = -1,
+        None = -1,
         /// <summary>
         /// AMR codec.
         /// </summary>
-        Amr = 0,
+        Amr,
         /// <summary>
         /// AAC codec.
         /// </summary>
@@ -51,9 +49,8 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for Audio capture devices.
+    /// Specifies audio capture devices for <see cref="Recorder"/>.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
     public enum RecorderAudioDevice
     {
         /// <summary>
@@ -67,9 +64,9 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for the file container format.
+    /// Specifies container formats for <see cref="Recorder"/>.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <seealso cref="Recorder.GetSupportedFileFormats"/>
     public enum RecorderFileFormat
     {
         /// <summary>
@@ -103,15 +100,13 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for the recorder policy.
+    /// Specifies recorder policies.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <seealso cref="Recorder.StateChanged"/>
+    /// <seealso cref="Recorder.Interrupting"/>
+    /// <seealso cref="Recorder.Interrupted"/>
     public enum RecorderPolicy
     {
-        /// <summary>
-        /// None.
-        /// </summary>
-        None = 0,
         /// <summary>
         /// Security policy.
         /// </summary>
@@ -119,13 +114,15 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Resource conflict policy.
         /// </summary>
-        ResourceConflict = 5
+        ResourceConflict
     }
 
     /// <summary>
-    /// Enumeration for the recording limit.
+    /// Specifies types of the recording limit for <see cref="Recorder"/>.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <seealso cref="Recorder.SizeLimit"/>
+    /// <seealso cref="Recorder.TimeLimit"/>
+    /// <seealso cref="Recorder.RecordingLimitReached"/>
     public enum RecordingLimitType
     {
         /// <summary>
@@ -143,19 +140,14 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for recorder states.
+    /// Specifies states for <see cref="Recorder"/>.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
     public enum RecorderState
     {
         /// <summary>
-        /// Recorder is not created.
-        /// </summary>
-        None,
-        /// <summary>
         /// Recorder is created, but not prepared.
         /// </summary>
-        Created,
+        Idle = 1,
         /// <summary>
         /// Recorder is ready to record. In case of video recorder,
         /// preview display will be shown.
@@ -172,9 +164,9 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for video codec.
+    /// Specifies video codecs for <see cref="VideoRecorder"/>.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <seealso cref="VideoRecorder.GetSupportedVideoCodecs"/>
     public enum RecorderVideoCodec
     {
         /// <summary>
@@ -196,22 +188,71 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for recorder failure error.
+    /// Specifies errors for <see cref="Recorder"/>.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum RecorderErrorCode
+    /// <seealso cref="Recorder.ErrorOccurred"/>
+    public enum RecorderError
     {
+        /// <summary>
+        /// ESD situation.
+        /// </summary>
+        Esd = RecorderErrorCode.Esd,
+
         /// <summary>
         /// Device Error.
         /// </summary>
-        DeviceError = RecorderError.DeviceError,
+        DeviceError = RecorderErrorCode.DeviceError,
+
         /// <summary>
         /// Internal error.
         /// </summary>
-        InvalidOperation = RecorderError.InvalidOperation,
+        InternalError = RecorderErrorCode.InvalidOperation,
+
         /// <summary>
         /// Out of memory.
         /// </summary>
-        OutOfMemory = RecorderError.OutOfMemory
+        OutOfMemory = RecorderErrorCode.OutOfMemory,
+
+        /// <summary>
+        /// Out of storage or the storage has been removed while recording.
+        /// </summary>
+        OutOfStorage = RecorderErrorCode.OutOfStorage
+    }
+
+    /// <summary>
+    /// Specifies recorder types for <see cref="Recorder.DeviceStateChanged"/>.
+    /// </summary>
+    public enum RecorderType
+    {
+        /// <summary>
+        /// Audio recorder.
+        /// </summary>
+        Audio,
+
+        /// <summary>
+        /// Video recorder.
+        /// </summary>
+        Video
+    }
+
+    /// <summary>
+    /// Specifies recorder device states for <see cref="Recorder.DeviceStateChanged"/>.
+    /// </summary>
+    public enum RecorderDeviceState
+    {
+        /// <summary>
+        /// No recording in progress.
+        /// </summary>
+        Idle,
+
+        /// <summary>
+        /// Recording in progress.
+        /// </summary>
+        Recording,
+
+        /// <summary>
+        /// All recordings are paused.
+        /// </summary>
+        Paused
     }
 }

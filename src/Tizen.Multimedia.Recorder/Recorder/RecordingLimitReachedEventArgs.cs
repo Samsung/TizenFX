@@ -19,19 +19,23 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class containing details about the recording limit.
+    /// Provides data for the <see cref="Recorder.RecordingLimitReached"/> event.
     /// </summary>
     public class RecordingLimitReachedEventArgs : EventArgs
     {
-        internal RecordingLimitReachedEventArgs(RecordingLimitType type)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RecordingLimitReachedEventArgs"/> class
+        /// with the specified type.
+        /// </summary>
+        /// <param name="type">The type of the limit.</param>
+        public RecordingLimitReachedEventArgs(RecordingLimitType type)
         {
             Type = type;
         }
 
         /// <summary>
-        /// The limitation type.
+        /// Gets the type of the limit.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         public RecordingLimitType Type { get; }
     }
 }

@@ -20,100 +20,100 @@ using Tizen.Multimedia;
 
 internal static partial class Interop
 {
-    internal static partial class RecorderSettings
+    internal static partial class Recorder
     {
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_get_audio_channel")]
-        internal static extern RecorderError GetAudioChannel(IntPtr handle, out int channelCount);
+        internal static extern RecorderErrorCode GetAudioChannel(RecorderHandle handle, out int channelCount);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_set_audio_channel")]
-        internal static extern RecorderError SetAudioChannel(IntPtr handle, int channelCount);
+        internal static extern RecorderErrorCode SetAudioChannel(RecorderHandle handle, int channelCount);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_get_audio_device")]
-        internal static extern RecorderError GetAudioDevice(IntPtr handle, out RecorderAudioDevice device);
+        internal static extern RecorderErrorCode GetAudioDevice(RecorderHandle handle, out RecorderAudioDevice device);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_set_audio_device")]
-        internal static extern RecorderError SetAudioDevice(IntPtr handle, RecorderAudioDevice device);
+        internal static extern RecorderErrorCode SetAudioDevice(RecorderHandle handle, RecorderAudioDevice device);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_get_audio_level")]
-        internal static extern RecorderError GetAudioLevel(IntPtr handle, out double dB);
+        internal static extern RecorderErrorCode GetAudioLevel(RecorderHandle handle, out double dB);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_get_audio_samplerate")]
-        internal static extern RecorderError GetAudioSampleRate(IntPtr handle, out int sampleRate);
+        internal static extern RecorderErrorCode GetAudioSampleRate(RecorderHandle handle, out int sampleRate);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_set_audio_samplerate")]
-        internal static extern RecorderError SetAudioSampleRate(IntPtr handle, int sampleRate);
+        internal static extern RecorderErrorCode SetAudioSampleRate(RecorderHandle handle, int sampleRate);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_get_audio_encoder_bitrate")]
-        internal static extern RecorderError GetAudioEncoderBitrate(IntPtr handle, out int bitRate);
+        internal static extern RecorderErrorCode GetAudioEncoderBitrate(RecorderHandle handle, out int bitRate);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_set_audio_encoder_bitrate")]
-        internal static extern RecorderError SetAudioEncoderBitrate(IntPtr handle, int bitRate);
+        internal static extern RecorderErrorCode SetAudioEncoderBitrate(RecorderHandle handle, int bitRate);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_get_video_encoder_bitrate")]
-        internal static extern RecorderError GetVideoEncoderBitrate(IntPtr handle, out int bitRate);
+        internal static extern RecorderErrorCode GetVideoEncoderBitrate(RecorderHandle handle, out int bitRate);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_set_video_encoder_bitrate")]
-        internal static extern RecorderError SetVideoEncoderBitrate(IntPtr handle, int bitRate);
+        internal static extern RecorderErrorCode SetVideoEncoderBitrate(RecorderHandle handle, int bitRate);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_get_audio_encoder")]
-        internal static extern RecorderError GetAudioEncoder(IntPtr handle, out RecorderAudioCodec codec);
+        internal static extern RecorderErrorCode GetAudioEncoder(RecorderHandle handle, out RecorderAudioCodec codec);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_audio_encoder")]
-        internal static extern RecorderError SetAudioEncoder(IntPtr handle, RecorderAudioCodec codec);
+        internal static extern RecorderErrorCode SetAudioEncoder(RecorderHandle handle, RecorderAudioCodec codec);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_get_video_encoder")]
-        internal static extern RecorderError GetVideoEncoder(IntPtr handle, out RecorderVideoCodec codec);
+        internal static extern RecorderErrorCode GetVideoEncoder(RecorderHandle handle, out RecorderVideoCodec codec);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_video_encoder")]
-        internal static extern RecorderError SetVideoEncoder(IntPtr handle, RecorderVideoCodec codec);
+        internal static extern RecorderErrorCode SetVideoEncoder(RecorderHandle handle, RecorderVideoCodec codec);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_get_file_format")]
-        internal static extern RecorderError GetFileFormat(IntPtr handle, out RecorderFileFormat format);
+        internal static extern RecorderErrorCode GetFileFormat(RecorderHandle handle, out RecorderFileFormat format);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_file_format")]
-        internal static extern RecorderError SetFileFormat(IntPtr handle, RecorderFileFormat format);
+        internal static extern RecorderErrorCode SetFileFormat(RecorderHandle handle, RecorderFileFormat format);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_get_filename")]
-        internal static extern RecorderError GetFileName(IntPtr handle, out IntPtr path);
+        internal static extern RecorderErrorCode GetFileName(RecorderHandle handle, out IntPtr path);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_filename")]
-        internal static extern RecorderError SetFileName(IntPtr handle, string path);
+        internal static extern RecorderErrorCode SetFileName(RecorderHandle handle, string path);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_get_size_limit")]
-        internal static extern RecorderError GetSizeLimit(IntPtr handle, out int kbyte);
+        internal static extern RecorderErrorCode GetSizeLimit(RecorderHandle handle, out int kbyte);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_set_size_limit")]
-        internal static extern RecorderError SetSizeLimit(IntPtr handle, int kbyte);
+        internal static extern RecorderErrorCode SetSizeLimit(RecorderHandle handle, int kbyte);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_get_time_limit")]
-        internal static extern RecorderError GetTimeLimit(IntPtr handle, out int second);
+        internal static extern RecorderErrorCode GetTimeLimit(RecorderHandle handle, out int second);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_set_time_limit")]
-        internal static extern RecorderError SetTimeLimit(IntPtr handle, int second);
+        internal static extern RecorderErrorCode SetTimeLimit(RecorderHandle handle, int second);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_is_muted")]
         [return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool GetMute(IntPtr handle);
+        internal static extern bool GetMute(RecorderHandle handle);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_set_mute")]
-        internal static extern RecorderError SetMute(IntPtr handle, bool enable);
+        internal static extern RecorderErrorCode SetMute(RecorderHandle handle, bool enable);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_get_recording_motion_rate")]
-        internal static extern RecorderError GetMotionRate(IntPtr handle, out double motionRate);
+        internal static extern RecorderErrorCode GetMotionRate(RecorderHandle handle, out double motionRate);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_set_recording_motion_rate")]
-        internal static extern RecorderError SetMotionRate(IntPtr handle, double motionRate);
+        internal static extern RecorderErrorCode SetMotionRate(RecorderHandle handle, double motionRate);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_get_orientation_tag")]
-        internal static extern RecorderError GetOrientationTag(IntPtr handle, out Rotation orientation);
+        internal static extern RecorderErrorCode GetOrientationTag(RecorderHandle handle, out Rotation orientation);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_attr_set_orientation_tag")]
-        internal static extern RecorderError SetOrientationTag(IntPtr handle, Rotation orientation);
+        internal static extern RecorderErrorCode SetOrientationTag(RecorderHandle handle, Rotation orientation);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_get_video_resolution")]
-        internal static extern RecorderError GetVideoResolution(IntPtr handle, out int width, out int height);
+        internal static extern RecorderErrorCode GetVideoResolution(RecorderHandle handle, out int width, out int height);
 
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_video_resolution")]
-        internal static extern RecorderError SetVideoResolution(IntPtr handle, int width, int height);
+        internal static extern RecorderErrorCode SetVideoResolution(RecorderHandle handle, int width, int height);
     }
 }

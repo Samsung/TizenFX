@@ -19,31 +19,30 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides data for the <see cref="Recorder.StateChanged"/> event.
+    /// Provides data for the <see cref="Recorder.RecordingStatusChanged"/> event.
     /// </summary>
-    public class RecorderStateChangedEventArgs : EventArgs
+    public class RecordingStatusChangedEventArgs : EventArgs
     {
-        internal RecorderStateChangedEventArgs(RecorderState previous, RecorderState current, bool byPolicy)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RecordingStatusChangedEventArgs"/> class
+        /// with the specified elapsed time and file size.
+        /// </summary>
+        /// <param name="elapsedTime">The time of the recording in milliseconds.</param>
+        /// <param name="fileSize">The size of the recording in kilobytes.</param>
+        public RecordingStatusChangedEventArgs(long elapsedTime, long fileSize)
         {
-            PreviousState = previous;
-            CurrentState = current;
-            IsStateChangedByPolicy = byPolicy;
+            ElapsedTime = elapsedTime;
+            FileSize = fileSize;
         }
 
         /// <summary>
-        /// Gets the previous state of the recorder.
+        /// Gets the time of the recording in milliseconds.
         /// </summary>
-        public RecorderState PreviousState { get; }
+        public long ElapsedTime { get; }
 
         /// <summary>
-        /// Gets the current state of the recorder.
+        /// Gets the size of the recording file in kilobytes.
         /// </summary>
-        public RecorderState CurrentState { get; }
-
-        /// <summary>
-        /// Gets the value indicating whether the state is changed by policy.
-        /// </summary>
-        /// <value>true if the state changed by policy such as resource conflict or security, otherwise false.</value>
-        public bool IsStateChangedByPolicy { get; }
+        public long FileSize { get; }
     }
 }
