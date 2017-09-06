@@ -30,7 +30,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// The parameter which data is combinded.
+        /// The parameter which data is combined.
         /// </summary>
         /// <value>
         /// The combination of reminder data(Value string like id=value&amp;time=value&amp;tick=value&amp;unit=value&amp;type=value)

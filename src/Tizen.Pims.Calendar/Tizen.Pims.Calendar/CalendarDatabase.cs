@@ -421,7 +421,7 @@ namespace Tizen.Pims.Calendar
         /// <param name="viewUri">The view URI to get records from</param>
         /// <param name="BookId">The calendar book ID to filter</param>
         /// <param name="calendarDBVersion">The calendar database version</param>
-        /// <param name="currentDBVersion">The current calendar database versio></param>
+        /// <param name="currentDBVersion">The current calendar database version</param>
         /// <returns>
         /// The record list
         /// </returns>

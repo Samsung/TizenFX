@@ -22,7 +22,7 @@ namespace Tizen.Pims.Calendar
     /// Parsing vcalendar file callback function.
     /// </summary>
     /// <param name="record">The record</param>
-    /// <returns></returns>
+    /// <returns>true to continue with the next iteration of the loop, otherwise false to break out of the loop</returns>
     public delegate bool ParseCallback(CalendarRecord record);
 
     /// <summary>
