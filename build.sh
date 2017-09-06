@@ -5,7 +5,11 @@ SCRIPT_DIR=$(dirname $SCRIPT_FILE)
 
 # Properties
 OUTDIR=$SCRIPT_DIR/Artifacts
+
 NUGET_CMD="mono $SCRIPT_DIR/tools/NuGet.exe"
+MSBUILD_CMD="dotnet msbuild"
+
+RUN_BUILD="$MSBUILD_CMD $SCRIPT_DIR/build/build.proj"
 
 usage() {
   echo "Usage: $0 [options] [args]"
@@ -18,21 +22,8 @@ usage() {
   echo "        -c, --clean           Clean all artifacts"
 }
 
-dotnet_build() {
-  if [ -d /nuget ]; then
-    NUGET_SOURCE_OPT="--source /nuget"
-  fi
-  PROJ=$1; shift
-  dotnet restore $PROJ $NUGET_SOURCE_OPT
-  dotnet build $PROJ --no-restore --configuration=Release $@
-}
-
 cmd_clean() {
-  rm -fr $OUTDIR
-  LIST=$(find $SCRIPT_DIR -type d -a -name bin -o -name obj)
-  for d in $LIST; do
-    rm -fr $d
-  done
+  $RUN_BUILD /t:clean
 }
 
 cmd_build() {
@@ -40,11 +31,17 @@ cmd_build() {
     echo "No module specified."
     exit 1
   fi
-  dotnet_build $SCRIPT_DIR/src/$1 --output=$OUTDIR/bin
+  if [ -d /nuget ]; then
+    NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
+  fi
+  $RUN_BUILD /t:build /p:Project=$1 $NUGET_SOURCE_OPT
 }
 
 cmd_full_build() {
-  dotnet_build $SCRIPT_DIR/pkg/Tizen.NET.Private.sln --output=$OUTDIR/bin
+  if [ -d /nuget ]; then
+    NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
+  fi
+  $RUN_BUILD /t:build $NUGET_SOURCE_OPT
 }
 
 cmd_pack() {
@@ -59,7 +56,10 @@ cmd_pack() {
 }
 
 cmd_dummy_build() {
-  dotnet_build $SCRIPT_DIR/pkg/Tizen.NET.Dummy.csproj
+  if [ -d /nuget ]; then
+    NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
+  fi
+  $RUN_BUILD /t:builddummy $NUGET_SOURCE_OPT
 }
 
 OPTS=`getopt -o hcbfpd --long help,clean,build,full,pack,dummy -n 'build' -- "$@"`

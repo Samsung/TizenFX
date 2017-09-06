@@ -1,0 +1,20 @@
+<Project>
+
+  <PropertyGroup>
+
+    <ProjectRootDir>$(MSBuildThisFileDirectory)..\</ProjectRootDir>
+
+    <ProjectSrcDir>$(ProjectRootDir)src\</ProjectSrcDir>
+    <PackageSrcDir>$(ProjectRootDir)pkg\</PackageSrcDir>
+
+    <ToolsDir>$(ProjectRootDir)tools\</ToolsDir>
+    <GenAPIDir>$(ToolsDir)GenAPI\</GenAPIDir>
+
+    <OutputBaseDir>$(ProjectRootDir)Artifacts\</OutputBaseDir>
+    <OutputPublicDir>$(OutputBaseDir)bin\public\</OutputPublicDir>
+    <OutputPlatformDir>$(OutputBaseDir)bin\platform\</OutputPlatformDir>
+    <OutputDummyDir>$(OutputBaseDir)bin\dummy\</OutputDummyDir>
+
+  </PropertyGroup>
+
+</Project>

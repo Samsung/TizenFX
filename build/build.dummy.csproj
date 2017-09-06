@@ -2,30 +2,31 @@
 
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
 
+  <Import Project="$(MSBuildThisFileDirectory)directories.props" />
+  <Import Project="$(MSBuildThisFileDirectory)version.props" />
+
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <GenerateDependencyFile>false</GenerateDependencyFile>
-    <DummyAssemblyVersion>99.0.0</DummyAssemblyVersion>
+    <DummyAssemblyVersion>$(VersionPrefix)</DummyAssemblyVersion>
+    <BaseIntermediateOutputPath>$(OutputBaseDir)obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
 
   <!-- Properties for directories -->
   <PropertyGroup>
-    <ToolsDir>$(MSBuildThisFileDirectory)..\tools\GenAPI\</ToolsDir>
-    <GenAPISourceDir>$(MSBuildThisFileDirectory)\..\Artifacts\bin\</GenAPISourceDir>
-    <GenAPILibDir>$(MSBuildThisFileDirectory)obj\_ref_lib\</GenAPILibDir>
-    <GenAPITargetDir>$(MSBuildThisFileDirectory)obj\_ref_api\</GenAPITargetDir>
-    <DummyOutputPath>$(MSBuildThisFileDirectory)\..\Artifacts\bin_dummy</DummyOutputPath>
+    <IntermediateLibDir>$(BaseIntermediateOutputPath)_ref_lib\</IntermediateLibDir>
+    <IntermediateAPIDir>$(BaseIntermediateOutputPath)_ref_api\</IntermediateAPIDir>
   </PropertyGroup>
 
   <!-- Properties for GenAPI tool -->
   <PropertyGroup>
-    <GenAPIPath>$(ToolsDir)GenAPI.exe</GenAPIPath>
-    <GenAPICommand>dotnet $(GenAPIPath)</GenAPICommand>
+    <GenAPICommand>dotnet $(GenAPIDir)GenAPI.exe</GenAPICommand>
   </PropertyGroup>
 
   <!-- Source assemblies -->
   <ItemGroup>
-    <TizenAssemblies Include="$(GenAPISourceDir)*.dll" />
+    <TizenAssemblies Include="$(OutputPublicDir)\*.dll" />
+    <TizenAssemblies Include="$(OutputPlatformDir)\*.dll" />
   </ItemGroup>
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
@@ -38,16 +39,18 @@
     <ItemGroup>
       <ReferencePath Include="@(TizenAssemblies)" />
     </ItemGroup>
-    <MakeDir Directories="$(GenAPILibDir);$(GenAPITargetDir)" />
-    <Copy SourceFiles="@(ReferencePath)" DestinationFolder="$(GenAPILibDir)" />
+    <MakeDir Directories="$(IntermediateLibDir);$(IntermediateAPIDir)" />
+    <Copy SourceFiles="@(ReferencePath)" DestinationFolder="$(IntermediateLibDir)" />
+    <RemoveDir Directories="$(OutputDummyDir)" />
+    <MakeDir Directories="$(OutputDummyDir)" />
   </Target>
 
   <!-- Target for generating *.AssemblyInfo.cs files -->
   <Target Name="GenerateAsmInfo"
-          Inputs="@(TizenAssemblies)" Outputs="$(GenAPITargetDir)%(Filename).AssemblyInfo.cs">
+          Inputs="@(TizenAssemblies)" Outputs="$(IntermediateAPIDir)%(Filename).AssemblyInfo.cs">
 
     <PropertyGroup>
-      <GeneratedAssemblyInfoSource>$(GenAPITargetDir)%(TizenAssemblies.Filename).AssemblyInfo.cs</GeneratedAssemblyInfoSource>
+      <GeneratedAssemblyInfoSource>$(IntermediateAPIDir)%(TizenAssemblies.Filename).AssemblyInfo.cs</GeneratedAssemblyInfoSource>
     </PropertyGroup>
 
     <ItemGroup>
@@ -67,25 +70,25 @@
 
   <!-- Target for generating reference source files using GenAPI -->
   <Target Name="GenerateAPI"
-          Inputs="@(TizenAssemblies)" Outputs="$(GenAPITargetDir)%(Filename).cs">
+          Inputs="@(TizenAssemblies)" Outputs="$(IntermediateAPIDir)%(Filename).cs">
     <PropertyGroup>
-      <GeneratedReferenceAssemblySource>$(GenAPITargetDir)%(TizenAssemblies.Filename).cs</GeneratedReferenceAssemblySource>
+      <GeneratedReferenceAssemblySource>$(IntermediateAPIDir)%(TizenAssemblies.Filename).cs</GeneratedReferenceAssemblySource>
     </PropertyGroup>
 
     <Message Text="[GenAPI] %(TizenAssemblies.Filename) -> $(GeneratedReferenceAssemblySource)" Importance="High" />
 
-    <Exec Command='$(GenAPICommand) -assembly:&quot;%(TizenAssemblies.Identity)&quot; -libPath:&quot;$(GenAPILibDir)&quot; -out:&quot;$(GeneratedReferenceAssemblySource)&quot; -throw:&quot;Not Supported Feature&quot; -global' />
+    <Exec Command='$(GenAPICommand) -assembly:&quot;%(TizenAssemblies.Identity)&quot; -libPath:&quot;$(IntermediateLibDir)&quot; -out:&quot;$(GeneratedReferenceAssemblySource)&quot; -throw:&quot;Not Supported Feature&quot; -global' />
   </Target>
 
 
   <Target Name="GenerateDummy"
           DependsOnTargets="GenerateAsmInfo;GenerateAPI"
-          Inputs="@(TizenAssemblies)" Outputs="$(OutputPath)%(TizenAssemblies.Filename).dll">
+          Inputs="@(TizenAssemblies)" Outputs="$(OutputDummyDir)%(TizenAssemblies.Filename).dll">
     <PropertyGroup>
       <ThisAssemblyFilename>%(TizenAssemblies.Filename)</ThisAssemblyFilename>
-      <GeneratedAssemblyInfoSource>$(GenAPITargetDir)%(TizenAssemblies.Filename).AssemblyInfo.cs</GeneratedAssemblyInfoSource>
-      <GeneratedReferenceAssemblySource>$(GenAPITargetDir)%(TizenAssemblies.Filename).cs</GeneratedReferenceAssemblySource>
-      <GeneratedReferenceAssembly>$(OutputPath)%(TizenAssemblies.Filename).dll</GeneratedReferenceAssembly>
+      <GeneratedAssemblyInfoSource>$(IntermediateAPIDir)%(TizenAssemblies.Filename).AssemblyInfo.cs</GeneratedAssemblyInfoSource>
+      <GeneratedReferenceAssemblySource>$(IntermediateAPIDir)%(TizenAssemblies.Filename).cs</GeneratedReferenceAssemblySource>
+      <GeneratedReferenceAssembly>$(OutputDummyDir)%(TizenAssemblies.Filename).dll</GeneratedReferenceAssembly>
     </PropertyGroup>
 
     <Message Text="[Compile] %(TizenAssemblies.Filename) -> $(GeneratedReferenceAssembly)" Importance="High" />
@@ -111,14 +114,6 @@
   </Target>
 
   <Target Name="AfterBuild" DependsOnTargets="Prepare;GenerateDummy">
-    <RemoveDir Directories="$(DummyOutputPath)" />
-    <MakeDir Directories="$(DummyOutputPath)" />
-
-    <ItemGroup>
-      <TizenRefAssemblies Include="$(OutDir)/*.dll" />
-    </ItemGroup>
-
-    <Copy SourceFiles="@(TizenRefAssemblies)" DestinationFolder="$(DummyOutputPath)" />
   </Target>
 
 </Project>

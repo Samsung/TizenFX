@@ -1,0 +1,94 @@
+<Project DefaultTargets="Build">
+
+  <Import Project="$(MSBuildThisFileDirectory)directories.props" />
+
+  <!-- Common Properties -->
+  <PropertyGroup>
+    <PublicModuleListFile>$(PackageSrcDir)PublicModuleList.txt</PublicModuleListFile>
+  </PropertyGroup>
+
+  <!-- Build Properties -->
+  <PropertyGroup>
+    <Configuration>Release</Configuration>
+  </PropertyGroup>
+
+  <!-- Projects to build -->
+  <ItemGroup>
+    <ProjectToBuild Include="$(ProjectSrcDir)\$(Project)\$(Project).csproj" Condition="'$(Project)' != ''" />
+    <ProjectToBuild Include="$(ProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
+  </ItemGroup>
+
+  <!--
+    Target : Clean
+    ==============
+    Delete all artifacts,
+    including the Artifacts/ directory and the obj/ directories for all projects.
+  -->
+  <Target Name="Clean">
+
+    <ItemGroup>
+      <ProjectIntermediateAllFiles Include="$(ProjectSrcDir)**\obj\*" />
+      <ProjectIntermediateDir Include="@(ProjectIntermediateAllFiles->'%(RootDir)%(Directory)'->Distinct())" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <DirToRemove Include="$(OutputBaseDir)" />
+      <DirToRemove Include="@(ProjectIntermediateDir)" />
+    </ItemGroup>
+
+    <RemoveDir Directories="@(DirToRemove)" />
+
+  </Target>
+
+
+  <!--
+    Target : Build
+    ==============
+    Build all projects in src/ directory.
+    The output(.dll, .pdb, .xml) of the project specfied in
+    pkg/PublicModuleList.txt is copied to Artifacts/bin/public,
+    and the rest are copied to Artifacts/bin/platform.
+  -->
+  <Target Name="Build" DependsOnTargets="Clean">
+
+    <MSBuild Projects="@(ProjectToBuild)"
+             Properties="Configuration=$(Configuration);OutDir=$(OutputPlatformDir);RestoreSources=$(RestoreSources)"
+             BuildInParallel="true"
+             UseResultsCache="true"
+             Targets="Restore;Rebuild" />
+
+    <ReadLinesFromFile File="$(PublicModuleListFile)">
+      <Output TaskParameter="Lines" ItemName="PublicProject" />
+    </ReadLinesFromFile>
+
+    <ItemGroup>
+      <PlatformFiles Include="$(OutputPlatformDir)*" />
+      <_PublicFilesToMove Include="$(OutputPlatformDir)%(PublicProject.Identity).dll" />
+      <_PublicFilesToMove Include="$(OutputPlatformDir)%(PublicProject.Identity).pdb" />
+      <_PublicFilesToMove Include="$(OutputPlatformDir)%(PublicProject.Identity).xml" />
+      <PublicFilesToMove Include="@(_PublicFilesToMove)" Condition="'@(PlatformFiles)' == '@(_PublicFilesToMove)' and '%(Identity)' != '' " />
+    </ItemGroup>
+
+    <MakeDir Directories="$(OutputPublicDir)" />
+    <Move SourceFiles="@(PublicFilesToMove)" DestinationFolder="$(OutputPublicDir)" />
+
+    <Message Text="Moved %(PublicFilesToMove.Filename)%(PublicFilesToMove.Extension) -> $(OutputPublicDir)%(PublicFilesToMove.Filename)%(PublicFilesToMove.Extension)"  Importance="High" />
+
+  </Target>
+
+  <!--
+    Target : BuildDummy
+    ===================
+    Build dummy assemblies using GenAPI
+  -->
+  <Target Name="BuildDummy">
+
+    <MSBuild Projects="$(MSBuildThisFileDirectory)build.dummy.csproj"
+             Properties="Configuration=$(Configuration);OutDir=$(OutputBaseDir)\obj\bin;RestoreSources=$(RestoreSources)"
+             BuildInParallel="true"
+             UseResultsCache="true"
+             Targets="Restore;Rebuild" />
+
+  </Target>
+
+</Project>

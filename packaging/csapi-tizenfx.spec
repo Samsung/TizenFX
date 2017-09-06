@@ -143,10 +143,12 @@ mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_DUMMY_PATH}
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_RES_PATH}
 mkdir -p %{buildroot}%{DOTNET_NUGET_SOURCE}
 
-install -p -m 644 %{_tizenfx_bin_path}/bin/*.dll %{buildroot}%{DOTNET_ASSEMBLY_PATH}
-install -p -m 644 %{_tizenfx_bin_path}/bin/*.pdb %{buildroot}%{DOTNET_ASSEMBLY_PATH}
-install -p -m 644 %{_tizenfx_bin_path}/bin/res/* %{buildroot}%{DOTNET_ASSEMBLY_RES_PATH}
-install -p -m 644 %{_tizenfx_bin_path}/bin_dummy/*.dll %{buildroot}%{DOTNET_ASSEMBLY_DUMMY_PATH}
+install -p -m 644 %{_tizenfx_bin_path}/bin/public/*.dll %{buildroot}%{DOTNET_ASSEMBLY_PATH}
+install -p -m 644 %{_tizenfx_bin_path}/bin/public/*.pdb %{buildroot}%{DOTNET_ASSEMBLY_PATH}
+install -p -m 644 %{_tizenfx_bin_path}/bin/platform/*.dll %{buildroot}%{DOTNET_ASSEMBLY_PATH}
+install -p -m 644 %{_tizenfx_bin_path}/bin/platform/*.pdb %{buildroot}%{DOTNET_ASSEMBLY_PATH}
+install -p -m 644 %{_tizenfx_bin_path}/bin/platform/res/* %{buildroot}%{DOTNET_ASSEMBLY_RES_PATH}
+install -p -m 644 %{_tizenfx_bin_path}/bin/dummy/*.dll %{buildroot}%{DOTNET_ASSEMBLY_DUMMY_PATH}
 install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
 %files nuget

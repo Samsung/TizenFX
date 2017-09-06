@@ -13,9 +13,16 @@
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
   </metadata>
   <files>
+
     <file src="pkg\build\**" target="build" />
-    <file src="Artifacts\bin\*.dll" target="lib\netstandard1.6" />
-    <file src="Artifacts\bin\*.pdb" target="lib\netstandard1.6" />
-    <file src="Artifacts\bin\*.xml" target="lib\netstandard1.6" />
+
+    <file src="Artifacts\bin\public\*.dll"  target="lib\netstandard1.6" />
+    <file src="Artifacts\bin\public\*.pdb"  target="lib\netstandard1.6" />
+    <file src="Artifacts\bin\public\*.xml"  target="lib\netstandard1.6" />
+
+    <file src="Artifacts\bin\platform\*.dll"  target="lib\netstandard1.6" />
+    <file src="Artifacts\bin\platform\*.pdb"  target="lib\netstandard1.6" />
+    <file src="Artifacts\bin\platform\*.xml"  target="lib\netstandard1.6" />
+
   </files>
 </package>
