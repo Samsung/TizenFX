@@ -65,9 +65,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the id of media.
+        /// Gets the ID of media.
         /// </summary>
-        /// <value>The unique id of media.</value>
+        /// <value>The unique ID of media.</value>
         public string Id { get; }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the timeline of media.
         /// </summary>
         /// <value>
-        /// The creation date if the file has the creation information (like recorded date or Image creation date),
+        /// The creation date if the file has the creation information (like recorded date or image creation date),
         /// otherwise the modified date.
         /// </value>
         public DateTimeOffset Timeline { get; }
@@ -200,9 +200,9 @@ namespace Tizen.Content.MediaContent
         public string AgeRating { get; }
 
         /// <summary>
-        /// Gets the storage id of the storage that the media is stored on.
+        /// Gets the storage ID of the storage that the media is stored on.
         /// </summary>
-        /// <value>The storage id of the storage that the media is stored on.</value>
+        /// <value>The storage ID of the storage that the media is stored on.</value>
         public string StorageId { get; }
 
         /// <summary>
@@ -218,9 +218,9 @@ namespace Tizen.Content.MediaContent
         public StorageType StorageType { get; }
 
         /// <summary>
-        /// Returns a string representation of the media info.
+        /// Returns a string representation of the media information.
         /// </summary>
-        /// <returns>A string representation of the current media info.</returns>
+        /// <returns>A string representation of the current media information.</returns>
         public override string ToString() => $"Id={Id}, Path={Path}, MediaType={MediaType}";
 
         internal static MediaInfo FromHandle(Interop.MediaInfoHandle handle)

@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Provides commands to manage bookmarks in database.
+    /// Provides commands to manage bookmarks in the database.
     /// </summary>
     /// <seealso cref="Bookmark"/>
     public class BookmarkCommand : MediaCommand
@@ -27,7 +27,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Initializes a new instance of the <see cref="BookmarkCommand"/> class with the specified <see cref="MediaDatabase"/>.
         /// </summary>
-        /// <param name="database">A <see cref="MediaDatabase"/> that the commands run on.</param>
+        /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
         public BookmarkCommand(MediaDatabase database) : base(database)
@@ -62,10 +62,10 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Inserts new bookmark into the database with the specified media and offset.
+        /// Inserts a new bookmark into the database with the specified media and offset.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
-        /// <param name="mediaId">The media id to be associated with.</param>
+        /// <param name="mediaId">The media ID to be associated with.</param>
         /// <param name="offset">The time offset in milliseconds.</param>
         /// <returns>The <see cref="Bookmark"/> instance that contains the record information inserted.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
@@ -80,10 +80,10 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Inserts new bookmark into the database with the specified media id, offset and name.
+        /// Inserts a new bookmark into the database with the specified media ID, offset, and name.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
-        /// <param name="mediaId">The media id to be associated with.</param>
+        /// <param name="mediaId">The media ID to be associated with.</param>
         /// <param name="offset">The time offset in milliseconds.</param>
         /// <param name="name">The name of the bookmark. This value can be null.</param>
         /// <returns>The <see cref="Bookmark"/> instance that contains the record information inserted.</returns>
@@ -99,13 +99,13 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Inserts new bookmark into the database with the specified media id, offset, name and thumbnail path.
+        /// Inserts a new bookmark into the database with the specified media ID, offset, name, and thumbnail path.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <remarks>
-        /// Thumbnail may be useful only when the media is video.
+        /// The thumbnail may be useful only when the media is video.
         /// </remarks>
-        /// <param name="mediaId">The media id to be associated with.</param>
+        /// <param name="mediaId">The media ID to be associated with.</param>
         /// <param name="offset">The time offset in milliseconds.</param>
         /// <param name="name">The name of the bookmark. This value can be null.</param>
         /// <param name="thumbnailPath">The thumbnail path of the bookmark. This value can be null.</param>
@@ -148,7 +148,7 @@ namespace Tizen.Content.MediaContent
         /// Deletes a bookmark from the database.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
-        /// <param name="bookmarkId">The bookmark id to delete.</param>
+        /// <param name="bookmarkId">The bookmark ID to delete.</param>
         /// <returns>true if the matched record was found and deleted, otherwise false.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>

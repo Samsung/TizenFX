@@ -19,10 +19,10 @@ using System;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Provides commands to manage external storages in the database.
+    /// Provides the commands to manage external storages in the database.
     /// </summary>
     /// <remarks>
-    /// Internal storage is not managed.
+    /// The internal storage is not managed.
     /// </remarks>
     /// <seealso cref="Storage"/>
     public class StorageCommand : MediaCommand
@@ -30,7 +30,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Initializes a new instance of the <see cref="StorageCommand"/> class with the specified <see cref="MediaDatabase"/>.
         /// </summary>
-        /// <param name="database">A <see cref="MediaDatabase"/> that the commands run on.</param>
+        /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
         public StorageCommand(MediaDatabase database) : base(database)
@@ -47,7 +47,7 @@ namespace Tizen.Content.MediaContent
         public int Count() => Count(arguments: null);
 
         /// <summary>
-        /// Retrieves the number of storages with <see cref="CountArguments"/>.
+        /// Retrieves the number of storages with the <see cref="CountArguments"/>.
         /// </summary>
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of storages filtered.</returns>
@@ -62,9 +62,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the storage with the specified id.
+        /// Retrieves the storage with the specified ID.
         /// </summary>
-        /// <param name="storageId">The storage id to select.</param>
+        /// <param name="storageId">The storage ID to select.</param>
         /// <returns>The <see cref="Storage"/> instance if the matched record was found in the database, otherwise null.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -104,7 +104,7 @@ namespace Tizen.Content.MediaContent
         public MediaDataReader<Storage> Select() => Select(arguments: null);
 
         /// <summary>
-        /// Retrieves the storages with <see cref="SelectArguments"/>.
+        /// Retrieves the storages with the <see cref="SelectArguments"/>.
         /// </summary>
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
@@ -128,10 +128,10 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the number of media info of the storage.
+        /// Retrieves the number of media information of the storage.
         /// </summary>
-        /// <param name="storageId">The storage id.</param>
-        /// <returns>The number of media info.</returns>
+        /// <param name="storageId">The storage ID.</param>
+        /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -140,11 +140,11 @@ namespace Tizen.Content.MediaContent
         public int CountMedia(string storageId) => CountMedia(storageId, null);
 
         /// <summary>
-        /// Retrieves the number of media info of the storage with <see cref="CountArguments"/>.
+        /// Retrieves the number of media information of the storage with the <see cref="CountArguments"/>.
         /// </summary>
-        /// <param name="storageId">The storage id to query with.</param>
+        /// <param name="storageId">The storage ID to query with.</param>
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
-        /// <returns>The number of media info.</returns>
+        /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -161,9 +161,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the media info of the storage.
+        /// Retrieves the media information of the storage.
         /// </summary>
-        /// <param name="storageId">The storage id.</param>
+        /// <param name="storageId">The storage ID.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -173,9 +173,9 @@ namespace Tizen.Content.MediaContent
         public MediaDataReader<MediaInfo> SelectMedia(string storageId) => SelectMedia(storageId, null);
 
         /// <summary>
-        /// Retrieves the media info of the storage with <see cref="SelectArguments"/>.
+        /// Retrieves the media information of the storage with the <see cref="SelectArguments"/>.
         /// </summary>
-        /// <param name="storageId">The storage id.</param>
+        /// <param name="storageId">The storage ID.</param>
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>

@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Represents a logical collection grouping of related media info.
+    /// Represents a logical collection grouping of related media information.
     /// </summary>
     /// <seealso cref="AlbumCommand"/>
     public class Album
@@ -36,9 +36,9 @@ namespace Tizen.Content.MediaContent
         internal static Album FromHandle(IntPtr handle) => new Album(handle);
 
         /// <summary>
-        /// Get the id of the album.
+        /// Gets the ID of the album.
         /// </summary>
-        /// <value>The unique id of the album.</value>
+        /// <value>The unique ID of the album.</value>
         public int Id { get; }
 
         /// <summary>

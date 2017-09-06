@@ -47,9 +47,9 @@ namespace Tizen.Content.MediaContent
     public static class MediaInfoColumns
     {
         /// <summary>
-        /// Gets the column name for the id of media.
+        /// Gets the column name for the ID of media.
         /// </summary>
-        /// <value>The column name for the id of media.</value>
+        /// <value>The column name for the ID of media.</value>
         /// <remarks>The value type is string.</remarks>
         /// <seealso cref="MediaInfo.Id"/>
         public static string Id => "MEDIA_ID";
@@ -63,7 +63,7 @@ namespace Tizen.Content.MediaContent
         public static string Path => "MEDIA_PATH";
 
         /// <summary>
-        /// Gets the column name for display name of media.
+        /// Gets the column name for the display name of media.
         /// </summary>
         /// <value>The column name for the display name of media.</value>
         /// <remarks>The value type is string.</remarks>
@@ -76,7 +76,7 @@ namespace Tizen.Content.MediaContent
         /// <value>The column name for the type of media.</value>
         /// <remarks>
         /// The value type is integer.
-        /// The value should be an integer that is one of <see cref="MediaContent.MediaType"/> values.
+        /// The value should be an integer that is one of the <see cref="MediaContent.MediaType"/> values.
         /// </remarks>
         /// <seealso cref="MediaInfo.MediaType"/>
         public static string MediaType => "MEDIA_TYPE";
@@ -381,16 +381,16 @@ namespace Tizen.Content.MediaContent
         /// <value>The column name for the orientation of media.</value>
         /// <remarks>
         /// The value type is integer.
-        /// The value should be an integer that is one of <see cref="MediaContent.Orientation"/> values.
+        /// The value should be an integer that is one of the <see cref="MediaContent.Orientation"/> values.
         /// </remarks>
         /// <seealso cref="MediaContent.Orientation"/>
         /// <seealso cref="ImageInfo.Orientation"/>
         public static string Orientation => "MEDIA_ORIENTATION";
 
         /// <summary>
-        /// Gets the column name for the burst id of media.
+        /// Gets the column name for the burst ID of media.
         /// </summary>
-        /// <value>The column name for the burst id of media.</value>
+        /// <value>The column name for the burst ID of media.</value>
         /// <remarks>
         /// The value type is string.
         /// </remarks>
@@ -412,7 +412,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The column name for the favorite status of media.</value>
         /// <remarks>
-        /// The value type is integer(1 : true, 0 : false).
+        /// The value type is integer (1 : true, 0 : false).
         /// </remarks>
         /// <seealso cref="MediaInfo.IsFavorite"/>
         public static string Favorite => "MEDIA_FAVOURITE";
@@ -473,7 +473,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The column name for the drm of media.</value>
         /// <remarks>
-        /// The value type is integer(1 : true, 0 : false).
+        /// The value type is integer (1 : true, 0 : false).
         /// </remarks>
         /// <seealso cref="MediaInfo.IsDrm"/>
         public static string IsDrm => "MEDIA_IS_DRM";
@@ -484,7 +484,7 @@ namespace Tizen.Content.MediaContent
         /// <value>The column name for the storage type of media.</value>
         /// <remarks>
         /// The value type is integer.
-        /// The value should be an integer that is one of <see cref="MediaContent.StorageType"/> values.
+        /// The value should be an integer that is one of the <see cref="MediaContent.StorageType"/> values.
         /// </remarks>
         /// <seealso cref="MediaInfo.StorageType"/>
         public static string StorageType => "MEDIA_STORAGE_TYPE";
@@ -510,9 +510,9 @@ namespace Tizen.Content.MediaContent
         public static string FNumber => "MEDIA_FNUMBER";
 
         /// <summary>
-        /// Gets the column name for the iso of media.
+        /// Gets the column name for the ISO of media.
         /// </summary>
-        /// <value>The column name for the iso of media.</value>
+        /// <value>The column name for the ISO of media.</value>
         /// <remarks>
         /// The value type is integer.
         /// </remarks>
@@ -575,9 +575,9 @@ namespace Tizen.Content.MediaContent
     public static class FolderColumns
     {
         /// <summary>
-        /// Gets the column name for the id of folder.
+        /// Gets the column name for the ID of folder.
         /// </summary>
-        /// <value>The column name for the id of folder.</value>
+        /// <value>The column name for the ID of folder.</value>
         /// <remarks>
         /// The value type is string.
         /// </remarks>
@@ -610,7 +610,7 @@ namespace Tizen.Content.MediaContent
         /// <value>The column name for the storage type of folder.</value>
         /// <remarks>
         /// The value type is integer.
-        /// The value should be an integer that is one of <see cref="MediaContent.StorageType"/> values.
+        /// The value should be an integer that is one of the <see cref="MediaContent.StorageType"/> values.
         /// </remarks>
         /// <seealso cref="Folder.StorageType"/>
         public static string StorageType => "FOLDER_STORAGE_TYPE";
@@ -638,9 +638,9 @@ namespace Tizen.Content.MediaContent
         public static string Name => "PLAYLIST_NAME";
 
         /// <summary>
-        /// Gets the column name for the id of playlist.
+        /// Gets the column name for the ID of playlist.
         /// </summary>
-        /// <value>The column name for the id of playlist.</value>
+        /// <value>The column name for the ID of playlist.</value>
         /// <remarks>
         /// The value type is integer.
         /// </remarks>
@@ -670,7 +670,7 @@ namespace Tizen.Content.MediaContent
     }
 
     /// <summary>
-    /// Provides the tag column names that can be used for <see cref="SelectArguments"/>.
+    /// Provides the tag column names that can be used for the <see cref="SelectArguments"/>.
     /// </summary>
     /// <seealso cref="SelectArguments"/>
     /// <seealso cref="CountArguments"/>
@@ -706,9 +706,9 @@ namespace Tizen.Content.MediaContent
         public static string Count => "TAG_MEDIA_COUNT";
 
         /// <summary>
-        /// Gets the column name for the id of tag.
+        /// Gets the column name for the ID of tag.
         /// </summary>
-        /// <value>The column name for the id of tag.</value>
+        /// <value>The column name for the ID of tag.</value>
         /// <remarks>
         /// The value type is integer.
         /// </remarks>
@@ -730,9 +730,9 @@ namespace Tizen.Content.MediaContent
     public static class BookmarkColumns
     {
         /// <summary>
-        /// Gets the column name for offset of bookmark.
+        /// Gets the column name for the offset of the bookmark.
         /// </summary>
-        /// <value>The column name for the offset of bookmark.</value>
+        /// <value>The column name for the offset of the bookmark.</value>
         /// <remarks>
         /// The value type is integer.
         /// </remarks>
@@ -740,9 +740,9 @@ namespace Tizen.Content.MediaContent
         public static string Offset => "BOOKMARK_MARKED_TIME";
 
         /// <summary>
-        /// Gets the column name for the id of bookmark.
+        /// Gets the column name for the ID of the bookmark.
         /// </summary>
-        /// <value>The column name for the id of bookmark.</value>
+        /// <value>The column name for the ID of the bookmark.</value>
         /// <remarks>
         /// The value type is integer.
         /// </remarks>
@@ -750,9 +750,9 @@ namespace Tizen.Content.MediaContent
         public static string Id => "BOOKMARK_ID";
 
         /// <summary>
-        /// Gets the column name for the name of bookmark.
+        /// Gets the column name for the name of the bookmark.
         /// </summary>
-        /// <value>The column name for the name of bookmark.</value>
+        /// <value>The column name for the name of the bookmark.</value>
         /// <remarks>
         /// The value type is string.
         /// </remarks>
@@ -773,9 +773,9 @@ namespace Tizen.Content.MediaContent
     public static class FaceInfoColumns
     {
         /// <summary>
-        /// Gets the column name for the tag of face info.
+        /// Gets the column name for the tag of face information.
         /// </summary>
-        /// <value>The column name for the tag of face info.</value>
+        /// <value>The column name for the tag of face information.</value>
         /// <remarks>
         /// The value type is string.
         /// </remarks>
@@ -783,9 +783,9 @@ namespace Tizen.Content.MediaContent
         public static string Tag => "MEDIA_FACE_TAG";
 
         /// <summary>
-        /// Gets the column name for the id of face info.
+        /// Gets the column name for the ID of face information.
         /// </summary>
-        /// <value>The column name for the id of face info.</value>
+        /// <value>The column name for the ID of face information.</value>
         /// <remarks>
         /// The value type is string.
         /// </remarks>
@@ -805,9 +805,9 @@ namespace Tizen.Content.MediaContent
     public static class StorageColumns
     {
         /// <summary>
-        /// Gets the column name for the id of storage.
+        /// Gets the column name for the ID of storage.
         /// </summary>
-        /// <value>The column name for the id of storage.</value>
+        /// <value>The column name for the ID of storage.</value>
         /// <remarks>
         /// The value type is string.
         /// </remarks>
@@ -830,7 +830,7 @@ namespace Tizen.Content.MediaContent
         /// <value>The column name for the type of storage.</value>
         /// <remarks>
         /// The value type is integer.
-        /// The value should be an integer that is one of <see cref="MediaContent.StorageType"/> values.
+        /// The value should be an integer that is one of the <see cref="MediaContent.StorageType"/> values.
         /// </remarks>
         /// <seealso cref="Storage.Type"/>
         public static string Type => "MEDIA_STORAGE_TYPE";

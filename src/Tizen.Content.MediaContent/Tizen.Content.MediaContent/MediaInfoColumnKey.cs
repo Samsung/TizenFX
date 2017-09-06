@@ -17,7 +17,7 @@
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Specifies group keys for <see cref="MediaInfo"/>.
+    /// Specifies the group keys for <see cref="MediaInfo"/>.
     /// </summary>
     public enum MediaInfoColumnKey
     {

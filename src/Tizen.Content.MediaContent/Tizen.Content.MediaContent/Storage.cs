@@ -22,8 +22,8 @@ namespace Tizen.Content.MediaContent
     /// Represents the storage information for media.
     /// </summary>
     /// <remarks>
-    /// The system generates the storage id when the external storage is added. and manages the media information
-    /// in each of the storage by using storage id.
+    /// The system generates the storage ID when the external storage is added and manages the media information
+    /// in each of the storage by using the storage ID.
     /// </remarks>
     public class Storage
     {
@@ -37,9 +37,9 @@ namespace Tizen.Content.MediaContent
         internal static Storage FromHandle(IntPtr handle) => new Storage(handle);
 
         /// <summary>
-        /// Gets the id of the storage.
+        /// Gets the ID of the storage.
         /// </summary>
-        /// <value>The unique id of the storage.</value>
+        /// <value>The unique ID of the storage.</value>
         public string Id { get; }
 
         /// <summary>

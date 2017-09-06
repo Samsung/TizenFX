@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Represents a special piece of information that may be associated with media.\n
+    /// Represents a special piece of information that may be associated with media.
     /// Tagging allows a user to organize large number of items into logical groups providing
     /// a simplified and faster way of accessing media items.
     /// </summary>
@@ -32,9 +32,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the id of the tag.
+        /// Gets the ID of the tag.
         /// </summary>
-        /// <value>The unique id of the tag.</value>
+        /// <value>The unique ID of the tag.</value>
         public int Id { get; }
 
         /// <summary>

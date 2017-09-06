@@ -153,7 +153,7 @@ namespace Tizen.Content.MediaContent
         private static readonly object _folderUpdatedLock = new object();
 
         /// <summary>
-        /// Occurs when there is a change for folder in the database.
+        /// Occurs when there is a change for the folder in the database.
         /// </summary>
         public static event EventHandler<FolderUpdatedEventArgs> FolderUpdated
         {
@@ -228,7 +228,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Requests to scan a folder, recursively.
+        /// Requests to scan a folder recursively.
         /// </summary>
         /// <remarks>
         ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
@@ -267,7 +267,7 @@ namespace Tizen.Content.MediaContent
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <param name="folderPath">The path to scan.</param>
-        /// <param name="recursive">The value indicating if the folder is to recursively scanned.</param>
+        /// <param name="recursive">The value indicating if the folder is to be recursively scanned.</param>
         /// <remarks>Folders that contains a file named ".scan_ignore" will not be scanned.</remarks>
         /// <returns>A task that represents the asynchronous scan operation.</returns>
         /// <exception cref="InvalidOperationException">The database is not connected.</exception>
@@ -287,7 +287,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Requests to scan a folder, recursively.
+        /// Requests to scan a folder recursively.
         /// </summary>
         /// <remarks>
         ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
@@ -317,7 +317,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Requests to scan a folder, recursively.
+        /// Requests to scan a folder recursively.
         /// </summary>
         /// <remarks>
         ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
@@ -327,7 +327,7 @@ namespace Tizen.Content.MediaContent
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <param name="folderPath">The path to scan.</param>
-        /// <param name="recursive">The value indicating if the folder is to recursively scanned.</param>
+        /// <param name="recursive">The value indicating if the folder is to be recursively scanned.</param>
         /// <param name="cancellationToken">The token to stop scanning.</param>
         /// <remarks>Folders that contains a file named ".scan_ignore" will not be scanned.</remarks>
         /// <returns>A task that represents the asynchronous scan operation.</returns>
@@ -448,7 +448,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Releases all resources.
+        /// Releases all the resources.
         /// </summary>
         public void Dispose()
         {

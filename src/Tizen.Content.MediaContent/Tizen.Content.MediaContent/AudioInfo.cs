@@ -20,7 +20,7 @@ using System.Diagnostics;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Represents an audio media information.
+    /// Represents the audio media information.
     /// </summary>
     public class AudioInfo : MediaInfo
     {

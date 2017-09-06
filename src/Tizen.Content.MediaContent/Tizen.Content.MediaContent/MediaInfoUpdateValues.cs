@@ -28,28 +28,28 @@ namespace Tizen.Content.MediaContent
     public class MediaInfoUpdateValues
     {
         /// <summary>
-        /// Gets or sets the weather information for update.
+        /// Gets or sets the weather information for an update.
         /// </summary>
         /// <remarks>If the value is null, the update operation will have no effect on the field.</remarks>
         /// <value>A string for weather; the field will not be updated if null.</value>
         public string Weather { get; set; }
 
         /// <summary>
-        /// Gets or sets the favorite status for update.
+        /// Gets or sets the favorite status for an update.
         /// </summary>
         /// <remarks>If the value is null, the update operation will have no effect on the field.</remarks>
         /// <value>A value indicating whether the media is favorite; the field will not be updated if null.</value>
         public bool? IsFavorite { get; set; }
 
         /// <summary>
-        /// Gets or sets the provider information for update.
+        /// Gets or sets the provider information for an update.
         /// </summary>
         /// <remarks>If the value is null, the update operation will have no effect on the field.</remarks>
         /// <value>A string for provider; the field will not be updated if null.</value>
         public string Provider { get; set; }
 
         /// <summary>
-        /// Gets or sets the category information for update.
+        /// Gets or sets the category information for an update.
         /// </summary>
         /// <remarks>If the value is null, the update operation will have no effect on the field.</remarks>
         /// <value>A string for category; the field will not be updated if null.</value>
@@ -57,14 +57,14 @@ namespace Tizen.Content.MediaContent
 
 
         /// <summary>
-        /// Gets or sets the location tag for update.
+        /// Gets or sets the location tag for an update.
         /// </summary>
         /// <remarks>If the value is null, the update operation will have no effect on the field.</remarks>
         /// <value>A string for location tag; the field will not be updated if null.</value>
         public string LocationTag { get; set; }
 
         /// <summary>
-        /// Gets or sets the age rating information for update.
+        /// Gets or sets the age rating information for an update.
         /// </summary>
         /// <remarks>If the value is null, the update operation will have no effect on the field.</remarks>
         /// <value>A string for age rating; the field will not be updated if null.</value>

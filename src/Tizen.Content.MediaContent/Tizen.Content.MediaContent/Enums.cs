@@ -40,7 +40,7 @@ namespace Tizen.Content.MediaContent
     }
 
     /// <summary>
-    /// Specifies storage types.
+    /// Specifies the storage types.
     /// </summary>
     public enum StorageType
     {
@@ -50,12 +50,12 @@ namespace Tizen.Content.MediaContent
         Internal = 0,
 
         /// <summary>
-        /// The device's external storage like sd card.
+        /// The device's external storage like SD card.
         /// </summary>
         External = 1,
 
         /// <summary>
-        /// The external usb storage.
+        /// The external USB storage.
         /// </summary>
         ExternalUsb = 2
     }
@@ -88,7 +88,7 @@ namespace Tizen.Content.MediaContent
     }
 
     /// <summary>
-    /// Specifies types of <see cref="MediaInfo"/>.
+    /// Specifies types of the <see cref="MediaInfo"/>.
     /// </summary>
     public enum MediaType
     {

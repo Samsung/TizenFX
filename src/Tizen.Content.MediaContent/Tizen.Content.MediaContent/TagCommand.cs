@@ -21,7 +21,7 @@ using System.Linq;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Provides commands to manage tags in the database.
+    /// Provides the commands to manage tags in the database.
     /// </summary>
     /// <seealso cref="Tag"/>
     public class TagCommand : MediaCommand
@@ -29,7 +29,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Initializes a new instance of the <see cref="TagCommand"/> class with the specified <see cref="MediaDatabase"/>.
         /// </summary>
-        /// <param name="database">A <see cref="MediaDatabase"/> that the commands run on.</param>
+        /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
         public TagCommand(MediaDatabase database) : base(database)
@@ -49,7 +49,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the number of tags with <see cref="CountArguments"/>.
+        /// Retrieves the number of tags with the <see cref="CountArguments"/>.
         /// </summary>
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of tags filtered.</returns>
@@ -68,7 +68,7 @@ namespace Tizen.Content.MediaContent
         /// Deletes a tag from the database.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
-        /// <param name="tagId">The tag id to delete.</param>
+        /// <param name="tagId">The tag ID to delete.</param>
         /// <returns>true if the matched record was found and deleted, otherwise false.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -136,7 +136,7 @@ namespace Tizen.Content.MediaContent
         /// Updates a tag with the specified name.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
-        /// <param name="tagId">The tag id to update.</param>
+        /// <param name="tagId">The tag ID to update.</param>
         /// <param name="name">The new name.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
@@ -181,9 +181,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the tag with the specified id.
+        /// Retrieves the tag with the specified ID.
         /// </summary>
-        /// <param name="tagId">The tag id to select.</param>
+        /// <param name="tagId">The tag ID to select.</param>
         /// <returns>The <see cref="Tag"/> instance if the matched record was found in the database, otherwise null.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -234,7 +234,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the tags with <see cref="SelectArguments"/>.
+        /// Retrieves the tags with the <see cref="SelectArguments"/>.
         /// </summary>
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
@@ -251,8 +251,8 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Retrieves the number of media info of the tag.
         /// </summary>
-        /// <param name="tagId">The tag id.</param>
-        /// <returns>The number of media info.</returns>
+        /// <param name="tagId">The tag ID.</param>
+        /// <returns>The number of the media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -263,11 +263,11 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the number of media info of the tag with <see cref="CountArguments"/>.
+        /// Retrieves the number of the media information of the tag with the <see cref="CountArguments"/>.
         /// </summary>
-        /// <param name="tagId">The tag id to query with.</param>
+        /// <param name="tagId">The tag ID to query with.</param>
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
-        /// <returns>The number of media info.</returns>
+        /// <returns>The number of the media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -286,9 +286,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the media info of the tag.
+        /// Retrieves the media information of the tag.
         /// </summary>
-        /// <param name="tagId">The tag id.</param>
+        /// <param name="tagId">The tag ID.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -300,9 +300,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the media info of the tag with <see cref="SelectArguments"/>.
+        /// Retrieves the media information of the tag with the <see cref="SelectArguments"/>.
         /// </summary>
-        /// <param name="tagId">The tag id.</param>
+        /// <param name="tagId">The tag ID.</param>
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
@@ -381,12 +381,12 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Adds media to a tag.
+        /// Adds the media to a tag.
         /// </summary>
-        /// <param name="tagId">The tag id that the media will be added to.</param>
-        /// <param name="mediaId">The media id to add to the tag.</param>
+        /// <param name="tagId">The tag ID that the media will be added to.</param>
+        /// <param name="mediaId">The media ID to add to the tag.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
-        /// <remarks>The invalid media id will be ignored.</remarks>
+        /// <remarks>The invalid media ID will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -401,12 +401,12 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Adds a media set to a tag.
+        /// Adds the media set to a tag.
         /// </summary>
-        /// <param name="tagId">The tag id that the media will be added to.</param>
-        /// <param name="mediaIds">The media id to add to the tag.</param>
+        /// <param name="tagId">The tag ID that the media will be added to.</param>
+        /// <param name="mediaIds">The media ID to add to the tag.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
-        /// <remarks>The invalid media ids will be ignored.</remarks>
+        /// <remarks>The invalid media IDs will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -425,12 +425,12 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Removes media from a tag.
+        /// Removes the media from a tag.
         /// </summary>
-        /// <param name="tagId">The tag id.</param>
-        /// <param name="mediaId">The media id to remove from the tag.</param>
+        /// <param name="tagId">The tag ID.</param>
+        /// <param name="mediaId">The media ID to remove from the tag.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
-        /// <remarks>The invalid media id will be ignored.</remarks>
+        /// <remarks>The invalid media ID will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -445,12 +445,12 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Removes a media set from a tag.
+        /// Removes the media set from a tag.
         /// </summary>
-        /// <param name="tagId">The tag id.</param>
-        /// <param name="mediaIds">The collection of media id to remove from the tag.</param>
+        /// <param name="tagId">The tag ID.</param>
+        /// <param name="mediaIds">The collection of media ID to remove from the tag.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
-        /// <remarks>The invalid ids will be ignored.</remarks>
+        /// <remarks>The invalid IDs will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>

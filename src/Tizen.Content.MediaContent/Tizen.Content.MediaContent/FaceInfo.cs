@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Represents the face information for media.
+    /// Represents the face information for the media.
     /// </summary>
     public class FaceInfo
     {
@@ -52,26 +52,26 @@ namespace Tizen.Content.MediaContent
         public Rectangle Rect { get; }
 
         /// <summary>
-        /// Gets the id of face info.
+        /// Gets the ID of face information.
         /// </summary>
         public string Id { get; }
 
         /// <summary>
-        /// Gets the media id that the face info is added.
+        /// Gets the media ID that the face information is added.
         /// </summary>
-        /// <value>The media id that the face info is added.</value>
+        /// <value>The media ID that the face information is added.</value>
         public string MediaInfoId { get; }
 
         /// <summary>
         /// Gets the tag name.
         /// </summary>
-        /// <value>The tag name of face info.</value>
+        /// <value>The tag name of face information.</value>
         public string Tag { get; }
 
         /// <summary>
-        /// Gets the orientation of face info.
+        /// Gets the orientation of face information.
         /// </summary>
-        /// <value>The orientation of face info.</value>
+        /// <value>The orientation of face information.</value>
         public Orientation Orientation { get; }
 
         internal static FaceInfo FromHandle(IntPtr handle)
@@ -80,7 +80,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Returns a string representation of the face info.
+        /// Returns a string representation of the face information.
         /// </summary>
         /// <returns>A string representation of the current face info.</returns>
         public override string ToString() =>
