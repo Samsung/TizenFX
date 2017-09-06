@@ -82,7 +82,7 @@ internal static partial class Interop
 
         internal static string ewk_view_title_get(IntPtr obj)
         {
-            IntPtr ptr = _ewk_view_url_get(obj);
+            IntPtr ptr = _ewk_view_title_get(obj);
             return Marshal.PtrToStringAnsi(ptr);
         }
 
