@@ -62,5 +62,14 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_playback_state_command_received_cb")]
         internal static extern MediaControllerError UnsetPlaybackStateCmdRecvCb(IntPtr handle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_db_connect")]
+        internal static extern MediaControllerError ConnectDb(out IntPtr dbHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_db_disconnect")]
+        internal static extern MediaControllerError DisconnectDb(IntPtr dbHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_db_check_server_table_exist")]
+        internal static extern MediaControllerError CheckServerExist(IntPtr dbHandle, string appId, out bool value);
     }
 }
