@@ -306,7 +306,7 @@ namespace Tizen.Network.WiFiDirect
         {
             _peerFoundCallback = (int result, WiFiDirectDiscoveryState stateInfo, string address, IntPtr userData) =>
             {
-                if (_peerFound != null)
+                if (_peerFound != null && stateInfo == WiFiDirectDiscoveryState.Found)
                 {
                     WiFiDirectError error = (WiFiDirectError)result;
                     WiFiDirectDiscoveryState state = stateInfo;
