@@ -169,6 +169,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.WebView", "..\src\Tiz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.CallManager", "..\src\Tizen.CallManager\Tizen.CallManager.csproj", "{05DD16B8-2027-4728-AEB6-6296E7457533}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Applications.Shortcut", "..\src\Tizen.Applications.Shortcut\Tizen.Applications.Shortcut.csproj", "{4F6ECAC1-C311-42E2-A700-40347DD9830E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1178,5 +1180,17 @@ Global
 		{05DD16B8-2027-4728-AEB6-6296E7457533}.Release|x64.Build.0 = Release|x64
 		{05DD16B8-2027-4728-AEB6-6296E7457533}.Release|x86.ActiveCfg = Release|x86
 		{05DD16B8-2027-4728-AEB6-6296E7457533}.Release|x86.Build.0 = Release|x86
+		{4F6ECAC1-C311-42E2-A700-40347DD9830E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F6ECAC1-C311-42E2-A700-40347DD9830E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F6ECAC1-C311-42E2-A700-40347DD9830E}.Debug|x64.ActiveCfg = Debug|x64
+		{4F6ECAC1-C311-42E2-A700-40347DD9830E}.Debug|x64.Build.0 = Debug|x64
+		{4F6ECAC1-C311-42E2-A700-40347DD9830E}.Debug|x86.ActiveCfg = Debug|x86
+		{4F6ECAC1-C311-42E2-A700-40347DD9830E}.Debug|x86.Build.0 = Debug|x86
+		{4F6ECAC1-C311-42E2-A700-40347DD9830E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F6ECAC1-C311-42E2-A700-40347DD9830E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F6ECAC1-C311-42E2-A700-40347DD9830E}.Release|x64.ActiveCfg = Release|x64
+		{4F6ECAC1-C311-42E2-A700-40347DD9830E}.Release|x64.Build.0 = Release|x64
+		{4F6ECAC1-C311-42E2-A700-40347DD9830E}.Release|x86.ActiveCfg = Release|x86
+		{4F6ECAC1-C311-42E2-A700-40347DD9830E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal
