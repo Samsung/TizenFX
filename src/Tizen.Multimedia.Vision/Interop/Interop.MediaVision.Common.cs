@@ -135,7 +135,7 @@ internal static partial class Interop
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_source_fill_by_buffer")]
             internal static extern MediaVisionError FillBuffer(IntPtr source, byte[] buffer,
-                int bufferSize, uint imageWidth, uint imageHeight, Colorspace colorspace);
+                int bufferSize, uint imageWidth, uint imageHeight, VisionColorSpace colorspace);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_source_clear")]
             internal static extern int Clear(IntPtr /* mv_source_h */ source);
@@ -150,7 +150,7 @@ internal static partial class Interop
             internal static extern int GetWidth(IntPtr source, out uint imageWidth);
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_source_get_colorspace")]
-            internal static extern int GetColorspace(IntPtr /* mv_source_h */ source, out Colorspace colorspace);
+            internal static extern int GetColorspace(IntPtr /* mv_source_h */ source, out VisionColorSpace colorspace);
         }
 
         /// <summary>
