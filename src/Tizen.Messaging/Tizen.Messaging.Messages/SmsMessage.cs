@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Messaging.Messages
 {
     /// <summary>
-    /// A class to represent short text messages.
+    /// This class represents short text messages.
     /// </summary>
     public class SmsMessage : Message
     {
@@ -36,7 +36,7 @@ namespace Tizen.Messaging.Messages
         }
 
         /// <summary>
-        /// Collection of normal message recipients
+        /// The collection of normal message recipients.
         /// </summary>
         public ICollection<MessagesAddress> To
         {

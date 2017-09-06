@@ -17,20 +17,20 @@
 namespace Tizen.Messaging.Messages
 {
     /// <summary>
-    /// A class to manage informations of message address.
+    /// This class is used to manage the information of the message address.
     /// </summary>
     public class MessagesAddress
     {
         internal RecipientType Type;
         /// <summary>
-        /// The address of the sender/recipient
+        /// The address of the sender/recipient.
         /// </summary>
         public string Number { get; }
 
         /// <summary>
         /// Creates a message address.
         /// </summary>
-        /// <param name="number">The recipient's address to receive a message</param>
+        /// <param name="number">The recipient's address to receive a message.</param>
         public MessagesAddress(string number)
         {
             Number = number;

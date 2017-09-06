@@ -17,31 +17,31 @@
 namespace Tizen.Messaging.Messages
 {
     /// <summary>
-    /// A class to represent message search filters.
+    /// This class represents message search filters.
     /// </summary>
     public class MessagesSearchFilter
     {
         /// <summary>
-        /// Create a search filter for searching messages.
+        /// Creates a search filter for searching messages.
         /// </summary>
         public MessagesSearchFilter()
         {
         }
 
         /// <summary>
-        /// The message box type
+        /// The message box type.
         /// </summary>
         public MessageBoxType MessageBoxType { get; set; }
         /// <summary>
-        /// The message type
+        /// The message type.
         /// </summary>
         public MessageType MessageType { get; set; }
         /// <summary>
-        /// The keyword to search in the text and subject
+        /// The keyword to search in the text and the subject.
         /// </summary>
         public string TextKeyword { get; set; }
         /// <summary>
-        /// The recipient address
+        /// The recipient address.
         /// </summary>
         public string AddressKeyword { get; set; }
     }

@@ -17,17 +17,17 @@
 namespace Tizen.Messaging.Email
 {
     /// <summary>
-    /// Result of sending the email
+    /// Result of sending the email.
     /// </summary>
     public enum EmailSendResult
     {
         /// <summary>
-        /// Failed to send the message
+        /// Failed to send the message.
         /// </summary>
         Failure = -1,
 
         /// <summary>
-        /// email sent successfully
+        /// Email sent successfully.
         /// </summary>
         Success = 0
     }

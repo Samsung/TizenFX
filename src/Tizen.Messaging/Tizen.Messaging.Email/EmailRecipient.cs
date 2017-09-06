@@ -17,16 +17,16 @@
 namespace Tizen.Messaging.Email
 {
     /// <summary>
-    /// The class represents recipients of an email
+    /// This class represents recipients of an email.
     /// </summary>
     public class EmailRecipient
     {
         /// <summary>
-        /// The email address of the recipient
+        /// The email address of the recipient.
         /// </summary>
         public string Address { get; set; }
         /// <summary>
-        /// The constructor
+        /// The constructor.
         /// </summary>
         public EmailRecipient()
         {

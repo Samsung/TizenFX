@@ -20,15 +20,15 @@ using System.Threading.Tasks;
 namespace Tizen.Messaging.Email
 {
     /// <summary>
-    /// The class to send email messages.
+    /// This class is used to send email messages.
     /// </summary>
     public static class EmailSender
     {
         /// <summary>
         /// Sends the email message.
         /// </summary>
-        /// <param name="email">The email message</param>
-        /// <returns> Failure if email sending failed otherwise Success</returns>
+        /// <param name="email">The email message.</param>
+        /// <returns> Failure if the email sending activity failed, otherwise Success.</returns>
         public static async Task<EmailSendResult> SendAsync(EmailMessage email)
         {
             var task = new TaskCompletionSource<EmailSendResult>();
