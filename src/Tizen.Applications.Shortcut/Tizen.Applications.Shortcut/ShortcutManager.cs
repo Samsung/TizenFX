@@ -17,7 +17,6 @@
 namespace Tizen.Applications.Shortcut
 {
     using System;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// This class provides the some functions to add, delete shortcut.
@@ -37,12 +36,13 @@ namespace Tizen.Applications.Shortcut
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="shortcut">Object that contain shortcut info.</param>
-        /// <feature>http://tizen.org/feature/shortcut </feature>
+        /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
         /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public static void Add(HomeShortcutInfo shortcut)
         {
             Interop.Shortcut.ErrorCode err = Interop.Shortcut.ErrorCode.None;
@@ -82,12 +82,13 @@ namespace Tizen.Applications.Shortcut
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="shortcut">Object that contain shortcut info.</param>
-        /// <feature>http://tizen.org/feature/shortcut </feature>
+        /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
         /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public static void Add(WidgetShortcutInfo shortcut)
         {
             Interop.Shortcut.ErrorCode err = Interop.Shortcut.ErrorCode.None;
@@ -121,12 +122,13 @@ namespace Tizen.Applications.Shortcut
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="shortcutName">Shortcut name string.</param>
-        /// <feature>http://tizen.org/feature/shortcut </feature>
+        /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
         /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public static void Delete(string shortcutName)
         {
             Interop.Shortcut.ErrorCode err = Interop.Shortcut.ErrorCode.None;
@@ -160,12 +162,13 @@ namespace Tizen.Applications.Shortcut
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="shortcut">Object that contain shortcut info.</param>
-        /// <feature>http://tizen.org/feature/shortcut </feature>
+        /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
         /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of permission denied.</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public static void Delete(ShortcutInfo shortcut)
         {
             if (shortcut == null)

@@ -32,6 +32,8 @@ namespace Tizen.Applications.Shortcut
                     return new UnauthorizedAccessException(err + " Permission denied (http://tizen.org/privilege/shortcut)");
                 case Interop.Shortcut.ErrorCode.NotSupported:
                     return new NotSupportedException(err + " Not Supported (http://tizen.org/feature/shortcut)");
+                case Interop.Shortcut.ErrorCode.OutOfMemory:
+                    return new OutOfMemoryException(err + " error occurred.");
                 default:
                     Log.Error(LogTag, msg);
                     return new InvalidOperationException(err + " error occurred.");

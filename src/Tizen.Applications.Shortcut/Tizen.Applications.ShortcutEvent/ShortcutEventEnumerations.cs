@@ -37,24 +37,9 @@ namespace Tizen.Applications.Shortcut
         OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
 
         /// <summary>
-        /// Permission denied.
-        /// </summary>
-        PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
-
-        /// <summary>
         /// I/O Error.
         /// </summary>
         IoError = Tizen.Internals.Errors.ErrorCode.IoError,
-
-        /// <summary>
-        /// Not supported.
-        /// </summary>
-        NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
-
-        /// <summary>
-        /// Device or resource busy.
-        /// </summary>
-        ResourceBusy = Tizen.Internals.Errors.ErrorCode.ResourceBusy,
 
         /// <summary>
         /// There is no space to add a new shortcut.
@@ -67,18 +52,8 @@ namespace Tizen.Applications.Shortcut
         Exist = -0x01160000 | 0x02,
 
         /// <summary>
-        /// Unrecoverable error.
-        /// </summary>
-        Fault = -0x01160000 | 0x04,
-
-        /// <summary>
         /// Not exist shortcut.
         /// </summary>
         NotExist = -0x01160000 | 0x08,
-
-        /// <summary>
-        /// Connection not established or communication problem.
-        /// </summary>
-        COMM = -0x01160000 | 0x40
     }
 }
