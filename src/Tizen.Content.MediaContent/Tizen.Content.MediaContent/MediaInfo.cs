@@ -43,7 +43,7 @@ namespace Tizen.Content.MediaContent
             DateModified = InteropHelper.GetDateTime(handle, Interop.MediaInfo.GetModifiedTime);
             Timeline = InteropHelper.GetDateTime(handle, Interop.MediaInfo.GetTimeline);
 
-            ThumbnailPath = InteropHelper.GetString(handle, Interop.MediaInfo.GetThumbnailPath);
+            ThumbnailPath = InteropHelper.GetString(handle, Interop.MediaInfo.GetThumbnailPath, true);
             Description = InteropHelper.GetString(handle, Interop.MediaInfo.GetDescription);
 
             Longitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetLongitude);

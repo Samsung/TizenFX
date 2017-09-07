@@ -23,7 +23,7 @@ namespace Tizen.Content.MediaContent
     {
         internal delegate MediaContentError GetStringFunc<T>(T handle, out IntPtr value);
 
-        internal static string GetString<T>(T handle, GetStringFunc<T> func)
+        internal static string GetString<T>(T handle, GetStringFunc<T> func, bool nullable = false)
         {
             IntPtr val = IntPtr.Zero;
             try
@@ -32,7 +32,7 @@ namespace Tizen.Content.MediaContent
 
                 if (val == IntPtr.Zero)
                 {
-                    return string.Empty;
+                    return nullable ? null : string.Empty;
                 }
 
                 return Marshal.PtrToStringAnsi(val);
