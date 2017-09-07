@@ -20,7 +20,7 @@ using System.Diagnostics;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides the ability to control a sound stream.
+    /// Provides the ability to control the sound stream.
     /// </summary>
     public class AudioStreamPolicy : IDisposable
     {
@@ -29,13 +29,13 @@ namespace Tizen.Multimedia
         private Interop.AudioStreamPolicy.FocusStateChangedCallback _focusStateChangedCallback;
 
         /// <summary>
-        ///  Initializes a new instance of the <see cref="AudioStreamPolicy"/> class with <see cref="AudioStreamType"/>
+        /// Initializes a new instance of the <see cref="AudioStreamPolicy"/> class with <see cref="AudioStreamType"/>
         /// </summary>
         /// <remarks>
         /// To apply the stream policy according to this stream information, the AudioStreamPolicy should
-        /// be passed to other APIs related to playback or recording. (e.g., <see cref="Player"/>, <see cref="WavPlayer"/> , etc.)
+        /// be passed to other APIs related to playback or recording. (For example., <see cref="Player"/>, <see cref="WavPlayer"/> , etc.)
         /// </remarks>
-        /// <param name="streamType">Type of sound stream for which policy needs to be created.</param>
+        /// <param name="streamType">The type of the sound stream for which the policy needs to be created.</param>
         /// <exception cref="ArgumentException"><paramref name="streamType"/> is invalid.</exception>
         public AudioStreamPolicy(AudioStreamType streamType)
         {
@@ -98,14 +98,14 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the state of focus for playback.
+        /// Gets the state of focus for the playback.
         /// </summary>
         /// <value>The state of focus for playback.</value>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         public AudioStreamFocusState PlaybackFocusState => GetFocusState(true);
 
         /// <summary>
-        /// Gets the state of focus for recording.
+        /// Gets the state of focus for the recording.
         /// </summary>
         /// <value>The state of focus for recording.</value>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>

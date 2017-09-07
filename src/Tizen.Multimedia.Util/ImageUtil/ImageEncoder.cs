@@ -244,12 +244,12 @@ namespace Tizen.Multimedia.Util
     }
 
     /// <summary>
-    /// Provides the ability to encode Bitmap (BMP) format images.
+    /// Provides the ability to encode the Bitmap (BMP) format images.
     /// </summary>
     public class BmpEncoder : ImageEncoder
     {
         /// <summary>
-        /// Initialize a new instance of the <see cref="BmpEncoder"/> class.
+        /// Initializes a new instance of the <see cref="BmpEncoder"/> class.
         /// </summary>
         /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Bmp"/>.</remarks>
         public BmpEncoder() : base(ImageFormat.Bmp)
@@ -262,7 +262,7 @@ namespace Tizen.Multimedia.Util
     }
 
     /// <summary>
-    /// Provides the ability to encode Portable Network Graphics (PNG) format images.
+    /// Provides the ability to encode the Portable Network Graphics (PNG) format images.
     /// </summary>
     public class PngEncoder : ImageEncoder
     {
@@ -274,7 +274,7 @@ namespace Tizen.Multimedia.Util
         private PngCompression? _compression;
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="PngEncoder"/> class.
+        /// Initializes a new instance of the <see cref="PngEncoder"/> class.
         /// </summary>
         /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Png"/>.</remarks>
         public PngEncoder() :
@@ -283,7 +283,7 @@ namespace Tizen.Multimedia.Util
         }
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="PngEncoder"/> class with <see cref="PngCompression"/>.
+        /// Initializes a new instance of the <see cref="PngEncoder"/> class with <see cref="PngCompression"/>.
         /// </summary>
         /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Png"/>.</remarks>
         /// <param name="compression">The compression level of the encoder.</param>
@@ -321,7 +321,7 @@ namespace Tizen.Multimedia.Util
     }
 
     /// <summary>
-    /// Provides the ability to encode Joint Photographic Experts Group (JPEG) format images.
+    /// Provides the ability to encode the Joint Photographic Experts Group (JPEG) format images.
     /// </summary>
     public class JpegEncoder : ImageEncoder
     {
@@ -333,7 +333,7 @@ namespace Tizen.Multimedia.Util
         private int? _quality;
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="JpegEncoder"/> class.
+        /// Initializes a new instance of the <see cref="JpegEncoder"/> class.
         /// </summary>
         /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Jpeg"/>.</remarks>
         public JpegEncoder() : base(ImageFormat.Jpeg)
@@ -342,7 +342,7 @@ namespace Tizen.Multimedia.Util
 
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="JpegEncoder"/> class with initial quality value.
+        /// Initializes a new instance of the <see cref="JpegEncoder"/> class with initial quality value.
         /// </summary>
         /// <param name="quality">The quality for JPEG image encoding; from 1(lowest quality) to 100(highest quality).</param>
         /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Jpeg"/>.</remarks>
@@ -394,14 +394,14 @@ namespace Tizen.Multimedia.Util
     }
 
     /// <summary>
-    /// Provides the ability to encode Graphics Interchange Format (GIF) format images.
+    /// Provides the ability to encode the Graphics Interchange Format (GIF) format images.
     /// </summary>
     public class GifEncoder : ImageEncoder
     {
         /// <summary>
-       /// Initialize a new instance of the <see cref="GifEncoder"/> class.
-       /// </summary>
-       /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Gif"/>.</remarks>
+        /// Initializes a new instance of the <see cref="GifEncoder"/> class.
+        /// </summary>
+        /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Gif"/>.</remarks>
         public GifEncoder() : base(ImageFormat.Gif)
         {
         }

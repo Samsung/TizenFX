@@ -20,7 +20,7 @@ using ElmSharp;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// The MediaView class allows application developers to display the video output on screen.
+    /// The MediaView class allows application developers to display the video output on the screen.
     /// </summary>
     /// <remarks>
     /// This view should not be instantiated directly.\n

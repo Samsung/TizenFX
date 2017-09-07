@@ -17,12 +17,12 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Represents synchronized lyrics information of media.
+    /// Represents the synchronized lyrics information of the media.
     /// </summary>
     public class SyncLyrics
     {
         /// <summary>
-        /// Initialize a new instance of the MetadataExtractor class with the specified lyrics and timestamp.
+        /// Initializes a new instance of the MetadataExtractor class with the specified lyrics and the timestamp.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="lyrics">The text of synchronized lyrics.</param>

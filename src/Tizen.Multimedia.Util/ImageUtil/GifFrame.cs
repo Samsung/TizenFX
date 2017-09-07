@@ -19,13 +19,13 @@ using System;
 namespace Tizen.Multimedia.Util
 {
     /// <summary>
-    /// Represent gif image data used to encode a gif image with <see cref="GifEncoder"/>.
+    /// Represents the gif image data used to encode a gif image with <see cref="GifEncoder"/>.
     /// </summary>
     public class GifFrame
     {
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="GifFrame"/> class with a buffer and a delay.
+        /// Initializes a new instance of the <see cref="GifFrame"/> class with a buffer and a delay.
         /// </summary>
         /// <param name="buffer">The raw image buffer to be encoded.</param>
         /// <param name="delay">The delay for this image, in 0.001 sec units.</param>

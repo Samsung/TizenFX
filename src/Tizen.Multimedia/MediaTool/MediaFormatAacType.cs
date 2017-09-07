@@ -17,20 +17,20 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-     /// Specifies aac types for <see cref="AudioMediaFormat"/>.
-     /// </summary>
+    /// Specifies the AAC types for <see cref="AudioMediaFormat"/>.
+    /// </summary>
     public enum MediaFormatAacType
     {
         /// <summary>
-        /// Raw, no header
+        /// Raw, no header.
         /// </summary>
         None,
         /// <summary>
-        /// ADTS header
+        /// ADTS header.
         /// </summary>
         Adts,
         /// <summary>
-        /// ADIF header
+        /// ADIF header.
         /// </summary>
         Adif
     }

@@ -46,7 +46,7 @@ namespace Tizen.Multimedia
         /// Creates a media format from a native handle.
         /// </summary>
         /// <param name="handle">A native handle.</param>
-        /// <returns>An object of one of subclasses of <see cref="MediaFormat"/>.</returns>
+        /// <returns>An object of one of the subclasses of <see cref="MediaFormat"/>.</returns>
         internal static MediaFormat FromHandle(IntPtr handle)
         {
             if (handle == IntPtr.Zero)
@@ -81,7 +81,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Create a native media format from this object.
+        /// Creates a native media format from this object.
         /// </summary>
         /// <returns>A converted native handle.</returns>
         /// <remarks>The returned handle must be destroyed using <see cref="Interop.MediaFormat.Unref(IntPtr)"/>.</remarks>
@@ -103,7 +103,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Fill out properties of a native media format with the current media format object.
+        /// Fills out properties of a native media format with the current media format object.
         /// </summary>
         /// <param name="handle">A native handle to be written.</param>
         internal abstract void AsNativeHandle(IntPtr handle);

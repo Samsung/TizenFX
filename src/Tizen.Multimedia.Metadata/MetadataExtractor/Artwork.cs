@@ -17,15 +17,15 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Represents artwork information of media.
+    /// Represents the artwork information of the media.
     /// </summary>
     public class Artwork
     {
         /// <summary>
-        /// Initializes a new instance of the Artwork class with the specified data and mime type.
+        /// Initializes a new instance of the Artwork class with the specified data and the mime type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="data">The data of the artwork to set metadata.</param>
+        /// <param name="data">The data of the artwork to set the metadata.</param>
         /// <param name="mimeType">The mime type of the data of the artwork.</param>
         public Artwork(byte[] data, string mimeType)
         {
@@ -40,7 +40,7 @@ namespace Tizen.Multimedia
         public byte[] Data { get; }
 
         /// <summary>
-        /// Gets the mime type of artwork.
+        /// Gets the mime type of the artwork.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string MimeType { get; }

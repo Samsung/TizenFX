@@ -1,18 +1,18 @@
 /*
-* Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
-*
-* Licensed under the Apache License, Version 2.0 (the License);
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an AS IS BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 using System;
 using System.IO;
@@ -41,12 +41,12 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A task that represents the asynchronous extracting operation.</returns>
-        /// <remarks>The size of the thumbnail will be the default size(320x240).\n</remarks>
+        /// <remarks>The size of the thumbnail will be the default size (320x240).</remarks>
         /// <param name="path">The path of the media file to extract the thumbnail.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
-        /// <exception cref="FileNotFoundException">Requested <paramref name="path"/> does not exist.</exception>
-        /// <exception cref="InvalidOperationException">Internal error occurred.</exception>
-        /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
         public static Task<ThumbnailExtractionResult> ExtractAsync(string path)
         {
@@ -61,9 +61,9 @@ namespace Tizen.Multimedia.Util
         /// <param name="path">The path of the media file to extract the thumbnail.</param>
         /// <param name="cancellationToken">The token to stop the operation.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
-        /// <exception cref="FileNotFoundException">Requested <paramref name="path"/> does not exist.</exception>
-        /// <exception cref="InvalidOperationException">Internal error occurred.</exception>
-        /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
         public static Task<ThumbnailExtractionResult> ExtractAsync(string path, CancellationToken cancellationToken)
         {
@@ -76,17 +76,17 @@ namespace Tizen.Multimedia.Util
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A task that represents the asynchronous extracting operation.</returns>
         /// <remarks>
-        /// If the width is not a multiple of 8, it can be changed by inner process.\n
+        /// If the width is not a multiple of 8, it can be changed by the inner process.\n
         /// The width will be a multiple of 8 greater than the set value.
         /// </remarks>
         /// <param name="path">The path of the media file to extract the thumbnail.</param>
         /// <param name="size">The size of the thumbnail.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
-        /// <exception cref="FileNotFoundException">Requested <paramref name="path"/> does not exist.</exception>
-        /// <exception cref="InvalidOperationException">Internal error occurred.</exception>
-        /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     Width or height of <paramref name="size"/> is less than or equal to zero.
+        ///     The width or the height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
         public static Task<ThumbnailExtractionResult> ExtractAsync(string path, Size size)
@@ -100,18 +100,18 @@ namespace Tizen.Multimedia.Util
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A task that represents the asynchronous extracting operation.</returns>
         /// <remarks>
-        /// If the width is not a multiple of 8, it can be changed by inner process.\n
+        /// If the width is not a multiple of 8, it can be changed by the inner process.\n
         /// The width will be a multiple of 8 greater than the set value.
         /// </remarks>
         /// <param name="path">The path of the media file to extract the thumbnail.</param>
         /// <param name="size">The size of the thumbnail.</param>
         /// <param name="cancellationToken">The token to stop the operation.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
-        /// <exception cref="FileNotFoundException">Requested <paramref name="path"/> does not exist.</exception>
-        /// <exception cref="InvalidOperationException">Internal error occurred.</exception>
-        /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     Width or height of <paramref name="size"/> is less than or equal to zero.
+        ///     The width or the height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
         public static Task<ThumbnailExtractionResult> ExtractAsync(string path, Size size,

@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Multimedia.Util
 {
     /// <summary>
-    /// Represents image data returned by a decoder class.
+    /// Represents the image data returned by a decoder class.
     /// </summary>
     public class BitmapFrame
     {

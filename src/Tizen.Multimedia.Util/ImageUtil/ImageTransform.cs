@@ -210,7 +210,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Returns an enumerator that can iterate through the collection.
         /// </summary>
-        /// <returns>A enumerator that can be used to iterate through the collection.</returns>
+        /// <returns>An enumerator that can be used to iterate through the collection.</returns>
         public IEnumerator<ImageTransform> GetEnumerator() => _list.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => _list.GetEnumerator();
@@ -269,7 +269,7 @@ namespace Tizen.Multimedia.Util
     }
 
     /// <summary>
-    /// Rotates or flips an image.
+    /// Rotates an image.
     /// </summary>
     /// <seealso cref="Rotation"/>
     public class RotateTransform : ImageTransform
@@ -277,7 +277,7 @@ namespace Tizen.Multimedia.Util
         private Rotation _rotation;
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="RotateTransform"/> class.
+        /// Initializes a new instance of the <see cref="RotateTransform"/> class.
         /// </summary>
         /// <param name="rotation">The value how to rotate an image.</param>
         /// <exception cref="ArgumentException"><paramref name="rotation"/> is invalid.</exception>
@@ -330,7 +330,7 @@ namespace Tizen.Multimedia.Util
 
 
     /// <summary>
-    /// Rotates or flips an image.
+    /// Flips an image.
     /// </summary>
     /// <seealso cref="Rotation"/>
     public class FlipTransform : ImageTransform
@@ -338,7 +338,7 @@ namespace Tizen.Multimedia.Util
         private Flips _flip;
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="RotateTransform"/> class.
+        /// Initializes a new instance of the <see cref="RotateTransform"/> class.
         /// </summary>
         /// <param name="flip">The value how to flip an image.</param>
         /// <exception cref="ArgumentException"><paramref name="flip"/> is invalid.</exception>
@@ -405,7 +405,7 @@ namespace Tizen.Multimedia.Util
     }
 
     /// <summary>
-    /// Changes colorspace of image.
+    /// Changes the colorspace of an image.
     /// </summary>
     /// <seealso cref="ColorSpace"/>
     public class ColorSpaceTransform : ImageTransform
@@ -413,7 +413,7 @@ namespace Tizen.Multimedia.Util
         private ImageColorSpace _imageColorSpace;
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="ColorSpaceTransform"/> class.
+        /// Initializes a new instance of the <see cref="ColorSpaceTransform"/> class.
         /// </summary>
         /// <param name="colorSpace">The colorspace of output image.</param>
         /// <exception cref="ArgumentException"><paramref name="colorSpace"/> is invalid.</exception>
@@ -469,7 +469,7 @@ namespace Tizen.Multimedia.Util
         private Rectangle _region;
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="CropTransform"/> class.
+        /// Initializes a new instance of the <see cref="CropTransform"/> class.
         /// </summary>
         /// <param name="region">The crop region.</param>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -546,7 +546,7 @@ namespace Tizen.Multimedia.Util
         private Size _size;
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="ResizeTransform"/> class.
+        /// Initializes a new instance of the <see cref="ResizeTransform"/> class.
         /// </summary>
         /// <param name="size">The size that an image is resized to.</param>
         /// <exception cref="ArgumentOutOfRangeException">

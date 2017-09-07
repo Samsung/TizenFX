@@ -24,7 +24,7 @@ namespace Tizen.Multimedia
     public struct Range
     {
         /// <summary>
-        /// Initializes a new instance of the Range with the specified values.
+        /// Initializes a new instance of the range with the specified values.
         /// </summary>
         /// <param name="min">Minimum value of the range.</param>
         /// <param name="max">Maximum value of the range.</param>
@@ -40,7 +40,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets minimum value of the range.
+        /// Gets or sets the minimum value of the range.
         /// </summary>
         public int Min
         {
@@ -49,7 +49,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets maximum value of the range.
+        /// Gets or sets the maximum value of the range.
         /// </summary>
         public int Max
         {
@@ -58,15 +58,15 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets length of the range.
+        /// Gets the length of the range.
         /// </summary>
         public int Length => Max - Min;
 
         /// <summary>
-        /// Determines if the specified value is inside of the range.
+        /// Determines if the specified value is within the range.
         /// </summary>
-        /// <param name="value">A value to check.</param>
-        /// <returns>true if the value is inside of the range; otherwise false.</returns>
+        /// <param name="value">The value to check.</param>
+        /// <returns>true if the value is within the range; otherwise false.</returns>
         public bool IsInside(int value)
         {
             return Min <= value && value <= Max;

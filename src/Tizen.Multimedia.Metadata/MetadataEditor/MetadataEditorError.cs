@@ -21,7 +21,7 @@ using Tizen.Internals.Errors;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for metadata extractor's error codes.
+    /// Enumeration for the metadata extractor's error codes.
     /// </summary>
     internal enum MetadataEditorError
     {

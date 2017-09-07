@@ -27,13 +27,11 @@ namespace Tizen.Multimedia
 
         internal void AttachTo(Player player)
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             OnAttached(player);
         }
 
         internal void DetachFrom(Player player)
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             OnDetached(player);
         }
 

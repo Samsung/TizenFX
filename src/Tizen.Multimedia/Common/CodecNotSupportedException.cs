@@ -19,17 +19,17 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Specifies whether a codec is audio codec or video codec.
+    /// Specifies whether a codec is an audio codec or a video codec.
     /// </summary>
     public enum CodecKind
     {
         /// <summary>
-        /// Audio codec
+        /// Audio codec.
         /// </summary>
         Audio,
 
         /// <summary>
-        /// Video codec
+        /// Video codec.
         /// </summary>
         Video
     }

@@ -33,7 +33,7 @@ namespace Tizen.Multimedia.MediaCodec
         }
 
         /// <summary>
-        /// Gets the value indicating new status of the codec.
+        /// Gets the value indicating the new status of the codec.
         /// </summary>
         public MediaCodecStatus Status { get; }
 

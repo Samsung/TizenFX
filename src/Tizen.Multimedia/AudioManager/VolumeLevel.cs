@@ -18,7 +18,6 @@ using System;
 
 namespace Tizen.Multimedia
 {
-
     /// <summary>
     /// Provides a means to control volume levels.
     /// </summary>
@@ -43,7 +42,7 @@ namespace Tizen.Multimedia
         ///     -or-
         ///     <paramref name="value"/> is greater than <see cref="MaxVolumeLevel.this[AudioVolumeType]"/>.
         /// </exception>
-        /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege to set volume.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to set volume.</exception>
         public int this[AudioVolumeType type]
         {
             get

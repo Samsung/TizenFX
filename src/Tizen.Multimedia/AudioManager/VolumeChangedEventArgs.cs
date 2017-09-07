@@ -36,7 +36,7 @@ namespace Tizen.Multimedia
         public AudioVolumeType Type { get; }
 
         /// <summary>
-        /// Gets the new volume.
+        /// Gets the new volume level.
         /// </summary>
         /// <value>The new volume level.</value>
         public int Level { get; }

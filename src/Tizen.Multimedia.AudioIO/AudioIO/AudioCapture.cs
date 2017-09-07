@@ -1,18 +1,18 @@
 /*
-* Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
-*
-* Licensed under the Apache License, Version 2.0 (the License);
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an AS IS BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 using System;
 using System.Runtime.InteropServices;
@@ -158,7 +158,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the size allocated for the audio input buffer.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
         public int GetBufferSize()
         {
             AudioIOUtil.ThrowIfError(AudioInput.GetBufferSize(_handle, out var size));
@@ -169,7 +169,7 @@ namespace Tizen.Multimedia
         /// Prepares the AudioCapture for reading audio data by starting buffering of audio data from the device.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Operation failed due to internal error.\n
+        ///     Operation failed due to an internal error.\n
         ///     -or-\n
         ///     The current state is not <see cref="AudioIOState.Idle"/>.
         /// </exception>
@@ -186,7 +186,7 @@ namespace Tizen.Multimedia
         /// Unprepares the AudioCapture.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Operation failed due to internal error.\n
+        ///     Operation failed due to an internal error.\n
         ///     -or-\n
         ///     The current state is <see cref="AudioIOState.Idle"/>.
         /// </exception>
@@ -255,7 +255,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="streamPolicy">The <see cref="AudioStreamPolicy"/> to apply for the AudioCapture.</param>
         /// <exception cref="ArgumentNullException"><paramref name="streamPolicy"/> is null.</exception>
-        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed of.</exception>
         /// <exception cref="NotSupportedException"><paramref name="streamPolicy"/> is not supported.</exception>
         /// <exception cref="ArgumentException">Not able to retrieve information from <paramref name="streamPolicy"/>.</exception>
         public void ApplyStreamPolicy(AudioStreamPolicy streamPolicy)
@@ -272,15 +272,15 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Provides the ability to record audio from system audio input devices in synchronous way.
+    /// Provides the ability to record audio from system audio input devices in a synchronous way.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/recorder</privilege>
     public class AudioCapture : AudioCaptureBase
     {
         /// <summary>
-        /// Initializes a new instance of the AudioCapture class with the specified sample rate, channel and sampleType.
+        /// Initializes a new instance of the AudioCapture class with the specified sample rate, channel, and sampleType.
         /// </summary>
-        /// <param name="sampleRate">The audio sample rate.(8000 ~ 48000Hz)</param>
+        /// <param name="sampleRate">The audio sample rate (8000 ~ 48000Hz).</param>
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -326,7 +326,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Provides the ability to record audio from system audio input devices in asynchronous way.
+    /// Provides the ability to record audio from system audio input devices in an asynchronous way.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/recorder</privilege>
     public class AsyncAudioCapture : AudioCaptureBase
@@ -340,7 +340,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the AsyncAudioCapture class with the specified sample rate, channel and sampleType.
         /// </summary>
-        /// <param name="sampleRate">The audio sample rate.(8000 ~ 48000Hz)</param>
+        /// <param name="sampleRate">The audio sample rate (8000 ~ 48000Hz).</param>
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">

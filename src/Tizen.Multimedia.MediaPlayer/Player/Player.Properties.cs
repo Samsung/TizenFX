@@ -53,7 +53,7 @@ namespace Tizen.Multimedia
         private string _userAgent = "";
 
         /// <summary>
-        /// Gets or Sets the cookie for streaming playback.
+        /// Gets or sets the cookie for streaming playback.
         /// </summary>
         /// <remarks>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
@@ -83,7 +83,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or Sets the user agent for streaming playback.
+        /// Gets or sets the user agent for streaming playback.
         /// </summary>
         /// <remarks>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
@@ -145,7 +145,7 @@ namespace Tizen.Multimedia
         /// <value>A <see cref="AudioLatencyMode"/> that specifies the mode. The default is <see cref="AudioLatencyMode.Mid"/>.</value>
         /// <remarks>
         /// If the mode is <see cref="AudioLatencyMode.High"/>,
-        /// audio output interval can be increased so, it can keep more audio data to play.
+        /// audio output interval can be increased, so it can keep more audio data to play.
         /// But, state transition like pause or resume can be more slower than default(<see cref="AudioLatencyMode.Mid"/>).
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
@@ -284,7 +284,7 @@ namespace Tizen.Multimedia
         private PlayerTrackInfo _audioTrack;
 
         /// <summary>
-        /// Gets the track info for audio.
+        /// Gets the track info for the audio.
         /// </summary>
         /// <value>A <see cref="PlayerTrackInfo"/> for audio.</value>
         public PlayerTrackInfo AudioTrackInfo
@@ -302,9 +302,9 @@ namespace Tizen.Multimedia
         private PlayerTrackInfo _subtitleTrackInfo;
 
         /// <summary>
-        /// Gets the track info for subtitle.
+        /// Gets the track info for the subtitle.
         /// </summary>
-        /// <value>A <see cref="PlayerTrackInfo"/> for subtitle.</value>
+        /// <value>A <see cref="PlayerTrackInfo"/> for the subtitle.</value>
         public PlayerTrackInfo SubtitleTrackInfo
         {
             get

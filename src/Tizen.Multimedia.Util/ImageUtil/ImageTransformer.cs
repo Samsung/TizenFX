@@ -25,7 +25,7 @@ namespace Tizen.Multimedia.Util
     public class ImageTransformer : IDisposable
     {
         /// <summary>
-        /// Initialize a new instance of the <see cref="ImageTransformer"/> class.
+        /// Initializes a new instance of the <see cref="ImageTransformer"/> class.
         /// </summary>
         public ImageTransformer()
         {

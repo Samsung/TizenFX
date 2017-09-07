@@ -83,13 +83,13 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Decodes an image from the specified file.
         /// </summary>
-        /// <param name="inputFilePath">Input file path from which to decode.</param>
+        /// <param name="inputFilePath">The input file path from which to decode.</param>
         /// <returns>A task that represents the asynchronous decoding operation.</returns>
         /// <remarks>
         ///     Only Graphics Interchange Format(GIF) codec returns more than one frame.\n
         ///     \n
-        ///     http://tizen.org/privilege/mediastorage is needed if <paramref name="inputFilePath"/> is relevant to media storage.\n
-        ///     http://tizen.org/privilege/externalstorage is needed if <paramref name="inputFilePath"/> is relevant to external storage.
+        ///     http://tizen.org/privilege/mediastorage is needed if <paramref name="inputFilePath"/> is relevant to the media storage.\n
+        ///     http://tizen.org/privilege/externalstorage is needed if <paramref name="inputFilePath"/> is relevant to the external storage.
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="inputFilePath"/> is null.</exception>
         /// <exception cref="ArgumentException">
@@ -100,7 +100,7 @@ namespace Tizen.Multimedia.Util
         ///     The format of <paramref name="inputFilePath"/> is not <see cref="InputFormat"/>.
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="inputFilePath"/> does not exists.</exception>
-        /// <exception cref="UnauthorizedAccessException">Caller does not have required permission to access the path.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller does not have required permission to access the path.</exception>
         /// <exception cref="FileFormatException">The format of <paramref name="inputFilePath"/> is not <see cref="InputFormat"/>.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageDecoder"/> has already been disposed of.</exception>
         public async Task<IEnumerable<BitmapFrame>> DecodeAsync(string inputFilePath)
@@ -284,7 +284,7 @@ namespace Tizen.Multimedia.Util
         private static readonly byte[] _header = { (byte)'B', (byte)'M' };
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="BmpDecoder"/> class.
+        /// Initializes a new instance of the <see cref="BmpDecoder"/> class.
         /// </summary>
         /// <remarks><see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Bmp"/>.</remarks>
         public BmpDecoder() : base(ImageFormat.Bmp)
@@ -295,14 +295,14 @@ namespace Tizen.Multimedia.Util
     }
 
     /// <summary>
-    /// Provides the ability to decode Portable Network Graphics (PNG) encoded images.
+    /// Provides the ability to decode the Portable Network Graphics (PNG) encoded images.
     /// </summary>
     public class PngDecoder : ImageDecoder
     {
         private static readonly byte[] _header = { 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a };
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="PngDecoder"/> class.
+        /// Initializes a new instance of the <see cref="PngDecoder"/> class.
         /// </summary>
         /// <remarks><see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Png"/>.</remarks>
         public PngDecoder() : base(ImageFormat.Png)
@@ -313,7 +313,7 @@ namespace Tizen.Multimedia.Util
     }
 
     /// <summary>
-    /// Provides the ability to decode Joint Photographic Experts Group (JPEG) encoded images.
+    /// Provides the ability to decode the Joint Photographic Experts Group (JPEG) encoded images.
     /// </summary>
     public class JpegDecoder : ImageDecoder
     {
@@ -327,7 +327,7 @@ namespace Tizen.Multimedia.Util
         private JpegDownscale _jpegDownscale = DefaultJpegDownscale;
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="JpegDecoder"/> class.
+        /// Initializes a new instance of the <see cref="JpegDecoder"/> class.
         /// </summary>
         /// <remarks><see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Jpeg"/>.</remarks>
         public JpegDecoder() : base(ImageFormat.Jpeg)
@@ -363,14 +363,14 @@ namespace Tizen.Multimedia.Util
     }
 
     /// <summary>
-    /// Provides the ability to decode Graphics Interchange Format (GIF) encoded images.
+    /// Provides the ability to decode the Graphics Interchange Format (GIF) encoded images.
     /// </summary>
     public class GifDecoder : ImageDecoder
     {
         private static readonly byte[] _header = { (byte)'G', (byte)'I', (byte)'F' };
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="GifDecoder"/> class.
+        /// Initializes a new instance of the <see cref="GifDecoder"/> class.
         /// </summary>
         /// <remarks><see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Gif"/>.</remarks>
         public GifDecoder() : base(ImageFormat.Gif)

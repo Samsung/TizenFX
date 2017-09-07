@@ -17,7 +17,7 @@
 namespace Tizen.Multimedia.Util
 {
     /// <summary>
-    /// Specifies PNG compression levels.
+    /// Specifies the PNG compression levels.
     /// </summary>
     public enum PngCompression
     {

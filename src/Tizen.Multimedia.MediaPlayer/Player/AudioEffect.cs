@@ -63,15 +63,14 @@ namespace Tizen.Multimedia
         /// <param name="index">The index of the band to get.</param>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     index is less than zero.\n
+        ///     <pramref name="index"/> is less than zero.\n
         ///     -or-\n
-        ///     index is equal to or greater than <see cref="Count"/>.
+        ///     <paramref name="index"/> is equal to or greater than <see cref="Count"/>.
         /// </exception>
         public EqualizerBand this[int index]
         {
             get
             {
-                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
                 Player.ValidateNotDisposed();
 
                 if (index < 0 || Count <= index)
@@ -95,21 +94,19 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
         public void Clear()
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             Player.ValidateNotDisposed();
 
             Native.EqualizerClear(Player.Handle).
                 ThrowIfFailed("Failed to clear equalizer effect");
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
         /// <summary>
-        /// Get the number of items.
+        /// Gets the number of items.
         /// </summary>
         public int Count { get; }
 
         /// <summary>
-        /// Get the band level range of the bands in dB.
+        /// Gets the band level range of the bands in the dB.
         /// </summary>
         public Range BandLevelRange { get; }
 

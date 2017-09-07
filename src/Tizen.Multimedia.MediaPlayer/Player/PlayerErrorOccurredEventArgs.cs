@@ -25,7 +25,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the PlayerErrorOccurredEventArgs class.
         /// </summary>
-        /// <param name="error">The value indicating what kind of error occurred.</param>
+        /// <param name="error">The value indicating the kind of error occurred.</param>
         public PlayerErrorOccurredEventArgs(PlayerError error)
         {
             Error = error;

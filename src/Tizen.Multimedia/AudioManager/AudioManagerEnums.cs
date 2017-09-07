@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Specifies the flag for audio device options.
+    /// Specifies the flags for the audio device options.
     /// <para>
     /// This enumeration has a <see cref="FlagsAttribute"/> attribute that allows a bitwise combination of its member values.
     /// </para>
@@ -63,7 +63,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Specifies audio device type.
+    /// Specifies the audio device types.
     /// </summary>
     public enum AudioDeviceType
     {
@@ -80,11 +80,11 @@ namespace Tizen.Multimedia
         /// </summary>
         BuiltinMic,
         /// <summary>
-        /// Audio jack that can be connected to wired accessory such as headphones and headsets.
+        /// Audio jack that can be connected to wired accessories such as headphones and headsets.
         /// </summary>
         AudioJack,
         /// <summary>
-        /// Bluetooth Media (A2DP).
+        /// Bluetooth media (A2DP).
         /// </summary>
         BluetoothMedia,
         /// <summary>
@@ -96,17 +96,17 @@ namespace Tizen.Multimedia
         /// </summary>
         Forwarding,
         /// <summary>
-        /// USB Audio.
+        /// USB audio.
         /// </summary>
         UsbAudio,
         /// <summary>
-        /// Bluetooth Voice (SCO).
+        /// Bluetooth voice (SCO).
         /// </summary>
         BluetoothVoice
     }
 
     /// <summary>
-    /// Specifies audio device direction.
+    /// Specifies the audio device directions.
     /// </summary>
     public enum AudioDeviceIoDirection
     {
@@ -125,7 +125,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Specifies audio device state.
+    /// Specifies the audio device states.
     /// </summary>
     public enum AudioDeviceState
     {
@@ -140,7 +140,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Specifies audio volume type.
+    /// Specifies the audio volume types.
     /// </summary>
     public enum AudioVolumeType
     {
@@ -184,7 +184,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Specifies audio stream type.
+    /// Specifies the audio stream types.
     /// </summary>
     public enum AudioStreamType
     {
@@ -231,7 +231,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Specifies change reason of audio stream focus state.
+    /// Specifies the change reasons of the audio stream focus state.
     /// </summary>
     public enum AudioStreamFocusChangedReason
     {
@@ -282,7 +282,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Specifies the flag for audio stream focus options.
+    /// Specifies the flags for the audio stream focus options.
     /// <para>
     /// This enumeration has a <see cref="FlagsAttribute"/> attribute that allows a bitwise combination of its member values.
     /// </para>
@@ -301,7 +301,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Specifies audio stream focus state.
+    /// Specifies the audio stream focus states.
     /// </summary>
     public enum AudioStreamFocusState
     {
@@ -316,7 +316,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Specifies the flag for audio stream behaviors.
+    /// Specifies the flags for the audio stream behaviors.
     /// <para>
     /// This enumeration has a <see cref="FlagsAttribute"/> attribute that allows a bitwise combination of its member values.
     /// </para>

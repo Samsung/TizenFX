@@ -42,7 +42,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Occurs when the buffer underrun or overflow.
+        /// Occurs when the buffer underruns or overflows.
         /// </summary>
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
         /// <seealso cref="BufferMaxSize"/>
@@ -59,9 +59,9 @@ namespace Tizen.Multimedia
         /// Gets the max size of the buffer.
         /// </summary>
         /// <value>The max size of the buffer. The default is 200000.</value>
-        /// <remarks>If the buffer level over the max size, <see cref="BufferStatusChanged"/> will be raised with <see cref="MediaStreamBufferStatus.Overflow"/>.</remarks>
+        /// <remarks>If the buffer level overflows the max size, <see cref="BufferStatusChanged"/> will be raised with <see cref="MediaStreamBufferStatus.Overflow"/>.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaStreamSource"/> is not assigned to a player.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">value is zero.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is zero.</exception>
         /// <seealso cref="BufferStatusChanged"/>
         public ulong BufferMaxSize
         {
@@ -91,12 +91,12 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the min threshold of the buffer or zero if the <see cref="MediaStreamSource"/> is not assigned to a player.
+        /// Gets the minimum threshold of the buffer, or zero if the <see cref="MediaStreamSource"/> is not assigned to a player.
         /// </summary>
         /// <value>The minimum threshold of the buffer in percentage. The default is zero.</value>
         /// <remarks>If the buffer level drops below the threshold value, <see cref="BufferStatusChanged"/> will be raised with <see cref="MediaStreamBufferStatus.Underrun"/>.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaStreamSource"/> is not assigned to a player.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">value is greater than 100.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is greater than 100.</exception>
         /// <seealso cref="BufferStatusChanged"/>
         public uint BufferMinThreshold
         {

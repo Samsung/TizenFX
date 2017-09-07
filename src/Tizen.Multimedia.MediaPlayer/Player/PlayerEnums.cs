@@ -126,7 +126,7 @@ namespace Tizen.Multimedia
         Paused,
 
         /// <summary>
-        /// Preparing in progress.
+        /// Preparation in progress.
         /// </summary>
         /// <seealso cref="Player.PrepareAsync"/>/>
         Preparing,
@@ -141,7 +141,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Specifies audio latency modes for <see cref="Player"/> .
+    /// Specifies audio latency modes for <see cref="Player"/>.
     /// </summary>
     /// <seealso cref="Player.AudioLatencyMode"/>
     public enum AudioLatencyMode
@@ -163,7 +163,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Specifies display modes for <see cref="Player"/>
+    /// Specifies display modes for <see cref="Player"/>.
     /// </summary>
     /// <seealso cref="PlayerDisplaySettings.Mode"/>
     public enum PlayerDisplayMode
@@ -189,31 +189,32 @@ namespace Tizen.Multimedia
         CroppedFull,
 
         /// <summary>
-        /// Origin size (if surface size is larger than video size(width/height)) or
-        /// Letter box (if video size(width/height) is larger than surface size).
+        /// Original size (if surface size is larger than video size(width/height)) or
+        /// letter box (if video size(width/height) is larger than surface size).
         /// </summary>
         OriginalOrFull,
 
         /// <summary>
-        /// Region of interest, See <see cref="PlayerDisplaySettings.SetRoi(Rectangle)"/>.
+        /// Region of interest.
         /// </summary>
+        /// <seealso cref="PlayerDisplaySettings.SetRoi(Rectangle)"/>
         Roi
     }
 
     internal enum StreamType
     {
         /// <summary>
-        ///  Audio element stream type
+        ///  Audio element stream type.
         /// </summary>
         Audio = 1,
 
         /// <summary>
-        /// Video element stream type
+        /// Video element stream type.
         /// </summary>
         Video,
 
         /// <summary>
-        /// Text type
+        /// Text type.
         /// </summary>
         Text
     }
@@ -243,7 +244,7 @@ namespace Tizen.Multimedia
     public enum PlaybackInterruptionReason
     {
         /// <summary>
-        /// Interrupted by a resource conflict and the <see cref="Player"/> will be unprepared, automatically.
+        /// Interrupted by a resource conflict and the <see cref="Player"/> will be unprepared automatically.
         /// </summary>
         ResourceConflict = 4
     }

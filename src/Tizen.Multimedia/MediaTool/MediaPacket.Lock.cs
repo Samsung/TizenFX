@@ -30,7 +30,7 @@ namespace Tizen.Multimedia
         private readonly LockState _lock = new LockState();
 
         /// <summary>
-        /// Validate the current object is not locked.
+        /// Validates the current object is not locked.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The MediaPacket is in use by another module.</exception>

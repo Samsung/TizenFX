@@ -26,13 +26,13 @@ namespace Tizen.Multimedia
     public partial class Player
     {
         /// <summary>
-        /// Occurs when playback of a media is finished.
+        /// Occurs when the playback of a media is finished.
         /// </summary>
         public event EventHandler<EventArgs> PlaybackCompleted;
         private NativePlayer.PlaybackCompletedCallback _playbackCompletedCallback;
 
         /// <summary>
-        /// Occurs when playback of a media is interrupted.
+        /// Occurs when the playback of a media is interrupted.
         /// </summary>
         public event EventHandler<PlaybackInterruptedEventArgs> PlaybackInterrupted;
         private NativePlayer.PlaybackInterruptedCallback _playbackInterruptedCallback;
@@ -45,7 +45,7 @@ namespace Tizen.Multimedia
         private NativePlayer.PlaybackErrorCallback _playbackErrorCallback;
 
         /// <summary>
-        /// Occurs when the video stream changed.
+        /// Occurs when the video stream is changed.
         /// </summary>
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
         public event EventHandler<VideoStreamChangedEventArgs> VideoStreamChanged;

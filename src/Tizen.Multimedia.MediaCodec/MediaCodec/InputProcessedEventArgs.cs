@@ -36,7 +36,7 @@ namespace Tizen.Multimedia.MediaCodec
         }
 
         /// <summary>
-        /// Gets the packet that the codec has processed.
+        /// Gets the packet processed by the codec.
         /// </summary>
         public MediaPacket Packet { get; }
     }

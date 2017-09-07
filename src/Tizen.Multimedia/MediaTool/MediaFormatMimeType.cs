@@ -44,17 +44,17 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for media format data type
+    /// Specifies the media format data types.
     /// </summary>
     internal enum MediaFormatDataType
     {
         /// <summary>
-        /// Encoded type
+        /// Encoded type.
         /// </summary>
         Encoded = 0x10000000,
 
         /// <summary>
-        /// Raw type
+        /// Raw type.
         /// </summary>
         Raw = 0x20000000,
     }
@@ -65,7 +65,7 @@ namespace Tizen.Multimedia
     public enum MediaFormatAudioMimeType
     {
         /// <summary>
-        /// AMR, Alias for <see cref="AmrNB"/>.
+        /// AMR, alias for <see cref="AmrNB"/>.
         /// </summary>
         Amr = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1040),
 
@@ -80,7 +80,7 @@ namespace Tizen.Multimedia
         AmrWB = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1041),
 
         /// <summary>
-        /// AAC, Alias for <see cref="AacLC"/>.
+        /// AAC, alias for <see cref="AacLC"/>.
         /// </summary>
         Aac = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1060),
 
@@ -161,7 +161,7 @@ namespace Tizen.Multimedia
         H263P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2021),
 
         /// <summary>
-        /// H264_SP
+        /// H264_SP.
         /// </summary>
         H264SP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2030),
 
@@ -211,7 +211,7 @@ namespace Tizen.Multimedia
         Mpeg4Asp = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2071),
 
         /// <summary>
-        /// I420
+        /// I420.
         /// </summary>
         I420 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x2510),
 
@@ -288,63 +288,63 @@ namespace Tizen.Multimedia
     public enum MediaFormatContainerMimeType
     {
         /// <summary>
-        /// MP4 container, Video.
+        /// MP4 container, video.
         /// </summary>
         MP4 = (MediaFormatType.Container | 0x3010),
 
         /// <summary>
-        /// AVI container, Video.
+        /// AVI container, video.
         /// </summary>
         Avi = (MediaFormatType.Container | 0x3020),
 
         /// <summary>
-        /// MPEG2TS container, Video.
+        /// MPEG2TS container, video.
         /// </summary>
         Mpeg2TS = (MediaFormatType.Container | 0x3030),
 
         /// <summary>
-        /// MPEG2PS container, Video.
+        /// MPEG2PS container, video.
         /// </summary>
         Mpeg2PS = (MediaFormatType.Container | 0x3040),
 
         /// <summary>
-        /// MATROSKA container, Video.
+        /// MATROSKA container, video.
         /// </summary>
         Matroska = (MediaFormatType.Container | 0x3050),
 
         /// <summary>
-        /// WEBM container, Video.
+        /// WEBM container, video.
         /// </summary>
         Webm = (MediaFormatType.Container | 0x3060),
 
         /// <summary>
-        /// 3GP container, Video.
+        /// 3GP container, video.
         /// </summary>
         ThreeGP = (MediaFormatType.Container | 0x3070),
 
         /// <summary>
-        /// WAV container, Audio.
+        /// WAV container, audio.
         /// </summary>
         Wav = (MediaFormatType.Container | 0x4010),
 
         /// <summary>
-        ///  OGG container, Audio
+        ///  OGG container, audio
         /// </summary>
         Ogg = (MediaFormatType.Container | 0x4020),
 
         /// <summary>
-        /// AAC_ADTS container, Audio
+        /// AAC_ADTS container, audio
         /// </summary>
         AacAdts = (MediaFormatType.Container | 0x4030),
 
         /// <summary>
-        /// AAC_ADIF container, Audio
+        /// AAC_ADIF container, audio.
         /// </summary>
         AacAdif = (MediaFormatType.Container | 0x4031),
     }
 
     /// <summary>
-    /// Enumeration for text mime type
+    /// Specifies the text mime types.
     /// </summary>
     public enum MediaFormatTextMimeType
     {

@@ -23,7 +23,7 @@ namespace Tizen.Multimedia
     /// Represents a media source with a uri.
     /// </summary>
     /// <remarks>
-    /// The internet privilege(http://tizen.org/privilege/internet) must be added if any URLs are used to play from network.
+    /// The internet privilege(http://tizen.org/privilege/internet) must be added if any URLs are used to play from a network.
     /// The mediastorage privilege(http://tizen.org/privilege/mediastorage) must be added if any video/audio files are used to play located in the internal storage.
     /// The externalstorage privilege(http://tizen.org/privilege/externalstorage) must be added if any video/audio files are used to play located in the external storage.
     /// </remarks>

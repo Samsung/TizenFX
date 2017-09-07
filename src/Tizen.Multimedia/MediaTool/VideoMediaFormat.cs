@@ -28,13 +28,13 @@ namespace Tizen.Multimedia
         private const int DefaultBitRate = 0;
 
         /// <summary>
-        /// Initializes a new instance of the VideoMediaFormat class with the specified mime type, width and height.
+        /// Initializes a new instance of the VideoMediaFormat class with the specified mime type, width, and height.
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="width">The width value of the format.</param>
         /// <param name="height">The height value of the format</param>
-        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
-        /// <exception cref="ArgumentOutOfRangeException">width, or height is less than zero.</exception>
+        /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid (i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="width"/> or <paramref name="height"/> is less than zero.</exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height)
             : this(mimeType, width, height, DefaultFrameRate)
         {
@@ -45,8 +45,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="size">The size of the format.</param>
-        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
-        /// <exception cref="ArgumentOutOfRangeException">width, or height is less than zero.</exception>
+        /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid (i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The width or the height of <paramref name="size"/> is less than zero.</exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size)
             : this(mimeType, size, DefaultFrameRate)
         {
@@ -54,29 +54,34 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Initializes a new instance of the VideoMediaFormat class with the specified mime type,
-        /// width, height and frame rate.
+        /// width, height, and frame rate.
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="width">The width value of the format.</param>
         /// <param name="height">The height value of the format</param>
         /// <param name="frameRate">The frame rate of the format.</param>
-        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
-        /// <exception cref="ArgumentOutOfRangeException">width, height or frameRate is less than zero.</exception>
-        public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height,
-            int frameRate)
+        /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid (i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <paramref name="width"/>, <paramref name="height"/>, or <paramref name="frameRate"/> is less than zero.
+        /// </exception>
+        public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height, int frameRate)
             : this(mimeType, width, height, frameRate, DefaultBitRate)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the VideoMediaFormat class with the specified mime type,
-        /// width, height and frame rate.
+        /// width, height, and frame rate.
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="size">The video size of the format.</param>
         /// <param name="frameRate">The frame rate of the format.</param>
-        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
-        /// <exception cref="ArgumentOutOfRangeException">width, height or frameRate is less than zero.</exception>
+        /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid (i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     The width or the height of <paramref name="size"/> is less than zero.\n
+        ///     -or-\n
+        ///     <paramref name="frameRate"/> is less than zero.
+        /// </exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size,
             int frameRate)
             : this(mimeType, size, frameRate, DefaultBitRate)
@@ -85,15 +90,17 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Initializes a new instance of the VideoMediaFormat class with the specified mime type,
-        /// width, height, frame rate and bit rate.
+        /// width, height, frame rate, and bit rate.
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="width">The width value of the format.</param>
         /// <param name="height">The height value of the format</param>
         /// <param name="frameRate">The frame rate of the format.</param>
         /// <param name="bitRate">The bit rate of the format.</param>
-        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
-        /// <exception cref="ArgumentOutOfRangeException">width, height, frameRate or bitRate is less than zero.</exception>
+        /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid (i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <paramref name="width"/>, <paramref name="height"/>, <paramref name="frameRate"/>, or <paramref name="bitRate"/> is less than zero.
+        /// </exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height,
             int frameRate, int bitRate)
             : this(mimeType, new Size(width, height), frameRate, bitRate)
@@ -102,14 +109,20 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Initializes a new instance of the VideoMediaFormat class with the specified mime type,
-        /// size, frame rate and bit rate.
+        /// size, frame rate, and bit rate.
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="size">The size of the format.</param>
         /// <param name="frameRate">The frame rate of the format.</param>
         /// <param name="bitRate">The bit rate of the format.</param>
-        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
-        /// <exception cref="ArgumentOutOfRangeException">width, height, frameRate or bitRate is less than zero.</exception>
+        /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid (i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     The width or the height of <paramref name="size"/> is less than zero.\n
+        ///     -or-\n
+        ///     <paramref name="frameRate"/> is less than zero.\n
+        ///     -or-\n
+        ///     <paramref name="bitRate"/> is less than zero.
+        /// </exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size,
             int frameRate, int bitRate)
             : base(MediaFormatType.Video)
@@ -166,13 +179,13 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Retrieves video properties of media format from a native handle.
+        /// Retrieves video properties of the media format from a native handle.
         /// </summary>
-        /// <param name="handle">A native handle that properties are retrieved from.</param>
-        /// <param name="width">An out parameter for width.</param>
-        /// <param name="height">An out parameter for height.</param>
-        /// <param name="bitRate">An out parameter for bit rate.</param>
-        /// <param name="mimeType">An out parameter for mime type.</param>
+        /// <param name="handle">A native handle that the properties are retrieved from.</param>
+        /// <param name="width">An out parameter for the width.</param>
+        /// <param name="height">An out parameter for the height.</param>
+        /// <param name="bitRate">An out parameter for the bit rate.</param>
+        /// <param name="mimeType">An out parameter for the mime type.</param>
         private static void GetInfo(IntPtr handle, out int width, out int height, out int bitRate,
             out MediaFormatVideoMimeType mimeType)
         {
@@ -195,8 +208,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves frame rate from a native handle.
         /// </summary>
-        /// <param name="handle">A native handle that properties are retrieved from.</param>
-        /// <param name="frameRate">An out parameter for frame rate.</param>
+        /// <param name="handle">A native handle that the properties are retrieved from.</param>
+        /// <param name="frameRate">An out parameter for the frame rate.</param>
         private static void GetFrameRate(IntPtr handle, out int frameRate)
         {
             Debug.Assert(handle != IntPtr.Zero, "The handle is invalid!");

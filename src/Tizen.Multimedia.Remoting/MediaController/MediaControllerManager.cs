@@ -52,7 +52,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <privilege>http://tizen.org/privilege/mediacontroller.client</privilege>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
-        /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege.</exception>
         public MediaControllerManager()
         {
             Native.Create(out _handle).ThrowIfError("Failed to create media controller client.");
