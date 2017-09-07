@@ -1,7 +1,6 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia.AudioIO", "Tizen.Multimedia.AudioIO.csproj", "{6C20E06D-1039-4B5B-B983-A17224B858F5}"
 EndProject
@@ -16,6 +15,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.Common", "..\Tizen.Applications.Common\Tizen.Applications.Common.csproj", "{539E7A26-C450-464C-A878-D82525218BB3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Information", "..\Tizen.System.Information\Tizen.System.Information.csproj", "{70D00AC7-C4EB-4067-89DA-2D186AE8223D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI", "..\Tizen.NUI\Tizen.NUI.csproj", "{F5C30594-8FC3-4D72-81E8-BD8B0CD91D40}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.SystemSettings", "..\Tizen.System.SystemSettings\Tizen.System.SystemSettings.csproj", "{3E19AB5E-EDA0-4126-9A71-F04699161E4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,8 +54,19 @@ Global
 		{70D00AC7-C4EB-4067-89DA-2D186AE8223D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70D00AC7-C4EB-4067-89DA-2D186AE8223D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70D00AC7-C4EB-4067-89DA-2D186AE8223D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5C30594-8FC3-4D72-81E8-BD8B0CD91D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5C30594-8FC3-4D72-81E8-BD8B0CD91D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5C30594-8FC3-4D72-81E8-BD8B0CD91D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5C30594-8FC3-4D72-81E8-BD8B0CD91D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E19AB5E-EDA0-4126-9A71-F04699161E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E19AB5E-EDA0-4126-9A71-F04699161E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E19AB5E-EDA0-4126-9A71-F04699161E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E19AB5E-EDA0-4126-9A71-F04699161E4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {76DC7E80-8ACF-4FF8-854E-DCFF74BEE759}
 	EndGlobalSection
 EndGlobal

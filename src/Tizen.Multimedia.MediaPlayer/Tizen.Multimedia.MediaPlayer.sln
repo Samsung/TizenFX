@@ -1,7 +1,6 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia.MediaPlayer", "Tizen.Multimedia.MediaPlayer.csproj", "{BB1AF9FB-C940-4623-B218-ECD1943169F8}"
 EndProject
@@ -14,6 +13,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen", "..\Tizen\Tizen.csproj", "{2B17A608-FCBB-49DB-B977-94E8FF160E1A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\Tizen.Log\Tizen.Log.csproj", "{61A19070-B8F4-4672-A77F-3A77762AD6DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI", "..\Tizen.NUI\Tizen.NUI.csproj", "{4F3E9EBF-5B4E-4113-9394-EBBDA9F5951B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.SystemSettings", "..\Tizen.System.SystemSettings\Tizen.System.SystemSettings.csproj", "{0B90CFD7-0154-4FA1-9253-7317B9469852}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.Common", "..\Tizen.Applications.Common\Tizen.Applications.Common.csproj", "{88CA5588-ED50-40E9-80DC-F1DD34F4E52A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,8 +50,23 @@ Global
 		{61A19070-B8F4-4672-A77F-3A77762AD6DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61A19070-B8F4-4672-A77F-3A77762AD6DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61A19070-B8F4-4672-A77F-3A77762AD6DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F3E9EBF-5B4E-4113-9394-EBBDA9F5951B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F3E9EBF-5B4E-4113-9394-EBBDA9F5951B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F3E9EBF-5B4E-4113-9394-EBBDA9F5951B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F3E9EBF-5B4E-4113-9394-EBBDA9F5951B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B90CFD7-0154-4FA1-9253-7317B9469852}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B90CFD7-0154-4FA1-9253-7317B9469852}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B90CFD7-0154-4FA1-9253-7317B9469852}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B90CFD7-0154-4FA1-9253-7317B9469852}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88CA5588-ED50-40E9-80DC-F1DD34F4E52A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88CA5588-ED50-40E9-80DC-F1DD34F4E52A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88CA5588-ED50-40E9-80DC-F1DD34F4E52A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88CA5588-ED50-40E9-80DC-F1DD34F4E52A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {239AD666-133D-4D72-83C2-FD05704C52F7}
 	EndGlobalSection
 EndGlobal
