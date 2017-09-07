@@ -5,6 +5,7 @@
   <!-- Common Properties -->
   <PropertyGroup>
     <PublicModuleListFile>$(PackageSrcDir)PublicModuleList.txt</PublicModuleListFile>
+    <DummyBuildProject>$(MSBuildThisFileDirectory)build.dummy.csproj</DummyBuildProject>
   </PropertyGroup>
 
   <!-- Build Properties -->
@@ -52,10 +53,14 @@
   <Target Name="Build" DependsOnTargets="Clean">
 
     <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration);OutDir=$(OutputPlatformDir);RestoreSources=$(RestoreSources)"
+             Properties="Configuration=$(Configuration);RestoreSources=$(RestoreSources)"
+             Targets="Restore" />
+
+    <MSBuild Projects="@(ProjectToBuild)"
+             Properties="Configuration=$(Configuration);OutDir=$(OutputPlatformDir)"
              BuildInParallel="true"
              UseResultsCache="true"
-             Targets="Restore;Rebuild" />
+             Targets="Build" />
 
     <ReadLinesFromFile File="$(PublicModuleListFile)">
       <Output TaskParameter="Lines" ItemName="PublicProject" />
@@ -83,10 +88,8 @@
   -->
   <Target Name="BuildDummy">
 
-    <MSBuild Projects="$(MSBuildThisFileDirectory)build.dummy.csproj"
-             Properties="Configuration=$(Configuration);OutDir=$(OutputBaseDir)\obj\bin;RestoreSources=$(RestoreSources)"
-             BuildInParallel="true"
-             UseResultsCache="true"
+    <MSBuild Projects="$(DummyBuildProject)"
+             Properties="Configuration=$(Configuration);RestoreSources=$(RestoreSources)"
              Targets="Restore;Rebuild" />
 
   </Target>

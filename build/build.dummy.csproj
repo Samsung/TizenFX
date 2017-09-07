@@ -10,6 +10,7 @@
     <GenerateDependencyFile>false</GenerateDependencyFile>
     <DummyAssemblyVersion>$(VersionPrefix)</DummyAssemblyVersion>
     <BaseIntermediateOutputPath>$(OutputBaseDir)obj\</BaseIntermediateOutputPath>
+    <OutDir>$(OutputDummyDir)</OutDir>
   </PropertyGroup>
 
   <!-- Properties for directories -->
