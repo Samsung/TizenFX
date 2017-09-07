@@ -120,7 +120,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the current state of the recorder.
         /// </summary>
-        /// <value>A <see cref="RecorderState"/> that specifies the state of recorder.</value>
+        /// <value>A <see cref="RecorderState"/> that specifies the state of the recorder.</value>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
         public RecorderState State
         {
@@ -135,7 +135,7 @@ namespace Tizen.Multimedia
 
         #region Methods
         /// <summary>
-        /// Prepare the media recorder for recording.
+        /// Prepares the media recorder for recording.
         /// </summary>
         /// <remarks>
         /// The recorder should be in the <see cref="RecorderState.Idle"/> state.\n
@@ -175,7 +175,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// The recorder should be in the <see cref="RecorderState.Ready"/> state.
-        /// The state of recorder will be <see cref="RecorderState.Idle"/> after this.
+        /// The state of recorder will be the <see cref="RecorderState.Idle"/> after this.
         /// It has no effect if the current state is the <see cref="RecorderState.Idle"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
@@ -205,14 +205,14 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// The recorder must be in the <see cref="RecorderState.Ready"/> state.
-        /// The state of recorder will be <see cref="RecorderState.Recording"/> after this. \n
+        /// The state of the recorder will be the <see cref="RecorderState.Recording"/> after this. \n
         /// \n
         /// If the specified path exists, the file is removed automatically and updated by new one.\n
         /// The mediastorage privilege(http://tizen.org/privilege/mediastorage) is required if the path is relevant to media storage.\n
         /// The externalstorage privilege(http://tizen.org/privilege/externalstorage) is required if the path is relevant to external storage.\n
         /// \n
         /// In the video recorder, some preview format does not support record mode.
-        ///	You should use default preview format or <see cref="CameraPixelFormat.Nv12"/> in the record mode.
+        ///	You should use the default preview format or the <see cref="CameraPixelFormat.Nv12"/> in the record mode.
         /// </remarks>
         /// <param name="savePath">The file path for recording result.</param>
         /// <privilege>http://tizen.org/privilege/recorder</privilege>
@@ -255,7 +255,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// The recorder should be in the <see cref="RecorderState.Paused"/> state.
-        /// The state of recorder will be <see cref="RecorderState.Recording"/> after this.
+        /// The state of recorder will be the <see cref="RecorderState.Recording"/> after this.
         /// It has no effect if the current state is the <see cref="RecorderState.Recording"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
@@ -279,11 +279,11 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Pause the recording.
+        /// Pauses the recording.
         /// </summary>
         /// <remarks>
         /// The recorder should be in the <see cref="RecorderState.Recording"/> state.
-        /// The state of recorder will be <see cref="RecorderState.Paused"/> after this.
+        /// The state of the recorder will be the <see cref="RecorderState.Paused"/> after this.
         /// It has no effect if the current state is the <see cref="RecorderState.Paused"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
@@ -310,8 +310,8 @@ namespace Tizen.Multimedia
         /// Stops recording and saves the result.
         /// </summary>
         /// <remarks>
-        /// The recorder must be in the <see cref="RecorderState.Recording"/> or <see cref="RecorderState.Paused"/> state.
-        /// The state of recorder will be <see cref="RecorderState.Ready"/> after the operation.
+        /// The recorder must be in the <see cref="RecorderState.Recording"/> or the <see cref="RecorderState.Paused"/> state.
+        /// The state of the recorder will be the <see cref="RecorderState.Ready"/> after the operation.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
         ///     The recorder is not in the valid state.\n
@@ -337,8 +337,8 @@ namespace Tizen.Multimedia
         /// The recording data is discarded and not written in the recording file.
         /// </summary>
         /// <remarks>
-        /// The recorder must be in the <see cref="RecorderState.Recording"/> or <see cref="RecorderState.Paused"/> state.
-        /// The state of recorder will be <see cref="RecorderState.Ready"/> after the operation.
+        /// The recorder must be in the <see cref="RecorderState.Recording"/> or the <see cref="RecorderState.Paused"/> state.
+        /// The state of the recorder will be the <see cref="RecorderState.Ready"/> after the operation.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
         ///     The recorder is not in the valid state.\n
@@ -363,7 +363,7 @@ namespace Tizen.Multimedia
         /// Apply the audio stream policy.
         /// </summary>
         /// <remarks>
-        /// The recorder must be in the <see cref="RecorderState.Idle"/> or <see cref="RecorderState.Ready"/> state.
+        /// The recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref="RecorderState.Ready"/> state.
         /// </remarks>
         /// <param name="policy">The policy to apply.</param>
         /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>
@@ -395,9 +395,9 @@ namespace Tizen.Multimedia
         /// Returns the peak audio input level in dB since the last call to this method.
         /// </summary>
         /// <remarks>
-        /// 0dB indicates maximum input level, -300dB indicates minimum input level.\n
+        /// 0dB indicates the maximum input level, -300dB indicates the minimum input level.\n
         /// \n
-        /// The recorder must be in the <see cref="RecorderState.Recording"/> or <see cref="RecorderState.Paused"/> state.
+        /// The recorder must be in the <see cref="RecorderState.Recording"/> or the <see cref="RecorderState.Paused"/> state.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
         public double GetPeakAudioLevel()

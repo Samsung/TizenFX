@@ -68,14 +68,14 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the number of audio channel.
+        /// Gets or sets the number of the audio channel.
         /// </summary>
         /// <remarks>
-        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or <see cref="RecorderState.Ready"/> state.
+        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref="RecorderState.Ready"/> state.
         /// </remarks>
         /// <value>
-        /// For mono recording, set channel to 1.
-        /// For stereo recording, set channel to 2.
+        /// For mono recording, set the channel to 1.
+        /// For stereo recording, set the channel to 2.
         /// </value>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than or equal to zero.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
@@ -107,9 +107,9 @@ namespace Tizen.Multimedia
         /// Gets or sets the audio device for recording.
         /// </summary>
         /// <remarks>
-        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or <see cref="RecorderState.Ready"/> state.
+        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref="RecorderState.Ready"/> state.
         /// </remarks>
-        /// <value>A <see cref="RecorderAudioDevice"/> that specifies the type of audio device.</value>
+        /// <value>A <see cref="RecorderAudioDevice"/> that specifies the type of the audio device.</value>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
@@ -136,7 +136,7 @@ namespace Tizen.Multimedia
         /// Gets or sets the sampling rate of an audio stream in hertz.
         /// </summary>
         /// <remarks>
-        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or <see cref="RecorderState.Ready"/> state.
+        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref="RecorderState.Ready"/> state.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than or equal to zero.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
@@ -170,7 +170,7 @@ namespace Tizen.Multimedia
         /// Gets or sets the bitrate of an audio encoder in bits per second.
         /// </summary>
         /// <remarks>
-        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or <see cref="RecorderState.Ready"/> state.
+        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref="RecorderState.Ready"/> state.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than or equal to zero.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
@@ -207,9 +207,9 @@ namespace Tizen.Multimedia
         /// </value>
         /// <remarks>
         /// After reaching the limitation, the data which is being recorded will
-        /// be discarded and not written to the file.\n
+        /// be discarded and will not be written to the file.\n
         /// \n
-        /// To set, the recorder must be in the<see cref="RecorderState.Idle"/> or <see cref= "RecorderState.Ready" /> state.
+        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref= "RecorderState.Ready" /> state.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
@@ -248,9 +248,9 @@ namespace Tizen.Multimedia
         /// </value>
         /// <remarks>
         /// After reaching the limitation, the data which is being recorded will
-        /// be discarded and not written to the file.\n
+        /// be discarded and will not be written to the file.\n
         /// \n
-        /// To set, the recorder must be in the<see cref="RecorderState.Idle"/> or <see cref= "RecorderState.Ready" /> state.
+        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref= "RecorderState.Ready" /> state.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>

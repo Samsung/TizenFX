@@ -23,7 +23,7 @@ namespace Tizen.Multimedia
     public partial class Recorder
     {
         /// <summary>
-        /// Occurs when an error occurs during recorder operation.
+        /// Occurs when an error occurs during the recorder operation.
         /// </summary>
         public event EventHandler<RecordingErrorOccurredEventArgs> ErrorOccurred;
         private Native.RecorderErrorCallback _errorOccurredCallback;
@@ -35,20 +35,20 @@ namespace Tizen.Multimedia
         private Native.InterruptedCallback _interruptedCallback;
 
         /// <summary>
-        /// This event occurs when recorder state is changed.
+        /// This event occurs when the recorder state is changed.
         /// </summary>
         public event EventHandler<RecorderStateChangedEventArgs> StateChanged;
         private Native.StatechangedCallback _stateChangedCallback;
 
         /// <summary>
-        /// Occurs when recording information changes.
+        /// Occurs when the recording information changes.
         /// </summary>
         public event EventHandler<RecordingStatusChangedEventArgs> RecordingStatusChanged;
         private Native.RecordingProgressCallback _recordingProgressCallback;
 
         //TODO need to test dispose while event handler is running.
         /// <summary>
-        /// Occurs when audio stream data is being delivered.
+        /// Occurs when the audio stream data is being delivered.
         /// </summary>
         /// <remarks>
         /// Do not call <see cref="Commit"/> and <see cref="Cancel"/> in this event.
@@ -60,13 +60,13 @@ namespace Tizen.Multimedia
         /// Occurs when recording limit is reached.
         /// </summary>
         /// <remarks>
-        /// After this event is raised, recording data is discarded and not written in the recording file.
+        /// After this event is raised, the recording data is discarded and not written in the recording file.
         /// </remarks>
         public event EventHandler<RecordingLimitReachedEventArgs> RecordingLimitReached;
         private Native.RecordingLimitReachedCallback _recordingLimitReachedCallback;
 
         /// <summary>
-        /// Occurs when muxed stream data is being delivered.
+        /// Occurs when the muxed stream data is being delivered.
         /// </summary>
         public event EventHandler<MuxedStreamDeliveredEventArgs> MuxedStreamDelivered;
         private Native.MuxedStreamCallback _muxedStreamCallback;

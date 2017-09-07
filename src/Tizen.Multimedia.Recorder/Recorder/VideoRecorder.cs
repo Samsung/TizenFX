@@ -229,10 +229,10 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// The attribute is valid only in a video recorder.\n
-        /// If the rate is in range of 0-1, video is recorded in a slow motion mode.\n
-        /// If the rate is bigger than 1, video is recorded in a fast motion mode.\n
+        /// If the rate is in range of 0-1, the video is recorded in a slow motion mode.\n
+        /// If the rate is bigger than 1, the video is recorded in a fast motion mode.\n
         /// \n
-        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or <see cref="RecorderState.Ready"/> state.
+        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref="RecorderState.Ready"/> state.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException">The <paramref name="value"/> is less than or equal to 0.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
@@ -262,7 +262,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the orientation in a video metadata tag.
+        /// Gets or sets the orientation in the video metadata tag.
         /// </summary>
         /// <value>A <see cref="Rotation"/> that specifies the type of orientation.</value>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
@@ -289,11 +289,9 @@ namespace Tizen.Multimedia
         /// Gets or sets the resolution of the video recording.
         /// </summary>
         /// <remarks>
-        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or <see cref="RecorderState.Ready"/> state.
+        /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref="RecorderState.Ready"/> state.
         /// </remarks>
-        /// <exception cref="ArgumentOutOfRangeException">
-        ///    Width or height of <paramref name="value"/> is less than or equal to zero.
-        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">Width or height of <paramref name="value"/> is less than or equal to zero.</exception>
         /// <exception cref="NotSupportedException"><paramref name="value"> is not supported.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
@@ -330,7 +328,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the bitrate of an video encoder in bits per second.
+        /// Gets or sets the bitrate of the video encoder in bits per second.
         /// </summary>
         /// <remarks>
         /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or <see cref="RecorderState.Ready"/> state.
