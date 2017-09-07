@@ -35,7 +35,6 @@ namespace Tizen.Multimedia
             _owner = owner;
         }
 
-
         internal override void ValidateBufferReadable()
         {
             _owner.ValidateBufferReadable(this);

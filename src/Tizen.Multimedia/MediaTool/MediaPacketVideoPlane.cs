@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
         private readonly MediaPacket _packet;
         private readonly int _strideWidth;
         private readonly int _strideHeight;
-        private readonly MediaPacketBuffer _buffer;
+        private readonly IMediaBuffer _buffer;
 
         internal MediaPacketVideoPlane(MediaPacket packet, int index)
         {
@@ -44,18 +44,22 @@ namespace Tizen.Multimedia
             ret = Interop.MediaPacket.GetVideoStrideWidth(packet.GetHandle(), index, out _strideHeight);
             MultimediaDebug.AssertNoError(ret);
 
+            Debug.Assert(_strideWidth >= 0 && _strideHeight >= 0, "size must not be negative!");
+
             IntPtr dataHandle;
             ret = Interop.MediaPacket.GetVideoPlaneData(packet.GetHandle(), index, out dataHandle);
             MultimediaDebug.AssertNoError(ret);
 
-            _buffer = new MediaPacketBuffer(packet, dataHandle, _strideWidth * _strideHeight);
+            Debug.Assert(dataHandle != IntPtr.Zero, "Data handle is invalid!");
+
+            _buffer = new DependentMediaBuffer(packet, dataHandle, _strideWidth * _strideHeight);
         }
 
         /// <summary>
         /// Gets the buffer of the current video plane.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The MediaPacket that owns the current buffer has already been disposed of.</exception>
-        public MediaPacketBuffer Buffer
+        public IMediaBuffer Buffer
         {
             get
             {
