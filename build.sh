@@ -16,7 +16,7 @@ usage() {
   echo "    Options:"
   echo "        -h, --help            Show this usages message"
   echo "        -b, --build [module]  Build a module"
-  echo "        -f, --full            Build all modules in src/ directory. (pkg/Tizen.NET.Private.sln)"
+  echo "        -f, --full            Build all modules in src/ directory"
   echo "        -d, --dummy           Build dummy modules"
   echo "        -p, --pack            Make nuget packages"
   echo "        -c, --clean           Clean all artifacts"
