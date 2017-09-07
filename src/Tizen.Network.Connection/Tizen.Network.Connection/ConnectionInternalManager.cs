@@ -413,7 +413,15 @@ namespace Tizen.Network.Connection
 
             string result = Marshal.PtrToStringAnsi(ip);
             Interop.Libc.Free(ip);
-            return System.Net.IPAddress.Parse(result);;
+            Log.Debug(Globals.LogTag, "IPAddress " + result + " (" + result.Length + ")");
+            if (result.Length == 0)
+            {
+                if (family == AddressFamily.IPv4)
+                    return System.Net.IPAddress.Parse("0.0.0.0");
+                else
+                    return System.Net.IPAddress.Parse("::");
+            }
+            return System.Net.IPAddress.Parse(result);
         }
 
         internal IEnumerable<System.Net.IPAddress> GetAllIPv6Addresses(ConnectionType type)
@@ -425,7 +433,10 @@ namespace Tizen.Network.Connection
                 if (ipv6Address != IntPtr.Zero)
                 {
                     string ipv6 = Marshal.PtrToStringAnsi(ipv6Address);
-                    ipList.Add(System.Net.IPAddress.Parse(ipv6));
+                    if (ipv6.Length == 0)
+                        ipList.Add(System.Net.IPAddress.Parse("::"));
+                    else
+                        ipList.Add(System.Net.IPAddress.Parse(ipv6));
                     return true;
                 }
                 return false;

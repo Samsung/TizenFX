@@ -323,7 +323,10 @@ namespace Tizen.Network.WiFi
                 if (ipv6Address != IntPtr.Zero)
                 {
                     string ipv6 = Marshal.PtrToStringAnsi(ipv6Address);
-                    ipList.Add(System.Net.IPAddress.Parse(ipv6));
+                    if (ipv6.Length == 0)
+                        ipList.Add(System.Net.IPAddress.Parse("::"));
+                    else
+                        ipList.Add(System.Net.IPAddress.Parse(ipv6));
                     return true;
                 }
                 return false;

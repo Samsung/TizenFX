@@ -140,7 +140,7 @@ namespace Tizen.Network.Connection
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
-                if (result == null)
+                if (result == null || result.Length == 0)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(result);
             }
@@ -169,7 +169,7 @@ namespace Tizen.Network.Connection
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
-                if (result == null)
+                if (result == null || result.Length == 0)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(result);
             }
@@ -199,7 +199,7 @@ namespace Tizen.Network.Connection
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
-                if (result == null)
+                if (result == null || result.Length == 0)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(result);
             }
@@ -230,7 +230,7 @@ namespace Tizen.Network.Connection
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
-                if (result == null)
+                if (result == null || result.Length == 0)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(result);
             }
@@ -261,7 +261,7 @@ namespace Tizen.Network.Connection
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
-                if (result == null)
+                if (result == null || result.Length == 0)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(result);
             }
@@ -368,7 +368,7 @@ namespace Tizen.Network.Connection
                     Log.Error(Globals.LogTag, "It failed to get the DHCP server address, " + (ConnectionError)ret);
                 }
 
-                if (dhcpServer == null)
+                if (dhcpServer == null || dhcpServer.Length == 0)
                 {
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 }

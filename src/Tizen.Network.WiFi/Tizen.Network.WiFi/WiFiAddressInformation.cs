@@ -45,7 +45,7 @@ namespace Tizen.Network.WiFi
                 }
                 string addrStr = Marshal.PtrToStringAnsi(addrPtr);
                 Interop.Libc.Free(addrPtr);
-                if (addrStr == null)
+                if (addrStr == null || addrStr.Length == 0)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(addrStr);
             }
@@ -73,7 +73,7 @@ namespace Tizen.Network.WiFi
                 }
                 string addrStr = Marshal.PtrToStringAnsi(addrPtr);
                 Interop.Libc.Free(addrPtr);
-                if (addrStr == null)
+                if (addrStr == null || addrStr.Length == 0)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(addrStr);
             }
@@ -101,7 +101,7 @@ namespace Tizen.Network.WiFi
                 }
                 string addrStr = Marshal.PtrToStringAnsi(addrPtr);
                 Interop.Libc.Free(addrPtr);
-                if (addrStr == null)
+                if (addrStr == null || addrStr.Length == 0)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(addrStr);
             }
@@ -129,7 +129,7 @@ namespace Tizen.Network.WiFi
                 }
                 string addrStr = Marshal.PtrToStringAnsi(addrPtr);
                 Interop.Libc.Free(addrPtr);
-                if (addrStr == null)
+                if (addrStr == null || addrStr.Length == 0)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(addrStr);
             }
@@ -157,7 +157,7 @@ namespace Tizen.Network.WiFi
                 }
                 string addrStr = Marshal.PtrToStringAnsi(addrPtr);
                 Interop.Libc.Free(addrPtr);
-                if (addrStr == null)
+                if (addrStr == null || addrStr.Length == 0)
                     return System.Net.IPAddress.Parse("0.0.0.0");
                 return System.Net.IPAddress.Parse(addrStr);
             }
@@ -258,7 +258,7 @@ namespace Tizen.Network.WiFi
                     Log.Error(Globals.LogTag, "Failed to get DHCP server address, Error - " + (WiFiError)ret);
                 }
 
-                if (dhcpServer == null)
+                if (dhcpServer == null || dhcpServer.Length == 0)
                 {
                     return IPAddress.Parse("0.0.0.0");
                 }
