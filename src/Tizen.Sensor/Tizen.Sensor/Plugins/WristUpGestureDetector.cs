@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// WristUpGestureDetector Class. Used for registering callbacks for wrist up gesture detector and getting the wrist up state
+    /// The WristUpGestureDetector class is used for registering callbacks for the wrist up gesture detector and getting the wrist up state.
     /// </summary>
     public sealed class WristUpGestureDetector : Sensor
     {
@@ -29,14 +29,14 @@ namespace Tizen.Sensor
         /// Gets the state of the wrist up gesture.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Wrist up state </value>
+        /// <value> The wrist up state. </value>
         public DetectorState WristUp { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
-        /// Returns true or false based on whether wrist up gesture detector is supported by device.
+        /// Returns true or false based on whether the wrist up gesture detector is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -50,7 +50,7 @@ namespace Tizen.Sensor
         /// Returns the number of wrist up gesture detectors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of wrist up gesture detectors </value>
+        /// <value> The count of wrist up gesture detectors. </value>
         public static int Count
         {
             get
@@ -65,9 +65,9 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.wrist_up</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular wrist up gesture detector in case of multiple sensors.
         /// </param>
@@ -97,7 +97,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in wrist up gesture detector data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the wrist up gesture detector data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<WristUpGestureDetectorDataUpdatedEventArgs> DataUpdated;

@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// UncalibratedGyroscope changed event arguments. Class for storing the data returned by uncalibrated gyroscope
+    /// The UncalibratedGyroscope changed event arguments class is used for storing the data returned by a uncalibrated gyroscope.
     /// </summary>
     public class UncalibratedGyroscopeDataUpdatedEventArgs : EventArgs
     {
@@ -58,21 +58,21 @@ namespace Tizen.Sensor
         /// Gets the BiasX component of the uncalibrated gyroscope data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> X bias </value>
+        /// <value> The X bias. </value>
         public float BiasX { get; private set; }
 
         /// <summary>
         /// Gets the BiasY component of the uncalibrated gyroscope data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Y bias </value>
+        /// <value> The Y bias. </value>
         public float BiasY { get; private set; }
 
         /// <summary>
         /// Gets the BiasZ component of the uncalibrated gyroscope data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Z bias </value>
+        /// <value> The Z bias. </value>
         public float BiasZ { get; private set; }
     }
 }

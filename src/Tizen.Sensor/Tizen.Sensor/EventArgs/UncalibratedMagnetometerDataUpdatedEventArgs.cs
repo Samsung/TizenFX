@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// UncalibratedMagnetometer changed event arguments. Class for storing the data returned by uncalibrated magnetometer
+    /// The UncalibratedMagnetometer changed event arguments class is used for storing the data returned by a uncalibrated magnetometer.
     /// </summary>
     public class UncalibratedMagnetometerDataUpdatedEventArgs : EventArgs
     {
@@ -58,21 +58,21 @@ namespace Tizen.Sensor
         /// Gets the BiasX component of the uncalibrated magnetometer data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> X bias </value>
+        /// <value> The X bias. </value>
         public float BiasX { get; private set; }
 
         /// <summary>
         /// Gets the BiasY component of the uncalibrated magnetometer data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Y bias </value>
+        /// <value> The Y bias. </value>
         public float BiasY { get; private set; }
 
         /// <summary>
         /// Gets the BiasZ component of the uncalibrated magnetometer data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Z bias </value>
+        /// <value> The Z bias. </value>
         public float BiasZ { get; private set; }
     }
 }

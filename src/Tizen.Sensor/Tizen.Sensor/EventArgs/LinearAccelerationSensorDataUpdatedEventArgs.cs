@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// LinearAccelerationSensor changed event arguments. Class for storing the data returned by linear acceleration sensor
+    /// The LinearAccelerationSensor changed event arguments class is used for storing the data returned by a linear acceleration sensor.
     /// </summary>
     public class LinearAccelerationSensorDataUpdatedEventArgs : EventArgs
     {

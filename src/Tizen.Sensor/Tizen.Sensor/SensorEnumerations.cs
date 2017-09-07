@@ -24,7 +24,7 @@ namespace Tizen.Sensor
     internal enum SensorType
     {
         /// <summary>
-        /// All sensors. This can be used to retrieve Sensor class object for all available sensors.
+        /// All sensors. This can be used to retrieve the Sensor class object for all available sensors.
         /// </summary>
         All = -1,
         /// <summary>
@@ -52,7 +52,7 @@ namespace Tizen.Sensor
         /// </summary>
         OrientationSensor = 5,
         /// <summary>
-        /// Gyroscope sensor.
+        /// The Gyroscope sensor.
         /// </summary>
         Gyroscope = 6,
         /// <summary>
@@ -84,7 +84,7 @@ namespace Tizen.Sensor
         /// </summary>
         HeartRateMonitor = 13,
         /// <summary>
-        /// Uncalibrated Gyroscope sensor.
+        /// The Uncalibrated Gyroscope sensor.
         /// </summary>
         UncalibratedGyroscope = 17,
         /// <summary>
@@ -92,7 +92,7 @@ namespace Tizen.Sensor
         /// </summary>
         UncalibratedMagnetometer = 18,
         /// <summary>
-        /// Gyroscope-based rotation vector sensor.
+        /// The Gyroscope-based rotation vector sensor.
         /// </summary>
         GyroscopeRotationVectorSensor = 19,
         /// <summary>
@@ -138,7 +138,7 @@ namespace Tizen.Sensor
     }
 
     /// <summary>
-    /// Sensor attribute.
+    /// The sensor attribute.
     /// </summary>
     internal enum SensorAttribute
     {
@@ -154,7 +154,7 @@ namespace Tizen.Sensor
     }
 
     /// <summary>
-    /// SensorDataAccuracy Enum definition for all possible sensor data accuracy Values.
+    /// The SensorDataAccuracy Enum definition for all possible sensor data accuracy values.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum SensorDataAccuracy
@@ -187,7 +187,7 @@ namespace Tizen.Sensor
     }
 
     /// <summary>
-    /// Sensor Option Enum definition for sensor option Values
+    /// The Sensor Option Enum definition for sensor option values.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum SensorPausePolicy
@@ -215,7 +215,7 @@ namespace Tizen.Sensor
     }
 
     /// <summary>
-    /// Pedometer state.
+    /// The pedometer state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum PedometerState
@@ -246,7 +246,7 @@ namespace Tizen.Sensor
     }
 
     /// <summary>
-    /// Sleep monitor state.
+    /// The sleep monitor state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum SleepMonitorState
@@ -271,7 +271,7 @@ namespace Tizen.Sensor
     }
 
     /// <summary>
-    /// Proximity sensor state.
+    /// The proximity sensor state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum ProximitySensorState
@@ -296,7 +296,7 @@ namespace Tizen.Sensor
     }
 
     /// <summary>
-    /// Detector sensor state.
+    /// The detector sensor state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum DetectorState

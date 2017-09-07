@@ -19,24 +19,24 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// LightSensor Class. Used for registering callbacks for light sensor and getting light data
+    /// The LightSensor class is used for registering callbacks for the light sensor and getting the light data.
     /// </summary>
     public sealed class LightSensor : Sensor
     {
         private const string LightSensorKey = "http://tizen.org/feature/sensor.photometer";
 
         /// <summary>
-        /// Gets the Level of the light.
+        /// Gets the level of the light.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Light level </value>
+        /// <value> The light level. </value>
         public float Level { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether light sensor is supported by device.
+        /// Returns true or false based on whether the light sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -50,7 +50,7 @@ namespace Tizen.Sensor
         /// Returns the number of light sensors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of light sensors </value>
+        /// <value> The count of light sensors. </value>
         public static int Count
         {
             get
@@ -65,11 +65,11 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.photometer</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular light sensor in case of multiple sensors
+        /// Index. Default value for this is 0. Index refers to a particular light sensor in case of multiple sensors.
         /// </param>
         public LightSensor(uint index = 0) : base(index)
         {
@@ -82,7 +82,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in light sensor data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the light sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
 

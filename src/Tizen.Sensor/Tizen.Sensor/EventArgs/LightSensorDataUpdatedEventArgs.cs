@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// LightSensor changed event arguments. Class for storing the data returned by light sensor
+    /// The LightSensor changed event arguments class is used for storing the data returned by a light sensor.
     /// </summary>
     public class LightSensorDataUpdatedEventArgs : EventArgs
     {
@@ -32,7 +32,7 @@ namespace Tizen.Sensor
         /// Gets the level of the light.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Light level </value>
+        /// <value> The light level. </value>
         public float Level { get; private set; }
     }
 }

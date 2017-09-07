@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// Magnetometer Class. Used for registering callbacks for magnetometer and getting magnetometer data
+    /// The Magnetometer class is used for registering callbacks for the magnetometer and getting the magnetometer data.
     /// </summary>
     public sealed class Magnetometer : Sensor
     {
@@ -48,10 +48,10 @@ namespace Tizen.Sensor
         public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether magnetometer is supported by device.
+        /// Returns true or false based on whether magnetometer is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -65,7 +65,7 @@ namespace Tizen.Sensor
         /// Returns the number of magnetometers available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of magnetometers </value>
+        /// <value> The count of magnetometers. </value>
         public static int Count
         {
             get
@@ -80,11 +80,11 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.magnetometer</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular magnetometer in case of multiple sensors
+        /// Index. Default value for this is 0. Index refers to a particular magnetometer in case of multiple sensors.
         /// </param>
         public Magnetometer(uint index = 0) : base(index)
         {
@@ -97,14 +97,14 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in magnetometer data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the magnetometer data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
 
         public event EventHandler<MagnetometerDataUpdatedEventArgs> DataUpdated;
 
         /// <summary>
-        /// Event handler for accuracy changed events.
+        /// An event handler for accuracy changed events.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<SensorAccuracyChangedEventArgs> AccuracyChanged

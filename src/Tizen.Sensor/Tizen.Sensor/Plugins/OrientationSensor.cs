@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// OrientationSensor Class. Used for registering callbacks for orientation sensor and getting orientation data
+    /// The OrientationSensor class is used for registering callbacks for the orientation sensor and getting the orientation data.
     /// </summary>
     public sealed class OrientationSensor : Sensor
     {
@@ -27,31 +27,31 @@ namespace Tizen.Sensor
 
         private event EventHandler<SensorAccuracyChangedEventArgs> _accuracyChanged;
         /// <summary>
-        /// Gets the Azimuth component of the orientation.
+        /// Gets the azimuth component of the orientation.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Azimuth </value>
         public float Azimuth { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the Pitch component of the orientation.
+        /// Gets the pitch component of the orientation.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Pitch </value>
         public float Pitch { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the Roll component of the orientation.
+        /// Gets the roll component of the orientation.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Roll </value>
         public float Roll { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether orientation sensor is supported by device.
+        /// Returns true or false based on whether the orientation sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -65,7 +65,7 @@ namespace Tizen.Sensor
         /// Returns the number of orientation sensors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of orientation sensors </value>
+        /// <value> The count of orientation sensors. </value>
         public static int Count
         {
             get
@@ -80,11 +80,11 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.tiltmeter</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular orientation sensor in case of multiple sensors
+        /// Index. Default value for this is 0. Index refers to a particular orientation sensor in case of multiple sensors.
         /// </param>
         public OrientationSensor(uint index = 0) : base(index)
         {
@@ -97,14 +97,14 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in orientation sensor data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the orientation sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
 
         public event EventHandler<OrientationSensorDataUpdatedEventArgs> DataUpdated;
 
         /// <summary>
-        /// Event handler for accuracy changed events.
+        /// An event handler for accuracy changed events.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<SensorAccuracyChangedEventArgs> AccuracyChanged

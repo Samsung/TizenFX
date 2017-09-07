@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// PickUpGestureDetector Class. Used for registering callbacks for pick up activity detector and getting the pick up state
+    /// The PickUpGestureDetector class is used for registering callbacks for the pick up activity detector and getting the pick up state.
     /// </summary>
     public sealed class PickUpGestureDetector : Sensor
     {
@@ -29,14 +29,14 @@ namespace Tizen.Sensor
         /// Gets the state of the pick up gesture.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Pick up state </value>
+        /// <value> The pick up state. </value>
         public DetectorState PickUp { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
-        /// Returns true or false based on whether pick up gesture detector is supported by device.
+        /// Returns true or false based on whether the pick up gesture detector is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -50,7 +50,7 @@ namespace Tizen.Sensor
         /// Returns the number of pick up gesture detectors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of pick up gesture detectors </value>
+        /// <value> The count of pick up gesture detectors. </value>
         public static int Count
         {
             get
@@ -65,9 +65,9 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.gesture_recognition</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular pick up gesture detector in case of multiple sensors.
         /// </param>
@@ -109,7 +109,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in pick up gesture detector data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the pick up gesture detector data.	
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<PickUpGestureDetectorDataUpdatedEventArgs> DataUpdated;

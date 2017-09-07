@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// RotationVectorSensor changed event arguments. Class for storing the data returned by rotation vector sensor
+    /// The RotationVectorSensor changed event arguments class is used for storing the data returned by a rotation vector sensor.
     /// </summary>
     public class RotationVectorSensorDataUpdatedEventArgs : EventArgs
     {

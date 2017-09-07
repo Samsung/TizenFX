@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// FaceDownGestureDetector Class. Used for registering callbacks for face down gesture detector and getting the face down state
+    /// The FaceDownGestureDetector class is used for registering callbacks for the face down gesture detector and getting the face down state.
     /// </summary>
     public sealed class FaceDownGestureDetector : Sensor
     {
@@ -29,14 +29,14 @@ namespace Tizen.Sensor
         /// Gets the state of the face down gesture.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Face down state </value>
+        /// <value> The face down state. </value>
         public DetectorState FaceDown { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
-        /// Returns true or false based on whether face down gesture detector is supported by device.
+        /// Returns true or false based on whether the face down gesture detector is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -50,7 +50,7 @@ namespace Tizen.Sensor
         /// Returns the number of face down gesture detectors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of face down gesture detectors </value>
+        /// <value> The count of face down gesture detectors. </value>
         public static int Count
         {
             get
@@ -65,9 +65,9 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.gesture_recognition</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular face down gesture detector in case of multiple sensors.
         /// </param>
@@ -97,7 +97,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in face down gesture detector data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the face down gesture detector data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<FaceDownGestureDetectorDataUpdatedEventArgs> DataUpdated;

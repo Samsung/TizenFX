@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// ProximitySensor changed event arguments. Class for storing the data returned by proximity sensor
+    /// The ProximitySensor changed event arguments class is used for storing the data returned by a proximity sensor.
     /// </summary>
     public class ProximitySensorDataUpdatedEventArgs : EventArgs
     {
@@ -32,7 +32,7 @@ namespace Tizen.Sensor
         /// Gets the proximity state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Proximity state </value>
+        /// <value> The proximity state. </value>
         public ProximitySensorState Proximity { get; private set; }
     }
 }

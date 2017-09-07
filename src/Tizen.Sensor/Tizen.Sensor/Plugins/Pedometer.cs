@@ -19,73 +19,73 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// Pedometer Sensor Class. Used for registering callbacks for pedometer and getting pedometer data
+    /// The Pedometer Sensor class is used for registering callbacks for the pedometer and getting the pedometer data.
     /// </summary>
     public sealed class Pedometer : Sensor
     {
         private static string PedometerKey = "http://tizen.org/feature/sensor.pedometer";
 
         /// <summary>
-        /// Gets the step count
+        /// Gets the step count.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Step count </value>
+        /// <value> The step count. </value>
         public uint StepCount { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the walking step count
+        /// Gets the walking step count.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Walk step count </value>
+        /// <value> The walk step count. </value>
         public uint WalkStepCount { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the running step count
+        /// Gets the running step count.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Run step count </value>
+        /// <value> The run step count. </value>
         public uint RunStepCount { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the moving distance
+        /// Gets the moving distance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Moving distance </value>
+        /// <value> The moving distance. </value>
         public float MovingDistance { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the calorie burned
+        /// Gets the calorie burned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Calorie Burned </value>
+        /// <value> The calorie burned. </value>
         public float CalorieBurned { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the last speed
+        /// Gets the last speed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Last speed </value>
+        /// <value> The last speed. </value>
         public float LastSpeed { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the last stepping frequency
+        /// Gets the last stepping frequency.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Last stepping frequency </value>
+        /// <value> The last stepping frequency. </value>
         public float LastSteppingFrequency { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the last step status
+        /// Gets the last step status.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Last step status </value>
+        /// <value> The last step status. </value>
         public PedometerState LastStepStatus { get; private set; } = PedometerState.Unknown;
 
         /// <summary>
-        /// Returns true or false based on whether pedometer sensor is supported by device.
+        /// Returns true or false based on whether the pedometer sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -99,7 +99,7 @@ namespace Tizen.Sensor
         /// Returns the number of pedometer sensors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of pedometer sensors </value>
+        /// <value> The count of pedometer sensors. </value>
         public static int Count
         {
             get
@@ -116,12 +116,12 @@ namespace Tizen.Sensor
         /// <privilege>http://tizen.org/privilege/healthinfo</privilege>
         /// <privlevel>public</privlevel>
         /// <feature>http://tizen.org/feature/sensor.pedometer</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the sensor</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the sensor.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular pedometer sensor in case of multiple sensors
+        /// Index. Default value for this is 0. Index refers to a particular pedometer sensor in case of multiple sensors.
         /// </param>
         public Pedometer(uint index = 0) : base(index)
         {
@@ -134,7 +134,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in pedometer sensor data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the pedometer sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
 

@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// FaceDownGestureDetector changed event arguments. Class for storing the data returned by face down gesture detector.
+    /// The FaceDownGestureDetector changed event arguments class is used for storing the data returned by a face down gesture detector.
     /// </summary>
     public class FaceDownGestureDetectorDataUpdatedEventArgs : EventArgs
     {
@@ -32,7 +32,7 @@ namespace Tizen.Sensor
         /// Gets the face down state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Face down state </value>
+        /// <value> The face down state. </value>
         public DetectorState FaceDown { get; private set; }
     }
 }

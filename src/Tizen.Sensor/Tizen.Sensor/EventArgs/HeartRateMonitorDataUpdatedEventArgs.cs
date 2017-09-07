@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// HeartRateMonitor changed event arguments. Class for storing the data returned by heart rate monitor
+    /// The HeartRateMonitor changed event arguments class is used for storing the data returned by a heart rate monitor.
     /// </summary>
     public class HeartRateMonitorDataUpdatedEventArgs : EventArgs
     {
@@ -29,10 +29,10 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Gets the value of the heartRate.
+        /// Gets the value of the heart rate.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Heart rate </value>
+        /// <value> The heart rate. </value>
         public int HeartRate { get; private set; }
     }
 }

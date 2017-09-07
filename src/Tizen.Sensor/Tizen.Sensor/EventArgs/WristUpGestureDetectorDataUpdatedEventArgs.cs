@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// WristUpGestureDetector changed event arguments. Class for storing the data returned by wrist up gesture detector
+    /// The WristUpGestureDetector changed event arguments class is used for storing the data returned by a wrist up gesture detector.
     /// </summary>
     public class WristUpGestureDetectorDataUpdatedEventArgs : EventArgs
     {
@@ -32,7 +32,7 @@ namespace Tizen.Sensor
         /// Gets the wrist up state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Wrist up state </value>
+        /// <value> The wrist up state. </value>
         public DetectorState WristUp { get; private set; }
     }
 }

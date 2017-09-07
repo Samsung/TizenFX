@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// Magnetometer changed event arguments. Class for storing the data returned by magnetometer sensor
+    /// The Magnetometer changed event arguments class is used for storing the data returned by a magnetometer sensor.
     /// </summary>
     public class MagnetometerDataUpdatedEventArgs : EventArgs
     {

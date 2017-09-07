@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// PickUpGestureDetector changed event arguments. Class for storing the data returned by pick up gesture detector
+    /// The PickUpGestureDetector changed event arguments class is used for storing the data returned by a pickup gesture detector.
     /// </summary>
     public class PickUpGestureDetectorDataUpdatedEventArgs : EventArgs
     {
@@ -32,7 +32,7 @@ namespace Tizen.Sensor
         /// Gets the pick up state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Pick up state </value>
+        /// <value> The pick up state. </value>
         public DetectorState PickUp { get; private set; }
     }
 }

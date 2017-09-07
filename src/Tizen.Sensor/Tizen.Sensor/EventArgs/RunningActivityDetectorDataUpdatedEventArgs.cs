@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// RunningActivityDetector changed event arguments. Class for storing the data returned by running activity detector
+    /// The RunningActivityDetector changed event arguments class is used for storing the data returned by a running activity detector.
     /// </summary>
     public class RunningActivityDetectorDataUpdatedEventArgs : EventArgs
     {
@@ -32,7 +32,7 @@ namespace Tizen.Sensor
         /// Gets the running state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Running state </value>
+        /// <value> The running state. </value>
         public DetectorState Running { get; private set; }
     }
 }

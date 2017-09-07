@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// HeartRateMonitor Class. Used for registering callbacks for heart rate monitor and getting heart rate data
+    /// The HeartRateMonitor class is used for registering callbacks for the heart rate monitor and getting the heart rate data.
     /// </summary>
     public sealed class HeartRateMonitor : Sensor
     {
@@ -29,14 +29,14 @@ namespace Tizen.Sensor
         /// Gets the value of the heart rate monitor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Heart rate </value>
+        /// <value> The heart rate. </value>
         public int HeartRate { get; private set; } = int.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether heart rate monitor is supported by device.
+        /// Returns true or false based on whether the heart rate monitor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -50,7 +50,7 @@ namespace Tizen.Sensor
         /// Returns the number of heart rate monitors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of heart rate monitors </value>
+        /// <value> The count of heart rate monitors. </value>
         public static int Count
         {
             get
@@ -67,12 +67,12 @@ namespace Tizen.Sensor
         /// <privilege>http://tizen.org/privilege/healthinfo</privilege>
         /// <privlevel>public</privlevel>
         /// <feature>http://tizen.org/feature/sensor.heart_rate_monitor</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the sensor</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the sensor.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular heart rate monitor in case of multiple sensors
+        /// Index. Default value for this is 0. Index refers to a particular heart rate monitor in case of multiple sensors.
         /// </param>
         public HeartRateMonitor(uint index = 0) : base(index)
         {
@@ -85,7 +85,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in heart rate monitor data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the heart rate monitor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<HeartRateMonitorDataUpdatedEventArgs> DataUpdated;

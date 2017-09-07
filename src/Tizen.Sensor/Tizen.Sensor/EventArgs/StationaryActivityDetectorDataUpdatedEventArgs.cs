@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// StationaryActivityDetector changed event arguments. Class for storing the data returned by stationary activity detector
+    /// The StationaryActivityDetector changed event arguments class is used for storing the data returned by a stationary activity detector.
     /// </summary>
     public class StationaryActivityDetectorDataUpdatedEventArgs : EventArgs
     {
@@ -32,7 +32,7 @@ namespace Tizen.Sensor
         /// Gets the stationary state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Stationary state </value>
+        /// <value> The stationary state. </value>
         public DetectorState Stationary { get; private set; }
     }
 }

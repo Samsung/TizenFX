@@ -19,24 +19,24 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// InVehicleActivityDetector Class. Used for registering callbacks for in vehicle activity detector and getting the in vehicle state
+    /// The InVehicleActivityDetector class is used for registering callbacks for the in-vehicle activity detector and getting the in-vehicle state.
     /// </summary>
     public sealed class InVehicleActivityDetector : ActivityDetector
     {
         private const string ActivityDetectorKey = "http://tizen.org/feature/sensor.activity_recognition";
 
         /// <summary>
-        /// Gets the state of in-vehicle activity detector
+        /// Gets the state of the in-vehicle activity detector.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> In-vehicle state </value>
+        /// <value> The in-vehicle state. </value>
         public DetectorState InVehicle { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
-        /// Returns true or false based on whether in-vehicle activity detector is supported by device.
+        /// Returns true or false based on whether the in-vehicle activity detector is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -50,7 +50,7 @@ namespace Tizen.Sensor
         /// Returns the number of in-vehicle activity detectors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of in-vehicle activity detectors </value>
+        /// <value> The count of in-vehicle activity detectors. </value>
         public static int Count
         {
             get
@@ -65,9 +65,9 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.activity_recognition</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular in-vehicle activity detector in case of multiple sensors.
         /// </param>
@@ -93,7 +93,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in in-vehicle activity detector data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the in-vehicle activity detector data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<InVehicleActivityDetectorDataUpdatedEventArgs> DataUpdated;

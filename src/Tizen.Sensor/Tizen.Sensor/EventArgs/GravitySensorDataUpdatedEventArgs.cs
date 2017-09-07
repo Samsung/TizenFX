@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// GravitySensor changed event arguments. Class for storing the data returned by gravity sensor
+    /// The GravitySensor changed event arguments class is used for storing the data returned by a gravity sensor.
     /// </summary>
     public class GravitySensorDataUpdatedEventArgs : EventArgs
     {

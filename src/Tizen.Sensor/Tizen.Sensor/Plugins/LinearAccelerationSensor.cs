@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// LinearAccelerationSensor Class. Used for registering callbacks for linear acceleration sensor and getting linear acceleration data
+    /// The LinearAccelerationSensor class is used for registering callbacks for the linear acceleration sensor and getting the linear acceleration data.
     /// </summary>
     public sealed class LinearAccelerationSensor : Sensor
     {
@@ -48,10 +48,10 @@ namespace Tizen.Sensor
         public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether linear acceleration sensor is supported by device.
+        /// Returns true or false based on whether the linear acceleration sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -65,7 +65,7 @@ namespace Tizen.Sensor
         /// Returns the number of linear acceleration sensors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of linear acceleration sensors </value>
+        /// <value> The count of linear acceleration sensors. </value>
         public static int Count
         {
             get
@@ -80,11 +80,11 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.linear_acceleration</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular linear acceleration sensor in case of multiple sensors
+        /// Index. Default value for this is 0. Index refers to a particular linear acceleration sensor in case of multiple sensors.
         /// </param>
         public LinearAccelerationSensor(uint index = 0) : base(index)
         {
@@ -97,14 +97,14 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in linear acceleration sensor data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the linear acceleration sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
 
         public event EventHandler<LinearAccelerationSensorDataUpdatedEventArgs> DataUpdated;
 
         /// <summary>
-        /// Event handler for accuracy changed events.
+        /// An event handler for accuracy changed events.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<SensorAccuracyChangedEventArgs> AccuracyChanged

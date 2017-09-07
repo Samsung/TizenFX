@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// UltravioletSensor changed event arguments. Class for storing the data returned by ultraviolet sensor
+    /// The UltravioletSensor changed event arguments class is used for storing the data returned by a ultraviolet sensor.
     /// </summary>
     public class UltravioletSensorDataUpdatedEventArgs : EventArgs
     {
@@ -32,7 +32,7 @@ namespace Tizen.Sensor
         /// Gets the value of the ultraviolet index.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Ultraviolet index </value>
+        /// <value> The ultraviolet index. </value>
         public float UltravioletIndex { get; private set; }
     }
 }

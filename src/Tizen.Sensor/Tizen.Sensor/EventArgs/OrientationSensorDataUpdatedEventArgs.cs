@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// OrientationSensor changed event arguments. Class for storing the data returned by orientation sensor
+    /// The OrientationSensor changed event arguments class is used for storing the data returned by a orientation sensor.
     /// </summary>
     public class OrientationSensorDataUpdatedEventArgs : EventArgs
     {

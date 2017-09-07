@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// Activity Detector class for storing common activity information
+    /// The Activity Detector class is used for storing the common activity information.
     /// </summary>
     public abstract class ActivityDetector : Sensor
     {
@@ -36,10 +36,10 @@ namespace Tizen.Sensor
         };
 
         /// <summary>
-        /// Gets the activity accuracy of activity detector
+        /// Gets the activity accuracy of the activity detector.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Activity accuracy </value>
+        /// <value> The activity accuracy. </value>
         public SensorDataAccuracy ActivityAccuracy { get; protected set; }
 
         internal ActivityDetector(uint index) : base(index)

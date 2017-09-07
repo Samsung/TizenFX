@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// GyroscopeRotationVectorSensor changed event arguments. Class for storing the data returned by gyroscope rotation vector sensor
+    /// The GyroscopeRotationVectorSensor changed event arguments class is used for storing the data returned by a gyroscope rotation vector sensor.
     /// </summary>
     public class GyroscopeRotationVectorSensorDataUpdatedEventArgs : EventArgs
     {

@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// SleepMonitor Class. Used for registering callbacks for sleep monitor and getting sleep data
+    /// The SleepMonitor class is used for registering callbacks for the sleep monitor and getting the sleep data.
     /// </summary>
     public sealed class SleepMonitor : Sensor
     {
@@ -29,14 +29,14 @@ namespace Tizen.Sensor
         /// Gets the value of the sleep state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Sleep state </value>
+        /// <value> The sleep state. </value>
         public SleepMonitorState SleepState { get; private set; } = SleepMonitorState.Unknown;
 
         /// <summary>
-        /// Returns true or false based on whether sleep monitor is supported by device.
+        /// Returns true or false based on whether the sleep monitor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -50,7 +50,7 @@ namespace Tizen.Sensor
         /// Returns the number of sleep monitors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of sleep monitors </value>
+        /// <value> The count of sleep monitors. </value>
         public static int Count
         {
             get
@@ -67,12 +67,12 @@ namespace Tizen.Sensor
         /// <privilege>http://tizen.org/privilege/healthinfo</privilege>
         /// <privlevel>public</privlevel>
         /// <feature>http://tizen.org/feature/sensor.sleep_monitor</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the app has no privilege to use the sensor</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the sensor.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular sleep monitor in case of multiple sensors
+        /// Index. Default value for this is 0. Index refers to a particular sleep monitor in case of multiple sensors.
         /// </param>
         public SleepMonitor(uint index = 0) : base(index)
         {
@@ -85,7 +85,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in sleep monitor data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the sleep monitor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
 

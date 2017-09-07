@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// WalkingActivityDetector changed event arguments. Class for storing the data returned by walking activity detector
+    /// The WalkingActivityDetector changed event arguments class is used for storing the data returned by a walking activity detector.
     /// </summary>
     public class WalkingActivityDetectorDataUpdatedEventArgs : EventArgs
     {
@@ -32,7 +32,7 @@ namespace Tizen.Sensor
         /// Gets the walking state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Walking state </value>
+        /// <value> The walking state. </value>
         public DetectorState Walking { get; private set; }
     }
 }

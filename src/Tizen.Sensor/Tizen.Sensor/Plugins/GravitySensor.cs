@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// GravitySensor Class. Used for registering callbacks for gravity sensor and getting gravity data
+    /// The GravitySensor class is used for registering callbacks for the gravity sensor and getting the gravity data.
     /// </summary>
     public sealed class GravitySensor : Sensor
     {
@@ -48,10 +48,10 @@ namespace Tizen.Sensor
         public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether gravity sensor is supported by device.
+        /// Returns true or false based on whether the gravity sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -65,7 +65,7 @@ namespace Tizen.Sensor
         /// Returns the number of gravity sensors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of gravity sensors </value>
+        /// <value> The count of gravity sensors. </value>
         public static int Count
         {
             get
@@ -80,11 +80,11 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.gravity</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular gravity sensor in case of multiple sensors
+        /// Index. Default value for this is 0. Index refers to a particular gravity sensor in case of multiple sensors.
         /// </param>
         public GravitySensor (uint index = 0) : base(index)
         {
@@ -97,14 +97,14 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in gravity sensor data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the gravity sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
 
         public event EventHandler<GravitySensorDataUpdatedEventArgs> DataUpdated;
 
         /// <summary>
-        /// Event handler for accuracy changed events.
+        /// An event handler for accuracy changed events.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<SensorAccuracyChangedEventArgs> AccuracyChanged

@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// HumiditySensor changed event arguments. Class for storing the data returned by humidity sensor
+    /// The HumiditySensor changed event arguments class is used for storing the data returned by a humidity sensor.
     /// </summary>
     public class HumiditySensorDataUpdatedEventArgs : EventArgs
     {

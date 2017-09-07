@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// PressureSensor changed event arguments. Class for storing the data returned by pressure sensor
+    /// The PressureSensor changed event arguments class is used for storing the data returned by a pressure sensor.
     /// </summary>
     public class PressureSensorDataUpdatedEventArgs : EventArgs
     {

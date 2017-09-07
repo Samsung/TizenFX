@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// PressureSensor Class. Used for registering callbacks for pressure sensor and getting pressure data
+    /// The PressureSensor class is used for registering callbacks for the pressure sensor and getting the pressure data.
     /// </summary>
     public sealed class PressureSensor : Sensor
     {
@@ -33,10 +33,10 @@ namespace Tizen.Sensor
         public float Pressure { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether pressure sensor is supported by device.
+        /// Returns true or false based on whether the pressure sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -50,7 +50,7 @@ namespace Tizen.Sensor
         /// Returns the number of pressure sensors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of pressure sensors </value>
+        /// <value> The count of pressure sensors. </value>
         public static int Count
         {
             get
@@ -65,11 +65,11 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.barometer</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular pressure sensor in case of multiple sensors
+        /// Index. Default value for this is 0. Index refers to a particular pressure sensor in case of multiple sensors.
         /// </param>
         public PressureSensor(uint index = 0) : base(index)
         {
@@ -82,7 +82,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in pressure sensor data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the pressure sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
 

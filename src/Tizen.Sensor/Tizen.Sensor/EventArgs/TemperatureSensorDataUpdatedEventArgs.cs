@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// TemperatureSensor changed event arguments. Class for storing the data returned by temperature sensor
+    /// The TemperatureSensor changed event arguments class is used for storing the data returned by a temperature sensor.
     /// </summary>
     public class TemperatureSensorDataUpdatedEventArgs : EventArgs
     {

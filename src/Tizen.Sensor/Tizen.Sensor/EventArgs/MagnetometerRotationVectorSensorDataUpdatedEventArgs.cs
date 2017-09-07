@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// MagnetometerRotationVectorSensor changed event arguments. Class for storing the data returned by magnetometer rotation vector sensor
+    /// The MagnetometerRotationVectorSensor changed event arguments class is used for storing the data returned by a magnetometer rotation vector sensor.
     /// </summary>
     public class MagnetometerRotationVectorSensorDataUpdatedEventArgs : EventArgs
     {

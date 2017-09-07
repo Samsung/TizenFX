@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// UncalibratedGyroscope Sensor Class. Used for registering callbacks for uncalibrated gyroscope and getting uncalibrated gyroscope data
+    /// The UncalibratedGyroscope sensor class is used for registering callbacks for the uncalibrated gyroscope and getting the uncalibrated gyroscope data.
     /// </summary>
     public sealed class UncalibratedGyroscope : Sensor
     {
@@ -50,28 +50,28 @@ namespace Tizen.Sensor
         /// Gets the BiasX component of the uncalibrated gyroscope data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> X bias </value>
+        /// <value> The X bias. </value>
         public float BiasX { get; private set; } = 0;
 
         /// <summary>
         /// Gets the BiasY component of the uncalibrated gyroscope data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Y bias </value>
+        /// <value> The Y bias. </value>
         public float BiasY { get; private set; } = 0;
 
         /// <summary>
         /// Gets the BiasZ component of the uncalibrated gyroscope data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Z bias </value>
+        /// <value> The Z bias. </value>
         public float BiasZ { get; private set; } = 0;
 
         /// <summary>
-        /// Returns true or false based on whether uncalibrated gyroscope sensor is supported by device.
+        /// Returns true or false based on whether the uncalibrated gyroscope sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -82,10 +82,10 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of uncalibrated gyroscope sensors available on the device.
+        /// Returns the number of the uncalibrated gyroscope sensors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of uncalibrated gyroscope sensors </value>
+        /// <value> The count of the uncalibrated gyroscope sensors. </value>
         public static int Count
         {
             get
@@ -100,11 +100,11 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.gyroscope.uncalibrated</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular uncalibrated gyroscope sensor in case of multiple sensors
+        /// Index. Default value for this is 0. Index refers to a particular uncalibrated gyroscope sensor in case of multiple sensors.
         /// </param>
         public UncalibratedGyroscope(uint index = 0) : base(index)
         {
@@ -117,7 +117,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in uncalibrated gyroscope sensor data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the uncalibrated gyroscope sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
 

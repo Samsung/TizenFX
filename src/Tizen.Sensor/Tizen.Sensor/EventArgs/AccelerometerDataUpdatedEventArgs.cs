@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// Accelerometer changed event arguments. Class for storing the data returned by accelerometer
+    /// The Accelerometer changed event arguments class is used for storing the data returned by a accelerometer.
     /// </summary>
     public class AccelerometerDataUpdatedEventArgs : EventArgs
     {

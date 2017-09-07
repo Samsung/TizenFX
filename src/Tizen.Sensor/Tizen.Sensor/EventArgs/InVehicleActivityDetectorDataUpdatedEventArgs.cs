@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// InVehicleActivityDetector changed event arguments. Class for storing the data returned by in-vehicle activity detector
+    /// The InVehicleActivityDetector changed event arguments class is used for storing the data returned by a in-vehicle activity detector.
     /// </summary>
     public class InVehicleActivityDetectorDataUpdatedEventArgs : EventArgs
     {
@@ -32,7 +32,7 @@ namespace Tizen.Sensor
         /// Gets the in-vehicle state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> In-vehicle state </value>
+        /// <value> The in-vehicle state. </value>
         public DetectorState InVehicle { get; private set; }
     }
 }

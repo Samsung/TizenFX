@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// SleepMonitor changed event arguments. Class for storing the data returned by sleep monitor
+    /// The SleepMonitor changed event arguments class is used for storing the data returned by a sleep monitor.
     /// </summary>
     public class SleepMonitorDataUpdatedEventArgs : EventArgs
     {
@@ -32,7 +32,7 @@ namespace Tizen.Sensor
         /// Gets the value of the sleep state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Sleep state </value>
+        /// <value> The sleep state. </value>
         public SleepMonitorState SleepState { get; private set; }
     }
 }

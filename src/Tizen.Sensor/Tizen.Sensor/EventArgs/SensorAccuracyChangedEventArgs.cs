@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// Sensor accuracy changed event arguments Class. Contains the parameters to be returned through accuracy callback
+    /// The sensor accuracy changed event arguments class contains the parameters to be returned through the accuracy callback.
     /// </summary>
     public class SensorAccuracyChangedEventArgs : EventArgs
     {
@@ -33,7 +33,7 @@ namespace Tizen.Sensor
         /// Gets the time stamp.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Time span </value>
+        /// <value> The time span. </value>
         public TimeSpan TimeSpan { get; private set; }
 
         /// <summary>

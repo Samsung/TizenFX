@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// GyroscopeRotationVectorSensor Class. Used for registering callbacks for gyroscope rotation vector sensor and getting gyroscope rotation vector data
+    /// The GyroscopeRotationVectorSensor class is used for registering callbacks for the gyroscope rotation vector sensor and getting the gyroscope rotation vector data.
     /// </summary>
     public sealed class GyroscopeRotationVectorSensor : Sensor
     {
@@ -54,17 +54,17 @@ namespace Tizen.Sensor
         public float W { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the Accuracy of the gyroscope rotation vector data.
+        /// Gets the accuracy of the gyroscope rotation vector data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Accuracy </value>
         public SensorDataAccuracy Accuracy { get; private set; }
 
         /// <summary>
-        /// Returns true or false based on whether gyroscope rotation vector sensor is supported by device.
+        /// Returns true or false based on whether the gyroscope rotation vector sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if supported; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
             get
@@ -75,10 +75,10 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of gyroscope rotation vector sensors available on the device.
+        /// Returns the number of the gyroscope rotation vector sensors available on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The count of accelerometer rotation vector sensors </value>
+        /// <value> The count of accelerometer rotation vector sensors. </value>
         public static int Count
         {
             get
@@ -93,11 +93,11 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.gyroscope_rotation_vector</feature>
-        /// <exception cref="ArgumentException">Thrown when an invalid argument is used</exception>
-        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state</exception>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular gyroscope rotation vector sensor in case of multiple sensors
+        /// Index. Default value for this is 0. Index refers to a particular gyroscope rotation vector sensor in case of multiple sensors.
         /// </param>
         public GyroscopeRotationVectorSensor(uint index = 0) : base(index)
         {
@@ -110,7 +110,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Event Handler for storing the callback functions for event corresponding to change in gyroscope rotation vector sensor data.
+        /// An event handler for storing the callback functions for the event corresponding to the change in the gyroscope rotation vector sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
 
