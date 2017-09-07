@@ -1,7 +1,6 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia.Remoting", "Tizen.Multimedia.Remoting.csproj", "{916CC498-AC26-4D6E-8880-39D06512E584}"
 EndProject
@@ -14,6 +13,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia", "..\Tizen.Multimedia\Tizen.Multimedia.csproj", "{48FB3B03-212C-4206-A30A-C3CD82D31792}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Information", "..\Tizen.System.Information\Tizen.System.Information.csproj", "{624D0C3F-9015-4CF7-8F92-E7FBE753C039}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.Common", "..\Tizen.Applications.Common\Tizen.Applications.Common.csproj", "{15F2B584-D50C-4DF6-AD62-28F6B1DAF3C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI", "..\Tizen.NUI\Tizen.NUI.csproj", "{F215E1FB-22FD-4EB5-8A56-094CE095B94B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.SystemSettings", "..\Tizen.System.SystemSettings\Tizen.System.SystemSettings.csproj", "{8D796213-C2BF-4938-AAEF-D53EF0468A85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,8 +50,23 @@ Global
 		{624D0C3F-9015-4CF7-8F92-E7FBE753C039}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{624D0C3F-9015-4CF7-8F92-E7FBE753C039}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{624D0C3F-9015-4CF7-8F92-E7FBE753C039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15F2B584-D50C-4DF6-AD62-28F6B1DAF3C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15F2B584-D50C-4DF6-AD62-28F6B1DAF3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15F2B584-D50C-4DF6-AD62-28F6B1DAF3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15F2B584-D50C-4DF6-AD62-28F6B1DAF3C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F215E1FB-22FD-4EB5-8A56-094CE095B94B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F215E1FB-22FD-4EB5-8A56-094CE095B94B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F215E1FB-22FD-4EB5-8A56-094CE095B94B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F215E1FB-22FD-4EB5-8A56-094CE095B94B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D796213-C2BF-4938-AAEF-D53EF0468A85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D796213-C2BF-4938-AAEF-D53EF0468A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D796213-C2BF-4938-AAEF-D53EF0468A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D796213-C2BF-4938-AAEF-D53EF0468A85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5976EB53-B44D-4454-B11C-C807DB62A7A0}
 	EndGlobalSection
 EndGlobal

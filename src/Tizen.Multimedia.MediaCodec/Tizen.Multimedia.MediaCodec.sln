@@ -1,7 +1,6 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia.MediaCodec", "Tizen.Multimedia.MediaCodec.csproj", "{BA07A897-9A81-4D82-BA88-A2F7C92E4237}"
 EndProject
@@ -14,6 +13,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\Tizen.Log\Tizen.Log.csproj", "{E6B5E685-4A5A-4FF2-8474-42DFB49CA663}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Information", "..\Tizen.System.Information\Tizen.System.Information.csproj", "{8E0E98C3-7983-4CA8-8763-79C64464F9D0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI", "..\Tizen.NUI\Tizen.NUI.csproj", "{E70369D0-2B2B-40FA-B67E-A2EDBE6C5466}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.SystemSettings", "..\Tizen.System.SystemSettings\Tizen.System.SystemSettings.csproj", "{1898FC3A-7F71-427B-B382-8DD0B3017B42}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.Common", "..\Tizen.Applications.Common\Tizen.Applications.Common.csproj", "{70653B3B-8178-492A-960B-AD60EF52998B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,8 +50,23 @@ Global
 		{8E0E98C3-7983-4CA8-8763-79C64464F9D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E0E98C3-7983-4CA8-8763-79C64464F9D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E0E98C3-7983-4CA8-8763-79C64464F9D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E70369D0-2B2B-40FA-B67E-A2EDBE6C5466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E70369D0-2B2B-40FA-B67E-A2EDBE6C5466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E70369D0-2B2B-40FA-B67E-A2EDBE6C5466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E70369D0-2B2B-40FA-B67E-A2EDBE6C5466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1898FC3A-7F71-427B-B382-8DD0B3017B42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1898FC3A-7F71-427B-B382-8DD0B3017B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1898FC3A-7F71-427B-B382-8DD0B3017B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1898FC3A-7F71-427B-B382-8DD0B3017B42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70653B3B-8178-492A-960B-AD60EF52998B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70653B3B-8178-492A-960B-AD60EF52998B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70653B3B-8178-492A-960B-AD60EF52998B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70653B3B-8178-492A-960B-AD60EF52998B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D11D1196-7C4B-4BE8-97AA-548F160F9A6F}
 	EndGlobalSection
 EndGlobal
