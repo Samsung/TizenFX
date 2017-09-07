@@ -33,7 +33,7 @@ namespace Tizen.Pims.Contacts
         private Object thisLock = new Object();
         private Interop.Database.ContactsDBStatusChangedCallback _contactsDBStatusChangedCallback;
         private EventHandler<DBStatusChangedEventArgs> _dbStatusChanged;
-        private Dictionary<string, EventHandler<DBChangedEventArgs>> _delegateMap = new Dictionary<string, EventHandler<DBChangedEventArgs>>();
+        private Dictionary<string, EventHandler<DBChangedEventArgs>> _eventHandlerMap = new Dictionary<string, EventHandler<DBChangedEventArgs>>();
         private Dictionary<string, Interop.Database.ContactsDBChangedCallback> _callbackMap = new Dictionary<string, Interop.Database.ContactsDBChangedCallback>();
         private Interop.Database.ContactsDBChangedCallback _dbChangedDelegate;
 
@@ -709,48 +709,56 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Registers a callback function to be invoked when a record changes.
+        /// Registers a EventHandler to be invoked when a record changes.
         /// </summary>
         /// <param name="viewUri">The view URI of records whose changes are monitored</param>
         /// <param name="DBChanged">The EventHandler to register</param>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
-        public void AddDBChangedDelegate(string viewUri, EventHandler<DBChangedEventArgs> DBChanged)
+        public void AddDBChangedEventHandler(string viewUri, EventHandler<DBChangedEventArgs> DBChanged)
         {
-            if (_callbackMap[viewUri] == null)
+            if (!_callbackMap.ContainsKey(viewUri))
             {
                 _callbackMap[viewUri] = (string uri, IntPtr userData) =>
                 {
                     DBChangedEventArgs args = new DBChangedEventArgs(uri);
-                    _delegateMap[uri]?.Invoke(this, args);
+                    _eventHandlerMap[uri]?.Invoke(this, args);
                 };
 
                 int error = Interop.Database.AddChangedCb(viewUri, _callbackMap[viewUri], IntPtr.Zero);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "AddDBChangedDelegate Failed with error " + error);
+                    Log.Error(Globals.LogTag, "AddDBChangedEventHandler Failed with error " + error);
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
             }
 
-            _delegateMap[viewUri] += DBChanged;
+            EventHandler<DBChangedEventArgs> handler = null;
+            if (!_eventHandlerMap.TryGetValue(viewUri, out handler))  
+                _eventHandlerMap.Add(viewUri, null);
+
+            _eventHandlerMap[viewUri] = handler + DBChanged;
         }
 
         /// <summary>
-        /// Deregisters a callback function.
+        /// Deregisters a EventHandler.
         /// </summary>
         /// <param name="viewUri">The view URI of records whose changes are monitored</param>
         /// <param name="DBChanged">The EventHandler to deregister</param>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
-        public void RemoveDBChangedDelegate(string viewUri, EventHandler<DBChangedEventArgs> DBChanged)
+        public void RemoveDBChangedEventHandler(string viewUri, EventHandler<DBChangedEventArgs> DBChanged)
         {
-            _delegateMap[viewUri] -= DBChanged;
+            EventHandler<DBChangedEventArgs> handler = null;
+            if (!_eventHandlerMap.TryGetValue(viewUri, out handler))
+                _eventHandlerMap.Add(viewUri, null);
+            else
+                _eventHandlerMap[viewUri] = handler - DBChanged;
 
-            if (_delegateMap[viewUri] == null)
+            if (_eventHandlerMap[viewUri] == null)
             {
                 int error = Interop.Database.RemoveChangedCb(viewUri, _callbackMap[viewUri], IntPtr.Zero);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "RemoveDBChangedDelegate Failed with error " + error);
+                    Log.Error(Globals.LogTag, "RemoveDBChangedEventHandler Failed with error " + error);
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
                 _callbackMap.Remove(viewUri);
