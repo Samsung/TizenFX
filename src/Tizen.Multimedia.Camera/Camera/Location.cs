@@ -17,16 +17,16 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Location class containing GPS data details.
+    /// The location class containing GPS data details.
     /// </summary>
     public class Location
     {
         /// <summary>
-        /// Public constructor.
+        /// The public constructor.
         /// </summary>
-        /// <param name="latitude">Latitude data</param>
-        /// <param name="longitude">Longitude data</param>
-        /// <param name="altitude">Altitude data</param>
+        /// <param name="latitude">The latitude data.</param>
+        /// <param name="longitude">The longitude data.</param>
+        /// <param name="altitude">The altitude data.</param>
         public Location(double latitude, double longitude, double altitude)
         {
             Latitude = latitude;
@@ -35,19 +35,19 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The Latitude data.
+        /// The latitude data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public double Latitude { get; }
 
         /// <summary>
-        /// The Longitude data.
+        /// The longitude data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public double Longitude { get; }
 
         /// <summary>
-        /// The Altitude data.
+        /// The altitude data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public double Altitude { get; }

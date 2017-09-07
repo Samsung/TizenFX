@@ -64,7 +64,7 @@ namespace Tizen.Multimedia
         public Size Resolution { get; }
 
         /// <summary>
-        /// The buffer containing still image.
+        /// The buffer containing the still image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public byte[] Data { get; }

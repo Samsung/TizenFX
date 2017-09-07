@@ -38,7 +38,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The Id of each face.
+        /// The ID of each face.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int Id { get; }

@@ -19,8 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about focus state of the
-    /// camera.
+    /// An extended EventArgs class which contains details about the focus state of the camera.
     /// </summary>
     public class CameraFocusStateChangedEventArgs : EventArgs
     {
@@ -30,7 +29,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Focus state of the camera.
+        /// The focus state of the camera.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public CameraFocusState State { get; }

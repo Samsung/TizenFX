@@ -37,7 +37,7 @@ namespace Tizen.Multimedia
         public StillImage MainImage { get; }
 
         /// <summary>
-        /// The image data of the postview.
+        /// The image data of the post view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public StillImage PostView { get; }

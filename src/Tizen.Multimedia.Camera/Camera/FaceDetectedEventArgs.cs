@@ -21,7 +21,7 @@ namespace Tizen.Multimedia
 {
     /// <summary>
     /// An extended EventArgs class which contains details about all the faces detected.
-    /// If user need to remain faces data, user have to copy the data.
+    /// If the user needs to keep the faces data, the user has to copy the data.
     /// </summary>
     public class FaceDetectedEventArgs : EventArgs
     {
@@ -31,7 +31,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// List containing faces of type <see cref="Tizen.Multimedia.FaceDetectionData"/>.
+        /// The list containing faces of type <see cref="Tizen.Multimedia.FaceDetectionData"/>.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public IEnumerable<FaceDetectionData> Faces { get; }

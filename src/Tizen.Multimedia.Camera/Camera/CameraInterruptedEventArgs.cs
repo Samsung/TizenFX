@@ -19,8 +19,8 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about previous and current state
-    /// of the camera when its interrupted.
+    /// An extended EventArgs class which contains details about the previous and the current state
+    /// of the camera when it is interrupted.
     /// </summary>
     public class CameraInterruptedEventArgs : EventArgs
     {
@@ -32,13 +32,13 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Previous state of the camera.
+        /// The previous state of the camera.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public CameraState Previous { get; }
 
         /// <summary>
-        /// Current state of the camera.
+        /// The current state of the camera.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public CameraState Current { get; }

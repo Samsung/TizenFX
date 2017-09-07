@@ -29,7 +29,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// PreviewData frame.
+        /// The PreviewData frame.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PreviewFrame Preview { get; }

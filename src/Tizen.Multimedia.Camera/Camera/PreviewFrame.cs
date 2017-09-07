@@ -22,7 +22,7 @@ using static Interop.Camera;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// The class containing preview image data.
+    /// The class containing the preview image data.
     /// </summary>
     public class PreviewFrame
     {
@@ -97,19 +97,19 @@ namespace Tizen.Multimedia
         public Size Resolution { get; }
 
         /// <summary>
-        /// The timestamp of preview frame.
+        /// The time stamp of the preview frame.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public uint TimeStamp { get; }
 
         /// <summary>
-        /// The type of preview plane. <see cref="Tizen.Multimedia.PlaneType"/>
+        /// The type of the preview plane. <see cref="Tizen.Multimedia.PlaneType"/>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PlaneType PlaneType { get; }
 
         /// <summary>
-        /// The buffer including preview frame.
+        /// The buffer including the preview frame.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public IPreviewPlane Plane { get; }

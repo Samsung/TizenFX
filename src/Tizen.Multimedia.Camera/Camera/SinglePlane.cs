@@ -20,7 +20,7 @@ using static Interop.Camera;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// The class containing image data which has single plane.
+    /// The class containing the image data, which has a single plane.
     /// </summary>
     public class SinglePlane : IPreviewPlane
     {
