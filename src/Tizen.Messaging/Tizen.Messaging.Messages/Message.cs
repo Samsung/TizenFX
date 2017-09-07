@@ -21,7 +21,7 @@ using System.Collections.ObjectModel;
 namespace Tizen.Messaging.Messages
 {
     /// <summary>
-    /// A class to represent all messages.
+    /// This class represents all the messages.
     /// </summary>
     public abstract class Message : IDisposable
     {
@@ -175,10 +175,10 @@ namespace Tizen.Messaging.Messages
         }
 
         /// <summary>
-        /// The message ID
+        /// The message ID.
         /// </summary>
         /// <remarks>
-        /// After creating Message object, default value of this property is 0. After sending, this value is changed.
+        /// After creating the Message object, the default value of this property is 0. After sending, this value is changed.
         /// </remarks>
         public int Id
         {
@@ -196,7 +196,7 @@ namespace Tizen.Messaging.Messages
         }
 
         /// <summary>
-        /// The destination port of the message
+        /// The destination port of the message.
         /// </summary>
         public int Port
         {
@@ -214,7 +214,7 @@ namespace Tizen.Messaging.Messages
         }
 
         /// <summary>
-        /// The message box type
+        /// The message box type.
         /// </summary>
         public MessageBoxType BoxType
         {
@@ -241,7 +241,7 @@ namespace Tizen.Messaging.Messages
         }
 
         /// <summary>
-        /// The text of the message
+        /// The text of the message.
         /// </summary>
         public string Text
         {
@@ -268,7 +268,7 @@ namespace Tizen.Messaging.Messages
         }
 
         /// <summary>
-        /// The time of the message
+        /// The time of the message.
         /// </summary>
         public DateTime Time
         {
@@ -295,7 +295,7 @@ namespace Tizen.Messaging.Messages
         }
 
         /// <summary>
-        /// The SIM slot index of the message
+        /// The SIM slot index of the message.
         /// </summary>
         public SimSlotId SimId
         {
@@ -322,7 +322,7 @@ namespace Tizen.Messaging.Messages
         }
 
         /// <summary>
-        /// Indicates sender of the message
+        /// Indicates the sender of the message.
         /// </summary>
         public IReadOnlyCollection<MessagesAddress> From
         {

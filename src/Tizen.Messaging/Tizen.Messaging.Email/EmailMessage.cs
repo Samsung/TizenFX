@@ -21,7 +21,7 @@ using System.Collections.ObjectModel;
 namespace Tizen.Messaging.Email
 {
     /// <summary>
-    /// The class contains Messaging API to support sending email messages.
+    /// This class contains the Messaging API to support sending email messages.
     /// </summary>
     public class EmailMessage : IDisposable
     {
@@ -35,7 +35,7 @@ namespace Tizen.Messaging.Email
         private ICollection<EmailRecipient> _bcc = new Collection<EmailRecipient>();
 
         /// <summary>
-        /// The constructor
+        /// The constructor.
         /// </summary>
         public EmailMessage()
         {
@@ -48,7 +48,7 @@ namespace Tizen.Messaging.Email
         }
 
         /// <summary>
-        /// Subject of the email message
+        /// The subject of the email message.
         /// </summary>
         public string Subject
         {
@@ -70,7 +70,7 @@ namespace Tizen.Messaging.Email
         }
 
         /// <summary>
-        /// Body of the email message
+        /// The body of the email message.
         /// </summary>
         public string Body
         {
@@ -91,7 +91,7 @@ namespace Tizen.Messaging.Email
         }
 
         /// <summary>
-        /// List of file attachments
+        /// The list of file attachments.
         /// </summary>
         public IList<EmailAttachment> Attachments
         {
@@ -102,10 +102,10 @@ namespace Tizen.Messaging.Email
         }
 
         /// <summary>
-        /// Collection of normal email recipients
+        /// The collection of normal email recipients.
         /// </summary>
         /// <remarks>
-        /// Email address should be in standard format (as described in Internet standards RFC 5321 and RFC 5322).
+        /// The email address should be in the standard format (as described in the Internet standards RFC 5321 and RFC 5322).
         /// </remarks>
         public ICollection<EmailRecipient> To
         {
@@ -116,10 +116,10 @@ namespace Tizen.Messaging.Email
         }
 
         /// <summary>
-        /// Collection of CC(carbon copy) email recipients
+        /// The collection of CC (carbon copy) email recipients.
         /// </summary>
         /// <remarks>
-        /// Email address should be in standard format (as described in Internet standards RFC 5321 and RFC 5322).
+        /// The email address should be in the standard format (as described in the Internet standards RFC 5321 and RFC 5322).
         /// </remarks>
         public ICollection<EmailRecipient> Cc
         {
@@ -130,10 +130,10 @@ namespace Tizen.Messaging.Email
         }
 
         /// <summary>
-        /// Collection of BCC(blind carbon copy) email recipients
+        /// The collection of BCC (blind carbon copy) email recipients.
         /// </summary>
         /// <remarks>
-        /// Email address should be in standard format (as described in Internet standards RFC 5321 and RFC 5322).
+        /// The email address should be in the standard format (as described in the Internet standards RFC 5321 and RFC 5322).
         /// </remarks>
         public ICollection<EmailRecipient> Bcc
         {

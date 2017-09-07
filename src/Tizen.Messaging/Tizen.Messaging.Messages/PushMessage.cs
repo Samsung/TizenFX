@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Messaging.Messages
 {
     /// <summary>
-    /// A class to represent WAP push messages.
+    /// This class represents the WAP push messages.
     /// </summary>
     public class PushMessage : Message
     {

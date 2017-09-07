@@ -17,16 +17,16 @@
 namespace Tizen.Messaging.Email
 {
     /// <summary>
-    /// Represents an email attachment
+    /// Represents an email attachment.
     /// </summary>
     public class EmailAttachment
     {
         /// <summary>
-        /// The absolute full path of the file to be attached
+        /// The absolute full path of the file to be attached.
         /// </summary>
         public string FilePath { get; set; }
         /// <summary>
-        /// The constructor
+        /// The constructor.
         /// </summary>
         public EmailAttachment()
         {

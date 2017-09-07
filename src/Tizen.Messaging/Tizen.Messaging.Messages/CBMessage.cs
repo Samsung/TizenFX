@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Messaging.Messages
 {
     /// <summary>
-    /// A class to represent cell broadcast messages.
+    /// This class represents the cell broadcast messages.
     /// </summary>
     public class CBMessage : Message
     {

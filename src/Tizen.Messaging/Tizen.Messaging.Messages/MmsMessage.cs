@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Messaging.Messages
 {
     /// <summary>
-    /// A class to represent multimedia messages.
+    /// This class represents multimedia messages.
     /// </summary>
     public class MmsMessage : Message
     {
@@ -39,7 +39,7 @@ namespace Tizen.Messaging.Messages
         }
 
         /// <summary>
-        /// The subject of the multimedia message
+        /// The subject of the multimedia message.
         /// </summary>
         public string Subject
         {
@@ -66,7 +66,7 @@ namespace Tizen.Messaging.Messages
         }
 
         /// <summary>
-        /// Collection of normal message recipients
+        /// The collection of normal message recipients.
         /// </summary>
         public ICollection<MessagesAddress> To
         {
@@ -77,7 +77,7 @@ namespace Tizen.Messaging.Messages
         }
 
         /// <summary>
-        /// Collection of CC(carbon copy) message recipients
+        /// The collection of CC (carbon copy) message recipients.
         /// </summary>
         public ICollection<MessagesAddress> Cc
         {
@@ -88,7 +88,7 @@ namespace Tizen.Messaging.Messages
         }
 
         /// <summary>
-        /// Collection of BCC(blind carbon copy) message recipients
+        /// The collection of BCC (blind carbon copy) message recipients.
         /// </summary>
         public ICollection<MessagesAddress> Bcc
         {
@@ -99,7 +99,7 @@ namespace Tizen.Messaging.Messages
         }
 
         /// <summary>
-        /// The list of attachment files
+        /// The list of attachment files.
         /// </summary>
         public IList<MessagesAttachment> Attachments
         {

@@ -15,10 +15,10 @@
  */
 
 /// <summary>
-/// The <b>Tizen.Messaging.Messages</b> namespace contains classes providing functionality to send, receive and search for messages.
+/// The <b>Tizen.Messaging.Messages</b> namespace contains classes providing the functionality to send, receive, and search messages.
 /// </summary>
 /// <remarks>
-/// The <b>Tizen.Messaging.Messages</b> namespace contains classes providing functionality to send, receive and search for messages.
+/// The <b>Tizen.Messaging.Messages</b> namespace contains classes providing the functionality to send, receive, and search messages.
 /// </remarks>
 namespace Tizen.Messaging.Messages
 {
