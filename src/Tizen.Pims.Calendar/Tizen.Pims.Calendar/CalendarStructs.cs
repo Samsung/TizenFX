@@ -113,7 +113,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Equals CalendarTime
         /// </summary>
-        /// <param name="other">The CalendarTime to be compared</param>
+        /// <param name="obj">The CalendarTime to be compared</param>
         /// <returns>
         /// A 32-bit signed integer that indicates the relative order of the objects being compared.
         /// </returns>
