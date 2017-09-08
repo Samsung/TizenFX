@@ -31,7 +31,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the policy that interrupted the recorder.
+        /// Gets the reason that interrupted the recorder.
         /// </summary>
         public RecorderPolicy Reason { get; }
 

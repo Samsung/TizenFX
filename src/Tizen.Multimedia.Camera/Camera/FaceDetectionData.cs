@@ -74,4 +74,3 @@ namespace Tizen.Multimedia
         public int Height { get; }
     }
 }
-

@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about the preview frame.
+    /// Provides data for the <see cref="Camera.Preview"/> event.
     /// </summary>
     public class PreviewEventArgs : EventArgs
     {
@@ -29,10 +29,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The PreviewData frame.
+        /// Gets the preview frame data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PreviewFrame Preview { get; }
     }
 }
-

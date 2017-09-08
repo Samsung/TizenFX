@@ -19,8 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about the previous and the current state
-    /// of the camera when its state is changed.
+    /// Provides data for the <see cref="Camera.StateChanged"/> event.
     /// </summary>
     public class CameraStateChangedEventArgs : EventArgs
     {
@@ -47,10 +46,9 @@ namespace Tizen.Multimedia
         /// Gets the value indicating whether the state is changed by policy.
         /// </summary>
         /// <value>
-        /// true if the state changed by policy such as resource conflict or security, otherwise false.
+        /// true if the state changed by policy, such as resource conflict or security, otherwise false.
         /// </value>
         /// <since_tizen> 3 </since_tizen>
         public bool ByPolicy { get; }
     }
 }
-

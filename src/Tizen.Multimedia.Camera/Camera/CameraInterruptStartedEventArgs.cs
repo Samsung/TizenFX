@@ -19,8 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about current state
-    /// of the camera when interrupt is invoked internally in Native FW.
+    /// Provides data for the <see cref="Camera.InterruptStarted"/> event.
     /// </summary>
     public class CameraInterruptStartedEventArgs : EventArgs
     {
@@ -31,14 +30,13 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Current state of the camera.
+        /// Gets the current state of the camera.
         /// </summary>
         public CameraState State { get; }
 
         /// <summary>
-        /// The policy that interrupted the camera.
+        /// Gets the policy that interrupted the camera.
         /// </summary>
         public CameraPolicy Policy { get; }
     }
 }
-

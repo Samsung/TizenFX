@@ -1159,4 +1159,3 @@ namespace Tizen.Multimedia
         #endregion EXIF tag
     }
 }
-

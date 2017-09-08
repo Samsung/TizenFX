@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about all the faces detected.
+    /// Provides data for the <see cref="Camera.FaceDetected"/> event.
     /// If the user needs to keep the faces data, the user has to copy the data.
     /// </summary>
     public class FaceDetectedEventArgs : EventArgs
@@ -31,10 +31,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The list containing faces of type <see cref="Tizen.Multimedia.FaceDetectionData"/>.
+        /// Gets the list containing faces of type <see cref="Tizen.Multimedia.FaceDetectionData"/>.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public IEnumerable<FaceDetectionData> Faces { get; }
     }
 }
-

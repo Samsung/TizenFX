@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about the media packet preview frame.
+    /// Provides data for the <see cref="Camera.MediaPacketPreview"/> event.
     /// </summary>
     public class MediaPacketPreviewEventArgs : EventArgs
     {
@@ -29,10 +29,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The media packet data.
+        /// Gets the media packet data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public MediaPacket Packet { get; }
     }
 }
-

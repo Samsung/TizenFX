@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about the HDR capture progress.
+    /// Provides data for the <see cref="Camera.HdrCaptureProgress"/> event.
     /// </summary>
     public class HdrCaptureProgressEventArgs : EventArgs
     {
@@ -29,10 +29,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The HDR capture progress in percent.
+        /// Gets the HDR Capture progress in percent.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int Percent { get; }
     }
 }
-

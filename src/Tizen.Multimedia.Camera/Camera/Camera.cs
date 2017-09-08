@@ -1005,4 +1005,3 @@ namespace Tizen.Multimedia
         #endregion Callback registrations
     }
 }
-

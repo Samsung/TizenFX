@@ -53,4 +53,3 @@ namespace Tizen.Multimedia
         public double Altitude { get; }
     }
 }
-

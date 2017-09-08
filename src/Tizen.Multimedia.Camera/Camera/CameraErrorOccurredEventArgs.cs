@@ -19,8 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about the error status and the
-    /// state of the camera when it fails.
+    /// Provides data for the <see cref="Camera.ErrorOccurred"/> event.
     /// </summary>
     public class CameraErrorOccurredEventArgs : EventArgs
     {
@@ -31,16 +30,15 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The camera error code.
+        /// Gets the camera error.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public CameraErrorCode Error { get; }
 
         /// <summary>
-        /// The state of the camera.
+        /// Gets the current state of the camera.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public CameraState State { get; }
     }
 }
-

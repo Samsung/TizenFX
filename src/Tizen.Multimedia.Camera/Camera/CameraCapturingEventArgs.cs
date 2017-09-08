@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about the captured still image.
+    /// Provides data for the <see cref="Camera.Capturing"/> event.
     /// </summary>
     public class CameraCapturingEventArgs : EventArgs
     {
@@ -31,22 +31,21 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The main image data of the captured still image.
+        /// Gets the main image data of the captured still image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public StillImage MainImage { get; }
 
         /// <summary>
-        /// The image data of the post view.
+        /// Gets the image data of the post view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public StillImage PostView { get; }
 
         /// <summary>
-        /// The image data of the thumbnail.
+        /// Gets the image data of the thumbnail.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public StillImage Thumbnail { get; }
     }
 }
-
