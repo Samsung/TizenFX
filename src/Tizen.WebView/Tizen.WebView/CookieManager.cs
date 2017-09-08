@@ -22,9 +22,18 @@ namespace Tizen.WebView
     /// </summary>
     public enum CookieAcceptPolicy
     {
-        Always,         /* Accepts every cookie sent from any page */
-        Never,          /* Rejects all cookies */
-        NoThirdParty    /* Accepts only cookies set by the main document loaded */
+        /// <summary>
+        /// Accepts every cookie sent from any page.
+        /// </summary>
+        Always,
+        /// <summary>
+        /// Rejects all cookies.
+        /// </summary>
+        Never,
+        /// <summary>
+        /// Accepts only cookies set by the main document loaded.
+        /// </summary>
+        NoThirdParty
     }
 
     /// <summary>
@@ -32,10 +41,19 @@ namespace Tizen.WebView
     /// </summary>
     public enum CookiePersistentStorage
     {
-        Text,       /* Cookies are stored in a text file in the Mozilla "cookies.txt" format */
-        SqlLite     /* Cookies are stored in a SQLite file in the current Mozilla format. */
+        /// <summary>
+        /// Cookies are stored in a text file in the Mozilla "cookies.txt" format.
+        /// </summary>
+        Text,
+        /// <summary>
+        /// Cookies are stored in a SQLite file in the current Mozilla format.
+        /// </summary>
+        SqlLite
     }
 
+    /// <summary>
+    /// This class provides methods for the cookie manager.
+    /// </summary>
     public class CookieManager
     {
         private IntPtr _handle;
@@ -68,10 +86,8 @@ namespace Tizen.WebView
         /// <summary>
         /// Sets the storage where non-session cookies are stored persistently to read/write the cookies.
         /// </summary>
-        ///<privilege>
-        /// http://tizen.org/privilege/mediastorage
-        /// http://tizen.org/privilege/externalstorage
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <param name="path">The path where to read/write Cookies</param>
         /// <param name="storage">The type of storage</param>
         public void SetPersistentStorage(string path, CookiePersistentStorage storage)

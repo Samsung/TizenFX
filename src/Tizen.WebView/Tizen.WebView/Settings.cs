@@ -18,6 +18,9 @@ using System;
 
 namespace Tizen.WebView
 {
+    /// <summary>
+    /// This class provides properties for setting the preference of a specific WebView.
+    /// </summary>
     public class Settings
     {
         private IntPtr _handle;
