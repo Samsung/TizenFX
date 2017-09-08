@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Provides commands to manage face infos in the database.
+    /// Provides commands to manage face information in the database.
     /// </summary>
     /// <seealso cref="Album"/>
     public class FaceInfoCommand : MediaCommand
@@ -27,7 +27,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Initializes a new instance of the <see cref="FaceInfoCommand"/> class with the specified <see cref="MediaDatabase"/>.
         /// </summary>
-        /// <param name="database">A <see cref="MediaDatabase"/> that the commands run on.</param>
+        /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
         public FaceInfoCommand(MediaDatabase database) : base(database)
@@ -35,10 +35,10 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Deletes a face info from the database.
+        /// Deletes the face information from the database.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
-        /// <param name="faceInfoId">The face info id to delete.</param>
+        /// <param name="faceInfoId">The face information ID to delete.</param>
         /// <returns>true if the matched record was found and deleted, otherwise false.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -64,7 +64,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the face info.
+        /// Retrieves the face information.
         /// </summary>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
@@ -76,7 +76,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the face info with <see cref="SelectArguments"/>.
+        /// Retrieves the face information with the <see cref="SelectArguments"/>.
         /// </summary>
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
@@ -94,10 +94,10 @@ namespace Tizen.Content.MediaContent
         /// Updates a tag with the specified tag.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
-        /// <param name="faceInfoId">The face info id to update.</param>
+        /// <param name="faceInfoId">The face information ID to update.</param>
         /// <param name="tag">The tag value for update.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
-        /// <remarks>Only values set in <see cref="PlaylistUpdateValues"/> are updated.</remarks>
+        /// <remarks>Only values set in the <see cref="PlaylistUpdateValues"/> are updated.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>

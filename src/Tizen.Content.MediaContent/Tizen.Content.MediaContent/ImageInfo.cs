@@ -82,34 +82,34 @@ namespace Tizen.Content.MediaContent
         public string DateTaken { get; }
 
         /// <summary>
-        /// Gets the burst shot id.
+        /// Gets the burst shot ID.
         /// </summary>
-        /// <value>The burst shot id if it is a burst shot, otherwise an empty string.</value>
+        /// <value>The burst shot ID if it is a burst shot, otherwise an empty string.</value>
         /// <seealso cref="IsBurstShot"/>
         public string BurstId { get; }
 
         /// <summary>
-        /// Gets the exposure time from exif.
+        /// Gets the exposure time from EXIF.
         /// </summary>
-        /// <value>The exposure time from exif.</value>
+        /// <value>The exposure time from EXIF.</value>
         public string ExposureTime { get; }
 
         /// <summary>
-        /// Gets the FNumber from exif.
+        /// Gets the FNumber from EXIF.
         /// </summary>
         /// <value>The FNumber from exif.</value>
         public double FNumber { get; }
 
         /// <summary>
-        /// Gets the iso from exif.
+        /// Gets the ISO from EXIF.
         /// </summary>
-        /// <value>The iso from exif.</value>
+        /// <value>The iso from EXIF.</value>
         public int Iso { get; }
 
         /// <summary>
-        /// Gets the model from exif.
+        /// Gets the model from EXIF.
         /// </summary>
-        /// <value>The model from exif.</value>
+        /// <value>The model from EXIF.</value>
         public string Model { get; }
 
         /// <summary>

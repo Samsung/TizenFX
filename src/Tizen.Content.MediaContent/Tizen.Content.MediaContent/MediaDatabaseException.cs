@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Specifies database errors.
+    /// Specifies the database errors.
     /// </summary>
     public enum MediaDatabaseError
     {
@@ -35,7 +35,7 @@ namespace Tizen.Content.MediaContent
     }
 
     /// <summary>
-    /// The exception that is thrown when an database operation failed.
+    /// The exception that is thrown when a database operation failed.
     /// </summary>
     public class MediaDatabaseException : Exception
     {

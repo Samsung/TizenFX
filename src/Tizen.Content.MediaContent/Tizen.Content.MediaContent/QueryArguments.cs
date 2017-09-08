@@ -21,11 +21,11 @@ using FilterHandle = Interop.FilterHandle;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Base class for query arguments.
+    /// The Base class for query arguments.
     /// </summary>
     /// <remarks>
-    /// A filter is required for filtering information associated with Album, Folder, Tag, Bookmark, Playlist
-    /// and MediaInfo on basis of details like limit, order and condition.
+    /// A filter is required for filtering information associated with Album, Folder, Tag, Bookmark, Playlist,
+    /// and MediaInfo on the basis of details like limit, order, and condition.
     /// </remarks>
     public class QueryArguments
     {
@@ -58,12 +58,12 @@ namespace Tizen.Content.MediaContent
         /// <item><description>expression1 AND expression2 OR expression3 ... </description></item>
         /// </list>
         ///
-        /// Note that if you want to set quotation(" ' " or " " ") as value of LIKE operator, you should use two times.(" '' " or " "" ").
+        /// Note that if you want to set quotation (" ' " or " " ") as value of LIKE operator, you should use two times. (" '' " or " "" ").
         /// And the optional ESCAPE clause is supported. Both percent symbol("%") and underscore symbol("_") are used in the LIKE pattern.
-        /// If these characters are used as value of LIKE operation, then the expression following the ESCAPE clause of sqlite will be ignored.\n
+        /// If these characters are used as values of the LIKE operation, then the expression following the ESCAPE clause of sqlite will be ignored.\n
         /// \n
         /// For example,\n
-        /// - column LIKE('#%') ESCAPE('#') - "#" is escape character, it will be ignored.
+        /// - column LIKE ('#%') ESCAPE ('#') - "#" is an escape character, it will be ignored.
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is a zero-length string, contains only white space.</exception>
         /// <seealso cref="MediaInfoColumns"/>
@@ -90,10 +90,10 @@ namespace Tizen.Content.MediaContent
         private string _storageId;
 
         /// <summary>
-        /// Gets or sets the storage id for the given filter.
+        /// Gets or sets the storage ID for the given filter.
         /// You can use this property when you want to search items only in the specific storage.
         /// </summary>
-        /// <value>The storage id to restrict storage to search, or null for all storages.</value>
+        /// <value>The storage ID to restrict storage to search, or null for all storages.</value>
         /// <exception cref="ArgumentException"><paramref name="value"/> is a zero-length string, contains only white space.</exception>
         public string StorageId
         {
@@ -168,7 +168,7 @@ namespace Tizen.Content.MediaContent
     /// Provides the ability to filter the result of a Select command.
     /// </summary>
     /// <remarks>
-    /// A filter is required for filtering information associated with Album, Folder, Tag, Bookmark, Playlist
+    /// A filter is required for filtering information associated with Album, Folder, Tag, Bookmark, Playlist,
     /// and MediaInfo.
     /// </remarks>
     public class SelectArguments : QueryArguments
@@ -176,7 +176,7 @@ namespace Tizen.Content.MediaContent
         private int _startRowIndex;
 
         /// <summary>
-        /// Gets or sets the starting row position of a query(starting from zero).
+        /// Gets or sets the starting row position of a query (starting from zero).
         /// </summary>
         /// <value>An integer value that indicates the starting row position of a query.</value>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.\n</exception>
@@ -270,10 +270,10 @@ namespace Tizen.Content.MediaContent
     }
 
     /// <summary>
-    /// Provides the ability to filter the result of a Count command.
+    /// Provides the ability to filter the result of the Count command.
     /// </summary>
     /// <remarks>
-    /// A filter is required for filtering information associated with Album, Folder, Tag, Bookmark, Playlist
+    /// A filter is required for filtering information associated with Album, Folder, Tag, Bookmark, Playlist,
     /// and MediaInfo.
     /// </remarks>
     public class CountArguments : QueryArguments

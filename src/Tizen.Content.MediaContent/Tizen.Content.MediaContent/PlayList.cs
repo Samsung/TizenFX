@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Represents a playlist that is a group of media(usually songs).
+    /// Represents the playlist that is a group of media (usually songs).
     /// </summary>
     public class Playlist
     {
@@ -36,7 +36,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the ID of the playlist.
         /// </summary>
-        /// <value>The unique id of the playlist.</value>
+        /// <value>The unique ID of the playlist.</value>
         public int Id { get; }
 
         /// <summary>
@@ -65,33 +65,33 @@ namespace Tizen.Content.MediaContent
     /// <remarks>
     /// The values only set in the object will be affected to the update command.
     /// </remarks>
-    /// <seealso cref="PlaylistCommand.Update(int, PlaylistUpdateValues)"/>
+    /// <seealso cref="PlaylistCommand.Update (int, PlaylistUpdateValues)"/>
     public class PlaylistUpdateValues
     {
         /// <summary>
-        /// Gets or sets the name of playlist for update.
+        /// Gets or sets the name of the playlist for an update.
         /// </summary>
         /// <remarks>If the value is null, the update operation will have no effect on the field.</remarks>
         /// <value>A string for name; the field will not be updated if null.</value>
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the thumbnail path of playlist for update.
+        /// Gets or sets the thumbnail path of the playlist for an update.
         /// </summary>
         /// <remarks>If the value is null, the update operation will have no effect on the field.</remarks>
-        /// <value>A string for thumbnail path; the field will not be updated if null.</value>
+        /// <value>A string for the thumbnail path; the field will not be updated if null.</value>
         public string ThumbnailPath { get; set; }
     }
 
     /// <summary>
-    /// Represents an order of a member of a playlist.
+    /// Represents an order of a member of the playlist.
     /// </summary>
     public class PlayOrder
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Playlist"/> class with the specified member id and order value.
+        /// Initializes a new instance of the <see cref="Playlist"/> class with the specified member ID and the order value.
         /// </summary>
-        /// <param name="memberId">The id of member.</param>
+        /// <param name="memberId">The ID of the member.</param>
         /// <param name="orderValue">The order value.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="memberId"/> is less than or equal to zero.\n
@@ -107,9 +107,9 @@ namespace Tizen.Content.MediaContent
         private int _memberId;
 
         /// <summary>
-        /// Gets or sets the member id.
+        /// Gets or sets the member ID.
         /// </summary>
-        /// <value>The member id.</value>
+        /// <value>The member ID.</value>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="value"/> is less than or equal to zero.
         /// </exception>
@@ -130,9 +130,9 @@ namespace Tizen.Content.MediaContent
         private int _value;
 
         /// <summary>
-        /// Gets or sets the value indicating the order of the member in a playlist.
+        /// Gets or sets the value indicating the order of the member in the playlist.
         /// </summary>
-        /// <value>A integer value indicating the order of the member in a playlist.</value>
+        /// <value>An integer value indicating the order of the member in the playlist.</value>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is less than zero.
         /// </exception>

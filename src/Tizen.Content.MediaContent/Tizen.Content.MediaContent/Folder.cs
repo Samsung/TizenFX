@@ -19,10 +19,10 @@ using System;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Represents the folder information for media.
+    /// Represents the folder information for the media.
     /// </summary>
     /// <remarks>
-    /// A <see cref="Folder"/> is used to organize media content files i.e. image, audio, video files,
+    /// The <see cref="Folder"/> is used to organize media content files, i.e., image, audio, and video files,
     /// in the physical storage of the device.
     /// </remarks>
     public class Folder
@@ -40,21 +40,21 @@ namespace Tizen.Content.MediaContent
         internal static Folder FromHandle(IntPtr handle) => new Folder(handle);
 
         /// <summary>
-        /// Gets the id of folder.
+        /// Gets the ID of the folder.
         /// </summary>
-        /// <value>The unique id of folder.</value>
+        /// <value>The unique ID of the folder.</value>
         public string Id { get; }
 
         /// <summary>
-        /// Gets the path of folder.
+        /// Gets the path of the folder.
         /// </summary>
-        /// <value>The path of folder.</value>
+        /// <value>The path of the folder.</value>
         public string Path { get; }
 
         /// <summary>
-        /// Gets the name of folder.
+        /// Gets the name of the folder.
         /// </summary>
-        /// <value>The name of folder.</value>
+        /// <value>The name of the folder.</value>
         public string Name { get; }
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace Tizen.Content.MediaContent
         public StorageType StorageType { get; }
 
         /// <summary>
-        /// Gets the storage id of the storage that the folder exists.
+        /// Gets the storage ID of the storage that the folder exists.
         /// </summary>
-        /// <value>The storage id of the storage that the folder exists.</value>
+        /// <value>The storage ID of the storage that the folder exists.</value>
         public string StorageId { get; }
 
         /// <summary>

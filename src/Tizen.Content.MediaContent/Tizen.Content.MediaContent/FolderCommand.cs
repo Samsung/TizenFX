@@ -26,7 +26,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Initializes a new instance of the <see cref="FolderCommand"/> class with the specified <see cref="MediaDatabase"/>.
         /// </summary>
-        /// <param name="database">A <see cref="MediaDatabase"/> that the commands run on.</param>
+        /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
         public FolderCommand(MediaDatabase database) : base(database)
@@ -46,7 +46,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the number of folders with <see cref="CountArguments"/>.
+        /// Retrieves the number of folders with the <see cref="CountArguments"/>.
         /// </summary>
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of folders.</returns>
@@ -73,7 +73,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the folders with <see cref="SelectArguments"/>.
+        /// Retrieves the folders with the <see cref="SelectArguments"/>.
         /// </summary>
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
@@ -90,7 +90,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Retrieves the folder.
         /// </summary>
-        /// <param name="folderId">The folder id to query with.</param>
+        /// <param name="folderId">The folder ID to query with.</param>
         /// <returns>The <see cref="Folder"/> instance if the matched record was found in the database, otherwise null.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -121,10 +121,10 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the number of media info under the folder.
+        /// Retrieves the number of media information under the folder.
         /// </summary>
-        /// <param name="folderId">The id of the folder to count media in the folder.</param>
-        /// <returns>The number of media info.</returns>
+        /// <param name="folderId">The ID of the folder to count media in the folder.</param>
+        /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -136,11 +136,11 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the number of media info under the folder with <see cref="CountArguments"/>.
+        /// Retrieves the number of media information under the folder with the <see cref="CountArguments"/>.
         /// </summary>
-        /// <param name="folderId">The id of the folder to count media in the folder.</param>
+        /// <param name="folderId">The ID of the folder to count media in the folder.</param>
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
-        /// <returns>The number of media info.</returns>
+        /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -156,9 +156,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the media info under the folder.
+        /// Retrieves the media information under the folder.
         /// </summary>
-        /// <param name="folderId">The id of the folder to select media in the folder.</param>
+        /// <param name="folderId">The ID of the folder to select media in the folder.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -171,9 +171,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the media info under the folder with <see cref="SelectArguments"/>.
+        /// Retrieves the media information under the folder with the <see cref="SelectArguments"/>.
         /// </summary>
-        /// <param name="folderId">The id of the folder to select media in the folder.</param>
+        /// <param name="folderId">The ID of the folder to select media in the folder.</param>
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>

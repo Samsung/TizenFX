@@ -20,14 +20,14 @@ using System.Collections.Generic;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// <see cref="MediaCommand"/> is a base class for command classes.
+    /// The <see cref="MediaCommand"/> is a base class for command classes.
     /// </summary>
     public abstract class MediaCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaCommand"/> class with the specified <see cref="MediaDatabase"/>.
         /// </summary>
-        /// <param name="database">A <see cref="MediaDatabase"/> that the commands run on.</param>
+        /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
         protected MediaCommand(MediaDatabase database)

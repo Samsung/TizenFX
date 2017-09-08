@@ -37,9 +37,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the process id which triggers the event.
+        /// Gets the process ID which triggers the event.
         /// </summary>
-        /// <value>The process id which triggers the event.</value>
+        /// <value>The process ID which triggers the event.</value>
         public int ProcessId
         {
             get;
@@ -55,9 +55,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the id of the media updated.
+        /// Gets the ID of the media updated.
         /// </summary>
-        /// <value>The id of the media updated.</value>
+        /// <value>The ID of the media updated.</value>
         public string Id
         {
             get;
@@ -82,9 +82,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// The mime type of the media updated.
+        /// The MIME type of the media updated.
         /// </summary>
-        /// <value>The mime type of the media updated.</value>
+        /// <value>The MIME type of the media updated.</value>
         public string MimeType
         {
             get;
@@ -114,9 +114,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the id of the folder updated.
+        /// Gets the ID of the folder updated.
         /// </summary>
-        /// <value>The id of the folder updated.</value>
+        /// <value>The ID of the folder updated.</value>
         public string Id
         {
             get;

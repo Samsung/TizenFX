@@ -27,7 +27,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Initializes a new instance of the <see cref="AlbumCommand"/> class with the specified <see cref="MediaDatabase"/>.
         /// </summary>
-        /// <param name="database">A <see cref="MediaDatabase"/> that the commands run on.</param>
+        /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
         public AlbumCommand(MediaDatabase database) : base(database)
@@ -89,9 +89,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves an album with an album id.
+        /// Retrieves an album with the album ID.
         /// </summary>
-        /// <param name="albumId">The id of the album to query with.</param>
+        /// <param name="albumId">The ID of the album to query with.</param>
         /// <returns>The <see cref="Album"/> if <paramref name="albumId"/> exists, otherwise null.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -121,10 +121,10 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the number of media info that belongs to the album.
+        /// Retrieves the number of media information that belongs to the album.
         /// </summary>
-        /// <param name="albumId">The id of the album to query with.</param>
-        /// <returns>The number of media info.</returns>
+        /// <param name="albumId">The ID of the album to query with.</param>
+        /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="albumId"/> is equal to or less than zero.</exception>
@@ -135,11 +135,11 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the number of media info that belongs to the album with <see cref="CountArguments"/>..
+        /// Retrieves the number of media information that belongs to the album with <see cref="CountArguments"/>.
         /// </summary>
-        /// <param name="albumId">The id of the album to count media.</param>
+        /// <param name="albumId">The ID of the album to count media.</param>
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
-        /// <returns>The number of media info.</returns>
+        /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="albumId"/> is equal to or less than zero.</exception>
@@ -158,9 +158,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the media info of an album.
+        /// Retrieves the media information of the album.
         /// </summary>
-        /// <param name="albumId">The id of the album to select media.</param>
+        /// <param name="albumId">The ID of the album to select media.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -171,9 +171,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the media info of an album with <see cref="SelectArguments"/>.
+        /// Retrieves the media information of the album with <see cref="SelectArguments"/>.
         /// </summary>
-        /// <param name="albumId">The id of the album to query with.</param>
+        /// <param name="albumId">The ID of the album to query with.</param>
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>

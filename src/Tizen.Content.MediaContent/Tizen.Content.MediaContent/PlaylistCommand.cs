@@ -22,7 +22,7 @@ using System.Linq;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Provides commands to manage playlists in the database.
+    /// Provides the commands to manage playlists in the database.
     /// </summary>
     /// <seealso cref="Playlist"/>
     public class PlaylistCommand : MediaCommand
@@ -50,7 +50,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the number of playlists with <see cref="CountArguments"/>.
+        /// Retrieves the number of playlists with the <see cref="CountArguments"/>.
         /// </summary>
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of playlists.</returns>
@@ -67,8 +67,8 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Retrieves the play order of the member.
         /// </summary>
-        /// <param name="playlistId">The playlist id.</param>
-        /// <param name="memberId">The member id of the playlist.</param>
+        /// <param name="playlistId">The playlist ID.</param>
+        /// <param name="memberId">The member ID of the playlist.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -103,7 +103,7 @@ namespace Tizen.Content.MediaContent
         /// Deletes a playlist from the database.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
-        /// <param name="playlistId">The playlist id to delete.</param>
+        /// <param name="playlistId">The playlist ID to delete.</param>
         /// <returns>true if the matched record was found and deleted, otherwise false.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -130,17 +130,17 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Inserts a playlist into the database from the specified m3u file.
+        /// Inserts the playlist into the database from the specified M3U file.
         /// </summary>
         /// <remarks>
-        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
-        ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
+        ///     If you want to access an internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
+        ///     If you want to access an external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
-        /// <param name="name">The name of playlist.</param>
-        /// <param name="path">The path to a m3u file to import.</param>
+        /// <param name="name">The name of the playlist.</param>
+        /// <param name="path">The path to a M3U file to import.</param>
         /// <returns>The <see cref="Playlist"/> instance that contains the record information inserted.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -194,18 +194,18 @@ namespace Tizen.Content.MediaContent
             }
         }
         /// <summary>
-        /// Exports a playlist to a m3u file.
+        /// Exports the playlist to a M3U file.
         /// </summary>
         /// <remarks>
         ///     If the file already exists in the file system, then it will be overwritten.\n
         ///     \n
-        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
-        ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
+        ///     If you want to access an internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
+        ///     If you want to access an external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
-        /// <param name="playlistId">The playlist id to export.</param>
-        /// <param name="path">The path to a m3u file.</param>
+        /// <param name="playlistId">The playlist ID to export.</param>
+        /// <param name="path">The path to a M3U file.</param>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -248,10 +248,10 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Inserts a playlist into the database with the specified name.
+        /// Inserts the playlist into the database with the specified name.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
-        /// <param name="name">The name of playlist.</param>
+        /// <param name="name">The name of the playlist.</param>
         /// <returns>The <see cref="Playlist"/> instance that contains the record information inserted.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -265,11 +265,11 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Inserts a playlist into the database with the specified name and thumbnail path.
+        /// Inserts the playlist into the database with the specified name and the thumbnail path.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
-        /// <param name="name">The name of playlist.</param>
-        /// <param name="thumbnailPath">The path of thumbnail for playlist. This value can be null.</param>
+        /// <param name="name">The name of the playlist.</param>
+        /// <param name="thumbnailPath">The path of the thumbnail for the playlist. This value can be null.</param>
         /// <returns>The <see cref="Playlist"/> instance that contains the record information inserted.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -328,7 +328,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the playlists with <see cref="SelectArguments"/>.
+        /// Retrieves the playlists with the <see cref="SelectArguments"/>.
         /// </summary>
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
@@ -344,9 +344,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the playlist with the specified playlist id.
+        /// Retrieves the playlist with the specified playlist ID.
         /// </summary>
-        /// <param name="playlistId">The playlist id to select.</param>
+        /// <param name="playlistId">The playlist ID to select.</param>
         /// <returns>The <see cref="Playlist"/> instance if the matched record was found in the database, otherwise null.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -385,10 +385,10 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the number of media info of the playlist.
+        /// Retrieves the number of media information of the playlist.
         /// </summary>
-        /// <param name="playlistId">The playlist id to count media added to the playlist.</param>
-        /// <returns>The number of media info.</returns>
+        /// <param name="playlistId">The playlist ID to count media added to the playlist.</param>
+        /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -399,11 +399,11 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the number of media info of the playlist with <see cref="CountArguments"/>.
+        /// Retrieves the number of media information of the playlist with the <see cref="CountArguments"/>.
         /// </summary>
-        /// <param name="playlistId">The playlist id to count media added to the playlist.</param>
+        /// <param name="playlistId">The playlist ID to count the media added to the playlist.</param>
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
-        /// <returns>The number of media info.</returns>
+        /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -454,11 +454,11 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the member id of the media in the playlist.
+        /// Retrieves the member ID of the media in the playlist.
         /// </summary>
-        /// <param name="playlistId">The playlist id.</param>
-        /// <param name="mediaId">The media id.</param>
-        /// <returns>The member id if the member was found in the playlist, otherwise -1.</returns>
+        /// <param name="playlistId">The playlist ID.</param>
+        /// <param name="mediaId">The media ID.</param>
+        /// <returns>The member ID if the member was found in the playlist, otherwise -1.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -487,9 +487,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the media info of the playlist.
+        /// Retrieves the media information of the playlist.
         /// </summary>
-        /// <param name="playlistId">The playlist id to query with.</param>
+        /// <param name="playlistId">The playlist ID to query with.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -501,9 +501,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Retrieves the media info of the playlist with <see cref="SelectArguments"/>.
+        /// Retrieves the media information of the playlist with the <see cref="SelectArguments"/>.
         /// </summary>
-        /// <param name="playlistId">The playlist id to query with.</param>
+        /// <param name="playlistId">The playlist ID to query with.</param>
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
@@ -524,13 +524,13 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Updates a playlist with the specified values.
+        /// Updates the playlist with the specified values.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
-        /// <param name="playlistId">The playlist id to update.</param>
-        /// <param name="values">The values for update.</param>
+        /// <param name="playlistId">The playlist ID to update.</param>
+        /// <param name="values">The values for the update.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
-        /// <remarks>Only values set in <see cref="PlaylistUpdateValues"/> are updated.</remarks>
+        /// <remarks>Only values set in the <see cref="PlaylistUpdateValues"/> are updated.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -585,12 +585,12 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Adds media to a playlist.
+        /// Adds the media to the playlist.
         /// </summary>
-        /// <param name="playlistId">The playlist id that the media will be added to.</param>
-        /// <param name="mediaId">The media id to add to the playlist.</param>
+        /// <param name="playlistId">The playlist ID that the media will be added to.</param>
+        /// <param name="mediaId">The media ID to add to the playlist.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
-        /// <remarks>The invalid media id will be ignored.</remarks>
+        /// <remarks>The invalid media ID will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -605,12 +605,12 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Adds a media set to a playlist.
+        /// Adds the media set to the playlist.
         /// </summary>
-        /// <param name="playlistId">The playlist id that the media will be added to.</param>
-        /// <param name="mediaIds">The collection of media id to add to the playlist.</param>
+        /// <param name="playlistId">The playlist ID that the media will be added to.</param>
+        /// <param name="mediaIds">The collection of media ID to add to the playlist.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
-        /// <remarks>The invalid media ids will be ignored.</remarks>
+        /// <remarks>The invalid media IDs will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -682,12 +682,12 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Removes a member from a playlist.
+        /// Removes a member from the playlist.
         /// </summary>
-        /// <param name="playlistId">The playlist id.</param>
-        /// <param name="memberId">The member id to be removed.</param>
+        /// <param name="playlistId">The playlist ID.</param>
+        /// <param name="memberId">The member ID to be removed.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
-        /// <remarks>The invalid id will be ignored.</remarks>
+        /// <remarks>The invalid ID will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -708,12 +708,12 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Removes a media set from a playlist.
+        /// Removes a media set from the playlist.
         /// </summary>
-        /// <param name="playlistId">The playlist id.</param>
-        /// <param name="memberIds">The collection of member id to remove from to the playlist.</param>
+        /// <param name="playlistId">The playlist ID.</param>
+        /// <param name="memberIds">The collection of member ID to remove from to the playlist.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
-        /// <remarks>The invalid ids will be ignored.</remarks>
+        /// <remarks>The invalid IDs will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
@@ -779,9 +779,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Updates a play order of a playlist.
+        /// Updates a play order of the playlist.
         /// </summary>
-        /// <param name="playlistId">The playlist id.</param>
+        /// <param name="playlistId">The playlist ID.</param>
         /// <param name="playOrder">The <see cref="PlayOrder"/> to apply.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
         /// <remarks>The <see cref="PlayOrder.MemberId"/> that is invalid will be ignored.</remarks>
@@ -800,10 +800,10 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Updates play orders of a playlist.
+        /// Updates play orders of the playlist.
         /// </summary>
-        /// <param name="playlistId">The playlist id.</param>
-        /// <param name="orders">The collection of <see cref="PlayOrder"/> to apply.</param>
+        /// <param name="playlistId">The playlist ID.</param>
+        /// <param name="orders">The collection of the <see cref="PlayOrder"/> to apply.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
         /// <remarks>The <see cref="PlayOrder.MemberId"/> that is invalid will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>

@@ -19,18 +19,18 @@ using System;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Represents location of the object bounded by rectangle defined by
-    /// coordinates of top left corner, width and height.
+    /// Represents the location of the object bounded by the rectangle defined by
+    /// coordinates of top left corner, width, and height.
     /// </summary>
     public struct Rectangle
     {
         /// <summary>
-        /// Initializes a new instance of the Rectangle with the specified values.
+        /// Initializes a new instance of the rectangle with the specified values.
         /// </summary>
         /// <param name="x">The x-coordinate of the upper-left corner of the rectangle.</param>
         /// <param name="y">The y-coordinate of the upper-left corner of the rectangle.</param>
-        /// <param name="width">The Width of the rectangle.</param>
-        /// <param name="height">The Height of the rectangle.</param>
+        /// <param name="width">The width of the rectangle.</param>
+        /// <param name="height">The height of the rectangle.</param>
         public Rectangle(int x, int y, int width, int height)
         {
             X = x;
@@ -95,36 +95,36 @@ namespace Tizen.Content.MediaContent
             $"X={X.ToString()}, Y={Y.ToString()}, Width={Width.ToString()}, Height={Height.ToString()}";
 
         /// <summary>
-        /// Returns the hash code for this Rectangle structure.
+        /// Returns the hash code for this rectangle structure.
         /// </summary>
         /// <returns>An integer that represents the hash code for this rectangle.</returns>
         public override int GetHashCode() => new { X, Y, Width, Height }.GetHashCode();
 
         /// <summary>
-        /// Tests whether obj is a Rectangle structure with the same location and size of this Rectangle structure.
+        /// Tests whether object is a rectangle structure with the same location and size of this rectangle structure.
         /// </summary>
-        /// <param name="obj">A <see cref="Object"/> to compare.</param>
+        /// <param name="obj">The <see cref="Object"/> to compare.</param>
         /// <returns>
-        /// true if obj is a Rectangle structure and its X, Y, Width and Height properties are
-        /// equal to the corresponding properties of this Rectangle structure; otherwise, false.
+        /// true if object is a rectangle structure and its x, y, width, and height properties are
+        /// equal to the corresponding properties of this rectangle structure; otherwise, false.
         /// </returns>
         public override bool Equals(object obj) => obj is Rectangle && this == (Rectangle)obj;
 
         /// <summary>
-        /// Tests whether two Rectangle structures have equal location and size.
+        /// Tests whether two rectangle structures have equal location and size.
         /// </summary>
-        /// <param name="rect1">A <see cref="Rectangle"/> to compare.</param>
-        /// <param name="rect2">A <see cref="Rectangle"/> to compare.</param>
-        /// <returns>true if the two Rectangle structures have equal X, Y, Width, and Height properties; otherwise, false.</returns>
+        /// <param name="rect1">The <see cref="Rectangle"/> to compare.</param>
+        /// <param name="rect2">The <see cref="Rectangle"/> to compare.</param>
+        /// <returns>true if the two rectangle structures have equal x, y, width, and height properties; otherwise, false.</returns>
         public static bool operator ==(Rectangle rect1, Rectangle rect2)
             => rect1.X == rect2.X && rect1.Y == rect2.Y && rect1.Width == rect2.Width && rect1.Height == rect2.Height;
 
         /// <summary>
-        /// Tests whether two Rectangle structures differ in location or size.
+        /// Tests whether two rectangle structures differ in location or size.
         /// </summary>
-        /// <param name="rect1">A <see cref="Rectangle"/> to compare.</param>
-        /// <param name="rect2">A <see cref="Rectangle"/> to compare.</param>
-        /// <returns>true if any of the X, Y, Width or Height properties of the two Rectangle structures are unequal; otherwise false.</returns>
+        /// <param name="rect1">The <see cref="Rectangle"/> to compare.</param>
+        /// <param name="rect2">The <see cref="Rectangle"/> to compare.</param>
+        /// <returns>true if any of the x, y, width, or height properties of the two rectangle structures are unequal; otherwise false.</returns>
         public static bool operator !=(Rectangle rect1, Rectangle rect2) => !(rect1 == rect2);
     }
 }

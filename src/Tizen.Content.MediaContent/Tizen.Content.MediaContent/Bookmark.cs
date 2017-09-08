@@ -19,8 +19,8 @@ using System;
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Represents a media bookmark that allows you to mark interesting moment
-    /// in media(video and audio) to enable fast searching.
+    /// Represents the media bookmark that allows you to mark an interesting moment
+    /// in media (video and audio) to enable fast searching.
     /// </summary>
     public class Bookmark
     {
@@ -33,9 +33,9 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Gets the id of the bookmark.
+        /// Gets the ID of the bookmark.
         /// </summary>
-        /// <value>The id of the bookmark.</value>
+        /// <value>The ID of the bookmark.</value>
         public int Id { get; }
 
         /// <summary>

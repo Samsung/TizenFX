@@ -17,18 +17,18 @@
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
-    /// Represents a member of <see cref="Playlist"/>.
+    /// Represents a member of the <see cref="Playlist"/>.
     /// </summary>
     public class PlaylistMember
     {
         /// <summary>
-        /// Gets the member id.
+        /// Gets the member ID.
         /// </summary>
-        /// <value>The member id of playlist.</value>
+        /// <value>The member ID of the playlist.</value>
         public int MemberId { get; }
 
         /// <summary>
-        /// Gets the media info of the member.
+        /// Gets the media information of the member.
         /// </summary>
         /// <value>The <see cref="MediaInfo"/> of the member.</value>
         public MediaInfo MediaInfo { get; }
