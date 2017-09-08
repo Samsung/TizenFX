@@ -19,17 +19,17 @@ using System.Runtime.InteropServices;
 using Tizen.Multimedia.Vision;
 
 /// <summary>
-/// Interop APIs
+/// Interop APIs.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Interop for media vision APIs
+    /// Interop for Media Vision APIs.
     /// </summary>
     internal static partial class MediaVision
     {
         /// <summary>
-        /// Interop for Face APIs
+        /// Interop for Face APIs.
         /// </summary>
         internal static partial class Face
         {
@@ -81,7 +81,7 @@ internal static partial class Interop
         }
 
         /// <summary>
-        /// Interop for FaceRecognitionModel APIs
+        /// Interop for FaceRecognitionModel APIs.
         /// </summary>
         internal static partial class FaceRecognitionModel
         {
@@ -122,7 +122,7 @@ internal static partial class Interop
         }
 
         /// <summary>
-        /// Interop for FaceTrackingModel APIs
+        /// Interop for FaceTrackingModel APIs.
         /// </summary>
         internal static partial class FaceTrackingModel
         {

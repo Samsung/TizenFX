@@ -19,17 +19,17 @@ using System.Runtime.InteropServices;
 using Tizen.Multimedia.Vision;
 
 /// <summary>
-/// Interop APIs
+/// Interop APIs.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Interop for Media vision APIs
+    /// Interop for Media Vision APIs.
     /// </summary>
     internal static partial class MediaVision
     {
         /// <summary>
-        /// Interop for Image APIs
+        /// Interop for Image APIs.
         /// </summary>
         internal static partial class Image
         {
@@ -82,7 +82,7 @@ internal static partial class Interop
         }
 
         /// <summary>
-        /// Interop for ImageTrackingModel APIs
+        /// Interop for ImageTrackingModel APIs.
         /// </summary>
         internal static partial class ImageTrackingModel
         {

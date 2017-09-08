@@ -19,55 +19,55 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Specifies the expression types for faces.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum FacialExpression
     {
         /// <summary>
         /// Unknown face expression.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Unknown,
 
         /// <summary>
         /// Face expression is neutral.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Neutral,
 
         /// <summary>
         /// Face expression is smiling.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Smile,
 
         /// <summary>
         /// Face expression is sadness.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Sadness,
 
         /// <summary>
         /// Face expression is surprise.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Surprise,
 
         /// <summary>
         /// Face expression is anger.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Anger,
 
         /// <summary>
         /// Face expression is fear.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Fear,
 
         /// <summary>
         /// Face expression is disgust.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Disgust
     }
 }

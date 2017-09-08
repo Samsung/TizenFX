@@ -21,7 +21,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents a configuration of <see cref="PersonRecognizer"/> instances.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class PersonRecognitionConfiguration : SurveillanceEngineConfiguration
     {
         private const string KeyFaceRecognitionModelFilePath = "MV_SURVEILLANCE_FACE_RECOGNITION_MODEL_FILE_PATH";
@@ -32,7 +32,7 @@ namespace Tizen.Multimedia.Vision
         /// <param name="modelPath">Path to the face recognition model.</param>
         /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public PersonRecognitionConfiguration(string modelPath)
         {
             FaceRecognitionModelPath = modelPath;
@@ -43,7 +43,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="PersonRecognitionConfiguration"/> already has been disposed of.</exception>
-        /// <since_tizen>3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string FaceRecognitionModelPath
         {
             get

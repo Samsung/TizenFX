@@ -19,25 +19,25 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Specifies the target of <see cref="BarcodeDetector"/>.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum BarcodeDetectionTarget
     {
         /// <summary>
         /// 1D and 2D.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         All,
 
         /// <summary>
         /// 1D barcode only.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Barcode1D,
 
         /// <summary>
         /// 2D barcode only.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Barcode2D,
     }
 }

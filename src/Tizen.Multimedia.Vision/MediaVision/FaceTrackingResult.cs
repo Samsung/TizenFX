@@ -17,9 +17,9 @@
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
-    /// Represents result of face tracking operation.
+    /// Represents the result of face tracking operation.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class FaceTrackingResult
     {
         internal FaceTrackingResult(bool success, double confidence, Quadrangle region)
@@ -36,16 +36,16 @@ namespace Tizen.Multimedia.Vision
         public bool Success { get; }
 
         /// <summary>
-        /// Gets the region which determines new position of the tracked face on the source.
+        /// Gets the region which determines the new position of the tracked face on the source.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Quadrangle Region { get; }
 
         /// <summary>
-        /// The confidence of the tracking model that new location of the face was determined correctly
-        /// (value from 0.0 to 1.0). If no location was determined during last track iteration, then value is 0.0.
+        /// The confidence of the tracking model that a new location of the face was determined correctly
+        /// (value from 0.0 to 1.0). If no location was determined during the last track iteration, then the value is 0.0.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public double Confidence { get; }
     }
 }

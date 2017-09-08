@@ -34,19 +34,19 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// The quadrangle location of detected barcode.
+        /// The quadrangle location of the detected barcode.
         /// </summary>
         /// <since_tizen> 3</since_tizen>
         public Quadrangle Region { get; }
 
         /// <summary>
-        /// The decoded message of barcode.
+        /// The decoded message of the barcode.
         /// </summary>
         /// <since_tizen> 3</since_tizen>
         public string Message { get; }
 
         /// <summary>
-        /// The type of detected barcode.
+        /// The type of the detected barcode.
         /// </summary>
         /// <since_tizen> 3</since_tizen>
         public BarcodeType Type { get; }

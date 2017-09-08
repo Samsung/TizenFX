@@ -25,11 +25,11 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Provides the ability to detect barcodes on image sources.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public static class BarcodeDetector
     {
         /// <summary>
-        /// Detects barcodes on source and reads message from it.
+        /// Detects barcodes on the source and reads the message from it.
         /// </summary>
         /// <param name="source">The <see cref="MediaVisionSource"/> instance.</param>
         /// <param name="roi">Region of interest - rectangular area on the source which will be used for
@@ -47,7 +47,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Detects barcodes on source and reads message from it with <see cref="BarcodeDetectionConfiguration"/>.
+        /// Detects barcodes on the source and reads the message from it with <see cref="BarcodeDetectionConfiguration"/>.
         /// </summary>
         /// <param name="source">The <see cref="MediaVisionSource"/> instance.</param>
         /// <param name="roi">Region of interest - rectangular area on the source which will be used for

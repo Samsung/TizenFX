@@ -24,7 +24,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents the face recognition model interface.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class FaceRecognitionModel : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -34,7 +34,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="FaceRecognitionModel"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public FaceRecognitionModel()
         {
             InteropModel.Create(out _handle).Validate("Failed to create FaceRecognitionModel");
@@ -44,7 +44,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="FaceRecognitionModel"/> class with the specified path.
         /// </summary>
         /// <remarks>
-        /// Models have been saved by <see cref="Save()"/> can be loaded.
+        /// Models saved by <see cref="Save()"/> can be loaded.
         /// </remarks>
         /// <param name="modelPath">Path to the model to load.</param>
         /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
@@ -56,7 +56,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save(string)"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public FaceRecognitionModel(string modelPath)
         {
             if (modelPath == null)
@@ -112,7 +112,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Save(string path)
         {
             if (path == null)
@@ -142,7 +142,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Adds face image example to be used for face recognition model learning.
+        /// Adds the face image example to be used for face recognition model learning.
         /// </summary>
         /// <param name="source">The <see cref="MediaVisionSource"/> that contains face image.</param>
         /// <param name="label">The label that identifies face for which example is adding.
@@ -155,7 +155,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="source"/> has already been dispose of.
         /// </exception>
         /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Add(MediaVisionSource source, int label)
         {
             if (source == null)
@@ -167,7 +167,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Adds face image example to be used for face recognition model learning.
+        /// Adds the face image example to be used for face recognition model learning.
         /// </summary>
         /// <param name="source">The <see cref="MediaVisionSource"/> that contains face image.</param>
         /// <param name="label">The label that identifies face for which example is adding.
@@ -181,7 +181,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="source"/> has already been dispose of.
         /// </exception>
         /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Add(MediaVisionSource source, int label, Rectangle area)
         {
             if (source == null)
@@ -200,7 +200,7 @@ namespace Tizen.Multimedia.Vision
         /// <returns>true if the examples are successfully removed; otherwise, false if there is no example labeled with the specified label.</returns>
         /// <seealso cref="Add(MediaVisionSource, int)"/>
         /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public bool Remove(int label)
         {
             var ret = InteropModel.Remove(Handle, ref label);
@@ -218,7 +218,7 @@ namespace Tizen.Multimedia.Vision
         /// Removes all face examples.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Reset()
         {
             InteropModel.Reset(Handle).Validate("Failed to reset image example");
@@ -226,31 +226,31 @@ namespace Tizen.Multimedia.Vision
 
 
         /// <summary>
-        /// Learns face recognition model.
+        /// Learns the face recognition model.
         /// </summary>
         /// <remarks>
-        /// Before you start learning process, face recognition models has to be filled with training data - face image examples.
-        /// These examples has to be provided by <see cref="Add(MediaVisionSource, int)"/> or <see cref="Add(MediaVisionSource, int, Rectangle)"/>.
-        /// Recognition accuracy is usually increased when the different examples of the identical face are added more and more.
+        /// Before you start the learning process, face recognition models have to be filled with the training data - face image examples.
+        /// These examples have to be provided by <see cref="Add(MediaVisionSource, int)"/> or <see cref="Add(MediaVisionSource, int, Rectangle)"/>.
+        /// Recognition accuracy is usually increased when the different examples of the identical faces are added more and more.
         /// But it depends on the used learning algorithm.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">No examples added.</exception>
         /// <seealso cref="Add(MediaVisionSource, int)"/>
         /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Learn()
         {
             Learn(null);
         }
 
         /// <summary>
-        /// Learns face recognition model with <see cref="FaceRecognitionConfiguration"/>.
+        /// Learns the face recognition model with <see cref="FaceRecognitionConfiguration"/>.
         /// </summary>
         /// <remarks>
-        /// Before you start learning process, face recognition models has to be filled with training data - face image examples.
-        /// These examples has to be provided by <see cref="Add(MediaVisionSource, int)"/> or <see cref="Add(MediaVisionSource, int, Rectangle)"/>.
-        /// Recognition accuracy is usually increased when the different examples of the identical face are added more and more.
+        /// Before you start the learning process, face recognition models have to be filled with the training data - face image examples.
+        /// These examples have to be provided by <see cref="Add(MediaVisionSource, int)"/> or <see cref="Add(MediaVisionSource, int, Rectangle)"/>.
+        /// Recognition accuracy is usually increased when the different examples of the identical faces are added more and more.
         /// But it depends on the used learning algorithm.
         /// </remarks>
         /// <param name="config">The configuration used for learning of the recognition models. This value can be null.</param>
@@ -262,7 +262,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="InvalidOperationException">No examples added.</exception>
         /// <seealso cref="Add(MediaVisionSource, int)"/>
         /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Learn(FaceRecognitionConfiguration config)
         {
             InteropModel.Learn(EngineConfiguration.GetHandle(config), Handle).
@@ -270,7 +270,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Releases all resources used by the <see cref="FaceRecognitionModel"/> object.
+        /// Releases all the resources used by the <see cref="FaceRecognitionModel"/> object.
         /// </summary>
         public void Dispose()
         {
@@ -282,7 +282,7 @@ namespace Tizen.Multimedia.Vision
         /// Releases the resources used by the <see cref="FaceRecognitionModel"/> object.
         /// </summary>
         /// <param name="disposing">
-        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// true to release both managed and unmanaged resources; otherwise false to release only unmanaged resources.
         /// </param>
         protected virtual void Dispose(bool disposing)
         {

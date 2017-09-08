@@ -23,7 +23,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents an image object.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class ImageObject : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -33,7 +33,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="ImageObject"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public ImageObject()
         {
             InteropImage.Create(out _handle).Validate("Failed to create image object");
@@ -43,7 +43,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="ImageObject"/> class from the specified file.
         /// </summary>
         /// <remarks>
-        /// ImageObject has been saved by <see cref="Save(string)"/> can be loaded.
+        /// ImageObject has been saved by <see cref="Save()"/> can be loaded.
         /// </remarks>
         /// <param name="path">Path to the image object to load.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
@@ -55,7 +55,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save(string)"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public ImageObject(string path)
         {
             if (path == null)
@@ -87,7 +87,7 @@ namespace Tizen.Multimedia.Vision
         /// <seealso cref="Fill(MediaVisionSource, ImageFillConfiguration)"/>
         /// <seealso cref="Fill(MediaVisionSource, Rectangle)"/>
         /// <seealso cref="Fill(MediaVisionSource, ImageFillConfiguration, Rectangle)"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public double RecognitionRate
         {
             get
@@ -106,7 +106,7 @@ namespace Tizen.Multimedia.Vision
         /// </returns>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageObject"/> has already been disposed of.</exception>
         /// <seealso cref="SetLabel(int)"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public int? GetLabel()
         {
             var ret = InteropImage.GetLabel(Handle, out var label);
@@ -124,7 +124,7 @@ namespace Tizen.Multimedia.Vision
         /// Sets the label for the <see cref="ImageObject"/>.
         /// </summary>
         /// <seealso cref="GetLabel"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void SetLabel(int label)
         {
             InteropImage.SetLabel(Handle, label).Validate("Failed to set label");
@@ -141,7 +141,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-\n
         ///     <paramref name="source"/> has already been disposed of.
         /// </exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Fill(MediaVisionSource source)
         {
             InvokeFill(source, null, null);
@@ -161,7 +161,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-\n
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Fill(MediaVisionSource source, ImageFillConfiguration config)
         {
             InvokeFill(source, config, null);
@@ -179,7 +179,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-\n
         ///     <paramref name="source"/> has already been disposed of.\n
         /// </exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Fill(MediaVisionSource source, Rectangle rect)
         {
             InvokeFill(source, null, rect);
@@ -200,7 +200,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-\n
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Fill(MediaVisionSource source, ImageFillConfiguration config, Rectangle rect)
         {
             InvokeFill(source, config, rect);
@@ -237,7 +237,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Save(string path)
         {
             if (path == null)
@@ -259,7 +259,7 @@ namespace Tizen.Multimedia.Vision
         #region IDisposable-support
 
         /// <summary>
-        /// Releases all resources used by the <see cref="ImageObject"/> object.
+        /// Releases all the resources used by the <see cref="ImageObject"/> object.
         /// </summary>
         public void Dispose()
         {
@@ -271,7 +271,7 @@ namespace Tizen.Multimedia.Vision
         /// Releases the resources used by the <see cref="ImageObject"/> object.
         /// </summary>
         /// <param name="disposing">
-        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// true to release both managed and unmanaged resources; otherwise false to release only unmanaged resources.
         /// </param>
         protected virtual void Dispose(bool disposing)
         {

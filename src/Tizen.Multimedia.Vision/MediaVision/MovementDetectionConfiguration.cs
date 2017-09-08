@@ -21,7 +21,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents a configuration of <see cref="MovementDetector"/>.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class MovementDetectionConfiguration : SurveillanceEngineConfiguration
     {
         private const string KeyThreshold = "MV_SURVEILLANCE_MOVEMENT_DETECTION_THRESHOLD";
@@ -29,7 +29,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// A read-only field that represents the default value of <see cref="Threshold"/>.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int DefaultThreshold = 10;
 
 
@@ -37,7 +37,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="MovementDetectionConfiguration"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public MovementDetectionConfiguration()
         {
         }
@@ -48,7 +48,7 @@ namespace Tizen.Multimedia.Vision
         /// to specify the sensitivity of the movement detector.
         /// </summary>
         /// <value>
-        /// The value indicating the sensitivity of the <see cref="MovementDetector"/> from 0 to 255 inclusive
+        /// The value indicating the sensitivity of <see cref="MovementDetector"/> from 0 to 255 inclusive,
         /// where 255 means that no movements will be detected and 0 means that all frame changes
         /// will be interpreted as movements.\n
         /// The default is 10.
@@ -59,7 +59,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-\n
         ///     <paramref name="value"/> is greater than 255.
         /// </exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public int Threshold
         {
             get

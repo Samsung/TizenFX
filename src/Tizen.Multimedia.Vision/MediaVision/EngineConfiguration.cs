@@ -24,7 +24,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// A base class for configuration classes.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class EngineConfiguration : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -159,7 +159,7 @@ namespace Tizen.Multimedia.Vision
         /// Releases the resources used by the <see cref="EngineConfiguration"/> object.
         /// </summary>
         /// <param name="disposing">
-        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// true to release both managed and unmanaged resources, otherwise false to release only unmanaged resources.
         /// </param>
         protected virtual void Dispose(bool disposing)
         {
