@@ -27,7 +27,7 @@ namespace Tizen.Location
         /// The class constructor for the ServiceStateChangedEventArgs class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="state"> An enumeration of type LocationServiceState.</param>
+        /// <param name="state">An enumeration of type LocationServiceState.</param>
         public ServiceStateChangedEventArgs(ServiceState state)
         {
             ServiceState = state;

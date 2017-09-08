@@ -70,6 +70,9 @@ internal static partial class Interop
         [DllImport(Libraries.Location, EntryPoint = "location_manager_is_enabled_method")]
         internal static extern int IsEnabled(int locationMethod, out bool status);
 
+        [DllImport(Libraries.Location, EntryPoint = "location_manager_enable_method")]
+        internal static extern int EnableType(int locationMethod, bool status);
+
         [DllImport(Libraries.Location, EntryPoint = "location_manager_is_supported_method")]
         internal static extern bool IsSupported(int locationMethod);
     }
