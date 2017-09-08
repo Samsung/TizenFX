@@ -23,35 +23,35 @@ namespace Tizen.Security.SecureRepository
     public enum KeyType : int
     {
         /// <summary>
-        /// Key type not specified
+        /// Key type not specified.
         /// </summary>
         None = 0,
         /// <summary>
-        /// RSA public key
+        /// The RSA public key.
         /// </summary>
         RsaPublic,
         /// <summary>
-        /// RSA private key
+        /// The RSA private key.
         /// </summary>
         RsaPrivate,
         /// <summary>
-        /// ECDSA public key
+        /// The ECDSA public key.
         /// </summary>
         EcdsaPublic,
         /// <summary>
-        /// ECDSA private key
+        /// The ECDSA private key.
         /// </summary>
         EcdsaPrivate,
         /// <summary>
-        /// DSA public key
+        /// The DSA public key.
         /// </summary>
         DsaPublic,
         /// <summary>
-        /// DSA private key
+        /// The DSA private key.
         /// </summary>
         DsaPrivate,
         /// <summary>
-        /// AES key
+        /// The AES key.
         /// </summary>
         Aes
     }

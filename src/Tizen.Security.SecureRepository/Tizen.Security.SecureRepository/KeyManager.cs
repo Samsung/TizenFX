@@ -20,13 +20,13 @@ using System.Collections.Generic;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// This class provides the methods storing, retrieving, and creating keys.
+    /// This class provides the methods for storing, retrieving, and creating keys.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class KeyManager : Manager
     {
         /// <summary>
-        /// Gets a key from secure repository.
+        /// Gets a key from the secure repository.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of a key to retrieve.</param>
@@ -37,13 +37,13 @@ namespace Tizen.Security.SecureRepository
         /// </param>
         /// <returns>A key specified by alias.</returns>
         /// <exception cref="ArgumentNullException">
-        /// Alias argument is null.
+        /// The alias argument is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is invalid format.
+        /// The alias argument is in the invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Key does not exist with the alias or key-protecting password isn't matched.
+        /// The key does not exist with the alias or the key-protecting password isn't matched.
         /// </exception>
         static public Key Get(string alias, string password)
         {
@@ -67,10 +67,10 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Gets all alias of keys which the client can access.
+        /// Gets all aliases of keys, which the client can access.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>All alias of keys which the client can access.</returns>
+        /// <returns>All aliases of keys, which the client can access.</returns>
         /// <exception cref="ArgumentException">No alias to get.</exception>
         static public IEnumerable<string> GetAliases()
         {
@@ -91,7 +91,7 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Stores a key inside secure repository based on the provided policy.
+        /// Stores a key inside the secure repository based on the provided policy.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of a key to be stored.</param>
@@ -101,17 +101,17 @@ namespace Tizen.Security.SecureRepository
         /// Any of argument is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is invalid format. key argument is invalid format.
+        /// The alias argument is in the invalid format. key argument is in the invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Key with alias does already exist.
+        /// The key with alias does already exist.
         /// </exception>
         /// <remarks>
-        /// Type in key may be set to KeyType.None as an input.
-        /// Type is determined inside secure reposioty during storing keys.
+        /// The type in key may be set to KeyType.None as an input.
+        /// The type is determined inside the secure reposioty during storing keys.
         /// </remarks>
         /// <remarks>
-        /// If password in policy is provided, the key is additionally encrypted with
+        /// If the password in policy is provided, the key is additionally encrypted with
         /// the password in policy.
         /// </remarks>
         static public void Save(string alias, Key key, Policy policy)
@@ -126,7 +126,7 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Creates RSA private/public key pair and stores them inside secure repository
+        /// Creates the RSA private/public key pair and stores them inside the secure repository
         /// based on each policy.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -145,13 +145,13 @@ namespace Tizen.Security.SecureRepository
         /// Any of argument is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// size is invalid. privateKeyAlias or publicKeyAlias is invalid format.
+        /// The size is invalid. privateKeyAlias or publicKeyAlias is invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Key with privateKeyAlias or publicKeyAlias does already exist.
+        /// The key with privateKeyAlias or publicKeyAlias does already exist.
         /// </exception>
         /// <remarks>
-        /// If password in policy is provided, the key is additionally encrypted with the
+        /// If the password in policy is provided, the key is additionally encrypted with the
         /// password in policy.
         /// </remarks>
         static public void CreateRsaKeyPair(
@@ -172,7 +172,7 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Creates DSA private/public key pair and stores them inside secure repository
+        /// Creates the DSA private/public key pair and stores them inside the secure repository
         /// based on each policy.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -192,13 +192,13 @@ namespace Tizen.Security.SecureRepository
         /// Any of argument is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// size is invalid. privateKeyAlias or publicKeyAlias is invalid format.
+        /// The size is invalid. privateKeyAlias or publicKeyAlias is invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Key with privateKeyAlias or publicKeyAlias does already exist.
+        /// The key with privateKeyAlias or publicKeyAlias does already exist.
         /// </exception>
         /// <remarks>
-        /// If password in policy is provided, the key is additionally encrypted with
+        /// If the password in policy is provided, the key is additionally encrypted with
         /// the password in policy.
         /// </remarks>
         static public void CreateDsaKeyPair(
@@ -219,7 +219,7 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Creates ECDSA private/public key pair and stores them inside secure repository
+        /// Creates the ECDSA private/public key pair and stores them inside secure repository
         /// based on each policy.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -236,14 +236,14 @@ namespace Tizen.Security.SecureRepository
         /// Any of argument is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// Elliptic curve type is invalid. privateKeyAlias or publicKeyAlias is
+        /// The elliptic curve type is invalid. privateKeyAlias or publicKeyAlias is in the
         /// invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Key with privateKeyAlias or publicKeyAlias does already exist.
+        /// The key with privateKeyAlias or publicKeyAlias does already exist.
         /// </exception>
         /// <remarks>
-        /// If password in policy is provided, the key is additionally encrypted with
+        /// If the password in policy is provided, the key is additionally encrypted with
         /// the password in policy.
         /// </remarks>
         static public void CreateEcdsaKeyPair(
@@ -262,25 +262,25 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Creates AES key and stores it inside secure repository based on each policy.
+        /// Creates the AES key and stores it inside the secure repository based on each policy.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="size">
-        /// The size of key strength to be created. 128, 192 and 256 are supported.
+        /// The size of the key strength to be created. 128, 192 and 256 are supported.
         /// </param>
         /// <param name="keyAlias">The name of key to be stored.</param>
         /// <param name="policy">The policy about how to store the key securely.</param>
         /// <exception cref="ArgumentNullException">
-        /// keyAlias or policy is null.
+        /// The keyAlias or policy is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// Key size is invalid. keyAlias is invalid format.
+        /// The key size is invalid. keyAlias is in the invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Key with privateKeyAlias or publicKeyAlias does already exist.
+        /// The key with privateKeyAlias or publicKeyAlias does already exist.
         /// </exception>
         /// <remarks>
-        /// If password in policy is provided, the key is additionally encrypted with
+        /// If the password in policy is provided, the key is additionally encrypted with
         /// the password in policy.
         /// </remarks>
         static public void CreateAesKey(int size, string keyAlias, Policy policy)

@@ -17,21 +17,21 @@
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// Enumeration for RSA padding algorithm
+    /// Enumeration for the RSA padding algorithm.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum RsaPaddingAlgorithm : int
     {
         /// <summary>
-        /// No Padding
+        /// No padding.
         /// </summary>
         None = 0,
         /// <summary>
-        /// PKCS#1 Padding
+        /// PKCS#1 padding.
         /// </summary>
         Pkcs1,
         /// <summary>
-        /// X9.31 padding
+        /// X9.31 padding.
         /// </summary>
         X931
     }

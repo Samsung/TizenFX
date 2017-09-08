@@ -17,21 +17,21 @@
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// Enumeration for signature algorithm parameters.
+    /// Enumeration for the signature algorithm parameters.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     internal enum SignatureParameterName : int
     {
         /// <summary>
-        /// Signaturea Algorithm Type
+        /// The signature algorithm type.
         /// </summary>
         AlgorithmType = 0x01,
         /// <summary>
-        /// Hash Algorithm Type
+        /// The hash algorithm type.
         /// </summary>
         HashAlgorithm,
         /// <summary>
-        /// RSA Padding Algorithm Type
+        /// The RSA padding algorithm type.
         /// </summary>
         RsaPaddingAlgorithm
     }

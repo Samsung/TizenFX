@@ -21,13 +21,13 @@ using static Interop;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// This class provides the methods storing and retrieving data.
+    /// This class provides the methods for storing and retrieving data.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class DataManager : Manager
     {
         /// <summary>
-        /// Gets data from secure repository.
+        /// Gets data from the secure repository.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of a certificate to retrieve.</param>
@@ -38,10 +38,10 @@ namespace Tizen.Security.SecureRepository
         /// </param>
         /// <returns>Data specified by alias.</returns>
         /// <exception cref="ArgumentNullException">
-        /// Alias argument is null.
+        /// The alias argument is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is invalid format.
+        /// The alias argument is in the invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// Data does not exist with the alias or data-protecting password isn't matched.
@@ -68,10 +68,10 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Gets all alias of data which the client can access.
+        /// Gets all aliases of data, which the client can access.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>All alias of data which the client can access.</returns>
+        /// <returns>All aliases of data, which the client can access.</returns>
         /// <exception cref="ArgumentException">No alias to get.</exception>
         static public IEnumerable<string> GetAliases()
         {
@@ -92,7 +92,7 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Stores data inside secure repository based on the provided policy.
+        /// Stores data inside the secure repository based on the provided policy.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">The name of data to be stored.</param>
@@ -102,10 +102,10 @@ namespace Tizen.Security.SecureRepository
         /// Any of argument is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// Alias argument is invalid format. Data policy cannot be unextractable.
+        /// The alias argument is in the invalid format. Data policy cannot be unextractable.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Data with alias does already exist.
+        /// Data with alias already exist.
         /// </exception>
         static public void Save(string alias, byte[] data, Policy policy)
         {

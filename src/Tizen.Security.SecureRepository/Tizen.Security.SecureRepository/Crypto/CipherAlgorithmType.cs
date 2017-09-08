@@ -17,13 +17,13 @@
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// Enumeration for crypto cipher algorithm types.
+    /// Enumeration for the crypto cipher algorithm types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum CipherAlgorithmType : int
     {
         /// <summary>
-        /// AES-CTR algorithm
+        /// The AES-CTR algorithm.
         /// Supported parameters:
         /// - ParameterName.AlgorithmType = AesCtr(mandatory),
         /// - ParameterName.IV = 16 - byte initialization vector(mandatory)
@@ -32,14 +32,14 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// </summary>
         AesCtr = 0x01,
         /// <summary>
-        /// AES-CBC algorithm
+        /// The AES-CBC algorithm.
         /// Supported parameters:
         /// - ParameterName.AlgorithmType = AesCbc(mandatory),
         /// - ParameterName.IV = 16-byte initialization vector(mandatory)
         /// </summary>
         AesCbc,
         /// <summary>
-        /// AES-GCM algorithm
+        /// The AES-GCM algorithm.
         /// Supported parameters:
         /// - ParameterName.AlgorithmType = AesGcm(mandatory),
         /// - ParameterName.IV = initialization vector(mandatory)
@@ -49,14 +49,14 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// </summary>
         AesGcm,
         /// <summary>
-        /// AES-CFB algorithm
+        /// Th AES-CFB algorithm.
         /// Supported parameters:
         /// - ParameterName.AlgorithmType = AesCfb(mandatory),
         /// - ParameterName.IV = 16-byte initialization vector(mandatory)
         /// </summary>
         AesCfb,
         /// <summary>
-        /// RSA-OAEP algorithm
+        /// The RSA-OAEP algorithm.
         /// Supported parameters:
         /// - ParameterName.AlgorithmType = RsaOaep(required),
         /// - ParameterName.Label = label to be associated with the message
