@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 using Tizen.Multimedia.Vision;
 
 /// <summary>
-/// Interop APIs
+/// Interop APIs.
 /// </summary>
 internal static partial class Interop
 {
@@ -92,7 +92,7 @@ internal static partial class Interop
     }
 
     /// <summary>
-    /// Interop for media vision APIs
+    /// Interop for Media Vision APIs.
     /// </summary>
     internal static partial class MediaVision
     {
@@ -120,7 +120,7 @@ internal static partial class Interop
         }
 
         /// <summary>
-        /// Interop for media vision source APIs
+        /// Interop for Media Vision Source APIs.
         /// </summary>
         internal static partial class MediaSource
         {
@@ -154,7 +154,7 @@ internal static partial class Interop
         }
 
         /// <summary>
-        /// Interop for engine configuration APIs
+        /// Interop for Engine Configuration APIs.
         /// </summary>
         internal static partial class EngineConfig
         {

@@ -20,7 +20,7 @@ namespace Tizen.Multimedia.Vision
     /// Represents a configuration of <see cref="BarcodeDetector"/>.
     /// </summary>
     /// <seealso cref="BarcodeDetector"/>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class BarcodeDetectionConfiguration : EngineConfiguration
     {
         private const string KeyAttrTarget = "MV_BARCODE_DETECT_ATTR_TARGET";
@@ -29,7 +29,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="BarcodeDetectionConfiguration"/> class.
         /// </summary>
         /// <exception cref="System.NotSupportedException">The feature is not supported.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public BarcodeDetectionConfiguration() : base("barcode_detection")
         {
         }
@@ -39,7 +39,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="System.ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <exception cref="System.ObjectDisposedException">The <see cref="BarcodeDetectionConfiguration"/> already has been disposed of.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public BarcodeDetectionTarget Target
         {
             get

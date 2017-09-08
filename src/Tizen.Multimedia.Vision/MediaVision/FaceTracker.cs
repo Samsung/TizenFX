@@ -24,7 +24,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Provides the ability to track faces on image sources.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public static class FaceTracker
     {
 
@@ -33,8 +33,8 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <param name="source">The source of the media to recognize face for.</param>
         /// <param name="trackingModel">The model will be used for tracking.</param>
-        /// <param name="doLearn">The value indicating whether model learning while tracking. If it is true then model will try to learn
-        /// (if it supports learning feature), otherwise model will be not learned during the invoking tracking iteration.
+        /// <param name="doLearn">The value indicating whether model learning while tracking. If it is true, then the model will try to learn
+        /// (if it supports learning feature), otherwise the model will be not learned during the invoking tracking iteration.
         /// Learning process improves tracking correctness, but can decrease tracking performance.</param>
         /// <returns>A task that represents the asynchronous tracking operation.</returns>
         /// <exception cref="ArgumentNullException">
@@ -49,7 +49,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="trackingModel"/> is not prepared.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static async Task<FaceTrackingResult> TrackAsync(MediaVisionSource source,
             FaceTrackingModel trackingModel, bool doLearn)
         {

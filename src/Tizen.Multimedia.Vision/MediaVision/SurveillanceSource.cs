@@ -20,12 +20,12 @@ using static Interop.MediaVision.Surveillance;
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
-    /// Provides the ability to push source to surveillance engines.
+    /// Provides the ability to push the source to surveillance engines.
     /// </summary>
     /// <seealso cref="MovementDetector"/>
     /// <seealso cref="PersonAppearanceDetector"/>
     /// <seealso cref="PersonRecognizer"/>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class SurveillanceSource
     {
         private static int _nextStreamId = int.MinValue;
@@ -42,14 +42,14 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="SurveillanceSource"/> class.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public SurveillanceSource()
         {
             StreamId = GetNextStreamId();
         }
 
         /// <summary>
-        /// Pushes source to the surveillance system to detect events.
+        /// Pushes the source to the surveillance system to detect events.
         /// </summary>
         /// <param name="source">The media source used for surveillance.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>

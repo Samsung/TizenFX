@@ -22,12 +22,12 @@ namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// SurveillanceEngine is a base class for surveillance event triggers.
-    /// Media Vision Surveillance provides functionality can be utilized for creation of video surveillance systems.
+    /// Media Vision Surveillance provides the functionality which can be utilized for creation of video surveillance systems.
     /// </summary>
     /// <seealso cref="MovementDetector"/>
     /// <seealso cref="PersonAppearanceDetector"/>
     /// <seealso cref="PersonRecognizer"/>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class SurveillanceEngine : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -36,7 +36,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="SurveillanceEngine"/> class.
         /// </summary>
-        /// <param name="eventType">The type of the event trigger</param>
+        /// <param name="eventType">The type of the event trigger.</param>
         internal SurveillanceEngine(string eventType)
         {
             EventTriggerCreate(eventType, out _handle).Validate("Failed to create surveillance event trigger.");
@@ -60,10 +60,10 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Sets and gets ROI (Region Of Interest).
+        /// Sets and gets the ROI (Region Of Interest).
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="SurveillanceEngine"/> has already been disposed of.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Point[] Roi
         {
             get
@@ -119,7 +119,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="SurveillanceEngine"/> has already been disposed of.</exception>
         /// <exception cref="ArgumentException"><paramref name="source"/> has not been added.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void RemoveSource(SurveillanceSource source)
         {
             if (source == null)
@@ -131,7 +131,7 @@ namespace Tizen.Multimedia.Vision
 
 
         /// <summary>
-        /// Releases all resources used by the <see cref="SurveillanceEngine"/> object.
+        /// Releases all the resources used by the <see cref="SurveillanceEngine"/> object.
         /// </summary>
         public void Dispose()
         {
@@ -143,7 +143,7 @@ namespace Tizen.Multimedia.Vision
         /// Releases the resources used by the <see cref="SurveillanceEngine"/> object.
         /// </summary>
         /// <param name="disposing">
-        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// true to release both managed and unmanaged resources; otherwise false to release only unmanaged resources.
         /// </param>
         protected virtual void Dispose(bool disposing)
         {

@@ -20,32 +20,32 @@ namespace Tizen.Multimedia.Vision
     /// Specifies the supported barcode types.
     /// </summary>
     /// <remarks>
-    /// QR codes (versions 1 to 40) and set of 1D barcodes are supported
+    /// QR codes (versions 1 to 40) and set of 1D barcodes are supported.
     /// </remarks>
     /// <seealso cref="BarcodeDetector"/>
     /// <seealso cref="BarcodeGenerator"/>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public enum BarcodeType
     {
         /// <summary>
         /// 2D barcode - Quick Response code.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         QR,
         /// <summary>
         /// 1D barcode - Universal Product Code with 12-digit.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         UpcA,
         /// <summary>
         /// 1D barcode - Universal Product Code with 6-digit.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         UpcE,
         /// <summary>
         /// 1D barcode - International Article Number with 8-digit.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Ean8,
         /// <summary>
         /// 1D barcode - International Article Number with 13-digit.
@@ -55,17 +55,17 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// 1D barcode - Code 128.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Code128,
         /// <summary>
         /// 1D barcode - Code 39.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         Code39,
         /// <summary>
         /// 1D barcode - Interleaved Two of Five.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         I25
     }
 }

@@ -19,17 +19,17 @@ using System.Runtime.InteropServices;
 using Tizen.Multimedia.Vision;
 
 /// <summary>
-/// Interop APIs
+/// Interop APIs.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Interop for media vision APIs
+    /// Interop for Media Vision APIs.
     /// </summary>
     internal static partial class MediaVision
     {
         /// <summary>
-        /// Interop for barcode detector APIs
+        /// Interop for Barcode Detector APIs.
         /// </summary>
         internal static partial class BarcodeDetector
         {
@@ -51,7 +51,7 @@ internal static partial class Interop
         }
 
         /// <summary>
-        /// Interop for barcode generator APIs
+        /// Interop for Barcode Generator APIs.
         /// </summary>
         internal static partial class BarcodeGenerator
         {

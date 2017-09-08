@@ -24,13 +24,13 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Provides the ability to track images on image sources.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public static class ImageTracker
     {
         /// <summary>
         /// Tracks the given image tracking model on the current frame.
         /// </summary>
-        /// <param name="source">The current image of sequence where image tracking model will be tracked.</param>
+        /// <param name="source">The current image of sequence where the image tracking model will be tracked.</param>
         /// <param name="trackingModel">The image tracking model which processed as target of tracking.</param>
         /// <returns>A task that represents the asynchronous tracking operation.</returns>
         /// <exception cref="ArgumentNullException">
@@ -46,7 +46,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="trackingModel"/> has no target.</exception>
         /// <seealso cref="ImageTrackingModel.SetTarget(ImageObject)"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static async Task<Quadrangle> TrackAsync(MediaVisionSource source,
             ImageTrackingModel trackingModel)
         {
@@ -56,7 +56,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Tracks the given image tracking model on the current frame and <see cref="ImageTrackingConfiguration"/>.
         /// </summary>
-        /// <param name="source">The current image of sequence where image tracking model will be tracked.</param>
+        /// <param name="source">The current image of sequence where the image tracking model will be tracked.</param>
         /// <param name="trackingModel">The image tracking model which processed as target of tracking.</param>
         /// <param name="config">The configuration used for tracking. This value can be null.</param>
         /// <returns>A task that represents the asynchronous tracking operation.</returns>
@@ -75,7 +75,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="trackingModel"/> has no target.</exception>
         /// <seealso cref="ImageTrackingModel.SetTarget(ImageObject)"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static async Task<Quadrangle> TrackAsync(MediaVisionSource source,
             ImageTrackingModel trackingModel, ImageTrackingConfiguration config)
         {

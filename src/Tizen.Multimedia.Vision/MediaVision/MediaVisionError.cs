@@ -32,43 +32,43 @@ namespace Tizen.Multimedia.Vision
     {
         MediaVisionErrorCode = -0x019D0000,
         /// <summary>
-        /// Successful
+        /// Successful.
         /// </summary>
         None = ErrorCode.None,
         /// <summary>
-        /// Not supported
+        /// Not supported.
         /// </summary>
         NotSupported = ErrorCode.NotSupported,
         /// <summary>
-        /// Message too long
+        /// Message too long.
         /// </summary>
         MsgTooLong = ErrorCode.MsgTooLong,
         /// <summary>
-        /// No data
+        /// No data.
         /// </summary>
         NoData = ErrorCode.NoData,
         /// <summary>
-        /// Key not available
+        /// Key not available.
         /// </summary>
         KeyNotAvailable = ErrorCode.KeyNotAvailable,
         /// <summary>
-        /// Out of memory
+        /// Out of memory.
         /// </summary>
         OutOfMemory = ErrorCode.OutOfMemory,
         /// <summary>
-        /// Invalid parameter
+        /// Invalid parameter.
         /// </summary>
         InvalidParameter = ErrorCode.InvalidParameter,
         /// <summary>
-        /// Invalid operation
+        /// Invalid operation.
         /// </summary>
         InvalidOperation = ErrorCode.InvalidOperation,
         /// <summary>
-        /// Permission denied
+        /// Permission denied.
         /// </summary>
         PermissionDenied = ErrorCode.NotPermitted,
         /// <summary>
-        /// Not supported format
+        /// Not supported format.
         /// </summary>
         NotSupportedFormat = MediaVisionErrorCode | 0x01,
         /// <summary>
@@ -76,11 +76,11 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         Internal = MediaVisionErrorCode | 0x02,
         /// <summary>
-        /// Invalid data
+        /// Invalid data.
         /// </summary>
         InvalidData = MediaVisionErrorCode | 0x03,
         /// <summary>
-        /// Invalid path (Since 3.0)
+        /// Invalid path (Since 3.0).
         /// </summary>
         InvalidPath = MediaVisionErrorCode | 0x04
     }

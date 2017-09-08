@@ -21,9 +21,9 @@ using InteropModel = Interop.MediaVision.FaceTrackingModel;
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
-    /// Represents face tracking model.
+    /// Represents the face tracking model.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class FaceTrackingModel : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -33,7 +33,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="FaceTrackingModel"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public FaceTrackingModel()
         {
             InteropModel.Create(out _handle).Validate("Failed to create FaceTrackingModel.");
@@ -43,7 +43,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="FaceTrackingModel"/> class with the specified path.
         /// </summary>
         /// <remarks>
-        /// Models has been saved by <see cref="Save()"/> can be loaded.
+        /// Models saved by <see cref="Save()"/> can be loaded.
         /// </remarks>
         /// <param name="modelPath">Path to the model to load.</param>
         /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
@@ -55,7 +55,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save()"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public FaceTrackingModel(string modelPath)
         {
             if (modelPath == null)
@@ -82,11 +82,11 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Initializes tracking model by the location of the face to be tracked.
+        /// Initializes the tracking model by the location of the face to be tracked.
         ///
-        /// It is usually called once after tracking model is created and each time before tracking
-        /// is started for the new sequence of sources which is not the direct continuation of
-        /// the sequence for which tracking has been performed before. But it is allowed to call it
+        /// It is usually called once after the tracking model is created, and each time before tracking
+        /// is started for the new sequence of sources, which is not the direct continuation of
+        /// the sequence for which tracking has been performed before. But, it is allowed to call it
         /// between tracking sessions to allow Media Vision start to track more accurately.
         /// </summary>
         /// <remarks>
@@ -104,7 +104,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-\n
         ///     <paramref name="source"/> has already bean disposed of.
         /// </exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Prepare(MediaVisionSource source, Quadrangle region)
         {
             if (source == null)
@@ -123,7 +123,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Save(string path)
         {
             if (path == null)
@@ -142,7 +142,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Releases all resources used by the <see cref="FaceTrackingModel"/> object.
+        /// Releases all the resources used by the <see cref="FaceTrackingModel"/> object.
         /// </summary>
         public void Dispose()
         {
@@ -154,7 +154,7 @@ namespace Tizen.Multimedia.Vision
         /// Releases the resources used by the <see cref="FaceTrackingModel"/> object.
         /// </summary>
         /// <param name="disposing">
-        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// true to release both managed and unmanaged resources; otherwise false to release only unmanaged resources.
         /// </param>
         protected virtual void Dispose(bool disposing)
         {

@@ -23,7 +23,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents the image tracking model interface.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class ImageTrackingModel : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -33,7 +33,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="ImageTrackingModel"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public ImageTrackingModel()
         {
             InteropModel.Create(out _handle).Validate("Failed to create FaceTrackingModel");
@@ -43,7 +43,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="ImageTrackingModel"/> class with the specified path.
         /// </summary>
         /// <remarks>
-        /// Model have been saved by <see cref="Save()"/> can be loaded.
+        /// Model saved by <see cref="Save()"/> can be loaded.
         /// </remarks>
         /// <param name="modelPath">Path to the model to load.</param>
         /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
@@ -55,7 +55,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save()"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public ImageTrackingModel(string modelPath)
         {
             if (modelPath == null)
@@ -71,8 +71,8 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Sets target of image tracking model.\n
-        /// Sets image object which will be tracked by using tracking functionality with this tracking model.
+        /// Sets the target of the image tracking model.\n
+        /// Sets the image object which will be tracked by using tracking functionality with this tracking model.
         /// </summary>
         /// <param name="imageObject">Image object which will be set as the target for tracking.</param>
         /// <exception cref="ArgumentNullException"><paramref name="imageObject"/> is null.</exception>
@@ -81,7 +81,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-\n
         ///     <paramref name="imageObject"/> has already been disposed of.
         /// </exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void SetTarget(ImageObject imageObject)
         {
             if (imageObject == null)
@@ -95,26 +95,26 @@ namespace Tizen.Multimedia.Vision
 
         /// <summary>
         /// Refreshes the state of image tracking model.\n
-        /// Clears moving history and change state to undetected. It is usually called each time before tracking is started
-        /// for the new sequence of sources which is not the direct continuation of the sequence for which tracking has been performed before.
+        /// Clears the moving history and change state to undetected. It is usually called each time before tracking is started
+        /// for the new sequence of sources, which is not the direct continuation of the sequence for which tracking has been performed before.
         /// Tracking algorithm will try to find image by itself.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingModel"/> has already been disposed of.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Refresh()
         {
             InteropModel.Refresh(Handle, IntPtr.Zero).Validate("Failed to refresh state");
         }
 
         /// <summary>
-        /// Saves tracking model to the file.
+        /// Saves the tracking model to the file.
         /// </summary>
         /// <param name="path">Path to the file to save the model.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingModel"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Save(string path)
         {
             if (path == null)
@@ -145,7 +145,7 @@ namespace Tizen.Multimedia.Vision
         /// Releases the resources used by the <see cref="ImageTrackingModel"/> object.
         /// </summary>
         /// <param name="disposing">
-        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// true to release both managed and unmanaged resources; otherwise false to release only unmanaged resources.
         /// </param>
         protected virtual void Dispose(bool disposing)
         {

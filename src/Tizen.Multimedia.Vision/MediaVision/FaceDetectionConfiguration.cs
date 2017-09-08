@@ -21,7 +21,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents a configuration of <see cref="FaceDetector"/> instances.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class FaceDetectionConfiguration : EngineConfiguration
     {
         private const string KeyModelFilePath = "MV_FACE_DETECTION_MODEL_FILE_PATH";
@@ -45,7 +45,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the face detection haarcascade xml file for face detection.
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string ModelFilePath
         {
             get
@@ -64,13 +64,13 @@ namespace Tizen.Multimedia.Vision
 
 
         /// <summary>
-        /// Gets or sets minimum height of face which will be detected.
+        /// Gets or sets the minimum height of a face which will be detected.
         /// </summary>
         /// <remarks>
-        /// Default value is null (all detected faces will be applied), can be changed to specify the minimum face height.
+        /// Default value is null (all detected faces will be applied), which can be changed to specify the minimum face height.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public int? MinHeight
         {
             get
@@ -92,13 +92,13 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets minimum width of face which will be detected.
+        /// Gets or sets the minimum width of a face which will be detected.
         /// </summary>
         /// <remarks>
-        /// Default value is null (all detected faces will be applied), can be changed to specify the minimum face width.
+        /// Default value is null (all detected faces will be applied), which can be changed to specify the minimum face width.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public int? MinWidth
         {
             get
@@ -127,7 +127,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the roi of the face detection.
         /// </summary>
         /// <remarks>
-        /// Default value is null (the roi will be a full image) can be changed to specify the roi for face detection.
+        /// Default value is null (the roi will be a full image), which can be changed to specify the roi for face detection.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     The width of <paramref name="value"/> is less than or equal to zero.\n
@@ -138,7 +138,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-\n
         ///     The y position of <paramref name="value"/> is less than zero.\n
         /// </exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Rectangle? Roi
         {
             get

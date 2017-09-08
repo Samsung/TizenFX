@@ -19,7 +19,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents a result of RecognizeAsync operations of <see cref="ImageRecognizer"/>.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class ImageRecognitionResult
     {
 
@@ -32,7 +32,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// The region of recognized image object on the source image.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Quadrangle Region { get; }
 
         /// <summary>
