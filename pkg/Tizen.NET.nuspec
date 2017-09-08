@@ -20,9 +20,9 @@
         Please edit pkg/PublicModuleList.txt,
         if want to add modules to Tizen.NET package.
     -->
-    <file src="Artifacts\bin\public\*.dll"  target="lib\netstandard2.0" />
-    <file src="Artifacts\bin\public\*.pdb"  target="lib\netstandard2.0" />
-    <file src="Artifacts\bin\public\*.xml"  target="lib\netstandard2.0" />
+    <file src="Artifacts\bin\public\*.dll"  target="lib\netstandard1.6" />
+    <file src="Artifacts\bin\public\*.pdb"  target="lib\netstandard1.6" />
+    <file src="Artifacts\bin\public\*.xml"  target="lib\netstandard1.6" />
 
   </files>
 </package>
