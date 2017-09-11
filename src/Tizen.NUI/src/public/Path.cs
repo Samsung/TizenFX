@@ -86,7 +86,7 @@ namespace Tizen.NUI
 
 
         [Obsolete("Please do not use! this will be deprecated")]
-        public new static Path DownCast(BaseHandle handle)
+        public static Path DownCast(BaseHandle handle)
         {
             Path ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Path;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

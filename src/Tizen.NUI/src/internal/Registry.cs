@@ -53,7 +53,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Remove the this instance of BaseHandle (C# base class) and native part from the mapping table.
         /// </summary>
-        /// <param name="view"> The instance of BaseHandle (C# base class)</param>
+        /// <param name="baseHandle"> The instance of BaseHandle (C# base class)</param>
         internal static void Unregister(BaseHandle baseHandle)
         {
             RefObject refObj = baseHandle.GetObjectPtr();

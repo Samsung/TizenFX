@@ -68,7 +68,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public new static GestureDetector DownCast(BaseHandle handle)
+        public static GestureDetector DownCast(BaseHandle handle)
         {
             GestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as GestureDetector;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

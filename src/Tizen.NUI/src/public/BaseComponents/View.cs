@@ -828,7 +828,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="handle">Handle to an object</param>
         /// <returns>A handle to a View or an uninitialized handle</returns>
         [Obsolete("Please do not use! this will be deprecated, instead please use as keyword.")]
-        public new static View DownCast(BaseHandle handle)
+        public static View DownCast(BaseHandle handle)
         {
             View ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as View;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

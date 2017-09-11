@@ -223,7 +223,6 @@ namespace Tizen.NUI
             else
             {
                 throw new global::System.InvalidOperationException("C# View not registererd with ViewRegistry" + controlName);
-                return IntPtr.Zero;
             }
         }
 

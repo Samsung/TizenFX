@@ -110,8 +110,10 @@ namespace Tizen.NUI
         /// <returns>True if the window accept focus, false otherwise</returns>
         public bool IsFocusAcceptable()
         {
-            return NDalicPINVOKE.IsFocusAcceptable(swigCPtr);
+            bool ret = NDalicPINVOKE.IsFocusAcceptable(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            return ret;
         }
 
         /// <summary>
