@@ -6,10 +6,9 @@
   <Import Project="$(MSBuildThisFileDirectory)version.props" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDependencyFile>false</GenerateDependencyFile>
     <DummyAssemblyVersion>$(VersionPrefix)</DummyAssemblyVersion>
-    <BaseIntermediateOutputPath>$(OutputBaseDir)obj\</BaseIntermediateOutputPath>
     <OutDir>$(OutputDummyDir)</OutDir>
   </PropertyGroup>
 
@@ -36,7 +35,7 @@
   <Target Name="CopyFilesToOutputDirectory" />
 
   <!-- Target for preparing reference lib directory -->
-  <Target Name="Prepare">
+  <Target Name="Prepare" DependsOnTargets="ResolveAssemblyReferences">
     <ItemGroup>
       <ReferencePath Include="@(TizenAssemblies)" />
     </ItemGroup>
@@ -115,6 +114,7 @@
   </Target>
 
   <Target Name="AfterBuild" DependsOnTargets="Prepare;GenerateDummy">
+    <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
   </Target>
 
 </Project>

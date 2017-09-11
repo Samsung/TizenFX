@@ -7,9 +7,15 @@ SCRIPT_DIR=$(dirname $SCRIPT_FILE)
 OUTDIR=$SCRIPT_DIR/Artifacts
 
 NUGET_CMD="mono $SCRIPT_DIR/tools/NuGet.exe"
-MSBUILD_CMD="dotnet msbuild"
 
-RUN_BUILD="$MSBUILD_CMD $SCRIPT_DIR/build/build.proj"
+RETRY_CMD="$SCRIPT_DIR/tools/retry.sh"
+TIMEOUT_CMD="$SCRIPT_DIR/tools/timeout.sh"
+
+DOTNET_CMD="$RETRY_CMD $TIMEOUT_CMD 600 dotnet"
+
+RUN_BUILD="$DOTNET_CMD msbuild $SCRIPT_DIR/build/build.proj"
+RUN_BUILD_DUMMY="$DOTNET_CMD build $SCRIPT_DIR/build/build.dummy.csproj"
+
 
 usage() {
   echo "Usage: $0 [options] [args]"
@@ -59,7 +65,7 @@ cmd_dummy_build() {
   if [ -d /nuget ]; then
     NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
   fi
-  $RUN_BUILD /t:builddummy $NUGET_SOURCE_OPT
+  $RUN_BUILD_DUMMY $NUGET_SOURCE_OPT
 }
 
 OPTS=`getopt -o hcbfpd --long help,clean,build,full,pack,dummy -n 'build' -- "$@"`
