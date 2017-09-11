@@ -19,24 +19,25 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs.
+    /// Provides data for the <see cref="StreamRecorder.ErrorOccurred"/> event.
     /// </summary>
-    public class StreamRecordingBufferConsumedEventArgs : EventArgs
+    public class StreamRecorderErrorOccurredEventArgs : EventArgs
     {
-        private IntPtr _buffer = IntPtr.Zero;
-
-        internal StreamRecordingBufferConsumedEventArgs(IntPtr buffer)
+        internal StreamRecorderErrorOccurredEventArgs(StreamRecorderError error, RecorderState state)
         {
-            _buffer = buffer;
+            Error = error;
+            State = state;
         }
 
         /// <summary>
-        /// Consumed buffer.
+        /// Gets the error code.
         /// </summary>
-        public IntPtr Buffer {
-            get {
-                return _buffer;
-            }
-        }
+        public StreamRecorderError Error { get; }
+
+        /// <summary>
+        /// Gets the state of the recorder.
+        /// </summary>
+        public RecorderState State { get; }
+
     }
 }

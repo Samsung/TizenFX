@@ -19,24 +19,24 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class containing details about the recording limit.
+    /// Provides data for the <see cref="StreamRecorder.StateChanged"/> event.
     /// </summary>
-    public class StreamRecordingLimitReachedEventArgs : EventArgs
+    public class StreamRecorderStateChangedEventArgs : EventArgs
     {
-        private StreamRecordingLimitType _type = StreamRecordingLimitType.Size;
-
-        internal StreamRecordingLimitReachedEventArgs(StreamRecordingLimitType type)
+        internal StreamRecorderStateChangedEventArgs(RecorderState previous, RecorderState current)
         {
-            _type = type;
+            Previous = previous;
+            Current = current;
         }
 
         /// <summary>
-        /// The limitation type.
+        /// Gets the previous state of the stream recorder.
         /// </summary>
-        public StreamRecordingLimitType Type {
-            get {
-                return _type;
-            }
-        }
+        public RecorderState Previous { get; }
+
+        /// <summary>
+        /// Gets the current state of the stream recorder.
+        /// </summary>
+        public RecorderState Current { get; }
     }
 }

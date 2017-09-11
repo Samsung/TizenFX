@@ -15,1040 +15,349 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Tizen.Internals.Errors;
+using System.Diagnostics;
+using System.Linq;
+using NativeHandle = Interop.StreamRecorderHandle;
 using Native = Interop.StreamRecorder;
 
 namespace Tizen.Multimedia
 {
-    static internal class StreamRecorderLog
-    {
-        internal const string Tag = "Tizen.Multimedia.StreamRecorder";
-    }
-
     /// <summary>
-    /// Provides methods to control stream recorder.
+    /// Provides the ability to record user buffer from application.
     /// </summary>
-    /// <remarks>
-    /// StreamRecorder class provides functions to record raw image frame
-    /// also provides recording start, stop and save the content etc.
-    /// </remarks>
-    public class StreamRecorder : IDisposable
+    /// <seealso cref="Recorder"/>
+    public partial class StreamRecorder : IDisposable
     {
-        private IntPtr _handle;
+        private NativeHandle _handle;
         private bool _disposed = false;
-        /// <summary>
-        /// Occurred when recording is progressing for recording status.
-        /// </summary>
-        private EventHandler<RecordingStatusChangedEventArgs> _recordingStatusChanged;
-        private Native.RecordingStatusCallback _recordingStatusCallback;
-        /// <summary>
-        /// Occurred when recording time or size reach limit.
-        /// </summary>
-        private EventHandler<StreamRecordingLimitReachedEventArgs> _recordingLimitReached;
-        private Native.RecordingLimitReachedCallback _recordingLimitReachedCallback;
-        /// <summary>
-        /// Occurred when streamrecorder complete to use pushed buffer.
-        /// </summary>
-        private EventHandler<StreamRecordingBufferConsumedEventArgs> _bufferConsumed;
-        private Native.BufferConsumedCallback _bufferConsumedCallback;
-        /// <summary>
-        /// Occurred when streamrecorder state is changed.
-        /// </summary>
-        private EventHandler<StreamRecorderNotifiedEventArgs> _recorderNotified;
-        private Native.NotifiedCallback _notifiedCallback;
-        /// <summary>
-        /// Occurred when error is occured.
-        /// </summary>
-        private EventHandler<StreamRecordingErrorOccurredEventArgs> _recordingErrorOccurred;
-        private Native.RecorderErrorCallback _recorderErrorCallback;
 
-        private List<StreamRecorderFileFormat> _formats;
-        private List<StreamRecorderAudioCodec> _audioCodec;
-        private List<StreamRecorderVideoCodec> _videoCodec;
-        private List<StreamRecorderVideoResolution> _resolutions;
-        StreamRecorderVideoResolution _videoResolution = null;
+        private bool _audioEnabled;
+        private bool _videoEnabled;
+        private StreamRecorderVideoFormat _sourceFormat;
 
         /// <summary>
-        /// Stream recorder constructor.
+        /// Initialize a new instance of the <see cref="StreamRecorder"/> class.
         /// </summary>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         public StreamRecorder()
         {
-            int ret = Native.Create(out _handle);
-            if (ret != (int)StreamRecorderError.None)
+            try
             {
-                StreamRecorderErrorFactory.ThrowException(ret, "Failed to create stream recorder");
+                Native.Create(out _handle).ThrowIfError("Failed to create stream recorder.");
             }
-            _formats = new List<StreamRecorderFileFormat>();
-            _audioCodec = new List<StreamRecorderAudioCodec>();
-            _videoCodec = new List<StreamRecorderVideoCodec>();
-            _resolutions = new List<StreamRecorderVideoResolution>();
-            _videoResolution = new StreamRecorderVideoResolution(_handle);
+            catch (TypeLoadException)
+            {
+                throw new NotSupportedException("StreamRecorder is not supported.");
+            }
+
+            LoadCapabilities();
+
+            RegisterStreamRecorderNotifiedEvent();
+            RegisterBufferConsumedEvent();
+            RegisterRecordingStatusChangedEvent();
+            RegisterRecordingErrorOccurredEvent();
+            RegisterRecordingLimitReachedEvent();
         }
 
-        /// <summary>
-        /// Stream recorder destructor.
-        /// </summary>
-        ~StreamRecorder()
-        {
-            Dispose(false);
-        }
-
-        /// <summary>
-        /// Event that occurs when streamrecorder state is changed.
-        /// </summary>
-        public event EventHandler<StreamRecorderNotifiedEventArgs> RecorderNotified
-        {
-            add
-            {
-                if (_recorderNotified == null)
-                {
-                    RegisterStreamRecorderNotifiedEvent();
-                }
-                _recorderNotified += value;
-            }
-            remove
-            {
-                _recorderNotified -= value;
-                if (_recorderNotified == null)
-                {
-                    UnregisterStreamRecorderNotifiedEvent();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Event that occurs when buffer had comsumed completely.
-        /// </summary>
-        public event EventHandler<StreamRecordingBufferConsumedEventArgs> BufferConsumed
-        {
-            add
-            {
-                if (_bufferConsumed == null)
-                {
-                    RegisterBufferComsumedEvent();
-                }
-                _bufferConsumed += value;
-            }
-            remove
-            {
-                _bufferConsumed -= value;
-                if (_bufferConsumed == null)
-                {
-                    UnregisterBufferComsumedEvent();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Event that occurs when recording status changed.
-        /// </summary>
-        public event EventHandler<RecordingStatusChangedEventArgs> RecordingStatusChanged
-        {
-            add
-            {
-                if (_recordingStatusChanged == null)
-                {
-                    RegisterRecordingStatusChangedEvent();
-                }
-                _recordingStatusChanged += value;
-            }
-            remove
-            {
-                _recordingStatusChanged -= value;
-                if (_recordingStatusChanged == null)
-                {
-                    UnregisterRecordingStatusChangedEvent();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Event that occurs when recording limit is reached.
-        /// </summary>
-        public event EventHandler<StreamRecordingLimitReachedEventArgs> RecordingLimitReached
-        {
-            add
-            {
-                if (_recordingLimitReached == null)
-                {
-                    RegisterRecordingLimitReachedEvent();
-                }
-                _recordingLimitReached += value;
-            }
-            remove
-            {
-                _recordingLimitReached -= value;
-                if (_recordingLimitReached == null)
-                {
-                    UnregisterRecordingLimitReachedEvent();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Event that occurs when an error occured during recorder operation.
-        /// </summary>
-        public event EventHandler<StreamRecordingErrorOccurredEventArgs> RecordingErrorOccurred
-        {
-            add
-            {
-                if (_recordingErrorOccurred == null)
-                {
-                    RegisterRecordingErrorOccurredEvent();
-                }
-                _recordingErrorOccurred += value;
-            }
-            remove
-            {
-                _recordingErrorOccurred -= value;
-                if (_recordingErrorOccurred == null)
-                {
-                    UnregisterRecordingErrorOccurredEvent();
-                }
-            }
-        }
-
-        /// <summary>
-        /// The file path to record.
-        /// </summary>
-        /// <remarks>
-        /// If the same file already exists in the file system, then old file
-        /// will be overwritten.
-        /// </remarks>
-        public string FilePath
+        internal NativeHandle Handle
         {
             get
             {
-                IntPtr val;
-                int ret = Native.GetFileName(_handle, out val);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
+                if (_disposed)
                 {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to get filepath, " + (StreamRecorderError)ret);
+                    throw new ObjectDisposedException(nameof(StreamRecorder));
                 }
-                string result = Marshal.PtrToStringAnsi(val);
-                LibcSupport.Free(val);
-                return result;
-            }
-            set
-            {
-                int ret = Native.SetFileName(_handle, value);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to set filepath, " + (StreamRecorderError)ret);
-                    StreamRecorderErrorFactory.ThrowException(ret, "Failed to set filepath");
-                }
+
+                return _handle;
             }
         }
 
         /// <summary>
-        /// Get the current state of the stream recorder.
+        /// Gets the current state of the stream recorder.
         /// </summary>
-        /// <value> The current state of stream recorder.
-        public StreamRecorderState State
+        /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
+        public RecorderState State
         {
             get
             {
-                int val = 0;
+                Native.GetState(Handle, out var val).ThrowIfError("Failed to get the stream recorder state.");
 
-                int ret = Native.GetState(_handle, out val);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to get stream recorder state, " + (StreamRecorderError)ret);
-                }
-                return (StreamRecorderState)val;
-            }
-        }
-
-        /// <summary>
-        /// Get/Set the file format for recording media stream.
-        /// </summary>
-        /// <remarks>
-        /// Must set <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>.
-        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
-        /// </remarks>
-        /// <exception cref="ArgumentException">The format does not valid.</exception>
-        /// <seealso cref="SupportedFileFormats"/>
-        public StreamRecorderFileFormat FileFormat
-        {
-            get
-            {
-                int val = 0;
-
-                int ret = Native.GetFileFormat(_handle, out val);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to get file format, " + (StreamRecorderError)ret);
-                }
-                return (StreamRecorderFileFormat)val;
-            }
-            set
-            {
-                int ret = Native.SetFileFormat(_handle, (int)value);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to set file format, " + (StreamRecorderError)ret);
-                    StreamRecorderErrorFactory.ThrowException(ret);
-                }
-            }
-        }
-
-        /// <summary>
-        /// The audio codec for encoding an audio stream.
-        /// </summary>
-        /// <remarks>
-        /// Must set <see cref="StreamRecorderSourceType.Audio"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
-        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>
-        /// </remarks>
-        /// <exception cref="ArgumentException">The codec does not valid.</exception>
-        /// <seealso cref="SupportedAudioEncodings"/>
-        public StreamRecorderAudioCodec AudioCodec
-        {
-            get
-            {
-                int val = 0;
-
-                int ret = Native.GetAudioEncoder(_handle, out val);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to get audio codec, " + (StreamRecorderError)ret);
-                }
-                return (StreamRecorderAudioCodec)val;
-            }
-            set
-            {
-                int ret = Native.SetAudioEncoder(_handle, (int)value);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to set audio codec, " + (StreamRecorderError)ret);
-                    StreamRecorderErrorFactory.ThrowException(ret);
-                }
-            }
-        }
-
-        /// <summary>
-        /// The video codec for encoding video stream.
-        /// </summary>
-        /// <remarks>
-        /// Must set <see cref="StreamRecorderSourceType.Video"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
-        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>
-        /// </remarks>
-        /// <exception cref="ArgumentException">The codec does not valid.</exception>
-        /// <seealso cref="SupportedVideoEncodings"/>
-        public StreamRecorderVideoCodec VideoCodec
-        {
-            get
-            {
-                int val = 0;
-
-                int ret = Native.GetVideoEncoder(_handle, out val);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to get video codec, " + (StreamRecorderError)ret);
-                }
-                return (StreamRecorderVideoCodec)val;
-            }
-            set
-            {
-                int ret = Native.SetVideoEncoder(_handle, (int)value);
-
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to set video codec, " + (StreamRecorderError)ret);
-                    StreamRecorderErrorFactory.ThrowException(ret);
-                }
-            }
-        }
-
-        /// <summary>
-        /// The maximum size of a recording file in KB(kilobytes). If 0, means
-        /// unlimited recording size.
-        /// </summary>
-        /// <remarks>
-        /// After reaching the limitation, the data which is being recorded will
-        /// be discarded and not written to the file.
-        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
-        /// </remarks>
-        /// <exception cref="ArgumentException">The value set to below 0.</exception>
-        /// <seealso cref="StreamRecordingLimitReachedEventArgs"/>
-        public int SizeLimit
-        {
-            get
-            {
-                int val = 0;
-
-                int ret = Native.GetRecordingLimit(_handle, 1, out val);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to get size limit, " + (StreamRecorderError)ret);
-                }
                 return val;
             }
-            set
-            {
-                int ret = Native.SetRecordingLimit(_handle, 1, value);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to set sizelimit, " + (StreamRecorderError)ret);
-                    StreamRecorderErrorFactory.ThrowException(ret, "Failed to set size limit");
-                }
-            }
         }
 
-        /// <summary>
-        /// The time limit of a recording file in Seconds. If 0, means unlimited recording
-        /// time.
-        /// </summary>
-        /// <remarks>
-        /// After reaching the limitation, the data which is being recorded will
-        /// be discarded and not written to the file.
-        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
-        /// </remarks>
-        /// <exception cref="ArgumentException">The value set to below 0.</exception>
-        /// <seealso cref="StreamRecordingLimitReachedEventArgs"/>
-        public int TimeLimit
+        private void ValidateState(params RecorderState[] required)
         {
-            get
-            {
-                int val = 0;
+            Debug.Assert(required.Length > 0);
 
-                int ret = Native.GetRecordingLimit(_handle, 0, out val);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to get time limit, " + (StreamRecorderError)ret);
-                }
-                return val;
-            }
-            set
+            var curState = State;
+            if (!required.Contains(curState))
             {
-                int ret = Native.SetRecordingLimit(_handle, 0, value);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to set timelimit, " + (StreamRecorderError)ret);
-                    StreamRecorderErrorFactory.ThrowException(ret, "Failed to set time limit");
-                }
+                throw new InvalidOperationException($"The stream recorder is not in a valid state. " +
+                    $"Current State : { curState }, Valid State : { string.Join(", ", required) }.");
             }
         }
 
+        #region Operation methods
         /// <summary>
-        /// The sampling rate of an audio stream in hertz.
+        /// Prepares the stream recorder with the specified options.
         /// </summary>
-        /// <remarks>
-        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
-        /// Must set <see cref="StreamRecorderSourceType.Audio"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
-        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>.
-        /// </remarks>
-        /// <exception cref="ArgumentException">The value set to below 0.</exception>
-        public int AudioSampleRate
-        {
-            get
-            {
-                int val = 0;
-
-                int ret = Native.GetAudioSampleRate(_handle, out val);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to get audio samplerate, " + (StreamRecorderError)ret);
-                }
-                return val;
-            }
-            set
-            {
-                int ret = Native.SetAudioSampleRate(_handle, value);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to set audio samplerate, " + (StreamRecorderError)ret);
-                    StreamRecorderErrorFactory.ThrowException(ret, "Failed to set audio samplerate");
-                }
-            }
-        }
-
-        /// <summary>
-        /// The bitrate of an audio encoder in bits per second.
-        /// </summary>
-        /// <remarks>
-        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
-        /// Must set <see cref="StreamRecorderSourceType.Audio"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
-        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>
-        /// </remarks>
-        /// <exception cref="ArgumentException">The value set to below 0.</exception>
-        public int AudioBitRate
-        {
-            get
-            {
-                int val = 0;
-
-                int ret = Native.GetAudioEncoderBitrate(_handle, out val);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to get audio bitrate, " + (StreamRecorderError)ret);
-                }
-                return val;
-            }
-            set
-            {
-                int ret = Native.SetAudioEncoderBitrate(_handle, value);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to set audio bitrate, " + (StreamRecorderError)ret);
-                    StreamRecorderErrorFactory.ThrowException(ret, "Failed to set audio bitrate");
-                }
-            }
-        }
-
-        /// <summary>
-        /// The bitrate of an video encoder in bits per second.
-        /// </summary>
-        /// <remarks>
-        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
-        /// Must set <see cref="StreamRecorderSourceType.Video"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
-        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>
-        /// </remarks>
-        /// <exception cref="ArgumentException">The value set to below 0.</exception>
-        public int VideoBitRate
-        {
-            get
-            {
-                int val = 0;
-
-                int ret = Native.GetVideoEncoderBitrate(_handle, out val);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to get video bitrate, " + (StreamRecorderError)ret);
-                }
-                return val;
-            }
-            set
-            {
-                int ret = Native.SetVideoEncoderBitrate(_handle, value);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to set video bitrate, " + (StreamRecorderError)ret);
-                    StreamRecorderErrorFactory.ThrowException(ret, "Failed to set video bitrate");
-                }
-            }
-        }
-
-        /// <summary>
-        /// The video frame rate for recording media stream.
-        /// </summary>
-        /// <remarks>
-        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
-        /// Must set <see cref="StreamRecorderSourceType.Video"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
-        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>
-        /// </remarks>
-        /// <exception cref="NotSupportedException">The value set to below 0.</exception>
-        public int VideoFrameRate
-        {
-            get
-            {
-                int val = 0;
-
-                int ret = Native.GetVideoFramerate(_handle, out val);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to get video framerate, " + (StreamRecorderError)ret);
-                }
-                return val;
-            }
-            set
-            {
-                int ret = Native.SetVideoFramerate(_handle, value);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to set video framerate, " + (StreamRecorderError)ret);
-                    StreamRecorderErrorFactory.ThrowException(ret);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Get or Set the video source format for recording media stream.
-        /// </summary>
-        /// <exception cref="ArgumentException">The value set to a invalid value.</exception>
-        /// <seealso cref="StreamRecorderVideoSourceFormat"/>
-        public StreamRecorderVideoSourceFormat VideoSourceFormat
-        {
-            get
-            {
-                int val = 0;
-
-                int ret = Native.GetVideoSourceFormat(_handle, out val);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to get video framerate, " + (StreamRecorderError)ret);
-                }
-                return (StreamRecorderVideoSourceFormat)val;
-            }
-            set
-            {
-                int ret = Native.SetVideoSourceFormat(_handle, (int)value);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to set video framerate, " + (StreamRecorderError)ret);
-                    StreamRecorderErrorFactory.ThrowException(ret);
-                }
-            }
-        }
-
-        /// <summary>
-        /// The number of audio channel.
-        /// </summary>
-        /// <remarks>
-        /// The attribute is applied only in Created state.
-        /// For mono recording, set channel to 1.
-        /// For stereo recording, set channel to 2.
-        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
-        /// </remarks>
-        /// <exception cref="ArgumentException">The value set to a invalid value.</exception>
-        public int AudioChannel
-        {
-            get
-            {
-                int val = 0;
-
-                int ret = Native.GetAudioChannel(_handle, out val);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to get audio channel, " + (StreamRecorderError)ret);
-                }
-                return val;
-            }
-            set
-            {
-                int ret = Native.SetAudioChannel(_handle, value);
-                if ((StreamRecorderError)ret != StreamRecorderError.None)
-                {
-                    Log.Error(StreamRecorderLog.Tag, "Failed to set audio channel, " + (StreamRecorderError)ret);
-                    StreamRecorderErrorFactory.ThrowException(ret, "Failed to set audio channel");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Video resolution of the video recording.
-        /// </summary>
-        /// <remarks>
-        /// Must set <see cref="StreamRecorderSourceType.Video"/> or <see cref="StreamRecorderSourceType.VideoAudio"/>
-        /// by <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>
-        /// The recorder state must be <see cref="StreamRecorderState.Created"/> state.
-        /// </remarks>
-        /// <exception cref="ArgumentException">The value set to a invalid value.</exception>
-        /// <seealso cref="SupportedVideoResolutions"/>
-        public StreamRecorderVideoResolution Resolution
-        {
-            get
-            {
-                return _videoResolution;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves all the file formats supported by the stream recorder.
-        /// </summary>
-        /// <returns>
-        /// It returns a list containing all the supported file
-        /// formats by Stream recorder.
-        /// </returns>
-        /// <seealso cref="StreamRecorderFileFormat"/>
-        public IEnumerable<StreamRecorderFileFormat> SupportedFileFormats
-        {
-            get
-            {
-                if (_formats.Count == 0)
-                {
-                    Native.FileFormatCallback callback = (StreamRecorderFileFormat format, IntPtr userData) =>
-                    {
-                        _formats.Add(format);
-                        return true;
-                    };
-                    int ret = Native.FileFormats(_handle, callback, IntPtr.Zero);
-                    if (ret != (int)StreamRecorderError.None)
-                    {
-                        StreamRecorderErrorFactory.ThrowException(ret, "Failed to get the supported fileformats");
-                    }
-                }
-                return _formats;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves all the audio encoders supported by the recorder.
-        /// </summary>
-        /// <returns>
-        /// It returns a list containing all the supported audio encoders
-        /// by recorder.
-        /// </returns>
-        /// <seealso cref="StreamRecorderAudioCodec"/>
-        public IEnumerable<StreamRecorderAudioCodec> SupportedAudioEncodings
-        {
-            get
-            {
-                if (_audioCodec.Count == 0)
-                {
-                    Native.AudioEncoderCallback callback = (StreamRecorderAudioCodec codec, IntPtr userData) =>
-                    {
-                        _audioCodec.Add(codec);
-                        return true;
-                    };
-                    int ret = Native.AudioEncoders(_handle, callback, IntPtr.Zero);
-                    if (ret != (int)StreamRecorderError.None)
-                    {
-                        StreamRecorderErrorFactory.ThrowException(ret, "Failed to get the supported audio encoders");
-                    }
-                }
-                return _audioCodec;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves all the video encoders supported by the recorder.
-        /// </summary>
-        /// <returns>
-        /// It returns a list containing all the supported video encoders
-        /// by recorder.
-        /// </returns>
-        /// <seealso cref="StreamRecorderVideoCodec"/>
-        public IEnumerable<StreamRecorderVideoCodec> SupportedVideoEncodings
-        {
-            get
-            {
-                if (_videoCodec.Count == 0)
-                {
-                    Native.VideoEncoderCallback callback = (StreamRecorderVideoCodec codec, IntPtr userData) =>
-                    {
-                        _videoCodec.Add(codec);
-                        return true;
-                    };
-                    int ret = Native.VideoEncoders(_handle, callback, IntPtr.Zero);
-                    if (ret != (int)StreamRecorderError.None)
-                    {
-                        StreamRecorderErrorFactory.ThrowException(ret, "Failed to get the supported video encoders");
-                    }
-                }
-                return _videoCodec;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves all the video resolutions supported by the recorder.
-        /// </summary>
-        /// <returns>
-        /// It returns videoresolution list containing the width and height of
-        /// different resolutions supported by recorder.
-        /// </returns>
-        /// <seealso cref="StreamRecorderVideoResolution"/>
-        public IEnumerable<StreamRecorderVideoResolution> SupportedVideoResolutions
-        {
-            get
-            {
-                if (_resolutions.Count == 0)
-                {
-                    Native.VideoResolutionCallback callback = (int width, int height, IntPtr userData) =>
-                    {
-                        StreamRecorderVideoResolution temp = new StreamRecorderVideoResolution(width, height);
-                        _resolutions.Add(temp);
-                        return true;
-                    };
-                    int ret = Native.VideoResolution(_handle, callback, IntPtr.Zero);
-                    if (ret != (int)StreamRecorderError.None)
-                    {
-                        StreamRecorderErrorFactory.ThrowException(ret, "Failed to get the supported video resolutions");
-                    }
-                }
-                return _resolutions;
-            }
-        }
-
-        /// <summary>
-        /// Prepare the stream recorder.
-        /// </summary>
-        /// <remarks>
-        /// Before calling the function, it is required to set <see cref="StreamRecorder.EnableSourceBuffer(StreamRecorderSourceType)"/>,
-        /// <see cref="StreamRecorderAudioCodec"/>, <see cref="StreamRecorderVideoCodec"/> and <see cref="StreamRecorderFileFormat"/> properties of recorder.
-        /// </remarks>
-        /// <exception cref="InvalidOperationException">The streamrecorder is not in the valid state.</exception>
+        /// <remarks>The recorder must be <see cref="RecorderState.Idle"/>.</remarks>
+        /// <param name="options">The options for recording.</param>
+        /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
+        /// <exception cref="ArgumentException">Both <see cref="StreamRecorderOptions.Audio"/> and
+        ///     <see cref="StreamRecorderOptions.Video"/> are null.
+        /// </exception>
+        /// <exception cref="NotSupportedException"><paramref name="options"/> contains a value which is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Unprepare"/>
-        public void Prepare()
+        /// <seealso cref="Start"/>
+        /// <seealso cref="StreamRecorderOptions"/>
+        /// <seealso cref="StreamRecorderAudioOptions"/>
+        /// <seealso cref="StreamRecorderVideoOptions"/>
+        public void Prepare(StreamRecorderOptions options)
         {
-            int ret = Native.Prepare(_handle);
-            if (ret != (int)StreamRecorderError.None)
+            if (options == null)
             {
-                StreamRecorderErrorFactory.ThrowException(ret, "Failed to prepare stream recorder");
+                throw new ArgumentNullException(nameof(options));
+            }
+
+            ValidateState(RecorderState.Idle);
+
+            options.Apply(this);
+
+            Native.Prepare(Handle).ThrowIfError("Failed to prepare stream recorder.");
+
+            _audioEnabled = options.Audio != null;
+            _videoEnabled = options.Video != null;
+
+            if (options.Video != null)
+            {
+                _sourceFormat = options.Video.SourceFormat;
             }
         }
 
         /// <summary>
-        /// Resets the stream recorder.
+        /// Unprepares the stream recorder.
         /// </summary>
         /// <remarks>
-        /// The recorder state must be <see cref="StreamRecorderState.Prepared"/> state by <see cref="Prepare"/>, <see cref="Cancel"/> and <see cref="Commit"/>.
-        /// The StreamRecorder state will be <see cref="StreamRecorderState.Created"/>.
+        /// The recorder state must be <see cref="RecorderState.Ready"/> state by
+        /// <see cref="Prepare(StreamRecorderOptions)"/>, <see cref="Cancel"/> and <see cref="Commit"/>.\n
+        /// The recorder state will be <see cref="RecorderState.Idle"/>.\n
+        /// \n
+        /// It has no effect if the recorder is already in the <see cref="RecorderState.Idle"/> state.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">The streamrecorder is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Prepare"/>
         public void Unprepare()
         {
-            int ret = Native.Unprepare(_handle);
-            if (ret != (int)StreamRecorderError.None)
+            if (State == RecorderState.Idle)
             {
-                StreamRecorderErrorFactory.ThrowException(ret, "Failed to reset the stream recorder");
+                return;
             }
+
+            ValidateState(RecorderState.Ready);
+
+            Native.Unprepare(Handle).ThrowIfError("Failed to reset the stream recorder.");
         }
 
         /// <summary>
-        /// Starts the recording.
+        /// Starts recording.
         /// </summary>
         /// <remarks>
-        /// If file path has been set to an existing file, this file is removed automatically and updated by new one.
-        ///	The filename should be set before this function is invoked.
-        ///	The recorder state must be <see cref="StreamRecorderState.Prepared"/> state by <see cref="Prepare"/> or
-        ///	<see cref="StreamRecorderState.Paused"/> state by <see cref="Pause"/>.
-        ///	The filename shuild be set by <see cref="FilePath"/>
+        ///	The recorder state must be <see cref="RecorderState.Ready"/> state by
+        ///	<see cref="Prepare(StreamRecorderOptions)"/> or
+        ///	<see cref="RecorderState.Paused"/> state by <see cref="Pause"/>.\n
+        /// \n
+        /// It has no effect if the recorder is already in the <see cref="RecorderState.Recording"/> state.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">The streamrecorder is not in the valid state.</exception>
-        /// <exception cref="UnauthorizedAccessException">The access ot the resources can not be granted.</exception>
+        /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
+        /// <exception cref="UnauthorizedAccessException">The access of the resources can not be granted.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Pause"/>
         /// <seealso cref="Commit"/>
         /// <seealso cref="Cancel"/>
-        /// <seealso cref="FilePath"/>
-        /// <seealso cref="FileFormat"/>
         public void Start()
         {
-            int ret = Native.Start(_handle);
-            if (ret != (int)StreamRecorderError.None)
+            if (State == RecorderState.Recording)
             {
-                StreamRecorderErrorFactory.ThrowException(ret, "Failed to start the stream recorder");
+                return;
             }
+
+            ValidateState(RecorderState.Ready, RecorderState.Paused);
+
+            Native.Start(Handle).ThrowIfError("Failed to start the stream recorder.");
         }
 
         /// <summary>
-        /// Pause the recording.
+        /// Pauses recording.
         /// </summary>
         /// <remarks>
-        /// Recording can be resumed with <see cref="Start"/>.
+        /// Recording can be resumed with <see cref="Start"/>.\n
+        /// \n
+        ///	The recorder state must be <see cref="RecorderState.Recording"/> state by <see cref="Start"/> \n
+        /// \n
+        /// It has no effect if the recorder is already in the <see cref="RecorderState.Paused"/> state.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">The streamrecorder is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Start"/>
         /// <seealso cref="Commit"/>
         /// <seealso cref="Cancel"/>
         public void Pause()
         {
-            int ret = Native.Pause(_handle);
-            if (ret != (int)StreamRecorderError.None)
+            if (State == RecorderState.Paused)
             {
-                StreamRecorderErrorFactory.ThrowException(ret, "Failed to pause the stream recorder");
+                return;
             }
+
+            ValidateState(RecorderState.Recording);
+
+            Native.Pause(Handle).ThrowIfError("Failed to pause the stream recorder.");
         }
 
         /// <summary>
         /// Stops recording and saves the result.
         /// </summary>
         /// <remarks>
-        /// The recorder state must be <see cref="StreamRecorderState.Recording"/> state by <see cref="Start"/> or
-        ///  <see cref="StreamRecorderState.Paused"/> state by <see cref="Pause"/>
-        /// When you want to record audio or video file, you need to add privilege according to rules below additionally.
+        /// The recorder state must be <see cref="RecorderState.Recording"/> state by <see cref="Start"/> or
+        /// <see cref="RecorderState.Paused"/> state by <see cref="Pause"/>.\n
+        /// \n
+        /// The recorder state will be <see cref="RecorderState.Ready"/> after commit.\n
         /// <para>
-        /// http://tizen.org/privilege/mediastorage is needed if input or output path are relevant to media storage.
-        /// http://tizen.org/privilege/externalstorage is needed if input or output path are relevant to external storage.
+        /// http://tizen.org/privilege/mediastorage is needed if the save path are relevant to media storage.
+        /// http://tizen.org/privilege/externalstorage is needed if the save path are relevant to external storage.
         /// </para>
         /// </remarks>
-        /// <exception cref="InvalidOperationException">The streamrecorder is not in the valid state.</exception>
-        /// <exception cref="UnauthorizedAccessException">The access ot the resources can not be granted.</exception>
+        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
+        /// <exception cref="UnauthorizedAccessException">The access to the resources can not be granted.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Start"/>
         /// <seealso cref="Pause"/>
         public void Commit()
         {
-            int ret = Native.Commit(_handle);
-            if (ret != (int)StreamRecorderError.None)
-            {
-                StreamRecorderErrorFactory.ThrowException(ret, "Failed to save the recorded content");
-            }
+            ValidateState(RecorderState.Paused, RecorderState.Recording);
+
+            Native.Commit(Handle).ThrowIfError("Failed to commit.");
         }
 
         /// <summary>
-        /// Cancels the recording.
-        /// The recording data is discarded and not written in the recording file.
+        /// Cancels recording.
+        /// The recording data is discarded and not written.
         /// </summary>
+        /// <remarks>
+        /// The recorder state must be <see cref="RecorderState.Recording"/> state by <see cref="Start"/> or
+        /// <see cref="RecorderState.Paused"/> state by <see cref="Pause"/>.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Start"/>
         /// <seealso cref="Pause"/>
         public void Cancel()
         {
-            int ret = Native.Cancel(_handle);
-            if (ret != (int)StreamRecorderError.None)
-            {
-                StreamRecorderErrorFactory.ThrowException(ret, "Failed to cancel the recording");
-            }
+            ValidateState(RecorderState.Paused, RecorderState.Recording);
+
+            Native.Cancel(Handle).ThrowIfError("Failed to cancel recording.");
+        }
+
+        private static bool AreVideoTypesMatched(StreamRecorderVideoFormat videoFormat, MediaFormatVideoMimeType mimeType)
+        {
+            return (videoFormat == StreamRecorderVideoFormat.Nv12 && mimeType == MediaFormatVideoMimeType.NV12) ||
+                (videoFormat == StreamRecorderVideoFormat.Nv21 && mimeType == MediaFormatVideoMimeType.NV21) ||
+                (videoFormat == StreamRecorderVideoFormat.I420 && mimeType == MediaFormatVideoMimeType.I420);
         }
 
         /// <summary>
-        /// Push stream buffer as recording raw data.
+        /// Pushes a packet as recording raw data.
         /// </summary>
+        /// <param name="packet">An audio or video packet to record.</param>
+        /// <remarks>
+        /// The recorder state must be <see cref="RecorderState.Recording"/> state by <see cref="Start"/>.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        ///     The recorder is not in the valid state.\n
+        ///     -or-\n
+        ///     <paramref name="packet"/> is an audio packet but audio recording is not enabled(See <see cref="StreamRecorderOptions.Audio"/>).\n
+        ///     -or-\n
+        ///     <paramref name="packet"/> is a video packet but video recording is not enabled(See <see cref="StreamRecorderOptions.Video"/>).\n
+        ///     -or-\n
+        ///     <paramref name="packet"/> is a video packet but the <see cref="VideoMediaFormat.MimeType"/> does not match the video source format.\n
+        ///     -or-\n
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
+        /// <see cref="Prepare(StreamRecorderOptions)"/>
+        /// <seealso cref="StreamRecorderOptions.Audio"/>
+        /// <seealso cref="StreamRecorderOptions.Video"/>
+        /// <seealso cref="StreamRecorderVideoOptions.SourceFormat"/>
         public void PushBuffer(MediaPacket packet)
         {
-            IntPtr _packet_h = packet.GetHandle();
-
-            Log.Info("Tizen.Multimedia.StreamRecorder", "PUSH stream buffer");
-            int ret = Native.PushStreamBuffer(_handle, _packet_h);
-            if (ret != (int)StreamRecorderError.None)
+            if (packet == null)
             {
-                StreamRecorderErrorFactory.ThrowException(ret, "Failed to push buffer");
+                throw new ArgumentNullException(nameof(packet));
             }
-            Log.Info("Tizen.Multimedia.StreamRecorder", "PUSH stream buffer END");
+
+            ValidateState(RecorderState.Recording);
+
+            switch (packet.Format.Type)
+            {
+                case MediaFormatType.Audio:
+                    if (_audioEnabled == false)
+                    {
+                        throw new InvalidOperationException("Audio option is not set.");
+                    }
+                    break;
+
+                case MediaFormatType.Video:
+                    if (_videoEnabled == false)
+                    {
+                        throw new InvalidOperationException("Video option is not set.");
+                    }
+
+                    if (AreVideoTypesMatched(_sourceFormat, (packet.Format as VideoMediaFormat).MimeType) == false)
+                    {
+                        throw new InvalidOperationException("Video format does not match.");
+                    }
+
+                    break;
+
+                default:
+                    throw new ArgumentException("Packet is not valid.");
+            }
+
+            Native.PushStreamBuffer(Handle, MediaPacket.Lock.Get(packet).GetHandle())
+                .ThrowIfError("Failed to push buffer.");
         }
 
-        /// <summary>
-        /// Set the source type of pushed data.
-        /// </summary>
-        public void EnableSourceBuffer(StreamRecorderSourceType type)
-        {
-            int ret = Native.EnableSourceBuffer(_handle, (int)type);
-            if (ret != (int)StreamRecorderError.None)
-            {
-                StreamRecorderErrorFactory.ThrowException(ret, "Failed to set EnableSourceBuffer");
-            }
-        }
+        #endregion
 
+        #region Dispose support
         /// <summary>
         /// Release any unmanaged resources used by this object.
         /// </summary>
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases the resources used by the StreamRecorder.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
             {
-                if (disposing)
-                {
-                    // to be used if there are any other disposable objects
-                }
-                if (_handle != IntPtr.Zero)
-                {
-                    Native.Destroy(_handle);
-                    _handle = IntPtr.Zero;
-                }
+                _handle?.Dispose();
+
                 _disposed = true;
             }
         }
-
-        private void RegisterStreamRecorderNotifiedEvent()
-        {
-            _notifiedCallback = (StreamRecorderState previous, StreamRecorderState current, StreamRecorderNotify notify, IntPtr userData) =>
-            {
-                StreamRecorderNotifiedEventArgs eventArgs = new StreamRecorderNotifiedEventArgs(previous, current, notify);
-                _recorderNotified?.Invoke(this, eventArgs);
-            };
-            int ret = Native.SetNotifiedCallback(_handle, _notifiedCallback, IntPtr.Zero);
-            if (ret != (int)StreamRecorderError.None)
-            {
-                StreamRecorderErrorFactory.ThrowException(ret, "Setting notify callback failed");
-            }
-        }
-
-        private void UnregisterStreamRecorderNotifiedEvent()
-        {
-            int ret = Native.UnsetNotifiedCallback(_handle);
-            if (ret != (int)StreamRecorderError.None)
-            {
-                StreamRecorderErrorFactory.ThrowException(ret, "Unsetting notify callback failed");
-            }
-        }
-
-        private void RegisterBufferComsumedEvent()
-        {
-            _bufferConsumedCallback = (IntPtr buffer, IntPtr userData) =>
-            {
-                StreamRecordingBufferConsumedEventArgs eventArgs = new StreamRecordingBufferConsumedEventArgs(buffer);
-                _bufferConsumed?.Invoke(this, eventArgs);
-            };
-            int ret = Native.SetBufferConsumedCallback(_handle, _bufferConsumedCallback, IntPtr.Zero);
-            if (ret != (int)StreamRecorderError.None)
-            {
-                StreamRecorderErrorFactory.ThrowException(ret, "Setting buffer consumed callback failed");
-            }
-        }
-
-        private void UnregisterBufferComsumedEvent()
-        {
-            int ret = Native.UnsetBufferConsumedCallback(_handle);
-            if (ret != (int)StreamRecorderError.None)
-            {
-                StreamRecorderErrorFactory.ThrowException(ret, "Unsetting buffer consumed callback failed");
-            }
-        }
-
-        private void RegisterRecordingStatusChangedEvent()
-        {
-            _recordingStatusCallback = (ulong elapsedTime, ulong fileSize, IntPtr userData) =>
-            {
-                RecordingStatusChangedEventArgs eventArgs = new RecordingStatusChangedEventArgs((long)elapsedTime, (long)fileSize);
-                _recordingStatusChanged?.Invoke(this, eventArgs);
-            };
-            int ret = Native.SetStatusChangedCallback(_handle, _recordingStatusCallback, IntPtr.Zero);
-            if (ret != (int)StreamRecorderError.None)
-            {
-                StreamRecorderErrorFactory.ThrowException(ret, "Setting status changed callback failed");
-            }
-        }
-
-        private void UnregisterRecordingStatusChangedEvent()
-        {
-            int ret = Native.UnsetStatusChangedCallback(_handle);
-            if (ret != (int)StreamRecorderError.None)
-            {
-                StreamRecorderErrorFactory.ThrowException(ret, "Unsetting status changed callback failed");
-            }
-        }
-
-        private void RegisterRecordingLimitReachedEvent()
-        {
-            _recordingLimitReachedCallback = (StreamRecordingLimitType type, IntPtr userData) =>
-            {
-                StreamRecordingLimitReachedEventArgs eventArgs = new StreamRecordingLimitReachedEventArgs(type);
-                _recordingLimitReached?.Invoke(this, eventArgs);
-            };
-            int ret = Native.SetLimitReachedCallback(_handle, _recordingLimitReachedCallback, IntPtr.Zero);
-            if (ret != (int)StreamRecorderError.None)
-            {
-                StreamRecorderErrorFactory.ThrowException(ret, "Setting limit reached callback failed");
-            }
-        }
-
-        private void UnregisterRecordingLimitReachedEvent()
-        {
-            int ret = Native.UnsetLimitReachedCallback(_handle);
-            if (ret != (int)StreamRecorderError.None)
-            {
-                StreamRecorderErrorFactory.ThrowException(ret, "Unsetting limit reached callback failed");
-            }
-        }
-
-        private void RegisterRecordingErrorOccurredEvent()
-        {
-            _recorderErrorCallback = (StreamRecorderErrorCode error, StreamRecorderState current, IntPtr userData) =>
-            {
-                StreamRecordingErrorOccurredEventArgs eventArgs = new StreamRecordingErrorOccurredEventArgs(error, current);
-                _recordingErrorOccurred?.Invoke(this, eventArgs);
-            };
-            int ret = Native.SetErrorCallback(_handle, _recorderErrorCallback, IntPtr.Zero);
-            if (ret != (int)StreamRecorderError.None)
-            {
-                StreamRecorderErrorFactory.ThrowException(ret, "Setting Error callback failed");
-            }
-        }
-
-        private void UnregisterRecordingErrorOccurredEvent()
-        {
-            int ret = Native.UnsetErrorCallback(_handle);
-            if (ret != (int)StreamRecorderError.None)
-            {
-                StreamRecorderErrorFactory.ThrowException(ret, "Unsetting Error callback failed");
-            }
-        }
+        #endregion
     }
 }
