@@ -22,6 +22,7 @@ namespace Tizen.Pims.Contacts
     /// <summary>
     /// Enumeration for name display order.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum ContactDisplayOrder
     {
         /// <summary>
@@ -37,6 +38,7 @@ namespace Tizen.Pims.Contacts
     /// <summary>
     /// Enumeration for name sorting order.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum ContactSortingOrder
     {
         /// <summary>
@@ -52,6 +54,7 @@ namespace Tizen.Pims.Contacts
     /// <summary>
     /// A class for managing contact information. It allows applications to access contacts database.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ContactsManager : IDisposable
     {
         private ContactsDatabase _db = null;
@@ -62,7 +65,10 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Creates a ContactsManager.
         /// </summary>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <since_tizen> 4 </since_tizen>
         public ContactsManager()
         {
             int error = Interop.Service.Connect();
@@ -77,6 +83,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Destructor
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         ~ContactsManager()
         {
             Dispose(false);
@@ -89,6 +96,7 @@ namespace Tizen.Pims.Contacts
         /// Releases all resources used by the ContactsManager.
         /// </summary>
         /// <param name="disposing">Disposing by User</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -114,6 +122,7 @@ namespace Tizen.Pims.Contacts
         /// Releases all resources used by the ContactsManager.
         /// It should be called after finished using of the object.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -128,6 +137,7 @@ namespace Tizen.Pims.Contacts
         /// (event) NameDisplayOrderChanged is raised when changing setting value of contacts name display order
         /// </summary>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<NameDisplayOrderChangedEventArgs> NameDisplayOrderChanged
         {
             add
@@ -178,6 +188,7 @@ namespace Tizen.Pims.Contacts
         /// (event) NameSortingOrderChanged is raised when changing setting value of contacts name sorting order
         /// </summary>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<NameSortingOrderChangedEventArgs> NameSortingOrderChanged
         {
             add
@@ -228,6 +239,7 @@ namespace Tizen.Pims.Contacts
         /// A ContactsDatabase
         /// </summary>
         /// <value>A ContactsDatabase</value>
+        /// <since_tizen> 4 </since_tizen>
         public ContactsDatabase Database
         {
             get
@@ -245,6 +257,7 @@ namespace Tizen.Pims.Contacts
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public ContactDisplayOrder NameDisplayOrder
         {
@@ -277,6 +290,7 @@ namespace Tizen.Pims.Contacts
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public ContactSortingOrder NameSortingOrder
         {

@@ -29,6 +29,7 @@ namespace Tizen.Pims.Contacts
     ///  A "record" represents a single row of the views.
     ///  A record can have basic properties of five types: integer, string, boolean, long, double.
     /// </remarks>
+    /// <since_tizen> 4 </since_tizen>
     namespace ContactsViews
     {
         internal static class Property
@@ -363,12 +364,12 @@ namespace Tizen.Pims.Contacts
                 PhonelogNormalizedAddress = (Phonelog | DataTypeString | ReadOnly) + 7,
                 PhonelogCleanedAddress = (Phonelog | DataTypeString | ReadOnly) + 8,
                 PhonelogAddressFilter = (Phonelog | DataTypeString | ReadOnly) + 9,
-                PhonelogSIMSlotNo = (Phonelog | DataTypeInt) + 10,
+                PhonelogSimSlotNo = (Phonelog | DataTypeInt) + 10,
 
                 /* phonelog_stat */
                 PhonelogStatLogCount = (PhonelogStat | DataTypeInt | ReadOnly),
                 PhonelogStatLogType = (PhonelogStat | DataTypeInt | ReadOnly) + 1,
-                PhonelogStatSIMSlotNo = (PhonelogStat | DataTypeInt | ReadOnly) + 2,
+                PhonelogStatSimSlotNo = (PhonelogStat | DataTypeInt | ReadOnly) + 2,
 
                 /* updated_info : read only */
                 UpdateInfoId = (UpdateInfo | DataTypeInt),
@@ -388,6 +389,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Enumeration for contact change state.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum ChangeType
         {
             /// <summary>
@@ -407,6 +409,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Address book record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class AddressBook
         {
             /// <summary>
@@ -433,6 +436,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Address book mode.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum ModeValue
             {
                 /// <summary>
@@ -449,6 +453,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Group record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Group
         {
             /// <summary>
@@ -496,6 +501,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Person record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Person
         {
             /// <summary>
@@ -575,6 +581,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Contact record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Contact
         {
             /// <summary>
@@ -709,6 +716,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for link mode when inserting contact.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum LinkModeValue
             {
                 /// <summary>
@@ -724,6 +732,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Contact display name source type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum DisplayNameSourceType
             {
                 /// <summary>
@@ -755,6 +764,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for contacts data type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum DataType
             {
                 /// <summary>
@@ -827,6 +837,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Simple contact record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class SimpleContact
         {
             /// <summary>
@@ -894,6 +905,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a My profile record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class MyProfile
         {
             /// <summary>
@@ -989,6 +1001,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Name record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Name
         {
             /// <summary>
@@ -1040,6 +1053,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Number record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Number
         {
             /// <summary>
@@ -1086,6 +1100,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for number type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             [Flags]
             public enum Types
             {
@@ -1171,6 +1186,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Email record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Email
         {
             /// <summary>
@@ -1205,6 +1221,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Contact email type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             [Flags]
             public enum Types
             {
@@ -1234,6 +1251,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Address record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Address
         {
             /// <summary>
@@ -1292,6 +1310,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Contact address type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             [Flags]
             public enum Types
             {
@@ -1333,6 +1352,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Note record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Note
         {
             /// <summary>
@@ -1356,6 +1376,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a URL record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class URL
         {
             /// <summary>
@@ -1386,6 +1407,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Contact URL type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum TypeValue
             {
                 /// <summary>
@@ -1410,6 +1432,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Event record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
         public static class Event
         {
@@ -1445,6 +1468,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Contact event type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum TypeValue
             {
                 /// <summary>
@@ -1468,6 +1492,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Contact event calendar type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum CalendarType
             {
                 /// <summary>
@@ -1484,6 +1509,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Relationship record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Relationship
         {
             /// <summary>
@@ -1514,6 +1540,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Contact relationship type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum TypeValue
             {
                 /// <summary>
@@ -1586,6 +1613,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Image record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Image
         {
             /// <summary>
@@ -1620,6 +1648,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Contact image type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum TypeValue
             {
                 /// <summary>
@@ -1636,6 +1665,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Company record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Company
         {
             /// <summary>
@@ -1698,6 +1728,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Contact company type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum TypeValue
             {
                 /// <summary>
@@ -1718,6 +1749,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Nickname record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Nickname
         {
             /// <summary>
@@ -1741,6 +1773,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Messenger record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Messenger
         {
             /// <summary>
@@ -1771,6 +1804,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Contact messenger type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum TypeValue
             {
                 /// <summary>
@@ -1827,6 +1861,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Profile record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces")]
         public static class Profile
         {
@@ -1883,6 +1918,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Sip record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Sip
         {
             /// <summary>
@@ -1913,6 +1949,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Contact SIP type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum TypeValue
             {
                 /// <summary>
@@ -1937,6 +1974,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Extension record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Extension
         {
             /// <summary>
@@ -2004,6 +2042,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Group relation record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class GroupRelation
         {
             /// <summary>
@@ -2031,6 +2070,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Speed dial record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class SpeedDial
         {
             /// <summary>
@@ -2086,6 +2126,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Describes properties of a Phone log record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class PhoneLog
         {
             /// <summary>
@@ -2133,13 +2174,14 @@ namespace Tizen.Pims.Contacts
             /// </summary>
             public const uint AddressFilter = (uint)Property.Id.PhonelogAddressFilter;
             /// <summary>
-            /// You can set the related SIM slot number. SimSlotNo 0 means first SIM card, SimSlotNo 1 means second SIM.
+            /// You can set the related Sim slot number. SimSlotNo 0 means first Sim card, SimSlotNo 1 means second Sim.
             /// </summary>
-            public const uint SimSlotNo = (uint)Property.Id.PhonelogSIMSlotNo;
+            public const uint SimSlotNo = (uint)Property.Id.PhonelogSimSlotNo;
 
             /// <summary>
             /// Enumeration for Phone log type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum Type
             {
                 /// <summary>
@@ -2234,6 +2276,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a Contact updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class ContactUpdatedInfo
         {
             /// <summary>
@@ -2266,6 +2309,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a My profile updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class MyProfileUpdatedInfo
         {
             /// <summary>
@@ -2290,6 +2334,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a Group updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class GroupUpdatedInfo
         {
             /// <summary>
@@ -2318,6 +2363,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a Group Member updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class GroupMemberUpdatedInfo
         {
             /// <summary>
@@ -2342,6 +2388,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a Relation updated information record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class GroupRelationUpdatedInfo
         {
             /// <summary>
@@ -2374,6 +2421,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a PersonContact record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class PersonContact
         {
             /// <summary>
@@ -2466,6 +2514,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a PersonNumber record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class PersonNumber
         {
             /// <summary>
@@ -2562,6 +2611,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a PersonEmail record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class PersonEmail
         {
             /// <summary>
@@ -2646,6 +2696,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a PersonGroupRelation record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class PersonGroupRelation
         {
             /// <summary>
@@ -2739,9 +2790,10 @@ namespace Tizen.Pims.Contacts
         };
 
         /// <summary>
-        /// Describes properties of a PersonGroupAssignedrecord.
+        /// Describes properties of a PersonGroupAssigned record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class PersonGroupAssigned
         {
             /// <summary>
@@ -2834,6 +2886,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a PersonGroupNotAssigned record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class PersonGroupNotAssigned
         {
             /// <summary>
@@ -2922,6 +2975,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a PersonPhoneLog record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class PersonPhoneLog
         {
             /// <summary>
@@ -2981,15 +3035,16 @@ namespace Tizen.Pims.Contacts
             /// </summary>
             public const uint AddressFilter = (uint)Property.Id.PhonelogAddressFilter;
             /// <summary>
-            /// It is related to the SIM slot number. SimSlotNo 0 means first SIM card, SimSlotNo 1 means second SIM.
+            /// It is related to the Sim slot number. SimSlotNo 0 means first Sim card, SimSlotNo 1 means second Sim.
             /// </summary>
-            public const uint SIMSlotNo = (uint)Property.Id.PhonelogSIMSlotNo;
+            public const uint SimSlotNo = (uint)Property.Id.PhonelogSimSlotNo;
         };
 
         /// <summary>
         /// Describes properties of a Person Usage record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class PersonUsage
         {
             /// <summary>
@@ -3052,6 +3107,7 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Enumeration for Person usage type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public enum Type
             {
                 /// <summary>
@@ -3105,6 +3161,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a ContactNumber record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class ContactNumber
         {
             /// <summary>
@@ -3177,6 +3234,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a ContactEmail record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class ContactEmail
         {
             /// <summary>
@@ -3237,6 +3295,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a ContactGroupRelation record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class ContactGroupRelation
         {
             /// <summary>
@@ -3285,6 +3344,7 @@ namespace Tizen.Pims.Contacts
         /// Describes properties of a Phone Log Statistics record.
         /// </summary>
         /// <remarks>Read only view</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static class PhoneLogStatistics
         {
             /// <summary>
@@ -3300,9 +3360,9 @@ namespace Tizen.Pims.Contacts
             /// </summary>
             public const uint LogType = (uint)Property.Id.PhonelogStatLogType;
             /// <summary>
-            /// It is related to the SIM slot number. sim_slot_no 0 means first SIM card, sim_slot_no 1 means second SIM. It is same with handle index of telephony handle list. Refer to the telephony_init()
+            /// It is related to the Sim slot number. sim_slot_no 0 means first Sim card, sim_slot_no 1 means second Sim. It is same with handle index of telephony handle list. Refer to the telephony_init()
             /// </summary>
-            public const uint SIMSlotNo = (uint)Property.Id.PhonelogStatSIMSlotNo;
+            public const uint SimSlotNo = (uint)Property.Id.PhonelogStatSimSlotNo;
         };
     }
 }

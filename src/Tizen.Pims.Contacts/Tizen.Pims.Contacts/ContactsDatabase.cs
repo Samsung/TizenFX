@@ -28,6 +28,7 @@ namespace Tizen.Pims.Contacts
     /// <remarks>
     /// This class allows user to access/create/update db operations for contacts information.
     /// </remarks>
+    /// <since_tizen> 4 </since_tizen>
     public class ContactsDatabase
     {
         private Object thisLock = new Object();
@@ -44,6 +45,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Enumeration for contacts database status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum DBStatus
         {
             /// <summary>
@@ -59,6 +61,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Enumeration for Contacts search range.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         [Flags]
         public enum SearchRanges
         {
@@ -87,6 +90,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Occurs when contacts database status is changed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<DBStatusChangedEventArgs> DBStatusChanged
         {
             add
@@ -139,6 +143,7 @@ namespace Tizen.Pims.Contacts
         /// The current contacts database version.
         /// </summary>
         /// <value>The current contacts database version.</value>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int Version
         {
@@ -158,6 +163,7 @@ namespace Tizen.Pims.Contacts
         /// The last successful changed contacts database version on the current connection.
         /// </summary>
         /// <value>The last successful changed contacts database version on the current connection.</value>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int LastChangeVersion
         {
@@ -177,6 +183,7 @@ namespace Tizen.Pims.Contacts
         /// The contacts database status.
         /// </summary>
         /// <value>The contacts database status.</value>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public DBStatus Status
         {
@@ -199,11 +206,13 @@ namespace Tizen.Pims.Contacts
         /// <returns>The ID of inserted record</returns>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int Insert(ContactsRecord record)
         {
@@ -224,11 +233,13 @@ namespace Tizen.Pims.Contacts
         /// <returns>The inserted record ID array</returns>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int[] Insert(ContactsList list)
         {
@@ -255,11 +266,13 @@ namespace Tizen.Pims.Contacts
         /// <returns>The record associated with the record ID</returns>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         /// <privilege>http://tizen.org/privilege/callhistory.read</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsRecord Get(string viewUri, int recordId)
@@ -280,11 +293,13 @@ namespace Tizen.Pims.Contacts
         /// <param name="record">The record to update</param>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Update(ContactsRecord record)
         {
@@ -302,11 +317,13 @@ namespace Tizen.Pims.Contacts
         /// <param name="list">The record list</param>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Update(ContactsList list)
         {
@@ -325,11 +342,13 @@ namespace Tizen.Pims.Contacts
         /// <param name="recordId">The record ID to delete</param>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public void Delete(string viewUri, int recordId)
@@ -349,11 +368,13 @@ namespace Tizen.Pims.Contacts
         /// <param name="idArray">The record IDs to delete</param>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public void Delete(string viewUri, int[] idArray)
@@ -373,11 +394,13 @@ namespace Tizen.Pims.Contacts
         /// <param name="recordId">the record ID to be replaced</param>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Replace(ContactsRecord record, int recordId)
         {
@@ -396,11 +419,13 @@ namespace Tizen.Pims.Contacts
         /// <param name="idArray">The record IDs to be replaced</param>
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Replace(ContactsList list, int[] idArray)
         {
@@ -423,11 +448,13 @@ namespace Tizen.Pims.Contacts
         /// </returns>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         /// <privilege>http://tizen.org/privilege/callhistory.read</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsList GetAll(string viewUri, int offset, int limit)
@@ -453,11 +480,13 @@ namespace Tizen.Pims.Contacts
         /// </returns>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
         /// <privilege>http://tizen.org/privilege/callhistory.read</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public ContactsList GetRecordsWithQuery(ContactsQuery query, int offset, int limit)
         {
@@ -482,11 +511,13 @@ namespace Tizen.Pims.Contacts
         /// The record list
         /// </returns>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsList GetChangesByVersion(string viewUri, int addressBookId, int contactsDBVersion, out int currentDBVersion)
@@ -514,6 +545,13 @@ namespace Tizen.Pims.Contacts
         /// <param name="limit">The number to limit results(value 0 is used for get all records)</param>
         /// <returns>The record list</returns>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsList Search(string viewUri, string keyword, int offset, int limit)
@@ -540,6 +578,14 @@ namespace Tizen.Pims.Contacts
         /// <param name="offset">The index from which to get results</param>
         /// <param name="limit">The number to limit results(value 0 used for get all records)</param>
         /// <returns>The record list</returns>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public ContactsList Search(ContactsQuery query, string keyword, int offset, int limit)
         {
@@ -566,6 +612,14 @@ namespace Tizen.Pims.Contacts
         /// <param name="limit">The number to limit results(value 0 is used for get all records)</param>
         /// <param name="range">The search range, it should be a element of SearchRange or bitwise OR operation of them</param>
         /// <returns>The record list</returns>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsList Search(string viewUri, string keyword, int offset, int limit, int range)
@@ -596,6 +650,14 @@ namespace Tizen.Pims.Contacts
         /// <param name="endMatch">The text which is inserted into the fragment after the keyword(If NULL, default is "]")</param>
         /// <param name="tokenNumber">The one side extra number of tokens near keyword(If negative value, full sentence is printed. e.g. if token number is 3 with 'abc' keyword, "my name is [abc]de and my home")</param>
         /// <returns>The record list</returns>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsList Search(string viewUri, string keyword, int offset, int limit, string startMatch, string endMatch, int tokenNumber)
@@ -626,6 +688,14 @@ namespace Tizen.Pims.Contacts
         /// <param name="endMatch">The text which is inserted into the fragment after the keyword(If NULL, default is "]")</param>
         /// <param name="tokenNumber">The one side extra number of tokens near keyword(If negative value, full sentence is printed. e.g. if token number is 3 with 'abc' keyword, "my name is [abc]de and my home")</param>
         /// <returns>The record list</returns>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public ContactsList Search(ContactsQuery query, string keyword, int offset, int limit, string startMatch, string endMatch, int tokenNumber)
         {
@@ -656,6 +726,14 @@ namespace Tizen.Pims.Contacts
         /// <param name="endMatch">The text which is inserted into the fragment after the keyword(If NULL, default is "]")</param>
         /// <param name="tokenNumber">The one side extra number of tokens near keyword(If negative value, full sentence is printed. e.g. if token number is 3 with 'abc' keyword, "my name is [abc]de and my home")</param>
         /// <returns>The record list</returns>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsList Search(string viewUri, string keyword, int offset, int limit, int range, string startMatch, string endMatch, int tokenNumber)
@@ -675,6 +753,7 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="viewUri">The view URI</param>
         /// <returns>The count of records</returns>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public int GetCount(string viewUri)
@@ -694,6 +773,7 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="query">The query used for filtering the results</param>
         /// <returns>The count of records</returns>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int GetCount(ContactsQuery query)
         {
@@ -712,6 +792,15 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="viewUri">The view URI of records whose changes are monitored</param>
         /// <param name="DBChanged">The EventHandler to register</param>
+        /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <privilege>http://tizen.org/privilege/callhistory.read</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public void AddDBChangedEventHandler(string viewUri, EventHandler<DBChangedEventArgs> DBChanged)
         {
@@ -732,7 +821,7 @@ namespace Tizen.Pims.Contacts
             }
 
             EventHandler<DBChangedEventArgs> handler = null;
-            if (!_eventHandlerMap.TryGetValue(viewUri, out handler))  
+            if (!_eventHandlerMap.TryGetValue(viewUri, out handler))
                 _eventHandlerMap.Add(viewUri, null);
 
             _eventHandlerMap[viewUri] = handler + DBChanged;
@@ -743,6 +832,12 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="viewUri">The view URI of records whose changes are monitored</param>
         /// <param name="DBChanged">The EventHandler to deregister</param>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public void RemoveDBChangedEventHandler(string viewUri, EventHandler<DBChangedEventArgs> DBChanged)
         {

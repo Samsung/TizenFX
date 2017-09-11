@@ -21,6 +21,7 @@ namespace Tizen.Pims.Contacts
     /// <summary>
     /// A list of records with the same type
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ContactsList:IDisposable
     {
         private Int64 _memoryPressure = 20;
@@ -43,8 +44,10 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Creates a contacts record list.
         /// </summary>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <since_tizen> 4 </since_tizen>
         public ContactsList()
         {
             int error = Interop.List.ContactsListCreate(out _listHandle);
@@ -59,6 +62,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Destructor
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         ~ContactsList()
         {
             Dispose(false);
@@ -68,6 +72,7 @@ namespace Tizen.Pims.Contacts
         /// The count of contact entity.
         /// </summary>
         /// <value>The count of contact entity.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Count
         {
             get
@@ -89,6 +94,7 @@ namespace Tizen.Pims.Contacts
         /// Releases all resources used by the ContactsList.
         /// </summary>
         /// <param name="disposing">Disposing by User</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -115,6 +121,7 @@ namespace Tizen.Pims.Contacts
         /// Releases all resources used by the ContactsList.
         /// It should be called after finished using of the object.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -126,8 +133,10 @@ namespace Tizen.Pims.Contacts
         /// Adds a record to the contacts list.
         /// </summary>
         /// <param name="record">The record to add</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void AddRecord(ContactsRecord record)
         {
             int error = Interop.List.ContactsListAdd(_listHandle, record._recordHandle);
@@ -144,8 +153,10 @@ namespace Tizen.Pims.Contacts
         /// Removes a record from the contacts list.
         /// </summary>
         /// <param name="record">The record to remove</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void RemoveRecord(ContactsRecord record)
         {
             int error = Interop.List.ContactsListRemove(_listHandle, record._recordHandle);
@@ -164,6 +175,9 @@ namespace Tizen.Pims.Contacts
         /// <returns>
         /// contacts record
         /// </returns>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <since_tizen> 4 </since_tizen>
         public ContactsRecord GetCurrentRecord()
         {
             IntPtr handle;
@@ -182,6 +196,9 @@ namespace Tizen.Pims.Contacts
         /// <returns>
         /// When the cursor is already at the first position, it returns false.
         /// </returns>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool MovePrevious()
         {
             int error = Interop.List.ContactsListPrev(_listHandle);
@@ -208,6 +225,9 @@ namespace Tizen.Pims.Contacts
         /// <returns>
         /// When the cursor is already at the last position, it returns false.
         /// </returns>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool MoveNext()
         {
             int error = Interop.List.ContactsListNext(_listHandle);
@@ -231,6 +251,9 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Moves a contacts list to the first position.
         /// </summary>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void MoveFirst()
         {
             int error = Interop.List.ContactsListFirst(_listHandle);
@@ -244,6 +267,9 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Moves a contacts list to the last position.
         /// </summary>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void MoveLast()
         {
             int error = Interop.List.ContactsListLast(_listHandle);
