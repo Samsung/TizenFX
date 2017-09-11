@@ -24,11 +24,11 @@ namespace Tizen.Applications.Shortcut
         /// <summary>
         /// Gets the name of package.
         /// </summary>
-        public string AppId { get; internal set; } = string.Empty;
+        public string AppId { get; internal set; }
 
         /// <summary>
         /// Gets the name of the created shortcut icon.
         /// </summary>
-        public string ShortcutName { get; internal set; } = string.Empty;
+        public string ShortcutName { get; internal set; }
     }
 }

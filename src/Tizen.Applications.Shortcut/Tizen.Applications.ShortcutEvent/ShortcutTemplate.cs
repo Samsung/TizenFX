@@ -24,26 +24,26 @@ namespace Tizen.Applications.Shortcut
         /// <summary>
         /// Gets the Application ID.
         /// </summary>
-        public string AppId { get; internal set; } = string.Empty;
+        public string AppId { get; internal set; }
 
         /// <summary>
         /// Gets the name of the created shortcut icon.
         /// </summary>
-        public string ShortcutName { get; internal set; } = string.Empty;
+        public string ShortcutName { get; internal set; }
 
         /// <summary>
         /// Gets the absolute path of an icon file for this shortcut.
         /// </summary>
-        public string IconPath { get; internal set; } = string.Empty;
+        public string IconPath { get; internal set; }
 
         /// <summary>
         /// Gets the user data. A property of shortcut element in manifest file.
         /// </summary>
-        public string ExtraKey { get; internal set; } = string.Empty;
+        public string ExtraKey { get; internal set; }
 
         /// <summary>
         /// Gets the user data. A property of shortcut element in manifest file.
         /// </summary>
-        public string ExtraData { get; internal set; } = string.Empty;
+        public string ExtraData { get; internal set; }
     }
 }

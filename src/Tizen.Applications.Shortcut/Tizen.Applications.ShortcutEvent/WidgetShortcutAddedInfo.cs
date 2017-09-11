@@ -24,7 +24,7 @@ namespace Tizen.Applications.Shortcut
         /// <summary>
         /// Gets the Widget ID.
         /// </summary>
-        public string WidgetId { get; internal set; } = string.Empty;
+        public string WidgetId { get; internal set; }
 
         /// <summary>
         /// Gets the size of widget.

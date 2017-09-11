@@ -24,12 +24,12 @@ namespace Tizen.Applications.Shortcut
         /// <summary>
         /// Gets the name of the created shortcut icon.
         /// </summary>
-        public string ShortcutName { get; internal set; } = string.Empty;
+        public string ShortcutName { get; internal set; }
 
         /// <summary>
         /// Gets the absolute path of an icon file for this shortcut.
         /// </summary>
-        public string IconPath { get; internal set; } = string.Empty;
+        public string IconPath { get; internal set; }
 
         /// <summary>
         /// Gets a value indicating whether to allow or not to allow duplication.
