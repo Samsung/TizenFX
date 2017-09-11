@@ -8,10 +8,10 @@ The Tizen.Network.Nsd namespace provides classes to manage the network service d
 </para>
 <h2>Related Features</h2>
 <para>To use DNS-SD, declare the following feature requirements in the config file:<br/>
-http://tizen.org/feature/network.dnssd
+http://tizen.org/feature/network.service_discovery.dnssd
 </para>
 <para>To use SSDP, declare the following feature requirements in the config file:<br/>
-http://tizen.org/feature/network.ssdp
+http://tizen.org/feature/network.service_discovery.ssdp
 </para>
 
 </remarks>
