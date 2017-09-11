@@ -223,7 +223,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Gets the result of a specific AP scan.
+        /// Gets the result of ScanSpecificAPAsync(string essid) API.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A list containing the WiFiAP objects.</returns>
