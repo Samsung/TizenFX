@@ -81,8 +81,8 @@ namespace Tizen.Applications
             certificates.Add(CertificateType.Distributor, new PackageCertificate(distRootCertificate, distIntermediateCertificate, distSignerCertificate));
 
             string dist2RootCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.Distributor2RootCertificate);
-            string dist2IntermediateCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.Distributor2RootCertificate);
-            string dist2SignerCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.Distributor2RootCertificate);
+            string dist2IntermediateCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.Distributor2IntermediateCertificate);
+            string dist2SignerCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.Distributor2SignerCertificate);
             certificates.Add(CertificateType.Distributor2, new PackageCertificate(dist2RootCertificate, dist2IntermediateCertificate, dist2SignerCertificate));
 
             return certificates;
