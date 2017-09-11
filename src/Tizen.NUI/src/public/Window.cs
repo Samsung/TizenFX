@@ -30,6 +30,7 @@ namespace Tizen.NUI
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private global::System.Runtime.InteropServices.HandleRef stageCPtr;
         private Layer _rootLayer;
+        private string _windowTitle;
 
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -65,6 +66,56 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
+
+            if (_windowFocusChangedEventCallback != null)
+            {
+                WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback);
+            }
+
+            if (_stageTouchCallbackDelegate != null)
+            {
+                TouchSignal().Disconnect(_stageTouchCallbackDelegate);
+            }
+
+            if (_stageWheelCallbackDelegate != null)
+            {
+                WheelEventSignal().Disconnect(_stageWheelCallbackDelegate);
+            }
+
+            if (_stageKeyCallbackDelegate != null)
+            {
+                KeyEventSignal().Disconnect(_stageKeyCallbackDelegate);
+            }
+
+            if (_stageEventProcessingFinishedEventCallbackDelegate != null)
+            {
+                EventProcessingFinishedSignal().Disconnect(_stageEventProcessingFinishedEventCallbackDelegate);
+            }
+
+            if (_stageContextLostEventCallbackDelegate != null)
+            {
+                ContextLostSignal().Disconnect(_stageContextLostEventCallbackDelegate);
+            }
+
+            if (_stageContextRegainedEventCallbackDelegate != null)
+            {
+                this.ContextRegainedSignal().Disconnect(_stageContextRegainedEventCallbackDelegate);
+            }
+
+            if (_stageSceneCreatedEventCallbackDelegate != null)
+            {
+                SceneCreatedSignal().Disconnect(_stageSceneCreatedEventCallbackDelegate);
+            }
+
+            if (_windowResizedEventCallback != null)
+            {
+                ResizedSignal().Disconnect(_windowResizedEventCallback);
+            }
+
+            if (_windowFocusChangedEventCallback2 != null)
+            {
+                WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback2);
+            }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -379,6 +430,22 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Gets/Sets a window title.
+        /// </summary>
+        public string Title
+        {
+            get
+            {
+                return _windowTitle;
+            }
+            set
+            {
+                _windowTitle = value;
+                SetClass( _windowTitle, "" );
+            }
+        }
+
         internal WindowFocusSignalType WindowFocusChangedSignal()
         {
             WindowFocusSignalType ret = new WindowFocusSignalType(NDalicPINVOKE.FocusChangedSignal(swigCPtr), false);
@@ -424,7 +491,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetClass(string name, string klass)
+        /// <summary>
+        /// Sets the window name and class string.
+        /// </summary>
+        /// <param name="name">The name of the window</param>
+        /// <param name="klass">The class of the window</param>
+        public void SetClass(string name, string klass)
         {
             NDalicPINVOKE.Window_SetClass(swigCPtr, name, klass);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -767,7 +839,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal System.IntPtr GetNativeWindowHandler()
+        public System.IntPtr GetNativeWindowHandler()
         {
             System.IntPtr ret = NDalicManualPINVOKE.GetNativeWindowHandler(HandleRef.ToIntPtr(this.swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1414,6 +1486,11 @@ namespace Tizen.NUI
             }
         }
 
+        public static void FeedKeyEvent(Key keyEvent)
+        {
+            NDalicManualPINVOKE.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
     }
 }

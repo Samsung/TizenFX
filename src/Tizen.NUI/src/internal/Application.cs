@@ -334,6 +334,61 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            if (_applicationInitEventCallbackDelegate != null)
+            {
+                this.InitSignal().Disconnect(_applicationInitEventCallbackDelegate);
+            }
+
+            if (_applicationTerminateEventCallbackDelegate != null)
+            {
+                this.TerminateSignal().Disconnect(_applicationTerminateEventCallbackDelegate);
+            }
+
+            if (_applicationPauseEventCallbackDelegate != null)
+            {
+                this.PauseSignal().Disconnect(_applicationPauseEventCallbackDelegate);
+            }
+
+            if (_applicationResumeEventCallbackDelegate != null)
+            {
+                this.ResumeSignal().Disconnect(_applicationResumeEventCallbackDelegate);
+            }
+
+            if (_applicationResetEventCallbackDelegate != null)
+            {
+                this.ResetSignal().Disconnect(_applicationResetEventCallbackDelegate);
+            }
+
+            if (_applicationResizeEventCallbackDelegate != null)
+            {
+                this.ResizeSignal().Disconnect(_applicationResizeEventCallbackDelegate);
+            }
+
+            if (_applicationLanguageChangedEventCallbackDelegate != null)
+            {
+                this.LanguageChangedSignal().Disconnect(_applicationLanguageChangedEventCallbackDelegate);
+            }
+
+            if (_applicationRegionChangedEventCallbackDelegate != null)
+            {
+                this.RegionChangedSignal().Disconnect(_applicationRegionChangedEventCallbackDelegate);
+            }
+
+            if (_applicationBatteryLowEventCallbackDelegate != null)
+            {
+                this.BatteryLowSignal().Disconnect(_applicationBatteryLowEventCallbackDelegate);
+            }
+
+            if (_applicationMemoryLowEventCallbackDelegate != null)
+            {
+                this.MemoryLowSignal().Disconnect(_applicationMemoryLowEventCallbackDelegate);
+            }
+
+            if (_applicationAppControlEventCallbackDelegate != null)
+            {
+                this.AppControlSignal().Disconnect(_applicationAppControlEventCallbackDelegate);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -1079,8 +1134,27 @@ namespace Tizen.NUI
             return ret;
         }
 
-        //Removed from v0.2.33
-        /*public bool AddIdle(System.Delegate func)
+
+        public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode)
+        {
+            NUILog.Debug(" NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode) is called! ");
+
+            Application ret = New(args, stylesheet, (Application.WindowMode)windowMode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            // we've got an application now connect the signals
+            ret.SetupDelegates();
+            // set the singleton
+            _instance = ret;
+            return _instance;
+        }
+
+        /// <summary>
+        /// Ensures that the function passed in is called from the main loop when it is idle.
+        /// </summary>
+        /// <param name="func">The function to call</param>
+        /// <returns>true if added successfully, false otherwise</returns>
+        public bool AddIdle(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             System.IntPtr ip2 = NDalicManualPINVOKE.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
@@ -1089,9 +1163,7 @@ namespace Tizen.NUI
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }*/
-
-
+        }
 
         /**
         * Outer::outer_method(int)
@@ -1128,6 +1200,17 @@ namespace Tizen.NUI
             NUILog.Debug("New(int argc, string stylesheet, Application.WindowMode windowMode) is called!");
 
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static Application New(string[] args, string stylesheet, Application.WindowMode windowMode)
+        {
+            NUILog.Debug("New(string[] args) is called!");
+            int argc = args.Length;
+            string argvStr = string.Join(" ", args);
+
+            Application ret = new Application(NDalicPINVOKE.Application_New__MANUAL_4(argc, argvStr, stylesheet, (int)windowMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

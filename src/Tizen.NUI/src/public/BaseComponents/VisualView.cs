@@ -57,7 +57,7 @@ namespace Tizen.NUI.BaseComponents
             CustomViewRegistry.Instance.Register(CreateInstance, typeof(VisualView));
         }
 
-        public VisualView() : base(typeof(VisualView).Name, CustomViewBehaviour.ViewBehaviourDefault)
+        public VisualView() : base(typeof(VisualView).FullName, CustomViewBehaviour.ViewBehaviourDefault)
         {
         }
 

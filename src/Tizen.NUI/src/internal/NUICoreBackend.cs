@@ -30,6 +30,8 @@ namespace Tizen.NUI
         /// Application instance to connect event.
         /// </summary>
         protected Application _application;
+        private string _stylesheet = "";
+        private NUIApplication.WindowMode _windowMode = NUIApplication.WindowMode.Opaque;
 
         /// <summary>
         /// Dictionary to contain each type of event callback.
@@ -41,7 +43,6 @@ namespace Tizen.NUI
         /// </summary>
         public NUICoreBackend()
         {
-            _application = Application.NewApplication();
         }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace Tizen.NUI
         /// </summary>
         public NUICoreBackend(string stylesheet)
         {
-            _application = Application.NewApplication(stylesheet);
+            _stylesheet = stylesheet;
         }
 
         /// <summary>
@@ -57,7 +58,8 @@ namespace Tizen.NUI
         /// </summary>
         public NUICoreBackend(string stylesheet, NUIApplication.WindowMode windowMode)
         {
-            _application = Application.NewApplication(stylesheet, (Application.WindowMode)windowMode );
+            _stylesheet = stylesheet;
+            _windowMode = windowMode;
         }
 
         /// <summary>
@@ -89,7 +91,10 @@ namespace Tizen.NUI
         /// </summary>
         public void Dispose()
         {
-            _application.Dispose();
+            if(_application != null)
+            {
+                _application.Dispose();
+            }
         }
 
         /// <summary>
@@ -97,7 +102,20 @@ namespace Tizen.NUI
         /// </summary>
         public void Exit()
         {
-            _application.Quit();
+            if(_application != null)
+            {
+                _application.Quit();
+            }
+        }
+
+        /// <summary>
+        /// Ensures that the function passed in is called from the main loop when it is idle.
+        /// </summary>
+        /// <param name="func">The function to call</param>
+        /// <returns>true if added successfully, false otherwise</returns>
+        public bool AddIdle(System.Delegate func)
+        {
+            return _application.AddIdle(func);
         }
 
         /// <summary>
@@ -107,6 +125,17 @@ namespace Tizen.NUI
         public void Run(string[] args)
         {
             TizenSynchronizationContext.Initialize();
+
+            args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
+            if (args.Length == 1)
+            {
+                _application = Application.NewApplication();
+            }
+            else if (args.Length > 1)
+            {
+                _application = Application.NewApplication(args, _stylesheet, (Application.WindowMode)_windowMode);
+            }
+
             _application.BatteryLow += OnBatteryLow;
             _application.LanguageChanged += OnLanguageChanged;
             _application.MemoryLow += OnMemoryLow;
@@ -221,10 +250,9 @@ namespace Tizen.NUI
         private void OnAppControl(object source, NUIApplicationAppControlEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnAppControl Called");
-            /* can invoke after making new api which getting control handle at application.
             var handler = Handlers[EventType.AppControlReceived] as Action<AppControlReceivedEventArgs>;
-            handler?.Invoke();
-            */
+            SafeAppControlHandle handle = new SafeAppControlHandle(e.VoidP,false);
+            handler?.Invoke( new AppControlReceivedEventArgs(new ReceivedAppControl(handle)) );
         }
 
         /// <summary>

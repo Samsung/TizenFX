@@ -72,6 +72,8 @@ namespace Tizen.NUI.UIComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
+            DisConnectFromSignals();
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -83,6 +85,39 @@ namespace Tizen.NUI.UIComponents
             }
 
             base.Dispose(type);
+        }
+
+        private void DisConnectFromSignals()
+        {
+            // Save current CPtr.
+            global::System.Runtime.InteropServices.HandleRef currentCPtr = swigCPtr;
+
+            // Use BaseHandle CPtr as current might have been deleted already in derived classes.
+            swigCPtr = GetBaseHandleCPtrHandleRef;
+
+            if (_stateChangedCallback != null)
+            {
+                StateChangedSignal().Disconnect(_stateChangedCallback);
+            }
+
+            if (_releasedCallback != null)
+            {
+                ReleasedSignal().Disconnect(_releasedCallback);
+            }
+
+            if (_pressedCallback != null)
+            {
+                this.PressedSignal().Disconnect(_pressedCallback);
+            }
+
+            if (_clickedCallback != null)
+            {
+                ClickedSignal().Disconnect(_clickedCallback);
+            }
+
+            // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
+            // Restore current CPtr.
+            swigCPtr = currentCPtr;
         }
 
 

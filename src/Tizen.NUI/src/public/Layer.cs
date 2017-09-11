@@ -22,7 +22,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Layers provide a mechanism for overlaying groups of actors on top of each other.
     /// </summary>
-    public class Layer : Animatable
+    public class Layer : Container
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -34,6 +34,64 @@ namespace Tizen.NUI
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Layer obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        /// from Container base class
+
+        /// <summary>
+        /// Adds a child view to this layer.
+        /// </summary>
+        /// <seealso cref="Container::Add()">
+        /// </seealso>
+        public override void Add(View child)
+        {
+            NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes a child View from this layer. If the view was not a child of this layer, this is a no-op.
+        /// </summary>
+        /// <seealso cref="Container::Add()">
+        /// </seealso>
+        public override void Remove(View child)
+        {
+            NDalicPINVOKE.Actor_Remove(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves child view by index.
+        /// </summary>
+        /// <pre>The View has been initialized.</pre>
+        /// <param name="index">The index of the child to retrieve</param>
+        /// <returns>The view for the given index or empty handle if children not initialized</returns>
+        public override View GetChildAt(uint index)
+        {
+            System.IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
+
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            return ret ?? null;
+        }
+
+
+        protected override Container GetParent()
+        {
+            return null;
+        }
+
+        protected override uint GetChildCount()
+        {
+            uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         protected override void Dispose(DisposeTypes type)
@@ -123,32 +181,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        /// <summary>
-        /// Adds a child view to this layer.
-        /// </summary>
-        /// <pre>This layer(the parent) has been initialized. The child view has been initialized. The child view is not the same as the parent layer.</pre>
-        /// <post>The child will be referenced by its parent. This means that the child will be kept alive, even if the handle passed into this method is reset or destroyed.</post>
-        /// <remarks>If the child already has a parent, it will be removed from old parent and reparented to this layer. This may change child's position, color, scale etc as it now inherits them from this layer.</remarks>
-        /// <param name="child">The child</param>
-        public void Add(View child)
-        {
-            NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Removes a child View from this layer. If the view was not a child of this layer, this is a no-op.
-        /// </summary>
-        /// <pre>This layer(the parent) has been initialized. The child view is not the same as the parent view.</pre>
-        /// <param name="child">The child</param>
-        public void Remove(View child)
-        {
-            NDalicPINVOKE.Actor_Remove(swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -283,24 +315,6 @@ namespace Tizen.NUI
             bool ret = NDalicPINVOKE.Layer_IsHoverConsumed(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        /// <summary>
-        /// Retrieves child view by index.
-        /// </summary>
-        /// <pre>The View has been initialized.</pre>
-        /// <param name="index">The index of the child to retrieve</param>
-        /// <returns>The view for the given index or empty handle if children not initialized</returns>
-        public View GetChildAt(uint index)
-        {
-            System.IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
-
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            return ret ?? null;
         }
 
         /// <summary>
@@ -459,5 +473,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
     }
 }

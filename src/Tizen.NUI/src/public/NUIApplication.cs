@@ -182,6 +182,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Ensures that the function passed in is called from the main loop when it is idle.
+        /// </summary>
+        /// <param name="func">The function to call</param>
+        /// <returns>true if added successfully, false otherwise</returns>
+        public bool AddIdle(System.Delegate func)
+        {
+            return ((NUICoreBackend)this.Backend).AddIdle(func);
+        }
+
+        /// <summary>
         /// Enumeration for deciding whether a NUI application window is opaque or transparent.
         /// </summary>
         public enum WindowMode

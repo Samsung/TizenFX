@@ -65,6 +65,17 @@ namespace Tizen.NUI
 
             }
 
+            if (_animationFinishedEventCallback != null)
+            {
+                FinishedSignal().Disconnect(_animationFinishedEventCallback);
+            }
+
+            if (_animationProgressReachedEventCallback != null)
+            {
+
+                ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
+            }
+
             if(this)
             {
                 this.Clear();
@@ -72,7 +83,6 @@ namespace Tizen.NUI
                 NUILog.Error("Now Animation is playing! Clear and Reset here!");
                 //throw new System.InvalidOperationException("Animation Instance should not be disposed until getting Finished event. Should be a global variable");
             }
-
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
@@ -175,7 +185,7 @@ namespace Tizen.NUI
                 if (_animationProgressReachedEventHandler == null && ProgressReachedSignal().Empty() == false)
                 {
                     NUILog.Debug("[remove before]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
-                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventHandler);
+                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
                     NUILog.Debug("[remove after]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
                 }
             }
@@ -879,6 +889,23 @@ namespace Tizen.NUI
             return ret;
         }
 
+        private static bool? disableAnimation = null;
+        private bool DisableAnimation
+        {
+            get
+            {
+                if (disableAnimation.HasValue == false)
+                {
+                    string type = Environment.GetEnvironmentVariable("PlatformSmartType");
+                    if (type == "Entry")
+                        disableAnimation = true;
+                    else
+                        disableAnimation = false;
+                }
+                return disableAnimation.Value;
+            }
+        }
+
         /// <summary>
         /// Plays the animation.
         /// </summary>
@@ -886,9 +913,9 @@ namespace Tizen.NUI
         {
             NDalicPINVOKE.Animation_Play(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-#if DISABLE_ANIMATION
-            Stop(EndActions.StopFinal);
-#endif
+
+            if (DisableAnimation == true)
+                Stop(EndActions.StopFinal);
         }
 
         /// <summary>
@@ -908,10 +935,10 @@ namespace Tizen.NUI
         /// The delay time is not included in the looping time.<br/>
         /// When the delay time is negative value, it would treat as play immediately.<br/>
         /// </summary>
-        /// <param name="delayMiliSeconds">The delay time</param>
-        public void PlayAfter(int delayMiliSeconds)
+        /// <param name="delayMilliseconds">The delay time</param>
+        public void PlayAfter(int delayMilliseconds)
         {
-            NDalicPINVOKE.Animation_PlayAfter(swigCPtr, MilliSecondsToSeconds(delayMiliSeconds));
+            NDalicPINVOKE.Animation_PlayAfter(swigCPtr, MilliSecondsToSeconds(delayMilliseconds));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

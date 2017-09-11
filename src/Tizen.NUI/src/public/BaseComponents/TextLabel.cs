@@ -757,6 +757,25 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// TextColorAnimatable property.<br>
+        /// The color of the text that can be animatated.<br>
+        /// Animation framework can be used to change the color of the text when not using mark up.<br>
+        /// Not possible when text is auto scrolling. <br>
+        /// </summary>
+        public Color TextColorAnimatable
+        {
+            get
+            {
+                Color animatableColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(TextLabel.Property.TEXT_COLOR_ANIMATABLE).Get(animatableColor);
+                return animatableColor;
+            }
+            set
+            {
+                SetProperty(TextLabel.Property.TEXT_COLOR_ANIMATABLE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
         /// The line count of text.
         /// </summary>
         public int LineCount
@@ -784,9 +803,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 switch (temp)
                 {
-                    case "WORD":
+                    case "WRAP_MODE_WORD":
                     return LineWrapMode.Word;
-                    case "CHARACTER":
+                    case "WRAP_MODE_CHARACTER":
                     return LineWrapMode.Character;
                     default:
                     return LineWrapMode.Word;
@@ -811,25 +830,5 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(TextLabel.Property.LINE_WRAP_MODE, new Tizen.NUI.PropertyValue(temp));
             }
         }
-
-        /// TextColorAnimatable property.<br>
-        /// The color of the text that can be animatated.<br>
-        /// Animation framework can be used to change the color of the text when not using mark up.<br>
-        /// Not possible when text is auto scrolling. <br>
-        /// </summary>
-        public Color TextColorAnimatable
-        {
-            get
-            {
-                Color animatableColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(TextLabel.Property.TEXT_COLOR_ANIMATABLE).Get(animatableColor);
-                return animatableColor;
-            }
-            set
-            {
-                SetProperty(TextLabel.Property.TEXT_COLOR_ANIMATABLE, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
     }
 }
