@@ -51,7 +51,7 @@ namespace Tizen.Network.Nsd
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="target">The SSDP local service's target. It may be a device type or a service type.</param>
-        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when SSDP is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when target is set to null.</exception>
         public SsdpService(string target)
@@ -85,7 +85,7 @@ namespace Tizen.Network.Nsd
         /// In case of error, null will be returned during get and exception will be thrown during set.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when SSDP is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when Usn value is set to null.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occurred.</exception>
@@ -152,7 +152,7 @@ namespace Tizen.Network.Nsd
         /// In case of error, null will be returned during get and exception will be thrown during set.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when SSDP is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when Url value is set to null.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occurred.</exception>
@@ -196,7 +196,7 @@ namespace Tizen.Network.Nsd
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
-        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
         /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
@@ -226,7 +226,7 @@ namespace Tizen.Network.Nsd
         /// A local service registered using RegisterService() must be passed.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
         /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
         public void DeregisterService()

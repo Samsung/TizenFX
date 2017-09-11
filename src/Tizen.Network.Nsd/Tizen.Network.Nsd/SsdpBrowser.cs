@@ -51,7 +51,7 @@ namespace Tizen.Network.Nsd
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="target">The target to browse for the service.</param>
-        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="ArgumentException">Thrown when target is null.</exception>
         /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
         public SsdpBrowser(string target)
@@ -75,7 +75,7 @@ namespace Tizen.Network.Nsd
         /// Application will keep browsing for available/unavailable services until it calls StopDiscovery().
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
         /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
         public void StartDiscovery()
@@ -106,7 +106,7 @@ namespace Tizen.Network.Nsd
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
-        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
         /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>

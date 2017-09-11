@@ -55,7 +55,7 @@ namespace Tizen.Network.Nsd
         /// <param name="serviceType">The DNSSD service type. It is expressed as type followed by protocol, separated by a dot(e.g. "_ftp._tcp").
         /// It must begin with an underscore, followed by 1-15 characters which may be letters, digits or hyphens.
         /// </param>
-        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when DNSSD is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when serviceType is set to null.</exception>
         public DnssdService(string serviceType)
@@ -90,7 +90,7 @@ namespace Tizen.Network.Nsd
         /// In case of error, null will be returned during get and exception will be thrown during set.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when DNSSD is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when Name value is set to null.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occurred.</exception>
@@ -158,7 +158,7 @@ namespace Tizen.Network.Nsd
         /// In case of error, -1 will be returned during get and exception will be thrown during set.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when DNSSD is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown if value of Port is set to less than 0 or more than 65535.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occurred.</exception>
@@ -237,7 +237,7 @@ namespace Tizen.Network.Nsd
         /// <since_tizen> 4 </since_tizen>
         /// <param name="key">The key of the TXT record. It must be a null-terminated string with 9 characters or fewer excluding null. It is case insensitive.</param>
         /// <param name="value">The value of the TXT record.If null, then "key" will be added with no value. If non-null but value_length is zero, then "key=" will be added with empty value.</param>
-        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when value of key is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
@@ -269,7 +269,7 @@ namespace Tizen.Network.Nsd
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="key">The key of the TXT record to be removed.</param>
-        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when value of key is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
@@ -302,7 +302,7 @@ namespace Tizen.Network.Nsd
         /// Name of the service must be set.
         /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
-        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
         /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
@@ -337,7 +337,7 @@ namespace Tizen.Network.Nsd
         /// A local service registered using RegisterService() must be passed.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
         /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
         public void DeregisterService()

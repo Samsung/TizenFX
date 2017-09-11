@@ -51,7 +51,7 @@ namespace Tizen.Network.Nsd
         /// </summary>
         /// <param name="serviceType">The DNSSD service type</param>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="ArgumentException">Thrown when serviceType is null.</exception>
         /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
         public DnssdBrowser(string serviceType)
@@ -76,7 +76,7 @@ namespace Tizen.Network.Nsd
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
-        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
         /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
@@ -107,7 +107,7 @@ namespace Tizen.Network.Nsd
         /// Stops browsing the DNSSD remote service.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/feature/network.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
         /// <exception cref="NotSupportedException">Thrown when DNSSD is not supported.</exception>
         public void StopDiscovery()

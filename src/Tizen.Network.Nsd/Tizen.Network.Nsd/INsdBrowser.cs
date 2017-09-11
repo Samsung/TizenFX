@@ -30,8 +30,8 @@ namespace Tizen.Network.Nsd
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
-        /// <feature>http://tizen.org/feature/network.dnssd</feature>
-        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
         /// <exception cref="NotSupportedException">Thrown when DNSSD/SSDP is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
@@ -41,8 +41,8 @@ namespace Tizen.Network.Nsd
         /// Stops browsing the DNSSD/SSDP remote service.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/feature/network.dnssd</feature>
-        /// <feature>http://tizen.org/feature/network.ssdp</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
+        /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
         /// <exception cref="NotSupportedException">Thrown when DNSSD/SSDP is not supported.</exception>
         void StopDiscovery();
