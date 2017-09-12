@@ -33,7 +33,7 @@ namespace Tizen.WebView
         /// </summary>
         Canceled,
         /// <summary>
-        /// Can't show page for this MIME Type
+        /// Can't show page for this MIME Type.
         /// </summary>
         CantSupportMimetype,
         /// <summary>
@@ -41,19 +41,19 @@ namespace Tizen.WebView
         /// </summary>
         FailedFileIo,
         /// <summary>
-        /// Cannot connect to network
+        /// Cannot connect to network.
         /// </summary>
         CantConnect,
         /// <summary>
-        /// Fail to look up host from DNS
+        /// Fail to look up host from DNS.
         /// </summary>
         CantLookupHost,
         /// <summary>
-        /// Fail to SSL/TLS handshake
+        /// Fail to SSL/TLS handshake.
         /// </summary>
         FailedTlsHandshake,
         /// <summary>
-        /// Received certificate is invalid
+        /// Received certificate is invalid.
         /// </summary>
         InvalidCertificate,
         /// <summary>
@@ -81,7 +81,7 @@ namespace Tizen.WebView
         /// </summary>
         Authentication,
         /// <summary>
-        /// Web server has internal server error
+        /// Web server has internal server error.
         /// </summary>
         InternalServer,
     }

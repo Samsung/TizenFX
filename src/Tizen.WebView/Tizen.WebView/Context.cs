@@ -23,11 +23,27 @@ namespace Tizen.WebView
     /// </summary>
     public enum CacheModel
     {
-        DocumentViewer,     /* Use the smallest cache capacity */
-        DocumentBrowser,    /* Use bigger cache capacity than DocumentBrowser */
-        PrimaryWebBrowser   /* Use the biggest cache capacity. */
+        /// <summary>
+        /// Use the smallest cache capacity.
+        /// </summary>
+        DocumentViewer,
+        /// <summary>
+        /// Use bigger cache capacity than DocumentBrowser.
+        /// </summary>
+        DocumentBrowser,
+        /// <summary>
+        /// Use the biggest cache capacity.
+        /// </summary>
+        PrimaryWebBrowser
     }
 
+    /// <summary>
+    /// This class encapsulates all pages related to the specific use of Chromium-efl.
+    /// </summary>
+    /// <remarks>
+    /// Applications have the option of creating a context different from the default one and using it for a group of pages.
+    /// All pages in the same context share the same preferences, visited link set, local storage, and so on.
+    /// </remarks>
     public class Context
     {
         private IntPtr _handle;
