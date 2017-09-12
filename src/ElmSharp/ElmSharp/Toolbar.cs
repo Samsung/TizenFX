@@ -394,7 +394,6 @@ namespace ElmSharp
         /// <param name="label">The label of the item</param>
         /// <param name="icon">A string with the icon name or the absolute path of an image file</param>
         /// <returns>The new <see cref="ToolbarItem"/> which insert into the toolbar</returns>
-        /// <seealso cref="InsertAfter(ToolbarItem, string)"/>
         public ToolbarItem InsertAfter(ToolbarItem after, string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon);

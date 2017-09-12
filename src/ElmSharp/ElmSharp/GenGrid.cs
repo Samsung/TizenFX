@@ -242,7 +242,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the gengrid select mode by <see cref="GenGridSelectionMode"/>.
+        /// Gets or sets the gengrid select mode by <see cref="GenItemSelectionMode"/>.
         /// </summary>
         public GenItemSelectionMode SelectionMode
         {

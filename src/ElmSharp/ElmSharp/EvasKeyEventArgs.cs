@@ -26,8 +26,6 @@ namespace ElmSharp
     {
         IntPtr _nativeEventInfo;
 
-        EvasEventFlag _eventFlags;
-
         /// <summary>
         /// BackButton name in Platform
         /// </summary>

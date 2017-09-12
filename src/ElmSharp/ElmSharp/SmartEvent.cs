@@ -161,7 +161,6 @@ namespace ElmSharp
     /// This way, you can extend EvasObject's own <see cref="EvasObjectEvent"/>.
     /// They are defined by an event string, which identifies them uniquely.
     /// </summary>
-    /// <typeparam name="TEventArgs">The parameter for the event.</typeparam>
     public class SmartEvent : IInvalidatable
     {
         private SmartEvent<EventArgs> _smartEvent;
