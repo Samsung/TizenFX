@@ -133,8 +133,6 @@ namespace Tizen.System
         /// CapacityChanged is triggered when the battery charge percentage is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="sender"></param>
-        /// <param name="e">BatteryCapacityChangedEventArgs is an object that contains the changed battery capacity (Percent).</param>
         /// <code>
         /// public static async Task BatteryEventHandler()
         /// {
@@ -179,8 +177,6 @@ namespace Tizen.System
         /// LevelChanged is triggered when the battery level is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="sender"></param>
-        /// <param name="e">BatteryLevelChangedEventArgs is an object that contains the changed battery level.</param>
         /// <code>
         /// public static async Task BatteryEventHandler()
         /// {
@@ -225,8 +221,6 @@ namespace Tizen.System
         /// This event is triggered when the charger is connected/disconnected.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="sender"></param>
-        /// <param name="e">BatteryChargingStateChangedEventArgs is an object that contains the changed battery charging state.</param>
         /// <code>
         /// public static async Task BatteryEventHandler()
         /// {

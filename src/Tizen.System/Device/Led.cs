@@ -168,8 +168,6 @@ namespace Tizen.System
         /// StateChanged is raised when the LED state is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">LedBrightnessChangedEventArgs is an object that contains the changed brightness.</param>
         public static event EventHandler<LedBrightnessChangedEventArgs> BrightnessChanged
         {
             add
