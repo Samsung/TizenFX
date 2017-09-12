@@ -69,7 +69,7 @@ namespace Tizen.Sensor
         /// <feature>http://tizen.org/feature/sensor.heart_rate_monitor</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the sensor.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the sensor.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
         /// Index. Default value for this is 0. Index refers to a particular heart rate monitor in case of multiple sensors.
