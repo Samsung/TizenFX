@@ -22,16 +22,6 @@ using System.Diagnostics.CodeAnalysis;
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
-    /// Delegate for detecting the calendar database changes.
-    /// </summary>
-    /// <param name="uri">The record uri</param>
-    /// <remarks>
-    /// The delegate must be registered using AddDBChangedDelegate.
-    /// It's invoked when the designated view changes.
-    /// </remarks>
-    public delegate void CalendarDBChanged(string uri);
-
-    /// <summary>
     /// CalendarDatabase provides methods to manage calendar information from/to the database.
     /// </summary>
     /// <remarks>
@@ -40,8 +30,8 @@ namespace Tizen.Pims.Calendar
     public class CalendarDatabase
     {
         private Object thisLock = new Object();
-        private Dictionary<string, CalendarDBChanged> _callbackMap = new Dictionary<string, CalendarDBChanged>();
-        private Dictionary<string, Interop.Database.DBChangedCallback> _delegateMap = new Dictionary<string, Interop.Database.DBChangedCallback>();
+        private Dictionary<string, EventHandler<DBChangedEventArgs>> _eventHandlerMap = new Dictionary<string, EventHandler<DBChangedEventArgs>>();
+        private Dictionary<string, Interop.Database.DBChangedCallback> _callbackMap = new Dictionary<string, Interop.Database.DBChangedCallback>();
         private Interop.Database.DBChangedCallback _dbChangedDelegate;
 
         internal CalendarDatabase()
@@ -492,46 +482,63 @@ namespace Tizen.Pims.Calendar
         /// Registers a callback function to be invoked when a record changes.
         /// </summary>
         /// <param name="viewUri">The view URI of the record to subscribe for change notifications</param>
-        /// <param name="callback">The callback function to register</param>
+        /// <param name="DBChanged">The EventHandler to register</param>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
-        public void AddDBChangedDelegate(string viewUri, CalendarDBChanged callback)
+        public void AddDBChangedDelegate(string viewUri, EventHandler<DBChangedEventArgs> DBChanged)
         {
             Log.Debug(Globals.LogTag, "AddDBChangedDelegate");
 
-            _dbChangedDelegate = (string uri, IntPtr userData) =>
-            {
-                _callbackMap[uri](uri);
-            };
-            int error = Interop.Database.AddChangedCallback(viewUri, _dbChangedDelegate, IntPtr.Zero);
-            if (CalendarError.None != (CalendarError)error)
-            {
-                Log.Error(Globals.LogTag, "AddDBChangedDelegate Failed with error " + error);
-                throw CalendarErrorFactory.GetException(error);
-            }
-            _callbackMap[viewUri] += callback;
-            _delegateMap[viewUri] = _dbChangedDelegate;
+			if (!_callbackMap.ContainsKey(viewUri))
+			{
+				_callbackMap[viewUri] = (string uri, IntPtr userData) =>
+				{
+					DBChangedEventArgs args = new DBChangedEventArgs(uri);
+					_eventHandlerMap[uri]?.Invoke(this, args);
+				};
+
+				int error = Interop.Database.AddChangedCallback(viewUri, _dbChangedDelegate, IntPtr.Zero);
+				if (CalendarError.None != (CalendarError)error)
+				{
+					Log.Error(Globals.LogTag, "AddDBChangedDelegate Failed with error " + error);
+					throw CalendarErrorFactory.GetException(error);
+				}
+			}
+
+			EventHandler<DBChangedEventArgs> handler = null;
+			if (!_eventHandlerMap.TryGetValue(viewUri, out handler))
+				_eventHandlerMap.Add(viewUri, null);
+
+			_eventHandlerMap[viewUri] = handler + DBChanged;
         }
 
         /// <summary>
         /// Deregisters a callback function.
         /// </summary>
         /// <param name="viewUri">The view URI of the record to subscribe for change notifications</param>
-        /// <param name="callback">The callback function to register</param>
+        /// <param name="DBChanged">The EventHandler to deregister</param>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
-        public void RemoveDBChangedDelegate(string viewUri, CalendarDBChanged callback)
+        public void RemoveDBChangedDelegate(string viewUri, EventHandler<DBChangedEventArgs> DBChanged)
         {
             Log.Debug(Globals.LogTag, "RemoveDBChangedDelegate");
 
-            int error = Interop.Database.RemoveChangedCallback(viewUri, _delegateMap[viewUri], IntPtr.Zero);
-            if (CalendarError.None != (CalendarError)error)
+            EventHandler<DBChangedEventArgs> handler = null;
+            if (!_eventHandlerMap.TryGetValue(viewUri, out handler))
+                _eventHandlerMap.Add(viewUri, null);
+            else
+                _eventHandlerMap[viewUri] = handler - DBChanged;
+
+            if (_eventHandlerMap[viewUri] == null)
             {
-                Log.Error(Globals.LogTag, "RemoveDBChangedDelegate Failed with error " + error);
-                throw CalendarErrorFactory.GetException(error);
-            }
-            _callbackMap[viewUri] -= callback;
-            _delegateMap.Remove(viewUri);
+				int error = Interop.Database.RemoveChangedCallback(viewUri, _callbackMap[viewUri], IntPtr.Zero);
+				if (CalendarError.None != (CalendarError)error)
+				{
+					Log.Error(Globals.LogTag, "RemoveDBChangedDelegate Failed with error " + error);
+					throw CalendarErrorFactory.GetException(error);
+				}
+				_callbackMap.Remove(viewUri);
+			}
         }
 
         /// <summary>
