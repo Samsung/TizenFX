@@ -64,17 +64,17 @@ namespace Tizen.Multimedia
 
         #region Auto Focus
         /// <summary>
-        /// Sets auto focus area.
+        /// Sets the auto focus area.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// <see cref="CameraAutoFocusMode"/> should not be the <see cref="CameraAutoFocusMode.None"/>.
         /// </remarks>
-        /// <param name="x">X position</param>
-        /// <param name="y">Y position</param>
+        /// <param name="x">X position.</param>
+        /// <param name="y">Y position.</param>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void SetAutoFocusArea(int x, int y)
         {
             CameraErrorFactory.ThrowIfError(Native.SetAutoFocusArea(_camera.GetHandle(), x, y),
@@ -82,16 +82,16 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets auto focus area.
+        /// Sets the auto focus area.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// <see cref="CameraAutoFocusMode"/> should not be the <see cref="CameraAutoFocusMode.None"/>.
         /// </remarks>
-        /// <param name="pos"><see cref="Point"/> structure including X, Y position</param>
+        /// <param name="pos"><see cref="Point"/> structure including X, Y position.</param>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void SetAutoFocusArea(Point pos)
         {
             CameraErrorFactory.ThrowIfError(Native.SetAutoFocusArea(_camera.GetHandle(), pos.X, pos.Y),
@@ -102,7 +102,7 @@ namespace Tizen.Multimedia
         /// Clears the auto focus area.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void ClearFocusArea()
         {
             CameraErrorFactory.ThrowIfError(Native.ClearAutoFocusArea(_camera.GetHandle()),
@@ -114,7 +114,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="CameraAutoFocusMode"/> that specifies the auto focus mode.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraAutoFocusMode AutoFocusMode
         {
             get
@@ -141,7 +141,7 @@ namespace Tizen.Multimedia
         /// The contrast level of the camera.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int Contrast
         {
             get
@@ -164,7 +164,7 @@ namespace Tizen.Multimedia
         /// If true auto contrast is enabled, otherwise false.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public bool AutoContrast
         {
             get
@@ -186,7 +186,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// If min value is greater than the max value, it means this feature is not supported.
+        /// If the mininum value is greater than the maximum value, it means this feature is not supported.
         /// </remarks>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         public Range ContrastRange
@@ -208,7 +208,7 @@ namespace Tizen.Multimedia
         /// The brightness level of the camera.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int Brightness
         {
             get
@@ -231,7 +231,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// If min value is greater than the max value, it means this feature is not supported.
+        /// If the minimum value is greater than the maximum value, it means this feature is not supported.
         /// </remarks>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         public Range BrightnessRange
@@ -253,7 +253,7 @@ namespace Tizen.Multimedia
         /// The exposure value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int Exposure
         {
             get
@@ -276,7 +276,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="CameraExposureMode"/> that specifies the exposure mode.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraExposureMode ExposureMode
         {
             get
@@ -302,7 +302,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// If min value is greater than the max value, it means this feature is not supported.
+        /// If the minimum value is greater than the maximum value, it means this feature is not supported.
         /// </remarks>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         public Range ExposureRange
@@ -322,10 +322,10 @@ namespace Tizen.Multimedia
         #region Zoom
         /// <summary>
         /// The zoom level.
-        /// The range for zoom level is received from ZoomRange property.
+        /// The range for the zoom level is received from the ZoomRange property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int ZoomLevel
         {
             get
@@ -348,7 +348,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// If min value is greater than the max value, it means this feature is not supported.
+        /// If the minimum value is greater than the maximum value, it means this feature is not supported.
         /// </remarks>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         public Range ZoomRange
@@ -366,11 +366,11 @@ namespace Tizen.Multimedia
         #endregion Zoom
 
         /// <summary>
-        /// The whitebalance mode.
+        /// The white balance mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="CameraWhiteBalance"/> that specifies the white balance mode.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraWhiteBalance WhiteBalance
         {
             get
@@ -395,8 +395,8 @@ namespace Tizen.Multimedia
         /// The ISO level.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>A <see cref="CameraIsoLevel"/> that specifies ISO level.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <value>A <see cref="CameraIsoLevel"/> that specifies the ISO level.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraIsoLevel IsoLevel
         {
             get
@@ -419,10 +419,10 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// The quality of the image.
-        /// The range for image quality is 1 to 100.
+        /// The range for the image quality is 1 to 100.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int ImageQuality
         {
             get
@@ -450,8 +450,8 @@ namespace Tizen.Multimedia
         /// The preview frame rate.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>A <see cref="CameraFps"/> that specifies preview frame rate.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <value>A <see cref="CameraFps"/> that specifies the preview frame rate.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraFps PreviewFps
         {
             get
@@ -471,11 +471,11 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the resolution of preview
+        /// Gets or sets the resolution of the preview.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public Size PreviewResolution
         {
             get
@@ -498,10 +498,10 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// Depending on the capture resolution aspect ratio and display resolution,
+        /// Depending on the capture resolution aspect ratio and the display resolution,
         /// the recommended preview resolution is determined.
         /// </remarks>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public Size RecommendedPreviewResolution
         {
             get
@@ -517,9 +517,9 @@ namespace Tizen.Multimedia
         /// The preview data format.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>A <see cref="CameraPixelFormat"/> that specifies the pixel format of preview data.</value>
+        /// <value>A <see cref="CameraPixelFormat"/> that specifies the pixel format of the preview data.</value>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraPixelFormat PreviewPixelFormat
         {
             get
@@ -542,8 +542,8 @@ namespace Tizen.Multimedia
         /// Resolution of the captured image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ArgumentException">In case of invalid parameters</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public Size CaptureResolution
         {
             get
@@ -569,7 +569,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="CameraPixelFormat"/> that specifies the pixel format of captured image.</value>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraPixelFormat CapturePixelFormat
         {
             get
@@ -591,10 +591,10 @@ namespace Tizen.Multimedia
 
         #region Encoded preview
         /// <summary>
-        /// The bit rate of encoded preview.
+        /// The bit rate of the encoded preview.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int EncodedPreviewBitrate
         {
             get
@@ -613,10 +613,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// GOP(Group Of Pictures) interval of encoded preview.
+        /// The GOP(Group Of Pictures) interval of the encoded preview.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int EncodedPreviewGopInterval
         {
             get
@@ -639,12 +639,12 @@ namespace Tizen.Multimedia
         /// The theater mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>A <see cref="CameraTheaterMode"/> that specifies theater mode.</value>
+        /// <value>A <see cref="CameraTheaterMode"/> that specifies the theater mode.</value>
         /// <remarks>
         /// If you want to display the preview image on the external display with the full screen mode,
         /// use this property.
         /// </remarks>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraTheaterMode TheaterMode
         {
             get
@@ -667,8 +667,8 @@ namespace Tizen.Multimedia
         /// The camera effect mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>A <see cref="CameraEffectMode"/> that specifies effect mode.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <value>A <see cref="CameraEffectMode"/> that specifies the effect mode.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraEffectMode Effect
         {
             get
@@ -691,8 +691,8 @@ namespace Tizen.Multimedia
         /// The scene mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>A <see cref="CameraSceneMode"/> that specifies scene mode.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <value>A <see cref="CameraSceneMode"/> that specifies the scene mode.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraSceneMode SceneMode
         {
             get
@@ -715,8 +715,8 @@ namespace Tizen.Multimedia
         /// The camera's flash mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>A <see cref="CameraFlashMode"/> that specifies flash mode.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <value>A <see cref="CameraFlashMode"/> that specifies the flash mode.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraFlashMode FlashMode
         {
             get
@@ -739,7 +739,7 @@ namespace Tizen.Multimedia
         /// Gets the camera lens orientation angle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int LensOrientation
         {
             get
@@ -756,7 +756,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="Rotation"/> that specifies the rotation of camera device.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public Rotation StreamRotation
         {
             get
@@ -780,8 +780,8 @@ namespace Tizen.Multimedia
         /// The stream flip.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>A <see cref="Flips"/> that specifies camera flip type.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <value>A <see cref="Flips"/> that specifies the camera flip type.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public Flips StreamFlip
         {
             get
@@ -802,16 +802,16 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The mode of HDR(High dynamic range) capture.
+        /// The mode of the HDR(High dynamic range) capture.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="CameraHdrMode"/> that specifies the HDR mode.</value>
         /// <remarks>
-        /// Taking multiple pictures at different exposure levels and intelligently stitching them together
+        /// Taking multiple pictures at different exposure levels and intelligently stitching them together,
         /// so that we eventually arrive at a picture that is representative in both dark and bright areas.
-        /// If this attribute is set, then eventhandler set for HdrCaptureProgress event is invoked.
+        /// If this attribute is set, then event handler set for the HdrCaptureProgress event is invoked.
         /// </remarks>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraHdrMode HdrMode
         {
             get
@@ -832,10 +832,10 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// The anti shake feature.
-        /// If true the antishake feature is enabled, otherwise false.
+        /// If true, the antishake feature is enabled, otherwise false.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public bool AntiShake
         {
             get
@@ -854,15 +854,15 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Enables/Disables the video stabilization feature.
-        /// If true video stabilization is enabled, otherwise false.
+        /// Enables or disables the video stabilization feature.
+        /// If true, video stabilization is enabled, otherwise false.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// If video stabilization is enabled, zero shutter lag is disabled.
         /// This feature is used to record a video.
         /// </remarks>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public bool VideoStabilization
         {
             get
@@ -890,7 +890,7 @@ namespace Tizen.Multimedia
         /// In some countries, this operation is not permitted.
         /// </remarks>
         /// <exception cref="InvalidOperationException">Disabling shutter sound is not permitted.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void DisableShutterSound(bool shutterSound)
         {
             CameraErrorFactory.ThrowIfError(Native.DisableShutterSound(_camera.GetHandle(), shutterSound),
@@ -899,11 +899,11 @@ namespace Tizen.Multimedia
 
         #region PTZ(Pan Tilt Zoom), Pan, Tilt
         /// <summary>
-        /// Sets the type of PTZ(Pan Tilt Zoom). Mechanical or Electronic.
+        /// Sets the type of the PTZ(Pan Tilt Zoom). Mechanical or electronic.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>A <see cref="CameraPtzType"/> that specifies the type of PTZ.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <value>A <see cref="CameraPtzType"/> that specifies the type of the PTZ.</value>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraPtzType PtzType
         {
             set
@@ -919,10 +919,10 @@ namespace Tizen.Multimedia
         /// Sets the position to move horizontally.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="type">ptz move type. <seealso cref="CameraPtzMoveType"/></param>
-        /// <param name="panStep">pan step</param>
+        /// <param name="type">The PTZ move type. <seealso cref="CameraPtzMoveType"/>.</param>
+        /// <param name="panStep">The pan step.</param>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void SetPan(CameraPtzMoveType type, int panStep)
         {
             ValidationUtil.ValidateEnum(typeof(CameraPtzMoveType), type, nameof(type));
@@ -934,8 +934,8 @@ namespace Tizen.Multimedia
         /// Gets the current position of the camera.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>Returns the camera's horizontal position</returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <returns>Returns the camera's horizontal position.</returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int GetPan()
         {
             CameraErrorFactory.ThrowIfError(Native.GetPan(_camera.GetHandle(), out int val),
@@ -948,10 +948,10 @@ namespace Tizen.Multimedia
         /// Sets the position to move vertically.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="type">ptz move type</param>
-        /// <param name="tiltStep">tilt step</param>
+        /// <param name="type">the PTZ move type.</param>
+        /// <param name="tiltStep">The tilt step.</param>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void SetTilt(CameraPtzMoveType type, int tiltStep)
         {
             ValidationUtil.ValidateEnum(typeof(CameraPtzMoveType), type, nameof(type));
@@ -963,8 +963,8 @@ namespace Tizen.Multimedia
         /// Gets the current position of the camera.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>Returns the current vertical position</returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <returns>Returns the current vertical position.</returns>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int GetTilt()
         {
             CameraErrorFactory.ThrowIfError(Native.GetTilt(_camera.GetHandle(), out int val),
@@ -974,11 +974,11 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets lower limit and upper limit for pan position.
+        /// Gets the lower limit and the upper limit for the pan position.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// If min value is greater than the max value, it means this feature is not supported.
+        /// If the minimum value is greater than the maximum value, it means this feature is not supported.
         /// </remarks>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         public Range PanRange
@@ -995,11 +995,11 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets lower limit and upper limit for tilt position.
+        /// Gets the lower limit and the upper limit for the tilt position.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// If min value is greater than the max value, it means this feature is not supported.
+        /// If the minimum value is greater than the maximum value, it means this feature is not supported.
         /// </remarks>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
         public Range TiltRange
@@ -1019,10 +1019,10 @@ namespace Tizen.Multimedia
         #region EXIF tag
         /// <summary>
         /// The scene mode.
-        /// true if EXIF tags are enabled in JPEG file, otherwise false.
         /// </summary>
+        /// <value>true if EXIF tags are enabled in the JPEG file, otherwise false.</value>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public bool EnableTag
         {
             get
@@ -1044,7 +1044,7 @@ namespace Tizen.Multimedia
         /// The camera image description in the EXIF tag.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public string ImageDescriptionTag
         {
             get
@@ -1074,7 +1074,7 @@ namespace Tizen.Multimedia
         /// The software information in the EXIF tag.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public string SoftwareTag
         {
             get
@@ -1102,10 +1102,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The geotag(GPS data) in the EXIF tag.
+        /// The geo tag(GPS data) in the EXIF tag.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public Location GeoTag
         {
             get
@@ -1124,10 +1124,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Removes the geotag(GPS data) in the EXIF(Exchangeable image file format) tag.
+        /// Removes the geo tag(GPS data) in the EXIF(EXchangeable Image File format) tag.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void RemoveGeoTag()
         {
             CameraErrorFactory.ThrowIfError(Native.RemoveGeotag(_camera.GetHandle()),
@@ -1138,7 +1138,7 @@ namespace Tizen.Multimedia
         /// The camera orientation in the tag.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public CameraTagOrientation OrientationTag
         {
             get

@@ -19,8 +19,8 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about error status and
-    /// state of the camera when it failed.
+    /// An extended EventArgs class which contains details about the error status and the
+    /// state of the camera when it fails.
     /// </summary>
     public class CameraErrorOccurredEventArgs : EventArgs
     {

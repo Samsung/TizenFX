@@ -20,7 +20,7 @@ using static Interop.Camera;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// The class containing Encoded image data.
+    /// The class containing the encoded image data.
     /// </summary>
     public class EncodedPlane : IPreviewPlane
     {
@@ -31,7 +31,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The buffer containing encoded image data.
+        /// The buffer containing the encoded image data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public byte[] Data { get; }

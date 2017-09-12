@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// An extended EventArgs class which contains details about previous and current state
+    /// An extended EventArgs class which contains details about the previous and the current state
     /// of the camera when its state is changed.
     /// </summary>
     public class CameraDeviceStateChangedEventArgs : EventArgs
@@ -31,13 +31,13 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Camera device type.
+        /// The camera device type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public CameraDevice Device { get; }
 
         /// <summary>
-        /// Current state of the camera device.
+        /// The current state of the camera device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public CameraDeviceState State { get; }

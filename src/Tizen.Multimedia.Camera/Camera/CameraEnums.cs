@@ -19,23 +19,23 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for Camera device.
+    /// Enumeration for the camera device.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum CameraDevice
     {
         /// <summary>
-        /// Rear Camera device.
+        /// The rear camera device.
         /// </summary>
         Rear,
         /// <summary>
-        /// Front Camera device.
+        /// The front camera device.
         /// </summary>
         Front
     }
 
     /// <summary>
-    /// Enumeration for Camera device state.
+    /// Enumeration for the camera device state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum CameraDeviceState
@@ -49,13 +49,13 @@ namespace Tizen.Multimedia
         /// </summary>
         Opened,
         /// <summary>
-        /// Now previewing or capturing or is being used for video recording.
+        /// Now previewing or capturing or is being used for the video recording.
         /// </summary>
         Working
     }
 
     /// <summary>
-    /// Enumeration for the facing direction of camera module .
+    /// Enumeration for the facing direction of camera module.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum CameraFacingDirection
@@ -65,7 +65,7 @@ namespace Tizen.Multimedia
         /// </summary>
         Rear,
         /// <summary>
-        /// Front direction
+        /// Front direction.
         /// </summary>
         Front
     }
@@ -77,11 +77,11 @@ namespace Tizen.Multimedia
     public enum CameraFlashState
     {
         /// <summary>
-        /// Flash is not used now through camera API.
+        /// Flash is not used now through the camera API.
         /// </summary>
         NotUsed,
         /// <summary>
-        /// Flash is used now through camera API.
+        /// Flash is used now through the camera API.
         /// </summary>
         Used
     }
@@ -97,11 +97,11 @@ namespace Tizen.Multimedia
         /// </summary>
         Released,
         /// <summary>
-        /// Focus in progress
+        /// Focus in progress.
         /// </summary>
         Ongoing,
         /// <summary>
-        /// Focus succeeded
+        /// Focus succeeded.
         /// </summary>
         Focused,
         /// <summary>
@@ -125,7 +125,7 @@ namespace Tizen.Multimedia
         /// </summary>
         Nv12,
         /// <summary>
-        /// NV12 Tiled pixel format.
+        /// NV12 tiled pixel format.
         /// </summary>
         Nv12t,
         /// <summary>
@@ -193,11 +193,11 @@ namespace Tizen.Multimedia
         /// </summary>
         None,
         /// <summary>
-        /// Security policy
+        /// Security policy.
         /// </summary>
         Security = 4,
         /// <summary>
-        /// Resource conflict
+        /// Resource conflict.
         /// </summary>
         ResourceConflict
     }
@@ -231,25 +231,25 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for the auto focus mode.
+    /// Enumeration for the auto-focus mode.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum CameraAutoFocusMode
     {
         /// <summary>
-        /// auto-focus is not set.
+        /// Auto-focus is not set.
         /// </summary>
         None,
         /// <summary>
-        /// auto-focus in the normal mode.
+        /// Auto-focus is in the normal mode.
         /// </summary>
         Normal,
         /// <summary>
-        /// auto-focus in the macro mode(close distance).
+        /// Auto-focus is in the macro mode (close distance).
         /// </summary>
         Macro,
         /// <summary>
-        /// auto-focus in the full mode(all range scan, limited by device spec).
+        /// Auto-focus is in the full mode (all range scan, limited by device spec).
         /// </summary>
         Full
     }
@@ -349,7 +349,7 @@ namespace Tizen.Multimedia
         /// </summary>
         VintageWarm,
         /// <summary>
-        /// Vintage cold    .
+        /// Vintage cold.
         /// </summary>
         VintageCold,
         /// <summary>
@@ -361,27 +361,27 @@ namespace Tizen.Multimedia
         /// </summary>
         Cartoon,
         /// <summary>
-        /// Selective color - Red.
+        /// Selective color - red.
         /// </summary>
         SelectiveRed,
         /// <summary>
-        /// Selective color - Green.
+        /// Selective color - green.
         /// </summary>
         SelectiveGreen,
         /// <summary>
-        /// Selective color - Blue.
+        /// Selective color - blue.
         /// </summary>
         SelectiveBlue,
         /// <summary>
-        /// Selective color - Yellow.
+        /// Selective color - yellow.
         /// </summary>
         SelectiveYellow,
         /// <summary>
-        /// Selective color - Red and Yellow.
+        /// Selective color - red and yellow.
         /// </summary>
         SelectiveRedYellow,
         /// <summary>
-        /// Other Graphic effects.
+        /// Other graphic effects.
         /// </summary>
         OtherGraphics
     }
@@ -455,73 +455,73 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for preview FPS.
+    /// Enumeration for the preview fps.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum CameraFps
     {
         /// <summary>
-        /// Auto FPS.
+        /// Auto fps.
         /// </summary>
         Auto = 0,
         /// <summary>
-        /// 7 FPS.
+        /// 7 fps.
         /// </summary>
         Fps7 = 7,
         /// <summary>
-        /// 8 FPS.
+        /// 8 fps.
         /// </summary>
         Fps8 = 8,
         /// <summary>
-        /// 15 FPS.
+        /// 15 fps.
         /// </summary>
         Fps15 = 15,
         /// <summary>
-        /// 20 FPS.
+        /// 20 fps.
         /// </summary>
         Fps20 = 20,
         /// <summary>
-        /// 24 FPS.
+        /// 24 fps.
         /// </summary>
         Fps24 = 24,
         /// <summary>
-        /// 25 FPS.
+        /// 25 fps.
         /// </summary>
         Fps25 = 25,
         /// <summary>
-        /// 30 FPS.
+        /// 30 fps.
         /// </summary>
         Fps30 = 30,
         /// <summary>
-        /// 60 FPS.
+        /// 60 fps.
         /// </summary>
         Fps60 = 60,
         /// <summary>
-        /// 90 FPS.
+        /// 90 fps.
         /// </summary>
         Fps90 = 90,
         /// <summary>
-        /// 120 FPS.
+        /// 120 fps.
         /// </summary>
         Fps120 = 120
     }
 
     /// <summary>
-    /// Enumeration for HDR capture mode.
+    /// Enumeration for the HDR capture mode.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum CameraHdrMode
     {
         /// <summary>
-        /// Disable HDR capture.
+        /// Disable the HDR capture.
         /// </summary>
         Disable,
         /// <summary>
-        /// Enable HDR capture.
+        /// Enable the HDR capture.
         /// </summary>
         Enable,
         /// <summary>
-        /// Enable HDR capture and keep original image data.
+        /// Enable the HDR capture mode and keep original image data.
         /// </summary>
         KeepOriginal
     }
@@ -567,7 +567,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for PTZ(Pan Tilt Zoom) movement type.
+    /// Enumeration for the PTZ(Pan Tilt Zoom) movement type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum CameraPtzMoveType
@@ -577,13 +577,13 @@ namespace Tizen.Multimedia
         /// </summary>
         Absoulute,
         /// <summary>
-        /// Move a specific distance from the current position.
+        /// Move to a specific distance from the current position.
         /// </summary>
         Relative
     }
 
     /// <summary>
-    /// Enumeration for PTZ(Pan Tilt Zoom) type.
+    /// Enumeration for the PTZ(Pan Tilt Zoom) type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum CameraPtzType
@@ -621,11 +621,11 @@ namespace Tizen.Multimedia
         /// </summary>
         Sports,
         /// <summary>
-        /// Party &amp; Indoor.
+        /// Party and indoor.
         /// </summary>
         PartyAndIndoor,
         /// <summary>
-        /// Beach &amp; Indoor.
+        /// Beach and indoor.
         /// </summary>
         BeachAndIndoor,
         /// <summary>
@@ -633,7 +633,7 @@ namespace Tizen.Multimedia
         /// </summary>
         Sunset,
         /// <summary>
-        /// Dusk &amp; Dawn.
+        /// Dusk and dawn.
         /// </summary>
         DuskAndDawn,
         /// <summary>
@@ -677,35 +677,35 @@ namespace Tizen.Multimedia
     public enum CameraTagOrientation
     {
         /// <summary>
-        /// Row #0 is at the top, Column #0 is to the left.
+        /// Row #0 is at the top, column #0 is to the left.
         /// </summary>
         TopLeft = 1,
         /// <summary>
-        /// Row #0 is at the top, Column #0 is to the right.
+        /// Row #0 is at the top, column #0 is to the right.
         /// </summary>
         TopRight = 2,
         /// <summary>
-        /// Row #0 is at the bottom, Column #0 is to the right.
+        /// Row #0 is at the bottom, column #0 is to the right.
         /// </summary>
         BottomRight = 3,
         /// <summary>
-        /// Row #0 is at the bottom, Column #0 is to the left.
+        /// Row #0 is at the bottom, column #0 is to the left.
         /// </summary>
         BottomLeft = 4,
         /// <summary>
-        /// Row #0 is at the left, Column #0 is to the top.
+        /// Row #0 is at the left, column #0 is to the top.
         /// </summary>
         LeftTop = 5,
         /// <summary>
-        /// Row #0 is at the right, Column #0 is to the top.
+        /// Row #0 is at the right, column #0 is to the top.
         /// </summary>
         RightTop = 6,
         /// <summary>
-        /// Row #0 is at the right, Column #0 is to the bottom.
+        /// Row #0 is at the right, column #0 is to the bottom.
         /// </summary>
         RightBottom = 7,
         /// <summary>
-        /// Row #0 is at the left, Column #0 is to the bottom.
+        /// Row #0 is at the left, column #0 is to the bottom.
         /// </summary>
         LeftBottom = 8
     }
@@ -717,21 +717,21 @@ namespace Tizen.Multimedia
     public enum CameraTheaterMode
     {
         /// <summary>
-        /// Disable theater mode - External display shows same image as device display.
+        /// Disable the theater mode - the external display shows same image as the device display.
         /// </summary>
         Disable,
         /// <summary>
-        /// Clone mode - Preview image is displayed on external display with full screen mode. Also preview image is shown by the UI on device display.
+        /// Clone the mode - the preview image is displayed on an external display with full screen mode. Also, the preview image is shown by the UI on the device display.
         /// </summary>
         Clone,
         /// <summary>
-        /// Enable theater mode - Preview image is displayed on external display with full screen mode, but preview image is not shown on device display.
+        /// Enable the theater mode - the preview image is displayed on an external display with full screen mode, but the preview image is not shown on the device display.
         /// </summary>
         Enable
     }
 
     /// <summary>
-    ///Enumeration for the white balance levels of the camera.
+    /// Enumeration for the white balance levels of the camera.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum CameraWhiteBalance
@@ -789,7 +789,7 @@ namespace Tizen.Multimedia
         /// </summary>
         LetterBox,
         /// <summary>
-        /// Origin size.
+        /// Original size.
         /// </summary>
         OriginSize,
         /// <summary>
@@ -811,7 +811,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for camera failure error.
+    /// Enumeration for the camera failure error.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum CameraErrorCode
@@ -835,7 +835,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Enumeration for Image datatype.
+    /// Enumeration for the image datatype.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum PlaneType
