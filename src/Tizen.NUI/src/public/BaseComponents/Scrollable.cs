@@ -271,7 +271,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
 
-        public class Property
+        public new class Property
         {
             public static readonly int OVERSHOOT_EFFECT_COLOR = NDalicPINVOKE.Scrollable_Property_OVERSHOOT_EFFECT_COLOR_get();
             public static readonly int OVERSHOOT_ANIMATION_SPEED = NDalicPINVOKE.Scrollable_Property_OVERSHOOT_ANIMATION_SPEED_get();

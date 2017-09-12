@@ -616,7 +616,7 @@ namespace Tizen.NUI
           * (in the type of NUIApplicationResetEventHandler-DaliEventHandler<object,NUIApplicationResetEventArgs>)
           *  provided by the user. Reset signal is emitted when application is reset
           */
-        public event DaliEventHandler<object, NUIApplicationResetEventArgs> Reset
+        public new event DaliEventHandler<object, NUIApplicationResetEventArgs> Reset
         {
             add
             {

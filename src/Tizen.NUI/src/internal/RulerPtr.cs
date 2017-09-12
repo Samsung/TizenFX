@@ -207,7 +207,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public Ruler.RulerType GetType()
+        public new Ruler.RulerType GetType()
         {
             Ruler.RulerType ret = (Ruler.RulerType)NDalicPINVOKE.RulerPtr_GetType(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

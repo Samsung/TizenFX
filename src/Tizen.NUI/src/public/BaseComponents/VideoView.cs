@@ -139,7 +139,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal class Property
+        internal new class Property
         {
             internal static readonly int VIDEO = NDalicPINVOKE.VideoView_Property_VIDEO_get();
             internal static readonly int LOOPING = NDalicPINVOKE.VideoView_Property_LOOPING_get();

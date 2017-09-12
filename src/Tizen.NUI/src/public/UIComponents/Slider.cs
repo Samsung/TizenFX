@@ -341,7 +341,7 @@ namespace Tizen.NUI.UIComponents
             return ret;
         }
 
-        internal class Property : global::System.IDisposable
+        internal new class Property : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
             protected bool swigCMemOwn;

@@ -488,7 +488,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-        internal class Property
+        internal new class Property
         {
             internal static readonly int UNSELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_UNSELECTED_VISUAL_get();
             internal static readonly int SELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_SELECTED_VISUAL_get();

@@ -81,7 +81,7 @@ namespace Tizen.NUI
             base.Dispose();
         }
 
-        internal class Property
+        internal new class Property
         {
             internal static readonly int WIDGET_ID = NDalicManualPINVOKE.WidgetView_Property_WIDGET_ID_get();
             internal static readonly int INSTANCE_ID = NDalicManualPINVOKE.WidgetView_Property_INSTANCE_ID_get();

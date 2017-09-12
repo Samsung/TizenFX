@@ -481,7 +481,7 @@ namespace Tizen.NUI.BaseComponents
         /// Return the natural size of the view.
         /// </summary>
         /// <returns>The view's natural size</returns>
-        public virtual Size2D GetNaturalSize()
+        public new virtual Size2D GetNaturalSize()
         {
             return new Size2D(0, 0);
         }
@@ -503,7 +503,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="width">Width to use</param>
         /// <returns>The height based on the width</returns>
-        public virtual float GetHeightForWidth(float width)
+        public new virtual float GetHeightForWidth(float width)
         {
             return viewWrapperImpl.GetHeightForWidthBase(width);
         }
@@ -514,7 +514,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="height">Height to use</param>
         /// <returns>The width based on the width</returns>
-        public virtual float GetWidthForHeight(float height)
+        public new virtual float GetWidthForHeight(float height)
         {
             return viewWrapperImpl.GetWidthForHeightBase(height);
         }

@@ -101,7 +101,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Geometry.Type GetType()
+        public new Geometry.Type GetType()
         {
             Geometry.Type ret = (Geometry.Type)NDalicPINVOKE.Geometry_GetType(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

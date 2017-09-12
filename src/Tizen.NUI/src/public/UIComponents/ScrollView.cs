@@ -292,7 +292,7 @@ namespace Tizen.NUI
 
         }
 
-        public class Property
+        public new class Property
         {
             public static readonly int WRAP_ENABLED = NDalicPINVOKE.ScrollView_Property_WRAP_ENABLED_get();
             public static readonly int PANNING_ENABLED = NDalicPINVOKE.ScrollView_Property_PANNING_ENABLED_get();

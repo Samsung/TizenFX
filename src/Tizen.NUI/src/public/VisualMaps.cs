@@ -1614,7 +1614,7 @@ namespace Tizen.NUI
         /// Applies to ALL shapes.<br>
         /// Optional.
         /// </summary>
-        public Color MixColor
+        public new Color MixColor
         {
             get
             {

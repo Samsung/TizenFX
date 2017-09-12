@@ -114,7 +114,7 @@ namespace Tizen.NUI
         /// Gets the type of the key frame.
         /// </summary>
         /// <returns>The key frame property type</returns>
-        public PropertyType GetType()
+        public new PropertyType GetType()
         {
             PropertyType ret = (PropertyType)NDalicPINVOKE.KeyFrames_GetType(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

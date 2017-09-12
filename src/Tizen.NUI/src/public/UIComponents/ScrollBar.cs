@@ -187,7 +187,7 @@ namespace Tizen.NUI.UIComponents
         }
 
 
-        internal class Property
+        internal new class Property
         {
             internal static readonly int SCROLL_DIRECTION = NDalicPINVOKE.ScrollBar_Property_SCROLL_DIRECTION_get();
             internal static readonly int INDICATOR_HEIGHT_POLICY = NDalicPINVOKE.ScrollBar_Property_INDICATOR_HEIGHT_POLICY_get();

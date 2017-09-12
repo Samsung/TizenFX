@@ -68,7 +68,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
 
-        internal class Property
+        internal new class Property
         {
             internal static readonly int CONTENT_DIRECTION = NDalicPINVOKE.FlexContainer_Property_CONTENT_DIRECTION_get();
             internal static readonly int FLEX_DIRECTION = NDalicPINVOKE.FlexContainer_Property_FLEX_DIRECTION_get();

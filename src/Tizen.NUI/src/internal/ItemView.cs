@@ -83,7 +83,7 @@ namespace Tizen.NUI
             }
         }
 
-        public class Property
+        public new class Property
         {
             public static readonly int LAYOUT = NDalicManualPINVOKE.ItemView_Property_LAYOUT_get();
             public static readonly int MINIMUM_SWIPE_SPEED = NDalicPINVOKE.ItemView_Property_MINIMUM_SWIPE_SPEED_get();

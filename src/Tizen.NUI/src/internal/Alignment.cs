@@ -67,7 +67,7 @@ namespace Tizen.NUI
 
 
 
-        public class Padding : global::System.IDisposable
+        public new class Padding : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
             protected bool swigCMemOwn;

@@ -204,7 +204,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public CameraType GetType()
+        public new CameraType GetType()
         {
             CameraType ret = (CameraType)NDalicPINVOKE.CameraActor_GetType(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

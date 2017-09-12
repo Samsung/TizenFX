@@ -122,7 +122,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public SWIGTYPE_p_std__type_info GetType()
+        public new SWIGTYPE_p_std__type_info GetType()
         {
             SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(NDalicPINVOKE.Any_GetType(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -222,7 +222,7 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
-            public SWIGTYPE_p_std__type_info GetType()
+            public new SWIGTYPE_p_std__type_info GetType()
             {
                 SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(NDalicPINVOKE.Any_AnyContainerBase_GetType(swigCPtr), false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

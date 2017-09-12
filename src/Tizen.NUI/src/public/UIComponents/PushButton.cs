@@ -72,7 +72,7 @@ namespace Tizen.NUI.UIComponents
         }
 
 
-        internal class Property
+        internal new class Property
         {
             internal static readonly int UNSELECTED_ICON = NDalicPINVOKE.PushButton_Property_UNSELECTED_ICON_get();
             internal static readonly int SELECTED_ICON = NDalicPINVOKE.PushButton_Property_SELECTED_ICON_get();
@@ -173,7 +173,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         [Obsolete("Please do not use! this will be deprecated")]
-        public Vector4 LabelPadding
+        public new Vector4 LabelPadding
         {
             get
             {
