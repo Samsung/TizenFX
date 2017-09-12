@@ -43,7 +43,7 @@ namespace Tizen
         /// Tizen.Tracer.End() ends the most recently called Tizen.Tracer.Begin().
         /// The specific error code can be obtained using the Tizen.Internals.Errors.ErrorFacts.GetLastResult() method.
         /// </remarks>
-        /// <seealso cref="Tizen.Tracer.Begin()"/>
+        /// <seealso cref="Tizen.Tracer.Begin(String)"/>
         public static void End ()
         {
             Interop.Tracer.End ();
@@ -57,7 +57,7 @@ namespace Tizen
         /// </remarks>
         /// <param name="cookie">An unique identifier for distinguishing simultaneous events.</param>
         /// <param name="name">The name of an event (optionally containing format specifiers).</param>
-        /// <seealso cref="Tizen.Tracer.AsyncEnd()"/>
+        /// <seealso cref="Tizen.Tracer.AsyncEnd(int, String)"/>
         public static void AsyncBegin (int cookie, String name)
         {
             Interop.Tracer.AsyncBegin (cookie, name);
@@ -72,7 +72,7 @@ namespace Tizen
         /// </remarks>
         /// <param name="cookie">An unique identifier for distinguishing simultaneous events.</param>
         /// <param name="name">The name of an event (optionally containing format specifiers).</param>
-        /// <seealso cref="Tizen.Tracer.AsyncBegin()"/>
+        /// <seealso cref="Tizen.Tracer.AsyncBegin(int, String)"/>
         public static void AsyncEnd (int cookie, String name)
         {
             Interop.Tracer.AsyncEnd (cookie, name);
