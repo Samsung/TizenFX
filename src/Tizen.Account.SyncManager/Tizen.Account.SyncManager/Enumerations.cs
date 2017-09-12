@@ -19,64 +19,64 @@ using System;
 namespace Tizen.Account.SyncManager
 {
 	/// <summary>
-	/// Enumeration for the Sync option
+	/// Enumeration for the sync option.
 	/// </summary>
     [Flags]
     public enum SyncOption
     {
         /// <summary>
-        /// Sync job will be operated normally
+        /// The sync job will be operated normally.
         /// </summary>
         None = 0,
 
         /// <summary>
-        /// Sync job will be operated as soon as possible
+        /// The sync job will be operated as soon as possible.
         /// </summary>
         Expedited = 0X01,
 
         /// <summary>
-        /// Sync job will not be performed again when it fails
+        /// The sync job will not be performed again when it fails.
         /// </summary>
         NoRetry = 0X02,
     }
 
 	/// <summary>
-	/// Enumeration for the Sync period
+	/// Enumeration for the sync period.
 	/// </summary>
     public enum SyncPeriod
     {
         /// <summary>
-        /// Sync within 30 minutes
+        /// Sync within 30 minutes.
         /// </summary>
         ThirtyMin = 0,
 
         /// <summary>
-        /// Sync within 1 hour
+        /// Sync within 1 hour.
         /// </summary>
         OneHour,
 
         /// <summary>
-        /// Sync within 2 hours
+        /// Sync within 2 hours.
         /// </summary>
         TwoHours,
 
         /// <summary>
-        /// Sync within 3 hours
+        /// Sync within 3 hours.
         /// </summary>
         ThreeHours,
 
         /// <summary>
-        /// Sync within 6 hours
+        /// Sync within 6 hours.
         /// </summary>
         SixHours,
 
         /// <summary>
-        /// Sync within 12 hours
+        /// Sync within 12 hours.
         /// </summary>
         TwelveHours,
 
         /// <summary>
-        /// Sync within 1 day
+        /// Sync within 1 day.
         /// </summary>
         OneDay,
     }

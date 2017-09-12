@@ -20,70 +20,70 @@ using Tizen.Account.AccountManager;
 namespace Tizen.Account.SyncManager
 {
     /// <summary>
-    /// Class represents information about a sync job request
+    /// This class represents information about the sync job request.
     /// </summary>
     public class SyncJobData
     {
         /// <summary>
-        /// Represents calendar capability
+        /// Represents the calendar capability.
         /// </summary>
         /// <remarks>
-        /// If you want to receive notification about calendar database change, assign it to SyncJobName property of SyncJobData object.
+        /// If you want to receive notification about the calendar database change, assign it to the SyncJobName property of the SyncJobData object.
         /// </remarks>
         public const string CalendarCapability = "http://tizen.org/sync/capability/calendar";
 
         /// <summary>
-        /// Represents contact capability
+        /// Represents the contact capability.
         /// </summary>
         /// <remarks>
-        /// If you want to receive notification about contact database change, assign it to SyncJobName property of SyncJobData object.
+        /// If you want to receive notification about the contact database change, assign it to the SyncJobName property of the SyncJobData object.
         /// </remarks>
         public const string ContactCapability = "http://tizen.org/sync/capability/contact";
 
         /// <summary>
-        /// Represents image capability
+        /// Represents the image capability.
         /// </summary>
         /// <remarks>
-        /// If you want to receive notification about image database change, assign it to SyncJobName property of SyncJobData object.
+        /// If you want to receive notification about the image database change, assign it to the SyncJobName property of the SyncJobData object.
         /// </remarks>
         public const string ImageCapability = "http://tizen.org/sync/capability/image";
 
         /// <summary>
-        /// Represents video capability
+        /// Represents the video capability.
         /// </summary>
         /// <remarks>
-        /// If you want to receive notification about video database change, assign it to SyncJobName property of SyncJobData object.
+        /// If you want to receive notification about the video database change, assign it to the SyncJobName property of the SyncJobData object.
         /// </remarks>
         public const string VideoCapability = "http://tizen.org/sync/capability/video";
 
         /// <summary>
-        /// Represents sound capability
+        /// Represents the sound capability.
         /// </summary>
         /// <remarks>
-        /// If you want to receive notification about sound database change, assign it to SyncJobName property of SyncJobData object.
+        /// If you want to receive notification about the sound database change, assign it to the SyncJobName property of the SyncJobData object.
         /// </remarks>
         public const string SoundCapability = "http://tizen.org/sync/capability/sound";
 
         /// <summary>
-        /// Represents music capability
+        /// Represents the music capability.
         /// </summary>
         /// <remarks>
-        /// If you want to receive notification about music database change, assign it to SyncJobName property of SyncJobData object.
+        /// If you want to receive notification about the music database change, assign it to the SyncJobName property of the SyncJobData object.
         /// </remarks>
         public const string MusicCapability = "http://tizen.org/sync/capability/music";
 
         /// <summary>
-        /// The account instance on which sync operation was requested or @c null in the case of accountless sync operation
+        /// The account instance on which the sync operation was requested or @c null in the case of the accountless sync operation.
         /// </summary>
         public AccountManager.Account Account { get; set; }
 
         /// <summary>
-        /// User data which contains additional information related registered sync job
+        /// User data which contains an additional information related to the registered sync job.
         /// </summary>
         public Bundle UserData { get; set; }
 
         /// <summary>
-        /// A string representing a sync job which has been operated or capability setting to operate data change sync job
+        /// A string representing a sync job which has been operated or capability setting to operate the data change sync job.
         /// </summary>
         public string SyncJobName { get; set; }
     }

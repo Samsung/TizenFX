@@ -21,7 +21,7 @@ using Tizen.Account.AccountManager;
 namespace Tizen.Account.SyncManager
 {
     /// <summary>
-    /// The class contains the delegates to be called upon scheduling a sync operation
+    /// This class contains the delegates to be called upon scheduling a sync operation.
     /// </summary>
     public class SyncAdapter
     {
@@ -29,23 +29,23 @@ namespace Tizen.Account.SyncManager
         Interop.Adapter.SyncAdapterCancelSyncCallback _cancelSyncCallback;
 
         /// <summary>
-        /// Callback function for Sync Adapter's start sync request
+        /// The callback function for the sync adapter's start sync request.
         /// </summary>
         /// <param name="syncParameters"> The sync job parameters corresponding to the sync request. </param>
-        /// <returns> true if sync operation is success, @c false otherwise. </returns>
+        /// <returns> true if the sync operation is success, @c false otherwise. </returns>
         public delegate bool StartSyncCallback(SyncJobData syncParameters);
 
         /// <summary>
-        /// Callback function for Sync Adapter's cancel sync request.
+        /// The callback function for the sync adapter's cancel sync request.
         /// </summary>
         /// <param name="syncParameters"> The sync job parameters corresponding to the sync request. </param>
         public delegate void CancelSyncCallback(SyncJobData syncParameters);
 
         /// <summary>
-        /// Sets client (Sync Adapter) callback functions
+        /// Sets the client (sync adapter) callback functions.
         /// </summary>
-        /// <param name="startSyncCb"> A callback function to be called by Sync Manager for performing sync operation. </param>
-        /// <param name="cancelSyncCb"> A callback function to be called by Sync Manager for cancelling sync operation. </param>
+        /// <param name="startSyncCb"> A callback function to be called by the sync manager for performing the sync operation. </param>
+        /// <param name="cancelSyncCb"> A callback function to be called by the sync manager for cancelling the sync operation. </param>
         /// <exception cref="ArgumentNullException"> Thrown when any of the arguments are null. </exception>
         /// <exception cref="InvalidOperationException"> Thrown when the application calling this API cannot be a sync adapter. </exception>
         public void SetSyncEventCallbacks(StartSyncCallback startSyncCb, CancelSyncCallback cancelSyncCb)
@@ -98,7 +98,7 @@ namespace Tizen.Account.SyncManager
         }
 
         /// <summary>
-        /// Unsets client (Sync Adapter) callback functions
+        /// Unsets the client (sync adapter) callback functions.
         /// </summary>
         /// <exception cref="System.Exception"> Thrown when sync manager internal error occurs. </exception>
         public void UnsetSyncEventCallbacks()
