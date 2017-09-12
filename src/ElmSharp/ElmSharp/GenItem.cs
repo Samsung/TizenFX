@@ -71,9 +71,6 @@ namespace ElmSharp
         /// </summary>
         public GenItemClass ItemClass { get; protected set; }
 
-        /// <summary>
-        /// It's a abstract property. It's implemented by <see cref="GenGridItem.TooltipContent"/> and <see cref="GenListItem.TooltipContent"/>.
-        /// </summary>
         public GetTooltipContentDelegate TooltipContentDelegate
         {
             get
@@ -87,6 +84,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// It's a abstract property.
+        /// </summary>
         public abstract GenItemSelectionMode SelectionMode { get; set; }
 
         public abstract string Cursor { get; set; }
