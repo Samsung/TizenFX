@@ -130,7 +130,7 @@ internal static partial class Interop
 
     internal static SensorEventStruct IntPtrToEventStruct(IntPtr unmanagedVariable)
     {
-        SensorEventStruct outStruct = (SensorEventStruct)Marshal.PtrToStructure(unmanagedVariable, typeof(SensorEventStruct));
+        SensorEventStruct outStruct = (SensorEventStruct)Marshal.PtrToStructure<SensorEventStruct>(unmanagedVariable);
         return outStruct;
     }
 }

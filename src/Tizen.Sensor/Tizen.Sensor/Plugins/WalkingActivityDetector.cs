@@ -61,7 +61,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.walkingActivityDetector"/> class.
+        /// Initializes a new instance of the <see cref="Tizen.Sensor.WalkingActivityDetector"/> class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.activity_recognition</feature>
