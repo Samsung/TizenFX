@@ -27,6 +27,7 @@ namespace Tizen.Multimedia.Remoting
     public static class MediaControlServer
     {
         private static IntPtr _handle = IntPtr.Zero;
+        private static bool? _isRunning;
 
         /// <summary>
         /// Gets a value indicating whether the server is running.
@@ -36,24 +37,78 @@ namespace Tizen.Multimedia.Remoting
         /// <seealso cref="Stop"/>
         public static bool IsRunning
         {
-            get => _handle != IntPtr.Zero;
+            get
+            {
+                if (_isRunning.HasValue == false)
+                {
+                    _isRunning = GetRunningState();
+                }
+
+                return _isRunning.Value;
+            }
         }
 
-        private static void ThrowIfNotRunning()
+        private static bool GetRunningState()
         {
+            IntPtr handle = IntPtr.Zero;
+            try
+            {
+                Native.ConnectDb(out handle).ThrowIfError("Failed to retrieve the running state.");
+
+                Native.CheckServerExist(handle, Applications.Application.Current.ApplicationInfo.ApplicationId,
+                    out var value).ThrowIfError("Failed to retrieve the running state.");
+
+                return value;
+            }
+            finally
+            {
+                if (handle != IntPtr.Zero)
+                {
+                    Native.DisconnectDb(handle);
+                }
+            }
+        }
+
+        private static void EnsureInitializedIfRunning()
+        {
+            if (_handle != IntPtr.Zero)
+            {
+                return;
+            }
+
             if (IsRunning == false)
             {
                 throw new InvalidOperationException("The server is not running.");
             }
+
+            Initialize();
         }
 
         private static IntPtr Handle
         {
             get
             {
-                ThrowIfNotRunning();
+                EnsureInitializedIfRunning();
 
                 return _handle;
+            }
+        }
+
+        private static void Initialize()
+        {
+            Native.Create(out _handle).ThrowIfError("Failed to create media controller server.");
+
+            try
+            {
+                RegisterPlaybackCommandReceivedEvent();
+                _isRunning = true;
+            }
+            catch
+            {
+                Native.Destroy(_handle);
+                _playbackCommandCallback = null;
+                _handle = IntPtr.Zero;
+                throw;
             }
         }
 
@@ -64,33 +119,12 @@ namespace Tizen.Multimedia.Remoting
         /// When the server starts, <see cref="MediaControllerManager.ServerStarted"/> will be raised.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/mediacontroller.server</privilege>
-        /// <exception cref="InvalidOperationException">
-        ///     The server has already started.\n
-        ///     -or-\n
-        ///     An internal error occurs.
-        /// </exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege.</exception>
         /// <seealso cref="MediaControllerManager.ServerStarted"/>
         public static void Start()
         {
-            if (IsRunning)
-            {
-                throw new InvalidOperationException("The server is already running.");
-            }
-
-            Native.Create(out _handle).ThrowIfError("Failed to create media controller server.");
-
-            try
-            {
-                RegisterPlaybackCommandReceivedEvent();
-            }
-            catch
-            {
-                Native.Destroy(_handle);
-                _playbackCommandCallback = null;
-                _handle = IntPtr.Zero;
-                throw;
-            }
+            Initialize();
         }
 
         /// <summary>
@@ -107,12 +141,13 @@ namespace Tizen.Multimedia.Remoting
         /// <seealso cref="MediaControllerManager.ServerStopped"/>
         public static void Stop()
         {
-            ThrowIfNotRunning();
+            EnsureInitializedIfRunning();
 
             Native.Destroy(_handle).ThrowIfError("Failed to stop the server.");
 
             _handle = IntPtr.Zero;
             _playbackCommandCallback = null;
+            _isRunning = false;
         }
 
         /// <summary>
