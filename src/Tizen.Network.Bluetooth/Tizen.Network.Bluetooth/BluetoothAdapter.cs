@@ -35,7 +35,14 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return BluetoothAdapterImpl.Instance.IsBluetoothEnabled;
+                try
+                {
+                    return BluetoothAdapterImpl.Instance.IsBluetoothEnabled;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
         }
 
@@ -85,7 +92,14 @@ namespace Tizen.Network.Bluetooth
             }
             set
             {
-                BluetoothAdapterImpl.Instance.Name = value;
+                try
+                {
+                    BluetoothAdapterImpl.Instance.Name = value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
         }
 
@@ -161,89 +175,186 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The StateChanged event is raised when the Bluetooth adapter state is changed.
         /// </summary>
+        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         static public event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
             {
-                BluetoothAdapterImpl.Instance.StateChanged += value;
+                try
+                {
+                    BluetoothAdapterImpl.Instance.StateChanged += value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
             remove
             {
-                BluetoothAdapterImpl.Instance.StateChanged -= value;
+                try
+                {
+                    BluetoothAdapterImpl.Instance.StateChanged -= value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
         }
 
         /// <summary>
         /// The NameChanged event is raised when the Bluetooth adapter name is changed.
         /// </summary>
+        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         static public event EventHandler<NameChangedEventArgs> NameChanged
         {
             add
             {
-                BluetoothAdapterImpl.Instance.NameChanged += value;
+                try
+                {
+                    BluetoothAdapterImpl.Instance.NameChanged += value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
             remove
             {
-                BluetoothAdapterImpl.Instance.NameChanged -= value;
+                try
+                {
+                    BluetoothAdapterImpl.Instance.NameChanged -= value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
         }
 
         /// <summary>
         /// The VisibilityModeChanged event is raised when the Bluetooth adapter visibility mode is changed.
         /// </summary>
+        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         static public event EventHandler<VisibilityModeChangedEventArgs> VisibilityModeChanged
         {
             add
             {
-                BluetoothAdapterImpl.Instance.VisibilityModeChanged += value;
+                try
+                {
+                    BluetoothAdapterImpl.Instance.VisibilityModeChanged += value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
             remove
             {
-                BluetoothAdapterImpl.Instance.VisibilityModeChanged -= value;
+                try
+                {
+                    BluetoothAdapterImpl.Instance.VisibilityModeChanged -= value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
         }
 
         /// <summary>
         /// The VisibilityDurationChanged event is raised very second until the visibility mode is changed to NonDiscoverable.
         /// </summary>
+        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         static public event EventHandler<VisibilityDurationChangedEventArgs> VisibilityDurationChanged
         {
             add
             {
-                BluetoothAdapterImpl.Instance.VisibilityDurationChanged += value;
+                try
+                {
+                    BluetoothAdapterImpl.Instance.VisibilityDurationChanged += value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
             remove
             {
-                BluetoothAdapterImpl.Instance.VisibilityDurationChanged -= value;
+                try
+                {
+                    BluetoothAdapterImpl.Instance.VisibilityDurationChanged -= value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
         }
 
         /// <summary>
         /// The DiscoveryStateChanged event is raised when the device discovery state is changed.
         /// </summary>
+        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         static public event EventHandler<DiscoveryStateChangedEventArgs> DiscoveryStateChanged
         {
             add
             {
-                BluetoothAdapterImpl.Instance.DiscoveryStateChanged += value;
+                try
+                {
+                    BluetoothAdapterImpl.Instance.DiscoveryStateChanged += value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
             remove
             {
-                BluetoothAdapterImpl.Instance.DiscoveryStateChanged -= value;
+                try
+                {
+                    BluetoothAdapterImpl.Instance.DiscoveryStateChanged -= value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
         }
 
         /// <summary>
         /// This event is called when the LE scan result is obtained.
         /// </summary>
+        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         static public event EventHandler<AdapterLeScanResultChangedEventArgs> ScanResultChanged
         {
             add
             {
-                BluetoothLeImplAdapter.Instance.AdapterLeScanResultChanged += value;
+                try
+                {
+                    BluetoothLeImplAdapter.Instance.AdapterLeScanResultChanged += value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
-            remove {
-                BluetoothLeImplAdapter.Instance.AdapterLeScanResultChanged -= value;
+            remove
+            {
+                try
+                {
+                    BluetoothLeImplAdapter.Instance.AdapterLeScanResultChanged -= value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
             }
         }
 
@@ -336,7 +447,14 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         static public bool IsServiceUsed(string serviceUuid)
         {
-            return BluetoothAdapterImpl.Instance.IsServiceUsed(serviceUuid);
+            try
+            {
+                return BluetoothAdapterImpl.Instance.IsServiceUsed(serviceUuid);
+            }
+            catch (TypeInitializationException e)
+            {
+                throw e.InnerException;
+            }
         }
 
         /// <summary>
