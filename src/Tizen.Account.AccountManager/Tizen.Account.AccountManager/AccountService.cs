@@ -593,8 +593,6 @@ namespace Tizen.Account.AccountManager
         /// <remarks>
         /// ContentUpdate event is triggered if the MediaInformation updated/deleted or new information is inserted.
         /// </remarks>
-        /// <param name="sender">An object that contains information about sender</param>
-        /// <param name="e">A ContentUpdatedEventArgs object that contains information about the update operation.</param>
         /// <privilege>http://tizen.org/privilege/account.read</privilege>
         /// <feature>http://tizen.org/feature/account</feature>
         /// <exception cref="InvalidOperationException">In case of any DB error.</exception>
