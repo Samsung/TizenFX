@@ -34,6 +34,7 @@ internal static partial class Interop
             CounterClockwise
         }
 
+        [StructLayout(LayoutKind.Sequential)]
         internal struct Eext_Rotary_Event_Info
         {
             public Eext_Rotary_Event_Direction Direction;
