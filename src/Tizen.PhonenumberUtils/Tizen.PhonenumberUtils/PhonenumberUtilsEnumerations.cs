@@ -19,6 +19,7 @@ namespace Tizen.PhonenumberUtils
     /// <summary>
     /// Enumeration for language type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum Language
     {
         /// <summary>
@@ -144,13 +145,13 @@ namespace Tizen.PhonenumberUtils
         /// <summary>
         /// Current System Value
         /// </summary>
-        System,
-        Max
+        System
     }
 
     /// <summary>
     /// Enumeration for region type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum Region
     {
         /// <summary>
@@ -1132,7 +1133,6 @@ namespace Tizen.PhonenumberUtils
         /// <summary>
         /// Current System Value
         /// </summary>
-        System,
-        Max
+        System
     }
 }
