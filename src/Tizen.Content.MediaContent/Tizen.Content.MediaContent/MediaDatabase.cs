@@ -356,10 +356,9 @@ namespace Tizen.Content.MediaContent
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            using (var cbKeeper = ObjectKeeper.Get(GetScanCompletedCallback(tcs)))
+            using (var cbKeeper = ObjectKeeper.Get(GetScanCompletedCallback(tcs, cancellationToken)))
             using (RegisterCancellationAction(tcs, folderPath, cancellationToken))
             {
-
                 Interop.Content.ScanFolder(folderPath, recursive, cbKeeper.Target)
                     .ThrowIfError("Failed to scan");
 
@@ -367,13 +366,21 @@ namespace Tizen.Content.MediaContent
             }
         }
 
-        private static Interop.Content.MediaScanCompletedCallback GetScanCompletedCallback(TaskCompletionSource<bool> tcs)
+        private static Interop.Content.MediaScanCompletedCallback GetScanCompletedCallback(TaskCompletionSource<bool> tcs,
+            CancellationToken cancellationToken)
         {
             return (scanResult, _) =>
             {
                 if (scanResult == MediaContentError.None)
                 {
-                    tcs.TrySetResult(true);
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        tcs.TrySetCanceled();
+                    }
+                    else
+                    {
+                        tcs.TrySetResult(true);
+                    }
                 }
                 else
                 {
@@ -398,7 +405,6 @@ namespace Tizen.Content.MediaContent
                 }
 
                 Interop.Content.CancelScanFolder(folderPath).ThrowIfError("Failed to cancel scanning");
-                tcs.TrySetCanceled();
             });
         }
 
