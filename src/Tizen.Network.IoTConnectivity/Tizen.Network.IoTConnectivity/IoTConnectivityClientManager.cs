@@ -515,6 +515,7 @@ namespace Tizen.Network.IoTConnectivity
                         ResourceFoundEventArgs e = new ResourceFoundEventArgs()
                         {
                             RequestId = requestId,
+                            EventContinue = true,
                             Resource = resource
                         };
                         ResourceFound?.Invoke(null, e);
@@ -924,6 +925,7 @@ namespace Tizen.Network.IoTConnectivity
             PlatformInformationFoundEventArgs e = new PlatformInformationFoundEventArgs()
             {
                 RequestId = requestId,
+                EventContinue = true,
                 PlatformId = (platformId != IntPtr.Zero) ? Marshal.PtrToStringAnsi(platformId) : string.Empty,
                 ManufacturerName = (manufacturerName != IntPtr.Zero) ? Marshal.PtrToStringAnsi(manufacturerName) : string.Empty,
                 ManufacturerURL = (manufacturerUrl != IntPtr.Zero) ? Marshal.PtrToStringAnsi(manufacturerUrl) : string.Empty,
