@@ -35,7 +35,6 @@ namespace Tizen.Pims.Contacts
         private EventHandler<DBStatusChangedEventArgs> _dbStatusChanged;
         private Dictionary<string, EventHandler<DBChangedEventArgs>> _eventHandlerMap = new Dictionary<string, EventHandler<DBChangedEventArgs>>();
         private Dictionary<string, Interop.Database.ContactsDBChangedCallback> _callbackMap = new Dictionary<string, Interop.Database.ContactsDBChangedCallback>();
-        private Interop.Database.ContactsDBChangedCallback _dbChangedDelegate;
 
         internal ContactsDatabase()
         {
