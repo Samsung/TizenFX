@@ -375,6 +375,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Default constructor. Initializes an object of the CellularAuthInformation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CellularAuthInformation()
         {
         }

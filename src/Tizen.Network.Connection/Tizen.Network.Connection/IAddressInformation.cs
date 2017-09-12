@@ -113,6 +113,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// The DHCP server address. It is only supported for the IPV4 address family.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Server address of the DHCP.</value>
         System.Net.IPAddress DhcpServerAddress { get; }
     }

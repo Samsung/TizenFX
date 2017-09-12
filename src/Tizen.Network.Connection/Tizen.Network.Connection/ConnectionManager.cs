@@ -304,6 +304,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Adds a route to the routing table.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="family">The address family.</param>
         /// <param name="interfaceName">The name of the network interface.</param>
         /// <param name="hostAddress">The IP address of the host.</param>
@@ -328,6 +329,7 @@ namespace Tizen.Network.Connection
         /// <summary>
         /// Removes a route from the routing table.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="family">The address family.</param>
         /// <param name="interfaceName">The name of network interface.</param>
         /// <param name="hostAddress">The IP address of the host.</param>
