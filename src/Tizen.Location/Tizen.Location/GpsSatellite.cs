@@ -68,7 +68,7 @@ namespace Tizen.Location
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public string Nmea
         {
@@ -100,7 +100,7 @@ namespace Tizen.Location
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public int ActiveCount
         {
@@ -132,7 +132,7 @@ namespace Tizen.Location
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public int InViewCount
         {
@@ -164,7 +164,7 @@ namespace Tizen.Location
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public IList<SatelliteInformation> Satellites
         {
@@ -233,7 +233,7 @@ namespace Tizen.Location
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public event EventHandler<SatelliteStatusChangedEventArgs> SatelliteStatusUpdated
         {
@@ -327,21 +327,18 @@ namespace Tizen.Location
         /// The azimuth information of the satellite.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="azimuth"> The azimuth value of the satellite in degrees.</param>
         public uint Azimuth { get; private set; }
 
         /// <summary>
         /// The elevation information of the satellite.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="azimuth"> The azimuth value of the satellite in degrees.</param>
         public uint Elevation { get; private set; }
 
         /// <summary>
         /// The PRN of the satellite.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="azimuth"> The azimuth value of the satellite in degrees.</param>
         public uint Prn { get; private set; }
 
         /// <summary>

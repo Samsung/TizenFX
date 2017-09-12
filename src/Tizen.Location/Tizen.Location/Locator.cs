@@ -266,7 +266,7 @@ namespace Tizen.Location
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location</privilege>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public bool EnableMock
         {
@@ -317,7 +317,7 @@ namespace Tizen.Location
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public void Start()
         {
@@ -371,7 +371,7 @@ namespace Tizen.Location
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public void SetMockLocation(Location location)
         {
@@ -400,7 +400,7 @@ namespace Tizen.Location
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public void ClearMock()
         {
@@ -422,7 +422,7 @@ namespace Tizen.Location
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public Task<Location> GetLocationAsync(int timeout)
         {
@@ -468,7 +468,7 @@ namespace Tizen.Location
         /// <privilege>http://tizen.org/privilege/location</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="UnauthroizedAccessException">Thrown when the application has no privilege to use the location.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the location.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public Location GetLocation()
         {
