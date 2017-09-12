@@ -17,7 +17,7 @@
 internal static partial class Interop
 {
     /// <summary>
-    /// Wrapper class for maintaining names of dependent native libraries.
+    /// The Wrapper class for maintaining names of dependent native libraries.
     /// </summary>
     internal static partial class Libraries
     {

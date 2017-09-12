@@ -23,25 +23,25 @@ namespace Tizen.Account.SyncManager
 {
     /// <summary>
     /// The SyncClient APIs for managing the sync operations. Applications will call these APIs to schedule their sync operations.
-    /// Sync service maintains sync requests from all the applications and invokes their respective callback methods to perform account synchronization operations.
+    /// The sync service maintains sync requests from all the applications and invokes their respective callback methods to perform account synchronization operations.
     /// </summary>
     public static class SyncClient
     {
         /// <summary>
-        /// The constructor
+        /// The constructor.
         /// </summary>
         static SyncClient()
         {
         }
 
         /// <summary>
-        /// Requests Sync Manager to perform one time sync operation
+        /// Requests the sync manager to perform one time sync operation.
         /// </summary>
-        /// <param name="request"> Sync job information of the sync job request. </param>
-        /// <param name="syncOptions"> sync options determine an way to operate sync job and can be used as ORing. </param>
+        /// <param name="request"> The sync job information of the sync job request. </param>
+        /// <param name="syncOptions"> Sync options determine a way to operate the sync job and can be used as ORing. </param>
         /// <exception cref="ArgumentNullException"> Thrown when any of the arugments are null. </exception>
-        /// <exception cref="InvalidOperationException"> Thrown when the application calling this api doesn't have a sync adapter. </exception>
-        /// <returns> A unique value which can manage sync jobs. The number of sync job id is limited as less than a hundred. </returns>
+        /// <exception cref="InvalidOperationException"> Thrown when the application calling this API doesn't have a sync adapter. </exception>
+        /// <returns> An unique value which can manage sync jobs. The number of sync job ID is limite as it is less than hundred. </returns>
         public static int RequestOnDemandSyncJob(SyncJobData request, SyncOption syncOptions)
         {
             if (request == null || request.SyncJobName == null)
@@ -63,16 +63,16 @@ namespace Tizen.Account.SyncManager
         }
 
         /// <summary>
-        /// Requests Sync Manager to perform periodic sync operations
+        /// Requests the sync manager to perform periodic sync operations.
         /// </summary>
-        /// <param name="request"> Sync job information of the sync job request. </param>
-        /// <param name="period"> Determines time interval of periodic sync. The periodic sync operation can be triggered in that interval, but it does not guarantee exact time. The minimum value is 30 minutes. </param>
-        /// <param name="syncOptions"> sync options determine an way to operate sync job and can be used as ORing. </param>
+        /// <param name="request"> The sync job information of the sync job request. </param>
+        /// <param name="period"> Determines the time interval of the periodic sync. The periodic sync operation can be triggered in that interval, but it does not guarantee the exact time. The minimum value is 30 minutes. </param>
+        /// <param name="syncOptions"> Sync options determine a way to operate the sync job and can be used as ORing. </param>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
-        /// <exception cref="UnauthorizedAccessException"> In case of privilege not defined. </exception>
+        /// <exception cref="UnauthorizedAccessException"> In case of a privilege not defined. </exception>
         /// <exception cref="ArgumentNullException"> Thrown when any of the arguments are null. </exception>
         /// <exception cref="InvalidOperationException"> Thrown when the application calling this API doesn't have a sync adapter. </exception>
-        /// <returns> A unique value which can manage sync jobs. The number of sync job id is limited as less than a hundred. </returns>
+        /// <returns> A unique value which can manage sync jobs. The number of sync job IDs is limited as it is less than hundred. </returns>
         public static int AddPeriodicSyncJob(SyncJobData request, SyncPeriod period, SyncOption syncOptions)
         {
             if (request == null || request.SyncJobName == null)
@@ -94,16 +94,16 @@ namespace Tizen.Account.SyncManager
         }
 
         /// <summary>
-        /// Requests Sync Manager to perform sync operations whenever corresponding DB changed
+        /// Requests the sync manager to perform sync operations whenever the corresponding DB is changed.
         /// </summary>
-        /// <param name="request"> Sync job information of the sync job request. </param>
-        /// <param name="syncOptions"> sync options determine an way to operate sync job and can be used as ORing. </param>
+        /// <param name="request"> The sync job information of the sync job request. </param>
+        /// <param name="syncOptions"> Sync options determine a way to operate the sync job and can be used as ORing. </param>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
-        /// <exception cref="UnauthorizedAccessException"> In case of privilege not defined. </exception>
+        /// <exception cref="UnauthorizedAccessException"> In case of a privilege is not defined. </exception>
         /// <exception cref="ArgumentNullException"> Thrown when any of the arguments are null. </exception>
         /// <exception cref="InvalidOperationException"> Thrown when the application calling this API doesn't have a sync adapter. </exception>
-        /// <returns> A unique value which can manage sync jobs. The number of sync job id is limited as less than a hundred. </returns>
+        /// <returns> A unique value which can manage sync jobs. The number of sync job IDs is limited as it is less than hundred. </returns>
         public static int AddDataChangeSyncJob(SyncJobData request, SyncOption syncOptions)
         {
             if (request == null || request.SyncJobName == null)
@@ -125,7 +125,7 @@ namespace Tizen.Account.SyncManager
         }
 
         /// <summary>
-        /// Get all the sync jobs registered with the sync manager
+        /// Gets all the sync jobs registered with the sync manager.
         /// </summary>
         /// <returns>
         /// Returns the list of SyncJobData corresponding to sync requests.
@@ -160,9 +160,9 @@ namespace Tizen.Account.SyncManager
         }
 
         /// <summary>
-        /// Requests Sync Manager to remove corresponding sync job job based on id
+        /// Requests the sync manager to remove the corresponding sync job based on the ID.
         /// </summary>
-        /// <param name="id"> A unique value of each sync job, it can be used to search specific sync job and remove it. </param>
+        /// <param name="id"> A unique value of each sync job, it can be used to search a specific sync job and remove it. </param>
         /// <exception cref="ArgumentException"> Thrown if the input arugments is invalid. </exception>
         public static void RemoveSyncJob(int id)
         {
