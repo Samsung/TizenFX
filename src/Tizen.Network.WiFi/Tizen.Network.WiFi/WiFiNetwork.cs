@@ -210,7 +210,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The Received signal strength indication(RSSI).
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Represents Rssi level of WiFi.</value>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when WiFi is not supported.</exception>
