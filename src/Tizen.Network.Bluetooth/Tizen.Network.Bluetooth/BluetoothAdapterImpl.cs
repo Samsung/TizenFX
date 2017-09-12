@@ -598,7 +598,6 @@ namespace Tizen.Network.Bluetooth
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error (Globals.LogTag, "Failed to deinitialize bluetooth, Error - " + (BluetoothError)ret);
-                BluetoothErrorFactory.ThrowBluetoothException (ret);
             }
             else
             {
