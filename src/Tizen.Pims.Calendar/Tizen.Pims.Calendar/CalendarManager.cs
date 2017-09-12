@@ -21,6 +21,7 @@ namespace Tizen.Pims.Calendar
     /// <summary>
     /// A class for managing calendar information. It allows applications to use calendar service.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class CalendarManager : IDisposable
     {
         private CalendarDatabase _db = null;
@@ -28,6 +29,9 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Create a manager.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/privilege/calendar</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public CalendarManager()
         {
@@ -86,6 +90,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Get database.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The database instance</value>
         public CalendarDatabase Database
         {

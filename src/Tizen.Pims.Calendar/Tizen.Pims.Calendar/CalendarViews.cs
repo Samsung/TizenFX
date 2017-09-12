@@ -21,6 +21,7 @@ namespace Tizen.Pims.Calendar
     /// <summary>
     /// This namespace provides information about views with properties.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     /// <remarks>
     /// s are provided to access and handle entities. A view is a structure, which has property elements.
     /// A view is almost the same as a database "VIEW", which limits access and guarantees performance.
@@ -345,1154 +346,1432 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Describes properties of a Book record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Book
         {
             /// <summary>
             /// Identifier of this calendar book view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.calendar_view.book";
             /// <summary>
             /// DB record ID of the calendar book
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id          = (uint)Property.Id.BookId;
             /// <summary>
             /// Unique identifier
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Uid         = (uint)Property.Id.BookUid;
             /// <summary>
             /// Calendar book name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Name        = (uint)Property.Id.BookName;
             /// <summary>
             /// Calendar book description
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Description = (uint)Property.Id.BookDescription;
             /// <summary>
             /// Calendar book color for UX
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Color       = (uint)Property.Id.BookColor;
             /// <summary>
             /// Location of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Location    = (uint)Property.Id.BookLocation;
             /// <summary>
             /// Visibility of the calendar book for UX
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Visibility  = (uint)Property.Id.BookVisibility;
             /// <summary>
             /// Currently NOT Used
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncEvent   = (uint)Property.Id.BookSyncEvent;
             /// <summary>
             /// Account for this calendar
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AccountId   = (uint)Property.Id.BookAccountId;
             /// <summary>
             /// Type of calendar contents(refer to the CalendarTypes.StoreType)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint StoreType   = (uint)Property.Id.BookStoreType;
             /// <summary>
             /// Generic data for use by syncing
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData1   = (uint)Property.Id.BookSyncData1;
             /// <summary>
             /// Generic data for use by syncing
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData2   = (uint)Property.Id.BookSyncData2;
             /// <summary>
             /// Generic data for use by syncing
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData3   = (uint)Property.Id.BookSyncData3;
             /// <summary>
             /// Generic data for use by syncing
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData4   = (uint)Property.Id.BookSyncData4;
             /// <summary>
             /// Calendar book mode(refer to the CalendarTypes.BookMode)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Mode        = (uint)Property.Id.BookMode;
         }
 
         /// <summary>
         /// Describes properties of a Event record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
         public static class Event
         {
             /// <summary>
             /// Identifier of this event view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.calendar_view.event";
             /// <summary>
             /// DB record ID of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id                 = (uint)Property.Id.EventId;
             /// <summary>
             /// ID of the calendar book to which the event belongs
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint BookId             = (uint)Property.Id.EventBookId;
             /// <summary>
             /// The short description of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Summary            = (uint)Property.Id.EventSummary;
             /// <summary>
             /// The description of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Description        = (uint)Property.Id.EventDescription;
             /// <summary>
             /// The location of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Location           = (uint)Property.Id.EventLocation;
             /// <summary>
             /// The category of the event. For example APPOINTMENT, BIRTHDAY
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Categories         = (uint)Property.Id.EventCategories;
             /// <summary>
             /// The exception list of the event. If this event has a recurrence rule, the instance of the exdate is removed. Format is "YYYYMMDD"(allday event) or "YYYYMMDDTHHMMSS". Multiple exceptions can be included with a comma
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Exdate             = (uint)Property.Id.EventExdate;
             /// <summary>
             /// The status of event(refer to the CalendarTypes.EventStatus).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint EventStatus        = (uint)Property.Id.EventEventStatus;
             /// <summary>
             /// The priority of event(refer to the CalendarTypes.Priority).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Priority           = (uint)Property.Id.EventPriority;
             /// <summary>
             /// The timezone_id of the event if it exists.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Timezone           = (uint)Property.Id.EventTimezone;
             /// <summary>
             /// The person_id of the event if the event is a birthday. Refer to the contacts-service
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId          = (uint)Property.Id.EventContactId;
             /// <summary>
             /// The busy status of event(refer to the CalendarTypes.BusyStatus).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint BusyStatus         = (uint)Property.Id.EventBusyStatus;
             /// <summary>
             /// The Sensitivity of event(refer to the CalendarTypes.Sensitivity).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Sensitivity        = (uint)Property.Id.EventSensitivity;
             /// <summary>
             /// The unique ID of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Uid                = (uint)Property.Id.EventUid;
             /// <summary>
             /// The name of organizer of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint OrganizerName      = (uint)Property.Id.EventOrganizerName;
             /// <summary>
             /// The email address of the organizer of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint OrganizerEmail     = (uint)Property.Id.EventOrganizerEmail;
             /// <summary>
             /// The meeting status of event(refer to the CalendarTypes.MeetingStatus).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint MeetingStatus      = (uint)Property.Id.EventMeetingStatus;
             /// <summary>
             /// The ID of the original event if the event is an exception.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint OriginalEventId    = (uint)Property.Id.EventOriginalEventId;
             /// <summary>
             /// The latitude of the location of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Latitude           = (uint)Property.Id.EventLatitude;
             /// <summary>
             /// The longitude of the location of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Longitude          = (uint)Property.Id.EventLongitude;
             /// <summary>
             /// ID of the email_id. Refer to the email-service.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint EmailId            = (uint)Property.Id.EventEmailId;
             /// <summary>
             /// The time when the event is created
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint CreatedTime        = (uint)Property.Id.EventCreatedTime;
             /// <summary>
             /// The time when the event is updated
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LastModifiedTime   = (uint)Property.Id.EventLastModifiedTime;
             /// <summary>
             ///  Whether or not the event is deleted
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsDeleted          = (uint)Property.Id.EventIsDeleted;
             /// <summary>
             /// The frequent type of event recurrence(refer to the CalendarTypes.Recurrence).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Freq               = (uint)Property.Id.EventFreq;
             /// <summary>
             /// The range type of event recurrence(refer to the CalendarTypes.RangeType).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RangeType          = (uint)Property.Id.EventRangeType;
             /// <summary>
             /// The end time of the event recurrence. Only if this is used with RangeType.Until.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Until              = (uint)Property.Id.EventUntil;
             /// <summary>
             /// The count of the event recurrence. Only if this is used with RangeType.Count.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Count              = (uint)Property.Id.EventCount;
             /// <summary>
             /// The interval of the event recurrence
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Interval           = (uint)Property.Id.EventInterval;
             /// <summary>
             /// The second list of the event recurrence. The value can be from 0 to 59. The list is separated by comma
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Bysecond           = (uint)Property.Id.EventBysecond;
             /// <summary>
             /// The minute list of the event recurrence. The value can be from 0 to 59. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Byminute           = (uint)Property.Id.EventByminute;
             /// <summary>
             /// The hour list of the event recurrence. The value can be from 0 to 23. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Byhour             = (uint)Property.Id.EventByhour;
             /// <summary>
             /// The day list of the event recurrence. The value can be SU, MO, TU, WE, TH, FR, SA. The list is separated by commas.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Byday              = (uint)Property.Id.EventByday;
             /// <summary>
             /// The month day list of the event recurrence. The value can be from 1 to 31 and from -31 to -1. The list is separated by commas.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Bymonthday         = (uint)Property.Id.EventBymonthday;
             /// <summary>
             /// The year day list of the event recurrence. The value can be from 1 to 366 and from -366 to -1. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Byyearday          = (uint)Property.Id.EventByyearday;
             /// <summary>
             /// The week number list of the event recurrence. The value can be from 1 to 53 and from -53 to -1. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Byweekno           = (uint)Property.Id.EventByweekno;
             /// <summary>
             /// The month list of the event recurrence. The value can be from 1 to 12. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Bymonth            = (uint)Property.Id.EventBymonth;
             /// <summary>
             /// The position list of the event recurrence. The value can be from 1 to 366 and from -366 to -1. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Bysetpos           = (uint)Property.Id.EventBysetpos;
             /// <summary>
             /// The start day of the week(refer to the CalendarTypes.WeekDay).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Wkst               = (uint)Property.Id.EventWkst;
             /// <summary>
             /// RECURRENCE-ID of RFC #2445
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RecurrenceId       = (uint)Property.Id.EventRecurrenceId;
             /// <summary>
             /// RDATE of RFC #2445
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Rdate              = (uint)Property.Id.EventRdate;
             /// <summary>
             /// Whether or not the event has an attendee list
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasAttendee        = (uint)Property.Id.EventHasAttendee;
             /// <summary>
             /// Whether or not the event has an alarm list
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasAlarm           = (uint)Property.Id.EventHasAlarm;
             /// <summary>
             /// The sync data of the event. If developer need to save some information related to the event, they can use this property
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData1          = (uint)Property.Id.EventSyncData1;
             /// <summary>
             /// The sync data of the event. If developer need to save some information related to the event, they can use this property
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData2          = (uint)Property.Id.EventSyncData2;
             /// <summary>
             /// The sync data of the event. If developer need to save some information related to the event, they can use this property
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData3          = (uint)Property.Id.EventSyncData3;
             /// <summary>
             /// The sync data of the event. If developer need to save some information related to the event, they can use this property
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData4          = (uint)Property.Id.EventSyncData4;
             /// <summary>
             /// The start time of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Start              = (uint)Property.Id.EventStart;
             /// <summary>
             /// The end time of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint End                = (uint)Property.Id.EventEnd;
             /// <summary>
             /// The alarm list of the event.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Alarm              = (uint)Property.Id.EventAlarm;
             /// <summary>
             /// The attendee list of the event.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Attendee           = (uint)Property.Id.EventAttendee;
             /// <summary>
             /// The Calendar system type(refer to the CalendarTypes.SystemType).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint CalendarSystemType = (uint)Property.Id.EventCalendarSystemType;
             /// <summary>
             /// The timezone of the start_time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint StartTzid          = (uint)Property.Id.EventStartTzid;
             /// <summary>
             /// The timezone of the end_time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint EndTzid            = (uint)Property.Id.EventEndTzid;
             /// <summary>
             /// The exception mod event list of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Exception          = (uint)Property.Id.EventException;
             /// <summary>
             /// The extended property list of the event.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Extended           = (uint)Property.Id.EventExtended;
             /// <summary>
             /// The event is an allday event or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsAllday           = (uint)Property.Id.EventIsAllday;
             /// <summary>
             /// The linked event count
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LinkCount          = (uint)Property.Id.EventLinkCount;
             /// <summary>
             /// The event is an base linked event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LinkBaseId         = (uint)Property.Id.EventLinkBaseId;
         }
 
         /// <summary>
         /// Describes properties of a Todo record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Todo
         {
             /// <summary>
             /// Identifier of this todo view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.calendar_view.todo";
             /// <summary>
             /// DB record ID of the todo
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id                = (uint)Property.Id.TodoId;
             /// <summary>
             /// ID of the calendar book to which the todo belongs
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint BookId            = (uint)Property.Id.TodoBookId;
             /// <summary>
             /// The short description of the todo
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Summary           = (uint)Property.Id.TodoSummary;
             /// <summary>
             /// The description of the todo
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Description       = (uint)Property.Id.TodoDescription;
             /// <summary>
             /// The location of the todo
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Location          = (uint)Property.Id.TodoLocation;
             /// <summary>
             /// The category of the todo. i.g. APPOINTMENT, BIRTHDAY
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Categories        = (uint)Property.Id.TodoCategories;
             /// <summary>
             /// The status of todo(refer to the CalendarTypes.TodoStatus).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint TodoStatus        = (uint)Property.Id.TodoStatus;
             /// <summary>
             /// The Priority of todo(refer to the CalendarTypes.Priority).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Priority          = (uint)Property.Id.TodoPriority;
             /// <summary>
             /// The Sensitivity of todo(refer to the CalendarTypes.Sensitivity).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Sensitivity       = (uint)Property.Id.TodoSensitivity;
             /// <summary>
             /// The unique ID of the todo
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Uid               = (uint)Property.Id.TodoUid;
             /// <summary>
             /// The latitude of the location of the todo
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Latitude          = (uint)Property.Id.TodoLatitude;
             /// <summary>
             /// The longitude of the location of the todo
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Longitude         = (uint)Property.Id.TodoLongitude;
             /// <summary>
             /// The progression of the todo. The value can be from 0 to 100
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Progress          = (uint)Property.Id.TodoProgress;
             /// <summary>
             /// The time when the todo is create
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint CreatedTime       = (uint)Property.Id.TodoCreatedTime;
             /// <summary>
             /// The time when the todo is updated
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LastModifiedTime  = (uint)Property.Id.TodoLastModifiedTime;
             /// <summary>
             /// The time when the todo is completed
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint CompletedTime     = (uint)Property.Id.TodoCompletedTime;
             /// <summary>
             ///  Whether or not the todo is deleted
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsDeleted         = (uint)Property.Id.TodoIsDeleted;
             /// <summary>
             /// The frequent type of todo recurrence(refer to the CalendarTypes.Recurrence).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Freq              = (uint)Property.Id.TodoFreq;
             /// <summary>
             /// The range type of todo recurrence(refer to the CalendarTypes.RangeType).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RangeType         = (uint)Property.Id.TodoRangeType;
             /// <summary>
             /// The end time of the todo recurrence. Only if this is used with RangeType.Until.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Until             = (uint)Property.Id.TodoUntil;
             /// <summary>
             /// The count of the todo recurrence. Only if this is used with RangeType.Count.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Count             = (uint)Property.Id.TodoCount;
             /// <summary>
             /// The interval of the todo recurrence
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Interval      = (uint)Property.Id.TodoInterval;
             /// <summary>
             /// The second list of the todo recurrence. The value can be from 0 to 59. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Bysecond          = (uint)Property.Id.TodoBysecond;
             /// <summary>
             /// The minute list of the todo recurrence. The value can be from 0 to 59. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Byminute          = (uint)Property.Id.TodoByminute;
             /// <summary>
             /// The hour list of the todo recurrence. The value can be from 0 to 23. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Byhour            = (uint)Property.Id.TodoByhour;
             /// <summary>
             /// The day list of the todo recurrence. The value can be SU, MO, TU, WE, TH, FR, SA. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Byday             = (uint)Property.Id.TodoByday;
             /// <summary>
             /// The month day list of the todo recurrence. The value can be from 1 to 31 and from -31 to -1. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Bymonthday        = (uint)Property.Id.TodoBymonthday;
             /// <summary>
             /// The year day list of the todo recurrence. The value can be from 1 to 366 and from -366 to -1. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Byyearday         = (uint)Property.Id.TodoByyearday;
             /// <summary>
             /// The week number list of the todo recurrence. The value can be from 1 to 53 and from -53 to -1. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Byweekno          = (uint)Property.Id.TodoByweekno;
             /// <summary>
             /// The month list of the todo recurrence. The value can be from 1 to 12. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Bymonth           = (uint)Property.Id.TodoBymonth;
             /// <summary>
             /// The position list of the todo recurrence. The value can be from 1 to 366 and from -366 to -1. The list is separated by commas
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Bysetpos          = (uint)Property.Id.TodoBysetpos;
             /// <summary>
             /// The start day of the week(refer to the CalendarTypes.WeekDay).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Wkst              = (uint)Property.Id.TodoWkst;
             /// <summary>
             /// Whether or not the todo has an alarm list
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasAlarm          = (uint)Property.Id.TodoHasAlarm;
             /// <summary>
             /// The sync data of the todo. If developers need to save some information related to the todo, they can use this property
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData1         = (uint)Property.Id.TodoSyncData1;
             /// <summary>
             /// The sync data of the todo. If developers need to save some information related to the todo, they can use this property
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData2         = (uint)Property.Id.TodoSyncData2;
             /// <summary>
             /// The sync data of the todo. If developers need to save some information related to the todo, they can use this property
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData3         = (uint)Property.Id.TodoSyncData3;
             /// <summary>
             /// The sync data of the todo. If developers need to save some information related to the todo, they can use this property
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData4         = (uint)Property.Id.TodoSyncData4;
             /// <summary>
             /// The start time of the todo
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Start             = (uint)Property.Id.TodoStart;
             /// <summary>
             /// The due time of the todo
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Due               = (uint)Property.Id.TodoDue;
             /// <summary>
             /// The alarm list of the todo.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Alarm             = (uint)Property.Id.TodoAlarm;
             /// <summary>
             /// The timezone of the start_time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint StartTzid         = (uint)Property.Id.TodoStartTzid;
             /// <summary>
             /// The timezone of the due_time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DueTzid           = (uint)Property.Id.TodoDueTzid;
             /// <summary>
             /// The name of the organizer of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint OrganizerName     = (uint)Property.Id.TodoOrganizerName;
             /// <summary>
             /// The email address of the organizer of the todo
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint OrganizerEmail    = (uint)Property.Id.TodoOrganizerEmail;
             /// <summary>
             /// Whether or not the todo has an attendee list
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasAttendee       = (uint)Property.Id.TodoHasAttendee;
             /// <summary>
             /// The attendee list of the todo.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Attendee          = (uint)Property.Id.TodoAttendee;
             /// <summary>
             /// The extended property list of the todo.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Extended          = (uint)Property.Id.TodoExtended;
             /// <summary>
             /// The todo is an allday event or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsAllday          = (uint)Property.Id.TodoIsAllday;
         }
 
         /// <summary>
         /// Describes properties of a Timezone record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Timezone
         {
             /// <summary>
             /// Identifier of this timezone view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.calendar_view.timezone";
             /// <summary>
             /// DB record ID of the timezone
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id                          = (uint)Property.Id.TimezoneId;
             /// <summary>
             /// UTC offset which is in use when the onset of this time zone observance begins. Valid values are -720(-12:00) to 840(+14:00)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint TzOffsetFromGmt             = (uint)Property.Id.TimezoneTzOffsetFromGmt;
             /// <summary>
             /// Name of the Standard Time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint StandardName                = (uint)Property.Id.TimezoneStandardName;
             /// <summary>
             /// Starting month of the Standard Time. Month is 0-based. eg, 0 for January
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint StdStartMonth               = (uint)Property.Id.TimezoneStdStartMonth;
             /// <summary>
             /// Starting day-of-week-in-month of the Standard Time. Day is 1-based
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint StdStartPositionOfWeek      = (uint)Property.Id.TimezoneStdStartPositionOfWeek;
             /// <summary>
             /// Starting day-of-week of the Standard Time. Valid values are 1(SUNDAY) to 7(SATURDAY)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint StdStartDay                 = (uint)Property.Id.TimezoneStdStartDay;
             /// <summary>
             /// Starting hour of the Standard Time. Valid values are 0 to 23
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint StdStartHour                = (uint)Property.Id.TimezoneStdStartHour;
             /// <summary>
             /// The number of minutes added during the Standard Time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint StandardBias                = (uint)Property.Id.TimezoneStandardBias;
             /// <summary>
             /// Name of Daylight
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DayLightName                = (uint)Property.Id.TimezoneDayLightName;
             /// <summary>
             /// Starting month of Daylight. Month is 0-based. eg, 0 for January
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DayLightStartMonth          = (uint)Property.Id.TimezoneDayLightStartMonth;
             /// <summary>
             /// Starting day-of-week-in-month of Daylight. Day is 1-based
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DayLightStartPositionOfWeek = (uint)Property.Id.TimezoneDayLightStartPositionOfWeek;
             /// <summary>
             /// Starting day-of-week of Daylight. Valid values are 1(SUNDAY) to 7(SATURDAY)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DayLightStartDay            = (uint)Property.Id.TimezoneDayLightStartDay;
             /// <summary>
             /// Starting hour of Daylight. Valid values are 0 to 23
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DayLightStartHour           = (uint)Property.Id.TimezoneDayLightStartHour;
             /// <summary>
             /// The number of minutes added during Daylight Time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DayLightBias                = (uint)Property.Id.TimezoneDayLightBias;
             /// <summary>
             /// DB record ID of a related calendar book
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint CalendarId                  = (uint)Property.Id.TimezoneCalendarId;
         }
 
         /// <summary>
         /// Describes properties of a Attendee record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Attendee
         {
             /// <summary>
             /// Identifier of this calendar attendee view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.calendar_view.attendee";
             /// <summary>
             /// The number of the attendee
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Number       = (uint)Property.Id.AttendeeNumber;
             /// <summary>
             /// The type of attendee(refer to the CalendarTypes.Cutype).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Cutype       = (uint)Property.Id.AttendeeCutype;
             /// <summary>
             /// CtIndex
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint CtIndex      = (uint)Property.Id.AttendeeCtIndex;
             /// <summary>
             /// Unique identifier
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Uid          = (uint)Property.Id.AttendeeUid;
             /// <summary>
             /// Group
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Group        = (uint)Property.Id.AttendeeGroup;
             /// <summary>
             /// The email address of the attendee
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Email        = (uint)Property.Id.AttendeeEmail;
             /// <summary>
             /// Attendee role(refer to the CalendarTypes.AttendeeRole).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Role         = (uint)Property.Id.AttendeeRole;
             /// <summary>
             /// Attendee status(refer to the CalendarTypes.AttendeeStatus).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Status       = (uint)Property.Id.AttendeeStatus;
             /// <summary>
             /// RSVP invitation reply (one of true, false)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Rsvp         = (uint)Property.Id.AttendeeRsvp;
             /// <summary>
             /// Delegatee (DELEGATED-TO)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DelegateeUri = (uint)Property.Id.AttendeeDelegateeUri;
             /// <summary>
             /// Delegator (DELEGATED-FROM)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DelegatorUri = (uint)Property.Id.AttendeeDelegatorUri;
             /// <summary>
             /// Attendee name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Name         = (uint)Property.Id.AttendeeName;
             /// <summary>
             /// Group that the attendee belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Member       = (uint)Property.Id.AttendeeMember;
             /// <summary>
             /// Event/TODO that the attendee belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ParentId     = (uint)Property.Id.AttendeeParentId;
         }
 
         /// <summary>
         /// Describes properties of a Alarm record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Alarm
         {
             /// <summary>
             /// Identifier of this calendar alarm view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.calendar_view.alarm";
             /// <summary>
             /// The number of unit before start time. This MUST be used with one of TickUnit.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Tick        = (uint)Property.Id.AlarmTick;
             /// <summary>
             /// Reminder tick time unit(refer to the CalendarTypes.TickUnit).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint TickUnit    = (uint)Property.Id.AlarmTickUnit;
             /// <summary>
             /// Alarm description
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Description = (uint)Property.Id.AlarmDescription;
             /// <summary>
             /// Event that the alarm belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ParentId    = (uint)Property.Id.AlarmParentId;
             /// <summary>
             /// Alarm summary
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Summary     = (uint)Property.Id.AlarmSummary;
             /// <summary>
             /// Action of alarm(refer to the CalendarTypes.Action).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Action      = (uint)Property.Id.AlarmAction;
             /// <summary>
             /// Alarm tone path
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Attach      = (uint)Property.Id.AlarmAttach;
             /// <summary>
             /// The alarm time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AlarmTime   = (uint)Property.Id.AlarmAlarm;
         }
 
         /// <summary>
         /// Describes properties of a InstanceUtimeBook record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>Read only view</remarks>
         public static class InstanceUtimeBook
         {
             /// <summary>
             /// Identifier of this instance utime book
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.calendar_view.instance_utime/book";
             /// <summary>
             /// Event id
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint EventId          = (uint)Property.Id.InstanceUtimeBookEventId;
             /// <summary>
             /// Start time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Start            = (uint)Property.Id.InstanceUtimeBookStart;
             /// <summary>
             /// End time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint End              = (uint)Property.Id.InstanceUtimeBookEnd;
             /// <summary>
             /// Summary
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Summary          = (uint)Property.Id.InstanceUtimeBookSummary;
             /// <summary>
             /// Location
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Location         = (uint)Property.Id.InstanceUtimeBookLocation;
             /// <summary>
             /// Book id
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint BookId           = (uint)Property.Id.InstanceUtimeBookBookId;
             /// <summary>
             /// Description
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Description      = (uint)Property.Id.InstanceUtimeBookDescription;
             /// <summary>
             /// BusyStatus
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint BusyStatus       = (uint)Property.Id.InstanceUtimeBookBusyStatus;
             /// <summary>
             /// EventStatus
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint EventStatus      = (uint)Property.Id.InstanceUtimeBookEventStatus;
             /// <summary>
             /// Priority
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Priority         = (uint)Property.Id.InstanceUtimeBookPriority;
             /// <summary>
             /// Sensitivity
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Sensitivity      = (uint)Property.Id.InstanceUtimeBookSensitivity;
             /// <summary>
             /// HasRrule
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasRrule         = (uint)Property.Id.InstanceUtimeBookHasRrule;
             /// <summary>
             /// Latitude
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Latitude         = (uint)Property.Id.InstanceUtimeBookLatitude;
             /// <summary>
             /// Longitude
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Longitude        = (uint)Property.Id.InstanceUtimeBookLongitude;
             /// <summary>
             /// HasAlarm
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasAlarm         = (uint)Property.Id.InstanceUtimeBookHasAlarm;
             /// <summary>
             /// OriginalEventId
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint OriginalEventId  = (uint)Property.Id.InstanceUtimeBookOriginalEventId;
             /// <summary>
             /// LastModifiedtime
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LastModifiedtime = (uint)Property.Id.InstanceUtimeBookLastModifiedTime;
             /// <summary>
             /// SyncData1
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData1        = (uint)Property.Id.InstanceUtimeBookSyncData1;
         }
 
         /// <summary>
         /// Describes properties of a InstanceLocaltimeBook record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>Read only view</remarks>
         public static class InstanceLocaltimeBook
         {
             /// <summary>
             /// Uri
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.calendar_view.instance_localtime/book";
             /// <summary>
             /// EventId
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint EventId          = (uint)Property.Id.InstanceLocaltimeBookEventId;
             /// <summary>
             /// Start
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Start            = (uint)Property.Id.InstanceLocaltimeBookStart;
             /// <summary>
             /// End
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint End              = (uint)Property.Id.InstanceLocaltimeBookEnd;
             /// <summary>
             /// Summary
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Summary          = (uint)Property.Id.InstanceLocaltimeBookSummary;
             /// <summary>
             /// Location
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Location         = (uint)Property.Id.InstanceLocaltimeBookLocation;
             /// <summary>
             /// BookId
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint BookId           = (uint)Property.Id.InstanceLocaltimeBookBookId;
             /// <summary>
             /// Description
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Description      = (uint)Property.Id.InstanceLocaltimeBookDescription;
             /// <summary>
             /// BusyStatus
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint BusyStatus       = (uint)Property.Id.InstanceLocaltimeBookBusyStatus;
             /// <summary>
             /// EventStatus
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint EventStatus      = (uint)Property.Id.InstanceLocaltimeBookEventStatus;
             /// <summary>
             /// Priority
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Priority         = (uint)Property.Id.InstanceLocaltimeBookPriority;
             /// <summary>
             /// Sensitivity
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Sensitivity      = (uint)Property.Id.InstanceLocaltimeBookSensitivity;
             /// <summary>
             /// HasRrule
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasRrule         = (uint)Property.Id.InstanceLocaltimeBookHasRrule;
             /// <summary>
             /// Latitude
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Latitude         = (uint)Property.Id.InstanceLocaltimeBookLatitude;
             /// <summary>
             /// Longitude
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Longitude        = (uint)Property.Id.InstanceLocaltimeBookLongitude;
             /// <summary>
             /// HasAlarm
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasAlarm         = (uint)Property.Id.InstanceLocaltimeBookHasAlarm;
             /// <summary>
             /// OriginalEventId
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint OriginalEventId  = (uint)Property.Id.InstanceLocaltimeBookOriginalEventId;
             /// <summary>
             /// LastModifiedTime
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LastModifiedTime = (uint)Property.Id.InstanceLocaltimeBookLastModifiedTime;
             /// <summary>
             /// SyncData1
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData1        = (uint)Property.Id.InstanceLocaltimeBookSyncData1;
             /// <summary>
             /// IsAllday
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsAllday         = (uint)Property.Id.InstanceLocaltimeBookIsAllday;
         }
 
         /// <summary>
         /// Describes properties of a InstanceUtimeBookExtended record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>Read only view</remarks>
         public static class InstanceUtimeBookExtended
         {
             /// <summary>
             /// Uri
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.calendar_view.extended/instance_utime/book";
             /// <summary>
             /// EventId
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint EventId           = (uint)Property.Id.InstanceUtimeBookExtendedEventId;
             /// <summary>
             /// Start
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Start             = (uint)Property.Id.InstanceUtimeBookExtendedStart;
             /// <summary>
             /// End
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint End               = (uint)Property.Id.InstanceUtimeBookExtendedEnd;
             /// <summary>
             /// Summary
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Summary           = (uint)Property.Id.InstanceUtimeBookExtendedSummary;
             /// <summary>
             /// Location
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Location          = (uint)Property.Id.InstanceUtimeBookExtendedLocation;
             /// <summary>
             /// BookId
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint BookId            = (uint)Property.Id.InstanceUtimeBookExtendedBookId;
             /// <summary>
             /// Description
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Description       = (uint)Property.Id.InstanceUtimeBookExtendedDescription;
             /// <summary>
             /// BusyStatus
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint BusyStatus        = (uint)Property.Id.InstanceUtimeBookExtendedBusyStatus;
             /// <summary>
             /// EventStatus
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint EventStatus       = (uint)Property.Id.InstanceUtimeBookExtendedEventStatus;
             /// <summary>
             /// Priority
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Priority          = (uint)Property.Id.InstanceUtimeBookExtendedPriority;
             /// <summary>
             /// Sensitivity
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Sensitivity       = (uint)Property.Id.InstanceUtimeBookExtendedSensitivity;
             /// <summary>
             /// HasRrule
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasRrule          = (uint)Property.Id.InstanceUtimeBookExtendedHasRrule;
             /// <summary>
             /// Latitude
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Latitude          = (uint)Property.Id.InstanceUtimeBookExtendedLatitude;
             /// <summary>
             /// Longitude
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Longitude         = (uint)Property.Id.InstanceUtimeBookExtendedLongitude;
             /// <summary>
             /// HasAlarm
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasAlarm          = (uint)Property.Id.InstanceUtimeBookExtendedHasAlarm;
             /// <summary>
             /// OriginalEventId
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint OriginalEventId   = (uint)Property.Id.InstanceUtimeBookExtendedOriginalEventId;
             /// <summary>
             /// LastModifiedTime
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LastModifiedTime  = (uint)Property.Id.InstanceUtimeBookExtendedLastModifiedTime;
             /// <summary>
             /// SyncData1
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData1         = (uint)Property.Id.InstanceUtimeBookExtendedSyncData1;
             /// <summary>
             /// OrganizerName
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint OrganizerName     = (uint)Property.Id.InstanceUtimeBookExtendedOrganizerName;
             /// <summary>
             /// Categories
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Categories        = (uint)Property.Id.InstanceUtimeBookExtendedCategories;
             /// <summary>
             /// HasAttendee
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasAttendee       = (uint)Property.Id.InstanceUtimeBookExtendedHasAttendee;
             /// <summary>
             /// SyncData2
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData2         = (uint)Property.Id.InstanceUtimeBookExtendedSyncData2;
             /// <summary>
             /// SyncData3
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData3         = (uint)Property.Id.InstanceUtimeBookExtendedSyncData3;
             /// <summary>
             /// SyncData4
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData4         = (uint)Property.Id.InstanceUtimeBookExtendedSyncData4;
         }
 
         /// <summary>
         /// Describes properties of a InstanceLocaltimeBookExtended record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>Read only view</remarks>
         public static class InstanceLocaltimeBookExtended
         {
             /// <summary>
             /// Uri
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.calendar_view.extended/instance_localtime/book";
             /// <summary>
             /// EventId
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint EventId          = (uint)Property.Id.InstanceLocaltimeBookExtendedEventId;
             /// <summary>
             /// Start
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Start            = (uint)Property.Id.InstanceLocaltimeBookExtendedStart;
             /// <summary>
             /// End
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint End              = (uint)Property.Id.InstanceLocaltimeBookExtendedEnd;
             /// <summary>
             /// Summary
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Summary          = (uint)Property.Id.InstanceLocaltimeBookExtendedSummary;
             /// <summary>
             /// Location
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Location         = (uint)Property.Id.InstanceLocaltimeBookExtendedLocation;
             /// <summary>
             /// BookId
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint BookId           = (uint)Property.Id.InstanceLocaltimeBookExtendedBookId;
             /// <summary>
             /// Description
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Description      = (uint)Property.Id.InstanceLocaltimeBookExtendedDescription;
             /// <summary>
             /// BusyStatus
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint BusyStatus       = (uint)Property.Id.InstanceLocaltimeBookExtendedBusyStatus;
             /// <summary>
             /// EventStatus
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint EventStatus      = (uint)Property.Id.InstanceLocaltimeBookExtendedEventStatus;
             /// <summary>
             /// Priority
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Priority         = (uint)Property.Id.InstanceLocaltimeBookExtendedPriority;
             /// <summary>
             /// Sensitivity
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Sensitivity      = (uint)Property.Id.InstanceLocaltimeBookExtendedSensitivity;
             /// <summary>
             /// HasRrule
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasRrule         = (uint)Property.Id.InstanceLocaltimeBookExtendedHasRrule;
             /// <summary>
             /// Latitude
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Latitude         = (uint)Property.Id.InstanceLocaltimeBookExtendedLatitude;
             /// <summary>
             /// Longitude
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Longitude        = (uint)Property.Id.InstanceLocaltimeBookExtendedLongitude;
             /// <summary>
             /// HasAlarm
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasAlarm         = (uint)Property.Id.InstanceLocaltimeBookExtendedHasAlarm;
             /// <summary>
             /// OriginalEventId
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint OriginalEventId  = (uint)Property.Id.InstanceLocaltimeBookExtendedOriginalEventId;
             /// <summary>
             /// LastModifiedTime
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LastModifiedTime = (uint)Property.Id.InstanceLocaltimeBookExtendedLastModifiedTime;
             /// <summary>
             /// SyncData1
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData1        = (uint)Property.Id.InstanceLocaltimeBookExtendedSyncData1;
             /// <summary>
             /// OrganizerName
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint OrganizerName    = (uint)Property.Id.InstanceLocaltimeBookExtendedOrganizerName;
             /// <summary>
             /// Categories
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Categories       = (uint)Property.Id.InstanceLocaltimeBookExtendedCategories;
             /// <summary>
             /// HasAttendee
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasAttendee      = (uint)Property.Id.InstanceLocaltimeBookExtendedHasAttendee;
             /// <summary>
             /// SyncData2
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData2        = (uint)Property.Id.InstanceLocaltimeBookExtendedSyncData2;
             /// <summary>
             /// SyncData3
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData3        = (uint)Property.Id.InstanceLocaltimeBookExtendedSyncData3;
             /// <summary>
             /// SyncData4
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SyncData4        = (uint)Property.Id.InstanceLocaltimeBookExtendedSyncData4;
             /// <summary>
             /// IsAllday
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsAllday         = (uint)Property.Id.InstanceLocaltimeBookExtendedIsAllday;
         }
 
         /// <summary>
         /// Describes properties of a UpdatedInfo record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>Read only view</remarks>
         public static class UpdatedInfo
         {
             /// <summary>
             /// Identifier of this updatedInfo view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.calendar_view.updated_info";
             /// <summary>
             /// Modified event(or todo) record ID
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id         = (uint)Property.Id.UpdateInfoId;
             /// <summary>
             /// Calendar book ID of the modified event(or todo) record
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint CalendarId = (uint)Property.Id.UpdateInfoCalendarId;
             /// <summary>
             /// Enumeration value of the modified status.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type       = (uint)Property.Id.UpdateInfoType;
             /// <summary>
             /// Version after change
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Version    = (uint)Property.Id.UpdateInfoVersion;
         }
 
         /// <summary>
         /// Describes properties of a Extended record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static class Extended
         {
             /// <summary>
             /// Identifier of this extended_property view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.calendar_view.extended_property";
             /// <summary>
             /// DB record ID of the extended_property
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id         = (uint)Property.Id.ExtendedId;
             /// <summary>
             /// Related record ID
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RecordId   = (uint)Property.Id.ExtendedRecordId;
             /// <summary>
             /// Enumeration value of the record type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RecordType = (uint)Property.Id.ExtendedRecordType;
             /// <summary>
             /// The key of the property
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Key        = (uint)Property.Id.ExtendedKey;
             /// <summary>
             /// The value of the property
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Value      = (uint)Property.Id.ExtendedValue;
         }
     }

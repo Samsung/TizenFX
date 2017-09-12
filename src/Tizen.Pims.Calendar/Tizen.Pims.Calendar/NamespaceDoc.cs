@@ -20,5 +20,6 @@
 /// <remarks>
 /// The Tizen.Pims.Calendar namespace provides classes for managing calendar information for schedule.
 /// </remarks>
+/// <since_tizen> 4 </since_tizen>
 namespace Tizen.Pims.Calendar {}
 

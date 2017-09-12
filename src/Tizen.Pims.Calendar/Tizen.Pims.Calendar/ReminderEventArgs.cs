@@ -21,6 +21,7 @@ namespace Tizen.Pims.Calendar
     /// <summary>
     /// Event arguments passed when alarm is alerted.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ReminderAlertedEventArgs : EventArgs
     {
         internal ReminderAlertedEventArgs(string param)
@@ -32,6 +33,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// The parameter which data is combined.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>
         /// The combination of reminder data(Value string like id=value&amp;time=value&amp;tick=value&amp;unit=value&amp;type=value)
         /// </value>

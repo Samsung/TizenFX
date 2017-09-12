@@ -22,6 +22,7 @@ namespace Tizen.Pims.Calendar
     /// <summary>
     /// A query is used to retrieve data which satisfies given criteria.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     /// <remarks>
     /// A query is used to retrieve calendar data which satisfies a given criteria,
     /// such as an integer property being greater than a given value,
@@ -35,8 +36,10 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Creates a query.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/calendar</feature>
         /// <param name="viewUri">The view URI of a query</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
@@ -100,7 +103,10 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Adds property IDs for projection.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="propertyIdArray">The property ID array </param>
+        /// <feature>http://tizen.org/feature/calendar</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetProjection(uint[] propertyIdArray)
         {
@@ -115,7 +121,10 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Sets the "distinct" option for projection.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="set">If true it is set, otherwise if false it is unset</param>
+        /// <feature>http://tizen.org/feature/calendar</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetDistinct(bool set)
         {
@@ -130,7 +139,10 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Sets the filter for a query.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="filter">The filter</param>
+        /// <feature>http://tizen.org/feature/calendar</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetFilter(CalendarFilter filter)
         {
@@ -145,8 +157,11 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Sets the sort mode for a query.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="propertyId">The property ID to sort</param>
         /// <param name="isAscending">If true it sorts in the ascending order, otherwise if false it sorts in the descending order</param>
+        /// <feature>http://tizen.org/feature/calendar</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetSort(uint propertyId, bool isAscending)
         {
