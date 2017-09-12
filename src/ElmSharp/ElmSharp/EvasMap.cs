@@ -123,7 +123,7 @@ namespace ElmSharp
         /// <param name="dz">The amount of degrees from 0.0 to 360.0 to rotate around Z axis</param>
         /// <param name="cx">The rotation's center horizontal position</param>
         /// <param name="cy">The rotation's center vertical position</param>
-        /// <param name="cz">The rotation's center vertical position</param>
+        /// <param name="cz">The rotation's center depth position</param>
         public void Rotate3D(double dx, double dy, double dz, int cx, int cy, int cz)
         {
             Interop.Evas.evas_map_util_3d_rotate(_evasMap, dx, dy, dz, cx, cy, cz);
