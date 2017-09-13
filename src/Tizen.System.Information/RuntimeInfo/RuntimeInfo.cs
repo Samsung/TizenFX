@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2016 - 2017 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -17,62 +17,55 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 
 namespace Tizen.System
 {
-    /// <summary>
-    /// The RuntimeInformation provides functions to obtain the runtime information of various system preferences.
-    /// </summary>
-    public static class RuntimeInformation
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    internal static class RuntimeInfo
     {
-        private static RuntimeInfoEventHandler BluetoothEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.Bluetooth);
-        private static RuntimeInfoEventHandler WifiHotspotEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.WifiHotspot);
-        private static RuntimeInfoEventHandler BluetoothTetheringEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.BluetoothTethering);
-        private static RuntimeInfoEventHandler UsbTetheringEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.UsbTethering);
-        private static RuntimeInfoEventHandler PacketDataEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.PacketData);
-        private static RuntimeInfoEventHandler DataRoamingEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.DataRoaming);
-        private static RuntimeInfoEventHandler VibrationEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.Vibration);
-        private static RuntimeInfoEventHandler AudioJackConnected = new RuntimeInfoEventHandler(RuntimeInformationKey.AudioJack);
-        private static RuntimeInfoEventHandler GpsStatusChanged = new RuntimeInfoEventHandler(RuntimeInformationKey.Gps);
-        private static RuntimeInfoEventHandler BatteryIsCharging = new RuntimeInfoEventHandler(RuntimeInformationKey.BatteryIsCharging);
-        private static RuntimeInfoEventHandler TvOutConnected = new RuntimeInfoEventHandler(RuntimeInformationKey.TvOut);
-        private static RuntimeInfoEventHandler AudioJackConnectorChanged = new RuntimeInfoEventHandler(RuntimeInformationKey.AudioJackConnector);
-        private static RuntimeInfoEventHandler ChargerConnected = new RuntimeInfoEventHandler(RuntimeInformationKey.Charger);
-        private static RuntimeInfoEventHandler AutoRotationEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.AutoRotation);
+        private static RuntimeInfoEventHandler BluetoothEnabled = new RuntimeInfoEventHandler(RuntimeInfoKey.Bluetooth);
+        private static RuntimeInfoEventHandler WifiHotspotEnabled = new RuntimeInfoEventHandler(RuntimeInfoKey.WifiHotspot);
+        private static RuntimeInfoEventHandler BluetoothTetheringEnabled = new RuntimeInfoEventHandler(RuntimeInfoKey.BluetoothTethering);
+        private static RuntimeInfoEventHandler UsbTetheringEnabled = new RuntimeInfoEventHandler(RuntimeInfoKey.UsbTethering);
+        private static RuntimeInfoEventHandler PacketDataEnabled = new RuntimeInfoEventHandler(RuntimeInfoKey.PacketData);
+        private static RuntimeInfoEventHandler DataRoamingEnabled = new RuntimeInfoEventHandler(RuntimeInfoKey.DataRoaming);
+        private static RuntimeInfoEventHandler VibrationEnabled = new RuntimeInfoEventHandler(RuntimeInfoKey.Vibration);
+        private static RuntimeInfoEventHandler AudioJackConnected = new RuntimeInfoEventHandler(RuntimeInfoKey.AudioJack);
+        private static RuntimeInfoEventHandler GpsStatusChanged = new RuntimeInfoEventHandler(RuntimeInfoKey.Gps);
+        private static RuntimeInfoEventHandler BatteryIsCharging = new RuntimeInfoEventHandler(RuntimeInfoKey.BatteryIsCharging);
+        private static RuntimeInfoEventHandler TvOutConnected = new RuntimeInfoEventHandler(RuntimeInfoKey.TvOut);
+        private static RuntimeInfoEventHandler AudioJackConnectorChanged = new RuntimeInfoEventHandler(RuntimeInfoKey.AudioJackConnector);
+        private static RuntimeInfoEventHandler ChargerConnected = new RuntimeInfoEventHandler(RuntimeInfoKey.Charger);
+        private static RuntimeInfoEventHandler AutoRotationEnabled = new RuntimeInfoEventHandler(RuntimeInfoKey.AutoRotation);
 
-        internal static readonly Dictionary<RuntimeInformationKey, Type> s_keyDataTypeMapping = new Dictionary<RuntimeInformationKey, Type>
+        internal static readonly Dictionary<RuntimeInfoKey, Type> s_keyDataTypeMapping = new Dictionary<RuntimeInfoKey, Type>
         {
-            [RuntimeInformationKey.Bluetooth] = typeof(bool),
-            [RuntimeInformationKey.WifiHotspot] = typeof(bool),
-            [RuntimeInformationKey.BluetoothTethering] = typeof(bool),
-            [RuntimeInformationKey.UsbTethering] = typeof(bool),
-            [RuntimeInformationKey.PacketData] = typeof(bool),
-            [RuntimeInformationKey.DataRoaming] = typeof(bool),
-            [RuntimeInformationKey.Vibration] = typeof(bool),
-            [RuntimeInformationKey.AudioJack] = typeof(bool),
-            [RuntimeInformationKey.BatteryIsCharging] = typeof(bool),
-            [RuntimeInformationKey.TvOut] = typeof(bool),
-            [RuntimeInformationKey.Charger] = typeof(bool),
-            [RuntimeInformationKey.AutoRotation] = typeof(bool),
-            [RuntimeInformationKey.Gps] = typeof(int),
-            [RuntimeInformationKey.AudioJackConnector] = typeof(int)
+            [RuntimeInfoKey.Bluetooth] = typeof(bool),
+            [RuntimeInfoKey.WifiHotspot] = typeof(bool),
+            [RuntimeInfoKey.BluetoothTethering] = typeof(bool),
+            [RuntimeInfoKey.UsbTethering] = typeof(bool),
+            [RuntimeInfoKey.PacketData] = typeof(bool),
+            [RuntimeInfoKey.DataRoaming] = typeof(bool),
+            [RuntimeInfoKey.Vibration] = typeof(bool),
+            [RuntimeInfoKey.AudioJack] = typeof(bool),
+            [RuntimeInfoKey.BatteryIsCharging] = typeof(bool),
+            [RuntimeInfoKey.TvOut] = typeof(bool),
+            [RuntimeInfoKey.Charger] = typeof(bool),
+            [RuntimeInfoKey.AutoRotation] = typeof(bool),
+            [RuntimeInfoKey.Gps] = typeof(int),
+            [RuntimeInfoKey.AudioJackConnector] = typeof(int)
         };
 
         /// <summary>
         /// Validates the data type of the status represented by the runtime key.
         /// Note that this is a generic method.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <typeparam name="T">The generic type to validate.</typeparam>
         /// <param name="key">The runtime information key for which the status type is validated.</param>
         /// <returns>True if the data type matches.</returns>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="key"/> is invalid.</exception>
-        public static bool Is<T>(RuntimeInformationKey key)
+        internal static bool Is<T>(RuntimeInfoKey key)
         {
             if (!s_keyDataTypeMapping.ContainsKey(key))
             {
@@ -87,12 +80,11 @@ namespace Tizen.System
         /// Gets the status of runtime key.
         /// Note that this is a generic method.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <typeparam name="T">The generic type to return.</typeparam>
         /// <param name="key">The runtime information key for which the current should be read.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
-        public static bool TryGetValue<T>(RuntimeInformationKey key, out T value)
+        internal static bool TryGetValue<T>(RuntimeInfoKey key, out T value)
         {
             Type type;
             value = default(T);
@@ -131,51 +123,50 @@ namespace Tizen.System
             return true;
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        private static void FindEventHandler(RuntimeInformationKey key, ref RuntimeInfoEventHandler handler)
+        private static void FindEventHandler(RuntimeInfoKey key, ref RuntimeInfoEventHandler handler)
         {
             switch (key)
             {
-                case RuntimeInformationKey.Bluetooth:
+                case RuntimeInfoKey.Bluetooth:
                     handler = BluetoothEnabled;
                     break;
-                case RuntimeInformationKey.WifiHotspot:
+                case RuntimeInfoKey.WifiHotspot:
                     handler = WifiHotspotEnabled;
                     break;
-                case RuntimeInformationKey.BluetoothTethering:
+                case RuntimeInfoKey.BluetoothTethering:
                     handler = BluetoothTetheringEnabled;
                     break;
-                case RuntimeInformationKey.UsbTethering:
+                case RuntimeInfoKey.UsbTethering:
                     handler = UsbTetheringEnabled;
                     break;
-                case RuntimeInformationKey.PacketData:
+                case RuntimeInfoKey.PacketData:
                     handler = PacketDataEnabled;
                     break;
-                case RuntimeInformationKey.DataRoaming:
+                case RuntimeInfoKey.DataRoaming:
                     handler = DataRoamingEnabled;
                     break;
-                case RuntimeInformationKey.Vibration:
+                case RuntimeInfoKey.Vibration:
                     handler = VibrationEnabled;
                     break;
-                case RuntimeInformationKey.AudioJack:
+                case RuntimeInfoKey.AudioJack:
                     handler = AudioJackConnected;
                     break;
-                case RuntimeInformationKey.Gps:
+                case RuntimeInfoKey.Gps:
                     handler = GpsStatusChanged;
                     break;
-                case RuntimeInformationKey.BatteryIsCharging:
+                case RuntimeInfoKey.BatteryIsCharging:
                     handler = BatteryIsCharging;
                     break;
-                case RuntimeInformationKey.TvOut:
+                case RuntimeInfoKey.TvOut:
                     handler = TvOutConnected;
                     break;
-                case RuntimeInformationKey.AudioJackConnector:
+                case RuntimeInfoKey.AudioJackConnector:
                     handler = AudioJackConnectorChanged;
                     break;
-                case RuntimeInformationKey.Charger:
+                case RuntimeInfoKey.Charger:
                     handler = ChargerConnected;
                     break;
-                case RuntimeInformationKey.AutoRotation:
+                case RuntimeInfoKey.AutoRotation:
                     handler = AutoRotationEnabled;
                     break;
                 default:
@@ -187,12 +178,11 @@ namespace Tizen.System
         /// <summary>
         /// Registers a change event callback for given key.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="key">The runtime information key which wants to register callback.</param>
         /// <param name="callback">The callback function to subscribe.</param>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="key"/> is invalid.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature related <paramref name="key"/> is not supported.</exception>
-        public static void SetCallback(RuntimeInformationKey key, EventHandler<RuntimeKeyStatusChangedEventArgs> callback)
+        internal static void SetCallback(RuntimeInfoKey key, EventHandler<RuntimeFeatureStatusChangedEventArgs> callback)
         {
             RuntimeInfoEventHandler handler = null;
 
@@ -209,11 +199,10 @@ namespace Tizen.System
         /// <summary>
         /// Unregisters a change event callback for given key.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="key">The runtime information key which wants to unregister callback.</param>
         /// <param name="callback">The callback function to unsubscribe.</param>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="key"/> is invalid.</exception>
-        public static void UnsetCallback(RuntimeInformationKey key, EventHandler<RuntimeKeyStatusChangedEventArgs> callback)
+        internal static void UnsetCallback(RuntimeInfoKey key, EventHandler<RuntimeFeatureStatusChangedEventArgs> callback)
         {
             RuntimeInfoEventHandler handler = null;
 

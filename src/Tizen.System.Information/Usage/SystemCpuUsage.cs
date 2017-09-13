@@ -24,9 +24,9 @@ namespace Tizen.System
     /// </summary>
     public class SystemCpuUsage
     {
-        internal Interop.RuntimeInfo.CpuUsage Usage;
-        internal int[] CurrentFrequencies;
-        internal int[] MaxFrequencies;
+        private Interop.RuntimeInfo.CpuUsage Usage;
+        private int[] CurrentFrequencies;
+        private int[] MaxFrequencies;
 
         /// <summary>
         /// The constructor of SystemCpuUsage class.

@@ -15,21 +15,18 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tizen.System
 {
     /// <summary>
-    /// RuntimeInfoChangedEventArgs is an extended EventArgs class. This class contains event arguments for runtime event listeners.
+    /// RuntimeFeatureStatusChangedEventArgs is an extended EventArgs class. This class contains event arguments for runtime event listeners.
     /// </summary>
-    public class RuntimeKeyStatusChangedEventArgs : EventArgs
+    public class RuntimeFeatureStatusChangedEventArgs : EventArgs
     {
         /// <summary>
         /// The key indicating the runtime system preference which was changed.
+        /// It includes the prefix "http://" though you don't use for registering callback.
         /// </summary>
-        public RuntimeInformationKey Key { get; internal set; }
+        public String Key { get; internal set; }
     }
 }
