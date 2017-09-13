@@ -1,0 +1,113 @@
+﻿/*
+* Copyright (c) 2016 - 2017 Samsung Electronics Co., Ltd All Rights Reserved
+*
+* Licensed under the Apache License, Version 2.0 (the License);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an AS IS BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+using System.IO;
+
+namespace Tizen.System
+{
+    /// <summary>
+    /// The class for system memory information.
+    /// </summary>
+    public class SystemMemoryUsage
+    {
+        internal Interop.RuntimeInfo.MemoryInfo Info;
+
+        /// <summary>
+        /// The constructor of MemoryInformation class.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <exception cref="IOException">Thrown when an I/O error occurs while reading from the system.</exception>
+        public SystemMemoryUsage()
+        {
+            Update();
+        }
+
+        /// <summary>
+        /// Total memory (KiB).
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public int Total
+        {
+            get
+            {
+                return Info.Total;
+            }
+        }
+
+        /// <summary>
+        /// Used memory (KiB).
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public int Used
+        {
+            get
+            {
+                return Info.Used;
+            }
+        }
+
+        /// <summary>
+        /// Free memory (KiB).
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public int Free
+        {
+            get
+            {
+                return Info.Free;
+            }
+        }
+
+        /// <summary>
+        /// Cache memory (KiB).
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public int Cache
+        {
+            get
+            {
+                return Info.Cache;
+            }
+        }
+
+        /// <summary>
+        /// Swap memory (KiB).
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public int Swap
+        {
+            get
+            {
+                return Info.Swap;
+            }
+        }
+
+        /// <summary>
+        /// Update the system memory information to the latest.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <exception cref="IOException">Thrown when I/O error occurs while reading from the system.</exception>
+        public void Update()
+        {
+            int ret = Interop.RuntimeInfo.GetSystemMemoryInfo(out Info);
+            if (ret != (int)RuntimeInfoError.None)
+            {
+                Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get System memory information");
+                RuntimeInfoErrorFactory.ThrowException(ret);
+            }
+        }
+    }
+}
