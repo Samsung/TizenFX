@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 using Tizen.Common;
 
 namespace Tizen.Multimedia.Vision
@@ -32,7 +33,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="BarcodeGenerationConfiguration"/> class.
         /// </summary>
-        /// <exception cref="System.NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         public BarcodeGenerationConfiguration() : base("barcode_generation")
         {
@@ -41,7 +42,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets or sets the text visibility of the barcode to be generated.
         /// </summary>
-        /// <exception cref="System.ArgumentException"><paramref name="value"/> is not valid.</exception>
+        /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="BarcodeGenerationConfiguration"/> already has been disposed of.</exception>
         /// <since_tizen> 3 </since_tizen>
         public Visibility TextVisibility

@@ -44,7 +44,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="FaceRecognitionModel"/> class with the specified path.
         /// </summary>
         /// <remarks>
-        /// Models saved by <see cref="Save()"/> can be loaded.
+        /// Models saved by <see cref="Save(string)"/> can be loaded.
         /// </remarks>
         /// <param name="modelPath">Path to the model to load.</param>
         /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>

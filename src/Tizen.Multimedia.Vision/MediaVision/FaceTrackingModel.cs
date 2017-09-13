@@ -43,7 +43,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="FaceTrackingModel"/> class with the specified path.
         /// </summary>
         /// <remarks>
-        /// Models saved by <see cref="Save()"/> can be loaded.
+        /// Models saved by <see cref="Save(string)"/> can be loaded.
         /// </remarks>
         /// <param name="modelPath">Path to the model to load.</param>
         /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
@@ -54,7 +54,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="modelPath"/> is not supported format.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
-        /// <seealso cref="Save()"/>
+        /// <seealso cref="Save(string)"/>
         /// <since_tizen> 3 </since_tizen>
         public FaceTrackingModel(string modelPath)
         {

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
@@ -28,7 +30,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="BarcodeDetectionConfiguration"/> class.
         /// </summary>
-        /// <exception cref="System.NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         public BarcodeDetectionConfiguration() : base("barcode_detection")
         {
@@ -37,8 +39,8 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets or sets the target of the barcode detection.
         /// </summary>
-        /// <exception cref="System.ArgumentException"><paramref name="value"/> is not valid.</exception>
-        /// <exception cref="System.ObjectDisposedException">The <see cref="BarcodeDetectionConfiguration"/> already has been disposed of.</exception>
+        /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="BarcodeDetectionConfiguration"/> already has been disposed of.</exception>
         /// <since_tizen> 3 </since_tizen>
         public BarcodeDetectionTarget Target
         {

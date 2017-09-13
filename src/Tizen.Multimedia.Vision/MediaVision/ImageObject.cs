@@ -43,7 +43,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="ImageObject"/> class from the specified file.
         /// </summary>
         /// <remarks>
-        /// ImageObject has been saved by <see cref="Save()"/> can be loaded.
+        /// ImageObject has been saved by <see cref="Save(string)"/> can be loaded.
         /// </remarks>
         /// <param name="path">Path to the image object to load.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>

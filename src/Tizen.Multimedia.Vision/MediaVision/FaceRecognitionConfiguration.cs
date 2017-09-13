@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
@@ -27,7 +29,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="FaceRecognitionConfiguration"/> class.
         /// </summary>
-        /// <exception cref="System.NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         public FaceRecognitionConfiguration() : base("face_recognition")
         {
@@ -37,7 +39,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the method used for face recognition model learning.
         /// Default value is <see cref="FaceRecognitionModelType.Lbph"/>.
         /// </summary>
-        /// <exception cref="System.ArgumentException"><paramref name="value"/> is not valid.</exception>
+        /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 3 </since_tizen>
         public FaceRecognitionModelType ModelType
         {

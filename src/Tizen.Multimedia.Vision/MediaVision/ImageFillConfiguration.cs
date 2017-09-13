@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
@@ -40,7 +42,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageFillConfiguration"/> class.
         /// </summary>
-        /// <exception cref="System.NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         public ImageFillConfiguration() : base("image_recognition")
         {
