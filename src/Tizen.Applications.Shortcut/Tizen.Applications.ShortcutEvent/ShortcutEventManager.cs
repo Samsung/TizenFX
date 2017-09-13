@@ -197,6 +197,11 @@ namespace Tizen.Applications.Shortcut
         {
             shortcutTemplates.Clear();
 
+            if (string.IsNullOrEmpty(appId))
+            {
+                throw ShortcutErrorFactory.GetException(Interop.Shortcut.ErrorCode.InvalidParameter, null);
+            }
+
             Interop.Shortcut.ListCallback callback = (appName, iconPath, shortcutName, extrakey, extraData, user_data) =>
             {
                 ShortcutTemplate template = new ShortcutTemplate
@@ -213,7 +218,11 @@ namespace Tizen.Applications.Shortcut
                 return 0;
             };
 
-            Interop.Shortcut.GetList(appId, callback, IntPtr.Zero);
+            Interop.Shortcut.ErrorCode err = Interop.Shortcut.GetList(appId, callback, IntPtr.Zero);
+            if (err < Interop.Shortcut.ErrorCode.None)
+            {
+                throw ShortcutErrorFactory.GetException(err, "unable to get ShortcutTemplate Lists");
+            }
 
             return shortcutTemplates;
         }
