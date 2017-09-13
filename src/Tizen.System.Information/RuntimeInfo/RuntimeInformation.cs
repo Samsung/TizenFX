@@ -30,103 +30,20 @@ namespace Tizen.System
     /// </summary>
     public static class RuntimeInformation
     {
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_bluetoothEnabled;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_wifiHotspotEnabled;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_bluetoothTetheringEnabled;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_usbTetheringEnabled;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_packetDataEnabled;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_dataRoamingEnabled;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_vibrationEnabled;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_audioJackConnected;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_gpsStatusChanged;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_batteryIsCharging;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_tvOutConnected;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_audioJackConnectorChanged;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_chargerConnected;
-        private static event EventHandler<RuntimeKeyStatusChangedEventArgs> s_autoRotationEnabled;
-
-        private static readonly Interop.RuntimeInfo.RuntimeInformationChangedCallback s_runtimeInfoChangedCallback = (RuntimeInformationKey key, IntPtr userData) =>
-        {
-            RuntimeKeyStatusChangedEventArgs eventArgs = new RuntimeKeyStatusChangedEventArgs()
-            {
-                Key = key
-            };
-            switch (key)
-            {
-                case RuntimeInformationKey.Bluetooth:
-                    {
-                        s_bluetoothEnabled?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.WifiHotspot:
-                    {
-                        s_wifiHotspotEnabled?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.BluetoothTethering:
-                    {
-                        s_bluetoothTetheringEnabled?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.UsbTethering:
-                    {
-                        s_usbTetheringEnabled?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.PacketData:
-                    {
-                        s_packetDataEnabled?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.DataRoaming:
-                    {
-                        s_dataRoamingEnabled?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.Vibration:
-                    {
-                        s_vibrationEnabled?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.AudioJack:
-                    {
-                        s_audioJackConnected?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.Gps:
-                    {
-                        s_gpsStatusChanged?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.BatteryIsCharging:
-                    {
-                        s_batteryIsCharging?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.TvOut:
-                    {
-                        s_tvOutConnected?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.AudioJackConnector:
-                    {
-                        s_audioJackConnectorChanged?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.Charger:
-                    {
-                        s_chargerConnected?.Invoke(null, eventArgs);
-                        break;
-                    };
-                case RuntimeInformationKey.AutoRotation:
-                    {
-                        s_autoRotationEnabled?.Invoke(null, eventArgs);
-                        break;
-                    };
-                default:
-                    break;
-            };
-        };
+        private static RuntimeInfoEventHandler BluetoothEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.Bluetooth);
+        private static RuntimeInfoEventHandler WifiHotspotEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.WifiHotspot);
+        private static RuntimeInfoEventHandler BluetoothTetheringEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.BluetoothTethering);
+        private static RuntimeInfoEventHandler UsbTetheringEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.UsbTethering);
+        private static RuntimeInfoEventHandler PacketDataEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.PacketData);
+        private static RuntimeInfoEventHandler DataRoamingEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.DataRoaming);
+        private static RuntimeInfoEventHandler VibrationEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.Vibration);
+        private static RuntimeInfoEventHandler AudioJackConnected = new RuntimeInfoEventHandler(RuntimeInformationKey.AudioJack);
+        private static RuntimeInfoEventHandler GpsStatusChanged = new RuntimeInfoEventHandler(RuntimeInformationKey.Gps);
+        private static RuntimeInfoEventHandler BatteryIsCharging = new RuntimeInfoEventHandler(RuntimeInformationKey.BatteryIsCharging);
+        private static RuntimeInfoEventHandler TvOutConnected = new RuntimeInfoEventHandler(RuntimeInformationKey.TvOut);
+        private static RuntimeInfoEventHandler AudioJackConnectorChanged = new RuntimeInfoEventHandler(RuntimeInformationKey.AudioJackConnector);
+        private static RuntimeInfoEventHandler ChargerConnected = new RuntimeInfoEventHandler(RuntimeInformationKey.Charger);
+        private static RuntimeInfoEventHandler AutoRotationEnabled = new RuntimeInfoEventHandler(RuntimeInformationKey.AutoRotation);
 
         internal static readonly Dictionary<RuntimeInformationKey, Type> s_keyDataTypeMapping = new Dictionary<RuntimeInformationKey, Type>
         {
@@ -217,453 +134,100 @@ namespace Tizen.System
             return (T)GetStatus(key);
         }
 
-        /// <summary>
-        /// (event) BluetoothEnabled is raised when the system preference for Bluetooth is changed.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> BluetoothEnabled
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private static void FindEventHandler(RuntimeInformationKey key, ref RuntimeInfoEventHandler handler)
         {
-            add
+            switch (key)
             {
-                if (s_bluetoothEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.Bluetooth), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_bluetoothEnabled += value;
-            }
-            remove
-            {
-                s_bluetoothEnabled -= value;
-                if (s_bluetoothEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.Bluetooth));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
+                case RuntimeInformationKey.Bluetooth:
+                    handler = BluetoothEnabled;
+                    break;
+                case RuntimeInformationKey.WifiHotspot:
+                    handler = WifiHotspotEnabled;
+                    break;
+                case RuntimeInformationKey.BluetoothTethering:
+                    handler = BluetoothTetheringEnabled;
+                    break;
+                case RuntimeInformationKey.UsbTethering:
+                    handler = UsbTetheringEnabled;
+                    break;
+                case RuntimeInformationKey.PacketData:
+                    handler = PacketDataEnabled;
+                    break;
+                case RuntimeInformationKey.DataRoaming:
+                    handler = DataRoamingEnabled;
+                    break;
+                case RuntimeInformationKey.Vibration:
+                    handler = VibrationEnabled;
+                    break;
+                case RuntimeInformationKey.AudioJack:
+                    handler = AudioJackConnected;
+                    break;
+                case RuntimeInformationKey.Gps:
+                    handler = GpsStatusChanged;
+                    break;
+                case RuntimeInformationKey.BatteryIsCharging:
+                    handler = BatteryIsCharging;
+                    break;
+                case RuntimeInformationKey.TvOut:
+                    handler = TvOutConnected;
+                    break;
+                case RuntimeInformationKey.AudioJackConnector:
+                    handler = AudioJackConnectorChanged;
+                    break;
+                case RuntimeInformationKey.Charger:
+                    handler = ChargerConnected;
+                    break;
+                case RuntimeInformationKey.AutoRotation:
+                    handler = AutoRotationEnabled;
+                    break;
+                default:
+                    handler = null;
+                    break;
             }
         }
+
         /// <summary>
-        /// (event) WifiHotspotEnabled is raised when the system preference for Wi-Fi is changed.
+        /// Registers a change event callback for given key.
         /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> WifiHotspotEnabled
+        /// <since_tizen> 4 </since_tizen>
+        /// <param name="key">The runtime information key which wants to register callback.</param>
+        /// <param name="callback">The callback function to subscribe.</param>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="key"/> is invalid.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature related <paramref name="key"/> is not supported.</exception>
+        public static void SetCallback(RuntimeInformationKey key, EventHandler<RuntimeKeyStatusChangedEventArgs> callback)
         {
-            add
+            RuntimeInfoEventHandler handler = null;
+
+            FindEventHandler(key, ref handler);
+            if (handler == null)
             {
-                if (s_wifiHotspotEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.WifiHotspot), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_wifiHotspotEnabled += value;
+                Log.Error(InformationErrorFactory.LogTag, "Invalid key");
+                InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
             }
-            remove
-            {
-                s_wifiHotspotEnabled -= value;
-                if (s_wifiHotspotEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.WifiHotspot));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
+
+            handler.EventHandler += callback;
         }
+
         /// <summary>
-        /// (event) BluetoothTetheringEnabled is raised when the system preference for bluetooth tethering is changed.
+        /// Unegisters a change event callback for given key.
         /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> BluetoothTetheringEnabled
+        /// <since_tizen> 4 </since_tizen>
+        /// <param name="key">The runtime information key which wants to unregister callback.</param>
+        /// <param name="callback">The callback function to unsubscribe.</param>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="key"/> is invalid.</exception>
+        public static void UnsetCallback(RuntimeInformationKey key, EventHandler<RuntimeKeyStatusChangedEventArgs> callback)
         {
-            add
+            RuntimeInfoEventHandler handler = null;
+
+            FindEventHandler(key, ref handler);
+            if (handler == null)
             {
-                if (s_bluetoothTetheringEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.BluetoothTethering), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_bluetoothTetheringEnabled += value;
+                Log.Error(InformationErrorFactory.LogTag, "Invalid key");
+                InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
             }
-            remove
-            {
-                s_bluetoothTetheringEnabled -= value;
-                if (s_bluetoothTetheringEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.BluetoothTethering));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// (event) UsbTetheringEnabled is raised when the system preference for USB tethering is changed.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> UsbTetheringEnabled
-        {
-            add
-            {
-                if (s_usbTetheringEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.UsbTethering), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_usbTetheringEnabled += value;
-            }
-            remove
-            {
-                s_usbTetheringEnabled -= value;
-                if (s_usbTetheringEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.UsbTethering));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// (event) PacketDataEnabled is raised when the system preference for package data through 3G network is changed.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> PacketDataEnabled
-        {
-            add
-            {
-                if (s_packetDataEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.PacketData), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_packetDataEnabled += value;
-            }
-            remove
-            {
-                s_packetDataEnabled -= value;
-                if (s_packetDataEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.PacketData));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// (event) DataRoamingEnabled is raised when the system preference for data roaming is changed.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> DataRoamingEnabled
-        {
-            add
-            {
-                if (s_dataRoamingEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.DataRoaming), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_dataRoamingEnabled += value;
-            }
-            remove
-            {
-                s_dataRoamingEnabled -= value;
-                if (s_dataRoamingEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.DataRoaming));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// (event) VibrationEnabled is raised when the system preference for vibration is changed.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> VibrationEnabled
-        {
-            add
-            {
-                if (s_vibrationEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.Vibration), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_vibrationEnabled += value;
-            }
-            remove
-            {
-                s_vibrationEnabled -= value;
-                if (s_vibrationEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.Vibration));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// (event) AudioJackConnected is raised when the audio jack is connected/disconnected.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> AudioJackConnected
-        {
-            add
-            {
-                if (s_audioJackConnected == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.AudioJack), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_audioJackConnected += value;
-            }
-            remove
-            {
-                s_audioJackConnected -= value;
-                if (s_audioJackConnected == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.AudioJack));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// (event) GpsStatusChanged is raised when the status of GPS is changed.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> GpsStatusChanged
-        {
-            add
-            {
-                if (s_gpsStatusChanged == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.Gps), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_gpsStatusChanged += value;
-            }
-            remove
-            {
-                s_gpsStatusChanged -= value;
-                if (s_gpsStatusChanged == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.Gps));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// (event) BatteryIsCharging is raised when the battery is currently charging.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> BatteryIsCharging
-        {
-            add
-            {
-                if (s_batteryIsCharging == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.BatteryIsCharging), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_batteryIsCharging += value;
-            }
-            remove
-            {
-                s_batteryIsCharging -= value;
-                if (s_batteryIsCharging == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.BatteryIsCharging));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// (event) TvOutConnected is raised when TV out is connected/disconnected.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> TvOutConnected
-        {
-            add
-            {
-                if (s_tvOutConnected == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.TvOut), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_tvOutConnected += value;
-            }
-            remove
-            {
-                s_tvOutConnected -= value;
-                if (s_tvOutConnected == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.TvOut));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// (event) AudioJackConnectorChanged is raised when the audio jack connection changes.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> AudioJackConnectorChanged
-        {
-            add
-            {
-                if (s_audioJackConnectorChanged == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.AudioJackConnector), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_audioJackConnectorChanged += value;
-            }
-            remove
-            {
-                s_audioJackConnectorChanged -= value;
-                if (s_audioJackConnectorChanged == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.AudioJackConnector));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// (event) ChargerConnected is raised when the charger is connected/disconnected.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> ChargerConnected
-        {
-            add
-            {
-                if (s_chargerConnected == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.Charger), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_chargerConnected += value;
-            }
-            remove
-            {
-                s_chargerConnected -= value;
-                if (s_chargerConnected == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.Charger));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// (event) AutoRotationEnabled is raised when the system preference for auto rotation is changed.
-        /// </summary>
-        public static event EventHandler<RuntimeKeyStatusChangedEventArgs> AutoRotationEnabled
-        {
-            add
-            {
-                if (s_autoRotationEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.SetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.AutoRotation), s_runtimeInfoChangedCallback, IntPtr.Zero);
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-                s_autoRotationEnabled += value;
-            }
-            remove
-            {
-                s_autoRotationEnabled -= value;
-                if (s_autoRotationEnabled == null)
-                {
-                    InformationError ret = Interop.RuntimeInfo.UnsetRuntimeInfoChangedCallback(TvProductHelper.ConvertKeyIfTvProduct(RuntimeInformationKey.AutoRotation));
-                    if (ret != InformationError.None)
-                    {
-                        Log.Error(InformationErrorFactory.LogTag, "Interop failed to add event handler");
-                        InformationErrorFactory.ThrowException(ret);
-                    }
-                }
-            }
+
+            handler.EventHandler -= callback;
         }
     }
 }
