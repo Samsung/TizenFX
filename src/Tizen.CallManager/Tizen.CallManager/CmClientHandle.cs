@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Linq;
 
 namespace Tizen.CallManager
 {
@@ -251,9 +252,9 @@ namespace Tizen.CallManager
 
         private void RegisterCallStatusChangedEvent()
         {
-            _callStatusChangedCb = (CallStatus status, string number, IntPtr userData) =>
+            _callStatusChangedCb = (CallStatus status, IntPtr number, IntPtr userData) =>
             {
-                _callStatusChanged?.Invoke(null, new CallStatusChangedEventArgs(status, number));
+                _callStatusChanged?.Invoke(null, new CallStatusChangedEventArgs(status, Marshal.PtrToStringAnsi(number)));
             };
             int ret = Interop.CallManager.SetCallStatusCallback(_handle, _callStatusChangedCb, IntPtr.Zero);
             if (ret != (int)CmError.None)
@@ -301,7 +302,7 @@ namespace Tizen.CallManager
         {
             _callEventCb = (CallEvent callEvent, IntPtr eventData, IntPtr userData) =>
             {
-                _callEvent?.Invoke(null, new CallEventEventArgs(callEvent, CmUtility.GetCallEventData(eventData)));
+                _callEvent?.Invoke(null, new CallEventEventArgs(callEvent, CmUtility.GetCallEventData(callEvent, eventData)));
             };
             int ret = Interop.CallManager.SetCallEventCb(_handle, _callEventCb, IntPtr.Zero);
             if (ret != (int)CmError.None)
@@ -506,20 +507,22 @@ namespace Tizen.CallManager
                     return null;
                 }
 
-                List<CallData> callList = new List<CallData>();
-                int offset = 0;
-                IntPtr data = Marshal.ReadIntPtr(list, offset);
-                if (data != IntPtr.Zero)
+                int length = Interop.GsList.GetLength(list);
+                if (length == 0)
                 {
-                    do
-                    {
-                        offset += Marshal.SizeOf(data);
-                        callList.Add(CmUtility.GetCallData(data));
-                        Interop.CallManager.FreeCallData(data);
-                        data = IntPtr.Zero;
-                    }
+                    Log.Debug(CmUtility.LogTag, "Call list is empty");
+                    return Enumerable.Empty<CallData>();
+                }
 
-                    while ((data = Marshal.ReadIntPtr(list, offset)) != IntPtr.Zero);
+                List<CallData> callList = new List<CallData>();
+                IntPtr callData = IntPtr.Zero;
+                for (int index = 0; index < length; index++)
+                {
+                    callData = Interop.GsList.GetDataByIndex(list, index);
+                    if (callData != IntPtr.Zero)
+                    {
+                        callList.Add(CmUtility.GetCallData(callData));
+                    }
                 }
 
                 return callList;
@@ -540,20 +543,21 @@ namespace Tizen.CallManager
                     return null;
                 }
 
-                List<ConferenceCallData> confList = new List<ConferenceCallData>();
-                int offset = 0;
-                IntPtr data = Marshal.ReadIntPtr(list, offset);
-                if (data != IntPtr.Zero)
+                int length = Interop.GsList.GetLength(list);
+                if (length == 0)
                 {
-                    do
+                    Log.Debug(CmUtility.LogTag, "Conf call list is empty");
+                    return Enumerable.Empty<ConferenceCallData>();
+                }
+                List<ConferenceCallData> confList = new List<ConferenceCallData>();
+                IntPtr confData = IntPtr.Zero;
+                for (int index = 0; index < length; index++)
+                {
+                    confData = Interop.GsList.GetDataByIndex(list, index);
+                    if (confData != IntPtr.Zero)
                     {
-                        offset += Marshal.SizeOf(data);
-                        confList.Add(CmUtility.GetConfCallData(data));
-                        Interop.CallManager.FreeConfCallData(data);
-                        data = IntPtr.Zero;
+                        confList.Add(CmUtility.GetConfCallData(confData));
                     }
-
-                    while ((data = Marshal.ReadIntPtr(list, offset)) != IntPtr.Zero);
                 }
 
                 return confList;

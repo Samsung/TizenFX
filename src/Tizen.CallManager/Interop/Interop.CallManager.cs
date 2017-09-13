@@ -29,7 +29,7 @@ internal static partial class Interop
     internal static partial class CallManager
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void CallStatusChangedCallback(CallStatus callStatus, string number, IntPtr userData);
+        internal delegate void CallStatusChangedCallback(CallStatus callStatus, IntPtr number, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void CallMuteStatusChangedCallback(CallMuteStatus muteStatus, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

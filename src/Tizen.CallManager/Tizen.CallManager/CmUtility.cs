@@ -38,6 +38,11 @@ namespace Tizen.CallManager
 
         internal static CallData GetCallData(IntPtr handle)
         {
+            if (handle == IntPtr.Zero)
+            {
+                return null;
+            }
+
             CallData data = new CallData();
             int ret = Interop.CallManager.GetCallId(handle, out uint id);
             if (ret != (int)CmError.None)
@@ -264,6 +269,11 @@ namespace Tizen.CallManager
 
         internal static ConferenceCallData GetConfCallData(IntPtr handle)
         {
+            if (handle == IntPtr.Zero)
+            {
+                return null;
+            }
+
             ConferenceCallData confData = new ConferenceCallData();
             int ret = Interop.CallManager.GetConfCallId(handle, out uint callId);
             if (ret != (int)CmError.None)
@@ -312,73 +322,115 @@ namespace Tizen.CallManager
             return confData;
         }
 
-        internal static CallEventData GetCallEventData(IntPtr handle)
+        internal static CallEventData GetCallEventData(CallEvent callEvent, IntPtr handle)
         {
+            if (handle == IntPtr.Zero)
+            {
+                return null;
+            }
+
             CallEventData eventData = new CallEventData();
-            int ret = Interop.CallManager.GetEventDataCallId(handle, out uint id);
-            if (ret != (int)CmError.None)
+
+            if (callEvent == CallEvent.Active)
             {
-                Log.Error(CmUtility.LogTag, "Failed to get event data call ID, Error: " + (CmError)ret);
+                int ret = Interop.CallManager.GetEventDataCallId(handle, out uint id);
+                if (ret != (int)CmError.None)
+                {
+                    Log.Error(CmUtility.LogTag, "Failed to get event data call ID, Error: " + (CmError)ret);
+                }
+
+                else
+                {
+                    eventData.EventId = id;
+                }
+
+                ret = Interop.CallManager.GetSimSlot(handle, out MultiSimSlot simSlot);
+                if (ret != (int)CmError.None)
+                {
+                    Log.Error(CmUtility.LogTag, "Failed to get event data sim slot, Error: " + (CmError)ret);
+                }
+
+                else
+                {
+                    eventData.Slot = simSlot;
+                }
+
+                ret = Interop.CallManager.GetIncomingCallData(handle, out IntPtr incoming);
+                if (ret != (int)CmError.None)
+                {
+                    Log.Error(CmUtility.LogTag, "Failed to get incoming call data, Error: " + (CmError)ret);
+                }
+
+                else
+                {
+                    CallData incomingData = GetCallData(incoming);
+                    if (incomingData != null)
+                    {
+                        ret = Interop.CallManager.FreeCallData(incoming);
+                        if (ret != (int)CmError.None)
+                        {
+                            Log.Error(CmUtility.LogTag, "Failed to free incoming call data, Error: " + (CmError)ret);
+                        }
+                    }
+
+                    eventData.Incoming = incomingData;
+                }
+
+                ret = Interop.CallManager.GetActiveCall(handle, out IntPtr active);
+                if (ret != (int)CmError.None)
+                {
+                    Log.Error(CmUtility.LogTag, "Failed to get active call data, Error: " + (CmError)ret);
+                }
+
+                else
+                {
+                    CallData activeData = GetCallData(active);
+                    if (activeData != null)
+                    {
+                        ret = Interop.CallManager.FreeCallData(active);
+                        if (ret != (int)CmError.None)
+                        {
+                            Log.Error(CmUtility.LogTag, "Failed to free active call data, Error: " + (CmError)ret);
+                        }
+                    }
+
+                    eventData.Active = activeData;
+                }
+
+                ret = Interop.CallManager.GetHeldCall(handle, out IntPtr held);
+                if (ret != (int)CmError.None)
+                {
+                    Log.Error(CmUtility.LogTag, "Failed to get held call data, Error: " + (CmError)ret);
+                }
+
+                else
+                {
+                    CallData heldData = GetCallData(held);
+                    if (heldData != null)
+                    {
+                        ret = Interop.CallManager.FreeCallData(held);
+                        if (ret != (int)CmError.None)
+                        {
+                            Log.Error(CmUtility.LogTag, "Failed to free held call data, Error: " + (CmError)ret);
+                        }
+                    }
+
+                    eventData.Held = heldData;
+                }
             }
 
-            else
+            else if (callEvent == CallEvent.Idle)
             {
-                eventData.EventId = id;
-            }
+                int ret = Interop.CallManager.GetEndCause(handle, out CallEndCause endCause);
+                if (ret != (int)CmError.None)
+                {
+                    Log.Error(CmUtility.LogTag, "Failed to get end cause, Error: " + (CmError)ret);
+                }
 
-            ret = Interop.CallManager.GetSimSlot(handle, out MultiSimSlot simSlot);
-            if (ret != (int)CmError.None)
-            {
-                Log.Error(CmUtility.LogTag, "Failed to get event data sim slot, Error: " + (CmError)ret);
-            }
-
-            else
-            {
-                eventData.Slot = simSlot;
-            }
-
-            ret = Interop.CallManager.GetEndCause(handle, out CallEndCause endCause);
-            if (ret != (int)CmError.None)
-            {
-                Log.Error(CmUtility.LogTag, "Failed to get end cause, Error: " + (CmError)ret);
-            }
-
-            else
-            {
-                eventData.Cause = endCause;
-            }
-
-            ret = Interop.CallManager.GetIncomingCallData(handle, out IntPtr incoming);
-            if (ret != (int)CmError.None)
-            {
-                Log.Error(CmUtility.LogTag, "Failed to get incoming call data, Error: " + (CmError)ret);
-            }
-
-            else
-            {
-                eventData.Incoming = GetCallData(incoming);
-            }
-
-            ret = Interop.CallManager.GetActiveCall(handle, out IntPtr active);
-            if (ret != (int)CmError.None)
-            {
-                Log.Error(CmUtility.LogTag, "Failed to get active call data, Error: " + (CmError)ret);
-            }
-
-            else
-            {
-                eventData.Active = GetCallData(active);
-            }
-
-            ret = Interop.CallManager.GetHeldCall(handle, out IntPtr held);
-            if (ret != (int)CmError.None)
-            {
-                Log.Error(CmUtility.LogTag, "Failed to get held call data, Error: " + (CmError)ret);
-            }
-
-            else
-            {
-                eventData.Held = GetCallData(held);
+                else
+                {
+                    eventData.Cause = endCause;
+                }
             }
 
             return eventData;
