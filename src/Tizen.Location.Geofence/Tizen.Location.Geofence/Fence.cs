@@ -207,7 +207,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Creates a geopoint type of the new geofence.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="placeId">The current place ID.</param>
         /// <param name="latitude">Specifies the value of latitude of the geofence [-90.0 ~ 90.0] (degrees).</param>
         /// <param name="longitude">Specifies the value of longitude of the geofence [-180.0 ~ 180.0] (degrees).</param>
@@ -217,7 +217,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
-        public static Fence CreateGPSFence(int placeId, int latitude, int longitude, int radius, string address)
+        public static Fence CreateGPSFence(int placeId, double latitude, double longitude, int radius, string address)
         {
             IntPtr handle = IntPtr.Zero;
             GeofenceError ret = (GeofenceError)Interop.Geofence.CreateGPSFence(placeId, latitude, longitude, radius,address, out handle);
@@ -285,7 +285,7 @@ namespace Tizen.Location.Geofence
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
                 return;
