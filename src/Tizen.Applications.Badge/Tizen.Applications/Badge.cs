@@ -46,6 +46,7 @@ namespace Tizen.Applications
         /// Property for the count value of the badge.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="ArgumentException">Thrown when set negative number</exception>
         public int Count
         {
             get
