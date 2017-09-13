@@ -211,9 +211,6 @@ internal static partial class Interop
         internal static extern IntPtr evas_object_evas_get(IntPtr obj);
 
         [DllImport(Libraries.Evas)]
-        internal static extern IntPtr evas_object_image_add(IntPtr obj);
-
-        [DllImport(Libraries.Evas)]
         internal static extern void evas_object_del(IntPtr objectPtr);
 
         [DllImport(Libraries.Evas)]
@@ -487,54 +484,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_freeze_events_set(IntPtr obj, bool freeze);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_colorspace_set(IntPtr obj, Colorspace colorSpace);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_data_copy_set(IntPtr obj, IntPtr data);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern IntPtr evas_object_image_data_get(IntPtr obj, bool forWriting);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_data_set(IntPtr obj, IntPtr data);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_data_update_add(IntPtr obj, int x, int y, int w, int h);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_fill_set(IntPtr obj, int x, int y, int w, int h);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern IntPtr evas_object_image_filled_add(IntPtr obj);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_filled_set(IntPtr obj, bool setting);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_memfile_set(IntPtr obj, IntPtr data, int size, string format, string key);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_pixels_dirty_set(IntPtr obj, bool dirty);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_save(IntPtr obj, string file, string key, string flags);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_scale_hint_set(IntPtr obj, ImageScaleHint hint);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_size_set(IntPtr obj, int w, int h);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_smooth_scale_set(IntPtr obj, bool smoothScale);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_source_set(IntPtr obj, IntPtr src);
-
-        [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_source_visible_set(IntPtr obj, bool visible);
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_layer_set(IntPtr obj, int layer);

@@ -33,6 +33,8 @@ namespace ElmSharp
         SmartEvent _clicked;
         Color _color = Color.Default;
 
+        EvasImage _imageObject = null;
+
         /// <summary>
         /// Creates and initializes a new instance of Image class.
         /// </summary>
@@ -255,19 +257,17 @@ namespace ElmSharp
         {
             get
             {
-                IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
-                if (evasObj != IntPtr.Zero)
+                if (ImageObject != null)
                 {
-                    return !Interop.Evas.evas_object_image_alpha_get(evasObj);
+                    return ImageObject.IsOpaque;
                 }
                 return false;
             }
             set
             {
-                IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
-                if (evasObj != IntPtr.Zero)
+                if (ImageObject != null)
                 {
-                    Interop.Evas.evas_object_image_alpha_set(evasObj, !value);
+                    ImageObject.IsOpaque = value;
                 }
             }
         }
@@ -298,18 +298,15 @@ namespace ElmSharp
             }
             set
             {
-                IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
-                if (evasObj != IntPtr.Zero)
+                if (ImageObject != null)
                 {
                     if (value.IsDefault)
                     {
-                        // Currently, we assume the Image.Color property as a blending color (actually, multiply blending).
-                        // Thus we are using Color.White (255,255,255,255) as a default color to ensure original image color. (255/255 * original = original)
-                        Interop.Evas.evas_object_color_set(evasObj, 255, 255, 255, 255);
+                        ImageObject.Color = Color.FromRgba(255, 255, 255, 255);
                     }
                     else
                     {
-                        Interop.Evas.SetPremultipliedColor(evasObj, value.R, value.G, value.B, value.A);
+                        ImageObject.Color = value;
                     }
                 }
                 _color = value;
@@ -335,6 +332,20 @@ namespace ElmSharp
             }
         }
 
+        public EvasImage ImageObject
+        {
+            get
+            {
+                if (_imageObject == null)
+                {
+                    IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
+                    if (evasObj != IntPtr.Zero)
+                        _imageObject = new EvasImage(this, evasObj);
+                }
+                return _imageObject;
+            }
+        }
+
         /// <summary>
         /// Sets the dimensions for an image object's border, a region which is not scaled together with its center ever.
         /// </summary>
@@ -344,8 +355,7 @@ namespace ElmSharp
         /// <param name="bottom">The border's bottom width</param>
         public void SetBorder(int left, int right, int top, int bottom)
         {
-            IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
-            Interop.Evas.evas_object_image_border_set(evasObj, left, right, top, bottom);
+            ImageObject?.SetBorder(left, right, top, bottom);
         }
 
         /// <summary>
@@ -360,13 +370,22 @@ namespace ElmSharp
         {
             get
             {
-                IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
-                return (ImageBorderFillMode)Interop.Evas.evas_object_image_border_center_fill_get(evasObj);
+                if (ImageObject != null)
+                {
+                    return ImageObject.BorderCenterFillMode;
+                }
+                else
+                {
+                    return default(ImageBorderFillMode);
+                }
+
             }
             set
             {
-                IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
-                Interop.Evas.evas_object_image_border_center_fill_set(evasObj, (int)value);
+                if (ImageObject != null)
+                {
+                    ImageObject.BorderCenterFillMode = value;
+                }
             }
         }
 
