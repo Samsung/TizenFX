@@ -22,7 +22,7 @@ static internal class Features
 
     internal static bool IsSupported(string key)
     {
-        if (SystemInfo.TryGetValue(key, out bool value))
+        if (Information.TryGetValue(key, out bool value))
         {
             return value;
         }

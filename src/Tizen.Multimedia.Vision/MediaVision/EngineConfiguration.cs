@@ -38,7 +38,7 @@ namespace Tizen.Multimedia.Vision
 
             string featureType = _featurePath + type;
 
-            bool ret = SystemInfo.TryGetValue(featureType, out isSupported);
+            bool ret = Information.TryGetValue(featureType, out isSupported);
 
             return (isSupported && ret) ? true : false;
         }
