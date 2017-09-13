@@ -64,8 +64,8 @@ namespace Tizen.System
                 if (pid == Pids[i])
                     return Usages[i].Vsz;
 
-            Log.Error(RuntimeInfoErrorFactory.LogTag, "Invalid pid");
-            RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
+            Log.Error(InformationErrorFactory.LogTag, "Invalid pid");
+            InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
             return 0;
         }
 
@@ -82,8 +82,8 @@ namespace Tizen.System
                 if (pid == Pids[i])
                     return Usages[i].Rss;
 
-            Log.Error(RuntimeInfoErrorFactory.LogTag, "Invalid pid");
-            RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
+            Log.Error(InformationErrorFactory.LogTag, "Invalid pid");
+            InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
             return 0;
         }
 
@@ -100,8 +100,8 @@ namespace Tizen.System
                 if (pid == Pids[i])
                     return Usages[i].Pss;
 
-            Log.Error(RuntimeInfoErrorFactory.LogTag, "Invalid pid");
-            RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
+            Log.Error(InformationErrorFactory.LogTag, "Invalid pid");
+            InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
             return 0;
         }
 
@@ -118,8 +118,8 @@ namespace Tizen.System
                 if (pid == Pids[i])
                     return Usages[i].SharedClean;
 
-            Log.Error(RuntimeInfoErrorFactory.LogTag, "Invalid pid");
-            RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
+            Log.Error(InformationErrorFactory.LogTag, "Invalid pid");
+            InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
             return 0;
         }
 
@@ -136,8 +136,8 @@ namespace Tizen.System
                 if (pid == Pids[i])
                     return Usages[i].SharedDirty;
 
-            Log.Error(RuntimeInfoErrorFactory.LogTag, "Invalid pid");
-            RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
+            Log.Error(InformationErrorFactory.LogTag, "Invalid pid");
+            InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
             return 0;
         }
 
@@ -154,8 +154,8 @@ namespace Tizen.System
                 if (pid == Pids[i])
                     return Usages[i].PrivateClean;
 
-            Log.Error(RuntimeInfoErrorFactory.LogTag, "Invalid pid");
-            RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
+            Log.Error(InformationErrorFactory.LogTag, "Invalid pid");
+            InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
             return 0;
         }
 
@@ -172,8 +172,8 @@ namespace Tizen.System
                 if (pid == Pids[i])
                     return Usages[i].PrivateDirty;
 
-            Log.Error(RuntimeInfoErrorFactory.LogTag, "Invalid pid");
-            RuntimeInfoErrorFactory.ThrowException((int)RuntimeInfoError.InvalidParameter);
+            Log.Error(InformationErrorFactory.LogTag, "Invalid pid");
+            InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
             return 0;
         }
 
@@ -189,17 +189,17 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">Thrown when the caller does not have privilege to use this method.</exception>
         public void Update(IEnumerable<int> pid)
         {
-            int ret;
+            InformationError ret;
 
             Pids = pid.ToArray<int>();
             IntPtr ptr = new IntPtr();
             Count = Pids.Count<int>();
 
             ret = Interop.RuntimeInfo.GetProcessMemoryInfo(Pids, Count, ref ptr);
-            if (ret != (int)RuntimeInfoError.None)
+            if (ret != InformationError.None)
             {
-                Log.Error(RuntimeInfoErrorFactory.LogTag, "Interop failed to get Process cpu usage");
-                RuntimeInfoErrorFactory.ThrowException(ret);
+                Log.Error(InformationErrorFactory.LogTag, "Interop failed to get Process cpu usage");
+                InformationErrorFactory.ThrowException(ret);
             }
 
             Usages = new Interop.RuntimeInfo.ProcessMemoryInfo[Count];
