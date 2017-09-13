@@ -78,13 +78,13 @@ internal static partial class Interop
         public static extern int GetSystemMemoryInfo(out MemoryInfo memoryInfo);
 
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_process_memory_info")]
-        public static extern int GetProcessMemoryInfo(int[] pid, int size, out ProcessMemoryInfo[] array);
+        public static extern int GetProcessMemoryInfo(int[] pid, int size, ref IntPtr array);
 
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_cpu_usage")]
         public static extern int GetCpuUsage(out CpuUsage cpuUsage);
 
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_process_cpu_usage")]
-        public static extern int GetProcessCpuUsage(int[] pid, int size, out ProcessCpuUsage[] array);
+        public static extern int GetProcessCpuUsage(int[] pid, int size, ref IntPtr array);
 
         [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_processor_count")]
         public static extern int GetProcessorCount(out int processorCount);
