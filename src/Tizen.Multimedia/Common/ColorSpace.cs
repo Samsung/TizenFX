@@ -22,89 +22,89 @@ namespace Tizen.Multimedia
     public enum ColorSpace
     {
         /// <summary>
-        /// Y800
+        /// Y800.
         /// </summary>
         Y800,
 
         /// <summary>
-        /// I420
+        /// I420.
         /// </summary>
         I420,
 
         /// <summary>
-        /// NV12
+        /// NV12.
         /// </summary>
         NV12,
 
         /// <summary>
-        /// NV16
+        /// NV16.
         /// </summary>
         NV16,
 
         /// <summary>
-        /// NV21
+        /// NV21.
         /// </summary>
         NV21,
 
         /// <summary>
-        /// NV61
+        /// NV61.
         /// </summary>
         NV61,
 
         /// <summary>
-        /// YV12
+        /// YV12.
         /// </summary>
         ///
         YV12,
 
         /// <summary>
-        /// YUYV
+        /// YUYV.
         /// </summary>
         Yuyv,
 
         /// <summary>
-        /// YUV422
+        /// YUV422.
         /// </summary>
         Yuv422,
 
         /// <summary>
-        /// UYVY
+        /// UYVY.
         /// </summary>
         Uyvy,
 
         /// <summary>
-        /// YUV422P
+        /// YUV422P.
         /// </summary>
         ///
         Yuv422P,
 
         /// <summary>
-        /// RGB565
+        /// RGB565.
         /// </summary>
         Rgb565,
 
         /// <summary>
-        /// RGB888
+        /// RGB888.
         /// </summary>
         Rgb888,
 
         /// <summary>
-        /// RGBA8888
+        /// RGBA8888.
         /// </summary>
         Rgba8888,
 
         /// <summary>
-        /// ARGB8888
+        /// ARGB8888.
         /// </summary>
         Argb8888,
 
         /// <summary>
-        /// BGRA8888
+        /// BGRA8888.
         /// </summary>
         Bgra8888,
 
         /// <summary>
-        /// BGRX8888
+        /// BGRX8888.
         /// </summary>
         Bgrx8888
 

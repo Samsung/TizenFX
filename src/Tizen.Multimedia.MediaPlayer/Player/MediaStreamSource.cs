@@ -24,7 +24,7 @@ namespace Tizen.Multimedia
 {
 
     /// <summary>
-    /// Provides the ability to push packets as the source of <see cref="Player"/>
+    /// Provides the ability to push packets as the source of <see cref="Player"/>.
     /// </summary>
     /// <remarks>The source must be set as a source to a player before pushing.</remarks>
     /// <seealso cref="Player.SetSource(MediaSource)"/>
@@ -91,7 +91,7 @@ namespace Tizen.Multimedia
 
 
         /// <summary>
-        /// Initialize a new instance of the MediaStreamSource class
+        /// Initializes a new instance of the MediaStreamSource class
         /// with the specified <see cref="AudioMediaFormat"/> and <see cref="VideoMediaFormat"/>.
         /// </summary>
         /// <param name="audioMediaFormat">The <see cref="AudioMediaFormat"/> for this source.</param>
@@ -120,7 +120,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initialize a new instance of the MediaStreamSource class with the specified <see cref="AudioMediaFormat"/>.
+        /// Initializes a new instance of the MediaStreamSource class with the specified <see cref="AudioMediaFormat"/>.
         /// </summary>
         /// <param name="audioMediaFormat">The <see cref="AudioMediaFormat"/> for this source.</param>
         /// <remarks>AAC is supported.</remarks>
@@ -139,9 +139,9 @@ namespace Tizen.Multimedia
             AudioConfiguration = CreateAudioConfiguration(audioMediaFormat);
         }
         /// <summary>
-        /// Initialize a new instance of the MediaStreamSource class with the specified <see cref="VideoMediaFormat"/>.
+        /// Initializes a new instance of the MediaStreamSource class with the specified <see cref="VideoMediaFormat"/>.
         /// </summary>
-        /// <remarks>H.264 can is supported.</remarks>
+        /// <remarks>H.264 is supported.</remarks>
         /// <param name="videoMediaFormat">The <see cref="VideoMediaFormat"/> for this source.</param>
         /// <exception cref="ArgumentNullException"><paramref name="videoMediaFormat"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="videoMediaFormat"/> is not supported.</exception>
@@ -159,33 +159,34 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the audio configuration or null if no AudioMediaFormat is specified in the constructor.
+        /// Gets the audio configuration, or null if no AudioMediaFormat is specified in the constructor.
         /// </summary>
         public MediaStreamConfiguration AudioConfiguration { get; }
 
         /// <summary>
-        /// Gets the video configuration or null if no VideoMediaFormat is specified in the constructor.
+        /// Gets the video configuration, or null if no VideoMediaFormat is specified in the constructor.
         /// </summary>
         public MediaStreamConfiguration VideoConfiguration { get; }
 
         /// <summary>
         /// Pushes elementary stream to decode audio or video.
         /// </summary>
-        /// <remarks>This source must be set as a source to a player and the player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <remarks>This source must be set as a source to a player and the player must be in the <see cref="PlayerState.Ready"/>,
+        /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <param name="packet">The <see cref="MediaPacket"/> to decode.</param>
         /// <exception cref="InvalidOperationException">
         ///     This source is not set as a source to a player.\n
         ///     -or-\n
         ///     The player is not in the valid state.
         /// </exception>
-        /// <exception cref="ArgumentNullException">packet is null.</exception>
-        /// <exception cref="ObjectDisposedException">packet has been disposed.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="packet"/> is null.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="packet"/> has been disposed of.</exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="packet"/> is neither video nor audio type.\n
         ///     -or-\n
         ///     The format of packet is not matched with the specified format in the constructor.
         /// </exception>
-        /// <exception cref="NoBufferSpaceException">the internal buffer reaches limits.</exception>
+        /// <exception cref="NoBufferSpaceException">The internal buffer has reached its limits.</exception>
         /// <seealso cref="Player.SetSource(MediaSource)"/>
         /// <seealso cref="MediaStreamConfiguration.BufferMaxSize"/>
         /// <seealso cref="MediaPacket"/>
@@ -288,7 +289,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the <see cref="Player"/> that this source is assigned to as a source or null if this source is not assigned.
+        /// Gets the <see cref="Player"/> that this source is assigned to as a source, or null if this source is not assigned.
         /// </summary>
         /// <seealso cref="Player.SetSource(MediaSource)"/>
         public Player Player => _player;

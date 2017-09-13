@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Represents a point in 2D space.
+    /// Represents a point in the 2D space.
     /// </summary>
     public struct Point
     {
@@ -27,8 +27,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the Point with the specified coordinates.
         /// </summary>
-        /// <param name="x">X-axis coordinate of the point in 2D space.</param>
-        /// <param name="y">Y-axis coordinate of the point in 2D space.</param>
+        /// <param name="x">X-axis coordinate of the point in the 2D space.</param>
+        /// <param name="y">Y-axis coordinate of the point in the 2D space.</param>
         public Point(int x, int y)
         {
             X = x;
@@ -36,7 +36,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets X-axis coordinate of the point in 2D space.
+        /// Gets or sets the X-axis coordinate of the point in the 2D space.
         /// </summary>
         public int X
         {
@@ -45,7 +45,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets Y-axis coordinate of the point in 2D space.
+        /// Gets or sets the Y-axis coordinate of the point in the 2D space.
         /// </summary>
         public int Y
         {

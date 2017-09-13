@@ -24,7 +24,7 @@ namespace Tizen.Multimedia
     public struct Size
     {
         /// <summary>
-        /// Initializes a new instance of the Size with the specified values.
+        /// Initializes a new instance of the <see cref="Size"/> with the specified values.
         /// </summary>
         /// <param name="width">Width of the size.</param>
         /// <param name="height">Height of the size.</param>
@@ -35,7 +35,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the width of the Size.
+        /// Gets or sets the width.
         /// </summary>
         public int Width
         {
@@ -44,7 +44,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the height of the Size.
+        /// Gets or sets the height.
         /// </summary>
         public int Height
         {

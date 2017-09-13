@@ -21,17 +21,17 @@ namespace Tizen.Multimedia
     internal enum DisplayType
     {
         /// <summary>
-        /// Overlay surface display
+        /// Overlay surface display.
         /// </summary>
         Overlay,
 
         /// <summary>
-        ///  Evas image object surface display
+        ///  Evas image object surface display.
         /// </summary>
         Surface,
 
         /// <summary>
-        /// This disposes off buffers
+        /// This disposes off buffers.
         /// </summary>
         None,
     }

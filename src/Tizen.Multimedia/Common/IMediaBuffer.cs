@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides functionality to read and write a media buffer.
+    /// Provides functionality to read and write the media buffer.
     /// </summary>
     public interface IMediaBuffer
     {
@@ -28,12 +28,12 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="index">The index of the value to get or set.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     index is less than zero.\n
+        ///     <paramref name="index"/> is less than zero.\n
         ///     -or-\n
-        ///     index is equal to or greater than <see cref="Length"/>.
+        ///     <paramref name="index"/> is equal to or greater than <see cref="Length"/>.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The object that owns the current buffer already has been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The buffer is not available. i.e. not writable state.</exception>
+        /// <exception cref="ObjectDisposedException">The object that owns the current buffer has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The buffer is not available, i.e. not writable state.</exception>
         byte this[int index]
         {
             get;
@@ -57,8 +57,9 @@ namespace Tizen.Multimedia
         /// <param name="dest">The array to copy to.</param>
         /// <param name="startIndex">The zero-based index in the source array where copying should start.</param>
         /// <param name="length">The number of array elements to copy.</param>
-        /// <exception cref="ArgumentOutOfRangeException">startIndex or length is not valid.</exception>
-        /// <exception cref="ObjectDisposedException">The object that owns the current buffer already has been disposed of.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="dest"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/> or <paramref name="length"/> is not valid.</exception>
+        /// <exception cref="ObjectDisposedException">The object that owns the current buffer has already been disposed of.</exception>
         void CopyTo(byte[] dest, int startIndex, int length);
 
         /// <summary>
@@ -68,31 +69,35 @@ namespace Tizen.Multimedia
         /// <param name="startIndex">The zero-based index in the source array where copying should start.</param>
         /// <param name="length">The number of array elements to copy.</param>
         /// <param name="offset">The zero-based index in the buffer where copying should start.</param>
-        /// <exception cref="ArgumentOutOfRangeException">startIndex, offset or length is not valid.</exception>
-        /// <exception cref="ObjectDisposedException">The object that owns the current buffer already has been disposed of.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="dest"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/>, <paramref name="length"/>,
+        ///     or <paramref name="offset"/> is not valid.</exception>
+        /// <exception cref="ObjectDisposedException">The object that owns the current buffer has already been disposed of.</exception>
         void CopyTo(byte[] dest, int startIndex, int length, int offset);
 
         /// <summary>
         /// Copies data from the buffer to a byte array.
         /// </summary>
         /// <param name="source">The array to copy from.</param>
-        /// <param name="startIndex">The zero-based index in the dest array where copying should start.</param>
+        /// <param name="startIndex">The zero-based index in the destination array where copying should start.</param>
         /// <param name="length">The number of elements to copy.</param>
-        /// <exception cref="ArgumentOutOfRangeException">startIndex or length is not valid.</exception>
-        /// <exception cref="ObjectDisposedException">The object that owns the current buffer already has been disposed of.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/> or <paramref name="length"/> is not valid.</exception>
+        /// <exception cref="ObjectDisposedException">The object that owns the current buffer has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The buffer is not available. i.e. not writable state.</exception>
-
         void CopyFrom(byte[] source, int startIndex, int length);
 
         /// <summary>
         /// Copies data from the buffer to a byte array.
         /// </summary>
         /// <param name="source">The array to copy from.</param>
-        /// <param name="startIndex">The zero-based index in the dest array where copying should start.</param>
+        /// <param name="startIndex">The zero-based index in the destination array where copying should start.</param>
         /// <param name="length">The number of elements to copy.</param>
         /// <param name="offset">The zero-based index in the buffer where copying should start.</param>
-        /// <exception cref="ArgumentOutOfRangeException">startIndex, offset or length is not valid.</exception>
-        /// <exception cref="ObjectDisposedException">The object that owns the current buffer already has been disposed of.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/>, <paramref name="length"/>,
+        ///     or <paramref name="offset"/> is not valid.</exception>
+        /// <exception cref="ObjectDisposedException">The object that owns the current buffer has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The buffer is not available. i.e. not writable state.</exception>
         void CopyFrom(byte[] source, int startIndex, int length, int offset);
     }

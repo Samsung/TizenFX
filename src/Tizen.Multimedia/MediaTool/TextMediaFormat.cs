@@ -31,7 +31,8 @@ namespace Tizen.Multimedia
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="textType">The text type of the format.</param>
         /// <exception cref="ArgumentException">
-        ///                     mimeType or textType is invalid(i.e. undefined value).</exception>
+        ///     <paramref name="mimeType"/> or <paramref name="textType"/> is invalid (i.e. undefined value).
+        /// </exception>
         public TextMediaFormat(MediaFormatTextMimeType mimeType, MediaFormatTextType textType)
             : base(MediaFormatType.Text)
         {
@@ -66,11 +67,11 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Retrieves text properties of media format from a native handle.
+        /// Retrieves text properties of the media format from a native handle.
         /// </summary>
-        /// <param name="handle">A native handle that properties are retrieved from.</param>
-        /// <param name="mimeType">An out parameter for mime type.</param>
-        /// <param name="textType">An out parameter for text type.</param>
+        /// <param name="handle">A native handle that the properties are retrieved from.</param>
+        /// <param name="mimeType">An out parameter for the mime type.</param>
+        /// <param name="textType">An out parameter for the text type.</param>
         private static void GetInfo(IntPtr handle, out MediaFormatTextMimeType mimeType,
             out MediaFormatTextType textType)
         {

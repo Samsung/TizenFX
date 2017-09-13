@@ -38,7 +38,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="durationMilliseconds"/> is less than -1.</exception>
         /// <exception cref="InvalidOperationException">Any invalid operations occurred.</exception>
         /// <exception cref="NotSupportedException"><paramref name="tone"/> is not a supported type.</exception>
-        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed of.</exception>
         public static Task StartAsync(ToneType tone, AudioStreamPolicy streamPolicy,
             int durationMilliseconds)
         {
@@ -58,7 +58,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="durationMilliseconds"/> is less than -1.</exception>
         /// <exception cref="InvalidOperationException">Any invalid operations occurred.</exception>
         /// <exception cref="NotSupportedException"><paramref name="tone"/> is not a supported type.</exception>
-        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed of.</exception>
         public static Task StartAsync(ToneType tone, AudioStreamPolicy streamPolicy,
             int durationMilliseconds, CancellationToken cancellationToken)
         {

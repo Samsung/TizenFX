@@ -28,12 +28,12 @@ namespace Tizen.Multimedia
     public enum MediaPacketBufferFlags
     {
         /// <summary>
-        /// The buffer contains codec initialization or codec specific data instead of media data.
+        /// The buffer contains the codec initialization or the codec specific data instead of the media data.
         /// </summary>
         CodecConfig = 0x1,
 
         /// <summary>
-        /// The buffer indicates the end of stream.
+        /// The buffer indicates the end of the stream.
         /// </summary>
         EndOfStream = 0x2,
 

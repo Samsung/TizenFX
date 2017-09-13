@@ -21,7 +21,7 @@ using static Interop;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides a means to retrieve track information.
+    /// Provides a means to retrieve the track information.
     /// </summary>
     /// <seealso cref="Player.SubtitleTrackInfo"/>
     /// <seealso cref="Player.AudioTrackInfo"/>
@@ -43,8 +43,11 @@ namespace Tizen.Multimedia
         /// Gets the number of tracks.
         /// </summary>
         /// <returns>The number of tracks.</returns>
-        /// <remarks>The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
-        /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed.</exception>
+        /// <remarks>
+        /// The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>,
+        /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.</exception>
         public int GetCount()
         {
@@ -58,14 +61,15 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the language code for the specified index or null if the language is undefined.
+        /// Gets the language code for the specified index, or null if the language is undefined.
         /// </summary>
         /// <returns>The number of tracks.</returns>
         /// <remarks>
-        ///     <para>The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</para>
+        ///     <para>The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>,
+        ///     <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.</para>
         ///     <para>The language codes are defined in ISO 639-1.</para>
         /// </remarks>
-        /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="index"/> is less than zero.\n
@@ -110,8 +114,11 @@ namespace Tizen.Multimedia
         /// Gets or sets the selected track index.
         /// </summary>
         /// <value>The currently selected track index.</value>
-        /// <remarks>The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
-        /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed.</exception>
+        /// <remarks>
+        /// The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>,
+        /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is less than zero.\n

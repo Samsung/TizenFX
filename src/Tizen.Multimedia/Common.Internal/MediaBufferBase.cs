@@ -46,14 +46,14 @@ namespace Tizen.Multimedia
         public bool IsReadOnly { get; }
 
         /// <summary>
-        /// Validates the range
+        /// Validates the range.
         /// </summary>
         /// <param name="offset"></param>
         /// <param name="length"></param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     offset + length is greater than <see cref="Length"/>.
+        ///     The offset + length is greater than <see cref="Length"/>.
         ///     <para>-or-</para>
-        ///     offset or length is less than zero.
+        ///     The offset or length is less than zero.
         /// </exception>
         private void ValidateRange(int offset, int length)
         {

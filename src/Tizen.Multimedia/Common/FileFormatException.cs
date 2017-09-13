@@ -20,7 +20,7 @@ namespace Tizen.Multimedia
 {
     /// <summary>
     /// The exception that is thrown when an input file or a data stream that is supposed to conform
-    /// to a certain file format specification is malformed.
+    /// to a certain file format specification, is malformed.
     /// </summary>
     public class FileFormatException : FormatException
     {

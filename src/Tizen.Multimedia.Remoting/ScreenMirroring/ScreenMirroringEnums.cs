@@ -19,47 +19,47 @@ using System;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Specifies audio codecs for <see cref="ScreenMirroring"/>.
+    /// Specifies the audio codecs for <see cref="ScreenMirroring"/>.
     /// </summary>
     /// <seealso cref="ScreenMirroringAudioInfo"/>
     public enum ScreenMirroringAudioCodec
     {
         /// <summary>
-        /// Screen mirroring is not negotiated yet.
+        /// The screen mirroring is not negotiated yet.
         /// </summary>
         None,
         /// <summary>
-        /// AAC codec for audio.
+        /// AAC codec.
         /// </summary>
         Aac,
         /// <summary>
-        /// AC3 codec for audio.
+        /// AC3 codec.
         /// </summary>
         Ac3,
         /// <summary>
-        /// LPCM codec for audio.
+        /// LPCM codec.
         /// </summary>
         Lpcm
     }
 
     /// <summary>
-    /// Specifies video codecs for <see cref="ScreenMirroring"/>.
+    /// Specifies the video codecs for <see cref="ScreenMirroring"/>.
     /// </summary>
     /// <seealso cref="ScreenMirroringVideoInfo"/>
     public enum ScreenMirroringVideoCodec
     {
         /// <summary>
-        /// Screen mirroring is not negotiated yet.
+        /// The screen mirroring is not negotiated yet.
         /// </summary>
         None,
         /// <summary>
-        /// H.264 codec for video.
+        /// H.264 codec.
         /// </summary>
         H264
     }
 
     /// <summary>
-    /// Specifies available combinations of resolutions and fps for <see cref="ScreenMirroring"/>.
+    /// Specifies the available combinations of resolutions and fps for <see cref="ScreenMirroring"/>.
     /// </summary>
     [Flags]
     public enum ScreenMirroringResolutions
@@ -136,7 +136,7 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
-    /// Specifies errors for <see cref="ScreenMirroring"/>.
+    /// Specifies the errors for <see cref="ScreenMirroring"/>.
     /// </summary>
     public enum ScreenMirroringError
     {

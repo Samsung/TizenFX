@@ -52,7 +52,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
         public PlayerDisplayMode Mode
         {
@@ -79,7 +79,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         public bool IsVisible
         {
             get
@@ -103,7 +103,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
         public Rotation Rotation
         {
@@ -135,8 +135,8 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <see cref="Mode"/> is not set to <see cref="PlayerDisplayMode.Roi"/>.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The player already has been disposed of.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">width or height is less than or equal to zero.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The width or the height is less than or equal to zero.</exception>
         public void SetRoi(Rectangle roi)
         {
             if (roi.Width <= 0)

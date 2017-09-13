@@ -56,7 +56,7 @@ namespace Tizen.Multimedia
 
             if (!bufferOwner.IsBufferAccessible(buffer, MediaBufferAccessMode.Write))
             {
-                throw new InvalidOperationException("The buffer is not in writable state.");
+                throw new InvalidOperationException("The buffer is not in the writable state.");
             }
         }
     }

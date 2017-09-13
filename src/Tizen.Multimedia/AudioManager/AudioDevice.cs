@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// The Device API provides functions to query the information of sound devices.
+    /// Provides the ability to query the information of sound devices.
     /// </summary>
     public class AudioDevice
     {
@@ -46,7 +46,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the id of the device.
+        /// Gets the ID of the device.
         /// </summary>
         /// <value>The id of the device.</value>
         public int Id => _id;

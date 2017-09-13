@@ -32,7 +32,7 @@ namespace Tizen.Multimedia
         private byte[] _buffer;
 
         /// <summary>
-        /// Initialize a new instance of the MediaBufferSource class with an allocated buffer.
+        /// Initializes a new instance of the MediaBufferSource class with an allocated buffer.
         /// </summary>
         /// <param name="length">The value indicating the size of the buffer.</param>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -52,23 +52,23 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initialize a new instance of the MediaBufferSource class from the buffer.
+        /// Initializes a new instance of the MediaBufferSource class from the buffer.
         /// </summary>
         /// <param name="buffer">The source array to be copied into the buffer.</param>
-        /// <exception cref="ArgumentNullException">buffer is null.</exception>
+        /// <exception cref="ArgumentNullException"><paramref="buffer"/> is null.</exception>
         public MediaBufferSource(byte[] buffer) : this(buffer, buffer == null ? 0 : buffer.Length)
         {
         }
 
         //TODO remove default parameter.
         /// <summary>
-        /// Initialize a new instance of the MediaBufferSource class from the buffer
+        /// Initializes a new instance of the MediaBufferSource class from the buffer
         /// with the specified length and the specified offset.
         /// </summary>
         /// <param name="buffer">The source array to be copied into the buffer.</param>
         /// <param name="length">The value indicating the number of bytes to copy from the buffer.</param>
         /// <param name="offset">The value indicating the offset in the buffer of the first byte to copy.</param>
-        /// <exception cref="ArgumentNullException">buffer is null.</exception>
+        /// <exception cref="ArgumentNullException"><paramref="buffer"/> is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="offset"/> is less than zero.\n
         ///     -or-\n
@@ -109,7 +109,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Create a MediaBufferSource that wraps a byte array.
+        /// Creates a MediaBufferSource that wraps a byte array.
         /// </summary>
         /// <param name="buffer">The array to be wrapped.</param>
         /// <returns>A MediaBufferSource wrapping the byte array.</returns>

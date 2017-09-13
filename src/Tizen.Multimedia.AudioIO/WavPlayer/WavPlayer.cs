@@ -62,7 +62,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exists.</exception>
         /// <exception cref="FileFormatException">The format of <paramref name="path"/> is not supported.</exception>
-        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed of.</exception>
         public static Task StartAsync(string path, AudioStreamPolicy streamPolicy,
             CancellationToken cancellationToken)
         {

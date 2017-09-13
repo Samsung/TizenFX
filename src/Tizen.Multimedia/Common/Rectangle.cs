@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// This class represents location of the object bounded by rectangle defined by
+    /// Represents the location of the object bounded by a rectangle defined by
     /// coordinates of top left corner, width and height.
     /// </summary>
     public struct Rectangle
@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
         private Size _size;
 
         /// <summary>
-        /// Initializes a new instance of the Rectangle with the specified values.
+        /// Initializes a new instance of the <see cref="Rectangle"/> with the specified values.
         /// </summary>
         /// <param name="x">The x-coordinate of the upper-left corner of the rectangle.</param>
         /// <param name="y">The y-coordinate of the upper-left corner of the rectangle.</param>
@@ -40,7 +40,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initializes a new instance of the Rectangle with the specified values.
+        /// Initializes a new instance of the <see cref="Rectangle"/> with the specified values.
         /// </summary>
         /// <param name="location">A <see cref="Location"/> that represents the upper-left corner of the rectangular region.</param>
         /// <param name="size">A <see cref="Size"/> that represents the width and height of the rectangular region.</param>

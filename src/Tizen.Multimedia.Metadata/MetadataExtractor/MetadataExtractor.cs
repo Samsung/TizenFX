@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
@@ -25,7 +26,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Provides a set of functions to get the metadata from a media file.
+    /// Provides a means to get the metadata from a media file.
     /// </summary>
     public class MetadataExtractor : IDisposable
     {
@@ -55,9 +56,9 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the MetadataExtractor class with the specified path.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="path">The path for the file to extract metadata.</param>
+        /// <param name="path">The path for the file to extract the metadata.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
-        /// <exception cref="FileNotFoundException"><paramref name="path"/> is not exist.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
         public MetadataExtractor(string path)
         {
             if (path == null)
@@ -72,7 +73,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the MetadataExtractor class with the specified buffer.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="buffer">The buffer to extract metadata.</param>
+        /// <param name="buffer">The buffer to extract the metadata.</param>
         /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
         /// <exception cref="ArgumentException">The length of <paramref name="buffer"/> is zero.</exception>
         public MetadataExtractor(byte[] buffer)
@@ -120,8 +121,8 @@ namespace Tizen.Multimedia
         /// Retrieves the <see cref="Metadata"/>.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>A <see cref="Metadata"/> for the given source.</returns>
-        /// <exception cref="InvalidOperationException">Internal process error is occurred.</exception>
+        /// <returns>The <see cref="Metadata"/> for the given source.</returns>
+        /// <exception cref="InvalidOperationException">An internal process error occurs.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataExtractor"/> has been already disposed of.</exception>
         public Metadata GetMetadata()
         {
@@ -137,8 +138,8 @@ namespace Tizen.Multimedia
         /// Gets the artwork image in the source.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <returns>A <see cref="Artwork"/> if it exists, otherwise null.</returns>
-        /// <exception cref="InvalidOperationException">Internal process error is occurred.</exception>
+        /// <returns>The <see cref="Artwork"/> if it exists, otherwise null.</returns>
+        /// <exception cref="InvalidOperationException">An internal process error occurs.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataExtractor"/> has been already disposed of.</exception>
         public Artwork GetArtwork()
         {
@@ -174,8 +175,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="index">The index of lyrics to retrieve.</param>
-        /// <returns>A <see cref="SyncLyrics"/> object if <paramref name="index"/> is valid, otherwise null.</returns>
-        /// <exception cref="InvalidOperationException">Internal process error is occurred.</exception>
+        /// <returns>The <see cref="SyncLyrics"/> object if <paramref name="index"/> is valid, otherwise null.</returns>
+        /// <exception cref="InvalidOperationException">An internal process error occurs.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataExtractor"/> has been already disposed of.</exception>
         public SyncLyrics GetSyncLyrics(int index)
         {
@@ -206,7 +207,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The raw thumbnail data in RGB888 if it exists, otherwise null.</returns>
-        /// <exception cref="InvalidOperationException">Internal process error is occurred.</exception>
+        /// <exception cref="InvalidOperationException">An internal process error occurs.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataExtractor"/> has been already disposed of.</exception>
         public byte[] GetVideoThumbnail()
         {
@@ -272,10 +273,6 @@ namespace Tizen.Multimedia
             }
         }
 
-        /// <summary>
-        /// Metadata Extractor destructor
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         ~MetadataExtractor()
         {
             Dispose(false);

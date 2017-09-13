@@ -32,9 +32,9 @@ namespace Tizen.Multimedia
         private const string FeatureFmRadio = "http://tizen.org/feature/fmradio";
 
         /// <summary>
-        /// Initialize a new instance of the Radio class.
+        /// Initializes a new instance of the Radio class.
         /// </summary>
-        /// <exception cref="NotSupportedException">Radio feature is not supported</exception>
+        /// <exception cref="NotSupportedException">The radio feature is not supported.</exception>
         public Radio()
         {
             ValidateFeatureSupported(FeatureFmRadio);
@@ -66,22 +66,22 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Occurs when radio scan information is updated.
+        /// Occurs when the radio scanning information is updated.
         /// </summary>
         public event EventHandler<ScanUpdatedEventArgs> ScanUpdated;
 
         /// <summary>
-        /// Occurs when radio scanning stops.
+        /// Occurs when the radio scanning stops.
         /// </summary>
         public event EventHandler ScanStopped;
 
         /// <summary>
-        /// Occurs when radio scan is completed.
+        /// Occurs when the radio scanning is completed.
         /// </summary>
         public event EventHandler ScanCompleted;
 
         /// <summary>
-        /// Occurs when radio is interrupted
+        /// Occurs when the radio is interrupted.
         /// </summary>
         public event EventHandler<RadioInterruptedEventArgs> Interrupted;
 
@@ -99,7 +99,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the radio frequency, in [87500 ~ 108000] (kHz).
+        /// Gets or sets the radio frequency in the range of 87500 ~ 108000 kHz.
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is less than <see cref="Range.Min"/> of <see cref="FrequencyRange"/>.\n
@@ -126,7 +126,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the current signal strength, in [-128 ~ 128] (dBm).
+        /// Gets the current signal strength in the range of -128 ~ 128 dBm.
         /// </summary>
         public int SignalStrength
         {
@@ -139,7 +139,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the value indicating if radio is muted.
+        /// Gets the value indicating if the radio is muted.
         /// </summary>
         /// <value>
         /// true if the radio is muted; otherwise, false.
@@ -160,7 +160,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the channel spacing for current region.
+        /// Gets the channel spacing for the current region.
         /// </summary>
         public int ChannelSpacing
         {
@@ -203,7 +203,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the frequency for the region, in [87500 ~ 108000] (kHz).
+        /// Gets the frequency for the region in the range of 87500 ~ 108000 kHz.
         /// </summary>
         public Range FrequencyRange
         {
@@ -242,7 +242,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Starts radio scan, will trigger ScanInformationUpdated event, when scan information is updated
+        /// Starts the radio scanning and triggers the ScanInformationUpdated event when the scan information is updated.
         /// </summary>
         /// <remarks>The radio must be in the <see cref="RadioState.Ready"/> or <see cref="RadioState.Playing"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
@@ -256,7 +256,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Stops radio scan.
+        /// Stops the radio scanning.
         /// </summary>
         /// <remarks>The radio must be in the <see cref="RadioState.Scanning"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
@@ -273,7 +273,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous seeking operation.
-        /// The result value is the current frequency, in range [87500 ~ 108000] (kHz).
+        /// The result value is the current frequency in the range of 87500 ~ 108000 kHz.
         /// It can be -1 if the seeking operation has failed.
         /// </returns>
         /// <remarks>The radio must be in the <see cref="RadioState.Playing"/> state.</remarks>
@@ -297,7 +297,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous seeking operation.
-        /// The result value is the current frequency, in range [87500 ~ 108000] (kHz).
+        /// The result value is the current frequency in the range of 87500 ~ 108000 kHz.
         /// It can be -1 if the seeking operation has failed.
         /// </returns>
         /// <remarks>The radio must be in the <see cref="RadioState.Playing"/> state.</remarks>

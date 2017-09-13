@@ -17,7 +17,7 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Enumeration for Audio Codec.
+    /// Specifies the audio codec.
     /// </summary>
     public enum ToneType
     {
@@ -38,7 +38,7 @@ namespace Tizen.Multimedia
         /// </summary>
         Dtmf2,
         /// <summary>
-        /// redefined DTMF 3.
+        /// Predefined DTMF 3.
         /// </summary>
         Dtmf3,
         /// <summary>

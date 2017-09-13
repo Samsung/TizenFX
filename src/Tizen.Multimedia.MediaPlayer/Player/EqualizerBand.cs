@@ -22,7 +22,7 @@ namespace Tizen.Multimedia
 {
 
     /// <summary>
-    /// Represents a equalizer band of <see cref="AudioEffect"/>.
+    /// Represents an equalizer band of <see cref="AudioEffect"/>.
     /// </summary>
     public class EqualizerBand
     {
@@ -31,7 +31,6 @@ namespace Tizen.Multimedia
 
         internal EqualizerBand(AudioEffect owner, int index)
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             Debug.Assert(owner != null);
 
             _owner = owner;
@@ -63,7 +62,6 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
                 _owner.Player.ValidateNotDisposed();
 
                 int value = 0;
@@ -74,7 +72,6 @@ namespace Tizen.Multimedia
             }
             set
             {
-                Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
                 _owner.Player.ValidateNotDisposed();
 
                 if (value < _owner.BandLevelRange.Min || _owner.BandLevelRange.Max < value)
@@ -92,12 +89,12 @@ namespace Tizen.Multimedia
 
 
         /// <summary>
-        /// Gets the frequency in dB.
+        /// Gets the frequency in the dB.
         /// </summary>
         public int Frequency { get; }
 
         /// <summary>
-        /// Gets the frequency range in dB.
+        /// Gets the frequency range in the dB.
         /// </summary>
         public int FrequencyRange { get; }
 

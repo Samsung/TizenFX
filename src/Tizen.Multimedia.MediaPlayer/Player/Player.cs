@@ -23,18 +23,16 @@ using static Interop;
 
 namespace Tizen.Multimedia
 {
-    static internal class PlayerLog
+    internal static class PlayerLog
     {
         internal const string Tag = "Tizen.Multimedia.Player";
-        internal const string Enter = "[ENTER]";
-        internal const string Leave = "[LEAVE]";
     }
 
     /// <summary>
     /// Provides the ability to control media playback.
     /// </summary>
     /// <remarks>
-    /// The Player provides functions to play a media content.
+    /// The player provides functions to play a media content.
     /// It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
     /// Note that only one video player can be played at one time.
     /// </remarks>
@@ -43,7 +41,7 @@ namespace Tizen.Multimedia
         private PlayerHandle _handle;
 
         /// <summary>
-        /// Initialize a new instance of the Player class.
+        /// Initializes a new instance of the <see cref="Player"/> class.
         /// </summary>
         public Player()
         {
@@ -135,7 +133,7 @@ namespace Tizen.Multimedia
         #region Methods
 
         /// <summary>
-        /// Gets the streaming download Progress.
+        /// Gets the streaming download progress.
         /// </summary>
         /// <returns>The <see cref="DownloadProgress"/> containing current download progress.</returns>
         /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
@@ -147,7 +145,6 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         public DownloadProgress GetDownloadProgress()
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
 
             int start = 0;
@@ -173,7 +170,6 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException">The path is null.</exception>
         public void SetSubtitle(string path)
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             ValidateNotDisposed();
 
             if (path == null)
@@ -193,8 +189,6 @@ namespace Tizen.Multimedia
 
             NativePlayer.SetSubtitlePath(Handle, path).
                 ThrowIfFailed("Failed to set the subtitle path to the player");
-
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
         /// <summary>
@@ -205,12 +199,10 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         public void ClearSubtitle()
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             ValidatePlayerState(PlayerState.Idle);
 
             NativePlayer.SetSubtitlePath(Handle, null).
                 ThrowIfFailed("Failed to clear the subtitle of the player");
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
         /// <summary>
@@ -237,7 +229,6 @@ namespace Tizen.Multimedia
             }
 
             err.ThrowIfFailed("Failed to the subtitle offset of the player");
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
         private void Prepare()
@@ -264,7 +255,6 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         public virtual Task PrepareAsync()
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (_source == null)
             {
                 throw new InvalidOperationException("No source is set.");
@@ -292,7 +282,6 @@ namespace Tizen.Multimedia
                     completionSource.TrySetException(e);
                 }
             });
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
 
             return completionSource.Task;
         }
@@ -301,10 +290,10 @@ namespace Tizen.Multimedia
         /// Unprepares the player.
         /// </summary>
         /// <remarks>
-        ///     The most recently used source is reset and no longer associated with the player. Playback is no longer possible.
+        ///     The most recently used source is reset and is no longer associated with the player. Playback is no longer possible.
         ///     If you want to use the player again, you have to set a source and call <see cref="PrepareAsync"/> again.
         ///     <para>
-        ///     The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.
+        ///     The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
         ///     It has no effect if the player is already in the <see cref="PlayerState.Idle"/> state.
         ///     </para>
         /// </remarks>
@@ -312,7 +301,6 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         public virtual void Unprepare()
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (State == PlayerState.Idle)
             {
                 Log.Warn(PlayerLog.Tag, "idle state already");
@@ -353,7 +341,6 @@ namespace Tizen.Multimedia
         /// <seealso cref="ApplyAudioStreamPolicy"/>
         public virtual void Start()
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (State == PlayerState.Playing)
             {
                 Log.Warn(PlayerLog.Tag, "playing state already");
@@ -362,11 +349,10 @@ namespace Tizen.Multimedia
             ValidatePlayerState(PlayerState.Ready, PlayerState.Paused);
 
             NativePlayer.Start(Handle).ThrowIfFailed("Failed to start the player");
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
         /// <summary>
-        /// Stops playing media content.
+        /// Stops playing the media content.
         /// </summary>
         /// <remarks>
         /// The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.
@@ -378,7 +364,6 @@ namespace Tizen.Multimedia
         /// <seealso cref="Pause"/>
         public virtual void Stop()
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (State == PlayerState.Ready)
             {
                 Log.Warn(PlayerLog.Tag, "ready state already");
@@ -387,7 +372,6 @@ namespace Tizen.Multimedia
             ValidatePlayerState(PlayerState.Paused, PlayerState.Playing);
 
             NativePlayer.Stop(Handle).ThrowIfFailed("Failed to stop the player");
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
         /// <summary>
@@ -402,7 +386,6 @@ namespace Tizen.Multimedia
         /// <seealso cref="Start"/>
         public virtual void Pause()
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (State == PlayerState.Paused)
             {
                 Log.Warn(PlayerLog.Tag, "pause state already");
@@ -412,7 +395,6 @@ namespace Tizen.Multimedia
             ValidatePlayerState(PlayerState.Playing);
 
             NativePlayer.Pause(Handle).ThrowIfFailed("Failed to pause the player");
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
         private MediaSource _source;
@@ -431,7 +413,6 @@ namespace Tizen.Multimedia
         /// <seealso cref="PrepareAsync"/>
         public void SetSource(MediaSource source)
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             ValidatePlayerState(PlayerState.Idle);
 
             if (source != null)
@@ -445,11 +426,10 @@ namespace Tizen.Multimedia
             }
 
             _source = source;
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
         /// <summary>
-        /// Captures a video frame asynchronously.
+        /// Captures a video frame, asynchronously.
         /// </summary>
         /// <returns>A task that represents the asynchronous capture operation.</returns>
         /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
@@ -459,8 +439,6 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public async Task<CapturedFrame> CaptureVideoAsync()
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
-
             ValidationUtil.ValidateFeatureSupported(Features.RawVideo);
 
             ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
@@ -489,13 +467,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the play position in milliseconds.
         /// </summary>
-        /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        /// or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
         public int GetPlayPosition()
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             ValidatePlayerState(PlayerState.Ready, PlayerState.Paused, PlayerState.Playing);
 
             int playPosition = 0;
@@ -511,7 +489,6 @@ namespace Tizen.Multimedia
         private void SetPlayPosition(int milliseconds, bool accurate,
             NativePlayer.SeekCompletedCallback cb)
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             var ret = NativePlayer.SetPlayPosition(Handle, milliseconds, accurate, cb, IntPtr.Zero);
 
             //Note that we assume invalid param error is returned only when the position value is invalid.
@@ -533,7 +510,8 @@ namespace Tizen.Multimedia
         /// <param name="position">The value indicating a desired position in milliseconds.</param>
         /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
         /// <remarks>
-        ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</para>
+        ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        ///     or <see cref="PlayerState.Paused"/> state.</para>
         ///     <para>If the <paramref name="accurate"/> is true, the play position will be adjusted as the specified <paramref name="position"/> value,
         ///     but this might be considerably slow. If false, the play position will be a nearest keyframe position.</para>
         ///     </remarks>
@@ -543,7 +521,6 @@ namespace Tizen.Multimedia
         /// <seealso cref="GetPlayPosition"/>
         public async Task SetPlayPositionAsync(int position, bool accurate)
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             var taskCompletionSource = new TaskCompletionSource<bool>();
@@ -562,16 +539,15 @@ namespace Tizen.Multimedia
 
                 await taskCompletionSource.Task;
             }
-
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
         /// <summary>
-        /// Sets playback rate.
+        /// Sets the playback rate.
         /// </summary>
         /// <param name="rate">The value for the playback rate. Valid range is -5.0 to 5.0, inclusive.</param>
         /// <remarks>
-        ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</para>
+        ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        ///     or <see cref="PlayerState.Paused"/> state.</para>
         ///     <para>The sound will be muted, when the playback rate is under 0.0 or over 2.0.</para>
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
@@ -589,7 +565,6 @@ namespace Tizen.Multimedia
         /// </exception>
         public void SetPlaybackRate(float rate)
         {
-            Log.Debug(PlayerLog.Tag, PlayerLog.Enter);
             if (rate < -5.0F || 5.0F < rate || rate == 0.0F)
             {
                 throw new ArgumentOutOfRangeException(nameof(rate), rate, "Valid range is -5.0 to 5.0 (except 0.0)");
@@ -598,7 +573,6 @@ namespace Tizen.Multimedia
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             NativePlayer.SetPlaybackRate(Handle, rate).ThrowIfFailed("Failed to set the playback rate.");
-            Log.Debug(PlayerLog.Tag, PlayerLog.Leave);
         }
 
         /// <summary>

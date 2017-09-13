@@ -17,7 +17,7 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Specifies text types.
+    /// Specifies the text types.
     /// </summary>
     public enum MediaFormatTextType
     {
@@ -27,12 +27,12 @@ namespace Tizen.Multimedia
         None,
 
         /// <summary>
-        /// The mp4 type.
+        /// MP4.
         /// </summary>
         MP4,
 
         /// <summary>
-        /// The 3gpp type.
+        /// 3GPP.
         /// </summary>
         ThreeGpp
     }

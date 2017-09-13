@@ -85,7 +85,7 @@ namespace Tizen.Multimedia
         private static object _audioDeviceConnectionLock = new object();
 
         /// <summary>
-        /// Occurs when the state of connection of an audio device changes.
+        /// Occurs when the state of a connection of an audio device changes.
         /// </summary>
         public static event EventHandler<AudioDeviceConnectionChangedEventArgs> DeviceConnectionChanged
         {

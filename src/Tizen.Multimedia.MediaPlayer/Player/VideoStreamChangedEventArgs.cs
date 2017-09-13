@@ -33,17 +33,17 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the <see cref="Size"/> of new video.
+        /// Gets the <see cref="Size"/> of the new video.
         /// </summary>
         public Size Size { get; }
 
         /// <summary>
-        /// Gets the fps of new video
+        /// Gets the fps of the new video
         /// </summary>
         public int Fps { get; }
 
         /// <summary>
-        /// Gets the bit rate of new video.
+        /// Gets the bit rate of the new video.
         /// </summary>
         public int BitRate { get; }
 

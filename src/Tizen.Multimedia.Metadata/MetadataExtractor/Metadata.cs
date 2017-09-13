@@ -21,7 +21,7 @@ using static Interop.MetadataExtractor;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Represents video metadata information.
+    /// Represents the video metadata information.
     /// </summary>
     public class VideoMetadata
     {
@@ -55,7 +55,7 @@ namespace Tizen.Multimedia
         public int? BitRate { get; }
 
         /// <summary>
-        /// Gets the video FPS.
+        /// Gets the video fps.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The fps value, or null if the information does not exist.</value>
@@ -76,7 +76,7 @@ namespace Tizen.Multimedia
         public int? Height { get; }
 
         /// <summary>
-        /// Get the codec type of the video.
+        /// Gets the codec type of the video.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>A string representing the codec type, or null if the information does not exist.</value>
@@ -99,7 +99,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Represents audio metadata information.
+    /// Represents the audio metadata information.
     /// </summary>
     public class AudioMetadata
     {
@@ -175,7 +175,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Represents metadata information of a media.
+    /// Represents the metadata information of a media.
     /// </summary>
     public class Metadata
     {

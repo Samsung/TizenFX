@@ -29,7 +29,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets the current state of screen mirroring.
+        /// Gets the current state of the screen mirroring.
         /// </summary>
         public ScreenMirroringState State { get; }
     }

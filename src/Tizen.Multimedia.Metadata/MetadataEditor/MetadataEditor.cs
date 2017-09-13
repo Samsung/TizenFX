@@ -24,9 +24,9 @@ namespace Tizen.Multimedia
     /// Provides a means to edit the metadata of the media file.
     /// </summary>
     /// <privilege>
-    /// If you want to access only internal storage,
+    /// If you want to access only an internal storage,
     /// you should add privilege http://tizen.org/privilege/mediastorage. \n
-    /// Or if you want to access only external storage,
+    /// Or if you want to access only an external storage,
     /// you should add privilege http://tizen.org/privilege/externalstorage. \n
     /// </privilege>
     public class MetadataEditor : IDisposable
@@ -52,12 +52,12 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="MetadataEditor"/> class with the specified path.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="path">The path of the media file to edit metadata.</param>
+        /// <param name="path">The path of the media file to edit the metadata.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="path"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="FileFormatException">The file is not supported.</exception>
-        /// <exception cref="FileNotFoundException">File does not exist.</exception>
-        /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege to access the file.</exception>
+        /// <exception cref="FileNotFoundException">The file does not exist.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to access the file.</exception>
         public MetadataEditor(string path)
         {
             if (path == null)
@@ -117,7 +117,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">The file is read-only.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Artist
         {
             get
@@ -136,7 +136,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">The file is read-only.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Title
         {
             get
@@ -155,7 +155,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">The file is read-only.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Album
         {
             get
@@ -174,7 +174,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">The file is read-only.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Genre
         {
             get
@@ -193,7 +193,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">The file is read-only.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Author
         {
             get
@@ -212,7 +212,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">The file is read-only.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Copyright
         {
             get
@@ -231,11 +231,11 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// If the media contains ID3 tag, this refers to the recorded date.
-        /// If the media is a mp4 format, this refers to the year and the value to set will be converted into integer.
+        /// If the media contains the ID3 tag, this refers to the recorded date.
+        /// If the media is a mp4 format, this refers to the year, and the value to set will be converted into integer.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The file is read-only.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Date
         {
             get
@@ -254,7 +254,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">The file is read-only.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Description
         {
             get
@@ -273,7 +273,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">The file is read-only.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Comment
         {
             get
@@ -292,7 +292,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">The file is read-only.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string TrackNumber
         {
             get
@@ -310,7 +310,7 @@ namespace Tizen.Multimedia
         /// Gets the count of album arts of media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public int PictureCount
         {
             get => int.TryParse(GetParam(MetadataEditorAttr.PictureCount), out var value) ? value : 0;
@@ -321,7 +321,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">The file is read-only.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string Conductor
         {
             get
@@ -340,7 +340,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">The file is read-only.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public string UnsyncLyrics
         {
             get
@@ -362,7 +362,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     The file is read-only.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public void Commit()
         {
             if (_isFileReadOnly)
@@ -377,16 +377,15 @@ namespace Tizen.Multimedia
         /// Gets the artwork image in the media file.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="index">The index of picture to import.</param>
-        /// <returns> Artwork included in the media file.</returns>
-        /// <returns>Artwork included in the media file.</returns>
+        /// <param name="index">The index of the picture to import.</param>
+        /// <returns>The artwork included in the media file.</returns>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="index"/> is less than zero.\n
         ///     -or-\n
         ///     <paramref name="index"/> is greater than or equal to <see cref="PictureCount"/>.\n
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public Artwork GetPicture(int index)
         {
             if (index < 0)
@@ -437,16 +436,16 @@ namespace Tizen.Multimedia
         /// Appends the picture to the media file.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="path">The path of picture for adding to the metadata.</param>
+        /// <param name="path">The path of the picture for adding to the metadata.</param>
         /// <exception cref="InvalidOperationException">
         ///     An internal error occurs.\n
         ///     -or-\n
         ///     The media file is read-only.
         /// </exception>
-        /// <exception cref="ArgumentNullException"> Picture path is null</exception>
-        /// <exception cref="FileNotFoundException">File does not exist.</exception>
-        /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege to access the file.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null</exception>
+        /// <exception cref="FileNotFoundException">The file does not exist.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to access the file.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
         public void AddPicture(string path)
         {
@@ -473,7 +472,7 @@ namespace Tizen.Multimedia
         /// Removes the picture from the media file.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="index">The index of picture to remove.</param>
+        /// <param name="index">The index of the picture to remove.</param>
         /// <exception cref="InvalidOperationException">
         ///     An internal error occurs.\n
         ///     -or-\n
@@ -484,7 +483,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     <paramref name="index"/> is greater than or equal to <see cref="PictureCount"/>.\n
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public void RemovePicture(int index)
         {
             if (index < 0)

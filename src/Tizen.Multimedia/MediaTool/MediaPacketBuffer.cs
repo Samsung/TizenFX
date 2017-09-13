@@ -45,11 +45,11 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="index">The index of the value to get or set.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     index is less than zero.\n
+        ///     <paramref name="index"/> is less than zero.\n
         ///     -or-\n
-        ///     index is equal to or greater than <see cref="Length"/>.
+        ///     <paramref name="index"/> is equal to or greater than <see cref="Length"/>.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The MediaPacket that owns the current buffer already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket that owns the current buffer has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The MediaPacket that owns the current buffer is being used by another module.</exception>
         public byte this[int index]
         {
@@ -73,14 +73,14 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Validates the range
+        /// Validates the range.
         /// </summary>
         /// <param name="offset"></param>
         /// <param name="length"></param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     offset + length is greater than <see cref="Length"/>.\n
+        ///     <paramref name="offset"/> + <paramref name="length"/> is greater than <see cref="Length"/>.\n
         ///     -or-\n
-        ///     offset or length is less than zero.
+        ///     <paramref name="offset"/> or <paramref name="length"/> is less than zero.
         /// </exception>
         private void ValidateRange(int offset, int length)
         {
@@ -99,14 +99,16 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Copies data from a byte array to the buffer.
+        /// Copies the data from a byte array to the buffer.
         /// </summary>
         /// <param name="source">The array to copy from.</param>
         /// <param name="startIndex">The zero-based index in the source array where copying should start.</param>
         /// <param name="length">The number of array elements to copy.</param>
         /// <param name="offset">The zero-based index in the buffer where copying should start.</param>
-        /// <exception cref="ArgumentOutOfRangeException">startIndex, offset or length is not valid.</exception>
-        /// <exception cref="ObjectDisposedException">The MediaPacket that owns the current buffer already has been disposed of.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <paramref name="startIndex"/>, <paramref name="offset"/>, or <paramref name="length"/> is not valid.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket that owns the current buffer has already been disposed of.</exception>
         public void CopyFrom(byte[] source, int startIndex, int length, int offset = 0)
         {
             _packet.EnsureReadableState();
@@ -126,14 +128,16 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Copies data from the buffer to a byte array.
+        /// Copies the data from the buffer to a byte array.
         /// </summary>
         /// <param name="dest">The array to copy to.</param>
-        /// <param name="startIndex">The zero-based index in the dest array where copying should start.</param>
+        /// <param name="startIndex">The zero-based index in the destination array where copying should start.</param>
         /// <param name="length">The number of elements to copy.</param>
         /// <param name="offset">The zero-based index in the buffer where copying should start.</param>
-        /// <exception cref="ArgumentOutOfRangeException">startIndex, offset or length is not valid.</exception>
-        /// <exception cref="ObjectDisposedException">The MediaPacket that owns the current buffer already has been disposed of.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <paramref name="startIndex"/>, <paramref name="offset"/>, <paramref name="length"/>, or <paramref name="offset"/> is not valid.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket that owns the current buffer has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The MediaPacket that owns the current buffer is being used by another module.</exception>
         public void CopyTo(byte[] dest, int startIndex, int length, int offset = 0)
         {
@@ -158,7 +162,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the size of the buffer, in bytes.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The MediaPacket that owns the current buffer already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket that owns the current buffer has already been disposed of.</exception>
         public int Length
         {
             get

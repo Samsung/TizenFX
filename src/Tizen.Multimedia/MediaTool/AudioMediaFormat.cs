@@ -27,7 +27,7 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Initializes a new instance of the AudioMediaFormat class with the specified mime type,
-        ///     channel, sample rate, bit and bit rate.
+        /// channel, sample rate, bit, and bit rate.
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="channel">The channel value of the format.</param>
@@ -36,7 +36,7 @@ namespace Tizen.Multimedia
         /// <param name="bitRate">The bit rate value of the format.</param>
         /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid(i.e. undefined value).</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="channel"/>, <paramref name="sampleRate"/>, <paramref name="bit"/> or <paramref name="bitRate"/> is less than zero.
+        ///     <paramref name="channel"/>, <paramref name="sampleRate"/>, <paramref name="bit"/>, or <paramref name="bitRate"/> is less than zero.
         /// </exception>
         public AudioMediaFormat(MediaFormatAudioMimeType mimeType,
             int channel, int sampleRate, int bit, int bitRate)
@@ -46,7 +46,7 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Initializes a new instance of the AudioMediaFormat class with the specified mime type,
-        ///     channel, sample rate, bit, bit rate and aac type.
+        ///     channel, sample rate, bit, bit rate, and AAC type.
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="channel">The channel value of the format.</param>
@@ -55,12 +55,12 @@ namespace Tizen.Multimedia
         /// <param name="bitRate">The bit rate value of the format.</param>
         /// <param name="aacType">The AAC bitstream format(ADIF or ADTS).</param>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="mimeType"/> or <paramref name="aacType"/> is invalid(i.e. undefined value).\n
+        ///     <paramref name="mimeType"/> or <paramref name="aacType"/> is invalid (i.e. undefined value).\n
         ///     -or-\n
-        ///     <paramref name="aacType"/> is not <see cref="MediaFormatAacType.None"/>, but <paramref name="mimeType"/> is one of aac types.
+        ///     <paramref name="aacType"/> is not <see cref="MediaFormatAacType.None"/>, but <paramref name="mimeType"/> is one of the AAC types.
         ///     </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="channel"/>, <paramref name="sampleRate"/>, <paramref name="bit"/> or <paramref name="bitRate"/> is less than zero.
+        ///     <paramref name="channel"/>, <paramref name="sampleRate"/>, <paramref name="bit"/>, or <paramref name="bitRate"/> is less than zero.
         /// </exception>
         public AudioMediaFormat(MediaFormatAudioMimeType mimeType,
             int channel, int sampleRate, int bit, int bitRate, MediaFormatAacType aacType)
@@ -138,7 +138,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Returns an indication whether a specified mime type is a aac type.
+        /// Returns an indication whether a specified mime type is an AAC type.
         /// </summary>
         /// <param name="mimeType">A mime type.</param>
         private static bool IsAacSupportedMimeType(MediaFormatAudioMimeType mimeType)
@@ -149,14 +149,14 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Retrieves audio properties of media format from a native handle.
+        /// Retrieves audio properties of the media format from a native handle.
         /// </summary>
-        /// <param name="handle">A native handle that properties are retrieved from.</param>
-        /// <param name="mimeType">An out parameter for mime type.</param>
-        /// <param name="channel">An out parameter for channel.</param>
-        /// <param name="sampleRate">An out parameter for sample rate.</param>
-        /// <param name="bit">An out parameter for bit.</param>
-        /// <param name="bitRate">An out parameter for bit rate.</param>
+        /// <param name="handle">A native handle that the properties are retrieved from.</param>
+        /// <param name="mimeType">An out parameter for the mime type.</param>
+        /// <param name="channel">An out parameter for the channel.</param>
+        /// <param name="sampleRate">An out parameter for the sample rate.</param>
+        /// <param name="bit">An out parameter for the bit.</param>
+        /// <param name="bitRate">An out parameter for the bit rate.</param>
         private static void GetInfo(IntPtr handle, out MediaFormatAudioMimeType mimeType,
             out int channel, out int sampleRate, out int bit, out int bitRate)
         {
@@ -176,10 +176,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Retrieves aac type value from a native handle.
+        /// Retrieves the AAC type value from a native handle.
         /// </summary>
-        /// <param name="handle">A native handle that properties are retrieved from.</param>
-        /// <param name="aacType">An out parameter for aac type.</param>
+        /// <param name="handle">A native handle that the properties are retrieved from.</param>
+        /// <param name="aacType">An out parameter for tha AAC type.</param>
         private static void GetAacType(IntPtr handle, out MediaFormatAacType aacType)
         {
             Debug.Assert(handle != IntPtr.Zero, "The handle is invalid!");
@@ -244,7 +244,7 @@ namespace Tizen.Multimedia
         public int BitRate { get; }
 
         /// <summary>
-        /// Gets the aac type of the current format.
+        /// Gets the AAC type of the current format.
         /// </summary>
         public MediaFormatAacType AacType { get; }
 

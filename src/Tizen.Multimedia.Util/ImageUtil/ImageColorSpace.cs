@@ -22,63 +22,63 @@ namespace Tizen.Multimedia.Util
     internal enum ImageColorSpace
     {
         /// <summary>
-        /// YV12 - YCrCb planar format
+        /// YV12 - YCrCb planar format.
         /// </summary>
         YV12,
         /// <summary>
-        /// YUV422 - planar
+        /// YUV422 - planar.
         /// </summary>
         Yuv422,
         /// <summary>
-        /// YUV420 - planar
+        /// YUV420 - planar.
         /// </summary>
         I420,
         /// <summary>
-        /// NV12- planar
+        /// NV12- planar.
         /// </summary>
         NV12,
         /// <summary>
-        /// UYVY - packed
+        /// UYVY - packed.
         /// </summary>
         Uyvy,
         /// <summary>
-        /// YUYV - packed
+        /// YUYV - packed.
         /// </summary>
         Yuyv,
         /// <summary>
-        /// RGB565, high-byte is Blue
+        /// RGB565, high-byte is blue.
         /// </summary>
         Rgb565,
         /// <summary>
-        /// RGB888, high-byte is Blue
+        /// RGB888, high-byte is blue.
         /// </summary>
         Rgb888,
         /// <summary>
-        /// ARGB8888, high-byte is Blue
+        /// ARGB8888, high-byte is blue.
         /// </summary>
         Argb8888,
         /// <summary>
-        /// BGRA8888, high-byte is Alpha
+        /// BGRA8888, high-byte is alpha.
         /// </summary>
         Bgra8888,
         /// <summary>
-        /// RGBA8888, high-byte is Alpha
+        /// RGBA8888, high-byte is alpha.
         /// </summary>
         Rgba8888,
         /// <summary>
-        /// BGRX8888, high-byte is X
+        /// BGRX8888, high-byte is X.
         /// </summary>
         Bgrx8888,
         /// <summary>
-        /// NV21- planar
+        /// NV21- planar.
         /// </summary>
         NV21,
         /// <summary>
-        /// NV16- planar
+        /// NV16- planar.
         /// </summary>
         NV16,
         /// <summary>
-        /// NV61- planar
+        /// NV61- planar.
         /// </summary>
         NV61,
     }

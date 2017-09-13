@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the ContainerMediaFormat class.
         /// </summary>
         /// <param name="mimeType">The mime type of the container format.</param>
-        /// <exception cref="ArgumentException">mimeType is invalid(i.e. undefined value).</exception>
+        /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid (i.e. undefined value).</exception>
         public ContainerMediaFormat(MediaFormatContainerMimeType mimeType)
             : base(MediaFormatType.Container)
         {
