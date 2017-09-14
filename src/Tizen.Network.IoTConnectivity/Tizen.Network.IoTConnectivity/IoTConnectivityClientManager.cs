@@ -206,8 +206,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
-        /// <seealso cref="Initialize()"/>
-        /// <seealso cref="SecureInitialize()"/>
+        /// <seealso cref="Initialize(string)"/>
         /// <code>
         /// IoTConnectivityClientManager.Deinitialize();
         /// </code>

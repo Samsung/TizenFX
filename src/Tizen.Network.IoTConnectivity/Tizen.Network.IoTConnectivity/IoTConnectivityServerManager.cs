@@ -76,7 +76,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
-        /// <seealso cref="Initialize()"/>
+        /// <seealso cref="Initialize(string)"/>
         /// <code>
         /// IoTConnectivityServerManager.Deinitialize();
         /// </code>
@@ -222,8 +222,8 @@ namespace Tizen.Network.IoTConnectivity
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
-        /// <seealso cref="IoTConnectivityClientManager.StartReceivingPresence()"/>
-        /// <seealso cref="IoTConnectivityClientManager.StopReceivingPresence()"/>
+        /// <seealso cref="IoTConnectivityClientManager.StartReceivingPresence(string, string)"/>
+        /// <seealso cref="IoTConnectivityClientManager.StopReceivingPresence(int)"/>
         /// <seealso cref="IoTConnectivityClientManager.PresenceReceived"/>
         /// <seealso cref="StopSendingPresence()"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
@@ -262,10 +262,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
-        /// <seealso cref="IoTConnectivityClientManager.StartReceivingPresence()"/>
-        /// <seealso cref="IoTConnectivityClientManager.StopReceivingPresence()"/>
+        /// <seealso cref="IoTConnectivityClientManager.StartReceivingPresence(string, string)"/>
+        /// <seealso cref="IoTConnectivityClientManager.StopReceivingPresence(int)"/>
         /// <seealso cref="IoTConnectivityClientManager.PresenceReceived"/>
-        /// <seealso cref="StartSendingPresence()"/>
+        /// <seealso cref="StartSendingPresence(uint)"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
@@ -288,12 +288,12 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// This API sets the name of the local device (the device calling the API).\n
-        /// If the device name is set, clients can get the name using <see cref="IoTConnectivityClientManager.StartFindingDeviceInformation()"/>.
+        /// If the device name is set, clients can get the name using <see cref="IoTConnectivityClientManager.StartFindingDeviceInformation(string, ResourceQuery)"/>.
         /// </remarks>
         /// <param name="deviceName">The device name.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="IoTConnectivityClientManager.DeviceInformationFound"/>
-        /// <seealso cref="IoTConnectivityClientManager.StartFindingDeviceInformation()"/>
+        /// <seealso cref="IoTConnectivityClientManager.StartFindingDeviceInformation(string, ResourceQuery)"/>
         /// <seealso cref="DeviceInformationFoundEventArgs"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
