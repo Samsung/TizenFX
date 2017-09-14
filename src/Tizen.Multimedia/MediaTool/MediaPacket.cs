@@ -141,6 +141,8 @@ namespace Tizen.Multimedia
                 return;
             }
 
+            _handle = IntPtr.Zero;
+
             switch (ret)
             {
                 case ErrorCode.OutOfMemory:
