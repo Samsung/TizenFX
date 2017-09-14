@@ -171,7 +171,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-        internal class Property
+        internal new class Property
         {
             internal static readonly int PROGRESS_VALUE = NDalicPINVOKE.ProgressBar_Property_PROGRESS_VALUE_get();
             internal static readonly int SECONDARY_PROGRESS_VALUE = NDalicPINVOKE.ProgressBar_Property_SECONDARY_PROGRESS_VALUE_get();

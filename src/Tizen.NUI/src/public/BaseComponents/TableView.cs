@@ -71,7 +71,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
 
-        internal class Property
+        internal new class Property
         {
             internal static readonly int ROWS = NDalicPINVOKE.TableView_Property_ROWS_get();
             internal static readonly int COLUMNS = NDalicPINVOKE.TableView_Property_COLUMNS_get();

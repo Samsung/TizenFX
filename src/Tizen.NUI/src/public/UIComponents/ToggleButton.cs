@@ -65,7 +65,7 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        public class Property
+        public new class Property
         {
             public static readonly int STATE_VISUALS = NDalicPINVOKE.ToggleButton_Property_STATE_VISUALS_get();
             public static readonly int TOOLTIPS = NDalicPINVOKE.ToggleButton_Property_TOOLTIPS_get();

@@ -1440,7 +1440,7 @@ namespace Tizen.NUI
         /// Queries the type of this property value.
         /// </summary>
         /// <returns>The type ID</returns>
-        public PropertyType GetType()
+        public new PropertyType GetType()
         {
             PropertyType ret = (PropertyType)NDalicPINVOKE.Property_Value_GetType(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

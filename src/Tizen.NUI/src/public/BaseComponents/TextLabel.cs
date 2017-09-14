@@ -74,7 +74,7 @@ namespace Tizen.NUI.BaseComponents
             base.Dispose(type);
         }
 
-        internal class Property
+        internal new class Property
         {
             internal static readonly int RENDERING_BACKEND = NDalicPINVOKE.TextLabel_Property_RENDERING_BACKEND_get();
             internal static readonly int TEXT = NDalicPINVOKE.TextLabel_Property_TEXT_get();

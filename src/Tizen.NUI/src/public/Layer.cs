@@ -159,7 +159,7 @@ namespace Tizen.NUI
 
 
         [Obsolete("Please do not use! this will be deprecated")]
-        public new static Layer DownCast(BaseHandle handle)
+        public static Layer DownCast(BaseHandle handle)
         {
             Layer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Layer;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -171,7 +171,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <pre>This layer(the parent) has been initialized.</pre>
         /// <remarks>The actor itself is also considered in the search.</remarks>
-        /// <param name="child">The id of the child to find</param>
+        /// <param name="id">The id of the child to find</param>
         /// <returns> A handle to the view if found, or an empty handle if not. </returns>
         public View FindChildById(uint id)
         {

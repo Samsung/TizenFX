@@ -141,6 +141,7 @@ namespace Tizen.NUI
             }
             catch (System.Exception e)
             {
+                NUILog.Error(e.Message);
                 throw new global::System.InvalidOperationException("Failed to parse " + fileName);
             }
         }

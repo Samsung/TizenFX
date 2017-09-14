@@ -65,7 +65,7 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        public class Property : global::System.IDisposable
+        public new class Property : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
             protected bool swigCMemOwn;

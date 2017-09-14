@@ -340,7 +340,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-        internal class Property
+        internal new class Property
         {
             internal static readonly int TITLE = NDalicPINVOKE.Popup_Property_TITLE_get();
             internal static readonly int CONTENT = NDalicPINVOKE.Popup_Property_CONTENT_get();

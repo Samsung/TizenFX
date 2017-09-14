@@ -160,7 +160,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        internal new static LinearConstrainer DownCast(BaseHandle handle)
+        internal static LinearConstrainer DownCast(BaseHandle handle)
         {
             LinearConstrainer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as LinearConstrainer;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

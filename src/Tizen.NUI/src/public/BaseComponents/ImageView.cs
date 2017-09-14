@@ -146,7 +146,7 @@ namespace Tizen.NUI.BaseComponents
             base.Dispose(type);
         }
 
-        internal class Property
+        internal new class Property
         {
             internal static readonly int RESOURCE_URL = NDalicPINVOKE.ImageView_Property_RESOURCE_URL_get();
             internal static readonly int IMAGE = NDalicPINVOKE.ImageView_Property_IMAGE_get();
@@ -216,7 +216,7 @@ namespace Tizen.NUI.BaseComponents
         /// Most resources are only loaded when the control is placed on stage.<br>
         /// true if the resources are loaded and ready, false otherwise.<br>
         /// </summary>
-        public bool IsResourceReady()
+        public new  bool IsResourceReady()
         {
             bool ret = NDalicPINVOKE.IsResourceReady(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)

@@ -237,7 +237,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal class Property
+        internal new class Property
         {
             internal static readonly int RENDERING_BACKEND = NDalicPINVOKE.TextEditor_Property_RENDERING_BACKEND_get();
             internal static readonly int TEXT = NDalicPINVOKE.TextEditor_Property_TEXT_get();

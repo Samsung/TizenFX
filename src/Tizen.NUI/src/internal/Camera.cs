@@ -179,7 +179,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public new static Camera DownCast(BaseHandle handle)
+        public static Camera DownCast(BaseHandle handle)
         {
             Camera ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Camera;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -204,7 +204,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public CameraType GetType()
+        public new CameraType GetType()
         {
             CameraType ret = (CameraType)NDalicPINVOKE.CameraActor_GetType(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
