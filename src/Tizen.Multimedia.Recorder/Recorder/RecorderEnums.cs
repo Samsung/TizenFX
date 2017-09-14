@@ -54,11 +54,11 @@ namespace Tizen.Multimedia
     public enum RecorderAudioDevice
     {
         /// <summary>
-        /// Capture audio from Mic device.
+        /// Capture audio from the Mic device.
         /// </summary>
         Mic,
         /// <summary>
-        /// Capture audio from modem.
+        /// Capture audio from the modem.
         /// </summary>
         Modem
     }
@@ -126,15 +126,15 @@ namespace Tizen.Multimedia
     public enum RecordingLimitType
     {
         /// <summary>
-        /// Time limit in seconds of recording file
+        /// Time limit in seconds of the recording file
         /// </summary>
         Time,
         /// <summary>
-        /// Size limit in KB(KiloBytes) of recording file.
+        /// Size limit in KB(KiloBytes) of the recording file.
         /// </summary>
         Size,
         /// <summary>
-        /// No free space in storage.
+        /// No free space in the storage.
         /// </summary>
         Space
     }
@@ -149,16 +149,16 @@ namespace Tizen.Multimedia
         /// </summary>
         Idle = 1,
         /// <summary>
-        /// Recorder is ready to record. In case of video recorder,
+        /// Recorder is ready to record. In case of a video recorder,
         /// preview display will be shown.
         /// </summary>
         Ready,
         /// <summary>
-        /// Recorder is recording media.
+        /// Recorder is recording the media.
         /// </summary>
         Recording,
         /// <summary>
-        /// Recorder is paused while recording media.
+        /// Recorder is paused while recording the media.
         /// </summary>
         Paused
     }
