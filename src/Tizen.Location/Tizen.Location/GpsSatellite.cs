@@ -179,15 +179,12 @@ namespace Tizen.Location
             List<SatelliteInformation> satelliteList = new List<SatelliteInformation>();
             Log.Info(Globals.LogTag, "Getting the list of satellites");
 
-            if (_satelliteStatusinfomationCallback == null)
+            _satelliteStatusinfomationCallback = (azimuth, elevation, prn, snr, active, userData) =>
             {
-                _satelliteStatusinfomationCallback = (azimuth, elevation, prn, snr, active, userData) =>
-                {
-                    SatelliteInformation satellite = new SatelliteInformation(azimuth, elevation, prn, snr, active);
-                    satelliteList.Add(satellite);
-                    return true;
-                };
-            }
+                SatelliteInformation satellite = new SatelliteInformation(azimuth, elevation, prn, snr, active);
+                satelliteList.Add(satellite);
+                return true;
+            };
 
             int ret = Interop.GpsSatellite.GetForEachSatelliteInView(_handle, _satelliteStatusinfomationCallback, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
