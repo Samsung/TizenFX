@@ -320,9 +320,7 @@ namespace ElmSharp
             return Interop.Elementary.elm_policy_set(policy, value);
         }
 
-        /// <summary>
-        /// Reloads Elementary's configuration, bounded to the current selected profile.
-        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ReloadConfig()
         {
             Interop.Elementary.elm_config_reload();
