@@ -19,8 +19,9 @@ using System.ComponentModel;
 
 namespace Tizen.System
 {
+    [Obsolete("Use class Tizen.System.Information")]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal static class SystemInfo
+    public static class SystemInfo
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
         private static Interop.SystemInfo.SystemInfoType GetValueType(string key, out Interop.SystemInfo.SystemInfoValueType valueType)
@@ -89,7 +90,7 @@ namespace Tizen.System
         /// <param name="key">The name of the feature.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
-        internal static bool TryGetValue<T>(string key, out T value)
+        public static bool TryGetValue<T>(string key, out T value)
         {
             bool res = false;
             if (typeof(T) == typeof(bool))
@@ -129,7 +130,7 @@ namespace Tizen.System
         /// <param name="key">The name of the feature.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
-        internal static bool TryGetValue(string key, out bool value)
+        public static bool TryGetValue(string key, out bool value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
             Interop.SystemInfo.SystemInfoType keyType = GetValueType(key, out valueType);
@@ -162,7 +163,7 @@ namespace Tizen.System
         /// <param name="key">The name of the feature.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
-        internal static bool TryGetValue(string key, out int value)
+        public static bool TryGetValue(string key, out int value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
             Interop.SystemInfo.SystemInfoType keyType = GetValueType(key, out valueType);
@@ -196,7 +197,7 @@ namespace Tizen.System
         /// <param name="key">The name of the feature.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
-        internal static bool TryGetValue(string key, out double value)
+        public static bool TryGetValue(string key, out double value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
             Interop.SystemInfo.SystemInfoType keyType = GetValueType(key, out valueType);
@@ -230,7 +231,7 @@ namespace Tizen.System
         /// <param name="key">The name of the feature.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
-        internal static bool TryGetValue(string key, out string value)
+        public static bool TryGetValue(string key, out string value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
             Interop.SystemInfo.SystemInfoType keyType = GetValueType(key, out valueType);
