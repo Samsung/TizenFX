@@ -256,6 +256,41 @@ namespace Tizen.NUI
             return true;
         }
 
+        public override bool Equals(object o)
+        {
+            if(o == null)
+            {
+                return false;
+            }
+            if(!(o is BaseHandle))
+            {
+                return false;
+            }
+            BaseHandle b = (BaseHandle)o;
+            if (!BaseHandle.ReferenceEquals(this, null) && !BaseHandle.ReferenceEquals(b, null))
+            {
+                // drop into native code to see if both handles point to the same body
+                return this.IsEqual(b);
+            }
+
+            if (BaseHandle.ReferenceEquals(this, null) && !BaseHandle.ReferenceEquals(b, null))
+            {
+                if (b.HasBody()) return false;
+                else return true;
+            }
+            if (!BaseHandle.ReferenceEquals(this, null) && BaseHandle.ReferenceEquals(b, null))
+            {
+                if (this.HasBody()) return false;
+                else return true;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
 
         public BaseHandle() : this(NDalicPINVOKE.new_BaseHandle__SWIG_1())
         {

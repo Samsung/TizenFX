@@ -125,6 +125,30 @@ namespace Tizen.NUI
             return !(a == b);
         }
 
+        public override bool Equals(object o)
+        {
+            if(o == null)
+            {
+                return false;
+            }
+            if(!(o is PaddingType))
+            {
+                return false;
+            }
+            PaddingType p = (PaddingType)o;
+
+            // Return true if the fields match:
+            return (System.Math.Abs(Left - p.Left) < NDalic.GetRangedEpsilon(Left, p.Left)) &&
+                   (System.Math.Abs(Right - p.Right) < NDalic.GetRangedEpsilon(Right, p.Right)) &&
+                   (System.Math.Abs(Bottom - p.Bottom) < NDalic.GetRangedEpsilon(Bottom, p.Bottom)) &&
+                   (System.Math.Abs(Top - p.Top) < NDalic.GetRangedEpsilon(Top, p.Top));
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         ///< The Left value
         public float Left
         {
