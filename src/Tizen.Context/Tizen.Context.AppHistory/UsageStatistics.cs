@@ -31,7 +31,9 @@ namespace Tizen.Context.AppHistory
         /// <summary>
         /// The default constructor of UsageStatistics class.
         /// </summary>
+        /// <feature>http://tizen.org/feature/app_history</feature>
         /// <exception cref="InvalidOperationException">Thrown when method fail due to internal error.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         public UsageStatistics()
         {
             SortOrder = SortOrderType.LastLaunchTimeNewest;
@@ -54,8 +56,10 @@ namespace Tizen.Context.AppHistory
         /// The constructor of UsageStatistics class.
         /// </summary>
         /// <param name="order">The criteria of the usage statistics sorted by.</param>
+        /// <feature>http://tizen.org/feature/app_history</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="InvalidOperationException">Thrown when method fail due to internal error.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         public UsageStatistics(SortOrderType order)
         {
             SortOrder = order;
@@ -86,8 +90,10 @@ namespace Tizen.Context.AppHistory
         /// <param name="endTime">The end time of the data to be aggregated.</param>
         /// <returns>Usage statistics data retrieved.</returns>
         /// <privilege>http://tizen.org/privilege/apphistory.read</privilege>
+        /// <feature>http://tizen.org/feature/app_history</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="InvalidOperationException">Thrown when invalid operation occurs.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the app has no privilege to retrieve app history.</exception>
         public IReadOnlyList<UsageStatisticsData> Query(DateTime startTime, DateTime endTime)
         {
@@ -104,8 +110,10 @@ namespace Tizen.Context.AppHistory
         /// <param name="resultSize">The number of data records to be retrieved.</param>
         /// <returns>Usage statistics data retrieved.</returns>
         /// <privilege>http://tizen.org/privilege/apphistory.read</privilege>
+        /// <feature>http://tizen.org/feature/app_history</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="InvalidOperationException">Thrown when invalid operation occurs.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the app has no privilege to retrieve app history.</exception>
         public IReadOnlyList<UsageStatisticsData> Query(DateTime startTime, DateTime endTime, uint resultSize)
         {

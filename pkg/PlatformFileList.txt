@@ -28,7 +28,7 @@ Tizen.Applications.WidgetControl.dll               #mobile #mobile-emul #tv #ivi
 Tizen.Content.Download.dll                         #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Content.MediaContent.dll                     #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Content.MimeType.dll                         #common #mobile #mobile-emul #tv #ivi #wearable
-Tizen.Context.dll                                  #mobile #mobile-emul
+Tizen.Context.dll                                  #mobile #mobile-emul #wearable
 Tizen.Convergence.dll                              #common #mobile #mobile-emul #ivi #wearable
 Tizen.dll                                          #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Location.dll                                 #mobile #mobile-emul #tv #ivi #wearable
