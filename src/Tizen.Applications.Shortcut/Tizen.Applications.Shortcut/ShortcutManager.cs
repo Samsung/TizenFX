@@ -51,7 +51,7 @@ namespace Tizen.Applications.Shortcut
             {
                 int type;
 
-                if (shortcut.Uri == null || shortcut.Uri == String.Empty)
+                if (string.IsNullOrEmpty(shortcut.Uri))
                 {
                     type = 0;
                 }

@@ -66,8 +66,6 @@ namespace Tizen.Applications.Shortcut
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public static void RegisterEventHandler(ShortcutAdded addedEvent)
         {
-            shortcutAdded = addedEvent;
-
             if (shortcutAddCallback == null)
             {
                 shortcutAddCallback = new Interop.Shortcut.AddCallback(AddCallback);
@@ -75,8 +73,15 @@ namespace Tizen.Applications.Shortcut
                 Interop.Shortcut.ErrorCode err = Interop.Shortcut.SetShortcutAddCallback(shortcutAddCallback, IntPtr.Zero);
                 if (err != Interop.Shortcut.ErrorCode.None)
                 {
+                    shortcutAddCallback = null;
                     throw ShortcutErrorFactory.GetException(err, "unable to register callback");
                 }
+
+                shortcutAdded = addedEvent;
+            }
+            else
+            {
+                throw ShortcutErrorFactory.GetException(Interop.Shortcut.ErrorCode.InvalidParameter, null);
             }
         }
 
@@ -97,8 +102,6 @@ namespace Tizen.Applications.Shortcut
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         public static void RegisterEventHandler(ShortcutDeleted deletedEvent)
         {
-            shortcutDeleted = deletedEvent;
-
             if (shortcutDeleteCallback == null)
             {
                 shortcutDeleteCallback = new Interop.Shortcut.DeleteCallback(DeleteCallback);
@@ -106,8 +109,15 @@ namespace Tizen.Applications.Shortcut
                 Interop.Shortcut.ErrorCode err = Interop.Shortcut.SetShortcutDeleteCallback(shortcutDeleteCallback, IntPtr.Zero);
                 if (err != Interop.Shortcut.ErrorCode.None)
                 {
+                    shortcutDeleteCallback = null;
                     throw ShortcutErrorFactory.GetException(err, "unable to register callback");
                 }
+
+                shortcutDeleted = deletedEvent;
+            }
+            else
+            {
+                throw ShortcutErrorFactory.GetException(Interop.Shortcut.ErrorCode.InvalidParameter, null);
             }
         }
 
@@ -123,7 +133,7 @@ namespace Tizen.Applications.Shortcut
         /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
         public static void UnregisterEventHandler(ShortcutAdded addedEvent)
         {
-            if (shortcutAdded.Equals(addedEvent))
+            if (shortcutAdded != null && shortcutAdded.Equals(addedEvent))
             {
                 shortcutAdded = null;
 
@@ -157,13 +167,12 @@ namespace Tizen.Applications.Shortcut
         /// <exception cref="NotSupportedException">Thrown when Shortcut is not supported.</exception>
         public static void UnregisterEventHandler(ShortcutDeleted deletedEvent)
         {
-            if (shortcutDeleted.Equals(deletedEvent))
+            if (shortcutDeleted != null && shortcutDeleted.Equals(deletedEvent))
             {
                 shortcutDeleted = null;
 
                 if (shortcutDeleteCallback != null)
                 {
-
                     Interop.Shortcut.UnsetShortcutDeleteCallback();
                     shortcutDeleteCallback = null;
 
