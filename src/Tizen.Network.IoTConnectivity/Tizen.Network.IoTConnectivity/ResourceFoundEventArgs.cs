@@ -29,7 +29,7 @@ namespace Tizen.Network.IoTConnectivity
 
         /// <summary>
         /// Indicates the request ID.
-        /// This is the same request ID returned by the <see cref="IoTConnectivityClientManager.StartFindingResource()"/> API.
+        /// This is the same request ID returned by the <see cref="IoTConnectivityClientManager.StartFindingResource(string, ResourceQuery)"/> API.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The request ID.</value>
@@ -43,12 +43,12 @@ namespace Tizen.Network.IoTConnectivity
         public bool EventContinue { get; set; }
 
         /// <summary>
-        /// Remote resource, which is found after <see cref="IoTConnectivityClientManager.StartFindingResource()"/>.
+        /// Remote resource, which is found after <see cref="IoTConnectivityClientManager.StartFindingResource(string, ResourceQuery)"/>.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value>Remote resource which is found after <see cref="IoTConnectivityClientManager.StartFindingResource()"/>.</value>
+        /// <value>Remote resource which is found after <see cref="IoTConnectivityClientManager.StartFindingResource(string, ResourceQuery)"/>.</value>
         /// <seealso cref="IoTConnectivityClientManager.ResourceFound"/>
-        /// <seealso cref="IoTConnectivityClientManager.StartFindingResource()"/>
+        /// <seealso cref="IoTConnectivityClientManager.StartFindingResource(string, ResourceQuery)"/>
         public RemoteResource Resource { get; internal set; }
     }
 }

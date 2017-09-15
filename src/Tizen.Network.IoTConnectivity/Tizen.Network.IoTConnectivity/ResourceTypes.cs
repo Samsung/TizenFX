@@ -39,8 +39,8 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
-        /// <seealso cref="Add()"/>
-        /// <seealso cref="Remove()"/>
+        /// <seealso cref="Add(string)"/>
+        /// <seealso cref="Remove(string)"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
         /// <code>
@@ -141,7 +141,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </remarks>
         /// <param name="item">The string data to insert into the resource types.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
-        /// <seealso cref="Remove()"/>
+        /// <seealso cref="Remove(string)"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
