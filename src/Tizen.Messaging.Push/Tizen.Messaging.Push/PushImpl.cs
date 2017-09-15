@@ -26,6 +26,8 @@ namespace Tizen.Messaging.Push
     {
         private static readonly object _lock = new object();
         private static PushImpl _instance;
+        private Interop.PushClient.VoidResultCallback registerResult;
+        private Interop.PushClient.VoidResultCallback unregisterResult;
 
         internal static PushImpl Instance
         {
@@ -157,9 +159,9 @@ namespace Tizen.Messaging.Push
         {
             Log.Info(Interop.PushClient.LogTag, "Register Called");
             var task = new TaskCompletionSource<ServerResponse>();
-            Interop.PushClient.VoidResultCallback registerResult = (Interop.PushClient.Result regResult, IntPtr msgPtr, IntPtr userData) =>
+            registerResult = (Interop.PushClient.Result regResult, IntPtr msgPtr, IntPtr userData) =>
             {
-                Log.Info(Interop.PushClient.LogTag, "Register Callback Called");
+                Log.Info(Interop.PushClient.LogTag, "Register Callback Called with " + regResult);
                 string msg = "";
                 if (msgPtr != IntPtr.Zero)
                 {
@@ -186,7 +188,7 @@ namespace Tizen.Messaging.Push
         internal async Task<ServerResponse> PushServerUnregister()
         {
             var task = new TaskCompletionSource<ServerResponse>();
-            Interop.PushClient.VoidResultCallback registerResult = (Interop.PushClient.Result regResult, IntPtr msgPtr, IntPtr userData) =>
+            unregisterResult = (Interop.PushClient.Result regResult, IntPtr msgPtr, IntPtr userData) =>
             {
                 Log.Info(Interop.PushClient.LogTag, "Unregister Callback Called");
                 string msg = "";
@@ -202,7 +204,7 @@ namespace Tizen.Messaging.Push
                     Log.Error(Interop.PushClient.LogTag, "Unable to set the Result for Unregister");
                 }
             };
-            Interop.PushClient.ServiceError result = Interop.PushClient.ServiceDeregister(_connection, registerResult, IntPtr.Zero);
+            Interop.PushClient.ServiceError result = Interop.PushClient.ServiceDeregister(_connection, unregisterResult, IntPtr.Zero);
             if (result != Interop.PushClient.ServiceError.None)
             {
                 task.SetException(PushExceptionFactory.CreateResponseException(result));
