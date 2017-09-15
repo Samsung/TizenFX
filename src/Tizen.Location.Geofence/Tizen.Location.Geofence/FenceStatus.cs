@@ -40,6 +40,7 @@ namespace Tizen.Location.Geofence
         /// Creates a new geofence status.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <param name="fenceId">The geofence ID.</param>
         /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">In case of geofence is not supported.</exception>
         public FenceStatus(int fenceId)
@@ -109,7 +110,7 @@ namespace Tizen.Location.Geofence
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
                 return;
