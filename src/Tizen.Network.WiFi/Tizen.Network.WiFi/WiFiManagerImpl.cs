@@ -287,7 +287,10 @@ namespace Tizen.Network.WiFi
                         Log.Error(Globals.LogTag, "Error occurs during WiFi activating, " + (WiFiError)error);
                         task.SetException(new InvalidOperationException("Error occurs during WiFi activating, " + (WiFiError)error));
                     }
-                    task.SetResult(true);
+                    else
+                    {
+                        task.SetResult(true);
+                    }
                     lock (_callback_map)
                     {
                         _callback_map.Remove(key);
@@ -319,7 +322,10 @@ namespace Tizen.Network.WiFi
                         Log.Error(Globals.LogTag, "Error occurs during WiFi activating, " + (WiFiError)error);
                         task.SetException(new InvalidOperationException("Error occurs during WiFi activating, " + (WiFiError)error));
                     }
-                    task.SetResult(true);
+                    else
+                    {
+                        task.SetResult(true);
+                    }
                     lock (_callback_map)
                     {
                         _callback_map.Remove(key);
@@ -351,7 +357,10 @@ namespace Tizen.Network.WiFi
                         Log.Error(Globals.LogTag, "Error occurs during WiFi deactivating, " + (WiFiError)error);
                         task.SetException(new InvalidOperationException("Error occurs during WiFi deactivating, " + (WiFiError)error));
                     }
-                    task.SetResult(true);
+                    else
+                    {
+                        task.SetResult(true);
+                    }
                     lock (_callback_map)
                     {
                         _callback_map.Remove(key);
@@ -383,7 +392,10 @@ namespace Tizen.Network.WiFi
                         Log.Error(Globals.LogTag, "Error occurs during WiFi scanning, " + (WiFiError)error);
                         task.SetException(new InvalidOperationException("Error occurs during WiFi scanning, " + (WiFiError)error));
                     }
-                    task.SetResult(true);
+                    else
+                    {
+                        task.SetResult(true);
+                    }
                     lock (_callback_map)
                     {
                         _callback_map.Remove(key);
@@ -415,7 +427,10 @@ namespace Tizen.Network.WiFi
                         Log.Error(Globals.LogTag, "Error occurs during WiFi scanning, " + (WiFiError)error);
                         task.SetException(new InvalidOperationException("Error occurs during WiFi scanning, " + (WiFiError)error));
                     }
-                    task.SetResult(true);
+                    else
+                    {
+                        task.SetResult(true);
+                    }
                     lock (_callback_map)
                     {
                         _callback_map.Remove(key);

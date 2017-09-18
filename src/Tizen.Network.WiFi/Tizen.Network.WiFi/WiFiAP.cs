@@ -228,7 +228,10 @@ namespace Tizen.Network.WiFi
                         Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
                         task.SetException(new InvalidOperationException("Error occurs during WiFi connecting, " + (WiFiError)error));
                     }
-                    task.SetResult(true);
+                    else
+                    {
+                        task.SetResult(true);
+                    }
                     lock (_callback_map)
                     {
                         _callback_map.Remove(key);
@@ -283,7 +286,10 @@ namespace Tizen.Network.WiFi
                         Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
                         task.SetException(new InvalidOperationException("Error occurs during WiFi connecting, " + (WiFiError)error));
                     }
-                    task.SetResult(true);
+                    else
+                    {
+                        task.SetResult(true);
+                    }
                     lock (_callback_map)
                     {
                         _callback_map.Remove(key);
@@ -357,8 +363,11 @@ namespace Tizen.Network.WiFi
                         Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
                         task.SetException(new InvalidOperationException("Error occurs during WiFi connecting, " + (WiFiError)error));
                     }
-                    WiFiAP ap = WiFiManagerImpl.Instance.GetConnectedAP();
-                    task.SetResult(ap);
+                    else
+                    {
+                        WiFiAP ap = WiFiManagerImpl.Instance.GetConnectedAP();
+                        task.SetResult(ap);
+                    }
                     lock (s_callbackMap)
                     {
                         s_callbackMap.Remove(key);
@@ -431,7 +440,10 @@ namespace Tizen.Network.WiFi
                         Log.Error(Globals.LogTag, "Error occurs during WiFi disconnecting, " + (WiFiError)error);
                         task.SetException(new InvalidOperationException("Error occurs during WiFi disconnecting, " + (WiFiError)error));
                     }
-                    task.SetResult(true);
+                    else
+                    {
+                        task.SetResult(true);
+                    }
                     lock (_callback_map)
                     {
                         _callback_map.Remove(key);
