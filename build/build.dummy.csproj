@@ -77,7 +77,7 @@
 
     <Message Text="[GenAPI] %(TizenAssemblies.Filename) -> $(GeneratedReferenceAssemblySource)" Importance="High" />
 
-    <Exec Command='$(GenAPICommand) -assembly:&quot;%(TizenAssemblies.Identity)&quot; -libPath:&quot;$(IntermediateLibDir)&quot; -out:&quot;$(GeneratedReferenceAssemblySource)&quot; -throw:&quot;Not Supported Feature&quot; -global' />
+    <Exec Command='$(GenAPICommand) -assembly:&quot;%(TizenAssemblies.Identity)&quot; -libPath:$(IntermediateLibDir) -out:$(GeneratedReferenceAssemblySource) -throw:&quot;Not Supported Feature&quot; -global' />
   </Target>
 
 
