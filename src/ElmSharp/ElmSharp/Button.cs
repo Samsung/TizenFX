@@ -165,13 +165,7 @@ namespace ElmSharp
 
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
-            Interop.Elementary.elm_layout_theme_set(handle, "layout", "elm_widget", "default");
-
-            RealHandle = Interop.Elementary.elm_button_add(handle);
-            Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
-
-            return handle;
+            return Interop.Elementary.elm_button_add(parent.Handle);
         }
     }
 }
