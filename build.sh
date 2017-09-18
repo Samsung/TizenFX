@@ -24,7 +24,7 @@ usage() {
   echo "        -b, --build [module]  Build a module"
   echo "        -f, --full            Build all modules in src/ directory"
   echo "        -d, --dummy           Build dummy modules"
-  echo "        -p, --pack            Make nuget packages"
+  echo "        -p, --pack  [version] Make nuget packages"
   echo "        -c, --clean           Clean all artifacts"
 }
 
@@ -51,12 +51,10 @@ cmd_full_build() {
 }
 
 cmd_pack() {
-  VERSION_FILE=$OUTDIR/Version.txt
-  if [ -f $VERSION_FILE ]; then
-    NUGET_VERSION_PREFIX=$(cat $VERSION_FILE | grep Prefix | cut -d: -f2 | sed 's/\r$//')
-    NUGET_VERSION_SUFFIX=$(cat $VERSION_FILE | grep Suffix | cut -d: -f2 | sed 's/\r$//')
-	  NUGET_VERSION_OPT="-Version $NUGET_VERSION_PREFIX-$NUGET_VERSION_SUFFIX"
+  if [ -n "$1" ]; then
+    NUGET_VERSION_OPT="-Version $1"
   fi
+
   $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.Private.nuspec -Symbols -NoPackageAnalysis $NUGET_VERSION_OPT -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
   $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.nuspec -Symbols -NoPackageAnalysis $NUGET_VERSION_OPT -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
 }
