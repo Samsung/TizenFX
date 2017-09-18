@@ -20,6 +20,7 @@ Tizen.Applications.PackageManager.dll              #common #mobile #mobile-emul 
 Tizen.Applications.Preference.dll                  #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Applications.RemoteView.dll                  #mobile #mobile-emul #tv #wearable
 Tizen.Applications.Service.dll                     #common #mobile #mobile-emul #tv #ivi #wearable
+Tizen.Applications.Shortcut.dll                    #mobile #mobile-emul
 Tizen.Applications.ToastMessage.dll                #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Applications.UI.dll                          #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Applications.WatchApplication.dll            #wearable

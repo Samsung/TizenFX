@@ -17,6 +17,7 @@ Tizen.Applications.PackageManager
 Tizen.Applications.Preference
 Tizen.Applications.RemoteView
 Tizen.Applications.Service
+Tizen.Applications.Shortcut
 Tizen.Applications.ToastMessage
 Tizen.Applications.UI
 Tizen.Applications.WatchApplication
