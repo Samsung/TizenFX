@@ -809,8 +809,10 @@ namespace Tizen.Network.Connection
                         Log.Error(Globals.LogTag, "Error occurs during set default cellular profile, " + Result);
                         task.SetException(new InvalidOperationException("Error occurs during set default cellular profile, " + Result));
                     }
-
-                    task.SetResult(true);
+                    else
+                    {
+                        task.SetResult(true);
+                    }
                 };
 
                 int ret = Interop.Connection.SetDefaultCellularServiceProfileAsync(GetHandle(), (int)type, profile.ProfileHandle, Callback, (IntPtr)0);
@@ -894,8 +896,10 @@ namespace Tizen.Network.Connection
                         Log.Error(Globals.LogTag, "Error occurs during connecting profile, " + Result);
                         task.SetException(new InvalidOperationException("Error occurs during connecting profile, " + Result));
                     }
-
-                    task.SetResult(true);
+                    else
+                    {
+                        task.SetResult(true);
+                    }
                 };
 
                 int ret = Interop.Connection.OpenProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
@@ -930,8 +934,10 @@ namespace Tizen.Network.Connection
                         Log.Error(Globals.LogTag, "Error occurs during disconnecting profile, " + Result);
                         task.SetException(new InvalidOperationException("Error occurs during disconnecting profile, " + Result));
                     }
-
-                    task.SetResult(true);
+                    else
+                    {
+                        task.SetResult(true);
+                    }
                 };
 
                 int ret = Interop.Connection.CloseProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
