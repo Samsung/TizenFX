@@ -25,26 +25,25 @@ namespace Tizen.Multimedia
     /// </summary>
     public class VideoMetadata
     {
-        private VideoMetadata(int streamCount, IntPtr handle)
+        private VideoMetadata(int streamCount, MetadataExtractor extractor)
         {
             Debug.Assert(streamCount > 0);
-            Debug.Assert(handle != IntPtr.Zero);
 
             StreamCount = streamCount;
-            BitRate = ValueConverter.ToNullableInt(GetMetadata(handle, MetadataExtractorAttr.VideoBitrate));
-            Fps = ValueConverter.ToNullableInt(GetMetadata(handle, MetadataExtractorAttr.VideoFps));
-            Width = ValueConverter.ToNullableInt(GetMetadata(handle, MetadataExtractorAttr.VideoWidth));
-            Height = ValueConverter.ToNullableInt(GetMetadata(handle, MetadataExtractorAttr.VideoHeight));
-            Codec = GetMetadata(handle, MetadataExtractorAttr.VideoCodec);
+            BitRate = ValueConverter.ToNullableInt(extractor.GetMetadata(MetadataExtractorAttr.VideoBitrate));
+            Fps = ValueConverter.ToNullableInt(extractor.GetMetadata(MetadataExtractorAttr.VideoFps));
+            Width = ValueConverter.ToNullableInt(extractor.GetMetadata(MetadataExtractorAttr.VideoWidth));
+            Height = ValueConverter.ToNullableInt(extractor.GetMetadata(MetadataExtractorAttr.VideoHeight));
+            Codec = extractor.GetMetadata(MetadataExtractorAttr.VideoCodec);
 
             _description = new Lazy<string>(() => ObjectDescriptionBuilder.BuildWithProperties(this));
         }
 
-        internal static VideoMetadata From(IntPtr handle)
+        internal static VideoMetadata From(MetadataExtractor extractor)
         {
-            var streamCount = ValueConverter.ToInt(GetMetadata(handle, MetadataExtractorAttr.VideoStreamCount));
+            var streamCount = ValueConverter.ToInt(extractor.GetMetadata(MetadataExtractorAttr.VideoStreamCount));
 
-            return streamCount > 0 ? new VideoMetadata(streamCount, handle) : null;
+            return streamCount > 0 ? new VideoMetadata(streamCount, extractor) : null;
         }
 
         /// <summary>
@@ -103,26 +102,25 @@ namespace Tizen.Multimedia
     /// </summary>
     public class AudioMetadata
     {
-        private AudioMetadata(int streamCount, IntPtr handle)
+        private AudioMetadata(int streamCount, MetadataExtractor extractor)
         {
             Debug.Assert(streamCount > 0);
-            Debug.Assert(handle != IntPtr.Zero);
 
             StreamCount = streamCount;
-            BitRate = ValueConverter.ToNullableInt(GetMetadata(handle, MetadataExtractorAttr.AudioBitrate));
-            Channels = ValueConverter.ToNullableInt(GetMetadata(handle, MetadataExtractorAttr.AudioChannels));
-            SampleRate = ValueConverter.ToNullableInt(GetMetadata(handle, MetadataExtractorAttr.AudioSamplerate));
-            BitPerSample = ValueConverter.ToNullableInt(GetMetadata(handle, MetadataExtractorAttr.AudioBitPerSample));
-            Codec = GetMetadata(handle, MetadataExtractorAttr.AudioCodec);
+            BitRate = ValueConverter.ToNullableInt(extractor.GetMetadata(MetadataExtractorAttr.AudioBitrate));
+            Channels = ValueConverter.ToNullableInt(extractor.GetMetadata(MetadataExtractorAttr.AudioChannels));
+            SampleRate = ValueConverter.ToNullableInt(extractor.GetMetadata(MetadataExtractorAttr.AudioSamplerate));
+            BitPerSample = ValueConverter.ToNullableInt(extractor.GetMetadata(MetadataExtractorAttr.AudioBitPerSample));
+            Codec = extractor.GetMetadata(MetadataExtractorAttr.AudioCodec);
 
             _description = new Lazy<string>(() => ObjectDescriptionBuilder.BuildWithProperties(this));
         }
 
-        internal static AudioMetadata From(IntPtr handle)
+        internal static AudioMetadata From(MetadataExtractor extractor)
         {
-            var streamCount = ValueConverter.ToInt(GetMetadata(handle, MetadataExtractorAttr.AudioStreamCount));
+            var streamCount = ValueConverter.ToInt(extractor.GetMetadata(MetadataExtractorAttr.AudioStreamCount));
 
-            return streamCount > 0 ? new AudioMetadata(streamCount, handle) : null;
+            return streamCount > 0 ? new AudioMetadata(streamCount, extractor) : null;
         }
 
         /// <summary>
@@ -179,36 +177,36 @@ namespace Tizen.Multimedia
     /// </summary>
     public class Metadata
     {
-        internal Metadata(IntPtr handle)
+        internal Metadata(MetadataExtractor extractor)
         {
-            Debug.Assert(handle != IntPtr.Zero);
+            Debug.Assert(extractor != null);
 
-            Video = VideoMetadata.From(handle);
-            Audio = AudioMetadata.From(handle);
+            Video = VideoMetadata.From(extractor);
+            Audio = AudioMetadata.From(extractor);
 
-            Duration = ValueConverter.ToNullableInt(GetMetadata(handle, MetadataExtractorAttr.Duration));
-            Artist = GetMetadata(handle, MetadataExtractorAttr.Artist);
-            Title = GetMetadata(handle, MetadataExtractorAttr.Title);
-            Album = GetMetadata(handle, MetadataExtractorAttr.Album);
-            AlbumArtist = GetMetadata(handle, MetadataExtractorAttr.AlbumArtist);
-            Genre = GetMetadata(handle, MetadataExtractorAttr.Genre);
-            Author = GetMetadata(handle, MetadataExtractorAttr.Author);
-            Copyright = GetMetadata(handle, MetadataExtractorAttr.Copyright);
-            DateReleased = GetMetadata(handle, MetadataExtractorAttr.ReleaseDate);
-            Description = GetMetadata(handle, MetadataExtractorAttr.Description);
-            Comment = GetMetadata(handle, MetadataExtractorAttr.Comment);
-            TrackNumber = GetMetadata(handle, MetadataExtractorAttr.TrackNum);
-            Classification = GetMetadata(handle, MetadataExtractorAttr.Classification);
-            Rating = GetMetadata(handle, MetadataExtractorAttr.Rating);
-            Longitude = ValueConverter.ToNullableDouble(GetMetadata(handle, MetadataExtractorAttr.Longitude));
-            Latitude = ValueConverter.ToNullableDouble(GetMetadata(handle, MetadataExtractorAttr.Latitude));
-            Altitude = ValueConverter.ToNullableDouble(GetMetadata(handle, MetadataExtractorAttr.Altitude));
-            Conductor = GetMetadata(handle, MetadataExtractorAttr.Conductor);
-            UnsyncLyrics = GetMetadata(handle, MetadataExtractorAttr.UnSyncLyrics);
-            SyncLyricsCount = ValueConverter.ToInt(GetMetadata(handle, MetadataExtractorAttr.SyncLyricsNum));
-            DateRecorded = GetMetadata(handle, MetadataExtractorAttr.RecordingDate);
-            Rotation = GetMetadata(handle, MetadataExtractorAttr.Rotate);
-            Content360 = GetMetadata(handle, MetadataExtractorAttr.ContentFor360);
+            Duration = ValueConverter.ToNullableInt(extractor.GetMetadata(MetadataExtractorAttr.Duration));
+            Artist = extractor.GetMetadata(MetadataExtractorAttr.Artist);
+            Title = extractor.GetMetadata(MetadataExtractorAttr.Title);
+            Album = extractor.GetMetadata(MetadataExtractorAttr.Album);
+            AlbumArtist = extractor.GetMetadata(MetadataExtractorAttr.AlbumArtist);
+            Genre = extractor.GetMetadata(MetadataExtractorAttr.Genre);
+            Author = extractor.GetMetadata(MetadataExtractorAttr.Author);
+            Copyright = extractor.GetMetadata(MetadataExtractorAttr.Copyright);
+            DateReleased = extractor.GetMetadata(MetadataExtractorAttr.ReleaseDate);
+            Description = extractor.GetMetadata(MetadataExtractorAttr.Description);
+            Comment = extractor.GetMetadata(MetadataExtractorAttr.Comment);
+            TrackNumber = extractor.GetMetadata(MetadataExtractorAttr.TrackNum);
+            Classification = extractor.GetMetadata(MetadataExtractorAttr.Classification);
+            Rating = extractor.GetMetadata(MetadataExtractorAttr.Rating);
+            Longitude = ValueConverter.ToNullableDouble(extractor.GetMetadata(MetadataExtractorAttr.Longitude));
+            Latitude = ValueConverter.ToNullableDouble(extractor.GetMetadata(MetadataExtractorAttr.Latitude));
+            Altitude = ValueConverter.ToNullableDouble(extractor.GetMetadata(MetadataExtractorAttr.Altitude));
+            Conductor = extractor.GetMetadata(MetadataExtractorAttr.Conductor);
+            UnsyncLyrics = extractor.GetMetadata(MetadataExtractorAttr.UnSyncLyrics);
+            SyncLyricsCount = ValueConverter.ToInt(extractor.GetMetadata(MetadataExtractorAttr.SyncLyricsNum));
+            DateRecorded = extractor.GetMetadata(MetadataExtractorAttr.RecordingDate);
+            Rotation = extractor.GetMetadata(MetadataExtractorAttr.Rotate);
+            Content360 = extractor.GetMetadata(MetadataExtractorAttr.ContentFor360);
 
             _description = new Lazy<string>(() => ObjectDescriptionBuilder.BuildWithProperties(this));
         }

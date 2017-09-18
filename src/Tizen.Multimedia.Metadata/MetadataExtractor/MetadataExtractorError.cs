@@ -32,7 +32,7 @@ namespace Tizen.Multimedia
         PermissionDenied = ErrorCode.PermissionDenied,
         TizenMetadataExtractorError = -0x01930000,
         OperationFailed = TizenMetadataExtractorError | 0x01  // Invalid operation
-    };
+    }
 
     internal static class MetadataExtractorRetValidator
     {

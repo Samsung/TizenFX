@@ -35,23 +35,7 @@ internal static partial class Interop
         internal static extern MetadataExtractorError Destroy(IntPtr handle);
 
         [DllImport(Libraries.MetadataExtractor, EntryPoint = "metadata_extractor_get_metadata")]
-        private static extern MetadataExtractorError GetMetadata(IntPtr handle, MetadataExtractorAttr attribute, out IntPtr value);
-
-        internal static string GetMetadata(IntPtr handle, MetadataExtractorAttr attr)
-        {
-            IntPtr valuePtr = IntPtr.Zero;
-
-            try
-            {
-                var ret = GetMetadata(handle, attr, out valuePtr);
-                MetadataExtractorRetValidator.ThrowIfError(ret, "Failed to get value for " + attr);
-                return Marshal.PtrToStringAnsi(valuePtr);
-            }
-            finally
-            {
-                Libc.Free(valuePtr);
-            }
-        }
+        internal static extern MetadataExtractorError GetMetadata(IntPtr handle, MetadataExtractorAttr attribute, out IntPtr value);
 
         [DllImport(Libraries.MetadataExtractor, EntryPoint = "metadata_extractor_get_artwork")]
         internal static extern MetadataExtractorError GetArtwork(IntPtr handle, out IntPtr artwork,
