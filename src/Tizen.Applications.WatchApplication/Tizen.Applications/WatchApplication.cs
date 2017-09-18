@@ -159,8 +159,10 @@ namespace Tizen.Applications
         /// Gets the current time
         /// </summary>
         /// <returns>WatchTime</returns>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="InvalidOperationException">Thrown when failed to get current time because of invalid parameter.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed to get current time because memory is not enough.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the method is not supported.</exception>
         /// <example>
         /// <code>
         /// class MyApp : WatchApplication
@@ -191,6 +193,8 @@ namespace Tizen.Applications
                     throw new InvalidOperationException("Failed to get current time. err : " + err);
                 else if (err == Interop.Watch.ErrorCode.OutOfMemory)
                     throw new OutOfMemoryException("Failed to get current time. err : " + err);
+                else if (err == Interop.Watch.ErrorCode.NotSupported)
+                    throw new NotSupportedException("Failed to get current time. err : " + err);
             }
             return new WatchTime(handle);
         }
@@ -199,7 +203,9 @@ namespace Tizen.Applications
         /// Gets the type of periodic ambient tick.
         /// </summary>
         /// <returns>AmbientTickType</returns>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="InvalidOperationException">Thrown when failed to get ambient tick type.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the method is not supported.</exception>
         /// <example>
         /// <code>
         /// class MyApp : WatchApplication
@@ -227,7 +233,10 @@ namespace Tizen.Applications
 
             if(err != Interop.Watch.ErrorCode.None)
             {
-                throw new InvalidOperationException("Failed to get ambient tick type. err : " + err);
+                if (err == Interop.Watch.ErrorCode.NotSupported)
+                    throw new NotSupportedException("Failed to get ambient tick type. err : " + err);
+                else
+                    throw new InvalidOperationException("Failed to get ambient tick type. err : " + err);
             }
 
             return ambientTickType;
@@ -239,7 +248,9 @@ namespace Tizen.Applications
         /// If SetAmbientTickType is not called, OnAmbientTick will be called every minute.
         /// </summary>
         /// <param name="ambientTickType">the type of ambient tick</param>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="InvalidOperationException">Thrown when failed to set ambient tick type.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the method is not supported.</exception>
         /// <example>
         /// <code>
         /// class MyApp : WatchApplication
@@ -264,7 +275,10 @@ namespace Tizen.Applications
 
             if(err != Interop.Watch.ErrorCode.None)
             {
-                throw new InvalidOperationException("Failed to set ambient tick type. err : " + err);
+                if (err == Interop.Watch.ErrorCode.NotSupported)
+                    throw new NotSupportedException("Failed to set ambient tick type. err : " + err);
+                else
+                    throw new InvalidOperationException("Failed to set ambient tick type. err : " + err);
             }
         }
 
@@ -275,7 +289,9 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="ticks">Ticks the number of ticks per given resolution type</param>
         /// <param name="type">Type of the resolution type</param>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="InvalidOperationException">Thrown when failed to set time tick frequency.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the method is not supported.</exception>
         /// <example>
         /// <code>
         /// class MyApp : WatchApplication
@@ -300,7 +316,10 @@ namespace Tizen.Applications
 
             if (err != Interop.Watch.ErrorCode.None)
             {
-                throw new InvalidOperationException("Failed to set time tick frequency. err : " + err);
+                if (err == Interop.Watch.ErrorCode.NotSupported)
+                    throw new NotSupportedException("Failed to set time tick frequency. err : " + err);
+                else
+                    throw new InvalidOperationException("Failed to set time tick frequency. err : " + err);
             }
         }
 
@@ -309,7 +328,9 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="ticks">Ticks the number of ticks per given resolution type</param>
         /// <param name="type">Type of the resolution type</param>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="InvalidOperationException">Thrown when failed to get time tick frequency.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the method is not supported.</exception>
         /// <example>
         /// <code>
         /// class MyApp : WatchApplication
@@ -336,7 +357,10 @@ namespace Tizen.Applications
 
             if (err != Interop.Watch.ErrorCode.None)
             {
-                throw new InvalidOperationException("Failed to get time tick frequency. err : " + err);
+                if (err == Interop.Watch.ErrorCode.NotSupported)
+                    throw new NotSupportedException("Failed to get time tick frequency. err : " + err);
+                else
+                    throw new InvalidOperationException("Failed to get time tick frequency. err : " + err);
             }
         }
     }

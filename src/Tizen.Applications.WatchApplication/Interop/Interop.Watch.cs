@@ -39,6 +39,7 @@ internal static partial class Interop
             OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
             InvalidContext = -0x01100000 | 0x01,
             NoSuchFile = Tizen.Internals.Errors.ErrorCode.NoSuchFile,
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
             AlreadyRunning = Tizen.Internals.Errors.ErrorCode.AlreadyInProgress
         }
 
@@ -153,6 +154,5 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_region_format")]
         internal static extern Tizen.Internals.Errors.ErrorCode AppEventGetRegionFormat(IntPtr handle, out string region);
-
     }
 }

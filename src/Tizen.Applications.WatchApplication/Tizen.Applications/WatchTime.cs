@@ -34,6 +34,8 @@ namespace Tizen.Applications
         /// <summary>
         /// The information of year
         /// </summary>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
+        /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         public int Year
         {
             get
@@ -43,7 +45,10 @@ namespace Tizen.Applications
 
                 if (err != Interop.Watch.ErrorCode.None)
                 {
-                    Log.Error(LOGTAG, "Failed to get Year err : " + err);
+                    if (err == Interop.Watch.ErrorCode.NotSupported)
+                        throw new NotSupportedException("Failed to get Year. err : " + err);
+                    else
+                        Log.Error(LOGTAG, "Failed to get Year err : " + err);
                 }
                 return year;
             }
@@ -52,6 +57,8 @@ namespace Tizen.Applications
         /// <summary>
         /// The information fo month
         /// </summary>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
+        /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         public int Month
         {
             get
@@ -61,7 +68,10 @@ namespace Tizen.Applications
 
                 if (err != Interop.Watch.ErrorCode.None)
                 {
-                    Log.Error(LOGTAG, "Failed to get Month err : " + err);
+                    if (err == Interop.Watch.ErrorCode.NotSupported)
+                        throw new NotSupportedException("Failed to get Month. err : " + err);
+                    else
+                        Log.Error(LOGTAG, "Failed to get Month err : " + err);
                 }
                 return month;
             }
@@ -70,6 +80,8 @@ namespace Tizen.Applications
         /// <summary>
         /// The information of day
         /// </summary>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
+        /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         public int Day
         {
             get
@@ -79,7 +91,10 @@ namespace Tizen.Applications
 
                 if (err != Interop.Watch.ErrorCode.None)
                 {
-                    Log.Error(LOGTAG, "Failed to get Day err : " + err);
+                    if (err == Interop.Watch.ErrorCode.NotSupported)
+                        throw new NotSupportedException("Failed to get Day. err : " + err);
+                    else
+                        Log.Error(LOGTAG, "Failed to get Day err : " + err);
                 }
                 return day;
             }
@@ -88,6 +103,8 @@ namespace Tizen.Applications
         /// <summary>
         /// The information of day of week
         /// </summary>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
+        /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         public int DayOfWeek
         {
             get
@@ -97,7 +114,10 @@ namespace Tizen.Applications
 
                 if (err != Interop.Watch.ErrorCode.None)
                 {
-                    Log.Error(LOGTAG, "Failed to get Second err : " + err);
+                    if (err == Interop.Watch.ErrorCode.NotSupported)
+                        throw new NotSupportedException("Failed to get DayOfWeek. err : " + err);
+                    else
+                        Log.Error(LOGTAG, "Failed to get DayOfWeek err : " + err);
                 }
                 return dayOfWeek;
             }
@@ -106,6 +126,8 @@ namespace Tizen.Applications
         /// <summary>
         /// The information of hour
         /// </summary>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
+        /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         public int Hour
         {
             get
@@ -115,7 +137,10 @@ namespace Tizen.Applications
 
                 if (err != Interop.Watch.ErrorCode.None)
                 {
-                    Log.Error(LOGTAG, "Failed to get Hour err : " + err);
+                    if (err == Interop.Watch.ErrorCode.NotSupported)
+                        throw new NotSupportedException("Failed to get Hour. err : " + err);
+                    else
+                        Log.Error(LOGTAG, "Failed to get Hour err : " + err);
                 }
                 return hour;
             }
@@ -124,6 +149,8 @@ namespace Tizen.Applications
         /// <summary>
         /// The information of hour for 24 hour form
         /// </summary>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
+        /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         public int Hour24
         {
             get
@@ -133,7 +160,10 @@ namespace Tizen.Applications
 
                 if (err != Interop.Watch.ErrorCode.None)
                 {
-                    Log.Error(LOGTAG, "Failed to get Hour24 err : " + err);
+                    if (err == Interop.Watch.ErrorCode.NotSupported)
+                        throw new NotSupportedException("Failed to get Hour24. err : " + err);
+                    else
+                        Log.Error(LOGTAG, "Failed to get Hour24 err : " + err);
                 }
                 return hour24;
             }
@@ -142,6 +172,8 @@ namespace Tizen.Applications
         /// <summary>
         /// The information of Minute
         /// </summary>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
+        /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         public int Minute
         {
             get
@@ -151,7 +183,10 @@ namespace Tizen.Applications
 
                 if (err != Interop.Watch.ErrorCode.None)
                 {
-                    Log.Error(LOGTAG, "Failed to get Minute err : " + err);
+                    if (err == Interop.Watch.ErrorCode.NotSupported)
+                        throw new NotSupportedException("Failed to get Minute. err : " + err);
+                    else
+                        Log.Error(LOGTAG, "Failed to get Minute err : " + err);
                 }
                 return minute;
             }
@@ -160,6 +195,8 @@ namespace Tizen.Applications
         /// <summary>
         /// The information of second
         /// </summary>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
+        /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         public int Second
         {
             get
@@ -169,7 +206,10 @@ namespace Tizen.Applications
 
                 if (err != Interop.Watch.ErrorCode.None)
                 {
-                    Log.Error(LOGTAG, "Failed to get Second err : " + err);
+                    if (err == Interop.Watch.ErrorCode.NotSupported)
+                        throw new NotSupportedException("Failed to get Second. err : " + err);
+                    else
+                        Log.Error(LOGTAG, "Failed to get Second err : " + err);
                 }
                 return second;
             }
@@ -178,6 +218,8 @@ namespace Tizen.Applications
         /// <summary>
         /// The information of millisecond
         /// </summary>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
+        /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         public int Millisecond
         {
             get
@@ -187,7 +229,10 @@ namespace Tizen.Applications
 
                 if (err != Interop.Watch.ErrorCode.None)
                 {
-                    Log.Error(LOGTAG, "Failed to get Second err : " + err);
+                    if (err == Interop.Watch.ErrorCode.NotSupported)
+                        throw new NotSupportedException("Failed to get Millisecond. err : " + err);
+                    else
+                        Log.Error(LOGTAG, "Failed to get Millisecond err : " + err);
                 }
                 return ms;
             }
@@ -196,6 +241,8 @@ namespace Tizen.Applications
         /// <summary>
         /// The information of timezone
         /// </summary>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
+        /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         public string TimeZone
         {
             get
@@ -205,7 +252,10 @@ namespace Tizen.Applications
 
                 if (err != Interop.Watch.ErrorCode.None)
                 {
-                    Log.Error(LOGTAG, "Failed to get Second err : " + err);
+                    if (err == Interop.Watch.ErrorCode.NotSupported)
+                        throw new NotSupportedException("Failed to get TimeZone. err : " + err);
+                    else
+                        Log.Error(LOGTAG, "Failed to get TimeZone err : " + err);
                 }
                 return zone;
             }
@@ -214,19 +264,22 @@ namespace Tizen.Applications
         /// <summary>
         /// The information of UTC time stamp
         /// </summary>
+        /// <feature>http://tizen.org/feature/watch_app</feature>
+        /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         public DateTime UtcTimestamp
         {
             get
             {
                 long ts = 0;
-
                 Interop.Watch.ErrorCode err = Interop.Watch.WatchTimeGetUtcTimestamp(_handle, out ts);
 
                 if (err != Interop.Watch.ErrorCode.None)
                 {
-                    Log.Error(LOGTAG, "Failed to get UtcTimestamp err : " + err);
+                    if (err == Interop.Watch.ErrorCode.NotSupported)
+                        throw new NotSupportedException("Failed to get UtcTimestamp. err : " + err);
+                    else
+                        Log.Error(LOGTAG, "Failed to get UtcTimestamp err : " + err);
                 }
-
                 return (new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddSeconds(ts).ToLocalTime();
             }
         }
