@@ -16,6 +16,8 @@
 
 namespace Tizen.Applications.Notifications
 {
+    using System;
+
     /// <summary>
     /// This class contains common properties and methods of notifications.
     /// </summary>

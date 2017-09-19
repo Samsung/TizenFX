@@ -16,6 +16,7 @@
 
 namespace Tizen.Applications.Notifications
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
