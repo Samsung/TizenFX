@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
@@ -103,10 +105,10 @@ namespace Tizen.Content.MediaContent
         /// <value>The column name for the date added of media.</value>
         /// <remarks>
         /// The value type is integer.
-        /// <see cref="System.DateTimeOffset"/> needs to be converted into the unix time.
+        /// <see cref="DateTimeOffset"/> needs to be converted into the unix time.
         /// </remarks>
         /// <seealso cref="MediaInfo.DateAdded"/>
-        /// <seealso cref="System.DateTimeOffset.ToUnixTimeSeconds"/>
+        /// <seealso cref="DateTimeOffset.ToUnixTimeSeconds"/>
         public static string DateAdded => "MEDIA_ADDED_TIME";
 
         /// <summary>
@@ -115,10 +117,10 @@ namespace Tizen.Content.MediaContent
         /// <value>The column name for the date modified of media.</value>
         /// <remarks>
         /// The value type is integer.
-        /// <see cref="System.DateTimeOffset"/> needs to be converted into the unix time.
+        /// <see cref="DateTimeOffset"/> needs to be converted into the unix time.
         /// </remarks>
         /// <seealso cref="MediaInfo.DateModified"/>
-        /// <seealso cref="System.DateTimeOffset.ToUnixTimeSeconds"/>
+        /// <seealso cref="DateTimeOffset.ToUnixTimeSeconds"/>
         public static string DateModified => "MEDIA_MODIFIED_TIME";
 
         /// <summary>
@@ -127,10 +129,10 @@ namespace Tizen.Content.MediaContent
         /// <value>The column name for the timeline of media.</value>
         /// <remarks>
         /// The value type is integer.
-        /// <see cref="System.DateTimeOffset"/> needs to be converted into the unix time.
+        /// <see cref="DateTimeOffset"/> needs to be converted into the unix time.
         /// </remarks>
         /// <seealso cref="MediaInfo.Timeline"/>
-        /// <seealso cref="System.DateTimeOffset.ToUnixTimeSeconds"/>
+        /// <seealso cref="DateTimeOffset.ToUnixTimeSeconds"/>
         public static string Timeline => "MEDIA_TIMELINE";
 
         /// <summary>
