@@ -16,12 +16,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.ComponentModel;
 
 namespace Tizen.System
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal static class RuntimeInfo
     {
         private static RuntimeInfoEventHandler BluetoothEnabled = new RuntimeInfoEventHandler(RuntimeInfoKey.Bluetooth);

@@ -16,11 +16,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace Tizen.System
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal static class TvProductHelper
     {
         private static int is_TV_product = -1;
@@ -52,7 +50,9 @@ namespace Tizen.System
 
             if (is_TV_product == -1)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 is_key_existed = SystemInfo.TryGetValue<string>("http://com.samsung/build_config/product_type", out profile);
+#pragma warning restore CS0618 // Type or member is obsolete
                 if (is_key_existed && String.Compare(profile, "TV") == 0)
                 {
                     is_TV_product = 1;
