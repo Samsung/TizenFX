@@ -20,11 +20,6 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Multimedia
 {
-    static internal class MetadataExtractorLog
-    {
-        internal const string Tag = "Tizen.Multimedia.MetadataExtractor";
-    }
-
     /// <summary>
     /// Provides a means to get the metadata from a media file.
     /// </summary>
@@ -43,7 +38,7 @@ namespace Tizen.Multimedia
             {
                 MetadataExtractorRetValidator.ThrowIfError(initFunc(), "Failed to init");
 
-                _metadata = new Lazy<Metadata>(() => new Metadata(Handle));
+                _metadata = new Lazy<Metadata>(() => new Metadata(this));
             }
             catch
             {
@@ -102,7 +97,7 @@ namespace Tizen.Multimedia
             }
         }
 
-        private IntPtr Handle
+        internal IntPtr Handle
         {
             get
             {
@@ -292,12 +287,16 @@ namespace Tizen.Multimedia
             if (_buffer != IntPtr.Zero)
             {
                 Marshal.FreeHGlobal(_buffer);
+                _buffer = IntPtr.Zero;
             }
 
             if (_handle != IntPtr.Zero)
             {
                 var ret = Interop.MetadataExtractor.Destroy(_handle);
-                Log.Error(MetadataExtractorLog.Tag, $"DestroyHandle failed : {ret}.");
+                if (ret != MetadataExtractorError.None)
+                {
+                    Log.Error(typeof(MetadataExtractor).FullName, $"DestroyHandle failed : {ret}.");
+                }
 
                 _handle = IntPtr.Zero;
             }
