@@ -26,7 +26,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Exceptions for Bluetooth Errors.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth Error happens.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth Error happens.</exception>
         static internal void ThrowBluetoothException(int exception)
         {
             BluetoothError error = (BluetoothError)exception;

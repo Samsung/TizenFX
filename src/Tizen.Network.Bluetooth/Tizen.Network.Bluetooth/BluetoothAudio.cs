@@ -53,8 +53,8 @@ namespace Tizen.Network.Bluetooth
         /// and AdvancedAudioDistribution is connected.
         /// </remarks>
         /// <param name="profileType">The type of the audio profile.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when the connection attempt fails.</exception>
         public void Connect(BluetoothAudioProfileType profileType)
         {
@@ -82,8 +82,8 @@ namespace Tizen.Network.Bluetooth
         /// and AdvancedAudioDistribution is disconnected.
         /// </remarks>
         /// <param name="type">The type of the audio profile.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when Disconnection attempt fails.</exception>
         public void Disconnect(BluetoothAudioProfileType type)
         {

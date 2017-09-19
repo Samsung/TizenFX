@@ -53,8 +53,8 @@ namespace Tizen.Network.Bluetooth
         /// Creates the Bluetooth GATT server.
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="System.NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the create GATT server fails.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the create GATT server fails.</exception>
         public static BluetoothGattServer CreateServer()
         {
             if (_instance == null)
@@ -71,8 +71,8 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Registers the server along with the GATT services of the application it is hosting.
         /// </summary>
-        /// <exception cref="System.NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the register server application fails.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the register server application fails.</exception>
         public void Start()
         {
             _impl.Start();
@@ -82,8 +82,8 @@ namespace Tizen.Network.Bluetooth
         /// Registers a specified service to this server.
         /// </summary>
         /// <param name="service">The service, which needs to be registered with this server.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the register service fails.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the register service fails.</exception>
         public void RegisterGattService(BluetoothGattService service)
         {
             if (service.IsRegistered())
@@ -100,8 +100,8 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>
         /// Once unregistered, the service object will become invalid and should not be used to access sevices or any children attribute's methods/members.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the unregister service fails.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the unregister service fails.</exception>
         public void UnregisterGattService(BluetoothGattService service)
         {
             if (service.GetGattServer() != this)
@@ -118,8 +118,8 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>
         /// Once unregistered, servicees will become invalid and should not be used to access sevices or any children attribute's methods/members.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the unregister all services fail.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the unregister all services fail.</exception>
         public void UnregisterGattServices()
         {
             _impl.UnregisterAllGattServices(this);
@@ -149,7 +149,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="characteristic">The characteristic whose the value is changed.</param>
         /// <param name="clientAddress">The remote device address to send, notify, or indicate and if set to NULL, then notify/indicate all is enabled.</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not enabled
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected, or when service is not registered, or when the CCCD is not enabled.</exception>
         public async Task<bool> SendIndicationAsync(BluetoothGattCharacteristic characteristic, string clientAddress)
         {
@@ -161,7 +161,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="characteristic">The characteristic, which has a changed value.</param>
         /// <param name="clientAddress">The remote device address to send, notify, or indicate and if set to NULL, then notify/indicate all is enabled.</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not enabled
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected, or when service is not registered, or when the CCCD is not enabled.</exception>
         public void SendNotification(BluetoothGattCharacteristic characteristic, string clientAddress)
         {
@@ -176,7 +176,7 @@ namespace Tizen.Network.Bluetooth
         /// <param name="status">The error value in case of failure, 0 for success.</param>
         /// <param name="value">The value to be sent.</param>
         /// <param name="offset">The offset from where the value is read.</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not enabled
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected, or the send response procedure fails.</exception>
         public void SendResponse(int requestId, BluetoothGattRequestType type, int status, byte[] value, int offset)
         {
@@ -217,7 +217,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The address of the remote device.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not enabled
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected.</exception>
         public string RemoteAddress
         {
@@ -236,7 +236,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="uuid">The UUID for the service to get.</param>
         /// <returns>The service with the given UUID if it exists, null otherwise.</returns>
-        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not enabled
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected, or when the get service fails.</exception>
         public BluetoothGattService GetService(string uuid)
         {
@@ -247,7 +247,7 @@ namespace Tizen.Network.Bluetooth
         /// Gets list of services that belongs to the remote device.
         /// </summary>
         /// <returns>The list of services that belongs to the remote device.</returns>
-        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not enabled
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected, or when the get service fails.</exception>
         public IEnumerable<BluetoothGattService> GetServices()
         {
@@ -259,7 +259,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="characteristic">The characteristic to be read.</param>
         /// <returns>true on success, false otherwise.</returns>
-        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not enabled
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected, or when the read attribute value fails.</exception>
         public async Task<bool> ReadValueAsync(BluetoothGattCharacteristic characteristic)
         {
@@ -271,7 +271,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="descriptor">The descriptor to be read.</param>
         /// <returns>true on success, false otherwise.</returns>
-        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not enabled
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected, or when the read attribute value fails.</exception>
         public async Task<bool> ReadValueAsync(BluetoothGattDescriptor descriptor)
         {
@@ -283,7 +283,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="characteristic">The characteristic to be written.</param>
         /// <returns>true on success, false otherwise.</returns>
-        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not enabled
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected or when the write attribute value fails.</exception>
         public async Task<bool> WriteValueAsync(BluetoothGattCharacteristic characteristic)
         {
@@ -295,7 +295,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="descriptor">The descriptor to be written.</param>
         /// <returns>true on success, false otherwise.</returns>
-        /// <exception cref="System.InvalidOperationException">Thrown when the BT/BTLE is not enabled
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected, or when the write attribute value fails.</exception>
         public async Task<bool> WriteValueAsync(BluetoothGattDescriptor descriptor)
         {
@@ -323,7 +323,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="uuid">The UUID of the service.</param>
         /// <param name="type">The type of service.</param>
-        /// <exception cref="System.InvalidOperationException">Thrown when the create GATT service procedure fails.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the create GATT service procedure fails.</exception>
         public BluetoothGattService(string uuid, BluetoothGattServiceType type)
         {
             Uuid = uuid;
@@ -346,7 +346,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="characteristic">The characteristic to be added.</param>
         /// <returns>true on success, false otherwise.</returns>
-        /// <exception cref="System.InvalidOperationException">Thrown when the add GATT characteristic procedure fails.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the add GATT characteristic procedure fails.</exception>
         public void AddCharacteristic(BluetoothGattCharacteristic characteristic)
         {
             if (GetGattClient() != null)
@@ -387,7 +387,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="service">The service to be included.</param>
         /// <returns>true on success, false otherwise</returns>
-        /// <exception cref="System.InvalidOperationException">Thrown when the add GATT service procedure fails.</exception>/// 
+        /// <exception cref="InvalidOperationException">Thrown when the add GATT service procedure fails.</exception>///
         public void AddService(BluetoothGattService service)
         {
             if (GetGattClient() != null)
@@ -508,7 +508,7 @@ namespace Tizen.Network.Bluetooth
         /// <param name="properties">Properties set for the characterstic.</param>
         /// <param name="value">The value associated with the characterstic.</param>
         /// <remarks>throws in case of internal error.</remarks>
-        /// <exception cref="System.InvalidOperationException">Thrown when the create GATT characteristics procedure fails.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the create GATT characteristics procedure fails.</exception>
         public BluetoothGattCharacteristic(string uuid, BluetoothGattPermission permissions, BluetoothGattProperty properties, byte[] value) : base(uuid, permissions)
         {
             _impl = new BluetoothGattCharacteristicImpl(uuid, permissions, properties, value);
@@ -654,7 +654,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="descriptor">The descriptor to be added.</param>
         /// <returns>true on success, false otherwise.</returns>
-        /// <exception cref="System.InvalidOperationException">Thrown when the add GATT descriptor procedure fails.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the add GATT descriptor procedure fails.</exception>
         public void AddDescriptor(BluetoothGattDescriptor descriptor)
         {
             if (Client != null)
@@ -724,7 +724,7 @@ namespace Tizen.Network.Bluetooth
         /// <param name="permisions">Permissions for the descriptor.</param>
         /// <param name="value">The value associated with the descriptor.</param>
         /// <remarks>throws in case of internal error.</remarks>
-        /// <exception cref="System.InvalidOperationException">Thrown when the create GATT descriptor procedure fails.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the create GATT descriptor procedure fails.</exception>
         public BluetoothGattDescriptor(string uuid, BluetoothGattPermission permisions, byte[] value) : base (uuid, permisions)
         {
             _impl = new BluetoothGattDescriptorImpl(uuid, permisions, value);
@@ -800,7 +800,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// This event is called when the client request to read the value of a characteristic or a descriptor.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when the set read value requested callback procedure fails.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the set read value requested callback procedure fails.</exception>
         public event EventHandler<ReadRequestedEventArgs> ReadRequested
         {
             add
@@ -827,7 +827,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// This event is called when a value of a characteristic or a descriptor has been changed by a client.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when the set write value requested callback procedure fails.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the set write value requested callback procedure fails.</exception>
         public event EventHandler<WriteRequestedEventArgs> WriteRequested
         {
             add
@@ -908,7 +908,7 @@ namespace Tizen.Network.Bluetooth
         /// Returns a value at specified offset as the int value of the specified type.
         /// </summary>
         /// <param name="type">The type of the int value.</param>
-        /// <param name="An offset">An offset in the attribute value buffer.</param>
+        /// <param name="offset">An offset in the attribute value buffer.</param>
         /// <returns>The int value at given offset.</returns>
         /// <exception cref="InvalidOperationException">Throws exception if (offset + size of int value) is greater than the length of the value buffer.</exception>
         public int GetValue(IntDataType type, int offset)

@@ -62,8 +62,8 @@ namespace Tizen.Network.Bluetooth {
         /// The Bluetooth must be enabled.
         /// </remarks>
         /// <param name="advertiseData">The advertiser object carrying information of the advertising.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         public void StartAdvertising(BluetoothLeAdvertiseData advertiseData)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -87,8 +87,8 @@ namespace Tizen.Network.Bluetooth {
         /// The Bluetooth must be enabled.
         /// </remarks>
         /// <param name="advertiseData">The advertiser object carrying information of the advertising.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         public void StopAdvertising(BluetoothLeAdvertiseData advertiseData)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -250,8 +250,8 @@ namespace Tizen.Network.Bluetooth {
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         public IEnumerable<string> ServiceUuid
         {
             get
@@ -272,8 +272,8 @@ namespace Tizen.Network.Bluetooth {
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         public string DeviceName
         {
             get
@@ -293,8 +293,8 @@ namespace Tizen.Network.Bluetooth {
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         public int TxPowerLevel
         {
             get
@@ -314,8 +314,8 @@ namespace Tizen.Network.Bluetooth {
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         public IEnumerable<string> ServiceSolictationUuid
         {
             get
@@ -334,8 +334,8 @@ namespace Tizen.Network.Bluetooth {
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         public int Appearance
         {
             get
@@ -354,8 +354,8 @@ namespace Tizen.Network.Bluetooth {
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>/// 
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>/// 
         public ManufacturerData ManufacturerData
         {
             get
@@ -375,8 +375,8 @@ namespace Tizen.Network.Bluetooth {
         /// The Bluetooth must be enabled.
         /// </remarks>
         /// <returns> Returns the service data list.</returns>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         public IEnumerable<BluetoothLeServiceData> GetServiceDataList()
         {
             int serviceCount = 0;
@@ -397,8 +397,8 @@ namespace Tizen.Network.Bluetooth {
         /// </remarks>
         /// <param name="autoConnect"> The auto connect flag.</param>
         /// <returns>client instance</returns>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the gatt connection attempt to remote device fails.</exception>
         public BluetoothGattClient GattConnect(bool autoConnect)
         {
@@ -427,8 +427,8 @@ namespace Tizen.Network.Bluetooth {
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the GATT disconnection attempt to remote device fails.</exception>
         public void GattDisconnect()
         {
@@ -462,8 +462,8 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// The default constructor initializes an object of the BluetoothLeAdvertiseData.
         /// </summary>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when create advertiser fails.</exception>
         public BluetoothLeAdvertiseData()
         {
@@ -506,8 +506,8 @@ namespace Tizen.Network.Bluetooth {
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the set advertising mode fails.</exception>
         public BluetoothLeAdvertisingMode AdvertisingMode
         {
@@ -535,8 +535,8 @@ namespace Tizen.Network.Bluetooth {
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the set advertising connectable mode fails.</exception>
         public bool AdvertisingConnectable
         {
@@ -590,8 +590,8 @@ namespace Tizen.Network.Bluetooth {
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the set appearance fails.</exception>
         public int Appearance
         {
@@ -618,8 +618,8 @@ namespace Tizen.Network.Bluetooth {
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the set advertising device name fails.</exception>
         public bool IncludeDeviceName
         {
@@ -649,8 +649,8 @@ namespace Tizen.Network.Bluetooth {
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the set advertising TC power level fails.</exception>
         public bool IncludeTxPowerLevel
         {
@@ -681,8 +681,8 @@ namespace Tizen.Network.Bluetooth {
         /// </remarks>
         /// <param name="packetType">The packet type.</param>
         /// <param name="serviceUuid"> The service UUID to add to advertise data.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the add advertising service UUID procedure fails.</exception>
         public void AddAdvertisingServiceUuid(BluetoothLePacketType packetType, string serviceUuid)
         {
@@ -710,8 +710,8 @@ namespace Tizen.Network.Bluetooth {
         /// </remarks>
         /// <param name="packetType">The packet type.</param>
         /// <param name="serviceSolicitationUuid"> The service solicitation UUID to add to advertise data.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the add advertising service solicitation UUID procedure fails.</exception>
         public void AddAdvertisingServiceSolicitationUuid(BluetoothLePacketType packetType,
                                                         string serviceSolicitationUuid)
@@ -741,8 +741,8 @@ namespace Tizen.Network.Bluetooth {
         /// </remarks>
         /// <param name="packetType">The packet type.</param>
         /// <param name="data"> The service data to be added to advertising.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the add advertising data procedure fails.</exception>
         public void AddAdvertisingServiceData(BluetoothLePacketType packetType, BluetoothServiceData data)
         {
@@ -777,8 +777,8 @@ namespace Tizen.Network.Bluetooth {
         /// </remarks>
         /// <param name="packetType">The packet type.</param>
         /// <param name="manufacturerData"> The manufacturer specific data.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the add advertising manufacturer data procedure fails.</exception>
         public void AddAdvertisingManufacturerData(BluetoothLePacketType packetType,
                                     ManufacturerData manufacturerData)
@@ -810,8 +810,8 @@ namespace Tizen.Network.Bluetooth {
         /// The Bluetooth must be enabled.
         /// </remarks>
         /// <param name="packetType">The packet type to be cleared.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the clear advertising data procedure fails.</exception>
         internal void ClearAdvertisingData(BluetoothLePacketType packetType)
         {

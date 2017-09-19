@@ -34,7 +34,7 @@ namespace Tizen.Network.Bluetooth
         /// The device must be bonded with the remote device by CreateBond().
         /// If connection request succeeds, the HidConnectionStateChanged event will be invoked.
         /// </remarks>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when the connection attempt to the remote device fails.</exception>
         public void Connect()
         {
@@ -56,7 +56,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Disconnects the remote device with the HID service.
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when the disconnection attempt to the remote device fails.</exception>
         public void Disconnect()
         {

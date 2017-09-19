@@ -135,6 +135,7 @@ namespace Tizen.Network.Bluetooth
         internal string ManufacturerData;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothDeviceSdpStruct
     {
         [MarshalAsAttribute(UnmanagedType.LPStr)]
@@ -143,6 +144,7 @@ namespace Tizen.Network.Bluetooth
         internal int ServiceCount;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothDeviceConnectionStruct
     {
         internal string Address;
@@ -150,6 +152,7 @@ namespace Tizen.Network.Bluetooth
         internal BluetoothDisconnectReason DisconnectReason;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
     internal struct SocketDataStruct
     {
         internal int SocketFd;
@@ -157,6 +160,7 @@ namespace Tizen.Network.Bluetooth
         internal IntPtr Data;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
     internal struct SocketConnectionStruct
     {
         internal int SocketFd;

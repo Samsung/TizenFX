@@ -110,8 +110,8 @@ namespace Tizen.Network.Bluetooth
         /// The remote device must be connected.
         /// </remarks>
         /// <param name="state">The equalizer state.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the equalizer state to the remote device fails.</exception>
         public void NotifyEqualizerState(EqualizerState state)
         {
@@ -132,8 +132,8 @@ namespace Tizen.Network.Bluetooth
         /// The remote device must be connected.
         /// </remarks>
         /// <param name="mode">The repeat mode.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the repeat mode state to the remote device fails.</exception>
         /// </exception>
         public void NotifyRepeatMode(RepeatMode mode)
@@ -155,8 +155,8 @@ namespace Tizen.Network.Bluetooth
         /// The remote device must be connected.
         /// </remarks>
         /// <param name="mode">The shuffle mode.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the shuffle mode state to the remote device fails.</exception>
         public void NotifyShuffleMode(ShuffleMode mode)
         {
@@ -177,8 +177,8 @@ namespace Tizen.Network.Bluetooth
         /// The remote device must be connected.
         /// </remarks>
         /// <param name="mode">The scan mode.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the scan mode state to the remote device fails.</exception>
         public void NotifyScanMode(ScanMode mode)
         {
@@ -199,8 +199,8 @@ namespace Tizen.Network.Bluetooth
         /// The remote device must be connected.
         /// </remarks>
         /// <param name="state">The player state.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the player state to the remote device fails.</exception>
         public void NotifyPlayerState(PlayerState state)
         {
@@ -221,8 +221,8 @@ namespace Tizen.Network.Bluetooth
         /// The remote device must be connected.
         /// </remarks>
         /// <param name="position">The current position in milliseconds.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the current position state to the remote device fails.</exception>
         public void NotifyCurrentPosition(uint position)
         {
@@ -243,8 +243,8 @@ namespace Tizen.Network.Bluetooth
         /// The remote device must be connected.
         /// </remarks>
         /// <param name="trackData">The data of the track.</param>
-        /// <exception cref="System.NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when the Bluetooth is not enabled
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the shuffle track state to the remote device fails.</exception>
         public void NotifyTrack(Track trackData)
         {
