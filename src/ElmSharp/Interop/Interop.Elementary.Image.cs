@@ -89,12 +89,14 @@ internal static partial class Interop
         internal static extern void elm_image_animated_set(IntPtr obj, bool anim);
 
         [DllImport(Libraries.Elementary)]
+        [return : MarshalAs(UnmanagedType.U1)]
         internal static extern bool elm_image_animated_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_image_animated_play_set(IntPtr obj, bool play);
 
         [DllImport(Libraries.Elementary)]
+        [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool elm_image_animated_play_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
