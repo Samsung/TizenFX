@@ -83,6 +83,11 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(RecorderAudioCodec), value, nameof(value));
 
+                if (value == RecorderAudioCodec.None)
+                {
+                    throw new ArgumentException("Audio codec can't be None.");
+                }
+
                 _codec = value;
             }
         }
