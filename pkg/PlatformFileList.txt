@@ -74,6 +74,7 @@ Tizen.System.MediaKey.dll                          #common #mobile #mobile-emul 
 Tizen.System.PlatformConfig.dll                    #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.System.Storage.dll                           #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.System.SystemSettings.dll                    #common #mobile #mobile-emul #tv #ivi #wearable
+Tizen.System.Usb.dll                               #common #mobile #mobile-emul
 Tizen.Tapi.dll
 Tizen.Telephony.dll                                #mobile #mobile-emul #ivi #wearable
 Tizen.Tracer.dll                                   #common #mobile #mobile-emul #tv #ivi #wearable

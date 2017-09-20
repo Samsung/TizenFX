@@ -68,6 +68,7 @@ Tizen.System.Information
 Tizen.System.MediaKey
 Tizen.System.PlatformConfig
 Tizen.System.Storage
+Tizen.System.Usb
 Tizen.System.SystemSettings
 Tizen.Telephony
 Tizen.Tracer
