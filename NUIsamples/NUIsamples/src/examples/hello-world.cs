@@ -112,10 +112,10 @@ namespace HelloWorldTest
             Tizen.Log.Debug("NUI", "[2]_view SizeWidth=" + _view.SizeWidth);
 
             TextLabelLineWrapModeTest();
-            //ViewLayoutDirectionTest();
+            ViewLayoutDirectionTest();
         }
 
-        /*
+
         private View view1, view11, view12, view111, view121;
         public void ViewLayoutDirectionTest()
         {
@@ -150,7 +150,6 @@ namespace HelloWorldTest
         {
             NUILog.Error("View1_LayoutDirectionChanged()! e.Type=" + e.Type);
         }
-        */
 
         public void AnimationFinished(object sender, EventArgs e)
         {

@@ -857,6 +857,101 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+
+        /// <summary>
+        /// Event arguments of layout direction changed.
+        /// </summary>
+        public class LayoutDirectionChangedEventArgs : EventArgs
+        {
+            private View _view;
+            private ViewLayoutDirectionType _type;
+
+            /// <summary>
+            /// The view, or child of view, whose layout direction has changed.
+            /// </summary>
+            public View View
+            {
+                get
+                {
+                    return _view;
+                }
+                set
+                {
+                    _view = value;
+                }
+            }
+
+            /// <summary>
+            /// Whether the view's layout direction property has changed or a parent's.
+            /// </summary>
+            public ViewLayoutDirectionType Type
+            {
+                get
+                {
+                    return _type;
+                }
+                set
+                {
+                    _type = value;
+                }
+            }
+        }
+
+        private EventHandler<LayoutDirectionChangedEventArgs> _layoutDirectionChangedEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void LayoutDirectionChangedEventCallbackType(IntPtr data, ViewLayoutDirectionType type);
+        private LayoutDirectionChangedEventCallbackType _layoutDirectionChangedEventCallback;
+
+        /// <summary>
+        /// Event for layout direction change which can be used to subscribe/unsubscribe the event handler.<br>
+        /// This signal is emitted when the layout direction property of this or a parent view is changed.<br>
+        /// </summary>
+        public event EventHandler<LayoutDirectionChangedEventArgs> LayoutDirectionChanged
+        {
+            add
+            {
+                if (_layoutDirectionChangedEventHandler == null)
+                {
+                    _layoutDirectionChangedEventCallback = OnLayoutDirectionChanged;
+                    LayoutDirectionChangedSignal(this).Connect(_layoutDirectionChangedEventCallback);
+                }
+
+                _layoutDirectionChangedEventHandler += value;
+            }
+
+            remove
+            {
+                _layoutDirectionChangedEventHandler -= value;
+
+                if (_layoutDirectionChangedEventHandler == null && LayoutDirectionChangedSignal(this).Empty() == false)
+                {
+                    LayoutDirectionChangedSignal(this).Disconnect(_layoutDirectionChangedEventCallback);
+                }
+            }
+        }
+
+        // Callback for View layout direction change signal
+        private void OnLayoutDirectionChanged(IntPtr data, ViewLayoutDirectionType type)
+        {
+            LayoutDirectionChangedEventArgs e = new LayoutDirectionChangedEventArgs();
+            if (data != null)
+            {
+                e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
+            }
+            e.Type = type;
+
+            if (_layoutDirectionChangedEventHandler != null)
+            {
+                _layoutDirectionChangedEventHandler(this, e);
+            }
+        }
+
+
+
+
+
+
+
         // Resource Ready Signal
 
         private EventHandler _resourcesLoadedEventHandler;
@@ -967,6 +1062,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int MAXIMUM_SIZE = NDalicPINVOKE.Actor_Property_MAXIMUM_SIZE_get();
             internal static readonly int INHERIT_POSITION = NDalicPINVOKE.Actor_Property_INHERIT_POSITION_get();
             internal static readonly int CLIPPING_MODE = NDalicPINVOKE.Actor_Property_CLIPPING_MODE_get();
+            internal static readonly int INHERIT_LAYOUT_DIRECTION = NDalicManualPINVOKE.Actor_Property_INHERIT_LAYOUT_DIRECTION_get();
+            internal static readonly int LAYOUT_DIRECTION = NDalicManualPINVOKE.Actor_Property_LAYOUT_DIRECTION_get();
         }
 
         /// <summary>
@@ -2900,6 +2997,14 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+
+        internal ViewLayoutDirectionChangedSignal LayoutDirectionChangedSignal(View view) {
+            ViewLayoutDirectionChangedSignal ret = new ViewLayoutDirectionChangedSignal(NDalicManualPINVOKE.LayoutDirectionChangedSignal(View.getCPtr(view)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+
         internal ViewSignal ResourcesLoadedSignal()
         {
             ViewSignal ret = new ViewSignal(NDalicPINVOKE.ResourceReadySignal(swigCPtr), false);
@@ -3986,9 +4091,41 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        public bool InheritLayoutDirection
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.INHERIT_LAYOUT_DIRECTION).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.INHERIT_LAYOUT_DIRECTION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
 
+        public ViewLayoutDirectionType LayoutDirection
+        {
+            get
+            {
+                int temp;
+                if (GetProperty(View.Property.LAYOUT_DIRECTION).Get(out temp) == false)
+                {
+                    NUILog.Error("LAYOUT_DIRECTION get error!");
+                }
+                return (ViewLayoutDirectionType)temp;
+            }
+            set
+            {
+                SetProperty(View.Property.LAYOUT_DIRECTION, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+    }
 
-
-
+    public enum ViewLayoutDirectionType
+    {
+        LTR,
+        RTL
     }
 }
