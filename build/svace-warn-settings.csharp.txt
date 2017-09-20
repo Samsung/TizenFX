@@ -1,0 +1,4975 @@
+# Svace warning type configuration file.
+#
+# This file was automatically generated with svace-2.4.1.
+# Use 'svace warning' to modify this file and see the list of possible keys.
+# 
+# --------------
+# 
+# Severity: Critical, Reliability: Average.
+#
+STATIC_OVERFLOW = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+STATIC_OVERFLOW.PROC = false  # (default: false)
+
+# Severity: Critical, Reliability: Low.
+#
+STATIC_OVERFLOW.PROC.MIGHT = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+#
+BUFFER_OVERFLOW = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+#
+BUFFER_OVERLAP = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+STATIC_OVERFLOW.LOCAL = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+STATIC_OVERFLOW.SPRINTF = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+STATIC_OVERFLOW.SCANF = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+BUFFER_OVERFLOW.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+TAINTED_ARRAY_INDEX.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+BUFFER_UNDERFLOW = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+BUFFER_OVERFLOW.PROC = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DYNAMIC_OVERFLOW = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DYNAMIC_OVERFLOW.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DYNAMIC_SIZE_MISMATCH = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+# Suppressed DYNAMIC_SIZE_MISMATCH.
+#
+DYNAMIC_SIZE_MISMATCH.MACRO = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+BUFFER_OVERFLOW.BIG = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+#
+BUFFER_OVERFLOW.EX.OLD = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+#
+OVERFLOW_AFTER_CHECK.MACRO = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+#
+BUFFER_OVERFLOW.LIB.EX = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+#
+OVERFLOW_AFTER_CHECK.RET.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+OVERFLOW_UNDER_CHECK.EX = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+#
+CHECK_AFTER_OVERFLOW = false  # (default: true)
+
+# Severity: Major, Reliability: Low.
+#
+CHECK_AFTER_OVERFLOW.MACRO = false  # (default: false)
+
+# Severity: Critical, Reliability: Average.
+#
+OVERFLOW_AFTER_CHECK = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+OVERFLOW_AFTER_CHECK.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+OVERFLOW_UNDER_CHECK = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+OVERFLOW_UNDER_CHECK.LIB = false  # (default: true)
+
+# Severity: Undefined, Reliability: Unknown.
+#
+OVERFLOW_UNDER_CHECK.LIB.MEMCPY = false  # (default: true)
+
+# Severity: Undefined, Reliability: Unknown.
+#
+OVERFLOW_UNDER_CHECK.LIB.MEMCPY.COMP = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+OVERFLOW_UNDER_CHECK.PROC = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+OVERFLOW_AFTER_CHECK.LIB = false  # (default: false)
+
+# Severity: Critical, Reliability: Average.
+#
+BUFFER_SIZE_MISMATCH = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+BUFFER_SIZE_MISMATCH.NONTERMINATED = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+BUFFER_SIZE_MISMATCH.MACRO = false  # (default: false)
+
+# Severity: Minor, Reliability: Low.
+#
+FIELD_OVERFLOW.STRICT = false  # (default: false)
+
+# Severity: Critical, Reliability: Low.
+#
+NONTERMINATED_STRING = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+NONTERMINATED_STRING.MACRO = false  # (default: false)
+
+# Severity: Critical, Reliability: Low.
+#
+NONTERMINATED_STRING.STRICT.MINOR = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+NONTERMINATED_STRING.STRICT = false  # (default: false)
+
+# Severity: Critical, Reliability: Low.
+#
+NONTERMINATED_STRING.STYLE = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+READLINK_OVERFLOW = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+STRING_OVERFLOW = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+STRING_OVERFLOW.MINOR = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+#
+VARIABLE_IS_NOT_ARRAY = false  # (default: true)
+
+# Severity: Major, Reliability: Low.
+#
+VARIABLE_IS_NOT_ARRAY.MIGHT = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+VARIABLE_IS_NOT_ARRAY.PROC = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+VARIABLE_IS_NOT_ARRAY.UNION = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+USE_AFTER_FREE = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+# A pointer to memory pointer that has been deallocated, is dereferenced.
+#
+DEREF_AFTER_FREE.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+# A pointer to memory pointer that has been deallocated, is dereferenced.
+#
+DEREF_AFTER_FREE.TMP = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+PASSED_TO_PROC_AFTER_FREE.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+PASSED_TO_PROC_AFTER_FREE.TMP = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DOUBLE_FREE.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+USE_AFTER_FREE.REALLOC = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DOUBLE_FREE.TMP = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DOUBLE_CLOSE = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DOUBLE_CLOSE.PROC = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+USE_AFTER_RELEASE = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+PASSED_TO_PROC_AFTER_RELEASE = false  # (default: true)
+
+# Severity: Minor, Reliability: High.
+#
+FREE_OF_ARITHM = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+MEMORY_LEAK = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+# This is an experimental warning type that is not yet ready for
+# the release version of the tool
+#
+MEMORY_LEAK.STRUCT = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+MEMORY_LEAK.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+#
+MEMORY_LEAK.STRDUP = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+MEMORY_LEAK.STRDUP.STRUCT = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+HANDLE_LEAK = true  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+HANDLE_LEAK.FRUGAL = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+HANDLE_LEAK.CLOSEABLE = false  # (default: false)
+
+# Severity: Critical, Reliability: Average.
+#
+HANDLE_LEAK.EXCEPTION = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+HANDLE_LEAK.FRUGAL.EXCEPTION = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+HANDLE_LEAK.CLOSEABLE.EXCEPTION = false  # (default: false)
+
+# Severity: Critical, Reliability: Average.
+#
+HANDLE_LEAK.STRICT = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+HANDLE_LEAK.EX = false  # (default: true)
+
+# Severity: Minor, Reliability: Low.
+#
+FREE_OF_NULL = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+INCORRECT_STRLEN = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+DEREF_OF_NULL = true  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+DEREF_OF_NULL.CONST = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+DEREF_OF_NULL.FRUGAL = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DEREF_OF_NULL.ASSIGN = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DEREF_OF_NULL.ASSIGN.COND = false  # (default: false)
+
+# Severity: Critical, Reliability: Low.
+#
+DEREF_OF_NULL.DYN_CAST = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+#
+NULL_AFTER_DEREF = true  # (default: true)
+
+# Severity: Minor, Reliability: Average.
+# Address of a local variable is always non-null.
+# Comparing it with null is redundant.
+#
+COMPARE_LOCAL_ADDR = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# A pointer is compared to NULL (which indicates that it could 
+# have a NULL value), and then it is dereferenced.
+#
+DEREF_AFTER_NULL = true  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# A pointer is dereferenced after cast
+#
+DEREF_AFTER_AS = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# A pointer is dereferenced after cast
+#
+DEREF_AFTER_AS.INSTANT = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Result of FirstOrDefault is dereferenced.
+#
+DEREF_OF_NULL.PROC.FOD = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+# A pointer is compared toh NULL (which indicates that it could 
+# have a NULL value) in some procedure, and then it is dereferenced in caller function.
+#
+DEREF_AFTER_NULL.RET = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+DEREF_AFTER_NULL.RET.PROC = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+#
+DEREF_AFTER_NULL.COND = false  # (default: false)
+
+# Severity: Critical, Reliability: Average.
+# A pointer is compared th NULL (which indicates that it could 
+# have a NULL value), and then it is dereferenced.
+#
+DEREF_AFTER_NULL.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+# A pointer is compared th NULL (which indicates that it could 
+# have a NULL value), and then it is dereferenced.
+#
+DEREF_AFTER_NULL.EX.COND = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+# TODO
+#
+DEREF_OF_NULL.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+# TODO
+#
+DEREF_OF_NULL.EX.COND = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+# The conditional expression comparing the pointer to NULL is part of a loop.
+#
+DEREF_AFTER_NULL.LOOP = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+# C# only type of DEREF_OF_NULL
+#
+DEREF_OF_NULL.ARGUMENT = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+# C# only type of DEREF_AFTER_NULL
+#
+DEREF_AFTER_NULL.ARGUMENT = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+DEREF_OF_NULL.RET.ALLOC = false  # (default: false)
+
+# Severity: Critical, Reliability: Low.
+#
+DEREF_OF_NULL.RET.ALLOC.PROC = false  # (default: false)
+
+# Severity: Critical, Reliability: Average.
+#
+DEREF_OF_NULL.RET.LIB = false  # (default: false)
+
+# Severity: Critical, Reliability: Average.
+#
+DEREF_OF_NULL.RET.LIB.PROC = true  # (default: false)
+
+# Severity: Critical, Reliability: Average.
+#
+DEREF_OF_NULL.RET.USER = false  # (default: false)
+
+# Severity: Critical, Reliability: Average.
+# This is an experimental warning, that requires more path sensitivity
+# from analysis algorithms than is currently supported.
+#
+DEREF_OF_NULL.RET.USER.PROC = true  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+#
+DEREF_OF_NULL.RET.STAT = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+DEREF_OF_NULL.RET.PROC.STAT = false  # (default: true)
+
+# Severity: Major, Reliability: High.
+#
+TAINTED_INT = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+TAINTED_INT.MIGHT = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+TAINTED_INT.LOOP = false  # (default: true)
+
+# Severity: Major, Reliability: Low.
+#
+TAINTED_INT.LOOP.MIGHT = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+TAINTED_INT.CTYPE = false  # (default: true)
+
+# Severity: Major, Reliability: Low.
+#
+TAINTED_INT.CTYPE.MIGHT = false  # (default: false)
+
+# Severity: Major, Reliability: High.
+#
+TAINTED_ARRAY_INDEX = false  # (default: true)
+
+# Severity: Major, Reliability: Low.
+#
+TAINTED_ARRAY_INDEX.MIGHT = false  # (default: true)
+
+# Severity: Major, Reliability: High.
+#
+TAINTED_INT.PTR = false  # (default: true)
+
+# Severity: Major, Reliability: Low.
+#
+TAINTED_INT.PTR.MIGHT = false  # (default: true)
+
+# Severity: Major, Reliability: High.
+#
+TAINTED_PTR = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+TAINTED_PTR.MIGHT = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+TAINTED_PTR.FORMAT_STRING = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+TAINTED.NONTERMINATED_STRING = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+#
+TAINTED.SPRINTF = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+OLD.UNINIT.LOCAL_VAR = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+UNINIT.LOCAL_VAR.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+UNINIT.LOCAL_VAR = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+UNINIT.LOCAL_VAR.EX.PROC = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+UNINIT.LOCAL_VAR.VOLATILE = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+UNINIT.LOCAL_VAR.EX.VOLATILE = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+OLD.UNINIT.STRUCT = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+#
+UNINIT.LOCAL_VAR.FIELD = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+#
+UNINIT.HEAP_VAR = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+UNINIT.HEAP_VAR.PROC = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+# This checker finds situations where an uninitialized array is accessed.
+#
+OLD.UNINIT.ARRAY = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+#
+NO_RETURN_VALUE = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+CLIB.OPEN.MODE = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+UNCHECKED_FUNC_RES.LIB = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+UNCHECKED_FUNC_RES.FREAD = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+UNCHECKED_FUNC_RES.LIB.STRICT = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+UNCHECKED_FUNC_RES.LIB.MINOR = false  # (default: false)
+
+# Severity: Major, Reliability: Low.
+#
+UNCHECKED_FUNC_RES.LIB.MACRO = false  # (default: false)
+
+# Severity: Major, Reliability: Low.
+#
+UNCHECKED_FUNC_RES.LIB.STRICT.MACRO = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+UNCHECKED_FUNC_RES.USER = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+UNCHECKED_FUNC_RES.USER.STRICT = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+UNCHECKED_FUNC_RES.STAT = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+NO_BASE_CALL.STAT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+NO_BASE_CALL.LIB = true  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# A variable is updated without locks while the variable is updated with locks on some other paths.
+#
+NO_LOCK.STAT = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+NO_LOCK.STAT.EX = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+NO_LOCK.GUARD = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+NEGATIVE_CODE_ERROR = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+#
+NEGATIVE_CODE_ERROR.EX = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+NEGATIVE_IF_UNKNOWN = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+NEGATIVE_CODE_ERROR.UNSIGNED = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+#
+CHECK_AFTER_PASS_TO_PROC = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+PASS_TO_PROC_AFTER_CHECK = false  # (default: true)
+
+# Severity: Major, Reliability: Low.
+#
+NEGATIVE_CODE_ERROR.MACRO = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+PROC_ADDR_NULL_CHECK = false  # (default: true)
+
+# Severity: Major, Reliability: Low.
+#
+PROC_ADDR_NULL_PTR_CHECK = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+UNREACHABLE_CODE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+UNREACHABLE_CODE.EX = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+UNREACHABLE_CODE.MACRO = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+UNREACHABLE_CODE.ENUM = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+UNREACHABLE_CODE.DEFAULT = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+UNREACHABLE_CODE.TERMINATION = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+UNREACHABLE_CODE.EXCEPTION = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+UNREACHABLE_CODE.RET = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+UNREACHABLE_CODE.NO_PATH = false  # (default: false)
+
+# Severity: Minor, Reliability: Average.
+#
+UNREACHABLE_CODE.NO_PATH.RETURN = false  # (default: false)
+
+# Severity: Minor, Reliability: Average.
+#
+UNREACHABLE_CODE.NO_PATH.VARARG = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+#
+UNREACHABLE_CODE.EXECUTED_ONCE = false  # (default: false)
+
+# Severity: Minor, Reliability: Average.
+#
+BOOLEAN_INVARIANT = false  # (default: true)
+
+# Severity: Minor, Reliability: Average.
+#
+INVARIANT_RESULT.EX = false  # (default: true)
+
+# Severity: Minor, Reliability: Average.
+#
+TOCTTOU_SEQUENCE = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+CHROOT_JAIL = false  # (default: true)
+
+# Severity: Minor, Reliability: High.
+#
+RACE.NO_UMASK = false  # (default: true)
+
+# Severity: Minor, Reliability: Low.
+#
+RACE.NO_UMASK.MIGHT = false  # (default: true)
+
+# Severity: Minor, Reliability: High.
+#
+RACE.BAD_UMASK = false  # (default: true)
+
+# Severity: Minor, Reliability: Low.
+#
+RACE.BAD_UMASK.MIGHT = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+DOUBLE_LOCK = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+NO_UNLOCK = false  # (default: true)
+
+# Severity: Major, Reliability: Low.
+# Two or more threads are waiting for each other, 
+# holding locks needed for the others to resume execution.
+#
+DEADLOCK = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+# Two or more threads are waiting for each other, 
+# holding locks needed for the others to resume execution.
+#
+DEADLOCK.EX = false  # (default: true)
+
+# Severity: Minor, Reliability: Average.
+# User tries to acquire lock created on stack.
+#
+LOCK_ON_STACK = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+WRONG_LOCK.STATIC = true  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+NO_CHECK_IN_LOCK = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+LOCK_INCONSISTENT = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+TRACE_FIRER = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+PROC_PAR_BIG = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+#
+PROC_PAR_HUGE = false  # (default: true)
+
+# Severity: Minor, Reliability: High.
+#
+PROC_USE.VULNERABLE = false  # (default: true)
+
+# Severity: Minor, Reliability: High.
+#
+PROC_USE.VULNERABLE.TEMP = false  # (default: true)
+
+# Severity: Minor, Reliability: High.
+#
+PROC_USE.VULNERABLE.SSCANF = false  # (default: true)
+
+# Severity: Minor, Reliability: High.
+#
+PROC_USE.VULNERABLE.GETENV = false  # (default: true)
+
+# Severity: Minor, Reliability: High.
+#
+PROC_USE.VULNERABLE.SQLITE = false  # (default: true)
+
+# Severity: Minor, Reliability: High.
+#
+PROC_USE.RAND = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+INT_TO_CHAR = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+RETURN_LOCAL_ADDR = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+#
+RETURN_LOCAL_VAR = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+RETURN_LOCAL_VAR.MIGHT = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+#
+LONG_TIME_IN_LOCK = false  # (default: true)
+
+# Severity: Minor, Reliability: High.
+#
+UNUSED_FUNC_RES = false  # (default: false)
+
+# Severity: Minor, Reliability: High.
+#
+UNUSED_FUNC_RES.REWRITE = false  # (default: true)
+
+# Severity: Minor, Reliability: High.
+#
+UNUSED_FUNC_RES.MINOR = false  # (default: false)
+
+# Severity: Minor, Reliability: High.
+#
+UNUSED_FUNC_RES.REWRITE.MINOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Low.
+#
+UNUSED_FUNC_RES.MACRO = false  # (default: false)
+
+# Severity: Minor, Reliability: High.
+#
+UNUSED_VALUE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+#
+UNUSED_PARAM = false  # (default: true)
+
+# Severity: Minor, Reliability: High.
+#
+UNUSED_VALUE.PARAM_ASSIGN = false  # (default: true)
+
+# Severity: Major, Reliability: High.
+#
+NO_VA_START = false  # (default: true)
+
+# Severity: Major, Reliability: High.
+#
+NO_VA_END = false  # (default: true)
+
+# Severity: Minor, Reliability: Low.
+#
+STACK_EXCEED = false  # (default: true)
+
+# Severity: Minor, Reliability: Low.
+#
+LOCAL_VAR.BIG = false  # (default: true)
+
+# Severity: Minor, Reliability: Low.
+#
+LOCAL_VAR.HUGE = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DIVISION_BY_ZERO = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DIVISION_BY_ZERO.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DIVISION_BY_ZERO.DEBUG = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DIVISION_BY_ZERO.UNDER_CHECK = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+# Warnings of this type are suspected of being caused by
+# conditional expressions included as part of macros.
+#
+STATIC_OVERFLOW.MACRO = false  # (default: false)
+
+# Severity: Critical, Reliability: Low.
+#
+DEREF_AFTER_NULL.MIGHT = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+DEREF_AFTER_NULL.MIGHT.MACRO = false  # (default: false)
+
+# Severity: Critical, Reliability: Low.
+#
+DEREF_AFTER_NULL.LOOP.MIGHT = false  # (default: false)
+
+# Severity: Critical, Reliability: Low.
+# Warnings of this type are suspected of being caused by
+# conditional expressions included as part of macros
+# where it was not programmer's intention to indicate the possibility
+# of a pointer being NULL.
+#
+NULL_AFTER_DEREF.MACRO = false  # (default: false)
+
+# Severity: Critical, Reliability: Low.
+# Warnings of this type are suspected of being caused by
+# conditional expressions included as part of macros
+# where it was not programmer's intention to indicate the possibility
+# of a pointer being NULL.
+#
+DEREF_AFTER_NULL.MACRO = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+# This is an experimental warning, that requires more path sensitivity
+# from analysis algorithms than is currently supported.
+#
+DEREF_OF_NULL.COND = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+# C# warning for situation when dereferenced value was set to null in 
+# function.
+#
+DEREF_OF_NULL.PROC = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+# This is an experimental warning, that requires more path sensitivity
+# from analysis algorithms than is currently supported.
+#
+DEREF_OF_NULL.COND.MACRO = false  # (default: false)
+
+# Severity: Critical, Reliability: Low.
+# This is an experimental warning type, for which we were unable
+# to find true positives on tests with the real code
+# (but it doesn't lead to many false positives either).
+#
+FREE_NONHEAP_MEMORY = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+#
+FREE_NONHEAP_MEMORY.EX = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+FREE_NONHEAP_MEMORY.STRING = false  # (default: true)
+
+# Severity: Major, Reliability: Low.
+#
+FREE_NONHEAP_MEMORY.MACRO = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+UNINIT.CTOR = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+UNINIT.CTOR.MANY = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+UNINIT.CTOR.MIGHT = false  # (default: false)
+
+# Severity: Critical, Reliability: Average.
+#
+HEAP_INCOMPATIBLE.FREE = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+# Using operator 'delete' instead of 'delete[]'.
+#
+HEAP_INCOMPATIBLE.ARRAY = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+#
+NON_VIRTUAL_DTOR = false  # (default: false)
+
+# Severity: Minor, Reliability: Average.
+#
+ASSIGN_NO_CHECK_FOR_THIS = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+# Memory was allocated in constructor, but never deallocated in destructor.
+#
+MEMORY_LEAK.CTOR = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+HANDLE_LEAK.CTOR = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+#
+HEAP_INCOMPATIBLE.CTOR = false  # (default: true)
+
+# Severity: Major, Reliability: High.
+#
+NO_CATCH = false  # (default: true)
+
+# Severity: Major, Reliability: High.
+#
+NO_CATCH.LIBRARY = false  # (default: true)
+
+# Severity: Major, Reliability: High.
+#
+NO_CATCH.LIBRARY.PEDANTIC = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Operator 'new' never returns a null pointer; 
+# it indicates errors by throwing exceptions.
+#
+COMPARE_RESULT_OF_NEW = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# The stream format was modified, but wasn't restored.
+#
+STREAM_FORMAT_STATE = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+# An internal string buffer (returned by c_str()) of an STL string escaped its scope.
+#
+DEAD_STRING_REF = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+BAD_ITERATOR.MISMATCHED = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+BAD_ITERATOR.INVALID = false  # (default: true)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+LOGIC_ERROR = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+UNDEFINED_BEHAVIOR = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+UNIX_API = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+# Function declared void returning a value.
+#
+UNUSED_RETURN_VALUE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+ENUM_TO_BOOLEAN = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+ENUM_TO_BOOLEAN.NO_ZERO_VALUE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+ASSIGN_OP.NO_REFERENCE_TO_THIS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+ASSIGN_OP.NO_CHECK_FOR_THIS = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+# The size of pointer's target type is larger than the size 
+# of the newly allocated memory block whose address is assigned to it.
+#
+ALLOC_SIZE_MISMATCH = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+# Expression allocates a single object with initial value instead of array
+#
+ALLOC_SIZE_MISMATCH.NEW = false  # (default: false)
+
+# Severity: Critical, Reliability: Average.
+# The size of pointer's target type doesn't match the size 
+# of the memory block written by calling memset function.
+#
+MEMSET_SIZE_MISMATCH = false  # (default: true)
+
+# Severity: Critical, Reliability: Average.
+# Isolated occurrences of 'sizeof' operators are technically legal 
+# in C/C++, yet are often erroneous.
+#
+BAD_SIZEOF = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+# Isolated occurrences of 'sizeof' operators are technically legal 
+# in C/C++, yet are often erroneous. 
+# This issue was reported in code obtained from macro expansions.
+#
+BAD_SIZEOF.MACRO = false  # (default: false)
+
+# Severity: Critical, Reliability: Average.
+# Combinations of pointers and 'sizeof' expressions that 
+# appear to be mismatched.
+#
+SIZEOF_POINTER_TYPE = false  # (default: true)
+
+# Severity: Critical, Reliability: Low.
+# Combinations of pointers and 'sizeof' expressions that 
+# appear to be mismatched.
+# Reported for pointers to a type with one-byte size.
+#
+SIZEOF_POINTER_TYPE.CHAR = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+# A 'delete' operator is applied to a pointer to void.
+#
+DELETE_VOID = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+# A 'delete' operator is applied to a pointer to a builtin type casted to void.
+#
+DELETE_VOID.STRICT = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+# Places in the code where the C/C++ language rules for 
+# expression evaluation don't determine the order in which 
+# side effects happen.
+#
+EVALUATION_ORDER = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+# Defects in overriding virtual functions due to missing 'const' modifiers, 
+# which result in type signature mismatches.
+#
+BAD_OVERRIDE = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+# Statements or expressions that don't accomplish anything, 
+# or statements that perform an action that is not the intended action.
+#
+NO_EFFECT = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+# A variable is assigned to itself.
+#
+NO_EFFECT.SELF = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+# A local variable is assigned to itself.
+#
+NO_EFFECT.SELF.LOCAL = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+# Expression don't accomplish anything but is expanded from a macro.
+#
+NO_EFFECT.MACRO = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+# Instances of loops that never terminate because the variables 
+# that control termination condition are not properly updated.
+#
+INFINITE_LOOP = true  # (default: true)
+
+# Severity: Major, Reliability: Average.
+# Instances of loops expanded from a macro that never terminate because the variables 
+# that control termination condition are not properly updated.
+#
+INFINITE_LOOP.MACRO = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+# Expressions whose result doesn't depend on their variable operands.
+#
+INVARIANT_RESULT = false  # (default: true)
+
+# Severity: Major, Reliability: Average.
+# Logical AND/OR operation with a zero argument which result doesn't depend 
+# on its other variable operand.
+#
+INVARIANT_RESULT.OP_ASSIGN = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+# Operation with a zero argument which result doesn't depend 
+# on its other variable operand.
+#
+INVARIANT_RESULT.OP_ZERO = false  # (default: false)
+
+# Severity: Major, Reliability: Average.
+# A pointer is casted to an incompatible type.
+#
+BAD_CAST = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+# 
+#
+BAD_FREE.MS_COM = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+BAD_CAST.BSTR = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+BAD_COMPARE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+BAD_COMPARE.BSTR_TO_OTHER = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Suspicious comparison of function names with NULL
+#
+PROC_NAME_NULL_CHECK = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# A critical section is not sufficient to protect a variable.
+#
+ATOMICITY = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+# 'malloc(x) + y' instead of 'malloc(x) + y'
+#
+BAD_ALLOC_ARITHMETIC = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# A parameter to assert() modifies the program state.
+#
+BAD_ASSERT_EXPRESSION = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# A possible integer overflow in additions or multiplications.
+#
+INTEGER_OVERFLOW = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Suspicious conversion from an unsigned value to a signed value 
+# that results in all of its high bits set to 1.
+#
+SIGN_EXTENSION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# A class has dynamically allocated data members 
+# but do not define a copy constructor or an assignment operator.
+#
+MISSING_COPY_CTOR_ASSIGN_OP = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Numeric trucation might take place.
+#
+NUMERIC_TRUNCATION = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# It is suspicious that parentheses are missing around an assignment.
+#
+OP_PRECEDENCE_ASSIGN_CMP = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Memory leak might occur because evaluation order is undefined.
+#
+LEAK_EVAL_ORDER = false  # (default: true)
+
+# Severity: Critical, Reliability: Unknown.
+# Out-of-bound accesses to C++ basic_string.
+#
+BASIC_STRING_BOUND = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Constant object is being modified.
+#
+CONST_MODIFIED = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Call a member function before the base class is initialized.
+#
+METHOD_CALL_BEFORE_BASE_INIT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# The behavior is undefined if an exception is thrown 
+# in copy constructor or assignment operator.
+#
+THROW_WHILE_COPY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Static initialization is re-entered 
+# while the object is being initialized.
+#
+STATIC_INIT_REENTERED = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Comparing floating point numbers may be not precise.
+#
+FLOATING_COMPARE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# The second operand of a logical operator has no impact on the result.
+#
+LOGICAL_OP_USELESS_ARG = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SIGNED_TO_BIGGER_UNSIGNED = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+UNSPECIFIED_CHAR_IN_COND = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_ACCESS_OVERFLOW_MORE_THAN_INT_MAX = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_BITSHIFT_MIGHT_OVERFLOW = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_DO_NOT_ASSIGN_SIZE_OF_INT = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_DO_NOT_CAST_INT_ARRAY_TO_SIZE_T = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_DO_NOT_CAST_LONG_TO_DOUBLE = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_DO_NOT_CAST_POINTER_TO_INT = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_DO_NOT_USE_FOUR_BYTE_MULTIPLIER = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_DO_NOT_USE_INT_IN_FOR_LOOP = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_DO_NOT_USE_POINTER_WITH_INT_IN_UNION = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_INVALID_ASSIGNMENT_WITH_UNSIGNED_VALUES = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_MALLOC_ALIGNMENT = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_MULTIPLICATION_WITH_SIGNED_AND_UNSIGNED = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_POINTER_ARITHMETIC_LOSS_BITS = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_PRINTF_ARG_MISMATCH = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_PROHIBITED_CALL.VCONF_GET_STR_DUID = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+SEC_DO_NOT_ASSIGN_ADDR_OF_LOCAL_TO_GLOBAL = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+# 
+#
+SEC_RECV_OVERFLOW = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+CRC.IDIOM.ARRAY_DEALLOCATION = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+CRC.IDIOM.CLASS_COPY_CTOR = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# In the header file, definitions of variables of functions can not be described.
+#
+CRC.IDIOM.DEFINITION_IN_HEADER = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# Do not define member function inside the class declaration.
+#
+CRC.IDIOM.FUNCTION_DEFINITION_IN_CLASS = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# The length of a function name should not exceed 31 characters.
+#
+CRC.STYLE.FUNCTION_NAME_LENGTH = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# The length of a variable (or parameter) name should not exceed 31 characters.
+#
+CRC.STYLE.VARIABLE_AND_PARAMETER_NAME_LENGTH = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# The length of a user-defined type name should not exceed 31 characters.
+#
+CRC.STYLE.TYPE_DEFINITION_NAME_LENGTH = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# A user-defined type name should start with a capital letter.
+#
+CRC.STYLE.TYPE_DEFINITION_NAME = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# An enumerated constant name of enumation type consists of capital letters, numbers and '-' only.
+#
+CRC.STYLE.ENUM_NAME = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+CRC.STYLE.CLASS_NAME = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# A constant number cannot be used directly inside the program.
+#
+CRC.IDIOM.USING_CONSTANT = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+CRC.IDIOM.USING_CONSTANT.IF = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+CRC.IDIOM.USING_CONSTANT.LOOP = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# Do the indentation of compound statement of '{' and '}' signs at the same position.
+#
+CRC.STYLE.BRACE_LOCATION = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# In unary operation, no space is allowed between the operand and the operator.
+#
+CRC.STYLE.UNARY_OPERATOR = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# Else block of an if-else statement should be positioned in a new line.
+#
+CRC.STYLE.IF_ELSE_CONTROL = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# Even if a condition or iteration statement is a single line, '{' and '}' should be used.
+#
+CRC.STYLE.FOR_WHILE_CONTROL = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+CRC.STYLE.SWITCH_INDENTATION = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# Null statement ';' should be positioned in an independent line and 
+# comment /* NULL */ should be attached when there is no body for a for or while statement.
+#
+CRC.STYLE.FOR_WHILE_NULL_BODY = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+CRC.STYLE.SWITCH_CASE_BREAK = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+CRC.STYLE.DO_WHILE_BRACE = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+CRC.STYLE.FUNCTION_PARAMETER = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# Declaring global variables, only a single variable is declared for each line.
+#
+CRC.STYLE.GLOBAL_VARIABLE_DECLARATION = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+CRC.STYLE.UNUSED_VARIABLE = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+CRC.IDIOM.RETURNING_REFERENCE_OF_LOCAL_VARIABLE = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+CRC.IDIOM.RETURNING_TEMPORARY_OBJECT = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# While declaring all variables, initial values should be given. 
+# However, in header files, intial values are not defined.
+#
+CRC.IDIOM.UNINITIALIZED_VARIABLE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+CRC.IDIOM.MISSING_BRACKETS_IN_MACRO = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+CRC.IDIOM.UNDEFINED_FUNCTION_TYPE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+ARITH_ON_BOOL = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+AUTHENTICATION_GETHOSTBY = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+# 
+#
+RELIANCE_DNS_LOOKUP = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+BROKEN_ENCAPSULATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+CATCH_HANDLER_ORDER = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+# 
+#
+COMMAND_INJECTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+CONVERSION_THROUGH_VOID = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+CPP_ALLOCATION_ERRORS = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+CPP_CAST = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+CSTRING_FWRITE_OVERFLOW = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+C_STYLE_CAST_IN_CPP = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+C_STYLE_VARIADIC = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+DEBUG_IN_RELEASE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+DELETE_THIS = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+DISTINGUISH_CHAR_AND_EOF = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+DOUBLE_OPEN = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+DOUBLE_STREAM_PUSHBACK = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+EXECUTION_TERMINATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+FGETS_TRUNCATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+FILE_SYSTEM_GETWD = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+FILE_SYSTEM_REALPATH = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+# 
+#
+FILE_SYSTEM_UMASK = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+FREE_NOT_AT_START = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+FREE_ON_STACK = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+FUNCTION_NOT_INVOKED = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+HANDLE_INHERITANCE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+HEAP_INSPECTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+HARDCODED_NONCE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+HARDCODED_USERNAME = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+INACTIVE_ERROR_DETECTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+INCOMPATIBLE_TYPE_OPERATOR = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+INCORRECT_CONTROL_FLOW_SCOPING = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+INCORRECT_ERRNO_USAGE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+INCORRECT_PERMISSION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+INFORMATION_EXPOSURE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+INSECURE_COMPILER_OPTIMIZATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+INSECURE_DATA_CHANNEL = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+INSECURE_RANDOMNESS = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+KEY_MANAGEMENT = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+LDAP_INJECTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+MACRO_MISUSE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+MANUAL_MEMORY_MANAGEMENT = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+MISSING_SALT = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+MISSING_ENCRYPTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+MULTIBYTE_STRLEN = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+MULTIPLE_ACCESSORS = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+MULTIPLE_BINDS_TO_THE_SAME_PORT = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+NEW_RETURN_NULL = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+NONCE_REUSAGE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+NULL_POINTER_TO_TRAITS_LENGTH = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+OBSOLETE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+OBSOLETE.INADEQUATE_PTR_VALIDATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+OPENED_FILE_REMOVE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+PADDING_COMPARISON = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+PASSWORD_MANAGEMENT = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+PATH_TRAVERSAL = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+PLACEMENT_NEW = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+PLACEMENT_NEW_ALIGN = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+PLAIN_OLD_SIGNAL = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+POINTER_TO_MEMBER = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+POLYMORPHIC_POINTER_ARITHMETIC = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+PREFER_STREAMS_TO_STDIO = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+PREMATURE_THREAD_TERMINATION = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+# 
+#
+PRIVILEGE_MANAGEMENT = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+PROCESS_CONTROL = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+PROC_USE.VULNERABLE.PCSTRING = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+PTHREAD_ASYNC_CANCEL = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+PTHREAD_LOCAL_INIT = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+QUALIFY_DEPENDENT_BASE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+RANGE_BASED_LOOP_QUALIFIERS = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+RAW_MEMORY_ALLOCATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+REINTERPRET_INHERIT = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+RESOURCE_INJECTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+RESTRICT_CHILD_PRIVILEGES = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+RESTRICT_QUALIFIER_VIOLATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+SCANF_LENGTH_SPECIFIER = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+SCOPE_RESTRICTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+GLOBAL_VARIABLES = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+SEC_REDUNDANT_DELETE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+SETTING_MANIPULATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+SIGNAL_HANDLER_DISABLING = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+SIGNAL_NON_REENTRANT = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+SOCKET_BYTE_ORDER = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+# 
+#
+SQL_INJECTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+STANDARD_NAMESPACE_MODIFIED = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+STL_CONTAINER_OVERFLOW = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+STL_ITERATOR_ORDER = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+STORAGE_DURATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+STRING_ALLOC_COPY = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+SWITCH_COMPLEX_BLOCK = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+SYSTEM_USAGE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+TOC_TOU = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+UNCONTROLLED_RECURSION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+UNDECLARED_SPECIALIZATION = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+UNDEFINED_BEHAVIOR_API = false  # (default: false)
+
+# Severity: Undefined, Reliability: Unknown.
+# 
+#
+UNDEFINED_BEHAVIOR_BUFFER_OVERLAP = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+UNSAFE_REFLECTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+UNSIGNED_TO_SIGNED_CONVERSION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+VOLATILE_SYNCHRONIZATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+WEAK_CRYPTOGRAPHIC_HASH = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+WEAK_ENCRYPTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+WEAK_ENCRYPTION.INADEQUATE_RSA_PADDING = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+WEAK_ENCRYPTION.INSUFFICIENT_KEY_SIZE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# 
+#
+WRONG_LOOP_INDEX_CHANGE = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+# 
+#
+XPATH_INJECTION = false  # (default: false)
+
+# Severity: Critical, Reliability: Unknown.
+# 
+#
+XSS_WEBCONFIG = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+REDUNDANT_COMPARISON = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+REDUNDANT_COMPARISON.ALWAYS_FALSE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+UNREACHABLE_CODE.SWITCH = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Predictable Pseudo Random Number Generator
+#
+FB.PREDICTABLE_RANDOM = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Untrusted Servlet Parameter
+#
+FB.SERVLET_PARAMETER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Untrusted Content-Type Header
+#
+FB.SERVLET_CONTENT_TYPE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Untrusted Hostname Header
+#
+FB.SERVLET_SERVER_NAME = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Untrusted Session Cookie Value
+#
+FB.SERVLET_SESSION_ID = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Untrusted Query String
+#
+FB.SERVLET_QUERY_STRING = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# HTTP Headers Untrusted
+#
+FB.SERVLET_HEADER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Untrusted Referer Header
+#
+FB.SERVLET_HEADER_REFERER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Untrusted User-Agent Header
+#
+FB.SERVLET_HEADER_USER_AGENT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potentially Sensitive Data in Cookie
+#
+FB.COOKIE_USAGE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential Path Traversal (File Read)
+#
+FB.PATH_TRAVERSAL_IN = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential Path Traversal (File Write)
+#
+FB.PATH_TRAVERSAL_OUT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential Command Injection
+#
+FB.COMMAND_INJECTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# FilenameUtils Not Filtering Null Bytes
+#
+FB.WEAK_FILENAMEUTILS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# TrustManager Implementation Empty
+#
+FB.WEAK_TRUST_MANAGER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Found JAX-WS SOAP Endpoint
+#
+FB.JAXWS_ENDPOINT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Found JAX-RS REST Endpoint
+#
+FB.JAXRS_ENDPOINT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Found Tapestry Page
+#
+FB.TAPESTRY_ENDPOINT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Found Wicket Page
+#
+FB.WICKET_ENDPOINT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# MessageDigest Is Weak
+#
+FB.WEAK_MESSAGE_DIGEST = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# MessageDigest Is Custom
+#
+FB.CUSTOM_MESSAGE_DIGEST = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Tainted Filename Read
+#
+FB.FILE_UPLOAD_FILENAME = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Regex DOS (ReDOS)
+#
+FB.REDOS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# XML Parsing Vulnerable to XXE (SAXParser)
+#
+FB.XXE_SAXPARSER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# XML Parsing Vulnerable to XXE (XMLReader)
+#
+FB.XXE_XMLREADER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# XML Parsing Vulnerable to XXE (DocumentBuilder)
+#
+FB.XXE_DOCUMENT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential XPath Injection
+#
+FB.XPATH_INJECTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Found Struts 1 Endpoint
+#
+FB.STRUTS1_ENDPOINT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Found Struts 2 Endpoint
+#
+FB.STRUTS2_ENDPOINT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Found Spring Endpoint
+#
+FB.SPRING_ENDPOINT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential Injection
+#
+FB.CUSTOM_INJECTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential SQL/HQL Injection (Hibernate)
+#
+FB.SQL_INJECTION_HIBERNATE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential SQL/JDOQL Injection (JDO)
+#
+FB.SQL_INJECTION_JDO = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential SQL/JPQL Injection (JPA)
+#
+FB.SQL_INJECTION_JPA = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential LDAP Injection
+#
+FB.LDAP_INJECTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential code injection when using Script Engine
+#
+FB.SCRIPT_ENGINE_INJECTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential code injection when using Spring Expression
+#
+FB.SPEL_INJECTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Bad hexadecimal concatenation
+#
+FB.BAD_HEXA_CONVERSION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Hazelcast Symmetric Encryption
+#
+FB.HAZELCAST_SYMMETRIC_ENCRYPTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# NullCipher Unsafe
+#
+FB.NULL_CIPHER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Unencrypted Socket
+#
+FB.UNENCRYPTED_SOCKET = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# DES / DESede Unsafe
+#
+FB.DES_USAGE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# RSA NoPadding Unsafe
+#
+FB.RSA_NO_PADDING = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Hard Coded Password
+#
+FB.HARD_CODE_PASSWORD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Struts Form Without Input Validation
+#
+FB.STRUTS_FORM_VALIDATION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# XSSRequestWrapper is Weak XSS Protection
+#
+FB.XSS_REQUEST_WRAPPER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Blowfish Usage with Weak Key Size
+#
+FB.BLOWFISH_KEY_SIZE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# RSA Usage with Weak Key Size
+#
+FB.RSA_KEY_SIZE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Unvalidated Redirect
+#
+FB.UNVALIDATED_REDIRECT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential XSS in JSP
+#
+FB.XSS_JSP_PRINT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential XSS in Servlet
+#
+FB.XSS_SERVLET = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# XMLDecoder usage
+#
+FB.XML_DECODER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Static IV
+#
+FB.STATIC_IV = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# ECB Mode Unsafe
+#
+FB.ECB_MODE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Cipher is Susceptible to Padding Oracle
+#
+FB.PADDING_ORACLE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Cipher With No Integrity
+#
+FB.CIPHER_INTEGRITY = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Usage of ESAPI Encryptor
+#
+FB.ESAPI_ENCRYPTOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# External File Access (Android)
+#
+FB.ANDROID_EXTERNAL_FILE_ACCESS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Broadcast (Android)
+#
+FB.ANDROID_BROADCAST = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# World Writable File (Android)
+#
+FB.ANDROID_WORLD_WRITABLE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# WebView with Geolocation Activated (Android)
+#
+FB.ANDROID_GEOLOCATION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# WebView with JavaScript Enabled (Android)
+#
+FB.ANDROID_WEB_VIEW_JAVASCRIPT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# WebView with Javascript Interface (Android)
+#
+FB.ANDROID_WEB_VIEW_JAVASCRIPT_INTERFACE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Wrong add prioroty
+#
+FB.BSHIFT_WRONG_ADD_PRIORITY = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Creates an empty jar file entry
+#
+FB.AM_CREATES_EMPTY_JAR_FILE_ENTRY = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Creates an empty zip file entry
+#
+FB.AM_CREATES_EMPTY_ZIP_FILE_ENTRY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Equals method should not assume anything about the type of its argument
+#
+FB.BC_EQUALS_METHOD_SHOULD_WORK_FOR_ALL_OBJECTS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Check for sign of bitwise operation
+#
+FB.BIT_SIGNED_CHECK = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Class implements Cloneable but does not define or use clone method
+#
+FB.CN_IDIOM = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# clone method does not call super.clone()
+#
+FB.CN_IDIOM_NO_SUPER_CALL = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Class defines clone() but doesn't implement Cloneable
+#
+FB.CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Rough value of known constant found
+#
+FB.CNT_ROUGH_CONSTANT_VALUE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Abstract class defines covariant compareTo() method
+#
+FB.CO_ABSTRACT_SELF = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Covariant compareTo() method defined
+#
+FB.CO_SELF_NO_OBJECT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method might drop exception
+#
+FB.DE_MIGHT_DROP = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method might ignore exception
+#
+FB.DE_MIGHT_IGNORE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Adding elements of an entry set may fail due to reuse of Entry objects
+#
+FB.DMI_ENTRY_SETS_MAY_REUSE_ENTRY_OBJECTS = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Random object created and used only once
+#
+FB.DMI_RANDOM_USED_ONLY_ONCE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Don't use removeAll to clear a collection
+#
+FB.DMI_USING_REMOVEALL_TO_CLEAR_COLLECTION = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Boxing/unboxing to parse a primitive
+#
+FB.DM_BOXED_PRIMITIVE_FOR_PARSING = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method invokes System.exit(...)
+#
+FB.DM_EXIT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method invokes dangerous method runFinalizersOnExit
+#
+FB.DM_RUN_FINALIZERS_ON_EXIT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Comparison of String parameter using == or !=
+#
+FB.ES_COMPARING_PARAMETER_STRING_WITH_EQ = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Comparison of String objects using == or !=
+#
+FB.ES_COMPARING_STRINGS_WITH_EQ = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Abstract class defines covariant equals() method
+#
+FB.EQ_ABSTRACT_SELF = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Equals checks for incompatible operand
+#
+FB.EQ_CHECK_FOR_OPERAND_NOT_COMPATIBLE_WITH_THIS = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Class defines compareTo(...) and uses Object.equals()
+#
+FB.EQ_COMPARETO_USE_OBJECT_EQUALS = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# equals method fails for subtypes
+#
+FB.EQ_GETCLASS_AND_CLASS_CONSTANT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Covariant equals() method defined
+#
+FB.EQ_SELF_NO_OBJECT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Empty finalizer should be deleted
+#
+FB.FI_EMPTY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Explicit invocation of finalizer
+#
+FB.FI_EXPLICIT_INVOCATION = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Finalizer nulls fields
+#
+FB.FI_FINALIZER_NULLS_FIELDS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Finalizer only nulls fields
+#
+FB.FI_FINALIZER_ONLY_NULLS_FIELDS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Finalizer does not call superclass finalizer
+#
+FB.FI_MISSING_SUPER_CALL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Finalizer nullifies superclass finalizer
+#
+FB.FI_NULLIFY_SUPER = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Finalizer does nothing but call superclass finalizer
+#
+FB.FI_USELESS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Format string should use %n rather than 
+
+#
+FB.VA_FORMAT_STRING_USES_NEWLINE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Unchecked type in generic call
+#
+FB.GC_UNCHECKED_TYPE_IN_GENERIC_CALL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class defines equals() but not hashCode()
+#
+FB.HE_EQUALS_NO_HASHCODE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Class defines equals() and uses Object.hashCode()
+#
+FB.HE_EQUALS_USE_HASHCODE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class defines hashCode() but not equals()
+#
+FB.HE_HASHCODE_NO_EQUALS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class defines hashCode() and uses Object.equals()
+#
+FB.HE_HASHCODE_USE_OBJECT_EQUALS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class inherits equals() and uses Object.hashCode()
+#
+FB.HE_INHERITS_EQUALS_USE_HASHCODE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Superclass uses subclass during initialization
+#
+FB.IC_SUPERCLASS_USES_SUBCLASS_DURING_INITIALIZATION = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Dubious catching of IllegalMonitorStateException
+#
+FB.IMSE_DONT_CATCH_IMSE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Needless instantiation of class that only supplies static methods
+#
+FB.ISC_INSTANTIATE_STATIC_CLASS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Iterator next() method can't throw NoSuchElementException
+#
+FB.IT_NO_SUCH_ELEMENT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Store of non serializable object into HttpSession
+#
+FB.J2EE_STORE_OF_NON_SERIALIZABLE_OBJECT_INTO_SESSION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Fields of immutable classes should be final
+#
+FB.JCIP_FIELD_ISNT_FINAL_IN_IMMUTABLE_CLASS = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method with Boolean return type returns explicit null
+#
+FB.NP_BOOLEAN_RETURN_NULL = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Clone method may return null
+#
+FB.NP_CLONE_COULD_RETURN_NULL = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# equals() method does not check for null argument
+#
+FB.NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# toString method may return null
+#
+FB.NP_TOSTRING_COULD_RETURN_NULL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class names should start with an upper case letter
+#
+FB.NM_CLASS_NAMING_CONVENTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class is not derived from an Exception, even though it is named as such
+#
+FB.NM_CLASS_NOT_EXCEPTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Confusing method names
+#
+FB.NM_CONFUSING = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Field names should start with a lower case letter
+#
+FB.NM_FIELD_NAMING_CONVENTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Use of identifier that is a keyword in later versions of Java
+#
+FB.NM_FUTURE_KEYWORD_USED_AS_IDENTIFIER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Use of identifier that is a keyword in later versions of Java
+#
+FB.NM_FUTURE_KEYWORD_USED_AS_MEMBER_IDENTIFIER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method names should start with a lower case letter
+#
+FB.NM_METHOD_NAMING_CONVENTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method relaxes nullness annotation on return value 
+#
+FB.NP_METHOD_RETURN_RELAXING_ANNOTATION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method tightens nullness annotation on parameter 
+#
+FB.NP_METHOD_PARAMETER_TIGHTENS_ANNOTATION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method with Optional return type returns explicit null
+#
+FB.NP_OPTIONAL_RETURN_NULL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class names shouldn't shadow simple name of implemented interface
+#
+FB.NM_SAME_SIMPLE_NAME_AS_INTERFACE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class names shouldn't shadow simple name of superclass
+#
+FB.NM_SAME_SIMPLE_NAME_AS_SUPERCLASS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Very confusing method names (but perhaps intentional)
+#
+FB.NM_VERY_CONFUSING_INTENTIONAL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method doesn't override method in superclass due to wrong package for parameter
+#
+FB.NM_WRONG_PACKAGE_INTENTIONAL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method may fail to close database resource
+#
+FB.ODR_OPEN_DATABASE_RESOURCE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method may fail to close database resource on exception
+#
+FB.ODR_OPEN_DATABASE_RESOURCE_EXCEPTION_PATH = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method may fail to close stream
+#
+FB.OS_OPEN_STREAM = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method may fail to close stream on exception
+#
+FB.OS_OPEN_STREAM_EXCEPTION_PATH = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Don't reuse entry objects in iterators
+#
+FB.PZ_DONT_REUSE_ENTRY_OBJECTS_IN_ITERATORS = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Suspicious reference comparison to constant
+#
+FB.RC_REF_COMPARISON_BAD_PRACTICE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Suspicious reference comparison of Boolean values
+#
+FB.RC_REF_COMPARISON_BAD_PRACTICE_BOOLEAN = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method ignores results of InputStream.read()
+#
+FB.RR_NOT_CHECKED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method ignores results of InputStream.skip()
+#
+FB.SR_NOT_CHECKED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Negating the result of compareTo()/compare()
+#
+FB.RV_NEGATING_RESULT_OF_COMPARETO = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method ignores exceptional return value
+#
+FB.RV_RETURN_VALUE_IGNORED_BAD_PRACTICE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Static initializer creates instance before all static final fields assigned
+#
+FB.SI_INSTANCE_BEFORE_FINALS_ASSIGNED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Certain swing methods needs to be invoked in Swing thread
+#
+FB.SW_SWING_METHODS_INVOKED_IN_SWING_THREAD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Non-transient non-serializable instance field in serializable class
+#
+FB.SE_BAD_FIELD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Non-serializable class has a serializable inner class
+#
+FB.SE_BAD_FIELD_INNER_CLASS = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Non-serializable value stored into instance field of a serializable class
+#
+FB.SE_BAD_FIELD_STORE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Comparator doesn't implement Serializable
+#
+FB.SE_COMPARATOR_SHOULD_BE_SERIALIZABLE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Serializable inner class
+#
+FB.SE_INNER_CLASS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# serialVersionUID isn't final
+#
+FB.SE_NONFINAL_SERIALVERSIONID = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# serialVersionUID isn't long
+#
+FB.SE_NONLONG_SERIALVERSIONID = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# serialVersionUID isn't static
+#
+FB.SE_NONSTATIC_SERIALVERSIONID = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class is Serializable but its superclass doesn't define a void constructor
+#
+FB.SE_NO_SUITABLE_CONSTRUCTOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class is Externalizable but doesn't define a void constructor
+#
+FB.SE_NO_SUITABLE_CONSTRUCTOR_FOR_EXTERNALIZATION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# The readResolve method must be declared with a return type of Object. 
+#
+FB.SE_READ_RESOLVE_MUST_RETURN_OBJECT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Transient field that isn't set by deserialization. 
+#
+FB.SE_TRANSIENT_FIELD_NOT_RESTORED = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Class is Serializable, but doesn't define serialVersionUID
+#
+FB.SE_NO_SERIALVERSIONID = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Usage of GetResource may be unsafe if class is extended
+#
+FB.UI_INHERITANCE_UNSAFE_GETRESOURCE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Impossible cast
+#
+FB.BC_IMPOSSIBLE_CAST = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Impossible downcast
+#
+FB.BC_IMPOSSIBLE_DOWNCAST = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Impossible downcast of toArray() result
+#
+FB.BC_IMPOSSIBLE_DOWNCAST_OF_TOARRAY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# instanceof will always return true
+#
+FB.BC_IMPOSSIBLE_INSTANCEOF = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Bitwise add of signed byte value
+#
+FB.BIT_ADD_OF_SIGNED_BYTE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Incompatible bit masks
+#
+FB.BIT_AND = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Check to see if ((...) & 0) == 0
+#
+FB.BIT_AND_ZZ = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Incompatible bit masks
+#
+FB.BIT_IOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Bitwise OR of signed byte value
+#
+FB.BIT_IOR_OF_SIGNED_BYTE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Check for sign of bitwise operation
+#
+FB.BIT_SIGNED_CHECK_HIGH_BIT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class overrides a method implemented in super class Adapter wrongly
+#
+FB.BOA_BADLY_OVERRIDDEN_ADAPTER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# 32 bit int shifted by an amount not in the range -31..31
+#
+FB.ICAST_BAD_SHIFT_AMOUNT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Primitive value is unboxed and coerced for ternary operator
+#
+FB.BX_UNBOXED_AND_COERCED_FOR_TERNARY_OPERATOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# compareTo()/compare() returns Integer.MIN_VALUE
+#
+FB.CO_COMPARETO_RESULTS_MIN_VALUE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Dead store of class literal
+#
+FB.DLS_DEAD_STORE_OF_CLASS_LITERAL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Overwritten increment
+#
+FB.DLS_OVERWRITTEN_INCREMENT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Reversed method arguments
+#
+FB.DMI_ARGUMENTS_WRONG_ORDER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Bad constant value for month
+#
+FB.DMI_BAD_MONTH = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# BigDecimal constructed from double that isn't represented precisely
+#
+FB.DMI_BIGDECIMAL_CONSTRUCTED_FROM_DOUBLE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# hasNext method invokes next
+#
+FB.DMI_CALLING_NEXT_FROM_HASNEXT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Collections should not contain themselves
+#
+FB.DMI_COLLECTIONS_SHOULD_NOT_CONTAIN_THEMSELVES = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# D'oh! A nonsensical method invocation
+#
+FB.DMI_DOH = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Invocation of hashCode on an array
+#
+FB.DMI_INVOKING_HASHCODE_ON_ARRAY = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Double.longBitsToDouble invoked on an int
+#
+FB.DMI_LONG_BITS_TO_DOUBLE_INVOKED_ON_INT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Vacuous call to collections
+#
+FB.DMI_VACUOUS_SELF_COLLECTION_CALL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Can't use reflection to check for presence of annotation without runtime retention
+#
+FB.DMI_ANNOTATION_IS_NOT_VISIBLE_TO_REFLECTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Futile attempt to change max pool size of ScheduledThreadPoolExecutor
+#
+FB.DMI_FUTILE_ATTEMPT_TO_CHANGE_MAXPOOL_SIZE_OF_SCHEDULED_THREAD_POOL_EXECUTOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Creation of ScheduledThreadPoolExecutor with zero core threads
+#
+FB.DMI_SCHEDULED_THREAD_POOL_EXECUTOR_WITH_ZERO_CORE_THREADS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Useless/vacuous call to EasyMock method
+#
+FB.DMI_VACUOUS_CALL_TO_EASYMOCK_METHOD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# equals() used to compare array and nonarray
+#
+FB.EC_ARRAY_AND_NONARRAY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Invocation of equals() on an array, which is equivalent to ==
+#
+FB.EC_BAD_ARRAY_COMPARE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# equals(...) used to compare incompatible arrays
+#
+FB.EC_INCOMPATIBLE_ARRAY_COMPARE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Call to equals(null)
+#
+FB.EC_NULL_ARG = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Call to equals() comparing unrelated class and interface
+#
+FB.EC_UNRELATED_CLASS_AND_INTERFACE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Call to equals() comparing different interface types
+#
+FB.EC_UNRELATED_INTERFACES = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Call to equals() comparing different types
+#
+FB.EC_UNRELATED_TYPES = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Using pointer equality to compare different types
+#
+FB.EC_UNRELATED_TYPES_USING_POINTER_EQUALITY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# equals method always returns true
+#
+FB.EQ_ALWAYS_FALSE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# equals method always returns true
+#
+FB.EQ_ALWAYS_TRUE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# equals method compares class names rather than class objects
+#
+FB.EQ_COMPARING_CLASS_NAMES = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Covariant equals() method defined for enum
+#
+FB.EQ_DONT_DEFINE_EQUALS_FOR_ENUM = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# equals() method defined that doesn't override equals(Object)
+#
+FB.EQ_OTHER_NO_OBJECT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# equals() method defined that doesn't override Object.equals(Object)
+#
+FB.EQ_OTHER_USE_OBJECT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# equals method overrides equals in superclass and may not be symmetric
+#
+FB.EQ_OVERRIDING_EQUALS_NOT_SYMMETRIC = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Covariant equals() method defined, Object.equals(Object) inherited
+#
+FB.EQ_SELF_USE_OBJECT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Doomed test for equality to NaN
+#
+FB.FE_TEST_IF_EQUAL_TO_NOT_A_NUMBER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Format string placeholder incompatible with passed argument
+#
+FB.VA_FORMAT_STRING_BAD_ARGUMENT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# The type of a supplied argument doesn't match format specifier
+#
+FB.VA_FORMAT_STRING_BAD_CONVERSION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# MessageFormat supplied where printf style format expected
+#
+FB.VA_FORMAT_STRING_EXPECTED_MESSAGE_FORMAT_SUPPLIED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# More arguments are passed than are actually used in the format string
+#
+FB.VA_FORMAT_STRING_EXTRA_ARGUMENTS_PASSED = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Illegal format string
+#
+FB.VA_FORMAT_STRING_ILLEGAL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Format string references missing argument
+#
+FB.VA_FORMAT_STRING_MISSING_ARGUMENT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# No previous argument for format string
+#
+FB.VA_FORMAT_STRING_NO_PREVIOUS_ARGUMENT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# No relationship between generic parameter and method argument
+#
+FB.GC_UNRELATED_TYPES = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Signature declares use of unhashable class in hashed construct
+#
+FB.HE_SIGNATURE_DECLARES_HASHING_OF_UNHASHABLE_CLASS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Use of class without a hashCode() method in a hashed data structure
+#
+FB.HE_USE_OF_UNHASHABLE_CLASS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# int value converted to long and used as absolute time
+#
+FB.ICAST_INT_2_LONG_AS_INSTANT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# integral value cast to double and then passed to Math.ceil
+#
+FB.ICAST_INT_CAST_TO_DOUBLE_PASSED_TO_CEIL = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# int value cast to float and then passed to Math.round
+#
+FB.ICAST_INT_CAST_TO_FLOAT_PASSED_TO_ROUND = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# JUnit assertion in run method will not be noticed by JUnit
+#
+FB.IJU_ASSERT_METHOD_INVOKED_FROM_RUN_METHOD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# TestCase declares a bad suite method 
+#
+FB.IJU_BAD_SUITE_METHOD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# TestCase has no tests
+#
+FB.IJU_NO_TESTS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# TestCase defines setUp that doesn't call super.setUp()
+#
+FB.IJU_SETUP_NO_SUPER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# TestCase implements a non-static suite method 
+#
+FB.IJU_SUITE_NOT_STATIC = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# TestCase defines tearDown that doesn't call super.tearDown()
+#
+FB.IJU_TEARDOWN_NO_SUPER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# A collection is added to itself
+#
+FB.IL_CONTAINER_ADDED_TO_ITSELF = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# An apparent infinite loop
+#
+FB.IL_INFINITE_LOOP = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# An apparent infinite recursive loop
+#
+FB.IL_INFINITE_RECURSIVE_LOOP = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Integer multiply of result of integer remainder
+#
+FB.IM_MULTIPLYING_RESULT_OF_IREM = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Bad comparison of int value with long constant
+#
+FB.INT_BAD_COMPARISON_WITH_INT_VALUE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Bad comparison of nonnegative value with negative constant
+#
+FB.INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Bad comparison of signed byte
+#
+FB.INT_BAD_COMPARISON_WITH_SIGNED_BYTE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Doomed attempt to append to an object output stream
+#
+FB.IO_APPENDING_TO_OBJECT_OUTPUT_STREAM = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# A parameter is dead upon entry to a method but overwritten
+#
+FB.IP_PARAMETER_IS_DEAD_BUT_OVERWRITTEN = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Class defines field that masks a superclass field
+#
+FB.MF_CLASS_MASKS_FIELD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method defines a variable that obscures a field
+#
+FB.MF_METHOD_MASKS_FIELD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Null pointer dereference
+#
+FB.NP_ALWAYS_NULL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Null pointer dereference in method on exception path
+#
+FB.NP_ALWAYS_NULL_EXCEPTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method does not check for null argument
+#
+FB.NP_ARGUMENT_MIGHT_BE_NULL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# close() invoked on a value that is always null
+#
+FB.NP_CLOSING_NULL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Null value is guaranteed to be dereferenced
+#
+FB.NP_GUARANTEED_DEREF = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Value is null and guaranteed to be dereferenced on exception path
+#
+FB.NP_GUARANTEED_DEREF_ON_EXCEPTION_PATH = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Nonnull field is not initialized
+#
+FB.NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method call passes null to a nonnull parameter 
+#
+FB.NP_NONNULL_PARAM_VIOLATION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method may return null, but is declared @NonNull
+#
+FB.NP_NONNULL_RETURN_VIOLATION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# A known null value is checked to see if it is an instance of a type
+#
+FB.NP_NULL_INSTANCEOF = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Possible null pointer dereference
+#
+FB.NP_NULL_ON_SOME_PATH = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Possible null pointer dereference in method on exception path
+#
+FB.NP_NULL_ON_SOME_PATH_EXCEPTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method call passes null for nonnull parameter
+#
+FB.NP_NULL_PARAM_DEREF = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method call passes null for nonnull parameter
+#
+FB.NP_NULL_PARAM_DEREF_ALL_TARGETS_DANGEROUS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Non-virtual method call passes null for nonnull parameter
+#
+FB.NP_NULL_PARAM_DEREF_NONVIRTUAL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Store of null value into field annotated NonNull
+#
+FB.NP_STORE_INTO_NONNULL_FIELD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Read of unwritten field
+#
+FB.NP_UNWRITTEN_FIELD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class defines equal(Object); should it be equals(Object)?
+#
+FB.NM_BAD_EQUAL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class defines hashcode(); should it be hashCode()?
+#
+FB.NM_LCASE_HASHCODE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class defines tostring(); should it be toString()?
+#
+FB.NM_LCASE_TOSTRING = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Apparent method/constructor confusion
+#
+FB.NM_METHOD_CONSTRUCTOR_CONFUSION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Very confusing method names
+#
+FB.NM_VERY_CONFUSING = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method doesn't override method in superclass due to wrong package for parameter
+#
+FB.NM_WRONG_PACKAGE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method assigns boolean literal in boolean expression
+#
+FB.QBA_QUESTIONABLE_BOOLEAN_ASSIGNMENT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Suspicious reference comparison
+#
+FB.RC_REF_COMPARISON = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Nullcheck of value previously dereferenced
+#
+FB.RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Invalid syntax for regular expression
+#
+FB.RE_BAD_SYNTAX_FOR_REGULAR_EXPRESSION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# File.separator used for regular expression
+#
+FB.RE_CANT_USE_FILE_SEPARATOR_AS_REGULAR_EXPRESSION = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# "." used for regular expression
+#
+FB.RE_POSSIBLE_UNINTENDED_PATTERN = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Random value from 0 to 1 is coerced to the integer 0
+#
+FB.RV_01_TO_INT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Bad attempt to compute absolute value of signed 32-bit hashcode 
+#
+FB.RV_ABSOLUTE_VALUE_OF_HASHCODE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Bad attempt to compute absolute value of signed random integer
+#
+FB.RV_ABSOLUTE_VALUE_OF_RANDOM_INT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Code checks for specific values returned by compareTo
+#
+FB.RV_CHECK_COMPARETO_FOR_SPECIFIC_RETURN_VALUE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Exception created and dropped rather than thrown
+#
+FB.RV_EXCEPTION_NOT_THROWN = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method ignores return value
+#
+FB.RV_RETURN_VALUE_IGNORED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Repeated conditional tests
+#
+FB.RPC_REPEATED_CONDITIONAL_TEST = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Self assignment of field
+#
+FB.SA_FIELD_SELF_ASSIGNMENT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Self comparison of field with itself
+#
+FB.SA_FIELD_SELF_COMPARISON = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Nonsensical self computation involving a field (e.g., x & x)
+#
+FB.SA_FIELD_SELF_COMPUTATION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Self assignment of local rather than assignment to field
+#
+FB.SA_LOCAL_SELF_ASSIGNMENT_INSTEAD_OF_FIELD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Self comparison of value with itself
+#
+FB.SA_LOCAL_SELF_COMPARISON = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Nonsensical self computation involving a variable (e.g., x & x)
+#
+FB.SA_LOCAL_SELF_COMPUTATION = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Dead store due to switch statement fall through
+#
+FB.SF_DEAD_STORE_DUE_TO_SWITCH_FALLTHROUGH = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Dead store due to switch statement fall through to throw
+#
+FB.SF_DEAD_STORE_DUE_TO_SWITCH_FALLTHROUGH_TO_THROW = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Deadly embrace of non-static inner class and thread local
+#
+FB.SIC_THREADLOCAL_DEADLY_EMBRACE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Unnecessary type check done using instanceof operator
+#
+FB.SIO_SUPERFLUOUS_INSTANCEOF = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method attempts to access a prepared statement parameter with index 0
+#
+FB.SQL_BAD_PREPARED_STATEMENT_ACCESS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method attempts to access a result set field with index 0
+#
+FB.SQL_BAD_RESULTSET_ACCESS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Unneeded use of currentThread() call, to call interrupted() 
+#
+FB.STI_INTERRUPTED_ON_CURRENTTHREAD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Static Thread.interrupted() method invoked on thread instance
+#
+FB.STI_INTERRUPTED_ON_UNKNOWNTHREAD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method must be private in order for serialization to work
+#
+FB.SE_METHOD_MUST_BE_PRIVATE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# The readResolve method must not be declared as a static method.  
+#
+FB.SE_READ_RESOLVE_IS_STATIC = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Value annotated as carrying a type qualifier used where a value that must not carry that qualifier is required
+#
+FB.TQ_ALWAYS_VALUE_USED_WHERE_NEVER_REQUIRED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Comparing values with incompatible type qualifiers
+#
+FB.TQ_COMPARING_VALUES_WITH_INCOMPATIBLE_TYPE_QUALIFIERS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Value that might not carry a type qualifier is always used in a way requires that type qualifier
+#
+FB.TQ_MAYBE_SOURCE_VALUE_REACHES_ALWAYS_SINK = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Value that might carry a type qualifier is always used in a way prohibits it from having that type qualifier
+#
+FB.TQ_MAYBE_SOURCE_VALUE_REACHES_NEVER_SINK = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Value annotated as never carrying a type qualifier used where value carrying that qualifier is required
+#
+FB.TQ_NEVER_VALUE_USED_WHERE_ALWAYS_REQUIRED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Value without a type qualifier used where a value is required to have that qualifier
+#
+FB.TQ_UNKNOWN_VALUE_USED_WHERE_ALWAYS_STRICTLY_REQUIRED = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Uncallable method defined in anonymous class
+#
+FB.UMAC_UNCALLABLE_METHOD_OF_ANONYMOUS_CLASS = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Uninitialized read of field in constructor
+#
+FB.UR_UNINIT_READ = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Uninitialized read of field method called from constructor of superclass
+#
+FB.UR_UNINIT_READ_CALLED_FROM_SUPER_CONSTRUCTOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Invocation of toString on an unnamed array
+#
+FB.DMI_INVOKING_TOSTRING_ON_ANONYMOUS_ARRAY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Invocation of toString on an array
+#
+FB.DMI_INVOKING_TOSTRING_ON_ARRAY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Array formatted in useless way using format string
+#
+FB.VA_FORMAT_STRING_BAD_CONVERSION_FROM_ARRAY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Field only ever set to null
+#
+FB.UWF_NULL_FIELD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Unwritten field
+#
+FB.UWF_UNWRITTEN_FIELD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Primitive array passed to function expecting a variable number of object arguments
+#
+FB.VA_PRIMITIVE_ARRAY_PASSED_TO_OBJECT_VARARG = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Potential lost logger changes due to weak reference in OpenJDK
+#
+FB.LG_LOST_LOGGER_DUE_TO_WEAK_REFERENCE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method may fail to clean up stream or resource
+#
+FB.OBL_UNSATISFIED_OBLIGATION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method may fail to clean up stream or resource on checked exception
+#
+FB.OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Consider using Locale parameterized version of invoked method
+#
+FB.DM_CONVERT_CASE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Reliance on default encoding
+#
+FB.DM_DEFAULT_ENCODING = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Classloaders should only be created inside doPrivileged block
+#
+FB.DP_CREATE_CLASSLOADER_INSIDE_DO_PRIVILEGED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method invoked that should be only be invoked inside a doPrivileged block
+#
+FB.DP_DO_INSIDE_DO_PRIVILEGED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# May expose internal representation by returning reference to mutable object
+#
+FB.EI_EXPOSE_REP = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# May expose internal representation by incorporating reference to mutable object
+#
+FB.EI_EXPOSE_REP2 = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Finalizer should be protected, not public
+#
+FB.FI_PUBLIC_SHOULD_BE_PROTECTED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# May expose internal static state by storing a mutable object into a static field
+#
+FB.EI_EXPOSE_STATIC_REP2 = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Field isn't final and can't be protected from malicious code
+#
+FB.MS_CANNOT_BE_FINAL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Public static method may expose internal representation by returning array
+#
+FB.MS_EXPOSE_REP = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Field should be both final and package protected
+#
+FB.MS_FINAL_PKGPROTECT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Field is a mutable array
+#
+FB.MS_MUTABLE_ARRAY = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Field is a mutable Hashtable
+#
+FB.MS_MUTABLE_HASHTABLE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Field should be moved out of an interface and made package protected
+#
+FB.MS_OOI_PKGPROTECT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Field should be package protected
+#
+FB.MS_PKGPROTECT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Field isn't final but should be
+#
+FB.MS_SHOULD_BE_FINAL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Field isn't final but should be refactored to be so
+#
+FB.MS_SHOULD_BE_REFACTORED_TO_BE_FINAL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Sequence of calls to concurrent abstraction may not be atomic
+#
+FB.AT_OPERATION_SEQUENCE_ON_CONCURRENT_ABSTRACTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Possible double check of field
+#
+FB.DC_DOUBLECHECK = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Synchronization on Boolean
+#
+FB.DL_SYNCHRONIZATION_ON_BOOLEAN = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Synchronization on boxed primitive
+#
+FB.DL_SYNCHRONIZATION_ON_BOXED_PRIMITIVE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Synchronization on interned String 
+#
+FB.DL_SYNCHRONIZATION_ON_SHARED_CONSTANT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Synchronization on boxed primitive values
+#
+FB.DL_SYNCHRONIZATION_ON_UNSHARED_BOXED_PRIMITIVE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Monitor wait() called on Condition
+#
+FB.DM_MONITOR_WAIT_ON_CONDITION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# A thread was created using the default empty run method
+#
+FB.DM_USELESS_THREAD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Empty synchronized block
+#
+FB.ESYNC_EMPTY_SYNC = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Inconsistent synchronization
+#
+FB.IS2_INCONSISTENT_SYNC = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Field not guarded against concurrent access
+#
+FB.IS_FIELD_NOT_GUARDED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Synchronization performed on Lock
+#
+FB.JLM_JSR166_LOCK_MONITORENTER = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Synchronization performed on util.concurrent instance
+#
+FB.JLM_JSR166_UTILCONCURRENT_MONITORENTER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Using monitor style wait methods on util.concurrent abstraction
+#
+FB.JML_JSR166_CALLING_WAIT_RATHER_THAN_AWAIT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Incorrect lazy initialization of static field
+#
+FB.LI_LAZY_INIT_STATIC = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Incorrect lazy initialization and update of static field
+#
+FB.LI_LAZY_INIT_UPDATE_STATIC = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Synchronization on field in futile attempt to guard that field
+#
+FB.ML_SYNC_ON_FIELD_TO_GUARD_CHANGING_THAT_FIELD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method synchronizes on an updated field
+#
+FB.ML_SYNC_ON_UPDATED_FIELD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Mutable servlet field
+#
+FB.MSF_MUTABLE_SERVLET_FIELD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Mismatched notify()
+#
+FB.MWN_MISMATCHED_NOTIFY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Mismatched wait()
+#
+FB.MWN_MISMATCHED_WAIT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Naked notify
+#
+FB.NN_NAKED_NOTIFY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Synchronize and null check on the same field.
+#
+FB.NP_SYNC_AND_NULL_CHECK_FIELD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Using notify() rather than notifyAll()
+#
+FB.NO_NOTIFY_NOT_NOTIFYALL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class's readObject() method is synchronized
+#
+FB.RS_READOBJECT_SYNC = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Return value of putIfAbsent ignored, value passed to putIfAbsent reused
+#
+FB.RV_RETURN_VALUE_OF_PUTIFABSENT_IGNORED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Invokes run on a thread (did you mean to start it instead?)
+#
+FB.RU_INVOKE_RUN = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Constructor invokes Thread.start()
+#
+FB.SC_START_IN_CTOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method spins on field
+#
+FB.SP_SPIN_ON_FIELD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Call to static Calendar
+#
+FB.STCAL_INVOKE_ON_STATIC_CALENDAR_INSTANCE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Call to static DateFormat
+#
+FB.STCAL_INVOKE_ON_STATIC_DATE_FORMAT_INSTANCE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Static Calendar field
+#
+FB.STCAL_STATIC_CALENDAR_INSTANCE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Static DateFormat
+#
+FB.STCAL_STATIC_SIMPLE_DATE_FORMAT_INSTANCE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method calls Thread.sleep() with a lock held
+#
+FB.SWL_SLEEP_WITH_LOCK_HELD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Wait with two locks held
+#
+FB.TLW_TWO_LOCK_WAIT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Unsynchronized get method, synchronized set method
+#
+FB.UG_SYNC_SET_UNSYNC_GET = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method does not release lock on all paths
+#
+FB.UL_UNRELEASED_LOCK = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method does not release lock on all exception paths
+#
+FB.UL_UNRELEASED_LOCK_EXCEPTION_PATH = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Unconditional wait
+#
+FB.UW_UNCOND_WAIT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# An increment to a volatile field isn't atomic
+#
+FB.VO_VOLATILE_INCREMENT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# A volatile reference to an array doesn't treat the array elements as volatile
+#
+FB.VO_VOLATILE_REFERENCE_TO_ARRAY = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Synchronization on getClass rather than class literal
+#
+FB.WL_USING_GETCLASS_RATHER_THAN_CLASS_LITERAL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class's writeObject() method is synchronized but nothing else is
+#
+FB.WS_WRITEOBJECT_SYNC = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Condition.await() not in loop 
+#
+FB.WA_AWAIT_NOT_IN_LOOP = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Wait not in loop 
+#
+FB.WA_NOT_IN_LOOP = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Primitive value is boxed and then immediately unboxed
+#
+FB.BX_BOXING_IMMEDIATELY_UNBOXED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Primitive value is boxed then unboxed to perform primitive coercion
+#
+FB.BX_BOXING_IMMEDIATELY_UNBOXED_TO_PERFORM_COERCION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Boxed value is unboxed and then immediately reboxed
+#
+FB.BX_UNBOXING_IMMEDIATELY_REBOXED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method allocates a boxed primitive just to call toString
+#
+FB.DM_BOXED_PRIMITIVE_TOSTRING = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method invokes inefficient floating-point Number constructor; use static valueOf instead
+#
+FB.DM_FP_NUMBER_CTOR = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method invokes inefficient Number constructor; use static valueOf instead
+#
+FB.DM_NUMBER_CTOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# The equals and hashCode methods of URL are blocking
+#
+FB.DMI_BLOCKING_METHODS_ON_URL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Maps and sets of URLs can be performance hogs
+#
+FB.DMI_COLLECTION_OF_URLS = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method invokes inefficient Boolean constructor; use Boolean.valueOf(...) instead
+#
+FB.DM_BOOLEAN_CTOR = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Explicit garbage collection; extremely dubious except in benchmarking code
+#
+FB.DM_GC = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method allocates an object, only to get the class object
+#
+FB.DM_NEW_FOR_GETCLASS = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Use the nextInt method of Random rather than nextDouble to generate a random integer
+#
+FB.DM_NEXTINT_VIA_NEXTDOUBLE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method invokes inefficient new String(String) constructor
+#
+FB.DM_STRING_CTOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method invokes toString() method on a String
+#
+FB.DM_STRING_TOSTRING = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method invokes inefficient new String() constructor
+#
+FB.DM_STRING_VOID_CTOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Huge string constants is duplicated across multiple class files
+#
+FB.HSC_HUGE_SHARED_STRING_CONSTANT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method uses toArray() with zero-length array argument
+#
+FB.ITA_INEFFICIENT_TO_ARRAY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method concatenates strings using + in a loop
+#
+FB.SBSC_USE_STRINGBUFFER_CONCATENATION = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Should be a static inner class
+#
+FB.SIC_INNER_SHOULD_BE_STATIC = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Could be refactored into a named static inner class
+#
+FB.SIC_INNER_SHOULD_BE_STATIC_ANON = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Could be refactored into a static inner class
+#
+FB.SIC_INNER_SHOULD_BE_STATIC_NEEDS_THIS = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Unread field: should this field be static?
+#
+FB.SS_SHOULD_BE_STATIC = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method calls static Math class method on a constant value
+#
+FB.UM_UNNECESSARY_MATH = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Private method is never called
+#
+FB.UPM_UNCALLED_PRIVATE_METHOD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Unread field
+#
+FB.URF_UNREAD_FIELD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Unused field
+#
+FB.UUF_UNUSED_FIELD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Inefficient use of keySet iterator instead of entrySet iterator
+#
+FB.WMI_WRONG_MAP_ITERATOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Hardcoded constant database password
+#
+FB.DMI_CONSTANT_DB_PASSWORD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Empty database password
+#
+FB.DMI_EMPTY_DB_PASSWORD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# HTTP cookie formed from untrusted input
+#
+FB.HRS_REQUEST_PARAMETER_TO_COOKIE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# HTTP Response splitting vulnerability
+#
+FB.HRS_REQUEST_PARAMETER_TO_HTTP_HEADER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Absolute path traversal in servlet
+#
+FB.PT_ABSOLUTE_PATH_TRAVERSAL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Relative path traversal in servlet
+#
+FB.PT_RELATIVE_PATH_TRAVERSAL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Nonconstant string passed to execute method on an SQL statement
+#
+FB.SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# A prepared statement is generated from a nonconstant String
+#
+FB.SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# JSP reflected cross site scripting vulnerability
+#
+FB.XSS_REQUEST_PARAMETER_TO_JSP_WRITER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Servlet reflected cross site scripting vulnerability in error page
+#
+FB.XSS_REQUEST_PARAMETER_TO_SEND_ERROR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Servlet reflected cross site scripting vulnerability
+#
+FB.XSS_REQUEST_PARAMETER_TO_SERVLET_WRITER = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Questionable cast to abstract collection 
+#
+FB.BC_BAD_CAST_TO_ABSTRACT_COLLECTION = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Questionable cast to concrete collection
+#
+FB.BC_BAD_CAST_TO_CONCRETE_COLLECTION = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Unchecked/unconfirmed cast
+#
+FB.BC_UNCONFIRMED_CAST = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Unchecked/unconfirmed cast of return value from method
+#
+FB.BC_UNCONFIRMED_CAST_OF_RETURN_VALUE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# instanceof will always return true
+#
+FB.BC_VACUOUS_INSTANCEOF = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Unsigned right shift cast to short/byte
+#
+FB.ICAST_QUESTIONABLE_UNSIGNED_RIGHT_SHIFT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class is final but declares protected field
+#
+FB.CI_CONFUSED_INHERITANCE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method uses the same code for two branches
+#
+FB.DB_DUPLICATE_BRANCHES = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method uses the same code for two switch clauses
+#
+FB.DB_DUPLICATE_SWITCH_CLAUSES = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Dead store to local variable
+#
+FB.DLS_DEAD_LOCAL_STORE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Useless assignment in return statement
+#
+FB.DLS_DEAD_LOCAL_STORE_IN_RETURN = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Dead store of null to local variable
+#
+FB.DLS_DEAD_LOCAL_STORE_OF_NULL = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Dead store to local variable that shadows field
+#
+FB.DLS_DEAD_LOCAL_STORE_SHADOWS_FIELD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Code contains a hard coded reference to an absolute pathname
+#
+FB.DMI_HARDCODED_ABSOLUTE_FILENAME = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Non serializable object written to ObjectOutput
+#
+FB.DMI_NONSERIALIZABLE_OBJECT_WRITTEN = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Invocation of substring(0), which returns the original value
+#
+FB.DMI_USELESS_SUBSTRING = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Thread passed where Runnable expected
+#
+FB.DMI_THREAD_PASSED_WHERE_RUNNABLE_EXPECTED = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Class doesn't override equals in superclass
+#
+FB.EQ_DOESNT_OVERRIDE_EQUALS = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Unusual equals method 
+#
+FB.EQ_UNUSUAL = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Test for floating point equality
+#
+FB.FE_FLOATING_POINT_EQUALITY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Non-Boolean argument formatted using %b format specifier
+#
+FB.VA_FORMAT_STRING_BAD_CONVERSION_TO_BOOLEAN = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Ambiguous invocation of either an inherited or outer method
+#
+FB.IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Initialization circularity
+#
+FB.IC_INIT_CIRCULARITY = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# integral division result cast to double or float
+#
+FB.ICAST_IDIV_CAST_TO_DOUBLE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Result of integer multiplication cast to long
+#
+FB.ICAST_INTEGER_MULTIPLY_CAST_TO_LONG = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Inefficient use of String.indexOf(String)
+#
+FB.IIO_INEFFICIENT_INDEX_OF = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Inefficient use of String.lastIndexOf(String)
+#
+FB.IIO_INEFFICIENT_LAST_INDEX_OF = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Computation of average could overflow
+#
+FB.IM_AVERAGE_COMPUTATION_COULD_OVERFLOW = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Check for oddness that won't work for negative numbers 
+#
+FB.IM_BAD_CHECK_FOR_ODD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Integer remainder modulo 1
+#
+FB.INT_BAD_REM_BY_1 = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Vacuous bit mask operation on integer value
+#
+FB.INT_VACUOUS_BIT_OPERATION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Vacuous comparison of integer value
+#
+FB.INT_VACUOUS_COMPARISON = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class extends Servlet class and uses instance variables
+#
+FB.MTIA_SUSPECT_SERVLET_INSTANCE_FIELD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class extends Struts Action class and uses instance variables
+#
+FB.MTIA_SUSPECT_STRUTS_INSTANCE_FIELD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Dereference of the result of readLine() without nullcheck
+#
+FB.NP_DEREFERENCE_OF_READLINE_VALUE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Immediate dereference of the result of readLine()
+#
+FB.NP_IMMEDIATE_DEREFERENCE_OF_READLINE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Load of known null value
+#
+FB.NP_LOAD_OF_KNOWN_NULL_VALUE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Possible null pointer dereference due to return value of called method
+#
+FB.NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Possible null pointer dereference on branch that might be infeasible
+#
+FB.NP_NULL_ON_SOME_PATH_MIGHT_BE_INFEASIBLE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Parameter must be nonnull but is marked as nullable
+#
+FB.NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Read of unwritten public or protected field
+#
+FB.NP_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Potentially dangerous use of non-short-circuit logic
+#
+FB.NS_DANGEROUS_NON_SHORT_CIRCUIT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Questionable use of non-short-circuit logic
+#
+FB.NS_NON_SHORT_CIRCUIT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Consider returning a zero length array rather than null
+#
+FB.PZLA_PREFER_ZERO_LENGTH_ARRAYS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Complicated, subtle or wrong increment in for-loop 
+#
+FB.QF_QUESTIONABLE_FOR_LOOP = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Redundant comparison of non-null value to null
+#
+FB.RCN_REDUNDANT_COMPARISON_OF_NULL_AND_NONNULL_VALUE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Redundant comparison of two null values
+#
+FB.RCN_REDUNDANT_COMPARISON_TWO_NULL_VALUES = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Redundant nullcheck of value known to be non-null
+#
+FB.RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Redundant nullcheck of value known to be null
+#
+FB.RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Exception is caught when Exception is not thrown
+#
+FB.REC_CATCH_EXCEPTION = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Class implements same interface as superclass
+#
+FB.RI_REDUNDANT_INTERFACES = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method checks to see if result of String.indexOf is positive
+#
+FB.RV_CHECK_FOR_POSITIVE_INDEXOF = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Method discards result of readLine after checking if it is nonnull
+#
+FB.RV_DONT_JUST_NULL_CHECK_READLINE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Remainder of hashCode could be negative
+#
+FB.RV_REM_OF_HASHCODE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Remainder of 32-bit signed random integer
+#
+FB.RV_REM_OF_RANDOM_INT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method ignores return value, is this OK?
+#
+FB.RV_RETURN_VALUE_IGNORED_INFERRED = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Double assignment of field
+#
+FB.SA_FIELD_DOUBLE_ASSIGNMENT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Double assignment of local variable 
+#
+FB.SA_LOCAL_DOUBLE_ASSIGNMENT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Self assignment of local variable
+#
+FB.SA_LOCAL_SELF_ASSIGNMENT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Switch statement found where one case falls through to the next case
+#
+FB.SF_SWITCH_FALLTHROUGH = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Switch statement found where default case is missing
+#
+FB.SF_SWITCH_NO_DEFAULT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Write to static field from instance method
+#
+FB.ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# private readResolve method not inherited by subclasses
+#
+FB.SE_PRIVATE_READ_RESOLVE_NOT_INHERITED = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Transient field of class that isn't Serializable. 
+#
+FB.SE_TRANSIENT_FIELD_OF_NONSERIALIZABLE_CLASS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Value required to have type qualifier, but marked as unknown
+#
+FB.TQ_EXPLICIT_UNKNOWN_SOURCE_VALUE_REACHES_ALWAYS_SINK = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Value required to not have type qualifier, but marked as unknown
+#
+FB.TQ_EXPLICIT_UNKNOWN_SOURCE_VALUE_REACHES_NEVER_SINK = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Useless control flow
+#
+FB.UCF_USELESS_CONTROL_FLOW = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Useless control flow to next line
+#
+FB.UCF_USELESS_CONTROL_FLOW_NEXT_LINE = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Unread public/protected field
+#
+FB.URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Unused public or protected field
+#
+FB.UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Field not initialized in constructor but dereferenced without null check
+#
+FB.UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Unwritten public or protected field
+#
+FB.UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Method directly allocates a specific implementation of xml interfaces
+#
+FB.XFB_XML_FACTORY_BYPASS = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Please check it: probably there's a mistake in its code or its body can be fully removed.
+#
+FB.UC_USELESS_VOID_METHOD = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Return value ignored.
+#
+FB.RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Analysis skipped
+#
+FB.SKIPPED_CLASS_TOO_BIG = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+# Possible external control of system or configuration settings
+#
+FB.SEC_EXTERNAL_CONFIG_CONTROL = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Improper Neutralization of Script-Related HTML Tags in a Web Page
+#
+FB.SEC_XSS_NO_ESCAPE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Possible injection using SQL query
+#
+FB.SEC_SQL_INJECTION_JDO = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Possible injection using SQL query
+#
+FB.SEC_SQL_INJECTION_JDBC = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Possible injection using LDAP query
+#
+FB.SEC_LDAP_INJECTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Loading untrusted libraries
+#
+FB.SEC_LOAD_LIB_INJECTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Possible executing untrusted commands
+#
+FB.SEC_SUSPICIOUS_COMMAND_EXECUTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Expose of information in error message
+#
+FB.SEC_EXPOSURE_OF_SENSITIVE_DATA_THROUGH_ERROR_MESSAGE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Expose of system path in catch fragmet
+#
+FB.SEC_EXPOSURE_OF_PATH_THROUGH_ERROR_MESSAGE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# CWE-245: J2EE Bad Practices: Direct Management of Connections
+#
+FB.SEC_J2EE_DIRECT_MGMT_OF_CONNECTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# CWE-246: J2EE Bad Practices: Direct Use of Sockets
+#
+FB.SEC_J2EE_DIRECT_USE_OF_SOCKET = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# CWE-255: Credentials Management
+#
+FB.SEC_WEAK_CREDENTIALS_MANAGEMENT = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# CWE-276: Incorrect Default Permissions
+#
+FB.SEC_INCORRECT_DEFAULT_PERMS = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# CWE-281: Improper Preservation of Permissions
+#
+FB.SEC_INCORRECT_PRESERVATION_OF_PERMS = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# CWE-285: Improper Authorization
+#
+FB.SEC_IMPROPER_AUTHORIZATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Cleartext Storage of Sensitive Information
+#
+FB.SEC_CLEARTEXT_STORAGE_OF_SENSITIVE_INFORMATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Exposure of Private Information
+#
+FB.SEC_PRIVACY_VIOLATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Shared resource concurent execution
+#
+FB.SEC_RACE_CONDITION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Race condition
+#
+FB.SEC_TOCTOU_RACE_CONDITION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Race condition
+#
+FB.SEC_TOCTOU_RACE_CONDITION_M = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Direct Use of Threads
+#
+FB.SEC_J2EE_DIRECT_USE_OF_THREADS = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Unsafe Reflection
+#
+FB.SEC_UNSAFE_REFLECTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# CWE-485: Insufficient Encapsulation
+#
+FB.SEC_INSUF_ENCAPSULATION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# CWE-488: Exposure Of Data Elemenet To Wrong Session
+#
+FB.SEC_EXPOSURE_OF_DATA_ELEMENT_TO_WRONG_SESSION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# CWE-489: Leftover Debug Code
+#
+FB.SEC_LEFTOVER_DEBUG_CODE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Use of Inner Class Containing Sensitive Data
+#
+FB.SEC_INNER_CLASS_UNPROTECTED = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Private Array-Typed Field Returned From A Public Method
+#
+FB.SEC_PRIVATE_ARRAY_RETURN_FROM_PUBLIC_FUNCTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Public Data Assigned to Private Array-Typed Field
+#
+FB.SEC_PUBLIC_DATA_ASSIGN_TO_PRIVATE_ARRAY_FIELD = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# CWE-577: EJB Bad Practices: Use of Sockets
+#
+FB.SEC_EJB_USE_OF_SOCKET = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# CWE-605: Multiple Binds to the Same Port
+#
+FB.SEC_MULT_BINDS_ON_PORT = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# Possible uncontrolled recursion if symbolic link
+#
+FB.SEC_UNCONTROLLED_RECURSION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+# CWE-759: Use of a One-Way Hash without a Salt
+#
+FB.SEC_ONE_WAY_HASH_WITHOUT_SALT = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+CAST_AFTER_CHECK = true  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+SIMILAR_BRANCHES = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+SIMILAR_BRANCHES.COMMENTS = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+SIMILAR_BRANCHES.GROUPED = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+SIMILAR_BRANCHES.WITHDEFAULT = false  # (default: false)
+
+# Severity: Major, Reliability: Unknown.
+#
+NO_CAST.INTEGER_OVERFLOW = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+WRONG_ARGUMENTS_ORDER = true  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+WRONG_OBJECT_COMPARE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+NO_CAST.INTEGER_DIVISION = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+BAD_COPY_PASTE = true  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Code injection
+#
+CODE_INJECTION = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Code injection
+#
+CODE_INJECTION.STATIC = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Assignment in condition
+#
+CONDITIONAL_ASSIGN = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# DB connection string injection
+#
+CONNSTR_INJECTION = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Constant result of condition
+#
+CONSTANT_RESULT.CONDITION = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Constant result of condition
+#
+CONSTANT_RESULT.CONDITION.EXPLICIT = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Empty catch clause
+#
+EMPTY_CATCH = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Empty interface declaration
+#
+EMPTY_INTERFACE = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Declaration hides outer declaration
+#
+HIDDEN_MEMBER = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Identical method body
+#
+IDENTICAL_METHOD_BODY = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Several items of enumerable missed
+#
+INCOMPLETE_SWITCH = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# invalid initialization
+#
+INCORRECT_INIT = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Call of ReferenceEquals with value type argument
+#
+INCORRECT_REFEQUALS = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Loop has only one iteration
+#
+ITERATED_ONCE = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Usage of hardcoded numbers instead of predefined constants
+#
+MATH_CONSTANTS = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# throw keyword forgotten
+#
+MISSING_THROW = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Variable should be declared with volatile modifier
+#
+MISSING_VOLATILE = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Usage of deprecated cryptographic algorithm
+#
+OBSOLETE_CRYPTO = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# omited return value
+#
+OMITED_RETURN_VALUE = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# comparison of integer with floating point
+#
+REAL_INT_COMP = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# XSS
+#
+REFLECTED_XSS = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Return from inside using statement
+#
+RETURN_USING = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# same return
+#
+SAME_RETURN = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# self assign
+#
+SELF_ASSIGN = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# XSS
+#
+STORED_XSS = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Inefficient string concatenation inside loop
+#
+STRING_CONCAT = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Error in format string
+#
+STRING_FORMAT = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# non strict cast
+#
+SUSPICIOUS_CAST = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Error in ThreadStatic field
+#
+THREAD_STATIC_FIELD = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Error in ThreadStatic field
+#
+THREAD_STATIC_FIELD_INITIALIZATION = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Error in ThreadStatic field
+#
+THREAD_STATIC_FIELD_NON_STATIC = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Invalid comparison of non-reference type with null
+#
+VALUE_NULL_COMPARISON = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Virtual call in constructor
+#
+VIRTUAL_CALL_IN_CONSTRUCTOR = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Virtual call in constructor
+#
+VIRTUAL_CALL_IN_CONSTRUCTOR.OVERRIDE = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Virtual call in constructor
+#
+VIRTUAL_CALL_IN_CONSTRUCTOR.POTENTIAL = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Virtual call in constructor
+#
+VIRTUAL_CALL_IN_CONSTRUCTOR.PROPERTY = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Virtual call in constructor
+#
+VIRTUAL_CALL_IN_CONSTRUCTOR.PROPERTY.OVERRIDE = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Virtual call in constructor
+#
+VIRTUAL_CALL_IN_CONSTRUCTOR.PROPERTY.POTENTIAL = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Constant salt
+#
+WEAK_ENCRYPTION.CONSTANT_SALT = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Error in interface method CompareTo declaration
+#
+WRONG_COMPARETO = false  # (default: true)
+
+# Severity: Critical, Reliability: High.
+# Error in comaprison after as
+#
+WRONG_COMPARISON = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+CONFUSING_INDENTATION = true  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+# Suspiciously missing break statements in switch statements.
+#
+FALL_THROUGH = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+WRONG_SEMICOLON = true  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+WRONG_LOCK_OBJECT = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+BAD_WAIT_OF_COND = false  # (default: true)
+
+# Severity: Major, Reliability: Unknown.
+#
+CWE_652 = false  # (default: true)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_EXPOSURE_SYSTEM_DATA_TO_UNCONTROL_SPHERE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_HARDCODED_PASSWORD_COMPARISON = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_IMPROPER_INITIALIZATION_MISSING_SYNC = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_INCORRECT_EXEC_PERMS = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_INSECURE_SENSITIVE_COOKIE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_INTEGER_OVERFLOW = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_PARAM_NULL_DEREF = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_PBE_DES_USAGE = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_RESOURCE_INJECTION = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_UNRESTRICTED_UPLOAD = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_USE_OF_DYNAMIC_CLASS_LOADING = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_WEAK_CRYPTO_ALGORITHM = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_WEAK_HASH_ALGORITHM = false  # (default: false)
+
+# Severity: Minor, Reliability: Unknown.
+#
+FB.SEC_XQUERY_INJECTION = false  # (default: false)
+
