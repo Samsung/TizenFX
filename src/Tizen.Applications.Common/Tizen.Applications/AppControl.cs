@@ -501,7 +501,11 @@ namespace Tizen.Applications
         /// <param name="launchRequest">The AppControl.</param>
         /// <param name="replyAfterLaunching">The callback function to be called when the reply is delivered.</param>
         /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <exception cref="Exceptions.AppNotFoundException">Thrown when the application to run is not found.</exception>
+        /// <exception cref="Exceptions.LaunchFailedException">Thrown when the request failed to launch the application.</exception>
+        /// <exception cref="Exceptions.LaunchRejectedException">Thrown when the launch request is rejected.</exception>
+        /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
         /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <example>
@@ -559,8 +563,19 @@ namespace Tizen.Applications
                         throw new ArgumentException("Invalid Arguments");
                     case Interop.AppControl.ErrorCode.TimedOut:
                         throw new TimeoutException("Timed out");
+                    case Interop.AppControl.ErrorCode.OutOfMemory:
+                        throw new Exceptions.OutOfMemoryException("Out-of-memory");
+                    case Interop.AppControl.ErrorCode.AppNotFound:
+                        throw new Exceptions.AppNotFoundException("App not found");
+                    case Interop.AppControl.ErrorCode.LaunchRejected:
+                        throw new Exceptions.LaunchRejectedException("Launch rejected");
+                    case Interop.AppControl.ErrorCode.LaunchFailed:
+                        throw new Exceptions.LaunchFailedException("Launch failed");
+                    case Interop.AppControl.ErrorCode.PermissionDenied:
+                        throw new Exceptions.PermissionDeniedException("Permission denied");
+
                     default:
-                        throw new InvalidOperationException("Error = " + err);
+                        throw new Exceptions.LaunchRejectedException("Launch rejected");
                 }
             }
         }
