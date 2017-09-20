@@ -228,12 +228,12 @@ namespace Tizen.Network.Bluetooth
         private BluetoothOppClientImpl()
         {
             Log.Info(Globals.LogTag, "Initializing OppClient");
-            initialize();
+            Initialize();
         }
 
         ~BluetoothOppClientImpl()
         {
-            deinitialize();
+            Deinitialize();
         }
 
         internal int AddFile(string filePath)
@@ -311,7 +311,7 @@ namespace Tizen.Network.Bluetooth
             return (int)BluetoothError.NotInitialized;
         }
 
-        private void initialize()
+        private void Initialize()
         {
             if (Globals.IsInitialize)
             {
@@ -334,7 +334,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        private void deinitialize()
+        private void Deinitialize()
         {
             if (Globals.IsOppClientInitialized)
             {
