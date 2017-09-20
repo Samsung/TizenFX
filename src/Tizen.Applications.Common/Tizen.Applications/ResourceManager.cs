@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.IO;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Applications
@@ -105,8 +106,22 @@ namespace Tizen.Applications
         public static string TryGetPath(Category category, string id)
         {
             string path;
-            ErrorCode err = AppResourceManagerGet(category, id, out path);
+            ErrorCode err;
+            string res;
 
+            if (Application.Current != null)
+            {
+                res = Application.Current.DirectoryInfo.Resource + "res.xml";
+            }
+            else
+            {
+                res = Interop.AppCommon.AppGetResourcePath() + "res.xml";
+            }
+
+            if (!File.Exists(res))
+                return null;
+
+            err = AppResourceManagerGet(category, id, out path);
             switch (err)
             {
                 case ErrorCode.InvalidParameter:
