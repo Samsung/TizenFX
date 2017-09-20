@@ -21,7 +21,7 @@ namespace Tizen.NUI
 {
     using Tizen.NUI.BaseComponents;
     /// <summary>
-    /// Interface to encapsulate information required for relayout.
+    /// An interface to encapsulate the information required for relayout.
     /// </summary>
     public class RelayoutContainer : global::System.IDisposable
     {
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// To make RelayoutContainer instance be disposed.
+        /// To make the RelayoutContainer instance be disposed.
         /// </summary>
         public void Dispose()
         {
@@ -108,8 +108,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Adds relayout information to the container if it doesn't already exist.
         /// </summary>
-        /// <param name="view">The view to relayout</param>
-        /// <param name="size">The size to relayout</param>
+        /// <param name="view">The view to relayout.</param>
+        /// <param name="size">The size to relayout.</param>
         public virtual void Add(View view, Size2D size)
         {
             NDalicPINVOKE.RelayoutContainer_Add(swigCPtr, View.getCPtr(view), Size2D.getCPtr(size));

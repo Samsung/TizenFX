@@ -19,7 +19,7 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// VisualFactory is a singleton object that provides and shares visuals between views
+    /// The VisualFactory is a singleton object that provides and shares visuals between views.
     /// </summary>
     public class VisualFactory : BaseHandle
     {
@@ -82,10 +82,10 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Request the visual
+        /// Request the visual.
         /// </summary>
         /// <param name="propertyMap">The map contains the properties required by the visual. The content of the map determines the type of visual that will be returned.</param>
-        /// <returns>The handle to the created visual</returns>
+        /// <returns>The handle to the created visual.</returns>
         public VisualBase CreateVisual(PropertyMap propertyMap)
         {
             VisualBase ret = new VisualBase(NDalicPINVOKE.VisualFactory_CreateVisual__SWIG_0(swigCPtr, PropertyMap.getCPtr(propertyMap)), true);
@@ -103,7 +103,7 @@ namespace Tizen.NUI
         private static readonly VisualFactory instance = VisualFactory.Get();
 
         /// <summary>
-        /// retrieve VisualFactory singleton.
+        /// Retrieves the VisualFactory singleton.
         /// </summary>
         public static VisualFactory Instance
         {

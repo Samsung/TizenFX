@@ -22,11 +22,11 @@ namespace Tizen.NUI
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
-    /// StyleManager informs applications of system theme change, and supports application theme change at runtime.<br>
-    /// Applies various styles to Controls using the properties system.<br>
+    /// The StyleManager informs applications of the system theme change, and supports application theme change at runtime.<br>
+    /// Applies various styles to controls using the properties system.<br>
     /// On theme change, it automatically updates all controls, then raises a event to inform the application.<br>
     /// If the application wants to customize the theme, RequestThemeChange needs to be called.<br>
-    /// It provides the path to the  application resource root folder, from there the filename can an be specified along with any sub folders, e.g Images, Models etc.<br>
+    /// It provides the path to the application resource root folder, from there the filename can be specified along with any subfolders, for example, Images, Models, etc.<br>
     /// </summary>
     public class StyleManager : BaseHandle
     {
@@ -43,7 +43,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose
+        /// Dispose.
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -82,7 +82,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Style changed event arguments
+        /// Style changed event arguments.
         /// </summary>
         public class StyleChangedEventArgs : EventArgs
         {
@@ -105,7 +105,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// StyleChange - contains Style change information (default font changed or
+            /// StyleChange - contains the style change information (default font changed or
             /// default font size changed or theme has changed).<br>
             /// </summary>
             public StyleChangeType StyleChange
@@ -128,9 +128,9 @@ namespace Tizen.NUI
         private StyleChangedCallbackDelegate _styleManagerStyleChangedCallbackDelegate;
 
         /// <summary>
-        /// Event for StyleChanged signal which can be used to subscribe/unsubscribe the
+        /// An event for the StyleChanged signal which can be used to subscribe or unsubscribe the
         /// event handler provided by the user.<br>
-        /// StyleChanged signal is is emitted after the style (e.g. theme/font change) has changed
+        /// The StyleChanged signal is emitted after the style (for example, theme or font change) has changed
         /// and the controls have been informed.<br>
         /// </summary>
         public event EventHandler<StyleChangedEventArgs> StyleChanged
@@ -172,7 +172,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Creates a StyleManager handle.<br>
-        /// this can be initialized with StyleManager::Get().<br>
+        /// This can be initialized with StyleManager::Get().<br>
         /// </summary>
         public StyleManager() : this(NDalicPINVOKE.new_StyleManager(), true)
         {
@@ -182,7 +182,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the singleton of StyleManager object.
         /// </summary>
-        /// <returns>A handle to the StyleManager control</returns>
+        /// <returns>A handle to the StyleManager control.</returns>
         public static StyleManager Get()
         {
             StyleManager ret = new StyleManager(NDalicPINVOKE.StyleManager_Get(), true);
@@ -191,13 +191,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Applies a new theme to the application. <br>
-        /// This will be merged on top of the default Toolkit theme.<br>
+        /// Applies a new theme to the application.<br>
+        /// This will be merged on the top of the default Toolkit theme.<br>
         /// If the application theme file doesn't style all controls that the
         /// application uses, then the default Toolkit theme will be used
         /// instead for those controls.<br>
         /// </summary>
-        /// <param name="themeFile">A relative path is specified for style theme</param>
+        /// <param name="themeFile">A relative path is specified for style theme.</param>
         public void ApplyTheme(string themeFile)
         {
             NDalicPINVOKE.StyleManager_ApplyTheme(swigCPtr, themeFile);
@@ -216,8 +216,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets a constant for use when building styles.
         /// </summary>
-        /// <param name="key">The key of the constant</param>
-        /// <param name="value">The value of the constant</param>
+        /// <param name="key">The key of the constant.</param>
+        /// <param name="value">The value of the constant.</param>
         public void AddConstant(string key, PropertyValue value)
         {
             NDalicPINVOKE.StyleManager_SetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(value));
@@ -227,8 +227,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Returns the style constant set for a specific key.
         /// </summary>
-        /// <param name="key">The key of the constant</param>
-        /// <param name="valueOut">The value of the constant if it exists</param>
+        /// <param name="key">The key of the constant.</param>
+        /// <param name="valueOut">The value of the constant if it exists.</param>
         /// <returns></returns>
         public bool GetConstant(string key, PropertyValue valueOut)
         {
@@ -240,9 +240,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Applies the specified style to the control.
         /// </summary>
-        /// <param name="control">The control to which to apply the style</param>
-        /// <param name="jsonFileName">The name of the JSON style file to apply</param>
-        /// <param name="styleName">The name of the style within the JSON file to apply</param>
+        /// <param name="control">The control to which to apply the style.</param>
+        /// <param name="jsonFileName">The name of the JSON style file to apply.</param>
+        /// <param name="styleName">The name of the style within the JSON file to apply.</param>
         public void ApplyStyle(View control, string jsonFileName, string styleName)
         {
             NDalicPINVOKE.StyleManager_ApplyStyle(swigCPtr, View.getCPtr(control), jsonFileName, styleName);

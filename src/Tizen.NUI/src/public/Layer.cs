@@ -36,7 +36,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// from Container base class
+        /// From the Container base class.
 
         /// <summary>
         /// Adds a child view to this layer.
@@ -51,7 +51,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Removes a child View from this layer. If the view was not a child of this layer, this is a no-op.
+        /// Removes a child view from this layer. If the view was not a child of this layer, this is a no-op.
         /// </summary>
         /// <seealso cref="Container::Add()">
         /// </seealso>
@@ -63,11 +63,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves child view by index.
+        /// Retrieves a child view by the index.
         /// </summary>
-        /// <pre>The View has been initialized.</pre>
-        /// <param name="index">The index of the child to retrieve</param>
-        /// <returns>The view for the given index or empty handle if children not initialized</returns>
+        /// <pre>The view has been initialized.</pre>
+        /// <param name="index">The index of the child to retrieve.</param>
+        /// <returns>The view for the given index or empty handle if children not initialized.</returns>
         public override View GetChildAt(uint index)
         {
             System.IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
@@ -167,9 +167,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Search through this layer's hierarchy for an view with the given unique ID.
+        /// Search through this layer's hierarchy for a view with the given unique ID.
         /// </summary>
-        /// <pre>This layer(the parent) has been initialized.</pre>
+        /// <pre>This layer (the parent) has been initialized.</pre>
         /// <remarks>The actor itself is also considered in the search.</remarks>
         /// <param name="id">The id of the child to find</param>
         /// <returns> A handle to the view if found, or an empty handle if not. </returns>
@@ -185,7 +185,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Queries the depth of the layer.<br>
-        /// 0 is the bottom most layer, higher number is on top.<br>
+        /// 0 is the bottommost layer, higher number is on the top.<br>
         /// </summary>
         public uint Depth
         {
@@ -252,9 +252,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Moves the layer directly above the given layer.<br>
-        /// After the call, this layers depth will be immediately above target.<br>
+        /// After the call, this layer's depth will be immediately above target.<br>
         /// </summary>
-        /// <param name="target">Layer to get on top of</param>
+        /// <param name="target">The layer to get on top of.</param>
         public void MoveAbove(Layer target)
         {
             NDalicPINVOKE.Layer_MoveAbove(swigCPtr, Layer.getCPtr(target));
@@ -263,9 +263,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Moves the layer directly below the given layer.<br>
-        /// After the call, this layers depth will be immediately below target.<br>
+        /// After the call, this layer's depth will be immediately below target.<br>
         /// </summary>
-        /// <param name="target">Layer to get below of</param>
+        /// <param name="target">The layer to get below of.</param>
         public void MoveBelow(Layer target)
         {
             NDalicPINVOKE.Layer_MoveBelow(swigCPtr, Layer.getCPtr(target));
@@ -333,7 +333,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Layer Behavior, type String(Layer.LayerBehavior)
+        /// Layer behavior, type String (Layer.LayerBehavior).
         /// </summary>
         public Layer.LayerBehavior Behavior
         {
@@ -348,8 +348,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Internal only property to Enable/Disable Clipping, type Boolean.
-        /// By default this is false, i.e. the viewport of the Layer is the entire window.
+        /// Internal only property to enable or disable clipping, type boolean.
+        /// By default, this is false, i.e., the viewport of the layer is the entire window.
         /// </summary>
         internal bool ClippingEnabled
         {
@@ -367,7 +367,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the Viewport (in window coordinates), type Rectangle.
+        /// Sets the viewport (in window coordinates), type rectangle.
         /// The contents of the layer will not be visible outside this box, when ViewportEnabled is true.
         /// </summary>
         public Rectangle Viewport
@@ -397,7 +397,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves and sets the Layer's opacity.<br>
+        /// Retrieves and sets the layer's opacity.<br>
         /// </summary>
         public float Opacity
         {
@@ -414,7 +414,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves and sets the Layer's visibility.
+        /// Retrieves and sets the layer's visibility.
         /// </summary>
         public bool Visibility
         {
@@ -445,7 +445,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets the Layer's name.
+        /// Gets or sets the layer's name.
         /// </summary>
         public string Name
         {

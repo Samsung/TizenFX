@@ -20,7 +20,7 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
 
     /// <summary>
-    /// The Text-to-speech (TTS) Player.
+    /// The Text-to-speech (TTS) player.
     /// </summary>
     public class TTSPlayer : BaseHandle
     {
@@ -78,10 +78,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the singleton of the TtsPlayer for the given mode.
+        /// Gets the singleton of the TTS player for the given mode.
         /// </summary>
-        /// <param name="mode"> The mode of tts-player. </param>
-        /// <returns> A handle of the Ttsplayer for the given mode. </returns>
+        /// <param name="mode"> The mode of TTS player.</param>
+        /// <returns> A handle of the TTS player for the given mode.</returns>
         public static TTSPlayer Get(TTSMode mode)
         {
             TTSPlayer ret = new TTSPlayer(NDalicManualPINVOKE.TtsPlayer_Get__SWIG_0((int)mode), true);
@@ -90,9 +90,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the singleton of the TtsPlayer for the default mode..
+        /// Gets the singleton of the TTS player for the default mode.
         /// </summary>
-        /// <returns> A handle of the Ttsplayer for the default mode. </returns>
+        /// <returns> A handle of the TTS player for the default mode.</returns>
         public static TTSPlayer Get()
         {
             TTSPlayer ret = new TTSPlayer(NDalicManualPINVOKE.TtsPlayer_Get__SWIG_1(), true);
@@ -115,8 +115,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Starts playing the audio data synthesized from the specified text.
         /// </summary>
-        /// <param name="text"> The text to play. </param>
-        /// <remarks>The TtsPlayer needs to be initialized.</remarks>
+        /// <param name="text"> The text to play.</param>
+        /// <remarks>The TTS player needs to be initialized.</remarks>
         public void Play(string text)
         {
             NDalicManualPINVOKE.TtsPlayer_Play(swigCPtr, text);
@@ -126,7 +126,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Stops playing the utterance.
         /// </summary>
-        /// <remarks>The TtsPlayer needs to be initialized.</remarks>
+        /// <remarks>The TTS player needs to be initialized.</remarks>
         public void Stop()
         {
             NDalicManualPINVOKE.TtsPlayer_Stop(swigCPtr);
@@ -136,7 +136,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Pauses the currently playing utterance.
         /// </summary>
-        /// <remarks>The TtsPlayer needs to be initialized.</remarks>
+        /// <remarks>The TTS player needs to be initialized.</remarks>
         public void Pause()
         {
             NDalicManualPINVOKE.TtsPlayer_Pause(swigCPtr);
@@ -146,7 +146,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Resumes the previously paused utterance.
         /// </summary>
-        /// <remarks>The TtsPlayer needs to be initialized.</remarks>
+        /// <remarks>The TTS player needs to be initialized.</remarks>
         public void Resume()
         {
             NDalicManualPINVOKE.TtsPlayer_Resume(swigCPtr);
@@ -157,7 +157,7 @@ namespace Tizen.NUI
         /// Gets the current state of the player.
         /// </summary>
         /// <returns> The current TTS state. </returns>
-        /// <remarks>The TtsPlayer needs to be initialized.</remarks>
+        /// <remarks>The TTS player needs to be initialized.</remarks>
         public TTSState GetState()
         {
             TTSState ret = (TTSState)NDalicManualPINVOKE.TtsPlayer_GetState(swigCPtr);
@@ -249,12 +249,12 @@ namespace Tizen.NUI
             Notification,
             /// <summary>
             /// Screen reader mode. <br>
-            /// To help visually impaired users interact with their devices, <br>
+            /// To help visually impaired users interact with their devices,<br>
             /// screen reader reads text or graphic elements on the screen using the TTS engine.
             /// </summary>
             ScreenReader,
             /// <summary>
-            /// Number of Mode.
+            /// Number of mode.
             /// </summary>
             ModeNum
         }

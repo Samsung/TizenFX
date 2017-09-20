@@ -17,7 +17,10 @@
 namespace Tizen.NUI
 {
 
-    internal class PropertyNotifySignal : global::System.IDisposable
+    ///<summary>
+    /// Signal connection class for PropertyNotification
+    ///</summary>
+    public class PropertyNotifySignal : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;

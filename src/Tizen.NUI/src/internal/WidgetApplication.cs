@@ -101,7 +101,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public static WidgetApplication instance
+        public static WidgetApplication Instance
         {
             get
             {
@@ -109,23 +109,11 @@ namespace Tizen.NUI
             }
         }
 
-        internal void SetupDelegates()
-        {
-            InitDelegateInternal initializeCallback = new InitDelegateInternal(Initialization);
-
-            NUILog.Debug("InitSignal connection count");
-            this.InitSignal().Connect(initializeCallback);
- 
-            NUILog.Debug("InitSignal connection count = " + InitSignal().GetConnectionCount());
-        }
-
         public static WidgetApplication NewWidgetApplication(string[] args, string stylesheet)
         {
             WidgetApplication ret = New(args, stylesheet);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            // we've got an application now connect the signals
-            ret.SetupDelegates();
             _instance = ret;
             return ret;
         }
@@ -532,41 +520,6 @@ namespace Tizen.NUI
             AppSignalType ret = new AppSignalType(NDalicManualPINVOKE.WidgetApplication_MemoryLowSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        public delegate void InitDelegate();
-
-        public delegate void TerminateDelegate();
-
-        public delegate void LanguageChangedDelegate();
-
-        public delegate void RegionChangedDelegate();
-
-        public delegate void BatteryLowDelegate();
-
-        public delegate void MemoryLowDelegate();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void InitDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void TerminateDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void LanguageChangedDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void RegionChangedDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void BatteryLowDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void MemoryLowDelegateInternal();
-
-        static void Initialization()
-        {
-            //	instance.InitDelegate();
         }
 
         private static WidgetApplication _instance; //singleton

@@ -23,7 +23,7 @@ namespace Tizen.NUI.BaseComponents
 
     /// <summary>
     /// A control which renders a short text string.<br>
-    /// Text labels are lightweight, non-editable and do not respond to user input.<br>
+    /// Text labels are lightweight, non-editable, and do not respond to the user input.<br>
     /// </summary>
     public class TextLabel : View
     {
@@ -41,7 +41,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Dispose
+        /// Dispose.
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -143,11 +143,11 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
         /// <summary>
-        /// TranslatableText property.<br>
-        /// The text can be set SID value.<br>
+        /// The TranslatableText property.<br>
+        /// The text can set the SID value.<br>
         /// </summary>
         /// <exception cref='ArgumentNullException'>
-        /// ResourceManager about multilingual is null
+        /// ResourceManager about multilingual is null.
         /// </exception>
         public string TranslatableText
         {
@@ -185,8 +185,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Text property.<br>
-        /// The text to display in UTF-8 format.<br>
+        /// The Text property.<br>
+        /// The text to display in the UTF-8 format.<br>
         /// </summary>
         public string Text
         {
@@ -203,7 +203,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// FontFamily property.<br>
+        /// The FontFamily property.<br>
         /// The requested font family to use.<br>
         /// </summary>
         public string FontFamily
@@ -221,7 +221,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// FontStyle property.<br>
+        /// The FontStyle property.<br>
         /// The requested font style to use.<br>
         /// </summary>
         public PropertyMap FontStyle
@@ -239,7 +239,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// PointSize property.<br>
+        /// The PointSize property.<br>
         /// The size of font in points.<br>
         /// </summary>
         public float PointSize
@@ -257,7 +257,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// MultiLine property.<br>
+        /// The MultiLine property.<br>
         /// The single-line or multi-line layout option.<br>
         /// </summary>
         public bool MultiLine
@@ -275,7 +275,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// HorizontalAlignment property.<br>
+        /// The HorizontalAlignment property.<br>
         /// The line horizontal alignment.<br>
         /// </summary>
         public HorizontalAlignment HorizontalAlignment
@@ -330,7 +330,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// VerticalAlignment property.<br>
+        /// The VerticalAlignment property.<br>
         /// The line vertical alignment.<br>
         /// </summary>
         public VerticalAlignment VerticalAlignment
@@ -386,7 +386,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// TextColor property.<br>
+        /// The TextColor property.<br>
         /// The color of the text.<br>
         /// </summary>
         public Color TextColor
@@ -404,7 +404,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// ShadowOffset property.<br>
+        /// The ShadowOffset property.<br>
         /// The drop shadow offset 0 indicates no shadow.<br>
         /// </summary>
         public Vector2 ShadowOffset
@@ -422,7 +422,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// ShadowColor property.<br>
+        /// The ShadowColor property.<br>
         /// The color of a drop shadow.<br>
         /// </summary>
         public Vector4 ShadowColor
@@ -440,7 +440,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// UnderlineEnabled property.<br>
+        /// The UnderlineEnabled property.<br>
         /// The underline enabled flag.<br>
         /// </summary>
         public bool UnderlineEnabled
@@ -458,7 +458,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// UnderlineColor property.<br>
+        /// The UnderlineColor property.<br>
         /// Overrides the underline height from font metrics.<br>
         /// </summary>
         public Vector4 UnderlineColor
@@ -476,7 +476,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// UnderlineHeight property.<br>
+        /// The UnderlineHeight property.<br>
         /// Overrides the underline height from font metrics.<br>
         /// </summary>
         public float UnderlineHeight
@@ -494,7 +494,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// EnableMarkup property.<br>
+        /// The EnableMarkup property.<br>
         /// Whether the mark-up processing is enabled.<br>
         /// </summary>
         public bool EnableMarkup
@@ -512,7 +512,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// EnableAutoScroll property.<br>
+        /// The EnableAutoScroll property.<br>
         /// Starts or stops auto scrolling.<br>
         /// </summary>
         public bool EnableAutoScroll
@@ -530,7 +530,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// AutoScrollSpeed property.<br>
+        /// The AutoScrollSpeed property.<br>
         /// Sets the speed of scrolling in pixels per second.<br>
         /// </summary>
         public int AutoScrollSpeed
@@ -548,7 +548,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// AutoScrollLoopCount property.<br>
+        /// The AutoScrollLoopCount property.<br>
         /// Number of complete loops when scrolling enabled.<br>
         /// </summary>
         public int AutoScrollLoopCount
@@ -566,7 +566,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// AutoScrollGap property.<br>
+        /// The AutoScrollGap property.<br>
         /// Gap before scrolling wraps.<br>
         /// </summary>
         public float AutoScrollGap
@@ -584,7 +584,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// LineSpacing property.<br>
+        /// The LineSpacing property.<br>
         /// The default extra space between lines in points.<br>
         /// </summary>
         public float LineSpacing
@@ -602,7 +602,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Underline property.<br>
+        /// The Underline property.<br>
         /// The default underline parameters.<br>
         /// </summary>
         public PropertyMap Underline
@@ -620,7 +620,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Shadow property.<br>
+        /// The Shadow property.<br>
         /// The default shadow parameters.<br>
         /// </summary>
         public PropertyMap Shadow
@@ -638,7 +638,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Emboss property.<br>
+        /// The Emboss property.<br>
         /// The default emboss parameters.<br>
         /// </summary>
         public string Emboss
@@ -656,7 +656,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Outline property.<br>
+        /// The Outline property.<br>
         /// The default outline parameters.<br>
         /// </summary>
         public string Outline
@@ -674,7 +674,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// PixelSize property.<br>
+        /// The PixelSize property.<br>
         /// The size of font in pixels.<br>
         /// </summary>
         public float PixelSize
@@ -692,7 +692,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Ellipsis property.<br>
+        /// The Ellipsis property.<br>
         /// Enable or disable the ellipsis.<br>
         /// </summary>
         public bool Ellipsis
@@ -710,8 +710,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// AutoScrollLoopDelay property.<br>
-        /// do something.<br>
+        /// The AutoScrollLoopDelay property.<br>
+        /// Do something.<br>
         /// </summary>
         public float AutoScrollLoopDelay
         {
@@ -728,8 +728,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// AutoScrollStopMode property.<br>
-        /// do something.<br>
+        /// The AutoScrollStopMode property.<br>
+        /// Do something.<br>
         /// </summary>
         public AutoScrollStopMode AutoScrollStopMode
         {
@@ -757,7 +757,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// TextColorAnimatable property.<br>
+        /// The TextColorAnimatable property.<br>
         /// The color of the text that can be animatated.<br>
         /// Animation framework can be used to change the color of the text when not using mark up.<br>
         /// Not possible when text is auto scrolling. <br>
@@ -776,7 +776,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// The line count of text.
+        /// The line count of the text.
         /// </summary>
         public int LineCount
         {
@@ -789,7 +789,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// LineWrapMode property.<br>
+        /// The LineWrapMode property.<br>
         /// line wrap mode when the text lines over layout width.<br>
         /// </summary>
         public LineWrapMode LineWrapMode

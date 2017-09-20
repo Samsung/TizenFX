@@ -35,7 +35,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose
+        /// Dispose.
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -70,10 +70,10 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Get TapGesture from the pointer.
+        /// Gets the TapGesture from the pointer.
         /// </summary>
-        /// <param name="cPtr">The pointer to cast</param>
-        /// <returns>TapGesture object</returns>
+        /// <param name="cPtr">The pointer to cast.</param>
+        /// <returns>The TapGesture object.</returns>
         internal static TapGesture GetTapGestureFromPtr(global::System.IntPtr cPtr)
         {
             TapGesture ret = new TapGesture(cPtr, false);
@@ -82,7 +82,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Number of taps property (read-only).
+        /// The number of taps property (read-only).
         /// </summary>
         public uint NumberOfTaps
         {
@@ -93,7 +93,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Number of touches property (read-only).
+        /// The number of touches property (read-only).
         /// </summary>
         public uint NumberOfTouches
         {
@@ -104,7 +104,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Screen point property (read-only).
+        /// The screen point property (read-only).
         /// </summary>
         public Vector2 ScreenPoint
         {
@@ -115,7 +115,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Local point property (read-only).
+        /// The local point property (read-only).
         /// </summary>
         public Vector2 LocalPoint
         {

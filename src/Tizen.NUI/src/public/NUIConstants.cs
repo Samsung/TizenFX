@@ -28,7 +28,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies whether the Actor uses its own color, or inherits.
+    /// This specifies whether the actor uses its own color or inherits.
     /// </summary>
     public enum ColorMode
     {
@@ -45,26 +45,26 @@ namespace Tizen.NUI
         /// </summary>
         UseOwnMultiplyParentColor,
         /// <summary>
-        /// Actor will blend its alpha with its parents alpha. This means when parent fades in or out child does as well. This is the default.
+        /// Actor will blend its alpha with its parents alpha. This means when the parent fades in or out, the child does as well. This is the default.
         /// </summary>
         UseOwnMultiplyParentAlpha
     }
 
     /// <summary>
-    /// This specifies the dimesion of width or heigh for size negotiation.
+    /// This specifies the dimension of the width or the height for size negotiation.
     /// </summary>
     public enum DimensionType
     {
         /// <summary>
-        /// Width dimension
+        /// Width dimension.
         /// </summary>
         Width = 0x1,
         /// <summary>
-        /// Height dimension
+        /// Height dimension.
         /// </summary>
         Height = 0x2,
         /// <summary>
-        /// Mask to cover all flags
+        /// Mask to cover all flags.
         /// </summary>
         AllDimensions = 0x3
     }
@@ -75,15 +75,15 @@ namespace Tizen.NUI
     public enum DrawModeType
     {
         /// <summary>
-        /// The default draw-mode
+        /// The default draw-mode.
         /// </summary>
         Normal = 0,
         /// <summary>
-        /// Draw the actor and its children as an overlay
+        /// Draw the actor and its children as an overlay.
         /// </summary>
         Overlay2D = 1,
         /// <summary>
-        /// Will be replaced by separate ClippingMode enum. Draw the actor and its children into the stencil buffer
+        /// Will be replaced by separate ClippingMode enum. Draw the actor and its children into the stencil buffer.
         /// </summary>
         Stencil = 3
     }
@@ -94,11 +94,11 @@ namespace Tizen.NUI
     public enum ResizePolicyType
     {
         /// <summary>
-        /// Size is fixed as set by SetSize
+        /// Size is fixed as set by SetSize.
         /// </summary>
         Fixed,
         /// <summary>
-        /// Size is to use the actor's natural size
+        /// Size is to use the actor's natural size.
         /// </summary>
         /// <see cref="ViewImpl.GetNaturalSize"/>
         UseNaturalSize,
@@ -115,15 +115,15 @@ namespace Tizen.NUI
         /// </summary>
         SizeFixedOffsetFromParent,
         /// <summary>
-        /// Size will adjust to wrap around all children
+        /// The size will adjust to wrap around all children.
         /// </summary>
         FitToChildren,
         /// <summary>
-        /// One dimension is dependent on the other
+        /// One dimension is dependent on the other.
         /// </summary>
         DimensionDependency,
         /// <summary>
-        /// The size will be assigned to the actor
+        /// The size will be assigned to the actor.
         /// </summary>
         UseAssignedSize
     }
@@ -134,41 +134,41 @@ namespace Tizen.NUI
     public enum SizeScalePolicyType
     {
         /// <summary>
-        /// Use the size that was set
+        /// Use the size that was set.
         /// </summary>
         UseSizeSet,
         /// <summary>
-        /// Fit within the size set maintaining natural size aspect ratio
+        /// Fit within the size set maintaining natural size aspect ratio.
         /// </summary>
         FitWithAspectRatio,
         /// <summary>
-        /// Fit within the size set maintaining natural size aspect ratio
+        /// Fit within the size set maintaining natural size aspect ratio.
         /// </summary>
         FillWithAspectRatio
     }
 
     /// <summary>
-    /// Enumeration for ClippingMode describing how this Actor's children will be clipped against it.
+    /// Enumeration for the ClippingMode describing how this actor's children will be clipped against it.
     /// </summary>
     public enum ClippingModeType
     {
         /// <summary>
-        /// This Actor will not clip its children.
+        /// This actor will not clip its children.
         /// </summary>
         Disabled,
         /// <summary>
-        /// This Actor will clip all children to within its boundaries (the actor will also be visible itself).
+        /// This actor will clip all children to within its boundaries (the actor will also be visible itself).
         /// </summary>
         ClipChildren
     }
 
     /// <summary>
-    /// Enumeration for type determination of how camera operates.
+    /// Enumeration for type determination of how the camera operates.
     /// </summary>
     public enum CameraType
     {
         /// <summary>
-        /// Camera orientation is taken from CameraActor.
+        /// Camera orientation is taken from the CameraActor.
         /// </summary>
         FreeLook,
         /// <summary>
@@ -178,7 +178,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Enumeration for projection modes.
+    /// Enumeration for the projection modes.
     /// </summary>
     public enum ProjectionMode
     {
@@ -193,16 +193,16 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies ccustomView behaviour types.
+    /// This specifies customView behavior types.
     /// </summary>
     public enum CustomViewBehaviour
     {
         /// <summary>
-        /// Use to provide default behaviour (size negotiation is on, event callbacks are not called)
+        /// Use to provide default behavior (size negotiation is on, event callbacks are not called).
         /// </summary>
         ViewBehaviourDefault = 0,
         /// <summary>
-        /// True if control does not need size negotiation, i.e. it can be skipped in the algorithm
+        /// True if the control does not need size negotiation, i.e., it can be skipped in the algorithm.
         /// </summary>
         DisableSizeNegotiation = 1 << 0,
         /// <summary>
@@ -230,95 +230,95 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies all the property types. <br>
+    /// This specifies all the property types.<br>
     /// Enumeration for the property types supported.
     /// </summary>
     public enum PropertyType
     {
         /// <summary>
-        /// No type
+        /// No type.
         /// </summary>
         None,
         /// <summary>
-        /// A boolean type
+        /// A boolean type.
         /// </summary>
         Boolean,
         /// <summary>
-        /// A float type
+        /// A float type.
         /// </summary>
         Float,
         /// <summary>
-        /// An integer type
+        /// An integer type.
         /// </summary>
         Integer,
         /// <summary>
-        /// a vector array of size=2 with float precision
+        /// A vector array of size=2 with float precision.
         /// </summary>
         Vector2,
         /// <summary>
-        /// a vector array of size=3 with float precision
+        /// A vector array of size=3 with float precision.
         /// </summary>
         Vector3,
         /// <summary>
-        /// a vector array of size=4 with float precision
+        /// A vector array of size=4 with float precision.
         /// </summary>
         Vector4,
         /// <summary>
-        /// a 3x3 matrix
+        /// A 3x3 matrix.
         /// </summary>
         Matrix3,
         /// <summary>
-        /// a 4x4 matrix
+        /// A 4x4 matrix.
         /// </summary>
         Matrix,
         /// <summary>
-        /// an integer array of size=4
+        /// An integer array of size=4.
         /// </summary>
         Rectangle,
         /// <summary>
-        /// either a quaternion or an axis angle rotation
+        /// Either a quaternion or an axis angle rotation.
         /// </summary>
         Rotation,
         /// <summary>
-        /// A string type
+        /// A string type.
         /// </summary>
         String,
         /// <summary>
-        /// an array of PropertyValue
+        /// An array of PropertyValue.
         /// </summary>
         Array,
         /// <summary>
-        /// a string key to PropertyValue mapping
+        /// A string key to PropertyValue mapping.
         /// </summary>
         Map
     }
 
     /// <summary>
-    /// This specifies the property access mode types. <br>
+    /// This specifies the property access mode types.<br>
     /// Enumeration for the access mode for custom properties.
     /// </summary>
     public enum PropertyAccessMode
     {
         /// <summary>
-        /// if the property is read-only
+        /// If the property is read-only.
         /// </summary>
         ReadOnly,
         /// <summary>
-        /// If the property is read/writeable
+        /// If the property is read or writeable.
         /// </summary>
         ReadWrite,
         /// <summary>
-        /// If the property can be animated or constrained
+        /// If the property can be animated or constrained.
         /// </summary>
         Animatable,
         /// <summary>
-        /// The number of access modes
+        /// The number of access modes.
         /// </summary>
         AccessModeCount
     }
 
     /// <summary>
-    /// Types of style change. Enumeration for StyleChange type.
+    /// Types of style change. Enumeration for the StyleChange type.
     /// </summary>
     public enum StyleChangeType
     {
@@ -342,15 +342,15 @@ namespace Tizen.NUI
     public enum HorizontalAlignmentType
     {
         /// <summary>
-        /// Align horizontally left
+        /// Align horizontally left.
         /// </summary>
         Left,
         /// <summary>
-        /// Align horizontally center
+        /// Align horizontally center.
         /// </summary>
         Center,
         /// <summary>
-        /// Align horizontally right
+        /// Align horizontally right.
         /// </summary>
         Right
     }
@@ -361,15 +361,15 @@ namespace Tizen.NUI
     public enum VerticalAlignmentType
     {
         /// <summary>
-        /// Align vertically top
+        /// Align vertically top.
         /// </summary>
         Top,
         /// <summary>
-        /// Align vertically center
+        /// Align vertically center.
         /// </summary>
         Center,
         /// <summary>
-        /// Align vertically bottom
+        /// Align vertically bottom.
         /// </summary>
         Bottom
     }
@@ -380,32 +380,32 @@ namespace Tizen.NUI
     public enum PointStateType
     {
         /// <summary>
-        /// Touch or hover started
+        /// Touch or hover started.
         /// </summary>
         Started,
         /// <summary>
-        /// Touch or hover finished
+        /// Touch or hover finished.
         /// </summary>
         Finished,
         /// <summary>
-        /// Screen touched
+        /// Screen touched.
         /// </summary>
         Down = Started,
         /// <summary>
-        /// Touch stopped
+        /// Touch stopped.
         /// </summary>
         Up = Finished,
         /// <summary>
-        /// Finger dragged or hovered
+        /// Finger dragged or hovered.
         /// </summary>
         Motion,
         /// <summary>
-        /// Leave the boundary of an actor
+        /// Leave the boundary of an actor.
         /// </summary>
         Leave,
         /// <summary>
         /// No change from last event. <br>
-        /// Useful when a multi-point event occurs where all points are sent but indicates that this particular point has not changed since the last time.
+        /// Useful when a multi-point event occurs where all points are sent, but indicates that this particular point has not changed since the last time.
         /// </summary>
         Stationary,
         /// <summary>
@@ -453,25 +453,25 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies wrap mode types <br>
+    /// This specifies wrap mode types.<br>
     /// WrapModeU and WrapModeV separately decide how the texture should be sampled when the u and v coordinate exceeds the range of 0.0 to 1.0.
     /// </summary>
     public enum WrapModeType
     {
         /// <summary>
-        /// Defualt value
+        /// The default value.
         /// </summary>
         Default = 0,
         /// <summary>
-        /// Clamp to edge
+        /// Clamp to edge.
         /// </summary>
         ClampToEdge,
         /// <summary>
-        /// Repeat
+        /// Repeat.
         /// </summary>
         Repeat,
         /// <summary>
-        /// Mirrored repeat
+        /// Mirrored repeat.
         /// </summary>
         MirroredRepeat
     }
@@ -482,11 +482,11 @@ namespace Tizen.NUI
     public enum GradientVisualUnitsType
     {
         /// <summary>
-        /// Uses the normals for the start, end & center points, i.e. top-left is (-0.5, -0.5) and bottom-right is (0.5, 0.5).
+        /// Uses the normals for the start, end, and center points, i.e., top-left is (-0.5, -0.5) and bottom-right is (0.5, 0.5).
         /// </summary>
         ObjectBoundingBox,
         /// <summary>
-        /// Uses the user coordinates for the start, end & center points, i.e. in a 200 by 200 control, top-left is (0, 0) and bottom-right is (200, 200).
+        /// Uses the user coordinates for the start, end, and center points, i.e., in a 200 by 200 control, top-left is (0, 0) and bottom-right is (200, 200).
         /// </summary>
         UserSpace
     }
@@ -502,17 +502,17 @@ namespace Tizen.NUI
         /// </summary>
         Pad,
         /// <summary>
-        /// Reflect the gradient pattern start-to-end, end-to-start, start-to-end etc. until the quad is filled.
+        /// Reflects the gradient pattern start-to-end, end-to-start, start-to-end, etc. until the quad is filled.
         /// </summary>
         Reflect,
         /// <summary>
-        /// Repeat the gradient pattern start-to-end, start-to-end, start-to-end etc. until the quad is filled.
+        /// Repeats the gradient pattern start-to-end, start-to-end, start-to-end, etc. until the quad is filled.
         /// </summary>
         Repeat
     }
 
     /// <summary>
-    /// The shading mode used by MeshVisual.
+    /// The shading mode used by the mesh visual.
     /// </summary>
     public enum MeshVisualShadingModeValue
     {
@@ -525,30 +525,30 @@ namespace Tizen.NUI
         /// </summary>
         TexturedWithSpecularLighting,
         /// <summary>
-        /// Uses all textures provided including a gloss, normal and texture map along with specular, ambient and diffuse lighting.
+        /// Uses all textures provided including gloss, normal, and texture map along with specular, ambient, and diffuse lighting.
         /// </summary>
         TexturedWithDetailedSpecularLighting
     }
 
     /// <summary>
-    /// The primitive shape to render as a PrimitiveVisual.
+    /// The primitive shape to render as a primitive visual.
     /// </summary>
     public enum PrimitiveVisualShapeType
     {
         /// <summary>
-        /// A perfectly round geometrical object in three-dimensional space.
+        /// A perfectly round geometrical object in the three-dimensional space.
         /// </summary>
         Sphere,
         /// <summary>
-        /// The area bound between two circles, i.e. a cone with the tip removed.
+        /// The area bound between two circles, i.e., a cone with the tip removed.
         /// </summary>
         ConicalFrustrum,
         /// <summary>
-        /// Equivalent to a conical frustrum with top radius of zero.
-        /// </summary>Equivalent to a conical frustrum with top radius of zero.
+        /// Equivalent to a conical frustrum with the top radius of zero.
+        /// </summary>Equivalent to a conical frustrum with the top radius of zero.
         Cone,
         /// <summary>
-        /// Equivalent to a conical frustrum with top radius of zero.
+        /// Equivalent to a conical frustrum with the top radius of zero.
         /// </summary>
         Cylinder,
         /// <summary>
@@ -573,33 +573,33 @@ namespace Tizen.NUI
     public enum FittingModeType
     {
         /// <summary>
-        /// Full-screen image display: Limit loaded image resolution to device resolution using ShrinkToFit mode.
+        /// Full-screen image display: Limit loaded image resolution to device resolution using the ShrinkToFit mode.
         /// </summary>
         ShrinkToFit,
         /// <summary>
-        /// Thumbnail gallery grid: Limit loaded image resolution to screen tile using ScaleToFill mode.
+        /// Thumbnail gallery grid: Limit loaded image resolution to screen tile using the ScaleToFill mode.
         /// </summary>
         ScaleToFill,
         /// <summary>
-        /// Image columns: Limit loaded image resolution to column width using FitWidth mode.
+        /// Image columns: Limit loaded image resolution to column width using the FitWidth mode.
         /// </summary>
         FitWidth,
         /// <summary>
-        /// Image rows: Limit loaded image resolution to row height using FitHeight mode.
+        /// Image rows: Limit loaded image resolution to row height using the FitHeight mode.
         /// </summary>
         FitHeight
     }
 
     /// <summary>
-    /// This specifies sampling mode types. Filtering options, used when resizing images to sample original pixels.<br>
-    /// A SamplingMode controls how pixels in an input image are sampled and combined to generate each pixel of a destination image during a scaling.<br>
-    /// NoFilter and Box modes do not guarantee that the output pixel array exactly matches the rectangle specified by the desired dimensions and FittingMode,<br>
+    /// This specifies sampling mode types. Filtering options are used when resizing images to sample original pixels.<br>
+    /// A SamplingMode controls how pixels in an input image are sampled and combined to generate each pixel of a destination image during scaling.<br>
+    /// NoFilter and Box modes do not guarantee that the output pixel array exactly matches the rectangle specified by the desired dimensions and the FittingMode,<br>
     /// but all other filter modes do if the desired dimensions are `<=` the raw dimensions of the input image file.<br>
     /// </summary>
     public enum SamplingModeType
     {
         /// <summary>
-        /// Iteratively box filter to generate an image of 1/2, 1/4, 1/8, etc width and height and approximately the desired size. <br>
+        /// Iteratively box filter to generate an image of 1/2, 1/4, 1/8, etc. width and height and approximately the desired size. <br>
         /// This is the default.
         /// </summary>
         Box,
@@ -612,7 +612,7 @@ namespace Tizen.NUI
         /// </summary>
         Linear,
         /// <summary>
-        /// Iteratively box filter to generate an image of 1/2, 1/4, 1/8 etc width and height and approximately the desired size, <br>
+        /// Iteratively box filter to generate an image of 1/2, 1/4, 1/8, etc. width and height and approximately the desired size, <br>
         /// then for each output pixel, read one pixel from the last level of box filtering.<br>
         /// </summary>
         BoxThenNearest,
@@ -663,15 +663,15 @@ namespace Tizen.NUI
         /// </summary>
         Origin,
         /// <summary>
-        /// The anchor-point of the visual
+        /// The anchor-point of the visual.
         /// </summary>
         AnchorPoint,
         /// <summary>
-        /// Whether the x or y OFFSET values are relative (percentage [0.0f to 1.0f] of the control) or absolute (in world units).
+        /// Whether the x or y offset values are relative (percentage [0.0f to 1.0f] of the control) or absolute (in world units).
         /// </summary>
         OffsetPolicy,
         /// <summary>
-        /// Whether the width or height SIZE values are relative (percentage [0.0f to 1.0f] of the control) or absolute (in world units).
+        /// Whether the width or the height size values are relative (percentage [0.0f to 1.0f] of the control) or absolute (in world units).
         /// </summary>
         SizePolicy
     }
@@ -707,7 +707,7 @@ namespace Tizen.NUI
             /// </summary>
             Mesh,
             /// <summary>
-            /// Renders a simple 3D shape, such as a cube or sphere.
+            /// Renders a simple 3D shape, such as a cube or a sphere.
             /// </summary>
             Primitive,
             /// <summary>
@@ -727,7 +727,7 @@ namespace Tizen.NUI
             /// </summary>
             SVG,
             /// <summary>
-            /// Renders a animated image. (Animated GIF)
+            /// Renders a animated image (animated GIF).
             /// </summary>
             AnimatedImage
         }
@@ -758,7 +758,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This specifies Visaul align types.
+        /// This specifies visaul align types.
         /// </summary>
         public enum AlignType
         {
@@ -775,7 +775,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies properties of BorderVisual.
+    /// This specifies properties of the BorderVisual.
     /// </summary>
     public struct BorderVisualProperty
     {
@@ -785,7 +785,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies properties of ColorVisual.
+    /// This specifies properties of the ColorVisual.
     /// </summary>
     public struct ColorVisualProperty
     {
@@ -793,7 +793,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies properties of GradientVisual.
+    /// This specifies properties of the GradientVisual.
     /// </summary>
     public struct GradientVisualProperty
     {
@@ -808,7 +808,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies properties of ImageVisual.
+    /// This specifies properties of the ImageVisual.
     /// </summary>
     public struct ImageVisualProperty
     {
@@ -833,7 +833,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies properties of MeshVisual.
+    /// This specifies properties of the MeshVisual.
     /// </summary>
     public struct MeshVisualProperty
     {
@@ -847,7 +847,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies properties of PrimitiveVisual.
+    /// This specifies properties of the PrimitiveVisual.
     /// </summary>
     public struct PrimitiveVisualProperty
     {
@@ -866,7 +866,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies properties of TextVisual.
+    /// This specifies properties of the TextVisual.
     /// </summary>
     public struct TextVisualProperty
     {
@@ -882,7 +882,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies properties of NpatchImageVisual.
+    /// This specifies properties of the NpatchImageVisual.
     /// </summary>
     public struct NpatchImageVisualProperty
     {
@@ -900,7 +900,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// HiddenInput Property.
+    /// The HiddenInput property.
     /// </summary>
     public struct HiddenInputProperty
     {
@@ -932,7 +932,7 @@ namespace Tizen.NUI
         /// </summary>
         ShowCount,
         /// <summary>
-        /// Show last character for the duration(use ShowDuration property to modify duration).
+        /// Show last character for the duration (use ShowDuration property to modify duration).
         /// </summary>
         ShowLastCharacter
     }
@@ -1288,7 +1288,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Auto scrolling stop behaviour.
+    /// Auto scrolling stop behavior.
     /// </summary>
     public enum AutoScrollStopMode
     {
@@ -1297,7 +1297,7 @@ namespace Tizen.NUI
         /// </summary>
         FinishLoop,
         /// <summary>
-        /// Stop animation immediatly and reset position.
+        /// Stop animation immediately and reset position.
         /// </summary>
         Immediate
     }
@@ -1327,15 +1327,15 @@ namespace Tizen.NUI
         /// </summary>
         None = -1,
         /// <summary>
-        /// Base nofitication level.
+        /// The base nofitication level.
         /// </summary>
         Base = 10,
         /// <summary>
-        /// Medium notification level than base.
+        /// The medium notification level than base.
         /// </summary>
         Medium = 20,
         /// <summary>
-        /// Higher notification level than medium.
+        /// The higher notification level than medium.
         /// </summary>
         High = 30,
         /// <summary>
@@ -1345,21 +1345,21 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// An enum of Window types.
+    /// An enum of window types.
     /// </summary>
     public enum WindowType {
         /// <summary>
         /// A default window type.<br>
-        /// Indicates a normal, top-level window.
+        /// Indicates a normal or top-level window.
         /// Almost every window will be created with this type.
         /// </summary>
         Normal,
         /// <summary>
-        /// A notification window, like a warning about battery life or a new E-Mail received.
+        /// A notification window, like a warning about battery life or a new email received.
         /// </summary>
         Notification,
         /// <summary>
-        /// A persistent utility window, like a toolbox or palette.
+        /// A persistent utility window, like a toolbox or a palette.
         /// </summary>
         Utility,
         /// <summary>
@@ -1518,7 +1518,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// An enum of scroll state of text eidtor.
+    /// An enum of the scroll state of the text eidtor.
     /// </summary>
     public enum ScrollState
     {
@@ -1534,17 +1534,17 @@ namespace Tizen.NUI
     }
 
      /// <summary>
-    /// An enum of line wrap mode of text controls.
+    /// An enum of the line wrap mode of text controls.
     /// </summary>
     public enum LineWrapMode
     {
         /// <summary>
-        /// Word mode will move word to next line
+        /// The word mode will move a word to the next line.
         /// </summary>
         Word,
 
         /// <summary>
-        /// character will move character by character to next line
+        /// character will move character by character to the next line.
         /// </summary>
         Character
     }

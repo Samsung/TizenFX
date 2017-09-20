@@ -132,7 +132,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Dispose pattern
+            /// The dispose pattern.
             /// </summary>
             public void Dispose()
             {
@@ -193,7 +193,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Default Constructor
+            /// The default constructor.
             /// </summary>
             public ImfEventData() : this(NDalicManualPINVOKE.new_ImfManager_ImfEventData__SWIG_0(), true)
             {
@@ -201,11 +201,11 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Constructor
+            /// The constructor.
             /// </summary>
             /// <param name="aEventName">The name of the event from the IMF.</param>
-            /// <param name="aPredictiveString">The pre-edit or commit string.</param>
-            /// <param name="aCursorOffset">Start position from the current cursor position to start deleting characters.</param>
+            /// <param name="aPredictiveString">The pre-edit or the commit string.</param>
+            /// <param name="aCursorOffset">Start the position from the current cursor position to start deleting characters.</param>
             /// <param name="aNumberOfChars">The number of characters to delete from the cursorOffset.</param>
             public ImfEventData(ImfManager.ImfEvent aEventName, string aPredictiveString, int aCursorOffset, int aNumberOfChars) : this(NDalicManualPINVOKE.new_ImfManager_ImfEventData__SWIG_1((int)aEventName, aPredictiveString, aCursorOffset, aNumberOfChars), true)
             {
@@ -213,7 +213,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// The pre-edit or commit string.
+            /// The pre-edit or the commit string.
             /// </summary>
             [Obsolete("Please do not use! this will be deprecated")]
             public string predictiveString
@@ -232,7 +232,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// The pre-edit or commit string.
+            /// The pre-edit or the commit string.
             /// </summary>
             public string PredictiveString
             {
@@ -287,7 +287,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Start position from the current cursor position to start deleting characters.
+            /// The start position from the current cursor position to start deleting characters.
             /// </summary>
             [Obsolete("Please do not use! this will be deprecated")]
             public int cursorOffset
@@ -306,7 +306,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Start position from the current cursor position to start deleting characters.
+            /// The start position from the current cursor position to start deleting characters.
             /// </summary>
             public int CursorOffset
             {
@@ -324,7 +324,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Number of characters to delete from the cursorOffset.
+            /// The number of characters to delete from the cursorOffset.
             /// </summary>
             [Obsolete("Please do not use! this will be deprecated")]
             public int numberOfChars
@@ -343,7 +343,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Number of characters to delete from the cursorOffset.
+            /// The number of characters to delete from the cursorOffset.
             /// </summary>
             public int NumberOfChars
             {
@@ -363,7 +363,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Data required by IMF from the callback.
+        /// Data required by the IMF from the callback.
         /// </summary>
         public class ImfCallbackData : global::System.IDisposable
         {
@@ -402,7 +402,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Dispose pattern
+            /// The dispose pattern.
             /// </summary>
             public void Dispose()
             {
@@ -463,7 +463,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Default Constructor
+            /// The default constructor.
             /// </summary>
             public ImfCallbackData() : this(NDalicManualPINVOKE.new_ImfManager_ImfCallbackData__SWIG_0(), true)
             {
@@ -471,11 +471,11 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Constructor
+            /// The constructor.
             /// </summary>
-            /// <param name="aUpdate">True if cursor position needs to be updated.</param>
-            /// <param name="aCursorPosition">New position of cursor.</param>
-            /// <param name="aCurrentText">Current text string.</param>
+            /// <param name="aUpdate">True if the cursor position needs to be updated.</param>
+            /// <param name="aCursorPosition">The new position of the cursor.</param>
+            /// <param name="aCurrentText">The current text string.</param>
             /// <param name="aPreeditResetRequired">Flag if preedit reset is required.</param>
             public ImfCallbackData(bool aUpdate, int aCursorPosition, string aCurrentText, bool aPreeditResetRequired) : this(NDalicManualPINVOKE.new_ImfManager_ImfCallbackData__SWIG_1(aUpdate, aCursorPosition, aCurrentText, aPreeditResetRequired), true)
             {
@@ -483,7 +483,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Current text string.
+            /// The current text string.
             /// </summary>
             [Obsolete("Please do not use! this will be deprecated")]
             public string currentText
@@ -502,7 +502,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Current text string.
+            /// The current text string.
             /// </summary>
             public string CurrentText
             {
@@ -520,7 +520,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Current text string.
+            /// The current text string.
             /// </summary>
             [Obsolete("Please do not use! this will be deprecated")]
             public int cursorPosition
@@ -539,7 +539,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Current text string.
+            /// The current text string.
             /// </summary>
             public int CursorPosition
             {
@@ -557,7 +557,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// If cursor position needs to be updated.
+            /// If the cursor position needs to be updated.
             /// </summary>
             [Obsolete("Please do not use! this will be deprecated")]
             public bool update
@@ -576,7 +576,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// If cursor position needs to be updated.
+            /// If the cursor position needs to be updated.
             /// </summary>
             public bool Update
             {
@@ -594,7 +594,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Flag if preedit reset is required.
+            /// Flags if preedit reset is required.
             /// </summary>
             [Obsolete("Please do not use! this will be deprecated")]
             public bool preeditResetRequired
@@ -613,7 +613,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Flag if preedit reset is required.
+            /// Flags if preedit reset is required.
             /// </summary>
             public bool PreeditResetRequired
             {
@@ -633,7 +633,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieve a handle to the instance of ImfManager.
+        /// Retrieves a handle to the instance of the ImfManager.
         /// </summary>
         /// <returns>A handle to the ImfManager.</returns>
         public static ImfManager Get()
@@ -644,9 +644,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Activate the IMF.<br/>
-        /// It means that the text editing is started at somewhere.<br/>
-        /// If the H/W keyboard isn't connected then it will show the virtual keyboard.
+        /// Activates the IMF.<br/>
+        /// It means that the text editing is started somewhere.<br/>
+        /// If the hardware keyboard isn't connected, then it will show the virtual keyboard.
         /// </summary>
         public void Activate()
         {
@@ -655,8 +655,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Deactivate the IMF.<br/>
-        /// It means that the text editing is finished at somewhere.
+        /// Deactivates the IMF.<br/>
+        /// It means that the text editing is finished somewhere.
         /// </summary>
         public void Deactivate()
         {
@@ -665,10 +665,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the restoration status, which controls if the keyboard is restored after the focus lost then regained.<br/>
-        /// If true then keyboard will be restored (activated) after focus is regained.
+        /// Gets the restoration status which controls if the keyboard is restored after the focus is lost and then regained.<br/>
+        /// If true, then the keyboard will be restored (activated) after focus is regained.
         /// </summary>
-        /// <returns>Restoration status.</returns>
+        /// <returns>The restoration status.</returns>
         public bool RestoreAfterFocusLost()
         {
             bool ret = NDalicManualPINVOKE.ImfManager_RestoreAfterFocusLost(swigCPtr);
@@ -677,9 +677,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set status whether the IMF has to restore the keyboard after losing focus.
+        /// Sets the status whether the IMF has to restore the keyboard after losing focus.
         /// </summary>
-        /// <param name="toggle">True means that keyboard should be restored after focus lost and regained.</param>
+        /// <param name="toggle">True means that keyboard should be restored after the focus is lost and regained.</param>
         public void SetRestoreAfterFocusLost(bool toggle)
         {
             NDalicManualPINVOKE.ImfManager_SetRestoreAfterFocusLost(swigCPtr, toggle);
@@ -687,7 +687,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Send message reset the pred-edit state / imf module.
+        /// Sends a message reset to the preedit state or the IMF module.
         /// </summary>
         public new void Reset()
         {
@@ -696,7 +696,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Notifies IMF context that the cursor position has changed, required for features like auto-capitalisation.
+        /// Notifies the IMF context that the cursor position has changed, required for features like auto-capitalization.
         /// </summary>
         public void NotifyCursorPosition()
         {
@@ -705,9 +705,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets cursor position stored in VirtualKeyboard, this is required by the IMF context.
+        /// Sets the cursor position stored in VirtualKeyboard, this is required by the IMF context.
         /// </summary>
-        /// <param name="cursorPosition">Position of cursor.</param>
+        /// <param name="cursorPosition">The position of the cursor.</param>
         public void SetCursorPosition(uint cursorPosition)
         {
             NDalicManualPINVOKE.ImfManager_SetCursorPosition(swigCPtr, cursorPosition);
@@ -715,9 +715,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets cursor position stored in VirtualKeyboard, this is required by the IMF context.
+        /// Gets the cursor position stored in VirtualKeyboard, this is required by the IMF context.
         /// </summary>
-        /// <returns>Current position of cursor</returns>
+        /// <returns>The current position of the cursor.</returns>
         public uint GetCursorPosition()
         {
             uint ret = NDalicManualPINVOKE.ImfManager_GetCursorPosition(swigCPtr);
@@ -726,7 +726,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Method to store the string required by the IMF, this is used to provide predictive word suggestions.
+        /// A method to store the string required by the IMF, this is used to provide predictive word suggestions.
         /// </summary>
         /// <param name="text">The text string surrounding the current cursor point.</param>
         public void SetSurroundingText(string text)
@@ -736,9 +736,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets current text string set within the IMF manager, this is used to offer predictive suggestions.
+        /// Gets the current text string set within the IMF manager, this is used to offer predictive suggestions.
         /// </summary>
-        /// <returns>Surrounding text.</returns>
+        /// <returns>The surrounding text.</returns>
         public string GetSurroundingText()
         {
             string ret = NDalicManualPINVOKE.ImfManager_GetSurroundingText(swigCPtr);
@@ -747,7 +747,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Notifies IMF context that text input is set to multi line or not.
+        /// Notifies the IMF context that text input is set to multiline or not.
         /// </summary>
         /// <param name="multiLine">True if multiline text input is used.</param>
         public void NotifyTextInputMultiLine(bool multiLine)
@@ -757,7 +757,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns text direction of the keyboard's current input language.
+        /// Returns the text direction of the keyboard's current input language.
         /// </summary>
         /// <returns>The direction of the text.</returns>
         public ImfManager.TextDirection GetTextDirection()
@@ -768,13 +768,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Provides size and position of keyboard.<br/>
-        /// Position is relative to whether keyboard is visible or not.<br/>
-        /// If keyboard is not visible then position will be off the screen.<br/>
-        /// If keyboard is not being shown when this method is called the keyboard is partially setup (IMFContext) to get<br/>
-        /// the values then taken down.  So ideally GetInputMethodArea() should be called after Show().
+        /// Provides the size and the position of the keyboard.<br/>
+        /// The position is relative to whether the keyboard is visible or not.<br/>
+        /// If the keyboard is not visible, then the position will be off the screen.<br/>
+        /// If the keyboard is not being shown when this method is called, the keyboard is partially setup (IMFContext) to get/>
+        /// the values then taken down. So ideally, GetInputMethodArea() should be called after Show().
         /// </summary>
-        /// <returns>Rectangle which is keyboard panel x, y, width, height</returns>
+        /// <returns>Rectangle which is keyboard panel x, y, width, height.</returns>
         public Rectangle GetInputMethodArea()
         {
             Rectangle ret = new Rectangle(NDalicManualPINVOKE.ImfManager_GetInputMethodArea(swigCPtr), true);
@@ -801,7 +801,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the specific data of the current active input panel.
         /// </summary>
-        /// <param name="text">The specific data to be got from the input panel.</param>
+        /// <param name="text">The specific data to be received from the input panel.</param>
         public void GetInputPanelUserData(out string text)
         {
             NDalicManualPINVOKE.ImfManager_GetInputPanelUserData(swigCPtr, out text);
@@ -823,7 +823,7 @@ namespace Tizen.NUI
         /// Sets the return key on the input panel to be visible or invisible.<br/>
         /// The default is true.
         /// </summary>
-        /// <param name="visible">True if the return key is visible(enabled), false otherwise.</param>
+        /// <param name="visible">True if the return key is visible (enabled), false otherwise.</param>
         public void SetReturnKeyState(bool visible)
         {
             NDalicManualPINVOKE.ImfManager_SetReturnKeyState(swigCPtr, visible);
@@ -831,7 +831,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable to show the input panel automatically when focused.
+        /// Enables to show the input panel automatically when focused.
         /// </summary>
         /// <param name="enabled">If true, the input panel will be shown when focused.</param>
         public void AutoEnableInputPanel(bool enabled)
@@ -862,7 +862,7 @@ namespace Tizen.NUI
         /// Gets the keyboard type.<br/>
         /// The default keyboard type is SoftwareKeyboard.
         /// </summary>
-        /// <returns>The keyboard type</returns>
+        /// <returns>The keyboard type.</returns>
         public ImfManager.KeyboardType GetKeyboardType()
         {
             ImfManager.KeyboardType ret = (ImfManager.KeyboardType)NDalicManualPINVOKE.ImfManager_GetKeyboardType(swigCPtr);
@@ -872,7 +872,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets the current language locale of the input panel.<br/>
-        /// Ex) en_US, en_GB, en_PH, fr_FR, ...
+        /// For example, en_US, en_GB, en_PH, fr_FR, ...
         /// </summary>
         /// <returns>The current language locale of the input panel.</returns>
         public string GetInputPanelLocale()
@@ -883,7 +883,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor
+        /// The constructor.
         /// </summary>
         public ImfManager() : this(NDalicManualPINVOKE.new_ImfManager(), true)
         {
@@ -1568,7 +1568,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The direction of text.
+        /// The direction of the text.
         /// </summary>
         public enum TextDirection
         {
@@ -1600,11 +1600,11 @@ namespace Tizen.NUI
             /// </summary>
             Commit,
             /// <summary>
-            /// Event to delete a range of characters from the string.
+            /// An event to delete a range of characters from the string.
             /// </summary>
             DeleteSurrounding,
             /// <summary>
-            /// Event to query string and cursor position.
+            /// An event to query string and the cursor position.
             /// </summary>
             GetSurrounding,
             /// <summary>
@@ -1614,7 +1614,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for state of the input panel.
+        /// Enumeration for the state of the input panel.
         /// </summary>
         public enum State
         {
@@ -1637,12 +1637,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for the type of Keyboard.
+        /// Enumeration for the types of keyboard.
         /// </summary>
         public enum KeyboardType
         {
             /// <summary>
-            /// Software keyboard (Virtual keyboard) is default.
+            /// Software keyboard (virtual keyboard) is default.
             /// </summary>
             SoftwareKeyboard,
             /// <summary>

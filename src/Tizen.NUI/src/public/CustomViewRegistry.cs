@@ -8,7 +8,7 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Add this attribute to any property belonging to a View (control) you want to be scriptable from JSON
+    /// Adds this attribute to any property belonging to a view (control) you want to be scriptable from JSON.
     /// </summary>
     /// <remarks>
     /// Example:
@@ -31,13 +31,13 @@ namespace Tizen.NUI
     ///
     /// Internally the following occurs for property registration ( this only occurs once per Type, not per Instance):
     ///
-    /// - The controls static constructor should call ViewRegistry.Register()  (only called once for the lifecycle of the app)
-    /// - Within Register() the code will introspect the Controls properties, looking for the ScriptableProperty() attribute
+    /// - The controls static constructor should call ViewRegistry.Register() (only called once for the lifecycle of the app).
+    /// - Within Register() the code will introspect the Controls properties, looking for the ScriptableProperty() attribute.
     /// - For every property with the ScriptableProperty() attribute, TypeRegistration.RegisterProperty is called.
-    /// - TypeRegistration.RegisterProperty calls in to DALi C++ Code Dali::CSharpTypeRegistry::RegisterProperty()
+    /// - TypeRegistration.RegisterProperty calls in to DALi C++ Code Dali::CSharpTypeRegistry::RegisterProperty().
     /// - DALi C++ now knows the existance of the property and will try calling SetProperty, if it finds the property in a JSON file (loaded using builder).
     ///
-    ///  The DALi C# example
+    ///  The DALi C# example:
     ///
     ///  class MyView : public CustomView
     ///  {
@@ -87,8 +87,8 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// View Registry singleton.
-    /// Used for registering controls and any scriptable properties they have ( see ScriptableProperty )
+    /// View the Registry singleton.
+    /// Used for registering controls and any scriptable properties they have (see ScriptableProperty).
     ///
     /// Internal Design from C# to C++
     ///
@@ -97,15 +97,15 @@ namespace Tizen.NUI
     /// Example of running a static constructor:
     ///      System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor (typeof(Spin).TypeHandle);
     /// Inside the static constructor the control should register it's type with the ViewRegistry
-    /// e.g.
+    /// For example:
     ///
     ///  static Spin()
     ///  {
     ///     ViewRegistry.Instance.Register(CreateInstance, typeof(Spin) );
     ///  }
     ///
-    ///  The control should also provide a CreateInstance function, which gets passed to the ViewRegistry
-    ///  // Eventually it will be called if DALi Builderfinds a Spin control in a JSON file
+    ///  The control should also provide a CreateInstance function, which gets passed to the ViewRegistry.
+    ///  // Eventually it will be called if DALi Builderfinds a Spin control in a JSON file.
     ///  static CustomView CreateInstance()
     ///  {
     ///    return new Spin();
@@ -123,7 +123,7 @@ namespace Tizen.NUI
     public sealed class CustomViewRegistry
     {
         /// <summary>
-        /// ViewRegistry is a singleton
+        /// ViewRegistry is a singleton.
         /// </summary>
         private static CustomViewRegistry instance = null;
 
@@ -143,12 +143,12 @@ namespace Tizen.NUI
 
         ///<summary>
         // Maps the name of a custom view to a create instance function
-        /// E.g. given a string "Spin", we can get a function used to create the Spin View.
+        /// For example, given a string "Spin", we can get a function used to create the Spin View.
         ///</summary>
         private Dictionary<String, Func<CustomView>> _constructorMap;
 
         /// <summary>
-        /// Lookup table to match C# types to DALi types, used for the automatic property registration
+        /// Lookup table to match C# types to DALi types, used for the automatic property registration.
         /// </summary>
         private static readonly Dictionary<string, Tizen.NUI.PropertyType> _daliPropertyTypeLookup
         = new Dictionary<string, Tizen.NUI.PropertyType>
@@ -201,10 +201,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Called directly from DALi C++ type registry to create a control (View) using no marshalling.
+        /// Called directly from DALi C++ type registry to create a control (view) using no marshalling.
         /// </summary>
-        /// <returns>Pointer to the Control (Views) handle </returns>
-        /// <param name="cPtrControlName"> C pointer to the Control (View) name</param>
+        /// <returns>Pointer to the control (views) handle.</returns>
+        /// <param name="cPtrControlName">C pointer to the control (view) name.</param>
         private static IntPtr CreateControl(IntPtr cPtrControlName)
         {
             string controlName = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(cPtrControlName);
@@ -255,12 +255,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Function which registers a view and all it's scriptable properties with DALi's type registry.
-        /// Means the View can be created / configured from a JSON script.
+        /// The function which registers a view and all it's scriptable properties with DALi's type registry.
+        /// Means the view can be created or configured from a JSON script.
         ///
-        /// The function uses introspection to scan a Views C# properties, then selects the ones with
+        /// The function uses introspection to scan a views C# properties, then selects the ones with
         ///[ScriptableProperty] attribute to be registered.
-        /// Example of a Spin view registering itself
+        /// Example of a Spin view registering itself:
         ///   static Spin()
         /// {
         ///   ViewRegistry registers control type with DALi type registery
@@ -316,7 +316,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get a property value from a View
+        /// Gets a property value from a view.
         ///
         /// </summary>
         private IntPtr GetPropertyValue(IntPtr refObjectPtr, string propertyName)
@@ -339,7 +339,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set a property value on a View
+        /// Sets a property value on a view.
         ///
         /// </summary>
         private void SetPropertyValue(IntPtr refObjectPtr, string propertyName, IntPtr propertyValuePtr)

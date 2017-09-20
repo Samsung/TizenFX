@@ -104,7 +104,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a new widget view object.
         /// </summary>
-        /// <param name="widgetId">The widget id.</param>
+        /// <param name="widgetId">The widget ID.</param>
         /// <param name="contentInfo">Contents that will be given to the widget instance.</param>
         /// <param name="width">The widget width.</param>
         /// <param name="height">The widget height.</param>

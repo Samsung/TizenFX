@@ -18,7 +18,7 @@ namespace NUIsamples
             //new DatePickerTest.Example().Run(args);
             //new DatePickerUsingJson.Example().Run(args);
             //new HelloTest.Example().Run(args);
-            new HelloWorldTest.Example().Run(args);
+            //new HelloWorldTest.Example().Run(args);
             //new Test1.Example().Run(args);
             //new SiblingOrderTest.Example().Run(args);
             //new UserAlphaFunctionTest.Example().Run(args);
@@ -41,6 +41,7 @@ namespace NUIsamples
             //new VisualsExampleTest.Example().Run(args);
             //new AsIsTest.Example().Run(args);
             //new WidgetViewTest.Example().Run(args);
+            new TimerTest.Example().Run(args);
         }
     }
 }

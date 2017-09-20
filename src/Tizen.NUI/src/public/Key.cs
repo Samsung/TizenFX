@@ -118,7 +118,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Name given to the key pressed
+        /// Name given to the key pressed.
         /// </summary>
         public string KeyPressedName
         {
@@ -158,7 +158,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Special keys like shift, alt and control which modify the next key pressed.
+        /// Special keys like Shift, Alt, and Ctrl which modify the next key pressed.
         /// </summary>
         public int KeyModifier
         {
@@ -214,7 +214,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Default Constructor.
+        /// The default constructor.
         /// </summary>
         public Key() : this(NDalicPINVOKE.new_Key__SWIG_0(), true)
         {
@@ -222,23 +222,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.
+        /// The constructor.
         /// </summary>
-        /// <param name="keyName">The name of the key pressed or command from the IMF, if later then the some following parameters will be needed</param>
-        /// <param name="keyString">A string of input characters or key pressed</param>
-        /// <param name="keyCode">The unique key code for the key pressed</param>
-        /// <param name="keyModifier">The key modifier for special keys like shift and alt</param>
-        /// <param name="timeStamp">The time (in ms) that the key event occurred</param>
-        /// <param name="keyState">The state of the key event</param>
+        /// <param name="keyName">The name of the key pressed or command from the IMF, if later, then the following parameters will be needed.</param>
+        /// <param name="keyString">A string of input characters or key pressed.</param>
+        /// <param name="keyCode">The unique key code for the key pressed.</param>
+        /// <param name="keyModifier">The key modifier for special keys like Shift and Alt.</param>
+        /// <param name="timeStamp">The time (in ms) that the key event occurred.</param>
+        /// <param name="keyState">The state of the key event.</param>
         internal Key(string keyName, string keyString, int keyCode, int keyModifier, uint timeStamp, Key.StateType keyState) : this(NDalicPINVOKE.new_Key__SWIG_1(keyName, keyString, keyCode, keyModifier, timeStamp, (int)keyState), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Checks to see if Shift key modifier has been supplied.
+        /// Checks to see if the Shift key modifier has been supplied.
         /// </summary>
-        /// <returns>True if shift modifier</returns>
+        /// <returns>True if Shift modifier.</returns>
         public bool IsShiftModifier()
         {
             bool ret = NDalicPINVOKE.Key_IsShiftModifier(swigCPtr);
@@ -249,7 +249,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Checks to see if Ctrl (control) key modifier has been supplied.
         /// </summary>
-        /// <returns>True if ctrl modifier</returns>
+        /// <returns>True if Ctrl modifier.</returns>
         public bool IsCtrlModifier()
         {
             bool ret = NDalicPINVOKE.Key_IsCtrlModifier(swigCPtr);
@@ -260,7 +260,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Checks to see if Alt key modifier has been supplied.
         /// </summary>
-        /// <returns>True if alt modifier</returns>
+        /// <returns>True if Alt modifier.</returns>
         public bool IsAltModifier()
         {
             bool ret = NDalicPINVOKE.Key_IsAltModifier(swigCPtr);

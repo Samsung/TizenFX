@@ -9,7 +9,7 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Helper class for calculating what property indexes should be assigned to C# View (view) classes.
+    /// The helper class for calculating what property indexes should be assigned to the C# View (view) classes.
     /// </summary>
     internal class PropertyRangeManager
     {
@@ -24,7 +24,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Only called if a View has scriptable properties
+        /// Only called if a view has scriptable properties.
         /// </summary>
         private PropertyRange RegisterView(string viewName, System.Type viewType)
         {
@@ -50,11 +50,11 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets the index of the property.
-        /// Each property has to have unique index for this view type
+        /// Each property has to have unique index for this view type.
         /// </summary>
         /// <returns>The property index.</returns>
-        /// <param name="viewName">View name</param>
-        /// <param name="viewType">View type</param>
+        /// <param name="viewName">The view name.</param>
+        /// <param name="viewType">The view type.</param>
         /// <param name="type">Type.</param>
         public int GetPropertyIndex(string viewName, System.Type viewType, ScriptableProperty.ScriptableType type)
         {
@@ -77,7 +77,7 @@ namespace Tizen.NUI
         }
 
         ///<summary>
-        /// We calculate the start property indices, based on the type and it's class  heirachy, e.g. DateView (70,000)- > Spin (60,000) -> View (50,000)
+        /// We calculate the start property indices, based on the type and it's class hierarchy, for example, DateView (70,000)- > Spin (60,000) -> View (50,000).
         /// </summary>
         private void GetPropertyStartRange(System.Type viewType, ref PropertyRange range)
         {

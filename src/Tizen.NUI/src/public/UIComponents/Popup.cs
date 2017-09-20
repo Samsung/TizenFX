@@ -22,7 +22,7 @@ namespace Tizen.NUI.UIComponents
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
-    /// The Popup widget provides a configurable pop-up dialog with built-in layout of three main fields.
+    /// The Popup widget provides a configurable popup dialog with a built-in layout of three main fields.
     /// </summary>
     public class Popup : View
     {
@@ -100,35 +100,35 @@ namespace Tizen.NUI.UIComponents
 
 
         /// <summary>
-        /// Event arguments that passed via OutsideTouchedEvent
+        /// Event arguments that passed via the OutsideTouchedEvent.
         /// </summary>
         public class TouchedOutsideEventArgs : EventArgs
         {
         }
 
         /// <summary>
-        /// Event arguments that passed via ShowingEventArgs
+        /// Event arguments that passed via the ShowingEventArgs.
         /// </summary>
         public class ShowingEventArgs : EventArgs
         {
         }
 
         /// <summary>
-        /// Event arguments that passed via ShownEventArgs
+        /// Event arguments that passed via the ShownEventArgs.
         /// </summary>
         public class ShownEventArgs : EventArgs
         {
         }
 
         /// <summary>
-        /// Event arguments that passed via HidingEventArgs
+        /// Event arguments that passed via the HidingEventArgs.
         /// </summary>
         public class HidingEventArgs : EventArgs
         {
         }
 
         /// <summary>
-        /// Event arguments that passed via HiddenEventArgs
+        /// Event arguments that passed via the HiddenEventArgs.
         /// </summary>
         public class HiddenEventArgs : EventArgs
         {
@@ -160,7 +160,7 @@ namespace Tizen.NUI.UIComponents
         private HiddenEventCallbackDelegate _popUpHiddenEventCallbackDelegate;
 
         /// <summary>
-        /// Event is sent when user has touched outside of the Dialog.
+        /// An event is sent when the user has touched outside the dialog.
         /// </summary>
         public event EventHandler<TouchedOutsideEventArgs> TouchedOutside
         {
@@ -196,7 +196,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Event is sent when the Popup is starting to be shown.
+        /// An event is sent when the popup starts showing.
         /// </summary>
         public event EventHandler<ShowingEventArgs> Showing
         {
@@ -233,7 +233,7 @@ namespace Tizen.NUI.UIComponents
 
 
         /// <summary>
-        /// Event is sent when the Popup has been fully displayed.
+        /// An event is sent when the popup has been fully displayed.
         /// </summary>
         public event EventHandler<ShownEventArgs> Shown
         {
@@ -269,7 +269,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Event is sent when the Popup is starting to be hidden.
+        /// An event is sent when the popup starts to hide.
         /// </summary>
         public event EventHandler<HidingEventArgs> Hiding
         {
@@ -305,7 +305,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Event is sent when the Popup has been completely hidden.
+        /// An event is sent when the popup has been completely hidden.
         /// </summary>
         public event EventHandler<HiddenEventArgs> Hidden
         {
@@ -366,7 +366,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Create the Popup.
+        /// Creates the popup.
         /// </summary>
         public Popup() : this(NDalicPINVOKE.Popup_New(), true)
         {
@@ -383,9 +383,9 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Sets a title for this Popup.
+        /// Sets the title for this popup.
         /// </summary>
-        /// <param name="titleView">The actor to set a title</param>
+        /// <param name="titleView">The actor to set the title.</param>
         public void SetTitle(View titleView)
         {
             NDalicPINVOKE.Popup_SetTitle(swigCPtr, View.getCPtr(titleView));
@@ -404,7 +404,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Sets the content actor.
         /// </summary>
-        /// <param name="content">The actor to use</param>
+        /// <param name="content">The actor to use.</param>
         public void SetContent(View content)
         {
             NDalicPINVOKE.Popup_SetContent(swigCPtr, View.getCPtr(content));
@@ -421,9 +421,9 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Sets the actor to use for a footer in this Popup.
+        /// Sets the actor to use for the footer in this popup.
         /// </summary>
-        /// <param name="footer">The footer actor to be added to this Popup</param>
+        /// <param name="footer">The footer actor to be added to this popup.</param>
         public void SetFooter(View footer)
         {
             NDalicPINVOKE.Popup_SetFooter(swigCPtr, View.getCPtr(footer));
@@ -440,11 +440,11 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Sets the display state of Popup.<br>
+        /// Sets the display state of popup.<br>
         /// There are 4 total display states.<br>
         /// Only 2 can be set, but all four can be read for better inspection of the current popup state.<br>
         /// <br>
-        /// The other two states are getable, but not setable and are there for consistency.<br>
+        /// The other two states are getable, but not setable, and are there for consistency.<br>
         /// <br>
         /// | Value    | Setting the state              | Getting the state              |<br>
         /// |----------|--------------------------------|--------------------------------|<br>
@@ -453,9 +453,9 @@ namespace Tizen.NUI.UIComponents
         /// | SHOWING  |                                | The popup is transitioning in  |<br>
         /// | HIDING   |                                | The popup is transitioning out |<br>
         /// <br>
-        /// All 4 state changes cause notifications via 4 respective signals that can be connected to.<br>
+        /// All 4 states changes cause notifications via 4 respective signals that can be connected to.<br>
         /// </summary>
-        /// <param name="displayState">The desired display state to change to</param>
+        /// <param name="displayState">The desired display state to change to.</param>
         public void SetDisplayState(Popup.DisplayStateType displayState)
         {
             NDalicPINVOKE.Popup_SetDisplayState(swigCPtr, (int)displayState);
@@ -505,7 +505,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// The display states of the Popup.
+        /// The display states of the popup.
         /// </summary>
         public enum DisplayStateType
         {
@@ -516,7 +516,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// The animation mode within popup.<br>
+        /// The animation modes within the popup.<br>
         /// Choose from a predefined mode or "CUSTOM" to use the ANIMATION_IN and ANIMATION_OUT properties.<br>
         /// </summary>
         public enum AnimationModeType
@@ -528,8 +528,8 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Types of contextual layout.<br>
-        /// The Popup is positioned adjacent to it's parent in the direction specified by this mode.<br>
+        /// The types of the contextual layout.<br>
+        /// The popup is positioned adjacent to it's parent in the direction specified by this mode.<br>
         /// NON_CONTEXTUAL disables any contextual positioning.<br>
         /// </summary>
         public enum ContextualModeType
@@ -542,7 +542,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Popup title.
+        /// The popup title.
         /// </summary>
         public PropertyMap Title
         {
@@ -558,7 +558,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Popup content.
+        /// The popup content.
         /// </summary>
         public PropertyMap Content
         {
@@ -574,7 +574,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Popup footer.
+        /// The popup footer.
         /// </summary>
         public PropertyMap Footer
         {
@@ -590,7 +590,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Popup display state.
+        /// The popup display state.
         /// </summary>
         public DisplayStateType DisplayState
         {
@@ -650,7 +650,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Touch transparent.
+        /// The touch transparent.
         /// </summary>
         public bool TouchTransparent
         {
@@ -666,7 +666,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Popup tail visibility.
+        /// The popup tail visibility.
         /// </summary>
         public bool TailVisibility
         {
@@ -682,7 +682,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Popup tail position.
+        /// The popup tail position.
         /// </summary>
         public Vector3 TailPosition
         {
@@ -698,7 +698,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Contextual mode.
+        /// The contextual mode.
         /// </summary>
         public ContextualModeType ContextualMode
         {
@@ -765,7 +765,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Animation duration.
+        /// The animation duration.
         /// </summary>
         public float AnimationDuration
         {
@@ -781,7 +781,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Animation mode.
+        /// The animation mode.
         /// </summary>
         public AnimationModeType AnimationMode
         {
@@ -841,7 +841,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Entry animation.
+        /// The entry animation.
         /// </summary>
         public PropertyMap EntryAnimation
         {
@@ -857,7 +857,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Exit animation.
+        /// The exit animation.
         /// </summary>
         public PropertyMap ExitAnimation
         {
@@ -873,7 +873,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Auto hide delay.
+        /// The auto hide delay.
         /// </summary>
         public int AutoHideDelay
         {
@@ -889,7 +889,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Backing enabled.
+        /// The backing enabled.
         /// </summary>
         public bool BackingEnabled
         {
@@ -905,7 +905,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Backing color.
+        /// The backing color.
         /// </summary>
         public Vector4 BackingColor
         {
@@ -921,7 +921,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Background image.
+        /// The background image.
         /// </summary>
         public string PopupBackgroundImage
         {
@@ -937,7 +937,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Background border.
+        /// The background border.
         /// </summary>
         public Rectangle PopupBackgroundBorder
         {
@@ -953,7 +953,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Tail up image.
+        /// The tail up image.
         /// </summary>
         public string TailUpImage
         {
@@ -969,7 +969,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Tail down image.
+        /// The tail down image.
         /// </summary>
         public string TailDownImage
         {
@@ -985,7 +985,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Tail left image.
+        /// The tail left image.
         /// </summary>
         public string TailLeftImage
         {
@@ -1001,7 +1001,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Tail right image.
+        /// The tail right image.
         /// </summary>
         public string TailRightImage
         {

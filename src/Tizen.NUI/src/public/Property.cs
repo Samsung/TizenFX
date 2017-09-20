@@ -130,44 +130,44 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor. Create a Property instance.
+        /// This constructor creates a property instance.
         /// </summary>
-        /// <param name="arg0">A valid handle to the target object</param>
-        /// <param name="propertyIndex">The index of a property</param>
+        /// <param name="arg0">A valid handle to the target object.</param>
+        /// <param name="propertyIndex">The index of a property.</param>
         public Property(Animatable arg0, int propertyIndex) : this(NDalicPINVOKE.new_Property__SWIG_0(Animatable.getCPtr(arg0), propertyIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Constructor. Create a Property instance.
+        /// This constructor creates a property instance.
         /// </summary>
-        /// <param name="arg0">A valid handle to the target object</param>
-        /// <param name="propertyIndex">The index of a property</param>
-        /// <param name="componentIndex">Index to a sub component of a property, for use with Vector2, Vector3 and Vector4. -1 for main property (default is -1)</param>
+        /// <param name="arg0">A valid handle to the target object.</param>
+        /// <param name="propertyIndex">The index of a property.</param>
+        /// <param name="componentIndex">Index to a sub component of a property, for use with Vector2, Vector3 and Vector4. -1 for the main property (default is -1).</param>
         public Property(Animatable arg0, int propertyIndex, int componentIndex) : this(NDalicPINVOKE.new_Property__SWIG_1(Animatable.getCPtr(arg0), propertyIndex, componentIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Constructor. Create a Property instance.<br>
-        /// This performs a property index query and is therefore slower than constructing a Property directly with the index.<br>
+        /// This constructor creates a property instance.<br>
+        /// This performs a property index query and is therefore slower than constructing a property directly with the index.<br>
         /// </summary>
-        /// <param name="arg0">A valid handle to the target object</param>
-        /// <param name="propertyName">The property name</param>
+        /// <param name="arg0">A valid handle to the target object.</param>
+        /// <param name="propertyName">The property name.</param>
         public Property(Animatable arg0, string propertyName) : this(NDalicPINVOKE.new_Property__SWIG_2(Animatable.getCPtr(arg0), propertyName), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Constructor. Create a Property instance.<br>
-        /// This performs a property index query and is therefore slower than constructing a Property directly with the index.<br>
+        /// This constructor creates a property instance.<br>
+        /// This performs a property index query and is therefore slower than constructing a property directly with the index.<br>
         /// </summary>
-        /// <param name="arg0">A valid handle to the target object</param>
-        /// <param name="propertyName">The property name</param>
-        /// <param name="componentIndex">Index to a sub component of a property, for use with Vector2, Vector3 and Vector4. -1 for main property (default is -1)</param>
+        /// <param name="arg0">A valid handle to the target object.</param>
+        /// <param name="propertyName">The property name.</param>
+        /// <param name="componentIndex">Index to a sub component of a property, for use with Vector2, Vector3 and Vector4. -1 for main property (default is -1).</param>
         public Property(Animatable arg0, string propertyName, int componentIndex) : this(NDalicPINVOKE.new_Property__SWIG_3(Animatable.getCPtr(arg0), propertyName, componentIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -189,7 +189,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets the index of the property.
+        /// Gets or sets the index of the property.
         /// </summary>
         public int propertyIndex
         {
@@ -207,7 +207,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets the componentIndex of the property.
+        /// Gets or sets the component index of the property.
         /// </summary>
         public int componentIndex
         {
@@ -227,7 +227,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// A Array of property values.
+    /// An array of property values.
     /// </summary>
     public class PropertyArray : global::System.IDisposable
     {
@@ -309,10 +309,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Operator to access an element.
+        /// The operator to access an element.
         /// </summary>
-        /// <param name="index">The element index to access. No bounds checking is performed</param>
-        /// <returns>The a reference to the element</returns>
+        /// <param name="index">The element index to access. No bounds checking is performed.</param>
+        /// <returns>The reference to the element.</returns>
         public PropertyValue this[uint index]
         {
             get
@@ -322,7 +322,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor
+        /// The constructor.
         /// </summary>
         public PropertyArray() : this(NDalicPINVOKE.new_Property_Array__SWIG_0(), true)
         {
@@ -337,7 +337,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves the number of elements in the array.
         /// </summary>
-        /// <returns>The number of elements in the array</returns>
+        /// <returns>The number of elements in the array.</returns>
         public uint Size()
         {
             uint ret = NDalicPINVOKE.Property_Array_Size(swigCPtr);
@@ -348,7 +348,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves the number of elements in the array.
         /// </summary>
-        /// <returns>The number of elements in the array</returns>
+        /// <returns>The number of elements in the array.</returns>
         public uint Count()
         {
             uint ret = NDalicPINVOKE.Property_Array_Count(swigCPtr);
@@ -359,7 +359,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Returns whether the array is empty.
         /// </summary>
-        /// <returns>Return true if empty, false otherwise</returns>
+        /// <returns>Returns true if empty, false otherwise.</returns>
         public bool Empty()
         {
             bool ret = NDalicPINVOKE.Property_Array_Empty(swigCPtr);
@@ -379,7 +379,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Increases the capacity of the array.
         /// </summary>
-        /// <param name="size">The size to reserve</param>
+        /// <param name="size">The size to reserve.</param>
         public void Reserve(uint size)
         {
             NDalicPINVOKE.Property_Array_Reserve(swigCPtr, size);
@@ -399,7 +399,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves the capacity of the array.
         /// </summary>
-        /// <returns>The allocated capacity of the array</returns>
+        /// <returns>The allocated capacity of the array.</returns>
         public uint Capacity()
         {
             uint ret = NDalicPINVOKE.Property_Array_Capacity(swigCPtr);
@@ -410,7 +410,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Adds an element to the array.
         /// </summary>
-        /// <param name="value">The value to add to the end of the array</param>
+        /// <param name="value">The value to add at the end of the array.</param>
         public void PushBack(PropertyValue value)
         {
             NDalicPINVOKE.Property_Array_PushBack(swigCPtr, PropertyValue.getCPtr(value));
@@ -418,9 +418,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Add an element to the array.
+        /// Adds an element to the array.
         /// </summary>
-        /// <param name="value">The value to add to the end of the array</param>
+        /// <param name="value">The value to add at the end of the array.</param>
         public PropertyArray Add(PropertyValue value)
         {
             PropertyArray ret = new PropertyArray(NDalicPINVOKE.Property_Array_Add(swigCPtr, PropertyValue.getCPtr(value)), false);
@@ -429,10 +429,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Access an element.
+        /// Accesses an element.
         /// </summary>
-        /// <param name="index">The element index to access. No bounds checking is performed</param>
-        /// <returns>The a reference to the element</returns>
+        /// <param name="index">The element index to access. No bounds checking is performed.</param>
+        /// <returns>The reference to the element.</returns>
         public PropertyValue GetElementAt(uint index)
         {
             PropertyValue ret = new PropertyValue(NDalicPINVOKE.Property_Array_GetElementAt__SWIG_0(swigCPtr, index), false);
@@ -444,7 +444,7 @@ namespace Tizen.NUI
         /// Retrieves the value of elements in the array.
         /// </summary>
         /// <param name="index">The element index to retrieve.</param>
-        /// <returns>The a reference to the element</returns>
+        /// <returns>The reference to the element.</returns>
         private PropertyValue ValueOfIndex(uint index)
         {
             PropertyValue ret = new PropertyValue(NDalicPINVOKE.Property_Array_ValueOfIndex__SWIG_0(swigCPtr, index), false);
@@ -454,7 +454,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// A key type which can be either a std::string or a Property::Index
+    /// A key type which can be either a std::string or a Property::Index.
     /// </summary>
     public class PropertyKey : global::System.IDisposable
     {
@@ -536,7 +536,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The type of the key
+        /// The type of the key.
         /// </summary>
         public PropertyKey.KeyType Type
         {
@@ -590,28 +590,28 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor
+        /// The constructor.
         /// </summary>
-        /// <param name="key">The string key</param>
+        /// <param name="key">The string key.</param>
         public PropertyKey(string key) : this(NDalicPINVOKE.new_Property_Key__SWIG_0(key), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Constructor
+        /// The constructor.
         /// </summary>
-        /// <param name="key">The index key</param>
+        /// <param name="key">The index key.</param>
         public PropertyKey(int key) : this(NDalicPINVOKE.new_Property_Key__SWIG_1(key), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Compare if rhs is equal to
+        /// Compares if rhs is equal to.
         /// </summary>
-        /// <param name="rhs">A string key to compare against</param>
-        /// <returns>Returns true if the key compares, or false if it isn't equal or of the wrong type</returns>
+        /// <param name="rhs">A string key to compare against.</param>
+        /// <returns>Returns true if the key compares, or false if it isn't equal or of the wrong type.</returns>
         public bool EqualTo(string rhs)
         {
             bool ret = NDalicPINVOKE.Property_Key_EqualTo__SWIG_0(swigCPtr, rhs);
@@ -620,10 +620,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Compare if rhs is equal to
+        /// Compares if rhs is equal to.
         /// </summary>
-        /// <param name="rhs">A index key to compare against</param>
-        /// <returns>Returns true if the key compares, or false if it isn't equal or of the wrong type</returns>
+        /// <param name="rhs">The index key to compare against.</param>
+        /// <returns>Returns true if the key compares, or false if it isn't equal or of the wrong type.</returns>
         public bool EqualTo(int rhs)
         {
             bool ret = NDalicPINVOKE.Property_Key_EqualTo__SWIG_1(swigCPtr, rhs);
@@ -632,10 +632,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Compare if rhs is equal to
+        /// Compares if rhs is equal to
         /// </summary>
         /// <param name="rhs">A key to compare against</param>
-        /// <returns>Returns true if the keys are of the same type and have the same value</returns>
+        /// <returns>Returns true if the keys are of the same type and have the same value.</returns>
         public bool EqualTo(PropertyKey rhs)
         {
             bool ret = NDalicPINVOKE.Property_Key_EqualTo__SWIG_2(swigCPtr, PropertyKey.getCPtr(rhs));
@@ -644,10 +644,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Compare if rhs is not equal to
+        /// Compares if rhs is not equal to.
         /// </summary>
-        /// <param name="rhs">An index key to compare against.</param>
-        /// <returns>Returns true if the key is not equal or not a string key</returns>
+        /// <param name="rhs">The index key to compare against.</param>
+        /// <returns>Returns true if the key is not equal or not a string key.</returns>
         public bool NotEqualTo(string rhs)
         {
             bool ret = NDalicPINVOKE.Property_Key_NotEqualTo__SWIG_0(swigCPtr, rhs);
@@ -656,10 +656,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Compare if rhs is not equal to
+        /// Compares if rhs is not equal to.
         /// </summary>
-        /// <param name="rhs">An index key to compare against.</param>
-        /// <returns>Returns true if the key is not equal, or not an index key</returns>
+        /// <param name="rhs">The index key to compare against.</param>
+        /// <returns>Returns true if the key is not equal, or not the index key.</returns>
         public bool NotEqualTo(int rhs)
         {
             bool ret = NDalicPINVOKE.Property_Key_NotEqualTo__SWIG_1(swigCPtr, rhs);
@@ -668,10 +668,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Compare if rhs is not equal to
+        /// Compares if rhs is not equal to.
         /// </summary>
         /// <param name="rhs">A key to compare against.</param>
-        /// <returns>Returns true if the keys are not of the same type or are not equal</returns>
+        /// <returns>Returns true if the keys are not of the same type or are not equal.</returns>
         public bool NotEqualTo(PropertyKey rhs)
         {
             bool ret = NDalicPINVOKE.Property_Key_NotEqualTo__SWIG_2(swigCPtr, PropertyKey.getCPtr(rhs));
@@ -680,7 +680,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The type of key
+        /// The type of key.
         /// </summary>
         public enum KeyType
         {
@@ -691,7 +691,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// A Map of property values, the key type could be String or Property::Index.
+    /// A map of property values, the key type could be string or Property::Index.
     /// </summary>
     public class PropertyMap : global::System.IDisposable
     {
@@ -773,11 +773,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Operator to access the element with the specified string key.<br>
+        /// The operator to access the element with the specified string key.<br>
         /// If an element with the key does not exist, then it is created.<br>
         /// </summary>
-        /// <param name="key">The key whose value to access</param>
-        /// <returns>A value for the element with the specified key</returns>
+        /// <param name="key">The key whose value to access.</param>
+        /// <returns>A value for the element with the specified key.</returns>
         public PropertyValue this[string key]
         {
             get
@@ -787,11 +787,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Operator to access the element with the specified index key.<br>
+        /// The operator to access the element with the specified index key.<br>
         /// If an element with the key does not exist, then it is created.<br>
         /// </summary>
-        /// <param name="key">The key whose value to access</param>
-        /// <returns>A value for the element with the specified key</returns>
+        /// <param name="key">The key whose value to access.</param>
+        /// <returns>A value for the element with the specified key.</returns>
         public PropertyValue this[int key]
         {
             get
@@ -801,7 +801,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor
+        /// The constructor.
         /// </summary>
         public PropertyMap() : this(NDalicPINVOKE.new_Property_Map__SWIG_0(), true)
         {
@@ -809,9 +809,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Copy Constructor
+        /// The copy constructor.
         /// </summary>
-        /// <param name="other">The Map to copy from</param>
+        /// <param name="other">The map to copy from.</param>
         public PropertyMap(PropertyMap other) : this(NDalicPINVOKE.new_Property_Map__SWIG_1(PropertyMap.getCPtr(other)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -820,7 +820,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves the number of elements in the map.
         /// </summary>
-        /// <returns>The number of elements in the map</returns>
+        /// <returns>The number of elements in the map.</returns>
         public uint Count()
         {
             uint ret = NDalicPINVOKE.Property_Map_Count(swigCPtr);
@@ -831,7 +831,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Returns whether the map is empty.
         /// </summary>
-        /// <returns>Returns true if empty, false otherwise</returns>
+        /// <returns>Returns true if empty, false otherwise.</returns>
         public bool Empty()
         {
             bool ret = NDalicPINVOKE.Property_Map_Empty(swigCPtr);
@@ -840,11 +840,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inserts the key-value pair in the Map, with the key type as string.<br>
+        /// Inserts the key-value pair in the map, with the key type as string.<br>
         /// Does not check for duplicates.<br>
         /// </summary>
-        /// <param name="key">The key to insert</param>
-        /// <param name="value">The value to insert</param>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
         public void Insert(string key, PropertyValue value)
         {
             NDalicPINVOKE.Property_Map_Insert__SWIG_0(swigCPtr, key, PropertyValue.getCPtr(value));
@@ -852,11 +852,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inserts the key-value pair in the Map, with the key type as index.<br>
+        /// Inserts the key-value pair in the map, with the key type as index.<br>
         /// Does not check for duplicates.<br>
         /// </summary>
-        /// <param name="key">The key to insert</param>
-        /// <param name="value">The value to insert</param>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
         public void Insert(int key, PropertyValue value)
         {
             NDalicPINVOKE.Property_Map_Insert__SWIG_2(swigCPtr, key, PropertyValue.getCPtr(value));
@@ -864,12 +864,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inserts the key-value pair in the Map, with the key type as string.<br>
+        /// Inserts the key-value pair in the map, with the key type as string.<br>
         /// Does not check for duplicates.<br>
         /// </summary>
-        /// <param name="key">The key to insert</param>
-        /// <param name="value">The value to insert</param>
-        /// <returns>Returns a reference to this object</returns>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
         public PropertyMap Add(string key, PropertyValue value)
         {
             PropertyMap ret = new PropertyMap(NDalicPINVOKE.Property_Map_Add__SWIG_0(swigCPtr, key, PropertyValue.getCPtr(value)), false);
@@ -878,12 +878,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inserts the key-value pair in the Map, with the key type as string.<br>
+        /// Inserts the key-value pair in the map, with the key type as string.<br>
         /// Does not check for duplicates.<br>
         /// </summary>
-        /// <param name="key">The key to insert</param>
-        /// <param name="value">The value to insert</param>
-        /// <returns>Returns a reference to this object</returns>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
         public PropertyMap Add(int key, PropertyValue value)
         {
             PropertyMap ret = new PropertyMap(NDalicPINVOKE.Property_Map_Add__SWIG_2(swigCPtr, key, PropertyValue.getCPtr(value)), false);
@@ -894,8 +894,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves the value at the specified position.
         /// </summary>
-        /// <param name="position">The specified position</param>
-        /// <returns>A reference to the value at the specified position</returns>
+        /// <param name="position">The specified position.</param>
+        /// <returns>A reference to the value at the specified position.</returns>
         public PropertyValue GetValue(uint position)
         {
             PropertyValue ret = new PropertyValue(NDalicPINVOKE.Property_Map_GetValue(swigCPtr, position), false);
@@ -912,10 +912,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieve the key at the specified position.
+        /// Retrieves the key at the specified position.
         /// </summary>
-        /// <param name="position">The specified position</param>
-        /// <returns>A copy of the key at the specified position</returns>
+        /// <param name="position">The specified position.</param>
+        /// <returns>A copy of the key at the specified position.</returns>
         public PropertyKey GetKeyAt(uint position)
         {
             PropertyKey ret = new PropertyKey(NDalicPINVOKE.Property_Map_GetKeyAt(swigCPtr, position), true);
@@ -935,8 +935,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Finds the value for the specified key if it exists.
         /// </summary>
-        /// <param name="key">The key to find</param>
-        /// <returns>The value if it exists, an empty object otherwise</returns>
+        /// <param name="key">The key to find.</param>
+        /// <returns>The value if it exists, an empty object otherwise.</returns>
         public PropertyValue Find(int key)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_2(swigCPtr, key);
@@ -948,9 +948,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Finds the value for the specified keys if either exist.
         /// </summary>
-        /// <param name="indexKey">The index key to find</param>
-        /// <param name="stringKey">The string key to find</param>
-        /// <returns>The value if it exists, an empty object otherwise</returns>
+        /// <param name="indexKey">The index key to find.</param>
+        /// <param name="stringKey">The string key to find.</param>
+        /// <returns>The value if it exists, an empty object otherwise.</returns>
         public PropertyValue Find(int indexKey, string stringKey)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_3(swigCPtr, indexKey, stringKey);
@@ -990,7 +990,7 @@ namespace Tizen.NUI
         /// Merges values from the map 'from' to the current.<br>
         /// Any values in 'from' will overwrite the values in the current map.<br>
         /// </summary>
-        /// <param name="from">The map to merge from</param>
+        /// <param name="from">The map to merge from.</param>
         public void Merge(PropertyMap from)
         {
             NDalicPINVOKE.Property_Map_Merge(swigCPtr, PropertyMap.getCPtr(from));
@@ -1000,8 +1000,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves the element with the specified string key.
         /// </summary>
-        /// <param name="key">The key whose value to retrieve</param>
-        /// <returns>The value for the element with the specified key</returns>
+        /// <param name="key">The key whose value to retrieve.</param>
+        /// <returns>The value for the element with the specified key.</returns>
         internal PropertyValue ValueOfIndex(string key)
         {
             PropertyValue ret = new PropertyValue(NDalicPINVOKE.Property_Map_ValueOfIndex__SWIG_0(swigCPtr, key), false);
@@ -1012,8 +1012,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves the element with the specified index key.
         /// </summary>
-        /// <param name="key">The key whose value to retrieve</param>
-        /// <returns>The value for the element with the specified key</returns>
+        /// <param name="key">The key whose value to retrieve.</param>
+        /// <returns>The value for the element with the specified key.</returns>
         internal PropertyValue ValueOfIndex(int key)
         {
             PropertyValue ret = new PropertyValue(NDalicPINVOKE.Property_Map_ValueOfIndex__SWIG_2(swigCPtr, key), false);
@@ -1106,11 +1106,11 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Extension to property value class that allows us to create a
-        /// PropertyValue from a C# object, e.g. int, float, string.<br>
+        /// An extension to the property value class that allows us to create a
+        /// Property value from a C# object, for example, integer, float, or string.<br>
         /// </summary>
-        /// <param name="obj">An object to create</param>
-        /// <returns>The created value</returns>
+        /// <param name="obj">An object to create.</param>
+        /// <returns>The created value.</returns>
         static public PropertyValue CreateFromObject(System.Object obj)
         {
             System.Type type = obj.GetType();
@@ -1196,7 +1196,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a Size2D property value.
         /// </summary>
-        /// <param name="vectorValue">A Size2D values</param>
+        /// <param name="vectorValue">Size2D values.</param>
         public PropertyValue(Size2D vectorValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_4(Size2D.getCPtr(vectorValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1205,7 +1205,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a Position2D property value.
         /// </summary>
-        /// <param name="vectorValue">A Position2D values</param>
+        /// <param name="vectorValue">Position2D values.</param>
         public PropertyValue(Position2D vectorValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_4(Position2D.getCPtr(vectorValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1214,7 +1214,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a Size property value.
         /// </summary>
-        /// <param name="vectorValue">A Size values</param>
+        /// <param name="vectorValue">Size values.</param>
         internal PropertyValue(Size vectorValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_5(Size.getCPtr(vectorValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1223,7 +1223,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a Position property value.
         /// </summary>
-        /// <param name="vectorValue">A Position values</param>
+        /// <param name="vectorValue">Position values.</param>
         public PropertyValue(Position vectorValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_5(Position.getCPtr(vectorValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1232,7 +1232,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a Color property value.
         /// </summary>
-        /// <param name="vectorValue">A Color values</param>
+        /// <param name="vectorValue">Color values.</param>
         public PropertyValue(Color vectorValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_6(Color.getCPtr(vectorValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1242,7 +1242,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves a Size2D value.
         /// </summary>
-        /// <param name="vectorValue"> On return, a Size2D value</param>
+        /// <param name="vectorValue"> On return, a Size2D value.</param>
         public bool Get(Size2D vectorValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_5(swigCPtr, Size2D.getCPtr(vectorValue));
@@ -1253,7 +1253,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves a Position2D value.
         /// </summary>
-        /// <param name="vectorValue"> On return, a Position2D value</param>
+        /// <param name="vectorValue"> On return, a Position2D value.</param>
         public bool Get(Position2D vectorValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_5(swigCPtr, Position2D.getCPtr(vectorValue));
@@ -1264,7 +1264,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves a Size value.
         /// </summary>
-        /// <param name="vectorValue"> On return, a Size value</param>
+        /// <param name="vectorValue"> On return, a size value.</param>
         internal bool Get(Size vectorValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_6(swigCPtr, Size.getCPtr(vectorValue));
@@ -1275,7 +1275,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves a Position value.
         /// </summary>
-        /// <param name="vectorValue"> On return, a Position value</param>
+        /// <param name="vectorValue"> On return, a position value.</param>
         public bool Get(Position vectorValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_6(swigCPtr, Position.getCPtr(vectorValue));
@@ -1286,7 +1286,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves a Color value.
         /// </summary>
-        /// <param name="vectorValue"> On return, a Color value</param>
+        /// <param name="vectorValue"> On return, a color value.</param>
         public bool Get(Color vectorValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_7(swigCPtr, Color.getCPtr(vectorValue));
@@ -1297,7 +1297,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Default constructor.
+        /// The default constructor.
         /// </summary>
         public PropertyValue() : this(NDalicPINVOKE.new_Property_Value__SWIG_0(), true)
         {
@@ -1307,7 +1307,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a boolean property value.
         /// </summary>
-        /// <param name="boolValue">A boolean value</param>
+        /// <param name="boolValue">A boolean value.</param>
         public PropertyValue(bool boolValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_1(boolValue), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1316,7 +1316,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates an integer property value.
         /// </summary>
-        /// <param name="integerValue">An integer value</param>
+        /// <param name="integerValue">An integer value.</param>
         public PropertyValue(int integerValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_2(integerValue), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1325,7 +1325,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a float property value.
         /// </summary>
-        /// <param name="floatValue">A floating-point value</param>
+        /// <param name="floatValue">A floating-point value.</param>
         public PropertyValue(float floatValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_3(floatValue), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1334,7 +1334,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a Vector2 property value.
         /// </summary>
-        /// <param name="vectorValue">A vector of 2 floating-point values</param>
+        /// <param name="vectorValue">A vector of 2 floating-point values.</param>
         public PropertyValue(Vector2 vectorValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_4(Vector2.getCPtr(vectorValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1343,7 +1343,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a Vector3 property value.
         /// </summary>
-        /// <param name="vectorValue">A vector of 3 floating-point values</param>
+        /// <param name="vectorValue">A vector of 3 floating-point values.</param>
         public PropertyValue(Vector3 vectorValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_5(Vector3.getCPtr(vectorValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1352,7 +1352,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a Vector4 property value.
         /// </summary>
-        /// <param name="vectorValue">A vector of 4 floating-point values</param>
+        /// <param name="vectorValue">A vector of 4 floating-point values.</param>
         public PropertyValue(Vector4 vectorValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_6(Vector4.getCPtr(vectorValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1371,7 +1371,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a Rectangle property value.
         /// </summary>
-        /// <param name="vectorValue">A Rectangle values</param>
+        /// <param name="vectorValue">Rectangle values.</param>
         public PropertyValue(Rectangle vectorValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_9(Rectangle.getCPtr(vectorValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1385,7 +1385,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a Rotation property value.
         /// </summary>
-        /// <param name="quaternion">A Rotation values</param>
+        /// <param name="quaternion">Rotation values.</param>
         public PropertyValue(Rotation quaternion) : this(NDalicPINVOKE.new_Property_Value__SWIG_11(Rotation.getCPtr(quaternion)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1394,7 +1394,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a string property value.
         /// </summary>
-        /// <param name="stringValue">A string</param>
+        /// <param name="stringValue">A string.</param>
         public PropertyValue(string stringValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_12(stringValue), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1403,7 +1403,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates an array property value.
         /// </summary>
-        /// <param name="arrayValue">An array</param>
+        /// <param name="arrayValue">An array.</param>
         public PropertyValue(PropertyArray arrayValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_14(PropertyArray.getCPtr(arrayValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1412,7 +1412,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a map property value.
         /// </summary>
-        /// <param name="mapValue">An array</param>
+        /// <param name="mapValue">An array.</param>
         public PropertyValue(PropertyMap mapValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_15(PropertyMap.getCPtr(mapValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1421,7 +1421,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a PropertyType value.
         /// </summary>
-        /// <param name="type">A PropertyType values</param>
+        /// <param name="type">A PropertyType value.</param>
         public PropertyValue(PropertyType type) : this(NDalicPINVOKE.new_Property_Value__SWIG_16((int)type), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1430,7 +1430,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a PropertyValue value.
         /// </summary>
-        /// <param name="value">A PropertyValue values</param>
+        /// <param name="value">A PropertyValue value.</param>
         public PropertyValue(PropertyValue value) : this(NDalicPINVOKE.new_Property_Value__SWIG_17(PropertyValue.getCPtr(value)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1450,8 +1450,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves a boolean value.
         /// </summary>
-        /// <param name="boolValue">On return, a boolean value</param>
-        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
+        /// <param name="boolValue">On return, a boolean value.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
         public bool Get(out bool boolValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_1(swigCPtr, out boolValue);
@@ -1462,8 +1462,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves a floating-point value.
         /// </summary>
-        /// <param name="floatValue">On return, a floating-point value</param>
-        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
+        /// <param name="floatValue">On return, a floating-point value.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
         public bool Get(out float floatValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_2(swigCPtr, out floatValue);
@@ -1472,10 +1472,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves a integer value.
+        /// Retrieves an integer value.
         /// </summary>
-        /// <param name="integerValue">On return, a integer value</param>
-        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
+        /// <param name="integerValue">On return, an integer value.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
         public bool Get(out int integerValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_3(swigCPtr, out integerValue);
@@ -1486,8 +1486,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves an integer rectangle.
         /// </summary>
-        /// <param name="rect">On return, an integer rectangle</param>
-        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
+        /// <param name="rect">On return, an integer rectangle.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
         public bool Get(Rectangle rect)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_4(swigCPtr, Rectangle.getCPtr(rect));
@@ -1498,8 +1498,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves a vector value.
         /// </summary>
-        /// <param name="vectorValue">On return, a vector value</param>
-        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
+        /// <param name="vectorValue">On return, a vector value.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
         public bool Get(Vector2 vectorValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_5(swigCPtr, Vector2.getCPtr(vectorValue));
@@ -1510,8 +1510,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves a vector value.
         /// </summary>
-        /// <param name="vectorValue">On return, a vector value</param>
-        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
+        /// <param name="vectorValue">On return, a vector value.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
         public bool Get(Vector3 vectorValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_6(swigCPtr, Vector3.getCPtr(vectorValue));
@@ -1522,8 +1522,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves a vector value.
         /// </summary>
-        /// <param name="vectorValue">On return, a vector value</param>
-        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
+        /// <param name="vectorValue">On return, a vector value.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
         public bool Get(Vector4 vectorValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_7(swigCPtr, Vector4.getCPtr(vectorValue));
@@ -1555,8 +1555,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves a Rotation value.
         /// </summary>
-        /// <param name="quaternionValue">On return, a Rotation value</param>
-        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
+        /// <param name="quaternionValue">On return, a rotation value.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
         public bool Get(Rotation quaternionValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_11(swigCPtr, Rotation.getCPtr(quaternionValue));
@@ -1567,8 +1567,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves a string property value.
         /// </summary>
-        /// <param name="stringValue">On return, a string</param>
-        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
+        /// <param name="stringValue">On return, a string.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
         public bool Get(out string stringValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_12(swigCPtr, out stringValue);
@@ -1579,8 +1579,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves an array property value.
         /// </summary>
-        /// <param name="arrayValue">On return, the array as a vector Property Values</param>
-        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
+        /// <param name="arrayValue">On return, the array as a vector property values.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
         public bool Get(PropertyArray arrayValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_13(swigCPtr, PropertyArray.getCPtr(arrayValue));
@@ -1589,10 +1589,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves an map property value.
+        /// Retrieves a map property value.
         /// </summary>
-        /// <param name="mapValue">On return, the map as vector of string and Property Value pairs</param>
-        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible</returns>
+        /// <param name="mapValue">On return, the map as vector of string and property value pairs.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
         public bool Get(PropertyMap mapValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_14(swigCPtr, PropertyMap.getCPtr(mapValue));

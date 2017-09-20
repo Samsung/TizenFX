@@ -43,7 +43,7 @@ namespace Tizen.NUI
         protected bool disposed = false;
 
         /// <summary>
-        /// Dispose
+        /// Dispose.
         /// </summary>
         ~Size()
         {
@@ -106,86 +106,86 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Addition operator for A+B
+        /// The addition operator for A+B.
         /// </summary>
-        /// <param name="arg1">Size, A</param>
-        /// <param name="arg2">Size to assign, B</param>
-        /// <returns>A Size containing the result of the addition</returns>
+        /// <param name="arg1">Size to assign A.</param>
+        /// <param name="arg2">Size to assign B.</param>
+        /// <returns>A size containing the result of the addition.</returns>
         public static Size operator +(Size arg1, Size arg2)
         {
             return arg1.Add(arg2);
         }
 
         /// <summary>
-        /// Subtraction operator for A-B
+        /// The subtraction operator for A-B.
         /// </summary>
-        /// <param name="arg1">Size, A</param>
-        /// <param name="arg2">Size to subtract, B</param>
-        /// <returns>A Size containing the result of the subtraction</returns>
+        /// <param name="arg1">Size to subtract A.</param>
+        /// <param name="arg2">Size to subtract B.</param>
+        /// <returns>The size containing the result of the subtraction.</returns>
         public static Size operator -(Size arg1, Size arg2)
         {
             return arg1.Subtract(arg2);
         }
 
         /// <summary>
-        /// Unary negation operator.
+        /// The unary negation operator.
         /// </summary>
-        /// <param name="arg1">Size for unary negation</param>
-        /// <returns>A Size containg the negation</returns>
+        /// <param name="arg1">Size for unary negation.</param>
+        /// <returns>A size containing the negation.</returns>
         public static Size operator -(Size arg1)
         {
             return arg1.Subtract();
         }
 
         /// <summary>
-        /// Multiplication operator.
+        /// The multiplication operator.
         /// </summary>
-        /// <param name="arg1">Size for multiplication</param>
-        /// <param name="arg2">The Size to multipl</param>
-        /// <returns>A Size containing the result of the multiplication</returns>
+        /// <param name="arg1">Size for multiplication.</param>
+        /// <param name="arg2">The size to multiply.</param>
+        /// <returns>A size containing the result of the multiplication.</returns>
         public static Size operator *(Size arg1, Size arg2)
         {
             return arg1.Multiply(arg2);
         }
 
         /// <summary>
-        /// Multiplication operator.
+        /// The multiplication operator.
         /// </summary>
-        /// <param name="arg1">Size for multiplication</param>
-        /// <param name="arg2">The float value to scale the Size</param>
-        /// <returns>A Size containing the result of the scaling</returns>
+        /// <param name="arg1">Size for multiplication.</param>
+        /// <param name="arg2">The float value to scale the size.</param>
+        /// <returns>A size containing the result of the scaling.</returns>
         public static Size operator *(Size arg1, float arg2)
         {
             return arg1.Multiply(arg2);
         }
 
         /// <summary>
-        /// Division operator.
+        /// The division operator.
         /// </summary>
-        /// <param name="arg1">Size for division</param>
-        /// <param name="arg2">The Size to divide</param>
-        /// <returns>A Size containing the result of the division></returns>
+        /// <param name="arg1">Size for division.</param>
+        /// <param name="arg2">The size to divide.</param>
+        /// <returns>A size containing the result of the division.</returns>
         public static Size operator /(Size arg1, Size arg2)
         {
             return arg1.Divide(arg2);
         }
 
         /// <summary>
-        /// Division operator.
+        /// The division operator.
         /// </summary>
-        /// <param name="arg1">Size for division</param>
-        /// <param name="arg2">The float value to scale the Size by</param>
-        /// <returns>A Size containing the result of the scaling</returns>
+        /// <param name="arg1">Size for division.</param>
+        /// <param name="arg2">The float value to scale the size by.</param>
+        /// <returns>A Size containing the result of the scaling.</returns>
         public static Size operator /(Size arg1, float arg2)
         {
             return arg1.Divide(arg2);
         }
 
         /// <summary>
-        /// Array subscript operator.
+        /// The array subscript operator.
         /// </summary>
-        /// <param name="index">Subscript index</param>
-        /// <returns>The float at the given index</returns>
+        /// <param name="index">Subscript index.</param>
+        /// <returns>The float at the given index.</returns>
         public float this[uint index]
         {
             get
@@ -202,7 +202,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.
+        /// The constructor.
         /// </summary>
         public Size() : this(NDalicPINVOKE.new_Vector3__SWIG_0(), true)
         {
@@ -210,27 +210,27 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.
+        /// The constructor.
         /// </summary>
-        /// <param name="x">x (or width) component</param>
-        /// <param name="y">y (or height) component</param>
-        /// <param name="z">z (or depth) component</param>
+        /// <param name="x">The x (or width) component.</param>
+        /// <param name="y">The y (or height) component.</param>
+        /// <param name="z">The z (or depth) component.</param>
         public Size(float x, float y, float z) : this(NDalicPINVOKE.new_Vector3__SWIG_1(x, y, z), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Constructor.
+        /// The constructor.
         /// </summary>
-        /// <param name="size2d">Size2D with x (width) and y (height)</param>
+        /// <param name="size2d">Size2D with x (width) and y (height).</param>
         public Size(Size2D size2d) : this(NDalicPINVOKE.new_Vector3__SWIG_3(Size2D.getCPtr(size2d)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Zero constant, (0.0f, 0.0f, 0.0f).
+        /// The Zero constant, (0.0f, 0.0f, 0.0f).
         /// </summary>
         public static Size Zero
         {
@@ -300,11 +300,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Check equality.<br>
+        /// Checks equality.<br>
         /// Utilizes appropriate machine epsilon values.<br>
         /// </summary>
-        /// <param name="rhs">The Size to test against</param>
-        /// <returns>True if the Sizes are equal</returns>
+        /// <param name="rhs">The size to test against.</param>
+        /// <returns>True if the sizes are equal.</returns>
         public bool EqualTo(Size rhs)
         {
             bool ret = NDalicPINVOKE.Vector3_EqualTo(swigCPtr, Size.getCPtr(rhs));
@@ -313,11 +313,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Check inequality.<br>
+        /// Checks inequality.<br>
         /// Utilizes appropriate machine epsilon values.<br>
         /// </summary>
-        /// <param name="rhs">The Size to test against</param>
-        /// <returns>True if the Sizes are not equal</returns>
+        /// <param name="rhs">The size to test against.</param>
+        /// <returns>True if the sizes are not equal.</returns>
         public bool NotEqualTo(Size rhs)
         {
             bool ret = NDalicPINVOKE.Vector3_NotEqualTo(swigCPtr, Size.getCPtr(rhs));
@@ -326,7 +326,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Width property for width component of Siz
+        /// The Width property for the width component of size
         /// </summary>
         public float Width
         {
@@ -344,7 +344,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Height property for height component of Size
+        /// The Height property for the height component of size.
         /// </summary>
         public float Height
         {
@@ -362,7 +362,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Depth property for depth component of Size
+        /// The Depth property for the depth component of size.
         /// </summary>
         public float Depth
         {
@@ -380,18 +380,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Type cast operator, Size to Vector3.
+        /// The type cast operator, Size to Vector3.
         /// </summary>
-        /// <param name="size">Object of Size type</param>
+        /// <param name="size">The object of size type.</param>
         public static implicit operator Vector3(Size size)
         {
             return new Vector3(size.Width, size.Height, size.Depth);
         }
 
         /// <summary>
-        /// Type cast operator, Vector3 to Size type.
+        /// The type cast operator, Vector3 to Size type.
         /// </summary>
-        /// <param name="vec">Object of Vector3 type</param>
+        /// <param name="vec">The object of Vector3 type.</param>
         public static implicit operator Size(Vector3 vec)
         {
             return new Size(vec.Width, vec.Height, vec.Depth);

@@ -19,7 +19,7 @@ namespace Tizen.NUI
     using Tizen.NUI.BaseComponents;
     /// <summary>
     /// Hover events are a collection of points at a specific moment in time.<br>
-    /// When a multi event occurs, each point represents the points that are currently being
+    /// When a multi-event occurs, each point represents the points that are currently being
     /// hovered or the points where a hover has stopped.<br>
     /// </summary>
     public class Hover : global::System.IDisposable
@@ -121,12 +121,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns the ID of the device used for the Point specified.<br>
+        /// Returns the ID of the device used for the point specified.<br>
         /// Each point has a unique device ID which specifies the device used for that
         /// point. This is returned by this method.<br>
         /// </summary>
-        /// <param name="point">The point required</param>
-        /// <returns>The Device ID of this poin</returns>
+        /// <param name="point">The point required.</param>
+        /// <returns>The device ID of this point.</returns>
         public int GetDeviceId(uint point)
         {
             if (point < points.Count)
@@ -137,10 +137,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the State of the point specified.
+        /// Retrieves the state of the point specified.
         /// </summary>
-        /// <param name="point">The point required</param>
-        /// <returns>The state of the point specified</returns>
+        /// <param name="point">The point required.</param>
+        /// <returns>The state of the point specified.</returns>
         public PointStateType GetState(uint point)
         {
             if (point < points.Count)
@@ -153,8 +153,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves the view that was underneath the point specified.
         /// </summary>
-        /// <param name="point">The point required</param>
-        /// <returns>The view that was underneath the point specified</returns>
+        /// <param name="point">The point required.</param>
+        /// <returns>The view that was underneath the point specified.</returns>
         public View GetHitView(uint point)
         {
             if (point < points.Count)
@@ -171,10 +171,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the co-ordinates relative to the top-left of the hit-view at the point specified.
+        /// Retrieves the coordinates relative to the top-left of the hit-view at the point specified.
         /// </summary>
-        /// <param name="point">The point required</param>
-        /// <returns>The co-ordinates relative to the top-left of the hit-view of the point specified</returns>
+        /// <param name="point">The point required.</param>
+        /// <returns>The coordinates relative to the top-left of the hit-view of the point specified.</returns>
         public Vector2 GetLocalPosition(uint point)
         {
             if (point < points.Count)
@@ -185,10 +185,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the co-ordinates relative to the top-left of the screen of the point specified.
+        /// Retrieves the coordinates relative to the top-left of the screen of the point specified.
         /// </summary>
-        /// <param name="point">The point required</param>
-        /// <returns>The co-ordinates relative to the top-left of the screen of the point specified</returns>
+        /// <param name="point">The point required.</param>
+        /// <returns>The coordinates relative to the top-left of the screen of the point specified.</returns>
         public Vector2 GetScreenPosition(uint point)
         {
             if (point < points.Count)
@@ -199,7 +199,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Default constructor.
+        /// The default constructor.
         /// </summary>
         public Hover() : this(NDalicPINVOKE.new_Hover__SWIG_0(), true)
         {
@@ -207,9 +207,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.
+        /// The constructor.
         /// </summary>
-        /// <param name="time">The time the event occurred</param>
+        /// <param name="time">The time the event occurred.</param>
         internal Hover(uint time) : this(NDalicPINVOKE.new_Hover__SWIG_1(time), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -249,7 +249,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Returns the total number of points.
         /// </summary>
-        /// <returns>Total number of Points</returns>
+        /// <returns>Total number of points.</returns>
         public uint GetPointCount()
         {
             uint ret = NDalicPINVOKE.Hover_GetPointCount(swigCPtr);

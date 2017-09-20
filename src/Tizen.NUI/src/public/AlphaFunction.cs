@@ -54,7 +54,7 @@ namespace Tizen.NUI
             }
         }
         /// <summary>
-        /// To make AlphaFunction instance be disposed.
+        /// To make the AlphaFunction instance be disposed.
         /// </summary>
         public void Dispose()
         {
@@ -106,8 +106,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.<br>
-        /// Creates an alpha function object with user defined alpha function.<br>
+        /// The constructor.<br>
+        /// Creates an alpha function object with the user-defined alpha function.<br>
         /// </summary>
         /// <param name="func">User defined fuction. It must be a method formatted as float alphafunction(float progress)</param>
         public AlphaFunction(System.Delegate func) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(new SWIGTYPE_p_f_float__float(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func), true))), true)
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Default constructor.<br>
+        /// The default constructor.<br>
         /// Creates an alpha function object with the default built-in alpha function.<br>
         /// </summary>
         public AlphaFunction() : this(NDalicPINVOKE.new_AlphaFunction__SWIG_0(), true)
@@ -125,10 +125,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.<br>
+        /// The constructor.<br>
         /// Creates an alpha function object with the built-in alpha function passed as a parameter to the constructor.<br>
         /// </summary>
-        /// <param name="function">One of the built-in alpha functions</param>
+        /// <param name="function">One of the built-in alpha functions.</param>
         public AlphaFunction(AlphaFunction.BuiltinFunctions function) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_1((int)function), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -140,12 +140,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.<br>
-        /// Creates a bezier alpha function.The bezier will have the first point at(0,0) and the end point at(1,1).<br>
+        /// The constructor.<br>
+        /// Creates a bezier alpha function. The bezier will have the first point at (0,0) and the end point at (1,1).<br>
         /// </summary>
-        /// <remarks>The x components of the control points will be clamped to the range[0, 1] to prevent non monotonic curves.</remarks>
-        /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve</param>
-        /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve</param>
+        /// <remarks>The x components of the control points will be clamped to the range [0, 1] to prevent non-monotonic curves.</remarks>
+        /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve.</param>
+        /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve.</param>
         public AlphaFunction(Vector2 controlPoint0, Vector2 controlPoint1) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_3(Vector2.getCPtr(controlPoint0), Vector2.getCPtr(controlPoint1)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -154,8 +154,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrives the control points of the alpha function.<br>
         /// </summary>
-        /// <param name="controlPoint0">A Vector2 which is used as the first control point of the curve</param>
-        /// <param name="controlPoint1">A Vector2 which is used as the second control point of the curve</param>
+        /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve.</param>
+        /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve.</param>
         public void GetBezierControlPoints(out Vector2 controlPoint0, out Vector2 controlPoint1)
         {
             Vector4 ret = new Vector4(NDalicPINVOKE.AlphaFunction_GetBezierControlPoints(swigCPtr), true);
@@ -186,9 +186,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Returns the functioning mode of the alpha function
+        ///  Returns the functioning mode of the alpha function.
         /// </summary>
-        /// <returns>The functioning mode of the alpha function</returns>
+        /// <returns>The functioning mode of the alpha function.</returns>
         public AlphaFunction.Modes GetMode()
         {
             AlphaFunction.Modes ret = (AlphaFunction.Modes)NDalicPINVOKE.AlphaFunction_GetMode(swigCPtr);
@@ -197,71 +197,71 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This specifies the various types of BuiltinFunctions
+        /// This specifies the various types of BuiltinFunctions.
         /// </summary>
         public enum BuiltinFunctions
         {
             /// <summary>
-            /// Linear
+            /// Linear.
             /// </summary>
             Default,
             /// <summary>
-            /// No transformation
+            /// No transformation.
             /// </summary>
             Linear,
             /// <summary>
-            /// Reverse linear
+            /// Reverse linear.
             /// </summary>
             Reverse,
             /// <summary>
-            /// Speeds up and comes to a sudden stop (Square)
+            /// Speeds up and comes to a sudden stop (square).
             /// </summary>
             EaseInSquare,
             /// <summary>
-            /// Sudden start and slows to a gradual stop (Square)
+            /// Sudden start and slows to a gradual stop (square).
             /// </summary>
             EaseOutSquare,
             /// <summary>
-            /// Speeds up and comes to a sudden stop (Cubic)
+            /// Speeds up and comes to a sudden stop (cubic).
             /// </summary>
             EaseIn,
             /// <summary>
-            /// Sudden start and slows to a gradual stop (Cubic)
+            /// Sudden start and slows to a gradual stop (cubic).
             /// </summary>
             EaseOut,
             /// <summary>
-            /// Speeds up and slows to a gradual stop (Cubic)
+            /// Speeds up and slows to a gradual stop (cubic).
             /// </summary>
             EaseInOut,
             /// <summary>
-            /// Speeds up and comes to a sudden stop (sinusoidal)
+            /// Speeds up and comes to a sudden stop (sinusoidal).
             /// </summary>
             EaseInSine,
             /// <summary>
-            /// Sudden start and slows to a gradual stop (sinusoidal)
+            /// Sudden start and slows to a gradual stop (sinusoidal).
             /// </summary>
             EaseOutSine,
             /// <summary>
-            /// Speeds up and slows to a gradual stop (sinusoidal)
+            /// Speeds up and slows to a gradual stop (sinusoidal).
             /// </summary>
             EaseInOutSine,
             /// <summary>
-            /// Sudden start, loses momentum and returns to start position
+            /// Sudden start, loses momentum and returns to start position.
             /// </summary>
             Bounce,
             /// <summary>
-            /// Single revolution
+            /// Single revolution.
             /// </summary>
             Sin,
             /// <summary>
-            /// Sudden start, exceed end position and return to a gradual stop
+            /// Sudden start, exceed end position and return to a gradual stop.
             /// </summary>
             EaseOutBack,
             Count
         }
 
         /// <summary>
-        /// This specifies which mode is set for AlphaFuction
+        /// This specifies which mode is set for AlphaFunction.
         /// </summary>
         public enum Modes
         {
@@ -271,11 +271,11 @@ namespace Tizen.NUI
             BuiltinFunction,
 
             /// <summary>
-            /// The user has provided a custom function
+            /// The user has provided a custom function.
             /// </summary>
             CustomFunction,
             /// <summary>
-            /// The user has provided the control points of a bezier curve
+            /// The user has provided the control points of a bezier curve.
             /// </summary>
             Bezier
         }

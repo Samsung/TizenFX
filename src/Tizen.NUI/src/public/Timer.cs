@@ -23,10 +23,10 @@ namespace Tizen.NUI
     /// <summary>
     /// Mechanism to issue simple periodic or one-shot events.<br>
     /// Timer is provided for application developers to be able to issue
-    /// simple periodic or one-shot events.  Please note that timer
-    /// callback functions should return as soon as possible, because they
-    /// block the next SignalTick.  Please note that timer signals are not
-    /// in sync with Dali's render timer.<br>
+    /// simple periodic or one-shot events. Please note that the timer
+    /// callback functions should return as soon as possible because they
+    /// block the next SignalTick. Please note that timer signals are not
+    /// in sync with DALi's render timer.<br>
     /// This class is a handle class so it can be stack allocated and used
     /// as a member.<br>
     /// </summary>
@@ -82,7 +82,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Event arguments that passed via Tick event.
+        /// Event arguments that passed via the tick event.
         /// </summary>
         public class TickEventArgs : EventArgs
         {
@@ -94,9 +94,9 @@ namespace Tizen.NUI
         private TickCallbackDelegate _timerTickCallbackDelegate;
 
         /// <summary>
-        /// brief Event for Ticked signal which can be used to subscribe/unsubscribe the event handler
-        /// (in the type of TickEventHandler-DaliEventHandlerWithReturnType<object,TickEventArgs,bool>).<br>
-        /// provided by the user. Ticked signal is emitted after specified time interval.<br>
+        /// @brief Event for the ticked signal, which can be used to subscribe or unsubscribe the event handler
+        /// (in the type of TickEventHandler-DaliEventHandlerWithReturnType<object,TickEventArgs,bool>)<br>
+        /// provided by the user. The ticked signal is emitted after specified time interval.<br>
         /// </summary>
         public event EventHandlerWithReturnType<object, TickEventArgs, bool> Tick
         {
@@ -132,10 +132,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates a tick Timer that emits periodic signal.
+        /// Creates a tick timer that emits periodic signal.
         /// </summary>
-        /// <param name="milliSec">Interval in milliseconds</param>
-        /// <returns>A new timer</returns>
+        /// <param name="milliSec">Interval in milliseconds.</param>
+        /// <returns>A new timer.</returns>
         public Timer(uint milliSec) : this(NDalicPINVOKE.Timer_New(milliSec), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -156,8 +156,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Starts timer.<br>
-        /// In case a Timer is already running, its time is reset and timer is restarted.<br>
+        /// Starts the timer.<br>
+        /// In case a timer is already running, its time is reset and the timer is restarted.<br>
         /// </summary>
         public void Start()
         {
@@ -166,7 +166,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Stops timer.
+        /// Stops the timer.
         /// </summary>
         public void Stop()
         {
@@ -175,10 +175,25 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets/Sets the interval of the timer.
+        /// </summary>
+        public uint Interval
+        {
+            get
+            {
+                return GetInterval();
+            }
+            set
+            {
+                SetInterval(value);
+            }
+        }
+
+        /// <summary>
         /// Sets a new interval on the timer and starts the timer.<br>
         /// Cancels the previous timer.<br>
         /// </summary>
-        /// <param name="milliSec">milliSec Interval in milliseconds</param>
+        /// <param name="milliSec">MilliSec interval in milliseconds.</param>
         internal void SetInterval(uint milliSec)
         {
             NDalicPINVOKE.Timer_SetInterval(swigCPtr, milliSec);
@@ -193,9 +208,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Tells whether timer is running.
+        /// Tells whether the timer is running.
         /// </summary>
-        /// <returns>Whether Timer is started or not</returns>
+        /// <returns>Whether the timer is started or not.</returns>
         public bool IsRunning()
         {
             bool ret = NDalicPINVOKE.Timer_IsRunning(swigCPtr);

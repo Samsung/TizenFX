@@ -16,12 +16,13 @@
 namespace Tizen.NUI.BaseComponents
 {
     using System;
+    using System.Text;
     using System.Runtime.InteropServices;
     using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
-    /// A visual view control for user add any visual to it.
+    /// A visual view control if a user adds any visual to it.
     /// </summary>
     /// <example>
     /// Example:
@@ -62,7 +63,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Override the parent method.
+        /// Overrides the parent method.
         /// </summary>
         public override void OnInitialize()
         {
@@ -73,10 +74,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Add or update a visual to visual view.
+        /// Adds or updates a visual to visual view.
         /// </summary>
-        /// <param name="visualName"> The name of visual to add. If add a existed visual name, the visual will be replaced. </param>
-        /// <param name="visualMap"> The property map of visual to create.  </param>
+        /// <param name="visualName">The name of a visual to add. If a name is added to an existing visual name, the visual will be replaced.</param>
+        /// <param name="visualMap">The property map of a visual to create.</param>
         public void AddVisual(string visualName, VisualMap visualMap)
         {
             VisualBase visual = null;
@@ -122,9 +123,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Remove a visual by name.
+        /// Removes a visual by name.
         /// </summary>
-        /// <param name="visualName"> The name of visual to remove. </param>
+        /// <param name="visualName">The name of a visual to remove.</param>
         public void RemoveVisual(string visualName)
         {
             foreach (var item in _visualDictionary)
@@ -143,7 +144,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        ///  Get the total number of Visuals which are added by users
+        /// Gets the total number of visuals which are added by users.
         /// </summary>
         public int NumberOfVisuals
         {
@@ -154,7 +155,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Remove all visuals of visual view.
+        /// Removes all visuals of the visual view.
         /// </summary>
         public void RemoveAll()
         {
@@ -169,13 +170,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Override method of OnRelayout() for CustomView class.<br>
+        /// Overrides the method of OnRelayout() for CustomView class.<br>
         /// Called after the size negotiation has been finished for this control.<br>
-        /// The control is expected to assign this given size to itself/its children.<br>
-        /// Should be overridden by derived classes if they need to layout actors differently after certain operations like add or remove actors, resize or after changing specific properties.<br>
+        /// The control is expected to assign this given size to itself or its children.<br>
+        /// Should be overridden by derived classes if they need to layout actors differently after certain operations like add or remove actors, resize, or after changing specific properties.<br>
         /// </summary>
-        /// <remarks>As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored)</remarks>
-        /// <param name="size">The allocated size</param>
+        /// <remarks>As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).</remarks>
+        /// <param name="size">The allocated size.</param>
         /// <param name="container">The control should add actors to this container that it is not able to allocate a size for.</param>
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
@@ -204,15 +205,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Create visual animation (transition) with the input parameters.
+        /// Creates a visual animation (transition) with the input parameters.
         /// </summary>
-        /// <param name="target"> The visual map to animation.</param>
-        /// <param name="property"> The property of visual to animation.</param>
-        /// <param name="destinationValue"> The destination value of property after animation.</param>
-        /// <param name="startTime"> The start time of visual animation.</param>
-        /// <param name="endTime"> The end time of visual animation.</param>
-        /// <param name="alphaFunction"> The alpha function of visual animation</param>
-        /// <param name="initialValue"> The initial property value of visual animation </param>
+        /// <param name="target">The visual map to animation.</param>
+        /// <param name="property">The property of visual to animation.</param>
+        /// <param name="destinationValue">The destination value of property after animation.</param>
+        /// <param name="startTime">The start time of visual animation.</param>
+        /// <param name="endTime">The end time of visual animation.</param>
+        /// <param name="alphaFunction">The alpha function of visual animation.</param>
+        /// <param name="initialValue">The initial property value of visual animation.</param>
         /// <returns>Animation instance</returns>
         public Animation AnimateVisual(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
@@ -306,9 +307,9 @@ namespace Tizen.NUI.BaseComponents
                     _timePeriod.Add("delay", new PropertyValue(startTime / 1000.0f));
                     _animator.Add("timePeriod", new PropertyValue(_timePeriod));
 
-                    string _str1 = property.Substring(0, 1);
-                    string _str2 = property.Substring(1);
-                    string _str = _str1.ToLower() + _str2;
+                    StringBuilder sb = new StringBuilder(property);
+                    sb[0] = (char)(sb[0] | 0x20);
+                    string _str = sb.ToString();
                     if (_str == "position") {_str = "offset";}
 
                     PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue);
@@ -332,15 +333,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Add group visual animation (transition) map with the input parameters.
+        /// Adds a group visual animation (transition) map with the input parameters.
         /// </summary>
-        /// <param name="target"> The visual map to animation.</param>
-        /// <param name="property"> The property of visual to animation.</param>
-        /// <param name="destinationValue"> The destination value of property after animation.</param>
-        /// <param name="startTime"> The start time of visual animation.</param>
-        /// <param name="endTime"> The end time of visual animation.</param>
-        /// <param name="alphaFunction"> The alpha function of visual animation</param>
-        /// <param name="initialValue"> The initial property value of visual animation </param>
+        /// <param name="target">The visual map to animation.</param>
+        /// <param name="property">The property of visual to animation.</param>
+        /// <param name="destinationValue">The destination value of property after animation.</param>
+        /// <param name="startTime">The start time of visual animation.</param>
+        /// <param name="endTime">The end time of visual animation.</param>
+        /// <param name="alphaFunction">The alpha function of visual animation.</param>
+        /// <param name="initialValue">The initial property value of visual animation.</param>
         public void AnimateVisualAdd(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
             string _alphaFunction = null;
@@ -433,9 +434,9 @@ namespace Tizen.NUI.BaseComponents
                     _timePeriod.Add("delay", new PropertyValue(startTime / 1000.0f));
                     _animator.Add("timePeriod", new PropertyValue(_timePeriod));
 
-                    string _str1 = property.Substring(0, 1);
-                    string _str2 = property.Substring(1);
-                    string _str = _str1.ToLower() + _str2;
+                    StringBuilder sb = new StringBuilder(property);
+                    sb[0] = (char)(sb[0] | 0x20);
+                    string _str = sb.ToString();
                     if (_str == "position") {_str = "offset";}
 
                     PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue);
@@ -457,9 +458,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Finish to add Visual animation (transition) map and create transition animation.
+        /// Finishes to add a visual animation (transition) map and creates a transition animation.
         /// </summary>
-        /// <returns>Animation instance</returns>
+        /// <returns>Animation instance.</returns>
         public Animation AnimateVisualAddFinish()
         {
             if ( _animateArray == null || _animateArray.Empty())

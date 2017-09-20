@@ -137,9 +137,9 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal PropertyNotification AddPropertyNotification(int index, PropertyCondition condition)
+        public PropertyNotification AddPropertyNotification(string property, PropertyCondition condition)
         {
-            PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.Handle_AddPropertyNotification__SWIG_0(swigCPtr, index, PropertyCondition.getCPtr(condition)), true);
+            PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.Handle_AddPropertyNotification__SWIG_0(swigCPtr, PropertyHelper.GetPropertyFromString(this, property).propertyIndex, PropertyCondition.getCPtr(condition)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -151,13 +151,13 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void RemovePropertyNotification(PropertyNotification propertyNotification)
+        public void RemovePropertyNotification(PropertyNotification propertyNotification)
         {
             NDalicPINVOKE.Handle_RemovePropertyNotification(swigCPtr, PropertyNotification.getCPtr(propertyNotification));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void RemovePropertyNotifications()
+        public void RemovePropertyNotifications()
         {
             NDalicPINVOKE.Handle_RemovePropertyNotifications(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
