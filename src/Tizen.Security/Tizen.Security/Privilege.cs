@@ -196,8 +196,7 @@ namespace Tizen.Security
         {
             if (err == (int)ErrorCode.None)
                 return;
-            string errorMessage = string.Format("[{0}] {1}", ErrorFacts.GetErrorMessage(err), msg);
-            Tizen.Log.Error(Interop.Privilege.LogTag, errorMessage);
+            Tizen.Log.Error(Interop.Privilege.LogTag, "[" + ErrorFacts.GetErrorMessage(err) + "] " + msg);
             switch (err)
             {
                 case (int)ErrorCode.InvalidParameter:
