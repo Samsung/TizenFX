@@ -293,7 +293,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// EventArgs type for the LockscreenAppChanged event.
+    /// EventArgs type for the LockScreenAppChanged event.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
     /// <privlevel>platform</privlevel>
@@ -303,10 +303,10 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-    public class LockscreenAppChangedEventArgs : EventArgs
+    public class LockScreenAppChangedEventArgs : EventArgs
     {
         private readonly string _lockscreenApp = null;
-        internal LockscreenAppChangedEventArgs(string val)
+        internal LockScreenAppChangedEventArgs(string val)
         {
             _lockscreenApp = val;
         }
@@ -929,4 +929,34 @@ namespace Tizen.System
             }
         }
     }
+    /// <summary>
+    /// EventArgs type for the AccessibilityTtsChanged event.
+    /// </summary>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    public class AccessibilityTtsSettingChangedEventArgs : EventArgs
+    {
+        private readonly bool _AccessibilityTts;
+        internal AccessibilityTtsSettingChangedEventArgs(bool val)
+        {
+            _AccessibilityTts = val;
+        }
+
+        /// <summary>
+        /// Indicates whether the screen touch sound is enabled on the device.
+        /// </summary>
+        public bool Value
+        {
+            get
+            {
+                return _AccessibilityTts;
+            }
+        }
+    }
+
 }
