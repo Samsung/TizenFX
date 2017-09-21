@@ -68,7 +68,15 @@ namespace Tizen.Multimedia
 
         private static Capabilities LoadCapabilities()
         {
-            Native.Create(out var handle).ThrowIfError("Failed to load the capabilities"); ;
+            var ret = Native.Create(out var handle);
+
+            if (ret == RecorderErrorCode.NotSupported)
+            {
+                throw new NotSupportedException("Audio recording is not supported.");
+            }
+
+            ret.ThrowIfError("Failed to load the capabilities");
+
             using (handle)
             {
                 return new Capabilities(handle);
