@@ -20,7 +20,7 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// A set of key frames for a property that can be animated using Dali Animation.<br>
+    /// A set of key frames for a property that can be animated using DALi animation.<br>
     /// This allows the generation of key frame objects from individual Property::Values.<br>
     /// </summary>
     public class KeyFrames : BaseHandle
@@ -73,8 +73,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Adds a key frame.
         /// </summary>
-        /// <param name="progress">A progress value between 0.0 and 1.0</param>
-        /// <param name="value">A value</param>
+        /// <param name="progress">A progress value between 0.0 and 1.0.</param>
+        /// <param name="value">A value.</param>
         public void Add(float progress, object value)
         {
             PropertyValue val = PropertyValue.CreateFromObject(value);
@@ -84,9 +84,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Adds a key frame.
         /// </summary>
-        /// <param name="progress">A progress value between 0.0 and 1.0</param>
+        /// <param name="progress">A progress value between 0.0 and 1.0.</param>
         /// <param name="value">A value</param>
-        /// <param name="alpha">The alpha function used to blend to the next keyframe</param>
+        /// <param name="alpha">The alpha function used to blend to the next keyframe.</param>
         public void Add(float progress, object value, AlphaFunction alpha)
         {
             PropertyValue val = PropertyValue.CreateFromObject(value);
@@ -124,8 +124,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Adds a key frame.
         /// </summary>
-        /// <param name="progress">A progress value between 0.0 and 1.0</param>
-        /// <param name="value">A value</param>
+        /// <param name="progress">A progress value between 0.0 and 1.0.</param>
+        /// <param name="value">A value.</param>
         public void Add(float progress, PropertyValue value)
         {
             NDalicPINVOKE.KeyFrames_Add__SWIG_0(swigCPtr, progress, PropertyValue.getCPtr(value));
@@ -135,9 +135,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Adds a key frame.
         /// </summary>
-        /// <param name="progress">A progress value between 0.0 and 1.0</param>
-        /// <param name="value">A value</param>
-        /// <param name="alpha">The alpha function used to blend to the next keyframe</param>
+        /// <param name="progress">A progress value between 0.0 and 1.0.</param>
+        /// <param name="value">A value.</param>
+        /// <param name="alpha">The alpha function used to blend to the next keyframe.</param>
         public void Add(float progress, PropertyValue value, AlphaFunction alpha)
         {
             NDalicPINVOKE.KeyFrames_Add__SWIG_1(swigCPtr, progress, PropertyValue.getCPtr(value), AlphaFunction.getCPtr(alpha));

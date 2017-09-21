@@ -20,12 +20,12 @@ namespace Tizen.NUI.UIComponents
 {
 
     /// <summary>
-    /// CheckBoxButton provides a check box button which user can check or uncheck.<br>
-    /// By default, a CheckBoxButton emits a Button.Clicked event when the button changes its state to selected or unselected.<br>
+    /// The CheckBoxButton provides a checkbox button which the user can check or uncheck.<br>
+    /// By default, the CheckBoxButton emits a Button.Clicked event when the button changes its state to selected or unselected.<br>
     /// The button's appearance could be modified by Button.UnselectedImage, Button.BackgroundImage, Button.SelectedImage, Button.SelectedBackgroundImage, Button.DisabledBackgroundImage, Button.DisabledImage, and Button.DisabledSelectedImage.<br>
-    /// When the button is not disabled, if it's not selected it only shows the background image.<br>
+    /// When the button is not disabled, if it's not selected, it only shows the background image.<br>
     /// The selected image is shown over the background image when the box is selected (background image is not replaced by \e selected image).<br>
-    /// When the button is disabled, background image and selected image are replaced by disabled images.<br>
+    /// When the button is disabled, the background image and the selected image are replaced by disabled images.<br>
     /// /// </summary>
     public class CheckBoxButton : Button
     {
@@ -43,7 +43,7 @@ namespace Tizen.NUI.UIComponents
 
 
         /// <summary>
-        /// To make CheckBoxButton instance be disposed.
+        /// To dispose the CheckBoxButton instance.
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -77,7 +77,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Creates an initialized CheckBoxButton
+        /// Creates an initialized CheckBoxButton.
         /// </summary>
         public CheckBoxButton() : this(NDalicPINVOKE.CheckBoxButton_New(), true)
         {

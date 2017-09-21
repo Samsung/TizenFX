@@ -21,7 +21,7 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// Position is a three dimensional vector.
+    /// Position is a three-dimensional vector.
     /// </summary>
     public class Position : global::System.IDisposable
     {
@@ -104,76 +104,76 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Addition operator.
+        /// An addition operator.
         /// </summary>
-        /// <param name="arg1">Vector to add</param>
-        /// <param name="arg2">Vector to add</param>
-        /// <returns>A vector containing the result of the addition</returns>
+        /// <param name="arg1">The vector to add.</param>
+        /// <param name="arg2">The vector to add.</param>
+        /// <returns>The vector containing the result of the addition.</returns>
         public static Position operator +(Position arg1, Position arg2)
         {
             return arg1.Add(arg2);
         }
 
         /// <summary>
-        /// Subtraction operator.
+        /// The subtraction operator.
         /// </summary>
-        /// <param name="arg1">Vector to subtract</param>
-        /// <param name="arg2">Vector to subtract</param>
-        /// <returns>A vector containing the result of the subtraction</returns>
+        /// <param name="arg1">The vector to subtract.</param>
+        /// <param name="arg2">The vector to subtract.</param>
+        /// <returns>The vector containing the result of the subtraction.</returns>
         public static Position operator -(Position arg1, Position arg2)
         {
             return arg1.Subtract(arg2);
         }
 
         /// <summary>
-        /// Unary negation operator.
+        /// The unary negation operator.
         /// </summary>
-        /// <param name="arg1">Vector to netate</param>
-        /// <returns>A vector containg the negation</returns>
+        /// <param name="arg1">The vector to negate.</param>
+        /// <returns>The vector containg the negation.</returns>
         public static Position operator -(Position arg1)
         {
             return arg1.Subtract();
         }
 
         /// <summary>
-        /// Multiplication operator.
+        /// The multiplication operator.
         /// </summary>
-        /// <param name="arg1">The vector to multiply</param>
-        /// <param name="arg2">The vector to multiply</param>
-        /// <returns>A vector containing the result of the multiplication</returns>
+        /// <param name="arg1">The vector to multiply.</param>
+        /// <param name="arg2">The vector to multiply.</param>
+        /// <returns>The vector containing the result of the multiplication.</returns>
         public static Position operator *(Position arg1, Position arg2)
         {
             return arg1.Multiply(arg2);
         }
 
         /// <summary>
-        /// Multiplication operator.
+        /// The multiplication operator.
         /// </summary>
         /// <param name="arg1">The vector to multiply</param>
-        /// <param name="arg2">The float value to scale the vector</param>
-        /// <returns>A vector containing the result of the scaling</returns>
+        /// <param name="arg2">The float value to scale the vector.</param>
+        /// <returns>The vector containing the result of scaling.</returns>
         public static Position operator *(Position arg1, float arg2)
         {
             return arg1.Multiply(arg2);
         }
 
         /// <summary>
-        /// Division operator.
+        /// The division operator.
         /// </summary>
-        /// <param name="arg1">The vector to divide</param>
-        /// <param name="arg2">The vector to divide</param>
-        /// <returns>A vector containing the result of the division</returns>
+        /// <param name="arg1">The vector to divide.</param>
+        /// <param name="arg2">The vector to divide.</param>
+        /// <returns>The vector containing the result of the division.</returns>
         public static Position operator /(Position arg1, Position arg2)
         {
             return arg1.Divide(arg2);
         }
 
         /// <summary>
-        /// Division operator.
+        /// The division operator.
         /// </summary>
-        /// <param name="arg1">The vector to divide</param>
-        /// <param name="arg2">The float value to scale the vector by</param>
-        /// <returns>A vector containing the result of the scaling</returns>
+        /// <param name="arg1">The vector to divide.</param>
+        /// <param name="arg2">The float value to scale the vector by.</param>
+        /// <returns>The vector containing the result of scaling.</returns>
         public static Position operator /(Position arg1, float arg2)
         {
             return arg1.Divide(arg2);
@@ -181,10 +181,10 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Const array subscript operator overload. Should be 0, 1 or 2.
+        /// The const array subscript operator overload. Should be 0, 1, or 2.
         /// </summary>
-        /// <param name="index">Subscript index</param>
-        /// <returns>The float at the given index</returns>
+        /// <param name="index">The subscript index.</param>
+        /// <returns>The float at the given index.</returns>
         public float this[uint index]
         {
             get
@@ -193,8 +193,6 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// </summary>
         internal static Position GetPositionFromPtr(global::System.IntPtr cPtr)
         {
             Position ret = new Position(cPtr, false);
@@ -204,7 +202,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Constructor
+        /// The constructor.
         /// </summary>
         public Position() : this(NDalicPINVOKE.new_Vector3__SWIG_0(), true)
         {
@@ -212,20 +210,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor
+        /// The constructor.
         /// </summary>
-        /// <param name="x">x component</param>
-        /// <param name="y">y component</param>
-        /// <param name="z">z component</param>
+        /// <param name="x">The x component.</param>
+        /// <param name="y">The y component.</param>
+        /// <param name="z">The z component.</param>
         public Position(float x, float y, float z) : this(NDalicPINVOKE.new_Vector3__SWIG_1(x, y, z), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Constructor
+        /// The constructor.
         /// </summary>
-        /// <param name="position2d">Position2D to create this vector from</param>
+        /// <param name="position2d">Position2D to create this vector from.</param>
         public Position(Position2D position2d) : this(NDalicPINVOKE.new_Vector3__SWIG_3(Position2D.getCPtr(position2d)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -290,10 +288,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Compare if rhs is equal to
+        /// Compares if rhs is equal to.
         /// </summary>
-        /// <param name="rhs">The vector to compare</param>
-        /// <returns>Returns true if the two vectors are equal, otherwise false</returns>
+        /// <param name="rhs">The vector to compare.</param>
+        /// <returns>Returns true if the two vectors are equal, otherwise false.</returns>
         public bool EqualTo(Position rhs)
         {
             bool ret = NDalicPINVOKE.Vector3_EqualTo(swigCPtr, Position.getCPtr(rhs));
@@ -302,10 +300,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Compare if rhs is not equal to
+        /// Compares if rhs is not equal to.
         /// </summary>
-        /// <param name="rhs">The vector to compare</param>
-        /// <returns>Returns true if the two vectors are not equal, otherwise false</returns>
+        /// <param name="rhs">The vector to compare.</param>
+        /// <returns>Returns true if the two vectors are not equal, otherwise false.</returns>
         public bool NotEqualTo(Position rhs)
         {
             bool ret = NDalicPINVOKE.Vector3_NotEqualTo(swigCPtr, Position.getCPtr(rhs));
@@ -315,7 +313,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// x component
+        /// The x component.
         /// </summary>
         public float X
         {
@@ -333,7 +331,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// y component
+        /// The y component.
         /// </summary>
         public float Y
         {
@@ -351,7 +349,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// z component
+        /// The z component.
         /// </summary>
         public float Z
         {
@@ -434,7 +432,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ParentOrigin constants: 0.0, 0.0, 0.5
+        /// ParentOrigin constants: 0.0, 0.0, 0.5.
         /// </summary>
         public static Position ParentOriginTopLeft
         {
@@ -448,7 +446,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ParentOrigin constants: 0.5, 0.0, 0.5
+        /// ParentOrigin constants: 0.5, 0.0, 0.5.
         /// </summary>
         public static Position ParentOriginTopCenter
         {
@@ -462,7 +460,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ParentOrigin constants: 1.0, 0.0, 0.5
+        /// ParentOrigin constants: 1.0, 0.0, 0.5.
         /// </summary>
         public static Position ParentOriginTopRight
         {
@@ -476,7 +474,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ParentOrigin constants: 0.0, 0.5, 0.5
+        /// ParentOrigin constants: 0.0, 0.5, 0.5.
         /// </summary>
         public static Position ParentOriginCenterLeft
         {
@@ -504,7 +502,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ParentOrigin constants: 1.0, 0.5, 0.5
+        /// ParentOrigin constants: 1.0, 0.5, 0.5.
         /// </summary>
         public static Position ParentOriginCenterRight
         {
@@ -518,7 +516,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ParentOrigin constants: 0.0f, 1.0f, 0.5f
+        /// ParentOrigin constants: 0.0f, 1.0f, 0.5f.
         /// </summary>
         public static Position ParentOriginBottomLeft
         {
@@ -532,7 +530,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ParentOrigin constants: 0.5, 1.0, 0.5
+        /// ParentOrigin constants: 0.5, 1.0, 0.5.
         /// </summary>
         public static Position ParentOriginBottomCenter
         {
@@ -546,7 +544,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ParentOrigin constants: 1.0, 1.0, 0.5
+        /// ParentOrigin constants: 1.0, 1.0, 0.5.
         /// </summary>
         public static Position ParentOriginBottomRight
         {
@@ -560,7 +558,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 0.0
+        /// PivotPoint constants: 0.0.
         /// </summary>
         public static float PivotPointTop
         {
@@ -573,7 +571,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 1.0
+        /// PivotPoint constants: 1.0.
         /// </summary>
         public static float PivotPointBottom
         {
@@ -586,7 +584,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 0.0
+        /// PivotPoint constants: 0.0.
         /// </summary>
         public static float PivotPointLeft
         {
@@ -599,7 +597,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 1.0
+        /// PivotPoint constants: 1.0.
         /// </summary>
         public static float PivotPointRight
         {
@@ -612,7 +610,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 0.0
+        /// PivotPoint constants: 0.0.
         /// </summary>
         public static float PivotPointMiddle
         {
@@ -625,7 +623,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 0.0, 0.0, 0.5
+        /// PivotPoint constants: 0.0, 0.0, 0.5.
         /// </summary>
         public static Position PivotPointTopLeft
         {
@@ -639,7 +637,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 0.5, 0.0, 0.5
+        /// PivotPoint constants: 0.5, 0.0, 0.5.
         /// </summary>
         public static Position PivotPointTopCenter
         {
@@ -653,7 +651,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 1.0, 0.0, 0.5
+        /// PivotPoint constants: 1.0, 0.0, 0.5.
         /// </summary>
         public static Position PivotPointTopRight
         {
@@ -667,7 +665,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 0.0, 0.5, 0.5
+        /// PivotPoint constants: 0.0, 0.5, 0.5.
         /// </summary>
         public static Position PivotPointCenterLeft
         {
@@ -681,7 +679,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 0.5, 0.5, 0.5
+        /// PivotPoint constants: 0.5, 0.5, 0.5.
         /// </summary>
         public static Position PivotPointCenter
         {
@@ -695,7 +693,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 1.0, 0.5, 0.5
+        /// PivotPoint constants: 1.0, 0.5, 0.5.
         /// </summary>
         public static Position PivotPointCenterRight
         {
@@ -709,7 +707,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 0.0, 1.0, 0.5
+        /// PivotPoint constants: 0.0, 1.0, 0.5.
         /// </summary>
         public static Position PivotPointBottomLeft
         {
@@ -737,7 +735,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PivotPoint constants: 1.0, 1.0, 0.5
+        /// PivotPoint constants: 1.0, 1.0, 0.5.
         /// </summary>
         public static Position PivotPointBottomRight
         {
@@ -751,7 +749,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constant ( 1.0f, 1.0f, 1.0f )
+        /// Constant ( 1.0f, 1.0f, 1.0f ).
         /// </summary>
         public static Position One
         {
@@ -831,7 +829,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constant ( 0.0f, 0.0f, 0.0f )
+        /// Constant ( 0.0f, 0.0f, 0.0f ).
         /// </summary>
         public static Position Zero
         {
@@ -845,7 +843,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Convert a position instance to a vector3 instance.
+        /// Converts a position instance to a Vector3 instance.
         /// </summary>
         public static implicit operator Vector3(Position Position)
         {
@@ -853,7 +851,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Convert a vector3 instance to a position instance.
+        /// Converts a Vector3 instance to a position instance.
         /// </summary>
         public static implicit operator Position(Vector3 vec)
         {

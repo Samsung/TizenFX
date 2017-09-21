@@ -27,14 +27,14 @@ namespace Tizen.NUI
     class NUICoreBackend : ICoreBackend
     {
         /// <summary>
-        /// Application instance to connect event.
+        /// The Application instance to connect event.
         /// </summary>
         protected Application _application;
         private string _stylesheet = "";
         private NUIApplication.WindowMode _windowMode = NUIApplication.WindowMode.Opaque;
 
         /// <summary>
-        /// Dictionary to contain each type of event callback.
+        /// The Dictionary to contain each type of event callback.
         /// </summary>
         protected IDictionary<EventType, object> Handlers = new Dictionary<EventType, object>();
 
@@ -63,23 +63,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Add NUIApplication event to Application.
-        /// Put each type of event callback in Dictionary.
+        /// Adds NUIApplication event to Application.
+        /// Puts each type of event callback in Dictionary.
         /// </summary>
-        /// <param name="evType">Type of event</param>
-        /// <param name="handler">Event callback</param>
+        /// <param name="evType">The type of event.</param>
+        /// <param name="handler">The event callback.</param>
         public void AddEventHandler(EventType evType, Action handler)
         {
             Handlers.Add(evType, handler);
         }
 
         /// <summary>
-        /// Add NUIApplication event to Application.
-        /// Put each type of event callback in Dictionary.
+        /// Adds NUIApplication event to Application.
+        /// Puts each type of event callback in Dictionary.
         /// </summary>
-        /// <typeparam name="TEventArgs">Argument type for the event</typeparam>
-        /// <param name="evType">Type of event</param>
-        /// <param name="handler">Event callback</param>
+        /// <typeparam name="TEventArgs">The argument type for the event.</typeparam>
+        /// <param name="evType">The type of event.</param>
+        /// <param name="handler">The event callback.</param>
         public void AddEventHandler<TEventArgs>(EventType evType, Action<TEventArgs> handler) where TEventArgs : EventArgs
         {
             Handlers.Add(evType, handler);
@@ -87,7 +87,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Dispose function.
+        /// The Dispose function.
         /// </summary>
         public void Dispose()
         {
@@ -98,7 +98,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Exit Application.
+        /// The Exit application.
         /// </summary>
         public void Exit()
         {
@@ -119,9 +119,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Run Application.
+        /// The Run application.
         /// </summary>
-        /// <param name="args">Arguments from commandline.</param>
+        /// <param name="args">The arguments from commandline.</param>
         public void Run(string[] args)
         {
             TizenSynchronizationContext.Initialize();
@@ -151,10 +151,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Region changed event callback function.
+        /// The Region changed event callback function.
         /// </summary>
-        /// <param name="source">Application instance</param>
-        /// <param name="e">Event argument for RegionChanged</param>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for RegionChanged.</param>
         private void OnRegionChanged(object source, NUIApplicationRegionChangedEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnRegionChanged Called");
@@ -164,10 +164,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Memory Low event callback function.
+        /// The Memory Low event callback function.
         /// </summary>
-        /// <param name="source">Application instance</param>
-        /// <param name="e">Event argument for MemoryLow</param>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for MemoryLow.</param>
         private void OnMemoryLow(object source, NUIApplicationMemoryLowEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnMemoryLow Called");
@@ -177,10 +177,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Language changed event callback function.
+        /// The Language changed event callback function.
         /// </summary>
-        /// <param name="source">Application instance</param>
-        /// <param name="e">Event argument for LanguageChanged</param>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for LanguageChanged.</param>
         private void OnLanguageChanged(object source, NUIApplicationLanguageChangedEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnLanguageChanged Called");
@@ -190,10 +190,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Battery low event callback function.
+        /// The Battery Low event callback function.
         /// </summary>
-        /// <param name="source">Application instance</param>
-        /// <param name="e">Event argument for BatteryLow</param>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for BatteryLow.</param>
         private void OnBatteryLow(object source, NUIApplicationBatteryLowEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnBatteryLow Called");
@@ -203,10 +203,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Initialized event callback function.
+        /// The Initialized event callback function.
         /// </summary>
-        /// <param name="source">Application instance</param>
-        /// <param name="e">Event argument for Initialized</param>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for Initialized.</param>
         private void OnInitialized(object source, NUIApplicationInitEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnPreCreated Called");
@@ -219,10 +219,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Terminated event callback function.
+        /// The Terminated event callback function.
         /// </summary>
-        /// <param name="source">Application instance</param>
-        /// <param name="e">Event argument for Terminated</param>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for Terminated.</param>
         private void OnTerminated(object source, NUIApplicationTerminatingEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnTerminated Called");
@@ -231,10 +231,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Resumed event callback function.
+        /// The Resumed event callback function.
         /// </summary>
-        /// <param name="source">Application instance</param>
-        /// <param name="e">Event argument for Resumed</param>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for Resumed.</param>
         private void OnResumed(object source, NUIApplicationResumedEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnResumed Called");
@@ -243,10 +243,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// App control event callback function.
+        /// The App control event callback function.
         /// </summary>
-        /// <param name="source">Application instance</param>
-        /// <param name="e">Event argument for AppControl</param>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for AppControl.</param>
         private void OnAppControl(object source, NUIApplicationAppControlEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnAppControl Called");
@@ -256,10 +256,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Paused event callback function.
+        /// The Paused event callback function.
         /// </summary>
-        /// <param name="source">Application instance</param>
-        /// <param name="e">Event argument for Paused</param>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for Paused.</param>
         private void OnPaused(object source, NUIApplicationPausedEventArgs e)
         {
             Log.Debug("NUI", "NUICorebackend OnPaused Called");

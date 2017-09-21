@@ -21,18 +21,18 @@ namespace Tizen.NUI
     /// <summary>
     /// An Adaptor object is used to initialize and control how Dali runs.
     ///
-    /// It provides a lifecycle interface that allows the application
+    /// It provides the lifecycle interface that allows the application
     /// writer to provide their own main loop and other platform related
     /// features.
     ///
     /// The Adaptor class provides a means for initialising the resources required by the Dali::Core.
     ///
-    /// When dealing with platform events, the application writer MUST ensure that Dali is called in a
+    /// When dealing with platform events, the application writer must ensure that DALi is called in a
     /// thread-safe manner.
     ///
     /// As soon as the Adaptor class is created and started, the application writer can initialise their
-    /// View objects straight away or as required by the main loop they intend to use (there is no
-    /// need to wait for an initialise signal as per the Tizen.NUI.Application class).
+    /// view objects straight away or as required by the main loop they intend to use (there is no
+    /// need to wait for an initialize signal as per the Tizen.NUI.Application class).
     ///
     /// </summary>
     public class Adaptor : global::System.IDisposable
@@ -149,7 +149,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Starts the Adaptor.
+        /// Starts the adaptor.
         /// </summary>
         internal void Start()
         {
@@ -158,7 +158,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Pauses the Adaptor.
+        /// Pauses the adaptor.
         /// </summary>
         internal void Pause()
         {
@@ -167,7 +167,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Resumes the Adaptor, if previously paused.
+        /// Resumes the adaptor, if previously paused.
         /// </summary>
         /// <remarks>If the adaptor is not paused, this does not do anything.</remarks>
         internal void Resume()
@@ -177,7 +177,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Stops the Adaptor.
+        /// Stops the adaptor.
         /// </summary>
         internal void Stop()
         {
@@ -219,7 +219,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Release any locks the surface may hold.
+        /// Releases any locks the surface may hold.
         /// </summary>
         /// <remarks>
         /// For example, after compositing an offscreen surface, use this method to allow rendering to continue.
@@ -231,15 +231,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set the number of frames per render.
+        /// Sets the number of frames per render.
         /// </summary>
-        /// <param name="numberOfVSyncsPerRender">The number of vsyncs between successive renders.. </param>
+        /// <param name="numberOfVSyncsPerRender">The number of vsyncs between successive renders.</param>
         /// <remarks>
         /// Suggest this is a power of two:
-        /// 1 - render each vsync frame
-        /// 2 - render every other vsync frame
-        /// 4 - render every fourth vsync frame
-        /// 8 - render every eighth vsync frame
+        /// 1 - render each vsync frame.
+        /// 2 - render every other vsync frame.
+        /// 4 - render every fourth vsync frame.
+        /// 8 - render every eighth vsync frame.
         ///</remarks>
         internal void SetRenderRefreshRate(uint numberOfVSyncsPerRender)
         {
@@ -248,9 +248,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set whether the frame count per render is managed using the hardware VSync or manually timed.
+        /// Sets whether the frame count per render is managed using the hardware vsync or manually timed.
         /// </summary>
-        /// <param name="useHardware">True if the hardware VSync should be used. </param>
+        /// <param name="useHardware">True if the hardware vsync should be used.</param>
         internal void SetUseHardwareVSync(bool useHardware)
         {
             NDalicManualPINVOKE.Adaptor_SetUseHardwareVSync(swigCPtr, useHardware);
@@ -269,7 +269,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Returns a reference to the instance of the adaptor used by the current thread.
         /// </summary>
-        /// <remarks>The adaptor has been initialised.This is only valid in the main thread.</remarks>
+        /// <remarks>The adaptor has been initialized. This is only valid in the main thread.</remarks>
         public static Adaptor Instance
         {
             get
@@ -281,7 +281,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Checks whether the adaptor is available.
         /// </summary>
-        /// <returns>true, if it is available, false otherwise.</returns>
+        /// <returns>True if it is available, false otherwise.</returns>
         internal static bool IsAvailable()
         {
             bool ret = NDalicManualPINVOKE.Adaptor_IsAvailable();
@@ -290,8 +290,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Call this method to notify Dali when scene is created and initialized.
-        /// Notify Adaptor that the scene has been created.
+        /// Calls this method to notify DALi when a scene is created and initialized.
+        /// Notify the adaptor that the scene has been created.
         /// </summary>
         internal void NotifySceneCreated()
         {
@@ -300,12 +300,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Call this method to notify Dali when the system language changes.
+        /// Calls this method to notify DALi when the system language changes.
         ///
-        /// Use this only when NOT using Dali::Application, As Application created using
-        /// Application will automatically receive notification of language change.
+        /// Use this only when not using Dali::Application. As the application is created, using the
+        /// application will automatically receive notification of the language change.
         /// When Dali::Application is not used, the application developer should
-        /// use app-core to receive language change notifications and should update Dali
+        /// use app-core to receive the language change notifications and should update DALi
         /// by calling this method.
         /// </summary>
         internal void NotifyLanguageChanged()
@@ -315,9 +315,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets minimum distance in pixels that the fingers must move towards/away from each other in order to trigger a pinch gesture.
+        /// Sets the minimum distance in pixels that the fingers must move towards or away from each other in order to trigger a pinch gesture.
         /// </summary>
-        /// <param name="distance">The minimum pinch distance in pixels. </param>
+        /// <param name="distance">The minimum pinch distance in pixels.</param>
         internal void SetMinimumPinchDistance(float distance)
         {
             NDalicManualPINVOKE.Adaptor_SetMinimumPinchDistance(swigCPtr, distance);
@@ -331,9 +331,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Feed a wheel event to the adaptor.
+        /// Feeds a wheel event to the adaptor.
         /// </summary>
-        /// <param name="wheelEvent">wheel event. </param>
+        /// <param name="wheelEvent">The wheel event.</param>
         public void FeedWheelEvent(Wheel wheelEvent)
         {
             NDalicManualPINVOKE.Adaptor_FeedWheelEvent(swigCPtr, Wheel.getCPtr(wheelEvent));
@@ -341,9 +341,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Feed a key event to the adaptor.
+        /// Feeds a key event to the adaptor.
         /// </summary>
-        /// <param name="keyEvent">The key event holding the key information. </param>
+        /// <param name="keyEvent">The key event holding the key information.</param>
         public void FeedKeyEvent(Key keyEvent)
         {
             NDalicManualPINVOKE.Adaptor_FeedKeyEvent(swigCPtr, Key.getCPtr(keyEvent));
@@ -351,7 +351,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Notify Core that the scene has been created.
+        /// Notifies core that the scene has been created.
         /// </summary>
         internal void SceneCreated()
         {
@@ -366,11 +366,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the stereo base (eye separation) for Stereoscopic 3D.
+        /// Sets the stereo base (eye separation) for stereoscopic 3D.
         /// The stereo base is the distance in millimetres between the eyes. Typical values are
         /// between 50mm and 70mm. The default value is 65mm.
         /// </summary>
-        /// <param name="stereoBase">The stereo base (eye separation) for Stereoscopic 3D.</param>
+        /// <param name="stereoBase">The stereo base (eye separation) for stereoscopic 3D.</param>
         internal void SetStereoBase(float stereoBase)
         {
             NDalicManualPINVOKE.Adaptor_SetStereoBase(swigCPtr, stereoBase);
@@ -378,7 +378,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Event arguments that passed via Resized signal.
+        /// Event arguments that passed via the Resized signal.
         /// </summary>
         internal class ResizedEventArgs : EventArgs
         {
@@ -399,8 +399,8 @@ namespace Tizen.NUI
         private ResizedCallbackDelegate _resizedCallbackDelegate;
 
         /// <summary>
-        /// Event for Resized signal which can be used to subscribe/unsubscribe the event handler
-        /// provided by the user. Resized signal is emitted when the size changes.<br>
+        /// An event for the Resized signal which can be used to subscribe or unsubscribe the event handler
+        /// provided by the user. The Resized signal is emitted when the size changes.<br>
         /// </summary>
         internal event EventHandler<ResizedEventArgs> Resized
         {
@@ -446,7 +446,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Event arguments that passed via LanguageChanged signal.
+        /// Event arguments that passed via the LanguageChanged signal.
         /// </summary>
         internal class LanguageChangedEventArgs : EventArgs
         {
@@ -467,8 +467,8 @@ namespace Tizen.NUI
         private LanguageChangedCallbackDelegate _languageChangedCallbackDelegate;
 
         /// <summary>
-        /// Event for LanguageChanged signal which can be used to subscribe/unsubscribe the event handler
-        /// provided by the user. LanguageChanged signal is emitted when the language changes.<br>
+        /// An event for LanguageChanged signal which can be used to subscribe or unsubscribe the event handler
+        /// provided by the user. The LanguageChanged signal is emitted when the language changes.<br>
         /// </summary>
         internal event EventHandler<LanguageChangedEventArgs> LanguageChanged
         {

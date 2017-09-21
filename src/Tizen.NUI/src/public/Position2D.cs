@@ -19,7 +19,7 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// Position2D is a two dimensional vector.
+    /// Position2D is a two-dimensional vector.
     /// </summary>
     public class Position2D : global::System.IDisposable
     {
@@ -101,86 +101,86 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Addition operator.
+        /// The addition operator.
         /// </summary>
-        /// <param name="arg1">Vector to add</param>
-        /// <param name="arg2">Vector to add</param>
-        /// <returns>A vector containing the result of the addition</returns>
+        /// <param name="arg1">The vector to add.</param>
+        /// <param name="arg2">The vector to add.</param>
+        /// <returns>The vector containing the result of the addition.</returns>
         public static Position2D operator +(Position2D arg1, Position2D arg2)
         {
             return arg1.Add(arg2);
         }
 
         /// <summary>
-        /// Subtraction operator.
+        /// The subtraction operator.
         /// </summary>
-        /// <param name="arg1">Vector to subtract</param>
-        /// <param name="arg2">Vector to subtract</param>
-        /// <returns>A vector containing the result of the subtraction</returns>
+        /// <param name="arg1">The vector to subtract.</param>
+        /// <param name="arg2">The vector to subtract.</param>
+        /// <returns>The vector containing the result of the subtraction.</returns>
         public static Position2D operator -(Position2D arg1, Position2D arg2)
         {
             return arg1.Subtract(arg2);
         }
 
         /// <summary>
-        /// Unary negation operator.
+        /// The unary negation operator.
         /// </summary>
-        /// <param name="arg1">Vector to netate</param>
-        /// <returns>A vector containing the negation</returns>
+        /// <param name="arg1">The vector to negate.</param>
+        /// <returns>The vector containing the negation.</returns>
         public static Position2D operator -(Position2D arg1)
         {
             return arg1.Subtract();
         }
 
         /// <summary>
-        /// Multiplication operator.
+        /// The multiplication operator.
         /// </summary>
-        /// <param name="arg1">Vector to multiply</param>
-        /// <param name="arg2">Vector to multiply</param>
-        /// <returns>A vector containing the result of the multiplication</returns>
+        /// <param name="arg1">The vector to multiply.</param>
+        /// <param name="arg2">The vector to multiply.</param>
+        /// <returns>The vector containing the result of the multiplication.</returns>
         public static Position2D operator *(Position2D arg1, Position2D arg2)
         {
             return arg1.Multiply(arg2);
         }
 
         /// <summary>
-        /// Multiplication operator.
+        /// The multiplication operator.
         /// </summary>
-        /// <param name="arg1">Vector to multiply</param>
-        /// <param name="arg2">The int value to scale the vector</param>
-        /// <returns>A vector containing the result of the multiplication</returns>
+        /// <param name="arg1">The vector to multiply.</param>
+        /// <param name="arg2">The integer value to scale the vector.</param>
+        /// <returns>The vector containing the result of the multiplication.</returns>
         public static Position2D operator *(Position2D arg1, int arg2)
         {
             return arg1.Multiply(arg2);
         }
 
         /// <summary>
-        /// Division operator.
+        /// The division operator.
         /// </summary>
-        /// <param name="arg1">Vector to divide</param>
-        /// <param name="arg2">Vector to divide</param>
-        /// <returns>A vector containing the result of the division</returns>
+        /// <param name="arg1">The vector to divide.</param>
+        /// <param name="arg2">The vector to divide.</param>
+        /// <returns>The vector containing the result of the division.</returns>
         public static Position2D operator /(Position2D arg1, Position2D arg2)
         {
             return arg1.Divide(arg2);
         }
 
         /// <summary>
-        /// Division operator.
+        /// The division operator.
         /// </summary>
-        /// <param name="arg1">Vector to divide</param>
-        /// <param name="arg2">The int value to scale the vector by</param>
-        /// <returns>A vector containing the result of the division</returns>
+        /// <param name="arg1">The vector to divide.</param>
+        /// <param name="arg2">The integer value to scale the vector by.</param>
+        /// <returns>The vector containing the result of the division.</returns>
         public static Position2D operator /(Position2D arg1, int arg2)
         {
             return arg1.Divide(arg2);
         }
 
         /// <summary>
-        /// Const array subscript operator overload. Should be 0, or 1.
+        /// The const array subscript operator overload. Should be 0, or 1.
         /// </summary>
-        /// <param name="index">Subscript index</param>
-        /// <returns>The float at the given index</returns>
+        /// <param name="index">The subscript index.</param>
+        /// <returns>The float at the given index.</returns>
         public float this[uint index]
         {
             get
@@ -197,7 +197,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor
+        /// The constructor.
         /// </summary>
         public Position2D() : this(NDalicPINVOKE.new_Vector2__SWIG_0(), true)
         {
@@ -205,7 +205,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor
+        /// The constructor.
         /// </summary>
         /// <param name="x">x component</param>
         /// <param name="y">y component</param>
@@ -215,7 +215,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor
+        /// The constructor.
         /// </summary>
         /// <param name="position">Position to create this vector from</param>
         public Position2D(Position position) : this(NDalicPINVOKE.new_Vector2__SWIG_3(Position.getCPtr(position)), true)
@@ -275,7 +275,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Compare if rhs is equal to.
+        /// Compares if the rhs is equal to.
         /// </summary>
         /// <param name="rhs">The vector to compare</param>
         /// <returns>Returns true if the two vectors are equal, otherwise false</returns>
@@ -287,10 +287,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Compare if rhs is not equal to.
+        /// Compares if the rhs is not equal to.
         /// </summary>
-        /// <param name="rhs">The vector to compare</param>
-        /// <returns>Returns true if the two vectors are not equal, otherwise false</returns>
+        /// <param name="rhs">The vector to compare.</param>
+        /// <returns>Returns true if the two vectors are not equal, otherwise false.</returns>
         public bool NotEqualTo(Position2D rhs)
         {
             bool ret = NDalicPINVOKE.Vector2_NotEqualTo(swigCPtr, Position2D.getCPtr(rhs));
@@ -306,7 +306,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// x component.
+        /// The x component.
         /// </summary>
         public int X
         {
@@ -324,7 +324,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// y component.
+        /// The y component.
         /// </summary>
         public int Y
         {
@@ -342,7 +342,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Convert a position2D instance to a vector2 instance.
+        /// Converts a Position2D instance to a Vector2 instance.
         /// </summary>
         public static implicit operator Vector2(Position2D position2d)
         {
@@ -350,7 +350,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Convert a vector2 instance to a position2D instance.
+        /// Converts a Vector2 instance to a Position2D instance.
         /// </summary>
         public static implicit operator Position2D(Vector2 vec)
         {
@@ -358,7 +358,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Convert a Position2D instance to a Uint16Pair instance.
+        /// Converts a Position2D instance to a Uint16Pair instance.
         /// </summary>
         public static implicit operator Uint16Pair(Position2D position2d)
         {
@@ -366,7 +366,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Convert a Uint16Pair instance to a Position2D instance.
+        /// Converts a Uint16Pair instance to a Position2D instance.
         /// </summary>
         public static implicit operator Position2D(Uint16Pair pair)
         {

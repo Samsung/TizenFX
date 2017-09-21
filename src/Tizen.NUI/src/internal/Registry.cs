@@ -14,12 +14,12 @@ namespace Tizen.NUI
     internal sealed class Registry
     {
         /// <summary>
-        /// Registry is a singleton
+        /// The registry is a singleton.
         /// </summary>
         private static Registry instance = null;
 
         /// <summary>
-        /// Given a C++ object the dictionary allows us to find which C# object it belongs to.
+        /// Given a C++ object, the dictionary allows us to find which C# object it belongs to.
         /// By keeping the weak reference only, it will allow the object to be garbage collected.
         /// </summary>
         private Dictionary<IntPtr, WeakReference> _controlMap;
@@ -31,9 +31,9 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Store the mapping between this instance of BaseHandle (C# base class) and native part.
+        /// Stores the mapping between this instance of BaseHandle (C# base class) and native part.
         /// </summary>
-        /// <param name="baseHandle"> The instance of BaseHandle (C# base class)</param>
+        /// <param name="baseHandle">The instance of BaseHandle (C# base class).</param>
         internal static void Register(BaseHandle baseHandle)
         {
             // We store a pointer to the RefObject for the control
@@ -51,7 +51,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Remove the this instance of BaseHandle (C# base class) and native part from the mapping table.
+        /// Removes this instance of BaseHandle (C# base class) and native part from the mapping table.
         /// </summary>
         /// <param name="baseHandle"> The instance of BaseHandle (C# base class)</param>
         internal static void Unregister(BaseHandle baseHandle)

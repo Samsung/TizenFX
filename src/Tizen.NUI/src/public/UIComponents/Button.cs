@@ -24,17 +24,17 @@ namespace Tizen.NUI.UIComponents
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
-    /// Button is a base class for different kinds of buttons.<br>
+    /// The Button class is a base class for different kinds of buttons.<br>
     /// This class provides the disabled property and the clicked signal.<br>
-    /// A Clicked event handler is emitted when the button is touched and the touch point doesn't leave the boundary of the button.<br>
+    /// The clicked event handler is emitted when the button is touched, and the touch point doesn't leave the boundary of the button.<br>
     /// When the disabled property is set to true, no signal is emitted.<br>
-    /// 'Visual' describes not just traditional images like png, bmp but refers to whatever is used to show the button, it could be a color, gradient or some other kind of renderer.<br>
-    /// The button's appearance can be modified by setting properties for the various visuals/images.<br>
-    /// It is not mandatory to set all visuals. A button could be defined only by setting its background visual or by setting its background and selected visuals.<br>
+    /// The 'Visual' describes not just traditional images like PNG and BMP, but also refers to whatever is used to show the button. It could be a color, gradient, or some other kind of renderer.<br>
+    /// The button's appearance can be modified by setting properties for the various visuals or images.<br>
+    /// It is not mandatory to set all the visuals. A button could be defined only by setting its background visual, or by setting its background and selected visuals.<br>
     /// The button visual is shown over the background visual.<br>
-    /// When pressed the unselected visuals are replaced by the selected visual.<br>
+    /// When pressed, the unselected visuals are replaced by the selected visuals.<br>
     /// The text label is always placed on the top of all images.<br>
-    /// When the button is disabled, background, button and selected visuals are replaced by their disabled visuals.<br>
+    /// When the button is disabled, the background button and the selected visuals are replaced by their disabled visuals.<br>
     /// </summary>
     public class Button : View
     {
@@ -51,7 +51,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// To make Button instance be disposed.
+        /// To dispose the button instance.
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -127,7 +127,7 @@ namespace Tizen.NUI.UIComponents
         private ClickedCallbackType _clickedCallback;
 
         /// <summary>
-        /// Clicked will be triggered when the button is touched and the touch point doesn't leave the boundary of the button.
+        /// The Clicked event will be triggered when the button is touched and the touch point doesn't leave the boundary of the button.
         /// </summary>
         public event EventHandlerWithReturnType<object, EventArgs, bool> Clicked
         {
@@ -171,7 +171,7 @@ namespace Tizen.NUI.UIComponents
         private PressedCallbackType _pressedCallback;
 
         /// <summary>
-        /// Pressed will be triggered when the button is touched.
+        /// The Pressed event will be triggered when the button is touched.
         /// </summary>
         public event EventHandlerWithReturnType<object, EventArgs, bool> Pressed
         {
@@ -214,7 +214,7 @@ namespace Tizen.NUI.UIComponents
         private ReleasedCallbackType _releasedCallback;
 
         /// <summary>
-        /// Released will be triggered when the button is touched and the touch point leaves the boundary of the button.
+        /// The Released event will be triggered when the button is touched and the touch point leaves the boundary of the button.
         /// </summary>
         public event EventHandlerWithReturnType<object, EventArgs, bool> Released
         {
@@ -256,7 +256,7 @@ namespace Tizen.NUI.UIComponents
         private StateChangedCallback _stateChangedCallback;
 
         /// <summary>
-        /// StateChanged will be triggered when the button's state is changed.
+        /// The StateChanged event will be triggered when the button's state is changed.
         /// </summary>
         public event EventHandlerWithReturnType<object, EventArgs, bool> StateChanged
         {
@@ -293,7 +293,7 @@ namespace Tizen.NUI.UIComponents
 
 
         /// <summary>
-        /// Gets/Sets the unselected button foreground/icon visual
+        /// Gets or sets the unselected button foreground or icon visual.
         /// </summary>
         public Tizen.NUI.PropertyMap UnselectedVisual
         {
@@ -310,7 +310,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets the selected button foreground/icon visual
+        /// Gets or sets the selected button foreground or icon visual.
         /// </summary>
         public Tizen.NUI.PropertyMap SelectedVisual
         {
@@ -327,7 +327,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets the disabled selected state foreground/icon button visual
+        /// Gets or sets the disabled selected state foreground or icon button visual.
         /// </summary>
         public Tizen.NUI.PropertyMap DisabledSelectedVisual
         {
@@ -344,7 +344,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets the disabled unselected state foreground/icon visual
+        /// Gets or sets the disabled unselected state foreground or icon visual.
         /// </summary>
         public Tizen.NUI.PropertyMap DisabledUnselectedVisual
         {
@@ -361,7 +361,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets the disabled in the unselected state background, button visual
+        /// Gets or sets the disabled unselected state background button visual.
         /// </summary>
         public Tizen.NUI.PropertyMap UnselectedBackgroundVisual
         {
@@ -378,7 +378,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets the selected background button visual
+        /// Gets or sets the selected background button visual.
         /// </summary>
         public Tizen.NUI.PropertyMap SelectedBackgroundVisual
         {
@@ -395,7 +395,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets the disabled while unselected background button visual
+        /// Gets or sets the disabled while unselected background button visual.
         /// </summary>
         public Tizen.NUI.PropertyMap DisabledUnselectedBackgroundVisual
         {
@@ -412,7 +412,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets the disabled while selected background button visual
+        /// Gets or sets the disabled while selected background button visual.
         /// </summary>
         public Tizen.NUI.PropertyMap DisabledSelectedBackgroundVisual
         {
@@ -429,7 +429,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets the position of the the label in relation to the foreground/icon if both present
+        /// Gets or sets the position of the the label in relation to the foreground or icon, if both present.
         /// </summary>
         public Align LabelRelativeAlignment
         {
@@ -490,7 +490,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets the padding around the text
+        /// Gets or sets the padding around the text.
         /// </summary>
         public Vector4 LabelPadding
         {
@@ -507,7 +507,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets the padding around the foreground visual
+        /// Gets or sets the padding around the foreground visual.
         /// </summary>
         public Vector4 ForegroundVisualPadding
         {
@@ -547,8 +547,8 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Creates an uninitialized Button.<br>
-        /// Only derived versions can be instantiated.<br>
+        /// Creates an uninitialized button.<br>
+        /// Only the derived versions can be instantiated.<br>
         /// </summary>
         public Button() : this(NDalicPINVOKE.new_Button__SWIG_0(), true)
         {
@@ -584,7 +584,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// If the autorepeating property is set to true then the togglable property is set to false.
+        /// If the autorepeating property is set to true, then the togglable property is set to false.
         /// </summary>
         public bool AutoRepeating
         {
@@ -601,7 +601,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// By default this value is set to 0.15 seconds.
+        /// By default, this value is set to 0.15 seconds.
         /// </summary>
         public float InitialAutoRepeatingDelay
         {
@@ -618,7 +618,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// default this value is set to 0.05 seconds.
+        /// By default, this value is set to 0.05 seconds.
         /// </summary>
         public float NextAutoRepeatingDelay
         {
@@ -652,7 +652,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// /Gets/Sets the togglable button as either selected or unselected, togglable property must be set to true.
+        /// Gets or sets the togglable button as either selected or unselected, togglable property must be set to true.
         /// </summary>
         public bool Selected
         {
@@ -669,7 +669,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets unselected color.
+        /// Gets or sets the unselected color.
         /// </summary>
         public Color UnselectedColor
         {
@@ -686,7 +686,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets selected color.
+        /// Gets or sets the selected color.
         /// </summary>
         public Color SelectedColor
         {
@@ -703,7 +703,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets label.
+        /// Gets or sets the label.
         /// </summary>
         public Tizen.NUI.PropertyMap Label
         {
@@ -720,7 +720,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Gets/Sets text of label.
+        /// Gets or sets the text of the label.
         /// </summary>
         public string LabelText
         {
@@ -740,24 +740,24 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Enumeration for describing the position the text label can be in relation to the control(and foreground/icon).
+        /// Enumeration for describing the position, the text label can be, in relation to the control (and foreground/icon).
         /// </summary>
         public enum Align
         {
             /// <summary>
-            /// At the start of the control before the foreground/icon
+            /// At the start of the control before the foreground or icon.
             /// </summary>
             Begin,
             /// <summary>
-            /// At the end of the control after the foreground/icon
+            /// At the end of the control after the foreground or icon.
             /// </summary>
             End,
             /// <summary>
-            /// At the top of the control above the foreground/icon
+            /// At the top of the control above the foreground or icon.
             /// </summary>
             Top,
             /// <summary>
-            /// At the bottom of the control below the foreground/icon
+            /// At the bottom of the control below the foreground or icon.
             /// </summary>
             Bottom
         }

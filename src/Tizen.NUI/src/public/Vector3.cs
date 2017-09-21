@@ -18,7 +18,7 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// A three dimensional vector.
+    /// A three-dimensional vector.
     /// </summary>
     public class Vector3 : global::System.IDisposable
     {
@@ -100,86 +100,86 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Addition operator.
+        /// The addition operator.
         /// </summary>
-        /// <param name="arg1">First Value</param>
-        /// <param name="arg2">Second Value</param>
-        /// <returns>A vector containing the result of the addition</returns>
+        /// <param name="arg1">The first value.</param>
+        /// <param name="arg2">The second value.</param>
+        /// <returns>The vector containing the result of the addition.</returns>
         public static Vector3 operator +(Vector3 arg1, Vector3 arg2)
         {
             return arg1.Add(arg2);
         }
 
         /// <summary>
-        /// Subtraction operator.
+        /// The subtraction operator.
         /// </summary>
-        /// <param name="arg1">First Value</param>
-        /// <param name="arg2">Second Value</param>
-        /// <returns>A vector containing the result of the subtraction</returns>
+        /// <param name="arg1">The first value.</param>
+        /// <param name="arg2">The second value.</param>
+        /// <returns>The vector containing the result of the subtraction.</returns>
         public static Vector3 operator -(Vector3 arg1, Vector3 arg2)
         {
             return arg1.Subtract(arg2);
         }
 
         /// <summary>
-        /// Unary negation operator.
+        /// The unary negation operator.
         /// </summary>
-        /// <param name="arg1">Target Value</param>
-        /// <returns>A vector containg the negation</returns>
+        /// <param name="arg1">The target value.</param>
+        /// <returns>The vector containg the negation.</returns>
         public static Vector3 operator -(Vector3 arg1)
         {
             return arg1.Subtract();
         }
 
         /// <summary>
-        /// Multiplication operator.
+        /// The multiplication operator.
         /// </summary>
-        /// <param name="arg1">First Value</param>
-        /// <param name="arg2">Second Value</param>
-        /// <returns>A vector containing the result of the multiplication</returns>
+        /// <param name="arg1">The first value.</param>
+        /// <param name="arg2">The second value.</param>
+        /// <returns>The vector containing the result of the multiplication.</returns>
         public static Vector3 operator *(Vector3 arg1, Vector3 arg2)
         {
             return arg1.Multiply(arg2);
         }
 
         /// <summary>
-        /// Multiplication operator.
+        /// The multiplication operator.
         /// </summary>
-        /// <param name="arg1">First Value</param>
-        /// <param name="arg2">The float value to scale the vector</param>
-        /// <returns>A vector containing the result of the scaling</returns>
+        /// <param name="arg1">The first value.</param>
+        /// <param name="arg2">The float value to scale the vector.</param>
+        /// <returns>The vector containing the result of the scaling.</returns>
         public static Vector3 operator *(Vector3 arg1, float arg2)
         {
             return arg1.Multiply(arg2);
         }
 
         /// <summary>
-        /// Division operator.
+        /// The division operator.
         /// </summary>
-        /// <param name="arg1">First Value</param>
-        /// <param name="arg2">Second Value</param>
-        /// <returns>A vector containing the result of the division</returns>
+        /// <param name="arg1">The first value.</param>
+        /// <param name="arg2">The second value.</param>
+        /// <returns>The vector containing the result of the division.</returns>
         public static Vector3 operator /(Vector3 arg1, Vector3 arg2)
         {
             return arg1.Divide(arg2);
         }
 
         /// <summary>
-        /// Division operator.
+        /// The division operator.
         /// </summary>
-        /// <param name="arg1">First Value</param>
-        /// <param name="arg2">The float value to scale the vector by</param>
-        /// <returns>A vector containing the result of the scaling</returns>
+        /// <param name="arg1">The first value.</param>
+        /// <param name="arg2">The float value to scale the vector by.</param>
+        /// <returns>The vector containing the result of the scaling.</returns>
         public static Vector3 operator /(Vector3 arg1, float arg2)
         {
             return arg1.Divide(arg2);
         }
 
         /// <summary>
-        /// Array subscript operator overload.
+        /// An array subscript operator overload.
         /// </summary>
-        /// <param name="index">Subscript index</param>
-        /// <returns>The float at the given index</returns>
+        /// <param name="index">The subscript index.</param>
+        /// <returns>The float at the given index.</returns>
         public float this[uint index]
         {
             get
@@ -196,7 +196,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.
+        /// The constructor.
         /// </summary>
         public Vector3() : this(NDalicPINVOKE.new_Vector3__SWIG_0(), true)
         {
@@ -204,11 +204,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Default constructor, initializes the vector to 0.
+        /// The default constructor initializes the vector to 0.
         /// </summary>
-        /// <param name="x">x (or width) component</param>
-        /// <param name="y">y (or height) component</param>
-        /// <param name="z">z (or depth) component</param>
+        /// <param name="x">The x (or width) component.</param>
+        /// <param name="y">The y (or height) component.</param>
+        /// <param name="z">The z (or depth) component.</param>
         public Vector3(float x, float y, float z) : this(NDalicPINVOKE.new_Vector3__SWIG_1(x, y, z), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -217,32 +217,32 @@ namespace Tizen.NUI
         /// <summary>
         /// Conversion constructor from an array of three floats.
         /// </summary>
-        /// <param name="array">Array of xyz</param>
+        /// <param name="array">An array of xyz.</param>
         public Vector3(float[] array) : this(NDalicPINVOKE.new_Vector3__SWIG_2(array), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Constructor.
+        /// The constructor.
         /// </summary>
-        /// <param name="vec2">Vector2 to create this vector from</param>
+        /// <param name="vec2">Vector2 to create this vector from.</param>
         public Vector3(Vector2 vec2) : this(NDalicPINVOKE.new_Vector3__SWIG_3(Vector2.getCPtr(vec2)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Constructor
+        /// The constructor.
         /// </summary>
-        /// <param name="vec4">Vector4 to create this vector from</param>
+        /// <param name="vec4">Vector4 to create this vector from.</param>
         public Vector3(Vector4 vec4) : this(NDalicPINVOKE.new_Vector3__SWIG_4(Vector4.getCPtr(vec4)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// (1.0f,1.0f,1.0f)
+        /// (1.0f,1.0f,1.0f).
         /// </summary>
         public static Vector3 One
         {
@@ -256,7 +256,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Vector representing the X axis
+        /// The vector representing the x-axis.
         /// </summary>
         public static Vector3 XAxis
         {
@@ -270,7 +270,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Vector representing the Y axis
+        /// The vector representing the y-axis.
         /// </summary>
         public static Vector3 YAxis
         {
@@ -284,7 +284,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Vector representing the Z axis
+        /// The vector representing the z-axis.
         /// </summary>
         public static Vector3 ZAxis
         {
@@ -298,7 +298,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Vector representing the negative X axis
+        /// The vector representing the negative x-axis.
         /// </summary>
         public static Vector3 NegativeXAxis
         {
@@ -312,7 +312,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Vector representing the negative Y axis
+        /// Th vector representing the negative y-axis.
         /// </summary>
         public static Vector3 NegativeYAxis
         {
@@ -326,7 +326,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Vector representing the negative Z axis
+        /// The vector representing the negative z-axis.
         /// </summary>
         public static Vector3 NegativeZAxis
         {
@@ -340,7 +340,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// (0.0f, 0.0f, 0.0f)
+        /// (0.0f, 0.0f, 0.0f).
         /// </summary>
         public static Vector3 Zero
         {
@@ -489,7 +489,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Returns the length of the vector.
         /// </summary>
-        /// <returns>The length of the vector</returns>
+        /// <returns>The length of the vector.</returns>
         public float Length()
         {
             float ret = NDalicPINVOKE.Vector3_Length(swigCPtr);
@@ -502,7 +502,7 @@ namespace Tizen.NUI
         /// This is more efficient than Length() for threshold
         /// testing as it avoids the use of a square root.<br>
         /// </summary>
-        /// <returns>The length of the vector squared</returns>
+        /// <returns>The length of the vector squared.</returns>
         public float LengthSquared()
         {
             float ret = NDalicPINVOKE.Vector3_LengthSquared(swigCPtr);
@@ -522,8 +522,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Clamps the vector between minimum and maximum vectors.
         /// </summary>
-        /// <param name="min">The minimum vector</param>
-        /// <param name="max">The maximum vector</param>
+        /// <param name="min">The minimum vector.</param>
+        /// <param name="max">The maximum vector.</param>
         public void Clamp(Vector3 min, Vector3 max)
         {
             NDalicPINVOKE.Vector3_Clamp(swigCPtr, Vector3.getCPtr(min), Vector3.getCPtr(max));
@@ -539,9 +539,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns the x & y components (or width & height, or r & g) as a Vector2.
+        /// Returns the x and y components (or width and height, or r and g) as a Vector2.
         /// </summary>
-        /// <returns>The partial vector contents as Vector2 (x,y)</returns>
+        /// <returns>The partial vector contents as Vector2 (x,y).</returns>
         public Vector2 GetVectorXY()
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.Vector3_GetVectorXY__SWIG_0(swigCPtr), false);
@@ -550,9 +550,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns the y & z components (or height & depth, or g & b) as a Vector2.
+        /// Returns the y and z components (or height and depth, or g and b) as a Vector2.
         /// </summary>
-        /// <returns>The partial vector contents as Vector2 (y,z)</returns>
+        /// <returns>The partial vector contents as Vector2 (y,z).</returns>
         public Vector2 GetVectorYZ()
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.Vector3_GetVectorYZ__SWIG_0(swigCPtr), false);
@@ -561,7 +561,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// x component
+        /// The x component.
         /// </summary>
         public float X
         {
@@ -579,7 +579,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// width component
+        /// The width component.
         /// </summary>
         public float Width
         {
@@ -597,7 +597,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// red component
+        /// The red component.
         /// </summary>
         public float R
         {
@@ -615,7 +615,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// y component
+        /// The y component.
         /// </summary>
         public float Y
         {
@@ -633,7 +633,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// height component
+        /// The height component.
         /// </summary>
         public float Height
         {
@@ -651,7 +651,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// green component
+        /// The green component.
         /// </summary>
         public float G
         {
@@ -669,7 +669,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// z component
+        /// The z component.
         /// </summary>
         public float Z
         {
@@ -687,7 +687,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// depth component
+        /// The depth component.
         /// </summary>
         public float Depth
         {
@@ -705,7 +705,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// blue component
+        /// The blue component.
         /// </summary>
         public float B
         {

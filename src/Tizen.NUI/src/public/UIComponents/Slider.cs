@@ -22,7 +22,7 @@ namespace Tizen.NUI.UIComponents
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
-    /// Slider is a control to enable sliding an indicator between two values.
+    /// The slider is a control to enable sliding an indicator between two values.
     /// </summary>
     public class Slider : View
     {
@@ -39,7 +39,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Dispose
+        /// Dispose.
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -89,7 +89,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Value changed event arguments.
+        /// The ValueChanged event arguments.
         /// </summary>
         public class ValueChangedEventArgs : EventArgs
         {
@@ -97,7 +97,7 @@ namespace Tizen.NUI.UIComponents
             private float _slideValue;
 
             /// <summary>
-            /// Slider.
+            /// The slider.
             /// </summary>
             public Slider Slider
             {
@@ -112,7 +112,7 @@ namespace Tizen.NUI.UIComponents
             }
 
             /// <summary>
-            /// Slider value.
+            /// The slider value.
             /// </summary>
             public float SlideValue
             {
@@ -128,7 +128,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Sliding finished event arguments.
+        /// The SlidingFinished event arguments.
         /// </summary>
         public class SlidingFinishedEventArgs : EventArgs
         {
@@ -136,7 +136,7 @@ namespace Tizen.NUI.UIComponents
             private float _slideValue;
 
             /// <summary>
-            /// Slider.
+            /// The slider.
             /// </summary>
             public Slider Slider
             {
@@ -151,7 +151,7 @@ namespace Tizen.NUI.UIComponents
             }
 
             /// <summary>
-            /// Slider value.
+            /// The slider value.
             /// </summary>
             public float SlideValue
             {
@@ -167,7 +167,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Mark reached event arguments.
+        /// The MarkReached event arguments.
         /// </summary>
         public class MarkReachedEventArgs : EventArgs
         {
@@ -175,7 +175,7 @@ namespace Tizen.NUI.UIComponents
             private int _slideValue;
 
             /// <summary>
-            /// Slider.
+            /// The slider.
             /// </summary>
             public Slider Slider
             {
@@ -190,7 +190,7 @@ namespace Tizen.NUI.UIComponents
             }
 
             /// <summary>
-            /// Slider value.
+            /// The slider value.
             /// </summary>
             public int SlideValue
             {
@@ -222,7 +222,7 @@ namespace Tizen.NUI.UIComponents
         private MarkReachedCallbackDelegate _sliderMarkReachedCallbackDelegate;
 
         /// <summary>
-        /// Event emitted when the slider value changes.
+        /// An event emitted when the slider value changes.
         /// </summary>
         public event EventHandlerWithReturnType<object, ValueChangedEventArgs, bool> ValueChanged
         {
@@ -263,7 +263,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Event emitted when the sliding is finished.
+        /// An event emitted when the sliding is finished.
         /// </summary>
         public event EventHandlerWithReturnType<object, SlidingFinishedEventArgs, bool> SlidingFinished
         {
@@ -304,7 +304,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Event emitted when the slider handle reaches a mark.
+        /// An event emitted when the slider handle reaches a mark.
         /// </summary>
         public event EventHandlerWithReturnType<object, MarkReachedEventArgs, bool> MarkReached
         {
@@ -345,10 +345,10 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Get Slider from the pointer.
+        /// Gets the slider from the pointer.
         /// </summary>
-        /// <param name="cPtr">The pointer of Slider</param>
-        /// <returns>Object of Slider type</returns>
+        /// <param name="cPtr">The pointer of the slider.</param>
+        /// <returns>The object of the slider type.</returns>
         internal static Slider GetSliderFromPtr(global::System.IntPtr cPtr)
         {
             Slider ret = new Slider(cPtr, false);
@@ -461,7 +461,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Creates the Slider control.
+        /// Creates the slider control.
         /// </summary>
         public Slider() : this(NDalicPINVOKE.Slider_New(), true)
         {
@@ -481,12 +481,12 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Downcasts an Object handle to Slider.<br>
-        /// If handle points to a Slider, the downcast produces valid handle.<br>
-        /// If not, the returned handle is left uninitialized.<br>
+        /// Downcasts an object handle to the slider.<br>
+        /// If the handle points to a slider, then the downcast produces a valid handle.<br>
+        /// If not, then the returned handle is left uninitialized.<br>
         /// </summary>
-        /// <param name="handle">Handle to an object</param>
-        /// <returns>Handle to a Slider or an uninitialized handle</returns>
+        /// <param name="handle">The handle to an object.</param>
+        /// <returns>The handle to a slider or an uninitialized handle.</returns>
         public new static Slider DownCast(BaseHandle handle)
         {
             Slider ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Slider;
@@ -516,7 +516,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Lower bound property
+        /// The lower bound property.
         /// </summary>
         public float LowerBound
         {
@@ -533,7 +533,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Upper bound property
+        /// The upper bound property.
         /// </summary>
         public float UpperBound
         {
@@ -550,7 +550,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Value property
+        /// The value property.
         /// </summary>
         public float Value
         {
@@ -567,7 +567,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Track visual property
+        /// The track visual property.
         /// </summary>
         public PropertyMap TrackVisual
         {
@@ -584,7 +584,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Handle visual property
+        /// The handle visual property.
         /// </summary>
         public PropertyMap HandleVisual
         {
@@ -601,7 +601,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Progress visual property
+        /// The progress visual property.
         /// </summary>
         public PropertyMap ProgressVisual
         {
@@ -618,7 +618,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Popup visual property
+        /// The popup visual property.
         /// </summary>
         public PropertyMap PopupVisual
         {
@@ -635,7 +635,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Popup arrow visual property
+        /// The popup arrow visual property.
         /// </summary>
         public PropertyMap PopupArrowVisual
         {
@@ -652,7 +652,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Disable color property
+        /// The disable color property.
         /// </summary>
         public Vector4 DisabledColor
         {
@@ -669,7 +669,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Value presicion property
+        /// The value precision property.
         /// </summary>
         public int ValuePrecision
         {
@@ -686,7 +686,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Show popup property
+        /// The show popup property.
         /// </summary>
         public bool ShowPopup
         {
@@ -703,7 +703,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Show value property
+        /// The show value property.
         /// </summary>
         public bool ShowValue
         {
@@ -720,7 +720,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Marks property
+        /// The marks property.
         /// </summary>
         public Tizen.NUI.PropertyArray Marks
         {
@@ -737,7 +737,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Snap to marks property
+        /// The snap to marks property.
         /// </summary>
         public bool SnapToMarks
         {
@@ -754,7 +754,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Mark tolerance property
+        /// The mark tolerance property.
         /// </summary>
         public float MarkTolerance
         {

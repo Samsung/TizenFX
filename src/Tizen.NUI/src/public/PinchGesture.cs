@@ -77,7 +77,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The scale factor from the start of the pinch gesture till the latest pinch gesture.<br>
         /// If the user is moving their fingers away from each other, then
-        /// this value increases.  Conversely, if the user is moving their
+        /// this value increases. Conversely, if the user is moving their
         /// fingers towards each other, this value will decrease.<br>
         /// </summary>
         public float Scale
@@ -123,9 +123,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Default Constructor.
+        /// The default constructor.
         /// </summary>
-        /// <param name="state">The state of the gesture</param>
+        /// <param name="state">The state of the gesture.</param>
         internal PinchGesture(Gesture.StateType state) : this(NDalicPINVOKE.new_PinchGesture__SWIG_0((int)state), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

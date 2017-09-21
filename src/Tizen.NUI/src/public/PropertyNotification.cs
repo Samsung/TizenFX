@@ -20,8 +20,11 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
 
-
-    internal class PropertyNotification : BaseHandle
+    ///<summary>
+    /// Issues a notification upon a condition of the property being met.
+    /// See PropertyCondition for available defined conditions.
+    ///</summary>
+    public class PropertyNotification : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

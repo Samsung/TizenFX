@@ -21,7 +21,7 @@ namespace Tizen.NUI.BaseComponents
 
     /// <summary>
     /// ImageView is a class for displaying an image resource.<br>
-    /// An instance of ImageView can be created using a URL or an Image instance.<br>
+    /// An instance of ImageView can be created using a URL or an image instance.<br>
     /// </summary>
     public class ImageView : View
     {
@@ -67,9 +67,9 @@ namespace Tizen.NUI.BaseComponents
         private ResourceReadyEventCallbackType _resourceReadyEventCallback;
 
         /// <summary>
-        /// Event for ResourceReady signal which can be used to subscribe/unsubscribe the event handler.<br>
+        /// An event for ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br>
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
-        /// Most resources are only loaded when the control is placed on stage.<br>
+        /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
         public event EventHandler<ResourceReadyEventArgs> ResourceReady
         {
@@ -163,10 +163,10 @@ namespace Tizen.NUI.BaseComponents
 
         }
         /// <summary>
-        /// Creates an initialized ImageView from an URL to an image resource.<br>
+        /// Creates an initialized ImageView from a URL to an image resource.<br>
         /// If the string is empty, ImageView will not display anything.<br>
         /// </summary>
-        /// <param name="url">The url of the image resource to display</param>
+        /// <param name="url">The URL of the image resource to display.</param>
         public ImageView(string url) : this(NDalicPINVOKE.ImageView_New__SWIG_2(url), true)
         {
             _url = url;
@@ -191,7 +191,7 @@ namespace Tizen.NUI.BaseComponents
         /// Sets this ImageView from the given URL.<br>
         /// If the URL is empty, ImageView will not display anything.<br>
         /// </summary>
-        /// <param name="url">The URL to the image resource to display</param>
+        /// <param name="url">The URL to the image resource to display.</param>
         public void SetImage(string url)
         {
             _url = url;
@@ -212,9 +212,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Query if all resources required by a control are loaded and ready.<br>
-        /// Most resources are only loaded when the control is placed on stage.<br>
-        /// true if the resources are loaded and ready, false otherwise.<br>
+        /// Queries if all resources required by a control are loaded and ready.<br>
+        /// Most resources are only loaded when the control is placed on the stage.<br>
+        /// True if the resources are loaded and ready, false otherwise.<br>
         /// </summary>
         public new  bool IsResourceReady()
         {
@@ -225,7 +225,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// ImageView ResourceUrl, type string
+        /// ImageView ResourceUrl, type string.
         /// </summary>
         public string ResourceUrl
         {
@@ -242,7 +242,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// ImageView ImageMap, type PropertyMap : string if it is a url, map otherwise
+        /// ImageView ImageMap, type PropertyMap: string if it is a URL, map otherwise
         /// </summary>
         public PropertyMap ImageMap
         {
@@ -324,7 +324,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get or set whether to draws the borders only(If true).<br>
+        /// Gets or sets whether to draw the borders only (if true).<br>
         /// If not specified, the default is false.<br>
         /// For N-Patch images only.<br>
         /// Optional.

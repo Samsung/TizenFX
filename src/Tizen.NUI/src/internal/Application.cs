@@ -1026,61 +1026,6 @@ namespace Tizen.NUI
 
         private static Application _instance; // singleton
 
-        public delegate void InitDelegate();
-
-        public delegate void TerminateDelegate();
-
-        public delegate void PauseDelegate();
-
-        public delegate void ResumeDelegate();
-
-        public delegate void ResizeDelegate();
-
-        public delegate void AppControlDelegate();
-
-        public delegate void LanguageChangedDelegate();
-
-        public delegate void RegionChangedDelegate();
-
-        public delegate void BatteryLowDelegate();
-
-        public delegate void MemoryLowDelegate();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void InitDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void TerminateDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void PauseDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void ResumeDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void ResizeDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void AppControlDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void LanguageChangedDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void RegionChangedDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void BatteryLowDelegateInternal();
-
-        [System.Runtime.InteropServices.UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.StdCall)]
-        internal delegate void MemoryLowDelegateInternal();
-
-        static void Initialization()
-        {
-            //	instance.InitDelegate();
-        }
-
         public static Application Instance
         {
             get
@@ -1096,27 +1041,14 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void SetupDelegates()
-        {
-            InitDelegateInternal initializeCallback = new InitDelegateInternal(Initialization);
-
-            NUILog.Debug("InitSignal connection count");
-
-            this.InitSignal().Connect(initializeCallback);
-
-            NUILog.Debug("InitSignal connection count = " + InitSignal().GetConnectionCount());
-        }
-
         public static Application NewApplication()
         {
-            _instance = NewApplication("", Application.WindowMode.Opaque);
-            return _instance;
+            return NewApplication("", Application.WindowMode.Opaque);
         }
 
         public static Application NewApplication(string stylesheet)
         {
-            _instance = NewApplication(stylesheet, Application.WindowMode.Opaque);
-            return _instance;
+            return NewApplication(stylesheet, Application.WindowMode.Opaque);
         }
 
         public static Application NewApplication(string stylesheet, Application.WindowMode windowMode)
@@ -1127,8 +1059,6 @@ namespace Tizen.NUI
             Application ret = New(1, stylesheet, windowMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            // we've got an application now connect the signals
-            ret.SetupDelegates();
             // set the singleton
             _instance = ret;
             return ret;
@@ -1142,8 +1072,6 @@ namespace Tizen.NUI
             Application ret = New(args, stylesheet, (Application.WindowMode)windowMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            // we've got an application now connect the signals
-            ret.SetupDelegates();
             // set the singleton
             _instance = ret;
             return _instance;

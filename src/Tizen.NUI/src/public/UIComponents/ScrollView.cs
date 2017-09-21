@@ -73,7 +73,7 @@ namespace Tizen.NUI
         }
 
         /**
-          * @brief Event arguments that passed via SnapStarted signal
+          * @brief Event arguments that passed via the SnapStarted signal
           *
           */
         public class SnapStartedEventArgs : EventArgs
@@ -103,9 +103,9 @@ namespace Tizen.NUI
         private SnapStartedCallbackDelegate _scrollViewSnapStartedCallbackDelegate;
 
         /**
-          * @brief Event for SnapStarted signal which can be used to subscribe/unsubscribe the event handler
+          * @brief Event for the SnapStarted signal which can be used to subscribe or unsubscribe the event handler
           * (in the type of SnapStartedEventHandler-DaliEventHandler<object,SnapStartedEventArgs>) provided by the user.
-          * SnapStarted signal is emitted hen the ScrollView has started to snap or flick (it tells the target
+          * The SnapStarted signal is emitted when the ScrollView has started to snap or flick (it tells the target
           * position, scale, rotation for the snap or flick).
           *
           */

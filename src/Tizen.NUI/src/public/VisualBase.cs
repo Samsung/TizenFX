@@ -22,7 +22,7 @@ namespace Tizen.NUI
 
     /// <summary>
     /// Sets whether the actor should be focusable by keyboard navigation.<br>
-    /// Visuals reuse geometry, shader etc. across controls. They ensure that the renderer and texture sets exist only when control is on-window.<br>
+    /// Visuals reuse geometry, shader etc. across controls. They ensure that the renderer and texture sets exist only when control is on window.<br>
     /// Each visual also responds to actor size and color change, and provides clipping at the renderer level.<br>
     /// </summary>
     public class VisualBase : BaseHandle
@@ -71,7 +71,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Create an empty Visual Handle
+        /// Creates an empty visual handle.
         /// </summary>
         public VisualBase() : this(NDalicPINVOKE.new_VisualBase__SWIG_0(), true)
         {
@@ -84,7 +84,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// name of the visual
+        /// The name of the visual.
         /// </summary>
         public string Name
         {
@@ -112,9 +112,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the transform and the control size
+        /// Sets the transform and the control size.
         /// </summary>
-        /// <param name="transform">A property map describing the transform</param>
+        /// <param name="transform">A property map describing the transform.</param>
         /// <param name="controlSize">The size of the parent control for visuals that need to scale internally.</param>
         public void SetTransformAndSize(PropertyMap transform, Vector2 controlSize)
         {
@@ -125,7 +125,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Returns the height for a given width.
         /// </summary>
-        /// <param name="width">Width to use.</param>
+        /// <param name="width">The width to use.</param>
         /// <returns>The height based on the width.</returns>
         public float GetHeightForWidth(float width)
         {
@@ -137,7 +137,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Returns the width for a given height.
         /// </summary>
-        /// <param name="height">Height to use.</param>
+        /// <param name="height">The height to use.</param>
         /// <returns>The width based on the height.</returns>
         public float GetWidthForHeight(float height)
         {
@@ -147,11 +147,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Return the natural size of the visual.<br>
-        /// Deriving classes stipulate the natural size and by default a visual has a ZERO natural size.<br>
+        /// Returns the natural size of the visual.<br>
+        /// Deriving classes stipulate the natural size and by default a visual has a zero natural size.<br>
         /// A visual may not actually have a natural size until it has been placed on window and acquired all it's resources.<br>
         /// </summary>
-        /// <param name="naturalSize">The visual's natural size</param>
+        /// <param name="naturalSize">The visual's natural size.</param>
         public void GetNaturalSize(Size2D naturalSize)
         {
             NDalicPINVOKE.VisualBase_GetNaturalSize(swigCPtr, Size2D.getCPtr(naturalSize));
@@ -159,7 +159,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// the depth index of this visual.
+        /// The depth index of this visual.
         /// </summary>
         public int DepthIndex
         {
@@ -186,7 +186,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Create the property map representing this visual.
+        /// Creates the property map representing this visual.
         /// </summary>
         [Obsolete("Please be caution! this will be readonly.")]
         public PropertyMap Creation

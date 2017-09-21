@@ -19,8 +19,8 @@ namespace Tizen.NUI
 
     /// <summary>
     /// Base structure for different gestures that an application can receive.<br>
-    /// A gesture is an event that is produced from a combination of several touch events
-    /// in a particular order or within a certain time frame (e.g pinch).<br>
+    /// A Gesture is an event that is produced from a combination of several touch events
+    /// in a particular order or within a certain time frame (for example, pinch).<br>
     /// </summary>
     public class Gesture : global::System.IDisposable
     {
@@ -136,7 +136,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Copy constructor.
+        /// The Copy constructor.
         /// </summary>
         /// <param name="rhs">A reference to the copied handle</param>
         public Gesture(Gesture rhs) : this(NDalicPINVOKE.new_Gesture(Gesture.getCPtr(rhs)), true)
@@ -190,7 +190,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for type of gesture
+        /// Enumeration for type of gesture.
         /// </summary>
         public enum GestureType
         {

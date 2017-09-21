@@ -100,7 +100,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.
+        /// The constructor.
         /// </summary>
         public Degree() : this(NDalicPINVOKE.new_Degree__SWIG_0(), true)
         {
@@ -110,16 +110,16 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates an angle in degrees.
         /// </summary>
-        /// <param name="value">The initial value in degrees</param>
+        /// <param name="value">The initial value in degrees.</param>
         public Degree(float value) : this(NDalicPINVOKE.new_Degree__SWIG_1(value), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Creates an angle in degrees from a Radian.
+        /// Creates an angle in degrees from a radian.
         /// </summary>
-        /// <param name="value">The initial value in Radians</param>
+        /// <param name="value">The initial value in radians.</param>
         public Degree(Radian value) : this(NDalicPINVOKE.new_Degree__SWIG_2(Radian.getCPtr(value)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

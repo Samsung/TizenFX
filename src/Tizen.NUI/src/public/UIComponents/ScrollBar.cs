@@ -22,7 +22,7 @@ namespace Tizen.NUI.UIComponents
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
-    /// ScrollBar is a UI component that can be linked to the scrollable objects
+    /// The ScrollBar is a UI component that can be linked to the scrollable objects
     /// indicating the current scroll position of the scrollable object.<br>
     /// </summary>
     public class ScrollBar : View
@@ -40,7 +40,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// To make ScrollBar instance be disposed.
+        /// To dispose the ScrollBar instance.
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -84,21 +84,21 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Event arguments that passed via PanFinished event
+        /// Event arguments that passed via the PanFinished event.
         /// </summary>
         public class PanFinishedEventArgs : EventArgs
         {
         }
 
         /// <summary>
-        /// Event arguments that passed via ScrollPositionIntervalReached event
+        /// Event arguments that passed via the ScrollPositionIntervalReached event.
         /// </summary>
         public class ScrollIntervalEventArgs : EventArgs
         {
             private float _currentScrollPosition;
 
             /// <summary>
-            /// current scroll position of the scrollable content
+            /// The current scroll position of the scrollable content.
             /// </summary>
             public float CurrentScrollPosition
             {
@@ -124,7 +124,7 @@ namespace Tizen.NUI.UIComponents
         private ScrollPositionIntervalReachedEventCallbackDelegate _scrollBarScrollPositionIntervalReachedEventCallbackDelegate;
 
         /// <summary>
-        /// Event emitted when panning is finished on the scroll indicator.
+        /// The event emitted when panning is finished on the scroll indicator.
         /// </summary>
         public event EventHandler<PanFinishedEventArgs> PanFinished
         {
@@ -161,7 +161,7 @@ namespace Tizen.NUI.UIComponents
 
 
         /// <summary>
-        /// Event emitted when the current scroll position of the scrollable content
+        /// This is the event emitted when the current scroll position of the scrollable content.
         /// </summary>
         public event EventHandler<ScrollIntervalEventArgs> ScrollInterval
         {
@@ -211,16 +211,16 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Creates an initialized ScrollBar.
+        /// Creates an initialized scrollbar.
         /// </summary>
-        /// <param name="direction">The direction of scroll bar (either vertically or horizontally)</param>
+        /// <param name="direction">The direction of the scrollbar (either vertically or horizontally).</param>
         public ScrollBar(ScrollBar.Direction direction) : this(NDalicPINVOKE.ScrollBar_New__SWIG_0((int)direction), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Creates an uninitialized ScrollBar
+        /// Creates an uninitialized scrollbar.
         /// </summary>
         public ScrollBar() : this(NDalicPINVOKE.ScrollBar_New__SWIG_1(), true)
         {
@@ -351,7 +351,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Direction of scroll bar
+        /// The direction of the scrollbar.
         /// </summary>
         public enum Direction
         {
@@ -360,7 +360,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Indicator height policy.
+        /// The indicator height policy.
         /// </summary>
         public enum IndicatorHeightPolicyType
         {
@@ -369,7 +369,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Direction of scroll bar
+        /// The direction of the scrollbar.
         /// </summary>
         public Direction ScrollDirection
         {
@@ -417,7 +417,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Indicator height policy.
+        /// The indicator height policy.
         /// </summary>
         public IndicatorHeightPolicyType IndicatorHeightPolicy
         {
@@ -465,7 +465,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// the fixed height of scroll indicator.
+        /// The fixed height of the scroll indicator.
         /// </summary>
         public float IndicatorFixedHeight
         {
@@ -482,7 +482,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// the duration in seconds for the scroll indicator to become fully visible.
+        /// The duration in seconds for the scroll indicator to become fully visible.
         /// </summary>
         public float IndicatorShowDuration
         {
@@ -499,7 +499,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// the duration in seconds for the scroll indicator to become fully invisible.
+        /// The duration in seconds for the scroll indicator to become fully invisible.
         /// </summary>
         public float IndicatorHideDuration
         {
@@ -516,7 +516,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// the list of values to get notification when the current scroll position of the scrollable object goes above or below any of these values.
+        /// The list of values to get the notification when the current scroll position of the scrollable object goes above or below any of these values.
         /// </summary>
         public Tizen.NUI.PropertyArray ScrollPositionIntervals
         {
@@ -550,7 +550,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// The padding at the start of the indicator. For example, the top if scrollDirection is Vertical.
+        /// The padding at the start of the indicator. For example, the top if the scrollDirection is vertical.
         /// </summary>
         public float IndicatorStartPadding
         {
@@ -567,7 +567,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// The padding at the end of the indicator. For example, the bottom if scrollDirection is Vertical.
+        /// The padding at the end of the indicator. For example, the bottom if the scrollDirection is vertical.
         /// </summary>
         public float IndicatorEndPadding
         {

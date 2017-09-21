@@ -22,7 +22,7 @@ namespace Tizen.NUI.UIComponents
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
-    /// ProgressBar is a control to give the user an indication of the progress of an operation.
+    /// The ProgressBar is a control to give the user an indication of the progress of an operation.
     /// </summary>
     public class ProgressBar : View
     {
@@ -39,7 +39,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// To make ProgressBar instance be disposed.
+        /// To dispose the ProgressBar instance.
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -80,7 +80,7 @@ namespace Tizen.NUI.UIComponents
 
 
         /// <summary>
-        /// Event arguments that passed via ValueChangedEventArgs
+        /// Event arguments that passed via the ValueChangedEventArgs.
         /// </summary>
         public class ValueChangedEventArgs : EventArgs
         {
@@ -132,7 +132,7 @@ namespace Tizen.NUI.UIComponents
         private ValueChangedCallbackDelegate _progressBarValueChangedCallbackDelegate;
 
         /// <summary>
-        /// Event is sent when the ProgressBar value changes.
+        /// The event is sent when the ProgressBar value changes.
         /// </summary>
         public event EventHandler<ValueChangedEventArgs> ValueChanged
         {
@@ -201,10 +201,10 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// The progress value of progress bar, progress runs form 0 to 1.<br>
-        /// If Value is set to 0, progress bar will be set to beginning.<br>
-        /// If Value is set to 1, progress bar will be set to end.<br>
-        /// Any Value outside of the range is ignored.<br>
+        /// The progress value of the progress bar, the progress runs from 0 to 1.<br>
+        /// If the value is set to 0, then the progress bar will be set to beginning.<br>
+        /// If the value is set to 1, then the progress bar will be set to end.<br>
+        /// Any value outside the range is ignored.<br>
         /// </summary>
         public float ProgressValue
         {
@@ -220,11 +220,11 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// The secondary progress value of progress bar, secondary progress runs form 0 to 1.<br>
+        /// The secondary progress value of the progress bar, the secondary progress runs from 0 to 1.<br>
         /// Optional. If not supplied, the default is 0.<br>
-        /// If Value is set to 0, progress bar will be set secondary progress to beginning.<br>
-        /// If Value is set to 1, progress bar will be set secondary progress to end.<br>
-        /// Any Value outside of the range is ignored.<br>
+        /// If the value is set to 0, then the progress bar will be set secondary progress to beginning.<br>
+        /// If the value is set to 1, then the progress bar will be set secondary progress to end.<br>
+        /// Any value outside of the range is ignored.<br>
         /// </summary>
         public float SecondaryProgressValue
         {
@@ -240,7 +240,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// Sets the progress-bar as \e indeterminate state.
+        /// Sets the progress bar as \e indeterminate state.
         /// </summary>
         public bool Indeterminate
         {
@@ -256,7 +256,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// The track Visual value of progress bar, it's a full progress area and it's shown behind PROGRESS_VISUAL.<br>
+        /// The track visual value of progress bar, it's full progress area, and it's shown behind the PROGRESS_VISUAL.<br>
         /// Optional. If not supplied, the default track visual will be shown.<br>
         /// </summary>
         public Tizen.NUI.PropertyMap TrackVisual
@@ -273,8 +273,8 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// The progress Visual value of progress bar, size of the progress visual is changed based on PROGRESS_VALUE.<br>
-        /// Optional. If not supplied, the default progress visual will be shown.<br>
+        /// The progress visual value of the progress bar, the size of the progress visual is changed based on the PROGRESS_VALUE.<br>
+        /// Optional. If not supplied, then the default progress visual will be shown.<br>
         /// </summary>
         public Tizen.NUI.PropertyMap ProgressVisual
         {
@@ -290,8 +290,8 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// The secondary progress visual of progress bar, size of the secondary progress visual is changed based on SECONDARY_PROGRESS_VALUE.<br>
-        /// Optional. If not supplied, the secondary progress visual will not be shown.<br>
+        /// The secondary progress visual of the progress bar, the size of the secondary progress visual is changed based on the SECONDARY_PROGRESS_VALUE.<br>
+        /// Optional. If not supplied, then the secondary progress visual will not be shown.<br>
         /// </summary>
         public Tizen.NUI.PropertyMap SecondaryProgressVisual
         {
@@ -307,8 +307,8 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// The indeterminate visual of progress bar.<br>
-        /// Optional. If not supplied, the default inditerminate visual will be shown.<br>
+        /// The indeterminate visual of the progress bar.<br>
+        /// Optional. If not supplied, then the default indeterminate visual will be shown.<br>
         /// </summary>
         public Tizen.NUI.PropertyMap IndeterminateVisual
         {
@@ -324,8 +324,8 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// The transition data for indeterminate visual animation.<br>
-        /// Optional. If not supplied, default animation will be played.<br>
+        /// The transition data for the indeterminate visual animation.<br>
+        /// Optional. If not supplied, then the default animation will be played.<br>
         /// </summary>
         public Tizen.NUI.PropertyArray IndeterminateVisualAnimation
         {
@@ -341,7 +341,7 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// The Label visual of progress bar.
+        /// The label visual of the progress bar.
         /// </summary>
         public Tizen.NUI.PropertyMap LabelVisual
         {

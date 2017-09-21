@@ -21,7 +21,7 @@ namespace Tizen.NUI.UIComponents
 {
 
     /// <summary>
-    /// A PushButton changes its appearance when is pressed and returns to its original when is released.
+    /// The PushButton changes its appearance when it is pressed, and returns to its original when it is released.
     /// </summary>
     public class PushButton : Button
     {
@@ -38,7 +38,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// To make PushButton instance be disposed.
+        /// To dispose the PushButton instance.
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -206,23 +206,23 @@ namespace Tizen.NUI.UIComponents
         public enum IconAlignmentType
         {
             /// <summary>
-            /// Icon located to the left of text.
+            /// The icon located to the left of text.
             /// </summary>
             Left,
             /// <summary>
-            /// Icon located to the right of text.
+            /// The icon located to the right of text.
             /// </summary>
             Right,
             /// <summary>
-            /// Icon located to the top of text.
+            /// The icon located to the top of text.
             /// </summary>
             Top,
             /// <summary>
-            /// Icon located to the bottom of text.
+            /// The icon located to the bottom of text.
             /// </summary>
             Bottom,
             /// <summary>
-            /// Icon located to the right of text by default.
+            /// The icon located to the right of text by default.
             /// </summary>
             Default = Right
         }

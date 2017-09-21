@@ -74,7 +74,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Event arguments that passed via Finished signal
+        /// Event arguments that passed via the finished signal.
         /// </summary>
         public class FinishedEventArgs : EventArgs
         {
@@ -104,9 +104,9 @@ namespace Tizen.NUI.BaseComponents
 
 
         /// <summary>
-        /// Event for Finished signal which can be used to subscribe/unsubscribe the event handler
+        /// Event for the finished signal which can be used to subscribe or unsubscribe the event handler
         /// (in the type of FinishedEventHandler-DaliEventHandler<object,FinishedEventArgs>) provided by the user.<br>
-        /// Finished signal is emitted when a video playback have finished.<br>
+        /// The finished signal is emitted when a video playback has finished.<br>
         /// </summary>
         public event EventHandler<FinishedEventArgs> Finished
         {
@@ -165,7 +165,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates an initialized VideoView.<br>
         /// If the string is empty, VideoView will not display anything.<br>
         /// </summary>
-        /// <param name="url">The url of the video resource to display</param>
+        /// <param name="url">The URL of the video resource to display.</param>
         public VideoView(string url) : this(NDalicPINVOKE.VideoView_New__SWIG_1(url), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -214,7 +214,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Seeks forward by the specified number of milliseconds.
         /// </summary>
-        /// <param name="millisecond">The position for forward playback</param>
+        /// <param name="millisecond">The position for forward playback.</param>
         public void Forward(int millisecond)
         {
             NDalicPINVOKE.VideoView_Forward(swigCPtr, millisecond);
@@ -224,7 +224,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Seeks backward by the specified number of milliseconds.
         /// </summary>
-        /// <param name="millisecond">The position for backward playback</param>
+        /// <param name="millisecond">The position for backward playback.</param>
         public void Backward(int millisecond)
         {
             NDalicPINVOKE.VideoView_Backward(swigCPtr, millisecond);
@@ -239,7 +239,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// video file url as string type or PropertyMap.
+        /// Video file URL as string type or PropertyMap.
         /// </summary>
         public PropertyMap Video
         {
@@ -256,7 +256,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// looping status, true or false.
+        /// The looping status, true or false.
         /// </summary>
         public bool Looping
         {
@@ -273,7 +273,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// mute status, true or false.
+        /// The mute status, true or false.
         /// </summary>
         public bool Muted
         {
@@ -290,7 +290,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// left and right volume scalar as float type, PropertyMap with two values ( "left" and "right" ).
+        /// The left and the right volume scalar as float type, PropertyMap with two values ( "left" and "right" ).
         /// </summary>
         public PropertyMap Volume
         {

@@ -18,7 +18,7 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// Rectangle class
+    /// The Rectangle class.
     /// </summary>
     public class Rectangle : global::System.IDisposable
     {
@@ -100,11 +100,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Equality operator.
+        /// THe Equality operator.
         /// </summary>
-        /// <param name="a">First operand</param>
-        /// <param name="b">Second operand</param>
-        /// <returns>True if boxes are exactly same</returns>
+        /// <param name="a">The first operand.</param>
+        /// <param name="b">The second operand.</param>
+        /// <returns>True if the boxes are exactly the same.</returns>
         public static bool operator ==(Rectangle a, Rectangle b)
         {
             // If both are null, or both are same instance, return true.
@@ -124,18 +124,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inequality operator.
+        /// The Inequality operator.
         /// </summary>
-        /// <param name="a">The first rectangle</param>
-        /// <param name="b">The second rectangle</param>
-        /// <returns>True if rectangles are not identical</returns>
+        /// <param name="a">The first rectangle.</param>
+        /// <param name="b">The second rectangle.</param>
+        /// <returns>True if the rectangles are not identical.</returns>
         public static bool operator !=(Rectangle a, Rectangle b)
         {
             return !(a == b);
         }
 
         /// <summary>
-        /// X position of the rectangle
+        /// The x position of the rectangle.
         /// </summary>
         public int X
         {
@@ -150,7 +150,7 @@ namespace Tizen.NUI
             }
 
         /// <summary>
-        /// Y position of the rectangle
+        /// The Y position of the rectangle.
         /// </summary>
         public int Y
         {
@@ -165,7 +165,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Width of the rectangle
+        /// The width of the rectangle.
         /// </summary>
         public int Width
         {
@@ -180,7 +180,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Height of the rectangle
+        /// The height of the rectangle.
         /// </summary>
         public int Height
         {
@@ -195,7 +195,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.
+        /// The constructor.
         /// </summary>
         public Rectangle() : this(NDalicPINVOKE.new_Rectangle__SWIG_0(), true)
         {
@@ -203,12 +203,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.
+        /// The constructor.
         /// </summary>
-        /// <param name="x">X coordinate (or left)</param>
-        /// <param name="y">Y coordinate (or right)</param>
-        /// <param name="width">Width (or bottom)</param>
-        /// <param name="height">Height (or top)</param>
+        /// <param name="x">The x coordinate (or left).</param>
+        /// <param name="y">The y coordinate (or right).</param>
+        /// <param name="width">The width (or bottom).</param>
+        /// <param name="height">The height (or top).</param>
         public Rectangle(int x, int y, int width, int height) : this(NDalicPINVOKE.new_Rectangle__SWIG_1(x, y, width, height), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -217,10 +217,10 @@ namespace Tizen.NUI
         /// <summary>
         /// Assignment from individual values.
         /// </summary>
-        /// <param name="newX">X coordinate</param>
-        /// <param name="newY">Y coordinate</param>
-        /// <param name="newWidth">Width</param>
-        /// <param name="newHeight">Height</param>
+        /// <param name="newX">The x coordinate.</param>
+        /// <param name="newY">The y coordinate.</param>
+        /// <param name="newWidth">The width.</param>
+        /// <param name="newHeight">The height./param>
         public void Set(int newX, int newY, int newWidth, int newHeight)
         {
             NDalicPINVOKE.Rectangle_Set(swigCPtr, newX, newY, newWidth, newHeight);
@@ -228,9 +228,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Determines whether or not this Rectangle is empty.
+        /// Determines whether or not this rectangle is empty.
         /// </summary>
-        /// <returns>True if width or height are zero</returns>
+        /// <returns>True if width or height are zero.</returns>
         public bool IsEmpty()
         {
             bool ret = NDalicPINVOKE.Rectangle_IsEmpty(swigCPtr);
@@ -241,7 +241,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the left of the rectangle.
         /// </summary>
-        /// <returns>The left edge of the rectangle</returns>
+        /// <returns>The left edge of the rectangle.</returns>
         public int Left()
         {
             int ret = NDalicPINVOKE.Rectangle_Left(swigCPtr);
@@ -252,7 +252,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the right of the rectangle.
         /// </summary>
-        /// <returns>The right edge of the rectangle</returns>
+        /// <returns>The right edge of the rectangle.</returns>
         public int Right()
         {
             int ret = NDalicPINVOKE.Rectangle_Right(swigCPtr);
@@ -263,7 +263,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the top of the rectangle.
         /// </summary>
-        /// <returns>The top of the rectangle</returns>
+        /// <returns>The top of the rectangle.</returns>
         public int Top()
         {
             int ret = NDalicPINVOKE.Rectangle_Top(swigCPtr);
@@ -274,7 +274,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the bottom of the rectangle.
         /// </summary>
-        /// <returns>The bottom of the rectangle</returns>
+        /// <returns>The bottom of the rectangle.</returns>
         public int Bottom()
         {
             int ret = NDalicPINVOKE.Rectangle_Bottom(swigCPtr);
@@ -285,7 +285,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the area of the rectangle.
         /// </summary>
-        /// <returns>The area of the rectangle</returns>
+        /// <returns>The area of the rectangle.</returns>
         public int Area()
         {
             int ret = NDalicPINVOKE.Rectangle_Area(swigCPtr);
@@ -296,8 +296,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Determines whether or not this rectangle and the specified rectangle intersect.
         /// </summary>
-        /// <param name="other">The other rectangle to test against this rectangle</param>
-        /// <returns>True if the rectangles intersect</returns>
+        /// <param name="other">The other rectangle to test against this rectangle.</param>
+        /// <returns>True if the rectangles intersect.</returns>
         public bool Intersects(Rectangle other)
         {
             bool ret = NDalicPINVOKE.Rectangle_Intersects(swigCPtr, Rectangle.getCPtr(other));
@@ -306,10 +306,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Determines whether or not this Rectangle contains the specified rectangle.
+        /// Determines whether or not this rectangle contains the specified rectangle.
         /// </summary>
-        /// <param name="other">The other rectangle to test against this rectangle</param>
-        /// <returns>True if the specified rectangle is contained</returns>
+        /// <param name="other">The other rectangle to test against this rectangle.</param>
+        /// <returns>True if the specified rectangle is contained.</returns>
         public bool Contains(Rectangle other)
         {
             bool ret = NDalicPINVOKE.Rectangle_Contains(swigCPtr, Rectangle.getCPtr(other));

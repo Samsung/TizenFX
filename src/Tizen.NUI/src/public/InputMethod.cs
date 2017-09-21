@@ -27,14 +27,14 @@ namespace Tizen.NUI
         private int? _variation = null;
 
         /// <summary>
-        /// Default constructor.
+        /// The default constructor.
         /// </summary>
         public InputMethod()
         {
         }
 
         /// <summary>
-        /// Get or set panel layout.
+        /// Gets or sets the panel layout.
         /// </summary>
         public PanelLayoutType PanelLayout
         {
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set action button.
+        /// Gets or sets the action button.
         /// </summary>
         public ActionButtonTitleType ActionButton
         {
@@ -64,7 +64,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set auto capital.
+        /// Gets or sets the auto capital.
         /// </summary>
         public AutoCapitalType AutoCapital
         {
@@ -79,7 +79,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set variation.
+        /// Gets or sets the variation.
         /// </summary>
         public int Variation
         {
@@ -94,7 +94,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set variation for normal layout.
+        /// Gets or sets the variation for normal layout.
         /// </summary>
         public NormalLayoutType NormalVariation
         {
@@ -109,7 +109,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set variation for number only layout.
+        /// Gets or sets the variation for the number only layout.
         /// </summary>
         public NumberOnlyLayoutType NumberOnlyVariation
         {
@@ -124,7 +124,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set variation for password layout.
+        /// Gets or sets the variation for the password layout.
         /// </summary>
         public PasswordLayoutType PasswordVariation
         {
@@ -149,7 +149,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the input method map.
+        /// Gets the input method map.
         /// </summary>
         public PropertyMap OutputMap
         {
@@ -160,24 +160,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// SetType that can be changed in the system Input Method.
+        /// SetType that can be changed in the system input method.
         /// </summary>
         public enum CategoryType
         {
             /// <summary>
-            /// Set Keyboard layout.
+            /// Set the keyboard layout.
             /// </summary>
             PanelLayout,
             /// <summary>
-            /// Set Action button title.
+            /// Set the action button title.
             /// </summary>
             ActionButtonTitle,
             /// <summary>
-            /// Set Auto capitalise of input.
+            /// Set the auto capitalise of input.
             /// </summary>
             AutoCapitalise,
             /// <summary>
-            /// Set variation.
+            /// Set the variation.
             /// </summary>
             Variation
         }
@@ -247,7 +247,7 @@ namespace Tizen.NUI
             /// </summary>
             HEX,
             /// <summary>
-            /// Command-line terminal layout including ESC, Alt, Ctrl key, so on (no auto-correct, no auto-capitalization).
+            /// Command-line terminal layout including Esc, Alt, Ctrl key, and so on (no auto-correct, no auto-capitalization).
             /// </summary>
             Terminal,
             /// <summary>
@@ -320,7 +320,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Available variation for Normal layout.
+        /// Available variation for the normal layout.
         /// </summary>
         public enum NormalLayoutType
         {
@@ -339,7 +339,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Available variation for Number only layout.
+        /// Available variation for the number only layout.
         /// </summary>
         public enum NumberOnlyLayoutType
         {
@@ -362,7 +362,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Available variation for Password layout.
+        /// Available variation for the password layout.
         /// </summary>
         public enum PasswordLayoutType
         {

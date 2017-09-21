@@ -23,7 +23,7 @@ namespace Tizen.NUI
 
     /// <summary>
     /// The window class is used internally for drawing.<br>
-    /// A Window has an orientation and indicator properties.<br>
+    /// The window has an orientation and indicator properties.<br>
     /// </summary>
     public class Window : BaseHandle
     {
@@ -47,7 +47,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// To make Window instance be disposed.
+        /// To make the window instance be disposed.
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -146,9 +146,9 @@ namespace Tizen.NUI
        }
 
         /// <summary>
-        /// Sets whether window accepts focus or not.
+        /// Sets whether the window accepts a focus or not.
         /// </summary>
-        /// <param name="accept">If focus is accepted or not. Default is true.</param>
+        /// <param name="accept">If a focus is accepted or not. The default is true.</param>
         public void SetAcceptFocus(bool accept)
         {
             NDalicPINVOKE.SetAcceptFocus(swigCPtr, accept);
@@ -156,9 +156,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns whether window accepts focus or not.
+        /// Returns whether the window accepts a focus or not.
         /// </summary>
-        /// <returns>True if the window accept focus, false otherwise</returns>
+        /// <returns>True if the window accepts a focus, false otherwise.</returns>
         public bool IsFocusAcceptable()
         {
             bool ret = NDalicPINVOKE.IsFocusAcceptable(swigCPtr);
@@ -188,7 +188,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves whether the window is visible or not.
         /// </summary>
-        /// <returns>true, if the windoe is visible</returns>
+        /// <returns>True if the window is visible.</returns>
         public bool IsVisible()
         {
             bool temp = NDalicPINVOKE.IsVisible(swigCPtr);
@@ -284,7 +284,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets a window type.
+        /// Gets or sets a window type.
         /// </summary>
         public WindowType Type
         {
@@ -353,7 +353,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets a screen mode of the window.
+        /// Gets the screen mode of the window.
         /// </summary>
         /// <returns>The screen mode.</returns>
         public ScreenMode GetScreenMode() {
@@ -374,9 +374,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets preffered brightness of the window.
+        /// Gets the preferred brightness of the window.
         /// </summary>
-        /// <returns>The preffered brightness.</returns>
+        /// <returns>The preferred brightness.</returns>
         public int GetBrightness() {
             int ret = NDalicPINVOKE.GetBrightness(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -494,10 +494,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the window name and class string.
+        /// Sets the window name and the class string.
         /// </summary>
-        /// <param name="name">The name of the window</param>
-        /// <param name="klass">The class of the window</param>
+        /// <param name="name">The name of the window.</param>
+        /// <param name="klass">The class of the window.</param>
         public void SetClass(string name, string klass)
         {
             NDalicPINVOKE.Window_SetClass(swigCPtr, name, klass);
@@ -505,7 +505,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Raises window to the top of Window stack.
+        /// Raises the window to the top of the window stack.
         /// </summary>
         public void Raise()
         {
@@ -514,7 +514,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Lowers window to the bottom of Window stack.
+        /// Lowers the window to the bottom of the window stack.
         /// </summary>
         public void Lower()
         {
@@ -523,7 +523,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Activates window to the top of Window stack even it is iconified.
+        /// Activates the window to the top of the window stack even it is iconified.
         /// </summary>
         public void Activate()
         {
@@ -578,9 +578,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get default ( root ) layer.
+        /// Gets the default ( root ) layer.
         /// </summary>
-        /// <returns>The root layer</returns>
+        /// <returns>The root layer.</returns>
         public Layer GetDefaultLayer()
         {
             return this.GetRootLayer();
@@ -685,7 +685,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Keep rendering for at least the given amount of time.
         /// </summary>
-        /// <param name="durationSeconds">Time to keep rendering, 0 means render at least one more frame</param>
+        /// <param name="durationSeconds">Time to keep rendering, 0 means render at least one more frame.</param>
         public void KeepRendering(float durationSeconds)
         {
             NDalicPINVOKE.Stage_KeepRendering(stageCPtr, durationSeconds);
@@ -773,8 +773,8 @@ namespace Tizen.NUI
         private static readonly Window instance = Application.Instance.GetWindow();
 
         /// <summary>
-        /// Stage instance property (read-only).<br>
-        /// Gets the current Window.<br>
+        /// The stage instance property (read-only).<br>
+        /// Gets the current window.<br>
         /// </summary>
         public static Window Instance
         {
@@ -785,12 +785,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Grabs the key specified by a key for a window only when a window is the topmost window. <br>
+        /// Grabs the key specified by a key for a window only when a window is the topmost window.<br>
         /// This function can be used for following example scenarios: <br>
-        /// - Mobile - Using volume up/down as zoom up/down in camera apps. <br>
+        /// - Mobile - Using volume up or down as zoom up or down in camera apps.<br>
         /// </summary>
-        /// <param name="DaliKey">The key code to grab</param>
-        /// <returns>true if the grab succeeds</returns>
+        /// <param name="DaliKey">The key code to grab.</param>
+        /// <returns>True if the grab succeeds.</returns>
         public bool GrabKeyTopmost(int DaliKey)
         {
             bool ret = NDalicManualPINVOKE.GrabKeyTopmost(HandleRef.ToIntPtr(this.swigCPtr), DaliKey);
@@ -799,11 +799,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Ungrabs the key specified by a key for a window. <br>
+        /// Ungrabs the key specified by a key for the window.<br>
         /// Note: If this function is called between key down and up events of a grabbed key, an application doesn't receive the key up event.<br>
         /// </summary>
-        /// <param name="DaliKey">The key code to ungrab</param>
-        /// <returns>true if the ungrab succeeds</returns>
+        /// <param name="DaliKey">The key code to ungrab.</param>
+        /// <returns>True if the ungrab succeeds.</returns>
         public bool UngrabKeyTopmost(int DaliKey)
         {
             bool ret = NDalicManualPINVOKE.UngrabKeyTopmost(HandleRef.ToIntPtr(this.swigCPtr), DaliKey);
@@ -815,12 +815,12 @@ namespace Tizen.NUI
         ///  Grabs the key specified by a key for a window in a GrabMode. <br>
         ///  Details: This function can be used for following example scenarios: <br>
         ///  - TV - A user might want to change the volume or channel of the background TV contents while focusing on the foregrund app. <br>
-        ///  - Mobile - When a user presses Home key, the homescreen appears regardless of current foreground app. <br>
-        ///  - Mobile - Using volume up/down as zoom up/down in camera apps. <br>
+        ///  - Mobile - When a user presses the Home key, the homescreen appears regardless of the current foreground app. <br>
+        ///  - Mobile - Using the volume up or down as zoom up or down in camera apps. <br>
         /// </summary>
-        /// <param name="DaliKey">The key code to grab</param>
-        /// <param name="GrabMode">The grab mode for the key</param>
-        /// <returns>true if the grab succeeds</returns>
+        /// <param name="DaliKey">The key code to grab.</param>
+        /// <param name="GrabMode">The grab mode for the key.</param>
+        /// <returns>True if the grab succeeds.</returns>
         public bool GrabKey(int DaliKey, KeyGrabMode GrabMode)
         {
             bool ret = NDalicManualPINVOKE.GrabKey(HandleRef.ToIntPtr(this.swigCPtr), DaliKey, (int)GrabMode);
@@ -829,11 +829,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Ungrabs the key specified by a key for a window.  <br>
+        /// Ungrabs the key specified by a key for a window.<br>
         /// Note: If this function is called between key down and up events of a grabbed key, an application doesn't receive the key up event. <br>
         /// </summary>
-        /// <param name="DaliKey">The key code to ungrab</param>
-        /// <returns>true if the ungrab succeeds</returns>
+        /// <param name="DaliKey">The key code to ungrab.</param>
+        /// <returns>True if the ungrab succeeds.</returns>
         public bool UngrabKey(int DaliKey)
         {
             bool ret = NDalicManualPINVOKE.UngrabKey(HandleRef.ToIntPtr(this.swigCPtr), DaliKey);
@@ -841,7 +841,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public System.IntPtr GetNativeWindowHandler()
+        internal System.IntPtr GetNativeWindowHandler()
         {
             System.IntPtr ret = NDalicManualPINVOKE.GetNativeWindowHandler(HandleRef.ToIntPtr(this.swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -860,24 +860,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for key grab mode for platform-level APIs.
+        /// Enumeration for the key grab mode for platform-level APIs.
         /// </summary>
         public enum KeyGrabMode
         {
             /// <summary>
-            /// Grab a key only when on the top of the grabbing-window stack mode.
+            /// Grabs a key only when on the top of the grabbing-window stack mode.
             /// </summary>
             Topmost = 0,
             /// <summary>
-            /// Grab a key together with the other client window(s) mode.
+            /// Grabs a key together with the other client window(s) mode.
             /// </summary>
             Shared,
             /// <summary>
-            /// Grab a key exclusively regardless of the grabbing-window's position on the window stack with the possibility of overriding the grab by the other client window mode.
+            /// Grabs a key exclusively regardless of the grabbing-window's position on the window stack with the possibility of overriding the grab by the other client window mode.
             /// </summary>
             OverrideExclusive,
             /// <summary>
-            /// Grab a key exclusively regardless of the grabbing-window's position on the window stack mode.
+            /// Grabs a key exclusively regardless of the grabbing-window's position on the window stack mode.
             /// </summary>
             Exclusive
         };
@@ -903,7 +903,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Touch event argument.
+        /// The touch event argument.
         /// </summary>
         public class TouchEventArgs : EventArgs
         {
@@ -929,7 +929,7 @@ namespace Tizen.NUI
         private EventCallbackDelegateType1 _stageTouchCallbackDelegate;
 
         /// <summary>
-        /// This is emitted when the screen is touched and when the touch ends.<br>
+        /// This event is emitted when the screen is touched and when the touch ends.<br>
         /// If there are multiple touch points, then this will be emitted when the first touch occurs and
         /// then when the last finger is lifted.<br>
         /// An interrupted event will also be emitted (if it occurs).<br>
@@ -1000,7 +1000,7 @@ namespace Tizen.NUI
         private EventCallbackDelegateType1 _stageWheelCallbackDelegate;
 
         /// <summary>
-        /// Event emitted when wheel event is received.
+        /// This event is emitted when the wheel event is received.
         /// </summary>
         public event EventHandler<WheelEventArgs> WheelEvent
         {
@@ -1046,7 +1046,7 @@ namespace Tizen.NUI
             private Key _key;
 
             /// <summary>
-            /// Key
+            /// Key.
             /// </summary>
             public Key Key
             {
@@ -1065,7 +1065,7 @@ namespace Tizen.NUI
         private EventCallbackDelegateType1 _stageKeyCallbackDelegate;
 
         /// <summary>
-        /// Event emitted when key event is received.
+        /// This event is emitted when the key event is received.
         /// </summary>
         public event EventHandler<KeyEventArgs> KeyEvent
         {
@@ -1335,7 +1335,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Window size property (read-only).
+        /// The window size property (read-only).
         /// </summary>
         public Size2D Size
         {
@@ -1347,7 +1347,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Background color property.
+        /// The background color property.
         /// </summary>
         public Color BackgroundColor
         {
@@ -1363,7 +1363,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dpi property (read-only).<br>
+        /// The DPI property (read-only).<br>
         /// Retrieves the DPI of the display device to which the Window is connected.<br>
         /// </summary>
         public Vector2 Dpi
@@ -1375,7 +1375,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Layer count property (read-only).<br>
+        /// The layer count property (read-only).<br>
         /// Queries the number of on-Window layers.<br>
         /// </summary>
         public uint LayerCount
@@ -1388,9 +1388,9 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Add layer to the Stage.
+        /// Adds a layer to the stage.
         /// </summary>
-        /// <param name="layer">Layer to add</param>
+        /// <param name="layer">Layer to add.</param>
         public void AddLayer(Layer layer)
         {
             NDalicPINVOKE.Stage_Add(stageCPtr, Layer.getCPtr(layer));
@@ -1398,9 +1398,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Remove layer from the Stage.
+        /// Removes a layer from the stage.
         /// </summary>
-        /// <param name="layer">Layer to remove</param>
+        /// <param name="layer">Layer to remove.</param>
         public void RemoveLayer(Layer layer)
         {
             NDalicPINVOKE.Stage_Remove(stageCPtr, Layer.getCPtr(layer));
@@ -1459,7 +1459,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets a size of the window.
+        /// Gets or sets a size of the window.
         /// </summary>
         public Size2D WindowSize
         {
@@ -1474,7 +1474,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets a position of the window.
+        /// Gets or sets a position of the window.
         /// </summary>
         public Position2D WindowPosition
         {
@@ -1488,9 +1488,22 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Feed a key-event into the window.
+        /// </summary>
         public static void FeedKeyEvent(Key keyEvent)
         {
             NDalicManualPINVOKE.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Allows at least one more render, even when paused.
+        /// The window should be shown, not minimised.
+        /// </summary>
+        public void RenderOnce()
+        {
+            NDalicManualPINVOKE.Window_RenderOnce(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

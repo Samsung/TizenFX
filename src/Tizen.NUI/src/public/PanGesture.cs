@@ -108,7 +108,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This current touch position of the primary touch point in local actor coordinates.
+        /// The current touch position of the primary touch point in local actor coordinates.
         /// </summary>
         public Vector2 Position
         {
@@ -149,7 +149,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This current touch position of the primary touch point in screen coordinates.
+        /// The current touch position of the primary touch point in screen coordinates.
         /// </summary>
         public Vector2 ScreenPosition
         {
@@ -171,7 +171,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Default Constructor.
+        /// The default constructor.
         /// </summary>
         public PanGesture() : this(NDalicPINVOKE.new_PanGesture__SWIG_0(), true)
         {
@@ -179,7 +179,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.
+        /// The constructor.
         /// </summary>
         /// <param name="state">The state of the gesture</param>
         internal PanGesture(Gesture.StateType state) : this(NDalicPINVOKE.new_PanGesture__SWIG_1((int)state), true)
@@ -303,7 +303,7 @@ namespace Tizen.NUI
         /// Returns the speed at which the user is moving their fingers.<br>
         /// This is the pixel movement per millisecond.<br>
         /// </summary>
-        /// <returns>The speed of the pan (in pixels per millisecond)</returns>
+        /// <returns>The speed of the pan (in pixels per millisecond).</returns>
         public float GetSpeed()
         {
             float ret = NDalicPINVOKE.PanGesture_GetSpeed(swigCPtr);
@@ -312,11 +312,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This returns the distance the user has panned (dragged) since the last pan gesture or,
+        /// Returns the distance the user has panned (dragged) since the last pan gesture or,
         /// if the gesture has just started, then the distance moved since the user touched the screen.<br>
         /// This is always a positive value.<br>
         /// </summary>
-        /// <returns>The distance, as a float, a user's finger has panned</returns>
+        /// <returns>The distance, as a float, a user's finger has panned.</returns>
         public float GetDistance()
         {
             float ret = NDalicPINVOKE.PanGesture_GetDistance(swigCPtr);
@@ -328,7 +328,7 @@ namespace Tizen.NUI
         /// Returns the speed at which the user is moving their fingers relative to screen coordinates.<br>
         /// This is the pixel movement per millisecond.<br>
         /// </summary>
-        /// <returns>The speed of the pan (in pixels per millisecond)</returns>
+        /// <returns>The speed of the pan (in pixels per millisecond).</returns>
         public float GetScreenSpeed()
         {
             float ret = NDalicPINVOKE.PanGesture_GetScreenSpeed(swigCPtr);
@@ -337,12 +337,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This returns the distance the user has panned (dragged) since the last pan gesture in screen
+        /// Returns the distance the user has panned (dragged) since the last pan gesture in screen
         /// coordinates or, if the gesture has just started, then the distance in screen coordinates moved
         /// since the user touched the screen.<br>
         /// This is always a positive value.<br>
         /// </summary>
-        /// <returns>The distance, as a float, a user's finger has panned</returns>
+        /// <returns>The distance, as a float, a user's finger has panned.</returns>
         public float GetScreenDistance()
         {
             float ret = NDalicPINVOKE.PanGesture_GetScreenDistance(swigCPtr);

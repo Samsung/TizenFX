@@ -31,8 +31,8 @@ namespace Tizen.NUI
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
-    /// WidgetView is a class for displaying the widget image and controlling the widget.<br>
-    /// Input events that WidgetView gets are delivered to the widget.
+    /// The WidgetView is a class for displaying the widget image and controlling the widget.<br>
+    /// Input events that the WidgetView gets are delivered to the widget.
     /// </summary>
     public class WidgetView : View
     {
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// To make Button instance be disposed.
+        /// To make the Button instance be disposed.
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -95,7 +95,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Create a new WidgetView.
+        /// Creates a new WidgetView.
         /// </summary>
         public WidgetView(string widgetId, string contentInfo, int width, int height, float updatePeriod) : this(NDalicManualPINVOKE.WidgetView_New(widgetId, contentInfo, width, height, updatePeriod), true)
         {
@@ -130,7 +130,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Event arguments of widget view.
+        /// Event arguments of the widget view.
         /// </summary>
         public class WidgetViewEventArgs : EventArgs
         {
@@ -158,9 +158,9 @@ namespace Tizen.NUI
         private WidgetAddedEventCallbackType _widgetAddedEventCallback;
 
         /// <summary>
-        /// Event for ResourceReady signal which can be used to subscribe/unsubscribe the event handler.<br>
+        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br>
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
-        /// Most resources are only loaded when the control is placed on stage.<br>
+        /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
         public event EventHandler<WidgetViewEventArgs> WidgetAdded
         {
@@ -207,9 +207,9 @@ namespace Tizen.NUI
         private WidgetDeletedEventCallbackType _widgetDeletedEventCallback;
 
         /// <summary>
-        /// Event for ResourceReady signal which can be used to subscribe/unsubscribe the event handler.<br>
+        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br>
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
-        /// Most resources are only loaded when the control is placed on stage.<br>
+        /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
         public event EventHandler<WidgetViewEventArgs> WidgetDeleted
         {
@@ -256,9 +256,9 @@ namespace Tizen.NUI
         private WidgetCreationAbortedEventCallbackType _widgetCreationAbortedEventCallback;
 
         /// <summary>
-        /// Event for ResourceReady signal which can be used to subscribe/unsubscribe the event handler.<br>
+        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br>
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
-        /// Most resources are only loaded when the control is placed on stage.<br>
+        /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
         public event EventHandler<WidgetViewEventArgs> WidgetCreationAborted
         {
@@ -305,9 +305,9 @@ namespace Tizen.NUI
         private WidgetContentUpdatedEventCallbackType _widgetContentUpdatedEventCallback;
 
         /// <summary>
-        /// Event for ResourceReady signal which can be used to subscribe/unsubscribe the event handler.<br>
+        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br>
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
-        /// Most resources are only loaded when the control is placed on stage.<br>
+        /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
         public event EventHandler<WidgetViewEventArgs> WidgetContentUpdated
         {
@@ -354,9 +354,9 @@ namespace Tizen.NUI
         private WidgetUpdatePeriodChangedEventCallbackType _widgetUpdatePeriodChangedEventCallback;
 
         /// <summary>
-        /// Event for ResourceReady signal which can be used to subscribe/unsubscribe the event handler.<br>
+        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br>
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
-        /// Most resources are only loaded when the control is placed on stage.<br>
+        /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
         public event EventHandler<WidgetViewEventArgs> WidgetUpdatePeriodChanged
         {
@@ -403,9 +403,9 @@ namespace Tizen.NUI
         private WidgetFaultedEventCallbackType _widgetFaultedEventCallback;
 
         /// <summary>
-        /// Event for ResourceReady signal which can be used to subscribe/unsubscribe the event handler.<br>
+        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br>
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
-        /// Most resources are only loaded when the control is placed on stage.<br>
+        /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
         public event EventHandler<WidgetViewEventArgs> WidgetFaulted
         {
@@ -449,7 +449,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Pauses a given widget.
         /// </summary>
-        /// <returns>true on success, false otherwise.</returns>
+        /// <returns>True on success, false otherwise.</returns>
         public bool PauseWidget()
         {
             bool ret = NDalicManualPINVOKE.WidgetView_PauseWidget(swigCPtr);
@@ -458,9 +458,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Resume a given widget.
+        /// Resumes a given widget.
         /// </summary>
-        /// <returns>true on success, false otherwise.</returns>
+        /// <returns>True on success, false otherwise.</returns>
         public bool ResumeWidget()
         {
             bool ret = NDalicManualPINVOKE.WidgetView_ResumeWidget(swigCPtr);
@@ -469,11 +469,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Cancels touch event procedure.
+        /// Cancels the touch event procedure.
         /// If you call this function after feed the touch down event, the widget will get ON_HOLD events.
        ///  If a widget gets ON_HOLD event, it will not do anything even if you feed touch up event.
         /// </summary>
-        /// <returns>true on success, false otherwise.</returns>
+        /// <returns>True on success, false otherwise.</returns>
         public bool CancelTouchEvent()
         {
             bool ret = NDalicManualPINVOKE.WidgetView_CancelTouchEvent(swigCPtr);
@@ -482,8 +482,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Activate a widget in faulted state.
-        /// A widget in faulted state MUST be activated before adding the widget.
+        /// Activates a widget in the faulted state.
+        /// A widget in faulted state must be activated before adding the widget.
         /// </summary>
         public void ActivateFaultedWidget()
         {
@@ -534,7 +534,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the id of widget.
+        /// Gets the ID of the widget.
         /// </summary>
         public string WidgetID
         {
@@ -547,7 +547,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the id of instance.
+        /// Gets the ID of the instance.
         /// </summary>
         public string InstanceID
         {
@@ -599,7 +599,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/sets the preview.
+        /// Gets or sets the preview.
         /// </summary>
         public bool Preview
         {
@@ -616,7 +616,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/sets the loading text.
+        /// Gets or sets the loading text.
         /// </summary>
         public bool LoadingText
         {
@@ -633,7 +633,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/sets whether the widget state is faulted or not.
+        /// Gets or sets whether the widget state is faulted or not.
         /// </summary>
         public bool WidgetStateFaulted
         {
@@ -650,7 +650,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/sets whether the widget is permanent delete or not.
+        /// Gets or sets whether the widget is to delete permanently or not.
         /// </summary>
         public bool PermanentDelete
         {

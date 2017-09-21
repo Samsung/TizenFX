@@ -24,7 +24,7 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// Represents an application that have UI screen. The NUIApplication class has a default stage.
+    /// Represents an application that have a UI screen. The NUIApplication class has a default stage.
     /// </summary>
     public class NUIApplication : CoreApplication
     {
@@ -51,21 +51,21 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The constructor with stylesheet.
+        /// The constructor with a stylesheet.
         /// </summary>
         public NUIApplication(string stylesheet) : base(new NUICoreBackend(stylesheet))
         {
         }
 
         /// <summary>
-        /// The constructor with stylesheet and window mode.
+        /// The constructor with a stylesheet and window mode.
         /// </summary>
         public NUIApplication(string stylesheet, WindowMode windowMode) : base(new NUICoreBackend(stylesheet,windowMode))
         {
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if you want to handle behavior.
         /// </summary>
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
@@ -74,7 +74,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if you want to handle behavior.
         /// </summary>
         protected override void OnLowBattery(LowBatteryEventArgs e)
         {
@@ -83,7 +83,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if you want to handle behavior.
         /// </summary>
         protected override void OnLowMemory(LowMemoryEventArgs e)
         {
@@ -92,7 +92,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if you want to handle behavior.
         /// </summary>
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
@@ -101,7 +101,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if you want to handle behavior.
         /// </summary>
         protected override void OnTerminate()
         {
@@ -110,7 +110,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if you want to handle behavior.
         /// </summary>
         protected virtual void OnPause()
         {
@@ -119,7 +119,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if you want to handle behavior.
         /// </summary>
         protected virtual void OnResume()
         {
@@ -128,7 +128,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if you want to handle behavior.
         /// </summary>
         protected virtual void OnPreCreate()
         {
@@ -136,7 +136,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if you want to handle behavior.
         /// </summary>
         protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
@@ -150,7 +150,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if you want to handle behavior.
         /// </summary>
         protected override void OnCreate()
         {
@@ -162,7 +162,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Run NUIApplication.
+        /// Runs the NUIApplication.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>
         public override void Run(string[] args)
@@ -174,7 +174,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Exit NUIApplication.
+        /// Exits the NUIApplication.
         /// </summary>
         public override void Exit()
         {
@@ -210,7 +210,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ResourceManager to handle multilingual
+        /// ResourceManager to handle multilingual.
         /// </summary>
         public static System.Resources.ResourceManager MultilingualResourceManager
         {
@@ -225,7 +225,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the window instance.
+        /// Gets the window instance.
         /// </summary>
         [Obsolete("Please do not use! this will be deprecated")]
         public Window Window

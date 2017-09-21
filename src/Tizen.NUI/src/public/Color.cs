@@ -22,7 +22,7 @@ namespace Tizen.NUI
     using System;
 
     /// <summary>
-    /// Color class.
+    /// The Color class.
     /// </summary>
     public class Color : global::System.IDisposable
     {
@@ -55,7 +55,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// To make Color instance be disposed.
+        /// To make a color instance be disposed.
         /// </summary>
         public void Dispose()
         {
@@ -107,11 +107,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Addition operator.
+        /// The addition operator.
         /// </summary>
-        /// <param name="arg1">First value</param>
-        /// <param name="arg2">Second value</param>
-        /// <returns>A Color containing the result of the addition</returns>
+        /// <param name="arg1">The first value.</param>
+        /// <param name="arg2">The second value.</param>
+        /// <returns>The color containing the result of the addition.</returns>
         public static Color operator +(Color arg1, Color arg2)
         {
             Color result = arg1.Add(arg2);
@@ -120,11 +120,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Subtraction operator.
+        /// The subtraction operator.
         /// </summary>
-        /// <param name="arg1">First value</param>
-        /// <param name="arg2">Second value</param>
-        /// <returns>A Color containing the result of the subtraction</returns>
+        /// <param name="arg1">The first value.</param>
+        /// <param name="arg2">The second value.</param>
+        /// <returns>The color containing the result of the subtraction.</returns>
         public static Color operator -(Color arg1, Color arg2)
         {
             Color result = arg1.Subtract(arg2);
@@ -133,10 +133,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Unary negation operator.
+        /// The unary negation operator.
         /// </summary>
-        /// <param name="arg1">Target Value</param>
-        /// <returns>A Color containg the negation</returns>
+        /// <param name="arg1">The target value.</param>
+        /// <returns>The color containg the negation.</returns>
         public static Color operator -(Color arg1)
         {
             Color result = arg1.Subtract();
@@ -145,11 +145,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Multiplication operator.
+        /// The multiplication operator.
         /// </summary>
-        /// <param name="arg1">First Value</param>
-        /// <param name="arg2">Second Value</param>
-        /// <returns>A Color containing the result of the multiplication</returns>
+        /// <param name="arg1">The first value.</param>
+        /// <param name="arg2">The second value.</param>
+        /// <returns>The color containing the result of the multiplication.</returns>
         public static Color operator *(Color arg1, Color arg2)
         {
             Color result = arg1.Multiply(arg2);
@@ -165,11 +165,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Division operator.
+        /// The division operator.
         /// </summary>
-        /// <param name="arg1">First Value</param>
-        /// <param name="arg2">Second Value</param>
-        /// <returns>A Color containing the result of the division</returns>
+        /// <param name="arg1">The first value.</param>
+        /// <param name="arg2">The second value.</param>
+        /// <returns>The color containing the result of the division.</returns>
         public static Color operator /(Color arg1, Color arg2)
         {
             Color result = arg1.Divide(arg2);
@@ -185,10 +185,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Array subscript operator overload.
+        /// The array subscript operator overload.
         /// </summary>
-        /// <param name="index">Subscript index</param>
-        /// <returns>The float at the given index</returns>
+        /// <param name="index">The subscript index.</param>
+        /// <returns>The float at the given index.</returns>
         public float this[uint index]
         {
             get
@@ -214,12 +214,12 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Constructor.
+        /// The constructor.
         /// </summary>
-        /// <param name="r">red component</param>
-        /// <param name="g">green component</param>
-        /// <param name="b">blue component</param>
-        /// <param name="a">alpha component</param>
+        /// <param name="r">The red component.</param>
+        /// <param name="g">The green component.</param>
+        /// <param name="b">The blue component.</param>
+        /// <param name="a">The alpha component.</param>
         public Color(float r, float g, float b, float a) : this(NDalicPINVOKE.new_Vector4__SWIG_1(r, g, b, a), true)
         {
             ValueCheck(ref r);
@@ -230,9 +230,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Conversion constructor from an array of four floats.
+        /// The conversion constructor from an array of four floats.
         /// </summary>
-        /// <param name="array">array Array of R,G,B,A</param>
+        /// <param name="array">array Array of R,G,B,A.</param>
         public Color(float[] array) : this(NDalicPINVOKE.new_Vector4__SWIG_2(array), true)
         {
             ValueCheck(ref array[0]);
@@ -334,10 +334,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Check if two Color classes are same.
+        /// Checks if two color classes are same.
         /// </summary>
-        /// <param name="rhs">A Color to be compared</param>
-        /// <returns>If two Colors are are same, then true.</returns>
+        /// <param name="rhs">A color to be compared.</param>
+        /// <returns>If two colors are are same, then true.</returns>
         public bool EqualTo(Color rhs)
         {
             bool ret = NDalicPINVOKE.Vector4_EqualTo(swigCPtr, Color.getCPtr(rhs));
@@ -349,10 +349,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Check if two Color classes are different.
+        /// Checks if two color classes are different.
         /// </summary>
-        /// <param name="rhs">A Color to be compared</param>
-        /// <returns>If two Colors are are different, then true.</returns>
+        /// <param name="rhs">A color to be compared.</param>
+        /// <returns>If two colors are are different, then true.</returns>
         public bool NotEqualTo(Color rhs)
         {
             bool ret = NDalicPINVOKE.Vector4_NotEqualTo(swigCPtr, Color.getCPtr(rhs));
@@ -369,7 +369,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// red component.
+        /// The red component.
         /// </summary>
         public float R
         {
@@ -388,7 +388,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// green component.
+        /// The green component.
         /// </summary>
         public float G
         {
@@ -407,7 +407,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// blue component.
+        /// The blue component.
         /// </summary>
         public float B
         {
@@ -426,7 +426,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// alpha component.
+        /// The alpha component.
         /// </summary>
         public float A
         {
@@ -445,63 +445,63 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get black colored Color class.
+        /// Gets the black colored Color class.
         /// </summary>
         public static readonly Color Black = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 
         /// <summary>
-        /// Get white colored Color class.
+        /// Gets the white colored Color class.
         /// </summary>
         public static readonly Color White = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
         /// <summary>
-        /// Get red colored Color class.
+        /// Gets the red colored Color class.
         /// </summary>
         public static readonly Color Red = new Color(1.0f, 0.0f, 0.0f, 1.0f);
 
         /// <summary>
-        /// Get green colored Color class.
+        /// Gets the green colored Color class.
         /// </summary>
         public static readonly Color Green = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 
         /// <summary>
-        /// Get blue colored Color class.
+        /// Gets the blue colored Color class.
         /// </summary>
         public static readonly Color Blue = new Color(0.0f, 0.0f, 1.0f, 1.0f);
 
         /// <summary>
-        /// Get yellow colored Color class.
+        /// Gets the yellow colored Color class.
         /// </summary>
         public static readonly Color Yellow = new Color(1.0f, 1.0f, 0.0f, 1.0f);
 
         /// <summary>
-        /// Get magenta colored Color class.
+        /// Gets the magenta colored Color class.
         /// </summary>
         public static readonly Color Magenta = new Color(1.0f, 0.0f, 1.0f, 1.0f);
 
         /// <summary>
-        /// Get cyan colored Color class.
+        /// Gets the cyan colored Color class.
         /// </summary>
         public static readonly Color Cyan = new Color(0.0f, 1.0f, 1.0f, 1.0f);
 
         /// <summary>
-        /// Get transparent colored Color class.
+        /// Gets the  transparent colored Color class.
         /// </summary>
         public static readonly Color Transparent = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
         /// <summary>
-        /// convert Color class to Vector4 class implicitly.
+        /// Converts the Color class to Vector4 class implicitly.
         /// </summary>
-        /// <param name="color">A Color to be converted to Vector4</param>
+        /// <param name="color">A color to be converted to Vector4</param>
         public static implicit operator Vector4(Color color)
         {
             return new Vector4(color.R, color.G, color.B, color.A);
         }
 
         /// <summary>
-        /// convert Vector4 class to Color class implicitly.
+        /// Converts Vector4 class to Color class implicitly.
         /// </summary>
-        /// <param name="vec">A Vector4 to be converted to Color</param></param>
+        /// <param name="vec">A Vector4 to be converted to color.</param></param>
         public static implicit operator Color(Vector4 vec)
         {
             return new Color(vec.R, vec.G, vec.B, vec.A);

@@ -27,7 +27,7 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
     ///<summary>
-    ///Spin CustomView class
+    ///Spins the CustomView class.
     /// </summary>
     public class Spin : CustomView
     {
@@ -62,15 +62,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates an initialized Spin.
+        /// Creates an initialized spin.
         /// </summary>
         public Spin() : base(typeof(Spin).FullName, CustomViewBehaviour.RequiresKeyboardNavigationSupport)
         {
         }
 
         /// <summary>
-        /// Override method of OnInitialize() for CustomView class.<br>
-        /// This method is called after the Control has been initialized.<br>
+        /// Overrides the method of OnInitialize() for the CustomView class.<br>
+        /// This method is called after the control has been initialized.<br>
         /// Derived classes should do any second phase initialization by overriding this method.<br>
         /// </summary>
         public override void OnInitialize()
@@ -115,29 +115,29 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Override method of GetNaturalSize() for CustomView class.<br>
-        /// Return the natural size of the actor.<br>
+        /// Overrides the method of GetNaturalSize() for the CustomView class.<br>
+        /// Returns the natural size of the actor.<br>
         /// </summary>
-        /// <returns> Natural size of this Spin itself</returns>
+        /// <returns> Natural size of this spin itself.</returns>
         public override Size2D GetNaturalSize()
         {
             return new Size2D(150, 150);
         }
 
         /// <summary>
-        /// Event handler when the TextField in Spin gets the Key focus.<br>
-        /// Make sure when the current spin that takes input focus also takes the keyboard focus.<br>
+        /// An event handler is used when the TextField in the spin gets the key focus.<br>
+        /// Make sure when the current spin that takes input focus, also takes the keyboard focus.<br>
         /// For example, when you tap the spin directly.<br>
         /// </summary>
-        /// <param name="source">Sender of this event</param>
-        /// <param name="e">Event arguments</param>
+        /// <param name="source">Sender of this event.</param>
+        /// <param name="e">Event arguments.</param>
         public void TextFieldKeyInputFocusGained(object source, EventArgs e)
         {
             FocusManager.Instance.SetCurrentFocusView(_textField);
         }
 
         /// <summary>
-        /// Event handler when the TextField in Spin looses it's Key focus
+        /// An event handler when the TextField in the spin looses it's key focus.
         /// </summary>
         /// <param name="source"></param>
         /// <param name="e"></param>
@@ -163,14 +163,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Override method of GetNextKeyboardFocusableView() for CustomView class.<br>
-        /// Gets the next key focusable view in this View towards the given direction.<br>
-        /// A View needs to override this function in order to support two dimensional key navigation.<br>
+        /// Overrides the method of GetNextKeyboardFocusableView() for the CustomView class.<br>
+        /// Gets the next key focusable view in this view towards the given direction.<br>
+        /// A view needs to override this function in order to support two-dimensional key navigation.<br>
         /// </summary>
-        /// <param name="currentFocusedView">The current focused view</param>
-        /// <param name="direction">The direction to move the focus towards</param>
-        /// <param name="loopEnabled">Whether the focus movement should be looped within the control</param>
-        /// <returns>The next keyboard focusable view in this control or an empty handle if no view can be focused</returns>
+        /// <param name="currentFocusedView">The current focused view.</param>
+        /// <param name="direction">The direction to move the focus towards.</param>
+        /// <param name="loopEnabled">Whether the focus movement should be looped within the control.</param>
+        /// <returns>The next keyboard focusable view in this control or an empty handle if no view can be focused.</returns>
         public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
             // Respond to Up/Down keys to change the value while keeping the current spin focused
@@ -195,7 +195,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Value to be set in Spin.
+        /// Value to be set in the spin.
         /// </summary>
         [ScriptableProperty()]
         public int Value
@@ -226,7 +226,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Minimum Value of Spin Value.
+        /// Minimum value of the spin value.
         /// </summary>
         // MinValue property of type int:
         [ScriptableProperty()]
@@ -243,7 +243,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Maximum Value of Spin Value.
+        /// Maximum value of the spin value.
         /// </summary>
         // MaxValue property of type int:
         [ScriptableProperty()]
@@ -260,7 +260,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Increasing, decresing step of Spin Value when Up or Down key is pressed.
+        /// Increasing, decreasing step of the spin value when up or down keys are pressed.
         /// </summary>
         // Step property of type int:
         [ScriptableProperty()]
@@ -294,7 +294,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Text point size of Spin Value.
+        /// Text point size of the spin value.
         /// </summary>
         // TextPointSize property of type int:
         [ScriptableProperty()]
@@ -312,7 +312,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The color of Spin Value.
+        /// The color of the spin value.
         /// </summary>
         // TextColor property of type Color:
         [ScriptableProperty()]
@@ -332,7 +332,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Maximum text lengh of Spin Value.
+        /// Maximum text lengh of the spin value.
         /// </summary>
         // MaxTextLength property of type int:
         [ScriptableProperty()]
@@ -350,7 +350,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Reference of TextField of Spin.
+        /// Reference of TextField of the spin.
         /// </summary>
         public TextField SpinText
         {
@@ -365,7 +365,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Show indicator image, for example Up/Down Arrow image.
+        /// Show indicator image, for example, up or down arrow image.
         /// </summary>
         // Indicator property of type string:
         public string IndicatorImage

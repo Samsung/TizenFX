@@ -22,7 +22,7 @@ namespace Tizen.NUI.BaseComponents
     using System.Runtime.InteropServices;
     using System.Globalization;
     /// <summary>
-    /// A control which provides a single-line editable text field.
+    /// A control which provides a single line editable text field.
     /// </summary>
     public class TextField : View
     {
@@ -42,7 +42,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Dispose
+        /// Dispose.
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
@@ -87,7 +87,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Text changed event arguments.
+        /// The TextChanged event arguments.
         /// </summary>
         public class TextChangedEventArgs : EventArgs
         {
@@ -110,7 +110,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// MaxLengthReached event arguments.
+        /// The MaxLengthReached event arguments.
         /// </summary>
         public class MaxLengthReachedEventArgs : EventArgs
         {
@@ -144,7 +144,7 @@ namespace Tizen.NUI.BaseComponents
         private MaxLengthReachedCallbackDelegate _textFieldMaxLengthReachedCallbackDelegate;
 
         /// <summary>
-        /// TextChanged event.
+        /// The TextChanged event.
         /// </summary>
         public event EventHandler<TextChangedEventArgs> TextChanged
         {
@@ -183,7 +183,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// MaxLengthReached event.
+        /// The MaxLengthReached event.
         /// </summary>
         public event EventHandler<MaxLengthReachedEventArgs> MaxLengthReached
         {
@@ -343,11 +343,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// TranslatableText property.<br>
-        /// The text can be set SID value.<br>
+        /// The TranslatableText property.<br>
+        /// The text can set the SID value.<br>
         /// </summary>
         /// <exception cref='ArgumentNullException'>
-        /// ResourceManager about multilingual is null
+        /// ResourceManager about multilingual is null.
         /// </exception>
         public string TranslatableText
         {
@@ -366,11 +366,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
         /// <summary>
-        /// TranslatablePlaceholderText property.<br>
-        /// The text can be set SID value.<br>
+        /// The TranslatablePlaceholderText property.<br>
+        /// The text can set the SID value.<br>
         /// </summary>
         /// <exception cref='ArgumentNullException'>
-        /// ResourceManager about multilingual is null
+        /// ResourceManager about multilingual is null.
         /// </exception>
         public string TranslatablePlaceholderText
         {
@@ -418,7 +418,7 @@ namespace Tizen.NUI.BaseComponents
                 PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textFieldPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
             }
         }
-        /// Text property.
+        /// The Text property.
         /// </summary>
         public string Text
         {
@@ -435,7 +435,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// PlaceholderText property.
+        /// The PlaceholderText property.
         /// </summary>
         public string PlaceholderText
         {
@@ -452,7 +452,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// PlaceholderTextFocused property.
+        /// The PlaceholderTextFocused property.
         /// </summary>
         public string PlaceholderTextFocused
         {
@@ -469,7 +469,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// FontFamily property.
+        /// The FontFamily property.
         /// </summary>
         public string FontFamily
         {
@@ -486,7 +486,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// FontStyle property.
+        /// The FontStyle property.
         /// </summary>
         public PropertyMap FontStyle
         {
@@ -503,7 +503,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// PointSize property.
+        /// The PointSize property.
         /// </summary>
         public float PointSize
         {
@@ -520,7 +520,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// MaxLength property.
+        /// The MaxLength property.
         /// </summary>
         public int MaxLength
         {
@@ -537,7 +537,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// ExceedPolicy property.
+        /// The ExceedPolicy property.
         /// </summary>
         public int ExceedPolicy
         {
@@ -554,7 +554,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// HorizontalAlignment property.
+        /// The HorizontalAlignment property.
         /// </summary>
         public HorizontalAlignment HorizontalAlignment
         {
@@ -609,7 +609,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// VerticalAlignment property.
+        /// The VerticalAlignment property.
         /// </summary>
         public VerticalAlignment VerticalAlignment
         {
@@ -664,7 +664,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// TextColor property.
+        /// The TextColor property.
         /// </summary>
         public Color TextColor
         {
@@ -681,7 +681,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// PlaceholderTextColor property.
+        /// The PlaceholderTextColor property.
         /// </summary>
         public Vector4 PlaceholderTextColor
         {
@@ -698,7 +698,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// ShadowOffset property.
+        /// The ShadowOffset property.
         /// </summary>
         public Vector2 ShadowOffset
         {
@@ -715,7 +715,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// ShadowColor property.
+        /// The ShadowColor property.
         /// </summary>
         public Vector4 ShadowColor
         {
@@ -732,7 +732,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// PrimaryCursorColor property.
+        /// The PrimaryCursorColor property.
         /// </summary>
         public Vector4 PrimaryCursorColor
         {
@@ -749,7 +749,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// SecondaryCursorColor property.
+        /// The SecondaryCursorColor property.
         /// </summary>
         public Vector4 SecondaryCursorColor
         {
@@ -766,7 +766,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// EnableCursorBlink property.
+        /// The EnableCursorBlink property.
         /// </summary>
         public bool EnableCursorBlink
         {
@@ -783,7 +783,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// CursorBlinkInterval property.
+        /// The CursorBlinkInterval property.
         /// </summary>
         public float CursorBlinkInterval
         {
@@ -800,7 +800,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// CursorBlinkDuration property.
+        /// The CursorBlinkDuration property.
         /// </summary>
         public float CursorBlinkDuration
         {
@@ -817,7 +817,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// CursorWidth property.
+        /// The CursorWidth property.
         /// </summary>
         public int CursorWidth
         {
@@ -834,7 +834,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// GrabHandleImage property.
+        /// The GrabHandleImage property.
         /// </summary>
         public string GrabHandleImage
         {
@@ -851,7 +851,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// GrabHandlePressedImage property.
+        /// The GrabHandlePressedImage property.
         /// </summary>
         public string GrabHandlePressedImage
         {
@@ -868,7 +868,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// ScrollThreshold property.
+        /// The ScrollThreshold property.
         /// </summary>
         public float ScrollThreshold
         {
@@ -885,7 +885,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// ScrollSpeed property.
+        /// The ScrollSpeed property.
         /// </summary>
         public float ScrollSpeed
         {
@@ -902,7 +902,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// SelectionHandleImageLeft property.
+        /// The SelectionHandleImageLeft property.
         /// </summary>
         public PropertyMap SelectionHandleImageLeft
         {
@@ -919,7 +919,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// SelectionHandleImageRight property.
+        /// The SelectionHandleImageRight property.
         /// </summary>
         public PropertyMap SelectionHandleImageRight
         {
@@ -936,7 +936,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// SelectionHandlePressedImageLeft property.
+        /// The SelectionHandlePressedImageLeft property.
         /// </summary>
         public PropertyMap SelectionHandlePressedImageLeft
         {
@@ -953,7 +953,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// SelectionHandlePressedImageRight property.
+        /// The SelectionHandlePressedImageRight property.
         /// </summary>
         public PropertyMap SelectionHandlePressedImageRight
         {
@@ -970,7 +970,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// SelectionHandleMarkerImageLeft property.
+        /// The SelectionHandleMarkerImageLeft property.
         /// </summary>
         public PropertyMap SelectionHandleMarkerImageLeft
         {
@@ -987,7 +987,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// SelectionHandleMarkerImageRight property.
+        /// The SelectionHandleMarkerImageRight property.
         /// </summary>
         public PropertyMap SelectionHandleMarkerImageRight
         {
@@ -1004,7 +1004,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// SelectionHighlightColor property.
+        /// The SelectionHighlightColor property.
         /// </summary>
         public Vector4 SelectionHighlightColor
         {
@@ -1021,7 +1021,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// DecorationBoundingBox property.
+        /// The DecorationBoundingBox property.
         /// </summary>
         public Rectangle DecorationBoundingBox
         {
@@ -1038,7 +1038,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// InputMethodSettings property.
+        /// The InputMethodSettings property.
         /// </summary>
         public PropertyMap InputMethodSettings
         {
@@ -1055,7 +1055,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// InputColor property.
+        /// The InputColor property.
         /// </summary>
         public Vector4 InputColor
         {
@@ -1072,7 +1072,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// EnableMarkup property.
+        /// The EnableMarkup property.
         /// </summary>
         public bool EnableMarkup
         {
@@ -1089,7 +1089,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// InputFontFamily property.
+        /// The InputFontFamily property.
         /// </summary>
         public string InputFontFamily
         {
@@ -1106,7 +1106,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// InputFontStyle property.
+        /// The InputFontStyle property.
         /// </summary>
         public PropertyMap InputFontStyle
         {
@@ -1123,7 +1123,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// InputPointSize property.
+        /// The InputPointSize property.
         /// </summary>
         public float InputPointSize
         {
@@ -1140,7 +1140,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Underline property.
+        /// The Underline property.
         /// </summary>
         public PropertyMap Underline
         {
@@ -1157,7 +1157,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// InputUnderline property.
+        /// The InputUnderline property.
         /// </summary>
         public string InputUnderline
         {
@@ -1174,7 +1174,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Shadow property.
+        /// The Shadow property.
         /// </summary>
         public PropertyMap Shadow
         {
@@ -1191,7 +1191,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// InputShadow property.
+        /// The InputShadow property.
         /// </summary>
         public string InputShadow
         {
@@ -1208,7 +1208,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Emboss property.
+        /// The Emboss property.
         /// </summary>
         public string Emboss
         {
@@ -1225,7 +1225,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// InputEmboss property.
+        /// The InputEmboss property.
         /// </summary>
         public string InputEmboss
         {
@@ -1242,7 +1242,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Outline property.
+        /// The Outline property.
         /// </summary>
         public string Outline
         {
@@ -1259,7 +1259,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// InputOutline property.
+        /// The InputOutline property.
         /// </summary>
         public string InputOutline
         {
@@ -1276,7 +1276,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// HiddenInputSettings property.
+        /// The HiddenInputSettings property.
         /// </summary>
         public Tizen.NUI.PropertyMap HiddenInputSettings
         {
@@ -1293,7 +1293,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// PixelSize property.
+        /// The PixelSize property.
         /// </summary>
         public float PixelSize
         {
@@ -1310,7 +1310,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Enable selection property.
+        /// The Enable selection property.
         /// </summary>
         public bool EnableSelection
         {
@@ -1327,11 +1327,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Placeholder property.
-        /// Gets/Sets the placeholder : text, color, font family, font style, point size, and pixel size.
+        /// The Placeholder property.
+        /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
         /// </summary>
         /// <example>
-        /// The following example demonstrates how to set the placeholder property.
+        /// The following example demonstrates how to set the Placeholder property.
         /// <code>
         /// PropertyMap propertyMap = new PropertyMap();
         /// propertyMap.Add("placeholderText", new PropertyValue("Setting Placeholder Text"));

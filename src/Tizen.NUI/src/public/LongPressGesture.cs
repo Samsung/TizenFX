@@ -18,8 +18,8 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// A LongPressGesture is emitted when the user holds the screen with the stated number of fingers.<br>
-    /// Long press gesture finishes when all touches have been released.<br>
+    /// A long press gesture is emitted when the user holds the screen with the stated number of fingers.<br>
+    /// A long press gesture finishes when all touches have been released.<br>
     /// </summary>
     public class LongPressGesture : Gesture
     {
@@ -75,7 +75,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The number of touch points in this long press gesture, i.e. the number of fingers the user had
+        /// The number of touch points in this long press gesture, i.e., the number of fingers the user had
         /// on the screen to generate the long press gesture.<br>
         /// </summary>
         public uint NumberOfTouches
@@ -111,7 +111,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constructor.
+        /// The constructor.
         /// </summary>
         /// <param name="state">The state of the gesture</param>
         public LongPressGesture(Gesture.StateType state) : this(NDalicPINVOKE.new_LongPressGesture__SWIG_0((int)state), true)
