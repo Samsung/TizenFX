@@ -63,7 +63,7 @@ namespace Tizen.Multimedia
             internal static extern int IsEncoded(IntPtr handle, out bool value);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_flags")]
-            internal static extern int GetBufferFlags(IntPtr handle, out int value);
+            internal static extern int GetBufferFlags(IntPtr handle, out MediaPacketBufferFlags value);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_set_flags")]
             internal static extern int SetBufferFlags(IntPtr handle, int value);

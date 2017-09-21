@@ -31,7 +31,6 @@ namespace Tizen.Multimedia
         bool IsDisposed { get; }
     }
 
-
     internal static class BufferOwnerExtensions
     {
         internal static void ValidateBufferReadable(this IBufferOwner bufferOwner, IMediaBuffer buffer)

@@ -25,7 +25,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a packet for multimedia.
     /// </summary>
-    public abstract partial class MediaPacket : IDisposable
+    public abstract partial class MediaPacket : IBufferOwner, IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
 
@@ -52,6 +52,7 @@ namespace Tizen.Multimedia
 
             Initialize(format);
             _format = format;
+            _buffer = new Lazy<IMediaBuffer>(GetBuffer);
         }
 
         /// <summary>
@@ -250,17 +251,19 @@ namespace Tizen.Multimedia
             }
         }
 
-        private MediaPacketBuffer _buffer;
+        private Lazy<IMediaBuffer> _buffer;
 
         /// <summary>
         /// Gets the buffer of the packet.
         /// </summary>
-        /// <value>The <see cref="MediaPacketBuffer"/> allocated to the packet.
-        ///     This property will return null if the packet is in the raw video format.</value>
+        /// <value>
+        /// The <see cref="IMediaBuffer"/> allocated to the packet.
+        /// This property will return null if the packet is in the raw video format.
+        /// </value>
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
         /// <seealso cref="IsEncoded"/>
         /// <seealso cref="VideoPlanes"/>
-        public MediaPacketBuffer Buffer
+        public IMediaBuffer Buffer
         {
             get
             {
@@ -271,12 +274,7 @@ namespace Tizen.Multimedia
                     return null;
                 }
 
-                if (_buffer == null)
-                {
-                    _buffer = GetBuffer();
-                }
-
-                return _buffer;
+                return _buffer.Value;
             }
         }
 
@@ -285,7 +283,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     The value specified for this property is less than zero or greater than <see cref="MediaPacketBuffer.Length"/>.</exception>
+        ///     The value specified for this property is less than zero or greater than the length of the <see cref="Buffer"/>.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The MediaPacket has <see cref="VideoPlanes"/> instead of <see cref="Buffer"/>.\n
         ///     -or-\n
@@ -371,13 +369,11 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                int value = 0;
-
-                int ret = Interop.MediaPacket.GetBufferFlags(_handle, out value);
+                int ret = Interop.MediaPacket.GetBufferFlags(_handle, out var value);
 
                 MultimediaDebug.AssertNoError(ret);
 
-                return (MediaPacketBufferFlags)value;
+                return value;
             }
 
             set
@@ -399,13 +395,7 @@ namespace Tizen.Multimedia
         /// Gets a value indicating whether the packet has been disposed of.
         /// </summary>
         /// <value>true if the packet has been disposed of; otherwise, false.</value>
-        public bool IsDisposed
-        {
-            get
-            {
-                return _isDisposed;
-            }
-        }
+        public bool IsDisposed => _isDisposed;
 
         private bool _isDisposed = false;
 
@@ -529,9 +519,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves the buffer of the current packet.
         /// </summary>
-        /// <returns>The <see cref="MediaPacketBuffer"/> allocated to the current MediaPacket.</returns>
-        private MediaPacketBuffer GetBuffer()
+        /// <returns>The <see cref="IMediaBuffer"/> allocated to the current MediaPacket.</returns>
+        private IMediaBuffer GetBuffer()
         {
+            Debug.Assert(!IsDisposed, "Packet is already disposed!");
+
             Debug.Assert(_handle != IntPtr.Zero, "The handle is invalid!");
 
             IntPtr dataHandle;
@@ -545,7 +537,9 @@ namespace Tizen.Multimedia
             ret = Interop.MediaPacket.GetAllocatedBufferSize(_handle, out size);
             MultimediaDebug.AssertNoError(ret);
 
-            return new MediaPacketBuffer(this, dataHandle, size);
+            Debug.Assert(size >= 0, "size must not be negative!");
+
+            return new DependentMediaBuffer(this, dataHandle, size);
         }
 
         /// <summary>
@@ -562,6 +556,10 @@ namespace Tizen.Multimedia
         {
             return new SimpleMediaPacket(handle);
         }
+
+        bool IBufferOwner.IsDisposed => IsDisposed;
+
+        bool IBufferOwner.IsBufferAccessible(object buffer, MediaBufferAccessMode accessMode) => true;
     }
 
     internal class SimpleMediaPacket : MediaPacket

@@ -65,12 +65,12 @@ namespace Tizen.Multimedia
             if (length < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(length), length,
-                    $"Length can't be less than zero.");
+                    $"length can't be less than zero.");
             }
             if (offset < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(offset), offset,
-                    $"Offset can't be less than zero.");
+                    $"offset can't be less than zero.");
             }
         }
 
@@ -119,6 +119,11 @@ namespace Tizen.Multimedia
         {
             ThrowIfBufferIsNotReadable();
 
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
             if (startIndex < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(startIndex), startIndex,
@@ -144,6 +149,11 @@ namespace Tizen.Multimedia
         {
             ThrowIfBufferIsNotWritable();
 
+            if (dest == null)
+            {
+                throw new ArgumentNullException(nameof(dest));
+            }
+
             if (startIndex < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(startIndex), startIndex,
@@ -152,7 +162,7 @@ namespace Tizen.Multimedia
             if (startIndex + length > dest.Length)
             {
                 throw new ArgumentOutOfRangeException($"{nameof(startIndex)}, {nameof(length)}",
-                    "startIndex + length can't be greater than source.Length.");
+                    "startIndex + length can't be greater than dest.Length.");
             }
 
             ValidateRange(offset, length);
