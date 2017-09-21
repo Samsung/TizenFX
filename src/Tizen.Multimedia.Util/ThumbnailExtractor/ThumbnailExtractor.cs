@@ -199,11 +199,11 @@ namespace Tizen.Multimedia.Util
                         byte[] tmpBuf = new byte[dataSize];
                         Marshal.Copy(thumbData, tmpBuf, 0, dataSize);
 
-                        tcs.SetResult(new ThumbnailExtractionResult(tmpBuf, thumbWidth, thumbHeight));
+                        tcs.TrySetResult(new ThumbnailExtractionResult(tmpBuf, thumbWidth, thumbHeight));
                     }
                     catch (Exception e)
                     {
-                        tcs.SetException(new InvalidOperationException("[" + error + "] Failed to copy data.", e));
+                        tcs.TrySetException(new InvalidOperationException("[" + error + "] Failed to copy data.", e));
                     }
                     finally
                     {
@@ -212,7 +212,7 @@ namespace Tizen.Multimedia.Util
                 }
                 else
                 {
-                    tcs.SetException(error.ToException("Failed to extract."));
+                    tcs.TrySetException(error.ToException("Failed to extract."));
                 }
             };
         }
