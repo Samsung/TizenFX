@@ -73,7 +73,7 @@ namespace Tizen.Multimedia
                 return _frontResolutions ?? (_frontResolutions = LoadVideoResolutions(CameraDevice.Front));
             }
 
-            if (device == CameraDevice.Front)
+            if (device == CameraDevice.Rear)
             {
                 return _rearResolutions ?? (_rearResolutions = LoadVideoResolutions(CameraDevice.Rear));
             }
