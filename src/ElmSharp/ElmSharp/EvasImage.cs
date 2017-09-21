@@ -222,6 +222,7 @@ namespace ElmSharp
                     Interop.Evas.evas_object_image_memfile_set(RealHandle, data, dataArr.Length, IntPtr.Zero, IntPtr.Zero);
                 }
             }
+            memstream.Dispose();
         }
 
         /// <summary>

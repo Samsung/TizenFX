@@ -594,6 +594,8 @@ namespace ElmSharp
                 }
             }
 
+            memstream.Dispose();
+
             return await tcs.Task;
         }
 
