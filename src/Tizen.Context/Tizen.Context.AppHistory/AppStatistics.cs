@@ -28,7 +28,7 @@ namespace Tizen.Context.AppHistory
         internal const string AppStatsEndTime = "EndTime";
         internal const string AppStatsResultSize = "ResultSize";
         internal const string AppStatsAppId = "AppId";
-        internal const int DefaultResultSize = 5;
+        internal const int DefaultResultSize = 10;
 
         internal string Uri;
 
