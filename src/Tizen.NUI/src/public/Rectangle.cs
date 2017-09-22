@@ -124,7 +124,37 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The Inequality operator.
+        /// Equality operator.
+        /// </summary>
+        /// <param name="o">The object to compare with the current object.</param>
+        /// <returns>True if boxes are exactly same.</returns>
+        public override bool Equals(object o)
+        {
+            if(o == null)
+            {
+                return false;
+            }
+            if(!(o is Rectangle))
+            {
+                return false;
+            }
+            Rectangle r = (Rectangle)o;
+
+            // Return true if the fields match:
+            return X == r.X && Y == r.Y && Width == r.Width && Height == r.Height;
+        }
+
+        /// <summary>
+        /// Serves as the default hash function.
+        /// </summary>
+        /// <returns>A hash code for the current object.</returns>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        /// <summary>
+        /// Inequality operator.
         /// </summary>
         /// <param name="a">The first rectangle.</param>
         /// <param name="b">The second rectangle.</param>
