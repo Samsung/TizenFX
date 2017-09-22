@@ -411,7 +411,7 @@ namespace Tizen.Applications.Notifications
                 return;
             }
 
-            if (disposing)
+            if (disposing && Handle != null && Handle.IsInvalid == false)
             {
                 Handle.Dispose();
             }
