@@ -75,6 +75,8 @@ Tizen.Tracer
 Tizen.Uix.InputMethod
 Tizen.Uix.InputMethodManager
 Tizen.Uix.Stt
+Tizen.Uix.SttEngine
 Tizen.Uix.Tts
+Tizen.Uix.TtsEngine
 Tizen.Uix.VoiceControl
 Tizen.WebView
