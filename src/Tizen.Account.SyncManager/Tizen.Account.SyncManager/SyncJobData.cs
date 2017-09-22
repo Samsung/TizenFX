@@ -22,11 +22,13 @@ namespace Tizen.Account.SyncManager
     /// <summary>
     /// This class represents information about the sync job request.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SyncJobData
     {
         /// <summary>
         /// Represents the calendar capability.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// If you want to receive notification about the calendar database change, assign it to the SyncJobName property of the SyncJobData object.
         /// </remarks>
@@ -35,6 +37,7 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// Represents the contact capability.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// If you want to receive notification about the contact database change, assign it to the SyncJobName property of the SyncJobData object.
         /// </remarks>
@@ -43,6 +46,7 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// Represents the image capability.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// If you want to receive notification about the image database change, assign it to the SyncJobName property of the SyncJobData object.
         /// </remarks>
@@ -51,6 +55,7 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// Represents the video capability.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// If you want to receive notification about the video database change, assign it to the SyncJobName property of the SyncJobData object.
         /// </remarks>
@@ -59,6 +64,7 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// Represents the sound capability.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// If you want to receive notification about the sound database change, assign it to the SyncJobName property of the SyncJobData object.
         /// </remarks>
@@ -67,6 +73,7 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// Represents the music capability.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// If you want to receive notification about the music database change, assign it to the SyncJobName property of the SyncJobData object.
         /// </remarks>
@@ -75,16 +82,19 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// The account instance on which the sync operation was requested or @c null in the case of the accountless sync operation.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public AccountManager.Account Account { get; set; }
 
         /// <summary>
         /// User data which contains an additional information related to the registered sync job.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public Bundle UserData { get; set; }
 
         /// <summary>
         /// A string representing a sync job which has been operated or capability setting to operate the data change sync job.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string SyncJobName { get; set; }
     }
 }

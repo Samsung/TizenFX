@@ -19,6 +19,7 @@ internal static partial class Interop
     /// <summary>
     /// The Wrapper class for maintaining names of dependent native libraries.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     internal static partial class Libraries
     {
         public const string SyncManager = "libcore-sync-client.so.1";

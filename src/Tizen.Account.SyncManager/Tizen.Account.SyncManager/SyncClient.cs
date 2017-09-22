@@ -25,11 +25,13 @@ namespace Tizen.Account.SyncManager
     /// The SyncClient APIs for managing the sync operations. Applications will call these APIs to schedule their sync operations.
     /// The sync service maintains sync requests from all the applications and invokes their respective callback methods to perform account synchronization operations.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public static class SyncClient
     {
         /// <summary>
         /// The constructor.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         static SyncClient()
         {
         }
@@ -37,6 +39,7 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// Requests the sync manager to perform one time sync operation.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="request"> The sync job information of the sync job request. </param>
         /// <param name="syncOptions"> Sync options determine a way to operate the sync job and can be used as ORing. </param>
         /// <exception cref="ArgumentNullException"> Thrown when any of the arugments are null. </exception>
@@ -65,6 +68,7 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// Requests the sync manager to perform periodic sync operations.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="request"> The sync job information of the sync job request. </param>
         /// <param name="period"> Determines the time interval of the periodic sync. The periodic sync operation can be triggered in that interval, but it does not guarantee the exact time. The minimum value is 30 minutes. </param>
         /// <param name="syncOptions"> Sync options determine a way to operate the sync job and can be used as ORing. </param>
@@ -96,6 +100,7 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// Requests the sync manager to perform sync operations whenever the corresponding DB is changed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="request"> The sync job information of the sync job request. </param>
         /// <param name="syncOptions"> Sync options determine a way to operate the sync job and can be used as ORing. </param>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
@@ -127,6 +132,7 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// Gets all the sync jobs registered with the sync manager.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// Returns the list of SyncJobData corresponding to sync requests.
         /// </returns>
@@ -162,6 +168,7 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// Requests the sync manager to remove the corresponding sync job based on the ID.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="id"> A unique value of each sync job, it can be used to search a specific sync job and remove it. </param>
         /// <exception cref="ArgumentException"> Thrown if the input arugments is invalid. </exception>
         public static void RemoveSyncJob(int id)

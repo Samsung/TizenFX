@@ -23,6 +23,7 @@ namespace Tizen.Account.SyncManager
     /// <summary>
     /// This class contains the delegates to be called upon scheduling a sync operation.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SyncAdapter
     {
         Interop.Adapter.SyncAdapterStartSyncCallback _startSyncCallback;
@@ -31,6 +32,7 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// The callback function for the sync adapter's start sync request.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="syncParameters"> The sync job parameters corresponding to the sync request. </param>
         /// <returns> true if the sync operation is success, @c false otherwise. </returns>
         public delegate bool StartSyncCallback(SyncJobData syncParameters);
@@ -38,12 +40,14 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// The callback function for the sync adapter's cancel sync request.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="syncParameters"> The sync job parameters corresponding to the sync request. </param>
         public delegate void CancelSyncCallback(SyncJobData syncParameters);
 
         /// <summary>
         /// Sets the client (sync adapter) callback functions.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="startSyncCb"> A callback function to be called by the sync manager for performing the sync operation. </param>
         /// <param name="cancelSyncCb"> A callback function to be called by the sync manager for cancelling the sync operation. </param>
         /// <exception cref="ArgumentNullException"> Thrown when any of the arguments are null. </exception>
@@ -100,6 +104,7 @@ namespace Tizen.Account.SyncManager
         /// <summary>
         /// Unsets the client (sync adapter) callback functions.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="System.Exception"> Thrown when sync manager internal error occurs. </exception>
         public void UnsetSyncEventCallbacks()
         {
