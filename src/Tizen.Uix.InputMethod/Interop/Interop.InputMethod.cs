@@ -158,12 +158,6 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_event_set_accessibility_state_changed_cb")]
         internal static extern ErrorCode ImeEventSetAccessibilityStateChangedCb(ImeAccessibilityStateChangedCb callbackFunction, IntPtr userData);
 
-        [DllImport(Libraries.InputMethod, EntryPoint = "ime_event_set_option_window_created_cb")]
-        internal static extern ErrorCode ImeEventSetOptionWindowCreatedCb(ImeOptionWindowCreatedCb callbackFunction, IntPtr userData);
-
-        [DllImport(Libraries.InputMethod, EntryPoint = "ime_event_set_option_window_destroyed_cb")]
-        internal static extern ErrorCode ImeEventSetOptionWindowDestroyedCb(ImeOptionWindowDestroyedCb callbackFunction, IntPtr userData);
-
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_send_key_event")]
         internal static extern ErrorCode ImeSendKeyEvent(KeyCode keycode, KeyMask keymask, bool forwardKey);
 
@@ -205,12 +199,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_size")]
         internal static extern ErrorCode ImeSetSize(int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight);
-
-        [DllImport(Libraries.InputMethod, EntryPoint = "ime_create_option_window")]
-        internal static extern ErrorCode ImeCreateOptionWindow();
-
-        [DllImport(Libraries.InputMethod, EntryPoint = "ime_destroy_option_window")]
-        internal static extern ErrorCode ImeDestroyOptionWindow(IntPtr window);
 
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_context_get_layout")]
         internal static extern ErrorCode ImeContextGetLayout(IntPtr context, out InputPanelLayout layout);
@@ -317,11 +305,5 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ImeAccessibilityStateChangedCb(bool state, IntPtr userData);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ImeOptionWindowCreatedCb(IntPtr window, OptionWindowType type, IntPtr userData);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ImeOptionWindowDestroyedCb(IntPtr window, IntPtr userData);
     }
 }

@@ -985,10 +985,6 @@ namespace Tizen.Uix.InputMethod
         private static ImeRotationChangedCb _imeRotationChangedDelegate;
         private static event EventHandler<AccessibilityStateChangedEventArgs> _accessibilityStateChanged;
         private static ImeAccessibilityStateChangedCb _imeAccessibilityStateChangedDelegate;
-        private static event EventHandler<OptionWindowCreatedEventArgs> _optionWindowCreated;
-        private static ImeOptionWindowCreatedCb _imeOptionWindowCreatedDelegate;
-        private static event EventHandler<OptionWindowDestroyedEventArgs> _optionWindowDestroyed;
-        private static ImeOptionWindowDestroyedCb _imeOptionWindowDestroyedDelegate;
         private static ImeLanguageRequestedCb _imeLanguageRequestedDelegate;
         private static OutAction<string> _languageRequestedDelegate;
         private static BoolAction<KeyCode, KeyMask, VoiceControlDeviceInformation> _processKeyDelagate;
@@ -1543,80 +1539,6 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Called to create the option window.
-        /// </summary>
-        /// <remarks>
-        /// if Input panel requests to open the option window, type will be OptionWindowType.Keyboard.
-        /// And if Settings application requests to open it, type will be OptionWindowType.SettingApplication.
-        /// </remarks>
-        public static event EventHandler<OptionWindowCreatedEventArgs> OptionWindowCreated
-        {
-            add
-            {
-                lock (thisLock)
-                {
-                    _imeOptionWindowCreatedDelegate = (IntPtr window, OptionWindowType type, IntPtr userData) =>
-                    {
-                        OptionWindow._handle = window;
-                        OptionWindowCreatedEventArgs args = new OptionWindowCreatedEventArgs(new OptionWindow(), type);
-                        _optionWindowCreated?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetOptionWindowCreatedCb(_imeOptionWindowCreatedDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add OptionWindowCreated Failed with error " + error);
-                    }
-                    else
-                    {
-                        _optionWindowCreated += value;
-                    }
-                }
-            }
-            remove
-            {
-                lock (thisLock)
-                {
-                    _optionWindowCreated -= value;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Called to destroy the option window.
-        /// </summary>
-        public static event EventHandler<OptionWindowDestroyedEventArgs> OptionWindowDestroyed
-        {
-            add
-            {
-                lock (thisLock)
-                {
-                    _imeOptionWindowDestroyedDelegate = (IntPtr window, IntPtr userData) =>
-                    {
-                        OptionWindow._handle = window;
-                        OptionWindowDestroyedEventArgs args = new OptionWindowDestroyedEventArgs(new OptionWindow());
-                        _optionWindowDestroyed?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetOptionWindowDestroyedCb(_imeOptionWindowDestroyedDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add OptionWindowDestroyed Failed with error " + error);
-                    }
-                    else
-                    {
-                        _optionWindowDestroyed += value;
-                    }
-                }
-            }
-            remove
-            {
-                lock (thisLock)
-                {
-                    _optionWindowDestroyed -= value;
-                }
-            }
-        }
-
-        /// <summary>
         /// Sets the languageRequested Action
         /// </summary>
         /// <param name="languageRequested">
@@ -2069,63 +1991,6 @@ namespace Tizen.Uix.InputMethod
             if (error != ErrorCode.None)
             {
                 Log.Error(LogTag, "ImeFinalize Failed with error " + error);
-                throw InputMethodExceptionFactory.CreateException(error);
-            }
-        }
-
-        /// <summary>
-        /// Requests to create an option window from the input panel.
-        /// The input panel can call this function to open the option window. This function calls OptionWindowCreated Event with OptionWindowType.Keyboard.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/ime
-        /// </privilege>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) Operation failed
-        /// 3) IME main loop isn't started yet
-        /// 4) OptionWindowCreated event has not been set
-        /// </exception>
-        /// <precondition>
-        /// OptionWindowCreated and OptionWindowDestroyed event should be set
-        /// </precondition>
-        public static void CreateOptionWindow()
-        {
-            ErrorCode error = ImeCreateOptionWindow();
-            if (error != ErrorCode.None)
-            {
-                Log.Error(LogTag, "CreapteOptionWindow Failed with error " + error);
-                throw InputMethodExceptionFactory.CreateException(error);
-            }
-        }
-
-        /// <summary>
-        /// Requests to destroy an option window.
-        /// The input panel can call this function to close the option window which is created from either the input panel or Settings application.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/ime
-        /// </privilege>
-        /// <param name="window">The option window to destroy</param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) Invalid Parameter
-        /// 3) IME main loop isn't started yet
-        /// </exception>
-        /// <precondition>
-        /// OptionWindowDestroyed Event must be set.
-        /// </precondition>
-        /// <postcondition>
-        /// This function triggers the OptionWindowDestroyed Event if it is set.
-        /// </postcondition>
-        public static void DestroyOptionWindow(OptionWindow window)
-        {
-            ErrorCode error = ImeDestroyOptionWindow(window);
-            if (error != ErrorCode.None)
-            {
-                Log.Error(LogTag, "DestroyOptionWindow Failed with error " + error);
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
