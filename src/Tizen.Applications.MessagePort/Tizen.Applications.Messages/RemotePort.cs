@@ -150,7 +150,12 @@ namespace Tizen.Applications.Messages
                 Interop.MessagePort.CheckTrustedRemotePort(_appId, _portName, out _isRunning) :
                 Interop.MessagePort.CheckRemotePort(_appId, _portName, out _isRunning);
 
-            if (ret != (int)MessagePortError.None)
+            if (ret == (int)MessagePortError.CertificateNotMatch)
+            {
+                /* Although Remote port is NotMatch, it is running */
+                _isRunning = true;
+            }
+            else if (ret != (int)MessagePortError.None)
             {
                 MessagePortErrorFactory.ThrowException(ret);
             }
@@ -167,7 +172,7 @@ namespace Tizen.Applications.Messages
         /// <code>
         /// Remote remotePort = new RemotePort("org.tizen.example", "SenderPort", true);
         /// remotePort.RemotePortStateChanged += RemotePortStateChangedCallback;
-        /// static void RemotePortStateChangedCallback(object sender, MessageReceivedEventArgs e)
+        /// static void RemotePortStateChangedCallback(object sender, RemotePortStateChangedEventArgs e)
         /// {
         ///     switch (e.Status)
         ///     {
