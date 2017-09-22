@@ -75,7 +75,9 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException">
         ///     <paramref name="videoCodec"/> is not valid.\n
         ///     -or-\n
-        ///     <paramref name="fileFormat"/> is not valid.
+        ///     <paramref name="fileFormat"/> is not valid.\n
+        ///     -or-\n
+        ///     <paramref name="camera"/> is being used by another object.
         /// </exception>
         /// <exception cref="ObjectDisposedException"><paramref name="camera"/> has been disposed of.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="camera"/> is null.</exception>
