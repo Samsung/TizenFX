@@ -105,10 +105,10 @@ namespace Tizen.Applications.Shortcut
                     widgetAddResult = new Interop.Shortcut.ResultCallback(WidgetAddResultCallback);
                 }
 
-                err = Interop.Shortcut.AddToWidget(shortcut.ShortcutName, shortcut.WidgetSize, shortcut.WidgetId, shortcut.IconPath, shortcut.Period, Convert.ToInt32(shortcut.IsAllowDuplicate), null, IntPtr.Zero);
+                err = Interop.Shortcut.AddToWidget(shortcut.ShortcutName, shortcut.WidgetSize, shortcut.WidgetId, shortcut.IconPath, shortcut.Period, Convert.ToInt32(shortcut.IsAllowDuplicate), widgetAddResult, IntPtr.Zero);
                 if (err != Interop.Shortcut.ErrorCode.None)
                 {
-                    throw ShortcutErrorFactory.GetException(err, "unable to add shortcut");
+                    throw ShortcutErrorFactory.GetException(err, "unable to add widget");
                 }
             }
             catch (Exception e)
