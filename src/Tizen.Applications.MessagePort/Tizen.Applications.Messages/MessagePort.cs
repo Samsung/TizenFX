@@ -266,7 +266,7 @@ namespace Tizen.Applications.Messages
             {
                 MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidOperation, "Should start listen before send");
             }
-            if (message == null)
+            if (message == null || message.SafeBundleHandle == null || message.SafeBundleHandle.IsInvalid)
             {
                 MessagePortErrorFactory.ThrowException((int)MessagePortError.InvalidParameter, "message is null", "Message");
             }
