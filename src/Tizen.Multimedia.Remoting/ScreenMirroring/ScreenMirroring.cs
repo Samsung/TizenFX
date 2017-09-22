@@ -29,6 +29,7 @@ namespace Tizen.Multimedia.Remoting
     /// </summary>
     public class ScreenMirroring : IDisposable, IDisplayable<ScreenMirroringErrorCode>
     {
+        private const string Feature = "http://tizen.org/feature/network.wifi.direct.display";
         private const int Port = 2022;
 
         private IntPtr _handle;
@@ -47,6 +48,11 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        private static bool IsSupported()
+        {
+            return System.Information.TryGetValue(Feature, out bool isSupported) ? isSupported : false;
+        }
+
         /// <summary>
         /// Initializes a new instance of the ScreenMirroring class.
         /// </summary>
@@ -54,6 +60,11 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         public ScreenMirroring()
         {
+            if (IsSupported() == false)
+            {
+                throw new PlatformNotSupportedException($"The feature({Feature}) is not supported on the current device");
+            }
+
             Native.Create(out _handle).ThrowIfError("Failed to create ScreenMirroring.");
 
             _state = new AtomicState();
