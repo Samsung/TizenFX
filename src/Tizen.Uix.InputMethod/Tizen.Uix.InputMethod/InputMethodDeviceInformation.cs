@@ -122,10 +122,10 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// this class gives the device information, like the name, class and subclass
     /// </summary>
-    public class VoiceControlDeviceInformation
+    public class InputMethodDeviceInformation
     {
         private IntPtr _handle;
-        internal VoiceControlDeviceInformation(IntPtr handle)
+        internal InputMethodDeviceInformation(IntPtr handle)
         {
             _handle = handle;
         }

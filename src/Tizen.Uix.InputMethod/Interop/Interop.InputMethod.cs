@@ -120,7 +120,7 @@ internal static partial class Interop
         internal static extern ErrorCode ImeEventSetInputContextResetCb(ImeInputContextResetCb callbackFunction, IntPtr userData);
 
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_event_set_cursor_position_updated_cb")]
-        internal static extern ErrorCode ImeEventSetCursorPositionitionUpdatedCb(ImeCursorPositionitionUpdatedCb callbackFunction, IntPtr userData);
+        internal static extern ErrorCode ImeEventSetCursorPositionUpdatedCb(ImeCursorPositionUpdatedCb callbackFunction, IntPtr userData);
 
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_event_set_language_requested_cb")]
         internal static extern ErrorCode ImeEventSetLanguageRequestedCallbackCb(ImeLanguageRequestedCb callbackFunction, IntPtr userData);
@@ -207,7 +207,7 @@ internal static partial class Interop
         internal static extern ErrorCode ImeContextGetLayoutVariation(IntPtr context, out LayoutVariation layoutVariation);
 
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_context_get_cursor_position")]
-        internal static extern ErrorCode ImeContextGetCursorPositionition(IntPtr context, out int cursorPos);
+        internal static extern ErrorCode ImeContextGetCursorPosition(IntPtr context, out int cursorPos);
 
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_context_get_autocapital_type")]
         internal static extern ErrorCode ImeContextGetAutocapitalType(IntPtr context, out AutoCapitalization autocapitalType);
@@ -268,7 +268,7 @@ internal static partial class Interop
         internal delegate void ImeInputContextResetCb(IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ImeCursorPositionitionUpdatedCb(int cursorPos, IntPtr userData);
+        internal delegate void ImeCursorPositionUpdatedCb(int cursorPos, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ImeLanguageRequestedCb(IntPtr userData, out IntPtr langCode);

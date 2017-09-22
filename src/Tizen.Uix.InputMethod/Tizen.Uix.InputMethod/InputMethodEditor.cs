@@ -966,8 +966,8 @@ namespace Tizen.Uix.InputMethod
         private static ImeSurroundingTextUpdatedCb _imeSurroundingTextUpdatedDelegate;
         private static event EventHandler<EventArgs> _inputContextReset;
         private static ImeInputContextResetCb _imeInputContextResetDelegate;
-        private static event EventHandler<CursorPositionitionUpdatedEventArgs> _cursorPositionUpdated;
-        private static ImeCursorPositionitionUpdatedCb _imeCursorPositionitionUpdatedDelegate;
+        private static event EventHandler<CursorPositionUpdatedEventArgs> _cursorPositionUpdated;
+        private static ImeCursorPositionUpdatedCb _imeCursorPositionUpdatedDelegate;
         private static event EventHandler<LanguageSetEventArgs> _langaugeSet;
         private static ImeLanguageSetCb _imeLanguageSetDelegate;
         private static event EventHandler<SetDataEventArgs> _imDataSet;
@@ -987,7 +987,7 @@ namespace Tizen.Uix.InputMethod
         private static ImeAccessibilityStateChangedCb _imeAccessibilityStateChangedDelegate;
         private static ImeLanguageRequestedCb _imeLanguageRequestedDelegate;
         private static OutAction<string> _languageRequestedDelegate;
-        private static BoolAction<KeyCode, KeyMask, VoiceControlDeviceInformation> _processKeyDelagate;
+        private static BoolAction<KeyCode, KeyMask, InputMethodDeviceInformation> _processKeyDelagate;
         private static ImeImdataRequestedCb _imeImDataRequestedDelegate;
         private static OutArrayAction<byte> _imDataRequestedDelegate;
         private static ImeGeometryRequestedCb _imeGeometryRequestedDelegate;
@@ -1230,21 +1230,21 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Called when the position of the cursor in an associated text input UI control changes.
         /// </summary>
-        public static event EventHandler<CursorPositionitionUpdatedEventArgs> CursorPositionitionUpdated
+        public static event EventHandler<CursorPositionUpdatedEventArgs> CursorPositionUpdated
         {
             add
             {
                 lock (thisLock)
                 {
-                    _imeCursorPositionitionUpdatedDelegate = (int cursorPos, IntPtr userData) =>
+                    _imeCursorPositionUpdatedDelegate = (int cursorPos, IntPtr userData) =>
                     {
-                        CursorPositionitionUpdatedEventArgs args = new CursorPositionitionUpdatedEventArgs(cursorPos);
+                        CursorPositionUpdatedEventArgs args = new CursorPositionUpdatedEventArgs(cursorPos);
                         _cursorPositionUpdated?.Invoke(null, args);
                     };
-                    ErrorCode error = ImeEventSetCursorPositionitionUpdatedCb(_imeCursorPositionitionUpdatedDelegate, IntPtr.Zero);
+                    ErrorCode error = ImeEventSetCursorPositionUpdatedCb(_imeCursorPositionUpdatedDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add CursorPositionitionUpdated Failed with error " + error);
+                        Log.Error(LogTag, "Add CursorPositionUpdated Failed with error " + error);
                     }
                     else
                     {
@@ -1570,11 +1570,11 @@ namespace Tizen.Uix.InputMethod
         /// The Action is alled when the key event is received from the external devices or SendKey function.
         /// This Event processes the key event before an associated text input UI control does.
         /// </param>
-        public static void SetProcessKeyCallback(BoolAction<KeyCode, KeyMask, VoiceControlDeviceInformation> processKey)
+        public static void SetProcessKeyCallback(BoolAction<KeyCode, KeyMask, InputMethodDeviceInformation> processKey)
         {
             _imeProcessKeyDelegate = (KeyCode keyCode, KeyMask keyMask, IntPtr devInfo, IntPtr userData) =>
             {
-                return _processKeyDelagate(keyCode, keyMask, new VoiceControlDeviceInformation(devInfo));
+                return _processKeyDelagate(keyCode, keyMask, new InputMethodDeviceInformation(devInfo));
             };
             ErrorCode error = ImeEventSetProcessKeyEventCb(_imeProcessKeyDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)

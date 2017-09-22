@@ -331,15 +331,15 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the cursor position information.
         /// </summary>
-        public int CursorPositionition
+        public int CursorPosition
         {
             get
             {
                 int cursorPosition;
-                ErrorCode error = ImeContextGetCursorPositionition(_handle, out cursorPosition);
+                ErrorCode error = ImeContextGetCursorPosition(_handle, out cursorPosition);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetCursorPositionition Failed with error " + error);
+                    Log.Error(LogTag, "GetCursorPosition Failed with error " + error);
                     return -1;
                 }
                 return cursorPosition;
