@@ -43,7 +43,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Adds a child view to this view.
         /// </summary>
-        /// <seealso cref="Container::Add()">
+        /// <seealso cref="Container.Add()">
         /// </seealso>
         public override void Add(View child)
         {
@@ -55,7 +55,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Removes a child view from this View. If the view was not a child of this view, this is a no-op.
         /// </summary>
-        /// <seealso cref="Container::Remove()">
+        /// <seealso cref="Container.Remove()">
         /// </seealso>
         public override void Remove(View child)
         {
@@ -67,7 +67,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Retrieves a child view by index.
         /// </summary>
-        /// <seealso cref="Container::GetChildAt()">
+        /// <seealso cref="Container.GetChildAt()">
         /// </seealso>
         public override View GetChildAt(uint index)
         {
@@ -83,7 +83,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Retrieves the number of children held by the view.
         /// </summary>
-        /// <seealso cref="Container::GetChildCount()">
+        /// <seealso cref="Container.GetChildCount()">
         /// </seealso>
         protected override uint GetChildCount()
         {
@@ -96,7 +96,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets the views parent.
         /// </summary>
-        /// <seealso cref="Container::GetParent()">
+        /// <seealso cref="Container.GetParent()">
         protected override Container GetParent()
         {
             Container ret;

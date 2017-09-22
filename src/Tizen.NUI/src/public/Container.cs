@@ -57,8 +57,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Removes a child view from this view. If the view was not a child of this view, this is a no-op.
         /// </summary>
-        /// <pre>This view (the parent) has been initialized. The child view is not the same as the parent view.</pre>
-        /// <param name="child">The child.</param>
+        /// <pre>This View(the parent) has been initialized. The child view is not the same as the parent view.</pre>
+        /// <param name="view">The view to remove</param>
         public abstract void Remove( View view );
 
         /// <summary>

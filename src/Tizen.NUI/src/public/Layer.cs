@@ -41,7 +41,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Adds a child view to this layer.
         /// </summary>
-        /// <seealso cref="Container::Add()">
+        /// <seealso cref="Container.Add()">
         /// </seealso>
         public override void Add(View child)
         {
@@ -53,7 +53,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Removes a child view from this layer. If the view was not a child of this layer, this is a no-op.
         /// </summary>
-        /// <seealso cref="Container::Add()">
+        /// <seealso cref="Container.Remove()">
         /// </seealso>
         public override void Remove(View child)
         {

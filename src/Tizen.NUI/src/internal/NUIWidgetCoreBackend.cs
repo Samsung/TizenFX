@@ -145,7 +145,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Region changed event callback function.
         /// </summary>
-        /// <param name="source">Application instance</param>
+        /// <param name="sender">Application instance</param>
         /// <param name="e">Event argument for RegionChanged</param>
         private void OnRegionChanged(object sender, WidgetApplication.WidgetApplicationEventArgs e)
         {
@@ -158,7 +158,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Memory Low event callback function.
         /// </summary>
-        /// <param name="source">Application instance</param>
+        /// <param name="sender">Application instance</param>
         /// <param name="e">Event argument for MemoryLow</param>
         private void OnMemoryLow(object sender, WidgetApplication.WidgetApplicationEventArgs e)
         {
@@ -171,7 +171,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Language changed event callback function.
         /// </summary>
-        /// <param name="source">Application instance</param>
+        /// <param name="sender">Application instance</param>
         /// <param name="e">Event argument for LanguageChanged</param>
         private void OnLanguageChanged(object sender, WidgetApplication.WidgetApplicationEventArgs e)
         {
@@ -186,7 +186,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Battery low event callback function.
         /// </summary>
-        /// <param name="source">Application instance</param>
+        /// <param name="sender">Application instance</param>
         /// <param name="e">Event argument for BatteryLow</param>
         private void OnBatteryLow(object sender, WidgetApplication.WidgetApplicationEventArgs e)
         {
