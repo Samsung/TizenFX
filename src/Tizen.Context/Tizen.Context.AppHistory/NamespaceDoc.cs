@@ -14,23 +14,11 @@
  * limitations under the License.
  */
 
-namespace Tizen.Context.AppHistory
-{
-    /// <summary>
-    /// Base class which contains application statistics query result.
-    /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    public abstract class AppStatisticsData
-    {
-        internal AppStatisticsData()
-        {
-        }
-
-        /// <summary>
-        /// Gets the application id.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        /// <value>The application id.</value>
-        public string AppId { get; protected set; }
-    }
-}
+/// <summary>
+/// The Tizen.Context.AppHistory namespace provides classes to retrieve the user's application usage patterns.
+/// </summary>
+/// <remarks>
+/// The Tizen.Context.AppHistory namespace provides classes to retrieve the user's application usage patterns.
+/// </remarks>
+/// <since_tizen> 4 </since_tizen>
+namespace Tizen.Context.AppHistory {}
