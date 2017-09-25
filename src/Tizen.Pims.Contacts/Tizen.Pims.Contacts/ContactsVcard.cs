@@ -25,6 +25,7 @@ namespace Tizen.Pims.Contacts
     /// </summary>
     /// <param name="record">The contacts record</param>
     /// <returns> true to continue with the next iteration of the loop, otherwise false to break out of the loop</returns>
+    /// <since_tizen> 4 </since_tizen>
     public delegate bool ParseCallback(ContactsRecord record);
 
     /// <summary>
@@ -33,6 +34,7 @@ namespace Tizen.Pims.Contacts
     /// <remarks>
     /// It's based on the vCard v3.0 specification
     /// </remarks>
+    /// <since_tizen> 4 </since_tizen>
     public static class ContactsVcard
     {
         /// <summary>
@@ -43,8 +45,11 @@ namespace Tizen.Pims.Contacts
         /// The vCard stream.
         /// </returns>
         /// <privilege>http://tizen.org/privilege/contact.read</privilege>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static string Compose(ContactsRecord record)
         {
             int error = 0;
@@ -83,8 +88,11 @@ namespace Tizen.Pims.Contacts
         /// <returns>
         /// The contacts list
         /// </returns>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static ContactsList Parse(string stream)
         {
             IntPtr listHandle;
@@ -104,9 +112,12 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="path">The file path of vCard stream file</param>
         /// <param name="callback">The callback function to invoke</param>
+        /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void ParseForEach(string path, ParseCallback callback)
         {
             Interop.Vcard.ContactsVcardParseCallback cb = (IntPtr handle, IntPtr data) =>

@@ -21,6 +21,7 @@ namespace Tizen.Pims.Contacts
     /// <summary>
     /// Event arguments passed when setting value of contacts name display order is changed
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class NameDisplayOrderChangedEventArgs : EventArgs
     {
         internal NameDisplayOrderChangedEventArgs(ContactDisplayOrder displayOrder)
@@ -31,6 +32,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// A setting value of contacts name display order
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public ContactDisplayOrder NameDisplayOrder
         {
             get;

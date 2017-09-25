@@ -22,6 +22,7 @@ namespace Tizen.Pims.Contacts
     /// <summary>
     /// Event arguments passed when contacts database status is changed
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class DBStatusChangedEventArgs : EventArgs
     {
         internal DBStatusChangedEventArgs(DBStatus status)
@@ -32,6 +33,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// The contacts database status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public DBStatus Status
         {
             get;

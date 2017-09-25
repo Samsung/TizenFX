@@ -21,6 +21,7 @@ namespace Tizen.Pims.Contacts
     /// <summary>
     /// Event arguments passed when contacts database is changed
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class DBChangedEventArgs : EventArgs
     {
         internal DBChangedEventArgs(string viewUri)
@@ -31,6 +32,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// The contacts view URI changed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string ViewUri
         {
             get;

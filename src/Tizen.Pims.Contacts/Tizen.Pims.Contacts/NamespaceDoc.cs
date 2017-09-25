@@ -20,4 +20,5 @@
 /// <remarks>
 /// The Tizen.Pims.Contacts namespace provides classes for managing contact information for people.
 /// </remarks>
+/// <since_tizen> 4 </since_tizen>
 namespace Tizen.Pims.Contacts {}

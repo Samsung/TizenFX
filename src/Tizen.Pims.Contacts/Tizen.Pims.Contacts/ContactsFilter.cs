@@ -22,6 +22,7 @@ namespace Tizen.Pims.Contacts
     /// <summary>
     /// A filter includes the conditions for the search
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ContactsFilter:IDisposable
     {
         internal IntPtr _filterHandle;
@@ -33,9 +34,11 @@ namespace Tizen.Pims.Contacts
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
         /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsFilter(string viewUri, uint propertyId, StringMatchType matchType, string matchValue)
         {
@@ -62,9 +65,11 @@ namespace Tizen.Pims.Contacts
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
         /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsFilter(string viewUri, uint propertyId, IntegerMatchType matchType, int matchValue)
         {
@@ -91,9 +96,11 @@ namespace Tizen.Pims.Contacts
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
         /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsFilter(string viewUri, uint propertyId, IntegerMatchType matchType, long matchValue)
         {
@@ -120,9 +127,11 @@ namespace Tizen.Pims.Contacts
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
         /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsFilter(string viewUri, uint propertyId, IntegerMatchType matchType, double matchValue)
         {
@@ -148,9 +157,11 @@ namespace Tizen.Pims.Contacts
         /// <param name="viewUri">The view URI of a filter</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsFilter(string viewUri, uint propertyId, bool matchValue)
         {
@@ -173,6 +184,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Destructor
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         ~ContactsFilter()
         {
             Dispose(false);
@@ -181,6 +193,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Enumeration for the filter match type of a string.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum StringMatchType
         {
             /// <summary>
@@ -212,6 +225,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Enumeration for the filter match type of an integer.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum IntegerMatchType
         {
             /// <summary>
@@ -247,6 +261,7 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Enumeration for a filter operator.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum LogicalOperator
         {
             /// <summary>
@@ -266,6 +281,7 @@ namespace Tizen.Pims.Contacts
         /// Releases all resources used by the ContactsFilter.
         /// </summary>
         /// <param name="disposing">Disposing by User</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -291,6 +307,7 @@ namespace Tizen.Pims.Contacts
         /// Releases all resources used by the ContactsFilter.
         /// It should be called after finished using of the object.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -305,8 +322,10 @@ namespace Tizen.Pims.Contacts
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
         /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, StringMatchType matchType, string matchValue)
         {
             int error = Interop.Filter.ContactsFilterAddOperator(_filterHandle, logicalOperator);
@@ -331,8 +350,10 @@ namespace Tizen.Pims.Contacts
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
         /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, IntegerMatchType matchType, int matchValue)
         {
             int error = Interop.Filter.ContactsFilterAddOperator(_filterHandle, logicalOperator);
@@ -357,8 +378,10 @@ namespace Tizen.Pims.Contacts
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
         /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, IntegerMatchType matchType, long matchValue)
         {
             int error = Interop.Filter.ContactsFilterAddOperator(_filterHandle, logicalOperator);
@@ -383,8 +406,10 @@ namespace Tizen.Pims.Contacts
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
         /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, IntegerMatchType matchType, double matchValue)
         {
             int error = Interop.Filter.ContactsFilterAddOperator(_filterHandle, logicalOperator);
@@ -408,8 +433,10 @@ namespace Tizen.Pims.Contacts
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, bool matchValue)
         {
             int error = Interop.Filter.ContactsFilterAddOperator(_filterHandle, logicalOperator);
@@ -432,8 +459,10 @@ namespace Tizen.Pims.Contacts
         /// </summary>
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="filter">The child filter</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/contact</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void AddFilter(LogicalOperator logicalOperator, ContactsFilter filter)
         {
             int error = Interop.Filter.ContactsFilterAddOperator(_filterHandle, logicalOperator);
