@@ -332,6 +332,11 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the inlined image object of the image widget.
+        /// This property allows one to get the underlying EvasObject of type Image from this elementary widget. It can be useful to do things like save the image to a file, etc.
+        /// </summary>
+        /// <remarks>Be careful to not manipulate it, as it is under the control of widget.</remarks>
         public EvasImage ImageObject
         {
             get
