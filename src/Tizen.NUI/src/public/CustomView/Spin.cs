@@ -40,8 +40,6 @@ namespace Tizen.NUI
         private int _maxValue;
         private int _singleStep;
         private bool _wrappingEnabled;
-        private string _fontFamily;
-        private string _fontStyle;
         private int _pointSize;
         private Color _textColor;
         private Color _textBackgroundColor;

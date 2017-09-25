@@ -23,6 +23,7 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
+    using System.ComponentModel;
 
     /// <summary>
     /// Provides the functionality of handling keyboard navigation and maintaining the two-dimensional keyboard focus chain.<br>
@@ -715,7 +716,8 @@ namespace Tizen.NUI
 
 
 
-        [Obsolete("Please do not use! this will be deprecated")]
+       //Please do not use! this will be deprecated
+       [EditorBrowsable(EditorBrowsableState.Never)]
         public class FocusedViewEnterKeyEventArgs : EventArgs
         {
             private View _view;

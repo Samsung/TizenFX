@@ -16,11 +16,12 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
-    [Obsolete("Please do not use! This will be changed to internal class")]
+    //Please do not use! This will be changed to internal class
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Size : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

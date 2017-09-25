@@ -607,8 +607,6 @@ namespace Tizen.NUI
         private DelegateViewWrapperImpl_36 Delegate36;
         private DelegateViewWrapperImpl_37 Delegate37;
         private DelegateViewWrapperImpl_38 Delegate38;
-        private DelegateViewWrapperImpl_39 Delegate39;
-        private DelegateViewWrapperImpl_40 Delegate40;
 
         public static readonly int VIEW_BEHAVIOUR_FLAG_COUNT = NDalicManualPINVOKE.ViewWrapperImpl_CONTROL_BEHAVIOUR_FLAG_COUNT_get();
     }

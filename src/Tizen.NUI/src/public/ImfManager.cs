@@ -15,6 +15,7 @@
 */
 using System;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -215,7 +216,8 @@ namespace Tizen.NUI
             /// <summary>
             /// The pre-edit or the commit string.
             /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
+            //Please do not use! this will be deprecated
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public string predictiveString
             {
                 set
@@ -252,7 +254,8 @@ namespace Tizen.NUI
             /// <summary>
             /// The name of the event from the IMF.
             /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
+            //Please do not use! this will be deprecated
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public ImfManager.ImfEvent eventName
             {
                 set
@@ -289,7 +292,8 @@ namespace Tizen.NUI
             /// <summary>
             /// The start position from the current cursor position to start deleting characters.
             /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
+            //Please do not use! this will be deprecated
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public int cursorOffset
             {
                 set
@@ -326,7 +330,8 @@ namespace Tizen.NUI
             /// <summary>
             /// The number of characters to delete from the cursorOffset.
             /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
+            //Please do not use! this will be deprecated
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public int numberOfChars
             {
                 set
@@ -485,7 +490,8 @@ namespace Tizen.NUI
             /// <summary>
             /// The current text string.
             /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
+            //Please do not use! this will be deprecated
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public string currentText
             {
                 set
@@ -522,7 +528,8 @@ namespace Tizen.NUI
             /// <summary>
             /// The current text string.
             /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
+            //Please do not use! this will be deprecated
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public int cursorPosition
             {
                 set
@@ -559,7 +566,8 @@ namespace Tizen.NUI
             /// <summary>
             /// If the cursor position needs to be updated.
             /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
+            //Please do not use! this will be deprecated
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public bool update
             {
                 set
@@ -596,7 +604,8 @@ namespace Tizen.NUI
             /// <summary>
             /// Flags if preedit reset is required.
             /// </summary>
-            [Obsolete("Please do not use! this will be deprecated")]
+            //Please do not use! this will be deprecated
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public bool preeditResetRequired
             {
                 set
@@ -893,7 +902,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager activated event arguments.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
+        //Please do not use! this will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerActivatedEventArgs : EventArgs
         {
             public ImfManager ImfManager
@@ -911,7 +921,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager activated event.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
+        //Please do not use! this will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerActivatedEventArgs> ImfManagerActivated
         {
             add
@@ -1011,7 +1022,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager activated signal.
         /// </summary>
-        [Obsolete("Please do not use! this will be internal")]
+        //Please do not use! this will be internal
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ActivatedSignalType ActivatedSignal()
         {
             ActivatedSignalType ret = new ActivatedSignalType(NDalicManualPINVOKE.ImfManager_ActivatedSignal(swigCPtr), false);
@@ -1022,7 +1034,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager event received event arguments.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
+        //Please do not use! this will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerEventReceivedEventArgs : EventArgs
         {
             public ImfManager ImfManager
@@ -1039,7 +1052,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager event received.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
+        //Please do not use! this will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerEventReceivedEventArgs> ImfManagerEventReceived
         {
             add
@@ -1158,7 +1172,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager event received signal.
         /// </summary>
-        [Obsolete("Please do not use! this will be internal")]
+	//Please do not use! this will be internal
+	[EditorBrowsable(EditorBrowsableState.Never)]
         public ImfEventSignalType EventReceivedSignal()
         {
             ImfEventSignalType ret = new ImfEventSignalType(NDalicManualPINVOKE.ImfManager_EventReceivedSignal(swigCPtr), false);
@@ -1169,7 +1184,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager status changed event arguments.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
+        //Please do not use! this will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerStatusChangedEventArgs : EventArgs
         {
             public ImfManager ImfManager
@@ -1186,7 +1202,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager status changed.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
+        //Please do not use! this will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerStatusChangedEventArgs> ImfManagerStatusChanged
         {
             add
@@ -1282,7 +1299,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager status changed signal.
         /// </summary>
-        [Obsolete("Please do not use! this will be internal")]
+        //Please do not use! this will be internal
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public StatusSignalType StatusChangedSignal()
         {
             StatusSignalType ret = new StatusSignalType(NDalicManualPINVOKE.ImfManager_StatusChangedSignal(swigCPtr), false);
@@ -1293,7 +1311,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager resized event arguments.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
+        //Please do not use! this will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerResizedEventArgs : EventArgs
         {
             public ImfManager ImfManager
@@ -1310,7 +1329,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager resized event.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
+        //Please do not use! this will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerResizedEventArgs> ImfManagerResized
         {
             add
@@ -1390,7 +1410,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager resized signal.
         /// </summary>
-        [Obsolete("Please do not use! this will be internal")]
+        //Please do not use! this will be internal
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImfVoidSignalType ResizedSignal()
         {
             ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_ResizedSignal(swigCPtr), false);
@@ -1401,7 +1422,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager language changed event arguments.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
+        //Please do not use! this will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerLanguageChangedEventArgs : EventArgs
         {
             public ImfManager ImfManager
@@ -1418,7 +1440,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager language changed event.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
+        //Please do not use! this will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerLanguageChangedEventArgs> ImfManagerLanguageChanged
         {
             add
@@ -1498,7 +1521,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager language changed signal.
         /// </summary>
-        [Obsolete("Please do not use! this will be internal")]
+        //Please do not use! this will be internal
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImfVoidSignalType LanguageChangedSignal()
         {
             ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_LanguageChangedSignal(swigCPtr), false);
