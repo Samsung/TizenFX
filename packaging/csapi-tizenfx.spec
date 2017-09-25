@@ -7,6 +7,8 @@
 %define DOTNET_ASSEMBLY_RES_PATH %{DOTNET_ASSEMBLY_PATH}/res
 %define DOTNET_NUGET_SOURCE /nuget
 
+%define DOTNET_TIZEN_API_VERSION 4
+
 %define _tizenfx_bin_path Artifacts
 
 Name:       csapi-tizenfx
@@ -22,7 +24,11 @@ Source1:    %{name}.manifest
 BuildRequires: dotnet-build-tools
 
 BuildArch: noarch
+ExcludeArch: aarch64
 AutoReqProv: no
+
+Requires(post): vconf
+
 
 %description
 %{summary}
@@ -46,6 +52,7 @@ Dummy assemblies of Tizen .NET
 %package full
 Summary:   All Tizen .NET assemblies
 Group:     Development/Libraries
+Requires:  %{name} = %{version}-%{release}
 AutoReqProv: no
 
 %description full
@@ -62,7 +69,8 @@ All .pdb files of Tizen .NET
 %package common
 Summary:   Tizen .NET assemblies for Common profile
 Group:     Development/Libraries
-Requires:  csapi-tizenfx-dummy
+Requires:  %{name} = %{version}-%{release}
+Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description common
@@ -71,7 +79,8 @@ Tizen .NET assemblies for Common profile
 %package mobile
 Summary:   Tizen .NET assemblies for Mobile profile
 Group:     Development/Libraries
-Requires:  csapi-tizenfx-dummy
+Requires:  %{name} = %{version}-%{release}
+Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description mobile
@@ -80,7 +89,8 @@ Tizen .NET assemblies for Mobile profile
 %package mobile-emul
 Summary:   Tizen .NET assemblies for Emulator of Mobile profile
 Group:     Development/Libraries
-Requires:  csapi-tizenfx-dummy
+Requires:  %{name} = %{version}-%{release}
+Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description mobile-emul
@@ -89,7 +99,8 @@ Tizen .NET assemblies for Emulator of Mobile profile
 %package tv
 Summary:   Tizen .NET assemblies for TV profile
 Group:     Development/Libraries
-Requires:  csapi-tizenfx-dummy
+Requires:  %{name} = %{version}-%{release}
+Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description tv
@@ -98,7 +109,8 @@ Tizen .NET assemblies for TV profile
 %package ivi
 Summary:   Tizen .NET assemblies for IVI profile
 Group:     Development/Libraries
-Requires:  csapi-tizenfx-dummy
+Requires:  %{name} = %{version}-%{release}
+Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description ivi
@@ -107,7 +119,8 @@ Tizen .NET assemblies for IVI profile
 %package wearable
 Summary:   Tizen .NET assemblies for Wearable profile
 Group:     Development/Libraries
-Requires:  csapi-tizenfx-dummy
+Requires:  %{name} = %{version}-%{release}
+Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description wearable
@@ -151,6 +164,13 @@ install -p -m 644 %{_tizenfx_bin_path}/bin/platform/res/* %{buildroot}%{DOTNET_A
 install -p -m 644 %{_tizenfx_bin_path}/bin/dummy/*.dll %{buildroot}%{DOTNET_ASSEMBLY_DUMMY_PATH}
 install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
+%post
+vconftool set -t int "db/dotnet/tizen_api_version" %{DOTNET_TIZEN_API_VERSION} -f
+
+
+%files
+%license LICENSE
+
 %files nuget
 %{DOTNET_NUGET_SOURCE}/*.nupkg
 
@@ -159,7 +179,6 @@ install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE
 
 %files full
 %manifest %{name}.manifest
-%license LICENSE
 %attr(644,root,root) %{DOTNET_ASSEMBLY_PATH}/*.dll
 %attr(644,root,root) %{DOTNET_ASSEMBLY_RES_PATH}/*
 
@@ -168,24 +187,18 @@ install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE
 
 %files common -f common.filelist
 %manifest %{name}.manifest
-%license LICENSE
 
 %files mobile -f mobile.filelist
 %manifest %{name}.manifest
-%license LICENSE
 
 %files mobile-emul -f mobile-emul.filelist
 %manifest %{name}.manifest
-%license LICENSE
 
 %files tv -f tv.filelist
 %manifest %{name}.manifest
-%license LICENSE
 
 %files ivi -f ivi.filelist
 %manifest %{name}.manifest
-%license LICENSE
 
 %files wearable -f wearable.filelist
 %manifest %{name}.manifest
-%license LICENSE
