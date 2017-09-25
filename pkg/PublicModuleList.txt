@@ -27,7 +27,6 @@ Tizen.Content.Download
 Tizen.Content.MediaContent
 Tizen.Content.MimeType
 Tizen.Context
-Tizen.Convergence
 Tizen.Location
 Tizen.Location.Geofence
 Tizen.Log
