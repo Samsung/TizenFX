@@ -19,12 +19,9 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class CommonError
+    internal static partial class DotnetUtil
     {
-        [DllImport(Libraries.Base, EntryPoint = "get_last_result")]
-        internal static extern int GetLastResult();
-
-        [DllImport(Libraries.Base, EntryPoint = "get_error_message")]
-        internal static extern IntPtr GetErrorMessage(int errorCode);
+        [DllImport(Libraries.Vconf, EntryPoint = "vconf_get_int")]
+        internal static extern int GetVconfInt(string key, out int value);
     }
 }
