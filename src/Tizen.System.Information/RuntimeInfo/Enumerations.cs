@@ -14,11 +14,8 @@
 * limitations under the License.
 */
 
-using System.ComponentModel;
-
 namespace Tizen.System
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
     /// <summary>
     /// Enumeration for the runtime information key.
     /// </summary>

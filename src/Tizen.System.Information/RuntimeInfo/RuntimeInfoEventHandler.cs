@@ -15,11 +15,9 @@
 */
 
 using System;
-using System.ComponentModel;
 
 namespace Tizen.System
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal class RuntimeInfoEventHandler
     {
         private RuntimeInfoKey Key;

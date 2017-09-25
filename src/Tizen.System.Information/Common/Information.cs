@@ -16,8 +16,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 
 namespace Tizen.System
 {
@@ -81,7 +79,6 @@ namespace Tizen.System
             [RuntimeInfoKey.AudioJackConnector] = RuntimeInfoStringKeyAudioJackType
         };
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
         private static bool ConvertStringToRuntimeInfoKey(string key, out RuntimeInfoKey feature)
         {
             string filteredKey = key.StartsWith(HttpPrefix) ? key.Substring(HttpPrefix.Length) : key;
@@ -90,7 +87,6 @@ namespace Tizen.System
             return StringEnumMapping.TryGetValue(filteredKey, out feature);
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
         private static bool TryGetRuntimeInfoValue<T>(RuntimeInfoKey key, out T value)
         {
             value = default(T);
@@ -104,7 +100,7 @@ namespace Tizen.System
             return RuntimeInfo.TryGetValue<T>(key, out value);
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+#pragma warning disable CS0618 // Type or member is obsolete
         private static bool TryGetSystemInfoValue<T>(string key, out T value)
         {
             value = default(T);
@@ -123,6 +119,7 @@ namespace Tizen.System
 
             return SystemInfo.TryGetValue<T>(key, out value);
         }
+#pragma warning restore CS0618 // Type or member is obsolete
 
         /// <summary>
         /// Gets the value of the feature.
