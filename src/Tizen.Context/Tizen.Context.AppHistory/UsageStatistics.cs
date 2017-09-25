@@ -22,6 +22,7 @@ namespace Tizen.Context.AppHistory
     /// <summary>
     /// This class provides APIs to query application launch history.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class UsageStatistics : AppStatistics
     {
         private const string AppStatsDuration = "TotalDuration";
@@ -31,6 +32,7 @@ namespace Tizen.Context.AppHistory
         /// <summary>
         /// The default constructor of UsageStatistics class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/app_history</feature>
         /// <exception cref="InvalidOperationException">Thrown when method fail due to internal error.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
@@ -55,6 +57,7 @@ namespace Tizen.Context.AppHistory
         /// <summary>
         /// The constructor of UsageStatistics class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="order">The criteria of the usage statistics sorted by.</param>
         /// <feature>http://tizen.org/feature/app_history</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
@@ -86,6 +89,7 @@ namespace Tizen.Context.AppHistory
         /// <summary>
         /// Retrieves a given type of usage statistics.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="startTime">The start time of the data to be aggregated.</param>
         /// <param name="endTime">The end time of the data to be aggregated.</param>
         /// <returns>Usage statistics data retrieved.</returns>
@@ -105,6 +109,7 @@ namespace Tizen.Context.AppHistory
         /// <summary>
         /// Retrieves a given type of usage statistics.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="startTime">The start time of the data to be aggregated.</param>
         /// <param name="endTime">The end time of the data to be aggregated.</param>
         /// <param name="resultSize">The number of data records to be retrieved.</param>
@@ -178,12 +183,14 @@ namespace Tizen.Context.AppHistory
         /// <summary>
         /// Gets the criteria of usage statistics sorted by.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The criteria of usage statistics sorted by.</value>
         public SortOrderType SortOrder { get; private set; }
 
         /// <summary>
         /// Sort order type of usage statistics
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum SortOrderType
         {
             /// <summary>

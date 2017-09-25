@@ -21,6 +21,7 @@ namespace Tizen.Context.AppHistory
     /// <summary>
     /// The class contains application usage statistics information retrieved by UsageStatistics.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class UsageStatisticsData : AppStatisticsData
     {
         internal UsageStatisticsData(string appId, int duration, int launchCount, DateTime lastLaunchTime)
@@ -34,18 +35,21 @@ namespace Tizen.Context.AppHistory
         /// <summary>
         ///  Gets the time which the application is being displayed in the foreground in seconds.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Duration which the application is used in the foreground in seconds.</value>
         public int Duration { get; private set; }
 
         /// <summary>
         ///  Gets how many times the application is used in the foreground.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>How many times the application is used in the foreground.</value>
         public int LaunchCount { get; private set; }
 
         /// <summary>
         /// Gets the last time when the application has been used.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The last time when the application has been used.</value>
         public DateTime LastLaunchTime { get; private set; }
     }

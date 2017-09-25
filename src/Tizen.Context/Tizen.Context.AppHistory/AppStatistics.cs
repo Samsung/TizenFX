@@ -21,6 +21,7 @@ namespace Tizen.Context.AppHistory
     /// <summary>
     /// Base class for application statistics.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public abstract class AppStatistics
     {
         internal const string AppStatsQueryResult = "QueryResult";

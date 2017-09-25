@@ -22,6 +22,7 @@ namespace Tizen.Context.AppHistory
     /// <summary>
     /// This class provides APIs to query battery consumption per application.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class BatteryStatistics : AppStatistics
     {
         private const string AppStatsConsumption = "TotalAmount";
@@ -29,6 +30,7 @@ namespace Tizen.Context.AppHistory
         /// <summary>
         ///  The default constructor of BatteryStatistics class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/app_history</feature>
         /// <feature>http://tizen.org/feature/battery</feature>
         /// <exception cref="InvalidOperationException">Thrown when method fail due to internal error.</exception>
@@ -54,6 +56,7 @@ namespace Tizen.Context.AppHistory
         /// <summary>
         /// The constructor of BatteryStatistics class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="order">The criteria of the battery statistics sorted by.</param>
         /// <feature>http://tizen.org/feature/app_history</feature>
         /// <feature>http://tizen.org/feature/battery</feature>
@@ -86,6 +89,7 @@ namespace Tizen.Context.AppHistory
         /// <summary>
         /// Retrieves a given type of battery statistics.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="startTime">The start time of the data to be aggregated.</param>
         /// <param name="endTime">The end time of the data to be aggregated.</param>
         /// <returns>Battery statistics data retrieved.</returns>
@@ -106,6 +110,7 @@ namespace Tizen.Context.AppHistory
         /// <summary>
         /// Retrieves a given type of battery statistics.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="startTime">The start time of the data to be aggregated.</param>
         /// <param name="endTime">The end time of the data to be aggregated.</param>
         /// <param name="resultSize">The number of data records to be retrieved.</param>
@@ -153,6 +158,7 @@ namespace Tizen.Context.AppHistory
         /// <summary>
         /// Gets the last time when the device was fully charged.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>The last time when the device was fully charged.</returns>
         /// <feature>http://tizen.org/feature/app_history</feature>
         /// <feature>http://tizen.org/feature/battery</feature>
@@ -195,12 +201,14 @@ namespace Tizen.Context.AppHistory
         /// <summary>
         /// Gets the criteria of battery statistics sorted by.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The criteria of battery statistics sorted by.</value>
         public SortOrderType SortOrder { get; private set; }
 
         /// <summary>
         /// Sort order type of battery statistics.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum SortOrderType
         {
             /// <summary>
