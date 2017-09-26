@@ -9,10 +9,12 @@
 //------------------------------------------------------------------------------
 using System;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    [Obsolete("Please do not use! this will be internal")]
+    //"Please do not use! this will be internal"
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class SWIGTYPE_p_Dali__FunctorDelegate
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

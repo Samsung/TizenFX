@@ -20,6 +20,7 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
+    using System.ComponentModel;
 
     /// <summary>
     /// The window class is used internally for drawing.<br>
@@ -1407,7 +1408,8 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        [Obsolete("Please do not use! this will be deprecated")]
+        //Please do not use! this will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class WindowFocusChangedEventArgs : EventArgs
         {
             public bool FocusGained

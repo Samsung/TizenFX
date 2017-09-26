@@ -14,6 +14,7 @@
 *
 */
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -67,7 +68,8 @@ namespace Tizen.NUI
         }
 
 
-        [Obsolete("Please do not use! this will be deprecated, please use VisualFactory.Instance instead")]
+        //"Please do not use! this will be deprecated, please use VisualFactory.Instance instead"
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static VisualFactory Get()
         {
             VisualFactory ret = new VisualFactory(NDalicPINVOKE.VisualFactory_Get(), true);

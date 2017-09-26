@@ -15,11 +15,13 @@
 */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
 
-    [Obsolete("Please do not use! this will be deprecated")]
+    //"Please do not use! this will be deprecated"
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Uint16Pair : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
