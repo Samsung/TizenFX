@@ -23,8 +23,8 @@ internal static partial class Interop
     internal static partial class ScreenMirroring
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void StateChangedCallback(IntPtr userData,
-            ScreenMirroringState state, ScreenMirroringErrorCode error);
+        internal delegate void StateChangedCallback(ScreenMirroringErrorCode error,
+            ScreenMirroringState state, IntPtr userData);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_create")]
         internal static extern ScreenMirroringErrorCode Create(out IntPtr handle);

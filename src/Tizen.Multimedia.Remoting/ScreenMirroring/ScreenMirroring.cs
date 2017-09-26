@@ -58,6 +58,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <feature>http://tizen.org/feature/network.wifi.direct.display</feature>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+
         public ScreenMirroring()
         {
             if (IsSupported() == false)
@@ -463,7 +464,7 @@ namespace Tizen.Multimedia.Remoting
 
         private void RegisterStateChangedEvent()
         {
-            _stateChangedCallback = (_, state, error) =>
+            _stateChangedCallback = (error, state, _) =>
             {
                 var prevState = _state.Value;
 
