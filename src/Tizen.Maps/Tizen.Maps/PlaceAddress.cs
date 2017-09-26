@@ -154,20 +154,6 @@ namespace Tizen.Maps
             }
         }
 
-        [EditorBrowsableAttribute(EditorBrowsableState.Never)]
-        [Obsolete("Freetext is deprecated. Please use FreeText instead.")]
-        public string Freetext
-        {
-            get
-            {
-                return FreeText;
-            }
-            set
-            {
-                FreeText = value;
-            }
-        }
-
         /// <summary>
         /// Gets a postal code for this address.
         /// </summary>
