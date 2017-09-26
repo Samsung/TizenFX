@@ -21,6 +21,7 @@ namespace Tizen.Pims.Calendar
     /// <summary>
     /// A list of records with the same type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class CalendarList:IDisposable
     {
         private Int64 _memoryPressure = 20;
@@ -38,7 +39,9 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Creates a calendar list.
         /// </summary>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/calendar</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public CalendarList()
         {
@@ -54,6 +57,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// The count of the calendar entity.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The count of calendar entity.</value>
         public int Count
         {
@@ -119,8 +123,10 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Adds a record to the calendar list.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="record">The record to be added</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/calendar</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddRecord(CalendarRecord record)
         {
@@ -138,8 +144,10 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Removes a record from the calendar list.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="record">The record to be removed</param>
-        /// <exception cref="NotSupportedException">Thrown when an invoked method is not supported</exception>
+        /// <feature>http://tizen.org/feature/calendar</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void RemoveRecord(CalendarRecord record)
         {
@@ -157,9 +165,12 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Retrieves a record from the calendar list.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// calendar record
         /// </returns>
+        /// <feature>http://tizen.org/feature/calendar</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         public CalendarRecord GetCurrentRecord()
         {
             IntPtr handle;
@@ -175,9 +186,12 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Moves a calendar list to the previous position.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// if cursor is moved to the end, it returns false.
         /// </returns>
+        /// <feature>http://tizen.org/feature/calendar</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         public bool MovePrevious()
         {
             int error = Interop.List.Prev(_listHandle);
@@ -200,9 +214,12 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Moves a calendar list to the next position.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// if cursor is moved to the end, it returns false.
         /// </returns>
+        /// <feature>http://tizen.org/feature/calendar</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         public bool MoveNext()
         {
             int error = Interop.List.Next(_listHandle);
@@ -225,6 +242,9 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Moves a calendar list to the first position.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/calendar</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         public void MoveFirst()
         {
             int error = Interop.List.First(_listHandle);
@@ -238,6 +258,9 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Moves a calendar list to the last position.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature>http://tizen.org/feature/calendar</feature>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         public void MoveLast()
         {
             int error = Interop.List.Last(_listHandle);

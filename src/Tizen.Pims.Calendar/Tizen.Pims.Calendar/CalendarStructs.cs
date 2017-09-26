@@ -21,6 +21,7 @@ namespace Tizen.Pims.Calendar
     /// <summary>
     /// A class for time to set, get or calculate.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class CalendarTime:IComparable<CalendarTime>
     {
         internal int _type;
@@ -29,21 +30,25 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Enumeration for the time type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum Type
         {
             /// <summary>
             /// UTC time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Utc,
             /// <summary>
             /// Local time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Local
         }
 
         /// <summary>
         /// Create UTC CalendarTime
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="utcTime">UTC epoch time. 0 is 1971/01/01</param>
         public CalendarTime(long utcTime)
         {
@@ -55,6 +60,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Create Local CalendarTime
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="year">year</param>
         /// <param name="month">month</param>
         /// <param name="day">day</param>
@@ -72,6 +78,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Get UtcTime
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The Utc time</value>
         public DateTime UtcTime
         {
@@ -81,6 +88,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Get localTime
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The Localtime</value>
         public DateTime LocalTime
         {
@@ -90,6 +98,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Compare CalendarTime
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="other">The CalendarTime to be compared</param>
         /// <returns>
         /// A 32-bit signed integer that indicates the relative order of the objects being compared.
@@ -113,6 +122,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Equals CalendarTime
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="obj">The CalendarTime to be compared</param>
         /// <returns>
         /// A 32-bit signed integer that indicates the relative order of the objects being compared.
@@ -125,13 +135,28 @@ namespace Tizen.Pims.Calendar
             if (_type != other._type)
             {
                 Log.Error(Globals.LogTag, "Not to compare with different type");
-                throw CalendarErrorFactory.GetException((int)CalendarError.InvalidParameter);
+                return false;
             }
 
             if (_type == (int)Type.Utc)
                 return UtcTime.Equals(other.UtcTime);
             else
                 return LocalTime.Equals(other.LocalTime);
+        }
+
+        /// <summary>
+        /// GetHashCode CalendarTime
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <returns>
+        /// A hash code for the current object.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            if (_type == (int)Type.Utc)
+                return this.UtcTime.GetHashCode();
+            else
+                return this.LocalTime.GetHashCode();
         }
     }
 }

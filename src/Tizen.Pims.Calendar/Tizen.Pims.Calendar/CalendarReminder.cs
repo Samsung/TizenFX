@@ -21,6 +21,7 @@ namespace Tizen.Pims.Calendar
     /// <summary>
     /// A class for reminder for event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     /// <remarks>
     /// The client who wants to be alerted at specific time should register MIME("application/x-tizen.calendar.reminder") type in manifest.xml file.
     /// </remarks>
@@ -67,6 +68,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Reminder event is triggered when the alarm is alerted.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<ReminderAlertedEventArgs> ReminderAlerted
         {
             add
