@@ -523,7 +523,7 @@ namespace Tizen.Multimedia
         {
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            var taskCompletionSource = new TaskCompletionSource<bool>();
+            var taskCompletionSource = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             bool immediateResult = _source is MediaStreamSource;
 
