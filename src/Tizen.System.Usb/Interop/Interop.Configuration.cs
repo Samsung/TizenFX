@@ -43,12 +43,12 @@ internal static partial class Interop
     internal class UsbConfigHandle : SafeUsbHandle
     {
         [DllImport(Libraries.Usb, EntryPoint = "usb_host_config_destroy")]
-        internal static extern ErrorCode ConfigDestroy(UsbConfigHandle /* usb_host_config_h */ config);
+        internal static extern ErrorCode ConfigDestroy(IntPtr /* usb_host_config_h */ config);
 
         public UsbConfigHandle(IntPtr handle) : base(handle) { }
         public override void Destroy()
         {
-            ConfigDestroy(this).ThrowIfFailed("Failed to destroy native HostConfig handle");
+            ConfigDestroy(handle).ThrowIfFailed("Failed to destroy native HostConfig handle");
         }
     }
 }

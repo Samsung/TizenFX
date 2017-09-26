@@ -42,9 +42,9 @@ internal static partial class Interop
     internal static extern ErrorCode GetStr(this UsbInterfaceHandle /* usb_host_interface_h */ usbInterface, ref int length, byte[] data);
 
 
-    internal class UsbInterfaceHandle
+    internal class UsbInterfaceHandle : SafeUsbHandle
     {
-        private IntPtr _handle;
-        public UsbInterfaceHandle(IntPtr handle) { _handle = handle; }
+        public UsbInterfaceHandle(IntPtr handle) : base(handle) { }
+        public override void Destroy() { }
     }
 }

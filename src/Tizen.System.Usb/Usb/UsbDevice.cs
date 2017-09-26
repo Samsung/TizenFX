@@ -27,12 +27,20 @@ namespace Tizen.System.Usb
     {
         internal readonly Interop.HostDeviceHandle _handle;
         private readonly UsbManager _parent;
-        private Dictionary<int, UsbConfiguration> _configurations;
+        private Dictionary<int, UsbConfiguration> _configurations = new Dictionary<int, UsbConfiguration>();
 
         internal UsbDevice(UsbManager parent, Interop.HostDeviceHandle handle)
         {
             _parent = parent;
             _handle = handle;
+
+            int count = Interop.NativeGet<int>(_handle.GetNumConfigurations);
+            for (int i = 0; i < count; ++i)
+            {
+                Interop.UsbConfigHandle configHandle;
+                _handle.GetConfig(i, out configHandle);
+                _configurations.Add(i, new UsbConfiguration(this, configHandle));
+            }
         }
 
         /// <summary>
@@ -117,17 +125,6 @@ namespace Tizen.System.Usb
             get
             {
                 ThrowIfDisposed();
-                if (_configurations == null)
-                {
-                    _configurations = new Dictionary<int, UsbConfiguration>();
-                    int count = Interop.NativeGet<int>(_handle.GetNumConfigurations);
-                    for (int i = 0; i < count; ++i)
-                    {
-                        Interop.UsbConfigHandle configHandle;
-                        _handle.GetConfig(i, out configHandle);
-                        _configurations.Add(i, new UsbConfiguration(this, configHandle));
-                    }
-                }
                 return _configurations;
             }
         }
@@ -177,7 +174,7 @@ namespace Tizen.System.Usb
             ThrowIfDisposed();
             if (IsOpened == false) throw new InvalidOperationException("Device must be opened for operation first");
 
-            _handle.Close();
+            _handle.CloseHandle().ThrowIfFailed("Failed to close device for use");
         }
 
         internal void ThrowIfDisposed()
