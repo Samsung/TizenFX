@@ -92,10 +92,10 @@ internal static partial class Interop
         internal static extern string GetPkgId(string widgetId);
 
         [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_supported_sizes")]
-        internal static extern ErrorCode GetSupportedSizes(string widgetId, ref int cnt, out int[] w, out int[] h);
+        internal static extern ErrorCode GetSupportedSizes(string widgetId, ref int cnt, out IntPtr w, out IntPtr h);
 
         [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_supported_size_types")]
-        internal static extern ErrorCode GetSupportedSizeTypes(string widgetId, ref int cnt, out int[] types);
+        internal static extern ErrorCode GetSupportedSizeTypes(string widgetId, ref int cnt, out IntPtr types);
 
         [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_preview_image_path")]
         internal static extern string GetPreviewImagePath(string widgetId, int sizeType);

@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using Tizen.Applications;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
 {
@@ -25,6 +26,7 @@ namespace Tizen.Applications
     /// </summary>
     public class WidgetControl : IDisposable
     {
+        protected static readonly string LogTag = "WidgetControl";
         /// <summary>
         /// Class for the widget instance.
         /// </summary>
@@ -467,14 +469,22 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public IEnumerable<Scale> GetScales()
         {
-            int[] w = new int[100];
-            int[] h = new int[100];
-            int[] types = new int[100];
+            IntPtr wPtr;
+            IntPtr hPtr;
+            IntPtr typesPtr;
+            int[] w;
+            int[] h;
+            int[] types;
             int cnt1 = 100;
             int cnt2 = 100;
             IList<Scale> scales = new List<Scale>();
+            Interop.WidgetService.ErrorCode err = Interop.WidgetService.GetSupportedSizes(Id, ref cnt1, out wPtr, out hPtr);
 
-            Interop.WidgetService.ErrorCode err = Interop.WidgetService.GetSupportedSizes(Id, ref cnt1, out w, out h);
+            if (cnt1 == 0)
+            {
+                Log.Error(LogTag, "No supported size :" + Id);
+                return null;
+            }
 
             switch (err)
             {
@@ -487,9 +497,15 @@ namespace Tizen.Applications
                 case Interop.WidgetService.ErrorCode.PermissionDenied:
                     throw new UnauthorizedAccessException();
             }
+            w = new int[cnt1];
+            Marshal.Copy(wPtr, w, 0, cnt1);
+            Interop.Libc.Free(wPtr);
 
-            err = Interop.WidgetService.GetSupportedSizeTypes(Id, ref cnt2, out types);
+            h = new int[cnt1];
+            Marshal.Copy(hPtr, h, 0, cnt1);
+            Interop.Libc.Free(hPtr);
 
+            err = Interop.WidgetService.GetSupportedSizeTypes(Id, ref cnt2, out typesPtr);
             switch (err)
             {
                 case Interop.WidgetService.ErrorCode.InvalidParameter:
@@ -503,7 +519,14 @@ namespace Tizen.Applications
             }
 
             if (cnt1 != cnt2)
+            {
+                Log.Error(LogTag, "Count not match cnt1 :" + cnt1 + ", cnt2 :" + cnt2);
                 return null;
+            }
+
+            types = new int[cnt2];
+            Marshal.Copy(typesPtr, types, 0, cnt2);
+            Interop.Libc.Free(typesPtr);
 
             for (int i = 0; i < cnt1; i++)
             {
