@@ -191,7 +191,7 @@ namespace Tizen.Network.Mtp
         /// <summary>
         /// Gets the list of objects.
         /// </summary>
-        /// <param name="parentHandle">The parent object handle. If parentHandle is 0, it means "root folder" of mtp storage.</param>
+        /// <param name="parentObject">The parent object handle. If parentHandle is 0, it means "root folder" of mtp storage.</param>
         /// <param name="fileType">The file type what you want.</param>
         /// <returns>List of objects.</returns>
         /// <feature>http://tizen.org/feature/network.mtp</feature>
