@@ -344,7 +344,9 @@ namespace Tizen.Tapi
         {
             SatTextInfo textInfo = new SatTextInfo();
             textInfo.Length = textStruct.Length;
-            Marshal.Copy(textStruct.DataString, textInfo.Data, 0, 501);
+            byte[] data = new byte[textStruct.Length];
+            Marshal.Copy(textStruct.DataString, data, 0, textInfo.Length);
+            textInfo.Data = data;
             return textInfo;
         }
 
