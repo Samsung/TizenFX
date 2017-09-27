@@ -30,7 +30,7 @@ namespace Tizen.Multimedia
     /// <code>
     /// Tizen.Xamarin.Forms.Extension.MediaView mediaView = ...
     /// ...
-    /// var display = new Display((Tizen.Multimedia.MediaView)MediaView.NativeView);
+    /// var display = new Display((Tizen.Multimedia.MediaView)mediaView.NativeView);
     /// </code>
     /// </example>
     public class MediaView : EvasObject

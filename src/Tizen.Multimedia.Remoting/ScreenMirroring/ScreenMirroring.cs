@@ -58,7 +58,6 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <feature>http://tizen.org/feature/network.wifi.direct.display</feature>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-
         public ScreenMirroring()
         {
             if (IsSupported() == false)
