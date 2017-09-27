@@ -386,6 +386,7 @@ namespace Tizen.Applications
         /// Installs the package located at the given path.
         /// </summary>
         /// <param name="packagePath">Absolute path for the package to be installed.</param>
+        /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if the installation request is successful, otherwise false.</returns>
         /// <remarks>
         /// The 'true' means that the request for installation is successful.
