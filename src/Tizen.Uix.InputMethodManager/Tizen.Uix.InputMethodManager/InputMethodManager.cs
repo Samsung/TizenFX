@@ -34,7 +34,7 @@ namespace Tizen.Uix.InputMethodManager
         /// <privilege>
         /// http://tizen.org/privilege/imemanager
         /// </privilege>
-        /// <exception cref="InvalidOperationException">
+        /// <exception cref="T:System.InvalidOperationException">
         /// This exception can occur if:
         /// 1) The application does not have the privilege to call this function.
         /// 2) Operation failed.
@@ -56,7 +56,7 @@ namespace Tizen.Uix.InputMethodManager
         /// <privilege>
         /// http://tizen.org/privilege/imemanager
         /// </privilege>
-        /// <exception cref="InvalidOperationException">
+        /// <exception cref="T:System.InvalidOperationException">
         /// This exception can occur if:
         /// 1) The application does not have the privilege to call this function.
         /// 2) Operation failed.
@@ -80,10 +80,10 @@ namespace Tizen.Uix.InputMethodManager
         /// </privilege>
         /// <param name="appId">The application ID of the IME.</param>
         /// <returns>The On (enabled) and Off (disabled) state of the IME.</returns>
-        /// <exception cref="ArgumentException">
+        /// <exception cref="T:System.ArgumentException">
         /// This exception can occur if an invalid parameter is provided.
         /// </exception>
-        /// <exception cref="InvalidOperationException">
+        /// <exception cref="T:System.InvalidOperationException">
         /// This exception can occur if:
         /// 1) The application does not have the privilege to call this function.
         /// 2) Operation failed.
@@ -110,7 +110,7 @@ namespace Tizen.Uix.InputMethodManager
         /// <returns>
         /// The current activated (selected) IME.
         /// </returns>
-        /// <exception cref="InvalidOperationException">
+        /// <exception cref="T:System.InvalidOperationException">
         /// This exception can occur if:
         /// 1) The application does not have the privilege to call this function.
         /// 2) Operation failed.
@@ -137,7 +137,7 @@ namespace Tizen.Uix.InputMethodManager
         /// <returns>
         /// The number of enabled IMEs.
         /// </returns>
-        /// <exception cref="InvalidOperationException">
+        /// <exception cref="T:System.InvalidOperationException">
         /// This exception can occur if:
         /// 1) The application does not have the privilege to call this function.
         /// 2) Operation failed.
