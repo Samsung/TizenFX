@@ -1,3 +1,4 @@
+using ElmSharp;
 using System;
 
 namespace Tizen.Applications.AttachPanel
@@ -14,15 +15,49 @@ namespace Tizen.Applications.AttachPanel
         /// <param name="conformant">The caller's conformant</param>
         /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate memory fails.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is already exist or the <paramref name="conformant"/> is not a conformant object</exception>
-        public AttachPanel(IntPtr conformant)
+        public AttachPanel(EvasObject conformant)
         {
             if (conformant == IntPtr.Zero)
             {
                 throw new ArgumentNullException("Use the value property, not null value");
             }
+
             IntPtr candidateAttachPanel = new IntPtr();
             Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.CreateAttachPanel(conformant, ref candidateAttachPanel);
-            checkException(err);
+            CheckException(err);
+
+            Tizen.Log.Debug("AttachPanelSharp", "Success to create an AttachPanel Instance");
+            isCreationSucceed = true;
+            _attachPanel = candidateAttachPanel;
+
+            if (_eventEventHandler == null)
+            {
+                StateEventListenStart();
+            }
+
+            if (_resultEventHandler == null)
+            {
+                ResultEventListenStart();
+            }
+        }
+
+        /// <summary>
+        /// Represents immutable class for attach panel.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="conformant">The caller's conformant</param>
+        /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate memory fails.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is already exist or the <paramref name="conformant"/> is not a conformant object</exception>
+        public AttachPanel(Conformant conformant)
+        {
+            if (conformant == IntPtr.Zero)
+            {
+                throw new ArgumentNullException("Use the value property, not null value");
+            }
+
+            IntPtr candidateAttachPanel = new IntPtr();
+            Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.CreateAttachPanel(conformant, ref candidateAttachPanel);
+            CheckException(err);
 
             Tizen.Log.Debug("AttachPanelSharp", "Success to create an AttachPanel Instance");
             isCreationSucceed = true;
@@ -48,7 +83,7 @@ namespace Tizen.Applications.AttachPanel
                 _attachPanel != IntPtr.Zero)
             {
                 Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.DestroyAttachPanel(_attachPanel);
-                checkException(err);
+                CheckException(err);
                 _attachPanel = IntPtr.Zero;
             }
         }
@@ -57,13 +92,14 @@ namespace Tizen.Applications.AttachPanel
         /// Gets the state of the AttachPanel.
         /// </summary>
         /// <value>The AttachPanel window state</value>
-        public int State
+        public StateType State
         {
             get
             {
-                int state;
-                Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.GetState(_attachPanel, out state);
-                checkException(err);
+                int interopState;
+                Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.GetState(_attachPanel, out interopState);
+                CheckException(err);
+                StateType state = (StateType)Enum.ToObject(typeof(StateType), interopState);
                 return state;
             }
         }
@@ -72,14 +108,14 @@ namespace Tizen.Applications.AttachPanel
         /// Gets the value that indicates whether the AttachPanel is visible.
         /// </summary>
         /// <value>visible value of AttachPanel state</value>
-        public int Visible
+        public bool Visible
         {
             get
             {
                 int visible;
                 Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.GetVisibility(_attachPanel, out visible);
-                checkException(err);
-                return visible;
+                CheckException(err);
+                return (visible == 1);
             }
         }
 
@@ -121,8 +157,9 @@ namespace Tizen.Applications.AttachPanel
             {
                 bundle = extraData.SafeBundleHandle.DangerousGetHandle();
             }
+
             Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.AddCategory(_attachPanel, (int)category, bundle);
-            checkException(err);
+            CheckException(err);
         }
 
         /// <summary>
@@ -134,7 +171,7 @@ namespace Tizen.Applications.AttachPanel
         public void RemoveCategory(ContentCategory category)
         {
             Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.RemoveCategory(_attachPanel, (int)category);
-            checkException(err);
+            CheckException(err);
         }
 
         /// <summary>
@@ -147,9 +184,9 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate memory fails.</exception>
         public void SetExtraData(ContentCategory category, Bundle extraData)
         {
-            if(extraData == null)
+            if (extraData == null)
             {
-                checkException(Interop.AttachPanel.ErrorCode.InvalidParameter);
+                CheckException(Interop.AttachPanel.ErrorCode.InvalidParameter);
             }
 
             IntPtr bundle = IntPtr.Zero;
@@ -157,8 +194,9 @@ namespace Tizen.Applications.AttachPanel
             {
                 bundle = extraData.SafeBundleHandle.DangerousGetHandle();
             }
+
             Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.SetExtraData(_attachPanel, (int)category, bundle);
-            checkException(err);
+            CheckException(err);
         }
 
         /// <summary>
@@ -168,24 +206,25 @@ namespace Tizen.Applications.AttachPanel
         public void Show()
         {
             Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.Show(_attachPanel);
-            checkException(err);
+            CheckException(err);
         }
 
         /// <summary>
         /// Shows the attach panel and selects whether or not to animate
         /// </summary>
+        /// <param name="animation">A flag which turn on or turn off the animation while attach panel showing.</param>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed</exception>
         public void Show(bool animation)
         {
             if (animation)
             {
                 Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.Show(_attachPanel);
-                checkException(err);
+                CheckException(err);
             }
             else
             {
                 Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.ShowWithoutAnimation(_attachPanel);
-                checkException(err);
+                CheckException(err);
             }
         }
 
@@ -196,24 +235,25 @@ namespace Tizen.Applications.AttachPanel
         public void Hide()
         {
             Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.Hide(_attachPanel);
-            checkException(err);
+            CheckException(err);
         }
 
         /// <summary>
         /// Hides the attach panel and selects whether or not to animate
         /// </summary>
+        /// <param name="animation">A flag which turn on or turn off the animation while attach panel hiding.</param>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed</exception>
         public void Hide(bool animation)
         {
             if (animation)
             {
                 Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.Hide(_attachPanel);
-                checkException(err);
+                CheckException(err);
             }
             else
             {
                 Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.HideWithoutAnimation(_attachPanel);
-                checkException(err);
+                CheckException(err);
             }
         }
 
@@ -228,8 +268,10 @@ namespace Tizen.Applications.AttachPanel
                 {
                     StateEventListenStart();
                 }
+
                 _eventEventHandler += value;
             }
+
             remove
             {
                 _eventEventHandler -= value;
@@ -251,8 +293,10 @@ namespace Tizen.Applications.AttachPanel
                 {
                     ResultEventListenStart();
                 }
+
                 _resultEventHandler += value;
             }
+
             remove
             {
                 _resultEventHandler -= value;

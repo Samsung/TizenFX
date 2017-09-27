@@ -2,8 +2,14 @@ using System;
 using System.Runtime.InteropServices;
 using Tizen.Applications;
 
+/// <summary>
+/// Interoperability support class for Tizen APIs
+/// </summary>
 internal static partial class Interop
 {
+    /// <summary>
+    /// Interoperability support class for the attach panel APIs
+    /// </summary>
     internal static partial class AttachPanel
     {
         internal enum ErrorCode : int

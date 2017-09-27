@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Tizen.Applications.AttachPanel
 {
+    /// <summary>
+    /// Attach panel internal implementation
+    /// </summary>
     public partial class AttachPanel
     {
         private static IntPtr _attachPanel;
@@ -20,16 +23,17 @@ namespace Tizen.Applications.AttachPanel
 
             SetEventListener = (attachPanel, eventType, eventInfo, userData) =>
             {
-                _eventEventHandler?.Invoke(null, new StateEventArgs(attachPanel, (EventType)eventType, eventInfo, userData));
+                _eventEventHandler?.Invoke(null, new StateEventArgs((EventType)eventType));
             };
             err = Interop.AttachPanel.SetEventCb(_attachPanel, SetEventListener, IntPtr.Zero);
-            checkException(err);
+            CheckException(err);
         }
+
         private void StateEventListenStop()
         {
             Interop.AttachPanel.ErrorCode err = 0;
-            err =  Interop.AttachPanel.UnsetEventCb(_attachPanel);
-            checkException(err);
+            err = Interop.AttachPanel.UnsetEventCb(_attachPanel);
+            CheckException(err);
         }
 
         private void ResultEventListenStart()
@@ -39,20 +43,20 @@ namespace Tizen.Applications.AttachPanel
             {
                 SafeAppControlHandle handle = new SafeAppControlHandle(resulthandler, false);
                 AppControl result = new AppControl(handle);
-                _resultEventHandler?.Invoke(null, new ResultEventArgs(attachPanel, (ContentCategory)category, result, (AppControlReplyResult)resultCode, userData));
+                _resultEventHandler?.Invoke(null, new ResultEventArgs((ContentCategory)category, result, (AppControlReplyResult)resultCode));
             };
             err = Interop.AttachPanel.SetResultCb(_attachPanel, SetResultListener, IntPtr.Zero);
-            checkException(err);
+            CheckException(err);
         }
 
         private void ResultEventListenStop()
         {
             Interop.AttachPanel.ErrorCode err = 0;
             err = Interop.AttachPanel.UnsetResultCb(_attachPanel);
-            checkException(err);
+            CheckException(err);
         }
 
-        internal static void checkException(Interop.AttachPanel.ErrorCode err)
+        internal static void CheckException(Interop.AttachPanel.ErrorCode err)
         {
             switch (err)
             {
