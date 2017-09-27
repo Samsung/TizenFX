@@ -345,7 +345,10 @@ namespace ElmSharp
                 {
                     IntPtr evasObj = Interop.Elementary.elm_image_object_get(RealHandle);
                     if (evasObj != IntPtr.Zero)
+                    {
                         _imageObject = new EvasImage(this, evasObj);
+                        _imageObject.Deleted += (s, e) => _imageObject = null;
+                    }
                 }
                 return _imageObject;
             }
