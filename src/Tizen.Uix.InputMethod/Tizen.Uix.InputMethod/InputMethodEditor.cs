@@ -979,8 +979,8 @@ namespace Tizen.Uix.InputMethod
         private static event EventHandler<ReturnKeyStateSetEventArgs> _returnKeyStateSet;
         private static ImeReturnKeyStateSetCb _imeReturnKeyStateSetDelegate;
         private static ImeProcessKeyEventCb _imeProcessKeyDelegate;
-        private static event EventHandler<DisplayLanaguageChangedEventArgs> _displayLanaguageChanged;
-        private static ImeDisplayLanguageChangedCb _imeDisplayLanaguageChangedDelegate;
+        private static event EventHandler<DisplayLanguageChangedEventArgs> _displayLanguageChanged;
+        private static ImeDisplayLanguageChangedCb _imeDisplayLanguageChangedDelegate;
         private static event EventHandler<RotationChangedEventArgs> _rotationDegreeChanged;
         private static ImeRotationChangedCb _imeRotationChangedDelegate;
         private static event EventHandler<AccessibilityStateChangedEventArgs> _accessibilityStateChanged;
@@ -1437,27 +1437,27 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Called when the system display language is changed.
+        /// Called when the system display Language is changed.
         /// </summary>
-        public static event EventHandler<DisplayLanaguageChangedEventArgs> DisplayLanaguageChanged
+        public static event EventHandler<DisplayLanguageChangedEventArgs> DisplayLanguageChanged
         {
             add
             {
                 lock (thisLock)
                 {
-                    _imeDisplayLanaguageChangedDelegate = (IntPtr language, IntPtr userData) =>
+                    _imeDisplayLanguageChangedDelegate = (IntPtr language, IntPtr userData) =>
                     {
-                        DisplayLanaguageChangedEventArgs args = new DisplayLanaguageChangedEventArgs(Marshal.PtrToStringAnsi(language));
-                        _displayLanaguageChanged?.Invoke(null, args);
+                        DisplayLanguageChangedEventArgs args = new DisplayLanguageChangedEventArgs(Marshal.PtrToStringAnsi(language));
+                        _displayLanguageChanged?.Invoke(null, args);
                     };
-                    ErrorCode error = ImeEventSetDisplayLanguageChangedCb(_imeDisplayLanaguageChangedDelegate, IntPtr.Zero);
+                    ErrorCode error = ImeEventSetDisplayLanguageChangedCb(_imeDisplayLanguageChangedDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add DisplayLanaguageChanged Failed with error " + error);
+                        Log.Error(LogTag, "Add DisplayLanguageChanged Failed with error " + error);
                     }
                     else
                     {
-                        _displayLanaguageChanged += value;
+                        _displayLanguageChanged += value;
                     }
                 }
             }
@@ -1465,7 +1465,7 @@ namespace Tizen.Uix.InputMethod
             {
                 lock (thisLock)
                 {
-                    _displayLanaguageChanged -= value;
+                    _displayLanguageChanged -= value;
                 }
             }
         }

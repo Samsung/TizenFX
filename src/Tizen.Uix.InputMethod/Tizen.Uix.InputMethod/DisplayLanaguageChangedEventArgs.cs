@@ -17,11 +17,11 @@
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// This Class contains data related to DisplayLanaguageChanged Event
+    /// This Class contains data related to DisplayLanguageChanged Event
     /// </summary>
-    public class DisplayLanaguageChangedEventArgs
+    public class DisplayLanguageChangedEventArgs
     {
-        internal DisplayLanaguageChangedEventArgs(string langauage)
+        internal DisplayLanguageChangedEventArgs(string langauage)
         {
             Langauage = langauage;
         }
