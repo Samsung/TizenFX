@@ -43,7 +43,7 @@
   -->
   <PropertyGroup Condition="'$(OutputType)' == 'Exe'">
     <NoWarn>$(NoWarn);NU1701</NoWarn>
-    <AssetTargetFallback>netcoreapp2.0</AssetTargetFallback>
+    <AssetTargetFallback>$(AssetTargetFallback);netcoreapp2.0</AssetTargetFallback>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(OutputType)' == 'Exe'">
