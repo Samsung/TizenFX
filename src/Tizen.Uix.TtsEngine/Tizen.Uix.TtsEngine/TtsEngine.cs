@@ -390,7 +390,6 @@ namespace Tizen.Uix.TtsEngine
         /// </remarks>
         /// <param name="argc">The argument count(original)</param>
         /// <param name="argv">The argument(original)</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid Parameter</exception>
         /// <exception cref="NotSupportedException">Thrown in case of Not supported</exception>
         /// <exception cref="InvalidOperationException">thrown in case of Operation failure</exception>
         public void EngineMain(int argc, string[] argv)
@@ -509,6 +508,8 @@ namespace Tizen.Uix.TtsEngine
         /// </feature>
         /// <param name="error">The error reason</param>
         /// <param name="msg">The error message</param>
+        /// <exception cref="NotSupportedException">Thrown in case of Not supported</exception>
+        /// <exception cref="InvalidOperationException">thrown in case of Operation failure</exception>
         /// <precondition>
         /// EngineMain function should be invoked before this function is called.
         /// </precondition>
@@ -541,7 +542,6 @@ namespace Tizen.Uix.TtsEngine
         /// 4. NotSupported
         /// </param>
         /// <exception cref="ArgumentException">Thrown in case of Invalid Parameter</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of Permission denied</exception>
         /// <exception cref="NotSupportedException">Thrown in case of Not supported</exception>
         /// <exception cref="InvalidOperationException">thrown in case of Operation failure</exception>
         /// <precondition>
@@ -549,6 +549,12 @@ namespace Tizen.Uix.TtsEngine
         /// </precondition>
         public void SetPrivateDataSetDelegate(Action<string> callback)
         {
+            if (null == callback)
+            {
+                Log.Error(LogTag, "callback is null");
+                throw ExceptionFactory.CreateException(ErrorCode.InvalidParameter);
+            }
+
             _privateDatacallback = callback;
             _privateDataSetCb = (string key, string data) =>
             {
@@ -582,7 +588,6 @@ namespace Tizen.Uix.TtsEngine
         /// 4. NotSupported
         /// </param>
         /// <exception cref="ArgumentException">Thrown in case of Invalid Parameter</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown in case of Permission denied</exception>
         /// <exception cref="NotSupportedException">Thrown in case of Not supported</exception>
         /// <exception cref="InvalidOperationException">thrown in case of Operation failure</exception>
         /// <precondition>
@@ -590,6 +595,12 @@ namespace Tizen.Uix.TtsEngine
         /// </precondition>
         public void SetPrivateDataRequestedDelegate(OutAction<string> callback)
         {
+            if (null == callback)
+            {
+                Log.Error(LogTag, "callback is null");
+                throw ExceptionFactory.CreateException(ErrorCode.InvalidParameter);
+            }
+
             _privateDataRequestedCallback = callback;
             _privateDataRequestedCb = (string key, out string data) =>
             {
