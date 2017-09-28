@@ -124,35 +124,92 @@ namespace Tizen
         }
     }
 
+    /// <summary>
+    /// Provides methods to print log messages to the Tizen logging system.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class InternalLog
     {
+        /// <summary>
+        /// Prints a log message with the VERBOSE priority.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="message">The log message to print.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
         public static void Verbose(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
-	    // For internal dlog APIs, Verbose level log is disabled
+            // For internal dlog APIs, Verbose level log is disabled
             // Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, message, file, func, line);
         }
 
+        /// <summary>
+        /// Prints a log message with the DEBUG priority.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="message">The log message to print.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
         public static void Debug(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_DEBUG, tag, message, file, func, line);
         }
 
+        /// <summary>
+        /// Prints a log message with the INFO priority.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="message">The log message to print.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
         public static void Info(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_INFO, tag, message, file, func, line);
         }
 
+        /// <summary>
+        /// Prints a log message with the WARNING priority.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="message">The log message to print.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
         public static void Warn(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_WARN, tag, message, file, func, line);
         }
 
+        /// <summary>
+        /// Prints a log message with the ERROR priority.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="message">The log message to print.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
         public static void Error(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_ERROR, tag, message, file, func, line);
         }
 
+        /// <summary>
+        /// Prints a log message with the FATAL priority.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="message">The log message to print.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
         public static void Fatal(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
@@ -172,35 +229,92 @@ namespace Tizen
         }
     }
 
+    /// <summary>
+    /// Provides methods to print log messages to the Tizen logging system.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SecureLog
     {
+        /// <summary>
+        /// Prints a log message with the VERBOSE priority.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="message">The log message to print.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
         public static void Verbose(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             // For internal dlog APIs, Verbose level log is disabled
             // Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, message, file, func, line);
         }
 
+        /// <summary>
+        /// Prints a log message with the DEBUG priority.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="message">The log message to print.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
         public static void Debug(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_DEBUG, tag, message, file, func, line);
         }
 
+        /// <summary>
+        /// Prints a log message with the INFO priority.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="message">The log message to print.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
         public static void Info(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_INFO, tag, message, file, func, line);
         }
 
+        /// <summary>
+        /// Prints a log message with the WARNING priority.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="message">The log message to print.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
         public static void Warn(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_WARN, tag, message, file, func, line);
         }
 
+        /// <summary>
+        /// Prints a log message with the ERROR priority.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="message">The log message to print.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
         public static void Error(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_ERROR, tag, message, file, func, line);
         }
 
+        /// <summary>
+        /// Prints a log message with the FATAL priority.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="tag">The tag name of the log message.</param>
+        /// <param name="message">The log message to print.</param>
+        /// <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+        /// <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
         public static void Fatal(string tag, string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
