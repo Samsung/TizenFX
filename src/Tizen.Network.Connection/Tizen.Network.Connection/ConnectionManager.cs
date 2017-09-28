@@ -22,9 +22,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
-/// <summary>
-/// The Connection API provides functions and enumerations to get the status of network and current profile and manages profiles.
-/// </summary>
 namespace Tizen.Network.Connection
 {
     /// <summary>

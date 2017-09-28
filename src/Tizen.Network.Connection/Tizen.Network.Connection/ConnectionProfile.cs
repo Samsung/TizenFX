@@ -107,6 +107,9 @@ namespace Tizen.Network.Connection
             IPv6 = new ConnectionAddressInformation(ProfileHandle, AddressFamily.IPv6);
         }
 
+        /// <summary>
+        /// Destroy the ConnectionProfile object
+        /// </summary>
         ~ConnectionProfile()
         {
             Dispose(false);

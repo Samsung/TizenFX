@@ -34,6 +34,9 @@ namespace Tizen.Network.Connection
 
         private CellularAuthInformation _cellularAuthInfo = null;
 
+        /// <summary>
+        /// Destroy the CellularProfile object
+        /// </summary>
         ~CellularProfile()
         {
         }

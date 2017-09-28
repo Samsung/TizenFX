@@ -29,12 +29,30 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum ConnectionType
     {
-        Disconnected = 0,  /**< Disconnected */
-        WiFi = 1,          /**< Wi-Fi type */
-        Cellular = 2,      /**< Cellular type */
-        Ethernet = 3,      /**< Ethernet type */
-        Bluetooth = 4,     /**< Bluetooth type */
-        NetProxy = 5       /**< Proxy type for internet connection */
+        /// <summary>
+        /// Disconnected
+        /// </summary>
+        Disconnected = 0,
+        /// <summary>
+        /// Wi-Fi type
+        /// </summary>
+        WiFi = 1,
+        /// <summary>
+        /// Cellular type
+        /// </summary>
+        Cellular = 2,
+        /// <summary>
+        /// Ethernet type
+        /// </summary>
+        Ethernet = 3,
+        /// <summary>
+        /// Bluetooth type
+        /// </summary>
+        Bluetooth = 4,
+        /// <summary>
+        /// Proxy type for Internet connection
+        /// </summary>
+        NetProxy = 5
     }
 
     /// <summary>
@@ -43,8 +61,14 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum AddressFamily
     {
-        IPv4 = 0,   /**< IPv4 Address */
-        IPv6 = 1    /**< IPv6 Address */
+        /// <summary>
+        /// IPv4 Address
+        /// </summary>
+        IPv4 = 0,
+        /// <summary>
+        /// IPv6 Address
+        /// </summary>
+        IPv6 = 1
     }
 
     /// <summary>
@@ -53,12 +77,30 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum CellularState
     {
-        OutOfService = 0,  /**< Out of service */
-        FlightMode = 1,    /**< Flight mode */
-        RoamingOff = 2,    /**< Roaming is turned off */
-        CallOnlyAvailable = 3,  /**< Call is only available */
-        Available = 4,     /**< Available but not connected yet */
-        Connected = 5,     /**< Connected */
+        /// <summary>
+        /// Out of service
+        /// </summary>
+        OutOfService = 0,
+        /// <summary>
+        /// Flight mode
+        /// </summary>
+        FlightMode = 1,
+        /// <summary>
+        /// Roaming is turned off
+        /// </summary>
+        RoamingOff = 2,
+        /// <summary>
+        /// Call is only available
+        /// </summary>
+        CallOnlyAvailable = 3,
+        /// <summary>
+        /// Available but not connected yet
+        /// </summary>
+        Available = 4,
+        /// <summary>
+        /// Connected
+        /// </summary>
+        Connected = 5,
     }
 
     /// <summary>
@@ -67,9 +109,18 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum ConnectionState
     {
-        Deactivated = 0,   /**< Deactivated */
-        Disconnected = 1,  /**< Disconnected */
-        Connected = 2,     /**< Connected */
+        /// <summary>
+        /// Deactivated
+        /// </summary>
+        Deactivated = 0,
+        /// <summary>
+        /// Disconnected
+        /// </summary>
+        Disconnected = 1,
+        /// <summary>
+        /// Connected
+        /// </summary>
+        Connected = 2,
     }
 
     /// <summary>
@@ -78,8 +129,14 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum EthernetCableState
     {
-        Detached = 0,  /**< Ethernet cable is detached */
-        Attached = 1,  /**< Ethernet cable is attached */
+        /// <summary>
+        /// Ethernet cable is detached
+        /// </summary>
+        Detached = 0,
+        /// <summary>
+        /// Ethernet cable is attached
+        /// </summary>
+        Attached = 1,
     }
 
     /// <summary>
@@ -88,10 +145,22 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum StatisticsType
     {
-        LastReceivedData = 0,  /**< Last received data */
-        LastSentData = 1,  /**< Last sent data */
-        TotalReceivedData = 2,  /**< Total received data */
-        TotalSentData = 3,  /**< Total sent data */
+        /// <summary>
+        /// Last received data
+        /// </summary>
+        LastReceivedData = 0,
+        /// <summary>
+        /// Last sent data
+        /// </summary>
+        LastSentData = 1,
+        /// <summary>
+        /// Total received data
+        /// </summary>
+        TotalReceivedData = 2,
+        /// <summary>
+        /// Total sent data
+        /// </summary>
+        TotalSentData = 3,
     }
 
     /// <summary>
@@ -100,10 +169,22 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum ConnectionProfileType
     {
-        Cellular = 0,  /**< Cellular type */
-        WiFi = 1,      /**< Wi-Fi type */
-        Ethernet = 2,  /**< Ethernet type */
-        Bt = 3,        /**< Bluetooth type */
+        /// <summary>
+        /// Cellular type
+        /// </summary>
+        Cellular = 0,
+        /// <summary>
+        /// Wi-Fi type
+        /// </summary>
+        WiFi = 1,
+        /// <summary>
+        /// Ethernet type
+        /// </summary>
+        Ethernet = 2,
+        /// <summary>
+        /// Bluetooth type
+        /// </summary>
+        Bt = 3,
     }
 
     /// <summary>
@@ -112,10 +193,22 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum ProfileState
     {
-        Disconnected = 0,  /**< Disconnected state */
-        Association = 1,  /**< Association state */
-        Configuration = 2,  /**< Configuration state */
-        Connected = 3,  /**< Connected state */
+        /// <summary>
+        /// Disconnected state
+        /// </summary>
+        Disconnected = 0,
+        /// <summary>
+        /// Association state
+        /// </summary>
+        Association = 1,
+        /// <summary>
+        /// Configuration state
+        /// </summary>
+        Configuration = 2,
+        /// <summary>
+        /// Connected state
+        /// </summary>
+        Connected = 3,
     }
 
     /// <summary>
@@ -124,9 +217,18 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum ProxyType
     {
-        Direct = 0,  /**< Direct connection */
-        Auto = 1,    /**< Auto configuration(Use PAC file). If URL property is not set, DHCP/WPAD auto-discover will be tried */
-        Manual = 2,  /**< Manual configuration */
+        /// <summary>
+        /// Direct connection
+        /// </summary>
+        Direct = 0,
+        /// <summary>
+        /// Auto configuration(Use PAC file). If URL property is not set, DHCP/WPAD auto-discover will be tried
+        /// </summary>
+        Auto = 1,
+        /// <summary>
+        /// Manual configuration
+        /// </summary>
+        Manual = 2,
     }
 
     /// <summary>
@@ -135,11 +237,26 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum IPConfigType
     {
-        None = 0,  /**< Not defined */
-        Static = 1,  /**< Manual IP configuration */
-        Dynamic = 2,  /**< Config IP using DHCP client*/
-        Auto = 3,  /**< Config IP from Auto IP pool (169.254/16). Later with DHCP client, if available */
-        Fixed = 4,  /**< Indicates an IP address that can not be modified */
+        /// <summary>
+        /// Not defined
+        /// </summary>
+        None = 0,
+        /// <summary>
+        /// Manual IP configuration
+        /// </summary>
+        Static = 1,
+        /// <summary>
+        /// COnfig IP using DHCP client
+        /// </summary>
+        Dynamic = 2,
+        /// <summary>
+        /// Config IP from Auto IP pool (169.254/16). Later with DHCP client, if available
+        /// </summary>
+        Auto = 3,
+        /// <summary>
+        /// Indicates an IP address that can not be modified
+        /// </summary>
+        Fixed = 4,
     }
 
     /// <summary>
@@ -148,13 +265,34 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum CellularServiceType
     {
-        Unknown = 0,  /**< Unknown */
-        Internet = 1,  /**< Internet */
-        MMS = 2,  /**< MMS */
-        PrepaidInternet = 3,  /**< Prepaid internet */
-        PrepaidMMS = 4,  /**< Prepaid MMS */
-        Tethering = 5,  /**< Tethering */
-        Application = 6,  /**< Specific application */
+        /// <summary>
+        /// Unknown
+        /// </summary>
+        Unknown = 0,
+        /// <summary>
+        /// Internet
+        /// </summary>
+        Internet = 1,
+        /// <summary>
+        /// MMS
+        /// </summary>
+        MMS = 2,
+        /// <summary>
+        /// Prepaid Internet
+        /// </summary>
+        PrepaidInternet = 3,
+        /// <summary>
+        /// Prepaid MMS
+        /// </summary>
+        PrepaidMMS = 4,
+        /// <summary>
+        /// Tethering
+        /// </summary>
+        Tethering = 5,
+        /// <summary>
+        /// Specific application
+        /// </summary>
+        Application = 6,
     }
 
     /// <summary>
@@ -163,10 +301,22 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum CellularPdnType
     {
-        Unknown = 0,  /**< Unknown */
-        IPv4 = 1,  /**< IPv4 */
-        IPv6 = 2,  /**< IPv6 */
-        IPv4_IPv6 = 3,  /**< Both IPv4 and IPv6 */
+        /// <summary>
+        /// Unknown
+        /// </summary>
+        Unknown = 0,
+        /// <summary>
+        /// IPv4
+        /// </summary>
+        IPv4 = 1,
+        /// <summary>
+        /// IPv6
+        /// </summary>
+        IPv6 = 2,
+        /// <summary>
+        /// Both IPv4 and IPv6
+        /// </summary>
+        IPv4_IPv6 = 3,
     }
 
     /// <summary>
@@ -175,9 +325,18 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum DnsConfigType
     {
-        None = 0,  /**< Not defined */
-        Static = 1,  /**< Manual DNS configuration */
-        Dynamic = 2,  /**< Config DNS using DHCP client */
+        /// <summary>
+        /// Not defined
+        /// </summary>
+        None = 0,
+        /// <summary>
+        /// Manual DNS configuration
+        /// </summary>
+        Static = 1,
+        /// <summary>
+        /// Config DNS using DHCP client
+        /// </summary>
+        Dynamic = 2,
     }
 
     static internal class ConnectionErrorValue
@@ -193,22 +352,70 @@ namespace Tizen.Network.Connection
     // To do : have to assign valid error code
     public enum ConnectionError
     {
-        None = ErrorCode.None,         /**< Successful */
-        InvalidParameter = ErrorCode.InvalidParameter, /**< Invalid parameter */
-        OutOfMemoryError = ErrorCode.OutOfMemory, /**< Out of memory error */
-        InvalidOperation = ErrorCode.InvalidOperation, /**< Invalid Operation */
-        AddressFamilyNotSupported = ErrorCode.AddressFamilyNotSupported, /**< Address family not supported */
-        OperationFailed = ConnectionErrorValue.Base | 0x0401,  /**< Operation failed */
-        EndOfIteration = ConnectionErrorValue.Base | 0x0402,   /**< End of iteration */
-        NoConnection = ConnectionErrorValue.Base | 0x0403,     /**< There is no connection */
-        NowInProgress = ErrorCode.NowInProgress,    /** Now in progress */
-        AlreadyExists = ConnectionErrorValue.Base | 0x0404, /**< Already exists */
-        OperationAborted = ConnectionErrorValue.Base | 0x0405, /**< Operation is aborted */
-        DhcpFailed = ConnectionErrorValue.Base | 0x0406, /**< DHCP failed  */
-        InvalidKey = ConnectionErrorValue.Base | 0x0407, /**< Invalid key  */
-        NoReply = ConnectionErrorValue.Base | 0x0408, /**< No reply */
-        PermissionDenied = ErrorCode.PermissionDenied, /**< Permission denied */
-        NotSupported = ErrorCode.NotSupported    /**< Not Supported */
+        /// <summary>
+        /// Successful
+        /// </summary>
+        None = ErrorCode.None,
+        /// <summary>
+        /// Invalid parameter
+        /// </summary>
+        InvalidParameter = ErrorCode.InvalidParameter,
+        /// <summary>
+        /// Out of memory error
+        /// </summary>
+        OutOfMemoryError = ErrorCode.OutOfMemory,
+        /// <summary>
+        /// Invalid operation
+        /// </summary>
+        InvalidOperation = ErrorCode.InvalidOperation,
+        /// <summary>
+        /// Addrss family not supported
+        /// </summary>
+        AddressFamilyNotSupported = ErrorCode.AddressFamilyNotSupported,
+        /// <summary>
+        /// Operation failed
+        /// </summary>
+        OperationFailed = ConnectionErrorValue.Base | 0x0401,
+        /// <summary>
+        /// End of iteration
+        /// </summary>
+        EndOfIteration = ConnectionErrorValue.Base | 0x0402,
+        /// <summary>
+        /// There is no connection
+        /// </summary>
+        NoConnection = ConnectionErrorValue.Base | 0x0403,
+        /// <summary>
+        /// Now in progress
+        /// </summary>
+        NowInProgress = ErrorCode.NowInProgress,
+        /// <summary>
+        /// Already exists
+        /// </summary>
+        AlreadyExists = ConnectionErrorValue.Base | 0x0404,
+        /// <summary>
+        /// Operation is aborted
+        /// </summary>
+        OperationAborted = ConnectionErrorValue.Base | 0x0405,
+        /// <summary>
+        /// DHCP failed
+        /// </summary>
+        DhcpFailed = ConnectionErrorValue.Base | 0x0406,
+        /// <summary>
+        /// Invalid key
+        /// </summary>
+        InvalidKey = ConnectionErrorValue.Base | 0x0407,
+        /// <summary>
+        /// No reply
+        /// </summary>
+        NoReply = ConnectionErrorValue.Base | 0x0408,
+        /// <summary>
+        /// Permission denied
+        /// </summary>
+        PermissionDenied = ErrorCode.PermissionDenied,
+        /// <summary>
+        /// Not supported
+        /// </summary>
+        NotSupported = ErrorCode.NotSupported
     }
 
     /// <summary>
@@ -217,9 +424,18 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum ProfileListType
     {
-        Registered = 0,  /**< The iterator of the registered profile  */
-        Connected = 1,   /**< The iterator of the connected profile  */
-        Default = 2,      /**< The iterator of the default profile  */
+        /// <summary>
+        /// The iterator of the registered profile
+        /// </summary>
+        Registered = 0,
+        /// <summary>
+        /// The iterator of the connected profile
+        /// </summary>
+        Connected = 1,
+        /// <summary>
+        /// The iterator of the default profile
+        /// </summary>
+        Default = 2,
     }
 
     /// <summary>
@@ -228,11 +444,26 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum WiFiSecurityType
     {
-        None  =  0,       /**< Security disabled */
-        Wep = 1,          /**< WEP */
-        WpaPsk = 2,    /**< WPA-PSK */
-        Wpa2Psk = 3,  /**< WPA2-PSK */
-        Eap = 4,            /**< EAP */
+        /// <summary>
+        /// Security disabled
+        /// </summary>
+        None  =  0,
+        /// <summary>
+        /// WEP
+        /// </summary>
+        Wep = 1,
+        /// <summary>
+        /// WPA-PSK
+        /// </summary>
+        WpaPsk = 2,
+        /// <summary>
+        /// WPA2-PSK
+        /// </summary>
+        Wpa2Psk = 3,
+        /// <summary>
+        /// EAP
+        /// </summary>
+        Eap = 4,
     }
 
     /// <summary>
@@ -241,11 +472,26 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum WiFiEncryptionType
     {
-        None = 0,  /**< Encryption disabled */
-        Wep = 1,  /**< WEP */
-        Tkip = 2,  /**< TKIP */
-        Aes = 3,  /**< AES */
-        TkipAesMixed = 4,  /**< TKIP and AES are both supported */
+        /// <summary>
+        /// Encryption disabled
+        /// </summary>
+        None = 0,
+        /// <summary>
+        /// WEP
+        /// </summary>
+        Wep = 1,
+        /// <summary>
+        /// TKIP
+        /// </summary>
+        Tkip = 2,
+        /// <summary>
+        /// AES
+        /// </summary>
+        Aes = 3,
+        /// <summary>
+        /// TKIP and AES are both supported
+        /// </summary>
+        TkipAesMixed = 4,
     }
 
     /// <summary>
@@ -254,10 +500,22 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum ConnectionProfileState
     {
-        Disconnected = 0,  /**< Disconnected state */
-        Association = 1,  /**< Association state */
-        Configuration = 2,  /**< Configuration state */
-        Connected = 3,   /**< Connected state */
+        /// <summary>
+        /// Disconnected state
+        /// </summary>
+        Disconnected = 0,
+        /// <summary>
+        /// Association state
+        /// </summary>
+        Association = 1,
+        /// <summary>
+        /// Configuration state
+        /// </summary>
+        Configuration = 2,
+        /// <summary>
+        /// Connected state
+        /// </summary>
+        Connected = 3,
     }
 
     /// <summary>
@@ -266,14 +524,32 @@ namespace Tizen.Network.Connection
     /// <since_tizen> 3 </since_tizen>
     public enum CellularAuthType
     {
-        None = 0,  /**< No authentication */
-        Pap = 1,  /**< PAP authentication */
-        Chap = 2,  /**< CHAP authentication */
+        /// <summary>
+        /// No authentication
+        /// </summary>
+        None = 0,
+        /// <summary>
+        /// PAP authentication
+        /// </summary>
+        Pap = 1,
+        /// <summary>
+        /// CHAP authentication
+        /// </summary>
+        Chap = 2,
     }
 
+    /// <summary>
+    /// Enumeration for the address information type
+    /// </summary>
     public enum AddressInformationType
     {
+        /// <summary>
+        /// Connection type
+        /// </summary>
         Connection = 0,
+        /// <summary>
+        /// Wi-Fi type
+        /// </summary>
         WiFi = 1
     }
 
