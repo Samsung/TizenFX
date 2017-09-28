@@ -373,6 +373,9 @@ namespace Tizen.Network.Nsd
             }
         }
 
+        /// <summary>
+        /// Destroy the DnssdService object
+        /// </summary>
          ~DnssdService()
         {
             Dispose(false);
