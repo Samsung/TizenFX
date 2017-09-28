@@ -34,7 +34,6 @@ namespace Tizen.Pims.Calendar
         private Object thisLock = new Object();
         private Dictionary<string, EventHandler<DBChangedEventArgs>> _eventHandlerMap = new Dictionary<string, EventHandler<DBChangedEventArgs>>();
         private Dictionary<string, Interop.Database.DBChangedCallback> _callbackMap = new Dictionary<string, Interop.Database.DBChangedCallback>();
-        private Interop.Database.DBChangedCallback _dbChangedDelegate;
 
         internal CalendarDatabase()
         {
@@ -536,7 +535,7 @@ namespace Tizen.Pims.Calendar
 					_eventHandlerMap[uri]?.Invoke(this, args);
 				};
 
-				int error = Interop.Database.AddChangedCallback(viewUri, _dbChangedDelegate, IntPtr.Zero);
+				int error = Interop.Database.AddChangedCallback(viewUri, _callbackMap[viewUri], IntPtr.Zero);
 				if (CalendarError.None != (CalendarError)error)
 				{
 					Log.Error(Globals.LogTag, "AddDBChangedDelegate Failed with error " + error);

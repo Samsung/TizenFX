@@ -137,7 +137,6 @@ namespace Tizen.Pims.Calendar
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Destroy Failed with error " + error);
-                    throw CalendarErrorFactory.GetException(error);
                 }
                 _disposedValue = true;
                 GC.RemoveMemoryPressure(_memoryPressure);

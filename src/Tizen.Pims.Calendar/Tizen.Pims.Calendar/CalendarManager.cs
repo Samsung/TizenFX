@@ -70,7 +70,6 @@ namespace Tizen.Pims.Calendar
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Disconnect Failed with error " + error);
-                    throw CalendarErrorFactory.GetException(error);
                 }
                 disposedValue = true;
             }
