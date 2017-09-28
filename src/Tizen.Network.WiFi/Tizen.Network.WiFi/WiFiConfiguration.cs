@@ -196,6 +196,9 @@ namespace Tizen.Network.WiFi
             _eapConfig = new WiFiEapConfiguration(configHandle);
         }
 
+        /// <summary>
+        /// Destroy of the WiFiConfiguration object
+        /// </summary>
         ~WiFiConfiguration()
         {
             Dispose(false);
