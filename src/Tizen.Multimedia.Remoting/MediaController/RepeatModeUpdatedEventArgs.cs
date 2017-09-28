@@ -27,7 +27,7 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="RepeatModeUpdatedEventArgs"/> class.
         /// </summary>
         /// <param name="mode">A value indicating the updated repeat mode.</param>
-        /// <exception cref="ArgumentException"/><paramref name="mode"/> is invalid.</exception>
+        /// <exception cref="ArgumentException"><paramref name="mode"/> is invalid.</exception>
         public RepeatModeUpdatedEventArgs(MediaControlRepeatMode mode)
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), mode, nameof(mode));

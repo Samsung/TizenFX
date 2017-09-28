@@ -294,10 +294,10 @@ namespace Tizen.Multimedia
         /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref="RecorderState.Ready"/> state.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException">Width or height of <paramref name="value"/> is less than or equal to zero.</exception>
-        /// <exception cref="NotSupportedException"><paramref name="value"> is not supported.</exception>
+        /// <exception cref="NotSupportedException"><paramref name="value"/> is not supported.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
-        /// <seealso cref="Recorder.GetSupportedVideoResolutions(CameraDevice)"/>
+        /// <seealso cref="VideoRecorder.GetSupportedVideoResolutions(CameraDevice)"/>
         public Size VideoResolution
         {
             get

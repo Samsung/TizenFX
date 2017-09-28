@@ -238,7 +238,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-\n
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ArgumentException"/><paramref name="mode"/> is invalid.</exception>
+        /// <exception cref="ArgumentException"><paramref name="mode"/> is invalid.</exception>
         public static void SetRepeatMode(MediaControlRepeatMode mode)
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), mode, nameof(mode));

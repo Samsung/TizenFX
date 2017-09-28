@@ -427,7 +427,7 @@ namespace Tizen.Multimedia.Remoting
         /// <remarks>
         /// Call <see cref="Dispose()"/> when you are finished using the <see cref="ScreenMirroring"/>.
         /// The <see cref="Dispose()"/> method leaves the <see cref="ScreenMirroring"/> in an unusable
-        /// state. After calling <see cref="Dispose"()/>, you must release all references to the
+        /// state. After calling <see cref="Dispose()"/>, you must release all references to the
         /// <see cref="ScreenMirroring"/> so the garbage collector can reclaim the memory that the
         /// <see cref="ScreenMirroring"/> was occupying.
         /// </remarks>
