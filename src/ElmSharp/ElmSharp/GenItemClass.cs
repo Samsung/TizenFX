@@ -133,6 +133,13 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Releases all resources currently used by this instance.
+        /// </summary>
+        /// <param name="disposing">
+        /// true if managed resources should be disposed
+        /// otherwise, false.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (_unmanagedPtr != IntPtr.Zero)
@@ -142,6 +149,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Destroy current object
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

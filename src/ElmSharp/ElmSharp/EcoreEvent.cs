@@ -204,7 +204,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Destroy Current Obj
+        /// Destroy current object
         /// </summary>
         public void Dispose()
         {

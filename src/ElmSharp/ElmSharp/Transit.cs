@@ -283,18 +283,28 @@ namespace ElmSharp
             Interop.Elementary.elm_transit_effect_add(_handle, EffectTransitionCallback, _effect, EffectEndCallback);
         }
 
+        /// <summary>
+        /// Destroy current object
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool isDisposing)
+        /// <summary>
+        /// Releases all resources currently used by this instance.
+        /// </summary>
+        /// <param name="disposing">
+        /// true if managed resources should be disposed
+        /// otherwise, false.
+        /// </param>
+        protected virtual void Dispose(bool disposing)
         {
             if (_isDisposed)
                 return;
 
-            if (isDisposing)
+            if (disposing)
             {
                 ((INotifyCollectionChanged)_chains).CollectionChanged -= OnChaninCollectionChanged;
                 _chains.Clear();

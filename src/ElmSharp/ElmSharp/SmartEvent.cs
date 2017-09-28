@@ -133,6 +133,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Destroy current object
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -148,6 +151,13 @@ namespace ElmSharp
             _handle = IntPtr.Zero;
         }
 
+        /// <summary>
+        /// Releases all resources currently used by this instance.
+        /// </summary>
+        /// <param name="disposing">
+        /// true if managed resources should be disposed
+        /// otherwise, false.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -235,6 +245,9 @@ namespace ElmSharp
             _handlers?.Invoke(sender, e);
         }
 
+        /// <summary>
+        /// Destroy current object
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -249,6 +262,13 @@ namespace ElmSharp
             _smartEvent.MakeInvalidate();
         }
 
+        /// <summary>
+        /// Releases all resources currently used by this instance.
+        /// </summary>
+        /// <param name="disposing">
+        /// true if managed resources should be disposed
+        /// otherwise, false.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
