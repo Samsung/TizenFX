@@ -70,6 +70,9 @@ namespace ElmSharp
         internal Color _backgroundColor = Color.Default;
         internal int _opacity = Color.Default.A;
 
+        /// <summary>
+        /// Creates and initializes a new instance of Widget class.
+        /// </summary>
         protected Widget()
         {
         }

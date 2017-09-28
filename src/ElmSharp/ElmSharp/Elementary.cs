@@ -29,10 +29,12 @@ namespace ElmSharp
         /// Directly show the focused region or item automatically
         /// </summary>
         Show,
+
         /// <summary>
         /// Do not show the focused region or item automatically
         /// </summary>
         None,
+
         /// <summary>
         /// Bring in the focused region or item automatically which might invole the scrolling
         /// </summary>
@@ -278,6 +280,7 @@ namespace ElmSharp
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetSystemScrollFriction(double timeSet)
+
         {
             BringInScrollFriction = timeSet;
         }

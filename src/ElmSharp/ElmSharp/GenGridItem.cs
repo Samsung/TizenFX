@@ -50,6 +50,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the cursor to be shown when mouse is over the gengrid item.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string Cursor
         {
@@ -70,6 +73,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the style for this item cursor.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string CursorStyle
         {
@@ -83,6 +89,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the cursor engine only usage for this item cursor.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool IsUseEngineCursor
         {
@@ -97,7 +106,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the style of given gengrid item's tooltip.
+        /// Sets or gets or sets the style of given gengrid item's tooltip.
         /// </summary>
         public override string TooltipStyle
         {
@@ -111,6 +120,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Get the gengrid item's select mode.
+        /// </summary>
         public override GenItemSelectionMode SelectionMode
         {
             get
@@ -149,11 +161,18 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Set the text to be shown in the gengrid item.
+        /// </summary>
+        /// <param name="tooltip">The text to set.</param>
         public override void SetTooltipText(string tooltip)
         {
             Interop.Elementary.elm_gengrid_item_tooltip_text_set(Handle, tooltip);
         }
 
+        /// <summary>
+        /// Unset tooltip from item.
+        /// </summary>
         public override void UnsetTooltip()
         {
             Interop.Elementary.elm_gengrid_item_tooltip_unset(Handle);
@@ -172,6 +191,9 @@ namespace ElmSharp
             Interop.Elementary.elm_gengrid_item_update(Handle);
         }
 
+        /// <summary>
+        /// Set the content to be shown in the tooltip item.
+        /// </summary>
         protected override void UpdateTooltipDelegate()
         {
             Interop.Elementary.elm_gengrid_item_tooltip_content_cb_set(Handle,

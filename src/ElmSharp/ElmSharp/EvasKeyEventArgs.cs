@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -30,10 +30,12 @@ namespace ElmSharp
         /// BackButton name in Platform
         /// </summary>
         public const string PlatformBackButtonName = "XF86Back";
+
         /// <summary>
         /// MenuButton name in Platform
         /// </summary>
         public const string PlatformMenuButtonName = "XF86Menu";
+
         /// <summary>
         /// HomeButton name in Platform
         /// </summary>
@@ -44,6 +46,9 @@ namespace ElmSharp
         /// </summary>
         public string KeyName { get; private set; }
 
+        /// <summary>
+        /// Sets or gets the flags.
+        /// </summary>
         public EvasEventFlag Flags
         {
             get
@@ -87,26 +92,32 @@ namespace ElmSharp
             /// Name string of the key pressed
             /// </summary>
             public string keyname;
+
             /// <summary>
             /// Data to be passed to the event
             /// </summary>
             public IntPtr data;
+
             /// <summary>
             /// Modifier keys pressed during the event
             /// </summary>
             public IntPtr modifiers;
+
             /// <summary>
             /// Locks info
             /// </summary>
             public IntPtr locks;
+
             /// <summary>
             /// Logical key: (example, shift+1 == exclamation)
             /// </summary>
             public string key;
+
             /// <summary>
             /// UTF8 string if this keystroke has produced a visible string to be ADDED
             /// </summary>
             public string str;
+
             /// <summary>
             /// UTF8 string if this keystroke has modified a string in the middle of being composed - this string replaces the previous one
             /// </summary>
@@ -118,10 +129,12 @@ namespace ElmSharp
             /// Event_flags
             /// </summary>
             public EvasEventFlag event_flags;
+
             /// <summary>
             ///
             /// </summary>
             public IntPtr dev;
+
             /// <summary>
             /// Keycode
             /// </summary>
@@ -139,10 +152,10 @@ namespace ElmSharp
         /// No fancy flags set
         /// </summary>
         None = 0,
+
         /// <summary>
         ///This event is being delivered but should be put "on hold" until the on hold flag is unset. the event should be used for informational purposes and maybe some indications visually, but not actually perform anything
         /// </summary>
         OnHold = 1,
     }
-
 }

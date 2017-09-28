@@ -160,6 +160,9 @@ namespace ElmSharp
             Interop.Elementary.elm_progressbar_pulse(RealHandle, true);
         }
 
+        /// <summary>
+        /// Stops a given progress bar "pulsing" animation, if its under that mode.
+        /// </summary>
         [Obsolete("use StopPulse instead")]
         public void StopPluse()
         {

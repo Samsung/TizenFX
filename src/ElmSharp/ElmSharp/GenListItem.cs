@@ -173,6 +173,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the content to be shown in the tooltip item
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string Cursor
         {
@@ -193,6 +196,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the style for this item cursor.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string CursorStyle
         {
@@ -206,6 +212,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the cursor engine only usage for this item cursor.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool IsUseEngineCursor
         {
@@ -219,11 +228,18 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Set the text to be shown in the genlist item.
+        /// </summary>
+        /// <param name="tooltip">The text to set in the content.</param>
         public override void SetTooltipText(string tooltip)
         {
             Interop.Elementary.elm_genlist_item_tooltip_text_set(Handle, tooltip);
         }
 
+        /// <summary>
+        /// Unset tooltip from item.
+        /// </summary>
         public override void UnsetTooltip()
         {
             Interop.Elementary.elm_genlist_item_tooltip_unset(Handle);
@@ -305,6 +321,9 @@ namespace ElmSharp
             Interop.Elementary.elm_genlist_item_item_class_update((IntPtr)Handle, itemClass.UnmanagedPtr);
         }
 
+        /// <summary>
+        /// Set the content to be shown in the tooltip item.
+        /// </summary>
         protected override void UpdateTooltipDelegate()
         {
             Interop.Elementary.elm_genlist_item_tooltip_content_cb_set(Handle,

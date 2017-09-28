@@ -33,11 +33,19 @@ namespace ElmSharp
         /// </summary>
         public int Y;
 
+        /// <summary>
+        /// A human-readable representation of the <see cref="T:Tizen.UI.Point" />.
+        /// </summary>
+        /// <returns>The string is formatted as "{{X={0} Y={1}}}".</returns>
         public override string ToString()
         {
             return string.Format("{{X={0} Y={1}}}", X, Y);
         }
 
+        /// <summary>
+        /// Gets hash code.
+        /// </summary>
+        /// <returns>The hash code.</returns>
         public override int GetHashCode()
         {
             unchecked

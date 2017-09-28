@@ -39,6 +39,7 @@ namespace ElmSharp
             Width = w;
             Height = h;
         }
+
         /// <summary>
         /// Gets or sets the position of this Rectangle on the X axis.
         /// </summary>
@@ -89,11 +90,19 @@ namespace ElmSharp
         /// </summary>
         public Size Size { get { return new Size { Width = Width, Height = Height }; } }
 
+        /// <summary>
+        /// A human-readable representation of the <see cref="T:Tizen.UI.Rect" />.
+        /// </summary>
+        /// <returns>The string is formatted as "{{X={0} Y={1} Width={2} Height={3}}}".</returns>
         public override string ToString()
         {
             return string.Format("{{X={0} Y={1} Width={2} Height={3}}}", X, Y, Width, Height);
         }
 
+        /// <summary>
+        /// Gets the hash code.
+        /// </summary>
+        /// <returns>The hash code.</returns>
         public override int GetHashCode()
         {
             unchecked

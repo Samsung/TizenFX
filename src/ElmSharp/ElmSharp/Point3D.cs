@@ -38,11 +38,16 @@ namespace ElmSharp
         /// </summary>
         public int Z;
 
+        /// <summary>
+        /// A human-readable representation of the <see cref="T:Tizen.UI.Point3D" />.
+        /// </summary>
+        /// <returns>The string is formatted as "{{X={0} Y={1} Z={2}}}".</returns>
         public override string ToString()
         {
             return string.Format("{{X={0} Y={1} Z={2}}}", X, Y, Z);
         }
 
+        ///
         public override int GetHashCode()
         {
             unchecked

@@ -27,6 +27,9 @@ namespace ElmSharp
     /// </summary>
     public interface IInvalidatable : IDisposable
     {
+        /// <summary>
+        /// Make current instance invalidate
+        /// </summary>
         void MakeInvalidate();
     }
 
@@ -248,6 +251,13 @@ namespace ElmSharp
         {
         }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the EvasObjectEvent.
+        /// </summary>
+        /// <param name="sender">EvasObject class belong to</param>
+        /// <param name="handle">EvasObject handle</param>
+        /// <param name="type">EvasObjectCallbackType</param>
+        /// <param name="parser">SmartEventInfoParser</param>
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public EvasObjectEvent(EvasObject sender, IntPtr handle, EvasObjectCallbackType type, SmartEventInfoParser parser)
         {
@@ -267,6 +277,9 @@ namespace ElmSharp
         {
         }
 
+        /// <summary>
+        /// Destroy the EvasObjectEvent object.
+        /// </summary>
         ~EvasObjectEvent()
         {
             Dispose(false);
@@ -335,9 +348,6 @@ namespace ElmSharp
             }
         }
 
-        /// <summary>
-        /// Destroy Current Obj
-        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -374,12 +384,21 @@ namespace ElmSharp
         {
         }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the EvasObjectEvent.
+        /// </summary>
+        /// <param name="sender">EvasObject class belong to</param>
+        /// <param name="handle">EvasObject handle</param>
+        /// <param name="type">EvasObjectCallbackType</param>
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public EvasObjectEvent(EvasObject sender, IntPtr handle, EvasObjectCallbackType type)
         {
             _evasObjectEvent = new EvasObjectEvent<EventArgs>(sender, handle, type, null);
         }
 
+        /// <summary>
+        /// Destroy the EvasObjectEvent object.
+        /// </summary>
         ~EvasObjectEvent()
         {
             Dispose(false);
@@ -426,9 +445,6 @@ namespace ElmSharp
             }
         }
 
-        /// <summary>
-        /// Destroy Current Obj
-        /// </summary>
         public void Dispose()
         {
             Dispose(true);

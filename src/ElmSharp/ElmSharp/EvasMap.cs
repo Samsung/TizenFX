@@ -42,6 +42,9 @@ namespace ElmSharp
             _ownership = false;
         }
 
+        /// <summary>
+        /// Destroy the EvasMap object.
+        /// </summary>
         ~EvasMap()
         {
             if (_ownership)

@@ -50,7 +50,8 @@ namespace ElmSharp
         public Transit()
         {
             _handle = Interop.Elementary.elm_transit_add();
-            DeletedCallback = (ptr1, ptr2) => {
+            DeletedCallback = (ptr1, ptr2) =>
+            {
                 Deleted?.Invoke(this, EventArgs.Empty);
                 Dispose(true);
             };
@@ -59,6 +60,9 @@ namespace ElmSharp
             ((INotifyCollectionChanged)_chains).CollectionChanged += OnChaninCollectionChanged;
         }
 
+        /// <summary>
+        /// Destroy the Transit object.
+        /// </summary>
         ~Transit()
         {
             Dispose(false);

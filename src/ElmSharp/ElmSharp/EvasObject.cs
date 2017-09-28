@@ -20,27 +20,91 @@ using System.Diagnostics;
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// Enumeration for tooltip orientation.
+    /// </summary>
     public enum TooltipOrientation
     {
+        /// <summary>
+        /// Default value, Tooltip moves with mouse pointer.
+        /// </summary>
         None,
+
+        /// <summary>
+        /// Tooltip should appear at the top left of parent.
+        /// </summary>
         TopLeft,
+
+        /// <summary>
+        /// Tooltip should appear at the left of parent.
+        /// </summary>
         Top,
+
+        /// <summary>
+        /// Tooltip should appear at the top right of parent.
+        /// </summary>
         TopRight,
+
+        /// <summary>
+        /// Tooltip should appear at the left of parent.
+        /// </summary>
         Left,
+
+        /// <summary>
+        /// Tooltip should appear at the center of parent.
+        /// </summary>
         Center,
+
+        /// <summary>
+        /// Tooltip should appear at the right of parent.
+        /// </summary>
         Right,
+
+        /// <summary>
+        /// Tooltip should appear at the bottom left of parent.
+        /// </summary>
         BottomLeft,
+
+        /// <summary>
+        /// Tooltip should appear at the bottom of parent.
+        /// </summary>
         Bottom,
+
+        /// <summary>
+        /// Tooltip should appear at the bottom right of parent.
+        /// </summary>
         BottomRight,
     }
 
+    /// <summary>
+    /// Enumeration for aspect control.
+    /// </summary>
     public enum AspectControl
     {
-        None = 0, /* Preference on scaling unset */
-        Neither = 1, /* Same effect as unset preference on scaling */
-        Horizontal = 2, /* Use all horizontal container space to place an object, using the given aspect */
-        Vertical = 3, /* Use all vertical container space to place an object, using the given aspect */
-        Both = 4 /* Use all horizontal @b and vertical container spaces to place an object (never growing it out of those bounds), using the given aspect */
+        /// <summary>
+        /// Preference on scaling unset.
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// Same effect as unset preference on scaling.
+        /// </summary>
+        Neither = 1,
+
+        /// <summary>
+        /// Use all horizontal container space to place an object, using the given aspect
+        /// </summary>
+        Horizontal = 2,
+
+        /// <summary>
+        /// Use all vertical container space to place an object, using the given aspect.
+        /// </summary>
+        Vertical = 3,
+
+        /// <summary>
+        /// Use all horizontal @b and vertical container spaces to place an object (never growing it out of those bounds), using the given aspect.
+        /// </summary>
+        Both = 4
     }
 
     /// <summary>
@@ -58,9 +122,19 @@ namespace ElmSharp
         private Interop.Eext.EextEventCallback _backButtonHandler;
         private Interop.Eext.EextEventCallback _moreButtonHandler;
 
+        /// <summary>
+        /// Sets or gets the handle for EvasObject.
+        /// </summary>
         public IntPtr Handle { get; protected set; }
+
+        /// <summary>
+        /// Gets the parent object for EvasObject.
+        /// </summary>
         public EvasObject Parent { get; private set; }
 
+        /// <summary>
+        /// Sets or gets the real handle for EvasObject.
+        /// </summary>
         public IntPtr RealHandle
         {
             get

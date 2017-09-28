@@ -56,6 +56,13 @@ namespace ElmSharp
         {
         }
 
+        /// <summary>
+        /// reates and initializes a new instance of the SmartEvent class.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="handle">Teh event handler.</param>
+        /// <param name="eventName">The event name.</param>
+        /// <param name="parser">The event parser.</param>
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public SmartEvent(EvasObject sender, IntPtr handle, string eventName, SmartEventInfoParser parser)
         {
@@ -75,6 +82,9 @@ namespace ElmSharp
         {
         }
 
+        /// <summary>
+        /// Destroy the SmartEvent object.
+        /// </summary>
         ~SmartEvent()
         {
             Dispose(false);
@@ -164,6 +174,7 @@ namespace ElmSharp
     public class SmartEvent : IInvalidatable
     {
         private SmartEvent<EventArgs> _smartEvent;
+
         private event EventHandler _handlers;
 
         /// <summary>
@@ -175,12 +186,21 @@ namespace ElmSharp
         {
         }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the SmartEvent class.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="handle">The event handler.</param>
+        /// <param name="eventName">The event name.</param>
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public SmartEvent(EvasObject sender, IntPtr handle, string eventName)
         {
             _smartEvent = new SmartEvent<EventArgs>(sender, handle, eventName, null);
         }
 
+        /// <summary>
+        /// Destroy the SmartEvent object.
+        /// </summary>
         ~SmartEvent()
         {
             Dispose(false);

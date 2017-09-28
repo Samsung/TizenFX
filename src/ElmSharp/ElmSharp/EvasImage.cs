@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -165,7 +165,6 @@ namespace ElmSharp
             set
             {
                 Interop.Evas.evas_object_image_alpha_set(RealHandle, !value);
-
             }
         }
 
@@ -240,6 +239,10 @@ namespace ElmSharp
             return result;
         }
 
+        /// <summary>
+        /// Set the native surface of a given image of the canvas
+        /// </summary>
+        /// <param name="surface">The surface.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetNativeSurface(IntPtr surface)
         {

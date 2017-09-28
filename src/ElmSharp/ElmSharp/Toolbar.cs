@@ -211,6 +211,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets toolbar's current orientation.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsHorizontal
         {

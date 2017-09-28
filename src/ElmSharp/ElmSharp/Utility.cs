@@ -16,6 +16,9 @@
 
 namespace ElmSharp
 {
+    /// <summary>
+    /// This class is a static class for a utility methods.
+    /// </summary>
     public static class Utility
     {
         /// <summary>

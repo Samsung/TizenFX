@@ -83,6 +83,9 @@ namespace ElmSharp
             ReleaseItemClass(unmanaged);
         }
 
+        /// <summary>
+        /// Destroy the GenItemClass object.
+        /// </summary>
         ~GenItemClass()
         {
             Dispose(false);
@@ -151,11 +154,19 @@ namespace ElmSharp
             DeleteHandler?.Invoke(data);
         }
 
+        /// <summary>
+        /// Create a new genlist item class in a given genlist widget.
+        /// </summary>
+        /// <returns>The new item class object.</returns>
         protected virtual IntPtr CreateItemClass()
         {
             return Interop.Elementary.elm_genlist_item_class_new();
         }
 
+        /// <summary>
+        /// Remove an item class in a given genlist widget.
+        /// </summary>
+        /// <param name="unmanagedPtr">The object to be removed.</param>
         protected virtual void ReleaseItemClass(IntPtr unmanagedPtr)
         {
             Interop.Elementary.elm_genlist_item_class_free(unmanagedPtr);
@@ -207,17 +218,32 @@ namespace ElmSharp
         }
     }
 
+    /// <summary>
+    /// It represents the GenGrid item class definition field details.
+    /// </summary>
     public class GenGridItemClass : GenItemClass
     {
+        /// <summary>
+        /// Create the GenGridItemClass instance.
+        /// </summary>
+        /// <param name="style">The item display style.</param>
         public GenGridItemClass(string style) : base(style)
         {
         }
 
+        /// <summary>
+        /// Add a new gengrid item class in a given gengrid widget.
+        /// </summary>
+        /// <returns>The new instance.</returns>
         protected override IntPtr CreateItemClass()
         {
             return Interop.Elementary.elm_gengrid_item_class_new();
         }
 
+        /// <summary>
+        /// Remove an item class in a given gengrid widget.
+        /// </summary>
+        /// <param name="unmanagedPtr">The object to be removed.</param>
         protected override void ReleaseItemClass(IntPtr unmanagedPtr)
         {
             Interop.Elementary.elm_gengrid_item_class_free(unmanagedPtr);

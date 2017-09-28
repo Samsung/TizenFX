@@ -71,6 +71,9 @@ namespace ElmSharp
         /// </summary>
         public GenItemClass ItemClass { get; protected set; }
 
+        /// <summary>
+        /// Sets or gets tooltip content delegate.
+        /// </summary>
         public GetTooltipContentDelegate TooltipContentDelegate
         {
             get
@@ -89,9 +92,19 @@ namespace ElmSharp
         /// </summary>
         public abstract GenItemSelectionMode SelectionMode { get; set; }
 
+        /// <summary>
+        /// Sets or gets the cursor to be shown when mouse is over the gengrid item
+        /// </summary>
         public abstract string Cursor { get; set; }
+
+        /// <summary>
+        /// Sets or gets the style for this item cursor.
+        /// </summary>
         public abstract string CursorStyle { get; set; }
 
+        /// <summary>
+        /// Sets or gets the cursor engine only usage for this item cursor.
+        /// </summary>
         public abstract bool IsUseEngineCursor { get; set; }
 
         /// <summary>
@@ -109,7 +122,15 @@ namespace ElmSharp
         /// </summary>
         public abstract string TooltipStyle { get; set; }
 
+        /// <summary>
+        /// Set tooltip text.
+        /// </summary>
+        /// <param name="tooltip">The text to set.</param>
         public abstract void SetTooltipText(string tooltip);
+
+        /// <summary>
+        /// Unset tooltip.
+        /// </summary>
         public abstract void UnsetTooltip();
 
         /// <summary>
@@ -127,6 +148,9 @@ namespace ElmSharp
             ItemClass = null;
         }
 
+        /// <summary>
+        /// Abstract method for updating tooltip content.
+        /// </summary>
         protected abstract void UpdateTooltipDelegate();
     }
 }

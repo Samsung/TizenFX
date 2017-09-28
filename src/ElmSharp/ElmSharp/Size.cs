@@ -53,6 +53,10 @@ namespace ElmSharp
             return string.Format("{{Width={0} Height={1}}}", Width, Height);
         }
 
+        /// <summary>
+        /// Gets hash code.
+        /// </summary>
+        /// <returns>The hash code.</returns>
         public override int GetHashCode()
         {
             unchecked

@@ -354,7 +354,7 @@ namespace ElmSharp
             /// <summary>
             /// Creates and initializes a new instance of ItemEvasObject class.
             /// </summary>
-            /// <param name="handle">IntPtr</param>
+            /// <param name="parent">IntPtr</param>
             public ItemEvasObject(IntPtr parent) : base()
             {
                 _parent = parent;

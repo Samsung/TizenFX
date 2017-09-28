@@ -71,12 +71,30 @@ namespace ElmSharp
         Transparent = 3,
     }
 
+    /// <summary>
+    /// Enumeration for the keygrab modes of window.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum KeyGrabMode
     {
+        /// <summary>
+        /// Unknown keygrab mode
+        /// </summary>
         Shared = 256,
+
+        /// <summary>
+        /// Getting the grabbed-key together with the other client windows.
+        /// </summary>
         Topmost = 512,
+
+        /// <summary>
+        /// Getting the grabbed-key only when window is top of the stack.
+        /// </summary>
         Exclusive = 1024,
+
+        /// <summary>
+        /// Getting the grabbed-key exclusively regardless of window's position.
+        /// </summary>
         OverrideExclusive = 2048,
     }
 
@@ -350,6 +368,9 @@ namespace ElmSharp
             _rotationChanged.On += (s, e) => RotationChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the Window class.
+        /// </summary>
         protected Window()
         {
         }
@@ -422,6 +443,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets available rotation degree.
+        /// </summary>
         [Obsolete("Sorry, it's error typo of AvailableRotations, please use AvailableRotations")]
         public DisplayRotation AavailableRotations { get; set; }
 
@@ -517,6 +541,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the iconified state of a window.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Iconified
         {
@@ -970,12 +997,23 @@ namespace ElmSharp
             Interop.Elementary.elm_win_resize_object_add(Handle, obj);
         }
 
+        /// <summary>
+        /// Set keygrab value of the window.
+        /// This function grabs the key of window using grab_mode.
+        /// </summary>
+        /// <param name="keyname">The keyname to grab.</param>
+        /// <param name="mode">According to the grabmode, it can grab key differently</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void WinKeyGrab(string keyname, KeyGrabMode mode)
         {
             Interop.Elementary.elm_win_keygrab_set(RealHandle, keyname, 0, 0, 0, mode);
         }
 
+        /// <summary>
+        /// Unset keygrab value of the window.
+        /// This function unset keygrab value.Ungrab key of window.
+        /// </summary>
+        /// <param name="keyname">The keyname to grab.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void WinKeyUngrab(string keyname)
         {
