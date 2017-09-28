@@ -71,6 +71,9 @@ namespace Tizen.Multimedia
             Dispose(false);
         }
 
+        /// <summary>
+        /// Gets the native handle of the camera.
+        /// </summary>
         public IntPtr Handle => GetHandle();
 
         internal IntPtr GetHandle()
