@@ -44,11 +44,30 @@ namespace Tizen.Multimedia.MediaCodec
         OverflowInBuffer = CodecDefinedBase | 0x0d,
     }
 
+    /// <summary>
+    /// Specifies the errors of <see cref="MediaCodec"/>.
+    /// </summary>
+    /// <seealso cref="MediaCodec.ErrorOccurred"/>
     public enum MediaCodecError
     {
+        /// <summary>
+        /// The format is not supported.
+        /// </summary>
         NotSupportedFormat = MediaCodecErrorCode.NotSupportedFormat,
+
+        /// <summary>
+        /// An internal error.
+        /// </summary>
         InternalError = MediaCodecErrorCode.Internal,
+
+        /// <summary>
+        /// Not enough storage.
+        /// </summary>
         OutOfStorage = MediaCodecErrorCode.OutOfStorage,
+
+        /// <summary>
+        /// The stream is invalid.
+        /// </summary>
         InvalidStream = MediaCodecErrorCode.InvalidStream,
     }
 }
