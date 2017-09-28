@@ -53,6 +53,12 @@ namespace Tizen.Multimedia.MediaCodec
         #region IDisposable-support
         private bool _isDisposed = false;
 
+        /// <summary>
+        /// Releases the resources used by the <see cref="MediaCodec"/> object.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_isDisposed)
@@ -72,6 +78,9 @@ namespace Tizen.Multimedia.MediaCodec
             Dispose(false);
         }
 
+        /// <summary>
+        /// Releases all resources used by the <see cref="MediaCodec"/> object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -343,7 +352,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// Adds the packet to the internal queue of the codec.
         /// </summary>
         /// <param name="packet">The packet to be encoded or decoded.</param>
-        /// <exception cref="ArgumentNullException"><paramref="packet"/> is null.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="packet"/> is null.</exception>
         /// <exception cref="InvalidOperationException">The current codec is not prepared yet.</exception>
         /// <remarks>Any attempts to modify the packet will fail until the <see cref="InputProcessed"/> event for the packet is invoked.</remarks>
         public void ProcessInput(MediaPacket packet)
@@ -385,7 +394,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <param name="encoder">The value indicating encoder or decoder.</param>
         /// <param name="type">The mime type to query.</param>
         /// <returns>The values indicating which codec types are supported on the current device.</returns>
-        /// <exception cref="ArgumentException"><paramref="type"/> is invalid.</exception>
+        /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
         public MediaCodecTypes GetCodecType(bool encoder, MediaFormatVideoMimeType type)
         {
             ValidateNotDisposed();
@@ -404,7 +413,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <param name="encoder">The value indicating encoder or decoder.</param>
         /// <param name="type">The mime type to query.</param>
         /// <returns>The values indicating which codec types are supported on the current device.</returns>
-        /// <exception cref="ArgumentException"><paramref="type"/> is invalid.</exception>
+        /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
         public MediaCodecTypes GetCodecType(bool encoder, MediaFormatAudioMimeType type)
         {
             ValidateNotDisposed();
