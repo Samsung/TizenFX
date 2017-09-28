@@ -32,6 +32,9 @@ namespace Tizen.Network.Connection
         {
         }
 
+        /// <summary>
+        /// Destroy the WiFiProfile object
+        /// </summary>
         ~WiFiProfile()
         {
         }
