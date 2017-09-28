@@ -27,11 +27,21 @@ namespace Tizen.Account.AccountManager
     public class AccountProvider : IDisposable
     {
         internal IntPtr _handle;
+
+        /// <summary>
+        /// AccountProvider destructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="handle"> The account handle.</param>
         internal AccountProvider(IntPtr handle)
         {
             Handle = handle;
         }
 
+        /// <summary>
+        /// AccountProvider deconstructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~AccountProvider()
         {
             Dispose(false);
@@ -365,6 +375,11 @@ namespace Tizen.Account.AccountManager
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Dispose API for destroying the AccountProvider handle.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="disposing">The boolean value for destoying AccountProvider handle.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposing)

@@ -37,6 +37,10 @@ namespace Tizen.Account.AccountManager
             _handle = handle;
         }
 
+        /// <summary>
+        /// Account destructor.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         ~Account()
         {
             Dispose(false);
@@ -612,6 +616,11 @@ namespace Tizen.Account.AccountManager
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Dispose API for destroying the account handle.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="disposing">The boolean value for destoying account handle.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposing)
