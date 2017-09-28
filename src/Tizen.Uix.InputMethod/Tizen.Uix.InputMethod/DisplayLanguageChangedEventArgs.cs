@@ -21,15 +21,15 @@ namespace Tizen.Uix.InputMethod
     /// </summary>
     public class DisplayLanguageChangedEventArgs
     {
-        internal DisplayLanguageChangedEventArgs(string langauage)
+        internal DisplayLanguageChangedEventArgs(string language)
         {
-            Langauage = langauage;
+            Language = language;
         }
 
         /// <summary>
         /// The language code
         /// </summary>
-        public string Langauage
+        public string Language
         {
             get;
             internal set;

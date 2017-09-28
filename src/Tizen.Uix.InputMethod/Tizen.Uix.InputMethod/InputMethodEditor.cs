@@ -320,7 +320,7 @@ namespace Tizen.Uix.InputMethod
         /// </summary>
         KP9 = 0xFFB9,
 
-        /* Auxilliary Functions */
+        /* Auxiliary Functions */
         /// <summary>
         /// The function 1 key
         /// </summary>
@@ -1647,7 +1647,7 @@ namespace Tizen.Uix.InputMethod
         /// <param name="terminate">This is called when IME application is terminated</param>
         /// <param name="show">
         /// This is called when IME application is shown
-        /// It provides the Context Inofrmation and the Context Id
+        /// It provides the Context Information and the Context Id
         /// </param>
         /// <param name="hide">
         /// This is called when IME application is hidden
