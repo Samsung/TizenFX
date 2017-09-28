@@ -41,12 +41,12 @@ namespace Tizen.Content.MediaContent
         /// <item><description>column = value</description></item>
         /// <item><description>column > value</description></item>
         /// <item><description>column >= value</description></item>
-        /// <item><description>column < value</description></item>
-        /// <item><description>column <= value</description></item>
+        /// <item><description><![CDATA[column < value]]></description></item>
+        /// <item><description><![CDATA[column <= value]]></description></item>
         /// <item><description>value = column</description></item>
         /// <item><description>value >= column</description></item>
-        /// <item><description>value < column</description></item>
-        /// <item><description>value <= column</description></item>
+        /// <item><description><![CDATA[value < column]]></description></item>
+        /// <item><description><![CDATA[value <= column]]></description></item>
         /// <item><description>column IN (value)</description></item>
         /// <item><description>column IN(value-list)</description></item>
         /// <item><description>column NOT IN(value)</description></item>
