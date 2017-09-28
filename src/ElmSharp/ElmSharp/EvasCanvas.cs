@@ -153,7 +153,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates an Evas canvas handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
+        /// <param name="evasObject">EvasObject</param>
         /// <returns>Handle IntPtr</returns>
         IntPtr CreateHandle(IntPtr evasObject)
         {

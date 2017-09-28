@@ -174,22 +174,22 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// Enumeration that defines the entry's copy & paste policy.
+    /// Enumeration that defines the entry's copy and paste policy.
     /// </summary>
     public enum CopyAndPasteMode
     {
         /// <summary>
-        /// Copy & paste text with markup tag
+        /// Copy and paste text with markup tag
         /// </summary>
         Markup,
 
         /// <summary>
-        /// Copy & paste text without item(image) tag
+        /// Copy and paste text without item(image) tag
         /// </summary>
         NoImage,
 
         /// <summary>
-        /// Copy & paste text without markup tag
+        /// Copy and paste text without markup tag
         /// </summary>
         PlainText
     }

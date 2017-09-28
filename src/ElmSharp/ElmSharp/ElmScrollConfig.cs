@@ -24,6 +24,9 @@ namespace ElmSharp
     /// </summary>
     public static class ElmScrollConfig
     {
+        /// <summary>
+        /// Gets or sets the amount of inertia a scroller imposes during region bring animations.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static double BringInScrollFriction
         {

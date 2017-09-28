@@ -191,6 +191,9 @@ namespace ElmSharp
             Interop.Elementary.elm_run();
         }
 
+        /// <summary>
+        /// Prepends a theme overlay to the list of overlays
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ThemeOverlay()
         {
@@ -261,30 +264,45 @@ namespace ElmSharp
             Interop.Elementary.elm_theme_extension_del(IntPtr.Zero, item);
         }
 
+        /// <summary>
+        /// Gets the amount of inertia a scroller imposes during region bring animations.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static double GetSystemScrollFriction()
         {
             return BringInScrollFriction;
         }
 
+        /// <summary>
+        /// Sets the amount of inertia a scroller imposes during region bring animations.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetSystemScrollFriction(double timeSet)
         {
             BringInScrollFriction = timeSet;
         }
 
+        /// <summary>
+        /// Get Elementary's profile in use
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetProfile()
         {
             return Interop.Elementary.elm_config_profile_get();
         }
 
+        /// <summary>
+        /// Set the global scaling factor
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetScale(double scale)
         {
             Scale = scale;
         }
 
+        /// <summary>
+        /// Get the global scaling factor
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static double GetScale()
         {
@@ -320,6 +338,9 @@ namespace ElmSharp
             return Interop.Elementary.elm_policy_set(policy, value);
         }
 
+        /// <summary>
+        /// Reload Elementary's configuration, bounded to current selected profile.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ReloadConfig()
         {

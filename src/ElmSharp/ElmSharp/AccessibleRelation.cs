@@ -23,7 +23,14 @@ namespace ElmSharp.Accessible
     public interface IAccessibleRelation
     {
 
+        /// <summary>
+        /// Gets or sets the target object.
+        /// </summary>
         AccessibleObject Target { get; set; }
+
+        /// <summary>
+        /// Gets the type.
+        /// </summary>
         int Type { get; }
     }
 
