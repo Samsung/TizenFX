@@ -150,6 +150,11 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Creates an Evas canvas handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>Handle IntPtr</returns>
         IntPtr CreateHandle(IntPtr evasObject)
         {
             return Interop.Evas.evas_object_evas_get(evasObject);

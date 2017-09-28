@@ -182,6 +182,11 @@ namespace ElmSharp
             Interop.Elementary.elm_colorselector_palette_clear(Handle);
         }
 
+        /// <summary>
+        /// Creates a widget handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>Handle IntPtr</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_colorselector_add(parent.Handle);

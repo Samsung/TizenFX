@@ -58,6 +58,11 @@ namespace ElmSharp
             Interop.Evas.evas_object_polygon_points_clear(Handle);
         }
 
+        /// <summary>
+        /// Creates a widget handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>Handle IntPtr</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr evas = Interop.Evas.evas_object_evas_get(parent.Handle);

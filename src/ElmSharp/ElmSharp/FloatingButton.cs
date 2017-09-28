@@ -105,6 +105,11 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Creates a widget handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>Handle IntPtr</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Eext.eext_floatingbutton_add(parent.Handle);

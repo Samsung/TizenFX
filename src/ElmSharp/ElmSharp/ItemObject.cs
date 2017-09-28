@@ -351,12 +351,21 @@ namespace ElmSharp
         {
             IntPtr _parent = IntPtr.Zero;
 
+            /// <summary>
+            /// Creates and initializes a new instance of ItemEvasObject class.
+            /// </summary>
+            /// <param name="handle">IntPtr</param>
             public ItemEvasObject(IntPtr parent) : base()
             {
                 _parent = parent;
                 Realize(null);
             }
 
+            /// <summary>
+            /// Creates a widget handle.
+            /// </summary>
+            /// <param name="parent">Parent EvasObject</param>
+            /// <returns>Handle IntPtr</returns>
             protected override IntPtr CreateHandle(EvasObject parent)
             {
                 return Interop.Elementary.elm_object_item_track(_parent);

@@ -225,6 +225,11 @@ namespace ElmSharp
             Interop.Elementary.elm_box_padding_set(RealHandle, horizontal, vertical);
         }
 
+        /// <summary>
+        /// Creates a widget handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>Handle IntPtr</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

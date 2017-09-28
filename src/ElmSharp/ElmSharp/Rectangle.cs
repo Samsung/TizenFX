@@ -32,6 +32,11 @@ namespace ElmSharp
             Interop.Evas.evas_object_size_hint_weight_set(Handle, 1.0, 1.0);
         }
 
+        /// <summary>
+        /// Creates a widget handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>Handle IntPtr</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr evas = Interop.Evas.evas_object_evas_get(parent.Handle);

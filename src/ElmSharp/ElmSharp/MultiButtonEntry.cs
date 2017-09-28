@@ -205,6 +205,11 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Creates a widget handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>Handle IntPtr</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_multibuttonentry_add(parent.Handle);
@@ -365,10 +370,19 @@ namespace ElmSharp
 
         internal class EntryInner : Entry
         {
+            /// <summary>
+            /// Creates and initializes a new instance of the EntryInner class.
+            /// </summary>
+            /// <param name="parent">The parent is a given container which will be attached by MultiButtonEntry as a child. It's <see cref="EvasObject"/> type.</param>
             internal EntryInner(EvasObject parent) : base(parent)
             {
             }
 
+            /// <summary>
+            /// Creates a widget handle.
+            /// </summary>
+            /// <param name="parent">Parent EvasObject</param>
+            /// <returns>Handle IntPtr</returns>
             protected override IntPtr CreateHandle(EvasObject parent)
             {
                 return Interop.Elementary.elm_multibuttonentry_entry_get(parent.Handle);

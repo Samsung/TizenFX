@@ -170,6 +170,11 @@ namespace ElmSharp
             Interop.Elementary.elm_datetime_field_visible_set(RealHandle, (int)type, visible);
         }
 
+        /// <summary>
+        /// Creates a widget handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>Handle IntPtr</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

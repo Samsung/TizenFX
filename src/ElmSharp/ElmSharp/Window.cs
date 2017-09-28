@@ -1000,6 +1000,11 @@ namespace ElmSharp
             Interop.Elementary.eext_win_keygrab_unset(RealHandle, keyname);
         }
 
+        /// <summary>
+        /// Creates a widget handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>Handle IntPtr</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             Interop.Elementary.elm_config_accel_preference_set("3d");

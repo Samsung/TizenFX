@@ -169,6 +169,11 @@ namespace ElmSharp
             Interop.Elementary.elm_flipselector_flip_prev(Handle);
         }
 
+        /// <summary>
+        /// Creates a widget handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>Handle IntPtr</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_flipselector_add(parent.Handle);
