@@ -16,107 +16,495 @@
 
 namespace Tizen.Internals.Errors
 {
+    /// <summary>
+    /// Error codes used inside Tizen .NET API implementation
+    /// </summary>
     public enum ErrorCode : int
     {
-        None = 0, //  0, /**< Successful */
-        NotPermitted = -1, //  -EPERM, /**< Operation not permitted */
-        NoSuchFile = -2, //  -ENOENT, /**< No such file or directory */
-        NoSuchProcess = -3, //  -ESRCH, /**< No such process */
-        InterruptedSysCall = -4, //  -EINTR, /**< Interrupted system call */
-        IoError = -5, //  -EIO, /**< I/O error */
-        NoSuchDevice = -6, //  -ENXIO, /**< No such device or address */
-        ArgumentListTooLong = -7, //  -E2BIG, /**< Argument list too long */
-        ExecFormatError = -8, //  -ENOEXEC, /**< Exec format error */
-        BadFileNumber = -9, //  -EBADF, /**< Bad file number */
-        TryAgain = -11, //  -EAGAIN, /**< Try again */
-        OutOfMemory = -12, //  -ENOMEM, /**< Out of memory */
-        PermissionDenied = -13, //  -EACCES, /**< Permission denied */
-        BadAddress = -14, //  -EFAULT, /**< Bad address */
-        BlockDeviceRequired = -15, //  -ENOTBLK, /**< Block device required */
-        ResourceBusy = -16, //  -EBUSY, /**< Device or resource busy */
-        FileExists = -17, //  -EEXIST, /**< File exists */
-        CrossDeviceLink = -18, //  -EXDEV, /**< Cross-device link */
-        NotaDirectory = -20, //  -ENOTDIR, /**< Not a directory */
-        IsADirectory = -21, //  -EISDIR, /**< Is a directory */
-        InvalidParameter = -22, //  -EINVAL, /**< Invalid function parameter */
-        FileTableOverflow = -23, //  -ENFILE, /**< File table overflow */
-        TooManyOpenFiles = -24, //  -EMFILE, /**< Too many open files */
-        TooNotaTerminal = -25, //  -ENOTTY, /**< Not a terminal */
-        TooTextFileBusy = -26, //  -ETXTBSY, /**< Not a terminal */
-        FileTooLarge = -27, //  -EFBIG, /**< File too large */
-        FileNoSpaceOnDevice = -28, //  -ENOSPC, /**< No space left on device */
-        IllegalSeek = -29, //  -ESPIPE, /**< Illegal seek */
-        ReadOnlyFilesystem = -30, //  -EROFS, /**< Read-only file system */
-        NoData = -61, //  -ENODATA, /**< No data available */
-        TooManyLinks = -31, //  -EMLINK, /**< Too many links */
-        BrokenPipe = -32, //  -EPIPE, /**< Broken pipe */
-        ArgumentOutOfDomain = -33, //  -EDOM, /**< Math argument out of domain of func */
-        ResultOutOfRange = -34, //  -ERANGE, /**< Math result not representable */
-        WouldCauseDeadlock = -35, //  -EDEADLK, /**< Resource deadlock would occur */
-        FileNameTooLong = -36, //  -ENAMETOOLONG,/**< File name too long */
-        FileNoLocksAvailable = -37, //  -ENOLCK, /**< No record locks available */
-        InvalidOperation = -38, //  -ENOSYS, /**< Function not implemented */
-        DirNotEmpty = -39, //  -ENOTEMPTY, /**< Directory not empty */
-        TooManySymbolicLinks = -40, //  -ELOOP, /**< Too many symbolic links encountered */
-        WouldBlock = -11, //  TryAgain (-EAGAIN), /**< Operation would block */
-        CorruptedSharedLib = -80, //  -ELIBBAD, /**< Accessing a corrupted shared library */
-        LibSectionCorrupted = -81, //  -ELIBSCN, /**< .lib section in a.out corrupted */
-        LinkTooManySharedLib = -82, //  -ELIBMAX, /**< Attempting to link in too many shared libraries */
-        SharedLibExec = -83, //  -ELIBEXEC, /**< Cannot exec a shared library directly */
-        IllegalByteSeq = -84, //  -EILSEQ, /**< Illegal byte sequence */
-        SystemCallRestart = -85, //  -ERESTART, /**< Interrupted system call should be restarted */
-        StreamsPipe = -86, //  -ESTRPIPE, /**< Streams pipe error */
-        TooManyUsers = -87, //  -EUSERS, /**< Too many users */
-        NonSocket = -88, //  -ENOTSOCK, /**< Socket operation on non-socket */
-        NoDestAddress = -89, //  -EDESTADDRREQ, /**< Destination address required */
-        MsgTooLong = -90, //  -EMSGSIZE, /**< Message too long */
-        ProtocolWrongType = -91, //  -EPROTOTYPE, /**< Protocol wrong type for socket */
-        ProtocolNotAvaliable = -92, //  -ENOPROTOOPT, /**< Protocol not available */
-        ProtocolNotSupported = -93, //  -EPROTONOSUPPORT, /**< Protocol not supported */
-        SocketTypeNotSupported = -94, //  -ESOCKTNOSUPPORT, /**< Socket type not supported */
-        EndpointOperatinNotSupported = -95, //  -EOPNOTSUPP, /**< Operation not supported on transport endpoint */
-        ProtocolFamilyNotSupported = -96, //  -EPFNOSUPPORT, /**< Protocol family not supported */
-        AddressFamilyNotSupported = -97, //  -EAFNOSUPPORT, /**< Address family not supported by protocol */
-        AddresInUse = -98, //  -EADDRINUSE, /**< Address already in use */
-        CannotAssignAddress = -99, //  -EADDRNOTAVAIL, /**< Cannot assign requested address */
-        Networkdown = -100, //  -ENETDOWN, /**< Network is down */
-        NetworkUnreachable = -101, //  -ENETUNREACH, /**< Network is unreachable */
-        NetworkReset = -102, //  -ENETRESET, /**< Network dropped connection because of reset */
-        ConnectionAborted = -103, //  -ECONNABORTED, /**< Software caused connection abort */
-        ConnectionResetByPeer = -104, //  -ECONNRESET, /**< Connection reset by peer */
-        BufferSpace = -105, //  -ENOBUFS, /**< No buffer space available */
-        EndpointConnected = -106, //  -EISCONN, /**< Transport endpoint is already connected */
-        EndpointNotConnected = -107, //  -ENOTCONN, /**< Transport endpoint is not connected */
-        EndpointShutdown = -108, //  -ESHUTDOWN, /**< Cannot send after transport endpoint shutdown */
-        TooManyReferences = -109, //  -ETOOMANYREFS, /**< Too many references: cannot splice */
-        ConnectionTimeout = -110, //  -ETIMEDOUT, /**< Connection timed out */
-        ConnectionRefused = -111, //  -ECONNREFUSED, /**< Connection refused */
-        Hostdown = -112, //  -EHOSTDOWN, /**< Host is down */
-        NoRouteToHost = -113, //  -EHOSTUNREACH, /**< No route to host */
-        AlreadyInProgress = -114, //  -EALREADY, /**< Operation already in progress */
-        NowInProgress = -115, //  -EINPROGRESS, /**< Operation now in progress */
-        StaleNfsFileHandle = -116, //  -ESTALE, /**< Stale NFS file handle */
-        StructureUnclean = -117, //  -EUCLEAN, /**< Structure needs cleaning */
-        NotXenixNamedTypeFile = -118, //  -ENOTNAM, /**< Not a XENIX named type file */
-        NoXenixSemaphoresAvailable = -119, //  -ENAVAIL, /**< No XENIX semaphores available */
-        IsNamedTypeFile = -120, //  -EISNAM, /**< Is a named type file */
-        RemoteIo = -121, //  -EREMOTEIO, /**< Remote I/O error */
-        QuotaExceeded = -122, //  -EDQUOT, /**< Quota exceeded */
-        NoMedium = -123, //  -ENOMEDIUM, /**< No medium found */
-        WrongMediumType = -124, //  -EMEDIUMTYPE, /**< Wrong medium type */
-        Canceled = -125, //  -ECANCELED, /**< Operation Canceled */
-        KeyNotAvailable = -126, //  -ENOKEY, /**< Required key not available */
-        KeyExpired = -127, //  -EKEYEXPIRED, /**< Key has expired */
-        KeyRevoked = -128, //  -EKEYREVOKED, /**< Key has been revoked */
-        KeyRejected = -129, //  -EKEYREJECTED, /**< Key was rejected by service */
+        /// <summary>
+        /// Successful
+        /// </summary>
+        None = 0, //  0
 
-        OwnerDead = -130, //  -EOWNERDEAD, /**< Owner died (for robust mutexes) */
+        /// <summary>
+        /// Operation not permitted
+        /// </summary>
+        NotPermitted = -1, //  -EPERM
 
-        Unknown = -1073741824, //  TIZEN_ERROR_MIN_PLATFORM_ERROR, /**< Unknown error */
+        /// <summary>
+        /// No such file or directory
+        /// </summary>
+        NoSuchFile = -2, //  -ENOENT
 
-        TimedOut,   // /**< Time out */
-        NotSupported, // /**< Not Supported */
-        UserNotConsented,//  /**< Not Consented */
-        EndofCollection  //
+        /// <summary>
+        /// No such process
+        /// </summary>
+        NoSuchProcess = -3, //  -ESRCH
+
+        /// <summary>
+        /// Interrupted system call
+        /// </summary>
+        InterruptedSysCall = -4, //  -EINTR
+
+        /// <summary>
+        /// I/O error
+        /// </summary>
+        IoError = -5, //  -EIO
+
+        /// <summary>
+        /// No such device or address
+        /// </summary>
+        NoSuchDevice = -6, //  -ENXIO
+
+        /// <summary>
+        /// Argument list too long
+        /// </summary>
+        ArgumentListTooLong = -7, //  -E2BIG
+
+        /// <summary>
+        /// Exec format error
+        /// </summary>
+        ExecFormatError = -8, //  -ENOEXEC
+
+        /// <summary>
+        /// Bad file number
+        /// </summary>
+        BadFileNumber = -9, //  -EBADF
+
+        /// <summary>
+        /// Try again
+        /// </summary>
+        TryAgain = -11, //  -EAGAIN
+
+        /// <summary>
+        /// Out of memory
+        /// </summary>
+        OutOfMemory = -12, //  -ENOMEM
+
+        /// <summary>
+        /// Permission denied
+        /// </summary>
+        PermissionDenied = -13, //  -EACCES
+
+        /// <summary>
+        /// Bad address
+        /// </summary>
+        BadAddress = -14, //  -EFAULT
+
+        /// <summary>
+        /// Block device required
+        /// </summary>
+        BlockDeviceRequired = -15, //  -ENOTBLK
+
+        /// <summary>
+        /// Device or resource busy
+        /// </summary>
+        ResourceBusy = -16, //  -EBUSY
+
+        /// <summary>
+        /// File exists
+        /// </summary>
+        FileExists = -17, //  -EEXIST
+
+        /// <summary>
+        /// Cross-device link
+        /// </summary>
+        CrossDeviceLink = -18, //  -EXDEV
+
+        /// <summary>
+        /// Not a directory
+        /// </summary>
+        NotaDirectory = -20, //  -ENOTDIR
+
+        /// <summary>
+        /// Is a directory
+        /// </summary>
+        IsADirectory = -21, //  -EISDIR
+
+        /// <summary>
+        /// Invalid function parameter
+        /// </summary>
+        InvalidParameter = -22, //  -EINVAL
+
+        /// <summary>
+        /// File table overflow
+        /// </summary>
+        FileTableOverflow = -23, //  -ENFILE
+
+        /// <summary>
+        /// Too many open files
+        /// </summary>
+        TooManyOpenFiles = -24, //  -EMFILE
+
+        /// <summary>
+        /// Not a terminal
+        /// </summary>
+        TooNotaTerminal = -25, //  -ENOTTY
+
+        /// <summary>
+        /// Too text file busy
+        /// </summary>
+        TooTextFileBusy = -26, //  -ETXTBSY
+
+        /// <summary>
+        /// File too large
+        /// </summary>
+        FileTooLarge = -27, //  -EFBIG
+
+        /// <summary>
+        /// No space left on device
+        /// </summary>
+        FileNoSpaceOnDevice = -28, //  -ENOSPC
+
+        /// <summary>
+        /// Illegal seek
+        /// </summary>
+        IllegalSeek = -29, //  -ESPIPE
+
+        /// <summary>
+        /// Read-only file system
+        /// </summary>
+        ReadOnlyFilesystem = -30, //  -EROFS
+
+        /// <summary>
+        /// No data available
+        /// </summary>
+        NoData = -61, //  -ENODATA
+
+        /// <summary>
+        /// Too many links
+        /// </summary>
+        TooManyLinks = -31, //  -EMLINK
+
+        /// <summary>
+        /// Broken pipe
+        /// </summary>
+        BrokenPipe = -32, //  -EPIPE
+
+        /// <summary>
+        /// Math argument out of domain of func
+        /// </summary>
+        ArgumentOutOfDomain = -33, //  -EDOM
+
+        /// <summary>
+        /// Math result not representable
+        /// </summary>
+        ResultOutOfRange = -34, //  -ERANGE
+
+        /// <summary>
+        /// Resource deadlock would occur
+        /// </summary>
+        WouldCauseDeadlock = -35, //  -EDEADLK
+
+        /// <summary>
+        /// File name too long
+        /// </summary>
+        FileNameTooLong = -36, //  -ENAMETOOLONG
+
+        /// <summary>
+        /// No record locks available
+        /// </summary>
+        FileNoLocksAvailable = -37, //  -ENOLCK
+
+        /// <summary>
+        /// Function not implemented
+        /// </summary>
+        InvalidOperation = -38, //  -ENOSYS
+
+        /// <summary>
+        /// Directory not empty
+        /// </summary>
+        DirNotEmpty = -39, //  -ENOTEMPTY
+
+        /// <summary>
+        /// Too many symbolic links encountered
+        /// </summary>
+        TooManySymbolicLinks = -40, //  -ELOOP
+
+        /// <summary>
+        /// Operation would block
+        /// </summary>
+        WouldBlock = -11, //  TryAgain (-EAGAIN)
+
+        /// <summary>
+        /// Accessing a corrupted shared library
+        /// </summary>
+        CorruptedSharedLib = -80, //  -ELIBBAD
+
+        /// <summary>
+        /// .lib section in a.out corrupted
+        /// </summary>
+        LibSectionCorrupted = -81, //  -ELIBSCN
+
+        /// <summary>
+        /// Attempting to link in too many shared libraries
+        /// </summary>
+        LinkTooManySharedLib = -82, //  -ELIBMAX
+
+        /// <summary>
+        /// Cannot exec a shared library directly
+        /// </summary>
+        SharedLibExec = -83, //  -ELIBEXEC
+
+        /// <summary>
+        /// Illegal byte sequence
+        /// </summary>
+        IllegalByteSeq = -84, //  -EILSEQ
+
+        /// <summary>
+        /// Interrupted system call should be restarted
+        /// </summary>
+        SystemCallRestart = -85, //  -ERESTART
+
+        /// <summary>
+        /// Streams pipe error
+        /// </summary>
+        StreamsPipe = -86, //  -ESTRPIPE
+
+        /// <summary>
+        /// Too many users
+        /// </summary>
+        TooManyUsers = -87, //  -EUSERS
+
+        /// <summary>
+        /// Socket operation on non-socket
+        /// </summary>
+        NonSocket = -88, //  -ENOTSOCK
+
+        /// <summary>
+        /// Destination address required
+        /// </summary>
+        NoDestAddress = -89, //  -EDESTADDRREQ
+
+        /// <summary>
+        /// Message too long
+        /// </summary>
+        MsgTooLong = -90, //  -EMSGSIZE
+
+        /// <summary>
+        /// Protocol wrong type for socket
+        /// </summary>
+        ProtocolWrongType = -91, //  -EPROTOTYPE
+
+        /// <summary>
+        /// Protocol not available
+        /// </summary>
+        ProtocolNotAvaliable = -92, //  -ENOPROTOOPT
+
+        /// <summary>
+        /// Protocol not supported
+        /// </summary>
+        ProtocolNotSupported = -93, //  -EPROTONOSUPPORT
+
+        /// <summary>
+        /// Socket type not supported
+        /// </summary>
+        SocketTypeNotSupported = -94, //  -ESOCKTNOSUPPORT
+
+        /// <summary>
+        /// Operation not supported on transport endpoint
+        /// </summary>
+        EndpointOperatinNotSupported = -95, //  -EOPNOTSUPP
+
+        /// <summary>
+        /// Protocol family not supported
+        /// </summary>
+        ProtocolFamilyNotSupported = -96, //  -EPFNOSUPPORT
+
+        /// <summary>
+        /// Address family not supported by protocol
+        /// </summary>
+        AddressFamilyNotSupported = -97, //  -EAFNOSUPPORT
+
+        /// <summary>
+        /// Address already in use
+        /// </summary>
+        AddresInUse = -98, //  -EADDRINUSE
+
+        /// <summary>
+        /// Cannot assign requested address
+        /// </summary>
+        CannotAssignAddress = -99, //  -EADDRNOTAVAIL
+
+        /// <summary>
+        /// Network is down
+        /// </summary>
+        Networkdown = -100, //  -ENETDOWN
+
+        /// <summary>
+        /// Network is unreachable
+        /// </summary>
+        NetworkUnreachable = -101, //  -ENETUNREACH
+
+        /// <summary>
+        /// Network dropped connection because of reset
+        /// </summary>
+        NetworkReset = -102, //  -ENETRESET
+
+        /// <summary>
+        /// Software caused connection abort
+        /// </summary>
+        ConnectionAborted = -103, //  -ECONNABORTED
+
+        /// <summary>
+        /// Connection reset by peer
+        /// </summary>
+        ConnectionResetByPeer = -104, //  -ECONNRESET
+
+        /// <summary>
+        /// No buffer space available
+        /// </summary>
+        BufferSpace = -105, //  -ENOBUFS
+
+        /// <summary>
+        /// Transport endpoint is already connected
+        /// </summary>
+        EndpointConnected = -106, //  -EISCONN
+
+        /// <summary>
+        /// Transport endpoint is not connected
+        /// </summary>
+        EndpointNotConnected = -107, //  -ENOTCONN
+
+        /// <summary>
+        /// Cannot send after transport endpoint shutdown
+        /// </summary>
+        EndpointShutdown = -108, //  -ESHUTDOWN
+
+        /// <summary>
+        /// Too many references: cannot splice
+        /// </summary>
+        TooManyReferences = -109, //  -ETOOMANYREFS
+
+        /// <summary>
+        /// Connection timed out
+        /// </summary>
+        ConnectionTimeout = -110, //  -ETIMEDOUT
+
+        /// <summary>
+        /// Connection refused
+        /// </summary>
+        ConnectionRefused = -111, //  -ECONNREFUSED
+
+        /// <summary>
+        /// Host is down
+        /// </summary>
+        Hostdown = -112, //  -EHOSTDOWN
+
+        /// <summary>
+        /// No route to host
+        /// </summary>
+        NoRouteToHost = -113, //  -EHOSTUNREACH
+
+        /// <summary>
+        /// Operation already in progress
+        /// </summary>
+        AlreadyInProgress = -114, //  -EALREADY
+
+        /// <summary>
+        /// Operation now in progress
+        /// </summary>
+        NowInProgress = -115, //  -EINPROGRESS
+
+        /// <summary>
+        /// Stale NFS file handle
+        /// </summary>
+        StaleNfsFileHandle = -116, //  -ESTALE
+
+        /// <summary>
+        /// Structure needs cleaning
+        /// </summary>
+        StructureUnclean = -117, //  -EUCLEAN
+
+        /// <summary>
+        /// Not a XENIX named type file
+        /// </summary>
+        NotXenixNamedTypeFile = -118, //  -ENOTNAM
+
+        /// <summary>
+        /// No XENIX semaphores available
+        /// </summary>
+        NoXenixSemaphoresAvailable = -119, //  -ENAVAIL
+
+        /// <summary>
+        /// Is a named type file
+        /// </summary>
+        IsNamedTypeFile = -120, //  -EISNAM
+
+        /// <summary>
+        /// Remote I/O error
+        /// </summary>
+        RemoteIo = -121, //  -EREMOTEIO
+
+        /// <summary>
+        /// Quota exceeded
+        /// </summary>
+        QuotaExceeded = -122, //  -EDQUOT
+
+        /// <summary>
+        /// No medium found
+        /// </summary>
+        NoMedium = -123, //  -ENOMEDIUM
+
+        /// <summary>
+        /// Wrong medium type
+        /// </summary>
+        WrongMediumType = -124, //  -EMEDIUMTYPE
+
+        /// <summary>
+        /// Operation Canceled
+        /// </summary>
+        Canceled = -125, //  -ECANCELED
+
+        /// <summary>
+        /// Required key not available
+        /// </summary>
+        KeyNotAvailable = -126, //  -ENOKEY
+
+        /// <summary>
+        /// Key has expired
+        /// </summary>
+        KeyExpired = -127, //  -EKEYEXPIRED
+
+        /// <summary>
+        /// Key has been revoked
+        /// </summary>
+        KeyRevoked = -128, //  -EKEYREVOKED
+
+        /// <summary>
+        /// Key was rejected by service
+        /// </summary>
+        KeyRejected = -129, //  -EKEYREJECTED
+
+
+        /// <summary>
+        /// Owner died (for robust mutexes)
+        /// </summary>
+        OwnerDead = -130, //  -EOWNERDEAD
+
+        /// <summary>
+        /// Unknown error
+        /// </summary>
+        Unknown = -1073741824, //  TIZEN_ERROR_MIN_PLATFORM_ERROR
+
+        /// <summary>
+        /// Time out
+        /// </summary>
+        TimedOut,
+
+        /// <summary>
+        /// Not Supported
+        /// </summary>
+        NotSupported,
+
+        /// <summary>
+        /// Not Consented
+        /// </summary>
+        UserNotConsented,
+
+        /// <summary>
+        /// The end of collection
+        /// </summary>
+        EndofCollection
     }
 }

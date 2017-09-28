@@ -20,23 +20,23 @@ using System.Runtime.InteropServices;
 namespace Tizen.Internals.Errors
 {
     /// <summary>
-    ///
+    /// Provides functions that return additional information about the <see cref="ErrorCode"/>
     /// </summary>
     public static class ErrorFacts
     {
         /// <summary>
-        ///
+        /// Gets the last error code in the thread.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>One of <see cref="ErrorCode"/></returns>
         public static int GetLastResult()
         {
             return Interop.CommonError.GetLastResult();
         }
 
         /// <summary>
-        ///
+        /// Gets the message for given the error code.
         /// </summary>
-        /// <param name="errorCode"></param>
+        /// <param name="errorCode">One of <see cref="ErrorCode"/></param>
         /// <returns></returns>
         public static string GetErrorMessage(int errorCode)
         {
