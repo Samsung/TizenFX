@@ -18,9 +18,21 @@ using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia
 {
+    /// <summary>
+    /// Specifies the audio channels.
+    /// </summary>
+    /// <seealso cref="AudioCapture"/>
+    /// <seealso cref="AsyncAudioCapture"/>
+    /// <seealso cref="AudioPlayback"/>
     public enum AudioChannel
     {
+        /// <summary>
+        /// Mono.
+        /// </summary>
         Mono = 0x80,
+        /// <summary>
+        /// Stereo.
+        /// </summary>
         Stereo
     }
 
