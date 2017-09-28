@@ -47,7 +47,7 @@ namespace Tizen.Messaging.Push
 
         internal PushImpl()
         {
-            //Empty
+            // Empty
         }
 
         private IntPtr _connection;
@@ -138,8 +138,6 @@ namespace Tizen.Messaging.Push
                     ob.Type = type;
                 }
                 PushClient.Notify(ob);
-                //Interop.PushClient.FreeNotification(notification);
-                Log.Info(Interop.PushClient.LogTag, "Free Notification Done");
             };
             Interop.PushClient.ServiceError connectResult = Interop.PushClient.ServiceConnect(pushAppId, stateDelegate, notifyDelegate, IntPtr.Zero, out _connection);
             if (connectResult != Interop.PushClient.ServiceError.None)

@@ -25,10 +25,12 @@ namespace Tizen.Messaging.Push
     public class PushMessageEventArgs : EventArgs
     {
         /// <summary>
-        /// Gives the Application Data recieved. </summary>
+        /// Gives the Application Data recieved.
+        /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is the string, which stores the application data.</value>
+        /// It is the string, which stores the application data.
+        /// </value>
         public string AppData
         {
             get;
@@ -40,7 +42,8 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is the string, which stores the message field.</value>
+        /// It is the string, which stores the message field.
+        /// </value>
         public string Message
         {
             get;
@@ -52,7 +55,8 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is the DateTime field representing the time at which the Notification was received.</value>
+        /// It is the DateTime field representing the time at which the Notification was received.
+        /// </value>
         public DateTime ReceivedAt
         {
             get;
@@ -64,7 +68,8 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is a string value representing the Sender of the Notification.</value>
+        /// It is a string value representing the Sender of the Notification.
+        /// </value>
         public string Sender
         {
             get;
@@ -76,7 +81,8 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is a string value representing the session ID of the Notification.</value>
+        /// It is a string value representing the session ID of the Notification.
+        /// </value>
         public string SessionInfo
         {
             get;
@@ -88,7 +94,8 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is a string value representing the request ID of the Notification.</value>
+        /// It is a string value representing the request ID of the Notification.
+        /// </value>
         public string RequestId
         {
             get;
@@ -100,7 +107,8 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is an integer value representing the type field of the notification.</value>
+        /// It is an integer value representing the type field of the notification.
+        /// </value>
         public int Type
         {
             get;

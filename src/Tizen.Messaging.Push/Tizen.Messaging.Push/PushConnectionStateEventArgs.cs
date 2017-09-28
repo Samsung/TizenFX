@@ -57,7 +57,8 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is the current state.</value>
+        /// It is the current state.
+        /// </value>
         public PushState State
         {
             get;
@@ -69,7 +70,8 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is the string, which contains the error string if set.</value>
+        /// It is the string, which contains the error string if set.
+        /// </value>
         public string Error
         {
             get;

@@ -29,36 +29,6 @@ namespace Tizen.Messaging.Push
     /// APIs are provided so that an application can register itself
     /// with the push server along with APIs to request push message.
     /// </remarks>
-    /// <example>
-    /// <code>
-    /// public class Program
-    /// {
-    ///     static void Main(string[] args)
-    ///     {
-    ///         PushClient.PushServiceConnect("xxxxx");
-    ///         Task<ServerResponse> tr = PushClient.PushServerRegister();
-    ///         tr.GetAwaiter().OnCompleted(() => {
-    ///             ServerResponse res = tr.Result;
-    ///             PushClient.GetUnreadNotifications();
-    ///             Task<ServerResponse> tu = PushClient.PushServerUnregister();
-    ///             tu.GetAwaiter().OnCompleted(() => {
-    ///                 PushClient.PushServiceDisconnect();
-    ///             });
-    ///         });
-    ///         PushClient.NotificationReceived += EventHandlerNotificationReceived;
-    ///         PushClient.StateChanged += EventHandlerStateChanged;
-    ///     }
-    /// }
-    /// static void EventHandlerNotificationReceived(object sender, PushMessageEventArgs e)
-    /// {
-    ///     // any user code
-    /// }
-    /// static void EventHandlerStateChanged(object sender, PushConnectionStateEventArgs e)
-    /// {
-    ///     // any user code
-    /// }
-    /// </code>
-    /// </example>
     public static class PushClient
     {
         /// <summary>
@@ -162,7 +132,8 @@ namespace Tizen.Messaging.Push
         }
 
         /// <summary>
-        /// registration ID received from server. </summary>
+        /// registration ID received from server.
+        /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>
         /// It is the string, which is the ID received from the server.

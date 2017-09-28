@@ -51,7 +51,8 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is the Result state of the operation performed.</value>
+        /// It is the Result state of the operation performed.
+        /// </value>
         public Result ServerResult
         {
             get;
@@ -63,7 +64,8 @@ namespace Tizen.Messaging.Push
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// It is the Message sent by the server.</value>
+        /// It is the Message sent by the server.
+        /// </value>
         public string ServerMessage
         {
             get;
