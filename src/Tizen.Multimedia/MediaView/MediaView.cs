@@ -42,6 +42,9 @@ namespace Tizen.Multimedia
         {
         }
 
+        /// <summary>
+        /// This method is used by the infrastructure and is not intended to be used directly from application code.
+        /// </summary>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr evas = Interop.EvasObject.evas_object_evas_get(parent);

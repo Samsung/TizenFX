@@ -259,12 +259,19 @@ namespace Tizen.Multimedia
         /// </summary>
         public int BitRate { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
-        {
-            return $@"MimeType={ MimeType.ToString() }, Size=({ Size.ToString() }), FrameRate=
+            => $@"MimeType={ MimeType.ToString() }, Size=({ Size.ToString() }), FrameRate=
                 { FrameRate.ToString() }, BitRate={ BitRate.ToString() }";
-        }
 
+        /// <summary>
+        /// Compares an object to an instance of <see cref="VideoMediaFormat"/> for equality.
+        /// </summary>
+        /// <param name="obj">A <see cref="Object"/> to compare.</param>
+        /// <returns>true if the formats are equal; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             var rhs = obj as VideoMediaFormat;
@@ -277,9 +284,11 @@ namespace Tizen.Multimedia
                 FrameRate == rhs.FrameRate && BitRate == rhs.BitRate;
         }
 
+        /// <summary>
+        /// Gets the hash code for this instance of <see cref="VideoMediaFormat"/>.
+        /// </summary>
+        /// <returns>The hash code for this instance of <see cref="VideoMediaFormat"/>.</returns>
         public override int GetHashCode()
-        {
-            return new { MimeType, Size, FrameRate, BitRate }.GetHashCode();
-        }
+            => new { MimeType, Size, FrameRate, BitRate }.GetHashCode();
     }
 }

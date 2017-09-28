@@ -249,7 +249,7 @@ namespace Tizen.Multimedia
         ///     -or-\n
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ArgumentNullException"><paramref name="device"> is null.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="device"/> is null.</exception>
         /// <exception cref="AudioPolicyException"><see cref="AudioStreamType"/> of <paramref name="device"/> is unavailable for this.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <seealso cref="AudioManager.GetConnectedDevices()"/>
@@ -279,7 +279,7 @@ namespace Tizen.Multimedia
         /// The available <see cref="AudioStreamType"/> is <see cref="AudioStreamType.Voip"/> and <see cref="AudioStreamType.MediaExternalOnly"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
-        /// <exception cref="ArgumentNullException"><paramref name="device"> is null.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="device"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <seealso cref="AudioManager.GetConnectedDevices()"/>
         public void RemoveDeviceForStreamRouting(AudioDevice device)

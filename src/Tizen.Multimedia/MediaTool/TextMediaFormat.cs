@@ -112,11 +112,18 @@ namespace Tizen.Multimedia
         /// </summary>
         public MediaFormatTextType TextType { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
-        {
-            return $"MimeType={ MimeType.ToString() }, TextType={ TextType.ToString() }";
-        }
+            => $"MimeType={ MimeType.ToString() }, TextType={ TextType.ToString() }";
 
+        /// <summary>
+        /// Compares an object to an instance of <see cref="TextMediaFormat"/> for equality.
+        /// </summary>
+        /// <param name="obj">A <see cref="Object"/> to compare.</param>
+        /// <returns>true if the formats are equal; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             var rhs = obj as TextMediaFormat;
@@ -128,9 +135,10 @@ namespace Tizen.Multimedia
             return MimeType == rhs.MimeType && TextType == rhs.TextType;
         }
 
-        public override int GetHashCode()
-        {
-            return new { MimeType, TextType }.GetHashCode();
-        }
+        /// <summary>
+        /// Gets the hash code for this instance of <see cref="TextMediaFormat"/>.
+        /// </summary>
+        /// <returns>The hash code for this instance of <see cref="TextMediaFormat"/>.</returns>
+        public override int GetHashCode() => new { MimeType, TextType }.GetHashCode();
     }
 }

@@ -248,12 +248,19 @@ namespace Tizen.Multimedia
         /// </summary>
         public MediaFormatAacType AacType { get; }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
-        {
-            return $@"MimeTyp={ MimeType.ToString() }, Channel={ Channel.ToString() }, SampleRate=
+            => $@"MimeType={ MimeType.ToString() }, Channel={ Channel.ToString() }, SampleRate=
                 { SampleRate }, Bit={ Bit.ToString() }, BitRate={ BitRate.ToString() }, AacType={ AacType.ToString() }";
-        }
 
+        /// <summary>
+        /// Compares an object to an instance of <see cref="AudioMediaFormat"/> for equality.
+        /// </summary>
+        /// <param name="obj">A <see cref="Object"/> to compare.</param>
+        /// <returns>true if the formats are equal; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             var rhs = obj as AudioMediaFormat;
@@ -266,9 +273,11 @@ namespace Tizen.Multimedia
                 Bit == rhs.Bit && BitRate == rhs.BitRate;
         }
 
+        /// <summary>
+        /// Gets the hash code for this instance of <see cref="AudioMediaFormat"/>.
+        /// </summary>
+        /// <returns>The hash code for this instance of <see cref="AudioMediaFormat"/>.</returns>
         public override int GetHashCode()
-        {
-            return new { MimeType, Channel, SampleRate, Bit, BitRate }.GetHashCode();
-        }
+            => new { MimeType, Channel, SampleRate, Bit, BitRate }.GetHashCode();
     }
 }

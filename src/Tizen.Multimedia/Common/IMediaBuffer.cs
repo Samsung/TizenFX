@@ -48,7 +48,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the value indicating whether the <see cref="IMediaBuffer"/> is read-only.
         /// </summary>
-        /// <value> true if the <see cref="IMediaBuffer"/> is read-only; otherwise, false.
+        /// <value> true if the <see cref="IMediaBuffer"/> is read-only; otherwise, false.</value>
         bool IsReadOnly { get; }
 
         /// <summary>

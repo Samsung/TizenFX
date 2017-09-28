@@ -63,10 +63,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the mime type of the current format.
         /// </summary>
-        public MediaFormatContainerMimeType MimeType
-        {
-            get;
-        }
+        public MediaFormatContainerMimeType MimeType { get; }
 
         internal override void AsNativeHandle(IntPtr handle)
         {
@@ -77,11 +74,17 @@ namespace Tizen.Multimedia
             MultimediaDebug.AssertNoError(ret);
         }
 
-        public override string ToString()
-        {
-            return $"MimeType={ MimeType.ToString() }";
-        }
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString() => $"MimeType={ MimeType.ToString() }";
 
+        /// <summary>
+        /// Compares an object to an instance of <see cref="ContainerMediaFormat"/> for equality.
+        /// </summary>
+        /// <param name="obj">A <see cref="Object"/> to compare.</param>
+        /// <returns>true if the formats are equal; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             var rhs = obj as ContainerMediaFormat;
@@ -93,9 +96,11 @@ namespace Tizen.Multimedia
             return MimeType == rhs.MimeType;
         }
 
+        /// <summary>
+        /// Gets the hash code for this instance of <see cref="ContainerMediaFormat"/>.
+        /// </summary>
+        /// <returns>The hash code for this instance of <see cref="ContainerMediaFormat"/>.</returns>
         public override int GetHashCode()
-        {
-            return (int)MimeType;
-        }
+            => (int)MimeType;
     }
 }
