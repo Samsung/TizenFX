@@ -262,6 +262,9 @@ namespace Tizen.Network.Nsd
             }
         }
 
+        /// <summary>
+        /// Destroy the SsdpService object
+        /// </summary>
         ~SsdpService()
         {
             Dispose(false);
