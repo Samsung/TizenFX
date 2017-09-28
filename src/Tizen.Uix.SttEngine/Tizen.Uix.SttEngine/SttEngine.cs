@@ -504,7 +504,6 @@ namespace Tizen.Uix.SttEngine
         /// </remarks>
         /// <param name="argc">The Number of Arguments</param>
         /// <param name="argv">The Arguments Array</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid Parameter</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of Permission denied</exception>
         /// <exception cref="NotSupportedException">Thrown in case of Not supported</exception>
         /// <exception cref="InvalidOperationException">thrown in case of Operation failure</exception>
@@ -558,7 +557,6 @@ namespace Tizen.Uix.SttEngine
         /// <param name="resultCount">Result text count</param>
         /// <param name="msg">Engine message</param>
         /// <param name="timeInfo">The time information</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid Parameter</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of Permission denied</exception>
         /// <exception cref="NotSupportedException">Thrown in case of Not supported</exception>
         /// <exception cref="InvalidOperationException">thrown in case of Operation failure</exception>
@@ -628,10 +626,9 @@ namespace Tizen.Uix.SttEngine
         /// </feature>
         /// <param name="error">The Error Reason</param>
         /// <param name="msg">The error message</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid Parameter</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of Permission denied</exception>
         /// <exception cref="NotSupportedException">Thrown in case of Not supported</exception>
-        /// <exception cref="InvalidOperationException">thrown in case of Operation failure</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of Operation failure</exception>
         /// <precondition>
         /// Main function should be invoked before this function is called.
         /// </precondition>
@@ -643,7 +640,6 @@ namespace Tizen.Uix.SttEngine
                 Log.Error(LogTag, "SendError Failed with error " + err);
                 throw ExceptionFactory.CreateException((ErrorCode)error);
             }
-
         }
 
         /// <summary>
@@ -657,7 +653,6 @@ namespace Tizen.Uix.SttEngine
         /// This API is invoked when Stt engine wants to notify the change of the speech status anytime. NOTE that this API can be invoked for recognizing the speech.
         /// </remarks>
         /// <param name="status">SpeechStatus</param>
-        /// <exception cref="ArgumentException">Thrown in case of Invalid Parameter</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of Permission denied</exception>
         /// <exception cref="NotSupportedException">Thrown in case of Not supported</exception>
         /// <exception cref="InvalidOperationException">thrown in case of Operation failure</exception>
@@ -705,6 +700,12 @@ namespace Tizen.Uix.SttEngine
         /// </precondition>
         public void SetPrivateDataSetDelegate(Action<string> callback)
         {
+            if (null == callback)
+            {
+                Log.Error(LogTag, "callback is null");
+                throw ExceptionFactory.CreateException(ErrorCode.InvalidParameter);
+            }
+
             _privateDatacallback = callback;
             _privateDataSetCb = (string key, string data) =>
             {
@@ -749,6 +750,12 @@ namespace Tizen.Uix.SttEngine
         /// </precondition>
         public void SetPrivateDataRequestedDelegate(OutAction<string> callback)
         {
+            if (null == callback)
+            {
+                Log.Error(LogTag, "callback is null");
+                throw ExceptionFactory.CreateException(ErrorCode.InvalidParameter);
+            }
+
             _privateDataRequestedCallback = callback;
             _privateDataRequestedCb = (string key, out string data) =>
             {
