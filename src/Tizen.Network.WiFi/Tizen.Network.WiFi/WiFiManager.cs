@@ -44,6 +44,9 @@ namespace Tizen.Network.WiFi
             }
         }
 
+        /// <summary>
+        /// Release the handle
+        /// </summary>
         protected override bool ReleaseHandle()
         {
             Interop.WiFi.Deinitialize(this.handle);
@@ -53,7 +56,7 @@ namespace Tizen.Network.WiFi
     }
 
     /// <summary>
-    /// A manager class which allows applications to connect to a Wireless Local Area Network (WLAN) and transfer data over the network.<br>
+    /// A manager class which allows applications to connect to a Wireless Local Area Network (WLAN) and transfer data over the network.
     /// The Wi-Fi Manager enables your application to activate and deactivate a local Wi-Fi device, and to connect to a WLAN network in the infrastructure mode.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>

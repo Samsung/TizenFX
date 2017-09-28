@@ -108,6 +108,9 @@ namespace Tizen.Network.WiFi
             Initialize();
         }
 
+        /// <summary>
+        /// Destroy the WiFiAP object
+        /// </summary>
         ~WiFiAP()
         {
             Dispose(false);
@@ -460,7 +463,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Deletes the information of a stored access point and disconnects it when the AP is connected.<br>
+        /// Deletes the information of a stored access point and disconnects it when the AP is connected.
         /// If an AP is connected, then the connection information will be stored. This information is used when a connection to that AP is established automatically.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
