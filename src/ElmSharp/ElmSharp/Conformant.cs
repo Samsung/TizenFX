@@ -21,7 +21,7 @@ namespace ElmSharp
     /// <summary>
     /// The check is a widget that can be used in elementary apps
     /// to account for space taken up by the indicator,
-    /// virtual keypad & softkey windows when running the illume2 module of E17.
+    /// virtual keypad &amp; softkey windows when running the illume2 module of E17.
     /// </summary>
     public class Conformant : Widget
     {

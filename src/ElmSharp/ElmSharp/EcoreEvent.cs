@@ -104,6 +104,13 @@ namespace ElmSharp
     /// <typeparam name="TEventArgs">Kinds of EventArgs</typeparam>
     public class EcoreEvent<TEventArgs> : IDisposable where TEventArgs : EventArgs
     {
+        /// <summary>
+        /// EventInfoParser delegate of EcoreEvent class
+        /// </summary>
+        /// <param name="data">IntPtr</param>
+        /// <param name="type">EcoreEventType</param>
+        /// <param name="info">IntPtr</param>
+        /// <returns></returns>
         public delegate TEventArgs EventInfoParser(IntPtr data, EcoreEventType type, IntPtr info);
 
         private bool _disposed = false;
@@ -130,6 +137,9 @@ namespace ElmSharp
             _parser = parser;
         }
 
+        /// <summary>
+        /// Destructor for EcoreEvent class.
+        /// </summary>
         ~EcoreEvent()
         {
             Dispose(false);
@@ -169,6 +179,13 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Releases all resources currently used by this instance.
+        /// </summary>
+        /// <param name="disposing">
+        /// true if managed resources should be disposed
+        /// otherwise, false.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -186,6 +203,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Destroy Current Obj
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

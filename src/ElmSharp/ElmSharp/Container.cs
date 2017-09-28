@@ -57,24 +57,43 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Gets the collection of child EvasObject of the Container.
+        /// </summary>
         protected IEnumerable<EvasObject> Children => _children;
 
+        /// <summary>
+        /// Add an EvasObject object as a child of Container.
+        /// </summary>
+        /// <param name="obj">The EvasObject object to be added</param>
         protected void AddChild(EvasObject obj)
         {
             _children.Add(obj);
             obj.Deleted += OnChildDeleted;
         }
 
+        /// <summary>
+        /// Remove an EvasObject object as a child of Container.
+        /// </summary>
+        /// <param name="obj">The EvasObject object to be removed</param>
         protected void RemoveChild(EvasObject obj)
         {
             _children.Remove(obj);
         }
 
+        /// <summary>
+        /// Clear all children of the Container.
+        /// </summary>
         protected void ClearChildren()
         {
             _children.Clear();
         }
 
+        /// <summary>
+        /// The Container Callback that is invoked when a child is removed.
+        /// </summary>
+        /// <param name="sender">The called Container</param>
+        /// <param name="a"><see cref="EventArgs"/></param>
         void OnChildDeleted(object sender, EventArgs a)
         {
             _children.Remove((EvasObject)sender);

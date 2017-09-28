@@ -54,6 +54,14 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Indicates whether this instance and a specified object are equal.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current instance.</param>
+        /// <returns>
+        /// true if obj and this instance are the same type and represent the same value.
+        /// otherwise, false.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (!(obj is Point))
@@ -62,6 +70,14 @@ namespace ElmSharp
             return Equals((Point)obj);
         }
 
+        /// <summary>
+        /// Indicates whether this instance and a <see cref="Point"/> object are equal.
+        /// </summary>
+        /// <param name="other">The <see cref="Point"/> to compare with the current instance.</param>
+        /// <returns>
+        /// true if obj and this instance are the same type and represent the same value.
+        /// otherwise, false.
+        /// </returns>
         public bool Equals(Point other)
         {
             return X.Equals(other.X) && Y.Equals(other.Y);

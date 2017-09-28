@@ -59,6 +59,14 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Indicates whether this instance and a specified object are equal.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current instance.</param>
+        /// <returns>
+        /// true if obj and this instance are the same type and represent the same value.
+        /// otherwise, false.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (!(obj is Point3D))
@@ -67,6 +75,14 @@ namespace ElmSharp
             return Equals((Point3D)obj);
         }
 
+        /// <summary>
+        /// Indicates whether this instance and a <see cref="Point3D"/> object are equal.
+        /// </summary>
+        /// <param name="other">The <see cref="Point3D"/> to compare with the current instance.</param>
+        /// <returns>
+        /// true if obj and this instance are the same type and represent the same value.
+        /// otherwise, false.
+        /// </returns>
         public bool Equals(Point3D other)
         {
             return X.Equals(other.X) && Y.Equals(other.Y) && Z.Equals(other.Z);

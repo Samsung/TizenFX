@@ -43,7 +43,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Destroy the EvasMap object.
+        /// Destructor for the EvasMap class.
         /// </summary>
         ~EvasMap()
         {

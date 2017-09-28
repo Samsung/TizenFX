@@ -109,9 +109,9 @@ namespace ElmSharp
         /// With RGBA parameters.
         /// </summary>
         /// <param name="r">Red of RGBA</param>
-        /// <param name="g">Green of RGBA<</param>
-        /// <param name="b">Blue of RGBA<</param>
-        /// <param name="a">Alpha of RGBA<</param>
+        /// <param name="g">Green of RGBA</param>
+        /// <param name="b">Blue of RGBA</param>
+        /// <param name="a">Alpha of RGBA</param>
         public Color(int r, int g, int b, int a) : this(r, g, b, a, Mode.Rgb)
         {
         }
@@ -132,6 +132,10 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A 32-bit signed integer hash code.</returns>
         public override int GetHashCode()
         {
             int hashcode = _r.GetHashCode();
@@ -141,6 +145,14 @@ namespace ElmSharp
             return hashcode;
         }
 
+        /// <summary>
+        /// Indicates whether this instance and a specified object are equal.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current instance.</param>
+        /// <returns>
+        /// true if obj and this instance are the same type and represent the same value.
+        /// otherwise, false.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (obj is Color)
@@ -189,6 +201,10 @@ namespace ElmSharp
             return color1._r == color2._r && color1._g == color2._g && color1._b == color2._b && color1._a == color2._a;
         }
 
+        /// <summary>
+        /// Returns the fully qualified type name of this instance.
+        /// </summary>
+        /// <returns>The fully qualified type name.</returns>
         public override string ToString()
         {
             return string.Format(CultureInfo.InvariantCulture, "[Color: R={0}, G={1}, B={2}, A={3}]", R, G, B, A);

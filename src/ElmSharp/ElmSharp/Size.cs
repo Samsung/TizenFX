@@ -65,6 +65,14 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Indicates whether this instance and a specified object are equal.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current instance.</param>
+        /// <returns>
+        /// true if obj and this instance are the same type and represent the same value.
+        /// otherwise, false.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (!(obj is Size))
@@ -73,6 +81,14 @@ namespace ElmSharp
             return Equals((Size)obj);
         }
 
+        /// <summary>
+        /// Indicates whether this instance and a <see cref="Size"/> object are equal.
+        /// </summary>
+        /// <param name="other">The <see cref="Size"/> to compare with the current instance.</param>
+        /// <returns>
+        /// true if obj and this instance are the same type and represent the same value.
+        /// otherwise, false.
+        /// </returns>
         public bool Equals(Size other)
         {
             return Width.Equals(other.Width) && Height.Equals(other.Height);

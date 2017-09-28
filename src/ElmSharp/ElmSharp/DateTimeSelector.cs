@@ -23,19 +23,37 @@ namespace ElmSharp
     /// </summary>
     public enum DateTimeFieldType
     {
+        /// <summary>
+        /// Indicates Year field.
+        /// </summary>
         Year,
+        /// <summary>
+        /// Indicates Month field.
+        /// </summary>
         Month,
+        /// <summary>
+        /// Indicates Date field.
+        /// </summary>
         Date,
+        /// <summary>
+        /// Indicates Hour field.
+        /// </summary>
         Hour,
+        /// <summary>
+        /// Indicates Minute field.
+        /// </summary>
         Minute,
+        /// <summary>
+        /// Indicates AM/PM field.
+        /// </summary>
         AmPm
     }
 
     /// <summary>
     /// It inherits <see cref="Layout"/>
-    /// DateTimeSelector is a widget to display and input date & time values.
+    /// DateTimeSelector is a widget to display and input date &amp; time values.
     /// This widget displays date and time as per the system's locale settings
-    /// (Date includes Day, Month & Year along with the defined separators and Time includes Hour, Minute & AM/PM fields. Separator for AM/PM field is ignored.
+    /// (Date includes Day, Month &amp; Year along with the defined separators and Time includes Hour, Minute &amp; AM/PM fields. Separator for AM/PM field is ignored.
     /// </summary>
     public class DateTimeSelector : Layout
     {
