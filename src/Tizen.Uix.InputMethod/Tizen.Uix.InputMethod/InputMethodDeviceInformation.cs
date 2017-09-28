@@ -90,9 +90,9 @@ namespace Tizen.Uix.InputMethod
         /// </summary>
         Palm,
         /// <summary>
-        /// HandSIze
+        /// HandSize
         /// </summary>
-        HandSIze,
+        HandSize,
         /// <summary>
         /// HandFlat
         /// </summary>
