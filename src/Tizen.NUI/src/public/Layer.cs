@@ -43,6 +43,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <seealso cref="Container.Add">
         /// </seealso>
+        /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
             NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
@@ -55,6 +56,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <seealso cref="Container.Remove">
         /// </seealso>
+        /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
             NDalicPINVOKE.Actor_Remove(swigCPtr, View.getCPtr(child));
@@ -68,6 +70,7 @@ namespace Tizen.NUI
         /// <pre>The view has been initialized.</pre>
         /// <param name="index">The index of the child to retrieve.</param>
         /// <returns>The view for the given index or empty handle if children not initialized.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override View GetChildAt(uint index)
         {
             System.IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
@@ -134,6 +137,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a Layer object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Layer() : this(NDalicPINVOKE.Layer_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -173,6 +177,7 @@ namespace Tizen.NUI
         /// <remarks>The actor itself is also considered in the search.</remarks>
         /// <param name="id">The id of the child to find</param>
         /// <returns> A handle to the view if found, or an empty handle if not. </returns>
+        /// <since_tizen> 3 </since_tizen>
         public View FindChildById(uint id)
         {
             IntPtr cPtr = NDalicPINVOKE.Actor_FindChildById(swigCPtr, id);
@@ -187,6 +192,7 @@ namespace Tizen.NUI
         /// Queries the depth of the layer.<br>
         /// 0 is the bottommost layer, higher number is on the top.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint Depth
         {
             get
@@ -205,6 +211,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Increments the depth of the layer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Raise()
         {
             NDalicPINVOKE.Layer_Raise(swigCPtr);
@@ -214,6 +221,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Decrements the depth of the layer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Lower()
         {
             NDalicPINVOKE.Layer_Lower(swigCPtr);
@@ -235,6 +243,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Raises the layer to the top.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void RaiseToTop()
         {
             NDalicPINVOKE.Layer_RaiseToTop(swigCPtr);
@@ -244,6 +253,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Lowers the layer to the bottom.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void LowerToBottom()
         {
             NDalicPINVOKE.Layer_LowerToBottom(swigCPtr);
@@ -255,6 +265,7 @@ namespace Tizen.NUI
         /// After the call, this layer's depth will be immediately above target.<br>
         /// </summary>
         /// <param name="target">The layer to get on top of.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void MoveAbove(Layer target)
         {
             NDalicPINVOKE.Layer_MoveAbove(swigCPtr, Layer.getCPtr(target));
@@ -266,6 +277,7 @@ namespace Tizen.NUI
         /// After the call, this layer's depth will be immediately below target.<br>
         /// </summary>
         /// <param name="target">The layer to get below of.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void MoveBelow(Layer target)
         {
             NDalicPINVOKE.Layer_MoveBelow(swigCPtr, Layer.getCPtr(target));
@@ -320,6 +332,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for the behavior of the layer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum LayerBehavior
         {
             Layer2D,
@@ -335,6 +348,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Layer behavior, type String (Layer.LayerBehavior).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Layer.LayerBehavior Behavior
         {
             get
@@ -370,6 +384,7 @@ namespace Tizen.NUI
         /// Sets the viewport (in window coordinates), type rectangle.
         /// The contents of the layer will not be visible outside this box, when ViewportEnabled is true.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public Rectangle Viewport
         {
             get
@@ -399,6 +414,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves and sets the layer's opacity.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Opacity
         {
             get
@@ -416,6 +432,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves and sets the layer's visibility.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Visibility
         {
             get
@@ -433,6 +450,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the number of children held by the layer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public new uint ChildCount
         {
             get
@@ -447,6 +465,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the layer's name.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Name
         {
             get

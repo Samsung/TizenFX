@@ -16,7 +16,9 @@
 
 namespace Tizen.NUI
 {
-
+    /// <summary>
+    /// Sampler is a handle to an object that can be used to provide the sampling parameters to sample textures.
+    /// </summary>
     public class Sampler : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -64,25 +66,47 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-
+        /// <summary>
+        /// Create an instance of Sampler.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Sampler() : this(NDalicPINVOKE.Sampler_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
+        /// <summary>
+        /// Sets the filter modes for this sampler.
+        /// </summary>
+        /// <param name="minFilter">The minification filter that will be used.</param>
+        /// <param name="magFilter">The magnification filter that will be used.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetFilterMode(FilterModeType minFilter, FilterModeType magFilter)
         {
             NDalicPINVOKE.Sampler_SetFilterMode(swigCPtr, (int)minFilter, (int)magFilter);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets the wrap modes for this sampler.
+        /// </summary>
+        /// <param name="uWrap">Wrap mode for u coordinates.</param>
+        /// <param name="vWrap">Wrap mode for v coordinates.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetWrapMode(WrapModeType uWrap, WrapModeType vWrap)
         {
             NDalicPINVOKE.Sampler_SetWrapMode__SWIG_0(swigCPtr, (int)uWrap, (int)vWrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets the wrap modes for this sampler.
+        /// </summary>
+        /// <param name="rWrap">Wrap mode for the x direction.</param>
+        /// <param name="sWrap">Wrap mode for the y direction.</param>
+        /// <param name="tWrap">Wrap mode for the z direction.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetWrapMode(WrapModeType rWrap, WrapModeType sWrap, WrapModeType tWrap)
         {
             NDalicPINVOKE.Sampler_SetWrapMode__SWIG_1(swigCPtr, (int)rWrap, (int)sWrap, (int)tWrap);

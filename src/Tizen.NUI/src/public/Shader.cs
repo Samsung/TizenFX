@@ -16,7 +16,9 @@
 
 namespace Tizen.NUI
 {
-
+    /// <summary>
+    /// Shader.
+    /// </summary>
     public class Shader : Animatable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -66,10 +68,28 @@ namespace Tizen.NUI
 
         public class Hint
         {
+            /// <summary>
+            /// Enumeration for the hint value.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public enum Value
             {
+                /// <summary>
+                /// No hints.
+                /// </summary>
+                /// <since_tizen> 3 </since_tizen>
                 NONE = 0x00,
+
+                /// <summary>
+                /// Might generate transparent alpha from opaque inputs
+                /// </summary>
+                /// <since_tizen> 3 </since_tizen>
                 OUTPUT_IS_TRANSPARENT = 0x01,
+
+                /// <summary>
+                /// Might change position of vertices, this option disables any culling optimizations
+                /// </summary>
+                /// <since_tizen> 3 </since_tizen>
                 MODIFIES_GEOMETRY = 0x02
             }
         }
@@ -79,17 +99,36 @@ namespace Tizen.NUI
             public static readonly int PROGRAM = NDalicPINVOKE.Shader_Property_PROGRAM_get();
         }
 
+        /// <summary>
+        /// Creates Shader object.
+        /// </summary>
+        /// <param name="vertexShader">The vertex shader code for the effect.</param>
+        /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
+        /// <param name="hints">The hints to define the geometry of the rendered object.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Shader(string vertexShader, string fragmentShader, Shader.Hint.Value hints) : this(NDalicPINVOKE.Shader_New__SWIG_0(vertexShader, fragmentShader, (int)hints), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+
+        /// <summary>
+        /// Creates Shader object.
+        /// </summary>
+        /// <param name="vertexShader">The vertex shader code for the effect.</param>
+        /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Shader(string vertexShader, string fragmentShader) : this(NDalicPINVOKE.Shader_New__SWIG_1(vertexShader, fragmentShader), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
+
+        /// <summary>
+        /// Gets and Sets the program property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap Program
         {
             get

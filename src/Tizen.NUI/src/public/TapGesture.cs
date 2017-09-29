@@ -84,6 +84,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The number of taps property (read-only).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint NumberOfTaps
         {
             get
@@ -95,6 +96,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The number of touches property (read-only).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint NumberOfTouches
         {
             get
@@ -106,6 +108,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The screen point property (read-only).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScreenPoint
         {
             get
@@ -117,6 +120,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The local point property (read-only).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 LocalPoint
         {
             get
@@ -128,6 +132,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a TapGesture.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public TapGesture() : this(NDalicPINVOKE.new_TapGesture__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

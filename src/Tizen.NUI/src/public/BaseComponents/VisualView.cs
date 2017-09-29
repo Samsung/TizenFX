@@ -65,6 +65,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Overrides the parent method.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public override void OnInitialize()
         {
             //Initialize empty
@@ -78,6 +79,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="visualName">The name of a visual to add. If a name is added to an existing visual name, the visual will be replaced.</param>
         /// <param name="visualMap">The property map of a visual to create.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AddVisual(string visualName, VisualMap visualMap)
         {
             VisualBase visual = null;
@@ -126,6 +128,7 @@ namespace Tizen.NUI.BaseComponents
         /// Removes a visual by name.
         /// </summary>
         /// <param name="visualName">The name of a visual to remove.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void RemoveVisual(string visualName)
         {
             foreach (var item in _visualDictionary)
@@ -146,6 +149,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets the total number of visuals which are added by users.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int NumberOfVisuals
         {
             get
@@ -157,6 +161,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Removes all visuals of the visual view.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void RemoveAll()
         {
             foreach (var item in _visualDictionary)
@@ -178,6 +183,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).</remarks>
         /// <param name="size">The allocated size.</param>
         /// <param name="container">The control should add actors to this container that it is not able to allocate a size for.</param>
+        /// <since_tizen> 3 </since_tizen>
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
             foreach (var item in _visualDictionary)
@@ -215,6 +221,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="alphaFunction">The alpha function of visual animation.</param>
         /// <param name="initialValue">The initial property value of visual animation.</param>
         /// <returns>Animation instance</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Animation AnimateVisual(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
             string _alphaFunction = null;
@@ -342,6 +349,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="endTime">The end time of visual animation.</param>
         /// <param name="alphaFunction">The alpha function of visual animation.</param>
         /// <param name="initialValue">The initial property value of visual animation.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AnimateVisualAdd(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
             string _alphaFunction = null;
@@ -461,6 +469,7 @@ namespace Tizen.NUI.BaseComponents
         /// Finishes to add a visual animation (transition) map and creates a transition animation.
         /// </summary>
         /// <returns>Animation instance.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Animation AnimateVisualAddFinish()
         {
             if ( _animateArray == null || _animateArray.Empty())

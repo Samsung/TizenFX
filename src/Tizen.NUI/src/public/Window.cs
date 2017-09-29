@@ -150,6 +150,7 @@ namespace Tizen.NUI
         /// Sets whether the window accepts a focus or not.
         /// </summary>
         /// <param name="accept">If a focus is accepted or not. The default is true.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetAcceptFocus(bool accept)
         {
             NDalicPINVOKE.SetAcceptFocus(swigCPtr, accept);
@@ -160,6 +161,7 @@ namespace Tizen.NUI
         /// Returns whether the window accepts a focus or not.
         /// </summary>
         /// <returns>True if the window accepts a focus, false otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsFocusAcceptable()
         {
             bool ret = NDalicPINVOKE.IsFocusAcceptable(swigCPtr);
@@ -171,6 +173,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Shows the window if it is hidden.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Show()
         {
             NDalicPINVOKE.Show(swigCPtr);
@@ -180,6 +183,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Hides the window if it is showing.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Hide()
         {
             NDalicPINVOKE.Hide(swigCPtr);
@@ -190,6 +194,7 @@ namespace Tizen.NUI
         /// Retrieves whether the window is visible or not.
         /// </summary>
         /// <returns>True if the window is visible.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsVisible()
         {
             bool temp = NDalicPINVOKE.IsVisible(swigCPtr);
@@ -201,6 +206,7 @@ namespace Tizen.NUI
         /// Gets the count of supported auxiliary hints of the window.
         /// </summary>
         /// <returns>The number of supported auxiliary hints.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetSupportedAuxiliaryHintCount() {
             uint ret = NDalicPINVOKE.GetSupportedAuxiliaryHintCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -212,6 +218,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="index">The index of the supported auxiliary hint lists.</param>
         /// <returns>The auxiliary hint string of the index.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public string GetSupportedAuxiliaryHint(uint index) {
             string ret = NDalicPINVOKE.GetSupportedAuxiliaryHint(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -224,6 +231,7 @@ namespace Tizen.NUI
         /// <param name="hint">The auxiliary hint string.</param>
         /// <param name="value">The value string.</param>
         /// <returns>The ID of created auxiliary hint, or 0 on failure.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint AddAuxiliaryHint(string hint, string value) {
             uint ret = NDalicPINVOKE.AddAuxiliaryHint(swigCPtr, hint, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -235,6 +243,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="id">The ID of the auxiliary hint.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool RemoveAuxiliaryHint(uint id) {
             bool ret = NDalicPINVOKE.RemoveAuxiliaryHint(swigCPtr, id);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -247,6 +256,7 @@ namespace Tizen.NUI
         /// <param name="id">The auxiliary hint ID.</param>
         /// <param name="value">The value string to be set.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool SetAuxiliaryHintValue(uint id, string value) {
             bool ret = NDalicPINVOKE.SetAuxiliaryHintValue(swigCPtr, id, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -258,6 +268,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="id">The auxiliary hint ID.</param>
         /// <returns>The string value of the auxiliary hint ID, or an empty string if none exists.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public string GetAuxiliaryHintValue(uint id) {
             string ret = NDalicPINVOKE.GetAuxiliaryHintValue(swigCPtr, id);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -269,6 +280,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="hint">The auxiliary hint string.</param>
         /// <returns>The ID of auxiliary hint string, or 0 on failure.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetAuxiliaryHintId(string hint) {
             uint ret = NDalicPINVOKE.GetAuxiliaryHintId(swigCPtr, hint);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -279,6 +291,7 @@ namespace Tizen.NUI
         /// Sets a region to accept input events.
         /// </summary>
         /// <param name="inputRegion">The region to accept input events.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetInputRegion(Rectangle inputRegion) {
             NDalicPINVOKE.SetInputRegion(swigCPtr, Rectangle.getCPtr(inputRegion));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -287,6 +300,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets a window type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WindowType Type
         {
             get
@@ -307,6 +321,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="level">The notification window level.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool SetNotificationLevel(NotificationLevel level) {
             bool ret = NDalicPINVOKE.SetNotificationLevel(swigCPtr, (int)level);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -317,6 +332,7 @@ namespace Tizen.NUI
         /// Gets a priority level for the specified notification window.
         /// </summary>
         /// <returns>The notification window level.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public NotificationLevel GetNotificationLevel() {
             NotificationLevel ret = (NotificationLevel)NDalicPINVOKE.GetNotificationLevel(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -327,6 +343,7 @@ namespace Tizen.NUI
         /// Sets a transparent window's visual state to opaque.
         /// </summary>
         /// <param name="opaque">Whether the window's visual state is opaque.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetOpaqueState(bool opaque) {
             NDalicPINVOKE.SetOpaqueState(swigCPtr, opaque);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -336,6 +353,7 @@ namespace Tizen.NUI
         /// Returns whether a transparent window's visual state is opaque or not.
         /// </summary>
         /// <returns>True if the window's visual state is opaque, false otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsOpaqueState() {
             bool ret = NDalicPINVOKE.IsOpaqueState(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -347,6 +365,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="screenMode">The screen mode.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool SetScreenMode(ScreenMode screenMode) {
             bool ret = NDalicPINVOKE.SetScreenMode(swigCPtr, (int)screenMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -357,6 +376,7 @@ namespace Tizen.NUI
         /// Gets the screen mode of the window.
         /// </summary>
         /// <returns>The screen mode.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public ScreenMode GetScreenMode() {
             ScreenMode ret = (ScreenMode)NDalicPINVOKE.GetScreenMode(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -368,6 +388,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="brightness">The preferred brightness (0 to 100).</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool SetBrightness(int brightness) {
             bool ret = NDalicPINVOKE.SetBrightness(swigCPtr, brightness);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -378,6 +399,7 @@ namespace Tizen.NUI
         /// Gets the preferred brightness of the window.
         /// </summary>
         /// <returns>The preferred brightness.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public int GetBrightness() {
             int ret = NDalicPINVOKE.GetBrightness(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -398,6 +420,10 @@ namespace Tizen.NUI
         private delegate void WindowFocusChangedEventCallbackType(bool focusGained);
         private event EventHandler<FocusChangedEventArgs> _windowFocusChangedEventHandler;
 
+        /// <summary>
+        /// FocusChanged event.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<FocusChangedEventArgs> FocusChanged
         {
             add
@@ -436,6 +462,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets/Sets a window title.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Title
         {
             get
@@ -499,6 +526,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="name">The name of the window.</param>
         /// <param name="klass">The class of the window.</param>
+        /// <since_tizen> 4 </since_tizen>
         public void SetClass(string name, string klass)
         {
             NDalicPINVOKE.Window_SetClass(swigCPtr, name, klass);
@@ -508,6 +536,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Raises the window to the top of the window stack.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Raise()
         {
             NDalicPINVOKE.Window_Raise(swigCPtr);
@@ -517,6 +546,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Lowers the window to the bottom of the window stack.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Lower()
         {
             NDalicPINVOKE.Window_Lower(swigCPtr);
@@ -526,6 +556,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Activates the window to the top of the window stack even it is iconified.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Activate()
         {
             NDalicPINVOKE.Window_Activate(swigCPtr);
@@ -582,6 +613,7 @@ namespace Tizen.NUI
         /// Gets the default ( root ) layer.
         /// </summary>
         /// <returns>The root layer.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Layer GetDefaultLayer()
         {
             return this.GetRootLayer();
@@ -637,6 +669,7 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public Layer GetLayer(uint depth)
         {
             IntPtr cPtr = NDalicPINVOKE.Stage_GetLayer(stageCPtr, depth);
@@ -687,6 +720,7 @@ namespace Tizen.NUI
         /// Keep rendering for at least the given amount of time.
         /// </summary>
         /// <param name="durationSeconds">Time to keep rendering, 0 means render at least one more frame.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void KeepRendering(float durationSeconds)
         {
             NDalicPINVOKE.Stage_KeepRendering(stageCPtr, durationSeconds);
@@ -777,6 +811,7 @@ namespace Tizen.NUI
         /// The stage instance property (read-only).<br>
         /// Gets the current window.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Window Instance
         {
             get
@@ -792,6 +827,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="DaliKey">The key code to grab.</param>
         /// <returns>True if the grab succeeds.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool GrabKeyTopmost(int DaliKey)
         {
             bool ret = NDalicManualPINVOKE.GrabKeyTopmost(HandleRef.ToIntPtr(this.swigCPtr), DaliKey);
@@ -805,6 +841,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="DaliKey">The key code to ungrab.</param>
         /// <returns>True if the ungrab succeeds.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool UngrabKeyTopmost(int DaliKey)
         {
             bool ret = NDalicManualPINVOKE.UngrabKeyTopmost(HandleRef.ToIntPtr(this.swigCPtr), DaliKey);
@@ -822,6 +859,7 @@ namespace Tizen.NUI
         /// <param name="DaliKey">The key code to grab.</param>
         /// <param name="GrabMode">The grab mode for the key.</param>
         /// <returns>True if the grab succeeds.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool GrabKey(int DaliKey, KeyGrabMode GrabMode)
         {
             bool ret = NDalicManualPINVOKE.GrabKey(HandleRef.ToIntPtr(this.swigCPtr), DaliKey, (int)GrabMode);
@@ -835,6 +873,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="DaliKey">The key code to ungrab.</param>
         /// <returns>True if the ungrab succeeds.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool UngrabKey(int DaliKey)
         {
             bool ret = NDalicManualPINVOKE.UngrabKey(HandleRef.ToIntPtr(this.swigCPtr), DaliKey);
@@ -852,6 +891,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for orientation of the window is the way in which a rectangular page is oriented for normal viewing.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum WindowOrientation
         {
             Portrait = 0,
@@ -863,6 +903,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for the key grab mode for platform-level APIs.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum KeyGrabMode
         {
             /// <summary>
@@ -913,6 +954,7 @@ namespace Tizen.NUI
             /// <summary>
             /// Touch.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public Touch Touch
             {
                 get
@@ -935,6 +977,7 @@ namespace Tizen.NUI
         /// then when the last finger is lifted.<br>
         /// An interrupted event will also be emitted (if it occurs).<br>
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<TouchEventArgs> TouchEvent
         {
             add
@@ -984,6 +1027,7 @@ namespace Tizen.NUI
             /// <summary>
             /// Wheel.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public Wheel Wheel
             {
                 get
@@ -1003,6 +1047,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This event is emitted when the wheel event is received.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<WheelEventArgs> WheelEvent
         {
             add
@@ -1049,6 +1094,7 @@ namespace Tizen.NUI
             /// <summary>
             /// Key.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public Key Key
             {
                 get
@@ -1068,6 +1114,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This event is emitted when the key event is received.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<KeyEventArgs> KeyEvent
         {
             add
@@ -1265,6 +1312,10 @@ namespace Tizen.NUI
         private delegate void WindowResizedEventCallbackType(IntPtr windowSize);
         private event EventHandler<ResizedEventArgs> _windowResizedEventHandler;
 
+        /// <summary>
+        /// This event is emitted when the window resized.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<ResizedEventArgs> Resized
         {
             add
@@ -1338,6 +1389,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The window size property (read-only).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Size2D Size
         {
             get
@@ -1350,6 +1402,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The background color property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Color BackgroundColor
         {
             set
@@ -1367,6 +1420,7 @@ namespace Tizen.NUI
         /// The DPI property (read-only).<br>
         /// Retrieves the DPI of the display device to which the Window is connected.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 Dpi
         {
             get
@@ -1379,6 +1433,7 @@ namespace Tizen.NUI
         /// The layer count property (read-only).<br>
         /// Queries the number of on-Window layers.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint LayerCount
         {
             get
@@ -1392,6 +1447,7 @@ namespace Tizen.NUI
         /// Adds a layer to the stage.
         /// </summary>
         /// <param name="layer">Layer to add.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AddLayer(Layer layer)
         {
             NDalicPINVOKE.Stage_Add(stageCPtr, Layer.getCPtr(layer));
@@ -1402,6 +1458,7 @@ namespace Tizen.NUI
         /// Removes a layer from the stage.
         /// </summary>
         /// <param name="layer">Layer to remove.</param>
+        /// <since_tizen> 4 </since_tizen>
         public void RemoveLayer(Layer layer)
         {
             NDalicPINVOKE.Stage_Remove(stageCPtr, Layer.getCPtr(layer));
@@ -1463,6 +1520,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets a size of the window.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public Size2D WindowSize
         {
             get
@@ -1478,6 +1536,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets a position of the window.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public Position2D WindowPosition
         {
             get
@@ -1493,6 +1552,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Feed a key-event into the window.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static void FeedKeyEvent(Key keyEvent)
         {
             NDalicManualPINVOKE.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
@@ -1503,6 +1563,7 @@ namespace Tizen.NUI
         /// Allows at least one more render, even when paused.
         /// The window should be shown, not minimised.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void RenderOnce()
         {
             NDalicManualPINVOKE.Window_RenderOnce(swigCPtr);

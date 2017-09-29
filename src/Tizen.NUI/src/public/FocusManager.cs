@@ -163,6 +163,7 @@ namespace Tizen.NUI
         /// This event is only triggered when the navigation key is pressed and KeyboardFocusManager tries to move the focus automatically.<br>
         /// It won't be emitted for focus movement by calling the SetCurrentFocusView directly.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandlerWithReturnType<object, PreFocusChangeEventArgs, View> PreFocusChange
         {
             add
@@ -273,6 +274,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The FocusGroupChanged will be triggered after the current focused view has been changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<FocusChangedEventArgs> FocusChanged
         {
             add
@@ -351,6 +353,7 @@ namespace Tizen.NUI
         /// If the current focus group has a parent layout control, the FocusManager will make the best guess for the next focus group to move the focus to in the given direction (forward or backward).<br>
         /// If not, the application has to set the new focus.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<FocusGroupChangedEventArgs> FocusGroupChanged
         {
             add
@@ -414,6 +417,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The FocusedViewActivated will be triggered when the current focused view has the enter key pressed on it.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<FocusedViewActivatedEventArgs> FocusedViewActivated
         {
             add
@@ -468,6 +472,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="view">The view to be focused.</param>
         /// <returns>Whether the focus is successful or not.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool SetCurrentFocusView(View view)
         {
             if(view == null)
@@ -484,6 +489,7 @@ namespace Tizen.NUI
         /// Gets the current focused view.
         /// </summary>
         /// <returns>A handle to the current focused view or an empty handle if no view is focused.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public View GetCurrentFocusView()
         {
             IntPtr cPtr = NDalicManualPINVOKE.FocusManager_GetCurrentFocusActor(swigCPtr);
@@ -497,6 +503,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="direction">The direction of the focus movement.</param>
         /// <returns>True if the movement was successful.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool MoveFocus(View.FocusDirection direction)
         {
             bool ret = NDalicManualPINVOKE.FocusManager_MoveFocus(swigCPtr, (int)direction);
@@ -508,6 +515,7 @@ namespace Tizen.NUI
         /// Clears the focus from the current focused view if any, so that no view is focused in the focus chain.<br>
         /// It will emit the FocusChanged event without the current focused view.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void ClearFocus()
         {
             NDalicManualPINVOKE.FocusManager_ClearFocus(swigCPtr);
@@ -517,6 +525,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Move the focus to previous focused view.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void MoveFocusBackward()
         {
             NDalicManualPINVOKE.FocusManager_MoveFocusBackward(swigCPtr);
@@ -527,6 +536,7 @@ namespace Tizen.NUI
         /// Gets or sets the status of whether the focus movement should be looped within the same focus group.<br>
         /// The focus movement is not looped by default.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool FocusGroupLoop
         {
             set
@@ -558,6 +568,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="view">The view to be set as a focus group.</param>
         /// <param name="isFocusGroup">Whether to set the view as a focus group or not.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetAsFocusGroup(View view, bool isFocusGroup)
         {
             NDalicManualPINVOKE.FocusManager_SetAsFocusGroup(swigCPtr, View.getCPtr(view), isFocusGroup);
@@ -569,6 +580,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="view">The view to be checked.</param>
         /// <returns>Whether the view is set as a focus group.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsFocusGroup(View view)
         {
             bool ret = NDalicManualPINVOKE.FocusManager_IsFocusGroup(swigCPtr, View.getCPtr(view));
@@ -581,6 +593,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="view">The view to be checked for its focus group.</param>
         /// <returns>The focus group the given view belongs to or an empty handle if the given view.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public View GetFocusGroup(View view)
         {
             IntPtr cPtr = NDalicManualPINVOKE.FocusManager_GetFocusGroup(swigCPtr, View.getCPtr(view));
@@ -602,6 +615,7 @@ namespace Tizen.NUI
         /// Gets or sets the focus indicator view.<br>
         /// This will replace the default focus indicator view in the FocusManager and will be added to the focused view as a highlight.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public View FocusIndicator
         {
             set
@@ -633,6 +647,7 @@ namespace Tizen.NUI
         /// Provides the implementation of a custom focus algorithm interface to allow the application to define the focus logic.<br>
         /// </summary>
         /// <param name="arg0">The user's implementation of ICustomFocusAlgorithm.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetCustomAlgorithm(ICustomFocusAlgorithm arg0)
         {
             _customAlgorithmInterfaceWrapper = new CustomAlgorithmInterfaceWrapper();
@@ -675,6 +690,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the singleton of the FocusManager object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static FocusManager Instance
         {
             get
@@ -690,6 +706,7 @@ namespace Tizen.NUI
         /// If this does not provide a valid view, then the Keyboard FocusManager will check focusable properties to determine the next focusable actor.<br>
         /// If focusable properties are not set, then the keyboard FocusManager calls the GetNextFocusableView() method of this interface.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public interface ICustomFocusAlgorithm
         {
             View GetNextFocusableView(View current, View proposed, View.FocusDirection direction);
@@ -716,8 +733,8 @@ namespace Tizen.NUI
 
 
 
-       //Please do not use! this will be deprecated
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        //Please do not use! this will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class FocusedViewEnterKeyEventArgs : EventArgs
         {
             private View _view;

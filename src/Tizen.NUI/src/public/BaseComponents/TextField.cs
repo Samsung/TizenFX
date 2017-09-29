@@ -96,6 +96,7 @@ namespace Tizen.NUI.BaseComponents
             /// <summary>
             /// TextField.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public TextField TextField
             {
                 get
@@ -119,6 +120,7 @@ namespace Tizen.NUI.BaseComponents
             /// <summary>
             /// TextField.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public TextField TextField
             {
                 get
@@ -146,6 +148,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The TextChanged event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<TextChangedEventArgs> TextChanged
         {
             add
@@ -185,6 +188,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The MaxLengthReached event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<MaxLengthReachedEventArgs> MaxLengthReached
         {
             add
@@ -297,6 +301,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Creates the TextField control.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public TextField() : this(NDalicPINVOKE.TextField_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -349,6 +354,7 @@ namespace Tizen.NUI.BaseComponents
         /// <exception cref='ArgumentNullException'>
         /// ResourceManager about multilingual is null.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public string TranslatableText
         {
             get
@@ -372,6 +378,7 @@ namespace Tizen.NUI.BaseComponents
         /// <exception cref='ArgumentNullException'>
         /// ResourceManager about multilingual is null.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public string TranslatablePlaceholderText
         {
             get
@@ -420,6 +427,7 @@ namespace Tizen.NUI.BaseComponents
         }
         /// The Text property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Text
         {
             get
@@ -437,6 +445,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The PlaceholderText property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string PlaceholderText
         {
             get
@@ -454,6 +463,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The PlaceholderTextFocused property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string PlaceholderTextFocused
         {
             get
@@ -471,6 +481,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The FontFamily property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string FontFamily
         {
             get
@@ -488,6 +499,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The FontStyle property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap FontStyle
         {
             get
@@ -505,6 +517,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The PointSize property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float PointSize
         {
             get
@@ -522,6 +535,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The MaxLength property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int MaxLength
         {
             get
@@ -539,6 +553,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The ExceedPolicy property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int ExceedPolicy
         {
             get
@@ -556,6 +571,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The HorizontalAlignment property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public HorizontalAlignment HorizontalAlignment
         {
             get
@@ -611,6 +627,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The VerticalAlignment property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VerticalAlignment VerticalAlignment
         {
             get
@@ -666,6 +683,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The TextColor property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Color TextColor
         {
             get
@@ -683,6 +701,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The PlaceholderTextColor property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector4 PlaceholderTextColor
         {
             get
@@ -700,6 +719,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The ShadowOffset property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ShadowOffset
         {
             get
@@ -717,6 +737,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The ShadowColor property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector4 ShadowColor
         {
             get
@@ -734,6 +755,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The PrimaryCursorColor property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector4 PrimaryCursorColor
         {
             get
@@ -751,6 +773,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SecondaryCursorColor property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector4 SecondaryCursorColor
         {
             get
@@ -768,6 +791,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The EnableCursorBlink property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool EnableCursorBlink
         {
             get
@@ -785,6 +809,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The CursorBlinkInterval property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float CursorBlinkInterval
         {
             get
@@ -802,6 +827,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The CursorBlinkDuration property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float CursorBlinkDuration
         {
             get
@@ -819,6 +845,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The CursorWidth property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int CursorWidth
         {
             get
@@ -836,6 +863,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The GrabHandleImage property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string GrabHandleImage
         {
             get
@@ -853,6 +881,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The GrabHandlePressedImage property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string GrabHandlePressedImage
         {
             get
@@ -870,6 +899,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The ScrollThreshold property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float ScrollThreshold
         {
             get
@@ -887,6 +917,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The ScrollSpeed property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float ScrollSpeed
         {
             get
@@ -904,6 +935,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SelectionHandleImageLeft property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleImageLeft
         {
             get
@@ -921,6 +953,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SelectionHandleImageRight property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleImageRight
         {
             get
@@ -938,6 +971,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SelectionHandlePressedImageLeft property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandlePressedImageLeft
         {
             get
@@ -955,6 +989,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SelectionHandlePressedImageRight property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandlePressedImageRight
         {
             get
@@ -972,6 +1007,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SelectionHandleMarkerImageLeft property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleMarkerImageLeft
         {
             get
@@ -989,6 +1025,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SelectionHandleMarkerImageRight property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleMarkerImageRight
         {
             get
@@ -1006,6 +1043,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SelectionHighlightColor property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector4 SelectionHighlightColor
         {
             get
@@ -1023,6 +1061,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The DecorationBoundingBox property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Rectangle DecorationBoundingBox
         {
             get
@@ -1040,6 +1079,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The InputMethodSettings property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap InputMethodSettings
         {
             get
@@ -1057,6 +1097,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The InputColor property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector4 InputColor
         {
             get
@@ -1074,6 +1115,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The EnableMarkup property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool EnableMarkup
         {
             get
@@ -1091,6 +1133,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The InputFontFamily property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string InputFontFamily
         {
             get
@@ -1108,6 +1151,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The InputFontStyle property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap InputFontStyle
         {
             get
@@ -1125,6 +1169,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The InputPointSize property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float InputPointSize
         {
             get
@@ -1142,6 +1187,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The Underline property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap Underline
         {
             get
@@ -1159,6 +1205,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The InputUnderline property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string InputUnderline
         {
             get
@@ -1176,6 +1223,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The Shadow property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap Shadow
         {
             get
@@ -1193,6 +1241,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The InputShadow property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string InputShadow
         {
             get
@@ -1210,6 +1259,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The Emboss property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Emboss
         {
             get
@@ -1227,6 +1277,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The InputEmboss property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string InputEmboss
         {
             get
@@ -1244,6 +1295,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The Outline property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Outline
         {
             get
@@ -1261,6 +1313,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The InputOutline property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string InputOutline
         {
             get
@@ -1278,6 +1331,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The HiddenInputSettings property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap HiddenInputSettings
         {
             get
@@ -1295,6 +1349,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The PixelSize property.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float PixelSize
         {
             get
@@ -1312,6 +1367,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The Enable selection property.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool EnableSelection
         {
             get
@@ -1350,6 +1406,7 @@ namespace Tizen.NUI.BaseComponents
         /// field.Placeholder = propertyMap;
         /// </code>
         /// </example>
+        /// <since_tizen> 4 </since_tizen>
         public Tizen.NUI.PropertyMap Placeholder
         {
             get

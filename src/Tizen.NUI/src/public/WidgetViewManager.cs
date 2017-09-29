@@ -77,6 +77,10 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        /// <summary>
+        /// Creates a new widgetView manager object.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public WidgetViewManager(NUIApplication nuiApplication, string appId) : this(NDalicManualPINVOKE.WidgetViewManager_New(Application.getCPtr(nuiApplication.ApplicationHandle), appId), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -110,6 +114,7 @@ namespace Tizen.NUI
         /// <param name="height">The widget height.</param>
         /// <param name="updatePeriod">The period of updating contents of the widget.</param>
         /// <returns>A handle to WidgetView.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public WidgetView AddWidget(string widgetId, string contentInfo, int width, int height, float updatePeriod)
         {
             WidgetView ret = new WidgetView(NDalicManualPINVOKE.WidgetViewManager_AddWidget(swigCPtr, widgetId, contentInfo, width, height, updatePeriod), true);

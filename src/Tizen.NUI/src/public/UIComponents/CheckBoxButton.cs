@@ -79,6 +79,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Creates an initialized CheckBoxButton.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CheckBoxButton() : this(NDalicPINVOKE.CheckBoxButton_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

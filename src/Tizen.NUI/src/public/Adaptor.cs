@@ -65,6 +65,7 @@ namespace Tizen.NUI
             }
         }
 
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -270,6 +271,7 @@ namespace Tizen.NUI
         /// Returns a reference to the instance of the adaptor used by the current thread.
         /// </summary>
         /// <remarks>The adaptor has been initialized. This is only valid in the main thread.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public static Adaptor Instance
         {
             get
@@ -334,6 +336,7 @@ namespace Tizen.NUI
         /// Feeds a wheel event to the adaptor.
         /// </summary>
         /// <param name="wheelEvent">The wheel event.</param>
+        /// <since_tizen> 4 </since_tizen>
         public void FeedWheelEvent(Wheel wheelEvent)
         {
             NDalicManualPINVOKE.Adaptor_FeedWheelEvent(swigCPtr, Wheel.getCPtr(wheelEvent));
@@ -344,6 +347,7 @@ namespace Tizen.NUI
         /// Feeds a key event to the adaptor.
         /// </summary>
         /// <param name="keyEvent">The key event holding the key information.</param>
+        /// <since_tizen> 4 </since_tizen>
         public void FeedKeyEvent(Key keyEvent)
         {
             NDalicManualPINVOKE.Adaptor_FeedKeyEvent(swigCPtr, Key.getCPtr(keyEvent));
@@ -386,6 +390,7 @@ namespace Tizen.NUI
             /// <summary>
             /// Adaptor - is the adaptor which has size changed.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public Adaptor Adaptor
             {
                 get;
@@ -454,6 +459,7 @@ namespace Tizen.NUI
             /// <summary>
             /// Adaptor - is the adaptor which has language changed.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public Adaptor Adaptor
             {
                 get;

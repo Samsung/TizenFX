@@ -74,6 +74,7 @@ namespace Tizen.NUI
         /// This is the constructor for Widget.
         /// </summary>
         /// <param name="id">for widget instance</param>
+        /// <since_tizen> 4 </since_tizen>
         public Widget(string id) : this(NDalicManualPINVOKE.Widget_New(id), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -99,6 +100,7 @@ namespace Tizen.NUI
             /// <summary>
             /// widget data.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public WidgetData WidgetData
             {
                 get;
@@ -108,6 +110,7 @@ namespace Tizen.NUI
             /// <summary>
             /// a bundle.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public SWIGTYPE_p_bundle Bundle
             {
                 get;
@@ -117,6 +120,7 @@ namespace Tizen.NUI
             /// <summary>
             /// window size.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public Size2D WindowSize
             {
                 get;
@@ -132,6 +136,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Create event.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<CreateEventArgs> Create
         {
             add
@@ -192,6 +197,7 @@ namespace Tizen.NUI
             /// <summary>
             /// widget data.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public WidgetData WidgetData
             {
                 get;
@@ -201,6 +207,7 @@ namespace Tizen.NUI
             /// <summary>
             /// a bundle.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public SWIGTYPE_p_bundle Bundle
             {
                 get;
@@ -210,6 +217,7 @@ namespace Tizen.NUI
             /// <summary>
             /// widget terminate type.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public WidgetTerminateType WidgetTerminateType
             {
                 get;
@@ -225,6 +233,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Terminate event.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<TerminateEventArgs> Terminate
         {
             add
@@ -280,6 +289,7 @@ namespace Tizen.NUI
             /// <summary>
             /// widget data.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public WidgetData WidgetData
             {
                 get;
@@ -295,6 +305,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Pause event.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<PauseEventArgs> Pause
         {
             add
@@ -345,6 +356,7 @@ namespace Tizen.NUI
             /// <summary>
             /// widget data.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public WidgetData WidgetData
             {
                 get;
@@ -360,6 +372,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Resume event.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<ResumeEventArgs> Resume
         {
             add
@@ -410,6 +423,7 @@ namespace Tizen.NUI
             /// <summary>
             /// widget data.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public WidgetData WidgetData
             {
                 get;
@@ -419,6 +433,7 @@ namespace Tizen.NUI
             /// <summary>
             /// window size.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public Size2D WindowSize
             {
                 get;
@@ -434,6 +449,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Resize event.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<ResizeEventArgs> Resize
         {
             add
@@ -490,6 +506,7 @@ namespace Tizen.NUI
             /// <summary>
             /// widget data.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public WidgetData WidgetData
             {
                 get;
@@ -499,6 +516,7 @@ namespace Tizen.NUI
             /// <summary>
             /// A bundle.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public SWIGTYPE_p_bundle Bundle
             {
                 get;
@@ -513,6 +531,7 @@ namespace Tizen.NUI
             /// 1 -> force but do someting
             /// 2 -> force
             /// </remark>
+            /// <since_tizen> 4 </since_tizen>
             public int Force
             {
                 get;
@@ -528,6 +547,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Update event.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<UpdateEventArgs> Update
         {
             add
@@ -578,6 +598,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for terminate type of widget instance.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum WidgetTerminateType
         {
             /// <summary>
@@ -593,6 +614,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for lifecycle event type of widget instance.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum WidgetLifecycleEventType
         {
             /// <summary>

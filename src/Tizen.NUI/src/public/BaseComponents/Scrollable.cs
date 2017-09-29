@@ -20,6 +20,10 @@ namespace Tizen.NUI.BaseComponents
     using System;
     using System.Runtime.InteropServices;
 
+    /// <summary>
+    /// Base class for derived Scrollables that contains actors that can be scrolled manually
+    /// (via touch) or automatically.
+    /// </summary>
     public class Scrollable : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -100,6 +104,10 @@ namespace Tizen.NUI.BaseComponents
         {
             private Vector2 _vector2;
 
+            /// <summary>
+            /// Vector2.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public Vector2 Vector2
             {
                 get
@@ -117,6 +125,10 @@ namespace Tizen.NUI.BaseComponents
         {
             private Vector2 _vector2;
 
+            /// <summary>
+            /// Vector2.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public Vector2 Vector2
             {
                 get
@@ -134,6 +146,10 @@ namespace Tizen.NUI.BaseComponents
         {
             private Vector2 _vector2;
 
+            /// <summary>
+            /// Vector2.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public Vector2 Vector2
             {
                 get
@@ -162,6 +178,10 @@ namespace Tizen.NUI.BaseComponents
         private DaliEventHandler<object, CompletedEventArgs> _scrollableCompletedEventHandler;
         private CompletedCallbackDelegate _scrollableCompletedCallbackDelegate;
 
+        /// <summary>
+        /// The ScrollStarted event emitted when the Scrollable has moved (whether by touch or animation).
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event DaliEventHandler<object, StartedEventArgs> ScrollStarted
         {
             add
@@ -208,6 +228,10 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
+        /// <summary>
+        /// The ScrollUpdated event emitted when the Scrollable has moved (whether by touch or animation).
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event DaliEventHandler<object, UpdatedEventArgs> ScrollUpdated
         {
             add
@@ -254,6 +278,11 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
+        /// <summary>
+        /// The ScrollCompleted event emitted when the Scrollable has completed movement
+        /// (whether by touch or animation).
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event DaliEventHandler<object, CompletedEventArgs> ScrollCompleted
         {
             add
@@ -320,6 +349,10 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
+        /// <summary>
+        /// Create an instance of scrollable.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Scrollable() : this(NDalicPINVOKE.new_Scrollable__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -385,6 +418,10 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        /// <summary>
+        /// Sets and Gets the color of the overshoot effect.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector4 OvershootEffectColor
         {
             get
@@ -398,6 +435,11 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(Scrollable.Property.OVERSHOOT_EFFECT_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets the speed of overshoot animation in pixels per second.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float OvershootAnimationSpeed
         {
             get
@@ -411,6 +453,11 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(Scrollable.Property.OVERSHOOT_ANIMATION_SPEED, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Checks if scroll overshoot has been enabled or not.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool OvershootEnabled
         {
             get
@@ -424,6 +471,11 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(Scrollable.Property.OVERSHOOT_ENABLED, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets OvershootSize property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 OvershootSize
         {
             get
@@ -437,6 +489,11 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(Scrollable.Property.OVERSHOOT_SIZE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets ScrollToAlphaFunction property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int ScrollToAlphaFunction
         {
             get
@@ -450,6 +507,11 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(Scrollable.Property.SCROLL_TO_ALPHA_FUNCTION, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets ScrollRelativePosition property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScrollRelativePosition
         {
             get
@@ -463,6 +525,11 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(Scrollable.Property.SCROLL_RELATIVE_POSITION, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets ScrollPositionMin property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScrollPositionMin
         {
             get
@@ -476,6 +543,11 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(Scrollable.Property.SCROLL_POSITION_MIN, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets ScrollPositionMax property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScrollPositionMax
         {
             get
@@ -489,6 +561,11 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(Scrollable.Property.SCROLL_POSITION_MAX, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets CanScrollVertical property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool CanScrollVertical
         {
             get
@@ -502,6 +579,11 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(Scrollable.Property.CAN_SCROLL_VERTICAL, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets CanScrollHorizontal property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool CanScrollHorizontal
         {
             get

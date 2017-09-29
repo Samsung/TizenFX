@@ -70,18 +70,17 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        /**
-          * @brief Event arguments that passed via Notify signal
-          *
-          */
+        ///<summary>
+        /// Event arguments that passed via Notify signal
+        ///</summary>
         public class NotifyEventArgs : EventArgs
         {
             private PropertyNotification _propertyNotification;
 
-            /**
-              * @brief PropertyNotification - is the PropertyNotification handle that has the notification properties.
-              *
-              */
+            ///<summary>
+            /// PropertyNotification - is the PropertyNotification handle that has the notification properties.
+            ///</summary>
+            /// <since_tizen> 4 </since_tizen>
             public PropertyNotification PropertyNotification
             {
                 get
@@ -100,11 +99,12 @@ namespace Tizen.NUI
         private DaliEventHandler<object, NotifyEventArgs> _propertyNotificationNotifyEventHandler;
         private NotifyEventCallbackDelegate _propertyNotificationNotifyEventCallbackDelegate;
 
-        /**
-          * @brief Event for Notified signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of NotifyEventHandler-DaliEventHandler<object,NotifyEventArgs>) provided by the user.
-          * Notified signal is emitted when the notification upon a condition of the property being met, has occurred.
-          */
+        ///<summary>
+        /// Event for Notified signal which can be used to subscribe/unsubscribe the event handler
+        /// (in the type of NotifyEventHandler-DaliEventHandler<object,NotifyEventArgs>) provided by the user.
+        /// Notified signal is emitted when the notification upon a condition of the property being met, has occurred.
+        ///</summary>
+        /// <since_tizen> 4 </since_tizen>
         public event DaliEventHandler<object, NotifyEventArgs> Notified
         {
             add
@@ -149,6 +149,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Get property notification from Intptr.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static PropertyNotification GetPropertyNotificationFromPtr(global::System.IntPtr cPtr)
         {
             PropertyNotification ret = new PropertyNotification(cPtr, false);
@@ -156,12 +160,19 @@ namespace Tizen.NUI
             return ret;
         }
 
-
+        /// <summary>
+        /// Create a instance of PropertyNotification.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public PropertyNotification() : this(NDalicPINVOKE.new_PropertyNotification__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Downcast a PropertyNotification instance.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static PropertyNotification DownCast(BaseHandle handle)
         {
             PropertyNotification ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PropertyNotification;
@@ -169,11 +180,19 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Create a instance of PropertyNotification.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public PropertyNotification(PropertyNotification handle) : this(NDalicPINVOKE.new_PropertyNotification__SWIG_1(PropertyNotification.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Assign.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public PropertyNotification Assign(PropertyNotification rhs)
         {
             PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.PropertyNotification_Assign(swigCPtr, PropertyNotification.getCPtr(rhs)), false);
@@ -181,6 +200,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the condition of this notification.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public PropertyCondition GetCondition()
         {
             PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.PropertyNotification_GetCondition__SWIG_0(swigCPtr), true);
@@ -188,6 +211,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the target handle that this notification is observing.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public Animatable GetTarget()
         {
             Animatable ret = new Animatable(NDalicPINVOKE.PropertyNotification_GetTarget(swigCPtr), true);
@@ -195,6 +222,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the target handle's property index that this notification.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int GetTargetProperty()
         {
             int ret = NDalicPINVOKE.PropertyNotification_GetTargetProperty(swigCPtr);
@@ -202,12 +233,20 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the Notification mode.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void SetNotifyMode(PropertyNotification.NotifyMode mode)
         {
             NDalicPINVOKE.PropertyNotification_SetNotifyMode(swigCPtr, (int)mode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Retrieves the current Notification mode.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public PropertyNotification.NotifyMode GetNotifyMode()
         {
             PropertyNotification.NotifyMode ret = (PropertyNotification.NotifyMode)NDalicPINVOKE.PropertyNotification_GetNotifyMode(swigCPtr);
@@ -215,6 +254,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the result of the last condition check that caused a signal emit,
+        /// useful when using NotifyOnChanged mode and need to know what it changed to.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool GetNotifyResult()
         {
             bool ret = NDalicPINVOKE.PropertyNotification_GetNotifyResult(swigCPtr);
@@ -229,6 +273,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Enumeration for description of how to check condition.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum NotifyMode
         {
             Disabled,

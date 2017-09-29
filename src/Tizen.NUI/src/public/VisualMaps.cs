@@ -64,6 +64,7 @@ namespace Tizen.NUI
         /// or absolute (in world units).<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Size2D Size
         {
             get
@@ -87,6 +88,7 @@ namespace Tizen.NUI
         /// or absolute (in world units).<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 Position
         {
             get
@@ -109,6 +111,7 @@ namespace Tizen.NUI
         /// (percentage [0.0f to 1.0f] of the control).<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RelativeVector2 RelativeSize
         {
             get
@@ -128,6 +131,7 @@ namespace Tizen.NUI
         /// (percentage [0.0f to 1.0f] of the control).<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RelativeVector2 RelativePosition
         {
             get
@@ -148,6 +152,7 @@ namespace Tizen.NUI
         /// By default, both the x and the y offset are relative.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VisualTransformPolicyType PositionPolicy
         {
             get
@@ -183,6 +188,7 @@ namespace Tizen.NUI
         /// By default, the x offset is relative.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VisualTransformPolicyType PositionPolicyX
         {
             get
@@ -223,6 +229,7 @@ namespace Tizen.NUI
         /// By default, the y offset is relative.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VisualTransformPolicyType PositionPolicyY
         {
             get
@@ -262,6 +269,7 @@ namespace Tizen.NUI
         /// By default, offsets of both the width and the height are relative to the control's size.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VisualTransformPolicyType SizePolicy
         {
             get
@@ -297,6 +305,7 @@ namespace Tizen.NUI
         /// By default, the value of the width is relative to the control's width.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VisualTransformPolicyType SizePolicyWidth
         {
             get
@@ -336,6 +345,7 @@ namespace Tizen.NUI
         /// By default, the height value is relative to the control's height.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VisualTransformPolicyType SizePolicyHeight
         {
             get
@@ -374,6 +384,7 @@ namespace Tizen.NUI
         /// By default, the origin is center.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Visual.AlignType Origin
         {
             get
@@ -392,6 +403,7 @@ namespace Tizen.NUI
         /// By default, the anchor point is center.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Visual.AlignType AnchorPoint
         {
             get
@@ -410,6 +422,7 @@ namespace Tizen.NUI
         /// By default, the depth index is 0.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int DepthIndex
         {
             get
@@ -436,6 +449,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the transform map used by the visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap OutputTransformMap
         {
             get
@@ -453,6 +467,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the property map to create the visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap OutputVisualMap
         {
             get
@@ -485,6 +500,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The shader to use in the visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap Shader
         {
             get
@@ -502,6 +518,7 @@ namespace Tizen.NUI
         /// Enables or disables the premultiplied alpha. <br>
         /// The premultiplied alpha is false by default unless this behavior is modified by the derived visual type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool PremultipliedAlpha
         {
             get
@@ -518,6 +535,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Mix color is a blend color for any visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Color MixColor
         {
             get
@@ -534,6 +552,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Opacity is the alpha component of the mix color discussed above.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Opacity
         {
             get
@@ -577,6 +596,7 @@ namespace Tizen.NUI
         /// Mandatory.
         /// </summary>
 
+        /// <since_tizen> 3 </since_tizen>
         public string URL
         {
             get
@@ -595,6 +615,7 @@ namespace Tizen.NUI
         /// Gets or sets the URL of the alpha mask.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string AlphaMaskURL
         {
             get
@@ -614,6 +635,7 @@ namespace Tizen.NUI
         /// For normal quad images only.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public FittingModeType FittingMode
         {
             get
@@ -633,6 +655,7 @@ namespace Tizen.NUI
         /// For normal quad images only.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SamplingModeType SamplingMode
         {
             get
@@ -652,6 +675,7 @@ namespace Tizen.NUI
         /// For normal quad images only.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int DesiredWidth
         {
             get
@@ -671,6 +695,7 @@ namespace Tizen.NUI
         /// For normal quad images only.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int DesiredHeight
         {
             get
@@ -690,6 +715,7 @@ namespace Tizen.NUI
         /// For normal quad images only.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool SynchronousLoading
         {
             get
@@ -709,6 +735,7 @@ namespace Tizen.NUI
         /// For n-patch images only.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool BorderOnly
         {
             get
@@ -730,6 +757,7 @@ namespace Tizen.NUI
         /// For normal quad images only.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector4 PixelArea
         {
             get
@@ -750,6 +778,7 @@ namespace Tizen.NUI
         /// For normal quad images only.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WrapModeType WrapModeU
         {
             get
@@ -771,6 +800,7 @@ namespace Tizen.NUI
         /// For normal quad images only.
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WrapModeType WrapModeV
         {
             get
@@ -784,6 +814,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Gets or sets scale factor to apply to the content image before masking.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public float MaskContentScale
         {
             get
@@ -797,6 +831,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        ///  Whether to crop image to mask or scale mask to fit image.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool CropToMask
         {
             get
@@ -860,6 +898,7 @@ namespace Tizen.NUI
         /// Gets or sets the text to display in the UTF-8 format.<br>
         /// Mandatory.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Text
         {
             get
@@ -877,6 +916,7 @@ namespace Tizen.NUI
         /// Gets or sets the requested font family to use.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string FontFamily
         {
             get
@@ -894,6 +934,7 @@ namespace Tizen.NUI
         /// Gets or sets the requested font style to use.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap FontStyle
         {
             get
@@ -911,6 +952,7 @@ namespace Tizen.NUI
         /// Gets or sets the size of font in points.<br>
         /// Mandatory.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float PointSize
         {
             get
@@ -929,6 +971,7 @@ namespace Tizen.NUI
         /// If not specified, the default is false.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool MultiLine
         {
             get
@@ -947,6 +990,7 @@ namespace Tizen.NUI
         /// If not specified, the default is begin.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public HorizontalAlignment HorizontalAlignment
         {
             get
@@ -997,6 +1041,7 @@ namespace Tizen.NUI
         /// If not specified, the default is top.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VerticalAlignment VerticalAlignment
         {
             get
@@ -1046,6 +1091,7 @@ namespace Tizen.NUI
         /// Gets or sets the color of the text.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Color TextColor
         {
             get
@@ -1063,6 +1109,7 @@ namespace Tizen.NUI
         /// Gets or sets whether the mark-up processing is enabled.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool EnableMarkup
         {
             get
@@ -1116,6 +1163,7 @@ namespace Tizen.NUI
         /// Gets or sets the color of the border.<br>
         /// Mandatory.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Color Color
         {
             get
@@ -1133,6 +1181,7 @@ namespace Tizen.NUI
         /// Gets or sets the width of the border (in pixels).<br>
         /// Mandatory.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float BorderSize
         {
             get
@@ -1151,6 +1200,7 @@ namespace Tizen.NUI
         /// If not supplied, the default is false.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool AntiAliasing
         {
             get
@@ -1196,6 +1246,7 @@ namespace Tizen.NUI
         /// Gets or sets the solid color required.<br>
         /// Mandatory.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Color Color
         {
             get
@@ -1245,6 +1296,7 @@ namespace Tizen.NUI
         /// Gets or sets the start position of a linear gradient.<br>
         /// Mandatory for linear.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 StartPosition
         {
             get
@@ -1262,6 +1314,7 @@ namespace Tizen.NUI
         /// Gets or sets the end position of a linear gradient.<br>
         /// Mandatory for linear.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 EndPosition
         {
             get
@@ -1279,6 +1332,7 @@ namespace Tizen.NUI
         /// Gets or sets the center point of a radial gradient.<br>
         /// Mandatory for radial.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 Center
         {
             get
@@ -1296,6 +1350,7 @@ namespace Tizen.NUI
         /// Gets or sets the size of the radius of a radial gradient.<br>
         /// Mandatory for radial.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Radius
         {
             get
@@ -1315,6 +1370,7 @@ namespace Tizen.NUI
         /// If not supplied, the default is 0.0f and 1.0f.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyArray StopOffset
         {
             get
@@ -1334,6 +1390,7 @@ namespace Tizen.NUI
         /// At least 2 values are required to show a gradient.<br>
         /// Mandatory.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyArray StopColor
         {
             get
@@ -1352,6 +1409,7 @@ namespace Tizen.NUI
         /// If not supplied, the default is GradientVisualUnitsType.ObjectBoundingBox.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public GradientVisualUnitsType Units
         {
             get
@@ -1370,6 +1428,7 @@ namespace Tizen.NUI
         /// If not supplied, the default is GradientVisualSpreadMethodType.Pad.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public GradientVisualSpreadMethodType SpreadMethod
         {
             get
@@ -1426,6 +1485,7 @@ namespace Tizen.NUI
         /// Gets or sets the location of the ".obj" file.<br>
         /// Mandatory.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ObjectURL
         {
             get
@@ -1444,6 +1504,7 @@ namespace Tizen.NUI
         /// If not specified, then a textureless object is assumed.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string MaterialtURL
         {
             get
@@ -1461,6 +1522,7 @@ namespace Tizen.NUI
         /// Gets or sets the path to the directory the textures (including gloss and normal) are stored in.<br>
         /// Mandatory if using material.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string TexturesPath
         {
             get
@@ -1480,6 +1542,7 @@ namespace Tizen.NUI
         /// If not specified, it will use the best it can support (will try MeshVisualShadingModeValue.TexturedWithDetailedSpecularLighting first).<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MeshVisualShadingModeValue ShadingMode
         {
             get
@@ -1498,6 +1561,7 @@ namespace Tizen.NUI
         /// If not specified, the default is true.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool UseMipmapping
         {
             get
@@ -1516,6 +1580,7 @@ namespace Tizen.NUI
         /// If not specified, the default is true.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool UseSoftNormals
         {
             get
@@ -1536,6 +1601,7 @@ namespace Tizen.NUI
         /// If not specified, the default is an offset outwards from the center of the screen.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector3 LightPosition
         {
             get
@@ -1596,6 +1662,7 @@ namespace Tizen.NUI
         /// If not specified, the default is PrimitiveVisualShapeType.Sphere.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PrimitiveVisualShapeType Shape
         {
             get
@@ -1615,6 +1682,7 @@ namespace Tizen.NUI
         /// Applies to all shapes.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public new Color MixColor
         {
             get
@@ -1635,6 +1703,7 @@ namespace Tizen.NUI
         /// The range is from 1 to 255.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Slices
         {
             get
@@ -1655,6 +1724,7 @@ namespace Tizen.NUI
         /// The range is from 1 to 255.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Stacks
         {
             get
@@ -1675,6 +1745,7 @@ namespace Tizen.NUI
         /// Only values greater than or equal to 0.0f are accepted.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float ScaleTopRadius
         {
             get
@@ -1696,6 +1767,7 @@ namespace Tizen.NUI
         /// Only values greater than or equal to 0.0f are accepted.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float ScaleBottomRadius
         {
             get
@@ -1719,6 +1791,7 @@ namespace Tizen.NUI
         /// Only values greater than or equal to 0.0f are accepted.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float ScaleHeight
         {
             get
@@ -1740,6 +1813,7 @@ namespace Tizen.NUI
         /// Only values greater than or equal to 0.0f are accepted.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float ScaleRadius
         {
             get
@@ -1763,6 +1837,7 @@ namespace Tizen.NUI
         /// Each Vector3 parameter should be greater than or equal to 0.0f.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector3 ScaleDimensions
         {
             get
@@ -1785,6 +1860,7 @@ namespace Tizen.NUI
         /// The range is from 0.0f to 1.0f.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float BevelPercentage
         {
             get
@@ -1806,6 +1882,7 @@ namespace Tizen.NUI
         /// The range is from 0.0f to 1.0f.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float BevelSmoothness
         {
             get
@@ -1827,6 +1904,7 @@ namespace Tizen.NUI
         /// Applies to all shapes.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector3 LightPosition
         {
             get
@@ -1879,6 +1957,7 @@ namespace Tizen.NUI
         /// Gets or sets the URL of the image.<br>
         /// Mandatory.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string URL
         {
             get
@@ -1898,6 +1977,7 @@ namespace Tizen.NUI
         /// For n-patch images only.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool BorderOnly
         {
             get
@@ -1916,6 +1996,7 @@ namespace Tizen.NUI
         /// For n-patch images only.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Rectangle Border
         {
             get
@@ -1999,6 +2080,10 @@ namespace Tizen.NUI
         private int? _cacheSize = null;
         private float? _frameDelay = null;
 
+        /// <summary>
+        /// Gets and Sets the url in the AnimatedImageVisual.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string URL
         {
             get
@@ -2027,6 +2112,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Gets and Sets the url list in the AnimatedImageVisual.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public List<string> URLS
         {
             get
@@ -2040,6 +2129,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Gets and Sets the batch size for pre-loading images in the AnimatedImageVisual.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int BatchSize
         {
             get
@@ -2053,6 +2146,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Gets and Sets the cache size for loading images in the AnimatedImageVisual.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int CacheSize
         {
             get
@@ -2065,6 +2162,11 @@ namespace Tizen.NUI
                 UpdateVisual();
             }
         }
+
+        /// <summary>
+        /// Gets and Sets The number of milliseconds between each frame in the AnimatedImageVisual.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public float FrameDelay
         {
             get
@@ -2109,10 +2211,16 @@ namespace Tizen.NUI
     }
 
 
-
     //temporary fix for TCT
+    /// <summary>
+    /// A class encapsulating the property map of the transition data.
+    /// </summary>
     public class VisualAnimator : VisualMap
     {
+        /// <summary>
+        /// Create VisualAnimator object.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VisualAnimator() : base()
         {
         }
@@ -2124,6 +2232,10 @@ namespace Tizen.NUI
         private string _propertyIndex = null;
         private object _destinationValue = null;
 
+        /// <summary>
+        /// Sets and Gets the AlphaFunction of this transition.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AlphaFunction.BuiltinFunctions AlphaFunction
         {
             get
@@ -2238,6 +2350,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Sets and Gets the StartTime of this transition.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int StartTime
         {
             get
@@ -2250,6 +2366,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Sets and Gets the EndTime of this transition.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int EndTime
         {
             get
@@ -2262,6 +2382,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Sets and Gets the Target of this transition.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Target
         {
             get
@@ -2274,6 +2398,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Sets and Gets the PropertyIndex of this transition.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string PropertyIndex
         {
             get
@@ -2286,6 +2414,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Sets and Gets the DestinationValue of this transition.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public object DestinationValue
         {
             get

@@ -81,6 +81,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Creates an uninitialized RadioButton.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RadioButton() : this(NDalicPINVOKE.RadioButton_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -91,6 +92,7 @@ namespace Tizen.NUI.UIComponents
         /// Creates an uninitialized RadioButton with the label.
         /// </summary>
         /// <param name="label">The label text.</param>
+        /// <since_tizen> 3 </since_tizen>
         public RadioButton(string label) : this(NDalicPINVOKE.RadioButton_New__SWIG_1(label), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

@@ -17,6 +17,9 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// Animatable.
+    /// </summary>
     public class Animatable : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -63,7 +66,10 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-
+        /// <summary>
+        /// Create an instance of animatable.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Animatable() : this(NDalicPINVOKE.Handle_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -77,6 +83,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Queries the name of a property.
+        /// </summary>
+        /// <param name="index">The index of the property.</param>
+        /// <returns>The name of the property.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public string GetPropertyName(int index)
         {
             string ret = NDalicPINVOKE.Handle_GetPropertyName(swigCPtr, index);
@@ -84,6 +96,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Queries the index of a property.
+        /// </summary>
+        /// <param name="name">The name of the property.</param>
+        /// <returns>The index of the property.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public int GetPropertyIndex(string name)
         {
             int ret = NDalicPINVOKE.Handle_GetPropertyIndex(swigCPtr, name);
@@ -91,6 +109,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Queries whether a property can be writable.
+        /// </summary>
+        /// <param name="index">The index of the property.</param>
+        /// <returns>True if the property is writable.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsPropertyWritable(int index)
         {
             bool ret = NDalicPINVOKE.Handle_IsPropertyWritable(swigCPtr, index);
@@ -98,6 +122,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// whether a writable property can be the target of an animation.
+        /// </summary>
+        /// <param name="index">The index of the property.</param>
+        /// <returns>True if the property is animatable.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsPropertyAnimatable(int index)
         {
             bool ret = NDalicPINVOKE.Handle_IsPropertyAnimatable(swigCPtr, index);
@@ -105,6 +135,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Queries the type of a property.
+        /// </summary>
+        /// <param name="index">The index of the property.</param>
+        /// <returns>The type of the property.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyType GetPropertyType(int index)
         {
             PropertyType ret = (PropertyType)NDalicPINVOKE.Handle_GetPropertyType(swigCPtr, index);
@@ -112,11 +148,24 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the value of an existing property.
+        /// </summary>
+        /// <param name="index">The index of the property.</param>
+        /// <param name="propertyValue">The new value of the property.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetProperty(int index, PropertyValue propertyValue)
         {
             Tizen.NUI.Object.SetProperty(swigCPtr, index, propertyValue);
         }
 
+        /// <summary>
+        /// Registers a new animatable property.
+        /// </summary>
+        /// <param name="name">The name of the property.</param>
+        /// <param name="propertyValue">The new value of the property.</param>
+        /// <returns>The type of the property.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public int RegisterProperty(string name, PropertyValue propertyValue)
         {
             int ret = NDalicPINVOKE.Handle_RegisterProperty__SWIG_0(swigCPtr, name, PropertyValue.getCPtr(propertyValue));
@@ -124,6 +173,14 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Registers a new animatable property.
+        /// </summary>
+        /// <param name="name">The name of the property.</param>
+        /// <param name="propertyValue">The new value of the property.</param>
+        /// <param name="accessMode">The property access mode (writable, animatable etc).</param>
+        /// <returns>The type of the property.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public int RegisterProperty(string name, PropertyValue propertyValue, PropertyAccessMode accessMode)
         {
             int ret = NDalicPINVOKE.Handle_RegisterProperty__SWIG_1(swigCPtr, name, PropertyValue.getCPtr(propertyValue), (int)accessMode);
@@ -131,12 +188,25 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves a property value.
+        /// </summary>
+        /// <param name="index">The index of the property.</param>
+        /// <returns>The property value.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyValue GetProperty(int index)
         {
             PropertyValue ret = Tizen.NUI.Object.GetProperty(swigCPtr, index);
             return ret;
         }
 
+        /// <summary>
+        /// Adds a property notification to this object.
+        /// </summary>
+        /// <param name="property">The name of the property.</param>
+        /// <param name="condition">The notification will be triggered when this condition is satisfied.</param>
+        /// <returns>A handle to the newly created PropertyNotification.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public PropertyNotification AddPropertyNotification(string property, PropertyCondition condition)
         {
             PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.Handle_AddPropertyNotification__SWIG_0(swigCPtr, PropertyHelper.GetPropertyFromString(this, property).propertyIndex, PropertyCondition.getCPtr(condition)), true);
@@ -151,12 +221,21 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Removes a property notification from this object.
+        /// </summary>
+        /// <param name="propertyNotification">The propertyNotification to be removed.</param>
+        /// <since_tizen> 4 </since_tizen>
         public void RemovePropertyNotification(PropertyNotification propertyNotification)
         {
             NDalicPINVOKE.Handle_RemovePropertyNotification(swigCPtr, PropertyNotification.getCPtr(propertyNotification));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Removes a property notification from this object.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void RemovePropertyNotifications()
         {
             NDalicPINVOKE.Handle_RemovePropertyNotifications(swigCPtr);
@@ -175,6 +254,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Enumeration for Handle's capabilities that can be queried.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum Capability
         {
             DYNAMIC_PROPERTIES = 0x01

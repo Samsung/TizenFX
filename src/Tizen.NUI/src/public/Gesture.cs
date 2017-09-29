@@ -52,6 +52,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -105,6 +109,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The gesture type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Gesture.GestureType Type
         {
             get
@@ -116,6 +121,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The gesture state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Gesture.StateType State
         {
             get
@@ -127,6 +133,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The time the gesture took place.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint Time
         {
             get
@@ -139,6 +146,7 @@ namespace Tizen.NUI
         /// The Copy constructor.
         /// </summary>
         /// <param name="rhs">A reference to the copied handle</param>
+        /// <since_tizen> 3 </since_tizen>
         public Gesture(Gesture rhs) : this(NDalicPINVOKE.new_Gesture(Gesture.getCPtr(rhs)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -192,6 +200,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for type of gesture.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum GestureType
         {
             Pinch = 1 << 0,
@@ -203,6 +212,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for state of the gesture.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum StateType
         {
             Clear,

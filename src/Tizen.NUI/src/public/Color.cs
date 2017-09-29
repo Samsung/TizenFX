@@ -57,6 +57,7 @@ namespace Tizen.NUI
         /// <summary>
         /// To make a color instance be disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -112,6 +113,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the addition.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Color operator +(Color arg1, Color arg2)
         {
             Color result = arg1.Add(arg2);
@@ -125,6 +127,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the subtraction.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Color operator -(Color arg1, Color arg2)
         {
             Color result = arg1.Subtract(arg2);
@@ -137,6 +140,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg1">The target value.</param>
         /// <returns>The color containg the negation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Color operator -(Color arg1)
         {
             Color result = arg1.Subtract();
@@ -150,6 +154,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the multiplication.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Color operator *(Color arg1, Color arg2)
         {
             Color result = arg1.Multiply(arg2);
@@ -170,6 +175,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The color containing the result of the division.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Color operator /(Color arg1, Color arg2)
         {
             Color result = arg1.Divide(arg2);
@@ -189,6 +195,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="index">The subscript index.</param>
         /// <returns>The float at the given index.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float this[uint index]
         {
             get
@@ -207,6 +214,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Default constructor
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Color() : this(NDalicPINVOKE.new_Vector4__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -220,6 +228,7 @@ namespace Tizen.NUI
         /// <param name="g">The green component.</param>
         /// <param name="b">The blue component.</param>
         /// <param name="a">The alpha component.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Color(float r, float g, float b, float a) : this(NDalicPINVOKE.new_Vector4__SWIG_1(r, g, b, a), true)
         {
             ValueCheck(ref r);
@@ -233,6 +242,7 @@ namespace Tizen.NUI
         /// The conversion constructor from an array of four floats.
         /// </summary>
         /// <param name="array">array Array of R,G,B,A.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Color(float[] array) : this(NDalicPINVOKE.new_Vector4__SWIG_2(array), true)
         {
             ValueCheck(ref array[0]);
@@ -338,6 +348,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="rhs">A color to be compared.</param>
         /// <returns>If two colors are are same, then true.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(Color rhs)
         {
             bool ret = NDalicPINVOKE.Vector4_EqualTo(swigCPtr, Color.getCPtr(rhs));
@@ -353,6 +364,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="rhs">A color to be compared.</param>
         /// <returns>If two colors are are different, then true.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(Color rhs)
         {
             bool ret = NDalicPINVOKE.Vector4_NotEqualTo(swigCPtr, Color.getCPtr(rhs));
@@ -371,6 +383,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The red component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float R
         {
             set
@@ -390,6 +403,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The green component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float G
         {
             set
@@ -409,6 +423,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The blue component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float B
         {
             set
@@ -428,6 +443,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The alpha component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float A
         {
             set
@@ -447,52 +463,62 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the black colored Color class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Black = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 
         /// <summary>
         /// Gets the white colored Color class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color White = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
         /// <summary>
         /// Gets the red colored Color class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Red = new Color(1.0f, 0.0f, 0.0f, 1.0f);
 
         /// <summary>
         /// Gets the green colored Color class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Green = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 
         /// <summary>
         /// Gets the blue colored Color class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Blue = new Color(0.0f, 0.0f, 1.0f, 1.0f);
 
         /// <summary>
         /// Gets the yellow colored Color class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Yellow = new Color(1.0f, 1.0f, 0.0f, 1.0f);
 
         /// <summary>
         /// Gets the magenta colored Color class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Magenta = new Color(1.0f, 0.0f, 1.0f, 1.0f);
 
         /// <summary>
         /// Gets the cyan colored Color class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Cyan = new Color(0.0f, 1.0f, 1.0f, 1.0f);
 
         /// <summary>
         /// Gets the  transparent colored Color class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Transparent = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
         /// <summary>
         /// Converts the Color class to Vector4 class implicitly.
         /// </summary>
         /// <param name="color">A color to be converted to Vector4</param>
+        /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector4(Color color)
         {
             return new Vector4(color.R, color.G, color.B, color.A);
@@ -502,6 +528,7 @@ namespace Tizen.NUI
         /// Converts Vector4 class to Color class implicitly.
         /// </summary>
         /// <param name="vec">A Vector4 to be converted to color.</param></param>
+        /// <since_tizen> 3 </since_tizen>
         public static implicit operator Color(Vector4 vec)
         {
             return new Color(vec.R, vec.G, vec.B, vec.A);
@@ -568,5 +595,4 @@ namespace Tizen.NUI
     }
 
 }
-
 

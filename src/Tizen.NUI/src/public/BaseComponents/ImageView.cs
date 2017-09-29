@@ -48,6 +48,7 @@ namespace Tizen.NUI.BaseComponents
             /// <summary>
             /// The view whose resource is ready.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public View View
             {
                 get
@@ -71,6 +72,7 @@ namespace Tizen.NUI.BaseComponents
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
         /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ResourceReadyEventArgs> ResourceReady
         {
             add
@@ -157,6 +159,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Creates an initialized ImageView.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ImageView() : this(NDalicPINVOKE.ImageView_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -167,6 +170,7 @@ namespace Tizen.NUI.BaseComponents
         /// If the string is empty, ImageView will not display anything.<br>
         /// </summary>
         /// <param name="url">The URL of the image resource to display.</param>
+        /// <since_tizen> 3 </since_tizen>
         public ImageView(string url) : this(NDalicPINVOKE.ImageView_New__SWIG_2(url), true)
         {
             _url = url;
@@ -192,6 +196,7 @@ namespace Tizen.NUI.BaseComponents
         /// If the URL is empty, ImageView will not display anything.<br>
         /// </summary>
         /// <param name="url">The URL to the image resource to display.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetImage(string url)
         {
             _url = url;
@@ -216,6 +221,7 @@ namespace Tizen.NUI.BaseComponents
         /// Most resources are only loaded when the control is placed on the stage.<br>
         /// True if the resources are loaded and ready, false otherwise.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public new  bool IsResourceReady()
         {
             bool ret = NDalicPINVOKE.IsResourceReady(swigCPtr);
@@ -227,6 +233,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// ImageView ResourceUrl, type string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ResourceUrl
         {
             get
@@ -244,6 +251,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// ImageView ImageMap, type PropertyMap: string if it is a URL, map otherwise
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap ImageMap
         {
             get
@@ -272,6 +280,7 @@ namespace Tizen.NUI.BaseComponents
         /// ImageView PreMultipliedAlpha, type Boolean.<br>
         /// Image must be initialized.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool PreMultipliedAlpha
         {
             get
@@ -290,6 +299,7 @@ namespace Tizen.NUI.BaseComponents
         /// ImageView PixelArea, type Vector4 (Animatable property).<br>
         /// Pixel area is a relative value with the whole image area as [0.0, 0.0, 1.0, 1.0].<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RelativeVector4 PixelArea
         {
             get
@@ -310,6 +320,7 @@ namespace Tizen.NUI.BaseComponents
         /// For N-Patch images only.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Rectangle Border
         {
             get
@@ -329,6 +340,7 @@ namespace Tizen.NUI.BaseComponents
         /// For N-Patch images only.<br>
         /// Optional.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool BorderOnly
         {
             get

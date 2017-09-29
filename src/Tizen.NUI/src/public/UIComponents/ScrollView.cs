@@ -21,6 +21,9 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
 
+    /// <summary>
+    /// ScrollView contains views that can be scrolled manually (via touch).
+    /// </summary>
     public class ScrollView : Scrollable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -72,18 +75,17 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        /**
-          * @brief Event arguments that passed via the SnapStarted signal
-          *
-          */
+        /// <summary>
+        /// Event arguments that passed via the SnapStarted signal.
+        /// </summary>
         public class SnapStartedEventArgs : EventArgs
         {
             private Tizen.NUI.ScrollView.SnapEvent _snapEvent;
 
-            /**
-              * @brief SnapEvent - is the SnapEvent information like snap or flick (it tells the target position, scale, rotation for the snap or flick).
-              *
-              */
+            /// <summary>
+            /// SnapEventInfo is the SnapEvent information like snap or flick (it tells the target position, scale, rotation for the snap or flick).
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public Tizen.NUI.ScrollView.SnapEvent SnapEventInfo
             {
                 get
@@ -102,13 +104,13 @@ namespace Tizen.NUI
         private DaliEventHandler<object, SnapStartedEventArgs> _scrollViewSnapStartedEventHandler;
         private SnapStartedCallbackDelegate _scrollViewSnapStartedCallbackDelegate;
 
-        /**
-          * @brief Event for the SnapStarted signal which can be used to subscribe or unsubscribe the event handler
-          * (in the type of SnapStartedEventHandler-DaliEventHandler<object,SnapStartedEventArgs>) provided by the user.
-          * The SnapStarted signal is emitted when the ScrollView has started to snap or flick (it tells the target
-          * position, scale, rotation for the snap or flick).
-          *
-          */
+        /// <summary>
+        /// SnapStarted can be used to subscribe or unsubscribe the event handler
+        /// (in the type of SnapStartedEventHandler-DaliEventHandler<object, SnapStartedEventArgs>) provided by the user.<br>
+        /// The SnapStarted signal is emitted when the ScrollView has started to snap or flick (it tells the target
+        ///  position, scale, rotation for the snap or flick).
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event DaliEventHandler<object, SnapStartedEventArgs> SnapStarted
         {
             add
@@ -155,6 +157,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Snaps signal event's data.
+        /// </summary>
         public class SnapEvent : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -186,6 +191,10 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <summary>
+            /// Dispose.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -259,6 +268,10 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <summary>
+            /// Scroll position.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public Vector2 position
             {
                 set
@@ -275,6 +288,10 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <summary>
+            /// Scroll duration.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public float duration
             {
                 set
@@ -290,6 +307,10 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <summary>
+            /// Create an instance of SnapEvent.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public SnapEvent() : this(NDalicPINVOKE.new_ScrollView_SnapEvent(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -328,12 +349,21 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Create an instance of ScrollView.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ScrollView() : this(NDalicPINVOKE.ScrollView_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
+        /// <summary>
+        /// Gets snap-animation's AlphaFunction.
+        /// </summary>
+        /// <returns>Current easing alpha function of the snap animation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public AlphaFunction GetScrollSnapAlphaFunction()
         {
             AlphaFunction ret = new AlphaFunction(NDalicPINVOKE.ScrollView_GetScrollSnapAlphaFunction(swigCPtr), true);
@@ -341,12 +371,22 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets snap-animation's AlphaFunction.
+        /// </summary>
+        /// <param name="alpha">Easing alpha function of the snap animation.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetScrollSnapAlphaFunction(AlphaFunction alpha)
         {
             NDalicPINVOKE.ScrollView_SetScrollSnapAlphaFunction(swigCPtr, AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets flick-animation's AlphaFunction.
+        /// </summary>
+        /// <returns>Current easing alpha function of the flick animation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public AlphaFunction GetScrollFlickAlphaFunction()
         {
             AlphaFunction ret = new AlphaFunction(NDalicPINVOKE.ScrollView_GetScrollFlickAlphaFunction(swigCPtr), true);
@@ -354,12 +394,22 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets flick-animation's AlphaFunction.
+        /// </summary>
+        /// <param name="alpha">Easing alpha function of the flick animation.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetScrollFlickAlphaFunction(AlphaFunction alpha)
         {
             NDalicPINVOKE.ScrollView_SetScrollFlickAlphaFunction(swigCPtr, AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the time for the scroll snap-animation.
+        /// </summary>
+        /// <returns>The time in seconds for the animation to take.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetScrollSnapDuration()
         {
             float ret = NDalicPINVOKE.ScrollView_GetScrollSnapDuration(swigCPtr);
@@ -367,12 +417,22 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the time for the scroll snap-animation.
+        /// </summary>
+        /// <param name="time">The time in seconds for the animation to take.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetScrollSnapDuration(float time)
         {
             NDalicPINVOKE.ScrollView_SetScrollSnapDuration(swigCPtr, time);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the time for the scroll flick-animation.
+        /// </summary>
+        /// <returns>The time in seconds for the animation to take.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetScrollFlickDuration()
         {
             float ret = NDalicPINVOKE.ScrollView_GetScrollFlickDuration(swigCPtr);
@@ -380,49 +440,92 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the time for the scroll snap-animation.
+        /// </summary>
+        /// <param name="time">The time in seconds for the animation to take.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetScrollFlickDuration(float time)
         {
             NDalicPINVOKE.ScrollView_SetScrollFlickDuration(swigCPtr, time);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-
+        /// <summary>
+        /// Sets scroll sensibility of pan gesture.
+        /// </summary>
+        /// <param name="sensitive">True to enable scroll, false to disable scrolling.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetScrollSensitive(bool sensitive)
         {
             NDalicPINVOKE.ScrollView_SetScrollSensitive(swigCPtr, sensitive);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets maximum overshoot amount.
+        /// </summary>
+        /// <param name="overshootX">The maximum number of horizontally scrolled pixels before overshoot X reaches 1.0f.</param>
+        /// <param name="overshootY">The maximum number of vertically scrolled pixels before overshoot X reaches 1.0f.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetMaxOvershoot(float overshootX, float overshootY)
         {
             NDalicPINVOKE.ScrollView_SetMaxOvershoot(swigCPtr, overshootX, overshootY);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets Snap Overshoot animation's AlphaFunction.
+        /// </summary>
+        /// <param name="alpha">Easing alpha function of the overshoot snap animation.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetSnapOvershootAlphaFunction(AlphaFunction alpha)
         {
             NDalicPINVOKE.ScrollView_SetSnapOvershootAlphaFunction(swigCPtr, AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets Snap Overshoot animation's Duration.
+        /// </summary>
+        /// <param name="duration">duration The duration of the overshoot snap animation.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetSnapOvershootDuration(float duration)
         {
             NDalicPINVOKE.ScrollView_SetSnapOvershootDuration(swigCPtr, duration);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Enables or Disables Actor Auto-Snap mode.<br>
+        /// When Actor Auto-Snap mode has been enabled, ScrollView will automatically,
+        /// snap to the closest actor (The closest actor will appear in the center of the ScrollView).
+        /// </summary>
+        /// <param name="enable">Enables (true), or disables (false) Actor AutoSnap.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetViewAutoSnap(bool enable)
         {
             NDalicPINVOKE.ScrollView_SetActorAutoSnap(swigCPtr, enable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Enables or Disables Wrap mode for ScrollView contents.<br>
+        /// When enabled, the ScrollView contents are wrapped over the X/Y Domain.
+        /// </summary>
+        /// <param name="enable">Enables (true), or disables (false) Wrap Mode.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetWrapMode(bool enable)
         {
             NDalicPINVOKE.ScrollView_SetWrapMode(swigCPtr, enable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the current distance needed to scroll for ScrollUpdatedSignal to be emitted.
+        /// </summary>
+        /// <returns>Current scroll update distance.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public int GetScrollUpdateDistance()
         {
             int ret = NDalicPINVOKE.ScrollView_GetScrollUpdateDistance(swigCPtr);
@@ -430,12 +533,24 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the distance needed to scroll for ScrollUpdatedSignal to be emitted.<br>
+        /// The scroll update distance tells ScrollView how far to move before ScrollUpdatedSignal the informs application.<br>
+        /// Each time the ScrollView crosses this distance the signal will be emitted.<br>
+        /// </summary>
+        /// <param name="distance">The distance for ScrollView to move before emitting update signal.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetScrollUpdateDistance(int distance)
         {
             NDalicPINVOKE.ScrollView_SetScrollUpdateDistance(swigCPtr, distance);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Returns state of Axis Auto Lock mode.
+        /// </summary>
+        /// <returns>Whether Axis Auto Lock mode has been enabled or not.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool GetAxisAutoLock()
         {
             bool ret = NDalicPINVOKE.ScrollView_GetAxisAutoLock(swigCPtr);
@@ -443,12 +558,25 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Enables or Disables Axis Auto Lock mode for panning within the ScrollView.<br>
+        /// When enabled, any pan gesture that appears mostly horizontal or mostly
+        /// vertical, will be automatically restricted to horizontal only or vertical
+        /// only panning, until the pan gesture has completed.
+        /// </summary>
+        /// <param name="enable">Enables (true), or disables (false) AxisAutoLock mode.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetAxisAutoLock(bool enable)
         {
             NDalicPINVOKE.ScrollView_SetAxisAutoLock(swigCPtr, enable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the gradient threshold at which a panning gesture should be locked to the Horizontal or Vertical axis.
+        /// </summary>
+        /// <returns>The gradient, a value between 0.0 and 1.0f.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetAxisAutoLockGradient()
         {
             float ret = NDalicPINVOKE.ScrollView_GetAxisAutoLockGradient(swigCPtr);
@@ -456,12 +584,24 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the gradient threshold at which a panning gesture should be locked to the Horizontal or Vertical axis.<br>
+        /// By default, this is 0.36 (0.36:1) which means angles less than 20 degrees to an axis will lock to that axis.<br>
+        /// </summary>
+        /// <param name="gradient">gradient A value between 0.0 and 1.0 (auto-lock for all angles).</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetAxisAutoLockGradient(float gradient)
         {
             NDalicPINVOKE.ScrollView_SetAxisAutoLockGradient(swigCPtr, gradient);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the friction coefficient setting for ScrollView when flicking in free panning mode.
+        /// This is a value in stage-diagonals per second^2, stage-diagonal = Length( stage.width, stage.height )
+        /// </summary>
+        /// <returns>Friction coefficient is returned.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetFrictionCoefficient()
         {
             float ret = NDalicPINVOKE.ScrollView_GetFrictionCoefficient(swigCPtr);
@@ -469,12 +609,23 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the friction coefficient for ScrollView when flicking.<br>
+        /// </summary>
+        /// <param name="friction">Friction coefficient must be greater than 0.0 (default = 1.0).</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetFrictionCoefficient(float friction)
         {
             NDalicPINVOKE.ScrollView_SetFrictionCoefficient(swigCPtr, friction);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the flick speed coefficient for ScrollView when flicking in free panning mode.<br>
+        /// This is a constant which multiplies the input touch flick velocity to determine the actual velocity at which to move the scrolling area.
+        /// </summary>
+        /// <returns>The flick speed coefficient is returned.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetFlickSpeedCoefficient()
         {
             float ret = NDalicPINVOKE.ScrollView_GetFlickSpeedCoefficient(swigCPtr);
@@ -482,12 +633,24 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the flick speed coefficient for ScrollView when flicking in free panning mode.<br>
+        /// This is a constant which multiplies the input touch flick velocity to determine the actual velocity at
+        /// which to move the scrolling area.<br>
+        /// </summary>
+        /// <param name="speed">The flick speed coefficient (default = 1.0).</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetFlickSpeedCoefficient(float speed)
         {
             NDalicPINVOKE.ScrollView_SetFlickSpeedCoefficient(swigCPtr, speed);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the minimum pan distance required for a flick gesture in pixels.<br>
+        /// </summary>
+        /// <returns>Minimum pan distance vector with separate x and y distance.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 GetMinimumDistanceForFlick()
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.ScrollView_GetMinimumDistanceForFlick(swigCPtr), true);
@@ -495,12 +658,23 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the minimum pan distance required for a flick in pixels.<br>
+        /// Takes a Vector2 containing separate x and y values. As long as the pan distance exceeds one of these axes, a flick will be allowed.
+        /// </summary>
+        /// <param name="distance">The flick speed coefficient (default = 1.0).</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetMinimumDistanceForFlick(Vector2 distance)
         {
             NDalicPINVOKE.ScrollView_SetMinimumDistanceForFlick(swigCPtr, Vector2.getCPtr(distance));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Returns the minimum pan speed required for a flick gesture in pixels per second.
+        /// </summary>
+        /// <returns>Minimum pan speed.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetMinimumSpeedForFlick()
         {
             float ret = NDalicPINVOKE.ScrollView_GetMinimumSpeedForFlick(swigCPtr);
@@ -508,12 +682,23 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the minimum pan speed required for a flick in pixels per second.<br>
+        /// </summary>
+        /// <param name="speed">The minimum pan speed for a flick.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetMinimumSpeedForFlick(float speed)
         {
             NDalicPINVOKE.ScrollView_SetMinimumSpeedForFlick(swigCPtr, speed);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the maximum flick speed setting for ScrollView when flicking in free panning mode.<br>
+        /// This is a value in stage-diagonals per second.
+        /// </summary>
+        /// <returns>Maximum flick speed is returned.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetMaxFlickSpeed()
         {
             float ret = NDalicPINVOKE.ScrollView_GetMaxFlickSpeed(swigCPtr);
@@ -521,12 +706,23 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the maximum flick speed for the ScrollView when flicking in free panning mode.<br>
+        /// This is a value in stage-diagonals per second. stage-diagonal = Length( stage.width, stage.height ).<br>
+        /// </summary>
+        /// <param name="speed">Maximum flick speed (default = 3.0).</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetMaxFlickSpeed(float speed)
         {
             NDalicPINVOKE.ScrollView_SetMaxFlickSpeed(swigCPtr, speed);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the step of scroll distance in actor coordinates for each wheel event received in free panning mode.<br>
+        /// </summary>
+        /// <returns>The step of scroll distance(pixel) in X and Y axes.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 GetWheelScrollDistanceStep()
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.ScrollView_GetWheelScrollDistanceStep(swigCPtr), true);
@@ -534,12 +730,22 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the step of scroll distance in actor coordinates for each wheel event received in free panning mode.<br>
+        /// </summary>
+        /// <param name="step">step The step of scroll distance(pixel) in X and Y axes.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetWheelScrollDistanceStep(Vector2 step)
         {
             NDalicPINVOKE.ScrollView_SetWheelScrollDistanceStep(swigCPtr, Vector2.getCPtr(step));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Retrieves current scroll position.<br>
+        /// </summary>
+        /// <returns>The current scroll position.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 GetCurrentScrollPosition()
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.ScrollView_GetCurrentScrollPosition(swigCPtr), true);
@@ -547,6 +753,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves current scroll page based on ScrollView dimensions being the size of one page, and all pages laid out in<br>
+        /// a grid fashion, increasing from left to right until the end of the X-domain.
+        /// </summary>
+        /// <returns>The current scroll position.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetCurrentPage()
         {
             uint ret = NDalicPINVOKE.ScrollView_GetCurrentPage(swigCPtr);
@@ -554,66 +766,136 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Scrolls View to position specified (contents will scroll to this position).
+        /// </summary>
+        /// <param name="position">The position to scroll to.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void ScrollTo(Vector2 position)
         {
             NDalicPINVOKE.ScrollView_ScrollTo__SWIG_0(swigCPtr, Vector2.getCPtr(position));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Scrolls View to position specified (contents will scroll to this position).
+        /// </summary>
+        /// <param name="position">The position to scroll to.</param>
+        /// <param name="duration">The duration of the animation in seconds.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void ScrollTo(Vector2 position, float duration)
         {
             NDalicPINVOKE.ScrollView_ScrollTo__SWIG_1(swigCPtr, Vector2.getCPtr(position), duration);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Scrolls View to position specified (contents will scroll to this position).
+        /// </summary>
+        /// <param name="position">The position to scroll to.</param>
+        /// <param name="duration">The duration of the animation in seconds.</param>
+        /// <param name="alpha">The alpha function to use.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void ScrollTo(Vector2 position, float duration, AlphaFunction alpha)
         {
             NDalicPINVOKE.ScrollView_ScrollTo__SWIG_2(swigCPtr, Vector2.getCPtr(position), duration, AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Scrolls View to position specified (contents will scroll to this position).
+        /// </summary>
+        /// <param name="position">The position to scroll to.</param>
+        /// <param name="duration">The duration of the animation in seconds.</param>
+        /// <param name="horizontalBias">Whether to bias scrolling to left or right.</param>
+        /// <param name="verticalBias">Whether to bias scrolling to top or bottom.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void ScrollTo(Vector2 position, float duration, DirectionBias horizontalBias, DirectionBias verticalBias)
         {
             NDalicPINVOKE.ScrollView_ScrollTo__SWIG_3(swigCPtr, Vector2.getCPtr(position), duration, (int)horizontalBias, (int)verticalBias);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Scrolls View to position specified (contents will scroll to this position).
+        /// </summary>
+        /// <param name="position">The position to scroll to.</param>
+        /// <param name="duration">The duration of the animation in seconds.</param>
+        /// <param name="alpha">Alpha function to use.</param>
+        /// <param name="horizontalBias">Whether to bias scrolling to left or right.</param>
+        /// <param name="verticalBias">Whether to bias scrolling to top or bottom.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void ScrollTo(Vector2 position, float duration, AlphaFunction alpha, DirectionBias horizontalBias, DirectionBias verticalBias)
         {
             NDalicPINVOKE.ScrollView_ScrollTo__SWIG_4(swigCPtr, Vector2.getCPtr(position), duration, AlphaFunction.getCPtr(alpha), (int)horizontalBias, (int)verticalBias);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Scrolls View to position specified (contents will scroll to this position).
+        /// </summary>
+        /// <param name="page">The page to scroll to.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void ScrollTo(uint page)
         {
             NDalicPINVOKE.ScrollView_ScrollTo__SWIG_5(swigCPtr, page);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Scrolls View to position specified (contents will scroll to this position).
+        /// </summary>
+        /// <param name="page">The page to scroll to.</param>
+        /// <param name="duration">The duration of the animation in seconds.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void ScrollTo(uint page, float duration)
         {
             NDalicPINVOKE.ScrollView_ScrollTo__SWIG_6(swigCPtr, page, duration);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Scrolls View to position specified (contents will scroll to this position).
+        /// </summary>
+        /// <param name="page">The page to scroll to.</param>
+        /// <param name="duration">The duration of the animation in seconds.</param>
+        /// <param name="bias">Whether to bias scrolling to left or right.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void ScrollTo(uint page, float duration, DirectionBias bias)
         {
             NDalicPINVOKE.ScrollView_ScrollTo__SWIG_7(swigCPtr, page, duration, (int)bias);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Scrolls View to position specified (contents will scroll to this position).
+        /// </summary>
+        /// <param name="view">The view to center in on (via Scrolling).</param>
+        /// <since_tizen> 3 </since_tizen>
         public void ScrollTo(View view)
         {
             NDalicPINVOKE.ScrollView_ScrollTo__SWIG_8(swigCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Scrolls View to position specified (contents will scroll to this position).
+        /// </summary>
+        /// <param name="view">The view to center in on (via Scrolling).</param>
+        /// <param name="duration">The duration of the animation in seconds.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void ScrollTo(View view, float duration)
         {
             NDalicPINVOKE.ScrollView_ScrollTo__SWIG_9(swigCPtr, View.getCPtr(view), duration);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Scrolls View to the nearest snap points as specified by the Rulers.<br>
+        /// If already at snap points, then will return false, and not scroll.<br>
+        /// </summary>
+        /// <returns>True if Snapping necessary.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool ScrollToSnapPoint()
         {
             bool ret = NDalicPINVOKE.ScrollView_ScrollToSnapPoint(swigCPtr);
@@ -627,48 +909,90 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Applies Effect to ScrollView.
+        /// </summary>
+        /// <param name="effect">The effect to apply to scroll view.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void ApplyEffect(ScrollViewEffect effect)
         {
             NDalicPINVOKE.ScrollView_ApplyEffect(swigCPtr, ScrollViewEffect.getCPtr(effect));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Removes Effect from ScrollView.
+        /// </summary>
+        /// <param name="effect">The effect to remove.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void RemoveEffect(ScrollViewEffect effect)
         {
             NDalicPINVOKE.ScrollView_RemoveEffect(swigCPtr, ScrollViewEffect.getCPtr(effect));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Remove All Effects from ScrollView.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void RemoveAllEffects()
         {
             NDalicPINVOKE.ScrollView_RemoveAllEffects(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Binds view to this ScrollView.
+        /// Once an actor is bound to a ScrollView, it will be subject to that ScrollView's properties.
+        /// </summary>
+        /// <param name="child">The view to add to this ScrollView.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void BindView(View child)
         {
             NDalicPINVOKE.ScrollView_BindActor(swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Unbinds view to this ScrollView.
+        /// Once an actor is bound to a ScrollView, it will be subject to that ScrollView's properties.
+        /// </summary>
+        /// <param name="child">The view to remove to this ScrollView.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void UnbindView(View child)
         {
             NDalicPINVOKE.ScrollView_UnbindActor(swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Allows the user to constrain the scroll view in a particular direction.
+        /// </summary>
+        /// <param name="direction">The axis to constrain the scroll-view to.</param>
+        /// <param name="threshold">The threshold to apply around the axis.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetScrollingDirection(Radian direction, Radian threshold)
         {
             NDalicPINVOKE.ScrollView_SetScrollingDirection__SWIG_0(swigCPtr, Radian.getCPtr(direction), Radian.getCPtr(threshold));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Allows the user to constrain the scroll view in a particular direction.
+        /// </summary>
+        /// <param name="direction">The axis to constrain the scroll-view to.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetScrollingDirection(Radian direction)
         {
             NDalicPINVOKE.ScrollView_SetScrollingDirection__SWIG_1(swigCPtr, Radian.getCPtr(direction));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Removes a direction constraint from the scroll view.
+        /// </summary>
+        /// <param name="direction">The axis to constrain the scroll-view to.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void RemoveScrollingDirection(Radian direction)
         {
             NDalicPINVOKE.ScrollView_RemoveScrollingDirection(swigCPtr, Radian.getCPtr(direction));
@@ -682,6 +1006,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets and Gets WrapEnabled property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool WrapEnabled
         {
             get
@@ -695,6 +1023,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.WRAP_ENABLED, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets PanningEnabled property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool PanningEnabled
         {
             get
@@ -708,6 +1041,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.PANNING_ENABLED, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets AxisAutoLockEnabled property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool AxisAutoLockEnabled
         {
             get
@@ -721,6 +1059,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.AXIS_AUTO_LOCK_ENABLED, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets WheelScrollDistanceStep property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 WheelScrollDistanceStep
         {
             get
@@ -734,6 +1077,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.WHEEL_SCROLL_DISTANCE_STEP, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets ScrollPosition property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScrollPosition
         {
             get
@@ -747,6 +1095,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.SCROLL_POSITION, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets ScrollPrePosition property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScrollPrePosition
         {
             get
@@ -760,6 +1113,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.SCROLL_PRE_POSITION, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets ScrollPrePositionMax property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScrollPrePositionMax
         {
             get
@@ -773,6 +1131,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.SCROLL_PRE_POSITION_MAX, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets OvershootX property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float OvershootX
         {
             get
@@ -786,6 +1149,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.OVERSHOOT_X, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets OvershootY property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float OvershootY
         {
             get
@@ -799,6 +1167,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.OVERSHOOT_Y, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets ScrollFinal property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScrollFinal
         {
             get
@@ -812,6 +1185,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.SCROLL_FINAL, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets Wrap property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Wrap
         {
             get
@@ -825,6 +1203,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.WRAP, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets Panning property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Panning
         {
             get
@@ -838,6 +1221,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.PANNING, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets Scrolling property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Scrolling
         {
             get
@@ -851,6 +1239,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.SCROLLING, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets ScrollDomainSize property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScrollDomainSize
         {
             get
@@ -864,6 +1257,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.SCROLL_DOMAIN_SIZE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets ScrollDomainOffset property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScrollDomainOffset
         {
             get
@@ -877,6 +1275,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.SCROLL_DOMAIN_OFFSET, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets ScrollPositionDelta property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScrollPositionDelta
         {
             get
@@ -890,6 +1293,11 @@ namespace Tizen.NUI
                 SetProperty(ScrollView.Property.SCROLL_POSITION_DELTA, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Sets and Gets StartPagePosition property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector3 StartPagePosition
         {
             get
@@ -904,6 +1312,11 @@ namespace Tizen.NUI
             }
         }
 
+
+        /// <summary>
+        /// Sets and Gets ScrollMode property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap ScrollMode
         {
             get

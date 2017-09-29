@@ -105,6 +105,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The vector containing the result of the addition.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 operator +(Vector3 arg1, Vector3 arg2)
         {
             return arg1.Add(arg2);
@@ -116,6 +117,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The vector containing the result of the subtraction.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 operator -(Vector3 arg1, Vector3 arg2)
         {
             return arg1.Subtract(arg2);
@@ -126,6 +128,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg1">The target value.</param>
         /// <returns>The vector containg the negation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 operator -(Vector3 arg1)
         {
             return arg1.Subtract();
@@ -137,6 +140,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The vector containing the result of the multiplication.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 operator *(Vector3 arg1, Vector3 arg2)
         {
             return arg1.Multiply(arg2);
@@ -148,6 +152,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The float value to scale the vector.</param>
         /// <returns>The vector containing the result of the scaling.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 operator *(Vector3 arg1, float arg2)
         {
             return arg1.Multiply(arg2);
@@ -159,6 +164,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value.</param>
         /// <returns>The vector containing the result of the division.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 operator /(Vector3 arg1, Vector3 arg2)
         {
             return arg1.Divide(arg2);
@@ -170,6 +176,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The float value to scale the vector by.</param>
         /// <returns>The vector containing the result of the scaling.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 operator /(Vector3 arg1, float arg2)
         {
             return arg1.Divide(arg2);
@@ -180,6 +187,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="index">The subscript index.</param>
         /// <returns>The float at the given index.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float this[uint index]
         {
             get
@@ -198,6 +206,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector3() : this(NDalicPINVOKE.new_Vector3__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -209,6 +218,7 @@ namespace Tizen.NUI
         /// <param name="x">The x (or width) component.</param>
         /// <param name="y">The y (or height) component.</param>
         /// <param name="z">The z (or depth) component.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Vector3(float x, float y, float z) : this(NDalicPINVOKE.new_Vector3__SWIG_1(x, y, z), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -218,6 +228,7 @@ namespace Tizen.NUI
         /// Conversion constructor from an array of three floats.
         /// </summary>
         /// <param name="array">An array of xyz.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Vector3(float[] array) : this(NDalicPINVOKE.new_Vector3__SWIG_2(array), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -227,6 +238,7 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <param name="vec2">Vector2 to create this vector from.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Vector3(Vector2 vec2) : this(NDalicPINVOKE.new_Vector3__SWIG_3(Vector2.getCPtr(vec2)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -236,6 +248,7 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <param name="vec4">Vector4 to create this vector from.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Vector3(Vector4 vec4) : this(NDalicPINVOKE.new_Vector3__SWIG_4(Vector4.getCPtr(vec4)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -244,6 +257,7 @@ namespace Tizen.NUI
         /// <summary>
         /// (1.0f,1.0f,1.0f).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 One
         {
             get
@@ -258,6 +272,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The vector representing the x-axis.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 XAxis
         {
             get
@@ -272,6 +287,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The vector representing the y-axis.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 YAxis
         {
             get
@@ -286,6 +302,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The vector representing the z-axis.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 ZAxis
         {
             get
@@ -300,6 +317,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The vector representing the negative x-axis.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 NegativeXAxis
         {
             get
@@ -314,6 +332,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Th vector representing the negative y-axis.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 NegativeYAxis
         {
             get
@@ -328,6 +347,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The vector representing the negative z-axis.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 NegativeZAxis
         {
             get
@@ -342,6 +362,7 @@ namespace Tizen.NUI
         /// <summary>
         /// (0.0f, 0.0f, 0.0f).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 Zero
         {
             get
@@ -490,6 +511,7 @@ namespace Tizen.NUI
         /// Returns the length of the vector.
         /// </summary>
         /// <returns>The length of the vector.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float Length()
         {
             float ret = NDalicPINVOKE.Vector3_Length(swigCPtr);
@@ -503,6 +525,7 @@ namespace Tizen.NUI
         /// testing as it avoids the use of a square root.<br>
         /// </summary>
         /// <returns>The length of the vector squared.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float LengthSquared()
         {
             float ret = NDalicPINVOKE.Vector3_LengthSquared(swigCPtr);
@@ -513,6 +536,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the vector to be unit length, whilst maintaining its direction.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Normalize()
         {
             NDalicPINVOKE.Vector3_Normalize(swigCPtr);
@@ -524,6 +548,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="min">The minimum vector.</param>
         /// <param name="max">The maximum vector.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Clamp(Vector3 min, Vector3 max)
         {
             NDalicPINVOKE.Vector3_Clamp(swigCPtr, Vector3.getCPtr(min), Vector3.getCPtr(max));
@@ -542,6 +567,7 @@ namespace Tizen.NUI
         /// Returns the x and y components (or width and height, or r and g) as a Vector2.
         /// </summary>
         /// <returns>The partial vector contents as Vector2 (x,y).</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 GetVectorXY()
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.Vector3_GetVectorXY__SWIG_0(swigCPtr), false);
@@ -553,6 +579,7 @@ namespace Tizen.NUI
         /// Returns the y and z components (or height and depth, or g and b) as a Vector2.
         /// </summary>
         /// <returns>The partial vector contents as Vector2 (y,z).</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 GetVectorYZ()
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.Vector3_GetVectorYZ__SWIG_0(swigCPtr), false);
@@ -563,6 +590,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The x component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float X
         {
             set
@@ -581,6 +609,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The width component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Width
         {
             set
@@ -599,6 +628,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The red component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float R
         {
             set
@@ -617,6 +647,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The y component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Y
         {
             set
@@ -635,6 +666,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The height component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Height
         {
             set
@@ -653,6 +685,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The green component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float G
         {
             set
@@ -671,6 +704,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The z component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Z
         {
             set
@@ -689,6 +723,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The depth component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Depth
         {
             set
@@ -707,6 +742,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The blue component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float B
         {
             set

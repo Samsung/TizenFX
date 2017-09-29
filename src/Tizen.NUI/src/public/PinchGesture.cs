@@ -80,6 +80,7 @@ namespace Tizen.NUI
         /// this value increases. Conversely, if the user is moving their
         /// fingers towards each other, this value will decrease.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Scale
         {
             get
@@ -92,6 +93,7 @@ namespace Tizen.NUI
         /// The speed at which the user is moving their fingers.<br>
         /// This is the pixel movement per second.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Speed
         {
             get
@@ -103,6 +105,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The center point of the two points that caused the pinch gesture in screen coordinates.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScreenCenterPoint
         {
             get
@@ -114,6 +117,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The center point of the two points that caused the pinch gesture in local actor coordinates.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 LocalCenterPoint
         {
             get

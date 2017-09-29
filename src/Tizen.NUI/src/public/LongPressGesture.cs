@@ -78,6 +78,7 @@ namespace Tizen.NUI
         /// The number of touch points in this long press gesture, i.e., the number of fingers the user had
         /// on the screen to generate the long press gesture.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint NumberOfTouches
         {
             get
@@ -90,6 +91,7 @@ namespace Tizen.NUI
         /// This is the point, in screen coordinates, where the long press occurred.<br>
         /// If a multi-touch long press, then this is the centroid of all the touch points.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScreenPoint
         {
             get
@@ -102,6 +104,7 @@ namespace Tizen.NUI
         /// This is the point, in local actor coordinates, where the long press occurred.<br>
         /// If a multi-touch long press, then this is the centroid of all the touch points.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 LocalPoint
         {
             get
@@ -114,6 +117,7 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <param name="state">The state of the gesture</param>
+        /// <since_tizen> 3 </since_tizen>
         public LongPressGesture(Gesture.StateType state) : this(NDalicPINVOKE.new_LongPressGesture__SWIG_0((int)state), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

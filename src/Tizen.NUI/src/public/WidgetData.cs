@@ -95,6 +95,7 @@ namespace Tizen.NUI
         /// Get widget instance id.
         /// </summary>
         /// <returns>Id of widget instance.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public string GetInstanceId()
         {
             string ret = NDalicManualPINVOKE.WidgetData_GetInstanceId(swigCPtr);
@@ -114,6 +115,7 @@ namespace Tizen.NUI
         /// Get widget instance content.
         /// </summary>
         /// <returns>Content of widget instance.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public string GetContent()
         {
             string ret = NDalicManualPINVOKE.WidgetData_GetContent(swigCPtr);
@@ -125,6 +127,7 @@ namespace Tizen.NUI
         /// Get widget instance Window.
         /// </summary>
         /// <returns>Window of widget instance</returns>
+        /// <since_tizen> 4 </since_tizen>
         public Window GetWindow()
         {
             Window ret = new Window(NDalicManualPINVOKE.WidgetData_GetWindow(swigCPtr), false);
@@ -142,6 +145,7 @@ namespace Tizen.NUI
         /// Set widget instance arguments.
         /// </summary>
         /// <param name="content">Content of widget instance</param>
+        /// <since_tizen> 4 </since_tizen>
         public void SetContent(string content)
         {
             NDalicManualPINVOKE.WidgetData_SetContent(swigCPtr, content);
@@ -152,6 +156,7 @@ namespace Tizen.NUI
         /// Set widget instance arguments.
         /// </summary>
         /// <param name="window">Window of widget instance.</param>
+        /// <since_tizen> 4 </since_tizen>
         public void SetWindow(Window window)
         {
             NDalicManualPINVOKE.WidgetData_SetWindow(swigCPtr, Window.getCPtr(window));

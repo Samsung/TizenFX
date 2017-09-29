@@ -129,6 +129,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// The Clicked event will be triggered when the button is touched and the touch point doesn't leave the boundary of the button.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandlerWithReturnType<object, EventArgs, bool> Clicked
         {
             add
@@ -173,6 +174,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// The Pressed event will be triggered when the button is touched.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandlerWithReturnType<object, EventArgs, bool> Pressed
         {
             add
@@ -216,6 +218,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// The Released event will be triggered when the button is touched and the touch point leaves the boundary of the button.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandlerWithReturnType<object, EventArgs, bool> Released
         {
             add
@@ -258,6 +261,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// The StateChanged event will be triggered when the button's state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandlerWithReturnType<object, EventArgs, bool> StateChanged
         {
             add
@@ -295,6 +299,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the unselected button foreground or icon visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap UnselectedVisual
         {
             get
@@ -312,6 +317,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the selected button foreground or icon visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap SelectedVisual
         {
             get
@@ -329,6 +335,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the disabled selected state foreground or icon button visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap DisabledSelectedVisual
         {
             get
@@ -346,6 +353,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the disabled unselected state foreground or icon visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap DisabledUnselectedVisual
         {
             get
@@ -363,6 +371,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the disabled unselected state background button visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap UnselectedBackgroundVisual
         {
             get
@@ -380,6 +389,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the selected background button visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap SelectedBackgroundVisual
         {
             get
@@ -397,6 +407,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the disabled while unselected background button visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap DisabledUnselectedBackgroundVisual
         {
             get
@@ -414,6 +425,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the disabled while selected background button visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap DisabledSelectedBackgroundVisual
         {
             get
@@ -431,6 +443,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the position of the the label in relation to the foreground or icon, if both present.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Align LabelRelativeAlignment
         {
             get
@@ -492,6 +505,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the padding around the text.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector4 LabelPadding
         {
             get
@@ -509,6 +523,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the padding around the foreground visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector4 ForegroundVisualPadding
         {
             get
@@ -550,6 +565,7 @@ namespace Tizen.NUI.UIComponents
         /// Creates an uninitialized button.<br>
         /// Only the derived versions can be instantiated.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Button() : this(NDalicPINVOKE.new_Button__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -586,6 +602,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// If the autorepeating property is set to true, then the togglable property is set to false.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool AutoRepeating
         {
             get
@@ -603,6 +620,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// By default, this value is set to 0.15 seconds.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float InitialAutoRepeatingDelay
         {
             get
@@ -620,6 +638,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// By default, this value is set to 0.05 seconds.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float NextAutoRepeatingDelay
         {
             get
@@ -637,6 +656,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// If the togglable property is set to true, then the autorepeating property is set to false.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Togglable
         {
             get
@@ -654,6 +674,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the togglable button as either selected or unselected, togglable property must be set to true.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Selected
         {
             get
@@ -671,6 +692,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the unselected color.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Color UnselectedColor
         {
             get
@@ -688,6 +710,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the selected color.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Color SelectedColor
         {
             get
@@ -705,6 +728,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the label.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap Label
         {
             get
@@ -722,6 +746,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Gets or sets the text of the label.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string LabelText
         {
             get
@@ -742,6 +767,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Enumeration for describing the position, the text label can be, in relation to the control (and foreground/icon).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum Align
         {
             /// <summary>

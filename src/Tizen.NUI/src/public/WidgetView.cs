@@ -97,6 +97,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates a new WidgetView.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public WidgetView(string widgetId, string contentInfo, int width, int height, float updatePeriod) : this(NDalicManualPINVOKE.WidgetView_New(widgetId, contentInfo, width, height, updatePeriod), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -139,6 +140,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The widet view.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public WidgetView WidgetView
             {
                 get
@@ -162,6 +164,7 @@ namespace Tizen.NUI
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
         /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<WidgetViewEventArgs> WidgetAdded
         {
             add
@@ -211,6 +214,7 @@ namespace Tizen.NUI
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
         /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<WidgetViewEventArgs> WidgetDeleted
         {
             add
@@ -260,6 +264,7 @@ namespace Tizen.NUI
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
         /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<WidgetViewEventArgs> WidgetCreationAborted
         {
             add
@@ -309,6 +314,7 @@ namespace Tizen.NUI
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
         /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<WidgetViewEventArgs> WidgetContentUpdated
         {
             add
@@ -358,6 +364,7 @@ namespace Tizen.NUI
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
         /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<WidgetViewEventArgs> WidgetUpdatePeriodChanged
         {
             add
@@ -407,6 +414,7 @@ namespace Tizen.NUI
         /// This signal is emitted after all resources required by a control are loaded and ready.<br>
         /// Most resources are only loaded when the control is placed on the stage.<br>
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<WidgetViewEventArgs> WidgetFaulted
         {
             add
@@ -450,6 +458,7 @@ namespace Tizen.NUI
         /// Pauses a given widget.
         /// </summary>
         /// <returns>True on success, false otherwise.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public bool PauseWidget()
         {
             bool ret = NDalicManualPINVOKE.WidgetView_PauseWidget(swigCPtr);
@@ -461,6 +470,7 @@ namespace Tizen.NUI
         /// Resumes a given widget.
         /// </summary>
         /// <returns>True on success, false otherwise.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public bool ResumeWidget()
         {
             bool ret = NDalicManualPINVOKE.WidgetView_ResumeWidget(swigCPtr);
@@ -474,6 +484,7 @@ namespace Tizen.NUI
        ///  If a widget gets ON_HOLD event, it will not do anything even if you feed touch up event.
         /// </summary>
         /// <returns>True on success, false otherwise.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public bool CancelTouchEvent()
         {
             bool ret = NDalicManualPINVOKE.WidgetView_CancelTouchEvent(swigCPtr);
@@ -485,6 +496,7 @@ namespace Tizen.NUI
         /// Activates a widget in the faulted state.
         /// A widget in faulted state must be activated before adding the widget.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void ActivateFaultedWidget()
         {
             NDalicManualPINVOKE.WidgetView_ActivateFaultedWidget(swigCPtr);
@@ -536,6 +548,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the ID of the widget.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string WidgetID
         {
             get
@@ -549,6 +562,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the ID of the instance.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string InstanceID
         {
             get
@@ -562,6 +576,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the content info.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string ContentInfo
         {
             get
@@ -575,6 +590,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the title.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Title
         {
             get
@@ -588,6 +604,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the update peroid.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public float UpdatePeriod
         {
             get
@@ -601,6 +618,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the preview.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool Preview
         {
             get
@@ -618,6 +636,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the loading text.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool LoadingText
         {
             get
@@ -635,6 +654,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets whether the widget state is faulted or not.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool WidgetStateFaulted
         {
             get
@@ -652,6 +672,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets whether the widget is to delete permanently or not.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool PermanentDelete
         {
             get

@@ -17,6 +17,9 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// Geometry is handle to an object that can be used to define a geometric elements.
+    /// </summary>
     public class Geometry : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -63,12 +66,22 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        /// <summary>
+        /// Create an instance of Geometry.
+        /// <since_tizen> 3 </since_tizen>
+        /// </summary>
         public Geometry() : this(NDalicPINVOKE.Geometry_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
+        /// <summary>
+        /// Adds a PropertyBuffer to be used as source of geometry vertices.
+        /// </summary>
+        /// <param name="vertexBuffer">PropertyBuffer to be used as source of geometry vertices.</param>
+        /// <returns>Index of the newly added buffer.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint AddVertexBuffer(PropertyBuffer vertexBuffer)
         {
             uint ret = NDalicPINVOKE.Geometry_AddVertexBuffer(swigCPtr, PropertyBuffer.getCPtr(vertexBuffer));
@@ -76,6 +89,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves the number of vertex buffers that have been added to this geometry.
+        /// </summary>
+        /// <returns>Number of vertex buffers that have been added to this geometry.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetNumberOfVertexBuffers()
         {
             uint ret = NDalicPINVOKE.Geometry_GetNumberOfVertexBuffers(swigCPtr);
@@ -83,24 +101,46 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Removes a vertex buffer.
+        /// </summary>
+        /// <param name="index">Index to the vertex buffer to remove.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void RemoveVertexBuffer(uint index)
         {
             NDalicPINVOKE.Geometry_RemoveVertexBuffer(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets a the index data to be used as a source of indices for the geometry
+        /// Setting this buffer will cause the geometry to be rendered using indices.
+        /// </summary>
+        /// <param name="indices">Array of indices.</param>
+        /// <param name="count">Number of indices in the array.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetIndexBuffer(ushort[] indices, uint count)
         {
             NDalicPINVOKE.Geometry_SetIndexBuffer(swigCPtr, indices, count);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets the type of primitives this geometry contains.
+        /// </summary>
+        /// <param name="geometryType">Array of indices.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetType(Geometry.Type geometryType)
         {
             NDalicPINVOKE.Geometry_SetType(swigCPtr, (int)geometryType);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the type of primitives this geometry contains.
+        /// </summary>
+        /// <returns>Type of primitives this geometry contains.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public new Geometry.Type GetType()
         {
             Geometry.Type ret = (Geometry.Type)NDalicPINVOKE.Geometry_GetType(swigCPtr);
@@ -108,14 +148,47 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Enumeration for the description of the type of geometry,
+        /// used to determine how the coordinates will be used.
+        /// </summary>
+        /// <returns>Type of primitives this geometry contains.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public enum Type
         {
+            /// <summary>
+            /// Individual points.
+            /// </summary>
             POINTS,
+
+            /// <summary>
+            /// Individual lines (made of 2 points each).
+            /// </summary>
             LINES,
+
+            /// <summary>
+            /// A strip of lines (made of 1 point each) which also joins the first and last point.
+            /// </summary>
             LINE_LOOP,
+
+            /// <summary>
+            /// A strip of lines (made of 1 point each).
+            /// </summary>
             LINE_STRIP,
+
+            /// <summary>
+            /// Individual triangles (made of 3 points each).
+            /// </summary>
             TRIANGLES,
+
+            /// <summary>
+            /// A fan of triangles around a centre point (after the first triangle, following triangles need only 1 point).
+            /// </summary>
             TRIANGLE_FAN,
+
+            /// <summary>
+            /// A strip of triangles (after the first triangle, following triangles need only 1 point).
+            /// </summary>
             TRIANGLE_STRIP
         }
 

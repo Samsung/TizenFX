@@ -109,6 +109,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <remarks>DurationmSeconds must be greater than zero.</remarks>
         /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Animation(int durationMilliSeconds) : this(NDalicPINVOKE.Animation_New((float)durationMilliSeconds / 1000.0f), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -213,6 +214,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the duration in milliseconds of the animation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Duration
         {
             set
@@ -228,6 +230,7 @@ namespace Tizen.NUI
         /// <summary>
         ///  Gets or sets the default alpha function for the animation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AlphaFunction DefaultAlphaFunction
         {
             set
@@ -244,6 +247,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Queries the state of the animation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public States State
         {
             get
@@ -259,6 +263,7 @@ namespace Tizen.NUI
         /// Get: Gets the loop count. A zero is the same as Looping = true; i.e., repeat forever.<br>
         /// The loop count is initially 1 for play once.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int LoopCount
         {
             set
@@ -277,6 +282,7 @@ namespace Tizen.NUI
         /// This property resets the loop count and should not be used with the LoopCount property.<br>
         /// Setting this parameter does not cause the animation to Play().<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Looping
         {
             set
@@ -296,6 +302,7 @@ namespace Tizen.NUI
         /// This action is performed when the animation ends or if it is stopped.<br>
         /// The default end action is cancel.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public EndActions EndAction
         {
             set
@@ -313,6 +320,7 @@ namespace Tizen.NUI
         /// Stops the animation.
         /// </summary>
         /// <param name="action">The end action can be set.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Stop(EndActions action = EndActions.Cancel)
         {
             SetEndAction(action);
@@ -324,6 +332,7 @@ namespace Tizen.NUI
         /// Gets the current loop count.<br>
         /// A value 0 indicating the current loop count when looping.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int CurrentLoop
         {
             get
@@ -337,6 +346,7 @@ namespace Tizen.NUI
         /// If any of the animated property owners are disconnected from the stage while the animation is being played, then this action is performed.<br>
         /// The default action is cancel.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public EndActions DisconnectAction
         {
             set
@@ -359,6 +369,7 @@ namespace Tizen.NUI
         /// The progress must be in the 0-1 interval or in the play range interval if defined<br>
         /// otherwise, it will be ignored.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float CurrentProgress
         {
             set
@@ -380,6 +391,7 @@ namespace Tizen.NUI
         /// Values between [0, 1] will slow down the animation and values above one will speed up the animation.<br>
         /// It is also possible to specify a negative multiplier to play the animation in reverse.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float SpeedFactor
         {
             set
@@ -400,6 +412,7 @@ namespace Tizen.NUI
         /// Animation will play between the values specified. Both values (range.x and range.y ) should be between 0-1,
         /// otherwise they will be ignored. If the range provided is not in proper order (minimum, maximum ), it will be reordered.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RelativeVector2 PlayRange
         {
             set
@@ -421,6 +434,7 @@ namespace Tizen.NUI
         /// Percentage of animation progress should be greater than 0 and less than 1, for example, 0.3 for 30% <br>
         /// One notification can be set on each animation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float ProgressNotification
         {
             set
@@ -443,6 +457,7 @@ namespace Tizen.NUI
         /// <param name="property">The target property to animate.</param>
         /// <param name="relativeValue">The property value will change by this amount.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AnimateBy(View target, string property, object relativeValue, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
@@ -479,6 +494,7 @@ namespace Tizen.NUI
         /// <param name="startTime">The start time of the animation.</param>
         /// <param name="endTime">The end time of the animation.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AnimateBy(View target, string property, object relativeValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
@@ -515,6 +531,7 @@ namespace Tizen.NUI
         /// <param name="property">The target property to animate.</param>
         /// <param name="destinationValue">The destination value.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AnimateTo(View target, string property, object destinationValue, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
@@ -552,6 +569,7 @@ namespace Tizen.NUI
         /// <param name="startTime">The start time of the animation.</param>
         /// <param name="endTime">The end time of the animation.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AnimateTo(View target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
@@ -589,6 +607,7 @@ namespace Tizen.NUI
         /// <param name="keyFrames">The set of time or value pairs between which to animate.</param>
         /// <param name="interpolation">The method used to interpolate between values.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AnimateBetween(View target, string property, KeyFrames keyFrames, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
@@ -619,6 +638,7 @@ namespace Tizen.NUI
         /// <param name="endTime">The end time of animation in milliseconds.</param>
         /// <param name="interpolation">The method used to interpolate between values.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AnimateBetween(View target, string property, KeyFrames keyFrames, int startTime, int endTime, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
@@ -643,6 +663,7 @@ namespace Tizen.NUI
         /// <param name="path">It defines position and orientation.</param>
         /// <param name="forward">The vector (in local space coordinate system) will be oriented with the path's tangent direction.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AnimatePath(View view, Path path, Vector3 forward, AlphaFunction alphaFunction = null)
         {
             if (alphaFunction == null)
@@ -666,6 +687,7 @@ namespace Tizen.NUI
         /// <param name="startTime">The start time of the animation.</param>
         /// <param name="endTime">The end time of the animation.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AnimatePath(View view, Path path, Vector3 forward, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             TimePeriod time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
@@ -685,6 +707,7 @@ namespace Tizen.NUI
         /// The default end action is "Cancel".<br>
         /// The default alpha function is linear.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Animation() : this(NDalicPINVOKE.Animation_New(0.0f), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -703,6 +726,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">Handle to an object.</param>
         /// <returns>Handle to an animation object or an uninitialized handle.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Animation DownCast(BaseHandle handle)
         {
             Animation ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Animation;
@@ -866,6 +890,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Plays the animation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Play()
         {
             NDalicPINVOKE.Animation_Play(swigCPtr);
@@ -881,6 +906,7 @@ namespace Tizen.NUI
         /// otherwise, it will be ignored.<br>
         /// </summary>
         /// <param name="progress">A value between [0,1], or between the play range if specified, from where the animation should start playing.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void PlayFrom(float progress)
         {
             NDalicPINVOKE.Animation_PlayFrom(swigCPtr, progress);
@@ -893,6 +919,7 @@ namespace Tizen.NUI
         /// When the delay time is a negative value, it would treat as play immediately.<br/>
         /// </summary>
         /// <param name="delayMilliseconds">The delay time.</param>
+        /// <since_tizen> 4 </since_tizen>
         public void PlayAfter(int delayMilliseconds)
         {
             NDalicPINVOKE.Animation_PlayAfter(swigCPtr, MilliSecondsToSeconds(delayMilliseconds));
@@ -902,6 +929,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Pauses the animation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
             NDalicPINVOKE.Animation_Pause(swigCPtr);
@@ -918,6 +946,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Stops the animation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
             NDalicPINVOKE.Animation_Stop(swigCPtr);
@@ -928,6 +957,7 @@ namespace Tizen.NUI
         /// Clears the animation.<br>
         /// This disconnects any objects that were being animated, effectively stopping the animation.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Clear()
         {
             NDalicPINVOKE.Animation_Clear(swigCPtr);
@@ -1083,6 +1113,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for what to do when the animation ends, stopped, or destroyed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum EndActions
         {
             /// <summary>
@@ -1102,6 +1133,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for what interpolation method to use on key-frame animations.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum Interpolation
         {
             /// <summary>
@@ -1118,6 +1150,7 @@ namespace Tizen.NUI
         /// Enumeration for what state the animation is in.
         /// </summary>
         /// <remarks>Calling Reset() on this class will not reset the animation. It will call the BaseHandle.Reset() which drops the object handle.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public enum States
         {
             /// <summary>

@@ -32,6 +32,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The default constructor.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public NUIWidgetApplication() : base(new NUIWidgetCoreBackend())
         {
             Tizen.Log.Fatal("NUI", "### NUIWidgetApplication called");
@@ -40,6 +41,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor with stylesheet.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public NUIWidgetApplication(string stylesheet) : base(new NUIWidgetCoreBackend(stylesheet))
         {
             Tizen.Log.Fatal("NUI", "### NUIWidgetApplication(string) called");
@@ -114,6 +116,7 @@ namespace Tizen.NUI
         /// Run NUIWidgetApplication.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>
+        /// <since_tizen> 4 </since_tizen>
         public override void Run(string[] args)
         {
             Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
@@ -123,6 +126,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Exit NUIWidgetApplication.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public override void Exit()
         {
             Tizen.Log.Fatal("NUI", "### NUIWidgetApplication Exit called");
@@ -140,6 +144,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the window instance.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public Window Window
         {
             get

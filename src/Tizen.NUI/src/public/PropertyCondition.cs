@@ -65,7 +65,10 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-
+        /// <summary>
+        /// Create a property condition instance.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public PropertyCondition() : this(NDalicPINVOKE.new_PropertyCondition__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -74,6 +77,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves the arguments that this condition uses.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public uint GetArgumentCount()
         {
             uint ret = NDalicPINVOKE.PropertyCondition_GetArgumentCount(swigCPtr);
@@ -83,6 +87,7 @@ namespace Tizen.NUI
         ///<summary>
         /// Retrieves the arguments that this condition uses
         ///</summary>
+        ///<since_tizen> 4 </since_tizen>
         public float GetArgument(uint index)
         {
             float ret = NDalicPINVOKE.PropertyCondition_GetArgument(swigCPtr, index);
@@ -93,6 +98,7 @@ namespace Tizen.NUI
         ///<summary>
         /// LessThan condition compares whether property is less than arg.
         ///</summary>
+        ///<since_tizen> 4 </since_tizen>
         public static PropertyCondition LessThan(float arg)
         {
             PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.LessThanCondition(arg), true);
@@ -103,6 +109,7 @@ namespace Tizen.NUI
         ///<summary>
         /// GreaterThan condition compares whether property is greater than arg.
         ///</summary>
+        ///<since_tizen> 4 </since_tizen>
         public static PropertyCondition GreaterThan(float arg)
         {
             PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.GreaterThanCondition(arg), true);
@@ -113,6 +120,7 @@ namespace Tizen.NUI
         ///<summary>
         /// Inside condition compares whether property is greater than arg0 and less than arg1.
         ///</summary>
+        ///<since_tizen> 4 </since_tizen>
         public static PropertyCondition Inside(float arg0, float arg1)
         {
             PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.InsideCondition(arg0, arg1), true);
@@ -123,6 +131,7 @@ namespace Tizen.NUI
         ///<summary>
         /// Outside condition compares whether property is less than arg0 or greater than arg1
         ///</summary>
+        ///<since_tizen> 4 </since_tizen>
         public static PropertyCondition Outside(float arg0, float arg1)
         {
             PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.OutsideCondition(arg0, arg1), true);
@@ -133,6 +142,7 @@ namespace Tizen.NUI
         ///<summary>
         /// Detects when a property changes by stepAmount from initialValue, in both positive and negative directions. This will continue checking for multiples of stepAmount.
         ///</summary>
+        ///<since_tizen> 4 </since_tizen>
         public static PropertyCondition Step(float stepAmount, float initialValue)
         {
             PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.StepCondition__SWIG_0(stepAmount, initialValue), true);
@@ -143,6 +153,7 @@ namespace Tizen.NUI
         ///<summary>
         /// Receives notifications as a property goes above/below the inputted values. Values must be ordered and can be either ascending or descending.
         ///</summary>
+        ///<since_tizen> 4 </since_tizen>
         public static PropertyCondition Step(float stepAmount)
         {
             PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.StepCondition__SWIG_1(stepAmount), true);

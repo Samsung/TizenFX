@@ -78,8 +78,11 @@ namespace Tizen.NUI
             Default,    // Read Writable, non-animatable property, event thread only
                         //  Animatable // Animatable property, Currently disabled, UK
         }
+        /// <since_tizen> 4 </since_tizen>
         public readonly ScriptableType type;
 
+
+        /// <since_tizen> 4 </since_tizen>
         public ScriptableProperty(ScriptableType type = ScriptableType.Default)
         {
             this.type = type;
@@ -242,6 +245,7 @@ namespace Tizen.NUI
 
         }
 
+        /// <since_tizen> 4 </since_tizen>
         public static CustomViewRegistry Instance
         {
             get
@@ -269,6 +273,7 @@ namespace Tizen.NUI
         /// }
         ///
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Register(Func<CustomView> createFunction, System.Type viewType)
         {
             // add the mapping between the view name and it's create function
@@ -317,7 +322,6 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets a property value from a view.
-        ///
         /// </summary>
         private IntPtr GetPropertyValue(IntPtr refObjectPtr, string propertyName)
         {
@@ -340,7 +344,6 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets a property value on a view.
-        ///
         /// </summary>
         private void SetPropertyValue(IntPtr refObjectPtr, string propertyName, IntPtr propertyValuePtr)
         {

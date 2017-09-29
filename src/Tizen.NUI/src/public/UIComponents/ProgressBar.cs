@@ -134,6 +134,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// The event is sent when the ProgressBar value changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ValueChangedEventArgs> ValueChanged
         {
             add
@@ -187,6 +188,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Creates the ProgressBar.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ProgressBar() : this(NDalicPINVOKE.ProgressBar_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -206,6 +208,7 @@ namespace Tizen.NUI.UIComponents
         /// If the value is set to 1, then the progress bar will be set to end.<br>
         /// Any value outside the range is ignored.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float ProgressValue
         {
             get
@@ -226,6 +229,7 @@ namespace Tizen.NUI.UIComponents
         /// If the value is set to 1, then the progress bar will be set secondary progress to end.<br>
         /// Any value outside of the range is ignored.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float SecondaryProgressValue
         {
             get
@@ -242,6 +246,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Sets the progress bar as \e indeterminate state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Indeterminate
         {
             get
@@ -259,6 +264,7 @@ namespace Tizen.NUI.UIComponents
         /// The track visual value of progress bar, it's full progress area, and it's shown behind the PROGRESS_VISUAL.<br>
         /// Optional. If not supplied, the default track visual will be shown.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap TrackVisual
         {
             get
@@ -276,6 +282,7 @@ namespace Tizen.NUI.UIComponents
         /// The progress visual value of the progress bar, the size of the progress visual is changed based on the PROGRESS_VALUE.<br>
         /// Optional. If not supplied, then the default progress visual will be shown.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap ProgressVisual
         {
             get
@@ -293,6 +300,7 @@ namespace Tizen.NUI.UIComponents
         /// The secondary progress visual of the progress bar, the size of the secondary progress visual is changed based on the SECONDARY_PROGRESS_VALUE.<br>
         /// Optional. If not supplied, then the secondary progress visual will not be shown.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap SecondaryProgressVisual
         {
             get
@@ -310,6 +318,7 @@ namespace Tizen.NUI.UIComponents
         /// The indeterminate visual of the progress bar.<br>
         /// Optional. If not supplied, then the default indeterminate visual will be shown.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap IndeterminateVisual
         {
             get
@@ -327,6 +336,7 @@ namespace Tizen.NUI.UIComponents
         /// The transition data for the indeterminate visual animation.<br>
         /// Optional. If not supplied, then the default animation will be played.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyArray IndeterminateVisualAnimation
         {
             get
@@ -343,6 +353,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// The label visual of the progress bar.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap LabelVisual
         {
             get

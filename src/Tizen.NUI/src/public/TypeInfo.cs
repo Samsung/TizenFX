@@ -17,6 +17,9 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// TypeInfo class for instantiation of registered types and introspection of their actions and signals.
+    /// </summary>
     public class TypeInfo : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -63,17 +66,30 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-
+        /// <summary>
+        /// Creates TypeInfo object.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public TypeInfo() : this(NDalicPINVOKE.new_TypeInfo__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Creates TypeInfo object.
+        /// </summary>
+        /// <param name="handle">This copy constructor is required for (smart) pointer semantics.</param>
+        /// <since_tizen> 3 </since_tizen>
         public TypeInfo(TypeInfo handle) : this(NDalicPINVOKE.new_TypeInfo__SWIG_1(TypeInfo.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Retrieves the type name for this type.
+        /// </summary>
+        /// <returns>The string name.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public string GetName()
         {
             string ret = NDalicPINVOKE.TypeInfo_GetName(swigCPtr);
@@ -81,6 +97,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves the type name for this type.
+        /// </summary>
+        /// <returns>The string name.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public string GetBaseName()
         {
             string ret = NDalicPINVOKE.TypeInfo_GetBaseName(swigCPtr);
@@ -88,6 +109,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Creates an object from this type.
+        /// </summary>
+        /// <returns>The BaseHandle for the newly created object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public BaseHandle CreateInstance()
         {
             BaseHandle ret = new BaseHandle(NDalicPINVOKE.TypeInfo_CreateInstance(swigCPtr), true);
@@ -95,6 +121,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves the number of event side type registered properties for this type.<br>
+        /// This count does not include all properties.
+        /// </summary>
+        /// <returns>The count.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetPropertyCount()
         {
             uint ret = NDalicPINVOKE.TypeInfo_GetPropertyCount(swigCPtr);
@@ -102,6 +134,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Given a property index, retrieve the property name associated with it.
+        /// </summary>
+        /// <param name="index">The property index.</param>
+        /// <returns>The name of the property at the given index.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public string GetPropertyName(int index)
         {
             string ret = NDalicPINVOKE.TypeInfo_GetPropertyName(swigCPtr, index);

@@ -16,6 +16,10 @@
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// The texture type.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum TextureType
     {
         TEXTURE_2D,

@@ -16,7 +16,9 @@
 
 namespace Tizen.NUI
 {
-
+    /// <summary>
+    /// Renderer is a handle to an object used to show content by combining a Geometry, a TextureSet and a shader.
+    /// </summary>
     public class Renderer : Animatable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -93,18 +95,32 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Create an instance of Renderer.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Renderer(Geometry geometry, Shader shader) : this(NDalicPINVOKE.Renderer_New(Geometry.getCPtr(geometry), Shader.getCPtr(shader)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
+        /// <summary>
+        /// Sets the geometry to be used by this renderer.
+        /// </summary>
+        /// <param name="geometry">The geometry to be used by this renderer.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetGeometry(Geometry geometry)
         {
             NDalicPINVOKE.Renderer_SetGeometry(swigCPtr, Geometry.getCPtr(geometry));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the geometry used by this renderer.
+        /// </summary>
+        /// <returns>The geometry used by the renderer.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Geometry GetGeometry()
         {
             System.IntPtr cPtr = NDalicPINVOKE.Renderer_GetGeometry(swigCPtr);
@@ -114,18 +130,34 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets effective range of indices to draw from bound index buffer.
+        /// </summary>
+        /// <param name="firstElement">The First element to draw.</param>
+        /// <param name="elementsCount">The number of elements to draw.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetIndexRange(int firstElement, int elementsCount)
         {
             NDalicPINVOKE.Renderer_SetIndexRange(swigCPtr, firstElement, elementsCount);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets the texture set to be used by this renderer.
+        /// </summary>
+        /// <param name="textureSet">The texture set to be used by this renderer.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetTextures(TextureSet textureSet)
         {
             NDalicPINVOKE.Renderer_SetTextures(swigCPtr, TextureSet.getCPtr(textureSet));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the texture set used by this renderer.
+        /// </summary>
+        /// <returns>The texture set used by the renderer.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public TextureSet GetTextures()
         {
             System.IntPtr cPtr = NDalicPINVOKE.Renderer_GetTextures(swigCPtr);
@@ -135,12 +167,22 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the shader used by this renderer.
+        /// </summary>
+        /// <param name="shader">The shader to be used by this renderer.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetShader(Shader shader)
         {
             NDalicPINVOKE.Renderer_SetShader(swigCPtr, Shader.getCPtr(shader));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the shader used by this renderer.
+        /// </summary>
+        /// <returns>The shader used by the renderer.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Shader GetShader()
         {
             System.IntPtr cPtr = NDalicPINVOKE.Renderer_GetShader(swigCPtr);
@@ -150,6 +192,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets and Sets DepthIndex property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int DepthIndex
         {
             get
@@ -163,6 +209,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_INDEX, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets FaceCullingMode.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int FaceCullingMode
         {
             get
@@ -176,6 +227,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.FACE_CULLING_MODE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets BlendMode.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BlendMode
         {
             get
@@ -189,6 +245,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_MODE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets BlendEquationRgb.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BlendEquationRgb
         {
             get
@@ -202,6 +263,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_RGB, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets BlendEquationAlpha.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BlendEquationAlpha
         {
             get
@@ -215,6 +281,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_EQUATION_ALPHA, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets BlendFactorSrcRgb.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BlendFactorSrcRgb
         {
             get
@@ -228,6 +299,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_RGB, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets BlendFactorDestRgb.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BlendFactorDestRgb
         {
             get
@@ -241,6 +317,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_RGB, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets BlendFactorSrcAlpha.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BlendFactorSrcAlpha
         {
             get
@@ -254,6 +335,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_SRC_ALPHA, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets BlendFactorDestAlpha.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BlendFactorDestAlpha
         {
             get
@@ -267,6 +353,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_FACTOR_DEST_ALPHA, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets BlendColor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector4 BlendColor
         {
             get
@@ -280,6 +371,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_COLOR, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets BlendPreMultipliedAlpha.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool BlendPreMultipliedAlpha
         {
             get
@@ -293,6 +389,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.BLEND_PRE_MULTIPLIED_ALPHA, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets IndexRangeFirst.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int IndexRangeFirst
         {
             get
@@ -306,6 +407,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_FIRST, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets IndexRangeCount.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int IndexRangeCount
         {
             get
@@ -319,6 +425,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.INDEX_RANGE_COUNT, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets DepthWriteMode.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int DepthWriteMode
         {
             get
@@ -332,6 +443,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_WRITE_MODE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets DepthFunction.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int DepthFunction
         {
             get
@@ -345,6 +461,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_FUNCTION, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets DepthTestMode.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int DepthTestMode
         {
             get
@@ -358,6 +479,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.DEPTH_TEST_MODE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets RenderMode.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int RenderMode
         {
             get
@@ -371,6 +497,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.RENDER_MODE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets StencilFunction.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int StencilFunction
         {
             get
@@ -384,6 +515,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets StencilFunctionMask.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int StencilFunctionMask
         {
             get
@@ -397,6 +533,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_MASK, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets StencilFunctionReference.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int StencilFunctionReference
         {
             get
@@ -410,6 +551,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_FUNCTION_REFERENCE, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets StencilMask.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int StencilMask
         {
             get
@@ -423,6 +569,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_MASK, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets StencilOperationOnFail.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int StencilOperationOnFail
         {
             get
@@ -436,6 +587,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_FAIL, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets StencilOperationOnZFail.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int StencilOperationOnZFail
         {
             get
@@ -449,6 +605,11 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(swigCPtr, Renderer.Property.STENCIL_OPERATION_ON_Z_FAIL, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets StencilOperationOnZPass property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int StencilOperationOnZPass
         {
             get

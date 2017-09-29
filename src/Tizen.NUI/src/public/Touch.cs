@@ -84,6 +84,7 @@ namespace Tizen.NUI
         /// An uninitialized touch instance.<br>
         /// Calling member functions with an uninitialized touch handle is not allowed.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Touch() : this(NDalicPINVOKE.new_Touch__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -98,6 +99,7 @@ namespace Tizen.NUI
         /// Returns the time (in ms) that the touch event occurred.
         /// </summary>
         /// <returns>The time (in ms) that the touch event occurred.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetTime()
         {
             uint ret = NDalicPINVOKE.Touch_GetTime(swigCPtr);
@@ -109,6 +111,7 @@ namespace Tizen.NUI
         /// Returns the total number of points in this TouchData.
         /// </summary>
         /// <returns>The total number of points.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetPointCount()
         {
             uint ret = NDalicPINVOKE.Touch_GetPointCount(swigCPtr);
@@ -124,6 +127,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The device ID of this point.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public int GetDeviceId(uint point)
         {
             int ret = NDalicPINVOKE.Touch_GetDeviceId(swigCPtr, point);
@@ -137,6 +141,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The state of the point specified.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public PointStateType GetState(uint point)
         {
             PointStateType ret = (PointStateType)NDalicPINVOKE.Touch_GetState(swigCPtr, point);
@@ -150,6 +155,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The actor that was underneath the point specified.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public View GetHitView(uint point)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.Touch_GetHitActor(swigCPtr, point);
@@ -168,6 +174,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The coordinates relative to the top-left of the hit actor of the point specified.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 GetLocalPosition(uint point)
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.Touch_GetLocalPosition(swigCPtr, point), false);
@@ -181,6 +188,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The coordinates relative to the top-left of the screen of the point specified.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 GetScreenPosition(uint point)
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.Touch_GetScreenPosition(swigCPtr, point), false);
@@ -195,6 +203,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The radius of the press point.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetRadius(uint point)
         {
             float ret = NDalicPINVOKE.Touch_GetRadius(swigCPtr, point);
@@ -208,6 +217,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The horizontal and vertical radii of the press point.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 GetEllipseRadius(uint point)
         {
             Vector2 ret = new Vector2(NDalicPINVOKE.Touch_GetEllipseRadius(swigCPtr, point), false);
@@ -225,6 +235,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The touch pressure.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetPressure(uint point)
         {
             float ret = NDalicPINVOKE.Touch_GetPressure(swigCPtr, point);

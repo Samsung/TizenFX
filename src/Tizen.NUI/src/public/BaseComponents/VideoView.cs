@@ -83,6 +83,7 @@ namespace Tizen.NUI.BaseComponents
             /// <summary>
             /// The view for video playback and display.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public VideoView VideoView
             {
                 get
@@ -108,6 +109,7 @@ namespace Tizen.NUI.BaseComponents
         /// (in the type of FinishedEventHandler-DaliEventHandler<object,FinishedEventArgs>) provided by the user.<br>
         /// The finished signal is emitted when a video playback has finished.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<FinishedEventArgs> Finished
         {
             add
@@ -155,6 +157,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Creates an initialized VideoView.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VideoView() : this(NDalicPINVOKE.VideoView_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -166,6 +169,7 @@ namespace Tizen.NUI.BaseComponents
         /// If the string is empty, VideoView will not display anything.<br>
         /// </summary>
         /// <param name="url">The URL of the video resource to display.</param>
+        /// <since_tizen> 3 </since_tizen>
         public VideoView(string url) : this(NDalicPINVOKE.VideoView_New__SWIG_1(url), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -187,6 +191,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Starts the video playback.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Play()
         {
             NDalicPINVOKE.VideoView_Play(swigCPtr);
@@ -196,6 +201,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Pauses the video playback.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
             NDalicPINVOKE.VideoView_Pause(swigCPtr);
@@ -205,6 +211,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Stops the video playback.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
             NDalicPINVOKE.VideoView_Stop(swigCPtr);
@@ -215,6 +222,7 @@ namespace Tizen.NUI.BaseComponents
         /// Seeks forward by the specified number of milliseconds.
         /// </summary>
         /// <param name="millisecond">The position for forward playback.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Forward(int millisecond)
         {
             NDalicPINVOKE.VideoView_Forward(swigCPtr, millisecond);
@@ -225,6 +233,7 @@ namespace Tizen.NUI.BaseComponents
         /// Seeks backward by the specified number of milliseconds.
         /// </summary>
         /// <param name="millisecond">The position for backward playback.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Backward(int millisecond)
         {
             NDalicPINVOKE.VideoView_Backward(swigCPtr, millisecond);
@@ -241,6 +250,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Video file URL as string type or PropertyMap.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap Video
         {
             get
@@ -258,6 +268,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The looping status, true or false.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Looping
         {
             get
@@ -275,6 +286,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The mute status, true or false.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Muted
         {
             get
@@ -292,6 +304,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The left and the right volume scalar as float type, PropertyMap with two values ( "left" and "right" ).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap Volume
         {
             get

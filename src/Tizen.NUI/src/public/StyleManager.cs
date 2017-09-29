@@ -92,6 +92,7 @@ namespace Tizen.NUI
             /// <summary>
             /// StyleManager.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public StyleManager StyleManager
             {
                 get
@@ -108,6 +109,7 @@ namespace Tizen.NUI
             /// StyleChange - contains the style change information (default font changed or
             /// default font size changed or theme has changed).<br>
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public StyleChangeType StyleChange
             {
                 get
@@ -133,6 +135,7 @@ namespace Tizen.NUI
         /// The StyleChanged signal is emitted after the style (for example, theme or font change) has changed
         /// and the controls have been informed.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<StyleChangedEventArgs> StyleChanged
         {
             add
@@ -174,6 +177,7 @@ namespace Tizen.NUI
         /// Creates a StyleManager handle.<br>
         /// This can be initialized with StyleManager::Get().<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public StyleManager() : this(NDalicPINVOKE.new_StyleManager(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -183,6 +187,7 @@ namespace Tizen.NUI
         /// Gets the singleton of StyleManager object.
         /// </summary>
         /// <returns>A handle to the StyleManager control.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static StyleManager Get()
         {
             StyleManager ret = new StyleManager(NDalicPINVOKE.StyleManager_Get(), true);
@@ -198,6 +203,7 @@ namespace Tizen.NUI
         /// instead for those controls.<br>
         /// </summary>
         /// <param name="themeFile">A relative path is specified for style theme.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void ApplyTheme(string themeFile)
         {
             NDalicPINVOKE.StyleManager_ApplyTheme(swigCPtr, themeFile);
@@ -207,6 +213,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Applies the default Toolkit theme.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void ApplyDefaultTheme()
         {
             NDalicPINVOKE.StyleManager_ApplyDefaultTheme(swigCPtr);
@@ -218,6 +225,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="key">The key of the constant.</param>
         /// <param name="value">The value of the constant.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AddConstant(string key, PropertyValue value)
         {
             NDalicPINVOKE.StyleManager_SetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(value));
@@ -230,6 +238,7 @@ namespace Tizen.NUI
         /// <param name="key">The key of the constant.</param>
         /// <param name="valueOut">The value of the constant if it exists.</param>
         /// <returns></returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool GetConstant(string key, PropertyValue valueOut)
         {
             bool ret = NDalicPINVOKE.StyleManager_GetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(valueOut));
@@ -243,6 +252,7 @@ namespace Tizen.NUI
         /// <param name="control">The control to which to apply the style.</param>
         /// <param name="jsonFileName">The name of the JSON style file to apply.</param>
         /// <param name="styleName">The name of the style within the JSON file to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void ApplyStyle(View control, string jsonFileName, string styleName)
         {
             NDalicPINVOKE.StyleManager_ApplyStyle(swigCPtr, View.getCPtr(control), jsonFileName, styleName);
