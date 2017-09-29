@@ -90,11 +90,11 @@ namespace Tizen.Multimedia
 
         private Lazy<string> _description;
 
-        public override string ToString()
-        {
-            return _description.Value;
-        }
-
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString() => _description.Value;
     }
 
     /// <summary>
@@ -166,10 +166,11 @@ namespace Tizen.Multimedia
 
         private Lazy<string> _description;
 
-        public override string ToString()
-        {
-            return _description.Value;
-        }
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString() => _description.Value;
     }
 
     /// <summary>
@@ -388,9 +389,10 @@ namespace Tizen.Multimedia
 
         private Lazy<string> _description;
 
-        public override string ToString()
-        {
-            return _description.Value;
-        }
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString() => _description.Value;
     }
 }
