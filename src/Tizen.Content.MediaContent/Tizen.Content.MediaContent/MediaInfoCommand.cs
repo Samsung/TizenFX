@@ -602,7 +602,7 @@ namespace Tizen.Content.MediaContent
             ValidatePaths(paths);
 
             var pathArray = paths.ToArray();
-            var tcs = new TaskCompletionSource<bool>();
+            var tcs = new TaskCompletionSource<bool>(TaskContinuationOptions.RunContinuationsAsynchronously);
 
             Interop.MediaInfo.InsertCompletedCallback callback = (error, _) =>
             {
@@ -658,7 +658,7 @@ namespace Tizen.Content.MediaContent
 
             ValidatePaths(paths);
 
-            var tcs = new TaskCompletionSource<bool>();
+            var tcs = new TaskCompletionSource<bool>(TaskContinuationOptions.RunContinuationsAsynchronously);
             string[] pathArray = paths.ToArray();
 
             Interop.MediaInfo.InsertBurstShotCompletedCallback callback = (error, _) =>
