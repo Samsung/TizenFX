@@ -87,9 +87,9 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides a means to wrap various display types.
     /// </summary>
-    /// <seealso cref="Player"/>
-    /// <seealso cref="Camera"/>
-    /// <seealso cref="Tizen.Multimedia.Remoting.ScreenMirroring"/>
+    /// <seealso cref="T:Tizen.Multimedia.Player"/>
+    /// <seealso cref="T:Tizen.Multimedia.Camera"/>
+    /// <seealso cref="T:Tizen.Multimedia.Remoting.ScreenMirroring"/>
     public class Display
     {
         private readonly IDisplaySetter _setter;

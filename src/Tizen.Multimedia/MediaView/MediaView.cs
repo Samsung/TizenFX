@@ -24,7 +24,7 @@ namespace Tizen.Multimedia
     /// </summary>
     /// <remarks>
     /// This view should not be instantiated directly.\n
-    /// Use <see cref="Tizen.Xamarin.Forms.Extension.MediaView"/> to create the view.
+    /// Use <see cref="T:Tizen.Xamarin.Forms.Extension.MediaView"/> to create the view.
     /// </remarks>
     /// <example>
     /// <code>

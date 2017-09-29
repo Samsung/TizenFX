@@ -33,7 +33,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// To apply the stream policy according to this stream information, the AudioStreamPolicy should
-        /// be passed to other APIs related to playback or recording. (For example., <see cref="Player"/>, <see cref="WavPlayer"/> , etc.)
+        /// be passed to other APIs related to playback or recording. (For example., <see cref="T:Tizen.MultimediaPlayer"/>,
+        /// <see cref="T:Tizen.Multimedia.WavPlayer"/> , etc.)
         /// </remarks>
         /// <param name="streamType">The type of the sound stream for which the policy needs to be created.</param>
         /// <exception cref="ArgumentException"><paramref name="streamType"/> is invalid.</exception>
