@@ -73,6 +73,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates an empty visual handle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VisualBase() : this(NDalicPINVOKE.new_VisualBase__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -86,6 +87,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The name of the visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Name
         {
             set
@@ -116,6 +118,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="transform">A property map describing the transform.</param>
         /// <param name="controlSize">The size of the parent control for visuals that need to scale internally.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetTransformAndSize(PropertyMap transform, Vector2 controlSize)
         {
             NDalicPINVOKE.VisualBase_SetTransformAndSize(swigCPtr, PropertyMap.getCPtr(transform), Vector2.getCPtr(controlSize));
@@ -127,6 +130,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="width">The width to use.</param>
         /// <returns>The height based on the width.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetHeightForWidth(float width)
         {
             float ret = NDalicPINVOKE.VisualBase_GetHeightForWidth(swigCPtr, width);
@@ -139,6 +143,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="height">The height to use.</param>
         /// <returns>The width based on the height.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetWidthForHeight(float height)
         {
             float ret = NDalicPINVOKE.VisualBase_GetWidthForHeight(swigCPtr, height);
@@ -152,6 +157,7 @@ namespace Tizen.NUI
         /// A visual may not actually have a natural size until it has been placed on window and acquired all it's resources.<br>
         /// </summary>
         /// <param name="naturalSize">The visual's natural size.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void GetNaturalSize(Size2D naturalSize)
         {
             NDalicPINVOKE.VisualBase_GetNaturalSize(swigCPtr, Size2D.getCPtr(naturalSize));
@@ -161,6 +167,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The depth index of this visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int DepthIndex
         {
             set

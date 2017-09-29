@@ -77,6 +77,7 @@ namespace Tizen.NUI.BaseComponents
         /// Sets the background with a property map.
         /// </summary>
         /// <param name="map">The background property map.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetBackground(Tizen.NUI.PropertyMap map)
         {
             viewWrapperImpl.SetBackground(map);
@@ -87,6 +88,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gesture detection can be enabled one at a time or in a bitwise format.<br>
         /// </summary>
         /// <param name="type">The gesture type(s) to enable.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void EnableGestureDetection(Gesture.GestureType type)
         {
             viewWrapperImpl.EnableGestureDetection(type);
@@ -108,6 +110,7 @@ namespace Tizen.NUI.BaseComponents
         /// The control doesn't support it by default.<br>
         /// </summary>
         /// <param name="isSupported">Whether this control supports two dimensional keyboard navigation.</param>
+        /// <since_tizen> 3 </since_tizen>
         public bool FocusNavigationSupport
         {
             get
@@ -139,6 +142,7 @@ namespace Tizen.NUI.BaseComponents
         /// Sets or gets whether this control is a focus group for keyboard navigation.
         /// </summary>
         /// <returns>True if this control is set as a focus group for keyboard navigation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool FocusGroup
         {
             get
@@ -347,6 +351,7 @@ namespace Tizen.NUI.BaseComponents
         /// This method is called after the control has been initialized.<br>
         /// Derived classes should do any second phase initialization by overriding this method.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnInitialize()
         {
         }
@@ -358,6 +363,7 @@ namespace Tizen.NUI.BaseComponents
         /// When the parent of a set of views is connected to the stage, then all of the children will receive this callback.<br>
         /// </summary>
         /// <param name="depth">The depth in the hierarchy for the view.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnStageConnection(int depth)
         {
         }
@@ -367,6 +373,7 @@ namespace Tizen.NUI.BaseComponents
         /// If a view is disconnected, it either has no parent, or is parented to a disconnected view.<br>
         /// When the parent of a set of views is disconnected to the stage, then all of the children will receive this callback, starting with the leaf views.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnStageDisconnection()
         {
         }
@@ -375,6 +382,7 @@ namespace Tizen.NUI.BaseComponents
         /// Called after a child has been added to the owning view.
         /// </summary>
         /// <param name="view">The child which has been added.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnChildAdd(View view)
         {
         }
@@ -383,6 +391,7 @@ namespace Tizen.NUI.BaseComponents
         /// Called after the owning view has attempted to remove a child( regardless of whether it succeeded or not ).
         /// </summary>
         /// <param name="view">The child being removed.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnChildRemove(View view)
         {
         }
@@ -392,6 +401,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="index">The property index that was set.</param>
         /// <param name="propertyValue">The value to set.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnPropertySet(int index, Tizen.NUI.PropertyValue propertyValue)
         {
         }
@@ -400,6 +410,7 @@ namespace Tizen.NUI.BaseComponents
         /// Called when the owning view's size is set, for example, using View.SetSize().
         /// </summary>
         /// <param name="targetSize">The target size.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnSizeSet(Vector3 targetSize)
         {
         }
@@ -409,6 +420,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="animation">The object which is animating the owning view.</param>
         /// <param name="targetSize">The target size.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnSizeAnimation(Animation animation, Vector3 targetSize)
         {
         }
@@ -419,6 +431,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="touch">The touch event.</param>
         /// <returns>True if the event should be consumed.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public virtual bool OnTouch(Touch touch)
         {
             return false; // Do not consume
@@ -430,6 +443,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="hover">The hover event.</param>
         /// <returns>True if the hover event should be consumed.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public virtual bool OnHover(Hover hover)
         {
             return false; // Do not consume
@@ -440,6 +454,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="key">The key event.</param>
         /// <returns>True if the key event should be consumed.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public virtual bool OnKey(Key key)
         {
             return false; // Do not consume
@@ -451,6 +466,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="wheel">The wheel event.</param>
         /// <returns>True if the wheel event should be consumed.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public virtual bool OnWheel(Wheel wheel)
         {
             return false; // Do not consume
@@ -464,6 +480,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="size">The allocated size.</param>
         /// <param name="container">The control should add views to this container that it is not able to allocate a size for.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnRelayout(Vector2 size, RelayoutContainer container)
         {
         }
@@ -473,6 +490,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="policy">The policy being set.</param>
         /// <param name="dimension">The policy is being set for.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnSetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
         }
@@ -481,6 +499,7 @@ namespace Tizen.NUI.BaseComponents
         /// Returns the natural size of the view.
         /// </summary>
         /// <returns>The view's natural size</returns>
+        /// <since_tizen> 3 </since_tizen>
         public new virtual Size2D GetNaturalSize()
         {
             return new Size2D(0, 0);
@@ -492,6 +511,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="child">The child view to calculate the size for.</param>
         /// <param name="dimension">The dimension to calculate the size, for example, the width or the height.</param>
         /// <returns>Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public virtual float CalculateChildSize(View child, DimensionType dimension)
         {
             return viewWrapperImpl.CalculateChildSizeBase(child, dimension);
@@ -503,6 +523,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="width">Width to use</param>
         /// <returns>The height based on the width</returns>
+        /// <since_tizen> 3 </since_tizen>
         public new virtual float GetHeightForWidth(float width)
         {
             return viewWrapperImpl.GetHeightForWidthBase(width);
@@ -514,6 +535,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="height">Height to use</param>
         /// <returns>The width based on the width</returns>
+        /// <since_tizen> 3 </since_tizen>
         public new virtual float GetWidthForHeight(float height)
         {
             return viewWrapperImpl.GetWidthForHeightBase(height);
@@ -524,6 +546,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="dimension">The dimension(s) to check for.</param>
         /// <returns>Return if the view is dependent on it's children.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public virtual bool RelayoutDependentOnChildren(DimensionType dimension)
         {
             return viewWrapperImpl.RelayoutDependentOnChildrenBase(dimension);
@@ -533,6 +556,7 @@ namespace Tizen.NUI.BaseComponents
         /// Determines if this view is dependent on it's children for relayout from the base class.
         /// </summary>
         /// <returns>Return true if the view is dependent on it's children.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public virtual bool RelayoutDependentOnChildren()
         {
             return viewWrapperImpl.RelayoutDependentOnChildrenBase();
@@ -543,6 +567,7 @@ namespace Tizen.NUI.BaseComponents
         /// met and the size for this object is about to be calculated for the given dimension.
         /// </summary>
         /// <param name="dimension">The dimension that is about to be calculated.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnCalculateRelayoutSize(DimensionType dimension)
         {
         }
@@ -552,6 +577,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="size">The new size for the given dimension.</param>
         /// <param name="dimension">The dimension that was just negotiated.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnLayoutNegotiated(float size, DimensionType dimension)
         {
         }
@@ -561,6 +587,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="styleManager">The StyleManager object.</param>
         /// <param name="change">Information denoting what has changed.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnStyleChange(StyleManager styleManager, StyleChangeType change)
         {
         }
@@ -617,6 +644,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Called when the control gain key input focus. Should be overridden by derived classes if they need to customize what happens when the focus is gained.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnFocusGained()
         {
         }
@@ -624,6 +652,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Called when the control loses key input focus. Should be overridden by derived classes if they need to customize what happens when the focus is lost.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnFocusLost()
         {
         }
@@ -636,6 +665,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="direction">The direction to move the focus towards.</param>
         /// <param name="loopEnabled">Whether the focus movement should be looped within the control.</param>
         /// <returns>The next keyboard focusable view in this control or an empty handle if no view can be focused.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public virtual View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
             return new View();
@@ -646,6 +676,7 @@ namespace Tizen.NUI.BaseComponents
         /// This allows the application to preform any actions it wishes before the focus is actually moved to the chosen view.<br>
         /// </summary>
         /// <param name="commitedFocusableView">The commited focused view.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnFocusChangeCommitted(View commitedFocusableView)
         {
         }
@@ -655,6 +686,7 @@ namespace Tizen.NUI.BaseComponents
         /// Derived classes should override this to perform custom actions.<br>
         /// </summary>
         /// <returns>True if this control supported this action.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public virtual bool OnKeyboardEnter()
         {
             return false;
@@ -678,6 +710,7 @@ namespace Tizen.NUI.BaseComponents
         /// Pan detection should be enabled via EnableGestureDetection().<br>
         /// </summary>
         /// <param name="pan">The pan gesture.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnPan(PanGesture pan)
         {
         }
@@ -689,6 +722,7 @@ namespace Tizen.NUI.BaseComponents
         /// Tap detection should be enabled via EnableGestureDetection().<br>
         /// </summary>
         /// <param name="tap">The tap gesture.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void OnTap(TapGesture tap)
         {
         }

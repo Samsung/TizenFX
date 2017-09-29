@@ -16,7 +16,9 @@
 
 namespace Tizen.NUI
 {
-
+    /// <summary>
+    /// Texture represents a texture object used as input or output by shaders.
+    /// </summary>
     public class Texture : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -64,6 +66,14 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        /// <summary>
+        /// Creates a new Texture object.
+        /// </summary>
+        /// <param name="type">The type of the texture.</param>
+        /// <param name="format">The format of the pixel data.</param>
+        /// <param name="width">The width of the texture.</param>
+        /// <param name="height">The height of the texture.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Texture(TextureType type, PixelFormat format, uint width, uint height) : this(NDalicPINVOKE.Texture_New__SWIG_0((int)type, (int)format, width, height), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -75,6 +85,12 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Uploads data to the texture from a PixelData object.
+        /// </summary>
+        /// <param name="pixelData">The pixelData object.</param>
+        /// <returns>True if the PixelData object has compatible pixel format and fits within the texture, false otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool Upload(PixelData pixelData)
         {
             bool ret = NDalicPINVOKE.Texture_Upload__SWIG_0(swigCPtr, PixelData.getCPtr(pixelData));
@@ -82,6 +98,18 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Uploads data to the texture from a PixelData object.
+        /// </summary>
+        /// <param name="pixelData">The pixelData object.</param>
+        /// <param name="layer">The layer of a cube map or array texture.</param>
+        /// <param name="mipmap">The level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.</param>
+        /// <param name="xOffset">The horizontal offset of the rectangular area in the texture that will be updated.</param>
+        /// <param name="yOffset">The vertical offset of the rectangular area in the texture that will be updated.</param>
+        /// <param name="width">The width of the rectangular area in the texture that will be updated.</param>
+        /// <param name="height">height of the rectangular area in the texture that will be updated.</param>
+        /// <returns>True if the PixelData object has compatible pixel format and fits within the texture, false otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool Upload(PixelData pixelData, uint layer, uint mipmap, uint xOffset, uint yOffset, uint width, uint height)
         {
             bool ret = NDalicPINVOKE.Texture_Upload__SWIG_1(swigCPtr, PixelData.getCPtr(pixelData), layer, mipmap, xOffset, yOffset, width, height);
@@ -89,12 +117,22 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Generates mipmaps for the texture.<br>
+        /// This will auto generate all the mipmaps for the texture based on the data in the base level.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void GenerateMipmaps()
         {
             NDalicPINVOKE.Texture_GenerateMipmaps(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Returns the width of the texture.<br>
+        /// </summary>
+        /// <returns>The width, in pixels, of the texture.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetWidth()
         {
             uint ret = NDalicPINVOKE.Texture_GetWidth(swigCPtr);
@@ -102,6 +140,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Returns the height of the texture..<br>
+        /// </summary>
+        /// <returns>The height, in pixels, of the texture.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetHeight()
         {
             uint ret = NDalicPINVOKE.Texture_GetHeight(swigCPtr);

@@ -103,6 +103,7 @@ namespace Tizen.NUI.BaseComponents
         /// Enumeration for the direction of the main axis in the flex container. This determines
         /// the direction that flex items are laid out in the flex container.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum FlexDirectionType
         {
             Column,
@@ -115,6 +116,7 @@ namespace Tizen.NUI.BaseComponents
         /// Enumeration for the primary direction in which content is ordered in the flex container
         /// and on which sides the ?�start??and ?�end??are.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum ContentDirectionType
         {
             Inherit,
@@ -126,6 +128,7 @@ namespace Tizen.NUI.BaseComponents
         /// Enumeration for the alignment of the flex items when the items do not use all available
         /// space on the main axis.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum Justification
         {
             JustifyFlexStart,
@@ -139,6 +142,7 @@ namespace Tizen.NUI.BaseComponents
         /// Enumeration for the alignment of the flex items or lines when the items or lines do not
         /// use all the available space on the cross axis.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum Alignment
         {
             AlignAuto,
@@ -152,6 +156,7 @@ namespace Tizen.NUI.BaseComponents
         /// Enumeration for the wrap type of the flex container when there is no enough room for
         /// all the items on one flex line.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum WrapType
         {
             NoWrap,
@@ -161,6 +166,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The primary direction in which content is ordered.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ContentDirectionType ContentDirection
         {
             get
@@ -178,6 +184,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The direction of the main axis which determines the direction that flex items are laid out.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public FlexDirectionType FlexDirection
         {
             get
@@ -195,6 +202,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Whether the flex items should wrap or not if there is no enough room for them on one flex line.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WrapType FlexWrap
         {
             get
@@ -212,6 +220,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The alignment of flex items when the items do not use all available space on the main axis.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Justification JustifyContent
         {
             get
@@ -229,6 +238,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The alignment of flex items when the items do not use all available space on the cross axis.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Alignment AlignItems
         {
             get
@@ -246,6 +256,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Similar to "alignItems", but it aligns flex lines; so only works when there are multiple lines.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Alignment AlignContent
         {
             get

@@ -88,6 +88,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="propertyMap">The map contains the properties required by the visual. The content of the map determines the type of visual that will be returned.</param>
         /// <returns>The handle to the created visual.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public VisualBase CreateVisual(PropertyMap propertyMap)
         {
             VisualBase ret = new VisualBase(NDalicPINVOKE.VisualFactory_CreateVisual__SWIG_0(swigCPtr, PropertyMap.getCPtr(propertyMap)), true);
@@ -107,6 +108,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves the VisualFactory singleton.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static VisualFactory Instance
         {
             get

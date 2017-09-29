@@ -85,6 +85,7 @@ namespace Tizen.NUI
         /// A positive x value shows that the user is panning to the right, a negative x value means the opposite.<br>
         /// A positive y value shows that the user is panning downwards, a negative y values means upwards.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 Velocity
         {
             get
@@ -99,6 +100,7 @@ namespace Tizen.NUI
         /// A positive x value shows that the user is panning to the right, a negative x value means the opposite.<br>
         /// A positive y value shows that the user is panning downwards, a negative y value means upwards.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 Displacement
         {
             get
@@ -110,6 +112,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The current touch position of the primary touch point in local actor coordinates.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 Position
         {
             get
@@ -125,6 +128,7 @@ namespace Tizen.NUI
         /// A positive y value shows that the user is panning downwards, a negative y values means upwards.<br>
         /// This value represents the screen coordinates.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScreenVelocity
         {
             get
@@ -140,6 +144,7 @@ namespace Tizen.NUI
         /// A positive y value shows that the user is panning downwards, a negative y value means upwards.<br>
         /// This value is in screen coordinates.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScreenDisplacement
         {
             get
@@ -151,6 +156,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The current touch position of the primary touch point in screen coordinates.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 ScreenPosition
         {
             get
@@ -162,6 +168,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The total number of fingers touching the screen in a pan gesture.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint NumberOfTouches
         {
             get
@@ -173,6 +180,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The default constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PanGesture() : this(NDalicPINVOKE.new_PanGesture__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -304,6 +312,7 @@ namespace Tizen.NUI
         /// This is the pixel movement per millisecond.<br>
         /// </summary>
         /// <returns>The speed of the pan (in pixels per millisecond).</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetSpeed()
         {
             float ret = NDalicPINVOKE.PanGesture_GetSpeed(swigCPtr);
@@ -317,6 +326,7 @@ namespace Tizen.NUI
         /// This is always a positive value.<br>
         /// </summary>
         /// <returns>The distance, as a float, a user's finger has panned.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetDistance()
         {
             float ret = NDalicPINVOKE.PanGesture_GetDistance(swigCPtr);
@@ -329,6 +339,7 @@ namespace Tizen.NUI
         /// This is the pixel movement per millisecond.<br>
         /// </summary>
         /// <returns>The speed of the pan (in pixels per millisecond).</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetScreenSpeed()
         {
             float ret = NDalicPINVOKE.PanGesture_GetScreenSpeed(swigCPtr);
@@ -343,6 +354,7 @@ namespace Tizen.NUI
         /// This is always a positive value.<br>
         /// </summary>
         /// <returns>The distance, as a float, a user's finger has panned.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetScreenDistance()
         {
             float ret = NDalicPINVOKE.PanGesture_GetScreenDistance(swigCPtr);

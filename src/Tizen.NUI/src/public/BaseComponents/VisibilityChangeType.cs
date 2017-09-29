@@ -16,7 +16,10 @@
 
 namespace Tizen.NUI
 {
-
+    /// <summary>
+    /// The visibility change type.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum VisibilityChangeType
     {
         SELF,

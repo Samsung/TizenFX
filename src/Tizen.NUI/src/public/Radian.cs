@@ -103,6 +103,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The default constructor, initializes to 0.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Radian() : this(NDalicPINVOKE.new_Radian__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -112,6 +113,7 @@ namespace Tizen.NUI
         /// Creates an angle in radians.
         /// </summary>
         /// <param name="value">The initial value in radians.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Radian(float value) : this(NDalicPINVOKE.new_Radian__SWIG_1(value), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -121,6 +123,7 @@ namespace Tizen.NUI
         /// Creates an angle in radians from an angle in degrees.
         /// </summary>
         /// <param name="degree">The initial value in degrees.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Radian(Degree degree) : this(NDalicPINVOKE.new_Radian__SWIG_2(Degree.getCPtr(degree)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -130,6 +133,7 @@ namespace Tizen.NUI
         /// Conversion to float.
         /// </summary>
         /// <returns>The float value of this radian.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float ConvertToFloat()
         {
             float ret = NDalicPINVOKE.Radian_ConvertToFloat(swigCPtr);
@@ -140,6 +144,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The value in radians.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Value
         {
             set

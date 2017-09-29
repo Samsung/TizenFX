@@ -17,6 +17,9 @@
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// BaseHandle is a handle to an internal Dali resource.
+    /// </summary>
     public class BaseHandle : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -79,6 +82,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -133,9 +140,10 @@ namespace Tizen.NUI
             disposed = true;
         }
 
-
-
-        // Returns the bool value true to indicate that an operand is true and returns false otherwise.
+        /// <summary>
+        /// Returns the bool value true to indicate that an operand is true and returns false otherwise.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator true(BaseHandle handle)
         {
             // if the C# object is null, return false
@@ -147,7 +155,10 @@ namespace Tizen.NUI
             return handle.HasBody();
         }
 
-        // Returns the bool false  to indicate that an operand is false and returns true otherwise.
+        /// <summary>
+        /// Returns the bool false  to indicate that an operand is false and returns true otherwise.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator false(BaseHandle handle)
         {
             // if the C# object is null, return true
@@ -158,7 +169,10 @@ namespace Tizen.NUI
             return !handle.HasBody();
         }
 
-        // Explicit conversion from Handle to bool.
+        /// <summary>
+        /// Explicit conversion from Handle to bool.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static explicit operator bool(BaseHandle handle)
         {
             // if the C# object is null, return false
@@ -170,7 +184,10 @@ namespace Tizen.NUI
             return handle.HasBody();
         }
 
-        // Equality operator
+        /// <summary>
+        /// Equality operator
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator ==(BaseHandle x, BaseHandle y)
         {
             // if the C# objects are the same return true
@@ -198,18 +215,20 @@ namespace Tizen.NUI
             return false;
         }
 
-        // Inequality operator. Returns Null if either operand is Null
+        /// <summary>
+        /// Inequality operator. Returns Null if either operand is Null
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator !=(BaseHandle x, BaseHandle y)
         {
             return !(x == y);
         }
 
-        // Logical AND operator for &&
-        // It's possible when doing a && this function (opBitwiseAnd) is never called due
-        // to short circuiting. E.g.
-        // If you perform x && y What actually is called is
-        // BaseHandle.op_False( x ) ? BaseHandle.op_True( x ) : BaseHandle.opTrue( BaseHandle.opBitwiseAnd(x,y) )
-        //
+        /// <summary>
+        /// Logical AND operator for &&.<br>
+        /// It's possible when doing a && this function (opBitwiseAnd) is never called due to short circuiting.<br>
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static BaseHandle operator &(BaseHandle x, BaseHandle y)
         {
             if (x == y)
@@ -219,11 +238,11 @@ namespace Tizen.NUI
             return null;
         }
 
-        // Logical OR operator for ||
-        // It's possible when doing a || this function (opBitwiseOr) is never called due
-        // to short circuiting. E.g.
-        // If you perform x || y What actually is called is
-        // BaseHandle.op_True( x ) ? BaseHandle.op_True( x ) : BaseHandle.opTrue( BaseHandle.opBitwiseOr(x,y) )
+        /// <summary>
+        /// Logical OR operator for ||.<br>
+        /// It's possible when doing a || this function (opBitwiseOr) is never called due to short circuiting.<br>
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static BaseHandle operator |(BaseHandle x, BaseHandle y)
         {
             if (!BaseHandle.ReferenceEquals(x, null) || !BaseHandle.ReferenceEquals(y, null))
@@ -241,7 +260,10 @@ namespace Tizen.NUI
             return null;
         }
 
-        // Logical ! operator
+        /// <summary>
+        /// Logical ! operator
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator !(BaseHandle x)
         {
             // if the C# object is null, return true
@@ -256,6 +278,12 @@ namespace Tizen.NUI
             return true;
         }
 
+        /// <summary>
+        /// Equals
+        /// </summary>
+        /// <param name="o">The object should be compared.</param>
+        /// <returns>True if equal.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override bool Equals(object o)
         {
             if(o == null)
@@ -287,22 +315,43 @@ namespace Tizen.NUI
             return false;
         }
 
+        /// <summary>
+        /// Gets the the hash code of this baseHandle.
+        /// </summary>
+        /// <returns>The Hash Code.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
 
+        /// <summary>
+        /// Create an instance of BaseHandle.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BaseHandle() : this(NDalicPINVOKE.new_BaseHandle__SWIG_1())
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Create an instance of BaseHandle.
+        /// </summary>
+        /// <param name="handle">The BaseHandle instance.</param>
+        /// <since_tizen> 3 </since_tizen>
         public BaseHandle(BaseHandle handle) : this(NDalicPINVOKE.new_BaseHandle__SWIG_2(BaseHandle.getCPtr(handle)))
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
 
+        /// <summary>
+        /// Performs an action on this object with the given action name and attributes.
+        /// </summary>
+        /// <param name="actionName">The command for the action.</param>
+        /// <param name="attributes">The list of attributes for the action.</param>
+        /// <returns>The action is performed by the object or not.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool DoAction(string actionName, PropertyMap attributes)
         {
             bool ret = NDalicPINVOKE.BaseHandle_DoAction(swigCPtr, actionName, PropertyMap.getCPtr(attributes));
@@ -310,6 +359,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Returns the type name for the Handle.<br>
+        /// Will return an empty string if the typename does not exist. This will happen for types that
+        /// have not registered with type-registry.
+        /// </summary>
+        /// <returns>The type name. Empty string if the typename does not exist.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public string GetTypeName()
         {
             string ret = NDalicPINVOKE.BaseHandle_GetTypeName(swigCPtr);
@@ -317,6 +373,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Returns the type info for the Handle.<br>
+        /// </summary>
+        /// <param name="info">The type information.</param>
+        /// <returns>True If get the type info.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool GetTypeInfo(TypeInfo info)
         {
             bool ret = NDalicPINVOKE.BaseHandle_GetTypeInfo(swigCPtr, TypeInfo.getCPtr(info));
@@ -324,13 +386,22 @@ namespace Tizen.NUI
             return ret;
         }
 
-
+        /// <summary>
+        /// Resets the handle.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Reset()
         {
             NDalicPINVOKE.BaseHandle_Reset(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// To check the BaseHandle instance is equal or not.
+        /// </summary>
+        /// <param name="rhs">The baseHandle instance.</param>
+        /// <returns>True If equal.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(BaseHandle rhs)
         {
             bool ret = NDalicPINVOKE.BaseHandle_EqualTo(swigCPtr, BaseHandle.getCPtr(rhs));
@@ -338,6 +409,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// To check the BaseHandle instance is equal or not.
+        /// </summary>
+        /// <param name="rhs">The baseHandle instance.</param>
+        /// <returns>True If not equal.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(BaseHandle rhs)
         {
             bool ret = NDalicPINVOKE.BaseHandle_NotEqualTo(swigCPtr, BaseHandle.getCPtr(rhs));
@@ -353,6 +430,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// To check the BaseHandle instance has body or not.
+        /// </summary>
+        /// <returns>True If the baseHandle instance has body.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool HasBody()
         {
             if (disposed == true)
@@ -365,6 +447,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// To check the BaseHandle instance is equal or not.
+        /// </summary>
+        /// <param name="rhs">The baseHandle instance.</param>
+        /// <returns>True If equal.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsEqual(BaseHandle rhs)
         {
             if (disposed == true)
@@ -388,4 +476,3 @@ namespace Tizen.NUI
     }
 
 }
-

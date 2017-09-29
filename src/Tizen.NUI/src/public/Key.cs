@@ -120,6 +120,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Name given to the key pressed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string KeyPressedName
         {
             get
@@ -145,6 +146,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Keycode for the key pressed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int KeyCode
         {
             get
@@ -160,6 +162,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Special keys like Shift, Alt, and Ctrl which modify the next key pressed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int KeyModifier
         {
             get
@@ -175,6 +178,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The time (in ms) that the key event occurred.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint Time
         {
             get
@@ -190,6 +194,7 @@ namespace Tizen.NUI
         /// <summary>
         /// State of the key event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Key.StateType State
         {
             get
@@ -216,6 +221,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The default constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Key() : this(NDalicPINVOKE.new_Key__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -239,6 +245,7 @@ namespace Tizen.NUI
         /// Checks to see if the Shift key modifier has been supplied.
         /// </summary>
         /// <returns>True if Shift modifier.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsShiftModifier()
         {
             bool ret = NDalicPINVOKE.Key_IsShiftModifier(swigCPtr);
@@ -250,6 +257,7 @@ namespace Tizen.NUI
         /// Checks to see if Ctrl (control) key modifier has been supplied.
         /// </summary>
         /// <returns>True if Ctrl modifier.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsCtrlModifier()
         {
             bool ret = NDalicPINVOKE.Key_IsCtrlModifier(swigCPtr);
@@ -261,6 +269,7 @@ namespace Tizen.NUI
         /// Checks to see if Alt key modifier has been supplied.
         /// </summary>
         /// <returns>True if Alt modifier.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsAltModifier()
         {
             bool ret = NDalicPINVOKE.Key_IsAltModifier(swigCPtr);
@@ -361,6 +370,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for specifying the state of the key event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum StateType
         {
             Down,

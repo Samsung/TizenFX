@@ -16,7 +16,9 @@
 
 namespace Tizen.NUI
 {
-
+    /// <summary>
+    /// This object translates data from a property array of maps into an array of animators.
+    /// </summary>
     public class TransitionData : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -63,22 +65,43 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        /// <summary>
+        /// Create an instance of TransitionData.
+        /// </summary>
+        /// <param name="transition">The transition data to store (a single animator).</param>
+        /// <since_tizen> 3 </since_tizen>
         public TransitionData(PropertyMap transition) : this(NDalicPINVOKE.TransitionData_New__SWIG_0(PropertyMap.getCPtr(transition)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+
+        /// <summary>
+        /// Create an instance of TransitionData.
+        /// </summary>
+        /// <param name="transition">The transition data to store (an array of maps of animators).</param>
+        /// <since_tizen> 3 </since_tizen>
         public TransitionData(PropertyArray transition) : this(NDalicPINVOKE.TransitionData_New__SWIG_1(PropertyArray.getCPtr(transition)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
+        /// <summary>
+        /// Create an instance of TransitionData by copy constructor.
+        /// </summary>
+        /// <param name="transition">Handle to an object.</param>
+        /// <since_tizen> 3 </since_tizen>
         public TransitionData(TransitionData handle) : this(NDalicPINVOKE.new_TransitionData__SWIG_1(TransitionData.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// returns the count of the individual property transitions stored within this handle.
+        /// </summary>
+        /// <returns>A handle to the image at the the specified position.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint Count()
         {
             uint ret = NDalicPINVOKE.TransitionData_Count(swigCPtr);
@@ -86,6 +109,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// returns the count of the individual property transitions stored within this handle.
+        /// </summary>
+        /// <param name="index">The index of the animator.</param>
+        /// <returns>A property map representing the animator.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap GetAnimatorAt(uint index)
         {
             PropertyMap ret = new PropertyMap(NDalicPINVOKE.TransitionData_GetAnimatorAt(swigCPtr, index), true);

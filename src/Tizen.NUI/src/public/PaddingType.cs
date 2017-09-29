@@ -16,7 +16,9 @@
 
 namespace Tizen.NUI
 {
-
+    /// <summary>
+    /// The gesture state.
+    /// </summary>
     public class PaddingType : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -48,6 +50,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -99,6 +105,10 @@ namespace Tizen.NUI
             disposed = true;
         }
 
+        /// <summary>
+        /// Equality operator
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator ==(PaddingType a, PaddingType b)
         {
             // If both are null, or both are same instance, return true.
@@ -120,11 +130,22 @@ namespace Tizen.NUI
                    (System.Math.Abs(a.Top - b.Top) < NDalic.GetRangedEpsilon(a.Top, b.Top));
         }
 
+        /// <summary>
+        /// Inequality operator. Returns Null if either operand is Null
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator !=(PaddingType a, PaddingType b)
         {
             return !(a == b);
         }
 
+
+        /// <summary>
+        /// Equals
+        /// </summary>
+        /// <param name="o">The object should be compared.</param>
+        /// <returns>True if equal.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override bool Equals(object o)
         {
             if(o == null)
@@ -144,12 +165,20 @@ namespace Tizen.NUI
                    (System.Math.Abs(Top - p.Top) < NDalic.GetRangedEpsilon(Top, p.Top));
         }
 
+        /// <summary>
+        /// Gets the the hash code of this baseHandle.
+        /// </summary>
+        /// <returns>The Hash Code.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
 
-        ///< The Left value
+        /// <summary>
+        /// The Left value.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Left
         {
             set
@@ -162,7 +191,10 @@ namespace Tizen.NUI
             }
         }
 
-        ///< The Right value
+        /// <summary>
+        /// The Right value.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Right
         {
             set
@@ -175,7 +207,10 @@ namespace Tizen.NUI
             }
         }
 
-        ///< The Bottom value
+        /// <summary>
+        /// The Bottom value.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Bottom
         {
             set
@@ -188,7 +223,10 @@ namespace Tizen.NUI
             }
         }
 
-        ///< The Top value
+        /// <summary>
+        /// The Top value.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Top
         {
             set
@@ -201,17 +239,36 @@ namespace Tizen.NUI
             }
         }
 
-
+        /// <summary>
+        /// Create an instance of paddingType.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PaddingType() : this(NDalicPINVOKE.new_PaddingType__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Create an instance of BaseHandle.
+        /// </summary>
+        /// <param name="x">The x value.</param>
+        /// <param name="y">The y value.</param>
+        /// <param name="width">The width value.</param>
+        /// <param name="height">The height value.</param>
+        /// <since_tizen> 3 </since_tizen>
         public PaddingType(float x, float y, float width, float height) : this(NDalicPINVOKE.new_PaddingType__SWIG_1(x, y, width, height), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Set the x, y, width, height of this paddingtype.
+        /// </summary>
+        /// <param name="x">The x value.</param>
+        /// <param name="y">The y value.</param>
+        /// <param name="width">The width value.</param>
+        /// <param name="height">The height value.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Set(float newX, float newY, float newWidth, float newHeight)
         {
             NDalicPINVOKE.PaddingType_Set(swigCPtr, newX, newY, newWidth, newHeight);

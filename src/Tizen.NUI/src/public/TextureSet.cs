@@ -16,7 +16,10 @@
 
 namespace Tizen.NUI
 {
-
+    /// <summary>
+    /// TextureSet is a handle to an object that specifies the set of images used as textures by a renderer.<br>
+    /// The images have to be ordered in the same order they are declared in the shader.
+    /// </summary>
     public class TextureSet : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -63,19 +66,34 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-
+        /// <summary>
+        /// Create an instance of TextureSet.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public TextureSet() : this(NDalicPINVOKE.TextureSet_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
+        /// <summary>
+        /// Sets the texture at position "index".
+        /// </summary>
+        /// <param name="index">The position in the texture set of the texture.</param>
+        /// <param name="texture">The texture.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetTexture(uint index, Texture texture)
         {
             NDalicPINVOKE.TextureSet_SetTexture(swigCPtr, index, Texture.getCPtr(texture));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the image at position "index".
+        /// </summary>
+        /// <param name="index">The position in the texture set of the image.</param>
+        /// <returns>A handle to the image at the the specified position.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Texture GetTexture(uint index)
         {
             System.IntPtr cPtr = NDalicPINVOKE.TextureSet_GetTexture(swigCPtr, index);
@@ -85,12 +103,24 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the sampler to be used by the image at position "index".
+        /// </summary>
+        /// <param name="index">The position in the texture set of the image.</param>
+        /// <param name="sampler">The sampler to use.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetSampler(uint index, Sampler sampler)
         {
             NDalicPINVOKE.TextureSet_SetSampler(swigCPtr, index, Sampler.getCPtr(sampler));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets the sampler to be used by the image at position "index".
+        /// </summary>
+        /// <param name="index">The position in the texture set of the image.</param>
+        /// <returns>A handle to the sampler at the specified position.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Sampler GetSampler(uint index)
         {
             System.IntPtr cPtr = NDalicPINVOKE.TextureSet_GetSampler(swigCPtr, index);
@@ -100,6 +130,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the number of textures present in the TextureSet.
+        /// </summary>
+        /// <returns>The number of textures in the TextureSet.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetTextureCount()
         {
             uint ret = NDalicPINVOKE.TextureSet_GetTextureCount(swigCPtr);

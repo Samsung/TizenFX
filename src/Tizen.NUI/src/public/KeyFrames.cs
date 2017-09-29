@@ -75,6 +75,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="progress">A progress value between 0.0 and 1.0.</param>
         /// <param name="value">A value.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Add(float progress, object value)
         {
             PropertyValue val = PropertyValue.CreateFromObject(value);
@@ -87,6 +88,7 @@ namespace Tizen.NUI
         /// <param name="progress">A progress value between 0.0 and 1.0.</param>
         /// <param name="value">A value</param>
         /// <param name="alpha">The alpha function used to blend to the next keyframe.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Add(float progress, object value, AlphaFunction alpha)
         {
             PropertyValue val = PropertyValue.CreateFromObject(value);
@@ -96,6 +98,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates an initialized KeyFrames handle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public KeyFrames() : this(NDalicPINVOKE.KeyFrames_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -114,6 +117,7 @@ namespace Tizen.NUI
         /// Gets the type of the key frame.
         /// </summary>
         /// <returns>The key frame property type</returns>
+        /// <since_tizen> 3 </since_tizen>
         public new PropertyType GetType()
         {
             PropertyType ret = (PropertyType)NDalicPINVOKE.KeyFrames_GetType(swigCPtr);
@@ -126,6 +130,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="progress">A progress value between 0.0 and 1.0.</param>
         /// <param name="value">A value.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Add(float progress, PropertyValue value)
         {
             NDalicPINVOKE.KeyFrames_Add__SWIG_0(swigCPtr, progress, PropertyValue.getCPtr(value));
@@ -138,6 +143,7 @@ namespace Tizen.NUI
         /// <param name="progress">A progress value between 0.0 and 1.0.</param>
         /// <param name="value">A value.</param>
         /// <param name="alpha">The alpha function used to blend to the next keyframe.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Add(float progress, PropertyValue value, AlphaFunction alpha)
         {
             NDalicPINVOKE.KeyFrames_Add__SWIG_1(swigCPtr, progress, PropertyValue.getCPtr(value), AlphaFunction.getCPtr(alpha));

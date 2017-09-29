@@ -31,11 +31,13 @@ namespace Tizen.NUI
         /// <summary>
         /// Occurs whenever the application is resumed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler Resumed;
 
         /// <summary>
         /// Occurs whenever the application is paused.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler Paused;
 
         /// <summary>
@@ -46,6 +48,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The default constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public NUIApplication() : base(new NUICoreBackend())
         {
         }
@@ -53,6 +56,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor with a stylesheet.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public NUIApplication(string stylesheet) : base(new NUICoreBackend(stylesheet))
         {
         }
@@ -60,6 +64,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor with a stylesheet and window mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public NUIApplication(string stylesheet, WindowMode windowMode) : base(new NUICoreBackend(stylesheet,windowMode))
         {
         }
@@ -165,6 +170,7 @@ namespace Tizen.NUI
         /// Runs the NUIApplication.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>
+        /// <since_tizen> 4 </since_tizen>
         public override void Run(string[] args)
         {
             Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
@@ -176,6 +182,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Exits the NUIApplication.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public override void Exit()
         {
             base.Exit();
@@ -186,6 +193,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to call</param>
         /// <returns>true if added successfully, false otherwise</returns>
+        /// <since_tizen> 4 </since_tizen>
         public bool AddIdle(System.Delegate func)
         {
             return ((NUICoreBackend)this.Backend).AddIdle(func);
@@ -194,6 +202,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for deciding whether a NUI application window is opaque or transparent.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum WindowMode
         {
             Opaque = 0,
@@ -212,6 +221,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ResourceManager to handle multilingual.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static System.Resources.ResourceManager MultilingualResourceManager
         {
             get

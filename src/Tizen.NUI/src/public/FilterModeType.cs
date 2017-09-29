@@ -16,6 +16,10 @@
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// The filter mode type.
+    /// <summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum FilterModeType
     {
         NONE = 0,

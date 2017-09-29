@@ -109,6 +109,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The vector to add.</param>
         /// <param name="arg2">The vector to add.</param>
         /// <returns>The vector containing the result of the addition.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator +(RelativeVector4 arg1, RelativeVector4 arg2)
         {
             RelativeVector4 result = arg1.Add(arg2);
@@ -122,6 +123,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The vector to subtract.</param>
         /// <param name="arg2">The vector to subtract.</param>
         /// <returns>The vector containing the result of the subtraction.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator -(RelativeVector4 arg1, RelativeVector4 arg2)
         {
             RelativeVector4 result = arg1.Subtract(arg2);
@@ -135,6 +137,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The vector to multiply.</param>
         /// <param name="arg2">The vector to multiply.</param>
         /// <returns>The vector containing the result of the multiplication.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator *(RelativeVector4 arg1, RelativeVector4 arg2)
         {
             RelativeVector4 result = arg1.Multiply(arg2);
@@ -148,6 +151,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The vector to multiply.</param>
         /// <param name="arg2">The float value to scale the vector.</param>
         /// <returns>The vector containing the result of the scaling.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator *(RelativeVector4 arg1, float arg2)
         {
             RelativeVector4 result = arg1.Multiply(arg2);
@@ -161,6 +165,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The vector to divide.</param>
         /// <param name="arg2">The vector to divide.</param>
         /// <returns>The vector containing the result of the division.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator /(RelativeVector4 arg1, RelativeVector4 arg2)
         {
             RelativeVector4 result = arg1.Divide(arg2);
@@ -174,6 +179,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The vector to divide.</param>
         /// <param name="arg2">The float value to scale the vector by.</param>
         /// <returns>The vector containing the result of the scaling.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static RelativeVector4 operator /(RelativeVector4 arg1, float arg2)
         {
             RelativeVector4 result = arg1.Divide(arg2);
@@ -187,6 +193,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="index">The subscript index.</param>
         /// <returns>The float at the given index.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float this[uint index]
         {
             get
@@ -208,6 +215,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RelativeVector4() : this(NDalicPINVOKE.new_Vector4__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -220,6 +228,7 @@ namespace Tizen.NUI
         /// <param name="y">The y component.</param>
         /// <param name="z">The z component.</param>
         /// <param name="w">The w component.</param>
+        /// <since_tizen> 3 </since_tizen>
         public RelativeVector4(float x, float y, float z, float w) : this(NDalicPINVOKE.new_Vector4__SWIG_1(x, y, z, w), true)
         {
             ValueCheck(x);
@@ -233,6 +242,7 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <param name="relativeVector2">The RelativeVector2 to create this vector from.</param>
+        /// <since_tizen> 3 </since_tizen>
         public RelativeVector4(RelativeVector2 relativeVector2) : this(NDalicPINVOKE.new_Vector4__SWIG_3(RelativeVector2.getCPtr(relativeVector2)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -242,6 +252,7 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <param name="relativeVector3">The RelativeVector3 to create this vector from.</param>
+        /// <since_tizen> 3 </since_tizen>
         public RelativeVector4(RelativeVector3 relativeVector3) : this(NDalicPINVOKE.new_Vector4__SWIG_4(RelativeVector3.getCPtr(relativeVector3)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -301,6 +312,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="rhs">The vector to compare.</param>
         /// <returns>Returns true if the two vectors are equal, otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(RelativeVector4 rhs)
         {
             bool ret = NDalicPINVOKE.Vector4_EqualTo(swigCPtr, RelativeVector4.getCPtr(rhs));
@@ -313,6 +325,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="rhs">The vector to compare.</param>
         /// <returns>Returns true if the two vectors are not equal, otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(RelativeVector4 rhs)
         {
             bool ret = NDalicPINVOKE.Vector4_NotEqualTo(swigCPtr, RelativeVector4.getCPtr(rhs));
@@ -324,6 +337,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The x component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float X
         {
             set
@@ -343,6 +357,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The y component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Y
         {
             set
@@ -362,6 +377,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The z component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Z
         {
             set
@@ -381,6 +397,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The w component.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float W
         {
             set
@@ -399,6 +416,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector4(RelativeVector4 relativeVector4)
         {
             return new Vector4(relativeVector4.X, relativeVector4.Y, relativeVector4.Z, relativeVector4.W);
@@ -406,6 +424,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector4(Vector4 vec)
         {
             ValueCheck(vec.X);
@@ -476,5 +495,4 @@ namespace Tizen.NUI
     }
 
 }
-
 

@@ -53,6 +53,7 @@ namespace Tizen.NUI
         /// <summary>
         /// To make the Rotation instance be disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -108,6 +109,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first rotation.</param>
         /// <param name="arg2">The second rotation.</param>
         /// <returns>The rotation containing the result of the addition.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Rotation operator +(Rotation arg1, Rotation arg2)
         {
             return arg1.Add(arg2);
@@ -119,6 +121,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first rotation.</param>
         /// <param name="arg2">The second rotation.</param>
         /// <returns>The rotation containing the result of the subtraction.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Rotation operator -(Rotation arg1, Rotation arg2)
         {
             return arg1.Subtract(arg2);
@@ -129,6 +132,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg1">The first rotation.</param>
         /// <returns>The rotation containing the negated result.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Rotation operator -(Rotation arg1)
         {
             return arg1.Subtract();
@@ -140,6 +144,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first rotation.</param>
         /// <param name="arg2">The second rotation.</param>
         /// <returns>The rotation containing the result of the multiplication.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Rotation operator *(Rotation arg1, Rotation arg2)
         {
             return arg1.Multiply(arg2);
@@ -151,6 +156,7 @@ namespace Tizen.NUI
         /// <param name="arg1">Rotation.</param>
         /// <param name="arg2">The vector to multiply.</param>
         /// <returns>The rotation containing the result of the multiplication.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Vector3 operator *(Rotation arg1, Vector3 arg2)
         {
             return arg1.Multiply(arg2);
@@ -162,6 +168,7 @@ namespace Tizen.NUI
         /// <param name="arg1">Rotation.</param>
         /// <param name="arg2">A value to scale by.</param>
         /// <returns>The rotation containing the result of scaling.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Rotation operator *(Rotation arg1, float arg2)
         {
             return arg1.Multiply(arg2);
@@ -173,6 +180,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first rotation.</param>
         /// <param name="arg2">The second rotation.</param>
         /// <returns>The rotation containing the result of scaling.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Rotation operator /(Rotation arg1, Rotation arg2)
         {
             return arg1.Divide(arg2);
@@ -184,6 +192,7 @@ namespace Tizen.NUI
         /// <param name="arg1">Rotation.</param>
         /// <param name="arg2">A value to scale by.</param>
         /// <returns>The rotation containing the result of scaling.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Rotation operator /(Rotation arg1, float arg2)
         {
             return arg1.Divide(arg2);
@@ -192,6 +201,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The default constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Rotation() : this(NDalicPINVOKE.new_Rotation__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -202,6 +212,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="angle">The angle around the axis.</param>
         /// <param name="axis">The vector of the axis.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Rotation(Radian angle, Vector3 axis) : this(NDalicPINVOKE.new_Rotation__SWIG_1(Radian.getCPtr(angle), Vector3.getCPtr(axis)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -210,6 +221,7 @@ namespace Tizen.NUI
         /// <summary>
         /// (0.0f,0.0f,0.0f,1.0f).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Rotation IDENTITY
         {
             get
@@ -225,6 +237,7 @@ namespace Tizen.NUI
         /// Helper to check if this is an identity quaternion.
         /// </summary>
         /// <returns>True if this is identity quaternion.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsIdentity()
         {
             bool ret = NDalicPINVOKE.Rotation_IsIdentity(swigCPtr);
@@ -238,6 +251,7 @@ namespace Tizen.NUI
         /// <param name="axis">The result of an an axis.</param>
         /// <param name="angle">The result of angle in radians.</param>
         /// <returns>True if converted correctly.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool GetAxisAngle(Vector3 axis, Radian angle)
         {
             bool ret = NDalicPINVOKE.Rotation_GetAxisAngle(swigCPtr, Vector3.getCPtr(axis), Radian.getCPtr(angle));
@@ -354,6 +368,7 @@ namespace Tizen.NUI
         /// Returns the length of the rotation.
         /// </summary>
         /// <returns>The length of the rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float Length()
         {
             float ret = NDalicPINVOKE.Rotation_Length(swigCPtr);
@@ -365,6 +380,7 @@ namespace Tizen.NUI
         /// Returns the squared length of the rotation.
         /// </summary>
         /// <returns>The squared length of the rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float LengthSquared()
         {
             float ret = NDalicPINVOKE.Rotation_LengthSquared(swigCPtr);
@@ -375,6 +391,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Normalizes this to unit length.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Normalize()
         {
             NDalicPINVOKE.Rotation_Normalize(swigCPtr);
@@ -385,6 +402,7 @@ namespace Tizen.NUI
         /// Normalized.
         /// </summary>
         /// <returns>A normalized version of this rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Rotation Normalized()
         {
             Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Normalized(swigCPtr), true);
@@ -395,6 +413,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Conjugates this rotation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Conjugate()
         {
             NDalicPINVOKE.Rotation_Conjugate(swigCPtr);
@@ -404,6 +423,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Inverts this rotation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Invert()
         {
             NDalicPINVOKE.Rotation_Invert(swigCPtr);
@@ -414,6 +434,7 @@ namespace Tizen.NUI
         /// Performs the logarithm of a rotation.
         /// </summary>
         /// <returns>The rotation representing the logarithm.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Rotation Log()
         {
             Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Log(swigCPtr), true);
@@ -425,6 +446,7 @@ namespace Tizen.NUI
         /// Performs an exponent.
         /// </summary>
         /// <returns>The rotation representing the exponent.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public Rotation Exp()
         {
             Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Exp(swigCPtr), true);
@@ -438,6 +460,7 @@ namespace Tizen.NUI
         /// <param name="q1">The first rotation.</param>
         /// <param name="q2">The second rotation.</param>
         /// <returns>The dot product of the two rotations.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static float Dot(Rotation q1, Rotation q2)
         {
             float ret = NDalicPINVOKE.Rotation_Dot(Rotation.getCPtr(q1), Rotation.getCPtr(q2));
@@ -452,6 +475,7 @@ namespace Tizen.NUI
         /// <param name="q2">The end rotation.</param>
         /// <param name="t">A progress value between 0 and 1.</param>
         /// <returns>The interpolated rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Rotation Lerp(Rotation q1, Rotation q2, float t)
         {
             Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Lerp(Rotation.getCPtr(q1), Rotation.getCPtr(q2), t), true);
@@ -466,6 +490,7 @@ namespace Tizen.NUI
         /// <param name="q2">The end rotation.</param>
         /// <param name="progress">A progress value between 0 and 1.</param>
         /// <returns>The interpolated rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Rotation Slerp(Rotation q1, Rotation q2, float progress)
         {
             Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Slerp(Rotation.getCPtr(q1), Rotation.getCPtr(q2), progress), true);
@@ -480,6 +505,7 @@ namespace Tizen.NUI
         /// <param name="q2">The end rotation.</param>
         /// <param name="t">A progress value between 0 and 1.</param>
         /// <returns>The interpolated rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Rotation SlerpNoInvert(Rotation q1, Rotation q2, float t)
         {
             Rotation ret = new Rotation(NDalicPINVOKE.Rotation_SlerpNoInvert(Rotation.getCPtr(q1), Rotation.getCPtr(q2), t), true);
@@ -496,6 +522,7 @@ namespace Tizen.NUI
         /// <param name="ctrl2">The control rotation for q2.</param>
         /// <param name="t">A progress value between 0 and 1.</param>
         /// <returns>The interpolated rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Rotation Squad(Rotation start, Rotation end, Rotation ctrl1, Rotation ctrl2, float t)
         {
             Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Squad(Rotation.getCPtr(start), Rotation.getCPtr(end), Rotation.getCPtr(ctrl1), Rotation.getCPtr(ctrl2), t), true);
@@ -509,6 +536,7 @@ namespace Tizen.NUI
         /// <param name="q1">The first rotation.</param>
         /// <param name="q2">The second rotation.</param>
         /// <returns>The angle between the two rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static float AngleBetween(Rotation q1, Rotation q2)
         {
             float ret = NDalicPINVOKE.Rotation_AngleBetween(Rotation.getCPtr(q1), Rotation.getCPtr(q2));

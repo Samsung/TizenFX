@@ -29,6 +29,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The default constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public InputMethod()
         {
         }
@@ -36,6 +37,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the panel layout.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PanelLayoutType PanelLayout
         {
             get
@@ -51,6 +53,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the action button.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ActionButtonTitleType ActionButton
         {
             get
@@ -66,6 +69,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the auto capital.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AutoCapitalType AutoCapital
         {
             get
@@ -81,6 +85,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the variation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Variation
         {
             get
@@ -96,6 +101,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the variation for normal layout.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public NormalLayoutType NormalVariation
         {
             get
@@ -111,6 +117,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the variation for the number only layout.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public NumberOnlyLayoutType NumberOnlyVariation
         {
             get
@@ -126,6 +133,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the variation for the password layout.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PasswordLayoutType PasswordVariation
         {
             get
@@ -151,6 +159,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the input method map.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyMap OutputMap
         {
             get
@@ -162,6 +171,7 @@ namespace Tizen.NUI
         /// <summary>
         /// SetType that can be changed in the system input method.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum CategoryType
         {
             /// <summary>
@@ -185,6 +195,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Autocapitalization Types.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum AutoCapitalType
         {
             /// <summary>
@@ -208,6 +219,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Input panel (virtual keyboard) layout types..
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum PanelLayoutType
         {
             /// <summary>
@@ -267,6 +279,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Specifies what the Input Method "action" button functionality is set to.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum ActionButtonTitleType
         {
             /// <summary>
@@ -322,6 +335,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Available variation for the normal layout.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum NormalLayoutType
         {
             /// <summary>
@@ -341,6 +355,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Available variation for the number only layout.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum NumberOnlyLayoutType
         {
             /// <summary>
@@ -364,6 +379,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Available variation for the password layout.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum PasswordLayoutType
         {
             /// <summary>

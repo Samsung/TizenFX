@@ -62,6 +62,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates an initialized spin.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Spin() : base(typeof(Spin).FullName, CustomViewBehaviour.RequiresKeyboardNavigationSupport)
         {
         }
@@ -71,6 +72,7 @@ namespace Tizen.NUI
         /// This method is called after the control has been initialized.<br>
         /// Derived classes should do any second phase initialization by overriding this method.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public override void OnInitialize()
         {
             // Initialize the propertiesControl
@@ -117,6 +119,7 @@ namespace Tizen.NUI
         /// Returns the natural size of the actor.<br>
         /// </summary>
         /// <returns> Natural size of this spin itself.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override Size2D GetNaturalSize()
         {
             return new Size2D(150, 150);
@@ -129,6 +132,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="source">Sender of this event.</param>
         /// <param name="e">Event arguments.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void TextFieldKeyInputFocusGained(object source, EventArgs e)
         {
             FocusManager.Instance.SetCurrentFocusView(_textField);
@@ -139,6 +143,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="source"></param>
         /// <param name="e"></param>
+        /// <since_tizen> 3 </since_tizen>
         public void TextFieldKeyInputFocusLost(object source, EventArgs e)
         {
             int previousValue = _currentValue;
@@ -169,6 +174,7 @@ namespace Tizen.NUI
         /// <param name="direction">The direction to move the focus towards.</param>
         /// <param name="loopEnabled">Whether the focus movement should be looped within the control.</param>
         /// <returns>The next keyboard focusable view in this control or an empty handle if no view can be focused.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
             // Respond to Up/Down keys to change the value while keeping the current spin focused
@@ -196,6 +202,7 @@ namespace Tizen.NUI
         /// Value to be set in the spin.
         /// </summary>
         [ScriptableProperty()]
+        /// <since_tizen> 3 </since_tizen>
         public int Value
         {
             get
@@ -228,6 +235,7 @@ namespace Tizen.NUI
         /// </summary>
         // MinValue property of type int:
         [ScriptableProperty()]
+        /// <since_tizen> 3 </since_tizen>
         public int MinValue
         {
             get
@@ -245,6 +253,7 @@ namespace Tizen.NUI
         /// </summary>
         // MaxValue property of type int:
         [ScriptableProperty()]
+        /// <since_tizen> 3 </since_tizen>
         public int MaxValue
         {
             get
@@ -262,6 +271,7 @@ namespace Tizen.NUI
         /// </summary>
         // Step property of type int:
         [ScriptableProperty()]
+        /// <since_tizen> 3 </since_tizen>
         public int Step
         {
             get
@@ -279,6 +289,7 @@ namespace Tizen.NUI
         /// </summary>
         // WrappingEnabled property of type bool:
         [ScriptableProperty()]
+        /// <since_tizen> 3 </since_tizen>
         public bool WrappingEnabled
         {
             get
@@ -296,6 +307,7 @@ namespace Tizen.NUI
         /// </summary>
         // TextPointSize property of type int:
         [ScriptableProperty()]
+        /// <since_tizen> 3 </since_tizen>
         public int TextPointSize
         {
             get
@@ -314,6 +326,7 @@ namespace Tizen.NUI
         /// </summary>
         // TextColor property of type Color:
         [ScriptableProperty()]
+        /// <since_tizen> 3 </since_tizen>
         public Color TextColor
         {
             get
@@ -334,6 +347,7 @@ namespace Tizen.NUI
         /// </summary>
         // MaxTextLength property of type int:
         [ScriptableProperty()]
+        /// <since_tizen> 3 </since_tizen>
         public int MaxTextLength
         {
             get
@@ -350,6 +364,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Reference of TextField of the spin.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public TextField SpinText
         {
             get
@@ -366,6 +381,7 @@ namespace Tizen.NUI
         /// Show indicator image, for example, up or down arrow image.
         /// </summary>
         // Indicator property of type string:
+        /// <since_tizen> 3 </since_tizen>
         public string IndicatorImage
         {
             get

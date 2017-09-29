@@ -56,6 +56,7 @@ namespace Tizen.NUI
         /// <summary>
         /// To make the AlphaFunction instance be disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -110,6 +111,7 @@ namespace Tizen.NUI
         /// Creates an alpha function object with the user-defined alpha function.<br>
         /// </summary>
         /// <param name="func">User defined fuction. It must be a method formatted as float alphafunction(float progress)</param>
+        /// <since_tizen> 3 </since_tizen>
         public AlphaFunction(System.Delegate func) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(new SWIGTYPE_p_f_float__float(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func), true))), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -119,6 +121,7 @@ namespace Tizen.NUI
         /// The default constructor.<br>
         /// Creates an alpha function object with the default built-in alpha function.<br>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AlphaFunction() : this(NDalicPINVOKE.new_AlphaFunction__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -129,6 +132,7 @@ namespace Tizen.NUI
         /// Creates an alpha function object with the built-in alpha function passed as a parameter to the constructor.<br>
         /// </summary>
         /// <param name="function">One of the built-in alpha functions.</param>
+        /// <since_tizen> 3 </since_tizen>
         public AlphaFunction(AlphaFunction.BuiltinFunctions function) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_1((int)function), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -146,6 +150,7 @@ namespace Tizen.NUI
         /// <remarks>The x components of the control points will be clamped to the range [0, 1] to prevent non-monotonic curves.</remarks>
         /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve.</param>
         /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve.</param>
+        /// <since_tizen> 3 </since_tizen>
         public AlphaFunction(Vector2 controlPoint0, Vector2 controlPoint1) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_3(Vector2.getCPtr(controlPoint0), Vector2.getCPtr(controlPoint1)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -156,6 +161,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve.</param>
         /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void GetBezierControlPoints(out Vector2 controlPoint0, out Vector2 controlPoint1)
         {
             Vector4 ret = new Vector4(NDalicPINVOKE.AlphaFunction_GetBezierControlPoints(swigCPtr), true);
@@ -178,6 +184,7 @@ namespace Tizen.NUI
         /// In case no built-in function has been specified, it will return AlphaFunction::DEFAULT.<br>
         /// </summary>
         /// <returns>One of the built-in alpha functions.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public AlphaFunction.BuiltinFunctions GetBuiltinFunction()
         {
             AlphaFunction.BuiltinFunctions ret = (AlphaFunction.BuiltinFunctions)NDalicPINVOKE.AlphaFunction_GetBuiltinFunction(swigCPtr);
@@ -189,6 +196,7 @@ namespace Tizen.NUI
         ///  Returns the functioning mode of the alpha function.
         /// </summary>
         /// <returns>The functioning mode of the alpha function.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public AlphaFunction.Modes GetMode()
         {
             AlphaFunction.Modes ret = (AlphaFunction.Modes)NDalicPINVOKE.AlphaFunction_GetMode(swigCPtr);
@@ -199,6 +207,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This specifies the various types of BuiltinFunctions.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum BuiltinFunctions
         {
             /// <summary>
@@ -263,6 +272,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This specifies which mode is set for AlphaFunction.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum Modes
         {
             /// <summary>

@@ -84,6 +84,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Creates the PushButton.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PushButton() : this(NDalicPINVOKE.PushButton_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

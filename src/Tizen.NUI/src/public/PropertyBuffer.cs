@@ -16,7 +16,10 @@
 
 namespace Tizen.NUI
 {
-
+    /// <summary>
+    /// PropertyBuffer is a handle to an object that contains a buffer of structured properties.<br>
+    /// PropertyBuffers can be used to provide data to Geometry objects.
+    /// </summary>
     public class PropertyBuffer : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -63,7 +66,11 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-
+        /// <summary>
+        /// Creates a PropertyBuffer.
+        /// </summary>
+        /// <param name="bufferFormat">The map of names and types that describes the components of the buffer.</param>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyBuffer(PropertyMap bufferFormat) : this(NDalicPINVOKE.PropertyBuffer_New(PropertyMap.getCPtr(bufferFormat)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -76,6 +83,11 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the number of elements in the buffer.
+        /// </summary>
+        /// <returns>Number of elements to expand or contract the buffer.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetSize()
         {
             uint ret = NDalicPINVOKE.PropertyBuffer_GetSize(swigCPtr);

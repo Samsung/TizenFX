@@ -78,6 +78,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates an initialized path handle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Path() : this(NDalicPINVOKE.Path_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -97,6 +98,7 @@ namespace Tizen.NUI
         /// Adds an interpolation point.
         /// </summary>
         /// <param name="point">The new interpolation point to be added.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AddPoint(Position point)
         {
             NDalicPINVOKE.Path_AddPoint(swigCPtr, Position.getCPtr(point));
@@ -107,6 +109,7 @@ namespace Tizen.NUI
         /// Adds a control point.
         /// </summary>
         /// <param name="point">The new control point to be added.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void AddControlPoint(Vector3 point)
         {
             NDalicPINVOKE.Path_AddControlPoint(swigCPtr, Vector3.getCPtr(point));
@@ -122,6 +125,7 @@ namespace Tizen.NUI
         /// The out control point is the length of the succeeding segment forward along this bisector multiplied by the curvature.<br>
         /// </summary>
         /// <param name="curvature">The curvature of the spline. 0 gives straight lines between the knots, negative values means the spline contains loops, positive values up to 0.5 result in a smooth curve, positive values between 0.5 and 1 result in looped curves where the loops are not distinct (i.e., the curve appears to be non-continuous), positive values higher than 1 result in looped curves.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void GenerateControlPoints(float curvature)
         {
             NDalicPINVOKE.Path_GenerateControlPoints(swigCPtr, curvature);
@@ -134,6 +138,7 @@ namespace Tizen.NUI
         /// <param name="progress">A floating point value between 0.0 and 1.0.</param>
         /// <param name="position">The interpolated position at that progress.</param>
         /// <param name="tangent">The interpolated tangent at that progress.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Sample(float progress, Vector3 position, Vector3 tangent)
         {
             NDalicPINVOKE.Path_Sample(swigCPtr, progress, Vector3.getCPtr(position), Vector3.getCPtr(tangent));
@@ -144,6 +149,7 @@ namespace Tizen.NUI
         /// An accessor for the interpolation points.
         /// </summary>
         /// <param name="index">The index of the interpolation point.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Vector3 GetPoint(uint index)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Path_GetPoint(swigCPtr, index), false);
@@ -155,6 +161,7 @@ namespace Tizen.NUI
         /// An accessor for the control points.
         /// </summary>
         /// <param name="index">The index of the control point.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Vector3 GetControlPoint(uint index)
         {
             Vector3 ret = new Vector3(NDalicPINVOKE.Path_GetControlPoint(swigCPtr, index), false);
@@ -166,6 +173,7 @@ namespace Tizen.NUI
         /// Gets the number of interpolation points in the path.
         /// </summary>
         /// <returns>The number of interpolation points in the path.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetPointCount()
         {
             uint ret = NDalicPINVOKE.Path_GetPointCount(swigCPtr);
@@ -176,6 +184,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for the Points.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyArray Points
         {
             get
@@ -193,6 +202,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for the ControlPoints.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PropertyArray ControlPoints
         {
             get

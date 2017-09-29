@@ -113,6 +113,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The type of the wheel event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Wheel.WheelType Type
         {
             get
@@ -124,6 +125,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The direction of wheel rolling (0 = default vertical wheel, 1 = horizontal wheel).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Direction
         {
             get
@@ -135,6 +137,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Modifier keys pressed during the event (such as Shift, Alt, and Ctrl).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint Modifiers
         {
             get
@@ -146,6 +149,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The coordinates of the cursor relative to the top-left of the screen.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Vector2 Point
         {
             get
@@ -157,6 +161,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The offset of rolling (positive value means roll down or clockwise, and negative value means roll up or counter-clockwise).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Z
         {
             get
@@ -168,6 +173,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The time the wheel is being rolled.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint TimeStamp
         {
             get
@@ -179,6 +185,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The default constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Wheel() : this(NDalicPINVOKE.new_Wheel__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -193,6 +200,7 @@ namespace Tizen.NUI
         /// <param name="point">The coordinates of the cursor relative to the top-left of the screen.</param>
         /// <param name="z">The offset of rolling (positive value means roll down or clockwise, and negative value means roll up or counter-clockwise).</param>
         /// <param name="timeStamp">The time the wheel is being rolled.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Wheel(Wheel.WheelType type, int direction, uint modifiers, Vector2 point, int z, uint timeStamp) : this(NDalicPINVOKE.new_Wheel__SWIG_1((int)type, direction, modifiers, Vector2.getCPtr(point), z, timeStamp), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -202,6 +210,7 @@ namespace Tizen.NUI
         /// Checks to see if the Shift key modifier has been supplied.
         /// </summary>
         /// <returns>True if Shift modifier.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsShiftModifier()
         {
             bool ret = NDalicPINVOKE.Wheel_IsShiftModifier(swigCPtr);
@@ -213,6 +222,7 @@ namespace Tizen.NUI
         /// Checks to see if Ctrl (control) key modifier has been supplied.
         /// </summary>
         /// <returns>True if Ctrl modifier.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsCtrlModifier()
         {
             bool ret = NDalicPINVOKE.Wheel_IsCtrlModifier(swigCPtr);
@@ -224,6 +234,7 @@ namespace Tizen.NUI
         /// Checks to see if Alt key modifier has been supplied.
         /// </summary>
         /// <returns>True if Alt modifier.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsAltModifier()
         {
             bool ret = NDalicPINVOKE.Wheel_IsAltModifier(swigCPtr);
@@ -325,6 +336,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The type of the wheel event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum WheelType
         {
             MouseWheel,

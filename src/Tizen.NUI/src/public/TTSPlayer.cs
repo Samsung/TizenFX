@@ -82,6 +82,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="mode"> The mode of TTS player.</param>
         /// <returns> A handle of the TTS player for the given mode.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static TTSPlayer Get(TTSMode mode)
         {
             TTSPlayer ret = new TTSPlayer(NDalicManualPINVOKE.TtsPlayer_Get__SWIG_0((int)mode), true);
@@ -93,6 +94,7 @@ namespace Tizen.NUI
         /// Gets the singleton of the TTS player for the default mode.
         /// </summary>
         /// <returns> A handle of the TTS player for the default mode.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static TTSPlayer Get()
         {
             TTSPlayer ret = new TTSPlayer(NDalicManualPINVOKE.TtsPlayer_Get__SWIG_1(), true);
@@ -117,6 +119,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="text"> The text to play.</param>
         /// <remarks>The TTS player needs to be initialized.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public void Play(string text)
         {
             NDalicManualPINVOKE.TtsPlayer_Play(swigCPtr, text);
@@ -127,6 +130,7 @@ namespace Tizen.NUI
         /// Stops playing the utterance.
         /// </summary>
         /// <remarks>The TTS player needs to be initialized.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
             NDalicManualPINVOKE.TtsPlayer_Stop(swigCPtr);
@@ -137,6 +141,7 @@ namespace Tizen.NUI
         /// Pauses the currently playing utterance.
         /// </summary>
         /// <remarks>The TTS player needs to be initialized.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
             NDalicManualPINVOKE.TtsPlayer_Pause(swigCPtr);
@@ -147,6 +152,7 @@ namespace Tizen.NUI
         /// Resumes the previously paused utterance.
         /// </summary>
         /// <remarks>The TTS player needs to be initialized.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public void Resume()
         {
             NDalicManualPINVOKE.TtsPlayer_Resume(swigCPtr);
@@ -158,6 +164,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns> The current TTS state. </returns>
         /// <remarks>The TTS player needs to be initialized.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public TTSState GetState()
         {
             TTSState ret = (TTSState)NDalicManualPINVOKE.TtsPlayer_GetState(swigCPtr);
@@ -191,6 +198,7 @@ namespace Tizen.NUI
         /// <summary>
         /// State changed event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
@@ -237,6 +245,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for the instance of TTS mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum TTSMode
         {
             /// <summary>
@@ -262,6 +271,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for the instance of TTS state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum TTSState
         {
             /// <summary>

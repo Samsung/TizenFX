@@ -17,6 +17,10 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// This specifies all the scroll mode type.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ScrollModeType
     {
       XAxisScrollEnabled,
@@ -30,6 +34,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies whether the actor uses its own color or inherits.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ColorMode
     {
         /// <summary>
@@ -53,6 +58,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies the dimension of the width or the height for size negotiation.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum DimensionType
     {
         /// <summary>
@@ -72,6 +78,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for the instance of how the actor and it's children will be drawn.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum DrawModeType
     {
         /// <summary>
@@ -91,6 +98,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for size negotiation resize policies.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ResizePolicyType
     {
         /// <summary>
@@ -131,6 +139,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for policies to determine how an actor should resize itself when having its size set in size negotiation.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum SizeScalePolicyType
     {
         /// <summary>
@@ -150,6 +159,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for the ClippingMode describing how this actor's children will be clipped against it.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ClippingModeType
     {
         /// <summary>
@@ -165,6 +175,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for type determination of how the camera operates.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CameraType
     {
         /// <summary>
@@ -180,6 +191,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for the projection modes.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ProjectionMode
     {
         /// <summary>
@@ -195,6 +207,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies customView behavior types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CustomViewBehaviour
     {
         /// <summary>
@@ -217,6 +230,7 @@ namespace Tizen.NUI
         LastViewBehaviourFlag
     }
 
+    /// <since_tizen> 3 </since_tizen>
     public enum DeviceClassType
     {
         None,
@@ -233,6 +247,7 @@ namespace Tizen.NUI
     /// This specifies all the property types.<br>
     /// Enumeration for the property types supported.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum PropertyType
     {
         /// <summary>
@@ -297,6 +312,7 @@ namespace Tizen.NUI
     /// This specifies the property access mode types.<br>
     /// Enumeration for the access mode for custom properties.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum PropertyAccessMode
     {
         /// <summary>
@@ -320,6 +336,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Types of style change. Enumeration for the StyleChange type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum StyleChangeType
     {
         /// <summary>
@@ -339,6 +356,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for horizontal alignment types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum HorizontalAlignmentType
     {
         /// <summary>
@@ -358,6 +376,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for vertical alignment types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum VerticalAlignmentType
     {
         /// <summary>
@@ -377,6 +396,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for point state type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum PointStateType
     {
         /// <summary>
@@ -417,6 +437,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for the text horizontal aligning.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum HorizontalAlignment
     {
         /// <summary>
@@ -436,6 +457,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for the text horizontal aligning.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum VerticalAlignment
     {
         /// <summary>
@@ -456,6 +478,7 @@ namespace Tizen.NUI
     /// This specifies wrap mode types.<br>
     /// WrapModeU and WrapModeV separately decide how the texture should be sampled when the u and v coordinate exceeds the range of 0.0 to 1.0.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WrapModeType
     {
         /// <summary>
@@ -479,6 +502,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The type of coordinate system for certain attributes of the points in a gradient.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum GradientVisualUnitsType
     {
         /// <summary>
@@ -495,6 +519,7 @@ namespace Tizen.NUI
     /// This specifies SpreadMethod types.<br>
     /// SpreadMethod defines what happens if the gradient starts or ends inside the bounds of the target rectangle.<br>
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum GradientVisualSpreadMethodType
     {
         /// <summary>
@@ -514,6 +539,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The shading mode used by the mesh visual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum MeshVisualShadingModeValue
     {
         /// <summary>
@@ -533,6 +559,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The primitive shape to render as a primitive visual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum PrimitiveVisualShapeType
     {
         /// <summary>
@@ -570,6 +597,7 @@ namespace Tizen.NUI
     /// A fitting mode controls the region of a loaded image to be mapped to the desired image rectangle.<br>
     /// All fitting modes preserve the aspect ratio of the image contents.<br>
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum FittingModeType
     {
         /// <summary>
@@ -596,6 +624,7 @@ namespace Tizen.NUI
     /// NoFilter and Box modes do not guarantee that the output pixel array exactly matches the rectangle specified by the desired dimensions and the FittingMode,<br>
     /// but all other filter modes do if the desired dimensions are `<=` the raw dimensions of the input image file.<br>
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum SamplingModeType
     {
         /// <summary>
@@ -633,6 +662,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies policy types that could be used by the transform for the offset or size.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum VisualTransformPolicyType
     {
         /// <summary>
@@ -648,6 +678,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies all the transform property types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum VisualTransformPropertyType
     {
         /// <summary>
@@ -679,11 +710,13 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies visual types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct Visual
     {
         /// <summary>
         /// The index for the visual type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum Type
         {
             /// <summary>
@@ -735,6 +768,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This specifies visual properties.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public struct Property
         {
             public static readonly int Type = NDalic.VISUAL_PROPERTY_TYPE;
@@ -748,6 +782,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This specifies shader properties.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public struct ShaderProperty
         {
             public static readonly int VertexShader = NDalic.VISUAL_SHADER_VERTEX;
@@ -760,6 +795,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This specifies visaul align types.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum AlignType
         {
             TopBegin = 0,
@@ -777,6 +813,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies properties of the BorderVisual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct BorderVisualProperty
     {
         public static readonly int Color = NDalic.BORDER_VISUAL_COLOR;
@@ -787,6 +824,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies properties of the ColorVisual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct ColorVisualProperty
     {
         public static readonly int MixColor = NDalic.COLOR_VISUAL_MIX_COLOR;
@@ -795,6 +833,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies properties of the GradientVisual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct GradientVisualProperty
     {
         public static readonly int StartPosition = NDalic.GRADIENT_VISUAL_START_POSITION;
@@ -810,6 +849,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies properties of the ImageVisual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct ImageVisualProperty
     {
         public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
@@ -835,6 +875,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies properties of the MeshVisual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct MeshVisualProperty
     {
         public static readonly int ObjectURL = NDalic.MESH_VISUAL_OBJECT_URL;
@@ -849,6 +890,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies properties of the PrimitiveVisual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct PrimitiveVisualProperty
     {
         public static readonly int Shape = NDalic.PRIMITIVE_VISUAL_SHAPE;
@@ -868,6 +910,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies properties of the TextVisual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct TextVisualProperty
     {
         public static readonly int Text = NDalic.TEXT_VISUAL_TEXT;
@@ -884,6 +927,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies properties of the NpatchImageVisual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct NpatchImageVisualProperty
     {
         public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
@@ -902,6 +946,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The HiddenInput property.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct HiddenInputProperty
     {
         public static readonly int Mode = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_MODE_get();
@@ -913,6 +958,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The type for HiddenInput mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum HiddenInputModeType
     {
         /// <summary>
@@ -940,6 +986,7 @@ namespace Tizen.NUI
     /// <summary>
     /// ParentOrigin constants.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct ParentOrigin
     {
         public static float Top
@@ -1082,6 +1129,7 @@ namespace Tizen.NUI
     /// <summary>
     /// PivotPoint constants.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct PivotPoint
     {
         public static float Top
@@ -1223,6 +1271,7 @@ namespace Tizen.NUI
     /// <summary>
     /// PositionAxis constants.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct PositionAxis
     {
         public static Position X
@@ -1290,6 +1339,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Auto scrolling stop behavior.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AutoScrollStopMode
     {
         /// <summary>
@@ -1305,6 +1355,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An enum of screen mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ScreenMode {
         /// <summary>
         /// The mode which turns the screen off after a timeout.
@@ -1319,6 +1370,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An enum of notification window's priority level.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum NotificationLevel {
         /// <summary>
         /// No notification level.<br>
@@ -1347,6 +1399,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An enum of window types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WindowType {
         /// <summary>
         /// A default window type.<br>
@@ -1368,6 +1421,7 @@ namespace Tizen.NUI
         Dialog
     }
 
+    /// <since_tizen> 3 </since_tizen>
     public enum DisposeTypes
     {
         Explicit,   //Called By User
@@ -1520,6 +1574,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An enum of the scroll state of the text eidtor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ScrollState
     {
         /// <summary>
@@ -1536,6 +1591,7 @@ namespace Tizen.NUI
      /// <summary>
     /// An enum of the line wrap mode of text controls.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum LineWrapMode
     {
         /// <summary>

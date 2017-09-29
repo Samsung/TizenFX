@@ -19,6 +19,9 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
 
+    /// <summary>
+    /// A ToggleButton allows the user to change a setting between two or more states.
+    /// </summary>
     public class ToggleButton : Tizen.NUI.UIComponents.Button
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -72,12 +75,20 @@ namespace Tizen.NUI
             public static readonly int CURRENT_STATE_INDEX = NDalicPINVOKE.ToggleButton_Property_CURRENT_STATE_INDEX_get();
         }
 
+        /// <summary>
+        /// Create an instance for toggleButton.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ToggleButton() : this(NDalicPINVOKE.ToggleButton_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
+        /// <summary>
+        /// Gets and Sets the state visual array of toggle button.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyArray StateVisuals
         {
             get
@@ -91,6 +102,11 @@ namespace Tizen.NUI
                 SetProperty(ToggleButton.Property.STATE_VISUALS, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets the tooltips of toggle button.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyArray Tooltips
         {
             get
@@ -104,6 +120,11 @@ namespace Tizen.NUI
                 SetProperty(ToggleButton.Property.TOOLTIPS, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Gets and Sets the current state index of toggle button.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int CurrentStateIndex
         {
             get
