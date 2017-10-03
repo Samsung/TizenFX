@@ -17,7 +17,7 @@
 namespace Tizen.Context.AppHistory
 {
     /// <summary>
-    /// Base class which contains application statistics query result.
+    /// The Base class which contains the application statistics query result.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public abstract class AppStatisticsData
@@ -27,10 +27,10 @@ namespace Tizen.Context.AppHistory
         }
 
         /// <summary>
-        /// Gets the application id.
+        /// Gets the application ID.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <value>The application id.</value>
+        /// <value>The application ID.</value>
         public string AppId { get; protected set; }
     }
 }

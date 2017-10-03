@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Context.AppHistory
 {
     /// <summary>
-    /// This class provides APIs to query application launch history.
+    /// This class provides APIs to query the application launch history.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class UsageStatistics : AppStatistics
@@ -34,7 +34,7 @@ namespace Tizen.Context.AppHistory
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/app_history</feature>
-        /// <exception cref="InvalidOperationException">Thrown when method fail due to internal error.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an internal error.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         public UsageStatistics()
         {
@@ -61,7 +61,7 @@ namespace Tizen.Context.AppHistory
         /// <param name="order">The criteria of the usage statistics sorted by.</param>
         /// <feature>http://tizen.org/feature/app_history</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method fail due to internal error.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an internal error.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         public UsageStatistics(SortOrderType order)
         {
@@ -96,9 +96,9 @@ namespace Tizen.Context.AppHistory
         /// <privilege>http://tizen.org/privilege/apphistory.read</privilege>
         /// <feature>http://tizen.org/feature/app_history</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when invalid operation occurs.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when an invalid operation occurs.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when the app has no privilege to retrieve app history.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to retrieve the application history.</exception>
         public IReadOnlyList<UsageStatisticsData> Query(DateTime startTime, DateTime endTime)
         {
             CheckTimeSpan(startTime, endTime);
@@ -117,9 +117,9 @@ namespace Tizen.Context.AppHistory
         /// <privilege>http://tizen.org/privilege/apphistory.read</privilege>
         /// <feature>http://tizen.org/feature/app_history</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when invalid operation occurs.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when an invalid operation occurs.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when the app has no privilege to retrieve app history.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to retrieve the application history.</exception>
         public IReadOnlyList<UsageStatisticsData> Query(DateTime startTime, DateTime endTime, uint resultSize)
         {
             CheckTimeSpan(startTime, endTime);
@@ -188,17 +188,17 @@ namespace Tizen.Context.AppHistory
         public SortOrderType SortOrder { get; private set; }
 
         /// <summary>
-        /// Sort order type of usage statistics
+        /// Sorts the order type of usage statistics.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public enum SortOrderType
         {
             /// <summary>
-            /// Sorts apps by the last launch time, the most recently launched apps appear first. (Default)
+            /// Sorts the apps by the last launch time, the most recently launched apps appear first (default).
             /// </summary>
             LastLaunchTimeNewest = 0,
             /// <summary>
-            /// Sorts apps by the launch count of being launched, the most frequently launched apps appear first.
+            /// Sorts the apps by the launch count of being launched, the most frequently launched apps appear first.
             /// </summary>
             LaunchCountMost
         }

@@ -17,7 +17,7 @@
 namespace Tizen.Context.AppHistory
 {
     /// <summary>
-    /// The class contains battery statistics information retrieved by BatteryStatistics.
+    /// This class contains the battery statistics information retrieved by BatteryStatistics.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class BatteryStatisticsData : AppStatisticsData
@@ -29,7 +29,7 @@ namespace Tizen.Context.AppHistory
         }
 
         /// <summary>
-        /// Gets how many percentage of battery capacity was used by the application.
+        /// Gets how much percentage of battery capacity was used by the application.
         /// </summary>
         /// <value>Battery consumption used by the application.</value>
         /// <since_tizen> 4 </since_tizen>

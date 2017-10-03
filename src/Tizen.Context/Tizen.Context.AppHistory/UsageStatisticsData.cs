@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Context.AppHistory
 {
     /// <summary>
-    /// The class contains application usage statistics information retrieved by UsageStatistics.
+    /// This class contains the application usage statistics information retrieved by UsageStatistics.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class UsageStatisticsData : AppStatisticsData
@@ -33,14 +33,14 @@ namespace Tizen.Context.AppHistory
         }
 
         /// <summary>
-        ///  Gets the time which the application is being displayed in the foreground in seconds.
+        /// Gets the time when the application is being displayed in the foreground in seconds.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <value>Duration which the application is used in the foreground in seconds.</value>
+        /// <value>Duration when the application is used in the foreground in seconds.</value>
         public int Duration { get; private set; }
 
         /// <summary>
-        ///  Gets how many times the application is used in the foreground.
+        /// Gets how many times the application is used in the foreground.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <value>How many times the application is used in the foreground.</value>
