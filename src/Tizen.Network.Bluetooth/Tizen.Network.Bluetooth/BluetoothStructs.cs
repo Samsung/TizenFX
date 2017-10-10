@@ -170,7 +170,6 @@ namespace Tizen.Network.Bluetooth
         internal string ServiceUuid;
     }
 
-    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothLeScanDataStruct
     {

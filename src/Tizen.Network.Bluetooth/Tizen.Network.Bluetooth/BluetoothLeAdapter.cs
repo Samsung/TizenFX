@@ -165,6 +165,9 @@ namespace Tizen.Network.Bluetooth {
             }
         }
 
+        /// <summary>
+        /// BluetoothLeDevice destructor.
+        /// </summary>
         ~BluetoothLeDevice()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -483,6 +486,9 @@ namespace Tizen.Network.Bluetooth {
             }
         }
 
+        /// <summary>
+        /// BluetoothLeAdvertiseData destructor.
+        /// </summary>
         ~BluetoothLeAdvertiseData()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -558,6 +564,9 @@ namespace Tizen.Network.Bluetooth {
             }
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

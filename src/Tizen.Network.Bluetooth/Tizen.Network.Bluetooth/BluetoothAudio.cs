@@ -49,7 +49,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <remarks>
         /// The device must be bonded with the remote device by CreateBond(). If connection request succeeds, the AudioConnectionStateChanged event will be invoked.
-        /// If audio profile type is All and this request succeeds, then the AudioConnectionStateChanged event will be called twice when HspHfp <br>
+        /// If audio profile type is All and this request succeeds, then the AudioConnectionStateChanged event will be called twice when HspHfp <br/>
         /// and AdvancedAudioDistribution is connected.
         /// </remarks>
         /// <param name="profileType">The type of the audio profile.</param>
@@ -78,7 +78,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <remarks>
         /// The device must be connected by Connect(). If the disconnection request succeeds, the AudioConnectionStateChanged event will be invoked.
-        /// If audio profile type is All and this request succeeds, then the AudioConnectionStateChanged event will be called twice when HspHfp <br>
+        /// If audio profile type is All and this request succeeds, then the AudioConnectionStateChanged event will be called twice when HspHfp <br/>
         /// and AdvancedAudioDistribution is disconnected.
         /// </remarks>
         /// <param name="type">The type of the audio profile.</param>

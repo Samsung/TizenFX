@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Network.Bluetooth
 {
     /// <summary>
-    /// This class is used to control the Bluetooth adapter and get the list of bonded devices.<br>
+    /// This class is used to control the Bluetooth adapter and get the list of bonded devices.<br/>
     /// The BluetoothAdapter class is used to discover neighbouring bluetooth devices.
     /// </summary>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>

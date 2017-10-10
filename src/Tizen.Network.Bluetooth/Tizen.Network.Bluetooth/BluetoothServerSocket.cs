@@ -112,11 +112,17 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
+        /// <summary>
+        /// BluetoothServerSocket distructor.
+        /// </summary>
         ~BluetoothServerSocket()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
