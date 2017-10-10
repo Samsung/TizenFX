@@ -23,9 +23,11 @@ using System.Runtime.InteropServices;
 namespace Tizen.Content.MimeType
 {
     /// <summary>
-    /// The MimeUtil API provides functions to map the MIME types to file extensions and vice versa.</summary>
+    /// The MimeUtil API provides functions to map the MIME types to file extensions and vice versa.
+    /// </summary>
     /// <remarks>
-    /// Conversions are provided from the file extensions to MIME types and from the MIME types to file extensions.</remarks>
+    /// Conversions are provided from the file extensions to MIME types and from the MIME types to file extensions.
+    /// </remarks>
     public static class MimeUtil
     {
         /// <summary>
@@ -35,7 +37,7 @@ namespace Tizen.Content.MimeType
         /// <param name="fileExtension"> The file extension.</param>
         /// <example>
         /// <code>
-        /// string mimeType = MimeUtil.GetMimeType("png");
+        ///     string mimeType = MimeUtil.GetMimeType("png");
         /// </code>
         /// </example>
         public static string GetMimeType(string fileExtension)
@@ -50,18 +52,20 @@ namespace Tizen.Content.MimeType
         }
 
         /// <summary>
-        /// Gets the file extensions for the given MIME type.</summary>
+        /// Gets the file extensions for the given MIME type.
+        /// </summary>
         /// <returns>
         /// If successful, returns the list of file extension strings for the given MIME type.
-        /// The array of file extension is without the leading dot ('.').</returns>
+        /// The array of file extension is without the leading dot ('.').
+        /// </returns>
         /// <param name="mime"> The MIME type.</param>
         /// <example>
         /// <code>
-        /// IEnumerable<string> extColl = MimeUtil.GetFileExtension("video/mpeg");
-        /// foreach ( string obj in extColl )
-        /// {
-        ///     Console.WriteLine(obj);
-        /// }
+        ///     var extColl = MimeUtil.GetFileExtension("video/mpeg");
+        ///     foreach ( string obj in extColl )
+        ///     {
+        ///         Console.WriteLine(obj);
+        ///     }
         /// </code>
         /// </example>
         public static IEnumerable<string> GetFileExtension(string mime)
@@ -87,10 +91,10 @@ namespace Tizen.Content.MimeType
 
         internal enum MimeError : int
         {
-            None = Tizen.Internals.Errors.ErrorCode.None, /**< Successful */
-            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter, /**< Invalid parameter */
-            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory, /**< Out of memory */
-            IoError = Tizen.Internals.Errors.ErrorCode.IoError, /**< Internal I/O error */
+            None = Tizen.Internals.Errors.ErrorCode.None,
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
+            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
+            IoError = Tizen.Internals.Errors.ErrorCode.IoError,
         }
     }
 }
