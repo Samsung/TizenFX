@@ -27,10 +27,10 @@ namespace Tizen.Maps
     /// <typeparam name="T"></typeparam>
     public abstract class MapServiceRequest<T> : IDisposable
     {
-        protected TaskCompletionSource<IEnumerable<T>> _requestTask;
-        protected string errMessage;
-        protected int? _requestID;
-        protected ServiceRequestType _type;
+        internal TaskCompletionSource<IEnumerable<T>> _requestTask;
+        internal string errMessage;
+        internal int? _requestID;
+        internal ServiceRequestType _type;
 
         internal Action startExecutionAction;
         internal Interop.ErrorCode errorCode;
@@ -91,6 +91,11 @@ namespace Tizen.Maps
         #region IDisposable Support
         private bool _disposedValue = false;
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
