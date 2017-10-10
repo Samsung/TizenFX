@@ -23,6 +23,9 @@ namespace Tizen.Applications
     /// </summary>
     public enum PackageType
     {
+        /// <summary>
+        /// Unknown package.
+        /// </summary>
         UNKNOWN,
         /// <summary>
         /// Tizen native application package.
