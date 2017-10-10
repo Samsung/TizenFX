@@ -34,11 +34,17 @@ namespace Tizen.Uix.InputMethod
             _realHandle = _handle;
         }
 
+        /// <summary>
+        /// This API creates handle for editor window.
+        /// </summary>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return _handle;
         }
 
+        /// <summary>
+        /// This API gets handle for editor window.
+        /// </summary>
         public IntPtr GetHandle()
         {
             return _handle;

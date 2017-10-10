@@ -35,13 +35,13 @@ internal static partial class Interop
 
         internal enum ErrorCode
         {
-            None = Tizen.Internals.Errors.ErrorCode.None,                           /**< Successful */
-            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /**< Invalid parameter */
-            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /**< Permission denied */
-            NoCallbackFunction = ErrorInputMethod | 0x0001,                         /**< Necessary callback function is not set */
-            NotRunning = ErrorInputMethod | 0x0002,                                 /**< IME main loop isn't started yet */
-            OperationFailed = ErrorInputMethod | 0x0010,                            /**< Operation failed  */
-            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory              /**< out of memory */
+            None = Tizen.Internals.Errors.ErrorCode.None,
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
+            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
+            NoCallbackFunction = ErrorInputMethod | 0x0001,
+            NotRunning = ErrorInputMethod | 0x0002,
+            OperationFailed = ErrorInputMethod | 0x0010,
+            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory
         };
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
