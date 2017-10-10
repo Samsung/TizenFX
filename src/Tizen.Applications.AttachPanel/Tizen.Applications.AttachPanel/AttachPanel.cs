@@ -39,6 +39,9 @@ namespace Tizen.Applications.AttachPanel
             }
         }
 
+        /// <summary>
+        /// A destructor which deallocates attach panel resources.
+        /// </summary>
         ~AttachPanel()
         {
             if (isCreationSucceed &&
