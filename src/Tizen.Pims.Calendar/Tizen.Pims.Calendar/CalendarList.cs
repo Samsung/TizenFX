@@ -32,6 +32,13 @@ namespace Tizen.Pims.Calendar
         {
             _listHandle = handle;
 
+            int error = Interop.List.First(_listHandle);
+            if (CalendarError.None != (CalendarError)error)
+            {
+                Log.Error(Globals.LogTag, "MoveFirst Failed with error " + error);
+                throw CalendarErrorFactory.GetException(error);
+            }
+
             _memoryPressure += this.Count * CalendarViews.Record.AverageSize;
             GC.AddMemoryPressure(_memoryPressure);
         }

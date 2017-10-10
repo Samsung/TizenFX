@@ -109,6 +109,11 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetProjection(uint[] propertyIdArray)
         {
+            if (propertyIdArray == null)
+            {
+                throw new ArgumentException("Invalid Parameters Provided");
+            }
+
             int error = Interop.Query.SetProjection(_queryHandle, propertyIdArray, propertyIdArray.Length);
             if (CalendarError.None != (CalendarError)error)
             {
