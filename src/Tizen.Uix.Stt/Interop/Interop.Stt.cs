@@ -34,26 +34,26 @@ internal static partial class Interop
 
         internal enum SttError
         {
-            None = Tizen.Internals.Errors.ErrorCode.None,                           /**< Successful */
-            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,             /**< Out of Memory */
-            IoError = Tizen.Internals.Errors.ErrorCode.IoError,                     /**< I/O error */
-            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /**< Invalid parameter */
-            TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,                   /**< No answer from the STT service */
-            RecorderBusy = Tizen.Internals.Errors.ErrorCode.ResourceBusy,           /**< Device or resource busy */
-            OutOfNetwork = Tizen.Internals.Errors.ErrorCode.Networkdown,            /**< Network is down */
-            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /**< Permission denied */
-            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /**< STT NOT supported */
-            InvalidState = ErrorStt | 0x01,                                         /**< Invalid state */
-            InvalidLanguage = ErrorStt | 0x02,                                      /**< Invalid language */
-            EngineNotFound = ErrorStt | 0x03,                                       /**< No available engine  */
-            OperationFailed = ErrorStt | 0x04,                                      /**< Operation failed  */
-            NotSupportedFeature = ErrorStt | 0x05,                                  /**< Not supported feature of current engine */
-            RecordingTimedOut = ErrorStt | 0x06,                                    /**< Recording timed out */
-            NoSpeech = ErrorStt | 0x07,                                             /**< No speech while recording*/
-            InProgressToReady = ErrorStt | 0x08,                                    /**< Progress to ready is not finished*/
-            InProgressToRecording = ErrorStt | 0x09,                                /**< Progress to recording is not finished*/
-            InProgressToProcessing = ErrorStt | 0x10,                               /**< Progress to processing is not finished*/
-            ServiceReset = ErrorStt | 0x11                                          /**< Service reset*/
+            None = Tizen.Internals.Errors.ErrorCode.None,                           /* Successful */
+            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,             /* Out of Memory */
+            IoError = Tizen.Internals.Errors.ErrorCode.IoError,                     /* I/O error */
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /* Invalid parameter */
+            TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,                   /* No answer from the STT service */
+            RecorderBusy = Tizen.Internals.Errors.ErrorCode.ResourceBusy,           /* Device or resource busy */
+            OutOfNetwork = Tizen.Internals.Errors.ErrorCode.Networkdown,            /* Network is down */
+            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /* Permission denied */
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /* STT NOT supported */
+            InvalidState = ErrorStt | 0x01,                                         /* Invalid state */
+            InvalidLanguage = ErrorStt | 0x02,                                      /* Invalid language */
+            EngineNotFound = ErrorStt | 0x03,                                       /* No available engine  */
+            OperationFailed = ErrorStt | 0x04,                                      /* Operation failed  */
+            NotSupportedFeature = ErrorStt | 0x05,                                  /* Not supported feature of current engine */
+            RecordingTimedOut = ErrorStt | 0x06,                                    /* Recording timed out */
+            NoSpeech = ErrorStt | 0x07,                                             /* No speech while recording */
+            InProgressToReady = ErrorStt | 0x08,                                    /* Progress to ready is not finished */
+            InProgressToRecording = ErrorStt | 0x09,                                /* Progress to recording is not finished */
+            InProgressToProcessing = ErrorStt | 0x10,                               /* Progress to processing is not finished */
+            ServiceReset = ErrorStt | 0x11                                          /* Service reset */
         };
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

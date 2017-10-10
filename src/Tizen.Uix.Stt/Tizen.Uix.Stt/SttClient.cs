@@ -1492,13 +1492,21 @@ namespace Tizen.Uix.Stt
         }
 
         /// <summary>
-        /// A method to release resources.
+        /// Method to release resources.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
         }
 
+        /// <summary>
+        /// Method to release resources.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="disposing">
+        /// The boolean value for destoying stt handle.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)

@@ -63,6 +63,10 @@ namespace Tizen.Uix.Tts
             internal set;
         }
 
+        /// <summary>
+        /// A voice type (e.g. #TTS_VOICE_TYPE_MALE, #TTS_VOICE_TYPE_FEMALE).
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Voice VoiceType
         {
             get;

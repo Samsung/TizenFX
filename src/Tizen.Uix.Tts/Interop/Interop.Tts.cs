@@ -35,21 +35,21 @@ internal static partial class Interop
 
         internal enum TtsError
         {
-            None = Tizen.Internals.Errors.ErrorCode.None,                           /**< Successful */
-            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,             /**< Out of Memory */
-            IoError = Tizen.Internals.Errors.ErrorCode.IoError,                     /**< I/O error */
-            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /**< Invalid parameter */
-            OutOfNetwork = Tizen.Internals.Errors.ErrorCode.Networkdown,            /**< Network is down */
-            TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,                   /**< No answer from the STT service */
-            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /**< Permission denied */
-            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /**< STT NOT supported */
-            InvalidState = ErrorTts | 0x01,                                         /**< Invalid state */
-            InvalidVoice = ErrorTts | 0x02,                                         /**< Invalid language */
-            EngineNotFound = ErrorTts | 0x03,                                       /**< No available engine  */
-            OperationFailed = ErrorTts | 0x04,                                      /**< Operation failed  */
-            AudioPolicyBlocked = ErrorTts | 0x05,                                   /**< Audio policy blocked */
-            NotSupportedFeature = ErrorTts | 0x06,                                  /**< Not supported feature of current engine*/
-            ServiceReset = ErrorTts | 0x07                                          /**< Service reset*/
+            None = Tizen.Internals.Errors.ErrorCode.None,                           /* Successful */
+            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,             /* Out of Memory */
+            IoError = Tizen.Internals.Errors.ErrorCode.IoError,                     /* I/O error */
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /* Invalid parameter */
+            OutOfNetwork = Tizen.Internals.Errors.ErrorCode.Networkdown,            /* Network is down */
+            TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,                   /* No answer from the STT service */
+            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /* Permission denied */
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /* STT NOT supported */
+            InvalidState = ErrorTts | 0x01,                                         /* Invalid state */
+            InvalidVoice = ErrorTts | 0x02,                                         /* Invalid language */
+            EngineNotFound = ErrorTts | 0x03,                                       /* No available engine  */
+            OperationFailed = ErrorTts | 0x04,                                      /* Operation failed  */
+            AudioPolicyBlocked = ErrorTts | 0x05,                                   /* Audio policy blocked */
+            NotSupportedFeature = ErrorTts | 0x06,                                  /* Not supported feature of current engine*/
+            ServiceReset = ErrorTts | 0x07                                          /* Service reset*/
         };
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

@@ -36,17 +36,17 @@ internal static partial class Interop
 
         public enum ErrorCode
         {
-            None = Tizen.Internals.Errors.ErrorCode.None,                           /**< Successful */
-            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,             /**< Out of Memory */
-            IoError = Tizen.Internals.Errors.ErrorCode.IoError,                     /**< I/O error */
-            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /**< Invalid parameter */
-            NetworkDown = Tizen.Internals.Errors.ErrorCode.Networkdown,             /**< Network down(Out of network) */
-            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /**< Permission denied */
-            InvalidState = ErrorTts | 0x01,                                         /**< Invalid state */
-            InvalidVoice = ErrorTts | 0x02,                                         /**< Invalid voice */
-            OperationFailed = ErrorTts | 0x04,                                      /**< Operation failed  */
-            NotSupportedFeature = ErrorTts | 0x06,                                  /**< Not supported feature of current engine */
-            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /**< Device or resource busy */
+            None = Tizen.Internals.Errors.ErrorCode.None,                           /* Successful */
+            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,             /* Out of Memory */
+            IoError = Tizen.Internals.Errors.ErrorCode.IoError,                     /* I/O error */
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /* Invalid parameter */
+            NetworkDown = Tizen.Internals.Errors.ErrorCode.Networkdown,             /* Network down(Out of network) */
+            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /* Permission denied */
+            InvalidState = ErrorTts | 0x01,                                         /* Invalid state */
+            InvalidVoice = ErrorTts | 0x02,                                         /* Invalid voice */
+            OperationFailed = ErrorTts | 0x04,                                      /* Operation failed  */
+            NotSupportedFeature = ErrorTts | 0x06,                                  /* Not supported feature of current engine */
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /* Device or resource busy */
         };
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
