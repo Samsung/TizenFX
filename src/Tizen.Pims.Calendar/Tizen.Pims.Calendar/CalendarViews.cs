@@ -18,18 +18,19 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Calendar
 {
-    /// <summary>
-    /// This namespace provides information about views with properties.
-    /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    /// <remarks>
-    /// s are provided to access and handle entities. A view is a structure, which has property elements.
-    /// A view is almost the same as a database "VIEW", which limits access and guarantees performance.
-    /// A "record" represents a single row of the views.
-    /// A record can have basic properties of five types: integer, string, long, double, CalendarTime.
-    /// </remarks>
     namespace CalendarViews
     {
+        /// <summary>
+        /// This namespace provides information about views with properties.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <remarks>
+        /// s are provided to access and handle entities. A view is a structure, which has property elements.
+        /// A view is almost the same as a database "VIEW", which limits access and guarantees performance.
+        /// A "record" represents a single row of the views.
+        /// A record can have basic properties of five types: integer, string, long, double, CalendarTime.
+        /// </remarks>
+
         internal static class Property
         {
             /// data type mask 0x0FF00000
