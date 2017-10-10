@@ -65,6 +65,10 @@ namespace Tizen.Location.Geofence
             Handle = handle;
         }
 
+        /// <summary>
+        /// The destructor of the GeofenceManager class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~GeofenceManager()
         {
             Dispose(false);
@@ -281,6 +285,9 @@ namespace Tizen.Location.Geofence
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
