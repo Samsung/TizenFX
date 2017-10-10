@@ -93,7 +93,6 @@ namespace Tizen.Pims.Calendar
                 s_reminderAlerted -= value;
                 if (s_reminderAlerted == null)
                 {
-                    /// _reminderAlertedCallback is removed by .Net Core
                     int error = Interop.Reminder.Remove(_reminderAlertedCallback, IntPtr.Zero);
                     if (CalendarError.None != (CalendarError)error)
                     {

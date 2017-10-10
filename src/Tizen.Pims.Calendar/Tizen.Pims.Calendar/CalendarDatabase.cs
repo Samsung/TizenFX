@@ -37,7 +37,7 @@ namespace Tizen.Pims.Calendar
 
         internal CalendarDatabase()
         {
-            ///To be created in CalendarManager only
+            /*To be created in CalendarManager only*/
         }
 
         /// <summary>

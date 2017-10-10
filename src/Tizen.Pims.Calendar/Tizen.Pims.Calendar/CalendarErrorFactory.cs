@@ -20,20 +20,20 @@ namespace Tizen.Pims.Calendar
 {
     internal enum CalendarError
     {
-        None = Tizen.Internals.Errors.ErrorCode.None,                           /**< Successful */
-        OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,             /**< Out of Memory (-12) */
-        InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /**< Invalid parameter (-22) */
-        FileNoSpace = Tizen.Internals.Errors.ErrorCode.FileNoSpaceOnDevice,     /** <FS Full (-28) */
-        PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /**< Permission denied (-13) */
-        NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /**< Not supported (-1073741822) */
-        NoData = Tizen.Internals.Errors.ErrorCode.NoData,                       /**< Requested data does not exist (-61) */
-        DBLocked = Globals.ErrorCalendar | 0x81,                                /**< Database table locked or file locked (-33619839) */
-        ErrorDB = Globals.ErrorCalendar | 0x9F,                                 /**< Unknown DB error (-33619809) */
-        IPCNotAvailable = Globals.ErrorCalendar | 0xB1,                         /**< IPC server is not available (-33619791) */
-        ErrorIPC = Globals.ErrorCalendar | 0xBF,                                /**< Unknown IPC error (-33619777) */
-        ErrorSystem = Globals.ErrorCalendar | 0xEF,                             /**< Internal system module error (-33619729) */
-        ErrorInternal = Globals.ErrorCalendar | 0x04,                           /**< Implementation Error Temporary Use (-33619713) */
-        DBNotFound = Globals.ErrorCalendar | 0x05,                              /**< No data in DB (-33554427) */
+        None = Tizen.Internals.Errors.ErrorCode.None,
+        OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
+        InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
+        FileNoSpace = Tizen.Internals.Errors.ErrorCode.FileNoSpaceOnDevice,
+        PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
+        NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
+        NoData = Tizen.Internals.Errors.ErrorCode.NoData,
+        DBLocked = Globals.ErrorCalendar | 0x81,
+        ErrorDB = Globals.ErrorCalendar | 0x9F,
+        IPCNotAvailable = Globals.ErrorCalendar | 0xB1,
+        ErrorIPC = Globals.ErrorCalendar | 0xBF,
+        ErrorSystem = Globals.ErrorCalendar | 0xEF,
+        ErrorInternal = Globals.ErrorCalendar | 0x04,
+        DBNotFound = Globals.ErrorCalendar | 0x05,
     };
 
     internal static class Globals
