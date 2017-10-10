@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-/// <summary>
-/// The Tizen.Pims.Contacts namespace provides classes for managing contact information for people.
-/// </summary>
-/// <remarks>
-/// The Tizen.Pims.Contacts namespace provides classes for managing contact information for people.
-/// </remarks>
-/// <since_tizen> 4 </since_tizen>
-namespace Tizen.Pims.Contacts {}
+namespace Tizen.Pims.Contacts
+{
+    /// <summary>
+    /// The Tizen.Pims.Contacts namespace provides classes for managing contact information for people.
+    /// </summary>
+    /// <remarks>
+    /// The Tizen.Pims.Contacts namespace provides classes for managing contact information for people.
+    /// </remarks>
+    /// <since_tizen> 4 </since_tizen>
+}
