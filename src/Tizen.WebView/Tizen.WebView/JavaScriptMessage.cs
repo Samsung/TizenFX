@@ -20,6 +20,10 @@ using System.Text;
 
 namespace Tizen.WebView
 {
+    /// <summary>
+    /// The callback function that is invoked when the message is received from the script.
+    /// </summary>
+    /// <param name="message">The JavaScriptMessage returned by the script</param>
     public delegate void JavaScriptMessageHandler(JavaScriptMessage message);
 
     /// <summary>
