@@ -34,10 +34,10 @@ internal static partial class Interop
 
         internal enum ErrorCode
         {
-            None = Tizen.Internals.Errors.ErrorCode.None,                           /**< Successful */
-            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /**< Invalid parameter */
-            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /**< Permission denied */
-            OperationFailed = ErrorInputMethodManager | 0x0010,                     /**< Operation failed  */
+            None = Tizen.Internals.Errors.ErrorCode.None,
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
+            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
+            OperationFailed = ErrorInputMethodManager | 0x0010,
         };
 
         [DllImport(Libraries.InputMethodManager, EntryPoint = "ime_manager_show_ime_list")]
