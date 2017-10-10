@@ -16,7 +16,7 @@
 
 using System;
 using System.Collections.Generic;
-
+using System.ComponentModel;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Applications.CoreBackend
@@ -31,52 +31,120 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         public enum AppEventType
         {
+            /// <summary>
+            /// The low memory event.
+            /// </summary>
             LowMemory = 0,
+
+            /// <summary>
+            /// The low battery event.
+            /// </summary>
             LowBattery,
+
+            /// <summary>
+            /// The system language changed event.
+            /// </summary>
             LanguageChanged,
+
+            /// <summary>
+            /// The device orientation changed event.
+            /// </summary>
             DeviceOrientationChanged,
+
+            /// <summary>
+            /// The region format changed event.
+            /// </summary>
             RegionFormatChanged,
+
+            /// <summary>
+            /// The suspended state changed event of the application.
+            /// </summary>
             SuspendedStateChanged
         }
 
+        /// <summary>
+        /// Tag string for this class.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected static readonly string LogTag = typeof(DefaultCoreBackend).Namespace;
 
+        /// <summary>
+        /// Data structure for event handlers.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected IDictionary<EventType, object> Handlers = new Dictionary<EventType, object>();
 
+        /// <summary>
+        /// Constructor of DefaultCoreBackend class.
+        /// </summary>
         public DefaultCoreBackend()
         {
         }
 
+        /// <summary>
+        /// Finalizer of DefaultCoreBackend class.
+        /// </summary>
         ~DefaultCoreBackend()
         {
             Dispose(false);
         }
 
-        public void AddEventHandler(EventType evType, Action handler)
+        /// <summary>
+        /// Adds an event handler.
+        /// </summary>
+        /// <param name="evType">The type of event.</param>
+        /// <param name="handler">The handler method without arguments.</param>
+        public virtual void AddEventHandler(EventType evType, Action handler)
         {
             Handlers.Add(evType, handler);
         }
 
-        public void AddEventHandler<TEventArgs>(EventType evType, Action<TEventArgs> handler) where TEventArgs : EventArgs
+        /// <summary>
+        /// Adds an event handler.
+        /// </summary>
+        /// <typeparam name="TEventArgs">The EventArgs type used in arguments of the handler method.</typeparam>
+        /// <param name="evType">The type of event.</param>
+        /// <param name="handler">The handler method with a TEventArgs type argument.</param>
+        public virtual void AddEventHandler<TEventArgs>(EventType evType, Action<TEventArgs> handler) where TEventArgs : EventArgs
         {
             Handlers.Add(evType, handler);
         }
 
+        /// <summary>
+        /// Runs the mainloop of the backend.
+        /// </summary>
+        /// <param name="args"></param>
         public virtual void Run(string[] args)
         {
             TizenSynchronizationContext.Initialize();
         }
 
+        /// <summary>
+        /// Exits the mainloop of the backend.
+        /// </summary>
         public abstract void Exit();
 
+        /// <summary>
+        /// Releases all resources.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected abstract void Dispose(bool disposing);
 
+        /// <summary>
+        /// Default implementation for the low memory event.
+        /// </summary>
+        /// <param name="infoHandle"></param>
+        /// <param name="data"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnLowMemoryNative(IntPtr infoHandle, IntPtr data)
         {
             LowMemoryStatus status = LowMemoryStatus.None;
@@ -92,6 +160,12 @@ namespace Tizen.Applications.CoreBackend
             }
         }
 
+        /// <summary>
+        /// Default implementation for the low battery event.
+        /// </summary>
+        /// <param name="infoHandle"></param>
+        /// <param name="data"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnLowBatteryNative(IntPtr infoHandle, IntPtr data)
         {
             LowBatteryStatus status = LowBatteryStatus.None;
@@ -107,6 +181,12 @@ namespace Tizen.Applications.CoreBackend
             }
         }
 
+        /// <summary>
+        /// Default implementation for the system language changed event.
+        /// </summary>
+        /// <param name="infoHandle"></param>
+        /// <param name="data"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnLocaleChangedNative(IntPtr infoHandle, IntPtr data)
         {
             string lang;
@@ -122,6 +202,12 @@ namespace Tizen.Applications.CoreBackend
             }
         }
 
+        /// <summary>
+        /// Default implementation for the region format changed event.
+        /// </summary>
+        /// <param name="infoHandle"></param>
+        /// <param name="data"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnRegionChangedNative(IntPtr infoHandle, IntPtr data)
         {
             string region;
@@ -137,6 +223,12 @@ namespace Tizen.Applications.CoreBackend
             }
         }
 
+        /// <summary>
+        /// Default implementation for the suspended state changed event.
+        /// </summary>
+        /// <param name="infoHandle"></param>
+        /// <param name="data"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnDeviceOrientationChangedNative(IntPtr infoHandle, IntPtr data)
         {
             DeviceOrientation orientation;

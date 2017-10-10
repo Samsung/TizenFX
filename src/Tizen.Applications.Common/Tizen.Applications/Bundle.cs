@@ -158,7 +158,7 @@ namespace Tizen.Applications
         /// bundle.AddItem("string", "a_string");
         /// if (bundle.Contains("string"))
         /// {
-        ///     string aValue = bundle.GetItem<string>("string");
+        ///     string aValue = bundle.GetItem&lt;string&gt;("string");
         ///     Console.WriteLine(aValue);
         /// }
         /// </code>
@@ -305,7 +305,7 @@ namespace Tizen.Applications
         /// if (bundle.Contains("string"))
         /// {
         ///     object aValue = bundle.GetItem("string");
-        ///     if (bundle.Is<string>("string");)
+        ///     if (bundle.Is&lt;string&gt;("string");)
         ///     {
         ///         string aString = (string)aValue;
         ///         Console.WriteLine(aString);
@@ -373,15 +373,15 @@ namespace Tizen.Applications
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// string[] stringArray = { "a", "b", "c" };
         /// bundle.AddItem("string_array", stringArray);
-        /// if (bundle.Is<string>("string_array"))
+        /// if (bundle.Is&lt;string&gt;("string_array"))
         /// {
         ///     Console.WriteLine("It is a string");
-        ///     Console.WriteLine(bundle.GetItem<string>("string_array"));
+        ///     Console.WriteLine(bundle.GetItem&lt;string&gt;("string_array"));
         /// }
-        /// else if (bundle.Is<string[]>("string_array"))
+        /// else if (bundle.Is&lt;string[]&gt;("string_array"))
         /// {
         ///     Console.WriteLine("It is a string[]");
-        ///     string[] anArray = bundle.GetItem<string[]>("string_array");
+        ///     string[] anArray = bundle.GetItem&lt;string[]&gt;("string_array");
         ///     foreach (string value in anArray)
         ///     {
         ///         Console.WriteLine(value);
@@ -473,7 +473,7 @@ namespace Tizen.Applications
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// string[] stringArray = { "a", "b", "c" };
         /// bundle.AddItem("string_array", stringArray);
-        /// System.Collections.Generic.IEnumerable<string> aStringEnumerable;
+        /// System.Collections.Generic.IEnumerable&lt;string&gt; aStringEnumerable;
         /// if (bundle.TryGetItem("string", out aStringEnumerable))
         /// {
         ///     foreach (string value in aStringEnumerable)
@@ -512,10 +512,10 @@ namespace Tizen.Applications
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// string[] stringArray = { "a", "b", "c" };
         /// bundle.AddItem("string_array", stringArray);
-        /// if (bundle.Is<string[]>("string_array"))
+        /// if (bundle.Is&lt;string[]&gt;("string_array"))
         /// {
         ///     Console.WriteLine("It is a string[]");
-        ///     string[] anArray = bundle.GetItem<string[]>("string_array");
+        ///     string[] anArray = bundle.GetItem&lt;string[]&gt;("string_array");
         ///     foreach (string value in anArray)
         ///     {
         ///         Console.WriteLine(value);

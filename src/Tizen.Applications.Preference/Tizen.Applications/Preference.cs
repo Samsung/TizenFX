@@ -132,14 +132,14 @@ namespace Tizen.Applications
         /// <param name="key">The name of the key to check.</param>
         /// <returns>True if the key exists in the preference, otherwise false.</returns>
         /// <exception cref="ArgumentException">Thrown if the key is an invalid parameter.</exception>
-        /// <exception cref="IOException">Thrown when the method failed due to an internal I/O error.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
         /// <example>
         /// <code>
         ///     Preference.Set("active_user", "Joe");
         ///     bool exists = Preference.Contains("active_user");
         ///     if (exists)
         ///     {
-        ///         string value = Preference.Get<string>("active_user");
+        ///         string value = Preference.Get&lt;istring&gt;("active_user");
         ///         Console.WriteLine("user {0}", value);
         ///     }
         /// </code>
@@ -164,7 +164,7 @@ namespace Tizen.Applications
         /// If the key already exists in the preference, the old value will be overwritten with a new value.
         /// Data types for supported values are: integer, double, string, and bool.
         /// </remarks>
-        /// <param name="key">The name of the key to create/modify./param>
+        /// <param name="key">The name of the key to create/modify.</param>
         /// <param name="value">The value corresponding to the key.</param>
         /// <exception cref="ArgumentException">Thrown if the key is an invalid parameter.</exception>
         /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
@@ -237,7 +237,7 @@ namespace Tizen.Applications
         ///     bool exists = Preference.Contains("active_user");
         ///     if (exists)
         ///     {
-        ///         string value = Preference.Get<string>("active_user");
+        ///         string value = Preference.Get&lt;string&gt;("active_user");
         ///         Console.WriteLine("user {0}", value);
         ///     }
         /// </code>

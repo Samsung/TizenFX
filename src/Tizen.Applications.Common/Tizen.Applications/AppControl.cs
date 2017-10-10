@@ -421,7 +421,7 @@ namespace Tizen.Applications
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid parameter.</exception>
         /// <example>
         /// <code>
-        /// IEnumerable<string> applicationIds = AppControl.GetMatchedApplicationIds(control);
+        /// IEnumerable&lt;string&gt; applicationIds = AppControl.GetMatchedApplicationIds(control);
         /// if (applicationIds != null)
         /// {
         ///     foreach (string id in applicationIds)
@@ -732,7 +732,7 @@ namespace Tizen.Applications
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();
-            /// string myValue = appControl.ExtraData.Get<string>("myKey");
+            /// string myValue = appControl.ExtraData.Get&lt;string&gt;("myKey");
             /// </code>
             /// </example>
             public T Get<T>(string key)
@@ -779,7 +779,7 @@ namespace Tizen.Applications
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();
-            /// IEnumerable<string> keys = appControl.GetKeys();
+            /// IEnumerable&lt;string&gt; keys = appControl.GetKeys();
             /// if (keys != null)
             /// {
             ///     foreach (string key in keys)
@@ -862,7 +862,7 @@ namespace Tizen.Applications
             /// <example>
             /// <code>
             /// AppControl appControl = new AppControl();
-            /// IEnumerable<string> myValue = null;
+            /// IEnumerable&lt;string&gt; myValue = null;
             /// bool result = appControl.ExtraData.TryGet("myKey", out myValue);
             /// if (result)
             /// {
