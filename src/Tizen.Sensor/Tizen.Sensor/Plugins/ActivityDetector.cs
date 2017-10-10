@@ -23,15 +23,39 @@ namespace Tizen.Sensor
     /// </summary>
     public abstract class ActivityDetector : Sensor
     {
-        protected const int ActivityAttribute = (((int)SensorType.InVehicleActivityDetector << 8) | 0x80 | 0x1);
+        /// <summary>
+        /// Attribute key for a activity detector.
+        /// </summary>
+        protected const int ActivityAttribute = (((int)SensorType.StationaryActivityDetector << 8) | 0x80 | 0x1);
 
+        /// <summary>
+        /// Activity types.
+        /// </summary>
         protected enum ActivityType
         {
+            /// <summary>
+            /// Unknown.
+            /// </summary>
             Unknown = 1,
+            /// <summary>
+            /// Stationary.
+            /// </summary>
             Stationary = 2,
+            /// <summary>
+            /// Walking.
+            /// </summary>
             Walking = 4,
+            /// <summary>
+            /// Running.
+            /// </summary>
             Running = 8,
+            /// <summary>
+            /// In vehicle.
+            /// </summary>
             InVehicle = 16,
+            /// <summary>
+            /// On bicycle.
+            /// </summary>
             OnBicycle = 32,
         };
 

@@ -108,6 +108,10 @@ namespace Tizen.Sensor
         /// </summary>
         SleepMonitor = 0x301,
         /// <summary>
+        /// Stationary activity detector.
+        /// </summary>
+        StationaryActivityDetector = 0x1A00,
+        /// <summary>
         /// Walking activity detector.
         /// </summary>
         WalkingActivityDetector = 0x1A00,
@@ -115,10 +119,6 @@ namespace Tizen.Sensor
         /// Running activity detector.
         /// </summary>
         RunningActivityDetector = 0x1A00,
-        /// <summary>
-        /// Stationary activity detector.
-        /// </summary>
-        StationaryActivityDetector = 0x1A00,
         /// <summary>
         /// InVehicle activity detector.
         /// </summary>

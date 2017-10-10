@@ -61,6 +61,9 @@ namespace Tizen.Sensor
             }
         }
 
+        /// <summary>
+        /// Destroy the Sensor object.
+        /// </summary>
         ~Sensor()
         {
             Dispose(false);
@@ -351,12 +354,22 @@ namespace Tizen.Sensor
             }
         }
 
+        /// <summary>
+        /// Destroy the current object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases all resources currently used by this instance.
+        /// </summary>
+        /// <param name="disposing">
+        /// true if managed resources should be disposed
+        /// otherwise, false.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
