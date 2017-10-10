@@ -45,6 +45,10 @@ namespace Tizen.PhonenumberUtils
             }
         }
 
+        /// <summary>
+        /// Destructor
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         ~PhonenumberUtils()
         {
             Dispose(false);
