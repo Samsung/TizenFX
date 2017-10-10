@@ -75,6 +75,9 @@ namespace Tizen.Multimedia.Remoting
             RegisterStateChangedEvent();
         }
 
+        /// <summary>
+        /// Finalizes an instance of the ScreenMirroring class.
+        /// </summary>
         ~ScreenMirroring()
         {
             Dispose(false);

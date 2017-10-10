@@ -268,6 +268,9 @@ namespace Tizen.Multimedia
             }
         }
 
+        /// <summary>
+        /// Finalizes an instance of the MetadataExtractor class.
+        /// </summary>
         ~MetadataExtractor()
         {
             Dispose(false);

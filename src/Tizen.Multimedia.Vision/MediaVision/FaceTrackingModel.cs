@@ -65,6 +65,9 @@ namespace Tizen.Multimedia.Vision
             InteropModel.Load(modelPath, out _handle).Validate("Failed to load FaceTrackingModel from file.");
         }
 
+        /// <summary>
+        /// Finalizes an instance of the FaceTrackingModel class.
+        /// </summary>
         ~FaceTrackingModel()
         {
             Dispose(false);

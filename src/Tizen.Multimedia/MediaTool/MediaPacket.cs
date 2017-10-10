@@ -81,6 +81,9 @@ namespace Tizen.Multimedia
             }
         }
 
+        /// <summary>
+        /// Finalizes an instance of the MediaPacket class.
+        /// </summary>
         ~MediaPacket()
         {
             Dispose(false);

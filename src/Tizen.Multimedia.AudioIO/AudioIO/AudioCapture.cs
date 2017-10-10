@@ -63,6 +63,9 @@ namespace Tizen.Multimedia
             RegisterStateChangedCallback();
         }
 
+        /// <summary>
+        /// Finalizes an instance of the AudioCaptureBase class.
+        /// </summary>
         ~AudioCaptureBase()
         {
             Dispose(false);

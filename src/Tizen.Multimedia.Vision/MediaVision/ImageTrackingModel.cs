@@ -65,6 +65,9 @@ namespace Tizen.Multimedia.Vision
             InteropModel.Load(modelPath, out _handle).Validate("Failed to load ImageTrackingModel from file");
         }
 
+        /// <summary>
+        /// Finalizes an instance of the ImageTrackingModel class.
+        /// </summary>
         ~ImageTrackingModel()
         {
             Dispose(false);
