@@ -31,16 +31,55 @@ namespace Tizen.Location
     /// <since_tizen> 3 </since_tizen>
     public enum LocationError
     {
-        None = ErrorCode.None,/**< Successful */
-        OutOfMemory = ErrorCode.OutOfMemory,/**< Out of memory error */
-        InvalidParameter = ErrorCode.InvalidParameter,/**< Invalid parameter */
-        AcessibilityNotallowed = ErrorCode.PermissionDenied,/**< Permission denied */
-        NotSupported = ErrorCode.NotSupported,/**< Address family not supported */
-        IncorrectMethod = LocationManagerError.Base | 0x01,/**< Location manager contains incorrect method for a given call */
-        NetworkFailed = LocationManagerError.Base | 0x02,/**< Network unavailable */
-        ServiceNotAvailable = LocationManagerError.Base | 0x03,/**< Location service is not available */
-        SettingOff = LocationManagerError.Base | 0x04,/**< GPS/WPS, or MOCK setting is not enabled */
-        SecuirtyRestricted = LocationManagerError.Base | 0x05,/**< Restricted by security system policy */
+        /// <summary>
+        /// Successful.
+        /// </summary>
+        None = ErrorCode.None,
+
+        /// <summary>
+        /// Out of memory error.
+        /// </summary>
+        OutOfMemory = ErrorCode.OutOfMemory,
+
+        /// <summary>
+        /// Invalid parameter.
+        /// </summary>
+        InvalidParameter = ErrorCode.InvalidParameter,
+
+        /// <summary>
+        /// Permission denied.
+        /// </summary>
+        AcessibilityNotallowed = ErrorCode.PermissionDenied,
+
+        /// <summary>
+        /// Address family not supported.
+        /// </summary>
+        NotSupported = ErrorCode.NotSupported,
+
+        /// <summary>
+        /// Location manager contains incorrect method for a given call.
+        /// </summary>
+        IncorrectMethod = LocationManagerError.Base | 0x01,
+
+        /// <summary>
+        /// Network unavailable.
+        /// </summary>
+        NetworkFailed = LocationManagerError.Base | 0x02,
+
+        /// <summary>
+        /// Location service is not available.
+        /// </summary>
+        ServiceNotAvailable = LocationManagerError.Base | 0x03,
+
+        /// <summary>
+        /// GPS/WPS, or MOCK setting is not enabled.
+        /// </summary>
+        SettingOff = LocationManagerError.Base | 0x04,
+
+        /// <summary>
+        /// Restricted by security system policy.
+        /// </summary>
+        SecuirtyRestricted = LocationManagerError.Base | 0x05,
     }
 
     /// <summary>
@@ -49,12 +88,36 @@ namespace Tizen.Location
     /// <since_tizen> 3 </since_tizen>
     public enum LocationBoundError
     {
-        None = ErrorCode.None,/**< Successful */
-        OutOfMemory = ErrorCode.OutOfMemory,/**< Out of memory error */
-        InvalidParameter = ErrorCode.InvalidParameter,/**< Invalid parameter */
-        NotSupported = ErrorCode.NotSupported,/**< Not supported */
-        IncorrectType = LocationManagerError.BoundsBase | 0x01,/**< Incorrect bounds type for a given call */
-        IsAdded = LocationManagerError.BoundsBase | 0x02/**< Cannot remove bounds handle from location manager   */
+
+        /// <summary>
+        /// Successful.
+        /// </summary>
+        None = ErrorCode.None,
+
+        /// <summary>
+        /// Out of memory error.
+        /// </summary>
+        OutOfMemory = ErrorCode.OutOfMemory,
+
+        /// <summary>
+        /// Invalid parameter.
+        /// </summary>
+        InvalidParameter = ErrorCode.InvalidParameter,
+
+        /// <summary>
+        /// Not supported.
+        /// </summary>
+        NotSupported = ErrorCode.NotSupported,
+
+        /// <summary>
+        /// Incorrect bounds type for a given call.
+        /// </summary>
+        IncorrectType = LocationManagerError.BoundsBase | 0x01,
+
+        /// <summary>
+        /// Cannot remove bounds handle from location manager.
+        /// </summary>
+        IsAdded = LocationManagerError.BoundsBase | 0x02
     }
 
     internal static class LocationErrorFactory

@@ -18,6 +18,10 @@ using System;
 
 namespace Tizen.Location
 {
+    /// <summary>
+    /// An extended EventArgs class which contains the changed setting status.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SettingChangedEventArgs : EventArgs
     {
         /// <summary>
