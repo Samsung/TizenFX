@@ -850,6 +850,9 @@ namespace Tizen.Applications.DataControl
             _providerID = providerId;
         }
 
+        /// <summary>
+        /// Destructor of the Consumer class.
+        /// </summary>
         ~Consumer()
         {
             Dispose(false);

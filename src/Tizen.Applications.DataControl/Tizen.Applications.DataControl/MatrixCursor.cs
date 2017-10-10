@@ -593,6 +593,10 @@ namespace Tizen.Applications.DataControl
             Dispose(true);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources used by the MatrixCursor class specifying whether to perform a normal dispose operation.
+        /// </summary>
+        /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -621,6 +625,9 @@ namespace Tizen.Applications.DataControl
             }
         }
 
+        /// <summary>
+        /// Destructor of the MatrixCursor class.
+        /// </summary>
         ~MatrixCursor()
         {
             Dispose(false);

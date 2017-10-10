@@ -169,6 +169,9 @@ namespace Tizen.Applications.DataControl
             }
         }
 
+        /// <summary>
+        /// Destructor of the BulkData class.
+        /// </summary>
         ~BulkData()
         {
             Dispose(false);
@@ -353,6 +356,9 @@ namespace Tizen.Applications.DataControl
             }
         }
 
+        /// <summary>
+        /// Destructor of the BulkResultData class.
+        /// </summary>
         ~BulkResultData()
         {
             Dispose(false);

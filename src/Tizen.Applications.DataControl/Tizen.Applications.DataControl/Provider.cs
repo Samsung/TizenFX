@@ -975,6 +975,9 @@ namespace Tizen.Applications.DataControl
             }
         }
 
+        /// <summary>
+        /// Destructor of the Provider class.
+        /// </summary>
         ~Provider()
         {
             Dispose(false);
