@@ -25,7 +25,7 @@ namespace Tizen.Account.FidoClient
     /// <since_tizen> 3 </since_tizen>
     /// <example>
     /// <code>
-    ///     IEnumerable<AuthenticatorInformation> authInfos = await UafAuthenticatorFinder.DiscoverAuthenticatorsAsync();
+    ///     IEnumerable&lt;AuthenticatorInformation&gt; authInfos = await UafAuthenticatorFinder.DiscoverAuthenticatorsAsync();
     ///     foreach (AuthenticatorInformation authInfo in authInfos)
     ///     {
     ///         string aaid = authInfo.Aaid;
