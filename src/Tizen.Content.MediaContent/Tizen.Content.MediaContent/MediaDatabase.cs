@@ -354,7 +354,7 @@ namespace Tizen.Content.MediaContent
 
         private async Task ScanFolderAsyncCore(string folderPath, bool recursive, CancellationToken cancellationToken)
         {
-            var tcs = new TaskCompletionSource<bool>();
+            var tcs = new TaskCompletionSource<bool>(TaskContinuationOptions.RunContinuationsAsynchronously);
 
             using (var cbKeeper = ObjectKeeper.Get(GetScanCompletedCallback(tcs, cancellationToken)))
             using (RegisterCancellationAction(tcs, folderPath, cancellationToken))
