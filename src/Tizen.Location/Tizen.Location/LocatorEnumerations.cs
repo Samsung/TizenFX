@@ -25,8 +25,15 @@ namespace Tizen.Location
     /// <since_tizen> 3 </since_tizen>
     public enum ServiceState
     {
-        Disabled = 0, /**<Service is disabled.*/
-        Enabled /**<Service is enabled.*/
+        /// <summary>
+        /// Service is disabled.
+        /// </summary>
+        Disabled = 0,
+
+        /// <summary>
+        /// Service is enabled.
+        /// </summary>
+        Enabled
     }
 
     /// <summary>
@@ -35,10 +42,25 @@ namespace Tizen.Location
     /// <since_tizen> 3 </since_tizen>
     public enum LocationType
     {
-        Hybrid = 0, /**<This method selects the best method available at the moment.*/
-        Gps, /**<This method uses Global Positioning System.*/
-        Wps, /**<This method uses WiFi Positioning System.*/
-        Passive, /**<This method uses passive mode.*/
+        /// <summary>
+        /// This method selects the best method available at the moment.
+        /// </summary>
+        Hybrid = 0,
+
+        /// <summary>
+        /// This method uses Global Positioning System.
+        /// </summary>
+        Gps,
+
+        /// <summary>
+        /// This method uses WiFi Positioning System.
+        /// </summary>
+        Wps,
+
+        /// <summary>
+        /// This method uses passive mode.
+        /// </summary>
+        Passive,
     }
 
     /// <summary>
@@ -47,9 +69,20 @@ namespace Tizen.Location
     /// <since_tizen> 3 </since_tizen>
     public enum BoundaryType
     {
-        Rectangle = 0, /**<Rectangular geographical area type. */
-        Circle, /**<Rectangular geographical area type. */
-        Polygon /**<Rectangular geographical area type. */
+        /// <summary>
+        /// Rectangular geographical area type.
+        /// </summary>
+        Rectangle = 0,
+
+        /// <summary>
+        /// Circle geographical area type.
+        /// </summary>
+        Circle,
+
+        /// <summary>
+        /// Polygon geographical area type.
+        /// </summary>
+        Polygon
     }
 
     /// <summary>
@@ -58,7 +91,14 @@ namespace Tizen.Location
     /// <since_tizen> 3 </since_tizen>
     public enum BoundaryState
     {
-        In = 0, /**< Boundary In (Zone In) */
-        Out /**< Boundary Out (Zone Out) */
+        /// <summary>
+        /// Boundary In (Zone In).
+        /// </summary>
+        In = 0,
+
+        /// <summary>
+        /// Boundary Out (Zone Out).
+        /// </summary>
+        Out
     }
 }

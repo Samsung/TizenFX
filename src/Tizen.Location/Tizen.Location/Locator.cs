@@ -561,6 +561,9 @@ namespace Tizen.Location
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

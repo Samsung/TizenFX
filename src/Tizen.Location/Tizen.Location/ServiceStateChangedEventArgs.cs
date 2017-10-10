@@ -21,6 +21,7 @@ namespace Tizen.Location
     /// <summary>
     /// An extended EventArgs class contains the changed location service state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ServiceStateChangedEventArgs : EventArgs
     {
         /// <summary>

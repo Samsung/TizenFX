@@ -76,6 +76,9 @@ namespace Tizen.Location
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
         protected virtual void Dispose(bool disposing)
         {
             Log.Info(Globals.LogTag, "Dispose");
