@@ -51,6 +51,10 @@ namespace Tizen.Maps
         #region IDisposable Support
         private bool _disposedValue = false;
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)

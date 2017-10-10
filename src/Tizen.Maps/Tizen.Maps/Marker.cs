@@ -168,7 +168,6 @@ namespace Tizen.Maps
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         protected virtual void Dispose(bool disposing)
         {
