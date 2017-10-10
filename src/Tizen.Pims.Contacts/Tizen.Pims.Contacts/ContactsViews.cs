@@ -20,18 +20,19 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Pims.Contacts
 {
-    /// <summary>
-    /// This namespace provides information about views with properties.
-    /// </summary>
-    /// <remarks>
-    ///  Views are provided to access and handle entities. A view is a structure, which has property elements.
-    ///  A view is almost the same as a database "VIEW", which limits access and guarantees performance.
-    ///  A "record" represents a single row of the views.
-    ///  A record can have basic properties of five types: integer, string, boolean, long, double.
-    /// </remarks>
-    /// <since_tizen> 4 </since_tizen>
     namespace ContactsViews
     {
+        /// <summary>
+        /// This namespace provides information about views with properties.
+        /// </summary>
+        /// <remarks>
+        ///  Views are provided to access and handle entities. A view is a structure, which has property elements.
+        ///  A view is almost the same as a database "VIEW", which limits access and guarantees performance.
+        ///  A "record" represents a single row of the views.
+        ///  A record can have basic properties of five types: integer, string, boolean, long, double.
+        /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+
         internal static class Property
         {
             private const uint AddressBook = 0x00100000;
