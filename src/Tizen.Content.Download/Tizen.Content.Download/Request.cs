@@ -177,6 +177,9 @@ namespace Tizen.Content.Download
             _httpHeaders = httpHeaders;
         }
 
+        /// <summary>
+        /// Destructor of the Request class.
+        /// </summary>
         ~Request()
         {
             Dispose(false);
