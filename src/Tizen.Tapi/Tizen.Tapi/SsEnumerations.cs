@@ -399,7 +399,7 @@ namespace Tizen.Tapi
     public enum SsStatus
     {
         /// <summary>
-        /// Provisioned & registered (but not active/active-quiescent).
+        /// Provisioned and registered (but not active/active-quiescent).
         /// </summary>
         Registered = 0x01,
         /// <summary>
@@ -407,11 +407,11 @@ namespace Tizen.Tapi
         /// </summary>
         Provisioned,
         /// <summary>
-        /// Provisioned & registered & active.
+        /// Provisioned and registered and active.
         /// </summary>
         Active,
         /// <summary>
-        /// Provisioned & registered & active but quiescent.
+        /// Provisioned and registered and active but quiescent.
         /// </summary>
         Quiescent,
         /// <summary>

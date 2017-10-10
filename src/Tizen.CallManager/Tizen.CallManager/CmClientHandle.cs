@@ -442,6 +442,9 @@ namespace Tizen.CallManager
             }
         }
 
+        /// <summary>
+        /// Gets the status of the current call.
+        /// </summary>
         public CallStatus CallStatus
         {
             get
