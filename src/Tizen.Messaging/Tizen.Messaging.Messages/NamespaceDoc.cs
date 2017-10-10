@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-/// <summary>
-/// The <b>Tizen.Messaging.Messages</b> namespace contains classes providing the functionality to send, receive, and search messages.
-/// </summary>
-/// <remarks>
-/// The <b>Tizen.Messaging.Messages</b> namespace contains classes providing the functionality to send, receive, and search messages.
-/// </remarks>
 namespace Tizen.Messaging.Messages
 {
+    /// <summary>
+    /// The <b>Tizen.Messaging.Messages</b> namespace contains classes providing the functionality to send, receive, and search messages.
+    /// </summary>
+    /// <remarks>
+    /// The <b>Tizen.Messaging.Messages</b> namespace contains classes providing the functionality to send, receive, and search messages.
+    /// </remarks>
 }

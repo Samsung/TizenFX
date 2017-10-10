@@ -59,11 +59,17 @@ namespace Tizen.Messaging.Messages
             (this as MmsMessage)?.SetAttachments();
         }
 
+        /// <summary>
+        /// Destructor
+        /// </summary>
         ~Message()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Releases all resources used by the Message.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

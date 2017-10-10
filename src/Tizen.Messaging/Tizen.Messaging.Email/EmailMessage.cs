@@ -157,12 +157,19 @@ namespace Tizen.Messaging.Email
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the EmailMessage.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases all resources used by the EmailMessage.
+        /// </summary>
+        /// <param name="disposing">Disposing by User</param>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

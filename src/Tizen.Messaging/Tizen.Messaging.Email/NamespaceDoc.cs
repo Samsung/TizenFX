@@ -15,12 +15,12 @@
  */
 
 
-/// <summary>
-/// The <b>Tizen.Messaging.Email</b> namespace contains classes providing the functionality to send emails.
-/// </summary>
-/// <remarks>
-/// The <b>Tizen.Messaging.Email</b> namespace contains classes providing the functionality to send emails.
-/// </remarks>
 namespace Tizen.Messaging.Email
 {
+    /// <summary>
+    /// The <b>Tizen.Messaging.Email</b> namespace contains classes providing the functionality to send emails.
+    /// </summary>
+    /// <remarks>
+    /// The <b>Tizen.Messaging.Email</b> namespace contains classes providing the functionality to send emails.
+    /// </remarks>
 }
