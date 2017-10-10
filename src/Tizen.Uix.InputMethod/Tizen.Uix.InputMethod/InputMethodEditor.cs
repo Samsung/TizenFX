@@ -24,7 +24,7 @@ namespace Tizen.Uix.InputMethod
 {
     /// <summary>
     /// Enumeration of the key codes.
-    /// If keycode & 0xff000000 == 0x01000000 then this key code is directly encoded 24-bit UCS character.The UCS value is keycode & 0x00ffffff.
+    /// If keycode &amp; 0xff000000 == 0x01000000 then this key code is directly encoded 24-bit UCS character.The UCS value is keycode &amp; 0x00ffffff.
     /// Defines the list of keys supported by the system.Note that certain keys may not be available on all devices.
     /// </summary>
     public enum KeyCode
@@ -1034,6 +1034,9 @@ namespace Tizen.Uix.InputMethod
                 private set;
             }
 
+            /// <summary>
+            /// compare whether ContextId are equal
+            /// </summary>
             public bool Equals(ContextId other)
             {
                 return this.Id == other.Id;
