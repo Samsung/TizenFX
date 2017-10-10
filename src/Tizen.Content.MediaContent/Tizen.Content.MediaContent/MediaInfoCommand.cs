@@ -109,7 +109,6 @@ namespace Tizen.Content.MediaContent
                 Bookmark.FromHandle);
         }
 
-
         /// <summary>
         /// Retrieves the number of the face information added to or detected from the media.
         /// </summary>
@@ -251,7 +250,6 @@ namespace Tizen.Content.MediaContent
             return CommandHelper.SelectMembers(mediaId, filter, Interop.MediaInfo.ForeachTags,
                 Tag.FromHandle);
         }
-
 
         /// <summary>
         /// Retrieves the number of the media information.
@@ -624,64 +622,6 @@ namespace Tizen.Content.MediaContent
             }
         }
 
-        /// <summary>
-        /// Adds burst shot images into the media database.
-        /// </summary>
-        /// <param name="paths">The paths of the burst shot images to add.</param>
-        /// <returns>A task that represents the asynchronous add operation.</returns>
-        /// <remarks>
-        ///     The paths that already exist in the database.\n
-        ///     At most 300 items can be added at once.
-        ///     \n
-        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
-        ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
-        /// </remarks>
-        /// <privilege>http://tizen.org/privilege/content.write</privilege>
-        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
-        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
-        /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
-        /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
-        /// <exception cref="ArgumentNullException"><paramref name="paths"/> is null.</exception>
-        /// <exception cref="ArgumentException">
-        ///     <paramref name="paths"/> contains null.\n
-        ///     -or-\n
-        ///     <paramref name="paths"/> contains the invalid path.\n
-        ///     -or-\n
-        ///     The number of <paramref name="paths"/> is 300 or more items.
-        /// </exception>
-        /// <exception cref="FileNotFoundException"><paramref name="paths"/> contains a path that does not exist.</exception>
-        /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
-        public async Task AddBurstShotImagesAsync(IEnumerable<string> paths)
-        {
-            ValidateDatabase();
-
-            ValidatePaths(paths);
-
-            var tcs = new TaskCompletionSource<bool>(TaskContinuationOptions.RunContinuationsAsynchronously);
-            string[] pathArray = paths.ToArray();
-
-            Interop.MediaInfo.InsertBurstShotCompletedCallback callback = (error, _) =>
-            {
-                if (error == MediaContentError.None)
-                {
-                    tcs.TrySetResult(true);
-                }
-                else
-                {
-                    tcs.TrySetException(error.AsException("Failed to add burst shot images"));
-                }
-            };
-
-            using (ObjectKeeper.Get(callback))
-            {
-                Interop.MediaInfo.BurstShotInsert(pathArray, pathArray.Length, callback).
-                    ThrowIfError("Failed to add burst shots to db");
-
-                await tcs.Task;
-            }
-        }
-
         private static void SetUpdateValue<T>(Interop.MediaInfoHandle handle, T value,
             Func<Interop.MediaInfoHandle, T, MediaContentError> func)
         {
@@ -690,7 +630,6 @@ namespace Tizen.Content.MediaContent
                 func(handle, value).ThrowIfError("Failed to update");
             }
         }
-
 
         private static void SetUpdateValue<T>(Interop.MediaInfoHandle handle, Nullable<T> value,
             Func<Interop.MediaInfoHandle, T, MediaContentError> func) where T : struct

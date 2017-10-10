@@ -390,16 +390,6 @@ namespace Tizen.Content.MediaContent
         public static string Orientation => "MEDIA_ORIENTATION";
 
         /// <summary>
-        /// Gets the column name for the burst ID of media.
-        /// </summary>
-        /// <value>The column name for the burst ID of media.</value>
-        /// <remarks>
-        /// The value type is string.
-        /// </remarks>
-        /// <seealso cref="ImageInfo.BurstId"/>
-        public static string BurstId => "BURST_ID";
-
-        /// <summary>
         /// Gets the column name for the rating of media.
         /// </summary>
         /// <value>The column name for the rating of media.</value>
@@ -438,7 +428,6 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaInfo.Category"/>
         public static string Category => "MEDIA_CATEGORY";
-
 
         /// <summary>
         /// Gets the column name for the location tag of media.
@@ -531,7 +520,6 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="ImageInfo.Model"/>
         public static string Model => "MEDIA_MODEL";
     }
-
 
     /// <summary>
     /// Provides the folder column names that can be used for Select and Count commands.

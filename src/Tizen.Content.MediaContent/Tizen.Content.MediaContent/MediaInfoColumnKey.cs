@@ -98,10 +98,6 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         Altitude,
         /// <summary>
-        /// Burst shot.
-        /// </summary>
-        BurstImage,
-        /// <summary>
         /// Rating.
         /// </summary>
         Rating = 20,

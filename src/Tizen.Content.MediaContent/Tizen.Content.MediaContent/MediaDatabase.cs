@@ -135,7 +135,6 @@ namespace Tizen.Content.MediaContent
             }
         }
 
-
         private static readonly Interop.Content.MediaContentDBUpdatedCallback _folderUpdatedCb = (
             MediaContentError error, int pid, ItemType updateItem, OperationType updateType,
             MediaType mediaType, string uuid, string filePath, string mimeType, IntPtr _) =>
