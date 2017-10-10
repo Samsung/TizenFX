@@ -34,7 +34,7 @@ internal static partial class Interop
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_image_file_set(IntPtr obj, string file, string key);
 
-        [DllImport(Libraries.Evas, EntryPoint = "_evas_object_image_file_get")]
+        [DllImport(Libraries.Evas, EntryPoint = "evas_object_image_file_get")]
         internal static extern void _evas_object_image_file_get(IntPtr obj, out IntPtr file, out IntPtr key);
 
         internal static void evas_object_image_file_get(IntPtr obj, out string file, out string key)
