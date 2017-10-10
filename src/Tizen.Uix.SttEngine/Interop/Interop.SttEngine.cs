@@ -36,18 +36,18 @@ internal static partial class Interop
 
         public enum ErrorCode
         {
-            None = Tizen.Internals.Errors.ErrorCode.None,                           /**< Successful */
-            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,             /**< Out of Memory */
-            IoError = Tizen.Internals.Errors.ErrorCode.IoError,                     /**< I/O error */
-            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /**< Invalid parameter */
-            NetworkDown = Tizen.Internals.Errors.ErrorCode.Networkdown,             /**< Network down(Out of network) */
-            InvalidState = ErrorStt | 0x01,                                         /**< Invalid state */
-            InvalidLanguage = ErrorStt | 0x02,                                      /**< Invalid language */
-            OperationFailed = ErrorStt | 0x04,                                      /**< Operation failed  */
-            NotSupportedFeature = ErrorStt | 0x05,                                  /**< Not supported feature of current engine */
-            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /**< Device or resource busy */
-            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /**< Permission denied */
-            RecordingTimedOut = ErrorStt | 0x06,                                    /**< Recording timed out */
+            None = Tizen.Internals.Errors.ErrorCode.None,                           /* Successful */
+            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,             /* Out of Memory */
+            IoError = Tizen.Internals.Errors.ErrorCode.IoError,                     /* I/O error */
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /* Invalid parameter */
+            NetworkDown = Tizen.Internals.Errors.ErrorCode.Networkdown,             /* Network down(Out of network) */
+            InvalidState = ErrorStt | 0x01,                                         /* Invalid state */
+            InvalidLanguage = ErrorStt | 0x02,                                      /* Invalid language */
+            OperationFailed = ErrorStt | 0x04,                                      /* Operation failed  */
+            NotSupportedFeature = ErrorStt | 0x05,                                  /* Not supported feature of current engine */
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /* Device or resource busy */
+            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /* Permission denied */
+            RecordingTimedOut = ErrorStt | 0x06,                                    /* Recording timed out */
         };
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

@@ -36,25 +36,25 @@ internal static partial class Interop
 
         internal enum ErrorCode
         {
-            None = Tizen.Internals.Errors.ErrorCode.None,            /**< Successful */
-            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,        /**< Out of Memory */
-            IoError = Tizen.Internals.Errors.ErrorCode.IoError,         /**< I/O error */
-            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /**< Invalid parameter */
-            TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,       /**< No answer from service */
-            RecorderBusy = Tizen.Internals.Errors.ErrorCode.ResourceBusy,       /**< Busy recorder */
-            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /**< Permission denied */
-            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,       /**< VC NOT supported */
-            InvalidState = ErrorVoiceControl | 0x011,   /**< Invalid state */
-            InvalidLanguage = ErrorVoiceControl | 0x012,    /**< Invalid language */
-            EngineNotFound = ErrorVoiceControl | 0x013, /**< No available engine */
-            OperationFailed = ErrorVoiceControl | 0x014,    /**< Operation failed */
-            OperationRejected = ErrorVoiceControl | 0x015,  /**< Operation rejected */
-            IterationEnd = ErrorVoiceControl | 0x016,   /**< List reached end */
-            Empty = ErrorVoiceControl | 0x017,  /**< List empty */
-            ServiceReset = ErrorVoiceControl | 0x018,   /**< Service daemon reset (Since 3.0) */
-            InProgressToReady = ErrorVoiceControl | 0x019,  /**< In progress to ready (Since 3.0) */
-            InProgressToRecording = ErrorVoiceControl | 0x020,  /**< In progress to recording (Since 3.0) */
-            InProgressToProcessing = ErrorVoiceControl | 0x021	/**< In progress to processing (Since 3.0) */
+            None = Tizen.Internals.Errors.ErrorCode.None,                           /* Successful */
+            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,             /* Out of Memory */
+            IoError = Tizen.Internals.Errors.ErrorCode.IoError,                     /* I/O error */
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /* Invalid parameter */
+            TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,                   /* No answer from service */
+            RecorderBusy = Tizen.Internals.Errors.ErrorCode.ResourceBusy,           /* Busy recorder */
+            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /* Permission denied */
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /* VC NOT supported */
+            InvalidState = ErrorVoiceControl | 0x011,                               /* Invalid state */
+            InvalidLanguage = ErrorVoiceControl | 0x012,                            /* Invalid language */
+            EngineNotFound = ErrorVoiceControl | 0x013,                             /* No available engine */
+            OperationFailed = ErrorVoiceControl | 0x014,                            /* Operation failed */
+            OperationRejected = ErrorVoiceControl | 0x015,                          /* Operation rejected */
+            IterationEnd = ErrorVoiceControl | 0x016,                               /* List reached end */
+            Empty = ErrorVoiceControl | 0x017,                                      /* List empty */
+            ServiceReset = ErrorVoiceControl | 0x018,                               /* Service daemon reset */
+            InProgressToReady = ErrorVoiceControl | 0x019,                          /* In progress to ready */
+            InProgressToRecording = ErrorVoiceControl | 0x020,                      /* In progress to recording */
+            InProgressToProcessing = ErrorVoiceControl | 0x021                      /* In progress to processing */
         };
 
         internal enum VoiceCommandType
