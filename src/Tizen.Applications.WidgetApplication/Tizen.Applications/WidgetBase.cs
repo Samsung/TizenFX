@@ -26,7 +26,7 @@ namespace Tizen.Applications
     {
         internal IntPtr Handle;
         internal string Id;
-        protected static readonly string LogTag = typeof(WidgetBase).Namespace;
+        private const string LogTag = "Tizen.Applications.WidgetBase";
 
         /// <summary>
         /// Window object for this widget instance.
