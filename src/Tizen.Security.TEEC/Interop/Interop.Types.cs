@@ -57,27 +57,45 @@ internal static partial class Interop
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct sTEEC_SharedMemoryImp
-    {
-        public IntPtr context;
-        public IntPtr context_imp;
-        public UInt32 flags;
-        public UInt32 memid;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    internal struct TEEC_SharedMemory
+    internal class TEEC_SharedMemory
     {
         public IntPtr buffer;
         public UInt32 size;
         public UInt32 flags;
+        public IntPtr imp;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct TEEC_Parameter
+    internal struct TEEC_Value
     {
         public UInt32 a;
         public UInt32 b;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct TEEC_TempMemoryReference
+    {
+        public IntPtr buffer;
+        public UInt32 size;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct TEEC_RegisteredMemoryReference
+    {
+        public TEEC_SharedMemory parent;
+        public UInt32 size;
+        public UInt32 offset;
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    internal struct TEEC_Parameter
+    {
+        [FieldOffset(0)]
+        public TEEC_TempMemoryReference tmpref;
+        [FieldOffset(0)]
+        public TEEC_RegisteredMemoryReference memref;
+        [FieldOffset(0)]
+        public TEEC_Value value;
     }
 
     [StructLayout(LayoutKind.Sequential)]
