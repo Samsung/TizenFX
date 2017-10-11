@@ -26,7 +26,7 @@ namespace Tizen.Applications
     /// </summary>
     public class WidgetControl : IDisposable
     {
-        protected static readonly string LogTag = "WidgetControl";
+        private const string LogTag = "Tizen.Applications.WidgetControl";
         /// <summary>
         /// Class for the widget instance.
         /// </summary>
