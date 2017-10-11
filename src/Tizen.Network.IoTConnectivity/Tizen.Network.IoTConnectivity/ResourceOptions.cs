@@ -306,11 +306,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="item">The key value pair.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
-        /// <seealso cref="Remove()"/>
-        /// <code>
+        /// <seealso cref="Remove(KeyValuePair{ushort, string})"/>
+        /// <code><![CDATA[
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "12345"));
-        /// </code>
+        /// ]]></code>
         public void Add(KeyValuePair<ushort, string> item)
         {
             Add(item.Key, item.Value);
@@ -348,13 +348,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="item">The key value pair.</param>
         /// <returns>True if exists. Otherwise, false.</returns>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "12345"));
         /// var isPresent = options.Contains(new KeyValuePair<ushort, string>(2050, "12345"));
         /// if (isPresent)
         ///     Console.WriteLine("Key value pair is present");
-        /// </code>
+        /// ]]></code>
         public bool Contains(KeyValuePair<ushort, string> item)
         {
             return _options.Contains(item);
@@ -366,13 +366,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="array">The destination array.</param>
         /// <param name="arrayIndex">Index parameter.</param>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "12345"));
         /// KeyValuePair<ushort, string>[] dest = new KeyValuePair<ushort, string>[options.Count];
         /// options.CopyTo(dest, 0);
         /// Console.WriteLine("Dest conatins ({0}, {1})", dest[0].Key, dest[0].Value);
-        /// </code>
+        /// ]]></code>
         public void CopyTo(KeyValuePair<ushort, string>[] array, int arrayIndex)
         {
             _options.CopyTo(array, arrayIndex);
@@ -385,13 +385,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="item">The key value pair to remove</param>
         /// <returns>True if operation is successful. Otherwise, false</returns>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
-        /// <seealso cref="Add()"/>
+        /// <seealso cref="Add(KeyValuePair{ushort, string})"/>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "12345"));
         /// var result = options.Remove(new KeyValuePair<ushort, string>(2050, "12345"));
-        /// </code>
+        /// ]]></code>
         public bool Remove(KeyValuePair<ushort, string> item)
         {
             return Remove(item.Key);
@@ -402,7 +402,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Enumerator to option pairs.</returns>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "sample1"));
         /// options.Add(new KeyValuePair<ushort, string>(2055, "sample2"));
@@ -410,7 +410,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
-        /// </code>
+        /// ]]></code>
         public IEnumerator<KeyValuePair<ushort, string>> GetEnumerator()
         {
             return _options.GetEnumerator();
@@ -432,7 +432,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Enumerator to option pairs.</returns>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "sample1"));
         /// options.Add(new KeyValuePair<ushort, string>(2055, "sample2"));
@@ -440,7 +440,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
-        /// </code>
+        /// ]]></code>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _options.GetEnumerator();

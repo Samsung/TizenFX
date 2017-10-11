@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+using System.ComponentModel;
 
 namespace Tizen.Network.IoTConnectivity
 {
@@ -30,7 +32,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// Creates a lite resource, which can then be registered in server using <see cref="IoTConnectivityServerManager.RegisterResource()"/>.\n
+        /// Creates a lite resource, which can then be registered in server using <see cref="IoTConnectivityServerManager.RegisterResource(Resource)"/>.\n
         /// When client requests some operations, it sends a response to client automatically.\n
         /// @a uri length must be less than 128.
         /// </remarks>
@@ -49,13 +51,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="ResourceTypes"/>
         /// <seealso cref="ResourcePolicy"/>
         /// <seealso cref="Attributes"/>
-        /// <code>
+        /// <code><![CDATA[
         /// List<string> list = new List<string>() { "org.tizen.light" };
         /// Attributes attributes = new Attributes() {
         ///     { "state", "ON" }
         /// };
         /// LiteResource res = new LiteResource("/light/1", new ResourceTypes(list), ResourcePolicy.Discoverable, attributes);
-        /// </code>
+        /// ]]></code>
         public LiteResource(string uri, ResourceTypes types, ResourcePolicy policy, Attributes attribs = null)
             : base(uri, types, new ResourceInterfaces(new string[] { ResourceInterfaces.DefaultInterface }), policy)
         {
@@ -67,7 +69,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The attributes of the lite resource.</value>
-        /// <code>
+        /// <code><![CDATA[
         /// List<string> list = new List<string>() { "org.tizen.light" };
         /// LiteResource res = new LiteResource("/light/1", new ResourceTypes(list), ResourcePolicy.Discoverable);
         /// Attributes attributes = new Attributes() {
@@ -78,7 +80,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
-        /// </code>
+        /// ]]></code>
         public Attributes Attributes { get; set; }
 
         /// <summary>
@@ -108,8 +110,13 @@ namespace Tizen.Network.IoTConnectivity
             return true;
         }
 
-        // The code block untill @endcond should not appear in doxygen spec.
-        /// @cond
+        /// <summary>
+        /// This is called when the client performs get operation on this resource.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="request">A request from client.</param>
+        /// <returns>A response having the representation and the result.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected sealed override Response OnGet(Request request)
         {
             Representation representation = new Representation()
@@ -129,6 +136,13 @@ namespace Tizen.Network.IoTConnectivity
             return response;
         }
 
+        /// <summary>
+        /// This is called when the client performs put operation on this resource.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="request">A request from client.</param>
+        /// <returns>A response.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected sealed override Response OnPut(Request request)
         {
             Response response = new Response();
@@ -136,6 +150,13 @@ namespace Tizen.Network.IoTConnectivity
             return response;
         }
 
+        /// <summary>
+        /// This is called when the client performs post operation on this resource.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="request">A request from client.</param>
+        /// <returns>A response having the representation and the result.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected sealed override Response OnPost(Request request)
         {
             if (OnPost(request.Representation.Attributes))
@@ -163,6 +184,13 @@ namespace Tizen.Network.IoTConnectivity
             };
         }
 
+        /// <summary>
+        /// This is called when the client performs delete operation on this resource.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="request">A request from client.</param>
+        /// <returns>A response.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected sealed override Response OnDelete(Request request)
         {
             Response response = new Response();
@@ -170,10 +198,18 @@ namespace Tizen.Network.IoTConnectivity
             return response;
         }
 
+        /// <summary>
+        /// Called on the observing event.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <param name="request">A request from client.</param>
+        /// <param name="observeType">Observer type.</param>
+        /// <param name="observeId">Observe identifier.</param>
+        /// <returns>Returns true.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected sealed override bool OnObserving(Request request, ObserveType observeType, int observeId)
         {
             return true;
         }
-        /// @endcond
     }
 }

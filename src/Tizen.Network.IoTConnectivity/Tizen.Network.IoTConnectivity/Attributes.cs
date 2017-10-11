@@ -1,5 +1,3 @@
-/// Copyright 2016 by Samsung Electronics, Inc.,
-///
  /*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
@@ -192,10 +190,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="item">The key value pair to add.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
-        /// <code>
+        /// <code><![CDATA[
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
         /// attributes.Add(new KeyValuePair<string, object> ("state", "ON"));
-        /// </code>
+        /// ]]></code>
         public void Add(KeyValuePair<string, object> item)
         {
             Add(item.Key, item.Value);
@@ -326,14 +324,14 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="item">The status key value pair.</param>
         /// <returns>true if exists. Otherwise, false.</returns>
-        /// <code>
+        /// <code><![CDATA[
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         ///     { "state", "ON" },
         ///     { "dim", 10 }
         /// };
         /// if (attributes.Contains(new KeyValuePair<string, object> ("dim", 10))
         ///     Console.WriteLine("Attribute conatins pair ('dim', 10)");
-        /// </code>
+        /// ]]></code>
         public bool Contains(KeyValuePair<string, object> item)
         {
             return _attributes.Contains(item);
@@ -364,7 +362,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="array">The destination array.</param>
         /// <param name="arrayIndex">The zero-based index in an array at which copying begins.</param>
-        /// <code>
+        /// <code><![CDATA[
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         ///     { "state", "ON" },
         ///     { "dim", 10 }
@@ -373,7 +371,7 @@ namespace Tizen.Network.IoTConnectivity
         /// int index = 0;
         /// attributes.CopyTo(dest, index);
         /// Console.WriteLine("Dest conatins ({0}, {1})", dest[0].Key, dest[0].Value);
-        /// </code>
+        /// ]]></code>
         public void CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
         {
             _attributes.CopyTo(array, arrayIndex);
@@ -384,7 +382,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns> An enumerator that can be used to iterate through the collection.</returns>
-        /// <code>
+        /// <code><![CDATA[
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         ///     { "state", "ON" },
         ///     { "dim", 10 }
@@ -393,7 +391,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
-        /// </code>
+        /// ]]></code>
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
             return _attributes.GetEnumerator();
@@ -409,14 +407,14 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid</exception>
-        /// <code>
+        /// <code><![CDATA[
         /// Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         ///     { "state", "ON" },
         ///     { "dim", 10 }
         /// };
         /// if (attributes.Remove(new KeyValuePair<string, object>("dim", 10)))
         ///     Console.WriteLine("Remove was successful");
-        /// </code>
+        /// ]]></code>
         public bool Remove(KeyValuePair<string, object> item)
         {
             return Remove(item.Key);

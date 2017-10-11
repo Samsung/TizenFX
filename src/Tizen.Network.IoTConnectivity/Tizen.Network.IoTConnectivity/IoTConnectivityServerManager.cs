@@ -109,7 +109,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceTypes types = new ResourceTypes(new List<string>(){ "org.tizen.light" });
         /// Attributes attributes = new Attributes { { "state", "ON" }};
         /// Resource res = new LiteResource("/room/1", types, ResourcePolicy.Discoverable, attributes);
@@ -118,7 +118,7 @@ namespace Tizen.Network.IoTConnectivity
         /// } catch(Exception ex) {
         ///     Console.Log("Exception caught : " + ex.Message);
         /// }
-        /// </code>
+        /// ]]></code>
         public static void RegisterResource(Resource resource)
         {
             Log.Info(IoTConnectivityErrorFactory.LogTag, "...");
@@ -178,7 +178,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="LiteResource"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceTypes types = new ResourceTypes(new List<string>(){ "org.tizen.light" });
         /// Attributes attributes = new Attributes { { "state", "ON" }};
         /// Resource res = new LiteResource("/room/1", types, ResourcePolicy.Discoverable, attributes);
@@ -188,7 +188,7 @@ namespace Tizen.Network.IoTConnectivity
         /// } catch(Exception ex) {
         ///     Console.Log("Exception caught : " + ex.Message);
         /// }
-        /// </code>
+        /// ]]></code>
         public static void UnregisterResource(Resource resource)
         {
             if (resource != null)

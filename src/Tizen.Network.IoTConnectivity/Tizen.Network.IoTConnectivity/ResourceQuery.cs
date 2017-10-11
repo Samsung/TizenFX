@@ -381,11 +381,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="item">The key value pair.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
-        /// <seealso cref="Remove()"/>
-        /// <code>
+        /// <seealso cref="Remove(KeyValuePair{string, string})"/>
+        /// <code><![CDATA[
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
-        /// </code>
+        /// ]]></code>
         public void Add(KeyValuePair<string, string> item)
         {
             Add(item.Key, item.Value);
@@ -424,13 +424,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="item">The key value pair.</param>
         /// <returns>True if exists. Otherwise, false.</returns>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
         /// var isPresent = query.Contains(new KeyValuePair<string, string>("key1", "value1"));
         /// if (isPresent)
         ///     Console.WriteLine("Key value pair is present");
-        /// </code>
+        /// ]]></code>
         public bool Contains(KeyValuePair<string, string> item)
         {
             return _query.Contains(item);
@@ -442,13 +442,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="array">The destination array.</param>
         /// <param name="arrayIndex">Index parameter.</param>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
         /// KeyValuePair<string, string>[] dest = new KeyValuePair<string, string>[query.Count];
         /// query.CopyTo(dest, 0);
         /// Console.WriteLine("Dest conatins ({0}, {1})", dest[0].Key, dest[0].Value);
-        /// </code>
+        /// ]]></code>
         public void CopyTo(KeyValuePair<string, string>[] array, int arrayIndex)
         {
             _query.CopyTo(array, arrayIndex);
@@ -461,13 +461,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="item">The key value pair to remove.</param>
         /// <returns>True if operation is successful. Otherwise, false.</returns>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
-        /// <seealso cref="Add()"/>
+        /// <seealso cref="Add(KeyValuePair{string, string})"/>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
         /// var result = query.Remove(new KeyValuePair<string, string>("key1", "value1"));
-        /// </code>
+        /// ]]></code>
         public bool Remove(KeyValuePair<string, string> item)
         {
             return Remove(item.Key);
@@ -478,7 +478,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Enumerator to query pairs.</returns>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
         /// query.Add(new KeyValuePair<string, string>("key2", "value2"));
@@ -486,7 +486,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
-        /// </code>
+        /// ]]></code>
         public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
         {
             return _query.GetEnumerator();
@@ -497,7 +497,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The enumerator to the query pairs.</returns>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
         /// query.Add(new KeyValuePair<string, string>("key2", "value2"));
@@ -505,7 +505,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
-        /// </code>
+        /// ]]></code>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _query.GetEnumerator();
