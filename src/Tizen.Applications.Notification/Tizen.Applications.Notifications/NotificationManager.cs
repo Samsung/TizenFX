@@ -451,6 +451,12 @@ namespace Tizen.Applications.Notifications
             return state;
         }
 
+        /// <summary>
+        /// Make a NotificationSafeHandle from Notification.
+        /// </summary>
+        /// <param name="notification">The Notification class.</param>
+        /// <returns>The NotificationSafeHandle class.</returns>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static NotificationSafeHandle MakeNotificationSafeHandle(Notification notification)
         {
@@ -464,6 +470,12 @@ namespace Tizen.Applications.Notifications
             return notification.Handle;
         }
 
+        /// <summary>
+        /// Make a Notification from NotificationSafeHandle.
+        /// </summary>
+        /// <param name="handle">The NotificationSafeHandle class.</param>
+        /// <returns>The Notification class.</returns>
+        /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Notification MakeNotification(NotificationSafeHandle handle)
         {

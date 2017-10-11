@@ -21,6 +21,9 @@ namespace Tizen.Applications.NotificationEventListener
     /// </summary>
     public partial class NotificationEventArgs
     {
+        /// <summary>
+        /// An object can get a rich notification style to a notification object.
+        /// </summary>
         public abstract class StyleArgs
         {
             internal abstract string Key { get; }

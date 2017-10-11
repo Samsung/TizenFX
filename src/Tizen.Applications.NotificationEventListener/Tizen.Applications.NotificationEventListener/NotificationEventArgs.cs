@@ -93,6 +93,9 @@ namespace Tizen.Applications.NotificationEventListener
         /// </summary>
         public string Tag { get; internal set; }
 
+        /// <summary>
+        /// Gets a value indicating whether the notification is Onging or not.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsOngoing { get; internal set; } = false;
 
@@ -102,6 +105,10 @@ namespace Tizen.Applications.NotificationEventListener
         /// </summary>
         public bool IsVisible { get; internal set; } = true;
 
+        /// <summary>
+        /// Gets the event flag.
+        /// If this flag is true, you can do SendEvent.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool HasEventFlag { get; internal set; } = false;
 

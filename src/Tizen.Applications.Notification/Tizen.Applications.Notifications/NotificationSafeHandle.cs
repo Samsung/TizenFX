@@ -20,9 +20,15 @@ namespace Tizen.Applications.Notifications
     using System.ComponentModel;
     using System.Runtime.InteropServices;
 
+    /// <summary>
+    /// This class manages the notification handle resources.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class NotificationSafeHandle : SafeHandle
     {
+        /// <summary>
+        /// Initializes a new instance of the NotificationSafeHandle class.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NotificationSafeHandle()
             : base(IntPtr.Zero, true)
@@ -43,6 +49,10 @@ namespace Tizen.Applications.Notifications
             get { return this.DangerousGetHandle() == IntPtr.Zero; }
         }
 
+        /// <summary>
+        /// Executes the code required to free the NotificationSafeHandle.
+        /// </summary>
+        /// <returns></returns>
         protected override bool ReleaseHandle()
         {
             Interop.Notification.Destroy(this.handle);
