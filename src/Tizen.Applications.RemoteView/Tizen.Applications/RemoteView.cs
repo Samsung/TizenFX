@@ -150,7 +150,7 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device<./exception>
+        /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
         public static void ResumeAll()
         {
             CheckException(Interop.WidgetViewerEvas.NotifyResumedStatusOfViewer());
