@@ -120,6 +120,11 @@ namespace ElmSharp.Wearable
         /// </summary>
         public Image BackgroundImage { set => setPart(ref _normalBgImage, BgPartName, State.Normal, value); get => _normalBgImage; }
 
+        /// <summary>
+        /// Creates a widget handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>Handle IntPtr</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr ptr = Interop.Eext.eext_rotary_selector_add(parent);

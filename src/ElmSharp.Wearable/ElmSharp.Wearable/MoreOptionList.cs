@@ -168,7 +168,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Return an enumerator that iterates through IEnumerator<MoreOptionItem>
+        /// Return an enumerator that iterates through IEnumerator
         /// </summary>
         /// <returns></returns>
         public IEnumerator<MoreOptionItem> GetEnumerator()

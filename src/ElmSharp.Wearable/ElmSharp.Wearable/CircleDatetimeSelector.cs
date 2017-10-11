@@ -94,6 +94,11 @@ namespace ElmSharp.Wearable
             }
         }
 
+        /// <summary>
+        /// Creates a widget handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>Handle IntPtr</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             var handle = base.CreateHandle(parent);

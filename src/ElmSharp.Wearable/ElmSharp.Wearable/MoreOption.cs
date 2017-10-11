@@ -68,6 +68,11 @@ namespace ElmSharp.Wearable
 
         }
 
+        /// <summary>
+        /// Creates a widget handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>Handle IntPtr</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Eext.eext_more_option_add(parent);
@@ -112,9 +117,21 @@ namespace ElmSharp.Wearable
     /// </summary>
     public enum MoreOptionDirection
     {
+        /// <summary>
+        /// Top direction
+        /// </summary>
         Top,
+        /// <summary>
+        /// Bottom direction
+        /// </summary>
         Bottom,
+        /// <summary>
+        /// Left direction
+        /// </summary>
         Left,
+        /// <summary>
+        /// Right direction
+        /// </summary>
         Right
     }
 }
