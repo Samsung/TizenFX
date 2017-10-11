@@ -60,14 +60,14 @@ namespace Tizen.Applications.Notifications
 
         /// <summary>
         /// Gets or sets the icon of notification.
-	/// You should set an absolute path for an image file.
+        /// You should set an absolute path for an image file.
         /// </summary>
         public string Icon { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the sub icon of notification.
         /// This SubIcon is displayed in Icon you set.
-	/// You should set an absolute path for an image file.
+        /// You should set an absolute path for an image file.
         /// </summary>
         public string SubIcon { get; set; } = string.Empty;
 
@@ -128,6 +128,10 @@ namespace Tizen.Applications.Notifications
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the notification is Onging or not.
+        /// Default value is false.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsOngoing { get; set; } = false;
 
