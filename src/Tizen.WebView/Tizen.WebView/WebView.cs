@@ -303,6 +303,11 @@ namespace Tizen.WebView
             Interop.ChromiumEwk.ewk_view_focus_set(_realHandle, focused);
         }
 
+        /// <summary>
+        /// Creates a widget handle.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <returns>IntPtr of the widget handle</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             // focus dummy
