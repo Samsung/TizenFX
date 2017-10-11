@@ -24,7 +24,7 @@ using System.Collections.Specialized;
 namespace Tizen.Network.Bluetooth
 {
     /// <summary>
-    /// This class is used to handle the connection with other devices and set authorization of other devices.<br>
+    /// This class is used to handle the connection with other devices and set authorization of other devices.<br/>
     /// The BluetoothDevice class is used to search for services available on remote devices.
     /// </summary>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>

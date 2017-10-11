@@ -134,7 +134,7 @@ namespace Tizen.Network.Bluetooth
         /// <param name="mode">The repeat mode.</param>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
-        /// or when notifying the repeat mode state to the remote device fails.</exception>
+        /// or when notifying the repeat mode state to the remote device fails.
         /// </exception>
         public void NotifyRepeatMode(RepeatMode mode)
         {

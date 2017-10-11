@@ -457,6 +457,9 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
+    /// <summary>
+    /// The AcceptStateChanged event is raised when the socket connection state is changed.
+    /// </summary>
     public class AcceptStateChangedEventArgs : EventArgs
     {
         private BluetoothError _result;

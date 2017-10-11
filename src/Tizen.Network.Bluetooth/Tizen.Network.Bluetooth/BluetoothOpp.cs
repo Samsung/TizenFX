@@ -28,6 +28,9 @@ namespace Tizen.Network.Bluetooth
         private static BluetoothOppServerImpl _impl;
         private static BluetoothOppServer _instance;
 
+        /// <summary>
+        /// The constructor
+        /// </summary>
         public BluetoothOppServer()
         {
             _impl = BluetoothOppServerImpl.Instance;

@@ -209,6 +209,9 @@ namespace Tizen.Network.Bluetooth
             return client.Isvalid() ? client : null;
         }
 
+        /// <summary>
+        /// Destroy Bluetooth GATT client
+        /// </summary>
         public void DestroyClient()
         {
             _impl.GetHandle().Dispose();
@@ -503,7 +506,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The constructor.
         /// </summary>
-        /// <param name="uuid">The UUID of the characterstic.param>
+        /// <param name="uuid">The UUID of the characterstic.</param>
         /// <param name="permissions">Permissions for the characterstic.</param>
         /// <param name="properties">Properties set for the characterstic.</param>
         /// <param name="value">The value associated with the characterstic.</param>
@@ -789,6 +792,11 @@ namespace Tizen.Network.Bluetooth
         private EventHandler<ReadRequestedEventArgs> _readValueRequested;
         private EventHandler<WriteRequestedEventArgs> _writeValueRequested;
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="uuid">The UUID of the GATT attribute.</param>
+        /// <param name="permission">Permission for the GATT attribute.</param>
         public BluetoothGattAttribute(string uuid, BluetoothGattPermission permission)
         {
             Uuid = uuid;
