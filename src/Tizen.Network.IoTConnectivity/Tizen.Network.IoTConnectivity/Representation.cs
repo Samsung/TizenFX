@@ -133,7 +133,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code>
+        /// <code><![CDATA[
         /// Representation repr = new Representation();
         /// ResourceTypes types = new ResourceTypes (new List<string>(){ "org.tizen.light" });
         /// repr.Type = types;
@@ -142,7 +142,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("Type is {0}", item);
         /// }
-        /// </code>
+        /// ]]></code>
         public ResourceTypes Type
         {
             get
@@ -178,7 +178,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code>
+        /// <code><![CDATA[
         /// Representation repr = new Representation();
         /// ResourceInterfaces ifaces = new ResourceInterfaces (new List<string>(){ ResourceInterfaces.DefaultInterface });
         /// repr.Interface = ifaces;
@@ -187,7 +187,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("Interface is {0}", iface);
         /// }
-        /// </code>
+        /// ]]></code>
         public ResourceInterfaces Interface
         {
             get
@@ -268,7 +268,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>List of Child resource representation.</value>
-        /// <code>
+        /// <code><![CDATA[
         /// Representation repr = new Representation();
         /// Representation child1 = new Representation();
         /// ResourceTypes types1 = new ResourceTypes(new List<string>() { "org.tizen.light" });
@@ -284,7 +284,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("Exception caught : " + ex.Message);
         /// }
-        /// </code>
+        /// ]]></code>
         public ICollection<Representation> Children
         {
             get

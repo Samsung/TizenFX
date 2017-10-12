@@ -63,9 +63,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="types">List of resource types.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceTypes types = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
-        /// </code>
+        /// ]]></code>
         public ResourceTypes(IEnumerable<string> types)
         {
             int ret = Interop.IoTConnectivity.Common.ResourceTypes.Create(out _resourceTypeHandle);
@@ -117,10 +117,10 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Count of types in the list.</value>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceTypes types = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// Console.WriteLine("There are {0} items", types.Count);
-        /// </code>
+        /// ]]></code>
         public int Count
         {
             get
@@ -174,14 +174,14 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="item">The string data to delete from the resource types.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
-        /// <seealso cref="Add()"/>
+        /// <seealso cref="Add(string)"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// resourceTypes.Remove("oic.if.room");
-        /// </code>
+        /// ]]></code>
         public void Remove(string item)
         {
             int ret = Interop.IoTConnectivity.Common.ResourceTypes.Remove(_resourceTypeHandle, item);
@@ -199,13 +199,13 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The enumerator.</returns>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// foreach(string item in resourceTypes)
         /// {
         ///     Console.WriteLine("Type : {0}", item);
         /// }
-        /// </code>
+        /// ]]></code>
         public IEnumerator<string> GetEnumerator()
         {
             return _resourceTypes.GetEnumerator();
@@ -216,13 +216,13 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The enumerator.</returns>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// foreach(string item in resourceTypes)
         /// {
         ///     Console.WriteLine("Type : {0}", item);
         /// }
-        /// </code>
+        /// ]]></code>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _resourceTypes.GetEnumerator();

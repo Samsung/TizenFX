@@ -95,10 +95,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>()
         ///     { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
-        /// </code>
+        /// ]]></code>
         public ResourceInterfaces(IEnumerable<string> ifaces)
         {
             int ret = Interop.IoTConnectivity.Common.ResourceInterfaces.Create(out _resourceInterfacesHandle);
@@ -157,11 +157,11 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Count of interfaces in the list.</value>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>()
         ///     { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
         /// Console.WriteLine("There are {0} interfaces", resourceInterfaces.Count);
-        /// </code>
+        /// ]]></code>
         public int Count
         {
             get
@@ -212,14 +212,14 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="item">The string data to delete from the resource ifaces.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
-        /// <seealso cref="Add()"/>
+        /// <seealso cref="Add(string)"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>(){ ResourceInterfaces.BatchInterface });
         /// resourceInterfaces.Add(ResourceInterfaces.BatchInterface);
-        /// </code>
+        /// ]]></code>
         public void Remove(string item)
         {
             bool isRemoved = _resourceInterfaces.Remove(item);
@@ -241,14 +241,14 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The enumerator.</returns>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>()
         ///     { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
         /// foreach(string item in resourceInterfaces)
         /// {
         ///     Console.WriteLine("Interface : {0}", item);
         /// }
-        /// </code>
+        /// ]]></code>
         public IEnumerator<string> GetEnumerator()
         {
             return _resourceInterfaces.GetEnumerator();
@@ -259,14 +259,14 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The enumerator.</returns>
-        /// <code>
+        /// <code><![CDATA[
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>()
         ///     { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
         /// foreach(string item in resourceInterfaces)
         /// {
         ///     Console.WriteLine("Interface : {0}", item);
         /// }
-        /// </code>
+        /// ]]></code>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _resourceInterfaces.GetEnumerator();
