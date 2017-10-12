@@ -14,13 +14,10 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia
+internal static partial class Interop
 {
-    internal static partial class Interop
+    internal static partial class Libraries
     {
-        internal static partial class Libraries
-        {
-            public const string Radio = "libcapi-media-radio.so.0";
-        }
+        public const string Radio = "libcapi-media-radio.so.0";
     }
 }

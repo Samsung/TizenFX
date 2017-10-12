@@ -16,10 +16,10 @@
 
 using System;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Tizen.System;
-using static Tizen.Multimedia.Interop.Radio;
+using Native = Interop.Radio;
+using static Interop;
 
 namespace Tizen.Multimedia
 {
@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
     /// </summary>
     public class Radio : IDisposable
     {
-        private Interop.RadioHandle _handle;
+        private RadioHandle _handle;
 
         private const string FeatureFmRadio = "http://tizen.org/feature/fmradio";
 
@@ -38,19 +38,20 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException">The radio feature is not supported.</exception>
         public Radio()
         {
+            CompatibilitySupport.DisableSessionBackwardCompatibility();
+
             ValidateFeatureSupported(FeatureFmRadio);
 
-            Create(out _handle);
+            Native.Create(out _handle);
 
             try
             {
-                _scanCompletedCallback = _ => ScanCompleted?.Invoke(this, EventArgs.Empty);
-                _interruptedCallback = (reason, _) => Interrupted?.Invoke(this, new RadioInterruptedEventArgs(reason));
-                _scanUpdatedCallback = (frequency, _) => ScanUpdated?.Invoke(this, new ScanUpdatedEventArgs(frequency));
-                _scanStoppedCallback = _ => ScanStopped?.Invoke(this, EventArgs.Empty);
+                InitCallbacks();
 
-                SetScanCompletedCb(_handle, _scanCompletedCallback).ThrowIfFailed("Failed to initialize radio");
-                SetInterruptedCb(_handle, _interruptedCallback).ThrowIfFailed("Failed to initialize radio");
+                Native.SetScanCompletedCb(_handle, _scanCompletedCallback).
+                    ThrowIfFailed("Failed to initialize radio");
+                Native.SetInterruptedCb(_handle, _interruptedCallback).
+                    ThrowIfFailed("Failed to initialize radio");
             }
             catch (Exception)
             {
@@ -59,7 +60,20 @@ namespace Tizen.Multimedia
             }
         }
 
-        private Interop.RadioHandle Handle
+        private void InitCallbacks()
+        {
+            _scanCompletedCallback = _ => ScanCompleted?.Invoke(this, EventArgs.Empty);
+
+            _interruptedCallback =
+                (reason, _) => Interrupted?.Invoke(this, new RadioInterruptedEventArgs(reason));
+
+            _scanUpdatedCallback =
+                (frequency, _) => ScanUpdated?.Invoke(this, new ScanUpdatedEventArgs(frequency));
+
+            _scanStoppedCallback = _ => ScanStopped?.Invoke(this, EventArgs.Empty);
+        }
+
+        private RadioHandle Handle
         {
             get
             {
@@ -71,13 +85,13 @@ namespace Tizen.Multimedia
             }
         }
 
-        private ScanUpdatedCallback _scanUpdatedCallback;
+        private Native.ScanUpdatedCallback _scanUpdatedCallback;
 
-        private ScanStoppedCallback _scanStoppedCallback;
+        private Native.ScanStoppedCallback _scanStoppedCallback;
 
-        private ScanCompletedCallback _scanCompletedCallback;
+        private Native.ScanCompletedCallback _scanCompletedCallback;
 
-        private InterruptedCallback _interruptedCallback;
+        private Native.InterruptedCallback _interruptedCallback;
 
         /// <summary>
         /// Occurs when the radio scanning information is updated.
@@ -106,8 +120,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                RadioState state;
-                GetState(Handle, out state);
+                Native.GetState(Handle, out var state).ThrowIfFailed("Failed to get state");
                 return state;
             }
         }
@@ -124,18 +137,18 @@ namespace Tizen.Multimedia
         {
             get
             {
-                int value = 0;
-                GetFrequency(Handle, out value).ThrowIfFailed("Failed to get frequency");
+                Native.GetFrequency(Handle, out var value).ThrowIfFailed("Failed to get frequency");
                 return value;
             }
             set
             {
                 if (value < FrequencyRange.Min || value > FrequencyRange.Max)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(Frequency), value, "Frequency must be within FrequencyRange.");
+                    throw new ArgumentOutOfRangeException(nameof(Frequency), value,
+                        "Frequency must be within FrequencyRange.");
                 }
 
-                SetFrequency(Handle, value).ThrowIfFailed("Failed to set frequency");
+                Native.SetFrequency(Handle, value).ThrowIfFailed("Failed to set frequency");
             }
         }
 
@@ -147,7 +160,7 @@ namespace Tizen.Multimedia
             get
             {
                 int value = 0;
-                GetSignalStrength(Handle, out value).ThrowIfFailed("Failed to get signal strength");
+                Native.GetSignalStrength(Handle, out value).ThrowIfFailed("Failed to get signal strength");
                 return value;
             }
         }
@@ -163,13 +176,12 @@ namespace Tizen.Multimedia
         {
             get
             {
-                bool value;
-                GetMuted(Handle, out value).ThrowIfFailed("Failed to get the mute state");
+                Native.GetMuted(Handle, out var value).ThrowIfFailed("Failed to get the mute state");
                 return value;
             }
             set
             {
-                SetMute(Handle, value).ThrowIfFailed("Failed to set the mute state");
+                Native.SetMute(Handle, value).ThrowIfFailed("Failed to set the mute state");
             }
         }
 
@@ -180,8 +192,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                int value;
-                GetChannelSpacing(Handle, out value).ThrowIfFailed("Failed to get channel spacing");
+                Native.GetChannelSpacing(Handle, out var value).
+                    ThrowIfFailed("Failed to get channel spacing");
                 return value;
             }
         }
@@ -200,8 +212,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                float value;
-                GetVolume(Handle, out value).ThrowIfFailed("Failed to get volume level.");
+                Native.GetVolume(Handle, out var value).ThrowIfFailed("Failed to get volume level.");
                 return value;
             }
             set
@@ -212,7 +223,7 @@ namespace Tizen.Multimedia
                         $"Valid volume range is 0 <= value <= 1.0, but got { value }.");
                 }
 
-                SetVolume(Handle, value).ThrowIfFailed("Failed to set volume level");
+                Native.SetVolume(Handle, value).ThrowIfFailed("Failed to set volume level");
             }
         }
 
@@ -223,9 +234,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                int min, max;
-
-                GetFrequencyRange(Handle, out min, out max).ThrowIfFailed("Failed to get frequency range");
+                Native.GetFrequencyRange(Handle, out var min, out var max).
+                    ThrowIfFailed("Failed to get frequency range");
 
                 return new Range(min, max);
             }
@@ -240,7 +250,7 @@ namespace Tizen.Multimedia
         {
             ValidateRadioState(RadioState.Ready);
 
-            Interop.Radio.Start(Handle).ThrowIfFailed("Failed to start radio");
+            Native.Start(Handle).ThrowIfFailed("Failed to start radio");
         }
 
         /// <summary>
@@ -252,7 +262,7 @@ namespace Tizen.Multimedia
         {
             ValidateRadioState(RadioState.Playing);
 
-            Interop.Radio.Stop(Handle).ThrowIfFailed("Failed to stop radio");
+            Native.Stop(Handle).ThrowIfFailed("Failed to stop radio");
         }
 
         /// <summary>
@@ -266,7 +276,7 @@ namespace Tizen.Multimedia
         {
             ValidateRadioState(RadioState.Ready, RadioState.Playing);
 
-            ScanStart(Handle, _scanUpdatedCallback).ThrowIfFailed("Failed to start scanning");
+            Native.ScanStart(Handle, _scanUpdatedCallback).ThrowIfFailed("Failed to start scanning");
         }
 
         /// <summary>
@@ -279,7 +289,7 @@ namespace Tizen.Multimedia
         {
             ValidateRadioState(RadioState.Scanning);
 
-            ScanStop(Handle, _scanStoppedCallback).ThrowIfFailed("Failed to stop scanning");
+            Native.ScanStop(Handle, _scanStoppedCallback).ThrowIfFailed("Failed to stop scanning");
         }
 
         /// <summary>
@@ -298,7 +308,7 @@ namespace Tizen.Multimedia
         /// </exception>
         public Task<int> SeekUpAsync()
         {
-            return SeekAsync(SeekUp);
+            return SeekAsync(Native.SeekUp);
         }
 
         /// <summary>
@@ -317,27 +327,22 @@ namespace Tizen.Multimedia
         /// </exception>
         public Task<int> SeekDownAsync()
         {
-            return SeekAsync(SeekDown);
+            return SeekAsync(Native.SeekDown);
         }
 
-        private async Task<int> SeekAsync(Func<Interop.RadioHandle, SeekCompletedCallback, IntPtr, RadioError> func)
+        private async Task<int> SeekAsync(
+            Func<RadioHandle, Native.SeekCompletedCallback, IntPtr, RadioError> func)
         {
             ValidateRadioState(RadioState.Playing);
 
             var tcs = new TaskCompletionSource<int>();
-            SeekCompletedCallback callback = (currentFrequency, _) => tcs.TrySetResult(currentFrequency);
+            Native.SeekCompletedCallback callback =
+                (currentFrequency, _) => tcs.TrySetResult(currentFrequency);
 
-            GCHandle gcHandle;
-            try
+            using (ObjectKeeper.Get(callback))
             {
-                gcHandle = GCHandle.Alloc(callback);
-
                 func(Handle, callback, IntPtr.Zero).ThrowIfFailed("Failed to seek");
                 return await tcs.Task;
-            }
-            finally
-            {
-                gcHandle.Free();
             }
         }
 
@@ -347,7 +352,6 @@ namespace Tizen.Multimedia
             {
                 throw new NotSupportedException($"The feature({featurePath}) is not supported.");
             }
-
         }
 
         private void ValidateRadioState(params RadioState[] required)
