@@ -39,6 +39,11 @@ The key design principles of the TEE Client API are:
 	the format of the messages which pass over the channel, or the protocols used by specific
 	Trusted Applications.
 
+For security reasons, each device vendor usually uses their own TEE solution.
+If you intend your LibTeec application to be used on a real device,
+you must test your application on the TEE solution provided by the specific vendor.
+When developing and installing your trusted application, refer to the documentation provided by the vendor.
+
 ## Example
 The following example demonstrates how to invoke command on Trused Application.
 
