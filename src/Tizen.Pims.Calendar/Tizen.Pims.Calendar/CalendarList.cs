@@ -133,7 +133,6 @@ namespace Tizen.Pims.Calendar
         /// <param name="record">The record to be added</param>
         /// <feature>http://tizen.org/feature/calendar</feature>
         /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void AddRecord(CalendarRecord record)
         {
             int error = Interop.List.Add(_listHandle, record._recordHandle);
@@ -154,7 +153,6 @@ namespace Tizen.Pims.Calendar
         /// <param name="record">The record to be removed</param>
         /// <feature>http://tizen.org/feature/calendar</feature>
         /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void RemoveRecord(CalendarRecord record)
         {
             int error = Interop.List.Remove(_listHandle, record._recordHandle);

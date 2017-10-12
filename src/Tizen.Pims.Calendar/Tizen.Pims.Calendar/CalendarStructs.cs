@@ -67,8 +67,6 @@ namespace Tizen.Pims.Calendar
         /// <param name="hour">hour</param>
         /// <param name="minute">minute</param>
         /// <param name="second">second</param>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public CalendarTime(int year, int month, int day, int hour, int minute, int second)
         {
             _type = (int)Type.Local;
@@ -103,8 +101,6 @@ namespace Tizen.Pims.Calendar
         /// <returns>
         /// A 32-bit signed integer that indicates the relative order of the objects being compared.
         /// </returns>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public int CompareTo(CalendarTime other)
         {
             if (_type != other._type)
@@ -127,8 +123,6 @@ namespace Tizen.Pims.Calendar
         /// <returns>
         /// A 32-bit signed integer that indicates the relative order of the objects being compared.
         /// </returns>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         public override bool Equals(object obj)
         {
             var other = obj as CalendarTime;

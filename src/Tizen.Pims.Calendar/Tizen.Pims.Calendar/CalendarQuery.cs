@@ -129,7 +129,6 @@ namespace Tizen.Pims.Calendar
         /// <param name="set">If true it is set, otherwise if false it is unset</param>
         /// <feature>http://tizen.org/feature/calendar</feature>
         /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         public void SetDistinct(bool set)
         {
             int error = Interop.Query.SetDistinct(_queryHandle, set);

@@ -263,7 +263,6 @@ namespace Tizen.Pims.Calendar
         /// <feature>http://tizen.org/feature/calendar</feature>
         /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
@@ -368,7 +367,6 @@ namespace Tizen.Pims.Calendar
         /// <feature>http://tizen.org/feature/calendar</feature>
         /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         public void Delete(CalendarList list)
@@ -560,7 +558,6 @@ namespace Tizen.Pims.Calendar
         /// <feature>http://tizen.org/feature/calendar</feature>
         /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
