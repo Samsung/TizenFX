@@ -69,6 +69,9 @@ namespace Tizen.Multimedia.Vision
             EngineConfig.Create(out _handle).Validate("Failed to create media vision engine.");
         }
 
+        /// <summary>
+        /// Finalizes an instance of the EngineConfiguration class.
+        /// </summary>
         ~EngineConfiguration()
         {
             Dispose(false);

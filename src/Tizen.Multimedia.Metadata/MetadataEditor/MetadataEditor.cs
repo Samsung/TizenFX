@@ -505,6 +505,9 @@ namespace Tizen.Multimedia
             Interop.MetadataEditor.RemovePicture(Handle, index).ThrowIfError("Failed to remove picture");
         }
 
+        /// <summary>
+        /// Finalizes an instance of the MetadataEditor class.
+        /// </summary>
         ~MetadataEditor()
         {
             Dispose(false);

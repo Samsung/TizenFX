@@ -121,6 +121,9 @@ namespace Tizen.Multimedia.Vision
         {
         }
 
+        /// <summary>
+        /// Finalizes an instance of the MediaVisionSource class.
+        /// </summary>
         ~MediaVisionSource()
         {
             Dispose(false);
@@ -223,6 +226,9 @@ namespace Tizen.Multimedia.Vision
             }
         }
 
+        /// <summary>
+        /// Releases all resources used by the current instance.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

@@ -68,6 +68,9 @@ namespace Tizen.Multimedia.Vision
                 Validate("Failed to load FaceRecognitionModel from file");
         }
 
+        /// <summary>
+        /// Finalizes an instance of the FaceRecognitionModel class.
+        /// </summary>
         ~FaceRecognitionModel()
         {
             Dispose(false);

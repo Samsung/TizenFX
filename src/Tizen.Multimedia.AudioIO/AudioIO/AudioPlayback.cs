@@ -123,6 +123,9 @@ namespace Tizen.Multimedia
             RegisterStateChangedCallback();
         }
 
+        /// <summary>
+        /// Finalizes an instance of the AudioPlayback class.
+        /// </summary>
         ~AudioPlayback()
         {
             Dispose(false);

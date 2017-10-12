@@ -73,6 +73,9 @@ namespace Tizen.Multimedia.MediaCodec
             }
         }
 
+        /// <summary>
+        /// Finalizes an instance of the MediaCodec class.
+        /// </summary>
         ~MediaCodec()
         {
             Dispose(false);

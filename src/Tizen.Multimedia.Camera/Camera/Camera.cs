@@ -64,7 +64,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Destructor of the camera class.
+        /// Finalizes an instance of the Camera class.
         /// </summary>
         ~Camera()
         {

@@ -65,6 +65,9 @@ namespace Tizen.Multimedia.Vision
             InteropImage.Load(path, out _handle).Validate("Failed to load image object from file");
         }
 
+        /// <summary>
+        /// Finalizes an instance of the ImageObject class.
+        /// </summary>
         ~ImageObject()
         {
             Dispose(false);

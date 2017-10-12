@@ -42,6 +42,9 @@ namespace Tizen.Multimedia.Vision
             EventTriggerCreate(eventType, out _handle).Validate("Failed to create surveillance event trigger.");
         }
 
+        /// <summary>
+        /// Finalizes an instance of the SurveillanceEngine class.
+        /// </summary>
         ~SurveillanceEngine()
         {
             Dispose(false);
