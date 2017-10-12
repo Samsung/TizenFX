@@ -48,7 +48,8 @@ namespace Tizen.System
                 case SystemSettingsError.IoError:
                 //fall through
                 case SystemSettingsError.PermissionDenied:
-                //fall through
+                    exp = new UnauthorizedAccessException(msg);
+					break;
                 case SystemSettingsError.LockScreenAppPasswordMode:
                 //fall through
                 default:
