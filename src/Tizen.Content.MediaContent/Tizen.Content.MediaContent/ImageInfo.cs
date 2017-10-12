@@ -40,15 +40,12 @@ namespace Tizen.Content.MediaContent
                 Orientation = InteropHelper.GetValue<Orientation>(imageHandle, Interop.ImageInfo.GetOrientation);
 
                 DateTaken = InteropHelper.GetString(imageHandle, Interop.ImageInfo.GetDateTaken);
-                BurstId = InteropHelper.GetString(imageHandle, Interop.ImageInfo.GetBurstId);
                 ExposureTime = InteropHelper.GetString(imageHandle, Interop.ImageInfo.GetExposureTime);
 
                 FNumber = InteropHelper.GetValue<double>(imageHandle, Interop.ImageInfo.GetFNumber);
                 Iso = InteropHelper.GetValue<int>(imageHandle, Interop.ImageInfo.GetISO);
 
                 Model = InteropHelper.GetString(imageHandle, Interop.ImageInfo.GetModel);
-
-                IsBurstShot = InteropHelper.GetValue<bool>(imageHandle, Interop.ImageInfo.IsBurstShot);
 
             }
             finally
@@ -82,13 +79,6 @@ namespace Tizen.Content.MediaContent
         public string DateTaken { get; }
 
         /// <summary>
-        /// Gets the burst shot ID.
-        /// </summary>
-        /// <value>The burst shot ID if it is a burst shot, otherwise an empty string.</value>
-        /// <seealso cref="IsBurstShot"/>
-        public string BurstId { get; }
-
-        /// <summary>
         /// Gets the exposure time from EXIF.
         /// </summary>
         /// <value>The exposure time from EXIF.</value>
@@ -97,7 +87,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the FNumber from EXIF.
         /// </summary>
-        /// <value>The FNumber from exif.</value>
+        /// <value>The FNumber from EXIF.</value>
         public double FNumber { get; }
 
         /// <summary>
@@ -111,11 +101,5 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The model from EXIF.</value>
         public string Model { get; }
-
-        /// <summary>
-        /// Gets the value indicating whether the media is a burst shot image.
-        /// </summary>
-        /// <value>true if the media is a burst shot image, otherwise false.</value>
-        public bool IsBurstShot { get; }
     }
 }

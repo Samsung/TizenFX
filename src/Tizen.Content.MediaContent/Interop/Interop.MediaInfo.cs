@@ -31,9 +31,6 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InsertCompletedCallback(MediaContentError error, IntPtr userData);
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void InsertBurstShotCompletedCallback(MediaContentError error, IntPtr userData);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_insert_to_db")]
         internal static extern MediaContentError Insert(string filePath, out MediaInfoHandle info);
 
@@ -41,15 +38,8 @@ internal static partial class Interop
         internal static extern MediaContentError BatchInsert(string[] filePathArray, int arrayLength,
             InsertCompletedCallback callback, IntPtr userData = default(IntPtr));
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_insert_burst_shot_to_db")]
-        internal static extern MediaContentError BurstShotInsert(string[] filePathArray, int arrayLength,
-            InsertBurstShotCompletedCallback callback, IntPtr userData = default(IntPtr));
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_delete_from_db")]
         internal static extern MediaContentError Delete(string mediaId);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_delete_batch_from_db")]
-        internal static extern MediaContentError BatchDelete(FilterHandle filter);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_destroy")]
         internal static extern MediaContentError Destroy(IntPtr handle);
@@ -199,7 +189,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_cancel_thumbnail")]
         internal static extern MediaContentError CancelThumbnail(MediaInfoHandle mediaInformationHandle);
-
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_start_face_detection")]
         internal static extern MediaContentError StartFaceDetection(MediaInfoHandle handle,

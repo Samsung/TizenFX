@@ -31,9 +31,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_date_taken", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetDateTaken(IntPtr handle, out IntPtr dateTaken);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_burst_id", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetBurstId(IntPtr handle, out IntPtr burstId);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_exposure_time", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetExposureTime(IntPtr handle, out IntPtr exposureTime);
 
@@ -45,9 +42,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_model", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetModel(IntPtr handle, out IntPtr model);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_is_burst_shot", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError IsBurstShot(IntPtr handle, out bool isBurstShot);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_media_id", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetMediaId(IntPtr handle, out IntPtr mediaId);
