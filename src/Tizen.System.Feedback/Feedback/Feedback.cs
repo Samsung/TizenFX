@@ -86,6 +86,19 @@ namespace Tizen.System
         private const string LogTag = "Tizen.System.Feedback";
 
         private readonly FeedbackPattern[] Pattern = new FeedbackPattern[39];
+
+        /// <summary>
+        /// Constructor of Feedback class
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
+        /// <privilege>http://tizen.org/privilege/haptic</privilege>
+        /// <example>
+        /// <code>
+        /// Feedback feedback = new Feedback();
+        /// </code>
+        /// </example>
         public Feedback()
         {
             Pattern[0].PatternNumber = 0;
@@ -181,6 +194,9 @@ namespace Tizen.System
             }
         }
 
+        /// <summary>
+        /// Finalizes an instance of the Feedback class.
+        /// </summary>
         ~Feedback()
         {
             Interop.Feedback.FeedbackError res = (Interop.Feedback.FeedbackError)Interop.Feedback.Deinitialize();
