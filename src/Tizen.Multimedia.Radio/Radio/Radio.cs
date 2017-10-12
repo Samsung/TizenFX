@@ -16,6 +16,7 @@
 
 using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Tizen.System;
 using static Tizen.Multimedia.Interop.Radio;
@@ -43,8 +44,13 @@ namespace Tizen.Multimedia
 
             try
             {
-                SetScanCompletedCb(_handle, ScanCompleteCallback).ThrowIfFailed("Failed to initialize radio");
-                SetInterruptedCb(_handle, InterruptedCallback).ThrowIfFailed("Failed to initialize radio");
+                _scanCompletedCallback = _ => ScanCompleted?.Invoke(this, EventArgs.Empty);
+                _interruptedCallback = (reason, _) => Interrupted?.Invoke(this, new RadioInterruptedEventArgs(reason));
+                _scanUpdatedCallback = (frequency, _) => ScanUpdated?.Invoke(this, new ScanUpdatedEventArgs(frequency));
+                _scanStoppedCallback = _ => ScanStopped?.Invoke(this, EventArgs.Empty);
+
+                SetScanCompletedCb(_handle, _scanCompletedCallback).ThrowIfFailed("Failed to initialize radio");
+                SetInterruptedCb(_handle, _interruptedCallback).ThrowIfFailed("Failed to initialize radio");
             }
             catch (Exception)
             {
@@ -64,6 +70,14 @@ namespace Tizen.Multimedia
                 return _handle;
             }
         }
+
+        private ScanUpdatedCallback _scanUpdatedCallback;
+
+        private ScanStoppedCallback _scanStoppedCallback;
+
+        private ScanCompletedCallback _scanCompletedCallback;
+
+        private InterruptedCallback _interruptedCallback;
 
         /// <summary>
         /// Occurs when the radio scanning information is updated.
@@ -252,7 +266,7 @@ namespace Tizen.Multimedia
         {
             ValidateRadioState(RadioState.Ready, RadioState.Playing);
 
-            ScanStart(Handle, ScanUpdatedCallback);
+            ScanStart(Handle, _scanUpdatedCallback).ThrowIfFailed("Failed to start scanning");
         }
 
         /// <summary>
@@ -265,7 +279,7 @@ namespace Tizen.Multimedia
         {
             ValidateRadioState(RadioState.Scanning);
 
-            ScanStop(Handle, ScanStoppedCallback);
+            ScanStop(Handle, _scanStoppedCallback).ThrowIfFailed("Failed to stop scanning");
         }
 
         /// <summary>
@@ -277,19 +291,14 @@ namespace Tizen.Multimedia
         /// It can be -1 if the seeking operation has failed.
         /// </returns>
         /// <remarks>The radio must be in the <see cref="RadioState.Playing"/> state.</remarks>
-        /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
-        public async Task<int> SeekUpAsync()
+        /// <exception cref="InvalidOperationException">
+        ///     The radio is not in the valid state.\n
+        ///     -or-\n
+        ///     Seeking is in progress.
+        /// </exception>
+        public Task<int> SeekUpAsync()
         {
-            ValidateRadioState(RadioState.Playing);
-
-            TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
-            SeekCompletedCallback callback = (currentFrequency, _) =>
-            {
-                tcs.TrySetResult(currentFrequency);
-            };
-
-            SeekUp(Handle, callback);
-            return await tcs.Task;
+            return SeekAsync(SeekUp);
         }
 
         /// <summary>
@@ -301,51 +310,44 @@ namespace Tizen.Multimedia
         /// It can be -1 if the seeking operation has failed.
         /// </returns>
         /// <remarks>The radio must be in the <see cref="RadioState.Playing"/> state.</remarks>
-        /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
-        public async Task<int> SeekDownAsync()
+        /// <exception cref="InvalidOperationException">
+        ///     The radio is not in the valid state.\n
+        ///     -or-\n
+        ///     Seeking is in progress.
+        /// </exception>
+        public Task<int> SeekDownAsync()
+        {
+            return SeekAsync(SeekDown);
+        }
+
+        private async Task<int> SeekAsync(Func<Interop.RadioHandle, SeekCompletedCallback, IntPtr, RadioError> func)
         {
             ValidateRadioState(RadioState.Playing);
 
-            TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
-            SeekCompletedCallback callback = (currentFrequency, _) =>
-            {
-                tcs.TrySetResult(currentFrequency);
-            };
+            var tcs = new TaskCompletionSource<int>();
+            SeekCompletedCallback callback = (currentFrequency, _) => tcs.TrySetResult(currentFrequency);
 
-            SeekDown(Handle, callback);
-            return await tcs.Task;
+            GCHandle gcHandle;
+            try
+            {
+                gcHandle = GCHandle.Alloc(callback);
+
+                func(Handle, callback, IntPtr.Zero).ThrowIfFailed("Failed to seek");
+                return await tcs.Task;
+            }
+            finally
+            {
+                gcHandle.Free();
+            }
         }
 
         private void ValidateFeatureSupported(string featurePath)
         {
-            bool supported = false;
-            Information.TryGetValue(featurePath, out supported);
-
-            if (supported == false)
+            if (Information.TryGetValue(featurePath, out bool supported) == false || supported == false)
             {
                 throw new NotSupportedException($"The feature({featurePath}) is not supported.");
             }
 
-        }
-
-        private void ScanUpdatedCallback(int frequency, IntPtr data)
-        {
-            ScanUpdated?.Invoke(this, new ScanUpdatedEventArgs(frequency));
-        }
-
-        private void ScanStoppedCallback(IntPtr data)
-        {
-            ScanStopped?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void ScanCompleteCallback(IntPtr data)
-        {
-            ScanCompleted?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void InterruptedCallback(RadioInterruptedReason reason, IntPtr data)
-        {
-            Interrupted?.Invoke(this, new RadioInterruptedEventArgs(reason));
         }
 
         private void ValidateRadioState(params RadioState[] required)
