@@ -74,11 +74,17 @@ namespace Tizen.Network.Smartcard
             _readerHandle = handle;
         }
 
+        /// <summary>
+        /// SmartcardReader destructor.
+        /// </summary>
         ~SmartcardReader()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

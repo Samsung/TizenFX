@@ -110,11 +110,17 @@ namespace Tizen.Network.Smartcard
             _sessionHandle = sessionHandle;
         }
 
+        /// <summary>
+        /// SmartcardSession destructor.
+        /// </summary>
         ~SmartcardSession()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

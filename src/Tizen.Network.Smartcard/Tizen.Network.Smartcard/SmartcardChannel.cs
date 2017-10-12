@@ -115,11 +115,17 @@ namespace Tizen.Network.Smartcard
             _channelHandle = channelHandle;
         }
 
+        /// <summary>
+        /// SmartcardChannel destructor.
+        /// </summary>
         ~SmartcardChannel()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
