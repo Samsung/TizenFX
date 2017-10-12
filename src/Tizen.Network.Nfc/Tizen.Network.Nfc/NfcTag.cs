@@ -108,11 +108,17 @@ namespace Tizen.Network.Nfc
             _tagHandle = handle;
         }
 
+        /// <summary>
+        /// NfcTag destructor.
+        /// </summary>
         ~NfcTag()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

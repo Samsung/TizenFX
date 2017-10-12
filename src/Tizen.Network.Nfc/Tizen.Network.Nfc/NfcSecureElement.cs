@@ -34,11 +34,17 @@ namespace Tizen.Network.Nfc
             _secureElementHandle = handle;
         }
 
+        /// <summary>
+        /// NfcSecureElement destructor.
+        /// </summary>
         ~NfcSecureElement()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

@@ -56,11 +56,17 @@ namespace Tizen.Network.Nfc
             RegisterP2pDataReceivedEvent();
         }
 
+        /// <summary>
+        /// NfcP2p destructor.
+        /// </summary>
         ~NfcP2p()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -150,11 +156,17 @@ namespace Tizen.Network.Nfc
             _snepHandle = handle;
         }
 
+        /// <summary>
+        /// NfcSnep Distructor
+        /// </summary>
         ~NfcSnep()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

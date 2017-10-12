@@ -70,11 +70,17 @@ namespace Tizen.Network.Nfc
             _messageHandle = messageHandle;
         }
 
+        /// <summary>
+        /// NfcNdefMessage destructor.
+        /// </summary>
         ~NfcNdefMessage()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

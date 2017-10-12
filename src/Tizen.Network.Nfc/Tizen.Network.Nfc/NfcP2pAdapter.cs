@@ -55,11 +55,17 @@ namespace Tizen.Network.Nfc
             RegisterP2pTargetDiscoveredEvent();
         }
 
+        /// <summary>
+        /// NfcP2pAdapter destructor
+        /// </summary>
         ~NfcP2pAdapter()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

@@ -55,11 +55,17 @@ namespace Tizen.Network.Nfc
             RegisterTagDiscoveredEvent();
         }
 
+        /// <summary>
+        /// NfcTagAdapter destructor.
+        /// </summary>
         ~NfcTagAdapter()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

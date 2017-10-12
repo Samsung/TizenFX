@@ -141,11 +141,17 @@ namespace Tizen.Network.Nfc
         {
         }
 
+        /// <summary>
+        /// NfcCardEmulationAdpater destructor.
+        /// </summary>
         ~NfcCardEmulationAdapter()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

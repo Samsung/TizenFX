@@ -283,12 +283,18 @@ namespace Tizen.Network.Nfc
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
-        
+
+        /// <summary>
+        /// NfcNdefRecord destructor.
+        /// </summary>
         ~NfcNdefRecord()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
