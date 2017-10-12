@@ -136,11 +136,17 @@ namespace Tizen.Network.Mtp
             _storageHandle = storageHandle;
         }
 
+        /// <summary>
+        /// MtpStorage destructor.
+        /// </summary>
         ~MtpStorage()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

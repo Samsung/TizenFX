@@ -30,19 +30,57 @@ namespace Tizen.Network.Mtp
     /// <since_tizen> 5 </since_tizen>
     public enum MtpError
     {
+        /// <summary>
+        /// Successful.
+        /// </summary>
         None = ErrorCode.None,
+        /// <summary>
+        /// I/O Error.
+        /// </summary>
         IoError = ErrorCode.IoError,
+        /// <summary>
+        /// Invalid Parameter.
+        /// </summary>
         InvalidParameterError = ErrorCode.InvalidParameter,
+        /// <summary>
+        /// Out of memory.
+        /// </summary>
         OutOfMemoryError = ErrorCode.OutOfMemory,
+        /// <summary>
+        /// Permission Denied.
+        /// </summary>
         PermissionDeniedError = ErrorCode.PermissionDenied,
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
         NotSupportedError = ErrorCode.NotSupported,
-
+        /// <summary>
+        /// Not available communication with Mtp framework.
+        /// </summary>
         CommunicationError = MtpErrorValue.Base | 0x01,
+        /// <summary>
+        /// Controller Error.
+        /// </summary>
         ControllerError = MtpErrorValue.Base | 0x02,
+        /// <summary>
+        /// No device.
+        /// </summary>
         NoDeviceError = MtpErrorValue.Base | 0x03,
+        /// <summary>
+        /// Not Initialized.
+        /// </summary>
         NotInitializedError = MtpErrorValue.Base | 0x04,
+        /// <summary>
+        /// Not Activated.
+        /// </summary>
         NotActivatedError = MtpErrorValue.Base | 0x05,
+        /// <summary>
+        /// Not Activated Communication.
+        /// </summary>
         NotActivatedCommunicationError = MtpErrorValue.Base | 0x06,
+        /// <summary>
+        /// Plugin Fail.
+        /// </summary>
         PluginFailError = MtpErrorValue.Base | 0x07
     }
 

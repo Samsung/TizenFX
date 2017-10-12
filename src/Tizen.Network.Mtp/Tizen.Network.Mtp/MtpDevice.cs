@@ -115,11 +115,17 @@ namespace Tizen.Network.Mtp
             _deviceHandle = handle;
         }
 
+        /// <summary>
+        /// MtpDevice destructor.
+        /// </summary>
         ~MtpDevice()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

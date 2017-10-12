@@ -361,11 +361,17 @@ namespace Tizen.Network.Mtp
             _objectHandle = objectHandle;
         }
 
+        /// <summary>
+        /// MtpObject destructor.
+        /// </summary>
         ~MtpObject()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
