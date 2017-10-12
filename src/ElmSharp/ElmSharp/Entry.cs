@@ -788,6 +788,94 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or gets the value of HorizontalScrollBarVisiblePolicy
+        /// </summary>
+        /// <remarks>
+        /// ScrollBarVisiblePolicy.Auto means the horizontal scrollbar is made visible if it is needed, and otherwise kept hidden.
+        /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
+        /// </remarks>
+        public virtual ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
+        {
+            get
+            {
+                int policy;
+                Interop.Elementary.elm_scroller_policy_get(RealHandle, out policy, IntPtr.Zero);
+                return (ScrollBarVisiblePolicy)policy;
+            }
+            set
+            {
+                ScrollBarVisiblePolicy v = VerticalScrollBarVisiblePolicy;
+                Interop.Elementary.elm_scroller_policy_set(RealHandle, (int)value, (int)v);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the value of VerticalScrollBarVisiblePolicy
+        /// </summary>
+        /// <remarks>
+        /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
+        /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
+        /// </remarks>
+        public virtual ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
+        {
+            get
+            {
+                int policy;
+                Interop.Elementary.elm_scroller_policy_get(RealHandle, IntPtr.Zero, out policy);
+                return (ScrollBarVisiblePolicy)policy;
+            }
+            set
+            {
+                ScrollBarVisiblePolicy h = HorizontalScrollBarVisiblePolicy;
+                Interop.Elementary.elm_scroller_policy_set(RealHandle, (int)h, (int)value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the vertical bounce behaviour.
+        /// When scrolling, the scroller may "bounce" when reaching an edge of the content object.
+        /// This is a visual way to indicate the end has been reached.
+        /// This is enabled by default for both axis.
+        /// This API will set if it is enabled for the given axis with the boolean parameters for each axis.
+        /// </summary>
+        public bool VerticalBounce
+        {
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_bounce_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                bool h = HorizontalBounce;
+                Interop.Elementary.elm_scroller_bounce_set(RealHandle, h, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the horizontal bounce behaviour.
+        /// When scrolling, the scroller may "bounce" when reaching an edge of the content object.
+        /// This is a visual way to indicate the end has been reached.
+        /// This is enabled by default for both axis.
+        /// This API will set if it is enabled for the given axis with the boolean parameters for each axis.
+        /// </summary>
+        public bool HorizontalBounce
+        {
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_bounce_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                bool v = VerticalBounce;
+                Interop.Elementary.elm_scroller_bounce_set(RealHandle, value, v);
+            }
+        }
+
+        /// <summary>
         /// Inserts the given text into the entry at the current cursor position.
         /// </summary>
         /// <param name="text"></param>
