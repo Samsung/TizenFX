@@ -43,9 +43,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_model", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetModel(IntPtr handle, out IntPtr model);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_media_id", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetMediaId(IntPtr handle, out IntPtr mediaId);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_width", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetWidth(IntPtr handle, out int width);
 

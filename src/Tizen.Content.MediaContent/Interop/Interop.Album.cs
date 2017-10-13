@@ -31,9 +31,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_album_destroy")]
         internal static extern MediaContentError Destroy(IntPtr album);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_album_clone")]
-        internal static extern MediaContentError Clone(out IntPtr dst, IntPtr src);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_album_get_album_id")]
         internal static extern MediaContentError GetId(IntPtr album, out int albumId);
 

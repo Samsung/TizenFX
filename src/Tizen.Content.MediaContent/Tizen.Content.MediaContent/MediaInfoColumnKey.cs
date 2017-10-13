@@ -101,27 +101,5 @@ namespace Tizen.Content.MediaContent
         /// Rating.
         /// </summary>
         Rating = 20,
-
-        /// <summary>
-        /// Provider.
-        /// </summary>
-        Provider = 22,
-
-        /// <summary>
-        /// Category.
-        /// </summary>
-        Category = 24,
-        /// <summary>
-        /// Location tag.
-        /// </summary>
-        LocationTag,
-        /// <summary>
-        /// Age rating.
-        /// </summary>
-        AgeRating,
-        /// <summary>
-        /// Weather.
-        /// </summary>
-        Weather = 28
     }
 }
