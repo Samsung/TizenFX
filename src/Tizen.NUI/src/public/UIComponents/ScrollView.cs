@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
@@ -38,6 +39,11 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="type">the dispose type</param>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -106,7 +112,6 @@ namespace Tizen.NUI
 
         /// <summary>
         /// SnapStarted can be used to subscribe or unsubscribe the event handler
-        /// (in the type of SnapStartedEventHandler-DaliEventHandler<object, SnapStartedEventArgs>) provided by the user.<br>
         /// The SnapStarted signal is emitted when the ScrollView has started to snap or flick (it tells the target
         ///  position, scale, rotation for the snap or flick).
         /// </summary>
@@ -163,6 +168,10 @@ namespace Tizen.NUI
         public class SnapEvent : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            /// <summary>
+            /// swigCMemOwn
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             protected bool swigCMemOwn;
 
             internal SnapEvent(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -178,10 +187,16 @@ namespace Tizen.NUI
 
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
+            /// <summary>
+            /// A Flat to check if it is already disposed.
+            /// </summary>
+            /// swigCMemOwn
             protected bool disposed = false;
 
-
+            /// <summary>
+            /// Dispose
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             ~SnapEvent()
             {
                 if (!isDisposeQueued)
@@ -214,6 +229,11 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <summary>
+            /// Dispose
+            /// </summary>
+            /// <param name="type">the dispose type</param>
+            /// <since_tizen> 3 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
             {
                 if (disposed)
@@ -246,6 +266,10 @@ namespace Tizen.NUI
                 disposed = true;
             }
 
+            /// <summary>
+            /// Get SnapEvent From Ptr
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static SnapEvent GetSnapEventFromPtr(global::System.IntPtr cPtr)
             {
                 SnapEvent ret = new SnapEvent(cPtr, false);
@@ -318,33 +342,141 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// This should be internal, please do not use.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public new class Property
         {
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int WRAP_ENABLED = NDalicPINVOKE.ScrollView_Property_WRAP_ENABLED_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int PANNING_ENABLED = NDalicPINVOKE.ScrollView_Property_PANNING_ENABLED_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int AXIS_AUTO_LOCK_ENABLED = NDalicPINVOKE.ScrollView_Property_AXIS_AUTO_LOCK_ENABLED_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int WHEEL_SCROLL_DISTANCE_STEP = NDalicPINVOKE.ScrollView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_MODE = NDalicPINVOKE.ScrollView_Property_SCROLL_MODE_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_POSITION = NDalicPINVOKE.ScrollView_Property_SCROLL_POSITION_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_PRE_POSITION = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_PRE_POSITION_X = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_X_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_PRE_POSITION_Y = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_Y_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_PRE_POSITION_MAX = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_MAX_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_PRE_POSITION_MAX_X = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_MAX_X_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_PRE_POSITION_MAX_Y = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_MAX_Y_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int OVERSHOOT_X = NDalicPINVOKE.ScrollView_Property_OVERSHOOT_X_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int OVERSHOOT_Y = NDalicPINVOKE.ScrollView_Property_OVERSHOOT_Y_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_FINAL = NDalicPINVOKE.ScrollView_Property_SCROLL_FINAL_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_FINAL_X = NDalicPINVOKE.ScrollView_Property_SCROLL_FINAL_X_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_FINAL_Y = NDalicPINVOKE.ScrollView_Property_SCROLL_FINAL_Y_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int WRAP = NDalicPINVOKE.ScrollView_Property_WRAP_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int PANNING = NDalicPINVOKE.ScrollView_Property_PANNING_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLLING = NDalicPINVOKE.ScrollView_Property_SCROLLING_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_DOMAIN_SIZE = NDalicPINVOKE.ScrollView_Property_SCROLL_DOMAIN_SIZE_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_DOMAIN_SIZE_X = NDalicPINVOKE.ScrollView_Property_SCROLL_DOMAIN_SIZE_X_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_DOMAIN_SIZE_Y = NDalicPINVOKE.ScrollView_Property_SCROLL_DOMAIN_SIZE_Y_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_DOMAIN_OFFSET = NDalicPINVOKE.ScrollView_Property_SCROLL_DOMAIN_OFFSET_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_POSITION_DELTA = NDalicPINVOKE.ScrollView_Property_SCROLL_POSITION_DELTA_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int START_PAGE_POSITION = NDalicPINVOKE.ScrollView_Property_START_PAGE_POSITION_get();
 
         }
@@ -497,7 +629,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enables or Disables Actor Auto-Snap mode.<br>
+        /// Enables or Disables Actor Auto-Snap mode.<br />
         /// When Actor Auto-Snap mode has been enabled, ScrollView will automatically,
         /// snap to the closest actor (The closest actor will appear in the center of the ScrollView).
         /// </summary>
@@ -510,7 +642,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enables or Disables Wrap mode for ScrollView contents.<br>
+        /// Enables or Disables Wrap mode for ScrollView contents.<br />
         /// When enabled, the ScrollView contents are wrapped over the X/Y Domain.
         /// </summary>
         /// <param name="enable">Enables (true), or disables (false) Wrap Mode.</param>
@@ -534,9 +666,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the distance needed to scroll for ScrollUpdatedSignal to be emitted.<br>
-        /// The scroll update distance tells ScrollView how far to move before ScrollUpdatedSignal the informs application.<br>
-        /// Each time the ScrollView crosses this distance the signal will be emitted.<br>
+        /// Sets the distance needed to scroll for ScrollUpdatedSignal to be emitted.<br />
+        /// The scroll update distance tells ScrollView how far to move before ScrollUpdatedSignal the informs application.<br />
+        /// Each time the ScrollView crosses this distance the signal will be emitted.<br />
         /// </summary>
         /// <param name="distance">The distance for ScrollView to move before emitting update signal.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -559,7 +691,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enables or Disables Axis Auto Lock mode for panning within the ScrollView.<br>
+        /// Enables or Disables Axis Auto Lock mode for panning within the ScrollView.<br />
         /// When enabled, any pan gesture that appears mostly horizontal or mostly
         /// vertical, will be automatically restricted to horizontal only or vertical
         /// only panning, until the pan gesture has completed.
@@ -585,8 +717,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the gradient threshold at which a panning gesture should be locked to the Horizontal or Vertical axis.<br>
-        /// By default, this is 0.36 (0.36:1) which means angles less than 20 degrees to an axis will lock to that axis.<br>
+        /// Sets the gradient threshold at which a panning gesture should be locked to the Horizontal or Vertical axis.<br />
+        /// By default, this is 0.36 (0.36:1) which means angles less than 20 degrees to an axis will lock to that axis.<br />
         /// </summary>
         /// <param name="gradient">gradient A value between 0.0 and 1.0 (auto-lock for all angles).</param>
         /// <since_tizen> 3 </since_tizen>
@@ -610,7 +742,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the friction coefficient for ScrollView when flicking.<br>
+        /// Sets the friction coefficient for ScrollView when flicking.<br />
         /// </summary>
         /// <param name="friction">Friction coefficient must be greater than 0.0 (default = 1.0).</param>
         /// <since_tizen> 3 </since_tizen>
@@ -621,7 +753,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the flick speed coefficient for ScrollView when flicking in free panning mode.<br>
+        /// Gets the flick speed coefficient for ScrollView when flicking in free panning mode.<br />
         /// This is a constant which multiplies the input touch flick velocity to determine the actual velocity at which to move the scrolling area.
         /// </summary>
         /// <returns>The flick speed coefficient is returned.</returns>
@@ -634,9 +766,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the flick speed coefficient for ScrollView when flicking in free panning mode.<br>
+        /// Sets the flick speed coefficient for ScrollView when flicking in free panning mode.<br />
         /// This is a constant which multiplies the input touch flick velocity to determine the actual velocity at
-        /// which to move the scrolling area.<br>
+        /// which to move the scrolling area.<br />
         /// </summary>
         /// <param name="speed">The flick speed coefficient (default = 1.0).</param>
         /// <since_tizen> 3 </since_tizen>
@@ -647,7 +779,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the minimum pan distance required for a flick gesture in pixels.<br>
+        /// Gets the minimum pan distance required for a flick gesture in pixels.<br />
         /// </summary>
         /// <returns>Minimum pan distance vector with separate x and y distance.</returns>
         /// <since_tizen> 3 </since_tizen>
@@ -659,7 +791,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the minimum pan distance required for a flick in pixels.<br>
+        /// Sets the minimum pan distance required for a flick in pixels.<br />
         /// Takes a Vector2 containing separate x and y values. As long as the pan distance exceeds one of these axes, a flick will be allowed.
         /// </summary>
         /// <param name="distance">The flick speed coefficient (default = 1.0).</param>
@@ -683,7 +815,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the minimum pan speed required for a flick in pixels per second.<br>
+        /// Sets the minimum pan speed required for a flick in pixels per second.<br />
         /// </summary>
         /// <param name="speed">The minimum pan speed for a flick.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -694,7 +826,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the maximum flick speed setting for ScrollView when flicking in free panning mode.<br>
+        /// Gets the maximum flick speed setting for ScrollView when flicking in free panning mode.<br />
         /// This is a value in stage-diagonals per second.
         /// </summary>
         /// <returns>Maximum flick speed is returned.</returns>
@@ -707,8 +839,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the maximum flick speed for the ScrollView when flicking in free panning mode.<br>
-        /// This is a value in stage-diagonals per second. stage-diagonal = Length( stage.width, stage.height ).<br>
+        /// Sets the maximum flick speed for the ScrollView when flicking in free panning mode.<br />
+        /// This is a value in stage-diagonals per second. stage-diagonal = Length( stage.width, stage.height ).<br />
         /// </summary>
         /// <param name="speed">Maximum flick speed (default = 3.0).</param>
         /// <since_tizen> 3 </since_tizen>
@@ -719,7 +851,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the step of scroll distance in actor coordinates for each wheel event received in free panning mode.<br>
+        /// Gets the step of scroll distance in actor coordinates for each wheel event received in free panning mode.<br />
         /// </summary>
         /// <returns>The step of scroll distance(pixel) in X and Y axes.</returns>
         /// <since_tizen> 3 </since_tizen>
@@ -731,7 +863,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the step of scroll distance in actor coordinates for each wheel event received in free panning mode.<br>
+        /// Sets the step of scroll distance in actor coordinates for each wheel event received in free panning mode.<br />
         /// </summary>
         /// <param name="step">step The step of scroll distance(pixel) in X and Y axes.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -742,7 +874,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves current scroll position.<br>
+        /// Retrieves current scroll position.<br />
         /// </summary>
         /// <returns>The current scroll position.</returns>
         /// <since_tizen> 3 </since_tizen>
@@ -754,7 +886,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves current scroll page based on ScrollView dimensions being the size of one page, and all pages laid out in<br>
+        /// Retrieves current scroll page based on ScrollView dimensions being the size of one page, and all pages laid out in<br />
         /// a grid fashion, increasing from left to right until the end of the X-domain.
         /// </summary>
         /// <returns>The current scroll position.</returns>
@@ -891,8 +1023,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Scrolls View to the nearest snap points as specified by the Rulers.<br>
-        /// If already at snap points, then will return false, and not scroll.<br>
+        /// Scrolls View to the nearest snap points as specified by the Rulers.<br />
+        /// If already at snap points, then will return false, and not scroll.<br />
         /// </summary>
         /// <returns>True if Snapping necessary.</returns>
         /// <since_tizen> 3 </since_tizen>

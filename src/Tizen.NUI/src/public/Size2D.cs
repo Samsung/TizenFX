@@ -24,6 +24,10 @@ namespace Tizen.NUI
     public class Size2D : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal Size2D(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -39,9 +43,16 @@ namespace Tizen.NUI
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~Size2D()
         {
             if(!isDisposeQueued)
@@ -74,6 +85,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -286,8 +301,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Checks equality.<br>
-        /// Utilizes appropriate machine epsilon values.<br>
+        /// Checks equality.<br />
+        /// Utilizes appropriate machine epsilon values.<br />
         /// </summary>
         /// <param name="rhs">The size to test against.</param>
         /// <returns>True if the sizes are equal.</returns>
@@ -300,8 +315,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Checks inequality.<br>
-        /// Utilizes appropriate machine epsilon values.<br>
+        /// Checks inequality.<br />
+        /// Utilizes appropriate machine epsilon values.<br />
         /// </summary>
         /// <param name="rhs">The size to test against.</param>
         /// <returns>True if the sizes are not equal.</returns>

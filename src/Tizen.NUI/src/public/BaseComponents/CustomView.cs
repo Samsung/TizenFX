@@ -22,6 +22,12 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     public class CustomView : ViewWrapper
     {
+        /// <summary>
+        /// Create an instance of customView.
+        /// </summary>
+        /// <param name="typeName">typename</param>
+        /// <param name="behaviour">CustomView Behaviour</param>
+        /// <since_tizen> 3 </since_tizen>
         public CustomView(string typeName, CustomViewBehaviour behaviour) : base(typeName, new ViewWrapperImpl(behaviour))
         {
             // Registering CustomView virtual functions to viewWrapperImpl delegates.
@@ -84,8 +90,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Allows deriving classes to enable any of the gesture detectors that are available.<br>
-        /// Gesture detection can be enabled one at a time or in a bitwise format.<br>
+        /// Allows deriving classes to enable any of the gesture detectors that are available.<br />
+        /// Gesture detection can be enabled one at a time or in a bitwise format.<br />
         /// </summary>
         /// <param name="type">The gesture type(s) to enable.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -95,8 +101,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Allows deriving classes to disable any of the gesture detectors.<br>
-        /// Like EnableGestureDetection, this can also be called using bitwise or one at a time.<br>
+        /// Allows deriving classes to disable any of the gesture detectors.<br />
+        /// Like EnableGestureDetection, this can also be called using bitwise or one at a time.<br />
         /// </summary>
         /// <param name="type">The gesture type(s) to disable.</param>
         internal void DisableGestureDetection(Gesture.GestureType type)
@@ -106,10 +112,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Sets whether this control supports two dimensional keyboard navigation
-        /// (i.e., whether it knows how to handle the keyboard focus movement between its child views).<br>
-        /// The control doesn't support it by default.<br>
+        /// (i.e., whether it knows how to handle the keyboard focus movement between its child views).<br />
+        /// The control doesn't support it by default.<br />
         /// </summary>
-        /// <param name="isSupported">Whether this control supports two dimensional keyboard navigation.</param>
         /// <since_tizen> 3 </since_tizen>
         public bool FocusNavigationSupport
         {
@@ -200,11 +205,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Requests a relayout, which means performing a size negotiation on this view, its parent, and children (and potentially whole scene).<br>
-        /// This method can also be called from a derived class every time it needs a different size.<br>
-        /// At the end of event processing, the relayout process starts and all controls which requested relayout will have their sizes (re)negotiated.<br>
-        /// It can be called multiple times; the size negotiation is still only performed once, i.e., there is no need to keep track of this in the calling side.<br>
-        /// <summary>
+        /// Requests a relayout, which means performing a size negotiation on this view, its parent, and children (and potentially whole scene).<br />
+        /// This method can also be called from a derived class every time it needs a different size.<br />
+        /// At the end of event processing, the relayout process starts and all controls which requested relayout will have their sizes (re)negotiated.<br />
+        /// It can be called multiple times; the size negotiation is still only performed once, i.e., there is no need to keep track of this in the calling side.<br />
+        /// </summary>
         protected void RelayoutRequest()
         {
             viewWrapperImpl.RelayoutRequest();
@@ -212,7 +217,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Provides the view implementation of GetHeightForWidth.
-        /// <summary>
+        /// </summary>
         /// <param name="width">The width to use.</param>
         /// <returns>The height based on the width.</returns>
         protected float GetHeightForWidthBase(float width)
@@ -261,9 +266,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Registers a visual by property index, linking a view to visual when required.<br>
-        /// In the case of the visual being a view or control deeming visual not required, then the visual should be an empty handle.<br>
-        /// No parenting is done during registration, this should be done by a derived class.<br>
+        /// Registers a visual by property index, linking a view to visual when required.<br />
+        /// In the case of the visual being a view or control deeming visual not required, then the visual should be an empty handle.<br />
+        /// No parenting is done during registration, this should be done by a derived class.<br />
         /// </summary>
         /// <param name="index">The property index of the visual used to reference visual.</param>
         /// <param name="visual">The visual to register.</param>
@@ -273,9 +278,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Registers a visual by the property index, linking a view to visual when required.<br>
-        /// In the case of the visual being a view or control deeming visual not required, then the visual should be an empty handle.<br>
-        /// If enabled is false, then the visual is not set on the stage until enabled by the derived class.<br>
+        /// Registers a visual by the property index, linking a view to visual when required.<br />
+        /// In the case of the visual being a view or control deeming visual not required, then the visual should be an empty handle.<br />
+        /// If enabled is false, then the visual is not set on the stage until enabled by the derived class.<br />
         /// </summary>
         /// <param name="index">The property index of the visual used to reference visual.</param>
         /// <param name="visual">The visual to register.</param>
@@ -295,8 +300,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Retrieves the visual associated with the given property index.<br>
-        /// For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br>
+        /// Retrieves the visual associated with the given property index.<br />
+        /// For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br />
         /// </summary>
         /// <param name="index">The property index of the visual used to reference visual.</param>
         /// <returns>The registered visual if exists, otherwise an empty handle.</returns>
@@ -306,8 +311,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets the given visual to be displayed or not when parent staged.<br>
-        /// For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br>
+        /// Sets the given visual to be displayed or not when parent staged.<br />
+        /// For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br />
         /// </summary>
         /// <param name="index">The property index of the visual, used to reference visual.</param>
         /// <param name="enable">Flag set to enabled or disabled.</param>
@@ -317,8 +322,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Queries if the given visual is to be displayed when parent staged.<br>
-        /// For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br>
+        /// Queries if the given visual is to be displayed when parent staged.<br />
+        /// For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br />
         /// </summary>
         /// <param name="index">The property index of the visual.</param>
         /// <returns>Whether visual is enabled or not.</returns>
@@ -338,8 +343,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Emits the KeyInputFocusGained signal if true, else, emits the KeyInputFocusLost signal.<br>
-        /// Should be called last by the control after it acts on the input focus change.<br>
+        /// Emits the KeyInputFocusGained signal if true, else, emits the KeyInputFocusLost signal.<br />
+        /// Should be called last by the control after it acts on the input focus change.<br />
         /// </summary>
         /// <param name="focusGained">True if gained, false if lost.</param>
         protected void EmitFocusSignal(bool focusGained)
@@ -348,8 +353,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method is called after the control has been initialized.<br>
-        /// Derived classes should do any second phase initialization by overriding this method.<br>
+        /// This method is called after the control has been initialized.<br />
+        /// Derived classes should do any second phase initialization by overriding this method.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public virtual void OnInitialize()
@@ -357,10 +362,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called after the view has been connected to the stage.<br>
-        /// When a view is connected, it will be directly or indirectly parented to the root view.<br>
-        /// The root view is provided automatically by Tizen.NUI.Stage, and is always considered to be connected.<br>
-        /// When the parent of a set of views is connected to the stage, then all of the children will receive this callback.<br>
+        /// Called after the view has been connected to the stage.<br />
+        /// When a view is connected, it will be directly or indirectly parented to the root view.<br />
+        /// The root view is provided automatically by Tizen.NUI.Stage, and is always considered to be connected.<br />
+        /// When the parent of a set of views is connected to the stage, then all of the children will receive this callback.<br />
         /// </summary>
         /// <param name="depth">The depth in the hierarchy for the view.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -369,9 +374,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called after the view has been disconnected from the stage.<br>
-        /// If a view is disconnected, it either has no parent, or is parented to a disconnected view.<br>
-        /// When the parent of a set of views is disconnected to the stage, then all of the children will receive this callback, starting with the leaf views.<br>
+        /// Called after the view has been disconnected from the stage.<br />
+        /// If a view is disconnected, it either has no parent, or is parented to a disconnected view.<br />
+        /// When the parent of a set of views is disconnected to the stage, then all of the children will receive this callback, starting with the leaf views.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public virtual void OnStageDisconnection()
@@ -426,8 +431,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called after a touch event is received by the owning view.<br>
-        /// CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br>
+        /// Called after a touch event is received by the owning view.<br />
+        /// CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br />
         /// </summary>
         /// <param name="touch">The touch event.</param>
         /// <returns>True if the event should be consumed.</returns>
@@ -438,8 +443,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called after a hover event is received by the owning view.<br>
-        /// CustomViewBehaviour.REQUIRES_HOVER_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br>
+        /// Called after a hover event is received by the owning view.<br />
+        /// CustomViewBehaviour.REQUIRES_HOVER_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br />
         /// </summary>
         /// <param name="hover">The hover event.</param>
         /// <returns>True if the hover event should be consumed.</returns>
@@ -461,8 +466,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called after a wheel event is received by the owning view.<br>
-        /// CustomViewBehaviour.REQUIRES_WHEEL_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br>
+        /// Called after a wheel event is received by the owning view.<br />
+        /// CustomViewBehaviour.REQUIRES_WHEEL_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br />
         /// </summary>
         /// <param name="wheel">The wheel event.</param>
         /// <returns>True if the wheel event should be consumed.</returns>
@@ -473,10 +478,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called after the size negotiation has been finished for this control.<br>
-        /// The control is expected to assign this given size to itself or its children.<br>
-        /// Should be overridden by derived classes if they need to layout views differently after certain operations like add or remove views, resize, or after changing specific properties.<br>
-        /// As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).<br>
+        /// Called after the size negotiation has been finished for this control.<br />
+        /// The control is expected to assign this given size to itself or its children.<br />
+        /// Should be overridden by derived classes if they need to layout views differently after certain operations like add or remove views, resize, or after changing specific properties.<br />
+        /// As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).<br />
         /// </summary>
         /// <param name="size">The allocated size.</param>
         /// <param name="container">The control should add views to this container that it is not able to allocate a size for.</param>
@@ -518,8 +523,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method is called during size negotiation when a height is required for a given width.<br>
-        /// Derived classes should override this if they wish to customize the height returned.<br>
+        /// This method is called during size negotiation when a height is required for a given width.<br />
+        /// Derived classes should override this if they wish to customize the height returned.<br />
         /// </summary>
         /// <param name="width">Width to use</param>
         /// <returns>The height based on the width</returns>
@@ -530,8 +535,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method is called during size negotiation when a width is required for a given height.<br>
-        /// Derived classes should override this if they wish to customize the width returned.<br>
+        /// This method is called during size negotiation when a width is required for a given height.<br />
+        /// Derived classes should override this if they wish to customize the width returned.<br />
         /// </summary>
         /// <param name="height">Height to use</param>
         /// <returns>The width based on the width</returns>
@@ -593,8 +598,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method is called when the control accessibility is activated.<br>
-        /// Derived classes should override this to perform custom accessibility activation.<br>
+        /// This method is called when the control accessibility is activated.<br />
+        /// Derived classes should override this to perform custom accessibility activation.<br />
         /// </summary>
         /// <returns>True if this control can perform accessibility activation.</returns>
         internal virtual bool OnAccessibilityActivated()
@@ -658,8 +663,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets the next keyboard focusable view in this control towards the given direction.<br>
-        /// A control needs to override this function in order to support two dimensional keyboard navigation.<br>
+        /// Gets the next keyboard focusable view in this control towards the given direction.<br />
+        /// A control needs to override this function in order to support two dimensional keyboard navigation.<br />
         /// </summary>
         /// <param name="currentFocusedView">The current focused view.</param>
         /// <param name="direction">The direction to move the focus towards.</param>
@@ -672,8 +677,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Informs this control that its chosen focusable view will be focused.<br>
-        /// This allows the application to preform any actions it wishes before the focus is actually moved to the chosen view.<br>
+        /// Informs this control that its chosen focusable view will be focused.<br />
+        /// This allows the application to preform any actions it wishes before the focus is actually moved to the chosen view.<br />
         /// </summary>
         /// <param name="commitedFocusableView">The commited focused view.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -682,8 +687,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method is called when the control has enter pressed on it.<br>
-        /// Derived classes should override this to perform custom actions.<br>
+        /// This method is called when the control has enter pressed on it.<br />
+        /// Derived classes should override this to perform custom actions.<br />
         /// </summary>
         /// <returns>True if this control supported this action.</returns>
         /// <since_tizen> 3 </since_tizen>
@@ -693,10 +698,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called whenever a pinch gesture is detected on this control.<br>
-        /// This can be overridden by deriving classes when pinch detection is enabled. The default behavior is to scale the control by the pinch scale.<br>
-        /// If overridden, then the default behavior will not occur.<br>
-        /// Pinch detection should be enabled via EnableGestureDetection().<br>
+        /// Called whenever a pinch gesture is detected on this control.<br />
+        /// This can be overridden by deriving classes when pinch detection is enabled. The default behavior is to scale the control by the pinch scale.<br />
+        /// If overridden, then the default behavior will not occur.<br />
+        /// Pinch detection should be enabled via EnableGestureDetection().<br />
         /// </summary>
         /// <param name="pinch">The pinch tap gesture.</param>
         internal virtual void OnPinch(PinchGesture pinch)
@@ -704,10 +709,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called whenever a pan gesture is detected on this control.<br>
-        /// This should be overridden by deriving classes when pan detection is enabled.<br>
-        /// There is no default behavior with panning.<br>
-        /// Pan detection should be enabled via EnableGestureDetection().<br>
+        /// Called whenever a pan gesture is detected on this control.<br />
+        /// This should be overridden by deriving classes when pan detection is enabled.<br />
+        /// There is no default behavior with panning.<br />
+        /// Pan detection should be enabled via EnableGestureDetection().<br />
         /// </summary>
         /// <param name="pan">The pan gesture.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -716,10 +721,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called whenever a tap gesture is detected on this control.<br>
-        /// This should be overridden by deriving classes when tap detection is enabled.<br>
-        /// There is no default behavior with a tap.<br>
-        /// Tap detection should be enabled via EnableGestureDetection().<br>
+        /// Called whenever a tap gesture is detected on this control.<br />
+        /// This should be overridden by deriving classes when tap detection is enabled.<br />
+        /// There is no default behavior with a tap.<br />
+        /// Tap detection should be enabled via EnableGestureDetection().<br />
         /// </summary>
         /// <param name="tap">The tap gesture.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -728,10 +733,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called whenever a long press gesture is detected on this control.<br>
-        /// This should be overridden by deriving classes when long press detection is enabled.<br>
-        /// There is no default behavior associated with a long press.<br>
-        /// Long press detection should be enabled via EnableGestureDetection().<br>
+        /// Called whenever a long press gesture is detected on this control.<br />
+        /// This should be overridden by deriving classes when long press detection is enabled.<br />
+        /// There is no default behavior associated with a long press.<br />
+        /// Long press detection should be enabled via EnableGestureDetection().<br />
         /// </summary>
         /// <param name="longPress">The long press gesture.</param>
         internal virtual void OnLongPress(LongPressGesture longPress)

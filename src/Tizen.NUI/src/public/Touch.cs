@@ -1,26 +1,27 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
     using Tizen.NUI.BaseComponents;
     /// <summary>
-    /// Touch events are a collection of points at a specific moment in time.<br>
+    /// Touch events are a collection of points at a specific moment in time.<br />
     /// When a multi-touch event occurs, each point represents the points that are currently being
-    /// touched or the points where a touch has stopped.<br>
+    /// touched or the points where a touch has stopped.<br />
     /// </summary>
     public class Touch : BaseHandle
     {
@@ -36,6 +37,10 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed)
@@ -81,8 +86,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// An uninitialized touch instance.<br>
-        /// Calling member functions with an uninitialized touch handle is not allowed.<br>
+        /// An uninitialized touch instance.<br />
+        /// Calling member functions with an uninitialized touch handle is not allowed.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Touch() : this(NDalicPINVOKE.new_Touch__SWIG_0(), true)
@@ -120,10 +125,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns the ID of the device used for the point specified.<br>
+        /// Returns the ID of the device used for the point specified.<br />
         /// Each point has a unique device ID, which specifies the device used for that
-        /// point. This is returned by this method.<br>
-        /// If a point is greater than GetPointCount(), then this method will return -1.<br>
+        /// point. This is returned by this method.<br />
+        /// If a point is greater than GetPointCount(), then this method will return -1.<br />
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The device ID of this point.</returns>
@@ -136,8 +141,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the state of the point specified.<br>
-        /// If a point is greater than GetPointCount(), then this method will return PointState.Finished.<br>
+        /// Retrieves the state of the point specified.<br />
+        /// If a point is greater than GetPointCount(), then this method will return PointState.Finished.<br />
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The state of the point specified.</returns>
@@ -150,8 +155,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the actor that was underneath the point specified.<br>
-        /// If a point is greater than GetPointCount(), then this method will return an empty handle.<br>
+        /// Retrieves the actor that was underneath the point specified.<br />
+        /// If a point is greater than GetPointCount(), then this method will return an empty handle.<br />
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The actor that was underneath the point specified.</returns>
@@ -166,11 +171,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the coordinates relative to the top-left of the hit actor at the point specified.<br>
-        /// The top-left of an actor is (0.0, 0.0, 0.5).<br>
+        /// Retrieves the coordinates relative to the top-left of the hit actor at the point specified.<br />
+        /// The top-left of an actor is (0.0, 0.0, 0.5).<br />
         /// If you require the local coordinates of another actor (for example, the parent of the hit actor),
-        /// then you should use Actor::ScreenToLocal().<br>
-        /// If a point is greater than GetPointCount(), then this method will return Vector2.Zero.<br>
+        /// then you should use Actor::ScreenToLocal().<br />
+        /// If a point is greater than GetPointCount(), then this method will return Vector2.Zero.<br />
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The coordinates relative to the top-left of the hit actor of the point specified.</returns>
@@ -183,8 +188,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the coordinates relative to the top-left of the screen of the point specified.<br>
-        /// If a point is greater than GetPointCount(), then this method will return Vector2.Zero.<br>
+        /// Retrieves the coordinates relative to the top-left of the screen of the point specified.<br />
+        /// If a point is greater than GetPointCount(), then this method will return Vector2.Zero.<br />
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The coordinates relative to the top-left of the screen of the point specified.</returns>
@@ -197,9 +202,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the radius of the press point.<br>
-        /// This is the average of both the horizontal and vertical radii of the press point.<br>
-        /// If point is greater than GetPointCount(), then this method will return 0.0f.<br>
+        /// Retrieves the radius of the press point.<br />
+        /// This is the average of both the horizontal and vertical radii of the press point.<br />
+        /// If point is greater than GetPointCount(), then this method will return 0.0f.<br />
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The radius of the press point.</returns>
@@ -212,8 +217,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves both the horizontal and the vertical radii of the press point.<br>
-        /// If a point is greater than GetPointCount(), then this method will return Vector2.Zero.<br>
+        /// Retrieves both the horizontal and the vertical radii of the press point.<br />
+        /// If a point is greater than GetPointCount(), then this method will return Vector2.Zero.<br />
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The horizontal and vertical radii of the press point.</returns>
@@ -226,12 +231,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the touch pressure.<br>
-        /// The pressure range starts at 0.0f.<br>
-        /// Normal pressure is defined as 1.0f.<br>
-        /// A value between 0.0f and 1.0f means light pressure has been applied.<br>
-        /// A value greater than 1.0f means more pressure than normal has been applied.<br>
-        /// If point is greater than GetPointCount(), then this method will return 1.0f.<br>
+        /// Retrieves the touch pressure.<br />
+        /// The pressure range starts at 0.0f.<br />
+        /// Normal pressure is defined as 1.0f.<br />
+        /// A value between 0.0f and 1.0f means light pressure has been applied.<br />
+        /// A value greater than 1.0f means more pressure than normal has been applied.<br />
+        /// If point is greater than GetPointCount(), then this method will return 1.0f.<br />
         /// </summary>
         /// <param name="point">The point required.</param>
         /// <returns>The touch pressure.</returns>

@@ -1,25 +1,26 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
 
     /// <summary>
-    /// A PinchGesture is emitted when the user moves two fingers towards or away from each other.<br>
-    /// A pinch gesture will continue to be sent to the actor under the center point of the pinch until the pinch ends.<br>
+    /// A PinchGesture is emitted when the user moves two fingers towards or away from each other.<br />
+    /// A pinch gesture will continue to be sent to the actor under the center point of the pinch until the pinch ends.<br />
     /// </summary>
     public class PinchGesture : Gesture
     {
@@ -35,6 +36,10 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed)
@@ -75,10 +80,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The scale factor from the start of the pinch gesture till the latest pinch gesture.<br>
+        /// The scale factor from the start of the pinch gesture till the latest pinch gesture.<br />
         /// If the user is moving their fingers away from each other, then
         /// this value increases. Conversely, if the user is moving their
-        /// fingers towards each other, this value will decrease.<br>
+        /// fingers towards each other, this value will decrease.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float Scale
@@ -90,8 +95,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The speed at which the user is moving their fingers.<br>
-        /// This is the pixel movement per second.<br>
+        /// The speed at which the user is moving their fingers.<br />
+        /// This is the pixel movement per second.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float Speed

@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI.UIComponents
 {
@@ -492,9 +493,9 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Downcasts an object handle to the slider.<br>
-        /// If the handle points to a slider, then the downcast produces a valid handle.<br>
-        /// If not, then the returned handle is left uninitialized.<br>
+        /// Downcasts an object handle to the slider.<br />
+        /// If the handle points to a slider, then the downcast produces a valid handle.<br />
+        /// If not, then the returned handle is left uninitialized.<br />
         /// </summary>
         /// <param name="handle">The handle to an object.</param>
         /// <returns>The handle to a slider or an uninitialized handle.</returns>

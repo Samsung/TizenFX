@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 using System;
 
@@ -20,8 +21,8 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// A 3D parametric curve.<br>
-    /// Paths can be used to animate the position and orientation of actors.<br>
+    /// A 3D parametric curve.<br />
+    /// Paths can be used to animate the position and orientation of actors.<br />
     /// </summary>
     public class Path : BaseHandle
     {
@@ -37,6 +38,11 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="type">The dispoase type</param>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed)
@@ -85,7 +91,10 @@ namespace Tizen.NUI
 
         }
 
-
+        /// <summary>
+        /// Please do not use! this will be deprecated
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public static Path DownCast(BaseHandle handle)
         {
@@ -117,12 +126,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Automatic generation of control points. Generated control points which result in a smooth join between the splines of each segment.<br>
-        /// The generating algorithm is as follows:<br>
-        /// For a given knot point K[N], find the vector that bisects K[N-1],[N] and [N],[N+1].<br>
-        /// Calculate the tangent vector by taking the normal of this bisector.<br>
-        /// The in control point is the length of the preceding segment back along this bisector multiplied by the curvature.<br>
-        /// The out control point is the length of the succeeding segment forward along this bisector multiplied by the curvature.<br>
+        /// Automatic generation of control points. Generated control points which result in a smooth join between the splines of each segment.<br />
+        /// The generating algorithm is as follows:<br />
+        /// For a given knot point K[N], find the vector that bisects K[N-1],[N] and [N],[N+1].<br />
+        /// Calculate the tangent vector by taking the normal of this bisector.<br />
+        /// The in control point is the length of the preceding segment back along this bisector multiplied by the curvature.<br />
+        /// The out control point is the length of the succeeding segment forward along this bisector multiplied by the curvature.<br />
         /// </summary>
         /// <param name="curvature">The curvature of the spline. 0 gives straight lines between the knots, negative values means the spline contains loops, positive values up to 0.5 result in a smooth curve, positive values between 0.5 and 1 result in looped curves where the loops are not distinct (i.e., the curve appears to be non-continuous), positive values higher than 1 result in looped curves.</param>
         /// <since_tizen> 3 </since_tizen>

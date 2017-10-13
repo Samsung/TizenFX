@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
@@ -23,8 +24,8 @@ namespace Tizen.NUI
     using System.ComponentModel;
 
     /// <summary>
-    /// The window class is used internally for drawing.<br>
-    /// The window has an orientation and indicator properties.<br>
+    /// The window class is used internally for drawing.<br />
+    /// The window has an orientation and indicator properties.<br />
     /// </summary>
     public class Window : BaseHandle
     {
@@ -406,8 +407,15 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// The focus changed event argument.
+        /// </summary>
         public class FocusChangedEventArgs : EventArgs
         {
+            /// <summary>
+            /// FocusGained flag.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public bool FocusGained
             {
                 get;
@@ -631,12 +639,22 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Add a child view to window.
+        /// </summary>
+        /// <param name="view">the child should be added to the window.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Add(View view)
         {
             NDalicPINVOKE.Stage_Add(stageCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Remove a child view from window.
+        /// </summary>
+        /// <param name="view">the child to be removed.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Remove(View view)
         {
             NDalicPINVOKE.Stage_Remove(stageCPtr, View.getCPtr(view));
@@ -808,8 +826,8 @@ namespace Tizen.NUI
         private static readonly Window instance = Application.Instance.GetWindow();
 
         /// <summary>
-        /// The stage instance property (read-only).<br>
-        /// Gets the current window.<br>
+        /// The stage instance property (read-only).<br />
+        /// Gets the current window.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static Window Instance
@@ -821,9 +839,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Grabs the key specified by a key for a window only when a window is the topmost window.<br>
-        /// This function can be used for following example scenarios: <br>
-        /// - Mobile - Using volume up or down as zoom up or down in camera apps.<br>
+        /// Grabs the key specified by a key for a window only when a window is the topmost window.<br />
+        /// This function can be used for following example scenarios: <br />
+        /// - Mobile - Using volume up or down as zoom up or down in camera apps.<br />
         /// </summary>
         /// <param name="DaliKey">The key code to grab.</param>
         /// <returns>True if the grab succeeds.</returns>
@@ -836,8 +854,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Ungrabs the key specified by a key for the window.<br>
-        /// Note: If this function is called between key down and up events of a grabbed key, an application doesn't receive the key up event.<br>
+        /// Ungrabs the key specified by a key for the window.<br />
+        /// Note: If this function is called between key down and up events of a grabbed key, an application doesn't receive the key up event.<br />
         /// </summary>
         /// <param name="DaliKey">The key code to ungrab.</param>
         /// <returns>True if the ungrab succeeds.</returns>
@@ -850,11 +868,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Grabs the key specified by a key for a window in a GrabMode. <br>
-        ///  Details: This function can be used for following example scenarios: <br>
-        ///  - TV - A user might want to change the volume or channel of the background TV contents while focusing on the foregrund app. <br>
-        ///  - Mobile - When a user presses the Home key, the homescreen appears regardless of the current foreground app. <br>
-        ///  - Mobile - Using the volume up or down as zoom up or down in camera apps. <br>
+        ///  Grabs the key specified by a key for a window in a GrabMode. <br />
+        ///  Details: This function can be used for following example scenarios: <br />
+        ///  - TV - A user might want to change the volume or channel of the background TV contents while focusing on the foregrund app. <br />
+        ///  - Mobile - When a user presses the Home key, the homescreen appears regardless of the current foreground app. <br />
+        ///  - Mobile - Using the volume up or down as zoom up or down in camera apps. <br />
         /// </summary>
         /// <param name="DaliKey">The key code to grab.</param>
         /// <param name="GrabMode">The grab mode for the key.</param>
@@ -868,8 +886,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Ungrabs the key specified by a key for a window.<br>
-        /// Note: If this function is called between key down and up events of a grabbed key, an application doesn't receive the key up event. <br>
+        /// Ungrabs the key specified by a key for a window.<br />
+        /// Note: If this function is called between key down and up events of a grabbed key, an application doesn't receive the key up event. <br />
         /// </summary>
         /// <param name="DaliKey">The key code to ungrab.</param>
         /// <returns>True if the ungrab succeeds.</returns>
@@ -894,9 +912,25 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public enum WindowOrientation
         {
+            /// <summary>
+            /// Portrait orientation. The height of the display area is greater than the width.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Portrait = 0,
+            /// <summary>
+            /// Landscape orientation. A wide view area is needed.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Landscape = 90,
+            /// <summary>
+            /// Portrait inverse orientation.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             PortraitInverse = 180,
+            /// <summary>
+            /// Landscape inverse orientation.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             LandscapeInverse = 270
         }
 
@@ -972,10 +1006,10 @@ namespace Tizen.NUI
         private EventCallbackDelegateType1 _stageTouchCallbackDelegate;
 
         /// <summary>
-        /// This event is emitted when the screen is touched and when the touch ends.<br>
+        /// This event is emitted when the screen is touched and when the touch ends.<br />
         /// If there are multiple touch points, then this will be emitted when the first touch occurs and
-        /// then when the last finger is lifted.<br>
-        /// An interrupted event will also be emitted (if it occurs).<br>
+        /// then when the last finger is lifted.<br />
+        /// An interrupted event will also be emitted (if it occurs).<br />
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<TouchEventArgs> TouchEvent
@@ -1290,10 +1324,18 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This resized event arguments.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class ResizedEventArgs : EventArgs
         {
             Size2D _windowSize;
 
+            /// <summary>
+            /// This window size.
+            /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public Size2D WindowSize
             {
                 get
@@ -1417,8 +1459,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The DPI property (read-only).<br>
-        /// Retrieves the DPI of the display device to which the Window is connected.<br>
+        /// The DPI property (read-only).<br />
+        /// Retrieves the DPI of the display device to which the Window is connected.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 Dpi
@@ -1430,8 +1472,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The layer count property (read-only).<br>
-        /// Queries the number of on-Window layers.<br>
+        /// The layer count property (read-only).<br />
+        /// Queries the number of on-Window layers.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public uint LayerCount
@@ -1465,10 +1507,17 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        //Please do not use! this will be deprecated
+        /// <summary>
+        /// Please do not use! this will be deprecated
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class WindowFocusChangedEventArgs : EventArgs
         {
+            /// <summary>
+            /// Please do not use! this will be deprecated
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public bool FocusGained
             {
                 get;
@@ -1481,6 +1530,10 @@ namespace Tizen.NUI
         private delegate void WindowFocusChangedEventCallbackType2(bool focusGained);
         private event EventHandler<WindowFocusChangedEventArgs> _windowFocusChangedEventHandler2;
 
+        /// <summary>
+        /// Please do not use! this will be deprecated. Please use 'FocusChanged' event instead.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated. Please use 'FocusChanged' event instead")]
         public event EventHandler<WindowFocusChangedEventArgs> WindowFocusChanged
         {

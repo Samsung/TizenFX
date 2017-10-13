@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
@@ -23,6 +24,10 @@ namespace Tizen.NUI
     public class Key : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal Key(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -38,9 +43,16 @@ namespace Tizen.NUI
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~Key()
         {
             if(!isDisposeQueued)
@@ -50,6 +62,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -69,6 +85,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -107,6 +127,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Device name
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string DeviceName
         {
             get
@@ -207,6 +231,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// the device class the key event originated from.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DeviceClassType DeviceClass
         {
             get
@@ -373,8 +401,20 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public enum StateType
         {
+            /// <summary>
+            /// Key Down.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Down,
+            /// <summary>
+            /// Key Up.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Up,
+            /// <summary>
+            /// Key Last.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Last
         }
 

@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
@@ -20,11 +21,18 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    //Please do not use! this will be internal
+    /// <summary>
+    /// Please do not use! this will be deprecated
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SignalObserver : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal SignalObserver(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -40,10 +48,16 @@ namespace Tizen.NUI
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
-
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~SignalObserver()
         {
             if (!isDisposeQueued)
@@ -53,6 +67,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -72,6 +90,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -104,6 +126,12 @@ namespace Tizen.NUI
             disposed = true;
         }
 
+        /// <summary>
+        /// This method is called when the signal is disconnecting.
+        /// </summary>
+        /// <param name="slotObserver">The signal that has disconnected</param>
+        /// <param name="callback">The callback attached to the signal disconnected</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void SignalDisconnected(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback)
         {
             NDalicPINVOKE.SignalObserver_SignalDisconnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));

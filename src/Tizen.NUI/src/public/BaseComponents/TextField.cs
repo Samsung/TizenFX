@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
 namespace Tizen.NUI.BaseComponents
@@ -312,6 +313,10 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public new static TextField DownCast(BaseHandle handle)
         {
@@ -348,8 +353,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The TranslatableText property.<br>
-        /// The text can set the SID value.<br>
+        /// The TranslatableText property.<br />
+        /// The text can set the SID value.<br />
         /// </summary>
         /// <exception cref='ArgumentNullException'>
         /// ResourceManager about multilingual is null.
@@ -372,8 +377,8 @@ namespace Tizen.NUI.BaseComponents
             }
         }
         /// <summary>
-        /// The TranslatablePlaceholderText property.<br>
-        /// The text can set the SID value.<br>
+        /// The TranslatablePlaceholderText property.<br />
+        /// The text can set the SID value.<br />
         /// </summary>
         /// <exception cref='ArgumentNullException'>
         /// ResourceManager about multilingual is null.
@@ -425,6 +430,7 @@ namespace Tizen.NUI.BaseComponents
                 PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textFieldPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
             }
         }
+        /// <summary>
         /// The Text property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>

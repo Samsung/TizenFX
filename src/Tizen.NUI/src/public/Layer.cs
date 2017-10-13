@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
@@ -83,12 +84,21 @@ namespace Tizen.NUI
             return ret ?? null;
         }
 
-
+        /// <summary>
+        /// Get parent of the layer.
+        /// </summary>
+        /// <returns>The view's container</returns>
+        /// <since_tizen> 3 </since_tizen>
         protected override Container GetParent()
         {
             return null;
         }
 
+        /// <summary>
+        /// Get the child count of the layer.
+        /// </summary>
+        /// <returns>The child count of the layer.</returns>
+        /// <since_tizen> 3 </since_tizen>
         protected override uint GetChildCount()
         {
             uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
@@ -97,6 +107,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed)
@@ -161,7 +175,10 @@ namespace Tizen.NUI
         }
 
 
-
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public static Layer DownCast(BaseHandle handle)
         {
@@ -189,8 +206,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Queries the depth of the layer.<br>
-        /// 0 is the bottommost layer, higher number is on the top.<br>
+        /// Queries the depth of the layer.<br />
+        /// 0 is the bottommost layer, higher number is on the top.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public uint Depth
@@ -261,8 +278,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Moves the layer directly above the given layer.<br>
-        /// After the call, this layer's depth will be immediately above target.<br>
+        /// Moves the layer directly above the given layer.<br />
+        /// After the call, this layer's depth will be immediately above target.<br />
         /// </summary>
         /// <param name="target">The layer to get on top of.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -273,8 +290,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Moves the layer directly below the given layer.<br>
-        /// After the call, this layer's depth will be immediately below target.<br>
+        /// Moves the layer directly below the given layer.<br />
+        /// After the call, this layer's depth will be immediately below target.<br />
         /// </summary>
         /// <param name="target">The layer to get below of.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -335,8 +352,43 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public enum LayerBehavior
         {
+            /// <summary>
+            /// UI control rendering mode.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Layer2D,
+            /// <summary>
+            /// UI control rendering mode (default mode).
+            /// This mode is designed for UI controls that can overlap. In this
+            /// mode renderer order will be respective to the tree hierarchy of
+            /// Actors.<br />
+            /// The rendering order is depth first, so for the following actor tree,
+            /// A will be drawn first, then B, D, E, then C, F.  This ensures that
+            /// overlapping actors are drawn as expected (whereas, with breadth first
+            /// traversal, the actors would interleave).<br />
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             LayerUI = Layer2D,
+            /// <summary>
+            /// Layer will use depth test.
+            /// This mode is designed for a 3 dimensional scene where actors in front
+            /// of other actors will obscure them, i.e. the actors are sorted by the
+            /// distance from the camera.<br />
+            /// When using this mode, a depth test will be used. A depth clear will
+            /// happen for each layer, which means actors in a layer "above" other
+            /// layers will be rendered in front of actors in those layers regardless
+            /// of their Z positions (see Layer::Raise() and Layer::Lower()).<br />
+            /// Opaque renderers are drawn first and write to the depth buffer.  Then
+            /// transparent renderers are drawn with depth test enabled but depth
+            /// write switched off.  Transparent renderers are drawn based on their
+            /// distance from the camera.  A renderer's DEPTH_INDEX property is used to
+            /// offset the distance to the camera when ordering transparent renderers.
+            /// This is useful if you want to define the draw order of two or more
+            /// transparent renderers that are equal distance from the camera.  Unlike
+            /// LAYER_UI, parent-child relationship does not affect rendering order at
+            /// all.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Layer3D
         }
 
@@ -412,7 +464,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves and sets the layer's opacity.<br>
+        /// Retrieves and sets the layer's opacity.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float Opacity

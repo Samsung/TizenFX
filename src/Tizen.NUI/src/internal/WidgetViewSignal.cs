@@ -10,10 +10,17 @@
 
 namespace Tizen.NUI
 {
-
+    /// <summary>
+    /// WidgetViewSignal
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WidgetViewSignal : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal WidgetViewSignal(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -27,11 +34,19 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~WidgetViewSignal()
         {
             Dispose();
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void Dispose()
         {
             lock (this)
@@ -49,6 +64,11 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Queries whether there are any connected slots.
+        /// </summary>
+        /// <returns>True if there are any slots connected to the signal</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool Empty()
         {
             bool ret = NDalicManualPINVOKE.WidgetViewSignal_Empty(swigCPtr);
@@ -56,6 +76,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Queries the number of slots.
+        /// </summary>
+        /// <returns>The number of slots connected to this signal</returns>
+        /// <since_tizen> 3 </since_tizen>
         public uint GetConnectionCount()
         {
             uint ret = NDalicManualPINVOKE.WidgetViewSignal_GetConnectionCount(swigCPtr);
@@ -63,6 +88,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Connects a function.
+        /// </summary>
+        /// <param name="func">The function to connect</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -72,6 +102,11 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Disconnects a function.
+        /// </summary>
+        /// <param name="func">The function to disconnect</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -81,12 +116,21 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Connects a member function.
+        /// </summary>
+        /// <param name="arg">The member function to connect</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Emit(WidgetView arg)
         {
             NDalicManualPINVOKE.WidgetViewSignal_Emit(swigCPtr, WidgetView.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// The contructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WidgetViewSignal() : this(NDalicManualPINVOKE.new_WidgetViewSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

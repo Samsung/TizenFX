@@ -1,17 +1,20 @@
-// Copyright (c) 2017 Samsung Electronics Co., Ltd.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 
 namespace Tizen.NUI
 {
@@ -34,6 +37,11 @@ namespace Tizen.NUI
         private PropertyMap _visualTransformMap = null;
 
         private int? _depthIndex = null;
+
+        /// <summary>
+        /// outputVisualMap.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected PropertyMap _outputVisualMap = null;
 
         internal string Name
@@ -54,14 +62,17 @@ namespace Tizen.NUI
             get;
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public VisualMap()
         {
         }
 
         /// <summary>
-        /// Gets or sets the size of the visual.<br>
+        /// Gets or sets the size of the visual.<br />
         /// It can be either relative (percentage of the parent)
-        /// or absolute (in world units).<br>
+        /// or absolute (in world units).<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -83,9 +94,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the offset of the visual.<br>
+        /// Gets or sets the offset of the visual.<br />
         /// It can be either relative (percentage of the parent)
-        /// or absolute (in world units).<br>
+        /// or absolute (in world units).<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -107,8 +118,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the relative size of the visual<br>
-        /// (percentage [0.0f to 1.0f] of the control).<br>
+        /// Gets or sets the relative size of the visual<br />
+        /// (percentage [0.0f to 1.0f] of the control).<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -127,8 +138,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the relative offset of the visual<br>
-        /// (percentage [0.0f to 1.0f] of the control).<br>
+        /// Gets or sets the relative offset of the visual<br />
+        /// (percentage [0.0f to 1.0f] of the control).<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -147,9 +158,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets whether the x and y offset values are relative<br>
-        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br>
-        /// By default, both the x and the y offset are relative.<br>
+        /// Gets or sets whether the x and y offset values are relative<br />
+        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br />
+        /// By default, both the x and the y offset are relative.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -183,9 +194,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets whether the x offset values are relative<br>
-        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br>
-        /// By default, the x offset is relative.<br>
+        /// Gets or sets whether the x offset values are relative<br />
+        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br />
+        /// By default, the x offset is relative.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -224,9 +235,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets whether the y offset values are relative<br>
-        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br>
-        /// By default, the y offset is relative.<br>
+        /// Gets or sets whether the y offset values are relative<br />
+        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br />
+        /// By default, the y offset is relative.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -264,9 +275,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets whether the size values of the width or the height are relative<br>
-        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br>
-        /// By default, offsets of both the width and the height are relative to the control's size.<br>
+        /// Gets or sets whether the size values of the width or the height are relative<br />
+        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br />
+        /// By default, offsets of both the width and the height are relative to the control's size.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -300,9 +311,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets whether size values of the width are relative.<br>
-        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br>
-        /// By default, the value of the width is relative to the control's width.<br>
+        /// Gets or sets whether size values of the width are relative.<br />
+        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br />
+        /// By default, the value of the width is relative to the control's width.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -340,9 +351,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets whether size values of the height are relative<br>
-        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br>
-        /// By default, the height value is relative to the control's height.<br>
+        /// Gets or sets whether size values of the height are relative<br />
+        /// (percentage [0.0f to 1.0f] of the control) or absolute (in world units).<br />
+        /// By default, the height value is relative to the control's height.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -380,8 +391,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the origin of the visual within its control area.<br>
-        /// By default, the origin is center.<br>
+        /// Gets or sets the origin of the visual within its control area.<br />
+        /// By default, the origin is center.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -399,8 +410,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the anchor point of the visual.<br>
-        /// By default, the anchor point is center.<br>
+        /// Gets or sets the anchor point of the visual.<br />
+        /// By default, the anchor point is center.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -418,8 +429,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the depth index of the visual.<br>
-        /// By default, the depth index is 0.<br>
+        /// Gets or sets the depth index of the visual.<br />
+        /// By default, the depth index is 0.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -459,6 +470,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void ComposingPropertyMap()
         {
             _outputVisualMap = new PropertyMap();
@@ -490,11 +505,35 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The shader of the visual.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected PropertyMap _shader = null;
         //private PropertyMap _transform = null;
+
+        /// <summary>
+        /// The premultipliedAlpha of the visual.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool? _premultipliedAlpha = null;
+
+        /// <summary>
+        /// The mixColor of the Visual.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected Color _mixColor = null;
+
+        /// <summary>
+        /// The opacity of the visual.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected float? _opacity = null;
+
+        /// <summary>
+        /// The map for visual.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected PropertyMap _commonlyUsedMap = null;
 
         /// <summary>
@@ -515,7 +554,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enables or disables the premultiplied alpha. <br>
+        /// Enables or disables the premultiplied alpha. <br />
         /// The premultiplied alpha is false by default unless this behavior is modified by the derived visual type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -573,6 +612,10 @@ namespace Tizen.NUI
     /// </summary>
     public class ImageVisual : VisualMap
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ImageVisual() : base()
         {
         }
@@ -592,10 +635,9 @@ namespace Tizen.NUI
         private bool? _cropToMask = null;
 
         /// <summary>
-        /// Gets or sets the URL of the image.<br>
+        /// Gets or sets the URL of the image.<br />
         /// Mandatory.
         /// </summary>
-
         /// <since_tizen> 3 </since_tizen>
         public string URL
         {
@@ -612,7 +654,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Gets or sets the URL of the alpha mask.<br>
+        /// Gets or sets the URL of the alpha mask.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -630,9 +672,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets fitting options used when resizing images to fit the desired dimensions.<br>
-        /// If not supplied, the default is FittingModeType.ShrinkToFit.<br>
-        /// For normal quad images only.<br>
+        /// Gets or sets fitting options used when resizing images to fit the desired dimensions.<br />
+        /// If not supplied, the default is FittingModeType.ShrinkToFit.<br />
+        /// For normal quad images only.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -650,9 +692,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets filtering options used when resizing images to the sample original pixels.<br>
-        /// If not supplied, the default is SamplingModeType.Box.<br>
-        /// For normal quad images only.<br>
+        /// Gets or sets filtering options used when resizing images to the sample original pixels.<br />
+        /// If not supplied, the default is SamplingModeType.Box.<br />
+        /// For normal quad images only.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -670,9 +712,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the desired image width.<br>
-        /// If not specified, the actual image width is used.<br>
-        /// For normal quad images only.<br>
+        /// Gets or sets the desired image width.<br />
+        /// If not specified, the actual image width is used.<br />
+        /// For normal quad images only.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -690,9 +732,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the desired image height.<br>
-        /// If not specified, the actual image height is used.<br>
-        /// For normal quad images only.<br>
+        /// Gets or sets the desired image height.<br />
+        /// If not specified, the actual image height is used.<br />
+        /// For normal quad images only.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -710,9 +752,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets whether to load the image synchronously.<br>
-        /// If not specified, the default is false, i.e., the image is loaded asynchronously.<br>
-        /// For normal quad images only.<br>
+        /// Gets or sets whether to load the image synchronously.<br />
+        /// If not specified, the default is false, i.e., the image is loaded asynchronously.<br />
+        /// For normal quad images only.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -730,9 +772,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets whether to draw the borders only (If true).<br>
-        /// If not specified, the default is false.<br>
-        /// For n-patch images only.<br>
+        /// Gets or sets whether to draw the borders only (If true).<br />
+        /// If not specified, the default is false.<br />
+        /// For n-patch images only.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -750,11 +792,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the image area to be displayed.<br>
-        /// It is a rectangular area.<br>
-        /// The first two elements indicate the top-left position of the area, and the last two elements are the areas of the width and the height respectively.<br>
-        /// If not specified, the default value is Vector4 (0.0, 0.0, 1.0, 1.0), i.e., the entire area of the image.<br>
-        /// For normal quad images only.<br>
+        /// Gets or sets the image area to be displayed.<br />
+        /// It is a rectangular area.<br />
+        /// The first two elements indicate the top-left position of the area, and the last two elements are the areas of the width and the height respectively.<br />
+        /// If not specified, the default value is Vector4 (0.0, 0.0, 1.0, 1.0), i.e., the entire area of the image.<br />
+        /// For normal quad images only.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -772,10 +814,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the wrap mode for the u coordinate.<br>
-        /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.<br>
-        /// If not specified, the default is WrapModeType.Default(CLAMP).<br>
-        /// For normal quad images only.<br>
+        /// Gets or sets the wrap mode for the u coordinate.<br />
+        /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.<br />
+        /// If not specified, the default is WrapModeType.Default(CLAMP).<br />
+        /// For normal quad images only.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -793,10 +835,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the wrap mode for the v coordinate.<br>
-        /// It decides how the texture should be sampled when the v coordinate exceeds the range of 0.0 to 1.0.<br>
-        /// The first two elements indicate the top-left position of the area, and the last two elements are the areas of the width and the height respectively.<br>
-        /// If not specified, the default is WrapModeType.Default(CLAMP).<br>
+        /// Gets or sets the wrap mode for the v coordinate.<br />
+        /// It decides how the texture should be sampled when the v coordinate exceeds the range of 0.0 to 1.0.<br />
+        /// The first two elements indicate the top-left position of the area, and the last two elements are the areas of the width and the height respectively.<br />
+        /// If not specified, the default is WrapModeType.Default(CLAMP).<br />
         /// For normal quad images only.
         /// Optional.
         /// </summary>
@@ -848,6 +890,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
             if (_url != null)
@@ -880,6 +926,10 @@ namespace Tizen.NUI
     /// </summary>
     public class TextVisual : VisualMap
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public TextVisual() : base()
         {
         }
@@ -895,7 +945,7 @@ namespace Tizen.NUI
         private bool? _enableMarkup = null;
 
         /// <summary>
-        /// Gets or sets the text to display in the UTF-8 format.<br>
+        /// Gets or sets the text to display in the UTF-8 format.<br />
         /// Mandatory.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -913,7 +963,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the requested font family to use.<br>
+        /// Gets or sets the requested font family to use.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -931,7 +981,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the requested font style to use.<br>
+        /// Gets or sets the requested font style to use.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -949,7 +999,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the size of font in points.<br>
+        /// Gets or sets the size of font in points.<br />
         /// Mandatory.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -967,8 +1017,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the single-line or multi-line layout option.<br>
-        /// If not specified, the default is false.<br>
+        /// Gets or sets the single-line or multi-line layout option.<br />
+        /// If not specified, the default is false.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -986,8 +1036,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the line horizontal alignment.<br>
-        /// If not specified, the default is begin.<br>
+        /// Gets or sets the line horizontal alignment.<br />
+        /// If not specified, the default is begin.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1037,8 +1087,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the line vertical alignment.<br>
-        /// If not specified, the default is top.<br>
+        /// Gets or sets the line vertical alignment.<br />
+        /// If not specified, the default is top.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1088,7 +1138,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the color of the text.<br>
+        /// Gets or sets the color of the text.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1106,7 +1156,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets whether the mark-up processing is enabled.<br>
+        /// Gets or sets whether the mark-up processing is enabled.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1123,6 +1173,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
             if (_text != null && _pointSize != null)
@@ -1151,6 +1205,10 @@ namespace Tizen.NUI
     /// </summary>
     public class BorderVisual : VisualMap
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BorderVisual() : base()
         {
         }
@@ -1160,7 +1218,7 @@ namespace Tizen.NUI
         private bool? _antiAliasing = null;
 
         /// <summary>
-        /// Gets or sets the color of the border.<br>
+        /// Gets or sets the color of the border.<br />
         /// Mandatory.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1178,7 +1236,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the width of the border (in pixels).<br>
+        /// Gets or sets the width of the border (in pixels).<br />
         /// Mandatory.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1196,8 +1254,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets whether the anti-aliasing of the border is required.<br>
-        /// If not supplied, the default is false.<br>
+        /// Gets or sets whether the anti-aliasing of the border is required.<br />
+        /// If not supplied, the default is false.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1214,6 +1272,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
             if (_color != null && _size != null)
@@ -1236,6 +1298,10 @@ namespace Tizen.NUI
     /// </summary>
     public class ColorVisual : VisualMap
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ColorVisual() : base()
         {
         }
@@ -1243,7 +1309,7 @@ namespace Tizen.NUI
         private Color _mixColorForColorVisual = null;
 
         /// <summary>
-        /// Gets or sets the solid color required.<br>
+        /// Gets or sets the solid color required.<br />
         /// Mandatory.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1260,6 +1326,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
             if (_mixColorForColorVisual != null)
@@ -1279,6 +1349,10 @@ namespace Tizen.NUI
     /// </summary>
     public class GradientVisual : VisualMap
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public GradientVisual() : base()
         {
         }
@@ -1293,8 +1367,8 @@ namespace Tizen.NUI
         private GradientVisualSpreadMethodType? _spreadMethod = null;
 
         /// <summary>
-        /// Gets or sets the start position of a linear gradient.<br>
-        /// Mandatory for linear.<br>
+        /// Gets or sets the start position of a linear gradient.<br />
+        /// Mandatory for linear.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 StartPosition
@@ -1311,8 +1385,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the end position of a linear gradient.<br>
-        /// Mandatory for linear.<br>
+        /// Gets or sets the end position of a linear gradient.<br />
+        /// Mandatory for linear.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 EndPosition
@@ -1329,8 +1403,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the center point of a radial gradient.<br>
-        /// Mandatory for radial.<br>
+        /// Gets or sets the center point of a radial gradient.<br />
+        /// Mandatory for radial.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 Center
@@ -1347,8 +1421,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the size of the radius of a radial gradient.<br>
-        /// Mandatory for radial.<br>
+        /// Gets or sets the size of the radius of a radial gradient.<br />
+        /// Mandatory for radial.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float Radius
@@ -1365,9 +1439,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets all the stop offsets.<br>
-        /// A PropertyArray of float.<br>
-        /// If not supplied, the default is 0.0f and 1.0f.<br>
+        /// Gets or sets all the stop offsets.<br />
+        /// A PropertyArray of float.<br />
+        /// If not supplied, the default is 0.0f and 1.0f.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1385,9 +1459,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the color at the stop offsets.<br>
-        /// A PropertyArray of color.<br>
-        /// At least 2 values are required to show a gradient.<br>
+        /// Gets or sets the color at the stop offsets.<br />
+        /// A PropertyArray of color.<br />
+        /// At least 2 values are required to show a gradient.<br />
         /// Mandatory.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1405,8 +1479,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets descriptions of the coordinate system for certain attributes of the points in a gradient.<br>
-        /// If not supplied, the default is GradientVisualUnitsType.ObjectBoundingBox.<br>
+        /// Gets or sets descriptions of the coordinate system for certain attributes of the points in a gradient.<br />
+        /// If not supplied, the default is GradientVisualUnitsType.ObjectBoundingBox.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1424,8 +1498,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets indications of what happens if the gradient starts or ends inside the bounds of the target rectangle.<br>
-        /// If not supplied, the default is GradientVisualSpreadMethodType.Pad.<br>
+        /// Gets or sets indications of what happens if the gradient starts or ends inside the bounds of the target rectangle.<br />
+        /// If not supplied, the default is GradientVisualSpreadMethodType.Pad.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1442,6 +1516,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
             if (((_startPosition != null && _endPosition != null) || (_center != null && _radius != null)) && _stopColor != null)
@@ -1469,6 +1547,10 @@ namespace Tizen.NUI
     /// </summary>
     public class MeshVisual : VisualMap
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MeshVisual() : base()
         {
         }
@@ -1482,7 +1564,7 @@ namespace Tizen.NUI
         private Vector3 _lightPosition = null;
 
         /// <summary>
-        /// Gets or sets the location of the ".obj" file.<br>
+        /// Gets or sets the location of the ".obj" file.<br />
         /// Mandatory.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1500,8 +1582,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the location of the ".mtl" file.<br>
-        /// If not specified, then a textureless object is assumed.<br>
+        /// Gets or sets the location of the ".mtl" file.<br />
+        /// If not specified, then a textureless object is assumed.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1519,8 +1601,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the path to the directory the textures (including gloss and normal) are stored in.<br>
-        /// Mandatory if using material.<br>
+        /// Gets or sets the path to the directory the textures (including gloss and normal) are stored in.<br />
+        /// Mandatory if using material.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string TexturesPath
@@ -1537,9 +1619,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the type of shading mode that the mesh will use.<br>
-        /// If anything the specified shading mode requires is missing, a simpler mode that can be handled with what has been supplied will be used instead.<br>
-        /// If not specified, it will use the best it can support (will try MeshVisualShadingModeValue.TexturedWithDetailedSpecularLighting first).<br>
+        /// Gets or sets the type of shading mode that the mesh will use.<br />
+        /// If anything the specified shading mode requires is missing, a simpler mode that can be handled with what has been supplied will be used instead.<br />
+        /// If not specified, it will use the best it can support (will try MeshVisualShadingModeValue.TexturedWithDetailedSpecularLighting first).<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1557,8 +1639,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets whether to use mipmaps for textures or not.<br>
-        /// If not specified, the default is true.<br>
+        /// Gets or sets whether to use mipmaps for textures or not.<br />
+        /// If not specified, the default is true.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1576,8 +1658,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets whether to average normals at each point to smooth textures or not.<br>
-        /// If not specified, the default is true.<br>
+        /// Gets or sets whether to average normals at each point to smooth textures or not.<br />
+        /// If not specified, the default is true.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1595,10 +1677,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the position, in the stage space, of the point light that applies lighting to the model.<br>
+        /// Gets or sets the position, in the stage space, of the point light that applies lighting to the model.<br />
         /// This is based off the stage's dimensions, so using the width and the height of the stage halved will correspond to the center,
-        /// and using all zeroes will place the light at the top-left corner.<br>
-        /// If not specified, the default is an offset outwards from the center of the screen.<br>
+        /// and using all zeroes will place the light at the top-left corner.<br />
+        /// If not specified, the default is an offset outwards from the center of the screen.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1615,6 +1697,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
             if (_objectURL != null)
@@ -1640,6 +1726,10 @@ namespace Tizen.NUI
     /// </summary>
     public class PrimitiveVisual : VisualMap
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PrimitiveVisual() : base()
         {
         }
@@ -1658,8 +1748,8 @@ namespace Tizen.NUI
         private Vector3 _lightPosition = null;
 
         /// <summary>
-        /// Gets or sets the specific shape to render.<br>
-        /// If not specified, the default is PrimitiveVisualShapeType.Sphere.<br>
+        /// Gets or sets the specific shape to render.<br />
+        /// If not specified, the default is PrimitiveVisualShapeType.Sphere.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1677,9 +1767,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the color of the shape.<br>
-        /// If not specified, the default is Color (0.5, 0.5, 0.5, 1.0).<br>
-        /// Applies to all shapes.<br>
+        /// Gets or sets the color of the shape.<br />
+        /// If not specified, the default is Color (0.5, 0.5, 0.5, 1.0).<br />
+        /// Applies to all shapes.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1697,10 +1787,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the number of slices as you go around the shape.<br>
-        /// For spheres and conical frustrums, this determines how many divisions there are as you go around the object.<br>
-        /// If not specified, the default is 128.<br>
-        /// The range is from 1 to 255.<br>
+        /// Gets or sets the number of slices as you go around the shape.<br />
+        /// For spheres and conical frustrums, this determines how many divisions there are as you go around the object.<br />
+        /// If not specified, the default is 128.<br />
+        /// The range is from 1 to 255.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1718,10 +1808,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the number of stacks as you go down the shape.<br>
-        /// For spheres, 'stacks' determines how many layers there are as you go down the object.<br>
-        /// If not specified, the default is 128.<br>
-        /// The range is from 1 to 255.<br>
+        /// Gets or sets the number of stacks as you go down the shape.<br />
+        /// For spheres, 'stacks' determines how many layers there are as you go down the object.<br />
+        /// If not specified, the default is 128.<br />
+        /// The range is from 1 to 255.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1739,10 +1829,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the scale of the radius of the top circle of a conical frustrum.<br>
-        /// If not specified, the default is 1.0f.<br>
-        /// Applies to: - PrimitiveVisualShapeType.ConicalFrustrum<br>
-        /// Only values greater than or equal to 0.0f are accepted.<br>
+        /// Gets or sets the scale of the radius of the top circle of a conical frustrum.<br />
+        /// If not specified, the default is 1.0f.<br />
+        /// Applies to: - PrimitiveVisualShapeType.ConicalFrustrum<br />
+        /// Only values greater than or equal to 0.0f are accepted.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1760,11 +1850,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the scale of the radius of the bottom circle of a conical frustrum.<br>
-        /// If not specified, the default is 1.5f.<br>
-        /// Applies to:  - PrimitiveVisualShapeType.ConicalFrustrum<br>
-        ///              - PrimitiveVisualShapeType.Cone<br>
-        /// Only values greater than or equal to 0.0f are accepted.<br>
+        /// Gets or sets the scale of the radius of the bottom circle of a conical frustrum.<br />
+        /// If not specified, the default is 1.5f.<br />
+        /// Applies to:  - PrimitiveVisualShapeType.ConicalFrustrum<br />
+        ///              - PrimitiveVisualShapeType.Cone<br />
+        /// Only values greater than or equal to 0.0f are accepted.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1782,13 +1872,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the scale of the height of a conic.<br>
-        /// If not specified, the default is 3.0f.<br>
-        /// Applies to:<br>
-        ///      - PrimitiveVisualShapeType.ConicalFrustrum<br>
-        ///      - PrimitiveVisualShapeType.Cone<br>
-        ///      - PrimitiveVisualShapeType.Cylinder<br>
-        /// Only values greater than or equal to 0.0f are accepted.<br>
+        /// Gets or sets the scale of the height of a conic.<br />
+        /// If not specified, the default is 3.0f.<br />
+        /// Applies to:<br />
+        ///      - PrimitiveVisualShapeType.ConicalFrustrum<br />
+        ///      - PrimitiveVisualShapeType.Cone<br />
+        ///      - PrimitiveVisualShapeType.Cylinder<br />
+        /// Only values greater than or equal to 0.0f are accepted.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1806,11 +1896,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the scale of the radius of a cylinder.<br>
-        /// If not specified, the default is 1.0f.<br>
-        /// Applies to:<br>
-        ///      - PrimitiveVisualShapeType.Cylinder<br>
-        /// Only values greater than or equal to 0.0f are accepted.<br>
+        /// Gets or sets the scale of the radius of a cylinder.<br />
+        /// If not specified, the default is 1.0f.<br />
+        /// Applies to:<br />
+        ///      - PrimitiveVisualShapeType.Cylinder<br />
+        /// Only values greater than or equal to 0.0f are accepted.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1828,13 +1918,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the dimensions of a cuboid. Scales in the same fashion as a 9-patch image.<br>
-        /// If not specified, the default is Vector3.One.<br>
-        /// Applies to:<br>
-        ///      - PrimitiveVisualShapeType.Cube<br>
-        ///      - PrimitiveVisualShapeType.Octahedron<br>
-        ///      - PrimitiveVisualShapeType.BevelledCube<br>
-        /// Each Vector3 parameter should be greater than or equal to 0.0f.<br>
+        /// Gets or sets the dimensions of a cuboid. Scales in the same fashion as a 9-patch image.<br />
+        /// If not specified, the default is Vector3.One.<br />
+        /// Applies to:<br />
+        ///      - PrimitiveVisualShapeType.Cube<br />
+        ///      - PrimitiveVisualShapeType.Octahedron<br />
+        ///      - PrimitiveVisualShapeType.BevelledCube<br />
+        /// Each Vector3 parameter should be greater than or equal to 0.0f.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1852,12 +1942,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets determines how bevelled the cuboid should be, based off the smallest dimension.<br>
-        /// Bevel percentage ranges from 0.0 to 1.0. It affects the ratio of the outer face widths to the width of the overall cube.<br>
-        /// If not specified, the default is 0.0f (no bevel).<br>
-        /// Applies to:<br>
-        ///      - PrimitiveVisualShapeType.BevelledCube<br>
-        /// The range is from 0.0f to 1.0f.<br>
+        /// Gets or sets determines how bevelled the cuboid should be, based off the smallest dimension.<br />
+        /// Bevel percentage ranges from 0.0 to 1.0. It affects the ratio of the outer face widths to the width of the overall cube.<br />
+        /// If not specified, the default is 0.0f (no bevel).<br />
+        /// Applies to:<br />
+        ///      - PrimitiveVisualShapeType.BevelledCube<br />
+        /// The range is from 0.0f to 1.0f.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1875,11 +1965,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets descriptions of how smooth the bevelled edges should be.<br>
-        /// If not specified, the default is 0.0f (sharp edges).<br>
-        /// Applies to:<br>
-        ///      - PrimitiveVisualShapeType.BevelledCube<br>
-        /// The range is from 0.0f to 1.0f.<br>
+        /// Gets or sets descriptions of how smooth the bevelled edges should be.<br />
+        /// If not specified, the default is 0.0f (sharp edges).<br />
+        /// Applies to:<br />
+        ///      - PrimitiveVisualShapeType.BevelledCube<br />
+        /// The range is from 0.0f to 1.0f.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1897,11 +1987,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the position, in the stage space, of the point light that applies lighting to the model.<br>
+        /// Gets or sets the position, in the stage space, of the point light that applies lighting to the model.<br />
         /// This is based off the stage's dimensions, so using the width and the height of the stage halved will correspond to the center,
-        /// and using all zeroes will place the light at the top-left corner.<br>
-        /// If not specified, the default is an offset outwards from the center of the screen.<br>
-        /// Applies to all shapes.<br>
+        /// and using all zeroes will place the light at the top-left corner.<br />
+        /// If not specified, the default is an offset outwards from the center of the screen.<br />
+        /// Applies to all shapes.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1918,6 +2008,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
             _outputVisualMap = new PropertyMap(); ;
@@ -1945,6 +2039,10 @@ namespace Tizen.NUI
     /// </summary>
     public class NPatchVisual : VisualMap
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public NPatchVisual() : base()
         {
         }
@@ -1954,7 +2052,7 @@ namespace Tizen.NUI
         private Rectangle _border = null;
 
         /// <summary>
-        /// Gets or sets the URL of the image.<br>
+        /// Gets or sets the URL of the image.<br />
         /// Mandatory.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1972,9 +2070,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets whether to draw the borders only (If true).<br>
-        /// If not specified, the default is false.<br>
-        /// For n-patch images only.<br>
+        /// Gets or sets whether to draw the borders only (If true).<br />
+        /// If not specified, the default is false.<br />
+        /// For n-patch images only.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1992,8 +2090,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The border of the image is in the order: left, right, bottom, top.<br>
-        /// For n-patch images only.<br>
+        /// The border of the image is in the order: left, right, bottom, top.<br />
+        /// For n-patch images only.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -2010,6 +2108,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
             if (_url != null)
@@ -2032,12 +2134,20 @@ namespace Tizen.NUI
     /// </summary>
     public class SVGVisual : VisualMap
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SVGVisual() : base()
         {
         }
 
         private string _url = null;
 
+        /// <summary>
+        /// The url of the svg resource.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string URL
         {
             get
@@ -2051,6 +2161,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
             if (_url != null)
@@ -2071,6 +2185,10 @@ namespace Tizen.NUI
     /// </summary>
     public class AnimatedImageVisual : VisualMap
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AnimatedImageVisual() : base()
         {
         }
@@ -2180,6 +2298,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
             if (_urls != null)
@@ -2430,6 +2552,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
             PropertyMap _animator = new PropertyMap();

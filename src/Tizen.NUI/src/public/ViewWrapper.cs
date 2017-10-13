@@ -19,6 +19,9 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// ViewWrapper.
+    /// </summary>
     public class ViewWrapper : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -34,6 +37,11 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The dispose type</param>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)

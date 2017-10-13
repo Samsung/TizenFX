@@ -58,6 +58,10 @@ namespace Tizen.NUI.BaseComponents
             CustomViewRegistry.Instance.Register(CreateInstance, typeof(VisualView));
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VisualView() : base(typeof(VisualView).FullName, CustomViewBehaviour.ViewBehaviourDefault)
         {
         }
@@ -175,10 +179,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Overrides the method of OnRelayout() for CustomView class.<br>
-        /// Called after the size negotiation has been finished for this control.<br>
-        /// The control is expected to assign this given size to itself or its children.<br>
-        /// Should be overridden by derived classes if they need to layout actors differently after certain operations like add or remove actors, resize, or after changing specific properties.<br>
+        /// Overrides the method of OnRelayout() for CustomView class.<br />
+        /// Called after the size negotiation has been finished for this control.<br />
+        /// The control is expected to assign this given size to itself or its children.<br />
+        /// Should be overridden by derived classes if they need to layout actors differently after certain operations like add or remove actors, resize, or after changing specific properties.<br />
         /// </summary>
         /// <remarks>As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).</remarks>
         /// <param name="size">The allocated size.</param>
@@ -482,8 +486,10 @@ namespace Tizen.NUI.BaseComponents
             return this.CreateTransition(_transitionData);
         }
 
-
-        //temporary fix to pass TCT
+        /// <summary>
+        /// temporary fix to pass TCT.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Animation VisualAnimate(Tizen.NUI.VisualAnimator visualMap)
         {
             foreach (var item in _visualDictionary.ToList())

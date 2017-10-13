@@ -20,20 +20,35 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
 
+    /// <summary>
+    /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate R DaliEventHandlerWithReturnType<T, U, R>(T source, U e);
 
+    /// <summary>
+    /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     internal delegate void EventCallbackDelegateType0();
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     internal delegate void EventCallbackDelegateType1(IntPtr arg1);
 
-
-    //this should be removed with EventHandler from .NET
+    /// <summary>
+    /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    /// this should be removed with EventHandler from .NET
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void DaliEventHandler<T, U>(T source, U e);
 
+    /// <summary>
+    /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate R EventHandlerWithReturnType<T, U, R>(T source, U e);
 

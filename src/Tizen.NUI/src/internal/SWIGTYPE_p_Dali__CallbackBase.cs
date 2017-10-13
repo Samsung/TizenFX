@@ -13,7 +13,10 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    //Please do not use! this will be internal
+    /// <summary>
+    /// This should be internal, please do not use.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SWIGTYPE_p_Dali__CallbackBase
     {
@@ -24,6 +27,10 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
+        /// <summary>
+        /// The Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected SWIGTYPE_p_Dali__CallbackBase()
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);

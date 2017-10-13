@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
@@ -21,14 +22,14 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
 
     /// <summary>
-    /// Mechanism to issue simple periodic or one-shot events.<br>
+    /// Mechanism to issue simple periodic or one-shot events.<br />
     /// Timer is provided for application developers to be able to issue
     /// simple periodic or one-shot events. Please note that the timer
     /// callback functions should return as soon as possible because they
     /// block the next SignalTick. Please note that timer signals are not
-    /// in sync with DALi's render timer.<br>
+    /// in sync with DALi's render timer.<br />
     /// This class is a handle class so it can be stack allocated and used
-    /// as a member.<br>
+    /// as a member.<br />
     /// </summary>
     public class Timer : BaseHandle
     {
@@ -44,6 +45,10 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed)
@@ -95,8 +100,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// @brief Event for the ticked signal, which can be used to subscribe or unsubscribe the event handler
-        /// (in the type of TickEventHandler-DaliEventHandlerWithReturnType<object,TickEventArgs,bool>)<br>
-        /// provided by the user. The ticked signal is emitted after specified time interval.<br>
+        /// provided by the user. The ticked signal is emitted after specified time interval.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandlerWithReturnType<object, TickEventArgs, bool> Tick
@@ -148,7 +152,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public static Timer DownCast(BaseHandle handle)
         {
@@ -158,8 +165,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Starts the timer.<br>
-        /// In case a timer is already running, its time is reset and the timer is restarted.<br>
+        /// Starts the timer.<br />
+        /// In case a timer is already running, its time is reset and the timer is restarted.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Start()
@@ -195,8 +202,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets a new interval on the timer and starts the timer.<br>
-        /// Cancels the previous timer.<br>
+        /// Sets a new interval on the timer and starts the timer.<br />
+        /// Cancels the previous timer.<br />
         /// </summary>
         /// <param name="milliSec">MilliSec interval in milliseconds.</param>
         internal void SetInterval(uint milliSec)

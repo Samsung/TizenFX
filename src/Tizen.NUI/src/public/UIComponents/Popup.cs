@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI.UIComponents
 {
@@ -38,7 +39,11 @@ namespace Tizen.NUI.UIComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The dispose type</param>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -380,6 +385,10 @@ namespace Tizen.NUI.UIComponents
 
         }
 
+        /// <summary>
+        /// Please do not use! this will be deprecated
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public new static Popup DownCast(BaseHandle handle)
         {
@@ -449,20 +458,20 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Sets the display state of popup.<br>
-        /// There are 4 total display states.<br>
-        /// Only 2 can be set, but all four can be read for better inspection of the current popup state.<br>
-        /// <br>
-        /// The other two states are getable, but not setable, and are there for consistency.<br>
-        /// <br>
-        /// | Value    | Setting the state              | Getting the state              |<br>
-        /// |----------|--------------------------------|--------------------------------|<br>
-        /// | SHOWN    | Show the popup                 | The popup is fully shown       |<br>
-        /// | HIDDEN   | Hide the popup                 | The popup is fully hidden      |<br>
-        /// | SHOWING  |                                | The popup is transitioning in  |<br>
-        /// | HIDING   |                                | The popup is transitioning out |<br>
-        /// <br>
-        /// All 4 states changes cause notifications via 4 respective signals that can be connected to.<br>
+        /// Sets the display state of popup.<br />
+        /// There are 4 total display states.<br />
+        /// Only 2 can be set, but all four can be read for better inspection of the current popup state.<br />
+        /// <br />
+        /// The other two states are getable, but not setable, and are there for consistency.<br />
+        /// <br />
+        /// | Value    | Setting the state              | Getting the state              |<br />
+        /// |----------|--------------------------------|--------------------------------|<br />
+        /// | SHOWN    | Show the popup                 | The popup is fully shown       |<br />
+        /// | HIDDEN   | Hide the popup                 | The popup is fully hidden      |<br />
+        /// | SHOWING  |                                | The popup is transitioning in  |<br />
+        /// | HIDING   |                                | The popup is transitioning out |<br />
+        /// <br />
+        /// All 4 states changes cause notifications via 4 respective signals that can be connected to.<br />
         /// </summary>
         /// <param name="displayState">The desired display state to change to.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -520,37 +529,89 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public enum DisplayStateType
         {
+            /// <summary>
+            /// The popup is transitioning in
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Showing,
+            /// <summary>
+            /// The popup is fully shown
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Shown,
+            /// <summary>
+            /// The popup is transitioning out
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Hiding,
+            /// <summary>
+            /// The popup is fully hidden
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Hidden
         }
 
         /// <summary>
-        /// The animation modes within the popup.<br>
-        /// Choose from a predefined mode or "CUSTOM" to use the ANIMATION_IN and ANIMATION_OUT properties.<br>
+        /// The animation modes within the popup.<br />
+        /// Choose from a predefined mode or "CUSTOM" to use the ANIMATION_IN and ANIMATION_OUT properties.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public enum AnimationModeType
         {
+            /// <summary>
+            /// No animation.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             None,
+            /// <summary>
+            /// Popup zooms in and out animating the scale property.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Zoom,
+            /// <summary>
+            /// Popup fades in and out
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Fade,
+            /// <summary>
+            /// Use the EntryAnimation and ExitAnimation animation properties.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Custom
         }
 
         /// <summary>
-        /// The types of the contextual layout.<br>
-        /// The popup is positioned adjacent to it's parent in the direction specified by this mode.<br>
-        /// NON_CONTEXTUAL disables any contextual positioning.<br>
+        /// The types of the contextual layout.<br />
+        /// The popup is positioned adjacent to it's parent in the direction specified by this mode.<br />
+        /// NON_CONTEXTUAL disables any contextual positioning.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public enum ContextualModeType
         {
+            /// <summary>
+            /// any contextual positioning
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             NonContextual,
+            /// <summary>
+            /// Above
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Above,
+            /// <summary>
+            /// Rright
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Rright,
+            /// <summary>
+            /// Below
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Below,
+            /// <summary>
+            /// Left
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Left
         }
 

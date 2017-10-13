@@ -128,11 +128,11 @@ namespace Tizen.NUI
             }
 
 
-            public int startEventIndex;    /// start of the property range
-            public int lastUsedEventIndex;    /// last used of the property index
+            public int startEventIndex;        // start of the property range
+            public int lastUsedEventIndex;     // last used of the property index
 
-            public int startAnimationIndex;  /// start of the property range
-            public int lastUsedAnimationIndex; /// last used of the property index
+            public int startAnimationIndex;    // start of the property range
+            public int lastUsedAnimationIndex; // last used of the property index
         };
 
 

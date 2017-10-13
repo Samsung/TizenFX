@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -20,8 +21,8 @@ namespace Tizen.NUI.BaseComponents
     using System.Runtime.InteropServices;
 
     /// <summary>
-    /// ImageView is a class for displaying an image resource.<br>
-    /// An instance of ImageView can be created using a URL or an image instance.<br>
+    /// ImageView is a class for displaying an image resource.<br />
+    /// An instance of ImageView can be created using a URL or an image instance.<br />
     /// </summary>
     public class ImageView : View
     {
@@ -68,9 +69,9 @@ namespace Tizen.NUI.BaseComponents
         private ResourceReadyEventCallbackType _resourceReadyEventCallback;
 
         /// <summary>
-        /// An event for ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br>
-        /// This signal is emitted after all resources required by a control are loaded and ready.<br>
-        /// Most resources are only loaded when the control is placed on the stage.<br>
+        /// An event for ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted after all resources required by a control are loaded and ready.<br />
+        /// Most resources are only loaded when the control is placed on the stage.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ResourceReadyEventArgs> ResourceReady
@@ -112,7 +113,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        //you can override it to clean-up your own resources.
+        /// <summary>
+        /// you can override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type">DisposeTypes</param>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -166,8 +171,8 @@ namespace Tizen.NUI.BaseComponents
 
         }
         /// <summary>
-        /// Creates an initialized ImageView from a URL to an image resource.<br>
-        /// If the string is empty, ImageView will not display anything.<br>
+        /// Creates an initialized ImageView from a URL to an image resource.<br />
+        /// If the string is empty, ImageView will not display anything.<br />
         /// </summary>
         /// <param name="url">The URL of the image resource to display.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -184,6 +189,9 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
         [Obsolete("Please do not use! this will be deprecated")]
         public new static ImageView DownCast(BaseHandle handle)
         {
@@ -192,8 +200,8 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
         /// <summary>
-        /// Sets this ImageView from the given URL.<br>
-        /// If the URL is empty, ImageView will not display anything.<br>
+        /// Sets this ImageView from the given URL.<br />
+        /// If the URL is empty, ImageView will not display anything.<br />
         /// </summary>
         /// <param name="url">The URL to the image resource to display.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -217,9 +225,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Queries if all resources required by a control are loaded and ready.<br>
-        /// Most resources are only loaded when the control is placed on the stage.<br>
-        /// True if the resources are loaded and ready, false otherwise.<br>
+        /// Queries if all resources required by a control are loaded and ready.<br />
+        /// Most resources are only loaded when the control is placed on the stage.<br />
+        /// True if the resources are loaded and ready, false otherwise.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public new  bool IsResourceReady()
@@ -277,8 +285,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// ImageView PreMultipliedAlpha, type Boolean.<br>
-        /// Image must be initialized.<br>
+        /// ImageView PreMultipliedAlpha, type Boolean.<br />
+        /// Image must be initialized.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool PreMultipliedAlpha
@@ -296,8 +304,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// ImageView PixelArea, type Vector4 (Animatable property).<br>
-        /// Pixel area is a relative value with the whole image area as [0.0, 0.0, 1.0, 1.0].<br>
+        /// ImageView PixelArea, type Vector4 (Animatable property).<br />
+        /// Pixel area is a relative value with the whole image area as [0.0, 0.0, 1.0, 1.0].<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public RelativeVector4 PixelArea
@@ -315,9 +323,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The border of the image in the order: left, right, bottom, top.<br>
-        /// If set, ImageMap will be ignored.<br>
-        /// For N-Patch images only.<br>
+        /// The border of the image in the order: left, right, bottom, top.<br />
+        /// If set, ImageMap will be ignored.<br />
+        /// For N-Patch images only.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -335,9 +343,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets whether to draw the borders only (if true).<br>
-        /// If not specified, the default is false.<br>
-        /// For N-Patch images only.<br>
+        /// Gets or sets whether to draw the borders only (if true).<br />
+        /// If not specified, the default is false.<br />
+        /// For N-Patch images only.<br />
         /// Optional.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -354,6 +362,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether to synchronos loading the resourceurl of image.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool SynchronosLoading
         {
             get
