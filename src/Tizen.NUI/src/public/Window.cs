@@ -687,6 +687,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves the layer at a specified depth.
+        /// </summary>
+        /// <param name="depth">The layer's depth index.</param>
+        /// <returns>The layer found at the given depth.</returns>
         /// <since_tizen> 3 </since_tizen>
         public Layer GetLayer(uint depth)
         {

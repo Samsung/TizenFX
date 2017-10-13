@@ -88,6 +88,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <param name="type">The dispose type.</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
