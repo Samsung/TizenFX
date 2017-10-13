@@ -21,7 +21,7 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Specifically manages the ecore input method framework which enables the virtual or hardware keyboards.
+    /// Specifically manages the input method framework which enables the virtual or hardware keyboards.
     /// </summary>
     public class ImfManager : BaseHandle
     {
@@ -1741,7 +1741,7 @@ namespace Tizen.NUI
             /// </summary>
             Preedit,
             /// <summary>
-            /// Commit recieved.
+            /// Commit received.
             /// </summary>
             Commit,
             /// <summary>

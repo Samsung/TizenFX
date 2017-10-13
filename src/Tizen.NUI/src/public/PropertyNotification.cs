@@ -154,8 +154,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get property notification from Intptr.
+        /// Get property notification from Intptr.<br/>
+        /// This should be internal, please do not use.
         /// </summary>
+        /// <param name="cPtr">An object of IntPtr type.</param>
+        /// <returns>An object of the PropertyNotification type.</returns>
         /// <since_tizen> 4 </since_tizen>
         public static PropertyNotification GetPropertyNotificationFromPtr(global::System.IntPtr cPtr)
         {
@@ -176,6 +179,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Downcast a PropertyNotification instance.
         /// </summary>
+        /// <param name="handle">Handle to an object of BaseHandle type.</param>
+        /// <returns>Handle to an object of the PropertyNotification type.</returns>
         /// <since_tizen> 4 </since_tizen>
         public static PropertyNotification DownCast(BaseHandle handle)
         {
@@ -196,6 +201,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Assign.
         /// </summary>
+        /// <param name="rhs">A reference to the copied handle.</param>
+        /// <returns>A reference to this.</returns>
         /// <since_tizen> 4 </since_tizen>
         public PropertyNotification Assign(PropertyNotification rhs)
         {
@@ -207,6 +214,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the condition of this notification.
         /// </summary>
+        /// <returns>The condition is returned.</returns>
         /// <since_tizen> 4 </since_tizen>
         public PropertyCondition GetCondition()
         {
@@ -229,6 +237,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the target handle's property index that this notification.
         /// </summary>
+        /// <returns>The target property index.</returns>
         /// <since_tizen> 4 </since_tizen>
         public int GetTargetProperty()
         {
@@ -240,6 +249,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the Notification mode.
         /// </summary>
+        /// <param name="mode">mode Notification mode (Default is PropertyNotification::NotifyOnTrue).</param>
         /// <since_tizen> 4 </since_tizen>
         public void SetNotifyMode(PropertyNotification.NotifyMode mode)
         {
@@ -250,6 +260,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Retrieves the current Notification mode.
         /// </summary>
+        /// <returns>Notification mode.</returns>
         /// <since_tizen> 4 </since_tizen>
         public PropertyNotification.NotifyMode GetNotifyMode()
         {

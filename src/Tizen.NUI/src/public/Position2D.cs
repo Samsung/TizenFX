@@ -88,6 +88,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <param name="type">The dispose type.</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
@@ -378,6 +379,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Converts a Position2D instance to a Vector2 instance.
         /// </summary>
+        /// <param name="position2d">An object of the Position2D type.</param>
+        /// <returns>return an object of the Vector2 type</returns>
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector2(Position2D position2d)
         {
@@ -387,6 +390,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Converts a Vector2 instance to a Position2D instance.
         /// </summary>
+        /// <param name="vec">An object of the Vector2 type.</param>
+        /// <returns>return an object of the Position2D type</returns>
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Position2D(Vector2 vec)
         {
@@ -396,6 +401,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Converts a Position2D instance to a Uint16Pair instance.
         /// </summary>
+        /// <param name="position2d">An object of the Position2D type.</param>
+        /// <returns>return an object of the Uint16Pair type</returns>
         /// <since_tizen> 4 </since_tizen>
         public static implicit operator Uint16Pair(Position2D position2d)
         {
@@ -405,6 +412,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Converts a Uint16Pair instance to a Position2D instance.
         /// </summary>
+        /// <param name="pair">An object of the Uint16Pair type.</param>
+        /// <returns>return an object of the Position2D type</returns>
         /// <since_tizen> 4 </since_tizen>
         public static implicit operator Position2D(Uint16Pair pair)
         {

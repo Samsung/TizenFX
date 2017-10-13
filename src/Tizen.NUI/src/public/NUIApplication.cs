@@ -56,16 +56,19 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor with a stylesheet.
         /// </summary>
+        /// <param name="styleSheet">The styleSheet url.</param>
         /// <since_tizen> 3 </since_tizen>
-        public NUIApplication(string stylesheet) : base(new NUICoreBackend(stylesheet))
+        public NUIApplication(string styleSheet) : base(new NUICoreBackend(styleSheet))
         {
         }
 
         /// <summary>
         /// The constructor with a stylesheet and window mode.
         /// </summary>
+        /// <param name="styleSheet">The styleSheet url.</param>
+        /// <param name="windowMode">The windowMode.</param>
         /// <since_tizen> 3 </since_tizen>
-        public NUIApplication(string stylesheet, WindowMode windowMode) : base(new NUICoreBackend(stylesheet,windowMode))
+        public NUIApplication(string styleSheet, WindowMode windowMode) : base(new NUICoreBackend(styleSheet, windowMode))
         {
         }
 

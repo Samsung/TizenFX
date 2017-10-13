@@ -377,6 +377,7 @@ namespace Tizen.NUI
         /// The type cast operator, Size2D to Vector2.
         /// </summary>
         /// <param name="size">An object of the Size2D type.</param>
+        /// <returns>return a Vector2 instance</returns>
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector2(Size2D size)
         {
@@ -386,17 +387,19 @@ namespace Tizen.NUI
         /// <summary>
         /// The type cast operator, Vector2 to Size2D type.
         /// </summary>
-        /// <param name="vec">An object of the Vector2 type.</param>
+        /// <param name="vector2">An object of the Vector2 type.</param>
+        /// <returns>return a Size2D instance</returns>
         /// <since_tizen> 3 </since_tizen>
-        public static implicit operator Size2D(Vector2 vec)
+        public static implicit operator Size2D(Vector2 vector2)
         {
-            return new Size2D((int)vec.X, (int)vec.Y);
+            return new Size2D((int)vector2.X, (int)vector2.Y);
         }
 
         /// <summary>
         /// The type cast operator, Size2D to Uint16Pair.
         /// </summary>
         /// <param name="size2d">An object of the Size2D type.</param>
+        /// <returns>return a Uint16Pair instance</returns>
         /// <since_tizen> 4 </since_tizen>
         public static implicit operator Uint16Pair(Size2D size2d)
         {
@@ -407,6 +410,7 @@ namespace Tizen.NUI
         /// The type cast operator, Uint16Pair to Size2D type.
         /// </summary>
         /// <param name="pair">An object of the Vector2 type.</param>
+        /// <returns>return a Size2D instance</returns>
         /// <since_tizen> 4 </since_tizen>
         public static implicit operator Size2D(Uint16Pair pair)
         {

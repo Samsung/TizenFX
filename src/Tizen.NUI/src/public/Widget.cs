@@ -529,7 +529,7 @@ namespace Tizen.NUI
             /// </summary>
             /// <remark>
             /// 0 -> no force
-            /// 1 -> force but do someting
+            /// 1 -> force but do something
             /// 2 -> force
             /// </remark>
             /// <since_tizen> 4 </since_tizen>

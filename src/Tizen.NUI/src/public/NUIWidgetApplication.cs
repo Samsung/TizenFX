@@ -41,8 +41,9 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor with stylesheet.
         /// </summary>
+        /// <param name="styleSheet">The styleSheet url.</param>
         /// <since_tizen> 4 </since_tizen>
-        public NUIWidgetApplication(string stylesheet) : base(new NUIWidgetCoreBackend(stylesheet))
+        public NUIWidgetApplication(string styleSheet) : base(new NUIWidgetCoreBackend(styleSheet))
         {
             Tizen.Log.Fatal("NUI", "### NUIWidgetApplication(string) called");
         }
