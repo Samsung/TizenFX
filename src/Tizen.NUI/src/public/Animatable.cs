@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
@@ -34,6 +35,10 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// To make the Animatable instance be disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -260,6 +265,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public enum Capability
         {
+            /// <summary>
+            /// Some objects support dynamic property creation at run-time.
+            /// New properties are registered by calling RegisterProperty() with an unused property name.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             DYNAMIC_PROPERTIES = 0x01
         }
 

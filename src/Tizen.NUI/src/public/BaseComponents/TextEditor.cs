@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
@@ -113,7 +114,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// An event for the TextChanged signal which can be used to subscribe or unsubscribe the event handler
-        /// provided by the user. The TextChanged signal is emitted when the text changes.<br>
+        /// provided by the user. The TextChanged signal is emitted when the text changes.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<TextChangedEventArgs> TextChanged
@@ -200,7 +201,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Event for the ScrollStateChanged signal which can be used to subscribe or unsubscribe the event handler
-        /// provided by the user. The ScrollStateChanged signal is emitted when the scroll state changes.<br>
+        /// provided by the user. The ScrollStateChanged signal is emitted when the scroll state changes.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ScrollStateChangedEventArgs> ScrollStateChanged
@@ -329,6 +330,12 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <param name="handle"></param>
+        /// <returns></returns>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public new static TextEditor DownCast(BaseHandle handle)
         {
@@ -359,8 +366,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The TranslatableText property.<br>
-        /// The text can set the SID value.<br>
+        /// The TranslatableText property.<br />
+        /// The text can set the SID value.<br />
         /// </summary>
         /// <exception cref='ArgumentNullException'>
         /// ResourceManager about multilingual is null.
@@ -383,8 +390,8 @@ namespace Tizen.NUI.BaseComponents
             }
         }
         /// <summary>
-        /// The TranslatablePlaceholderText property.<br>
-        /// The text can set the SID value.<br>
+        /// The TranslatablePlaceholderText property.<br />
+        /// The text can set the SID value.<br />
         /// </summary>
         /// <exception cref='ArgumentNullException'>
         /// ResourceManager about multilingual is null.
@@ -436,6 +443,7 @@ namespace Tizen.NUI.BaseComponents
                 PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textEditorPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
             }
         }
+        /// <summary>
         /// The Text property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1391,8 +1399,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The LineWrapMode property.<br>
-        /// The line wrap mode when the text lines over the layout width.<br>
+        /// The LineWrapMode property.<br />
+        /// The line wrap mode when the text lines over the layout width.<br />
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public LineWrapMode LineWrapMode

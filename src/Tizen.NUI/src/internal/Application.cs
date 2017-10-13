@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
@@ -462,7 +463,6 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for Initialized signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of NUIApplicationInitEventHandler - DaliEventHandler<object,NUIApplicationInitEventArgs>)
           *  provided by the user. Initialized signal is emitted when application is initialised
           */
         public event DaliEventHandler<object, NUIApplicationInitEventArgs> Initialized
@@ -515,7 +515,6 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for Terminated signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of NUIApplicationTerminateEventHandler-DaliEventHandler<object,NUIApplicationTerminateEventArgs>)
           *  provided by the user. Terminated signal is emitted when application is terminating
           */
         public event DaliEventHandler<object, NUIApplicationTerminatingEventArgs> Terminating
@@ -566,7 +565,6 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for Paused signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of NUIApplicationPauseEventHandler-DaliEventHandler<object,NUIApplicationPauseEventArgs>)
           * provided by the user. Paused signal is emitted when application is paused
           */
         public event DaliEventHandler<object, NUIApplicationPausedEventArgs> Paused
@@ -617,7 +615,6 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for Resumed signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of NUIApplicationResumeEventHandler-DaliEventHandler<object,NUIApplicationResumeEventArgs>)
           *  provided by the user. Resumed signal is emitted when application is resumed
           */
         public event DaliEventHandler<object, NUIApplicationResumedEventArgs> Resumed
@@ -668,7 +665,6 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for Reset signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of NUIApplicationResetEventHandler-DaliEventHandler<object,NUIApplicationResetEventArgs>)
           *  provided by the user. Reset signal is emitted when application is reset
           */
         public new event DaliEventHandler<object, NUIApplicationResetEventArgs> Reset
@@ -719,7 +715,6 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for Resized signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of NUIApplicationResizeEventHandler-DaliEventHandler<object,NUIApplicationResizeEventArgs>)
           *  provided by the user. Resized signal is emitted when application is resized
           */
         public event DaliEventHandler<object, NUIApplicationResizedEventArgs> Resized
@@ -770,7 +765,6 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for LanguageChanged signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of NUIApplicationLanguageChangedEventHandler-DaliEventHandler<object,NUIApplicationLanguageChangedEventArgs>)
           *  provided by the user. LanguageChanged signal is emitted when the region of the device is changed.
           */
         public event DaliEventHandler<object, NUIApplicationLanguageChangedEventArgs> LanguageChanged
@@ -821,7 +815,6 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for RegionChanged signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of NUIApplicationRegionChangedEventHandler-DaliEventHandler<object,NUIApplicationRegionChangedEventArgs>)
           *  provided by the user. RegionChanged signal is emitted when the region of the device is changed.
           */
         public event DaliEventHandler<object, NUIApplicationRegionChangedEventArgs> RegionChanged
@@ -872,7 +865,6 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for BatteryLow signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of NUIApplicationBatteryLowEventHandler-DaliEventHandler<object,NUIApplicationBatteryLowEventArgs>)
           * provided by the user. BatteryLow signal is emitted when the battery level of the device is low.
           */
         public event DaliEventHandler<object, NUIApplicationBatteryLowEventArgs> BatteryLow
@@ -923,7 +915,6 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for MemoryLow signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of NUIApplicationMemoryLowEventHandler-DaliEventHandler<object,NUIApplicationMemoryLowEventArgs>)
           *  provided by the user. MemoryLow signal is emitted when the memory level of the device is low.
           */
         public event DaliEventHandler<object, NUIApplicationMemoryLowEventArgs> MemoryLow
@@ -974,7 +965,6 @@ namespace Tizen.NUI
 
         /**
           * @brief Event for AppControl signal which can be used to subscribe/unsubscribe the event handler
-          * (in the type of NUIApplicationAppControlEventHandler-DaliEventHandler<object,NUIApplicationAppControlEventArgs>)
           *  provided by the user. AppControl signal is emitted when another application sends a launch request to the application.
           */
         public event DaliEventHandler<object, NUIApplicationAppControlEventArgs> AppControl

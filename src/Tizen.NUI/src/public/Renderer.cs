@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
@@ -33,6 +34,10 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -66,31 +71,131 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        /// <summary>
+        /// Enumeration for instances of properties belonging to the Renderer class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class Property
         {
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int DEPTH_INDEX = NDalicPINVOKE.Renderer_Property_DEPTH_INDEX_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int FACE_CULLING_MODE = NDalicPINVOKE.Renderer_Property_FACE_CULLING_MODE_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int BLEND_MODE = NDalicPINVOKE.Renderer_Property_BLEND_MODE_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int BLEND_EQUATION_RGB = NDalicPINVOKE.Renderer_Property_BLEND_EQUATION_RGB_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int BLEND_EQUATION_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_EQUATION_ALPHA_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int BLEND_FACTOR_SRC_RGB = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_SRC_RGB_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int BLEND_FACTOR_DEST_RGB = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_DEST_RGB_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int BLEND_FACTOR_SRC_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_SRC_ALPHA_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int BLEND_FACTOR_DEST_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_DEST_ALPHA_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int BLEND_COLOR = NDalicPINVOKE.Renderer_Property_BLEND_COLOR_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int BLEND_PRE_MULTIPLIED_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_PRE_MULTIPLIED_ALPHA_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int INDEX_RANGE_FIRST = NDalicPINVOKE.Renderer_Property_INDEX_RANGE_FIRST_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int INDEX_RANGE_COUNT = NDalicPINVOKE.Renderer_Property_INDEX_RANGE_COUNT_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int DEPTH_WRITE_MODE = NDalicPINVOKE.Renderer_Property_DEPTH_WRITE_MODE_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int DEPTH_FUNCTION = NDalicPINVOKE.Renderer_Property_DEPTH_FUNCTION_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int DEPTH_TEST_MODE = NDalicPINVOKE.Renderer_Property_DEPTH_TEST_MODE_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int RENDER_MODE = NDalicPINVOKE.Renderer_Property_RENDER_MODE_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int STENCIL_FUNCTION = NDalicPINVOKE.Renderer_Property_STENCIL_FUNCTION_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int STENCIL_FUNCTION_MASK = NDalicPINVOKE.Renderer_Property_STENCIL_FUNCTION_MASK_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int STENCIL_FUNCTION_REFERENCE = NDalicPINVOKE.Renderer_Property_STENCIL_FUNCTION_REFERENCE_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int STENCIL_MASK = NDalicPINVOKE.Renderer_Property_STENCIL_MASK_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int STENCIL_OPERATION_ON_FAIL = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_FAIL_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int STENCIL_OPERATION_ON_Z_FAIL = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_Z_FAIL_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int STENCIL_OPERATION_ON_Z_PASS = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_Z_PASS_get();
 
         }

@@ -1,26 +1,27 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
-    /// FlexContainer implements a subset of the flexbox spec (defined by W3C):https://www.w3.org/TR/css3-flexbox/<br>
-    /// It aims at providing a more efficient way to layout, align, and distribute space among items in the container, even when their size is unknown or dynamic.<br>
-    /// FlexContainer has the ability to alter the width and the height of its children (i.e., flex items) to fill the available space in the best possible way on different screen sizes.<br>
-    /// FlexContainer can expand items to fill available free space, or shrink them to prevent overflow.<br>
+    /// FlexContainer implements a subset of the flexbox spec (defined by W3C):https://www.w3.org/TR/css3-flexbox/<br />
+    /// It aims at providing a more efficient way to layout, align, and distribute space among items in the container, even when their size is unknown or dynamic.<br />
+    /// FlexContainer has the ability to alter the width and the height of its children (i.e., flex items) to fill the available space in the best possible way on different screen sizes.<br />
+    /// FlexContainer can expand items to fill available free space, or shrink them to prevent overflow.<br />
     /// </summary>
     public class FlexContainer : View
     {
@@ -36,6 +37,10 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// To make the FlexContainer instance be disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed)
@@ -106,9 +111,25 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public enum FlexDirectionType
         {
+            /// <summary>
+            /// The flexible items are displayed vertically as a column.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Column,
+            /// <summary>
+            /// The flexible items are displayed vertically as a column, but in reverse order.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             ColumnReverse,
+            /// <summary>
+            /// The flexible items are displayed horizontally as a row.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Row,
+            /// <summary>
+            /// The flexible items are displayed horizontally as a row.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             RowReverse
         }
 
@@ -119,8 +140,20 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public enum ContentDirectionType
         {
+            /// <summary>
+            /// Inherits the same direction from the parent.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Inherit,
+            /// <summary>
+            /// From left to right.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             LTR,
+            /// <summary>
+            /// From right to left.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             RTL
         }
 
@@ -131,10 +164,30 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public enum Justification
         {
+            /// <summary>
+            /// Items are positioned at the beginning of the container.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             JustifyFlexStart,
+            /// <summary>
+            /// Items are positioned at the center of the container.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             JustifyCenter,
+            /// <summary>
+            /// Items are positioned at the end of the container.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             JustifyFlexEnd,
+            /// <summary>
+            /// Items are positioned with equal space between the lines.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             JustifySpaceBetween,
+            /// <summary>
+            /// Items are positioned with equal space before, between, and after the lines.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             JustifySpaceAround
         }
 
@@ -145,10 +198,30 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public enum Alignment
         {
+            /// <summary>
+            /// Inherits the same alignment from the parent (only valid for "alignSelf" property).
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             AlignAuto,
+            /// <summary>
+            /// At the beginning of the container.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             AlignFlexStart,
+            /// <summary>
+            /// At the center of the container.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             AlignCenter,
+            /// <summary>
+            /// At the end of the container.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             AlignFlexEnd,
+            /// <summary>
+            /// Stretch to fit the container.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             AlignStretch
         }
 
@@ -159,7 +232,15 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public enum WrapType
         {
+            /// <summary>
+            /// Flex items laid out in single line (shrunk to fit the flex container along the main axis).
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             NoWrap,
+            /// <summary>
+            /// Flex items laid out in multiple lines if needed.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Wrap
         }
 

@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
@@ -38,6 +39,10 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -101,7 +106,6 @@ namespace Tizen.NUI
 
         ///<summary>
         /// Event for Notified signal which can be used to subscribe/unsubscribe the event handler
-        /// (in the type of NotifyEventHandler-DaliEventHandler<object,NotifyEventArgs>) provided by the user.
         /// Notified signal is emitted when the notification upon a condition of the property being met, has occurred.
         ///</summary>
         /// <since_tizen> 4 </since_tizen>
@@ -266,6 +270,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Connects to this signal to be notified when the notification has occurred.
+        /// </summary>
+        /// <returns>A signal object to Connect() with</returns>
         public PropertyNotifySignal NotifySignal()
         {
             PropertyNotifySignal ret = new PropertyNotifySignal(NDalicPINVOKE.PropertyNotification_NotifySignal(swigCPtr), false);
@@ -279,9 +287,25 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public enum NotifyMode
         {
+            /// <summary>
+            /// Don't notify, regardless of result of Condition
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Disabled,
+            /// <summary>
+            /// Notify whenever condition changes from false to true.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             NotifyOnTrue,
+            /// <summary>
+            /// Notify whenever condition changes from true to false.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             NotifyOnFalse,
+            /// <summary>
+            /// Notify whenever condition changes (false to true, and true to false)
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             NotifyOnChanged
         }
 

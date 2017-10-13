@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI.UIComponents
 {
@@ -88,6 +89,10 @@ namespace Tizen.NUI.UIComponents
             private float _progressValue;
             private float _secondaryProgressValue;
 
+            /// <summary>
+            /// ProgressBar
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public ProgressBar ProgressBar
             {
                 get
@@ -100,6 +105,10 @@ namespace Tizen.NUI.UIComponents
                 }
             }
 
+            /// <summary>
+            /// The progress value of the progress bar, the progress runs from 0 to 1.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public float ProgressValue
             {
                 get
@@ -112,6 +121,10 @@ namespace Tizen.NUI.UIComponents
                 }
             }
 
+            /// <summary>
+            /// The secondary progress value of the progress bar, the secondary progress runs from 0 to 1.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public float SecondaryProgressValue
             {
                 get
@@ -203,10 +216,10 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// The progress value of the progress bar, the progress runs from 0 to 1.<br>
-        /// If the value is set to 0, then the progress bar will be set to beginning.<br>
-        /// If the value is set to 1, then the progress bar will be set to end.<br>
-        /// Any value outside the range is ignored.<br>
+        /// The progress value of the progress bar, the progress runs from 0 to 1.<br />
+        /// If the value is set to 0, then the progress bar will be set to beginning.<br />
+        /// If the value is set to 1, then the progress bar will be set to end.<br />
+        /// Any value outside the range is ignored.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float ProgressValue
@@ -223,11 +236,11 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// The secondary progress value of the progress bar, the secondary progress runs from 0 to 1.<br>
-        /// Optional. If not supplied, the default is 0.<br>
-        /// If the value is set to 0, then the progress bar will be set secondary progress to beginning.<br>
-        /// If the value is set to 1, then the progress bar will be set secondary progress to end.<br>
-        /// Any value outside of the range is ignored.<br>
+        /// The secondary progress value of the progress bar, the secondary progress runs from 0 to 1.<br />
+        /// Optional. If not supplied, the default is 0.<br />
+        /// If the value is set to 0, then the progress bar will be set secondary progress to beginning.<br />
+        /// If the value is set to 1, then the progress bar will be set secondary progress to end.<br />
+        /// Any value outside of the range is ignored.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float SecondaryProgressValue
@@ -261,8 +274,8 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// The track visual value of progress bar, it's full progress area, and it's shown behind the PROGRESS_VISUAL.<br>
-        /// Optional. If not supplied, the default track visual will be shown.<br>
+        /// The track visual value of progress bar, it's full progress area, and it's shown behind the PROGRESS_VISUAL.<br />
+        /// Optional. If not supplied, the default track visual will be shown.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap TrackVisual
@@ -279,8 +292,8 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// The progress visual value of the progress bar, the size of the progress visual is changed based on the PROGRESS_VALUE.<br>
-        /// Optional. If not supplied, then the default progress visual will be shown.<br>
+        /// The progress visual value of the progress bar, the size of the progress visual is changed based on the PROGRESS_VALUE.<br />
+        /// Optional. If not supplied, then the default progress visual will be shown.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap ProgressVisual
@@ -297,8 +310,8 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// The secondary progress visual of the progress bar, the size of the secondary progress visual is changed based on the SECONDARY_PROGRESS_VALUE.<br>
-        /// Optional. If not supplied, then the secondary progress visual will not be shown.<br>
+        /// The secondary progress visual of the progress bar, the size of the secondary progress visual is changed based on the SECONDARY_PROGRESS_VALUE.<br />
+        /// Optional. If not supplied, then the secondary progress visual will not be shown.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap SecondaryProgressVisual
@@ -315,8 +328,8 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// The indeterminate visual of the progress bar.<br>
-        /// Optional. If not supplied, then the default indeterminate visual will be shown.<br>
+        /// The indeterminate visual of the progress bar.<br />
+        /// Optional. If not supplied, then the default indeterminate visual will be shown.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap IndeterminateVisual
@@ -333,8 +346,8 @@ namespace Tizen.NUI.UIComponents
             }
         }
         /// <summary>
-        /// The transition data for the indeterminate visual animation.<br>
-        /// Optional. If not supplied, then the default animation will be played.<br>
+        /// The transition data for the indeterminate visual animation.<br />
+        /// Optional. If not supplied, then the default animation will be played.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyArray IndeterminateVisualAnimation

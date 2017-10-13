@@ -24,6 +24,10 @@ namespace Tizen.NUI
     public class Position2D : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal Position2D(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -39,9 +43,16 @@ namespace Tizen.NUI
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+        /// <summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
         protected bool disposed = false;
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~Position2D()
         {
             if (!isDisposeQueued)
@@ -51,6 +62,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -70,6 +85,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)

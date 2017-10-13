@@ -205,7 +205,15 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public enum WindowMode
         {
+            /// <summary>
+            /// Opaque
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Opaque = 0,
+            /// <summary>
+            /// Transparent
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Transparent = 1
         }
 

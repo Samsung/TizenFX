@@ -73,8 +73,16 @@ namespace Tizen.NUI
     ///
     public class ScriptableProperty : System.Attribute
     {
+        /// <summary>
+        /// Rhe enum of ScriptableType
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum ScriptableType
         {
+            /// <summary>
+            /// Read Writable, non-animatable property, event thread only.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Default,    // Read Writable, non-animatable property, event thread only
                         //  Animatable // Animatable property, Currently disabled, UK
         }
@@ -145,7 +153,7 @@ namespace Tizen.NUI
         private PropertyRangeManager _propertyRangeManager;
 
         ///<summary>
-        // Maps the name of a custom view to a create instance function
+        /// Maps the name of a custom view to a create instance function
         /// For example, given a string "Spin", we can get a function used to create the Spin View.
         ///</summary>
         private Dictionary<String, Func<CustomView>> _constructorMap;

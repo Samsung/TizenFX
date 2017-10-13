@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 using System;
 
@@ -22,6 +23,10 @@ namespace Tizen.NUI
     internal class Property : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -37,7 +42,10 @@ namespace Tizen.NUI
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+        /// <summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
         protected bool disposed = false;
 
         ~Property()
@@ -153,8 +161,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This constructor creates a property instance.<br>
-        /// This performs a property index query and is therefore slower than constructing a property directly with the index.<br>
+        /// This constructor creates a property instance.<br />
+        /// This performs a property index query and is therefore slower than constructing a property directly with the index.<br />
         /// </summary>
         /// <param name="arg0">A valid handle to the target object.</param>
         /// <param name="propertyName">The property name.</param>
@@ -165,8 +173,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This constructor creates a property instance.<br>
-        /// This performs a property index query and is therefore slower than constructing a property directly with the index.<br>
+        /// This constructor creates a property instance.<br />
+        /// This performs a property index query and is therefore slower than constructing a property directly with the index.<br />
         /// </summary>
         /// <param name="arg0">A valid handle to the target object.</param>
         /// <param name="propertyName">The property name.</param>
@@ -238,6 +246,10 @@ namespace Tizen.NUI
     public class PropertyArray : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal PropertyArray(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -253,9 +265,16 @@ namespace Tizen.NUI
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+        /// <summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
         protected bool disposed = false;
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~PropertyArray()
         {
             if(!isDisposeQueued)
@@ -265,6 +284,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -284,6 +307,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -477,6 +504,10 @@ namespace Tizen.NUI
     public class PropertyKey : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal PropertyKey(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -492,9 +523,16 @@ namespace Tizen.NUI
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+        /// <summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
         protected bool disposed = false;
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~PropertyKey()
         {
             if(!isDisposeQueued)
@@ -504,6 +542,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -523,6 +565,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -714,7 +760,15 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public enum KeyType
         {
+            /// <summary>
+            /// The type of key is index.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Index,
+            /// <summary>
+            /// The type of key is string.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             String
         }
 
@@ -726,6 +780,10 @@ namespace Tizen.NUI
     public class PropertyMap : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal PropertyMap(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -741,9 +799,16 @@ namespace Tizen.NUI
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+        /// <summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
         protected bool disposed = false;
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~PropertyMap()
         {
             if(!isDisposeQueued)
@@ -753,6 +818,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -772,6 +841,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -803,8 +876,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The operator to access the element with the specified string key.<br>
-        /// If an element with the key does not exist, then it is created.<br>
+        /// The operator to access the element with the specified string key.<br />
+        /// If an element with the key does not exist, then it is created.<br />
         /// </summary>
         /// <param name="key">The key whose value to access.</param>
         /// <returns>A value for the element with the specified key.</returns>
@@ -818,8 +891,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The operator to access the element with the specified index key.<br>
-        /// If an element with the key does not exist, then it is created.<br>
+        /// The operator to access the element with the specified index key.<br />
+        /// If an element with the key does not exist, then it is created.<br />
         /// </summary>
         /// <param name="key">The key whose value to access.</param>
         /// <returns>A value for the element with the specified key.</returns>
@@ -876,8 +949,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inserts the key-value pair in the map, with the key type as string.<br>
-        /// Does not check for duplicates.<br>
+        /// Inserts the key-value pair in the map, with the key type as string.<br />
+        /// Does not check for duplicates.<br />
         /// </summary>
         /// <param name="key">The key to insert.</param>
         /// <param name="value">The value to insert.</param>
@@ -889,8 +962,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inserts the key-value pair in the map, with the key type as index.<br>
-        /// Does not check for duplicates.<br>
+        /// Inserts the key-value pair in the map, with the key type as index.<br />
+        /// Does not check for duplicates.<br />
         /// </summary>
         /// <param name="key">The key to insert.</param>
         /// <param name="value">The value to insert.</param>
@@ -902,8 +975,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inserts the key-value pair in the map, with the key type as string.<br>
-        /// Does not check for duplicates.<br>
+        /// Inserts the key-value pair in the map, with the key type as string.<br />
+        /// Does not check for duplicates.<br />
         /// </summary>
         /// <param name="key">The key to insert.</param>
         /// <param name="value">The value to insert.</param>
@@ -917,8 +990,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inserts the key-value pair in the map, with the key type as string.<br>
-        /// Does not check for duplicates.<br>
+        /// Inserts the key-value pair in the map, with the key type as string.<br />
+        /// Does not check for duplicates.<br />
         /// </summary>
         /// <param name="key">The key to insert.</param>
         /// <param name="value">The value to insert.</param>
@@ -944,6 +1017,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public string GetKey(uint position)
         {
@@ -965,6 +1042,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public PropertyValue Find(string key)
         {
@@ -1003,6 +1084,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public PropertyValue Find(string key, PropertyType type)
         {
@@ -1012,6 +1097,10 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public PropertyValue Find(int key, PropertyType type)
         {
@@ -1032,8 +1121,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Merges values from the map 'from' to the current.<br>
-        /// Any values in 'from' will overwrite the values in the current map.<br>
+        /// Merges values from the map 'from' to the current.<br />
+        /// Any values in 'from' will overwrite the values in the current map.<br />
         /// </summary>
         /// <param name="from">The map to merge from.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -1074,6 +1163,10 @@ namespace Tizen.NUI
     public class PropertyValue : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal PropertyValue(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -1089,9 +1182,16 @@ namespace Tizen.NUI
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+        /// <summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
         protected bool disposed = false;
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~PropertyValue()
         {
             if(!isDisposeQueued)
@@ -1101,6 +1201,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -1120,6 +1224,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -1153,12 +1261,12 @@ namespace Tizen.NUI
 
         /// <summary>
         /// An extension to the property value class that allows us to create a
-        /// Property value from a C# object, for example, integer, float, or string.<br>
+        /// Property value from a C# object, for example, integer, float, or string.<br />
         /// </summary>
         /// <param name="obj">An object to create.</param>
         /// <returns>The created value.</returns>
-        static /// <since_tizen> 3 </since_tizen>
- public PropertyValue CreateFromObject(System.Object obj)
+        /// <since_tizen> 3 </since_tizen>
+        static public PropertyValue CreateFromObject(System.Object obj)
         {
             System.Type type = obj.GetType();
 

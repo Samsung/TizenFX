@@ -26,6 +26,10 @@ namespace Tizen.NUI
     public class RelativeVector4 : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal RelativeVector4(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -41,9 +45,16 @@ namespace Tizen.NUI
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~RelativeVector4()
         {
             if(!isDisposeQueued)
@@ -53,6 +64,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -72,6 +87,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)

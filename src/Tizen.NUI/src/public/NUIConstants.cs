@@ -23,12 +23,40 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public enum ScrollModeType
     {
-      XAxisScrollEnabled,
-      XAxisSnapToInterval,
-      XAxisScrollBoundary,
-      YAxisScrollEnabled,
-      YAxisSnapToInterval,
-      YAxisScrollBoundary
+        /// <summary>
+        /// Whether the content can be scrolled along the X axis or not.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        XAxisScrollEnabled,
+        /// <summary>
+        /// When set, causes scroll view to snap to multiples of the
+        /// value of the interval while flicking along the X axis.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        XAxisSnapToInterval,
+        /// <summary>
+        /// When set, the scroll view is unable to scroll beyond the
+        /// value of the boundary along the X axis.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        XAxisScrollBoundary,
+        /// <summary>
+        /// Whether the content can be scrolled along the Y axis or not.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        YAxisScrollEnabled,
+        /// <summary>
+        /// When set, causes scroll view to snap to multiples of the
+        /// value of the interval while flicking along the Y axis.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        YAxisSnapToInterval,
+        /// <summary>
+        /// When set, the scroll view is unable to scroll beyond the
+        /// value of the boundary along the Y axis.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        YAxisScrollBoundary
     }
 
     /// <summary>
@@ -226,6 +254,10 @@ namespace Tizen.NUI
         /// Use to make style change event disabled.
         /// </summary>
         DisableStyleChangeSignals = 1 << 6,
+        /// <summary>
+        /// [EditorBrowsable(EditorBrowsableState.Never)]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         LastViewBehaviourFlag
     }
@@ -233,18 +265,50 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public enum DeviceClassType
     {
+        /// <summary>
+        /// Not a device.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         None,
+        /// <summary>
+        /// The user/seat (the user themselves).
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Seat,
+        /// <summary>
+        /// A regular keyboard, numberpad or attached buttons.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Keyboard,
+        /// <summary>
+        /// A mouse, trackball or touchpad relative motion device.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Mouse,
+        /// <summary>
+        /// A touchscreen with fingers or stylus.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Touch,
+        /// <summary>
+        /// A special pen device.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Pen,
+        /// <summary>
+        ///  A pointing device based on laser, infrared or similar technology.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Pointer,
+        /// <summary>
+        /// A gamepad controller or joystick.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         Gamepad
     }
 
     /// <summary>
-    /// This specifies all the property types.<br>
+    /// This specifies all the property types.<br />
     /// Enumeration for the property types supported.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -309,7 +373,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies the property access mode types.<br>
+    /// This specifies the property access mode types.<br />
     /// Enumeration for the access mode for custom properties.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -424,7 +488,7 @@ namespace Tizen.NUI
         /// </summary>
         Leave,
         /// <summary>
-        /// No change from last event. <br>
+        /// No change from last event. <br />
         /// Useful when a multi-point event occurs where all points are sent, but indicates that this particular point has not changed since the last time.
         /// </summary>
         Stationary,
@@ -475,7 +539,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies wrap mode types.<br>
+    /// This specifies wrap mode types.<br />
     /// WrapModeU and WrapModeV separately decide how the texture should be sampled when the u and v coordinate exceeds the range of 0.0 to 1.0.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -516,8 +580,8 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies SpreadMethod types.<br>
-    /// SpreadMethod defines what happens if the gradient starts or ends inside the bounds of the target rectangle.<br>
+    /// This specifies SpreadMethod types.<br />
+    /// SpreadMethod defines what happens if the gradient starts or ends inside the bounds of the target rectangle.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum GradientVisualSpreadMethodType
@@ -593,9 +657,9 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies fitting mode types. Fitting options, used when resizing images to fit desired dimensions.<br>
-    /// A fitting mode controls the region of a loaded image to be mapped to the desired image rectangle.<br>
-    /// All fitting modes preserve the aspect ratio of the image contents.<br>
+    /// This specifies fitting mode types. Fitting options, used when resizing images to fit desired dimensions.<br />
+    /// A fitting mode controls the region of a loaded image to be mapped to the desired image rectangle.<br />
+    /// All fitting modes preserve the aspect ratio of the image contents.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum FittingModeType
@@ -619,16 +683,16 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This specifies sampling mode types. Filtering options are used when resizing images to sample original pixels.<br>
-    /// A SamplingMode controls how pixels in an input image are sampled and combined to generate each pixel of a destination image during scaling.<br>
-    /// NoFilter and Box modes do not guarantee that the output pixel array exactly matches the rectangle specified by the desired dimensions and the FittingMode,<br>
-    /// but all other filter modes do if the desired dimensions are `<=` the raw dimensions of the input image file.<br>
+    /// This specifies sampling mode types. Filtering options are used when resizing images to sample original pixels.<br />
+    /// A SamplingMode controls how pixels in an input image are sampled and combined to generate each pixel of a destination image during scaling.<br />
+    /// NoFilter and Box modes do not guarantee that the output pixel array exactly matches the rectangle specified by the desired dimensions and the FittingMode,<br />
+    /// but all other filter modes do if the desired dimensions are not more than the raw dimensions of the input image file.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum SamplingModeType
     {
         /// <summary>
-        /// Iteratively box filter to generate an image of 1/2, 1/4, 1/8, etc. width and height and approximately the desired size. <br>
+        /// Iteratively box filter to generate an image of 1/2, 1/4, 1/8, etc. width and height and approximately the desired size. <br />
         /// This is the default.
         /// </summary>
         Box,
@@ -641,8 +705,8 @@ namespace Tizen.NUI
         /// </summary>
         Linear,
         /// <summary>
-        /// Iteratively box filter to generate an image of 1/2, 1/4, 1/8, etc. width and height and approximately the desired size, <br>
-        /// then for each output pixel, read one pixel from the last level of box filtering.<br>
+        /// Iteratively box filter to generate an image of 1/2, 1/4, 1/8, etc. width and height and approximately the desired size, <br />
+        /// then for each output pixel, read one pixel from the last level of box filtering.<br />
         /// </summary>
         BoxThenNearest,
         /// <summary>
@@ -771,11 +835,35 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public struct Property
         {
+            /// <summary>
+            /// Type.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int Type = NDalic.VISUAL_PROPERTY_TYPE;
+            /// <summary>
+            /// Shader.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int Shader = NDalic.VISUAL_PROPERTY_SHADER;
+            /// <summary>
+            /// Transform.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int Transform = NDalic.VISUAL_PROPERTY_TRANSFORM;
+            /// <summary>
+            /// PremultipliedAlpha.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int PremultipliedAlpha = NDalic.VISUAL_PROPERTY_PREMULTIPLIED_ALPHA;
+            /// <summary>
+            /// MixColor.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int MixColor = NDalic.VISUAL_PROPERTY_MIX_COLOR;
+            /// <summary>
+            /// Opacity.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int Opacity = NDalic.VISUAL_PROPERTY_MIX_COLOR + 1;
         }
 
@@ -785,10 +873,30 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public struct ShaderProperty
         {
+            /// <summary>
+            /// Vertex shader code
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int VertexShader = NDalic.VISUAL_SHADER_VERTEX;
+            /// <summary>
+            /// Fragment shader code
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int FragmentShader = NDalic.VISUAL_SHADER_FRAGMENT;
+            /// <summary>
+            /// How to subdivide the grid along X
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int ShaderSubdivideGridX = NDalic.VISUAL_SHADER_SUBDIVIDE_GRID_X;
+            /// <summary>
+            /// How to subdivide the grid along Y
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int ShaderSubdivideGridY = NDalic.VISUAL_SHADER_SUBDIVIDE_GRID_Y;
+            /// <summary>
+            /// Bitmask of hints
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int ShaderHints = NDalic.VISUAL_SHADER_HINTS;
         }
 
@@ -798,14 +906,50 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public enum AlignType
         {
+            /// <summary>
+            /// TopBegin
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             TopBegin = 0,
+            /// <summary>
+            /// TopCenter
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             TopCenter,
+            /// <summary>
+            /// TopEnd
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             TopEnd,
+            /// <summary>
+            /// CenterBegin
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             CenterBegin,
+            /// <summary>
+            /// Center
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Center,
+            /// <summary>
+            /// CenterEnd
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             CenterEnd,
+            /// <summary>
+            /// BottomBegin
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             BottomBegin,
+            /// <summary>
+            /// BottomCenter
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             BottomCenter,
+            /// <summary>
+            /// BottomEnd
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             BottomEnd
         }
     }
@@ -816,8 +960,20 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public struct BorderVisualProperty
     {
+        /// <summary>
+        /// The color of the border.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int Color = NDalic.BORDER_VISUAL_COLOR;
+        /// <summary>
+        /// The width of the border (in pixels).
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int Size = NDalic.BORDER_VISUAL_SIZE;
+        /// <summary>
+        /// Whether anti-aliasing of the border is required.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int AntiAliasing = NDalic.BORDER_VISUAL_ANTI_ALIASING;
     }
 
@@ -827,6 +983,10 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public struct ColorVisualProperty
     {
+        /// <summary>
+        /// The solid color required.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int MixColor = NDalic.COLOR_VISUAL_MIX_COLOR;
     }
 
@@ -836,13 +996,45 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public struct GradientVisualProperty
     {
+        /// <summary>
+        /// The start position of a linear gradient.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int StartPosition = NDalic.GRADIENT_VISUAL_START_POSITION;
+        /// <summary>
+        /// The end position of a linear gradient.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int EndPosition = NDalic.GRADIENT_VISUAL_END_POSITION;
+        /// <summary>
+        /// The center point of a radial gradient.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int Center = NDalic.GRADIENT_VISUAL_CENTER;
+        /// <summary>
+        /// The size of the radius of a radial gradient.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int Radius = NDalic.GRADIENT_VISUAL_RADIUS;
+        /// <summary>
+        /// All the stop offsets.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int StopOffset = NDalic.GRADIENT_VISUAL_STOP_OFFSET;
+        /// <summary>
+        /// The color at the stop offsets.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int StopColor = NDalic.GRADIENT_VISUAL_STOP_COLOR;
+        /// <summary>
+        /// Defines the coordinate system for certain attributes of the points in a gradient.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int Units = NDalic.GRADIENT_VISUAL_UNITS;
+        /// <summary>
+        /// Indicates what happens if the gradient starts or ends inside the bounds of the target rectangle.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int SpreadMethod = NDalic.GRADIENT_VISUAL_SPREAD_METHOD;
     }
 
@@ -852,22 +1044,73 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public struct ImageVisualProperty
     {
+        /// <summary>
+        /// The URL of the image.
+        /// </summary>
         public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
+        /// <summary>
+        /// The URL of the alpha mask image.
+        /// </summary>
         public static readonly int AlphaMaskURL = NDalic.IMAGE_VISUAL_ALPHA_MASK_URL;
+        /// <summary>
+        /// Fitting options, used when resizing images to fit desired dimensions.
+        /// </summary>
         public static readonly int FittingMode = NDalic.IMAGE_VISUAL_FITTING_MODE;
+        /// <summary>
+        /// Filtering options, used when resizing images to sample original pixels.
+        /// </summary>
         public static readonly int SamplingMode = NDalic.IMAGE_VISUAL_SAMPLING_MODE;
+        /// <summary>
+        /// The desired image width.
+        /// </summary>
         public static readonly int DesiredWidth = NDalic.IMAGE_VISUAL_DESIRED_WIDTH;
+        /// <summary>
+        /// The desired image height.
+        /// </summary>
         public static readonly int DesiredHeight = NDalic.IMAGE_VISUAL_DESIRED_HEIGHT;
+        /// <summary>
+        /// Whether to load the image synchronously.
+        /// </summary>
         public static readonly int SynchronousLoading = NDalic.IMAGE_VISUAL_SYNCHRONOUS_LOADING;
+        /// <summary>
+        /// If true, only draws the borders.
+        /// </summary>
         public static readonly int BorderOnly = NDalic.IMAGE_VISUAL_BORDER_ONLY;
+        /// <summary>
+        /// The image area to be displayed.
+        /// </summary>
         public static readonly int PixelArea = NDalic.IMAGE_VISUAL_PIXEL_AREA;
+        /// <summary>
+        /// The wrap mode for u coordinate.
+        /// </summary>
         public static readonly int WrapModeU = NDalic.IMAGE_VISUAL_WRAP_MODE_U;
+        /// <summary>
+        /// The wrap mode for v coordinate.
+        /// </summary>
         public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
+        /// <summary>
+        /// The border of the image.
+        /// </summary>
         public static readonly int Border = NDalic.IMAGE_VISUAL_BORDER;
+        /// <summary>
+        /// The scale factor to apply to the content image before masking.
+        /// </summary>
         public static readonly int MaskContentScale = NDalic.IMAGE_VISUAL_MASK_CONTENT_SCALE;
+        /// <summary>
+        /// Whether to crop image to mask or scale mask to fit image
+        /// </summary>
         public static readonly int CropToMask = NDalic.IMAGE_VISUAL_CROP_TO_MASK;
+        /// <summary>
+        /// Defines the batch size for pre-loading images in the AnimatedImageVisual
+        /// </summary>
         public static readonly int BatchSize = NDalic.IMAGE_VISUAL_BATCH_SIZE;
+        /// <summary>
+        /// Defines the cache size for loading images in the AnimatedImageVisual
+        /// </summary>
         public static readonly int CacheSize = NDalic.IMAGE_VISUAL_CACHE_SIZE;
+        /// <summary>
+        /// The number of milliseconds between each frame in the AnimatedImageVisual
+        /// </summary>
         public static readonly int FrameDelay = NDalic.IMAGE_VISUAL_FRAME_DELAY;
 
     }
@@ -878,12 +1121,33 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public struct MeshVisualProperty
     {
+        /// <summary>
+        /// The location of the ".obj" file.
+        /// </summary>
         public static readonly int ObjectURL = NDalic.MESH_VISUAL_OBJECT_URL;
+        /// <summary>
+        /// The location of the ".mtl" file.
+        /// </summary>
         public static readonly int MaterialtURL = NDalic.MESH_VISUAL_MATERIAL_URL;
+        /// <summary>
+        /// Path to the directory the textures (including gloss and normal) are stored in.
+        /// </summary>
         public static readonly int TexturesPath = NDalic.MESH_VISUAL_TEXTURES_PATH;
+        /// <summary>
+        /// Sets the type of shading mode that the mesh will use.
+        /// </summary>
         public static readonly int ShadingMode = NDalic.MESH_VISUAL_SHADING_MODE;
+        /// <summary>
+        /// Whether to use mipmaps for textures or not.
+        /// </summary>
         public static readonly int UseMipmapping = NDalic.MESH_VISUAL_USE_MIPMAPPING;
+        /// <summary>
+        /// Whether to average normals at each point to smooth textures or not.
+        /// </summary>
         public static readonly int UseSoftNormals = NDalic.MESH_VISUAL_USE_SOFT_NORMALS;
+        /// <summary>
+        /// The position, in stage space, of the point light that applies lighting to the model.
+        /// </summary>
         public static readonly int LightPosition = NDalic.MESH_VISUAL_LIGHT_POSITION;
     }
 
@@ -893,17 +1157,53 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public struct PrimitiveVisualProperty
     {
+        /// <summary>
+        /// The specific shape to render.
+        /// </summary>
         public static readonly int Shape = NDalic.PRIMITIVE_VISUAL_SHAPE;
+        /// <summary>
+        /// The color of the shape.
+        /// </summary>
         public static readonly int MixColor = NDalic.PRIMITIVE_VISUAL_MIX_COLOR;
+        /// <summary>
+        /// The number of slices as you go around the shape.
+        /// </summary>
         public static readonly int Slices = NDalic.PRIMITIVE_VISUAL_SLICES;
+        /// <summary>
+        /// The number of stacks as you go down the shape.
+        /// </summary>
         public static readonly int Stacks = NDalic.PRIMITIVE_VISUAL_STACKS;
+        /// <summary>
+        /// The scale of the radius of the top circle of a conical frustrum.
+        /// </summary>
         public static readonly int ScaleTopRadius = NDalic.PRIMITIVE_VISUAL_SCALE_TOP_RADIUS;
+        /// <summary>
+        /// The scale of the radius of the bottom circle of a conical frustrum.
+        /// </summary>
         public static readonly int ScaleBottomRadius = NDalic.PRIMITIVE_VISUAL_SCALE_BOTTOM_RADIUS;
+        /// <summary>
+        /// The scale of the height of a conic.
+        /// </summary>
         public static readonly int ScaleHeight = NDalic.PRIMITIVE_VISUAL_SCALE_HEIGHT;
+        /// <summary>
+        /// The scale of the radius of a cylinder.
+        /// </summary>
         public static readonly int ScaleRadius = NDalic.PRIMITIVE_VISUAL_SCALE_RADIUS;
+        /// <summary>
+        /// The dimensions of a cuboid. Scales in the same fashion as a 9-patch image.
+        /// </summary>
         public static readonly int ScaleDimensions = NDalic.PRIMITIVE_VISUAL_SCALE_DIMENSIONS;
+        /// <summary>
+        /// Determines how bevelled the cuboid should be, based off the smallest dimension.
+        /// </summary>
         public static readonly int BevelPercentage = NDalic.PRIMITIVE_VISUAL_BEVEL_PERCENTAGE;
+        /// <summary>
+        /// Defines how smooth the bevelled edges should be.
+        /// </summary>
         public static readonly int BevelSmoothness = NDalic.PRIMITIVE_VISUAL_BEVEL_SMOOTHNESS;
+        /// <summary>
+        /// The position, in stage space, of the point light that applies lighting to the model.
+        /// </summary>
         public static readonly int LightPosition = NDalic.PRIMITIVE_VISUAL_LIGHT_POSITION;
     }
 
@@ -913,14 +1213,41 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public struct TextVisualProperty
     {
+        /// <summary>
+        /// The text to display in UTF-8 format.
+        /// </summary>
         public static readonly int Text = NDalic.TEXT_VISUAL_TEXT;
+        /// <summary>
+        /// The requested font family to use.
+        /// </summary>
         public static readonly int FontFamily = NDalic.TEXT_VISUAL_FONT_FAMILY;
+        /// <summary>
+        /// The requested font style to use.
+        /// </summary>
         public static readonly int FontStyle = NDalic.TEXT_VISUAL_FONT_STYLE;
+        /// <summary>
+        /// The size of font in points.
+        /// </summary>
         public static readonly int PointSize = NDalic.TEXT_VISUAL_POINT_SIZE;
+        /// <summary>
+        /// The single-line or multi-line layout option.
+        /// </summary>
         public static readonly int MultiLine = NDalic.TEXT_VISUAL_MULTI_LINE;
+        /// <summary>
+        /// The line horizontal alignment.
+        /// </summary>
         public static readonly int HorizontalAlignment = NDalic.TEXT_VISUAL_HORIZONTAL_ALIGNMENT;
+        /// <summary>
+        /// The line vertical alignment.
+        /// </summary>
         public static readonly int VerticalAlignment = NDalic.TEXT_VISUAL_VERTICAL_ALIGNMENT;
+        /// <summary>
+        /// The color of the text.
+        /// </summary>
         public static readonly int TextColor = NDalic.TEXT_VISUAL_TEXT_COLOR;
+        /// <summary>
+        /// Whether the mark-up processing is enabled.
+        /// </summary>
         public static readonly int EnableMarkup = NDalic.TEXT_VISUAL_ENABLE_MARKUP;
     }
 
@@ -930,16 +1257,49 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public struct NpatchImageVisualProperty
     {
+        /// <summary>
+        /// The URL of the image.
+        /// </summary>
         public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
+        /// <summary>
+        /// Fitting options, used when resizing images to fit desired dimensions.
+        /// </summary>
         public static readonly int FittingMode = NDalic.IMAGE_VISUAL_FITTING_MODE;
+        /// <summary>
+        /// Filtering options, used when resizing images to sample original pixels.
+        /// </summary>
         public static readonly int SamplingMode = NDalic.IMAGE_VISUAL_SAMPLING_MODE;
+        /// <summary>
+        /// The desired image width.
+        /// </summary>
         public static readonly int DesiredWidth = NDalic.IMAGE_VISUAL_DESIRED_WIDTH;
+        /// <summary>
+        /// The desired image height.
+        /// </summary>
         public static readonly int DesiredHeight = NDalic.IMAGE_VISUAL_DESIRED_HEIGHT;
+        /// <summary>
+        /// Whether to load the image synchronously.
+        /// </summary>
         public static readonly int SynchronousLoading = NDalic.IMAGE_VISUAL_SYNCHRONOUS_LOADING;
+        /// <summary>
+        /// If true, only draws the borders.
+        /// </summary>
         public static readonly int BorderOnly = NDalic.IMAGE_VISUAL_BORDER_ONLY;
+        /// <summary>
+        /// The image area to be displayed.
+        /// </summary>
         public static readonly int PixelArea = NDalic.IMAGE_VISUAL_PIXEL_AREA;
+        /// <summary>
+        /// The wrap mode for u coordinate.
+        /// </summary>
         public static readonly int WrapModeU = NDalic.IMAGE_VISUAL_WRAP_MODE_U;
+        /// <summary>
+        /// The wrap mode for v coordinate.
+        /// </summary>
         public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
+        /// <summary>
+        /// The border of the image.
+        /// </summary>
         public static readonly int Border = NDalic.IMAGE_VISUAL_WRAP_MODE_V + 1;
     }
 
@@ -949,9 +1309,21 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public struct HiddenInputProperty
     {
+        /// <summary>
+        /// The mode for input text display.
+        /// </summary>
         public static readonly int Mode = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_MODE_get();
+        /// <summary>
+        /// All input characters are substituted by this character.
+        /// </summary>
         public static readonly int SubstituteCharacter = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_SUBSTITUTE_CHARACTER_get();
+        /// <summary>
+        /// Length of text to show or hide, available when HIDE_COUNT/SHOW_COUNT mode is used.
+        /// </summary>
         public static readonly int SubstituteCount = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_SUBSTITUTE_COUNT_get();
+        /// <summary>
+        /// Hide last character after this duration, available when SHOW_LAST_CHARACTER mode.
+        /// </summary>
         public static readonly int ShowDuration = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_SHOW_DURATION_get();
     }
 
@@ -989,6 +1361,10 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public struct ParentOrigin
     {
+        /// <summary>
+        /// Top
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Top
         {
             get
@@ -998,6 +1374,11 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        /// <summary>
+        /// Bottom
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Bottom
         {
             get
@@ -1007,6 +1388,11 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        /// <summary>
+        /// Left
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Left
         {
             get
@@ -1016,6 +1402,11 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        /// <summary>
+        /// Right
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Right
         {
             get
@@ -1025,6 +1416,11 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        /// <summary>
+        /// Middle
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Middle
         {
             get
@@ -1034,6 +1430,11 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        /// <summary>
+        /// TopLeft
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position TopLeft
         {
             get
@@ -1044,6 +1445,11 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        /// <summary>
+        /// TopCenter
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position TopCenter
         {
             get
@@ -1054,6 +1460,11 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        /// <summary>
+        /// TopRight
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position TopRight
         {
             get
@@ -1064,6 +1475,11 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        /// <summary>
+        /// CenterLeft
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position CenterLeft
         {
             get
@@ -1074,6 +1490,11 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        /// <summary>
+        /// Center
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position Center
         {
             get
@@ -1084,6 +1505,11 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        /// <summary>
+        /// CenterRight
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position CenterRight
         {
             get
@@ -1094,6 +1520,11 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        /// <summary>
+        /// BottomLeft
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position BottomLeft
         {
             get
@@ -1104,6 +1535,11 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        /// <summary>
+        /// BottomCenter
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position BottomCenter
         {
             get
@@ -1114,6 +1550,11 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        /// <summary>
+        /// BottomRight
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position BottomRight
         {
             get
@@ -1132,6 +1573,10 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public struct PivotPoint
     {
+        /// <summary>
+        /// Top
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Top
         {
             get
@@ -1141,6 +1586,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// Bottom
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Bottom
         {
             get
@@ -1150,6 +1599,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// Left
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Left
         {
             get
@@ -1159,6 +1612,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// Right
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Right
         {
             get
@@ -1168,6 +1625,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// Middle
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Middle
         {
             get
@@ -1177,6 +1638,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// TopLeft
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position TopLeft
         {
             get
@@ -1187,6 +1652,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// TopCenter
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position TopCenter
         {
             get
@@ -1197,6 +1666,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// TopRight
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position TopRight
         {
             get
@@ -1207,6 +1680,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// CenterLeft
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position CenterLeft
         {
             get
@@ -1217,6 +1694,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// Center
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position Center
         {
             get
@@ -1227,6 +1708,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// CenterRight
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position CenterRight
         {
             get
@@ -1237,6 +1722,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// BottomLeft
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position BottomLeft
         {
             get
@@ -1247,6 +1736,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// BottomCenter
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position BottomCenter
         {
             get
@@ -1257,6 +1750,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// BottomRight
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position BottomRight
         {
             get
@@ -1274,6 +1771,10 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public struct PositionAxis
     {
+        /// <summary>
+        /// The X axis
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position X
         {
             get
@@ -1284,6 +1785,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// The Y axis
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position Y
         {
             get
@@ -1294,6 +1799,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// The Z axis
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position Z
         {
             get
@@ -1304,6 +1813,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// The Negative X axis
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position NegativeX
         {
             get
@@ -1314,6 +1827,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// The Negative Y axis
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position NegativeY
         {
             get
@@ -1324,6 +1841,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// The Negative Z axis
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position NegativeZ
         {
             get
@@ -1373,8 +1894,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public enum NotificationLevel {
         /// <summary>
-        /// No notification level.<br>
-        /// Default level.<br>
+        /// No notification level.<br />
+        /// Default level.<br />
         /// This value makes the notification window place in the layer of the normal window.
         /// </summary>
         None = -1,
@@ -1402,7 +1923,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public enum WindowType {
         /// <summary>
-        /// A default window type.<br>
+        /// A default window type.<br />
         /// Indicates a normal or top-level window.
         /// Almost every window will be created with this type.
         /// </summary>
@@ -1424,16 +1945,31 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public enum DisposeTypes
     {
-        Explicit,   //Called By User
-        Implicit,   //Called by DisposeQueue
+        /// <summary>
+        /// Called By User
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        Explicit,
+        /// <summary>
+        /// Called by DisposeQueue
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        Implicit,
     }
 
 
 
-
+    /// <summary>
+    /// [Obsolete("Please do not use! this will be deprecated")]
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [Obsolete("Please do not use! this will be deprecated")]
     public struct AnchorPoint
     {
+        /// <summary>
+        /// Top
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Top
         {
             get
@@ -1443,6 +1979,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// Bottom
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Bottom
         {
             get
@@ -1452,6 +1992,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// Left
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Left
         {
             get
@@ -1461,6 +2005,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// Right
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Right
         {
             get
@@ -1470,6 +2018,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// Middle
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static float Middle
         {
             get
@@ -1479,6 +2031,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// TopLeft
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position TopLeft
         {
             get
@@ -1489,6 +2045,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// TopCenter
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position TopCenter
         {
             get
@@ -1499,6 +2059,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// TopRight
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position TopRight
         {
             get
@@ -1509,6 +2073,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// CenterLeft
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position CenterLeft
         {
             get
@@ -1519,6 +2087,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// Center
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position Center
         {
             get
@@ -1529,6 +2101,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// CenterRight
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position CenterRight
         {
             get
@@ -1539,6 +2115,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// BottomLeft
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position BottomLeft
         {
             get
@@ -1549,6 +2129,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// BottomCenter
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position BottomCenter
         {
             get
@@ -1559,6 +2143,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+        /// <summary>
+        /// BottomRight
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Position BottomRight
         {
             get

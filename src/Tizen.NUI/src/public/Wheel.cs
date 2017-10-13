@@ -1,31 +1,35 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
 
     /// <summary>
-    /// The wheel event structure is used to store a wheel rolling, it facilitates processing of the wheel rolling and passing to other libraries like Toolkit.<br>
-    /// There is a key modifier which relates to keys like Alt, Shift, and Ctrl functions are supplied to check if they have been pressed when the wheel is being rolled.<br>
-    /// We support a mouse device and there may be another custom device that support the wheel event. The device type is specified as \e type.<br>
-    /// The mouse wheel event can be sent to the specific actor but the custom wheel event will be sent to the window.<br>
+    /// The wheel event structure is used to store a wheel rolling, it facilitates processing of the wheel rolling and passing to other libraries like Toolkit.<br />
+    /// There is a key modifier which relates to keys like Alt, Shift, and Ctrl functions are supplied to check if they have been pressed when the wheel is being rolled.<br />
+    /// We support a mouse device and there may be another custom device that support the wheel event. The device type is specified as \e type.<br />
+    /// The mouse wheel event can be sent to the specific actor but the custom wheel event will be sent to the window.<br />
     /// </summary>
     public class Wheel : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// swigCMemOwn.
+        /// </summary>
         protected bool swigCMemOwn;
 
         internal Wheel(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -41,9 +45,16 @@ namespace Tizen.NUI
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
         protected bool disposed = false;
 
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         ~Wheel()
         {
             if(!isDisposeQueued)
@@ -53,6 +64,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -72,6 +87,11 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The type dispose, it could be from user, or called by DisposeQueue.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -339,7 +359,16 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public enum WheelType
         {
+            /// <summary>
+            /// Mouse wheel event.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             MouseWheel,
+
+            /// <summary>
+            /// Custom wheel event.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             CustomWheel
         }
 

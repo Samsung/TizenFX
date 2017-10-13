@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
@@ -36,6 +37,11 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The dispose type</param>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -177,12 +183,18 @@ namespace Tizen.NUI
         /// </summary>
         public class StateChangedEventArgs : EventArgs
         {
+            /// <summary>
+            /// PrevState.
+            /// </summary>
             public TTSState PrevState
             {
                 get;
                 set;
             }
 
+            /// <summary>
+            /// NextState.
+            /// </summary>
             public TTSState NextState
             {
                 get;
@@ -257,8 +269,8 @@ namespace Tizen.NUI
             /// </summary>
             Notification,
             /// <summary>
-            /// Screen reader mode. <br>
-            /// To help visually impaired users interact with their devices,<br>
+            /// Screen reader mode. <br />
+            /// To help visually impaired users interact with their devices,<br />
             /// screen reader reads text or graphic elements on the screen using the TTS engine.
             /// </summary>
             ScreenReader,

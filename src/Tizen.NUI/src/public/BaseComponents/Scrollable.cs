@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -38,6 +39,11 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// you can override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type">DisposeTypes</param>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -100,6 +106,10 @@ namespace Tizen.NUI.BaseComponents
             swigCPtr = currentCPtr;
         }
 
+        /// <summary>
+        /// The scroll animation started event arguments.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class StartedEventArgs : EventArgs
         {
             private Vector2 _vector2;
@@ -121,6 +131,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The scrollable updated event arguments.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class UpdatedEventArgs : EventArgs
         {
             private Vector2 _vector2;
@@ -142,6 +156,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The scroll animation completed event arguments.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class CompletedEventArgs : EventArgs
         {
             private Vector2 _vector2;
@@ -329,22 +347,81 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
-
+        /// <summary>
+        /// Enumeration for the instance of properties belonging to the Scrollable class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public new class Property
         {
+            /// <summary>
+            /// The color of the overshoot effect.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int OVERSHOOT_EFFECT_COLOR = NDalicPINVOKE.Scrollable_Property_OVERSHOOT_EFFECT_COLOR_get();
+            /// <summary>
+            /// The speed of overshoot animation in pixels per second.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int OVERSHOOT_ANIMATION_SPEED = NDalicPINVOKE.Scrollable_Property_OVERSHOOT_ANIMATION_SPEED_get();
+            /// <summary>
+            /// Whether to enables or disable scroll overshoot.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int OVERSHOOT_ENABLED = NDalicPINVOKE.Scrollable_Property_OVERSHOOT_ENABLED_get();
+            /// <summary>
+            /// The size of the overshoot.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int OVERSHOOT_SIZE = NDalicPINVOKE.Scrollable_Property_OVERSHOOT_SIZE_get();
+            /// <summary>
+            /// scrollToAlphaFunction.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_TO_ALPHA_FUNCTION = NDalicPINVOKE.Scrollable_Property_SCROLL_TO_ALPHA_FUNCTION_get();
+            /// <summary>
+            /// scrollRelativePosition
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_RELATIVE_POSITION = NDalicPINVOKE.Scrollable_Property_SCROLL_RELATIVE_POSITION_get();
+            /// <summary>
+            /// scrollPositionMin
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_POSITION_MIN = NDalicPINVOKE.Scrollable_Property_SCROLL_POSITION_MIN_get();
+            /// <summary>
+            /// scrollPositionMinX.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_POSITION_MIN_X = NDalicPINVOKE.Scrollable_Property_SCROLL_POSITION_MIN_X_get();
+            /// <summary>
+            /// scrollPositionMinY.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_POSITION_MIN_Y = NDalicPINVOKE.Scrollable_Property_SCROLL_POSITION_MIN_Y_get();
+            /// <summary>
+            /// scrollPositionMax.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_POSITION_MAX = NDalicPINVOKE.Scrollable_Property_SCROLL_POSITION_MAX_get();
+            /// <summary>
+            /// scrollPositionMaxX.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_POSITION_MAX_X = NDalicPINVOKE.Scrollable_Property_SCROLL_POSITION_MAX_X_get();
+            /// <summary>
+            /// scrollPositionMaxY.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_POSITION_MAX_Y = NDalicPINVOKE.Scrollable_Property_SCROLL_POSITION_MAX_Y_get();
+            /// <summary>
+            /// canScrollVertical
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int CAN_SCROLL_VERTICAL = NDalicPINVOKE.Scrollable_Property_CAN_SCROLL_VERTICAL_get();
+            /// <summary>
+            /// canScrollHorizontal.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int CAN_SCROLL_HORIZONTAL = NDalicPINVOKE.Scrollable_Property_CAN_SCROLL_HORIZONTAL_get();
 
         }

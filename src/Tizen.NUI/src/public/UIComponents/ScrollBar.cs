@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI.UIComponents
 {
@@ -23,7 +24,7 @@ namespace Tizen.NUI.UIComponents
 
     /// <summary>
     /// The ScrollBar is a UI component that can be linked to the scrollable objects
-    /// indicating the current scroll position of the scrollable object.<br>
+    /// indicating the current scroll position of the scrollable object.<br />
     /// </summary>
     public class ScrollBar : View
     {
@@ -237,6 +238,10 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Please do not use! this will be deprecated
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public new static ScrollBar DownCast(BaseHandle handle)
         {
@@ -361,7 +366,15 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public enum Direction
         {
+            /// <summary>
+            /// Scroll in the vertical direction
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Vertical = 0,
+            /// <summary>
+            /// Scroll in the horizontal direction
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Horizontal
         }
 
@@ -371,7 +384,15 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public enum IndicatorHeightPolicyType
         {
+            /// <summary>
+            /// Variable height changed dynamically according to the length of scroll content
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Variable = 0,
+            /// <summary>
+            /// Fixed height regardless of the length of scroll content
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Fixed
         }
 

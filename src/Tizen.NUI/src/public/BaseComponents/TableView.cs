@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 using System;
 
@@ -20,10 +21,10 @@ namespace Tizen.NUI.BaseComponents
 {
 
     /// <summary>
-    /// TableView is a layout container for aligning child actors in a grid like layout.<br>
-    /// TableView constraints the X and the Y position and the width and the height of the child actors.<br>
+    /// TableView is a layout container for aligning child actors in a grid like layout.<br />
+    /// TableView constraints the X and the Y position and the width and the height of the child actors.<br />
     /// The Z position and depth are left intact so that the 3D model actors can also be laid out
-    /// in a grid without loosing their depth scaling.<br>
+    /// in a grid without loosing their depth scaling.<br />
     /// </summary>
     public class TableView : View
     {
@@ -39,6 +40,11 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="type">The dispose type</param>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed)
@@ -95,6 +101,10 @@ namespace Tizen.NUI.BaseComponents
         public class CellPosition : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            /// <summary>
+            /// swigCMemOwn
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             protected bool swigCMemOwn;
 
             internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -110,9 +120,16 @@ namespace Tizen.NUI.BaseComponents
 
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
+            /// <summary>
+            /// A Flat to check if it is already disposed.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             protected bool disposed = false;
 
+            /// <summary>
+            /// Dispose.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             ~CellPosition()
             {
                 if(!isDisposeQueued)
@@ -122,6 +139,10 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
+            /// <summary>
+            /// Dispose.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -141,6 +162,11 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
+            /// <summary>
+            /// Dispose.
+            /// </summary>
+            /// <param name="type">DisposeTypes</param>
+            /// <since_tizen> 3 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
             {
                 if (disposed)
@@ -325,7 +351,10 @@ namespace Tizen.NUI.BaseComponents
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public new static TableView DownCast(BaseHandle handle)
         {
@@ -335,8 +364,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Adds a child to the table.<br>
-        /// If the row or column index is outside the table, the table gets resized bigger.<br>
+        /// Adds a child to the table.<br />
+        /// If the row or column index is outside the table, the table gets resized bigger.<br />
         /// </summary>
         /// <param name="child">The child to add.</param>
         /// <param name="position">The position for the child.</param>
@@ -405,8 +434,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Deletes a row from the given index.<br>
-        /// Removed elements are deleted.<br>
+        /// Deletes a row from the given index.<br />
+        /// Removed elements are deleted.<br />
         /// </summary>
         /// <param name="rowIndex">The rowIndex of the row to delete.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -428,8 +457,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Deletes a column from the given index.<br>
-        /// Removed elements are deleted.<br>
+        /// Deletes a column from the given index.<br />
+        /// Removed elements are deleted.<br />
         /// </summary>
         /// <param name="columnIndex">The columnIndex of the column to delete.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -523,8 +552,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets a row to have a fixed height.<br>
-        /// Setting a fixed height of 0 has no effect.<br>
+        /// Sets a row to have a fixed height.<br />
+        /// Setting a fixed height of 0 has no effect.<br />
         /// </summary>
         /// <param name="rowIndex">The rowIndex for row with a fixed height.</param>
         /// <param name="height">The height in world coordinate units.</param>
@@ -550,8 +579,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Sets a row to have a relative height. Relative height means percentage of
-        /// the remainder of the table height after subtracting padding and fixed height rows.<br>
-        /// Setting a relative height of 0 has no effect.<br>
+        /// the remainder of the table height after subtracting padding and fixed height rows.<br />
+        /// Setting a relative height of 0 has no effect.<br />
         /// </summary>
         /// <param name="rowIndex">The rowIndex for row with a relative height.</param>
         /// <param name="heightPercentage">The height percentage between 0.0f and 1.0f.</param>
@@ -576,8 +605,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets a column to have a fixed width.<br>
-        /// Setting a fixed width of 0 has no effect.<br>
+        /// Sets a column to have a fixed width.<br />
+        /// Setting a fixed width of 0 has no effect.<br />
         /// </summary>
         /// <param name="columnIndex">The columnIndex for column with a fixed width.</param>
         /// <param name="width">The width in world coordinate units.</param>
@@ -603,8 +632,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Sets a column to have a relative width. Relative width means percentage of
-        /// the remainder of the table width after subtracting padding and fixed width columns.<br>
-        /// Setting a relative width of 0 has no effect.<br>
+        /// the remainder of the table width after subtracting padding and fixed width columns.<br />
+        /// Setting a relative width of 0 has no effect.<br />
         /// </summary>
         /// <param name="columnIndex">The columnIndex for column with a fixed width.</param>
         /// <param name="widthPercentage">The widthPercentage between 0.0f and 1.0f.</param>
@@ -629,8 +658,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets the alignment on a cell.<br>
-        /// Cells without calling this function have the default values of left and top respectively.<br>
+        /// Sets the alignment on a cell.<br />
+        /// Cells without calling this function have the default values of left and top respectively.<br />
         /// </summary>
         /// <param name="position">The cell to set alignment on.</param>
         /// <param name="horizontal">The horizontal alignment.</param>
@@ -648,9 +677,25 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public enum LayoutPolicy
         {
+            /// <summary>
+            /// Fixed with the given value.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Fixed,
+            /// <summary>
+            /// Calculated as percentage of the remainder after subtracting Padding and Fixed height/width.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Relative,
+            /// <summary>
+            ///  Default policy, get the remainder of the 100% (after subtracting Fixed, Fit and Relative height/ width) divided evenly between 'fill' rows/columns.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Fill,
+            /// <summary>
+            /// Fit around its children.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Fit
         }
 

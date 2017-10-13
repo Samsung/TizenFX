@@ -1,18 +1,19 @@
-/** Copyright (c) 2017 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/*
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -99,7 +100,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets the views parent.
         /// </summary>
-        /// <seealso cref="Container.GetParent()">
+        /// <seealso cref="Container.GetParent()" />
         protected override Container GetParent()
         {
             Container ret;
@@ -121,7 +122,10 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        //This is temporal API. Currently Parent returns View but Container class has been introduced so 'View Parent' will be changed 'Container Parent' later soon, then this will be removed
+        /// <summary>
+        /// This is temporal API. Currently Parent returns View but Container class has been introduced so 'View Parent' will be changed 'Container Parent' later soon, then this will be removed
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public Container GetContainerParent()
         {
@@ -137,7 +141,11 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
-        // you can override it to clean-up your own resources.
+        /// <summary>
+        /// you can override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type">DisposeTypes</param>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed)
@@ -270,8 +278,8 @@ namespace Tizen.NUI.BaseComponents
         private KeyInputFocusGainedCallbackType _keyInputFocusGainedCallback;
 
         /// <summary>
-        /// An event for the KeyInputFocusGained signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br>
-        /// The KeyInputFocusGained signal is emitted when the control gets the key input focus.<br>
+        /// An event for the KeyInputFocusGained signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
+        /// The KeyInputFocusGained signal is emitted when the control gets the key input focus.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler FocusGained
@@ -313,8 +321,8 @@ namespace Tizen.NUI.BaseComponents
         private KeyInputFocusLostCallbackType _keyInputFocusLostCallback;
 
         /// <summary>
-        /// An event for the KeyInputFocusLost signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br>
-        /// The KeyInputFocusLost signal is emitted when the control loses the key input focus.<br>
+        /// An event for the KeyInputFocusLost signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
+        /// The KeyInputFocusLost signal is emitted when the control loses the key input focus.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler FocusLost
@@ -379,8 +387,8 @@ namespace Tizen.NUI.BaseComponents
         private KeyCallbackType _keyCallback;
 
         /// <summary>
-        /// An event for the KeyPressed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br>
-        /// The KeyPressed signal is emitted when the key event is received.<br>
+        /// An event for the KeyPressed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
+        /// The KeyPressed signal is emitted when the key event is received.<br />
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandlerWithReturnType<object, KeyEventArgs, bool> KeyEvent
@@ -435,8 +443,8 @@ namespace Tizen.NUI.BaseComponents
         private OnRelayoutEventCallbackType _onRelayoutEventCallback;
 
         /// <summary>
-        /// An event for the OnRelayout signal which can be used to subscribe or unsubscribe the event handler.<br>
-        /// The OnRelayout signal is emitted after the size has been set on the view during relayout.<br>
+        /// An event for the OnRelayout signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// The OnRelayout signal is emitted after the size has been set on the view during relayout.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler Relayout
@@ -503,8 +511,8 @@ namespace Tizen.NUI.BaseComponents
         private TouchDataCallbackType _touchDataCallback;
 
         /// <summary>
-        /// An event for the touched signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br>
-        /// The touched signal is emitted when the touch input is received.<br>
+        /// An event for the touched signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
+        /// The touched signal is emitted when the touch input is received.<br />
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandlerWithReturnType<object, TouchEventArgs, bool> TouchEvent
@@ -577,8 +585,8 @@ namespace Tizen.NUI.BaseComponents
         private HoverEventCallbackType _hoverEventCallback;
 
         /// <summary>
-        /// An event for the hovered signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br>
-        /// The hovered signal is emitted when the hover input is received.<br>
+        /// An event for the hovered signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
+        /// The hovered signal is emitted when the hover input is received.<br />
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandlerWithReturnType<object, HoverEventArgs, bool> HoverEvent
@@ -651,8 +659,8 @@ namespace Tizen.NUI.BaseComponents
         private WheelEventCallbackType _wheelEventCallback;
 
         /// <summary>
-        /// An event for the WheelMoved signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br>
-        /// The WheelMoved signal is emitted when the wheel event is received.<br>
+        /// An event for the WheelMoved signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
+        /// The WheelMoved signal is emitted when the wheel event is received.<br />
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelEvent
@@ -701,8 +709,8 @@ namespace Tizen.NUI.BaseComponents
         private OnWindowEventCallbackType _onWindowEventCallback;
 
         /// <summary>
-        /// An event for the OnWindow signal which can be used to subscribe or unsubscribe the event handler.<br>
-        /// The OnWindow signal is emitted after the view has been connected to the window.<br>
+        /// An event for the OnWindow signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// The OnWindow signal is emitted after the view has been connected to the window.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler AddedToWindow
@@ -745,8 +753,8 @@ namespace Tizen.NUI.BaseComponents
         private OffWindowEventCallbackType _offWindowEventCallback;
 
         /// <summary>
-        /// An event for the OffWindow signal, which can be used to subscribe or unsubscribe the event handler.<br>
-        /// OffWindow signal is emitted after the view has been disconnected from the window.<br>
+        /// An event for the OffWindow signal, which can be used to subscribe or unsubscribe the event handler.<br />
+        /// OffWindow signal is emitted after the view has been disconnected from the window.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler RemovedFromWindow
@@ -846,8 +854,8 @@ namespace Tizen.NUI.BaseComponents
         private VisibilityChangedEventCallbackType _visibilityChangedEventCallback;
 
         /// <summary>
-        /// An event for visibility change which can be used to subscribe or unsubscribe the event handler.<br>
-        /// This signal is emitted when the visible property of this or a parent view is changed.<br>
+        /// An event for visibility change which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when the visible property of this or a parent view is changed.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<VisibilityChangedEventArgs> VisibilityChanged
@@ -939,8 +947,8 @@ namespace Tizen.NUI.BaseComponents
         private LayoutDirectionChangedEventCallbackType _layoutDirectionChangedEventCallback;
 
         /// <summary>
-        /// Event for layout direction change which can be used to subscribe/unsubscribe the event handler.<br>
-        /// This signal is emitted when the layout direction property of this or a parent view is changed.<br>
+        /// Event for layout direction change which can be used to subscribe/unsubscribe the event handler.<br />
+        /// This signal is emitted when the layout direction property of this or a parent view is changed.<br />
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<LayoutDirectionChangedEventArgs> LayoutDirectionChanged
@@ -997,8 +1005,8 @@ namespace Tizen.NUI.BaseComponents
         private ResourcesLoadedCallbackType _ResourcesLoadedCallback;
 
         /// <summary>
-        /// An event for the ResourcesLoadedSignal signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br>
-        /// This signal is emitted after all resources required by a view are loaded and ready.<br>
+        /// An event for the ResourcesLoadedSignal signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
+        /// This signal is emitted after all resources required by a view are loaded and ready.<br />
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler ResourcesLoaded
@@ -1110,11 +1118,35 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public enum FocusDirection
         {
+            /// <summary>
+            /// Move keyboard focus towards the left direction.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Left,
+            /// <summary>
+            /// Move keyboard focus towards the right direction.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Right,
+            /// <summary>
+            /// Move keyboard focus towards the up direction.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Up,
+            /// <summary>
+            /// Move keyboard focus towards the down direction.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             Down,
+            /// <summary>
+            /// Move keyboard focus towards the previous page direction.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             PageUp,
+            /// <summary>
+            /// Move keyboard focus towards the next page direction.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             PageDown
         }
 
@@ -1133,9 +1165,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Downcasts a handle to view handle.<br>
-        /// If handle points to a view, the downcast produces a valid handle.<br>
-        /// If not, the returned handle is left uninitialized.<br>
+        /// Downcasts a handle to view handle.<br />
+        /// If handle points to a view, the downcast produces a valid handle.<br />
+        /// If not, the returned handle is left uninitialized.<br />
         /// </summary>
         /// <param name="handle">A handle to an object.</param>
         /// <returns>A handle to a view or an uninitialized handle.</returns>
@@ -1147,6 +1179,10 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated, instead please use as keyword.")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated, instead please use as keyword.")]
         public static T DownCast<T>(View view) where T : View
         {
@@ -1332,7 +1368,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The mutually exclusive with BACKGROUND_IMAGE & BACKGROUND type Vector4.
+        /// The mutually exclusive with BACKGROUND_IMAGE and BACKGROUND type Vector4.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Color BackgroundColor
@@ -1422,7 +1458,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The mutually exclusive with BACKGROUND_COLOR & BACKGROUND type Map.
+        /// The mutually exclusive with BACKGROUND_COLOR and BACKGROUND type Map.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string BackgroundImage
@@ -1447,6 +1483,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The background of view.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap Background
         {
             get
@@ -1643,9 +1683,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Child property of FlexContainer.<br>
-        /// The proportion of the free space in the container, the flex item will receive.<br>
-        /// If all items in the container set this property, their sizes will be proportional to the specified flex factor.<br>
+        /// The Child property of FlexContainer.<br />
+        /// The proportion of the free space in the container, the flex item will receive.<br />
+        /// If all items in the container set this property, their sizes will be proportional to the specified flex factor.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float Flex
@@ -1663,8 +1703,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Child property of FlexContainer.<br>
-        /// The alignment of the flex item along the cross axis, which, if set, overides the default alignment for all items in the container.<br>
+        /// The Child property of FlexContainer.<br />
+        /// The alignment of the flex item along the cross axis, which, if set, overides the default alignment for all items in the container.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int AlignSelf
@@ -1682,8 +1722,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Child property of FlexContainer.<br>
-        /// The space around the flex item.<br>
+        /// The Child property of FlexContainer.<br />
+        /// The space around the flex item.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 FlexMargin
@@ -1867,9 +1907,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The left focusable view.<br>
-        /// This will return null if not set.<br>
-        /// This will also return null if the specified left focusable view is not on a window.<br>
+        /// The left focusable view.<br />
+        /// This will return null if not set.<br />
+        /// This will also return null if the specified left focusable view is not on a window.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public View LeftFocusableView
@@ -1890,9 +1930,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The right focusable view.<br>
-        /// This will return null if not set.<br>
-        /// This will also return null if the specified right focusable view is not on a window.<br>
+        /// The right focusable view.<br />
+        /// This will return null if not set.<br />
+        /// This will also return null if the specified right focusable view is not on a window.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public View RightFocusableView
@@ -1913,9 +1953,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The up focusable view.<br>
-        /// This will return null if not set.<br>
-        /// This will also return null if the specified up focusable view is not on a window.<br>
+        /// The up focusable view.<br />
+        /// This will return null if not set.<br />
+        /// This will also return null if the specified up focusable view is not on a window.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public View UpFocusableView
@@ -1936,9 +1976,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The down focusable view.<br>
-        /// This will return null if not set.<br>
-        /// This will also return null if the specified down focusable view is not on a window.<br>
+        /// The down focusable view.<br />
+        /// This will return null if not set.<br />
+        /// This will also return null if the specified down focusable view is not on a window.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public View DownFocusableView
@@ -1995,8 +2035,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        ///  Retrieves the position of the view.<br>
-        ///  The coordinates are relative to the view's parent.<br>
+        ///  Retrieves the position of the view.<br />
+        ///  The coordinates are relative to the view's parent.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Position CurrentPosition
@@ -2008,10 +2048,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets the size of a view for the width and the height.<br>
-        /// Geometry can be scaled to fit within this area.<br>
-        /// This does not interfere with the view's scale factor.<br>
-        /// The views default depth is the minimum of width and height.<br>
+        /// Sets the size of a view for the width and the height.<br />
+        /// Geometry can be scaled to fit within this area.<br />
+        /// This does not interfere with the view's scale factor.<br />
+        /// The views default depth is the minimum of width and height.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Size2D Size2D
@@ -2030,8 +2070,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        ///  Retrieves the size of the view.<br>
-        ///  The coordinates are relative to the view's parent.<br>
+        ///  Retrieves the size of the view.<br />
+        ///  The coordinates are relative to the view's parent.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Size2D CurrentSize
@@ -2042,6 +2082,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated. Please use Visibility instead.")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated. Please use Visibility instead.")]
         public bool Visible
         {
@@ -2052,7 +2096,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Retrieves and sets the view's opacity.<br>
+        /// Retrieves and sets the view's opacity.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float Opacity
@@ -2070,9 +2114,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets the position of the view for X and Y.<br>
-        /// By default, sets the position vector between the parent origin and the pivot point (default).<br>
-        /// If the position inheritance is disabled, sets the world position.<br>
+        /// Sets the position of the view for X and Y.<br />
+        /// By default, sets the position vector between the parent origin and the pivot point (default).<br />
+        /// If the position inheritance is disabled, sets the world position.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Position2D Position2D
@@ -2090,7 +2134,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Retrieves the screen postion of the view.<br>
+        /// Retrieves the screen postion of the view.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 ScreenPosition
@@ -2125,6 +2169,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public bool PositionUsesAnchorPoint
         {
@@ -2153,8 +2201,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Queries whether the view is connected to the stage.<br>
-        /// When a view is connected, it will be directly or indirectly parented to the root view.<br>
+        /// Queries whether the view is connected to the stage.<br />
+        /// When a view is connected, it will be directly or indirectly parented to the root view.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool IsOnWindow
@@ -2877,10 +2925,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets the relative to parent size factor of the view.<br>
+        /// Sets the relative to parent size factor of the view.<br />
         /// This factor is only used when ResizePolicy is set to either:
-        /// ResizePolicy::SIZE_RELATIVE_TO_PARENT or ResizePolicy::SIZE_FIXED_OFFSET_FROM_PARENT.<br>
-        /// This view's size is set to the view's size multiplied by or added to this factor, depending on ResizePolicy.<br>
+        /// ResizePolicy::SIZE_RELATIVE_TO_PARENT or ResizePolicy::SIZE_FIXED_OFFSET_FROM_PARENT.<br />
+        /// This view's size is set to the view's size multiplied by or added to this factor, depending on ResizePolicy.<br />
         /// </summary>
         /// <pre>The view has been initialized.</pre>
         /// <param name="factor">A Vector3 representing the relative factor to be applied to each axis.</param>
@@ -2901,9 +2949,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Calculates the height of the view given a width.<br>
-        /// The natural size is used for default calculation.<br>
-        /// Size 0 is treated as aspect ratio 1:1.<br>
+        /// Calculates the height of the view given a width.<br />
+        /// The natural size is used for default calculation.<br />
+        /// Size 0 is treated as aspect ratio 1:1.<br />
         /// </summary>
         /// <param name="width">The width to use.</param>
         /// <returns>The height based on the width.</returns>
@@ -2917,9 +2965,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Calculates the width of the view given a height.<br>
-        /// The natural size is used for default calculation.<br>
-        /// Size 0 is treated as aspect ratio 1:1.<br>
+        /// Calculates the width of the view given a height.<br />
+        /// The natural size is used for default calculation.<br />
+        /// Size 0 is treated as aspect ratio 1:1.<br />
         /// </summary>
         /// <param name="height">The height to use.</param>
         /// <returns>The width based on the height.</returns>
@@ -2932,6 +2980,12 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        /// <summary>
+        /// Return the amount of size allocated for relayout.
+        /// </summary>
+        /// <param name="dimension">The dimension to retrieve.</param>
+        /// <returns>Return the size.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float GetRelayoutSize(DimensionType dimension)
         {
             float ret = NDalicPINVOKE.Actor_GetRelayoutSize(swigCPtr, (int)dimension);
@@ -2940,6 +2994,11 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        /// <summary>
+        /// Set the padding for the view.
+        /// </summary>
+        /// <param name="padding">Padding for the view.</param>
+        /// <since_tizen> 3 </since_tizen>
         public void SetPadding(PaddingType padding)
         {
             NDalicPINVOKE.Actor_SetPadding(swigCPtr, PaddingType.getCPtr(padding));
@@ -2947,6 +3006,11 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Return the value of padding for the view.
+        /// </summary>
+        /// <param name="paddingOut">the value of padding for the view</param>
+        /// <since_tizen> 3 </since_tizen>
         public void GetPadding(PaddingType paddingOut)
         {
             NDalicPINVOKE.Actor_GetPadding(swigCPtr, PaddingType.getCPtr(paddingOut));
@@ -3106,10 +3170,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the origin of a view within its parent's area.<br>
-        /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the parent, and (1.0, 1.0, 0.5) is the bottom-right corner.<br>
-        /// The default parent-origin is ParentOrigin.TopLeft (0.0, 0.0, 0.5).<br>
-        /// A view's position is the distance between this origin and the view's anchor-point.<br>
+        /// Gets or sets the origin of a view within its parent's area.<br />
+        /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the parent, and (1.0, 1.0, 0.5) is the bottom-right corner.<br />
+        /// The default parent-origin is ParentOrigin.TopLeft (0.0, 0.0, 0.5).<br />
+        /// A view's position is the distance between this origin and the view's anchor-point.<br />
         /// </summary>
         /// <pre>The view has been initialized.</pre>
         /// <since_tizen> 3 </since_tizen>
@@ -3170,11 +3234,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the anchor-point of a view.<br>
-        /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the view, and (1.0, 1.0, 0.5) is the bottom-right corner.<br>
-        /// The default pivot point is PivotPoint.Center (0.5, 0.5, 0.5).<br>
-        /// A view position is the distance between its parent-origin and this anchor-point.<br>
-        /// A view's orientation is the rotation from its default orientation, the rotation is centered around its anchor-point.<br>
+        /// Gets or sets the anchor-point of a view.<br />
+        /// This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the view, and (1.0, 1.0, 0.5) is the bottom-right corner.<br />
+        /// The default pivot point is PivotPoint.Center (0.5, 0.5, 0.5).<br />
+        /// A view position is the distance between its parent-origin and this anchor-point.<br />
+        /// A view's orientation is the rotation from its default orientation, the rotation is centered around its anchor-point.<br />
         /// <pre>The view has been initialized.</pre>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -3271,9 +3335,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the position of the view.<br>
-        /// By default, sets the position vector between the parent origin and pivot point (default).<br>
-        /// If the position inheritance is disabled, sets the world position.<br>
+        /// Gets or sets the position of the view.<br />
+        /// By default, sets the position vector between the parent origin and pivot point (default).<br />
+        /// If the position inheritance is disabled, sets the world position.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Position Position
@@ -3389,8 +3453,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the orientation of the view.<br>
-        /// The view's orientation is the rotation from its default orientation, and the rotation is centered around its anchor-point.<br>
+        /// Gets or sets the orientation of the view.<br />
+        /// The view's orientation is the rotation from its default orientation, and the rotation is centered around its anchor-point.<br />
         /// </summary>
         /// <remarks>This is an asynchronous method.</remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -3409,7 +3473,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the world orientation of the view.<br>
+        /// Gets or sets the world orientation of the view.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Rotation WorldOrientation
@@ -3423,7 +3487,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the scale factor applied to the view.<br>
+        /// Gets or sets the scale factor applied to the view.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector3 Scale
@@ -3666,12 +3730,12 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the status of how the view and its children should be drawn.<br>
-        /// Not all views are renderable, but DrawMode can be inherited from any view.<br>
-        /// If an object is in a 3D layer, it will be depth-tested against other objects in the world, i.e., it may be obscured if other objects are in front.<br>
-        /// If DrawMode.Overlay2D is used, the view and its children will be drawn as a 2D overlay.<br>
-        /// Overlay views are drawn in a separate pass, after all non-overlay views within the layer.<br>
-        /// For overlay views, the drawing order is with respect to tree levels of views, and depth-testing will not be used.<br>
+        /// Gets or sets the status of how the view and its children should be drawn.<br />
+        /// Not all views are renderable, but DrawMode can be inherited from any view.<br />
+        /// If an object is in a 3D layer, it will be depth-tested against other objects in the world, i.e., it may be obscured if other objects are in front.<br />
+        /// If DrawMode.Overlay2D is used, the view and its children will be drawn as a 2D overlay.<br />
+        /// Overlay views are drawn in a separate pass, after all non-overlay views within the layer.<br />
+        /// For overlay views, the drawing order is with respect to tree levels of views, and depth-testing will not be used.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public DrawModeType DrawMode
@@ -3702,9 +3766,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the relative to parent size factor of the view.<br>
-        /// This factor is only used when ResizePolicyType is set to either: ResizePolicyType.SizeRelativeToParent or ResizePolicyType.SizeFixedOffsetFromParent.<br>
-        /// This view's size is set to the view's size multiplied by or added to this factor, depending on ResizePolicyType.<br>
+        /// Gets or sets the relative to parent size factor of the view.<br />
+        /// This factor is only used when ResizePolicyType is set to either: ResizePolicyType.SizeRelativeToParent or ResizePolicyType.SizeFixedOffsetFromParent.<br />
+        /// This view's size is set to the view's size multiplied by or added to this factor, depending on ResizePolicyType.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector3 SizeModeFactor
@@ -3804,8 +3868,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the policy to use when setting size with size negotiation.<br>
-        /// Defaults to SizeScalePolicyType.UseSizeSet.<br>
+        /// Gets or sets the policy to use when setting size with size negotiation.<br />
+        /// Defaults to SizeScalePolicyType.UseSizeSet.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public SizeScalePolicyType SizeScalePolicy
@@ -3950,9 +4014,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets whether a child view inherits it's parent's position.<br>
-        /// Default is to inherit.<br>
-        /// Switching this off means that using position sets the view's world position, i.e., translates from the world origin (0,0,0) to the pivot point of the view.<br>
+        /// Gets or sets whether a child view inherits it's parent's position.<br />
+        /// Default is to inherit.<br />
+        /// Switching this off means that using position sets the view's world position, i.e., translates from the world origin (0,0,0) to the pivot point of the view.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool InheritPosition
@@ -4012,7 +4076,10 @@ namespace Tizen.NUI.BaseComponents
 
 
 
-
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touched
         {
@@ -4039,6 +4106,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hovered
         {
@@ -4065,6 +4136,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelMoved
         {
@@ -4091,6 +4166,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public Position AnchorPoint
         {
@@ -4106,6 +4185,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated, please use Size2D instead")]
         public Size Size
         {
@@ -4121,6 +4204,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public event EventHandler OnWindowEvent
         {
@@ -4146,6 +4233,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public event EventHandler OffWindowEvent
         {
@@ -4171,6 +4262,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public event EventHandler OnRelayoutEvent
         {
@@ -4197,6 +4292,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// "Please DO NOT use! This will be deprecated! Please use 'Container GetParent() for derived class' instead!"
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         //"Please DO NOT use! This will be deprecated! Please use 'Container GetParent() for derived class' instead!"
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public new View Parent
@@ -4269,7 +4368,13 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 4 </since_tizen>
     public enum ViewLayoutDirectionType
     {
+        /// <summary>
+        /// Left to right.
+        /// </summary>
         LTR,
+        /// <summary>
+        /// Right to left.
+        /// </summary>
         RTL
     }
 }
