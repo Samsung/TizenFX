@@ -21,8 +21,14 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the IncomingCallRingtoneChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/systemsetting.incoming_call</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class IncomingCallRingtoneChangedEventArgs : EventArgs
     {
         private readonly string _incomingCallRingtone = null;
@@ -46,8 +52,14 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the WallpaperHomeScreenChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/systemsetting.home_screen</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class WallpaperHomeScreenChangedEventArgs : EventArgs
     {
         private readonly string _wallpaperHomeScreen = null;
@@ -71,8 +83,14 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the WallpaperLockScreenChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/systemsetting.lock_screen</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class WallpaperLockScreenChangedEventArgs : EventArgs
     {
         private readonly string _wallpaperLockScreen = null;
@@ -96,8 +114,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the FontSizeChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class FontSizeChangedEventArgs : EventArgs
     {
         private readonly SystemSettingsFontSize _fontSize;
@@ -121,8 +144,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the FontTypeChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class FontTypeChangedEventArgs : EventArgs
     {
         private readonly string _fontType = null;
@@ -146,8 +174,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the MotionActivationChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class MotionActivationSettingChangedEventArgs : EventArgs
     {
         private readonly bool _motionActivation;
@@ -171,8 +204,14 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the EmailAlertRingtoneChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/systemsetting.notification_email</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class EmailAlertRingtoneChangedEventArgs : EventArgs
     {
         private readonly string _emailAlertRingtone = null;
@@ -196,8 +235,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the UsbDebuggingSettingChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class UsbDebuggingSettingChangedEventArgs : EventArgs
     {
         private readonly bool _usbDebuggingEnabled;
@@ -221,8 +265,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the Data3GNetworkSettingChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class Data3GNetworkSettingChangedEventArgs : EventArgs
     {
         private readonly bool _data3GNetworkEnabled;
@@ -246,8 +295,14 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the LockscreenAppChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/systemsetting.lock_screen</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class LockscreenAppChangedEventArgs : EventArgs
     {
         private readonly string _lockscreenApp = null;
@@ -271,8 +326,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the LocaleCountryChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class LocaleCountryChangedEventArgs : EventArgs
     {
         private readonly string _localeCountry = null;
@@ -297,8 +357,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the LocaleLanguageChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class LocaleLanguageChangedEventArgs : EventArgs
     {
         private readonly string _localeLanguage = null;
@@ -323,8 +388,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the LocaleTimeFormat24HourChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class LocaleTimeFormat24HourSettingChangedEventArgs : EventArgs
     {
         private readonly bool _localeTimeFormat24Hour;
@@ -348,8 +418,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the LocaleTimeZoneChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class LocaleTimeZoneChangedEventArgs : EventArgs
     {
         private readonly string _localeTimeZone = null;
@@ -373,8 +448,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the TimeChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class TimeChangedEventArgs : EventArgs
     {
         private readonly int _time;
@@ -398,8 +478,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the SoundLockChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class SoundLockSettingChangedEventArgs : EventArgs
     {
         private readonly bool _soundLock;
@@ -423,8 +508,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the SoundSilentModeChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class SoundSilentModeSettingChangedEventArgs : EventArgs
     {
         private readonly bool _soundSilentMode;
@@ -448,8 +538,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the SoundTouchChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class SoundTouchSettingChangedEventArgs : EventArgs
     {
         private readonly bool _soundTouch;
@@ -473,8 +568,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the DisplayScreenRotationAutoChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class DisplayScreenRotationAutoSettingChangedEventArgs : EventArgs
     {
         private readonly bool _displayScreenRotationAuto;
@@ -498,8 +598,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the DeviceNameChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class DeviceNameChangedEventArgs : EventArgs
     {
         private readonly string _deviceName = null;
@@ -523,8 +628,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the MotionSettingChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class MotionSettingChangedEventArgs : EventArgs
     {
         private readonly bool _motionEnabled;
@@ -548,8 +658,14 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the NetworkWifiNotificationChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/network.wifi</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class NetworkWifiNotificationSettingChangedEventArgs : EventArgs
     {
         private readonly bool _networkWifiNotification;
@@ -573,8 +689,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the NetworkFlightModeChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class NetworkFlightModeSettingChangedEventArgs : EventArgs
     {
         private readonly bool _networkFlightMode;
@@ -598,8 +719,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the ScreenBacklightTimeChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class ScreenBacklightTimeChangedEventArgs : EventArgs
     {
         private readonly int _screenBacklightTime;
@@ -623,8 +749,14 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the SoundNotificationChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/systemsetting.incoming_call</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class SoundNotificationChangedEventArgs : EventArgs
     {
         private readonly string _soundNotification = null;
@@ -648,8 +780,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the SoundNotificationRepetitionPeriodChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class SoundNotificationRepetitionPeriodChangedEventArgs : EventArgs
     {
         private readonly int _soundNotificationRepetitionPeriod;
@@ -673,8 +810,14 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the LockStateChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/systemsetting.incoming_call</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class LockStateChangedEventArgs : EventArgs
     {
         private readonly SystemSettingsIdleLockState _lockState;
@@ -698,8 +841,13 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the AdsIdChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class AdsIdChangedEventArgs : EventArgs
     {
         private readonly string _adsId = null;
@@ -723,8 +871,14 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the UltraDataSaveChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/network.telephony</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class UltraDataSaveChangedEventArgs : EventArgs
     {
         private readonly SystemSettingsUdsState _ultraDataSave = SystemSettingsUdsState.UdsOff;
@@ -748,8 +902,14 @@ namespace Tizen.System
     /// <summary>
     /// EventArgs type for the UltraDataSavePackageListChanged event.
     /// </summary>
-	/// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
-	/// <privlevel>platform</privlevel>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/network.telephony</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     public class UltraDataSavePackageListChangedEventArgs : EventArgs
     {
         private readonly string _ultraDataSavePackageList = null;
