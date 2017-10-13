@@ -60,7 +60,7 @@ namespace Tizen.System
         /// <summary>
         /// GET (string) Indicates the lock-screen application package name.
         /// </summary>
-        LockscreenApp = Data3GNetworkEnabled + 2,
+        LockScreenApp = Data3GNetworkEnabled + 2,
         /// <summary>
         /// GET (string) The current system default font type (only supports Get).
         /// </summary>
@@ -149,7 +149,11 @@ namespace Tizen.System
         /// <summary>
         /// GET (string) Indicates the Ultra Data Save Package List. Since 4.0, the list is a string containing whitelisted package names separated with semicolons (;).
         /// </summary>
-        UltraDataSavePackageList
+        UltraDataSavePackageList,
+        /// <summary>
+        /// GET (bool) Indicates whether the the accessibility TTS is enabled on the device.
+        /// </summary>
+        AccessibilityTtsEnabled,
     }
     /// <summary>
     /// Enumeration for the Idle Lock State.

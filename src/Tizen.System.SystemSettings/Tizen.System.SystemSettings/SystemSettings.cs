@@ -329,24 +329,24 @@ namespace Tizen.System
         /// <exception cref="NotSupportedException">Not Supported feature</exception>
         /// <exception cref="InvalidOperationException">Invalid operation</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        public static string LockscreenApp
+        public static string LockScreenApp
         {
             get
             {
                 string pkgName;
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.LockscreenApp, out pkgName);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueString(SystemSettingsKeys.LockScreenApp, out pkgName);
                 if (res != SystemSettingsError.None)
                 {
-                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get LockscreenApp system setting.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get LockScreenApp system setting.");
                 }
                 return pkgName;
             }
             set
             {
-                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueString(SystemSettingsKeys.LockscreenApp, value);
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueString(SystemSettingsKeys.LockScreenApp, value);
                 if (res != SystemSettingsError.None)
                 {
-                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set LockscreenApp system setting.");
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set LockScreenApp system setting.");
                 }
             }
         }
@@ -910,6 +910,29 @@ namespace Tizen.System
             }
         }
 
+        /// <summary>
+        /// Indicates whether the accessibility TTS is enabled on the device.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        public static bool AccessibilityTtsEnabled
+        {
+            get
+            {
+                bool isAccessibilityTTSEnabled;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.AccessibilityTtsEnabled, out isAccessibilityTTSEnabled);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get AccessibilityTTS system setting value.");
+                }
+                return isAccessibilityTTSEnabled;
+            }
+        }
 
 
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_incomingCallRingtoneChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
@@ -1332,13 +1355,13 @@ namespace Tizen.System
 
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_lockscreenAppChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
-            string lockScreenApp = SystemSettings.LockscreenApp;
-            LockscreenAppChangedEventArgs eventArgs = new LockscreenAppChangedEventArgs(lockScreenApp);
+            string lockScreenApp = SystemSettings.LockScreenApp;
+            LockScreenAppChangedEventArgs eventArgs = new LockScreenAppChangedEventArgs(lockScreenApp);
             s_lockscreenAppChanged?.Invoke(null, eventArgs);
         };
-        private static event EventHandler<LockscreenAppChangedEventArgs> s_lockscreenAppChanged;
+        private static event EventHandler<LockScreenAppChangedEventArgs> s_lockscreenAppChanged;
         /// <summary>
-        /// The LockscreenAppChanged event is triggered when the lockscreen application package name is changed.
+        /// The LockScreenAppChanged event is triggered when the lockscreen application package name is changed.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -1348,13 +1371,13 @@ namespace Tizen.System
         /// <exception cref="NotSupportedException">Not Supported feature</exception>
         /// <exception cref="InvalidOperationException">Invalid operation</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        public static event EventHandler<LockscreenAppChangedEventArgs> LockscreenAppChanged
+        public static event EventHandler<LockScreenAppChangedEventArgs> LockScreenAppChanged
         {
             add
             {
                 if (s_lockscreenAppChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LockscreenApp, s_lockscreenAppChangedCallback, IntPtr.Zero);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.LockScreenApp, s_lockscreenAppChangedCallback, IntPtr.Zero);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1368,7 +1391,7 @@ namespace Tizen.System
                 s_lockscreenAppChanged -= value;
                 if (s_lockscreenAppChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LockscreenApp);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LockScreenApp);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1736,6 +1759,7 @@ namespace Tizen.System
             {
                 s_soundTouchChanged -= value;
                 if (s_soundTouchChanged == null)
+
                 {
                     SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundTouchEnabled);
                     if (ret != SystemSettingsError.None)
@@ -2301,6 +2325,54 @@ namespace Tizen.System
                 }
             }
         }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_accessibilityTtsChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool accessibilityTts = SystemSettings.AccessibilityTtsEnabled;
+            AccessibilityTtsSettingChangedEventArgs eventArgs = new AccessibilityTtsSettingChangedEventArgs(accessibilityTts);
+            s_accessibilityTtsChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<AccessibilityTtsSettingChangedEventArgs> s_accessibilityTtsChanged;
+        /// <summary>
+        /// THe AccessibilityTtsChanged event is triggered when the screen touch sound enabled status is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        public static event EventHandler<AccessibilityTtsSettingChangedEventArgs> AccessibilityTtsSettingChanged
+        {
+            add
+            {
+                if (s_accessibilityTtsChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.AccessibilityTtsEnabled, s_accessibilityTtsChangedCallback, IntPtr.Zero);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+                s_accessibilityTtsChanged += value;
+            }
+
+            remove
+            {
+                s_accessibilityTtsChanged -= value;
+                if (s_accessibilityTtsChanged == null)
+
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AccessibilityTtsEnabled);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+            }
+        }
+
     }
 }
 
