@@ -67,7 +67,7 @@ namespace Tizen.System
         /// <code>
         ///    try
         ///    {
-        ///       List<int> pattern = new List<int>();
+        ///       List&lt;int&gt; pattern = new List&lt;int&gt;();
         ///       pattern.Add(10);
         ///       pattern.Add(50);
         ///       IR.Transmit(60657, pattern);

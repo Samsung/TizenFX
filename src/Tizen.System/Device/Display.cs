@@ -191,12 +191,10 @@ namespace Tizen.System
         ///  StateChanged is raised when the state of the display is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="sender"></param>
-        /// <param name="e">DisplayStateChangedEventArgs is an object that contains the changed state.</param>
         /// <code>
         /// public static async Task DisplayEventHandler()
         /// {
-        ///     EventHandler<DisplayStateChangedEventArgs> handler = null;
+        ///     EventHandler&lt;DisplayStateChangedEventArgs&gt; handler = null;
         ///     handler = (object sender, DisplayStateChangedEventArgs args) =>
         ///     {
         ///          Console.WriteLine("Display State is: {0}", args.State);

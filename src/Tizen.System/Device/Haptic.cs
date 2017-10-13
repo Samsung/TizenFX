@@ -55,6 +55,9 @@ namespace Tizen.System
 
         }
 
+        /// <summary>
+        /// Finalizes an instance of the Vibrator class.
+        /// </summary>
         ~Vibrator()
         {
             Dispose(false);
@@ -186,6 +189,11 @@ namespace Tizen.System
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Dispose API for closing the internal resources.
+        /// This function can be used to stop all the effects started by Vibrate().
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)

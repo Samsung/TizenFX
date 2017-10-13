@@ -136,7 +136,7 @@ namespace Tizen.System
         /// <code>
         /// public static async Task BatteryEventHandler()
         /// {
-        ///     EventHandler<BatteryPercentChangedEventArgs> handler = null;
+        ///     EventHandler&lt;BatteryPercentChangedEventArgs&gt; handler = null;
         ///     handler = (object sender, BatteryChargingStateChangedEventArgs args) =>
         ///     {
         ///          Console.WriteLine("battery Percent is: {0}", args.Percent);
@@ -144,7 +144,7 @@ namespace Tizen.System
         ///     Battery.PercentChanged += handler;
         ///     await Task.Delay(20000);
         ///  }
-        /// </code>
+        ///  </code>
         public static event EventHandler<BatteryPercentChangedEventArgs> PercentChanged
         {
             add
@@ -180,7 +180,7 @@ namespace Tizen.System
         /// <code>
         /// public static async Task BatteryEventHandler()
         /// {
-        ///     EventHandler<BatteryLevelChangedEventArgs> handler = null;
+        ///     EventHandler&lt;BatteryLevelChangedEventArgs&gt; handler = null;
         ///     handler = (object sender, BatteryLevelChangedEventArgs args) =>
         ///     {
         ///          Console.WriteLine("battery Level is: {0}", args.Level);
@@ -224,7 +224,7 @@ namespace Tizen.System
         /// <code>
         /// public static async Task BatteryEventHandler()
         /// {
-        ///     EventHandler<BatteryChargingStateChangedEventArgs> handler = null;
+        ///     EventHandler&lt;BatteryChargingStateChangedEventArgs&gt; handler = null;
         ///     handler = (object sender, BatteryChargingStateChangedEventArgs args) =>
         ///     {
         ///          Console.WriteLine("battery Level is: {0}", args.IsCharging);
