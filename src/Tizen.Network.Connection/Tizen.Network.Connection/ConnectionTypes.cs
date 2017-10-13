@@ -246,7 +246,7 @@ namespace Tizen.Network.Connection
         /// </summary>
         Static = 1,
         /// <summary>
-        /// COnfig IP using DHCP client
+        /// Config IP using DHCP client
         /// </summary>
         Dynamic = 2,
         /// <summary>
@@ -369,7 +369,7 @@ namespace Tizen.Network.Connection
         /// </summary>
         InvalidOperation = ErrorCode.InvalidOperation,
         /// <summary>
-        /// Addrss family not supported
+        /// Address family not supported
         /// </summary>
         AddressFamilyNotSupported = ErrorCode.AddressFamilyNotSupported,
         /// <summary>
@@ -536,21 +536,6 @@ namespace Tizen.Network.Connection
         /// CHAP authentication
         /// </summary>
         Chap = 2,
-    }
-
-    /// <summary>
-    /// Enumeration for the address information type
-    /// </summary>
-    public enum AddressInformationType
-    {
-        /// <summary>
-        /// Connection type
-        /// </summary>
-        Connection = 0,
-        /// <summary>
-        /// Wi-Fi type
-        /// </summary>
-        WiFi = 1
     }
 
     static internal class Globals
