@@ -189,6 +189,9 @@ namespace Tizen.System.Usb
         #region IDisposable Support
         private bool disposedValue = false;
 
+        /// <summary>
+        /// Releases all resources used by the ConnectionProfile.
+        /// It should be called after finished using of the object.</summary>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -206,11 +209,17 @@ namespace Tizen.System.Usb
             }
         }
 
-         ~UsbDevice()
+        /// <summary>
+        /// Finalizes an instance of the UsbDevice class.
+        /// </summary>
+        ~UsbDevice()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Releases all resources used by the ConnectionProfile.
+        /// It should be called after finished using of the object.</summary>
         public void Dispose()
         {
             Dispose(true);
