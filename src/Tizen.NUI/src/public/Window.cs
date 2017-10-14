@@ -362,13 +362,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets a window's screen mode.
+        /// Sets a window's screen off mode.
         /// </summary>
-        /// <param name="screenMode">The screen mode.</param>
+        /// <param name="screenOffMode">The screen mode.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public bool SetScreenMode(ScreenMode screenMode) {
-            bool ret = NDalicPINVOKE.SetScreenMode(swigCPtr, (int)screenMode);
+        public bool SetScreenOffMode(ScreenOffMode screenOffMode) {
+            bool ret = NDalicPINVOKE.SetScreenOffMode(swigCPtr, (int)screenOffMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -376,10 +376,10 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the screen mode of the window.
         /// </summary>
-        /// <returns>The screen mode.</returns>
+        /// <returns>The screen off mode.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public ScreenMode GetScreenMode() {
-            ScreenMode ret = (ScreenMode)NDalicPINVOKE.GetScreenMode(swigCPtr);
+        public ScreenOffMode GetScreenOffMode() {
+            ScreenOffMode ret = (ScreenOffMode)NDalicPINVOKE.GetScreenOffMode(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -646,8 +646,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(View view)
         {
-            NDalicPINVOKE.Stage_Add(stageCPtr, View.getCPtr(view));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            GetRootLayer()?.Add(view);
         }
 
         /// <summary>
@@ -657,8 +656,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Remove(View view)
         {
-            NDalicPINVOKE.Stage_Remove(stageCPtr, View.getCPtr(view));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            GetRootLayer()?.Remove(view);
         }
 
         internal Vector2 GetSize()
@@ -704,11 +702,13 @@ namespace Tizen.NUI
 
         internal Layer GetRootLayer()
         {
-            if (_rootLayer == null)
+            // Window.IsInstalled() is actually true only when called from event thread and
+            // Core has been initialized, not when Stage is ready.
+            if (_rootLayer == null && Window.IsInstalled())
+            {
                 _rootLayer = new Layer(NDalicPINVOKE.Stage_GetRootLayer(stageCPtr), true);
-
-
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
             return _rootLayer;
         }
 

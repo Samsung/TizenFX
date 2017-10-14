@@ -220,20 +220,20 @@ namespace Tizen.NUI
       */
     internal class NUIApplicationBatteryLowEventArgs : EventArgs
     {
-        private Application _application;
+        private Application.BatteryStatus _status;
         /**
           * @brief Application - is the application that is being affected when the battery level of the device is low
           *
           */
-        public Application Application
+        public Application.BatteryStatus BatteryStatus
         {
             get
             {
-                return _application;
+                return _status;
             }
             set
             {
-                _application = value;
+                _status = value;
             }
         }
     }
@@ -244,20 +244,20 @@ namespace Tizen.NUI
       */
     internal class NUIApplicationMemoryLowEventArgs : EventArgs
     {
-        private Application _application;
+        private Application.MemoryStatus _status;
         /**
           * @brief Application - is the application that is being affected when the memory level of the device is low
           *
           */
-        public Application Application
+        public Application.MemoryStatus MemoryStatus
         {
             get
             {
-                return _application;
+                return _status;
             }
             set
             {
-                _application = value;
+                _status = value;
             }
         }
     }
@@ -403,6 +403,20 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        public enum BatteryStatus
+        {
+            Normal,
+            CriticalLow,
+            PowerOff
+        };
+
+        public enum MemoryStatus
+        {
+            Normal,
+            SoftWarning,
+            HardWarning
+        };
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void NUIApplicationInitEventCallbackDelegate(IntPtr application);
         private DaliEventHandler<object, NUIApplicationInitEventArgs> _applicationInitEventHandler;
@@ -447,12 +461,12 @@ namespace Tizen.NUI
         private NUIApplicationRegionChangedEventCallbackDelegate _applicationRegionChangedEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void NUIApplicationBatteryLowEventCallbackDelegate(IntPtr application);
+        private delegate void NUIApplicationBatteryLowEventCallbackDelegate(BatteryStatus status);
         private DaliEventHandler<object, NUIApplicationBatteryLowEventArgs> _applicationBatteryLowEventHandler;
         private NUIApplicationBatteryLowEventCallbackDelegate _applicationBatteryLowEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void NUIApplicationMemoryLowEventCallbackDelegate(IntPtr application);
+        private delegate void NUIApplicationMemoryLowEventCallbackDelegate(MemoryStatus status);
         private DaliEventHandler<object, NUIApplicationMemoryLowEventArgs> _applicationMemoryLowEventHandler;
         private NUIApplicationMemoryLowEventCallbackDelegate _applicationMemoryLowEventCallbackDelegate;
 
@@ -899,12 +913,12 @@ namespace Tizen.NUI
         }
 
         // Callback for Application BatteryLowSignal
-        private void OnNUIApplicationBatteryLow(IntPtr data)
+        private void OnNUIApplicationBatteryLow(BatteryStatus status)
         {
             NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
 
             // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
-            e.Application = Application.GetApplicationFromPtr(data);
+            e.BatteryStatus = status;
 
             if (_applicationBatteryLowEventHandler != null)
             {
@@ -949,12 +963,12 @@ namespace Tizen.NUI
         }
 
         // Callback for Application MemoryLowSignal
-        private void OnNUIApplicationMemoryLow(IntPtr data)
+        private void OnNUIApplicationMemoryLow(MemoryStatus status)
         {
             NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
 
             // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
-            e.Application = Application.GetApplicationFromPtr(data);
+            e.MemoryStatus = status;
 
             if (_applicationMemoryLowEventHandler != null)
             {
@@ -1236,6 +1250,21 @@ namespace Tizen.NUI
             return ret;
         }
 
+        public string GetLanguage()
+        {
+            string ret = NDalicPINVOKE.Application_GetLanguage(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public string GetRegion()
+        {
+            string ret = NDalicPINVOKE.Application_GetRegion(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+
         internal ApplicationSignal InitSignal()
         {
             ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_InitSignal(swigCPtr), false);
@@ -1299,16 +1328,16 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal ApplicationSignal BatteryLowSignal()
+        internal LowBatterySignalType BatteryLowSignal()
         {
-            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_BatteryLowSignal(swigCPtr), false);
+            LowBatterySignalType ret = new LowBatterySignalType(NDalicPINVOKE.Application_BatteryLowSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal ApplicationSignal MemoryLowSignal()
+        internal LowMemorySignalType MemoryLowSignal()
         {
-            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_MemoryLowSignal(swigCPtr), false);
+            LowMemorySignalType ret = new LowMemorySignalType(NDalicPINVOKE.Application_MemoryLowSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

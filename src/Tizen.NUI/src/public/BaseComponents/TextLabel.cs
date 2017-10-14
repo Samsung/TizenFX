@@ -107,7 +107,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AUTO_SCROLL_LOOP_DELAY = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
             internal static readonly int LINE_COUNT = NDalicManualPINVOKE.TextLabel_Property_LINE_COUNT_get();
             internal static readonly int LINE_WRAP_MODE = NDalicManualPINVOKE.TextLabel_Property_LINE_WRAP_MODE_get();
-            internal static readonly int TEXT_COLOR_ANIMATABLE = NDalicPINVOKE.TextLabel_Property_TEXT_COLOR_ANIMATABLE_get();
 
         }
 
@@ -404,6 +403,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The TextColor property.<br />
         /// The color of the text.<br />
+        /// Animation framework can be used to change the color of the text when not using mark up.<br />
+        /// Cannot animate the color when text is auto scrolling.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Color TextColor
@@ -789,27 +790,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextLabel.Property.AUTO_SCROLL_STOP_MODE, new Tizen.NUI.PropertyValue((int)value));
-            }
-        }
-
-        /// <summary>
-        /// The TextColorAnimatable property.<br />
-        /// The color of the text that can be animatated.<br />
-        /// Animation framework can be used to change the color of the text when not using mark up.<br />
-        /// Not possible when text is auto scrolling. <br />
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public Color TextColorAnimatable
-        {
-            get
-            {
-                Color animatableColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-                GetProperty(TextLabel.Property.TEXT_COLOR_ANIMATABLE).Get(animatableColor);
-                return animatableColor;
-            }
-            set
-            {
-                SetProperty(TextLabel.Property.TEXT_COLOR_ANIMATABLE, new Tizen.NUI.PropertyValue(value));
             }
         }
 

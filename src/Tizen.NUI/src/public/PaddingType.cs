@@ -17,6 +17,9 @@
 
 namespace Tizen.NUI
 {
+
+    using System;
+
     /// <summary>
     /// The gesture state.
     /// </summary>
@@ -119,8 +122,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Equality operator
+        /// Equality operator.
         /// </summary>
+        /// <param name="a">First operand</param>
+        /// <param name="b">Second operand</param>
+        /// <returns>True if the values are identical</returns>
         /// <since_tizen> 3 </since_tizen>
         public static bool operator ==(PaddingType a, PaddingType b)
         {
@@ -137,15 +143,18 @@ namespace Tizen.NUI
             }
 
             // Return true if the fields match:
-            return (System.Math.Abs(a.Left - b.Left) < NDalic.GetRangedEpsilon(a.Left, b.Left)) &&
-                   (System.Math.Abs(a.Right - b.Right) < NDalic.GetRangedEpsilon(a.Right, b.Right)) &&
+            return (System.Math.Abs(a.Start- b.Start) < NDalic.GetRangedEpsilon(a.Start, b.Start)) &&
+                   (System.Math.Abs(a.End - b.End) < NDalic.GetRangedEpsilon(a.End, b.End)) &&
                    (System.Math.Abs(a.Bottom - b.Bottom) < NDalic.GetRangedEpsilon(a.Bottom, b.Bottom)) &&
                    (System.Math.Abs(a.Top - b.Top) < NDalic.GetRangedEpsilon(a.Top, b.Top));
         }
 
         /// <summary>
-        /// Inequality operator. Returns Null if either operand is Null
+        /// Inequality operator.
         /// </summary>
+        /// <param name="a">First operand</param>
+        /// <param name="b">Second operand</param>
+        /// <returns>True if the values are not identical</returns>
         /// <since_tizen> 3 </since_tizen>
         public static bool operator !=(PaddingType a, PaddingType b)
         {
@@ -172,8 +181,8 @@ namespace Tizen.NUI
             PaddingType p = (PaddingType)o;
 
             // Return true if the fields match:
-            return (System.Math.Abs(Left - p.Left) < NDalic.GetRangedEpsilon(Left, p.Left)) &&
-                   (System.Math.Abs(Right - p.Right) < NDalic.GetRangedEpsilon(Right, p.Right)) &&
+            return (System.Math.Abs(Start- p.Start) < NDalic.GetRangedEpsilon(Start, p.Start)) &&
+                   (System.Math.Abs(End - p.End) < NDalic.GetRangedEpsilon(End, p.End)) &&
                    (System.Math.Abs(Bottom - p.Bottom) < NDalic.GetRangedEpsilon(Bottom, p.Bottom)) &&
                    (System.Math.Abs(Top - p.Top) < NDalic.GetRangedEpsilon(Top, p.Top));
         }
@@ -191,7 +200,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The Left value.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! this will be removed. please use Start instead")]
         public float Left
         {
             set
@@ -205,9 +214,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The Start value.
+        /// </summary>
+        public float Start
+        {
+            set
+            {
+                start = value;
+            }
+            get
+            {
+                return start;
+            }
+        }
+
+        /// <summary>
         /// The Right value.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! this will be removed. please use End instead")]
         public float Right
         {
             set
@@ -221,18 +245,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The Bottom value.
+        /// The End value.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public float Bottom
+        public float End
         {
             set
             {
-                bottom = value;
+                end = value;
             }
             get
             {
-                return bottom;
+                return end;
             }
         }
 
@@ -253,7 +276,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Create an instance of paddingType.
+        /// The Bottom value.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public float Bottom
+        {
+            set
+            {
+                bottom = value;
+            }
+            get
+            {
+                return bottom;
+            }
+        }
+
+        /// <summary>
+        /// Creates an uninitialized PaddingType.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PaddingType() : this(NDalicPINVOKE.new_PaddingType__SWIG_0(), true)
@@ -262,45 +301,28 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Create an instance of BaseHandle.
+        /// PaddingType Constructor.
         /// </summary>
-        /// <param name="x">The x value.</param>
-        /// <param name="y">The y value.</param>
-        /// <param name="width">The width value.</param>
-        /// <param name="height">The height value.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public PaddingType(float x, float y, float width, float height) : this(NDalicPINVOKE.new_PaddingType__SWIG_1(x, y, width, height), true)
+        /// <param name="start">Start padding or X coordinate</param>
+        /// <param name="end">End padding or Y coordinate</param>
+        /// <param name="top">Top padding or Height</param>
+        /// <param name="bottom">Bottom padding or Width</param>
+        public PaddingType(float start, float end, float top, float bottom) : this(NDalicPINVOKE.new_PaddingType__SWIG_1(start, end, bottom, top), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Set the x, y, width, height of this paddingtype.
+        /// Assignment from individual values.
         /// </summary>
-        /// <param name="newX">The x value.</param>
-        /// <param name="newY">The y value.</param>
-        /// <param name="newWidth">The width value.</param>
-        /// <param name="newHeight">The height value.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void Set(float newX, float newY, float newWidth, float newHeight)
+        /// <param name="newStart">Start padding or X coordinate</param>
+        /// <param name="newEnd">End padding or Y coordinate</param>
+        /// <param name="newTop">Top padding or Height</param>
+        /// <param name="newBottom">Bottom padding or Width</param>
+        public void Set(float newStart, float newEnd, float newTop, float newBottom)
         {
-            NDalicPINVOKE.PaddingType_Set(swigCPtr, newX, newY, newWidth, newHeight);
+            NDalicPINVOKE.PaddingType_Set(swigCPtr, newStart, newEnd, newBottom, newTop);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        private float x
-        {
-            set
-            {
-                NDalicPINVOKE.PaddingType_x_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = NDalicPINVOKE.PaddingType_x_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
         }
 
         private float left
@@ -318,16 +340,16 @@ namespace Tizen.NUI
             }
         }
 
-        private float y
+        private float start
         {
             set
             {
-                NDalicPINVOKE.PaddingType_y_set(swigCPtr, value);
+                NDalicPINVOKE.PaddingType_start_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = NDalicPINVOKE.PaddingType_y_get(swigCPtr);
+                float ret = NDalicPINVOKE.PaddingType_start_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -348,46 +370,16 @@ namespace Tizen.NUI
             }
         }
 
-        private float width
+        private float end
         {
             set
             {
-                NDalicPINVOKE.PaddingType_width_set(swigCPtr, value);
+                NDalicPINVOKE.PaddingType_end_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = NDalicPINVOKE.PaddingType_width_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private float bottom
-        {
-            set
-            {
-                NDalicPINVOKE.PaddingType_bottom_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = NDalicPINVOKE.PaddingType_bottom_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        private float height
-        {
-            set
-            {
-                NDalicPINVOKE.PaddingType_height_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = NDalicPINVOKE.PaddingType_height_get(swigCPtr);
+                float ret = NDalicPINVOKE.PaddingType_end_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -408,6 +400,20 @@ namespace Tizen.NUI
             }
         }
 
+        private float bottom
+        {
+            set
+            {
+                NDalicPINVOKE.PaddingType_bottom_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                float ret = NDalicPINVOKE.PaddingType_bottom_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
     }
 
 }

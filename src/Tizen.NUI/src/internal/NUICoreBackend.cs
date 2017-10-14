@@ -160,7 +160,7 @@ namespace Tizen.NUI
             Log.Debug("NUI", "NUICorebackend OnRegionChanged Called");
             var handler = Handlers[EventType.RegionFormatChanged] as Action<RegionFormatChangedEventArgs>;
             // Need to make new signal return in native to return right value.
-            handler?.Invoke( new RegionFormatChangedEventArgs(""));
+            handler?.Invoke( new RegionFormatChangedEventArgs(e.Application.GetRegion()));
         }
 
         /// <summary>
@@ -173,7 +173,24 @@ namespace Tizen.NUI
             Log.Debug("NUI", "NUICorebackend OnMemoryLow Called");
             var handler = Handlers[EventType.LowMemory] as Action<LowMemoryEventArgs>;
             // Need to make new signal return in native to return right value.
+            switch( e.MemoryStatus )
+            {
+                case Application.MemoryStatus.Normal:
+                {
             handler?.Invoke( new LowMemoryEventArgs(LowMemoryStatus.None));
+                    break;
+                }
+                case Application.MemoryStatus.SoftWarning:
+                {
+                    handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.SoftWarning));
+                    break;
+                }
+                case Application.MemoryStatus.HardWarning:
+                {
+                    handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.HardWarning));
+                    break;
+                }
+            }
         }
 
         /// <summary>
@@ -186,7 +203,7 @@ namespace Tizen.NUI
             Log.Debug("NUI", "NUICorebackend OnLanguageChanged Called");
             var handler = Handlers[EventType.LocaleChanged] as Action<LocaleChangedEventArgs>;
             // Need to make new signal return in native to return right value.
-            handler?.Invoke( new LocaleChangedEventArgs(""));
+            handler?.Invoke( new LocaleChangedEventArgs(e.Application.GetLanguage()));
         }
 
         /// <summary>
@@ -199,7 +216,24 @@ namespace Tizen.NUI
             Log.Debug("NUI", "NUICorebackend OnBatteryLow Called");
             var handler = Handlers[EventType.LowBattery] as Action<LowBatteryEventArgs>;
             // Need to make new signal return in native to return right value.
+            switch( e.BatteryStatus )
+            {
+                case Application.BatteryStatus.Normal:
+                {
             handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.None));
+                    break;
+                }
+                case Application.BatteryStatus.CriticalLow:
+                {
+                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.CriticalLow));
+                    break;
+                }
+                case Application.BatteryStatus.PowerOff:
+                {
+                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.PowerOff));
+                    break;
+                }
+            }
         }
 
         /// <summary>

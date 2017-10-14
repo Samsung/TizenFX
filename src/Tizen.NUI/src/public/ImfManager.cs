@@ -691,6 +691,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Finalize the IMF.<br/>
+        /// </summary>
+        public void Finalize()
+        {
+            NDalicManualPINVOKE.ImfManager_Finalize(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Retrieves a handle to the instance of the ImfManager.
         /// </summary>
         /// <returns>A handle to the ImfManager.</returns>

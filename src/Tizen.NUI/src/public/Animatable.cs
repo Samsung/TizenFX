@@ -109,7 +109,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int GetPropertyIndex(string name)
         {
-            int ret = NDalicPINVOKE.Handle_GetPropertyIndex(swigCPtr, name);
+            string daliPropertyName = name.Substring(0, 1).ToLower() + name.Substring(1);
+
+            int ret = NDalicPINVOKE.Handle_GetPropertyIndex(swigCPtr, daliPropertyName);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

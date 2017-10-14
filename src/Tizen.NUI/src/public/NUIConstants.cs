@@ -197,7 +197,11 @@ namespace Tizen.NUI
         /// <summary>
         /// This actor will clip all children to within its boundaries (the actor will also be visible itself).
         /// </summary>
-        ClipChildren
+        ClipChildren,
+        /// <summary>
+        /// This Actor will clip all children within a screen-aligned rectangle encompassing its boundaries (the actor will also be visible itself).
+        /// </summary>
+        ClipToBoundingBox
     }
 
     /// <summary>
@@ -262,6 +266,9 @@ namespace Tizen.NUI
         LastViewBehaviourFlag
     }
 
+    /// <summary>
+    /// An enum of Device Class types.
+    /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum DeviceClassType
     {
@@ -305,6 +312,66 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Gamepad
+    }
+
+    /// <summary>
+    /// An enum of Device Subclass types.
+    /// </summary>
+    /// <since_tizen> 4 </since_tizen>
+    public enum DeviceSubClassType
+    {
+        /// <summary>
+        /// Not a device
+        /// </summary>
+        None,
+        /// <summary>
+        /// The normal flat of your finger
+        /// </summary>
+        Finger,
+        /// <summary>
+        /// A fingernail
+        /// </summary>
+        Fingernail,
+        /// <summary>
+        /// A Knuckle
+        /// </summary>
+        Knuckle,
+        /// <summary>
+        /// The palm of a users hand
+        /// </summary>
+        Palm,
+        /// <summary>
+        /// The side of your hand
+        /// </summary>
+        HandSide,
+        /// <summary>
+        /// The flat of your hand
+        /// </summary>
+        HandFlat,
+        /// <summary>
+        /// The tip of a pen
+        /// </summary>
+        PenTip,
+        /// <summary>
+        /// A trackpad style mouse
+        /// </summary>
+        Trackpad,
+        /// <summary>
+        /// A trackpoint style mouse
+        /// </summary>
+        Trackpoint,
+        /// <summary>
+        /// A trackball style mouse
+        /// </summary>
+        Trackball,
+        /// <summary>
+        /// A remote controller
+        /// </summary>
+        Remocon,
+        /// <summary>
+        /// A virtual keyboard
+        /// </summary>
+        VirtualKeyboard
     }
 
     /// <summary>
@@ -1324,7 +1391,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Hide last character after this duration, available when SHOW_LAST_CHARACTER mode.
         /// </summary>
-        public static readonly int ShowDuration = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_SHOW_DURATION_get();
+        public static readonly int ShowLastCharacterDuration = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_SHOW_LAST_CHARACTER_DURATION_get();
     }
 
     /// <summary>
@@ -1350,7 +1417,7 @@ namespace Tizen.NUI
         /// </summary>
         ShowCount,
         /// <summary>
-        /// Show last character for the duration (use ShowDuration property to modify duration).
+        /// Show last character for the duration(use ShowLastCharacterDuration property to modify duration).
         /// </summary>
         ShowLastCharacter
     }
@@ -1877,15 +1944,15 @@ namespace Tizen.NUI
     /// An enum of screen mode.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public enum ScreenMode {
+    public enum ScreenOffMode {
         /// <summary>
         /// The mode which turns the screen off after a timeout.
         /// </summary>
-        Default,
+        Timout,
         /// <summary>
         /// The mode which keeps the screen turned on.
         /// </summary>
-        AlwaysOn
+        Never
     }
 
     /// <summary>

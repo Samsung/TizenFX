@@ -233,7 +233,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// the device class the key event originated from.
+        /// Get the device class the key event originated from.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public DeviceClassType DeviceClass
@@ -246,6 +246,19 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Get the device subclass the key event originated from.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public DeviceSubClassType DeviceSubClass
+        {
+            get
+            {
+                int ret = NDalicPINVOKE.GetDeviceSubClass(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return (DeviceSubClassType)ret;
+            }
+        }
 
         /// <summary>
         /// The default constructor.

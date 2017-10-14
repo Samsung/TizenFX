@@ -20,22 +20,32 @@ using Tizen.Applications.CoreBackend;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// This class represents the type of NUI event for backends. This class can be converted from string type.
+    /// Class that represents the type of NUI event for backends. This class can be converted from string type.
     /// </summary>
     public class NUIEventType : EventType
     {
         /// <summary>
         /// Initializes the EventType class.
         /// </summary>
-        /// <param name="name">The name of the event type.</param>
+        /// <param name="name">The name of event type.</param>
         public NUIEventType(string name) : base(name)
         {
         }
 
         /// <summary>
-        /// Pre-defined event type "Reset".
+        /// Pre-defined event type. "TimeTick"
         /// </summary>
-        public static readonly NUIEventType Reset = "Reset";
+        public static readonly NUIEventType TimeTick = "TimeTick";
+
+        /// <summary>
+        /// Pre-defined event type. "AmbientTick"
+        /// </summary>
+        public static readonly NUIEventType AmbientTick = "AmbientTick";
+
+        /// <summary>
+        /// Pre-defined event type. "AmbientChanged"
+        /// </summary>
+        public static readonly NUIEventType AmbientChanged = "AmbientChanged";
 
         /// <summary>
         /// Converts a string to NUIEventType instance.

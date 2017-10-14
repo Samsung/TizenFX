@@ -50,6 +50,8 @@ namespace Tizen.NUI
             NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Children.Add(child);
         }
 
         /// <summary>
@@ -63,6 +65,8 @@ namespace Tizen.NUI
             NDalicPINVOKE.Actor_Remove(swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Children.Remove(child);
         }
 
         /// <summary>
@@ -74,15 +78,16 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override View GetChildAt(uint index)
         {
-            System.IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
-
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            return ret ?? null;
+            if (index < Children.Count)
+            {
+                return Children[Convert.ToInt32(index)];
+            }
+            else
+            {
+                return null;
+            }
         }
+
 
         /// <summary>
         /// Get parent of the layer.
@@ -101,10 +106,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override uint GetChildCount()
         {
-            uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return Convert.ToUInt32(Children.Count);
         }
 
         /// <summary>
@@ -140,6 +142,13 @@ namespace Tizen.NUI
             }
 
             base.Dispose(type);
+
+            // Dispose all Children of this Layer.
+            foreach (View childView in Children)
+            {
+                childView?.Dispose();
+            }
+            Children.Clear();
         }
 
 

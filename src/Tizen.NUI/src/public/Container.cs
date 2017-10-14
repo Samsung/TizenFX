@@ -16,18 +16,30 @@
  */
 
 using System;
+using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
     /// <summary>
-    ///
     /// The Container is an abstract class to be inherited from by classes that desire to have views
     /// added to them.
-    ///
     /// </summary>
     public abstract class Container : Animatable
     {
+
+        private List<View> _childViews = new List<View>();
+
+        /// <summary>
+        /// List of children of Container.
+        /// </summary>
+        public List<View> Children
+        {
+            get
+            {
+                return _childViews;
+            }
+        }
 
         internal Container(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

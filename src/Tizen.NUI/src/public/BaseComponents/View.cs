@@ -28,6 +28,7 @@ namespace Tizen.NUI.BaseComponents
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
+
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.View_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -44,57 +45,55 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Adds a child view to this view.
         /// </summary>
-        /// <seealso cref="Container.Add">
-        /// </seealso>
+        /// <seealso cref="Container.Add" />
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
             NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Children.Add(child);
         }
 
         /// <summary>
         /// Removes a child view from this View. If the view was not a child of this view, this is a no-op.
         /// </summary>
-        /// <seealso cref="Container.Remove">
-        /// </seealso>
+        /// <seealso cref="Container.Remove" />
         /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
             NDalicPINVOKE.Actor_Remove(swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Children.Remove(child);
         }
 
         /// <summary>
         /// Retrieves a child view by index.
         /// </summary>
-        /// <seealso cref="Container.GetChildAt">
-        /// </seealso>
+        /// <seealso cref="Container.GetChildAt" />
         /// <since_tizen> 4 </since_tizen>
         public override View GetChildAt(uint index)
         {
-            IntPtr cPtr = NDalicPINVOKE.Actor_GetChildAt(swigCPtr, index);
-
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret ?? null;
+            if (index < Children.Count)
+            {
+                return Children[Convert.ToInt32(index)];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
         /// Retrieves the number of children held by the view.
         /// </summary>
-        /// <seealso cref="Container.GetChildCount">
-        /// </seealso>
+        /// <seealso cref="Container.GetChildCount" />
         protected override uint GetChildCount()
         {
-            uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return Convert.ToUInt32(Children.Count);
         }
 
         /// <summary>
@@ -103,23 +102,14 @@ namespace Tizen.NUI.BaseComponents
         /// <seealso cref="Container.GetParent()" />
         protected override Container GetParent()
         {
-            Container ret;
             IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
 
             BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
 
-            if(basehandle is Layer)
-            {
-                ret = basehandle as Layer;
-            }
-            else
-            {
-                ret = basehandle as View;
-            }
-
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+
+            return basehandle as Container;
         }
 
         /// <summary>
@@ -177,6 +167,13 @@ namespace Tizen.NUI.BaseComponents
             }
 
             base.Dispose(type);
+
+            // Dispose all Children of this View.
+            foreach (View childView in Children)
+            {
+                childView?.Dispose();
+            }
+            Children.Clear();
         }
 
         private void DisConnectFromSignals()
@@ -2313,6 +2310,21 @@ namespace Tizen.NUI.BaseComponents
 
         internal void Raise()
         {
+            var parentChildren = Parent?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+
+                // If the view is not already the last item in the list.
+                if (currentIndex != parentChildren.Count -1)
+                {
+                    View temp = parentChildren[currentIndex + 1];
+                    parentChildren[currentIndex + 1] = this;
+                    parentChildren[currentIndex] = temp;
+                }
+            }
+
             NDalicPINVOKE.Raise(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2320,6 +2332,21 @@ namespace Tizen.NUI.BaseComponents
 
         internal void Lower()
         {
+            var parentChildren = Parent?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+
+                // If the view is not already the first item in the list.
+                if (currentIndex > 0)
+                {
+                    View temp = parentChildren[currentIndex - 1];
+                    parentChildren[currentIndex - 1] = this;
+                    parentChildren[currentIndex] = temp;
+                }
+            }
+
             NDalicPINVOKE.Lower(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2335,6 +2362,14 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void RaiseToTop()
         {
+            var parentChildren = Parent?.Children;
+
+            if (parentChildren != null)
+            {
+                parentChildren.Remove(this);
+                parentChildren.Add(this);
+            }
+
             NDalicPINVOKE.RaiseToTop(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2350,6 +2385,14 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void LowerToBottom()
         {
+            var parentChildren = Parent?.Children;
+
+            if (parentChildren != null)
+            {
+                parentChildren.Remove(this);
+                parentChildren.Insert(0, this);
+            }
+
             NDalicPINVOKE.LowerToBottom(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2379,6 +2422,21 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="target">Will be raised above this view.</param>
         internal void RaiseAbove(View target)
         {
+            var parentChildren = Parent?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+                int targetIndex = parentChildren.IndexOf(target);
+
+                // If the currentIndex is less than the target index and the target has the same parent.
+                if (currentIndex < targetIndex)
+                {
+                    parentChildren.Remove(this);
+                    parentChildren.Insert(targetIndex, this);
+                }
+            }
+
             NDalicPINVOKE.RaiseAbove(swigCPtr, View.getCPtr(target));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2394,7 +2452,23 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="target">Will be lowered below this view.</param>
         internal void LowerBelow(View target)
         {
-            NDalicPINVOKE.RaiseAbove(swigCPtr, View.getCPtr(target));
+            var parentChildren = Parent?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+                int targetIndex = parentChildren.IndexOf(target);
+
+                // If the currentIndex is not already the 0th index and the target has the same parent.
+                if ((currentIndex != 0) && (targetIndex != -1) &&
+                    (currentIndex > targetIndex))
+                {
+                    parentChildren.Remove(this);
+                    parentChildren.Insert(targetIndex, this);
+                }
+            }
+
+            NDalicPINVOKE.LowerBelow(swigCPtr, View.getCPtr(target));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -2454,9 +2528,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public void Unparent()
         {
-            NDalicPINVOKE.Actor_Unparent(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            GetParent()?.Remove(this);
         }
 
         /// <summary>
@@ -4052,6 +4124,8 @@ namespace Tizen.NUI.BaseComponents
                     return ClippingModeType.Disabled;
                     case "CLIP_CHILDREN":
                     return ClippingModeType.ClipChildren;
+                    case "CLIP_TO_BOUNDING_BOX":
+                    return ClippingModeType.ClipToBoundingBox;
                     default:
                     return ClippingModeType.Disabled;
                 }

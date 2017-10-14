@@ -279,7 +279,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int PIXEL_SIZE = NDalicManualPINVOKE.TextField_Property_PIXEL_SIZE_get();
             internal static readonly int ENABLE_SELECTION = NDalicManualPINVOKE.TextField_Property_ENABLE_SELECTION_get();
             internal static readonly int PLACEHOLDER = NDalicManualPINVOKE.TextField_Property_PLACEHOLDER_get();
-
+            internal static readonly int ELLIPSIS = NDalicManualPINVOKE.TextField_Property_ELLIPSIS_get();
         }
 
         internal class InputStyle
@@ -1426,6 +1426,27 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(TextField.Property.PLACEHOLDER, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// The Ellipsis property.<br />
+        /// Enable or disable the ellipsis.<br />
+        /// Placeholder PropertyMap is used to add ellipsis to placeholder text.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public bool Ellipsis
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(TextField.Property.ELLIPSIS).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextField.Property.ELLIPSIS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
 
     }
 

@@ -132,8 +132,7 @@ namespace Tizen.NUI
         public static RelativeVector3 operator +(RelativeVector3 arg1, RelativeVector3 arg2)
         {
             RelativeVector3 result = arg1.Add(arg2);
-            ValueCheck(result);
-            return result;
+            return ValueCheck(result);
         }
 
         /// <summary>
@@ -146,8 +145,7 @@ namespace Tizen.NUI
         public static RelativeVector3 operator -(RelativeVector3 arg1, RelativeVector3 arg2)
         {
             RelativeVector3 result = arg1.Subtract(arg2);
-            ValueCheck(result);
-            return result;
+            return ValueCheck(result);
         }
 
         /// <summary>
@@ -160,8 +158,7 @@ namespace Tizen.NUI
         public static RelativeVector3 operator *(RelativeVector3 arg1, RelativeVector3 arg2)
         {
             RelativeVector3 result = arg1.Multiply(arg2);
-            ValueCheck(result);
-            return result;
+            return ValueCheck(result);
         }
 
         /// <summary>
@@ -174,8 +171,7 @@ namespace Tizen.NUI
         public static RelativeVector3 operator *(RelativeVector3 arg1, float arg2)
         {
             RelativeVector3 result = arg1.Multiply(arg2);
-            ValueCheck(result);
-            return result;
+            return ValueCheck(result);
         }
 
         /// <summary>
@@ -188,8 +184,7 @@ namespace Tizen.NUI
         public static RelativeVector3 operator /(RelativeVector3 arg1, RelativeVector3 arg2)
         {
             RelativeVector3 result = arg1.Divide(arg2);
-            ValueCheck(result);
-            return result;
+            return ValueCheck(result);
         }
 
         /// <summary>
@@ -202,8 +197,7 @@ namespace Tizen.NUI
         public static RelativeVector3 operator /(RelativeVector3 arg1, float arg2)
         {
             RelativeVector3 result = arg1.Divide(arg2);
-            ValueCheck(result);
-            return result;
+            return ValueCheck(result);
         }
 
 
@@ -247,11 +241,8 @@ namespace Tizen.NUI
         /// <param name="y">The y component.</param>
         /// <param name="z">The z component.</param>
         /// <since_tizen> 3 </since_tizen>
-        public RelativeVector3(float x, float y, float z) : this(NDalicPINVOKE.new_Vector3__SWIG_1(x, y, z), true)
+        public RelativeVector3(float x, float y, float z) : this(NDalicPINVOKE.new_Vector3__SWIG_1(ValueCheck(x), ValueCheck(y), ValueCheck(z)), true)
         {
-            ValueCheck(x);
-            ValueCheck(y);
-            ValueCheck(z);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -360,8 +351,7 @@ namespace Tizen.NUI
         {
             set
             {
-                ValueCheck(value);
-                NDalicPINVOKE.Vector3_X_set(swigCPtr, value);
+                NDalicPINVOKE.Vector3_X_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
@@ -380,8 +370,7 @@ namespace Tizen.NUI
         {
             set
             {
-                ValueCheck(value);
-                NDalicPINVOKE.Vector3_Y_set(swigCPtr, value);
+                NDalicPINVOKE.Vector3_Y_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
@@ -400,8 +389,7 @@ namespace Tizen.NUI
         {
             set
             {
-                 ValueCheck(value);
-                NDalicPINVOKE.Vector3_Z_set(swigCPtr, value);
+                NDalicPINVOKE.Vector3_Z_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
@@ -425,60 +413,60 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector3(Vector3 vec)
         {
-            ValueCheck(vec.X);
-            ValueCheck(vec.Y);
-            ValueCheck(vec.Z);
-            return new RelativeVector3(vec.X, vec.Y, vec.Z);
+            return new RelativeVector3(ValueCheck(vec.X), ValueCheck(vec.Y), ValueCheck(vec.Z));
         }
 
-        internal static void ValueCheck(RelativeVector3 relativeVector3)
+        internal static RelativeVector3 ValueCheck(RelativeVector3 relativeVector3)
         {
             if(relativeVector3.X < 0.0f)
             {
                 relativeVector3.X = 0.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
+                NUILog.Error( "The value of Result is invalid! Should be between [0, 1].");
             }
             else if(relativeVector3.X > 1.0f)
             {
                 relativeVector3.X = 1.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
+                NUILog.Error( "The value of Result is invalid! Should be between [0, 1].");
             }
             if(relativeVector3.Y < 0.0f)
             {
                 relativeVector3.Y = 0.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
+                NUILog.Error( "The value of Result is invalid! Should be between [0, 1].");
             }
             else if(relativeVector3.Y > 1.0f)
             {
                 relativeVector3.Y = 1.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
+                NUILog.Error( "The value of Result is invalid! Should be between [0, 1].");
             }
             if(relativeVector3.Z < 0.0f)
             {
                 relativeVector3.Z = 0.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
+                NUILog.Error( "The value of Result is invalid! Should be between [0, 1].");
             }
             else if(relativeVector3.Z > 1.0f)
             {
                 relativeVector3.Z = 1.0f;
-                Tizen.Log.Fatal("NUI", "The value of Result is invalid! Should be between [0, 1].");
+                NUILog.Error( "The value of Result is invalid! Should be between [0, 1].");
             }
+            return relativeVector3;
         }
 
-        internal static void ValueCheck(float value)
+        internal static float ValueCheck(float value)
         {
             if(value < 0.0f)
             {
                 value = 0.0f;
-                Tizen.Log.Fatal("NUI", "The value of Parameters is invalid! Should be between [0, 1].");
+                NUILog.Error( "The value of Parameters is invalid! Should be between [0, 1].");
             }
             else if(value > 1.0f)
             {
                 value = 1.0f;
-                Tizen.Log.Fatal("NUI", "The value of Parameters is invalid! Should be between [0, 1].");
+                NUILog.Error( "The value of Parameters is invalid! Should be between [0, 1].");
             }
+            return value;
         }
     }
 
 }
+
 
