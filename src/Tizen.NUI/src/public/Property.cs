@@ -1340,6 +1340,10 @@ namespace Tizen.NUI
             {
                 value = new PropertyValue((RelativeVector4)obj);
             }
+            else if(type.Equals(typeof(Extents)))
+            {
+                value = new PropertyValue((Extents)obj);
+            }
             else
             {
                 throw new global::System.InvalidOperationException("Unimplemented type for Property Value :" + type.Name);
@@ -1594,11 +1598,21 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Creates a Extents value.
+        /// </summary>
+        /// <param name="extentsValue">A Extents value.</param>
+        /// <since_tizen> 4 </since_tizen>
+        public PropertyValue(Extents extentsValue) : this(NDalicPINVOKE.new_Property_Value__SWIG_16(Extents.getCPtr(extentsValue)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Creates a PropertyType value.
         /// </summary>
         /// <param name="type">A PropertyType value.</param>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyValue(PropertyType type) : this(NDalicPINVOKE.new_Property_Value__SWIG_16((int)type), true)
+        public PropertyValue(PropertyType type) : this(NDalicPINVOKE.new_Property_Value__SWIG_17((int)type), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1608,7 +1622,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="value">A PropertyValue value.</param>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyValue(PropertyValue value) : this(NDalicPINVOKE.new_Property_Value__SWIG_17(PropertyValue.getCPtr(value)), true)
+        public PropertyValue(PropertyValue value) : this(NDalicPINVOKE.new_Property_Value__SWIG_18(PropertyValue.getCPtr(value)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1785,6 +1799,19 @@ namespace Tizen.NUI
         public bool Get(PropertyMap mapValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_14(swigCPtr, PropertyMap.getCPtr(mapValue));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Retrieves a Extents value.
+        /// </summary>
+        /// <param name="extentsValue">On return, a extents.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
+        /// <since_tizen> 4 </since_tizen>
+        public bool Get(Extents extentsValue)
+        {
+            bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_15(swigCPtr, Extents.getCPtr(extentsValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

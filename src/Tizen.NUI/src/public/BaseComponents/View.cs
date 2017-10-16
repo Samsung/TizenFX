@@ -1107,6 +1107,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int CLIPPING_MODE = NDalicPINVOKE.Actor_Property_CLIPPING_MODE_get();
             internal static readonly int INHERIT_LAYOUT_DIRECTION = NDalicManualPINVOKE.Actor_Property_INHERIT_LAYOUT_DIRECTION_get();
             internal static readonly int LAYOUT_DIRECTION = NDalicManualPINVOKE.Actor_Property_LAYOUT_DIRECTION_get();
+            internal static readonly int MARGIN = NDalicPINVOKE.View_Property_MARGIN_get();
+            internal static readonly int PADDINGEX = NDalicPINVOKE.View_Property_PADDING_get();
         }
 
         /// <summary>
@@ -4432,6 +4434,40 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.LAYOUT_DIRECTION, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Margin for use in layout.
+        /// </summary>
+        public Extents Margin
+        {
+            get
+            {
+                Extents temp = new Extents(0, 0, 0, 0);
+                GetProperty(View.Property.MARGIN).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.MARGIN, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Padding for use in layout.
+        /// </summary>
+        public Extents PaddingEX
+        {
+            get
+            {
+                Extents temp = new Extents(0, 0, 0, 0);
+                GetProperty(View.Property.PADDINGEX).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.PADDINGEX, new Tizen.NUI.PropertyValue(value));
             }
         }
     }

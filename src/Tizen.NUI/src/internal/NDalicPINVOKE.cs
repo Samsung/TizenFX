@@ -1651,10 +1651,13 @@ class NDalicPINVOKE {
   public static extern global::System.IntPtr new_Property_Value__SWIG_15(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_Property_Value__SWIG_16")]
-  public static extern global::System.IntPtr new_Property_Value__SWIG_16(int jarg1);
+  public static extern global::System.IntPtr new_Property_Value__SWIG_16(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_Property_Value__SWIG_17")]
-  public static extern global::System.IntPtr new_Property_Value__SWIG_17(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern global::System.IntPtr new_Property_Value__SWIG_17(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_Property_Value__SWIG_18")]
+  public static extern global::System.IntPtr new_Property_Value__SWIG_18(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Property_Value_Assign")]
   public static extern global::System.IntPtr Property_Value_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -1706,6 +1709,9 @@ class NDalicPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Property_Value_Get__SWIG_14")]
   public static extern bool Property_Value_Get__SWIG_14(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Property_Value_Get__SWIG_15")]
+  public static extern bool Property_Value_Get__SWIG_15(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Property_Value_GetArray")]
   public static extern global::System.IntPtr Property_Value_GetArray(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -7200,6 +7206,12 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_View_Property_BACKGROUND_get")]
   public static extern int View_Property_BACKGROUND_get();
 
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_View_Property_MARGIN_get")]
+  public static extern int View_Property_MARGIN_get();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_View_Property_PADDING_get")]
+  public static extern int View_Property_PADDING_get();
+
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_View_Property")]
   public static extern global::System.IntPtr new_View_Property();
 
@@ -11314,6 +11326,54 @@ class NDalicPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_WebViewLite_SWIGUpcast")]
   public static extern global::System.IntPtr WebViewLite_SWIGUpcast(global::System.IntPtr jarg1);
-}
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_Extents__SWIG_0")]
+  public static extern global::System.IntPtr new_Extents__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_Extents__SWIG_1")]
+  public static extern global::System.IntPtr new_Extents__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_Extents__SWIG_2")]
+  public static extern global::System.IntPtr new_Extents__SWIG_2(ushort jarg1, ushort jarg2, ushort jarg3, ushort jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Extents_Assign__SWIG_0")]
+  public static extern global::System.IntPtr Extents_Assign__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Extents_Assign__SWIG_1")]
+  public static extern global::System.IntPtr Extents_Assign__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Extents_EqualTo")]
+  public static extern bool Extents_EqualTo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Extents_NotEqualTo")]
+  public static extern bool Extents_NotEqualTo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Extents_start_set")]
+  public static extern void Extents_start_set(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Extents_start_get")]
+  public static extern ushort Extents_start_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Extents_end_set")]
+  public static extern void Extents_end_set(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Extents_end_get")]
+  public static extern ushort Extents_end_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Extents_top_set")]
+  public static extern void Extents_top_set(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Extents_top_get")]
+  public static extern ushort Extents_top_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Extents_bottom_set")]
+  public static extern void Extents_bottom_set(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Extents_bottom_get")]
+  public static extern ushort Extents_bottom_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_delete_Extents")]
+  public static extern void delete_Extents(global::System.Runtime.InteropServices.HandleRef jarg1);
+    }
 
 }
