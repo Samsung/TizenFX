@@ -422,5 +422,41 @@ namespace Tizen.Applications.NotificationEventListener
                 throw NotificationEventListenerErrorFactory.GetException(err, "failed to send event");
             }
         }
+
+        /// <summary>
+        /// Returns NotificationEventArgs by UniqueNumber.
+        /// </summary>
+        /// <param name="uniqueNumber">The unique number of the Notification.</param>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <privilege>http://tizen.org/privilege/notification</privilege>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static NotificationEventArgs GetNotificationEventArgs(int uniqueNumber)
+        {
+            if (uniqueNumber <= 0)
+            {
+                throw NotificationEventListenerErrorFactory.GetException(Interop.NotificationEventListener.ErrorCode.InvalidParameter, "Invalid parameter");
+            }
+
+            IntPtr notificationPtr = Interop.NotificationEventListener.LoadNotification(null, uniqueNumber);
+            if (notificationPtr == IntPtr.Zero)
+            {
+                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                if (err.Equals((int)Interop.NotificationEventListener.ErrorCode.DbError))
+                {
+                    throw NotificationEventListenerErrorFactory.GetException(Interop.NotificationEventListener.ErrorCode.InvalidParameter, "Not exist");
+                }
+                else
+                {
+                    throw NotificationEventListenerErrorFactory.GetException((Interop.NotificationEventListener.ErrorCode)err, "failed to get NotificationEventArgs");
+                }
+            }
+
+            NotificationEventArgs eventArgs = new NotificationEventArgs();
+            eventArgs = NotificationEventArgsBinder.BindObject(notificationPtr, false);
+
+            return eventArgs;
+        }
     }
 }
