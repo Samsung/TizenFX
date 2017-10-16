@@ -9,4 +9,8 @@
     <_IsNETCoreOrNETStandard>true</_IsNETCoreOrNETStandard>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageConflictPlatformManifests Include="$(MSBuildThisFileDirectory)Tizen.NET.PlatformManifest.txt" />
+  </ItemGroup>
+
 </Project>

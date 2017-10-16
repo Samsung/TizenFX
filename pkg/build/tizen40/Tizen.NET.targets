@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <BundledNETStandardPackageVersion Condition="'$(BundledNETStandardPackageVersion)' == ''">2.0.0</BundledNETStandardPackageVersion>
-    <BundledNETCoreAppPackageVersion Condition="'$(BundledNETCoreAppPackageVersion)' == ''">2.0.0</BundledNETCoreAppPackageVersion>
+    <_TizenNETCoreAppPackageVersion>2.0.0</_TizenNETCoreAppPackageVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -17,37 +16,13 @@
     <CopyLocalLockFileAssemblies Condition="'$(CopyLocalLockFileAssemblies)' == ''">false</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
-  <!--
-    Tizen4.0 TFM supports NETStandard2.0. However NETStandard.Library does not
-    provide reference assemblies when referenced by other TFMs.
-    So, the same reference assemblies are provided directly from Tizen.NET.
-    These reference assemblies came from NETStandard.Library 2.0.0.
-  -->
-  <ItemGroup  Condition="'$(OutputType)' != 'Exe'">
+  <ItemGroup>
     <Reference Include="$(MSBuildThisFileDirectory)\ref\*.dll">
       <Private>false</Private>
       <Visible>false</Visible>
-      <Facade Condition="'%(FileName)' != 'netstandard'">true</Facade>
-      <NuGetPackageId>NETStandard.Library</NuGetPackageId>
-      <NuGetPackageVersion>$(BundledNETStandardPackageVersion)</NuGetPackageVersion>
+      <NuGetPackageId>Microsoft.NETCore.App</NuGetPackageId>
+      <NuGetPackageVersion>$(_TizenNETCoreAppPackageVersion)</NuGetPackageVersion>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(OutputType)' != 'Exe'">
-    <PackageReference Include="NETStandard.Library" Version="$(BundledNETStandardPackageVersion)" IsImplicitlyDefined="true" />
-  </ItemGroup>
-
-  <!--
-    Tizen platform supports .NETCore 2.0 runtime.
-    In application, NETCoreApp2.0 APIs are also available.
-  -->
-  <PropertyGroup Condition="'$(OutputType)' == 'Exe'">
-    <NoWarn>$(NoWarn);NU1701</NoWarn>
-    <AssetTargetFallback>$(AssetTargetFallback);netcoreapp2.0</AssetTargetFallback>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(OutputType)' == 'Exe'">
-    <PackageReference Include="Microsoft.NETCore.App" Version="$(BundledNETCoreAppPackageVersion)" IsImplicitlyDefined="true" />
   </ItemGroup>
 
 </Project>
