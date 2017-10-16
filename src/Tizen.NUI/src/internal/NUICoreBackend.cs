@@ -20,7 +20,6 @@ using System.Collections.Generic;
 
 using Tizen.Applications.CoreBackend;
 using Tizen.Applications;
-using Tizen.NUI;
 
 namespace Tizen.NUI
 {
@@ -157,9 +156,8 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for RegionChanged.</param>
         private void OnRegionChanged(object source, NUIApplicationRegionChangedEventArgs e)
         {
-            Log.Debug("NUI", "NUICorebackend OnRegionChanged Called");
+            Log.Info("NUI", "NUICorebackend OnRegionChanged Called");
             var handler = Handlers[EventType.RegionFormatChanged] as Action<RegionFormatChangedEventArgs>;
-            // Need to make new signal return in native to return right value.
             handler?.Invoke( new RegionFormatChangedEventArgs(e.Application.GetRegion()));
         }
 
@@ -170,22 +168,22 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for MemoryLow.</param>
         private void OnMemoryLow(object source, NUIApplicationMemoryLowEventArgs e)
         {
-            Log.Debug("NUI", "NUICorebackend OnMemoryLow Called");
+            Log.Info("NUI", "NUICorebackend OnMemoryLow Called");
             var handler = Handlers[EventType.LowMemory] as Action<LowMemoryEventArgs>;
-            // Need to make new signal return in native to return right value.
-            switch( e.MemoryStatus )
+
+            switch ( e.MemoryStatus )
             {
                 case Application.MemoryStatus.Normal:
                 {
-            handler?.Invoke( new LowMemoryEventArgs(LowMemoryStatus.None));
+                    handler?.Invoke( new LowMemoryEventArgs(LowMemoryStatus.None));
                     break;
                 }
-                case Application.MemoryStatus.SoftWarning:
+                case Application.MemoryStatus.Low:
                 {
                     handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.SoftWarning));
                     break;
                 }
-                case Application.MemoryStatus.HardWarning:
+                case Application.MemoryStatus.CriticallyLow:
                 {
                     handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.HardWarning));
                     break;
@@ -200,9 +198,8 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for LanguageChanged.</param>
         private void OnLanguageChanged(object source, NUIApplicationLanguageChangedEventArgs e)
         {
-            Log.Debug("NUI", "NUICorebackend OnLanguageChanged Called");
+            Log.Info("NUI", "NUICorebackend OnLanguageChanged Called");
             var handler = Handlers[EventType.LocaleChanged] as Action<LocaleChangedEventArgs>;
-            // Need to make new signal return in native to return right value.
             handler?.Invoke( new LocaleChangedEventArgs(e.Application.GetLanguage()));
         }
 
@@ -213,17 +210,16 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for BatteryLow.</param>
         private void OnBatteryLow(object source, NUIApplicationBatteryLowEventArgs e)
         {
-            Log.Debug("NUI", "NUICorebackend OnBatteryLow Called");
+            Log.Info("NUI", "NUICorebackend OnBatteryLow Called");
             var handler = Handlers[EventType.LowBattery] as Action<LowBatteryEventArgs>;
-            // Need to make new signal return in native to return right value.
             switch( e.BatteryStatus )
             {
                 case Application.BatteryStatus.Normal:
                 {
-            handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.None));
+                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.None));
                     break;
                 }
-                case Application.BatteryStatus.CriticalLow:
+                case Application.BatteryStatus.CriticallyLow:
                 {
                     handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.CriticalLow));
                     break;
@@ -243,11 +239,11 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Initialized.</param>
         private void OnInitialized(object source, NUIApplicationInitEventArgs e)
         {
-            Log.Debug("NUI", "NUICorebackend OnPreCreated Called");
+            Log.Info("NUI", "NUICorebackend OnPreCreated Called");
             var preCreateHandler = Handlers[EventType.PreCreated] as Action;
             preCreateHandler?.Invoke();
 
-            Log.Debug("NUI", "NUICorebackend OnCreate Called");
+            Log.Info("NUI", "NUICorebackend OnCreate Called");
             var createHandler = Handlers[EventType.Created] as Action;
             createHandler?.Invoke();
         }
@@ -259,7 +255,7 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Terminated.</param>
         private void OnTerminated(object source, NUIApplicationTerminatingEventArgs e)
         {
-            Log.Debug("NUI", "NUICorebackend OnTerminated Called");
+            Log.Info("NUI", "NUICorebackend OnTerminated Called");
             var handler = Handlers[EventType.Terminated] as Action;
             handler?.Invoke();
         }
@@ -271,7 +267,7 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Resumed.</param>
         private void OnResumed(object source, NUIApplicationResumedEventArgs e)
         {
-            Log.Debug("NUI", "NUICorebackend OnResumed Called");
+            Log.Info("NUI", "NUICorebackend OnResumed Called");
             var handler = Handlers[EventType.Resumed] as Action;
             handler?.Invoke();
         }
@@ -283,7 +279,7 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for AppControl.</param>
         private void OnAppControl(object source, NUIApplicationAppControlEventArgs e)
         {
-            Log.Debug("NUI", "NUICorebackend OnAppControl Called");
+            Log.Info("NUI", "NUICorebackend OnAppControl Called");
             var handler = Handlers[EventType.AppControlReceived] as Action<AppControlReceivedEventArgs>;
             SafeAppControlHandle handle = new SafeAppControlHandle(e.VoidP,false);
             handler?.Invoke( new AppControlReceivedEventArgs(new ReceivedAppControl(handle)) );
@@ -296,7 +292,7 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Paused.</param>
         private void OnPaused(object source, NUIApplicationPausedEventArgs e)
         {
-            Log.Debug("NUI", "NUICorebackend OnPaused Called");
+            Log.Info("NUI", "NUICorebackend OnPaused Called");
             var handler = Handlers[EventType.Paused] as Action;
             handler?.Invoke();
         }

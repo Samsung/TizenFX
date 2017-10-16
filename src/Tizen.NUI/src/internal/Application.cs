@@ -406,15 +406,15 @@ namespace Tizen.NUI
         public enum BatteryStatus
         {
             Normal,
-            CriticalLow,
+            CriticallyLow,
             PowerOff
         };
 
         public enum MemoryStatus
         {
             Normal,
-            SoftWarning,
-            HardWarning
+            Low,
+            CriticallyLow
         };
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -1330,14 +1330,14 @@ namespace Tizen.NUI
 
         internal LowBatterySignalType BatteryLowSignal()
         {
-            LowBatterySignalType ret = new LowBatterySignalType(NDalicPINVOKE.Application_BatteryLowSignal(swigCPtr), false);
+            LowBatterySignalType ret = new LowBatterySignalType(NDalicPINVOKE.Application_LowBatterySignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal LowMemorySignalType MemoryLowSignal()
         {
-            LowMemorySignalType ret = new LowMemorySignalType(NDalicPINVOKE.Application_MemoryLowSignal(swigCPtr), false);
+            LowMemorySignalType ret = new LowMemorySignalType(NDalicPINVOKE.Application_LowMemorySignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -6378,11 +6378,11 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Application_RegionChangedSignal")]
   public static extern global::System.IntPtr Application_RegionChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Application_BatteryLowSignal")]
-  public static extern global::System.IntPtr Application_BatteryLowSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Application_LowBatterySignal")]
+  public static extern global::System.IntPtr Application_LowBatterySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Application_MemoryLowSignal")]
-  public static extern global::System.IntPtr Application_MemoryLowSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Application_LowMemorySignal")]
+  public static extern global::System.IntPtr Application_LowMemorySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_ApplicationSignal_Empty")]
   public static extern bool ApplicationSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
