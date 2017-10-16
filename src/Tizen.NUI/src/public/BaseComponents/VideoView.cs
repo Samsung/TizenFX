@@ -157,6 +157,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int LOOPING = NDalicPINVOKE.VideoView_Property_LOOPING_get();
             internal static readonly int MUTED = NDalicPINVOKE.VideoView_Property_MUTED_get();
             internal static readonly int VOLUME = NDalicPINVOKE.VideoView_Property_VOLUME_get();
+            internal static readonly int UNDERLAY = NDalicPINVOKE.VideoView_Property_UNDERLAY_get();
         }
 
         /// <summary>
@@ -326,6 +327,25 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(VideoView.Property.VOLUME, new PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Video rendering by underlay, true or false.<br />
+        /// This shows video composited underneath the window by the system. This means it may ignore rotation of the video-view.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public bool Underlay
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(VideoView.Property.UNDERLAY).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(VideoView.Property.UNDERLAY, new PropertyValue(value));
             }
         }
 
