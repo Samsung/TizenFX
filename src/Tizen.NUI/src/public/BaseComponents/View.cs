@@ -91,7 +91,7 @@ namespace Tizen.NUI.BaseComponents
         /// Retrieves the number of children held by the view.
         /// </summary>
         /// <seealso cref="Container.GetChildCount" />
-        protected override uint GetChildCount()
+        public override uint GetChildCount()
         {
             return Convert.ToUInt32(Children.Count);
         }
@@ -100,7 +100,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets the views parent.
         /// </summary>
         /// <seealso cref="Container.GetParent()" />
-        protected override Container GetParent()
+        public override Container GetParent()
         {
             IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
 
@@ -112,19 +112,9 @@ namespace Tizen.NUI.BaseComponents
             return basehandle as Container;
         }
 
-        /// <summary>
-        /// This is temporal API. Currently Parent returns View but Container class has been introduced so 'View Parent' will be changed 'Container Parent' later soon, then this will be removed
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        public Container GetContainerParent()
-        {
-            return this.GetParent();
-        }
-
         internal bool IsTopLevelView()
         {
-            if(GetContainerParent() is Layer)
+            if(GetParent() is Layer)
             {
                 return true;
             }
