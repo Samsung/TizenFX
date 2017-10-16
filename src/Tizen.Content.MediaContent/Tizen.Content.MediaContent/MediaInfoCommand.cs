@@ -600,7 +600,7 @@ namespace Tizen.Content.MediaContent
             ValidatePaths(paths);
 
             var pathArray = paths.ToArray();
-            var tcs = new TaskCompletionSource<bool>(TaskContinuationOptions.RunContinuationsAsynchronously);
+            var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             Interop.MediaInfo.InsertCompletedCallback callback = (error, _) =>
             {
