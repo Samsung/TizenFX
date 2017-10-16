@@ -577,6 +577,48 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_KeyboardTypeSignalType")]
         public static extern void delete_KeyboardTypeSignalType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LanguageChangedSignalType_Empty")]
+        public static extern bool LanguageChangedSignalType_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LanguageChangedSignalType_GetConnectionCount")]
+        public static extern uint LanguageChangedSignalType_GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LanguageChangedSignalType_Connect")]
+        public static extern void LanguageChangedSignalType_Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LanguageChangedSignalType_Disconnect")]
+        public static extern void LanguageChangedSignalType_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LanguageChangedSignalType_Emit")]
+        public static extern void LanguageChangedSignalType_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_LanguageChangedSignalType")]
+        public static extern global::System.IntPtr new_LanguageChangedSignalType();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_LanguageChangedSignalType")]
+        public static extern void delete_LanguageChangedSignalType(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_KeyboardResizedSignalType_Empty")]
+        public static extern bool KeyboardResizedSignalType_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_KeyboardResizedSignalType_GetConnectionCount")]
+        public static extern uint KeyboardResizedSignalType_GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_KeyboardResizedSignalType_Connect")]
+        public static extern void KeyboardResizedSignalType_Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_KeyboardResizedSignalType_Disconnect")]
+        public static extern void KeyboardResizedSignalType_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_KeyboardResizedSignalType_Emit")]
+        public static extern void KeyboardResizedSignalType_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_KeyboardResizedSignalType")]
+        public static extern global::System.IntPtr new_KeyboardResizedSignalType();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_KeyboardResizedSignalType")]
+        public static extern void delete_KeyboardResizedSignalType(global::System.Runtime.InteropServices.HandleRef jarg1);
+
         //////////////////////InputMethodOptions
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_InputMethodOptions")]

@@ -1486,15 +1486,30 @@ namespace Tizen.NUI
             }
         }
 
-        private delegate void ResizedEventCallbackType();
+        /// <summary>
+        /// ImfManager resized event.
+        /// </summary>
+        public class ResizedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// resized.
+            /// </summary>
+            public int Resized
+            {
+                get;
+                set;
+            }
+        }
+
+        private delegate void ResizedEventCallbackType(int resized);
         private ResizedEventCallbackType _resizedEventCallback;
-        private event EventHandler _resizedEventHandler;
+        private event EventHandler<ResizedEventArgs> _resizedEventHandler;
 
         /// <summary>
         /// ImfManager resized.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public event EventHandler Resized
+        public event EventHandler<ResizedEventArgs> Resized
         {
             add
             {
@@ -1517,11 +1532,14 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnResized()
+        private void OnResized(int resized)
         {
+            ResizedEventArgs e = new ResizedEventArgs();
+            e.Resized = resized;
+
             if (_resizedEventHandler != null)
             {
-                _resizedEventHandler(this, null);
+                _resizedEventHandler(this, e);
             }
         }
 
@@ -1530,9 +1548,9 @@ namespace Tizen.NUI
         /// </summary>
         //Please do not use! this will be internal
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImfVoidSignalType ResizedSignal()
+        public KeyboardResizedSignalType ResizedSignal()
         {
-            ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_ResizedSignal(swigCPtr), false);
+            KeyboardResizedSignalType ret = new KeyboardResizedSignalType(NDalicManualPINVOKE.ImfManager_ResizedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1602,15 +1620,30 @@ namespace Tizen.NUI
             }
         }
 
-        private delegate void LanguageChangedEventCallbackType();
+        /// <summary>
+        /// ImfManager language changed event args.
+        /// </summary>
+        public class LanguageChangedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// language changed.
+            /// </summary>
+            public int LanguageChanged
+            {
+                get;
+                set;
+            }
+        }
+
+        private delegate void LanguageChangedEventCallbackType(int languageChanged);
         private LanguageChangedEventCallbackType _languageChangedEventCallback;
-        private event EventHandler _languageChangedEventHandler;
+        private event EventHandler<LanguageChangedEventArgs> _languageChangedEventHandler;
 
         /// <summary>
         /// ImfManager language changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public event EventHandler LanguageChanged
+        public event EventHandler<LanguageChangedEventArgs> LanguageChanged
         {
             add
             {
@@ -1633,11 +1666,14 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnLanguageChanged()
+        private void OnLanguageChanged(int languageChanged)
         {
+            LanguageChangedEventArgs e = new LanguageChangedEventArgs();
+            e.LanguageChanged = languageChanged;
+
             if (_languageChangedEventHandler != null)
             {
-                _languageChangedEventHandler(this, null);
+                _languageChangedEventHandler(this, e);
             }
         }
 
@@ -1646,9 +1682,9 @@ namespace Tizen.NUI
         /// </summary>
         //Please do not use! this will be internal
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImfVoidSignalType LanguageChangedSignal()
+        public LanguageChangedSignalType LanguageChangedSignal()
         {
-            ImfVoidSignalType ret = new ImfVoidSignalType(NDalicManualPINVOKE.ImfManager_LanguageChangedSignal(swigCPtr), false);
+            LanguageChangedSignalType ret = new LanguageChangedSignalType(NDalicManualPINVOKE.ImfManager_LanguageChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
