@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Context.AppHistory
 {
     /// <summary>
-    /// This class provides APIs to query battery consumption per application.
+    /// This class provides APIs to query the battery consumption per application.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class BatteryStatistics : AppStatistics
@@ -28,12 +28,12 @@ namespace Tizen.Context.AppHistory
         private const string AppStatsConsumption = "TotalAmount";
 
         /// <summary>
-        ///  The default constructor of BatteryStatistics class.
+        /// The default constructor of BatteryStatistics class.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/app_history</feature>
         /// <feature>http://tizen.org/feature/battery</feature>
-        /// <exception cref="InvalidOperationException">Thrown when method fail due to internal error.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an internal error.</exception>
         /// <exception cref="NotSupportedException">Thrown when the features are not supported.</exception>
         public BatteryStatistics()
         {
@@ -61,7 +61,7 @@ namespace Tizen.Context.AppHistory
         /// <feature>http://tizen.org/feature/app_history</feature>
         /// <feature>http://tizen.org/feature/battery</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method fail due to internal error.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an internal error.</exception>
         /// <exception cref="NotSupportedException">Thrown when the features are not supported.</exception>
         public BatteryStatistics(SortOrderType order)
         {
@@ -99,7 +99,7 @@ namespace Tizen.Context.AppHistory
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="InvalidOperationException">Thrown when invalid operation occurs.</exception>
         /// <exception cref="NotSupportedException">Thrown when the features are not supported.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when the app has no privilege to retrieve app history.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to retrieve the application history.</exception>
         public IReadOnlyList<BatteryStatisticsData> Query(DateTime startTime, DateTime endTime)
         {
             CheckTimeSpan(startTime, endTime);
@@ -119,9 +119,9 @@ namespace Tizen.Context.AppHistory
         /// <feature>http://tizen.org/feature/app_history</feature>
         /// <feature>http://tizen.org/feature/battery</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when invalid operation occurs.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when an invalid operation occurs.</exception>
         /// <exception cref="NotSupportedException">Thrown when the features are not supported.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when the app has no privilege to retrieve app history.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to retrieve the application history.</exception>
         public IReadOnlyList<BatteryStatisticsData> Query(DateTime startTime, DateTime endTime, uint resultSize)
         {
             CheckTimeSpan(startTime, endTime);
@@ -206,13 +206,13 @@ namespace Tizen.Context.AppHistory
         public SortOrderType SortOrder { get; private set; }
 
         /// <summary>
-        /// Sort order type of battery statistics.
+        /// Sorts the order type of battery statistics.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public enum SortOrderType
         {
             /// <summary>
-            /// Sorts apps by consumption, the most battery consuming apps appear first. (Default)
+            /// Sorts the apps by consumption, the most battery consuming apps appear first (default).
             /// </summary>
             ConsumptionMost = 0
         }
