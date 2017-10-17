@@ -93,14 +93,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <pre>The child container has been initialized.</pre>
         /// <returns>The parent container.</returns>
-        protected abstract Container GetParent();
+        public abstract Container GetParent();
 
         /// <summary>
         /// Gets the number of children for this container.
         /// </summary>
         /// <pre>The container has been initialized.</pre>
         /// <returns>The number of children.</returns>
-        protected abstract UInt32 GetChildCount();
+        public abstract UInt32 GetChildCount();
 
         /// <summary>
         /// Gets the parent container.

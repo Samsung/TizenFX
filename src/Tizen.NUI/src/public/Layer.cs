@@ -94,7 +94,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The view's container</returns>
         /// <since_tizen> 3 </since_tizen>
-        protected override Container GetParent()
+        public override Container GetParent()
         {
             return null;
         }
@@ -104,7 +104,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The child count of the layer.</returns>
         /// <since_tizen> 3 </since_tizen>
-        protected override uint GetChildCount()
+        public override uint GetChildCount()
         {
             return Convert.ToUInt32(Children.Count);
         }

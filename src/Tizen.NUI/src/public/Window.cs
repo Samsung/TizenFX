@@ -1628,5 +1628,54 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Contains and encapsulates Native Ecore Wayland Window handle.
+        /// </summary>
+        /// <remarks>
+        /// To get System.IntPtr of Native Ecore Wayland Window handle, <br />
+        /// DangerousGetHandle() method is used to get handle.
+        /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        public class NativeWindowSafeHandle : SafeHandle
+        {
+            internal NativeWindowSafeHandle(IntPtr handle) : base(handle, true)
+            {
+            }
+            /// <summary>
+            /// Null check if the handle is valid or not.
+            /// </summary>
+            public override bool IsInvalid
+            {
+                get
+                {
+                    return this.handle == IntPtr.Zero;
+                }
+            }
+            /// <summary>
+            /// Release handle itself.
+            /// </summary>
+            /// <returns>true when released successfully.</returns>
+            /// <since_tizen> 4 </since_tizen>
+            protected override bool ReleaseHandle()
+            {
+                this.SetHandle(IntPtr.Zero);
+                return true;
+            }
+        }
+        /// <summary>
+        /// Gets Native Ecore Wayland Window handle.
+        /// </summary>
+        /// <remarks>
+        /// NativeWindowSafeHandle class contains System.IntPtr of Native Ecore Wayland Window handle, <br />
+        /// DangerousGetHandle() method is used to get handle.
+        /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        public Window.NativeWindowSafeHandle NativeWindowHandle
+        {
+            get
+            {
+                return new NativeWindowSafeHandle(GetNativeWindowHandler());
+            }
+        }
     }
 }
