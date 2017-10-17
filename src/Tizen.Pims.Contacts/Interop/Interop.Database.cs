@@ -103,10 +103,10 @@ internal static partial class Interop
         [DllImport(Libraries.Contacts, EntryPoint = "contacts_db_get_status")]
         internal static extern int GetStatus(out Tizen.Pims.Contacts.ContactsDatabase.DBStatus status);
 
-        [DllImport(Libraries.Contacts, EntryPoint = "contacts_db_add_changed_cb")]
+        [DllImport(Libraries.Contacts, EntryPoint = "contacts_db_add_status_changed_cb")]
         internal static extern int AddStatusChangedCb(ContactsDBStatusChangedCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.Contacts, EntryPoint = "contacts_db_remove_changed_cb")]
+        [DllImport(Libraries.Contacts, EntryPoint = "contacts_db_remove_status_changed_cb")]
         internal static extern int RemoveStatusChangedCb(ContactsDBStatusChangedCallback callback, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
