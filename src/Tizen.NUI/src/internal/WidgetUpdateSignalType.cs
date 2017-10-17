@@ -14,21 +14,22 @@
  * limitations under the License.
  *
  */
+
 namespace Tizen.NUI
 {
 
-    internal class WidgetInstanceTerminateSignalType : global::System.IDisposable
+    internal class WidgetUpdateSignalType : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
 
-        internal WidgetInstanceTerminateSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal WidgetUpdateSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetInstanceTerminateSignalType obj)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetUpdateSignalType obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
@@ -38,7 +39,7 @@ namespace Tizen.NUI
         //A Flat to check if it is already disposed.
         protected bool disposed = false;
 
-        ~WidgetInstanceTerminateSignalType()
+        ~WidgetUpdateSignalType()
         {
             if (!isDisposeQueued)
             {
@@ -88,7 +89,7 @@ namespace Tizen.NUI
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 swigCMemOwn = false;
-                NDalicManualPINVOKE.delete_WidgetInstanceTerminateSignalType(swigCPtr);
+                NDalicManualPINVOKE.delete_WidgetUpdateSignalType(swigCPtr);
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
@@ -97,14 +98,14 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = NDalicManualPINVOKE.WidgetInstanceTerminateSignalType_Empty(swigCPtr);
+            bool ret = NDalicManualPINVOKE.WidgetUpdateSignalType_Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = NDalicManualPINVOKE.WidgetInstanceTerminateSignalType_GetConnectionCount(swigCPtr);
+            uint ret = NDalicManualPINVOKE.WidgetUpdateSignalType_GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -113,7 +114,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                NDalicManualPINVOKE.WidgetInstanceTerminateSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicManualPINVOKE.WidgetUpdateSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -122,18 +123,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                NDalicManualPINVOKE.WidgetInstanceTerminateSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicManualPINVOKE.WidgetUpdateSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
-        public void Emit(WidgetData arg1, SWIGTYPE_p_bundle arg2, Widget.WidgetTerminateType arg3)
+        public void Emit(string arg1, SWIGTYPE_p_bundle arg2, int arg3)
         {
-            NDalicManualPINVOKE.WidgetInstanceTerminateSignalType_Emit(swigCPtr, WidgetData.getCPtr(arg1), SWIGTYPE_p_bundle.getCPtr(arg2), (int)arg3);
+            NDalicManualPINVOKE.WidgetUpdateSignalType_Emit(swigCPtr, arg1, SWIGTYPE_p_bundle.getCPtr(arg2), arg3);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public WidgetInstanceTerminateSignalType() : this(NDalicManualPINVOKE.new_WidgetInstanceTerminateSignalType(), true)
+        public WidgetUpdateSignalType() : this(NDalicManualPINVOKE.new_WidgetUpdateSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

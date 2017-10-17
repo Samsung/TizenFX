@@ -164,23 +164,34 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get window.
-        /// </summary>
-        /// <returns> The window for widget instance.</returns>
-        public Window GetWindow()
-        {
-            Window ret = new Window(NDalicManualPINVOKE.WidgetApplication_GetWindow(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Get path application resources are stored at.
         /// </summary>
         /// <returns>The full path of the resources</returns>
         public static string GetResourcePath()
         {
             string ret = NDalicManualPINVOKE.WidgetApplication_GetResourcePath();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Get region information from device.
+        /// </summary>
+        /// <returns>Region information</returns>
+        public string GetRegion()
+        {
+            string ret = NDalicManualPINVOKE.WidgetApplication_GetRegion(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Get language from device.
+        /// </summary>
+        /// <returns>Language information</returns>
+        public string GetLanguage()
+        {
+            string ret = NDalicManualPINVOKE.WidgetApplication_GetLanguage(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -462,9 +473,9 @@ namespace Tizen.NUI
             }
         }
 
-        internal AppSignalType BatteryLowSignal()
+        internal WidgetApplicationLowBatterySignalType BatteryLowSignal()
         {
-            AppSignalType ret = new AppSignalType(NDalicManualPINVOKE.WidgetApplication_BatteryLowSignal(swigCPtr), false);
+            WidgetApplicationLowBatterySignalType ret = new WidgetApplicationLowBatterySignalType(NDalicManualPINVOKE.WidgetApplication_LowBatterySignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -516,9 +527,9 @@ namespace Tizen.NUI
             }
         }
 
-        internal AppSignalType MemoryLowSignal()
+        internal WidgetApplicationLowMemorySignalType MemoryLowSignal()
         {
-            AppSignalType ret = new AppSignalType(NDalicManualPINVOKE.WidgetApplication_MemoryLowSignal(swigCPtr), false);
+            WidgetApplicationLowMemorySignalType ret = new WidgetApplicationLowMemorySignalType(NDalicManualPINVOKE.WidgetApplication_LowMemorySignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

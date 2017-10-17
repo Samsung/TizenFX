@@ -99,10 +99,10 @@ namespace Tizen.NUI
         public class CreateEventArgs : EventArgs
         {
             /// <summary>
-            /// widget data.
+            /// widget id.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
-            public WidgetData WidgetData
+            public string ID
             {
                 get;
                 set;
@@ -119,10 +119,10 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// window size.
+            /// window.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
-            public Size2D WindowSize
+            public Window Window
             {
                 get;
                 set;
@@ -130,7 +130,7 @@ namespace Tizen.NUI
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void CreateCallbackType(IntPtr widgetData, IntPtr bundle, IntPtr windowSize);
+        private delegate void CreateCallbackType(string id, IntPtr bundle, IntPtr window);
         private CreateCallbackType _createCallback;
         private EventHandler<CreateEventArgs> _createEventHandler;
 
@@ -162,30 +162,27 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnCreate(IntPtr widgetData, IntPtr bundle, IntPtr windowSize)
+        private void OnCreate(string id, IntPtr bundle, IntPtr window)
         {
             CreateEventArgs e = new CreateEventArgs();
-            if (widgetData != null)
-            {
-                e.WidgetData = WidgetData.GetWidgetDataFromPtr(widgetData);
-            }
+
+            e.ID = id;
+
             if (bundle != null)
             {
                 e.Bundle = new SWIGTYPE_p_bundle(bundle, false);
             }
-            if (windowSize != null)
+            if (window != null)
             {
-                var val = new Uint16Pair(windowSize, false);
-                e.WindowSize = val;
-                val.Dispose();
+                e.Window = new Window(window, false);
             }
 
             _createEventHandler?.Invoke(this, e);
         }
 
-        internal WidgetInstanceCreateSignalType CreateSignal()
+        internal WidgetCreateSignalType CreateSignal()
         {
-            WidgetInstanceCreateSignalType ret = new WidgetInstanceCreateSignalType(NDalicManualPINVOKE.Widget_CreateSignal(swigCPtr), false);
+            WidgetCreateSignalType ret = new WidgetCreateSignalType(NDalicManualPINVOKE.Widget_CreateSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -196,10 +193,10 @@ namespace Tizen.NUI
         public class TerminateEventArgs : EventArgs
         {
             /// <summary>
-            /// widget data.
+            /// widget id.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
-            public WidgetData WidgetData
+            public string ID
             {
                 get;
                 set;
@@ -227,7 +224,7 @@ namespace Tizen.NUI
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void TerminateCallbackType(IntPtr widgetData, IntPtr bundle, WidgetTerminateType widgetTerminateType);
+        private delegate void TerminateCallbackType(string id, IntPtr bundle, WidgetTerminateType widgetTerminateType);
         private TerminateCallbackType _terminateCallback;
         private EventHandler<TerminateEventArgs> _terminateEventHandler;
 
@@ -259,13 +256,11 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnTerminate(IntPtr widgetData, IntPtr bundle, WidgetTerminateType widgetTerminateType)
+        private void OnTerminate(string id, IntPtr bundle, WidgetTerminateType widgetTerminateType)
         {
             TerminateEventArgs e = new TerminateEventArgs();
-            if (widgetData != null)
-            {
-                e.WidgetData = WidgetData.GetWidgetDataFromPtr(widgetData);
-            }
+            e.ID = id;
+
             if (bundle != null)
             {
                 e.Bundle = new SWIGTYPE_p_bundle(bundle, false);
@@ -275,9 +270,9 @@ namespace Tizen.NUI
             _terminateEventHandler?.Invoke(this, e);
         }
 
-        internal WidgetInstanceTerminateSignalType TerminateSignal()
+        internal WidgetTerminateSignalType TerminateSignal()
         {
-            WidgetInstanceTerminateSignalType ret = new WidgetInstanceTerminateSignalType(NDalicManualPINVOKE.Widget_TerminateSignal(swigCPtr), false);
+            WidgetTerminateSignalType ret = new WidgetTerminateSignalType(NDalicManualPINVOKE.Widget_TerminateSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -288,10 +283,10 @@ namespace Tizen.NUI
         public class PauseEventArgs : EventArgs
         {
             /// <summary>
-            /// widget data.
+            /// widget id.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
-            public WidgetData WidgetData
+        /// <since_tizen> 4 </since_tizen>
+            public string ID
             {
                 get;
                 set;
@@ -299,7 +294,7 @@ namespace Tizen.NUI
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void PauseCallbackType(IntPtr widgetData);
+        private delegate void PauseCallbackType(string id);
         private PauseCallbackType _pauseCallback;
         private EventHandler<PauseEventArgs> _pauseEventHandler;
 
@@ -331,20 +326,17 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnPause(IntPtr widgetData)
+        private void OnPause(string id)
         {
             PauseEventArgs e = new PauseEventArgs();
-            if (widgetData != null)
-            {
-                e.WidgetData = WidgetData.GetWidgetDataFromPtr(widgetData);
-            }
+            e.ID = id;
 
             _pauseEventHandler?.Invoke(this, e);
         }
 
-        internal WidgetInstancePauseOrResumeSignalType PauseSignal()
+        internal WidgetPauseSignalType PauseSignal()
         {
-            WidgetInstancePauseOrResumeSignalType ret = new WidgetInstancePauseOrResumeSignalType(NDalicManualPINVOKE.Widget_PauseSignal(swigCPtr), false);
+            WidgetPauseSignalType ret = new WidgetPauseSignalType(NDalicManualPINVOKE.Widget_PauseSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -355,10 +347,10 @@ namespace Tizen.NUI
         public class ResumeEventArgs : EventArgs
         {
             /// <summary>
-            /// widget data.
+            /// widget id.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
-            public WidgetData WidgetData
+        /// <since_tizen> 4 </since_tizen>
+            public string ID
             {
                 get;
                 set;
@@ -366,7 +358,7 @@ namespace Tizen.NUI
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void ResumeCallbackType(IntPtr widgetData);
+        private delegate void ResumeCallbackType(string id);
         private ResumeCallbackType _resumeCallback;
         private EventHandler<ResumeEventArgs> _resumeEventHandler;
 
@@ -398,20 +390,17 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnResume(IntPtr widgetData)
+        private void OnResume(string id)
         {
             ResumeEventArgs e = new ResumeEventArgs();
-            if (widgetData != null)
-            {
-                e.WidgetData = WidgetData.GetWidgetDataFromPtr(widgetData);
-            }
+            e.ID = id;
 
             _resumeEventHandler?.Invoke(this, e);
         }
 
-        internal WidgetInstancePauseOrResumeSignalType ResumeSignal()
+        internal WidgetResumeSignalType ResumeSignal()
         {
-            WidgetInstancePauseOrResumeSignalType ret = new WidgetInstancePauseOrResumeSignalType(NDalicManualPINVOKE.Widget_ResumeSignal(swigCPtr), false);
+            WidgetResumeSignalType ret = new WidgetResumeSignalType(NDalicManualPINVOKE.Widget_ResumeSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -422,20 +411,20 @@ namespace Tizen.NUI
         public class ResizeEventArgs : EventArgs
         {
             /// <summary>
-            /// widget data.
+            /// widget id.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
-            public WidgetData WidgetData
+        /// <since_tizen> 4 </since_tizen>
+            public string ID
             {
                 get;
                 set;
             }
 
             /// <summary>
-            /// window size.
+            /// window.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
-            public Size2D WindowSize
+        /// <since_tizen> 4 </since_tizen>
+            public Window Window
             {
                 get;
                 set;
@@ -443,7 +432,7 @@ namespace Tizen.NUI
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void ResizeCallbackType(IntPtr widgetData, IntPtr windowSize);
+        private delegate void ResizeCallbackType(string id, IntPtr window);
         private ResizeCallbackType _resizeCallback;
         private EventHandler<ResizeEventArgs> _resizeEventHandler;
 
@@ -475,26 +464,21 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnResize(IntPtr widgetData, IntPtr windowSize)
+        private void OnResize(string id, IntPtr window)
         {
             ResizeEventArgs e = new ResizeEventArgs();
-            if (widgetData != null)
+            e.ID = id;
+            if (window != null)
             {
-                e.WidgetData = WidgetData.GetWidgetDataFromPtr(widgetData);
-            }
-            if (windowSize != null)
-            {
-                var val = new Uint16Pair(windowSize, false);
-                e.WindowSize = val;
-                val.Dispose();
+                e.Window = new Window(window, false);
             }
 
             _resizeEventHandler?.Invoke(this, e);
         }
 
-        internal WidgetInstanceResizeSignalType ResizeSignal()
+        internal WidgetResizeSignalType ResizeSignal()
         {
-            WidgetInstanceResizeSignalType ret = new WidgetInstanceResizeSignalType(NDalicManualPINVOKE.Widget_ResizeSignal(swigCPtr), false);
+            WidgetResizeSignalType ret = new WidgetResizeSignalType(NDalicManualPINVOKE.Widget_ResizeSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -508,7 +492,7 @@ namespace Tizen.NUI
             /// widget data.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
-            public WidgetData WidgetData
+            public string ID
             {
                 get;
                 set;
@@ -541,7 +525,7 @@ namespace Tizen.NUI
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void UpdateCallbackType(IntPtr widgetData, IntPtr bundle, int force);
+        private delegate void UpdateCallbackType(string id, IntPtr bundle, int force);
         private UpdateCallbackType _updateCallback;
         private EventHandler<UpdateEventArgs> _updateEventHandler;
 
@@ -573,13 +557,10 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnUpdate(IntPtr widgetData, IntPtr bundle, int force)
+        private void OnUpdate(string id, IntPtr bundle, int force)
         {
             UpdateEventArgs e = new UpdateEventArgs();
-            if (widgetData != null)
-            {
-                e.WidgetData = WidgetData.GetWidgetDataFromPtr(widgetData);
-            }
+            e.ID = id;
             if (bundle != null)
             {
                 e.Bundle = new SWIGTYPE_p_bundle(bundle, false);
@@ -589,9 +570,9 @@ namespace Tizen.NUI
             _updateEventHandler?.Invoke(this, e);
         }
 
-        internal WidgetInstanceUpdateSignalType UpdateSignal()
+        internal WidgetUpdateSignalType UpdateSignal()
         {
-            WidgetInstanceUpdateSignalType ret = new WidgetInstanceUpdateSignalType(NDalicManualPINVOKE.Widget_UpdateSignal(swigCPtr), false);
+            WidgetUpdateSignalType ret = new WidgetUpdateSignalType(NDalicManualPINVOKE.Widget_UpdateSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -141,18 +141,5 @@ namespace Tizen.NUI
                 return ((NUIWidgetCoreBackend)this.Backend).WidgetApplicationHandle;
             }
         }
-
-        /// <summary>
-        /// Get the window instance.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public Window Window
-        {
-            get
-            {
-                //return Window.Instance;
-                return ApplicationHandle.GetWindow();
-            }
-        }
     }
 }
