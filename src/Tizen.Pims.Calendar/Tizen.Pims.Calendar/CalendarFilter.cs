@@ -31,7 +31,7 @@ namespace Tizen.Pims.Calendar
         /// Creates a filter with a condition for a string type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/privilege/calendar</feature>
+        /// <feature>http://tizen.org/feature/calendar</feature>
         /// <param name="viewUri">The view URI of a filter</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
@@ -63,7 +63,7 @@ namespace Tizen.Pims.Calendar
         /// Creates a filter with a condition for an integer type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/privilege/calendar</feature>
+        /// <feature>http://tizen.org/feature/calendar</feature>
         /// <param name="viewUri">The view URI of a filter</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
@@ -95,7 +95,7 @@ namespace Tizen.Pims.Calendar
         /// Creates a filter with a condition for long type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/privilege/calendar</feature>
+        /// <feature>http://tizen.org/feature/calendar</feature>
         /// <param name="viewUri">The view URI of a filter</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
@@ -127,7 +127,7 @@ namespace Tizen.Pims.Calendar
         /// Creates a filter with a condition for double type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/privilege/calendar</feature>
+        /// <feature>http://tizen.org/feature/calendar</feature>
         /// <param name="viewUri">The view URI of a filter</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
@@ -159,7 +159,7 @@ namespace Tizen.Pims.Calendar
         /// Creates a filter with a condition for CalendarTime type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/privilege/calendar</feature>
+        /// <feature>http://tizen.org/feature/calendar</feature>
         /// <param name="viewUri">The view URI of a filter</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
@@ -314,7 +314,7 @@ namespace Tizen.Pims.Calendar
         /// Adds a condition for the string type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/privilege/calendar</feature>
+        /// <feature>http://tizen.org/feature/calendar</feature>
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
@@ -342,7 +342,7 @@ namespace Tizen.Pims.Calendar
         /// Adds a condition for the integer type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/privilege/calendar</feature>
+        /// <feature>http://tizen.org/feature/calendar</feature>
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
@@ -370,7 +370,7 @@ namespace Tizen.Pims.Calendar
         /// Adds a condition for the long type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/privilege/calendar</feature>
+        /// <feature>http://tizen.org/feature/calendar</feature>
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
@@ -398,7 +398,7 @@ namespace Tizen.Pims.Calendar
         /// Adds a condition for the double type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/privilege/calendar</feature>
+        /// <feature>http://tizen.org/feature/calendar</feature>
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
@@ -426,7 +426,7 @@ namespace Tizen.Pims.Calendar
         /// Adds a condition for the CalendarTime type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/privilege/calendar</feature>
+        /// <feature>http://tizen.org/feature/calendar</feature>
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="propertyId">The property ID to add a condition</param>
         /// <param name="matchType">The match flag</param>
@@ -455,7 +455,7 @@ namespace Tizen.Pims.Calendar
         /// Adds a child filter to a parent filter.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/privilege/calendar</feature>
+        /// <feature>http://tizen.org/feature/calendar</feature>
         /// <param name="logicalOperator">The operator type</param>
         /// <param name="filter">The child filter</param>
         /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>

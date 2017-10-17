@@ -30,7 +30,7 @@ namespace Tizen.Pims.Calendar
         /// Create a manager.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <feature>http://tizen.org/privilege/calendar</feature>
+        /// <feature>http://tizen.org/feature/calendar</feature>
         /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         public CalendarManager()
