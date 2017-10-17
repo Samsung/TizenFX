@@ -836,6 +836,12 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_WidgetView_Property_PERMANENT_DELETE_get")]
         public static extern int WidgetView_Property_PERMANENT_DELETE_get();
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_WidgetView_Property_RETRY_TEXT_get")]
+        public static extern int WidgetView_Property_RETRY_TEXT_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_WidgetView_Property_EFFECT_get")]
+        public static extern int WidgetView_Property_EFFECT_get();
+
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_WidgetView_Property")]
         public static extern global::System.IntPtr new_WidgetView_Property();
 
@@ -871,6 +877,9 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_WidgetView_ActivateFaultedWidget")]
         public static extern void WidgetView_ActivateFaultedWidget(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_WidgetView_TerminateWidget")]
+        public static extern bool WidgetView_TerminateWidget(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_WidgetView_WidgetAddedSignal")]
         public static extern global::System.IntPtr WidgetView_WidgetAddedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);

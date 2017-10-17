@@ -93,6 +93,8 @@ namespace Tizen.NUI
             internal static readonly int LOADING_TEXT = NDalicManualPINVOKE.WidgetView_Property_LOADING_TEXT_get();
             internal static readonly int WIDGET_STATE_FAULTED = NDalicManualPINVOKE.WidgetView_Property_WIDGET_STATE_FAULTED_get();
             internal static readonly int PERMANENT_DELETE = NDalicManualPINVOKE.WidgetView_Property_PERMANENT_DELETE_get();
+            internal static readonly int RETRY_TEXT = NDalicManualPINVOKE.WidgetView_Property_RETRY_TEXT_get();
+            internal static readonly int EFFECT = NDalicManualPINVOKE.WidgetView_Property_EFFECT_get();
         }
 
         /// <summary>
@@ -504,6 +506,17 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Terminate a widget instance.
+        /// </summary>
+        /// <returns>True on success, false otherwise</returns>
+        public bool TerminateWidget()
+        {
+            bool ret = NDalicManualPINVOKE.WidgetView_TerminateWidget(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal WidgetViewSignal WidgetAddedSignal()
         {
             WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetAddedSignal(swigCPtr), false);
@@ -685,6 +698,40 @@ namespace Tizen.NUI
             set
             {
                 SetProperty(WidgetView.Property.PERMANENT_DELETE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets retry text.
+        /// </summary>
+        public PropertyMap RetryText
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(WidgetView.Property.RETRY_TEXT).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(WidgetView.Property.RETRY_TEXT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets effect.
+        /// </summary>
+        public PropertyMap Effect
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                GetProperty(WidgetView.Property.EFFECT).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(WidgetView.Property.EFFECT, new Tizen.NUI.PropertyValue(value));
             }
         }
 
