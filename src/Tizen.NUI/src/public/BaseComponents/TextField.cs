@@ -53,7 +53,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if(type == DisposeTypes.Explicit)
+            if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
@@ -320,7 +320,7 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("Please do not use! this will be deprecated")]
         public new static TextField DownCast(BaseHandle handle)
         {
-            TextField ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TextField;
+            TextField ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as TextField;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1302,12 +1302,12 @@ namespace Tizen.NUI.BaseComponents
         /// The Outline property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public string Outline
+        public PropertyMap Outline
         {
             get
             {
-                string temp;
-                GetProperty(TextField.Property.OUTLINE).Get(out temp);
+                PropertyMap temp = new PropertyMap();
+                GetProperty(TextField.Property.OUTLINE).Get(temp);
                 return temp;
             }
             set
