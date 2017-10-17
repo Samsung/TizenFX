@@ -1396,17 +1396,17 @@ namespace Tizen.NUI.BaseComponents
         /// The following example demonstrates how to set the Placeholder property.
         /// <code>
         /// PropertyMap propertyMap = new PropertyMap();
-        /// propertyMap.Add("placeholderText", new PropertyValue("Setting Placeholder Text"));
-        /// propertyMap.Add("placeholderTextFocused", new PropertyValue("Setting Placeholder Text Focused"));
-        /// propertyMap.Add("placeholderColor", new PropertyValue(Color.Red));
-        /// propertyMap.Add("placeholderFontFamily", new PropertyValue("Arial"));
-        /// propertyMap.Add("placeholderPointSize", new PropertyValue(12.0f));
+        /// propertyMap.Add("text", new PropertyValue("Setting Placeholder Text"));
+        /// propertyMap.Add("textFocused", new PropertyValue("Setting Placeholder Text Focused"));
+        /// propertyMap.Add("color", new PropertyValue(Color.Red));
+        /// propertyMap.Add("fontFamily", new PropertyValue("Arial"));
+        /// propertyMap.Add("pointSize", new PropertyValue(12.0f));
         ///
         /// PropertyMap fontStyleMap = new PropertyMap();
         /// fontStyleMap.Add("weight", new PropertyValue("bold"));
         /// fontStyleMap.Add("width", new PropertyValue("condensed"));
         /// fontStyleMap.Add("slant", new PropertyValue("italic"));
-        /// propertyMap.Add("placeholderFontStyle", new PropertyValue(fontStyleMap));
+        /// propertyMap.Add("fontStyle", new PropertyValue(fontStyleMap));
         ///
         /// TextField field = new TextField();
         /// field.Placeholder = propertyMap;
