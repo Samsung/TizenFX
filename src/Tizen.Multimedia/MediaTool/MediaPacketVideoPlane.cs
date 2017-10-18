@@ -41,7 +41,7 @@ namespace Tizen.Multimedia
             int ret = Interop.MediaPacket.GetVideoStrideWidth(packet.GetHandle(), index, out _strideWidth);
             MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaPacket.GetVideoStrideWidth(packet.GetHandle(), index, out _strideHeight);
+            ret = Interop.MediaPacket.GetVideoStrideHeight(packet.GetHandle(), index, out _strideHeight);
             MultimediaDebug.AssertNoError(ret);
 
             Debug.Assert(_strideWidth >= 0 && _strideHeight >= 0, "size must not be negative!");
