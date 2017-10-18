@@ -9683,6 +9683,9 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_VideoView_Property_VOLUME_get")]
   public static extern int VideoView_Property_VOLUME_get();
 
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_VideoView_Property_UNDERLAY_get")]
+  public static extern int VideoView_Property_UNDERLAY_get();
+
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_VideoView_Property")]
   public static extern global::System.IntPtr new_VideoView_Property();
 
