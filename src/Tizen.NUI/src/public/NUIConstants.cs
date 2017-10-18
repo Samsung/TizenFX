@@ -436,7 +436,11 @@ namespace Tizen.NUI
         /// <summary>
         /// A string key to PropertyValue mapping.
         /// </summary>
-        Map
+        Map,
+        /// <summary>
+        /// An extents type.
+        /// </summary>
+        Extents
     }
 
     /// <summary>
