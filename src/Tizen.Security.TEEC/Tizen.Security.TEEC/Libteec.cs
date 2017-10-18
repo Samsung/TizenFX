@@ -114,6 +114,8 @@ namespace Tizen.Security.TEEC
         /// This property represents the shared memory size in bytes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/tee.client</privilege>
+        /// <privlevel>partner</privlevel>
         public UInt32 Size
         {
             get { return shm.size; }
@@ -122,6 +124,8 @@ namespace Tizen.Security.TEEC
         /// This property represents the start address of the shared memory block.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/tee.client</privilege>
+        /// <privlevel>partner</privlevel>
         public IntPtr Address
         {
             get { return shm.buffer; }
@@ -132,6 +136,8 @@ namespace Tizen.Security.TEEC
         /// For large buffers, the direct address should be used.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/tee.client</privilege>
+        /// <privlevel>partner</privlevel>
         /// <param name="data">The source data buffer to copy data from.</param>
         /// <param name="dstOffs">The starting offset in the destination shared memory.</param>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
@@ -145,6 +151,8 @@ namespace Tizen.Security.TEEC
         /// For large buffers, the direct address should be used.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/tee.client</privilege>
+        /// <privlevel>partner</privlevel>
         /// <param name="data">The destination data buffer to copy data into.</param>
         /// <param name="srcOffs">The starting offset in the source shared memory.</param>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
@@ -229,6 +237,8 @@ namespace Tizen.Security.TEEC
         /// Constructs a parameter object which holds information about the registered memory shared with TA.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/tee.client</privilege>
+        /// <privlevel>partner</privlevel>
         /// <param name="parent">The shared memory - registered or allocated.</param>
         /// <param name="size">The size of the buffer part.</param>
         /// <param name="offset">The offset of the buffer in the shared memory.</param>
@@ -244,16 +254,22 @@ namespace Tizen.Security.TEEC
         /// This property represents the shared memory that is referred to.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/tee.client</privilege>
+        /// <privlevel>partner</privlevel>
         public SharedMemory Parent { get; }
         /// <summary>
         /// This property represents the size (in bytes) of the shared memory.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/tee.client</privilege>
+        /// <privlevel>partner</privlevel>
         public uint Size { get; internal set; }
         /// <summary>
         /// This property represents the offset (in bytes) from the start of the shared memory.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/tee.client</privilege>
+        /// <privlevel>partner</privlevel>
         public uint Offset { get; }
     };
 
