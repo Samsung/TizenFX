@@ -1914,7 +1914,14 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                LeftFocusableViewId = (int)value.GetId();
+                if(value)
+                {
+                    LeftFocusableViewId = (int)value.GetId();
+                }
+                else
+                {
+                    LeftFocusableViewId = -1;
+                }
             }
         }
 
@@ -1937,7 +1944,14 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                RightFocusableViewId = (int)value.GetId();
+                if(value)
+                {
+                    RightFocusableViewId = (int)value.GetId();
+                }
+                else
+                {
+                    RightFocusableViewId = -1;
+                }
             }
         }
 
@@ -1960,7 +1974,14 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                UpFocusableViewId = (int)value.GetId();
+                if(value)
+                {
+                    UpFocusableViewId = (int)value.GetId();
+                }
+                else
+                {
+                    UpFocusableViewId = -1;
+                }
             }
         }
 
@@ -1983,7 +2004,14 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                DownFocusableViewId = (int)value.GetId();
+                if(value)
+                {
+                    DownFocusableViewId = (int)value.GetId();
+                }
+                else
+                {
+                    DownFocusableViewId = -1;
+                }
             }
         }
 
