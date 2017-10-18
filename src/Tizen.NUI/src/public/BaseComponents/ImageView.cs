@@ -19,6 +19,7 @@ namespace Tizen.NUI.BaseComponents
 {
     using System;
     using System.Runtime.InteropServices;
+    using System.ComponentModel;
 
     /// <summary>
     /// ImageView is a class for displaying an image resource.<br />
@@ -102,7 +103,7 @@ namespace Tizen.NUI.BaseComponents
         private void OnResourceReady(IntPtr data)
         {
             ResourceReadyEventArgs e = new ResourceReadyEventArgs();
-            if(data != null)
+            if (data != null)
             {
                 e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
             }
@@ -125,7 +126,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if(type == DisposeTypes.Explicit)
+            if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
@@ -195,7 +196,7 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("Please do not use! this will be deprecated")]
         public new static ImageView DownCast(BaseHandle handle)
         {
-            ImageView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;
+            ImageView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -218,7 +219,8 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal ViewResourceReadySignal ResourceReadySignal(View view) {
+        internal ViewResourceReadySignal ResourceReadySignal(View view)
+        {
             ViewResourceReadySignal ret = new ViewResourceReadySignal(NDalicPINVOKE.ResourceReadySignal(View.getCPtr(view)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -230,7 +232,7 @@ namespace Tizen.NUI.BaseComponents
         /// True if the resources are loaded and ready, false otherwise.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public new  bool IsResourceReady()
+        public new bool IsResourceReady()
         {
             bool ret = NDalicPINVOKE.IsResourceReady(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -246,7 +248,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                GetProperty(ImageView.Property.RESOURCE_URL).Get(out _url);
+                GetProperty(ImageView.Property.IMAGE).Get(out _url);
                 return _url;
             }
             set
@@ -257,10 +259,40 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// ImageView ImageMap, type PropertyMap: string if it is a URL, map otherwise
+        /// This will be deprecated, please use Image instead. <br />
+        /// ImageView ImageMap, type PropertyMap: string if it is a URL, map otherwise.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap ImageMap
+        {
+            get
+            {
+                if (_border == null)
+                {
+                    PropertyMap temp = new PropertyMap();
+                    GetProperty(ImageView.Property.IMAGE).Get(temp);
+                    return temp;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                if (_border == null)
+                {
+                    SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(value));
+                }
+            }
+        }
+
+        /// <summary>
+        /// ImageView Image, type PropertyMap
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public PropertyMap Image
         {
             get
             {
@@ -393,7 +425,7 @@ namespace Tizen.NUI.BaseComponents
                     if (_synchronousLoading != null) _nPatchMap.Add(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading));
                     SetProperty(ImageView.Property.IMAGE, new PropertyValue(_nPatchMap));
                 }
-                else if(_synchronousLoading != null)
+                else if (_synchronousLoading != null)
                 { // for normal image, with synchronous loading property
                     PropertyMap imageMap = new PropertyMap();
                     imageMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
@@ -403,7 +435,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 { // just for normal image
-                    SetProperty(ImageView.Property.RESOURCE_URL, new PropertyValue(_url));
+                    SetProperty(ImageView.Property.IMAGE, new PropertyValue(_url));
                 }
             }
         }

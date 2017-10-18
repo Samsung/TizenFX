@@ -516,10 +516,7 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = NDalicPINVOKE.Actor_GetChildCount(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return Convert.ToUInt32(Children.Count);
             }
         }
 
