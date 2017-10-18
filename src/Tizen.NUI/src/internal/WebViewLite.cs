@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
- 
+
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
@@ -24,7 +24,7 @@ namespace Tizen.NUI {
 /// <summary>
 /// WebViewLite.
 /// </summary>
-public class WebViewLite : View
+internal class WebViewLite : View
 {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

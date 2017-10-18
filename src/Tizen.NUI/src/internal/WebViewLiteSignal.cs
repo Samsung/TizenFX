@@ -20,7 +20,7 @@ namespace Tizen.NUI {
 /// <summary>
 /// WebViewLiteSignal.
 /// </summary>
-public class WebViewLiteSignal : global::System.IDisposable {
+internal class WebViewLiteSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   /// <summary>
