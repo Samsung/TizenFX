@@ -123,29 +123,14 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_altitude")]
         internal static extern MediaContentError GetAltitude(MediaInfoHandle mediaInformationHandle, out double altitude);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_weather")]
-        internal static extern MediaContentError GetWeather(MediaInfoHandle mediaInformationHandle, out IntPtr weather);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_rating")]
         internal static extern MediaContentError GetRating(MediaInfoHandle mediaInformationHandle, out int rating);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_favorite")]
         internal static extern MediaContentError GetFavorite(MediaInfoHandle mediaInformationHandle, out bool favorite);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_provider")]
-        internal static extern MediaContentError GetProvider(MediaInfoHandle mediaInformationHandle, out IntPtr provider);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_title")]
         internal static extern MediaContentError GetTitle(MediaInfoHandle mediaInformationHandle, out IntPtr title);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_category")]
-        internal static extern MediaContentError GetCategory(MediaInfoHandle mediaInformationHandle, out IntPtr category);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_location_tag")]
-        internal static extern MediaContentError GetLocationTag(MediaInfoHandle mediaInformationHandle, out IntPtr locationTag);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_age_rating")]
-        internal static extern MediaContentError GetAgeRating(MediaInfoHandle mediaInformationHandle, out IntPtr ageRating);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_storage_id")]
         internal static extern MediaContentError GetStorageId(MediaInfoHandle mediaInformationHandle, out IntPtr storageId);
@@ -159,23 +144,8 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_media_from_db")]
         internal static extern MediaContentError GetMediaFromDB(string mediaId, out MediaInfoHandle handle);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_set_weather")]
-        internal static extern MediaContentError SetWeather(MediaInfoHandle mediaInformationHandle, string weather);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_set_favorite")]
         internal static extern MediaContentError SetFavorite(MediaInfoHandle mediaInformationHandle, bool favorite);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_set_provider")]
-        internal static extern MediaContentError SetProvider(MediaInfoHandle mediaInformationHandle, string provider);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_set_category")]
-        internal static extern MediaContentError SetCategory(MediaInfoHandle mediaInformationHandle, string category);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_set_location_tag")]
-        internal static extern MediaContentError SetLocationTag(MediaInfoHandle mediaInformationHandle, string locationTag);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_set_age_rating")]
-        internal static extern MediaContentError SetAgeRating(MediaInfoHandle mediaInformationHandle, string ageRating);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_update_to_db")]
         internal static extern MediaContentError UpdateToDB(MediaInfoHandle mediaInformationHandle);

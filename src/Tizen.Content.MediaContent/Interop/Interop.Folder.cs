@@ -29,18 +29,11 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_media_count_from_db")]
         internal static extern MediaContentError GetMediaCountFromDb(string folder_id, FilterHandle filter, out int count);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_clone")]
-        internal static extern MediaContentError Clone(out IntPtr dst, IntPtr src);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_destroy")]
         internal static extern MediaContentError Destroy(IntPtr folder);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_folder_id")]
         internal static extern MediaContentError GetFolderId(IntPtr folder, out IntPtr folder_id);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_parent_folder_id")]
-        internal static extern MediaContentError GetParentFolderId(IntPtr folder, out IntPtr parent_folder_id);
-
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_path")]
         internal static extern MediaContentError GetPath(IntPtr folder, out IntPtr folderPath);
@@ -48,29 +41,14 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_name")]
         internal static extern MediaContentError GetName(IntPtr folder, out IntPtr folder_name);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_modified_time")]
-        internal static extern MediaContentError GetModifiedTime(IntPtr folder, out IntPtr date);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_storage_type")]
         internal static extern MediaContentError GetStorageType(IntPtr folder, out StorageType storage_type);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_storage_id")]
         internal static extern MediaContentError GetStorageId(IntPtr folder, out IntPtr storage_id);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_order")]
-        internal static extern MediaContentError GetOrder(IntPtr folder, out int order);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_folder_from_db")]
         internal static extern MediaContentError GetFolderFromDb(string id, out IntPtr folder);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_set_name")]
-        internal static extern MediaContentError SetName(IntPtr folder, string name);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_set_order")]
-        internal static extern MediaContentError SetOrder(IntPtr folder, int order);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_update_to_db")]
-        internal static extern MediaContentError UpdateToDb(IntPtr folder);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_foreach_folder_from_db")]
         internal static extern MediaContentError ForeachFolderFromDb(FilterHandle filter,

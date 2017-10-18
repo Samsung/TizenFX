@@ -410,56 +410,6 @@ namespace Tizen.Content.MediaContent
         public static string Favorite => "MEDIA_FAVOURITE";
 
         /// <summary>
-        /// Gets the column name for the provider of media.
-        /// </summary>
-        /// <value>The column name for the provider of media.</value>
-        /// <remarks>
-        /// The value type is string.
-        /// </remarks>
-        /// <seealso cref="MediaInfo.Provider"/>
-        public static string Provider => "MEDIA_PROVIDER";
-
-        /// <summary>
-        /// Gets the column name for the category of media.
-        /// </summary>
-        /// <value>The column name for the category of media.</value>
-        /// <remarks>
-        /// The value type is string.
-        /// </remarks>
-        /// <seealso cref="MediaInfo.Category"/>
-        public static string Category => "MEDIA_CATEGORY";
-
-        /// <summary>
-        /// Gets the column name for the location tag of media.
-        /// </summary>
-        /// <value>The column name for the location tag of media.</value>
-        /// <remarks>
-        /// The value type is string.
-        /// </remarks>
-        /// <seealso cref="MediaInfo.LocationTag"/>
-        public static string LocationTag => "MEDIA_LOCATION_TAG";
-
-        /// <summary>
-        /// Gets the column name for the age rating of media.
-        /// </summary>
-        /// <value>The column name for the age rating of media.</value>
-        /// <remarks>
-        /// The value type is string.
-        /// </remarks>
-        /// <seealso cref="MediaInfo.AgeRating"/>>
-        public static string AgeRating => "MEDIA_AGE_RATING";
-
-        /// <summary>
-        /// Gets the column name for the weather information of media.
-        /// </summary>
-        /// <value>The column name for the weather information of media.</value>
-        /// <remarks>
-        /// The value type is string.
-        /// </remarks>
-        /// <seealso cref="MediaInfo.Weather"/>
-        public static string Weather => "MEDIA_WEATHER";
-
-        /// <summary>
         /// Gets the column name for the drm of media.
         /// </summary>
         /// <value>The column name for the drm of media.</value>

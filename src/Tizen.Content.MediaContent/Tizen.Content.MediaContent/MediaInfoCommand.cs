@@ -622,52 +622,24 @@ namespace Tizen.Content.MediaContent
             }
         }
 
-        private static void SetUpdateValue<T>(Interop.MediaInfoHandle handle, T value,
-            Func<Interop.MediaInfoHandle, T, MediaContentError> func)
-        {
-            if (value != null)
-            {
-                func(handle, value).ThrowIfError("Failed to update");
-            }
-        }
-
-        private static void SetUpdateValue<T>(Interop.MediaInfoHandle handle, Nullable<T> value,
-            Func<Interop.MediaInfoHandle, T, MediaContentError> func) where T : struct
-        {
-            if (value.HasValue)
-            {
-                func(handle, value.Value).ThrowIfError("Failed to update");
-            }
-        }
-
         /// <summary>
-        /// Updates the media with the specified values.
+        /// Updates the media with the favorite value.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <param name="mediaId">The media ID to update.</param>
-        /// <param name="values">The values for update.</param>
+        /// <param name="value">The value indicating whether the media is favorite.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
-        /// <remarks>Only values set in the <see cref="MediaInfoUpdateValues"/> are updated.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
-        /// <exception cref="ArgumentNullException">
-        ///     <paramref name="mediaId"/> is null.\n
-        ///     -or-\n
-        ///     <paramref name="values"/> is null.
-        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
-        public bool Update(string mediaId, MediaInfoUpdateValues values)
+        public bool UpdateFavorite(string mediaId, bool value)
         {
             ValidateDatabase();
 
             ValidationUtil.ValidateNotNullOrEmpty(mediaId, nameof(mediaId));
-
-            if (values == null)
-            {
-                throw new ArgumentNullException(nameof(values));
-            }
 
             if (CommandHelper.Count(
                 Interop.MediaInfo.GetMediaCount, $"{MediaInfoColumns.Id}='{mediaId}'") == 0)
@@ -684,12 +656,7 @@ namespace Tizen.Content.MediaContent
 
             try
             {
-                SetUpdateValue(handle, values.Weather, Interop.MediaInfo.SetWeather);
-                SetUpdateValue(handle, values.IsFavorite, Interop.MediaInfo.SetFavorite);
-                SetUpdateValue(handle, values.Provider, Interop.MediaInfo.SetProvider);
-                SetUpdateValue(handle, values.Category, Interop.MediaInfo.SetCategory);
-                SetUpdateValue(handle, values.LocationTag, Interop.MediaInfo.SetLocationTag);
-                SetUpdateValue(handle, values.AgeRating, Interop.MediaInfo.SetAgeRating);
+                Interop.MediaInfo.SetFavorite(handle, value).ThrowIfError("Failed to update");
 
                 Interop.MediaInfo.UpdateToDB(handle).ThrowIfError("Failed to update");
                 return true;

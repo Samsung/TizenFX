@@ -23,7 +23,6 @@ namespace Tizen.Content.MediaContent
     /// Represents the information related to the media stored.
     /// </summary>
     /// <seealso cref="MediaInfoCommand"/>
-    /// <seealso cref="MediaInfoUpdateValues"/>
     public class MediaInfo
     {
         internal MediaInfo(Interop.MediaInfoHandle handle)
@@ -50,14 +49,9 @@ namespace Tizen.Content.MediaContent
             Latitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetLatitude);
             Altitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetAltitude);
 
-            Weather = InteropHelper.GetString(handle, Interop.MediaInfo.GetWeather);
             Rating = InteropHelper.GetValue<int>(handle, Interop.MediaInfo.GetRating);
             IsFavorite = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.GetFavorite);
-            Provider = InteropHelper.GetString(handle, Interop.MediaInfo.GetProvider);
             Title = InteropHelper.GetString(handle, Interop.MediaInfo.GetTitle);
-            Category = InteropHelper.GetString(handle, Interop.MediaInfo.GetCategory);
-            LocationTag = InteropHelper.GetString(handle, Interop.MediaInfo.GetLocationTag);
-            AgeRating = InteropHelper.GetString(handle, Interop.MediaInfo.GetAgeRating);
             StorageId = InteropHelper.GetString(handle, Interop.MediaInfo.GetStorageId);
             IsDrm = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.IsDrm);
 
@@ -152,12 +146,6 @@ namespace Tizen.Content.MediaContent
         public double Altitude { get; }
 
         /// <summary>
-        /// Gets the weather information of media.
-        /// </summary>
-        /// <value>The weather information which a user sets.</value>
-        public string Weather { get; }
-
-        /// <summary>
         /// Gets the rating of media.
         /// </summary>
         /// <value>The rating from the metadata.</value>
@@ -170,34 +158,10 @@ namespace Tizen.Content.MediaContent
         public bool IsFavorite { get; }
 
         /// <summary>
-        /// Gets the provider of media.
-        /// </summary>
-        /// <value>The provider which a user sets.</value>
-        public string Provider { get; }
-
-        /// <summary>
         /// Gets the title of media.
         /// </summary>
         /// <value>The title of media.</value>
         public string Title { get; }
-
-        /// <summary>
-        /// Gets the category of media.
-        /// </summary>
-        /// <value>The category which a user sets.</value>
-        public string Category { get; }
-
-        /// <summary>
-        /// Gets the location tag of media.
-        /// </summary>
-        /// <value>The location tag which a user sets.</value>
-        public string LocationTag { get; }
-
-        /// <summary>
-        /// Gets the age rating of media.
-        /// </summary>
-        /// <value>The age rating which a user sets.</value>
-        public string AgeRating { get; }
 
         /// <summary>
         /// Gets the storage ID of the storage that the media is stored on.
