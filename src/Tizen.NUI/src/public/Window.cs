@@ -53,12 +53,12 @@ namespace Tizen.NUI
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
-            if(disposed)
+            if (disposed)
             {
                 return;
             }
 
-            if(type == DisposeTypes.Explicit)
+            if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
@@ -140,12 +140,12 @@ namespace Tizen.NUI
             return ret;
         }
 
-       internal static bool IsInstalled()
-       {
+        internal static bool IsInstalled()
+        {
             bool ret = NDalicPINVOKE.Stage_IsInstalled();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-       }
+        }
 
         /// <summary>
         /// Sets whether the window accepts a focus or not.
@@ -208,7 +208,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The number of supported auxiliary hints.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public uint GetSupportedAuxiliaryHintCount() {
+        public uint GetSupportedAuxiliaryHintCount()
+        {
             uint ret = NDalicPINVOKE.GetSupportedAuxiliaryHintCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -220,7 +221,8 @@ namespace Tizen.NUI
         /// <param name="index">The index of the supported auxiliary hint lists.</param>
         /// <returns>The auxiliary hint string of the index.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public string GetSupportedAuxiliaryHint(uint index) {
+        public string GetSupportedAuxiliaryHint(uint index)
+        {
             string ret = NDalicPINVOKE.GetSupportedAuxiliaryHint(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -233,7 +235,8 @@ namespace Tizen.NUI
         /// <param name="value">The value string.</param>
         /// <returns>The ID of created auxiliary hint, or 0 on failure.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public uint AddAuxiliaryHint(string hint, string value) {
+        public uint AddAuxiliaryHint(string hint, string value)
+        {
             uint ret = NDalicPINVOKE.AddAuxiliaryHint(swigCPtr, hint, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -245,7 +248,8 @@ namespace Tizen.NUI
         /// <param name="id">The ID of the auxiliary hint.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public bool RemoveAuxiliaryHint(uint id) {
+        public bool RemoveAuxiliaryHint(uint id)
+        {
             bool ret = NDalicPINVOKE.RemoveAuxiliaryHint(swigCPtr, id);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -258,7 +262,8 @@ namespace Tizen.NUI
         /// <param name="value">The value string to be set.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public bool SetAuxiliaryHintValue(uint id, string value) {
+        public bool SetAuxiliaryHintValue(uint id, string value)
+        {
             bool ret = NDalicPINVOKE.SetAuxiliaryHintValue(swigCPtr, id, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -270,7 +275,8 @@ namespace Tizen.NUI
         /// <param name="id">The auxiliary hint ID.</param>
         /// <returns>The string value of the auxiliary hint ID, or an empty string if none exists.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public string GetAuxiliaryHintValue(uint id) {
+        public string GetAuxiliaryHintValue(uint id)
+        {
             string ret = NDalicPINVOKE.GetAuxiliaryHintValue(swigCPtr, id);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -282,7 +288,8 @@ namespace Tizen.NUI
         /// <param name="hint">The auxiliary hint string.</param>
         /// <returns>The ID of auxiliary hint string, or 0 on failure.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public uint GetAuxiliaryHintId(string hint) {
+        public uint GetAuxiliaryHintId(string hint)
+        {
             uint ret = NDalicPINVOKE.GetAuxiliaryHintId(swigCPtr, hint);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -293,7 +300,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="inputRegion">The region to accept input events.</param>
         /// <since_tizen> 3 </since_tizen>
-        public void SetInputRegion(Rectangle inputRegion) {
+        public void SetInputRegion(Rectangle inputRegion)
+        {
             NDalicPINVOKE.SetInputRegion(swigCPtr, Rectangle.getCPtr(inputRegion));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -323,7 +331,8 @@ namespace Tizen.NUI
         /// <param name="level">The notification window level.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public bool SetNotificationLevel(NotificationLevel level) {
+        public bool SetNotificationLevel(NotificationLevel level)
+        {
             bool ret = NDalicPINVOKE.SetNotificationLevel(swigCPtr, (int)level);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -334,7 +343,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The notification window level.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public NotificationLevel GetNotificationLevel() {
+        public NotificationLevel GetNotificationLevel()
+        {
             NotificationLevel ret = (NotificationLevel)NDalicPINVOKE.GetNotificationLevel(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -345,7 +355,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="opaque">Whether the window's visual state is opaque.</param>
         /// <since_tizen> 3 </since_tizen>
-        public void SetOpaqueState(bool opaque) {
+        public void SetOpaqueState(bool opaque)
+        {
             NDalicPINVOKE.SetOpaqueState(swigCPtr, opaque);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -355,7 +366,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>True if the window's visual state is opaque, false otherwise.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public bool IsOpaqueState() {
+        public bool IsOpaqueState()
+        {
             bool ret = NDalicPINVOKE.IsOpaqueState(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -367,7 +379,8 @@ namespace Tizen.NUI
         /// <param name="screenOffMode">The screen mode.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public bool SetScreenOffMode(ScreenOffMode screenOffMode) {
+        public bool SetScreenOffMode(ScreenOffMode screenOffMode)
+        {
             bool ret = NDalicPINVOKE.SetScreenOffMode(swigCPtr, (int)screenOffMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -378,7 +391,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The screen off mode.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public ScreenOffMode GetScreenOffMode() {
+        public ScreenOffMode GetScreenOffMode()
+        {
             ScreenOffMode ret = (ScreenOffMode)NDalicPINVOKE.GetScreenOffMode(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -390,7 +404,8 @@ namespace Tizen.NUI
         /// <param name="brightness">The preferred brightness (0 to 100).</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public bool SetBrightness(int brightness) {
+        public bool SetBrightness(int brightness)
+        {
             bool ret = NDalicPINVOKE.SetBrightness(swigCPtr, brightness);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -401,7 +416,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The preferred brightness.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public int GetBrightness() {
+        public int GetBrightness()
+        {
             int ret = NDalicPINVOKE.GetBrightness(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -480,7 +496,7 @@ namespace Tizen.NUI
             set
             {
                 _windowTitle = value;
-                SetClass( _windowTitle, "" );
+                SetClass(_windowTitle, "");
             }
         }
 
@@ -707,7 +723,7 @@ namespace Tizen.NUI
             if (_rootLayer == null && Window.IsInstalled())
             {
                 _rootLayer = new Layer(NDalicPINVOKE.Stage_GetRootLayer(stageCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             return _rootLayer;
         }
@@ -1418,7 +1434,7 @@ namespace Tizen.NUI
 
         internal void SetPosition(Position2D position)
         {
-            var val = new Uint16Pair( (uint)position.X, (uint)position.Y );
+            var val = new Uint16Pair((uint)position.X, (uint)position.Y);
             NDalicManualPINVOKE.SetPosition(swigCPtr, Uint16Pair.getCPtr(val));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1629,21 +1645,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Contains and encapsulates Native Ecore Wayland Window handle.
+        /// Contains and encapsulates Native Window handle.
         /// </summary>
-        /// <remarks>
-        /// To get System.IntPtr of Native Ecore Wayland Window handle, <br />
-        /// DangerousGetHandle() method is used to get handle.
-        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
-        public class NativeWindowSafeHandle : SafeHandle
+        public class SafeNativeWindowHandle : SafeHandle
         {
-            internal NativeWindowSafeHandle(IntPtr handle) : base(handle, true)
+            /// <summary>
+            /// Contructor, Native window handle is set to handle.
+            /// </summary>
+            /// <since_tizen> 4 </since_tizen>
+            public SafeNativeWindowHandle() : base(IntPtr.Zero, false)
             {
+                SetHandle(Tizen.NUI.Window.Instance.GetNativeWindowHandler());
             }
             /// <summary>
             /// Null check if the handle is valid or not.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public override bool IsInvalid
             {
                 get
@@ -1658,24 +1676,9 @@ namespace Tizen.NUI
             /// <since_tizen> 4 </since_tizen>
             protected override bool ReleaseHandle()
             {
-                this.SetHandle(IntPtr.Zero);
                 return true;
             }
         }
-        /// <summary>
-        /// Gets Native Ecore Wayland Window handle.
-        /// </summary>
-        /// <remarks>
-        /// NativeWindowSafeHandle class contains System.IntPtr of Native Ecore Wayland Window handle, <br />
-        /// DangerousGetHandle() method is used to get handle.
-        /// </remarks>
-        /// <since_tizen> 4 </since_tizen>
-        public Window.NativeWindowSafeHandle NativeWindowHandle
-        {
-            get
-            {
-                return new NativeWindowSafeHandle(GetNativeWindowHandler());
-            }
-        }
+
     }
 }

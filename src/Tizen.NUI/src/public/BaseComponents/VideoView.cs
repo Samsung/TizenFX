@@ -259,7 +259,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Video file URL as string type or PropertyMap.
+        /// Video file setting type of PropertyMap.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap Video
@@ -346,6 +346,24 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(VideoView.Property.UNDERLAY, new PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Video file URL as string type.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public string ResourceUrl
+        {
+            get
+            {
+                string tmp;
+                GetProperty(VideoView.Property.VIDEO).Get(out tmp);
+                return tmp;
+            }
+            set
+            {
+                SetProperty(VideoView.Property.VIDEO, new PropertyValue(value));
             }
         }
 
