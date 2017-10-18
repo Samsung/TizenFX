@@ -1151,12 +1151,12 @@ namespace Tizen.NUI.BaseComponents
         /// The Outline property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public string Outline
+        public PropertyMap Outline
         {
             get
             {
-                string temp;
-                GetProperty(TextEditor.Property.OUTLINE).Get(out temp);
+                PropertyMap temp = new PropertyMap();
+                GetProperty(TextEditor.Property.OUTLINE).Get(temp);
                 return temp;
             }
             set
