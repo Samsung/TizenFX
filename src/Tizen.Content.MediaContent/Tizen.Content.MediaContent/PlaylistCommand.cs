@@ -74,8 +74,8 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="playlistId"/> is less than or equal to zero.\n
-        ///     -or-\n
+        ///     <paramref name="playlistId"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="memberId"/> is less than or equal to zero.
         /// </exception>
         public int GetPlayOrder(int playlistId, int memberId)
@@ -133,7 +133,7 @@ namespace Tizen.Content.MediaContent
         /// Inserts the playlist into the database from the specified M3U file.
         /// </summary>
         /// <remarks>
-        ///     If you want to access an internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
+        ///     If you want to access an internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
         ///     If you want to access an external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
@@ -146,13 +146,13 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="name"/> is null.\n
-        ///     -or-\n
+        ///     <paramref name="name"/> is null.<br/>
+        ///     -or-<br/>
         ///     <paramref name="path"/> is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="name"/> is a zero-length string.\n
-        ///     -or-\n
+        ///     <paramref name="name"/> is a zero-length string.<br/>
+        ///     -or-<br/>
         ///     <paramref name="path"/> is a zero-length string, contains only white space.
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exists.</exception>
@@ -197,9 +197,9 @@ namespace Tizen.Content.MediaContent
         /// Exports the playlist to a M3U file.
         /// </summary>
         /// <remarks>
-        ///     If the file already exists in the file system, then it will be overwritten.\n
-        ///     \n
-        ///     If you want to access an internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
+        ///     If the file already exists in the file system, then it will be overwritten.<br/>
+        ///     <br/>
+        ///     If you want to access an internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
         ///     If you want to access an external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
@@ -616,11 +616,11 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaIds"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="mediaIds"/> has no element.\n
-        ///     -or-\n
-        ///     <paramref name="mediaIds"/> contains null value.\n
-        ///     -or-\n
-        ///     <paramref name="mediaIds"/> contains a zero-length string or white space.\n
+        ///     <paramref name="mediaIds"/> has no element.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="mediaIds"/> contains null value.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="mediaIds"/> contains a zero-length string or white space.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
         public bool AddMembers(int playlistId, IEnumerable<string> mediaIds)
@@ -692,9 +692,9 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="playlistId"/> is less than or equal to zero.\n
-        ///     -or-\n
-        ///     <paramref name="memberId"/> is less than or equal to zero.\n
+        ///     <paramref name="playlistId"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="memberId"/> is less than or equal to zero.
         /// </exception>
         public bool RemoveMember(int playlistId, int memberId)
         {
@@ -719,8 +719,8 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="memberIds"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="memberIds"/> has no element.\n
-        ///     -or-\n
+        ///     <paramref name="memberIds"/> has no element.<br/>
+        ///     -or-<br/>
         ///     <paramref name="memberIds"/> contains a value which is less than or equal to zero.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
@@ -811,8 +811,8 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="orders"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="orders"/> has no element.\n
-        ///     -or-\n
+        ///     <paramref name="orders"/> has no element.<br/>
+        ///     -or-<br/>
         ///     <paramref name="orders"/> contains a null value.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>

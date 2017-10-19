@@ -412,11 +412,11 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaIds"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="mediaIds"/> has no element.\n
-        ///     -or-\n
-        ///     <paramref name="mediaIds"/> contains null value.\n
-        ///     -or-\n
-        ///     <paramref name="mediaIds"/> contains a zero-length string, contains only white space.\n
+        ///     <paramref name="mediaIds"/> has no element.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="mediaIds"/> contains null value.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="mediaIds"/> contains a zero-length string, contains only white space.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="tagId"/> is less than or equal to zero.</exception>
         public bool AddMedia(int tagId, IEnumerable<string> mediaIds)
@@ -456,11 +456,11 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaIds"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="mediaIds"/> has no element.\n
-        ///     -or-\n
-        ///     <paramref name="mediaIds"/> contains null value.\n
-        ///     -or-\n
-        ///     <paramref name="mediaIds"/> contains a zero-length string or white space.\n
+        ///     <paramref name="mediaIds"/> has no element.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="mediaIds"/> contains null value.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="mediaIds"/> contains a zero-length string or white space.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="tagId"/> is less than or equal to zero.</exception>
         public bool RemoveMedia(int tagId, IEnumerable<string> mediaIds)

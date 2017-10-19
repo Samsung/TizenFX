@@ -94,8 +94,8 @@ namespace Tizen.Content.MediaContent
         /// <param name="memberId">The ID of the member.</param>
         /// <param name="orderValue">The order value.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="memberId"/> is less than or equal to zero.\n
-        ///     -or-\n
+        ///     <paramref name="memberId"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="orderValue"/> is less than zero.
         /// </exception>
         public PlayOrder(int memberId, int orderValue)
