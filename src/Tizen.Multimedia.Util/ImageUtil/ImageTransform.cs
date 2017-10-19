@@ -106,7 +106,7 @@ namespace Tizen.Multimedia.Util
         /// <value>The <see cref="ImageTransform"/> at the specified index.</value>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     index is less than 0.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     index is equal to or greater than Count.
         /// </exception>
         public ImageTransform this[int index]
@@ -202,7 +202,7 @@ namespace Tizen.Multimedia.Util
         /// <param name="index">The zero-based index to remove.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     index is less than 0.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     index is equal to or greater than <see cref="Count"/>.
         /// </exception>
         public void RemoveAt(int index) => _list.RemoveAt(index);
@@ -474,11 +474,11 @@ namespace Tizen.Multimedia.Util
         /// <param name="region">The crop region.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     The X-position of <paramref name="region"/> is less than zero.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     The Y-position of <paramref name="region"/> is less than zero.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     The width of <paramref name="region"/> is less than or equal to zero.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     The height of <paramref name="region"/> is less than or equal to zero.
         /// </exception>
         public CropTransform(Rectangle region)
@@ -491,11 +491,11 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     The X-position of <paramref name="value"/> is less than zero.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     The Y-position of <paramref name="value"/> is less than zero.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     The width of <paramref name="value"/> is less than or equal to zero.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     The height of <paramref name="value"/> is less than or equal to zero.
         /// </exception>
         public Rectangle Region
@@ -551,7 +551,7 @@ namespace Tizen.Multimedia.Util
         /// <param name="size">The size that an image is resized to.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     The width of <paramref name="size"/> is less than or equal to zero.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     The height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
         public ResizeTransform(Size size)
@@ -564,7 +564,7 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     The width of <paramref name="value"/> is less than or equal to zero.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     The height of <paramref name="value"/> is less than or equal to zero.
         /// </exception>
         public Size Size

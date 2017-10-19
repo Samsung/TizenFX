@@ -39,7 +39,7 @@ namespace Tizen.Multimedia.Util
         /// <returns>A task that represents the asynchronous transforming operation.</returns>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="source"/> is null.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     <paramref name="item"/> is null.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTransformer"/> has already been disposed of.</exception>

@@ -94,9 +94,9 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="ArgumentNullException"><paramref name="inputFilePath"/> is null.</exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="inputFilePath"/> is an empty string.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     <paramref name="inputFilePath"/> is not a image file.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     The format of <paramref name="inputFilePath"/> is not <see cref="InputFormat"/>.
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="inputFilePath"/> does not exists.</exception>
@@ -142,7 +142,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="ArgumentNullException"><paramref name="inputBuffer"/> is null.</exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="inputBuffer"/> is an empty array.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     The format of <paramref name="inputBuffer"/> is not <see cref="InputFormat"/>.
         /// </exception>
         /// <exception cref="FileFormatException">The format of <paramref name="inputBuffer"/> is not <see cref="InputFormat"/>.</exception>
