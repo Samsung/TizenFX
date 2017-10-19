@@ -158,8 +158,8 @@ namespace Tizen.Multimedia.Vision
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageRecognitionConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="value"/> is less than zero.\n
-        ///     -or-\n
+        ///     <paramref name="value"/> is less than zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="value"/> is greater than one.
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
@@ -180,7 +180,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets the part matching error for the image recognition.\n
+        /// Gets or sets the part matching error for the image recognition.<br/>
         /// Allowable error of matches number.
         /// </summary>
         /// <value>
@@ -189,8 +189,8 @@ namespace Tizen.Multimedia.Vision
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageRecognitionConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="value"/> is less than zero.\n
-        ///     -or-\n
+        ///     <paramref name="value"/> is less than zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="value"/> is greater than one.
         /// </exception>
         /// <since_tizen> 3</since_tizen>

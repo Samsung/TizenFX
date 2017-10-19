@@ -99,9 +99,9 @@ namespace Tizen.Multimedia
         /// <remarks>AAC and H.264 are supported.</remarks>
         /// <exception cref="ArgumentNullException">Both <paramref name="audioMediaFormat"/> and <paramref name="videoMediaFormat"/> are null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="audioMediaFormat"/> is not supported.\n
-        ///     -or-\n
-        ///     <paramref name="videoMediaFormat"/> is not supported.\n
+        ///     <paramref name="audioMediaFormat"/> is not supported.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="videoMediaFormat"/> is not supported.
         /// </exception>
         /// <seealso cref="SupportedAudioTypes"/>
         /// <seealso cref="SupportedVideoTypes"/>
@@ -175,15 +175,15 @@ namespace Tizen.Multimedia
         /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <param name="packet">The <see cref="MediaPacket"/> to decode.</param>
         /// <exception cref="InvalidOperationException">
-        ///     This source is not set as a source to a player.\n
-        ///     -or-\n
+        ///     This source is not set as a source to a player.<br/>
+        ///     -or-<br/>
         ///     The player is not in the valid state.
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="packet"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="packet"/> has been disposed of.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="packet"/> is neither video nor audio type.\n
-        ///     -or-\n
+        ///     <paramref name="packet"/> is neither video nor audio type.<br/>
+        ///     -or-<br/>
         ///     The format of packet is not matched with the specified format in the constructor.
         /// </exception>
         /// <exception cref="NoBufferSpaceException">The internal buffer has reached its limits.</exception>

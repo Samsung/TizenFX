@@ -181,8 +181,8 @@ namespace Tizen.Multimedia
         /// Prepares the AudioCapture for reading audio data by starting buffering of audio data from the device.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Operation failed due to an internal error.\n
-        ///     -or-\n
+        ///     Operation failed due to an internal error.<br/>
+        ///     -or-<br/>
         ///     The current state is not <see cref="AudioIOState.Idle"/>.
         /// </exception>
         /// <seealso cref="Unprepare"/>
@@ -198,8 +198,8 @@ namespace Tizen.Multimedia
         /// Unprepares the AudioCapture.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Operation failed due to an internal error.\n
-        ///     -or-\n
+        ///     Operation failed due to an internal error.<br/>
+        ///     -or-<br/>
         ///     The current state is <see cref="AudioIOState.Idle"/>.
         /// </exception>
         /// <seealso cref="Prepare"/>
@@ -215,8 +215,8 @@ namespace Tizen.Multimedia
         /// Pauses buffering of audio data from the device.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is <see cref="AudioIOState.Idle"/>.\n
-        ///     -or-\n
+        ///     The current state is <see cref="AudioIOState.Idle"/>.<br/>
+        ///     -or-<br/>
         ///     The method is called in the <see cref="AsyncAudioCapture.DataAvailable"/> event handler.
         /// </exception>
         /// <seealso cref="Resume"/>
@@ -234,8 +234,8 @@ namespace Tizen.Multimedia
         /// Resumes buffering audio data from the device.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is <see cref="AudioIOState.Idle"/>.\n
-        ///     -or-\n
+        ///     The current state is <see cref="AudioIOState.Idle"/>.<br/>
+        ///     -or-<br/>
         ///     The method is called in the <see cref="AsyncAudioCapture.DataAvailable"/> event handler.
         /// </exception>
         /// <seealso cref="Pause"/>
@@ -297,13 +297,13 @@ namespace Tizen.Multimedia
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="sampleRate"/> is less than <see cref="AudioCaptureBase.MinSampleRate"/>.\n
-        ///     -or-\n
+        ///     <paramref name="sampleRate"/> is less than <see cref="AudioCaptureBase.MinSampleRate"/>.<br/>
+        ///     -or-<br/>
         ///     <paramref name="sampleRate"/> is greater than <see cref="AudioCaptureBase.MaxSampleRate"/>.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="channel"/> is invalid.\n
-        ///     -or-\n
+        ///     <paramref name="channel"/> is invalid.<br/>
+        ///     -or-<br/>
         ///     <paramref name="sampleType"/> is invalid.
         /// </exception>
         /// <exception cref="InvalidOperationException">The required privilege is not specified.</exception>
@@ -357,13 +357,13 @@ namespace Tizen.Multimedia
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="sampleRate"/> is less than <see cref="AudioCaptureBase.MinSampleRate"/>.\n
-        ///     -or-\n
+        ///     <paramref name="sampleRate"/> is less than <see cref="AudioCaptureBase.MinSampleRate"/>.<br/>
+        ///     -or-<br/>
         ///     <paramref name="sampleRate"/> is greater than <see cref="AudioCaptureBase.MaxSampleRate"/>.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="channel"/> is invalid.\n
-        ///     -or-\n
+        ///     <paramref name="channel"/> is invalid.<br/>
+        ///     -or-<br/>
         ///     <paramref name="sampleType"/> is invalid.
         /// </exception>
         /// <exception cref="InvalidOperationException">The required privilege is not specified.</exception>

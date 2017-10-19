@@ -36,8 +36,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="length">The value indicating the size of the buffer.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="length"/> is zero.\n
-        ///     -or-\n
+        ///     <paramref name="length"/> is zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="length"/> is less than zero.
         /// </exception>
         public MediaBufferSource(int length)
@@ -70,10 +70,10 @@ namespace Tizen.Multimedia
         /// <param name="offset">The value indicating the offset in the buffer of the first byte to copy.</param>
         /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="offset"/> is less than zero.\n
-        ///     -or-\n
-        ///     <paramref name="length"/> is equal to or less than zero.\n
-        ///     -or-\n
+        ///     <paramref name="offset"/> is less than zero.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="length"/> is equal to or less than zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="offset"/>+<paramref name="length"/> is greater than buffer.Length.
         /// </exception>
         public MediaBufferSource(byte[] buffer, int length, int offset = 0)

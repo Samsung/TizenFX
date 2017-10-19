@@ -57,7 +57,7 @@ namespace Tizen.Multimedia.Util
         /// Extracts the thumbnail for the given media with the specified path.
         /// </summary>
         /// <returns>A task that represents the asynchronous extracting operation.</returns>
-        /// <remarks>The size of the thumbnail will be the default size(320x240).\n</remarks>
+        /// <remarks>The size of the thumbnail will be the default size(320x240).</remarks>
         /// <param name="path">The path of the media file to extract the thumbnail.</param>
         /// <param name="cancellationToken">The token to stop the operation.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
@@ -76,7 +76,7 @@ namespace Tizen.Multimedia.Util
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A task that represents the asynchronous extracting operation.</returns>
         /// <remarks>
-        /// If the width is not a multiple of 8, it can be changed by the inner process.\n
+        /// If the width is not a multiple of 8, it can be changed by the inner process.<br/>
         /// The width will be a multiple of 8 greater than the set value.
         /// </remarks>
         /// <param name="path">The path of the media file to extract the thumbnail.</param>
@@ -100,7 +100,7 @@ namespace Tizen.Multimedia.Util
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A task that represents the asynchronous extracting operation.</returns>
         /// <remarks>
-        /// If the width is not a multiple of 8, it can be changed by the inner process.\n
+        /// If the width is not a multiple of 8, it can be changed by the inner process.<br/>
         /// The width will be a multiple of 8 greater than the set value.
         /// </remarks>
         /// <param name="path">The path of the media file to extract the thumbnail.</param>

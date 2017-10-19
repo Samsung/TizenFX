@@ -36,9 +36,9 @@ namespace Tizen.Multimedia
         /// Gets the audio stream buffer.
         /// </summary>
         /// <remarks>
-        /// If the stream is modified in the event handler, the modified data will be stored.
-        /// \n
-        /// The buffer is only valid in the event.\n
+        /// If the stream is modified in the event handler, the modified data will be stored.<br/>
+        /// <br/>
+        /// The buffer is only valid in the event.<br/>
         /// Any attempt to access to this buffer after the event ends will throw an exception.
         /// </remarks>
         public IMediaBuffer Stream { get; }

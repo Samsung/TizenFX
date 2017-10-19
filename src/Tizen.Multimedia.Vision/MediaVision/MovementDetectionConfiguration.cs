@@ -43,20 +43,20 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets movement detection threshold.\n
+        /// Gets or sets movement detection threshold.<br/>
         /// This value might be set before subscription on <see cref="MovementDetector.Detected"/> event
         /// to specify the sensitivity of the movement detector.
         /// </summary>
         /// <value>
         /// The value indicating the sensitivity of <see cref="MovementDetector"/> from 0 to 255 inclusive,
         /// where 255 means that no movements will be detected and 0 means that all frame changes
-        /// will be interpreted as movements.\n
+        /// will be interpreted as movements.<br/>
         /// The default is 10.
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="MovementDetectionConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="value"/> is less than zero.\n
-        ///     -or-\n
+        ///     <paramref name="value"/> is less than zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="value"/> is greater than 255.
         /// </exception>
         /// <since_tizen> 3 </since_tizen>

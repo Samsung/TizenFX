@@ -86,17 +86,17 @@ namespace Tizen.Multimedia.Util
         /// <param name="inputFilePath">The input file path from which to decode.</param>
         /// <returns>A task that represents the asynchronous decoding operation.</returns>
         /// <remarks>
-        ///     Only Graphics Interchange Format(GIF) codec returns more than one frame.\n
-        ///     \n
-        ///     http://tizen.org/privilege/mediastorage is needed if <paramref name="inputFilePath"/> is relevant to the media storage.\n
+        ///     Only Graphics Interchange Format(GIF) codec returns more than one frame.<br/>
+        ///     <br/>
+        ///     http://tizen.org/privilege/mediastorage is needed if <paramref name="inputFilePath"/> is relevant to the media storage.<br/>
         ///     http://tizen.org/privilege/externalstorage is needed if <paramref name="inputFilePath"/> is relevant to the external storage.
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="inputFilePath"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="inputFilePath"/> is an empty string.\n
-        ///     - or -\n
-        ///     <paramref name="inputFilePath"/> is not a image file.\n
-        ///     - or -\n
+        ///     <paramref name="inputFilePath"/> is an empty string.<br/>
+        ///     - or -<br/>
+        ///     <paramref name="inputFilePath"/> is not a image file.<br/>
+        ///     - or -<br/>
         ///     The format of <paramref name="inputFilePath"/> is not <see cref="InputFormat"/>.
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="inputFilePath"/> does not exists.</exception>
@@ -138,13 +138,11 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <param name="inputBuffer">The image buffer from which to decode.</param>
         /// <returns>A task that represents the asynchronous decoding operation.</returns>
-        /// <remarks>
-        ///     Only Graphics Interchange Format(GIF) codec returns more than one frame.\n
-        /// </remarks>
+        /// <remarks>Only Graphics Interchange Format(GIF) codec returns more than one frame.</remarks>
         /// <exception cref="ArgumentNullException"><paramref name="inputBuffer"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="inputBuffer"/> is an empty array.\n
-        ///     - or -\n
+        ///     <paramref name="inputBuffer"/> is an empty array.<br/>
+        ///     - or -<br/>
         ///     The format of <paramref name="inputBuffer"/> is not <see cref="InputFormat"/>.
         /// </exception>
         /// <exception cref="FileFormatException">The format of <paramref name="inputBuffer"/> is not <see cref="InputFormat"/>.</exception>

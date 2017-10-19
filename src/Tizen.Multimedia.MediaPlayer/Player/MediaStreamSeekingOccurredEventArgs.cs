@@ -35,7 +35,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the offset.
         /// </summary>
-		public ulong Offset { get; }
+        public ulong Offset { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.

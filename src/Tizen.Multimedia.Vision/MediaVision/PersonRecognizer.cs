@@ -98,13 +98,13 @@ namespace Tizen.Multimedia.Vision
         /// <param name="source">The source used for recognition.</param>
         /// <param name="config">The config for the <paramref name="source"/>.</param>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="source"/> is null.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> is null.<br/>
+        ///     -or-<br/>
         ///     <paramref name="config"/> is null.
         /// </exception>
         /// <exception cref="ObjectDisposedException">
-        ///     The <see cref="PersonRecognizer"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     The <see cref="PersonRecognizer"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <exception cref="ArgumentException">

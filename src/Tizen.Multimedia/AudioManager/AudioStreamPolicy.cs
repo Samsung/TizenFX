@@ -116,7 +116,7 @@ namespace Tizen.Multimedia
         /// Gets or sets the auto focus reacquisition.
         /// </summary>
         /// <value>
-        /// true if the auto focus reacquisition is enabled; otherwise, false.\n
+        /// true if the auto focus reacquisition is enabled; otherwise, false.<br/>
         /// The default is true.
         /// </value>
         /// <remarks>
@@ -160,9 +160,9 @@ namespace Tizen.Multimedia
         /// <param name="extraInfo">The extra information for this request. This value can be null.</param>
         /// <exception cref="ArgumentException"><paramref name="options"/> is zero.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="options"/> contain a invalid bit.\n
-        ///     -or-\n
-        ///     <paramref name="behaviors"/> contain a invalid bit.\n
+        ///     <paramref name="options"/> contain a invalid bit.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="behaviors"/> contain a invalid bit.
         /// </exception>
         /// <exception cref="InvalidOperationException">The focus has already been acquired.</exception>
         /// <exception cref="AudioPolicyException">Called in <see cref="FocusStateChanged"/> raised by releasing focus.</exception>
@@ -196,9 +196,9 @@ namespace Tizen.Multimedia
         /// <param name="extraInfo">The extra information for this request. This value can be null.</param>
         /// <exception cref="ArgumentException"><paramref name="options"/> is zero.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="options"/> contain a invalid bit.\n
-        ///     -or-\n
-        ///     <paramref name="behaviors"/> contain a invalid bit.\n
+        ///     <paramref name="options"/> contain a invalid bit.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="behaviors"/> contain a invalid bit.
         /// </exception>
         /// <exception cref="InvalidOperationException">The focus has not been acquired.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
@@ -245,8 +245,8 @@ namespace Tizen.Multimedia
         /// The available <see cref="AudioStreamType"/> is <see cref="AudioStreamType.Voip"/> and <see cref="AudioStreamType.MediaExternalOnly"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The device is not connected.\n
-        ///     -or-\n
+        ///     The device is not connected.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="device"/> is null.</exception>

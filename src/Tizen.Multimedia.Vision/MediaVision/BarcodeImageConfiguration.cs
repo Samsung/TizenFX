@@ -28,15 +28,15 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="BarcodeImageConfiguration"/> class.
         /// </summary>
         /// <remarks>
-        /// The mediastorage privilege (http://tizen.org/privilege/mediastorage) is needed if the image path is relevant to media storage.\n
+        /// The mediastorage privilege (http://tizen.org/privilege/mediastorage) is needed if the image path is relevant to media storage.<br/>
         /// The externalstorage privilege (http://tizen.org/privilege/externalstorage) is needed if the image path is relevant to external storage.
         /// </remarks>
         /// <param name="size">The <see cref="Size"/> of the generated image.</param>
         /// <param name="path">The path to the file to be generated.</param>
         /// <param name="imageFormat">The format of the output image.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     The width of <paramref name="size"/> is less than or equal to zero.\n
-        ///     -or-\n
+        ///     The width of <paramref name="size"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
         ///     The height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
@@ -75,7 +75,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="BarcodeImageConfiguration"/> class.
         /// </summary>
         /// <remarks>
-        /// The mediastorage privilege (http://tizen.org/privilege/mediastorage) is needed if the image path is relevant to media storage.\n
+        /// The mediastorage privilege (http://tizen.org/privilege/mediastorage) is needed if the image path is relevant to media storage.<br/>
         /// The externalstorage privilege (http://tizen.org/privilege/externalstorage) is needed if the image path is relevant to external storage.
         /// </remarks>
         /// <param name="width">The width of the image to be generated.</param>
@@ -83,8 +83,8 @@ namespace Tizen.Multimedia.Vision
         /// <param name="path">The path to the file to be generated.</param>
         /// <param name="imageFormat">The format of the output image.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="width"/> is less than or equal to zero.\n
-        ///     -or-\n
+        ///     <paramref name="width"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="height"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
@@ -120,7 +120,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets the path to the file that has to be generated.
         /// </summary>
         /// <remarks>
-        /// The mediastorage privilege (http://tizen.org/privilege/mediastorage) is needed if the image path is relevant to media storage.\n
+        /// The mediastorage privilege (http://tizen.org/privilege/mediastorage) is needed if the image path is relevant to media storage.<br/>
         /// The externalstorage privilege (http://tizen.org/privilege/externalstorage) is needed if the image path is relevant to external storage.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>

@@ -130,13 +130,13 @@ namespace Tizen.Multimedia.Vision
         /// Default value is null (the roi will be a full image), which can be changed to specify the roi for face detection.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     The width of <paramref name="value"/> is less than or equal to zero.\n
-        ///     -or-\n
-        ///     The height of <paramref name="value"/> is less than or equal to zero.\n
-        ///     -or-\n
-        ///     The x position of <paramref name="value"/> is less than zero.\n
-        ///     -or-\n
-        ///     The y position of <paramref name="value"/> is less than zero.\n
+        ///     The width of <paramref name="value"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
+        ///     The height of <paramref name="value"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
+        ///     The x position of <paramref name="value"/> is less than zero.<br/>
+        ///     -or-<br/>
+        ///     The y position of <paramref name="value"/> is less than zero.
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public Rectangle? Roi

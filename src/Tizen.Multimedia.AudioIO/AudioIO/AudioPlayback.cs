@@ -91,13 +91,13 @@ namespace Tizen.Multimedia
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="sampleRate"/> is less than <see cref="MinSampleRate"/>.\n
-        ///     -or-\n
+        ///     <paramref name="sampleRate"/> is less than <see cref="MinSampleRate"/>.<br/>
+        ///     -or-<br/>
         ///     <paramref name="sampleRate"/> is greater than <see cref="MaxSampleRate"/>.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="channel"/> is invalid.\n
-        ///     -or-\n
+        ///     <paramref name="channel"/> is invalid.<br/>
+        ///     -or-<br/>
         ///     <paramref name="sampleType"/> is invalid.
         /// </exception>
         public AudioPlayback(int sampleRate, AudioChannel channel, AudioSampleType sampleType)
@@ -286,8 +286,8 @@ namespace Tizen.Multimedia
         /// This must be called before <see cref="Write(byte[])"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     Operation failed due to an internal error.\n
-        ///     -or-\n
+        ///     Operation failed due to an internal error.<br/>
+        ///     -or-<br/>
         ///     The current state is not <see cref="AudioIOState.Idle"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
@@ -304,8 +304,8 @@ namespace Tizen.Multimedia
         /// Unprepares the AudioPlayback.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Operation failed due to an internal error.\n
-        ///     -or-\n
+        ///     Operation failed due to an internal error.<br/>
+        ///     -or-<br/>
         ///     The current state is <see cref="AudioIOState.Idle"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
@@ -323,8 +323,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>It has no effect if the current state is <see cref="AudioIOState.Paused"/>.</remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is <see cref="AudioIOState.Idle"/>.\n
-        ///     -or-\n
+        ///     The current state is <see cref="AudioIOState.Idle"/>.<br/>
+        ///     -or-<br/>
         ///     The method is called in the <see cref="BufferAvailable"/> event handler.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
@@ -345,8 +345,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>It has no effect if the current state is <see cref="AudioIOState.Running"/>.</remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is <see cref="AudioIOState.Idle"/>.\n
-        ///     -or-\n
+        ///     The current state is <see cref="AudioIOState.Idle"/>.<br/>
+        ///     -or-<br/>
         ///     The method is called in an event handler.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
@@ -382,8 +382,8 @@ namespace Tizen.Multimedia
         /// <param name="streamPolicy">The <see cref="AudioStreamPolicy"/> to apply for the AudioPlayback.</param>
         /// <exception cref="ArgumentNullException"><paramref name="streamPolicy"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     <paramref name="streamPolicy"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     <paramref name="streamPolicy"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     The AudioPlayback has already been disposed of.
         /// </exception>
         /// <exception cref="NotSupportedException"><paramref name="streamPolicy"/> is not supported.</exception>

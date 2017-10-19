@@ -50,8 +50,8 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
         /// <exception cref="FileNotFoundException"><paramref name="modelPath"/> is invalid.</exception>
         /// <exception cref="NotSupportedException">
-        ///     The feature is not supported.\n
-        ///     -or-\n
+        ///     The feature is not supported.<br/>
+        ///     -or-<br/>
         ///     <paramref name="modelPath"/> is not supported format.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
@@ -153,8 +153,8 @@ namespace Tizen.Multimedia.Vision
         ///     Has to be unique for each face.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     The <see cref="FaceRecognitionModel"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     The <see cref="FaceRecognitionModel"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="source"/> has already been dispose of.
         /// </exception>
         /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
@@ -179,8 +179,8 @@ namespace Tizen.Multimedia.Vision
         /// <param name="area">The rectangular region of the face image at the source image.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     The <see cref="FaceRecognitionModel"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     The <see cref="FaceRecognitionModel"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="source"/> has already been dispose of.
         /// </exception>
         /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
@@ -258,8 +258,8 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <param name="config">The configuration used for learning of the recognition models. This value can be null.</param>
         /// <exception cref="ObjectDisposedException">
-        ///     The <see cref="FaceRecognitionModel"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     The <see cref="FaceRecognitionModel"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <exception cref="InvalidOperationException">No examples added.</exception>

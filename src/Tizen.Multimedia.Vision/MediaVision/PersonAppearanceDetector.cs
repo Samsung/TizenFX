@@ -108,8 +108,8 @@ namespace Tizen.Multimedia.Vision
         /// <param name="config">The config for the <paramref name="source"/>. This value can be null.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     The <see cref="PersonAppearanceDetector"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     The <see cref="PersonAppearanceDetector"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <see cref="SurveillanceSource.Push(MediaVisionSource)"/>

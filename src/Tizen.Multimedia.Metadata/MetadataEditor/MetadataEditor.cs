@@ -25,9 +25,9 @@ namespace Tizen.Multimedia
     /// </summary>
     /// <privilege>
     /// If you want to access only an internal storage,
-    /// you should add privilege http://tizen.org/privilege/mediastorage. \n
+    /// you should add privilege http://tizen.org/privilege/mediastorage.<br/>
     /// Or if you want to access only an external storage,
-    /// you should add privilege http://tizen.org/privilege/externalstorage. \n
+    /// you should add privilege http://tizen.org/privilege/externalstorage.
     /// </privilege>
     public class MetadataEditor : IDisposable
     {
@@ -358,8 +358,8 @@ namespace Tizen.Multimedia
         /// Writes the modified metadata to the media file.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     An internal error occurs.\n
-        ///     -or-\n
+        ///     An internal error occurs.<br/>
+        ///     -or-<br/>
         ///     The file is read-only.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
@@ -381,9 +381,9 @@ namespace Tizen.Multimedia
         /// <returns>The artwork included in the media file.</returns>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="index"/> is less than zero.\n
-        ///     -or-\n
-        ///     <paramref name="index"/> is greater than or equal to <see cref="PictureCount"/>.\n
+        ///     <paramref name="index"/> is less than zero.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="index"/> is greater than or equal to <see cref="PictureCount"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public Artwork GetPicture(int index)
@@ -438,8 +438,8 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         /// <param name="path">The path of the picture for adding to the metadata.</param>
         /// <exception cref="InvalidOperationException">
-        ///     An internal error occurs.\n
-        ///     -or-\n
+        ///     An internal error occurs.<br/>
+        ///     -or-<br/>
         ///     The media file is read-only.
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null</exception>
@@ -474,14 +474,14 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         /// <param name="index">The index of the picture to remove.</param>
         /// <exception cref="InvalidOperationException">
-        ///     An internal error occurs.\n
-        ///     -or-\n
+        ///     An internal error occurs.<br/>
+        ///     -or-<br/>
         ///     The media file is read-only.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="index"/> is less than zero.\n
-        ///     -or-\n
-        ///     <paramref name="index"/> is greater than or equal to <see cref="PictureCount"/>.\n
+        ///     <paramref name="index"/> is less than zero.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="index"/> is greater than or equal to <see cref="PictureCount"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         public void RemovePicture(int index)

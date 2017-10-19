@@ -28,15 +28,15 @@ namespace Tizen.Multimedia.Vision
     {
 
         /// <summary>
-        /// Detects faces on the source.\n
+        /// Detects faces on the source.<br/>
         /// Each time when DetectAsync is called, a set of the detected faces at the media source are received asynchronously.
         /// </summary>
         /// <param name="source">The source of the media where faces will be detected.</param>
         /// <returns>A task that represents the asynchronous detect operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="NotSupportedException">
-        ///     The feature is not supported.\n
-        ///     -or-\n
+        ///     The feature is not supported.<br/>
+        ///     -or-<br/>
         ///     The format of <paramref name="source"/> is not supported.
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
@@ -46,7 +46,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Detects faces on the source.\n
+        /// Detects faces on the source.<br/>
         /// Each time when DetectAsync is called, a set of the detected faces at the media source are received asynchronously.
         /// </summary>
         /// <param name="source">The source of the media where faces will be detected.</param>

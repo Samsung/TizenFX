@@ -55,8 +55,8 @@ namespace Tizen.Multimedia
         /// <param name="bitRate">The bit rate value of the format.</param>
         /// <param name="aacType">The AAC bitstream format(ADIF or ADTS).</param>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="mimeType"/> or <paramref name="aacType"/> is invalid (i.e. undefined value).\n
-        ///     -or-\n
+        ///     <paramref name="mimeType"/> or <paramref name="aacType"/> is invalid (i.e. undefined value).<br/>
+        ///     -or-<br/>
         ///     <paramref name="aacType"/> is not <see cref="MediaFormatAacType.None"/>, but <paramref name="mimeType"/> is one of the AAC types.
         ///     </exception>
         /// <exception cref="ArgumentOutOfRangeException">
