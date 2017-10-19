@@ -465,7 +465,7 @@ namespace Tizen.Applications
         /// <remarks>
         /// The operation is mandatory information for the launch request.
         /// If the operation is not specified, AppControlOperations.Default is used by default.
-        /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application. \n
+        /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br/>
         /// Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform.
         /// Also, implicit launch requests are NOT delivered to service applications since 2.4.
         /// To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.
@@ -493,7 +493,7 @@ namespace Tizen.Applications
         /// <remarks>
         /// The operation is mandatory information for the launch request.
         /// If the operation is not specified, AppControlOperations.Default is used by default.
-        /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application. \n
+        /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br/>
         /// Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform.
         /// Also, implicit launch requests are NOT delivered to service applications since 2.4.
         /// To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.
