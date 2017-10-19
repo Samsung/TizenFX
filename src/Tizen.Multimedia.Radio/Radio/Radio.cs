@@ -117,7 +117,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is less than <see cref="Range.Min"/> of <see cref="FrequencyRange"/>.<br/>
-        ///     - or - <br/>
+        ///     -or- <br/>
         ///     <paramref name="value"/> is greater than <see cref="Range.Max"/> of <see cref="FrequencyRange"/>.
         /// </exception>
         public int Frequency
@@ -193,7 +193,7 @@ namespace Tizen.Multimedia
         /// <value>The default is 1.0.</value>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is less than zero.<br/>
-        ///     - or -<br/>
+        ///     -or-<br/>
         ///     <paramref name="value"/> is greater than 1.0.
         /// </exception>
         public float Volume
