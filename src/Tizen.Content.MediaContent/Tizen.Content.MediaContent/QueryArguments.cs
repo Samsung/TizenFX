@@ -60,9 +60,9 @@ namespace Tizen.Content.MediaContent
         ///
         /// Note that if you want to set quotation (" ' " or " " ") as value of LIKE operator, you should use two times. (" '' " or " "" ").
         /// And the optional ESCAPE clause is supported. Both percent symbol("%") and underscore symbol("_") are used in the LIKE pattern.
-        /// If these characters are used as values of the LIKE operation, then the expression following the ESCAPE clause of sqlite will be ignored.\n
-        /// \n
-        /// For example,\n
+        /// If these characters are used as values of the LIKE operation, then the expression following the ESCAPE clause of sqlite will be ignored.<br/>
+        /// <br/>
+        /// For example,<br/>
         /// - column LIKE ('#%') ESCAPE ('#') - "#" is an escape character, it will be ignored.
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is a zero-length string, contains only white space.</exception>
@@ -179,7 +179,7 @@ namespace Tizen.Content.MediaContent
         /// Gets or sets the starting row position of a query (starting from zero).
         /// </summary>
         /// <value>An integer value that indicates the starting row position of a query.</value>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.\n</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.<br/></exception>
         public int StartRowIndex
         {
             get => _startRowIndex;
@@ -222,7 +222,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The expression for the sort order.</value>
         /// <remarks>
-        /// Expressions for the sort order can be:\n
+        /// Expressions for the sort order can be:<br/>
         /// column [COLLATE NOCASE/RTRIM/LOCALIZED] [ASC/DESC], column2 ...
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is a zero-length string, contains only white space.</exception>

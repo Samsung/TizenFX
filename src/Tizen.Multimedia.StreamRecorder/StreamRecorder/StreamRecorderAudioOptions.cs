@@ -54,10 +54,10 @@ namespace Tizen.Multimedia
         /// <param name="channels">The number of channels for encoding audio stream.</param>
         /// <exception cref="ArgumentException"><paramref name="codec"/> is not valid.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="sampleRate"/> is less than zero.\n
-        ///     -or-\n
-        ///     <paramref name="bitRate"/> is less than or equal to zero.\n
-        ///     -or-\n
+        ///     <paramref name="sampleRate"/> is less than zero.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="bitRate"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="channels"/> is less than or equal to zero.
         /// </exception>
         public StreamRecorderAudioOptions(RecorderAudioCodec codec, int sampleRate, int bitRate, int channels)

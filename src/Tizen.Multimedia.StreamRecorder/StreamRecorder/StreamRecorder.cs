@@ -142,9 +142,9 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// The recorder state must be <see cref="RecorderState.Ready"/> state by
-        /// <see cref="Prepare(StreamRecorderOptions)"/>, <see cref="Cancel"/> and <see cref="Commit"/>.\n
-        /// The recorder state will be <see cref="RecorderState.Idle"/>.\n
-        /// \n
+        /// <see cref="Prepare(StreamRecorderOptions)"/>, <see cref="Cancel"/> and <see cref="Commit"/>.<br/>
+        /// The recorder state will be <see cref="RecorderState.Idle"/>.<br/>
+        /// <br/>
         /// It has no effect if the recorder is already in the <see cref="RecorderState.Idle"/> state.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
@@ -168,8 +168,8 @@ namespace Tizen.Multimedia
         /// <remarks>
         ///	The recorder state must be <see cref="RecorderState.Ready"/> state by
         ///	<see cref="Prepare(StreamRecorderOptions)"/> or
-        ///	<see cref="RecorderState.Paused"/> state by <see cref="Pause"/>.\n
-        /// \n
+        ///	<see cref="RecorderState.Paused"/> state by <see cref="Pause"/>.<br/>
+        /// <br/>
         /// It has no effect if the recorder is already in the <see cref="RecorderState.Recording"/> state.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
@@ -194,10 +194,10 @@ namespace Tizen.Multimedia
         /// Pauses recording.
         /// </summary>
         /// <remarks>
-        /// Recording can be resumed with <see cref="Start"/>.\n
-        /// \n
-        ///	The recorder state must be <see cref="RecorderState.Recording"/> state by <see cref="Start"/> \n
-        /// \n
+        /// Recording can be resumed with <see cref="Start"/>.<br/>
+        /// <br/>
+        ///	The recorder state must be <see cref="RecorderState.Recording"/> state by <see cref="Start"/> <br/>
+        /// <br/>
         /// It has no effect if the recorder is already in the <see cref="RecorderState.Paused"/> state.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
@@ -222,9 +222,9 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// The recorder state must be <see cref="RecorderState.Recording"/> state by <see cref="Start"/> or
-        /// <see cref="RecorderState.Paused"/> state by <see cref="Pause"/>.\n
-        /// \n
-        /// The recorder state will be <see cref="RecorderState.Ready"/> after commit.\n
+        /// <see cref="RecorderState.Paused"/> state by <see cref="Pause"/>.<br/>
+        /// <br/>
+        /// The recorder state will be <see cref="RecorderState.Ready"/> after commit.<br/>
         /// <para>
         /// http://tizen.org/privilege/mediastorage is needed if the save path are relevant to media storage.
         /// http://tizen.org/privilege/externalstorage is needed if the save path are relevant to external storage.
@@ -278,14 +278,14 @@ namespace Tizen.Multimedia
         /// The recorder state must be <see cref="RecorderState.Recording"/> state by <see cref="Start"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The recorder is not in the valid state.\n
-        ///     -or-\n
-        ///     <paramref name="packet"/> is an audio packet but audio recording is not enabled(See <see cref="StreamRecorderOptions.Audio"/>).\n
-        ///     -or-\n
-        ///     <paramref name="packet"/> is a video packet but video recording is not enabled(See <see cref="StreamRecorderOptions.Video"/>).\n
-        ///     -or-\n
-        ///     <paramref name="packet"/> is a video packet but the <see cref="VideoMediaFormat.MimeType"/> does not match the video source format.\n
-        ///     -or-\n
+        ///     The recorder is not in the valid state.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="packet"/> is an audio packet but audio recording is not enabled(See <see cref="StreamRecorderOptions.Audio"/>).<br/>
+        ///     -or-<br/>
+        ///     <paramref name="packet"/> is a video packet but video recording is not enabled(See <see cref="StreamRecorderOptions.Video"/>).<br/>
+        ///     -or-<br/>
+        ///     <paramref name="packet"/> is a video packet but the <see cref="VideoMediaFormat.MimeType"/> does not match the video source format.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>

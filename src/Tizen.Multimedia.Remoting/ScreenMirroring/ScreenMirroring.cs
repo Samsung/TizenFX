@@ -166,8 +166,8 @@ namespace Tizen.Multimedia.Remoting
         /// Prepares the screen mirroring with the specified display.
         /// </summary>
         /// <remarks>
-        /// The state must be <see cref="ScreenMirroringState.Idle"/>.\n
-        /// \n
+        /// The state must be <see cref="ScreenMirroringState.Idle"/>.<br/>
+        /// <br/>
         /// All supported resolutions will be candidates.
         /// </remarks>
         /// <param name="display">The display where the mirroring will be played on.</param>
@@ -176,8 +176,8 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="display"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is not in the valid.\n
-        ///     -or-\n
+        ///     The current state is not in the valid.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -195,14 +195,14 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="display">The display where the mirroring will be played on.</param>
         /// <param name="resolutions">The desired resolutions.</param>
         /// <exception cref="ArgumentException">
-        ///    <paramref name="resolutions"/> contain invalid flags.\n
-        ///    -or-\n
+        ///    <paramref name="resolutions"/> contain invalid flags.<br/>
+        ///    -or-<br/>
         ///    <paramref name="display"/> has already been assigned to another.
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="display"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is not in the valid.\n
-        ///     -or-\n
+        ///     The current state is not in the valid.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -244,8 +244,8 @@ namespace Tizen.Multimedia.Remoting
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <exception cref="ArgumentNullException"><paramref name="sourceIp"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is not in the valid.\n
-        ///     -or-\n
+        ///     The current state is not in the valid.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="sourceIp"/> is a zero-length string, contains only white space.</exception>
@@ -288,8 +288,8 @@ namespace Tizen.Multimedia.Remoting
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is not in the valid.\n
-        ///     -or-\n
+        ///     The current state is not in the valid.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -319,8 +319,8 @@ namespace Tizen.Multimedia.Remoting
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is not in the valid.\n
-        ///     -or-\n
+        ///     The current state is not in the valid.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -350,8 +350,8 @@ namespace Tizen.Multimedia.Remoting
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is not in the valid.\n
-        ///     -or-\n
+        ///     The current state is not in the valid.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -380,8 +380,8 @@ namespace Tizen.Multimedia.Remoting
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is not in the valid.\n
-        ///     -or-\n
+        ///     The current state is not in the valid.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -402,8 +402,8 @@ namespace Tizen.Multimedia.Remoting
         /// or <see cref="ScreenMirroringState.Disconnected"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The current state is not in the valid.\n
-        ///     -or-\n
+        ///     The current state is not in the valid.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>

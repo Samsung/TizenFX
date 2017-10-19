@@ -193,14 +193,14 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="path">The path of the media to be scanned.</param>
         /// <remarks>
-        /// It requests to scan a media file to the media server.\n
+        /// It requests to scan a media file to the media server.<br/>
         /// If the specified file is not registered to the database yet,
-        /// the media file information will be added to the database.\n
-        /// If it is already registered to the database, the media information is refreshed.\n
+        /// the media file information will be added to the database.<br/>
+        /// If it is already registered to the database, the media information is refreshed.<br/>
         /// If the specified file does not exist,
-        /// the record of the media file will be deleted from the database.\n
-        /// \n
-        /// If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
+        /// the record of the media file will be deleted from the database.<br/>
+        /// <br/>
+        /// If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
         /// If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
@@ -210,10 +210,10 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="path"/> is a zero-length string, contains only white space.\n
-        ///     -or-\n
-        ///     <paramref name="path"/> contains a hidden path that starts with '.'.\n
-        ///     -or-\n
+        ///     <paramref name="path"/> is a zero-length string, contains only white space.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="path"/> contains a hidden path that starts with '.'.<br/>
+        ///     -or-<br/>
         ///     <paramref name="path"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
@@ -230,7 +230,7 @@ namespace Tizen.Content.MediaContent
         /// Requests to scan a folder recursively.
         /// </summary>
         /// <remarks>
-        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
+        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
         ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
@@ -244,10 +244,10 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="folderPath"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="folderPath"/> is a zero-length string, contains only white space.\n
-        ///     -or-\n
-        ///     <paramref name="folderPath"/> contains a hidden path that starts with '.'.\n
-        ///     -or-\n
+        ///     <paramref name="folderPath"/> is a zero-length string, contains only white space.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="folderPath"/> contains a hidden path that starts with '.'.<br/>
+        ///     -or-<br/>
         ///     <paramref name="folderPath"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         public Task ScanFolderAsync(string folderPath)
@@ -259,7 +259,7 @@ namespace Tizen.Content.MediaContent
         /// Requests to scan a folder.
         /// </summary>
         /// <remarks>
-        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
+        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
         ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
@@ -274,10 +274,10 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="folderPath"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="folderPath"/> is a zero-length string, contains only white space.\n
-        ///     -or-\n
-        ///     <paramref name="folderPath"/> contains a hidden path that starts with '.'.\n
-        ///     -or-\n
+        ///     <paramref name="folderPath"/> is a zero-length string, contains only white space.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="folderPath"/> contains a hidden path that starts with '.'.<br/>
+        ///     -or-<br/>
         ///     <paramref name="folderPath"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         public Task ScanFolderAsync(string folderPath, bool recursive)
@@ -289,7 +289,7 @@ namespace Tizen.Content.MediaContent
         /// Requests to scan a folder recursively.
         /// </summary>
         /// <remarks>
-        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
+        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
         ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
@@ -304,10 +304,10 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="folderPath"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="folderPath"/> is a zero-length string, contains only white space.\n
-        ///     -or-\n
-        ///     <paramref name="folderPath"/> contains a hidden path that starts with '.'.\n
-        ///     -or-\n
+        ///     <paramref name="folderPath"/> is a zero-length string, contains only white space.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="folderPath"/> contains a hidden path that starts with '.'.<br/>
+        ///     -or-<br/>
         ///     <paramref name="folderPath"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         public Task ScanFolderAsync(string folderPath, CancellationToken cancellationToken)
@@ -319,7 +319,7 @@ namespace Tizen.Content.MediaContent
         /// Requests to scan a folder recursively.
         /// </summary>
         /// <remarks>
-        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
+        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
         ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
@@ -335,10 +335,10 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="folderPath"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="folderPath"/> is a zero-length string, contains only white space.\n
-        ///     -or-\n
-        ///     <paramref name="folderPath"/> contains a hidden path that starts with '.'.\n
-        ///     -or-\n
+        ///     <paramref name="folderPath"/> is a zero-length string, contains only white space.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="folderPath"/> contains a hidden path that starts with '.'.<br/>
+        ///     -or-<br/>
         ///     <paramref name="folderPath"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         public Task ScanFolderAsync(string folderPath, bool recursive, CancellationToken cancellationToken)

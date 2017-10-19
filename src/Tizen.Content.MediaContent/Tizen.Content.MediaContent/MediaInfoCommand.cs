@@ -482,11 +482,11 @@ namespace Tizen.Content.MediaContent
         /// <param name="path">The file path to add.</param>
         /// <returns>The <see cref="MediaInfo"/> instance that contains the record information in the database.</returns>
         /// <remarks>
-        ///     If the media already exists in the database, it returns the existing information.\n
-        ///     \n
-        ///     The <see cref="MediaDatabase.ScanFile(string)"/> or the <see cref="MediaDatabase.ScanFolderAsync(string)"/> can be used instead.\n
-        ///     \n
-        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
+        ///     If the media already exists in the database, it returns the existing information.<br/>
+        ///     <br/>
+        ///     The <see cref="MediaDatabase.ScanFile(string)"/> or the <see cref="MediaDatabase.ScanFolderAsync(string)"/> can be used instead.<br/>
+        ///     <br/>
+        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
         ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
@@ -497,10 +497,10 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="path"/> is a zero-length string, contains only white space.\n
-        ///     -or-\n
-        ///     <paramref name="path"/> contains a hidden path that starts with '.'.\n
-        ///     -or-\n
+        ///     <paramref name="path"/> is a zero-length string, contains only white space.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="path"/> contains a hidden path that starts with '.'.<br/>
+        ///     -or-<br/>
         ///     <paramref name="path"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exists.</exception>
@@ -569,10 +569,10 @@ namespace Tizen.Content.MediaContent
         /// Adds media files into the media database.
         /// </summary>
         /// <remarks>
-        ///     The paths that already exist in the database will be ignored.\n
-        ///     At most 300 items can be added at once.\n
-        ///     \n
-        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
+        ///     The paths that already exist in the database will be ignored.<br/>
+        ///     At most 300 items can be added at once.<br/>
+        ///     <br/>
+        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
         ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
@@ -585,10 +585,10 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="paths"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="paths"/> contains null.\n
-        ///     -or-\n
-        ///     <paramref name="paths"/> contains the invalid path.\n
-        ///     -or-\n
+        ///     <paramref name="paths"/> contains null.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="paths"/> contains the invalid path.<br/>
+        ///     -or-<br/>
         ///     The number of <paramref name="paths"/> is 300 or more items.
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="paths"/> contains a path that does not exist.</exception>
@@ -677,26 +677,26 @@ namespace Tizen.Content.MediaContent
         /// <param name="newPath">The path that the media has been moved to.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
         /// <remarks>
-        ///     Usually, it is used after the media file is moved to the another path.\n
-        ///     \n
-        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.\n
+        ///     Usually, it is used after the media file is moved to the another path.<br/>
+        ///     <br/>
+        ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
         ///     If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="mediaId"/> is null.\n
-        ///     -or-\n
+        ///     <paramref name="mediaId"/> is null.<br/>
+        ///     -or-<br/>
         ///     <paramref name="newPath"/> is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="mediaId"/> is a zero-length string, contains only white space.\n
-        ///     -or-\n
-        ///     <paramref name="newPath"/> is a zero-length string, contains only white space.\n
-        ///     -or-\n
-        ///     <paramref name="newPath"/> contains a hidden directory that starts with '.'.\n
-        ///     -or-\n
+        ///     <paramref name="mediaId"/> is a zero-length string, contains only white space.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="newPath"/> is a zero-length string, contains only white space.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="newPath"/> contains a hidden directory that starts with '.'.<br/>
+        ///     -or-<br/>
         ///     <paramref name="newPath"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="newPath"/> does not exists.</exception>
@@ -749,8 +749,8 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaId">The media ID to create the thumbnail.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains the thumbnail path.</returns>
         /// <exception cref="InvalidOperationException">
-        ///     The <see cref="MediaDatabase"/> is disconnected.\n
-        ///     -or-\n
+        ///     The <see cref="MediaDatabase"/> is disconnected.<br/>
+        ///     -or-<br/>
         ///     An internal error occurred while executing.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -762,8 +762,8 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="FileNotFoundException">The file of the media does not exists; moved or deleted.</exception>
         /// <exception cref="UnsupportedContentException">
-        ///     The thumbnail is not available for the given media.\n
-        ///     -or-\n
+        ///     The thumbnail is not available for the given media.<br/>
+        ///     -or-<br/>
         ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
         /// </exception>
         public Task<string> CreateThumbnailAsync(string mediaId)
@@ -780,8 +780,8 @@ namespace Tizen.Content.MediaContent
         /// <param name="cancellationToken">The token to cancel the operation.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains the thumbnail path.</returns>
         /// <exception cref="InvalidOperationException">
-        ///     The <see cref="MediaDatabase"/> is disconnected.\n
-        ///     -or-\n
+        ///     The <see cref="MediaDatabase"/> is disconnected.<br/>
+        ///     -or-<br/>
         ///     An internal error occurred while executing.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -793,8 +793,8 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="FileNotFoundException">The file of the media does not exists; moved or deleted.</exception>
         /// <exception cref="UnsupportedContentException">
-        ///     The thumbnail is not available for the given media.\n
-        ///     -or-\n
+        ///     The thumbnail is not available for the given media.<br/>
+        ///     -or-<br/>
         ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
         /// </exception>
         public Task<string> CreateThumbnailAsync(string mediaId, CancellationToken cancellationToken)
@@ -889,8 +889,8 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaId">The media ID to create the thumbnail.</param>
         /// <returns>A task that represents the asynchronous add operation. The task result contains the number of faces detected.</returns>
         /// <exception cref="InvalidOperationException">
-        ///     The <see cref="MediaDatabase"/> is disconnected.\n
-        ///     -or-\n
+        ///     The <see cref="MediaDatabase"/> is disconnected.<br/>
+        ///     -or-<br/>
         ///     An internal error occurred while executing.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -922,8 +922,8 @@ namespace Tizen.Content.MediaContent
         /// <param name="cancellationToken">The token to cancel the operation.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains the number of faces detected.</returns>
         /// <exception cref="InvalidOperationException">
-        ///     The <see cref="MediaDatabase"/> is disconnected.\n
-        ///     -or-\n
+        ///     The <see cref="MediaDatabase"/> is disconnected.<br/>
+        ///     -or-<br/>
         ///     An internal error occurred while executing.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
@@ -935,8 +935,8 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="FileNotFoundException">The file of the media does not exists; moved or deleted.</exception>
         /// <exception cref="UnsupportedContentException">
-        ///     Face detection is not available for the given media.\n
-        ///     -or-\n
+        ///     Face detection is not available for the given media.<br/>
+        ///     -or-<br/>
         ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
         /// </exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
