@@ -42,11 +42,11 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets how many frames will be skipped during push source.\n
+        /// Gets or sets how many frames will be skipped during push source.<br/>
         /// </summary>
         /// <value>
         /// The value to specify the number of <see cref="MediaVisionSource"/> calls will be ignored by subscription
-        /// of the event trigger.\n
+        /// of the event trigger.<br/>
         ///
         /// The default is 0. It means that no frames will be skipped and all <see cref="MediaVisionSource"/> will
         /// be processed.

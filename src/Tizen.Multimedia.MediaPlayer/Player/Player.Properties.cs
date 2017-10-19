@@ -383,8 +383,8 @@ namespace Tizen.Multimedia
         /// <remarks>Valid volume range is from 0 to 1.0, inclusive.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="value"/> is less than zero.\n
-        ///     -or-\n
+        ///     <paramref name="value"/> is less than zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="value"/> is greater than 1.0.
         /// </exception>
         public float Volume

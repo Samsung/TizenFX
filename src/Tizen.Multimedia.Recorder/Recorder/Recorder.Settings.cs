@@ -207,8 +207,8 @@ namespace Tizen.Multimedia
         /// </value>
         /// <remarks>
         /// After reaching the limitation, the data which is being recorded will
-        /// be discarded and will not be written to the file.\n
-        /// \n
+        /// be discarded and will not be written to the file.<br/>
+        /// <br/>
         /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref= "RecorderState.Ready" /> state.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
@@ -248,8 +248,8 @@ namespace Tizen.Multimedia
         /// </value>
         /// <remarks>
         /// After reaching the limitation, the data which is being recorded will
-        /// be discarded and will not be written to the file.\n
-        /// \n
+        /// be discarded and will not be written to the file.<br/>
+        /// <br/>
         /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref= "RecorderState.Ready" /> state.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>

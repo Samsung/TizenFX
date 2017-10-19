@@ -43,12 +43,12 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException">
         ///     <paramref name="codec"/> is not valid.<br/>
         ///     -or-<br/>
-        ///     <paramref name="sourceFormat"/> is not valid.<br/>
+        ///     <paramref name="sourceFormat"/> is not valid.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     Width or height of <paramref name="resolution"/> is less than or equal to zero.<br/>
         ///     -or-<br/>
-        ///     <paramref name="frameRate"/> is less than or equal to zero.<br/>
+        ///     <paramref name="frameRate"/> is less than or equal to zero.
         /// </exception>
         public StreamRecorderVideoOptions(RecorderVideoCodec codec, Size resolution,
             StreamRecorderVideoFormat sourceFormat, int frameRate) :

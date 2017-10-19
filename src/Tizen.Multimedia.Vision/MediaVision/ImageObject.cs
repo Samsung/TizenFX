@@ -49,8 +49,8 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> is invalid.</exception>
         /// <exception cref="NotSupportedException">
-        ///     The feature is not supported.\n
-        ///     -or-\n
+        ///     The feature is not supported.<br/>
+        ///     -or-<br/>
         ///     <paramref name="path"/> is not supported file.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
@@ -134,14 +134,14 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Fills the image object.\n
+        /// Fills the image object.<br/>
         /// Extracts data from @a source image which will be needed for recognition of depicted object in @a location.
         /// </summary>
         /// <param name="source">The source image where image object is depicted.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     The <see cref="ImageObject"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     The <see cref="ImageObject"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="source"/> has already been disposed of.
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
@@ -151,17 +151,17 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Fills the image object.\n
+        /// Fills the image object.<br/>
         /// Extracts data from @a source image which will be needed for recognition of depicted object in @a location.
         /// </summary>
         /// <param name="source">The source image where image object is depicted.</param>
         /// <param name="config">The configuration used for extract recognition data from source. This value can be null.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     The <see cref="ImageObject"/> has already been disposed of.\n
-        ///     -or-\n
-        ///     <paramref name="source"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     The <see cref="ImageObject"/> has already been disposed of.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="source"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
@@ -171,16 +171,16 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Fills the image object.\n
+        /// Fills the image object.<br/>
         /// Extracts data from @a source image which will be needed for recognition of depicted object in @a location.
         /// </summary>
         /// <param name="source">The source image where image object is depicted.</param>
         /// <param name="rect">Rectangular bound of the image object on the source image.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     The <see cref="ImageObject"/> has already been disposed of.\n
-        ///     -or-\n
-        ///     <paramref name="source"/> has already been disposed of.\n
+        ///     The <see cref="ImageObject"/> has already been disposed of.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="source"/> has already been disposed of.
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public void Fill(MediaVisionSource source, Rectangle rect)
@@ -189,7 +189,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Fills the image object.\n
+        /// Fills the image object.<br/>
         /// Extracts data from @a source image which will be needed for recognition of depicted object in @a location.
         /// </summary>
         /// <param name="source">The source image where image object is depicted.</param>
@@ -197,10 +197,10 @@ namespace Tizen.Multimedia.Vision
         /// <param name="rect">Rectangular bound of the image object on the source image.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     The <see cref="ImageObject"/> has already been disposed of.\n
-        ///     -or-\n
-        ///     <paramref name="source"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     The <see cref="ImageObject"/> has already been disposed of.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="source"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <since_tizen> 3 </since_tizen>

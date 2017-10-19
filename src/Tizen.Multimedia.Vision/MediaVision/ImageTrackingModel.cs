@@ -49,8 +49,8 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
         /// <exception cref="FileNotFoundException"><paramref name="modelPath"/> is invalid.</exception>
         /// <exception cref="NotSupportedException">
-        ///     The feature is not supported.\n
-        ///     -or-\n
+        ///     The feature is not supported.<br/>
+        ///     -or-<br/>
         ///     <paramref name="modelPath"/> is not supported format.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
@@ -74,14 +74,14 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Sets the target of the image tracking model.\n
+        /// Sets the target of the image tracking model.<br/>
         /// Sets the image object which will be tracked by using tracking functionality with this tracking model.
         /// </summary>
         /// <param name="imageObject">Image object which will be set as the target for tracking.</param>
         /// <exception cref="ArgumentNullException"><paramref name="imageObject"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     The <see cref="ImageTrackingModel"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     The <see cref="ImageTrackingModel"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="imageObject"/> has already been disposed of.
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
@@ -97,7 +97,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Refreshes the state of image tracking model.\n
+        /// Refreshes the state of image tracking model.<br/>
         /// Clears the moving history and change state to undetected. It is usually called each time before tracking is started
         /// for the new sequence of sources, which is not the direct continuation of the sequence for which tracking has been performed before.
         /// Tracking algorithm will try to find image by itself.

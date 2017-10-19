@@ -23,7 +23,7 @@ namespace Tizen.Multimedia
     /// The MediaView class allows application developers to display the video output on the screen.
     /// </summary>
     /// <remarks>
-    /// This view should not be instantiated directly.\n
+    /// This view should not be instantiated directly.<br/>
     /// Use <see cref="T:Tizen.Xamarin.Forms.Extension.MediaView"/> to create the view.
     /// </remarks>
     /// <example>

@@ -131,8 +131,8 @@ namespace Tizen.Multimedia
         /// To set roi, <see cref="Mode"/> must be set to <see cref="PlayerDisplayMode.Roi"/> first.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     Operation failed; internal error.\n
-        ///     -or-\n
+        ///     Operation failed; internal error.<br/>
+        ///     -or-<br/>
         ///     <see cref="Mode"/> is not set to <see cref="PlayerDisplayMode.Roi"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>

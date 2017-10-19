@@ -116,9 +116,9 @@ namespace Tizen.Multimedia
         /// Gets or sets the radio frequency in the range of 87500 ~ 108000 kHz.
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="value"/> is less than <see cref="Range.Min"/> of <see cref="FrequencyRange"/>.\n
-        ///     - or - \n
-        ///     <paramref name="value"/> is greater than <see cref="Range.Max"/> of <see cref="FrequencyRange"/>.\n
+        ///     <paramref name="value"/> is less than <see cref="Range.Min"/> of <see cref="FrequencyRange"/>.<br/>
+        ///     - or - <br/>
+        ///     <paramref name="value"/> is greater than <see cref="Range.Max"/> of <see cref="FrequencyRange"/>.
         /// </exception>
         public int Frequency
         {
@@ -192,8 +192,8 @@ namespace Tizen.Multimedia
         /// <remarks>Valid volume range is from 0 to 1.0(100%), inclusive.</remarks>
         /// <value>The default is 1.0.</value>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="value"/> is less than zero.\n
-        ///     - or -\n
+        ///     <paramref name="value"/> is less than zero.<br/>
+        ///     - or -<br/>
         ///     <paramref name="value"/> is greater than 1.0.
         /// </exception>
         public float Volume
@@ -292,8 +292,8 @@ namespace Tizen.Multimedia
         /// </returns>
         /// <remarks>The radio must be in the <see cref="RadioState.Playing"/> state.</remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The radio is not in the valid state.\n
-        ///     -or-\n
+        ///     The radio is not in the valid state.<br/>
+        ///     -or-<br/>
         ///     Seeking is in progress.
         /// </exception>
         public Task<int> SeekUpAsync()
@@ -311,8 +311,8 @@ namespace Tizen.Multimedia
         /// </returns>
         /// <remarks>The radio must be in the <see cref="RadioState.Playing"/> state.</remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The radio is not in the valid state.\n
-        ///     -or-\n
+        ///     The radio is not in the valid state.<br/>
+        ///     -or-<br/>
         ///     Seeking is in progress.
         /// </exception>
         public Task<int> SeekDownAsync()

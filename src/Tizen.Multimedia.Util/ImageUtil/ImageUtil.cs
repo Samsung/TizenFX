@@ -52,8 +52,8 @@ namespace Tizen.Multimedia.Util
         /// <param name="colorSpace"><see cref="ColorSpace"/> of the image.</param>
         /// <returns>The buffer size.</returns>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     width of <paramref name="resolution"/> is less than or equal to zero.\n
-        ///     - or -\n
+        ///     width of <paramref name="resolution"/> is less than or equal to zero.<br/>
+        ///     - or -<br/>
         ///     height of <paramref name="resolution"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="colorSpace"/> is invalid.</exception>
@@ -91,8 +91,8 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="buffer"/> is empty.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     width of <paramref name="size"/> is less than or equal to zero.\n
-        ///     - or -\n
+        ///     width of <paramref name="size"/> is less than or equal to zero.<br/>
+        ///     - or -<br/>
         ///     height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
         public static Color GetColor(byte[] buffer, Size size)

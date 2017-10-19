@@ -49,7 +49,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets the scale factor the image to be recognized.\n
+        /// Gets or sets the scale factor the image to be recognized.<br/>
         /// The value of the factor will be used for resizing of the images (objects) for recognition.
         /// The default value is 1.2.
         /// </summary>
@@ -68,7 +68,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets the maximum key points should be detected on the image.\n
+        /// Gets or sets the maximum key points should be detected on the image.<br/>
         /// The maximal number of key points can be selected on the image object to calculate descriptors.
         /// This key points will be used for image (object) recognition and has to be specified as integer number.
         /// The default value is 1000.

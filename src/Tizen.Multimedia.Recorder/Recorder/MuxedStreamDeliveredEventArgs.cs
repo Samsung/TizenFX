@@ -33,7 +33,7 @@ namespace Tizen.Multimedia
         /// Gets the stream buffer that will be recordered.
         /// </summary>
         /// <remarks>
-        /// This buffer is read-only and only valid in the event.\n
+        /// This buffer is read-only and only valid in the event.<br/>
         /// Any attempt to access to this buffer after the event ends will throw an exception.
         /// </remarks>
         public IMediaBuffer Stream { get; }

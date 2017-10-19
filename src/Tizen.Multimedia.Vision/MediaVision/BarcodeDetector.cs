@@ -57,8 +57,8 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     <paramref name="source"/> already has been disposed of.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> already has been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="config"/> already has been disposed of.
         /// </exception>
         /// <seealso cref="Barcode"/>

@@ -170,8 +170,8 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <returns>The playback state.</returns>
         /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.
-        ///     -or-\n
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
@@ -204,8 +204,8 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <returns>The playback position in milliseconds.</returns>
         /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.
-        ///     -or-\n
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
@@ -238,8 +238,8 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <returns>The metadata.</returns>
         /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.
-        ///     -or-\n
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
@@ -271,8 +271,8 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <returns>A value indicating whether the shuffle mode is enabled.</returns>
         /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.
-        ///     -or-\n
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
@@ -292,8 +292,8 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <returns>A <see cref="MediaControlRepeatMode"/> set by the server.</returns>
         /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.
-        ///     -or-\n
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
@@ -312,8 +312,8 @@ namespace Tizen.Multimedia.Remoting
         /// Sends playback command to the server.</summary>
         /// <param name="command">A playback command.</param>
         /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.
-        ///     -or-\n
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="command"/> is not valid.</exception>

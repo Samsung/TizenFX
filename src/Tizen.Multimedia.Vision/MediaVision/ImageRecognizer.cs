@@ -28,16 +28,16 @@ namespace Tizen.Multimedia.Vision
     public static class ImageRecognizer
     {
         /// <summary>
-        /// Recognizes the given image objects on the source image.\n
+        /// Recognizes the given image objects on the source image.<br/>
         /// </summary>
         /// <param name="source">The source image on which image objects will be recognized.</param>
         /// <param name="imageObjects">The array of image objects which will be processed as targets of recognition.</param>
         /// <returns>A task that represents the asynchronous recognition operation.</returns>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="source"/> is null.\n
-        ///     -or-\n
-        ///     <paramref name="imageObjects"/> is null.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> is null.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="imageObjects"/> is null.<br/>
+        ///     -or-<br/>
         ///     <paramref name="imageObjects"/> contains null reference.
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="imageObjects"/> has no elements.(The length is zero.)</exception>
@@ -51,24 +51,24 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Recognizes the given image objects on the source image.\n
+        /// Recognizes the given image objects on the source image.<br/>
         /// </summary>
         /// <param name="source">The source image on which image objects will be recognized.</param>
         /// <param name="imageObjects">The array of image objects which will be processed as targets of recognition.</param>
         /// <param name="config">The configuration used for recognition. This value can be null.</param>
         /// <returns>A task that represents the asynchronous recognition operation.</returns>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="source"/> is null.\n
-        ///     -or-\n
-        ///     <paramref name="imageObjects"/> is null.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> is null.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="imageObjects"/> is null.<br/>
+        ///     -or-<br/>
         ///     <paramref name="imageObjects"/> contains null elements.
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="imageObjects"/> has no elements.(The length is zero.)</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     <paramref name="source"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <since_tizen> 3 </since_tizen>

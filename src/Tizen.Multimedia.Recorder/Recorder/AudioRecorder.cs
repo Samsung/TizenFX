@@ -51,15 +51,15 @@ namespace Tizen.Multimedia
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">An internal error occurred.</exception>
         /// <exception cref="NotSupportedException">
-        ///     A required feature is not supported.\n
-        ///     -or-\n
-        ///     <paramref name="audioCodec"/> is not supported.\n
-        ///     -or-\n
+        ///     A required feature is not supported.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="audioCodec"/> is not supported.<br/>
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not supported with the specified audio codec.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="audioCodec"/> is not valid.\n
-        ///     -or-\n
+        ///     <paramref name="audioCodec"/> is not valid.<br/>
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not valid.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -80,13 +80,13 @@ namespace Tizen.Multimedia
         /// <param name="audioCodec">The codec for audio encoding.</param>
         /// <param name="fileFormat">The format of result file.</param>
         /// <exception cref="NotSupportedException">
-        ///     <paramref name="audioCodec"/> is not supported.\n
-        ///     -or-\n
+        ///     <paramref name="audioCodec"/> is not supported.<br/>
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not supported with the specified audio codec.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="audioCodec"/> is not valid.\n
-        ///     -or-\n
+        ///     <paramref name="audioCodec"/> is not valid.<br/>
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not valid.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">

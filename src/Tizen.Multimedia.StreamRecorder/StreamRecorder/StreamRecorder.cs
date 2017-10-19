@@ -166,9 +166,9 @@ namespace Tizen.Multimedia
         /// Starts recording.
         /// </summary>
         /// <remarks>
-        ///	The recorder state must be <see cref="RecorderState.Ready"/> state by
-        ///	<see cref="Prepare(StreamRecorderOptions)"/> or
-        ///	<see cref="RecorderState.Paused"/> state by <see cref="Pause"/>.<br/>
+        /// The recorder state must be <see cref="RecorderState.Ready"/> state by
+        /// <see cref="Prepare(StreamRecorderOptions)"/> or
+        /// <see cref="RecorderState.Paused"/> state by <see cref="Pause"/>.<br/>
         /// <br/>
         /// It has no effect if the recorder is already in the <see cref="RecorderState.Recording"/> state.
         /// </remarks>
@@ -196,7 +196,7 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// Recording can be resumed with <see cref="Start"/>.<br/>
         /// <br/>
-        ///	The recorder state must be <see cref="RecorderState.Recording"/> state by <see cref="Start"/> <br/>
+        /// The recorder state must be <see cref="RecorderState.Recording"/> state by <see cref="Start"/>.<br/>
         /// <br/>
         /// It has no effect if the recorder is already in the <see cref="RecorderState.Paused"/> state.
         /// </remarks>
@@ -224,7 +224,7 @@ namespace Tizen.Multimedia
         /// The recorder state must be <see cref="RecorderState.Recording"/> state by <see cref="Start"/> or
         /// <see cref="RecorderState.Paused"/> state by <see cref="Pause"/>.<br/>
         /// <br/>
-        /// The recorder state will be <see cref="RecorderState.Ready"/> after commit.<br/>
+        /// The recorder state will be <see cref="RecorderState.Ready"/> after commit.
         /// <para>
         /// http://tizen.org/privilege/mediastorage is needed if the save path are relevant to media storage.
         /// http://tizen.org/privilege/externalstorage is needed if the save path are relevant to external storage.

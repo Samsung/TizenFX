@@ -80,7 +80,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the number of recognition results in the tracking history.
         /// </summary>
         /// <value>
-        /// The number of previous recognition results, which will influence the stabilization.\n
+        /// The number of previous recognition results, which will influence the stabilization.<br/>
         /// The default is 3.
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
@@ -107,7 +107,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the expected tracking offset.
         /// </summary>
         /// <value>
-        /// Relative offset value for which the object offset is expected (relative to the object size in the current frame).\n
+        /// Relative offset value for which the object offset is expected (relative to the object size in the current frame).<br/>
         /// The default is 0.
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
@@ -129,13 +129,13 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <value>
         /// Acceleration will be used for image stabilization (relative to the distance from current location to stabilized location);
-        /// from 0 to 1, inclusive.\n
+        /// from 0 to 1, inclusive.<br/>
         /// The default is 0.1.
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="value"/> is less than zero.\n
-        ///     -or-\n
+        ///     <paramref name="value"/> is less than zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="value"/> is greater than one.
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
@@ -160,7 +160,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the speed of the tracking stabilization.
         /// </summary>
         /// <value>
-        /// The start speed value used for image stabilization.\n
+        /// The start speed value used for image stabilization.<br/>
         /// The default is 0.3.
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
@@ -184,8 +184,8 @@ namespace Tizen.Multimedia.Vision
         /// It is component of tolerant shift which will be ignored by stabilization process.
         /// (this value is relative to the object size in the current frame).
         /// Tolerant shift will be computed like R * S + C, where R is the value set to <see cref="StabilizationTolerantShift"/>,
-        /// S is the area of object location on frame, C is a constant value 1.3.\n
-        /// \n
+        /// S is the area of object location on frame, C is a constant value 1.3.<br/>
+        /// <br/>
         /// The default is 0.00006.
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
@@ -206,7 +206,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the state of the contour stabilization during tracking process.
         /// </summary>
         /// <value>
-        /// true if the contour stabilization is enabled; otherwise false.\n
+        /// true if the contour stabilization is enabled; otherwise false.<br/>
         /// The default is true.
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>

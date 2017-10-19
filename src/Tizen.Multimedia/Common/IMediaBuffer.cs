@@ -28,8 +28,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="index">The index of the value to get or set.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="index"/> is less than zero.\n
-        ///     -or-\n
+        ///     <paramref name="index"/> is less than zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="index"/> is equal to or greater than <see cref="Length"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The object that owns the current buffer has already been disposed of.</exception>

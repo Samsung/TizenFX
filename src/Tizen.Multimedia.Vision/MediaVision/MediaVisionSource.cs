@@ -105,14 +105,14 @@ namespace Tizen.Multimedia.Vision
         /// <param name="height">The height of image.</param>
         /// <param name="colorSpace">The image <see cref="ColorSpace"/>.</param>
         /// <exception cref="NotSupportedException">
-        ///     The feature is not supported.\n
-        ///     -or-\n
+        ///     The feature is not supported.<br/>
+        ///     -or-<br/>
         ///     <paramref name="colorSpace"/> is not supported.
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="buffer"/> has no element.(The length is zero.)\n
-        ///     -or-\n
+        ///     <paramref name="buffer"/> has no element.(The length is zero.)<br/>
+        ///     -or-<br/>
         ///     <paramref name="colorSpace"/> is invalid.
         /// </exception>
         /// <since_tizen> 3 </since_tizen>

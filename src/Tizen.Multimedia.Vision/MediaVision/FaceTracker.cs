@@ -38,13 +38,13 @@ namespace Tizen.Multimedia.Vision
         /// Learning process improves tracking correctness, but can decrease tracking performance.</param>
         /// <returns>A task that represents the asynchronous tracking operation.</returns>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="source"/> is null.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> is null.<br/>
+        ///     -or-<br/>
         ///     <paramref name="trackingModel"/> is null.
         /// </exception>
         /// <exception cref="ObjectDisposedException">
-        ///     <paramref name="source"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="trackingModel"/> has already been disposed of.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>

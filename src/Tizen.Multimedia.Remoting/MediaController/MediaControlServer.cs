@@ -134,8 +134,8 @@ namespace Tizen.Multimedia.Remoting
         /// When the server stops, <see cref="MediaControllerManager.ServerStopped"/> will be raised.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The server is not running .\n
-        ///     -or-\n
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <seealso cref="MediaControllerManager.ServerStopped"/>
@@ -157,8 +157,8 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ArgumentException"><paramref name="state"/> is not valid.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="position"/> is less than zero.</exception>
         /// <exception cref="InvalidOperationException">
-        ///     The server is not running .\n
-        ///     -or-\n
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         public static void SetPlaybackState(MediaControlPlaybackState state, long position)
@@ -188,8 +188,8 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="metadata">The metadata to update.</param>
         /// <exception cref="ArgumentNullException"><paramref name="metadata"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
-        ///     The server is not running .\n
-        ///     -or-\n
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         public static void SetMetadata(MediaControlMetadata metadata)
@@ -219,8 +219,8 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="enabled">A value indicating whether the shuffle mode is enabled.</param>
         /// <exception cref="InvalidOperationException">
-        ///     The server is not running .\n
-        ///     -or-\n
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         public static void SetShuffleModeEnabled(bool enabled)
@@ -234,8 +234,8 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="mode">A value indicating the repeat mode.</param>
         /// <exception cref="InvalidOperationException">
-        ///     The server is not running .\n
-        ///     -or-\n
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="mode"/> is invalid.</exception>

@@ -63,8 +63,8 @@ namespace Tizen.Multimedia
         /// <param name="index">The index of the band to get.</param>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <pramref name="index"/> is less than zero.\n
-        ///     -or-\n
+        ///     <pramref name="index"/> is less than zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="index"/> is equal to or greater than <see cref="Count"/>.
         /// </exception>
         public EqualizerBand this[int index]

@@ -67,8 +67,8 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <param name="resolution">The target resolution.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     The width of <paramref name="resolution"/> is less than or equal to zero.\n
-        ///     - or -\n
+        ///     The width of <paramref name="resolution"/> is less than or equal to zero.<br/>
+        ///     - or -<br/>
         ///     The height of <paramref name="resolution"/> is less than or equal to zero.
         /// </exception>
         public void SetResolution(Size resolution)
@@ -171,14 +171,14 @@ namespace Tizen.Multimedia.Util
         /// <param name="outStream">The stream that the image is encoded to.</param>
         /// <returns>A task that represents the asynchronous encoding operation.</returns>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="inputBuffer"/> is null.\n
-        ///     - or -\n
+        ///     <paramref name="inputBuffer"/> is null.<br/>
+        ///     - or -<br/>
         ///     <paramref name="outStream"/> is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="inputBuffer"/> is an empty array.\n
-        ///     - or -\n
-        ///     <paramref name="outStream"/> is not writable.\n
+        ///     <paramref name="inputBuffer"/> is an empty array.<br/>
+        ///     - or -<br/>
+        ///     <paramref name="outStream"/> is not writable.
         /// </exception>
         /// <exception cref="InvalidOperationException">The resolution is not set.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageEncoder"/> has already been disposed of.</exception>
@@ -347,8 +347,8 @@ namespace Tizen.Multimedia.Util
         /// <param name="quality">The quality for JPEG image encoding; from 1(lowest quality) to 100(highest quality).</param>
         /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Jpeg"/>.</remarks>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="quality"/> is less than or equal to 0.\n
-        ///     - or -\n
+        ///     <paramref name="quality"/> is less than or equal to 0.<br/>
+        ///     - or -<br/>
         ///     <paramref name="quality"/> is greater than 100.
         /// </exception>
         public JpegEncoder(int quality) :
@@ -361,12 +361,12 @@ namespace Tizen.Multimedia.Util
         /// Gets or sets the quality of the encoded image.
         /// </summary>
         /// <value>
-        /// The quality of the output image. The default is 75.\n
+        /// The quality of the output image. The default is 75.<br/>
         /// Valid value is from 1(lowest quality) to 100(highest quality).
         /// </value>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="value"/> is less than or equal to 0.\n
-        ///     - or -\n
+        ///     <paramref name="value"/> is less than or equal to 0.<br/>
+        ///     - or -<br/>
         ///     <paramref name="value"/> is greater than 100.
         /// </exception>
         public int Quality
@@ -417,14 +417,14 @@ namespace Tizen.Multimedia.Util
         /// <param name="outStream">The stream that the image is encoded to.</param>
         /// <returns>A task that represents the asynchronous encoding operation.</returns>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="frames"/> is null.\n
-        ///     - or -\n
+        ///     <paramref name="frames"/> is null.<br/>
+        ///     - or -<br/>
         ///     <paramref name="outStream"/> is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="frames"/> has no element(empty).\n
-        ///     - or -\n
-        ///     <paramref name="outStream"/> is not writable.\n
+        ///     <paramref name="frames"/> has no element(empty).<br/>
+        ///     - or -<br/>
+        ///     <paramref name="outStream"/> is not writable.
         /// </exception>
         /// <exception cref="InvalidOperationException">The resolution is not set.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageEncoder"/> has already been disposed of.</exception>

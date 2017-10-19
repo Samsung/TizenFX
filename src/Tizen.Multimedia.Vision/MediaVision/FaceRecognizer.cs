@@ -35,8 +35,8 @@ namespace Tizen.Multimedia.Vision
         /// <param name="recognitionModel">The <see cref="FaceRecognitionConfiguration"/> to be used for recognition.</param>
         /// <returns>A task that represents the asynchronous recognition operation.</returns>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="source"/> is null.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> is null.<br/>
+        ///     -or-<br/>
         ///     <paramref name="recognitionModel"/> is null.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
@@ -57,8 +57,8 @@ namespace Tizen.Multimedia.Vision
         /// <param name="bound">Rectangular box bounding face image on the source.</param>
         /// <returns>A task that represents the asynchronous recognition operation.</returns>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="source"/> is null.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> is null.<br/>
+        ///     -or-<br/>
         ///     <paramref name="recognitionModel"/> is null.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
@@ -79,14 +79,14 @@ namespace Tizen.Multimedia.Vision
         /// <param name="config">The configuration used for recognition. This value can be null.</param>
         /// <returns>A task that represents the asynchronous recognition operation.</returns>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="source"/> is null.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> is null.<br/>
+        ///     -or-<br/>
         ///     <paramref name="recognitionModel"/> is null.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     <paramref name="source"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
@@ -108,14 +108,14 @@ namespace Tizen.Multimedia.Vision
         /// <param name="config">The <see cref="FaceRecognitionConfiguration"/> used for recognition. This value can be null.</param>
         /// <returns>A task that represents the asynchronous recognition operation.</returns>
         /// <exception cref="ArgumentNullException">
-        ///     <paramref name="source"/> is null.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> is null.<br/>
+        ///     -or-<br/>
         ///     <paramref name="recognitionModel"/> is null.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     <paramref name="source"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
@@ -227,8 +227,8 @@ namespace Tizen.Multimedia.Vision
         /// <returns>A task that represents the asynchronous recognition operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     <paramref name="source"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
@@ -287,8 +287,8 @@ namespace Tizen.Multimedia.Vision
         /// <returns>A task that represents the asynchronous recognition operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">
-        ///     <paramref name="source"/> has already been disposed of.\n
-        ///     -or-\n
+        ///     <paramref name="source"/> has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>

@@ -138,8 +138,8 @@ namespace Tizen.Multimedia
         /// <returns>The <see cref="DownloadProgress"/> containing current download progress.</returns>
         /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The player is not streaming.\n
-        ///     -or-\n
+        ///     The player is not streaming.<br/>
+        ///     -or-<br/>
         ///     The player is not in the valid state.
         ///     </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
@@ -212,8 +212,8 @@ namespace Tizen.Multimedia
         /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
-        ///     The player is not in the valid state.\n
-        ///     -or-\n
+        ///     The player is not in the valid state.<br/>
+        ///     -or-<br/>
         ///     No subtitle is set.
         /// </exception>
         /// <seealso cref="SetSubtitle(string)"/>
@@ -328,8 +328,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// The player must be in the <see cref="PlayerState.Ready"/> or <see cref="PlayerState.Paused"/> state.
-        /// It has no effect if the player is already in the <see cref="PlayerState.Playing"/> state.\n
-        /// \n
+        /// It has no effect if the player is already in the <see cref="PlayerState.Playing"/> state.<br/>
+        /// <br/>
         /// Sound can be mixed with other sounds if you don't control the stream focus using <see cref="ApplyAudioStreamPolicy"/>.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
@@ -406,8 +406,8 @@ namespace Tizen.Multimedia
         /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
-        ///     The player is not in the valid state.\n
-        ///     -or-\n
+        ///     The player is not in the valid state.<br/>
+        ///     -or-<br/>
         ///     It is not able to assign the source to the player.
         ///     </exception>
         /// <seealso cref="PrepareAsync"/>
@@ -552,15 +552,15 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
-        ///     The player is not in the valid state.\n
-        ///     -or-\n
+        ///     The player is not in the valid state.<br/>
+        ///     -or-<br/>
         ///     Streaming playback.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="rate"/> is less than 5.0.\n
-        ///     -or-\n
-        ///     <paramref name="rate"/> is greater than 5.0.\n
-        ///     -or-\n
+        ///     <paramref name="rate"/> is less than 5.0.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="rate"/> is greater than 5.0.<br/>
+        ///     -or-<br/>
         ///     <paramref name="rate"/> is zero.
         /// </exception>
         public void SetPlaybackRate(float rate)
@@ -580,17 +580,17 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
         /// <remarks>
-        /// The player must be in the <see cref="PlayerState.Idle"/> state.\n
-        /// \n
-        /// <see cref="Player"/> does not support all <see cref="AudioStreamType"/>.\n
+        /// The player must be in the <see cref="PlayerState.Idle"/> state.<br/>
+        /// <br/>
+        /// <see cref="Player"/> does not support all <see cref="AudioStreamType"/>.<br/>
         /// Supported types are <see cref="AudioStreamType.Media"/>, <see cref="AudioStreamType.System"/>,
         /// <see cref="AudioStreamType.Alarm"/>, <see cref="AudioStreamType.Notification"/>,
         /// <see cref="AudioStreamType.Emergency"/>, <see cref="AudioStreamType.VoiceInformation"/>,
         /// <see cref="AudioStreamType.RingtoneVoip"/> and <see cref="AudioStreamType.MediaExternalOnly"/>.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">
-        ///     The player has already been disposed of.\n
-        ///     -or-\n
+        ///     The player has already been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="policy"/> has already been disposed of.
         /// </exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>

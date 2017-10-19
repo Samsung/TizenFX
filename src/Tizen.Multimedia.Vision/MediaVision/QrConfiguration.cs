@@ -34,13 +34,13 @@ namespace Tizen.Multimedia.Vision
         /// var obj = new QrConfiguration(QrMode.Numeric, ErrorCorrectionLevel.Medium, 30);
         /// </code>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="version"/> is less than 1.\n
-        ///     -or-\n
+        ///     <paramref name="version"/> is less than 1.<br/>
+        ///     -or-<br/>
         ///     <paramref name="version"/> is greater than 40.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="qrMode"/> is invalid.\n
-        ///     -or-
+        ///     <paramref name="qrMode"/> is invalid.<br/>
+        ///     -or-<br/>
         ///     <paramref name="ecc"/> is invalid.
         /// </exception>
         /// <since_tizen> 3 </since_tizen>

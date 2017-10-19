@@ -25,8 +25,8 @@ namespace Tizen.Multimedia
 {
     /// <summary>
     /// Recorder is a base class for audio and video recorders that
-    /// provides the ability to control the recording of a multimedia content.\n
-    /// \n
+    /// provides the ability to control the recording of a multimedia content.<br/>
+    /// <br/>
     /// Simple audio and audio/video are supported.
     /// </summary>
     public abstract partial class Recorder : IDisposable
@@ -138,13 +138,13 @@ namespace Tizen.Multimedia
         /// Prepares the media recorder for recording.
         /// </summary>
         /// <remarks>
-        /// The recorder should be in the <see cref="RecorderState.Idle"/> state.\n
-        /// The state of the recorder will be the <see cref="RecorderState.Ready"/> after this.\n
+        /// The recorder should be in the <see cref="RecorderState.Idle"/> state.<br/>
+        /// The state of the recorder will be the <see cref="RecorderState.Ready"/> after this.<br/>
         /// It has no effect if the current state is the <see cref="RecorderState.Ready"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The recorder is not in the valid state.\n
-        ///     -or-\n
+        ///     The recorder is not in the valid state.<br/>
+        ///     -or-<br/>
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
@@ -179,8 +179,8 @@ namespace Tizen.Multimedia
         /// It has no effect if the current state is the <see cref="RecorderState.Idle"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The recorder is not in the valid state.\n
-        ///     -or-\n
+        ///     The recorder is not in the valid state.<br/>
+        ///     -or-<br/>
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
@@ -205,22 +205,22 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// The recorder must be in the <see cref="RecorderState.Ready"/> state.
-        /// The state of the recorder will be the <see cref="RecorderState.Recording"/> after this. \n
-        /// \n
-        /// If the specified path exists, the file is removed automatically and updated by new one.\n
-        /// The mediastorage privilege(http://tizen.org/privilege/mediastorage) is required if the path is relevant to media storage.\n
-        /// The externalstorage privilege(http://tizen.org/privilege/externalstorage) is required if the path is relevant to external storage.\n
-        /// \n
+        /// The state of the recorder will be the <see cref="RecorderState.Recording"/> after this. <br/>
+        /// <br/>
+        /// If the specified path exists, the file is removed automatically and updated by new one.<br/>
+        /// The mediastorage privilege(http://tizen.org/privilege/mediastorage) is required if the path is relevant to media storage.<br/>
+        /// The externalstorage privilege(http://tizen.org/privilege/externalstorage) is required if the path is relevant to external storage.<br/>
+        /// <br/>
         /// In the video recorder, some preview format does not support record mode.
-        ///	You should use the default preview format or the <see cref="CameraPixelFormat.Nv12"/> in the record mode.
+        /// You should use the default preview format or the <see cref="CameraPixelFormat.Nv12"/> in the record mode.
         /// </remarks>
         /// <param name="savePath">The file path for recording result.</param>
         /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <exception cref="InvalidOperationException">
-        ///     The recorder is not in the valid state.\n
-        ///     -or-\n
-        ///     The preview format of the camera is not supported.
-        ///     -or-\n
+        ///     The recorder is not in the valid state.<br/>
+        ///     -or-<br/>
+        ///     The preview format of the camera is not supported.<br/>
+        ///     -or-<br/>
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
@@ -259,8 +259,8 @@ namespace Tizen.Multimedia
         /// It has no effect if the current state is the <see cref="RecorderState.Recording"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The recorder is not in the valid state.\n
-        ///     -or-\n
+        ///     The recorder is not in the valid state.<br/>
+        ///     -or-<br/>
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
@@ -287,8 +287,8 @@ namespace Tizen.Multimedia
         /// It has no effect if the current state is the <see cref="RecorderState.Paused"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The recorder is not in the valid state.\n
-        ///     -or-\n
+        ///     The recorder is not in the valid state.<br/>
+        ///     -or-<br/>
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
@@ -314,10 +314,10 @@ namespace Tizen.Multimedia
         /// The state of the recorder will be the <see cref="RecorderState.Ready"/> after the operation.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The recorder is not in the valid state.\n
-        ///     -or-\n
-        ///     The method is called in <see cref="AudioStreamStoring"/> event.
-        ///     -or-\n
+        ///     The recorder is not in the valid state.<br/>
+        ///     -or-<br/>
+        ///     The method is called in <see cref="AudioStreamStoring"/> event.<br/>
+        ///     -or-<br/>
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
@@ -333,7 +333,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Cancels the recording.\n
+        /// Cancels the recording.<br/>
         /// The recording data is discarded and not written in the recording file.
         /// </summary>
         /// <remarks>
@@ -341,10 +341,10 @@ namespace Tizen.Multimedia
         /// The state of the recorder will be the <see cref="RecorderState.Ready"/> after the operation.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     The recorder is not in the valid state.\n
-        ///     -or-\n
-        ///     The method is called in <see cref="AudioStreamStoring"/> event.
-        ///     -or-\n
+        ///     The recorder is not in the valid state.<br/>
+        ///     -or-<br/>
+        ///     The method is called in <see cref="AudioStreamStoring"/> event.<br/>
+        ///     -or-<br/>
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
@@ -368,15 +368,15 @@ namespace Tizen.Multimedia
         /// <param name="policy">The policy to apply.</param>
         /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
-        ///     The recorder is not in the valid state.\n
-        ///     -or-\n
-        ///     <paramref name="policy"/> is not supported for the recorder.
-        ///     -or-\n
+        ///     The recorder is not in the valid state.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="policy"/> is not supported for the recorder.<br/>
+        ///     -or-<br/>
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">
-        ///     The recorder already has been disposed of.\n
-        ///     -or-\n
+        ///     The recorder already has been disposed of.<br/>
+        ///     -or-<br/>
         ///     <paramref name="policy"/> already has been disposed of.
         /// </exception>
         public void ApplyAudioStreamPolicy(AudioStreamPolicy policy)
@@ -395,8 +395,8 @@ namespace Tizen.Multimedia
         /// Returns the peak audio input level in dB since the last call to this method.
         /// </summary>
         /// <remarks>
-        /// 0dB indicates the maximum input level, -300dB indicates the minimum input level.\n
-        /// \n
+        /// 0dB indicates the maximum input level, -300dB indicates the minimum input level.<br/>
+        /// <br/>
         /// The recorder must be in the <see cref="RecorderState.Recording"/> or the <see cref="RecorderState.Paused"/> state.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>

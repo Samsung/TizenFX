@@ -78,8 +78,8 @@ namespace Tizen.Multimedia
         /// <param name="frameRate">The frame rate of the format.</param>
         /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid (i.e. undefined value).</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     The width or the height of <paramref name="size"/> is less than zero.\n
-        ///     -or-\n
+        ///     The width or the height of <paramref name="size"/> is less than zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="frameRate"/> is less than zero.
         /// </exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size,
@@ -117,10 +117,10 @@ namespace Tizen.Multimedia
         /// <param name="bitRate">The bit rate of the format.</param>
         /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid (i.e. undefined value).</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     The width or the height of <paramref name="size"/> is less than zero.\n
-        ///     -or-\n
-        ///     <paramref name="frameRate"/> is less than zero.\n
-        ///     -or-\n
+        ///     The width or the height of <paramref name="size"/> is less than zero.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="frameRate"/> is less than zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="bitRate"/> is less than zero.
         /// </exception>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size,

@@ -55,8 +55,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// If the state of <see cref="Camera"/> is <see cref="CameraState.Created"/>,
-        /// the <see cref="CameraSettings.PreviewPixelFormat"/> will be changed to the recommended format for recording.\n
-        /// \n
+        /// the <see cref="CameraSettings.PreviewPixelFormat"/> will be changed to the recommended format for recording.<br/>
+        /// <br/>
         /// The initial state of the Recorder will be <see cref="RecorderState.Ready"/>
         /// if the state of <see cref="Camera"/> is <see cref="CameraState.Preview"/> or <see cref="CameraState.Captured"/>.
         /// </remarks>
@@ -66,17 +66,17 @@ namespace Tizen.Multimedia
         /// <feature>http://tizen.org/feature/camera</feature>
         /// <exception cref="InvalidOperationException">An internal error occurred.</exception>
         /// <exception cref="NotSupportedException">
-        ///     A required feature is not supported.\n
-        ///     -or-\n
-        ///     <paramref name="videoCodec"/> is not supported.\n
-        ///     -or-\n
+        ///     A required feature is not supported.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="videoCodec"/> is not supported.<br/>
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not supported with the specified video codec.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="videoCodec"/> is not valid.\n
-        ///     -or-\n
-        ///     <paramref name="fileFormat"/> is not valid.\n
-        ///     -or-\n
+        ///     <paramref name="videoCodec"/> is not valid.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="fileFormat"/> is not valid.<br/>
+        ///     -or-<br/>
         ///     <paramref name="camera"/> is being used by another object.
         /// </exception>
         /// <exception cref="ObjectDisposedException"><paramref name="camera"/> has been disposed of.</exception>
@@ -97,8 +97,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// If the state of <see cref="Camera"/> is <see cref="CameraState.Created"/>,
-        /// the <see cref="CameraSettings.PreviewPixelFormat"/> will be changed to the recommended format for recording.\n
-        /// \n
+        /// the <see cref="CameraSettings.PreviewPixelFormat"/> will be changed to the recommended format for recording.<br/>
+        /// <br/>
         /// The initial state of the Recorder will be <see cref="RecorderState.Ready"/>
         /// if the state of <see cref="Camera"/> is <see cref="CameraState.Preview"/> or <see cref="CameraState.Captured"/>.
         /// </remarks>
@@ -109,21 +109,21 @@ namespace Tizen.Multimedia
         /// <feature>http://tizen.org/feature/camera</feature>
         /// <exception cref="InvalidOperationException">An internal error occurred.</exception>
         /// <exception cref="NotSupportedException">
-        ///     A required feature is not supported.\n
-        ///     -or-\n
-        ///     <paramref name="videoCodec"/> is not supported.\n
-        ///     -or-\n
-        ///     <paramref name="audioCodec"/> is not supported.\n
-        ///     -or-\n
+        ///     A required feature is not supported.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="videoCodec"/> is not supported.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="audioCodec"/> is not supported.<br/>
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not supported with the specified video codec.
-        ///     -or-\n
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not supported with the specified audio codec.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="videoCodec"/> is not valid.\n
-        ///     -or-\n
-        ///     <paramref name="audioCodec"/> is not valid.\n
-        ///     -or-\n
+        ///     <paramref name="videoCodec"/> is not valid.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="audioCodec"/> is not valid.<br/>
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not valid.
         /// </exception>
         /// <exception cref="ObjectDisposedException"><paramref name="camera"/> has been disposed of.</exception>
@@ -147,13 +147,13 @@ namespace Tizen.Multimedia
         /// <param name="videoCodec">The codec for video encoding.</param>
         /// <param name="fileFormat">The format of result file.</param>
         /// <exception cref="NotSupportedException">
-        ///     <paramref name="videoCodec"/> is not supported.\n
-        ///     -or-\n
+        ///     <paramref name="videoCodec"/> is not supported.<br/>
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not supported with the specified video codec.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="videoCodec"/> is not valid.\n
-        ///     -or-\n
+        ///     <paramref name="videoCodec"/> is not valid.<br/>
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not valid.
         /// </exception>
         /// <seealso cref="GetSupportedVideoCodecs"/>
@@ -173,19 +173,19 @@ namespace Tizen.Multimedia
         /// <param name="audioCodec">The codec for audio encoding.</param>
         /// <param name="fileFormat">The format of result file.</param>
         /// <exception cref="NotSupportedException">
-        ///     <paramref name="videoCodec"/> is not supported.\n
-        ///     -or-\n
-        ///     <paramref name="audioCodec"/> is not supported.\n
-        ///     -or-\n
+        ///     <paramref name="videoCodec"/> is not supported.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="audioCodec"/> is not supported.<br/>
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not supported with the specified video codec.
-        ///     -or-\n
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not supported with the specified audio codec.
         /// </exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="videoCodec"/> is not valid.\n
-        ///     -or-\n
-        ///     <paramref name="audioCodec"/> is not valid.\n
-        ///     -or-\n
+        ///     <paramref name="videoCodec"/> is not valid.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="audioCodec"/> is not valid.<br/>
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not valid.
         /// </exception>
         /// <seealso cref="Recorder.GetSupportedAudioCodecs"/>
@@ -230,10 +230,10 @@ namespace Tizen.Multimedia
         /// Gets or sets the video recording motion rate.
         /// </summary>
         /// <remarks>
-        /// The attribute is valid only in a video recorder.\n
-        /// If the rate is in range of 0-1, the video is recorded in a slow motion mode.\n
-        /// If the rate is bigger than 1, the video is recorded in a fast motion mode.\n
-        /// \n
+        /// The attribute is valid only in a video recorder.<br/>
+        /// If the rate is in range of 0-1, the video is recorded in a slow motion mode.<br/>
+        /// If the rate is bigger than 1, the video is recorded in a fast motion mode.<br/>
+        /// <br/>
         /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref="RecorderState.Ready"/> state.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException">The <paramref name="value"/> is less than or equal to 0.</exception>
