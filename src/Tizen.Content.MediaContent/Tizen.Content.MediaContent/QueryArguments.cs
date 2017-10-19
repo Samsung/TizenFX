@@ -36,34 +36,31 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>A string that represents a filtering expression applied when data is retrieved.</value>
         /// <remarks>
-        /// Expressions for the filter can be one of the following forms:
-        /// <list>
-        /// <item><description>column = value</description></item>
-        /// <item><description>column > value</description></item>
-        /// <item><description>column >= value</description></item>
-        /// <item><description><![CDATA[column < value]]></description></item>
-        /// <item><description><![CDATA[column <= value]]></description></item>
-        /// <item><description>value = column</description></item>
-        /// <item><description>value >= column</description></item>
-        /// <item><description><![CDATA[value < column]]></description></item>
-        /// <item><description><![CDATA[value <= column]]></description></item>
-        /// <item><description>column IN (value)</description></item>
-        /// <item><description>column IN(value-list)</description></item>
-        /// <item><description>column NOT IN(value)</description></item>
-        /// <item><description>column NOT IN(value-list)</description></item>
-        /// <item><description>column LIKE value</description></item>
-        /// <item><description>expression COLLATE NOCASE</description></item>
-        /// <item><description>expression COLLATE RTRIM</description></item>
-        /// <item><description>expression COLLATE LOCALIZED</description></item>
-        /// <item><description>expression1 AND expression2 OR expression3 ... </description></item>
-        /// </list>
-        ///
+        /// Expressions for the filter can be one of the following forms:<br/>
+        /// - column = value
+        /// - column > value
+        /// - column >= value
+        /// - <![CDATA[column < value]]>
+        /// - <![CDATA[column <= value]]>
+        /// - value = column
+        /// - value >= column
+        /// - <![CDATA[value < column]]>
+        /// - <![CDATA[value <= column]]>
+        /// - column IN (value)
+        /// - column IN(value-list)
+        /// - column NOT IN(value)
+        /// - column NOT IN(value-list)
+        /// - column LIKE value
+        /// - expression COLLATE NOCASE
+        /// - expression COLLATE RTRIM
+        /// - expression COLLATE LOCALIZED
+        /// - expression1 AND expression2 OR expression3 ...
+        /// <br/>
         /// Note that if you want to set quotation (" ' " or " " ") as value of LIKE operator, you should use two times. (" '' " or " "" ").
         /// And the optional ESCAPE clause is supported. Both percent symbol("%") and underscore symbol("_") are used in the LIKE pattern.
         /// If these characters are used as values of the LIKE operation, then the expression following the ESCAPE clause of sqlite will be ignored.<br/>
         /// <br/>
-        /// For example,<br/>
-        /// - column LIKE ('#%') ESCAPE ('#') - "#" is an escape character, it will be ignored.
+        /// For example, column LIKE ('#%') ESCAPE ('#') - "#" is an escape character, it will be ignored.
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is a zero-length string, contains only white space.</exception>
         /// <seealso cref="MediaInfoColumns"/>
