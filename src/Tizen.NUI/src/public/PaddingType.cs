@@ -307,7 +307,7 @@ namespace Tizen.NUI
         /// <param name="end">End padding or Y coordinate</param>
         /// <param name="top">Top padding or Height</param>
         /// <param name="bottom">Bottom padding or Width</param>
-        public PaddingType(float start, float end, float top, float bottom) : this(NDalicPINVOKE.new_PaddingType__SWIG_1(start, end, bottom, top), true)
+        public PaddingType(float start, float end, float top, float bottom) : this(NDalicPINVOKE.new_PaddingType__SWIG_1(start, end, top, bottom), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -321,7 +321,7 @@ namespace Tizen.NUI
         /// <param name="newBottom">Bottom padding or Width</param>
         public void Set(float newStart, float newEnd, float newTop, float newBottom)
         {
-            NDalicPINVOKE.PaddingType_Set(swigCPtr, newStart, newEnd, newBottom, newTop);
+            NDalicPINVOKE.PaddingType_Set(swigCPtr, newStart, newEnd, newTop, newBottom);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
