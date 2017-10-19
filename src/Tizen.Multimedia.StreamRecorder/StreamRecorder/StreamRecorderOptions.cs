@@ -37,8 +37,8 @@ namespace Tizen.Multimedia
         /// <param name="fileFormat">The file format of output file.</param>
         /// <exception cref="ArgumentNullException"><paramref name="savePath"/>is null.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="savePath"/>is an empty string.\n
-        ///     -or-\n
+        ///     <paramref name="savePath"/>is an empty string.<br/>
+        ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not valid.
         /// </exception>
         public StreamRecorderOptions(string savePath, RecorderFileFormat fileFormat)

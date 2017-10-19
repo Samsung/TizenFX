@@ -36,8 +36,8 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the negotiated video codec.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Not connected to a source.\n
-        ///     \n
+        ///     Not connected to a source.<br/>
+        ///     <br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -58,8 +58,8 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the negotiated video resolution.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Not connected to a source.\n
-        ///     \n
+        ///     Not connected to a source.<br/>
+        ///     <br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -81,8 +81,8 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the negotiated video frame rate.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Not connected to a source.\n
-        ///     \n
+        ///     Not connected to a source.<br/>
+        ///     <br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>

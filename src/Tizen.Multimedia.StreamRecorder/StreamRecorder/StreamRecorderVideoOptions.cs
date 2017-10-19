@@ -41,14 +41,14 @@ namespace Tizen.Multimedia
         /// <see cref="BitRate"/> will be set as default.
         /// </remarks>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="codec"/> is not valid.\n
-        ///     -or-\n
-        ///     <paramref name="sourceFormat"/> is not valid.\n
+        ///     <paramref name="codec"/> is not valid.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="sourceFormat"/> is not valid.<br/>
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     Width or height of <paramref name="resolution"/> is less than or equal to zero.\n
-        ///     -or-\n
-        ///     <paramref name="frameRate"/> is less than or equal to zero.\n
+        ///     Width or height of <paramref name="resolution"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="frameRate"/> is less than or equal to zero.<br/>
         /// </exception>
         public StreamRecorderVideoOptions(RecorderVideoCodec codec, Size resolution,
             StreamRecorderVideoFormat sourceFormat, int frameRate) :
@@ -66,15 +66,15 @@ namespace Tizen.Multimedia
         /// <param name="frameRate">The frame rate for encoding video stream.</param>
         /// <param name="bitRate">The bit rate for encoding video stream.</param>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="codec"/> is not valid.\n
-        ///     -or-\n
-        ///     <paramref name="sourceFormat"/> is not valid.\n
+        ///     <paramref name="codec"/> is not valid.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="sourceFormat"/> is not valid.<br/>
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     Width or height of <paramref name="resolution"/> is less than or equal to zero.\n
-        ///     -or-\n
-        ///     <paramref name="frameRate"/> is less than or equal to zero.\n
-        ///     -or-\n
+        ///     Width or height of <paramref name="resolution"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="frameRate"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="bitRate"/> is less than zero.
         /// </exception>
         public StreamRecorderVideoOptions(RecorderVideoCodec codec, Size resolution,

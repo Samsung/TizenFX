@@ -37,8 +37,8 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the negotiated audio codec.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Not connected to a source.\n
-        ///     \n
+        ///     Not connected to a source.<br/>
+        ///     <br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -59,8 +59,8 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the negotiated audio channels.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Not connected to a source.\n
-        ///     \n
+        ///     Not connected to a source.<br/>
+        ///     <br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -81,8 +81,8 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the negotiated audio sample rate.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Not connected to a source.\n
-        ///     \n
+        ///     Not connected to a source.<br/>
+        ///     <br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -103,8 +103,8 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the negotiated audio bit width.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        ///     Not connected to a source.\n
-        ///     \n
+        ///     Not connected to a source.<br/>
+        ///     <br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
