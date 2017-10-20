@@ -38,7 +38,7 @@ namespace Tizen.Multimedia
         public Size Size { get; }
 
         /// <summary>
-        /// Gets the fps of the new video
+        /// Gets the fps of the new video.
         /// </summary>
         public int Fps { get; }
 
