@@ -53,7 +53,7 @@ namespace Tizen.Multimedia
         public AudioStreamFocusChangedReason Reason { get; }
 
         /// <summary>
-        /// Gets the requested behaviors that should be followed
+        /// Gets the requested behaviors that should be followed.
         /// </summary>
         /// <value>The requested behaviors that should be followed.</value>
         public AudioStreamBehaviors Behaviors { get; }

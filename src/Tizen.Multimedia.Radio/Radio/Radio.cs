@@ -153,7 +153,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the value indicating if the radio is muted.
+        /// Gets or sets the value indicating if the radio is muted.
         /// </summary>
         /// <value>
         /// true if the radio is muted; otherwise, false.
@@ -256,7 +256,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Starts the radio scanning and triggers the ScanInformationUpdated event when the scan information is updated.
+        /// Starts the radio scanning and triggers the <see cref="ScanUpdated"/> event when the scan information is updated.
         /// </summary>
         /// <remarks>The radio must be in the <see cref="RadioState.Ready"/> or <see cref="RadioState.Playing"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>

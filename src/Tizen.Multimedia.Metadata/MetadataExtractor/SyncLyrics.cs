@@ -22,7 +22,7 @@ namespace Tizen.Multimedia
     public class SyncLyrics
     {
         /// <summary>
-        /// Initializes a new instance of the MetadataExtractor class with the specified lyrics and the timestamp.
+        /// Initializes a new instance of the <see cref="SyncLyrics"/> class with the specified lyrics and the timestamp.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="lyrics">The text of synchronized lyrics.</param>

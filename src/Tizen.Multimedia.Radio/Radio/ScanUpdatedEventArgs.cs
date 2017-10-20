@@ -29,7 +29,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the tuned radio frequency that is scanned, in range [87500 ~ 108000] (kHz).
+        /// Gets the tuned radio frequency that is scanned, in the range of 87500 ~ 108000 kHz.
         /// </summary>
         public int Frequency { get; }
 

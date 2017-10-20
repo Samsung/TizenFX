@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the volume level of the specified <see cref="AudioVolumeType"/>
+        /// Gets or sets the volume level of the specified <see cref="AudioVolumeType"/>.
         /// </summary>
         /// <param name="type">The <see cref="AudioVolumeType"/> to control.</param>
         /// <value>The current volume level.</value>
@@ -36,10 +36,10 @@ namespace Tizen.Multimedia
         /// <privilege>http://tizen.org/privilege/volume.set</privilege>
         /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="type"/> is <see cref="AudioVolumeType.None"/>.
-        ///     -or-
-        ///     <paramref name="value"/> is less than zero.
-        ///     -or-
+        ///     <paramref name="type"/> is <see cref="AudioVolumeType.None"/>.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="value"/> is less than zero.<br/>
+        ///     -or-<br/>
         ///     <paramref name="value"/> is greater than <see cref="MaxVolumeLevel.this[AudioVolumeType]"/>.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to set volume.</exception>
