@@ -58,6 +58,7 @@ Tizen.PhonenumberUtils
 Tizen.Pims.Calendar
 Tizen.Pims.Contacts
 Tizen.Security
+Tizen.Security.PrivacyPrivilegeManager
 Tizen.Security.SecureRepository
 Tizen.Security.TEEC
 Tizen.Sensor
