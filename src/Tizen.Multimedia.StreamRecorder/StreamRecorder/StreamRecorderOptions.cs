@@ -105,7 +105,6 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// After reaching the limitation, the data which is being recorded will
         /// be discarded and not written to the file.
-        /// The recorder state must be <see cref="RecorderState.Idle"/> state.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <seealso cref="StreamRecorder.RecordingLimitReached"/>

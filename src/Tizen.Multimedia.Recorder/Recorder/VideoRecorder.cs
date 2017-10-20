@@ -51,7 +51,8 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="VideoRecorder"/> class with the specified camera, video codec and file format.
+        /// Initializes a new instance of the <see cref="VideoRecorder"/> class with the specified
+        /// camera, video codec, and file format.
         /// </summary>
         /// <remarks>
         /// If the state of <see cref="Camera"/> is <see cref="CameraState.Created"/>,
@@ -92,8 +93,8 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="VideoRecorder"/> class with the specified camera, video codec,
-        /// audio codec and file format.
+        /// Initializes a new instance of the <see cref="VideoRecorder"/> class with the specified
+        /// camera, video codec, audio codec, and file format.
         /// </summary>
         /// <remarks>
         /// If the state of <see cref="Camera"/> is <see cref="CameraState.Created"/>,
@@ -115,7 +116,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="audioCodec"/> is not supported.<br/>
         ///     -or-<br/>
-        ///     <paramref name="fileFormat"/> is not supported with the specified video codec.
+        ///     <paramref name="fileFormat"/> is not supported with the specified video codec.<br/>
         ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not supported with the specified audio codec.
         /// </exception>
@@ -142,7 +143,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the video codec and the file format for recording. Audio will not recorded.
+        /// Sets the video codec and the file format for recording. Audio will not be recorded.
         /// </summary>
         /// <param name="videoCodec">The codec for video encoding.</param>
         /// <param name="fileFormat">The format of result file.</param>
@@ -167,7 +168,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the video codec, audio codec and the file format for recording.
+        /// Sets the video codec, audio codec, and the file format for recording.
         /// </summary>
         /// <param name="videoCodec">The codec for video encoding.</param>
         /// <param name="audioCodec">The codec for audio encoding.</param>
@@ -177,7 +178,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="audioCodec"/> is not supported.<br/>
         ///     -or-<br/>
-        ///     <paramref name="fileFormat"/> is not supported with the specified video codec.
+        ///     <paramref name="fileFormat"/> is not supported with the specified video codec.<br/>
         ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not supported with the specified audio codec.
         /// </exception>
@@ -232,7 +233,7 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// The attribute is valid only in a video recorder.<br/>
         /// If the rate is in range of 0-1, the video is recorded in a slow motion mode.<br/>
-        /// If the rate is bigger than 1, the video is recorded in a fast motion mode.<br/>
+        /// If the rate is greater than 1, the video is recorded in a fast motion mode.<br/>
         /// <br/>
         /// To set, the recorder must be in the <see cref="RecorderState.Idle"/> or the <see cref="RecorderState.Ready"/> state.
         /// </remarks>
