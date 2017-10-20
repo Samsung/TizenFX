@@ -143,12 +143,6 @@ namespace Tizen.NUI
 
             base.Dispose(type);
 
-            // Dispose all Children of this Layer.
-            foreach (View childView in Children)
-            {
-                childView?.Dispose();
-            }
-            Children.Clear();
         }
 
 

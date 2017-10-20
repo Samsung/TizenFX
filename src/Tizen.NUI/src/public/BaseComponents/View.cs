@@ -158,12 +158,6 @@ namespace Tizen.NUI.BaseComponents
 
             base.Dispose(type);
 
-            // Dispose all Children of this View.
-            foreach (View childView in Children)
-            {
-                childView?.Dispose();
-            }
-            Children.Clear();
         }
 
         private void DisConnectFromSignals()

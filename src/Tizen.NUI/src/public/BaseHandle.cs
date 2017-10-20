@@ -296,53 +296,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Equals
-        /// </summary>
-        /// <param name="o">The object should be compared.</param>
-        /// <returns>True if equal.</returns>
-        /// <since_tizen> 4 </since_tizen>
-        public override bool Equals(object o)
-        {
-            if(o == null)
-            {
-                return false;
-            }
-            if(!(o is BaseHandle))
-            {
-                return false;
-            }
-            BaseHandle b = (BaseHandle)o;
-            if (!BaseHandle.ReferenceEquals(this, null) && !BaseHandle.ReferenceEquals(b, null))
-            {
-                // drop into native code to see if both handles point to the same body
-                return this.IsEqual(b);
-            }
-
-            if (BaseHandle.ReferenceEquals(this, null) && !BaseHandle.ReferenceEquals(b, null))
-            {
-                if (b.HasBody()) return false;
-                else return true;
-            }
-            if (!BaseHandle.ReferenceEquals(this, null) && BaseHandle.ReferenceEquals(b, null))
-            {
-                if (this.HasBody()) return false;
-                else return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Gets the the hash code of this baseHandle.
-        /// </summary>
-        /// <returns>The Hash Code.</returns>
-        /// <since_tizen> 4 </since_tizen>
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        /// <summary>
         /// Create an instance of BaseHandle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
