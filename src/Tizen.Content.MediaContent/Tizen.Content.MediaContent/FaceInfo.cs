@@ -54,6 +54,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the ID of face information.
         /// </summary>
+        /// <value>The unique ID of face information.</value>
         public string Id { get; }
 
         /// <summary>
@@ -63,9 +64,9 @@ namespace Tizen.Content.MediaContent
         public string MediaInfoId { get; }
 
         /// <summary>
-        /// Gets the tag name.
+        /// Gets the tag.
         /// </summary>
-        /// <value>The tag name of face information.</value>
+        /// <value>The tag of face information.</value>
         public string Tag { get; }
 
         /// <summary>

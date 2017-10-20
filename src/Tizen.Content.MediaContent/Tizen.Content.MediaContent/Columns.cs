@@ -152,7 +152,7 @@ namespace Tizen.Content.MediaContent
         /// <remarks>
         /// The value type is string.
         /// </remarks>
-        /// <seealso cref="MediaInfo.ThumbnailPath"/>
+        /// <seealso cref="MediaInfo.Title"/>
         public static string Title => "MEDIA_TITLE";
 
         /// <summary>
