@@ -15,31 +15,44 @@
  */
 
 using System;
+using System.Diagnostics;
 
 namespace ElmSharp.Wearable
 {
     /// <summary>
     /// Circle slider is circular designed widget to select a value in a range by rotary event.
     /// </summary>
-    public class CircleSlider : EvasObject
+    public class CircleSlider : Widget, IRotaryActionWidget
     {
-        /// <summary>
-        /// Changed will be triggered when the circle slider value changes.
-        /// </summary>
-        public event EventHandler Changed;
-
         SmartEvent _changedEvent;
+        CircleSurface _surface;
 
         /// <summary>
         /// Creates and initializes a new instance of the CircleSlider class.
         /// </summary>
         /// <param name="parent">The EvasObject to which the new CircleSlider will be attached as a child.</param>
-        public CircleSlider(EvasObject parent) : base(parent)
+        /// <param name="surface">The surface for drawing circle features for this widget.</param>
+        public CircleSlider(EvasObject parent, CircleSurface surface) : base()
         {
-            _changedEvent = new SmartEvent(this, "value,changed");
-
-            _changedEvent.On += (s, e) => Changed?.Invoke(this, EventArgs.Empty);
+            Debug.Assert(parent == null || surface == null || parent.IsRealized);
+            _surface = surface;
+            Realize(parent);
         }
+
+        /// <summary>
+        /// Changed will be triggered when the circle slider value changes.
+        /// </summary>
+        public event EventHandler ValueChanged;
+
+        /// <summary>
+        /// Gets the handle for Circle Widget.
+        /// </summary>
+        public virtual IntPtr CircleHandle => RealHandle;
+
+        /// <summary>
+        /// Gets the handle for Circle Surface used in this widget
+        /// </summary>
+        public virtual CircleSurface CircleSurface => _surface;
 
         /// <summary>
         /// Sets or gets the step by which the circle slider bar moves.
@@ -52,26 +65,26 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_slider_step_get(RealHandle);
+                return Interop.Eext.eext_circle_object_slider_step_get(CircleHandle);
             }
             set
             {
-                Interop.Eext.eext_circle_object_slider_step_set(RealHandle, (double)value);
+                Interop.Eext.eext_circle_object_slider_step_set(CircleHandle, (double)value);
             }
         }
 
         /// <summary>
-        /// Sets or gets disabled state of the circle slider object.
+        /// Sets or gets the state of the widget, which might be enabled or disabled.
         /// </summary>
-        public bool Disabled
+        public override bool IsEnabled
         {
             get
             {
-                return Interop.Eext.eext_circle_object_disabled_get(RealHandle); ;
+                return !Interop.Eext.eext_circle_object_disabled_get(CircleHandle);
             }
             set
             {
-                Interop.Eext.eext_circle_object_disabled_set(RealHandle, value);
+                Interop.Eext.eext_circle_object_disabled_set(CircleHandle, !value);
             }
         }
 
@@ -86,19 +99,19 @@ namespace ElmSharp.Wearable
                 int g = 0;
                 int b = 0;
                 int a = 0;
-                Interop.Eext.eext_circle_object_color_get(RealHandle, out r, out g, out b, out a);
+                Interop.Eext.eext_circle_object_color_get(CircleHandle, out r, out g, out b, out a);
                 return Color.FromRgba(r, g, b, a);
             }
             set
             {
-                Interop.Eext.eext_circle_object_color_set(RealHandle, value.R, value.G, value.B, value.A);
+                Interop.Eext.eext_circle_object_color_set(CircleHandle, value.R, value.G, value.B, value.A);
             }
         }
 
         /// <summary>
         /// Sets or gets color of the circle slider background.
         /// </summary>
-        public Color BackgroundColor
+        public override Color BackgroundColor
         {
             get
             {
@@ -106,12 +119,12 @@ namespace ElmSharp.Wearable
                 int g = 0;
                 int b = 0;
                 int a = 0;
-                Interop.Eext.eext_circle_object_item_color_get(RealHandle, "bg", out r, out g, out b, out a);
+                Interop.Eext.eext_circle_object_item_color_get(CircleHandle, "bg", out r, out g, out b, out a);
                 return Color.FromRgba(r, g, b, a);
             }
             set
             {
-                Interop.Eext.eext_circle_object_item_color_set(RealHandle, "bg", value.R, value.G, value.B, value.A);
+                Interop.Eext.eext_circle_object_item_color_set(CircleHandle, "bg", value.R, value.G, value.B, value.A);
             }
         }
 
@@ -122,11 +135,11 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_line_width_get(RealHandle); ;
+                return Interop.Eext.eext_circle_object_line_width_get(CircleHandle);
             }
             set
             {
-                Interop.Eext.eext_circle_object_line_width_set(RealHandle, value);
+                Interop.Eext.eext_circle_object_line_width_set(CircleHandle, value);
             }
         }
 
@@ -137,11 +150,11 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_item_line_width_get(RealHandle, "bg");
+                return Interop.Eext.eext_circle_object_item_line_width_get(CircleHandle, "bg");
             }
             set
             {
-                Interop.Eext.eext_circle_object_item_line_width_set(RealHandle, "bg", value);
+                Interop.Eext.eext_circle_object_item_line_width_set(CircleHandle, "bg", value);
             }
         }
 
@@ -152,11 +165,11 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_angle_get(RealHandle); ;
+                return Interop.Eext.eext_circle_object_angle_get(CircleHandle);
             }
             set
             {
-                Interop.Eext.eext_circle_object_angle_set(RealHandle, value);
+                Interop.Eext.eext_circle_object_angle_set(CircleHandle, value);
             }
         }
 
@@ -167,11 +180,11 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_item_angle_get(RealHandle, "bg");
+                return Interop.Eext.eext_circle_object_item_angle_get(CircleHandle, "bg");
             }
             set
             {
-                Interop.Eext.eext_circle_object_item_angle_set(RealHandle, "bg", value);
+                Interop.Eext.eext_circle_object_item_angle_set(CircleHandle, "bg", value);
             }
         }
 
@@ -183,11 +196,11 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_angle_offset_get(RealHandle); ;
+                return Interop.Eext.eext_circle_object_angle_offset_get(CircleHandle);
             }
             set
             {
-                Interop.Eext.eext_circle_object_angle_offset_set(RealHandle, value);
+                Interop.Eext.eext_circle_object_angle_offset_set(CircleHandle, value);
             }
         }
 
@@ -199,11 +212,11 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_item_angle_offset_get(RealHandle, "bg");
+                return Interop.Eext.eext_circle_object_item_angle_offset_get(CircleHandle, "bg");
             }
             set
             {
-                Interop.Eext.eext_circle_object_item_angle_offset_set(RealHandle, "bg", value);
+                Interop.Eext.eext_circle_object_item_angle_offset_set(CircleHandle, "bg", value);
             }
         }
 
@@ -216,13 +229,13 @@ namespace ElmSharp.Wearable
             {
                 double min;
                 double max;
-                Interop.Eext.eext_circle_object_angle_min_max_get(RealHandle, out min, out max);
+                Interop.Eext.eext_circle_object_angle_min_max_get(CircleHandle, out min, out max);
                 return min;
             }
             set
             {
                 double max = BarAngleMaximum;
-                Interop.Eext.eext_circle_object_angle_min_max_set(RealHandle, (double)value, max);
+                Interop.Eext.eext_circle_object_angle_min_max_set(CircleHandle, (double)value, max);
             }
         }
 
@@ -235,13 +248,13 @@ namespace ElmSharp.Wearable
             {
                 double min;
                 double max;
-                Interop.Eext.eext_circle_object_angle_min_max_get(RealHandle, out min, out max);
+                Interop.Eext.eext_circle_object_angle_min_max_get(CircleHandle, out min, out max);
                 return max;
             }
             set
             {
                 double min = BarAngleMinimum;
-                Interop.Eext.eext_circle_object_angle_min_max_set(RealHandle, min, (double)value);
+                Interop.Eext.eext_circle_object_angle_min_max_set(CircleHandle, min, (double)value);
             }
         }
 
@@ -259,13 +272,13 @@ namespace ElmSharp.Wearable
             {
                 double min;
                 double max;
-                Interop.Eext.eext_circle_object_value_min_max_get(RealHandle, out min, out max);
+                Interop.Eext.eext_circle_object_value_min_max_get(CircleHandle, out min, out max);
                 return min;
             }
             set
             {
                 double max = Maximum;
-                Interop.Eext.eext_circle_object_value_min_max_set(RealHandle, (double)value, max);
+                Interop.Eext.eext_circle_object_value_min_max_set(CircleHandle, (double)value, max);
             }
         }
 
@@ -284,13 +297,13 @@ namespace ElmSharp.Wearable
             {
                 double min;
                 double max;
-                Interop.Eext.eext_circle_object_value_min_max_get(RealHandle, out min, out max);
+                Interop.Eext.eext_circle_object_value_min_max_get(CircleHandle, out min, out max);
                 return max;
             }
             set
             {
                 double min = Minimum;
-                Interop.Eext.eext_circle_object_value_min_max_set(RealHandle, min, (double)value);
+                Interop.Eext.eext_circle_object_value_min_max_set(CircleHandle, min, (double)value);
             }
         }
 
@@ -304,11 +317,11 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_value_get(RealHandle);
+                return Interop.Eext.eext_circle_object_value_get(CircleHandle);
             }
             set
             {
-                Interop.Eext.eext_circle_object_value_set(RealHandle, (double)value);
+                Interop.Eext.eext_circle_object_value_set(CircleHandle, (double)value);
             }
         }
 
@@ -319,11 +332,11 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_radius_get(RealHandle); ;
+                return Interop.Eext.eext_circle_object_radius_get(CircleHandle);
             }
             set
             {
-                Interop.Eext.eext_circle_object_radius_set(RealHandle, value);
+                Interop.Eext.eext_circle_object_radius_set(CircleHandle, value);
             }
         }
 
@@ -334,12 +347,22 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_item_radius_get(RealHandle, "bg"); ;
+                return Interop.Eext.eext_circle_object_item_radius_get(CircleHandle, "bg");
             }
             set
             {
-                Interop.Eext.eext_circle_object_item_radius_set(RealHandle, "bg", value);
+                Interop.Eext.eext_circle_object_item_radius_set(CircleHandle, "bg", value);
             }
+        }
+
+        /// <summary>
+        /// The callback of Realized Event
+        /// </summary>
+        protected override void OnRealized()
+        {
+            base.OnRealized();
+            _changedEvent = new SmartEvent(this, "value,changed");
+            _changedEvent.On += (s, e) => ValueChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -349,35 +372,7 @@ namespace ElmSharp.Wearable
         /// <returns>Handle IntPtr</returns>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            IntPtr surface = IntPtr.Zero;
-            if (parent is Conformant)
-            {
-                surface = Interop.Eext.eext_circle_surface_conformant_add(parent);
-            }
-            else if (parent is Layout)
-            {
-                surface = Interop.Eext.eext_circle_surface_layout_add(parent);
-            }
-            else if (parent is Naviframe)
-            {
-                surface = Interop.Eext.eext_circle_surface_naviframe_add(parent.RealHandle);
-            }
-
-            IntPtr handle = Interop.Eext.eext_circle_object_slider_add(parent, surface);
-            if (surface == IntPtr.Zero)
-            {
-                EvasObject p = parent;
-                while (!(p is Window))
-                {
-                    p = p.Parent;
-                }
-                var w = (p as Window).ScreenSize.Width;
-                var h = (p as Window).ScreenSize.Height;
-                Interop.Evas.evas_object_resize(handle, w, h);
-            }
-
-            Interop.Eext.eext_rotary_object_event_activated_set(handle, true);
-            return handle;
+            return Interop.Eext.eext_circle_object_slider_add(parent, CircleSurface.Handle);
         }
     }
 }

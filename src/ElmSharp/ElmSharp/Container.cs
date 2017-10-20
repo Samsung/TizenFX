@@ -39,6 +39,13 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Creates and initializes a new instance of Container class.
+        /// </summary>
+        protected Container() : base()
+        {
+        }
+
+        /// <summary>
         /// Sets the background color of a given Container.
         /// </summary>
         public override Color BackgroundColor

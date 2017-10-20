@@ -32,7 +32,9 @@ namespace ElmSharp.Test.TC
             layout.Move(0, 0);
             layout.Resize(360, 360);
 
-            var list = new CircleGenList(layout)
+            var surface = new CircleSurface(layout);
+
+            var list = new CircleGenList(layout, surface)
             {
                 Homogeneous = true,
                 VerticalScrollBackgroundRadius = 165,

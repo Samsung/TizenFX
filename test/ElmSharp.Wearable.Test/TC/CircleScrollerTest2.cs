@@ -31,7 +31,8 @@ namespace ElmSharp.Test.TC
             layout.Move(0, 0);
             layout.Resize(360, 360);
 
-            CircleScroller circleScroller = new CircleScroller(layout)
+            var surface = new CircleSurface(layout);
+            CircleScroller circleScroller = new CircleScroller(layout, surface)
             {
                 AlignmentX = -1,
                 AlignmentY = -1,

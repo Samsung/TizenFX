@@ -155,8 +155,13 @@ namespace ElmSharp
         /// <param name="parent">The parent is a given container which will be attached by GenList as a child. It's <see cref="EvasObject"/> type.</param>
         public GenList(EvasObject parent) : base(parent)
         {
-            ListMode = GenListMode.Compress;
-            InitializeSmartEvent();
+        }
+
+        /// <summary>
+        /// Creates and initializes a new instance of GenList class.
+        /// </summary>
+        protected GenList() : base()
+        {
         }
 
         /// <summary>
@@ -709,6 +714,16 @@ namespace ElmSharp
         {
             IntPtr handle = Interop.Elementary.elm_genlist_nth_item_get(RealHandle, index);
             return ItemObject.GetItemByHandle(handle) as GenListItem;
+        }
+
+        /// <summary>
+        /// The callback of Unrealize Event
+        /// </summary>
+        protected override void OnRealized()
+        {
+            base.OnRealized();
+            ListMode = GenListMode.Compress;
+            InitializeSmartEvent();
         }
 
         /// <summary>

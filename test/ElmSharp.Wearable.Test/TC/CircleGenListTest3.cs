@@ -32,11 +32,13 @@ namespace ElmSharp.Test.TC
 
             conformant.SetContent(naviframe);
 
-            var list = new CircleGenList(naviframe)
+            var surface = new CircleSurface(naviframe);
+
+            var list = new CircleGenList(naviframe, surface)
             {
                 Homogeneous = true,
                 VerticalScrollBarVisiblePolicy = ScrollBarVisiblePolicy.Auto,
-                Disabled = true,
+                IsEnabled = false,
             };
 
             var item = naviframe.Push(list);

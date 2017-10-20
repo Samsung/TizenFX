@@ -83,11 +83,6 @@ namespace ElmSharp
         /// <param name="parent">The parent of new Widget instance</param>
         protected Widget(EvasObject parent) : base(parent)
         {
-            _focused = new SmartEvent(this, "focused");
-            _focused.On += (s, e) => Focused?.Invoke(this, EventArgs.Empty);
-
-            _unfocused = new SmartEvent(this, "unfocused");
-            _unfocused.On += (s, e) => Unfocused?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -113,7 +108,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the state of the widget, which might be enabled or disabled.
         /// </summary>
-        public bool IsEnabled
+        public virtual bool IsEnabled
         {
             get
             {
@@ -435,6 +430,19 @@ namespace ElmSharp
             int r, g, b, a;
             Interop.Elementary.elm_object_color_class_color_get(Handle, part, out r, out g, out b, out a);
             return a;
+        }
+
+        /// <summary>
+        /// The callback of Realized Event
+        /// </summary>
+        protected override void OnRealized()
+        {
+            base.OnRealized();
+            _focused = new SmartEvent(this, "focused");
+            _focused.On += (s, e) => Focused?.Invoke(this, EventArgs.Empty);
+
+            _unfocused = new SmartEvent(this, "unfocused");
+            _unfocused.On += (s, e) => Unfocused?.Invoke(this, EventArgs.Empty);
         }
 
         internal IntPtr GetPartContent(string part)

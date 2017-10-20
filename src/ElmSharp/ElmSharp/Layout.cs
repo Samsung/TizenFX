@@ -35,17 +35,13 @@ namespace ElmSharp
         /// <param name="parent">The parent is a given container which will be attached by Layout as a child. It's <see cref="EvasObject"/> type.</param>
         public Layout(EvasObject parent) : base(parent)
         {
-            _languageChanged = new SmartEvent(this, this.RealHandle, "language,changed");
-            _languageChanged.On += (s, e) =>
-            {
-                LanguageChanged?.Invoke(this, EventArgs.Empty);
-            };
+        }
 
-            _themeChanged = new SmartEvent(this, this.RealHandle, "theme,changed");
-            _themeChanged.On += (s, e) =>
-            {
-                ThemeChanged?.Invoke(this, EventArgs.Empty);
-            };
+        /// <summary>
+        /// Creates and initializes a new instance of Layout class.
+        /// </summary>
+        protected Layout() : base()
+        {
         }
 
         /// <summary>
@@ -337,6 +333,25 @@ namespace ElmSharp
         public virtual double GetVerticalTextAlignment(string part)
         {
             return Interop.Elementary.elm_layout_text_valign_get(RealHandle, part);
+        }
+
+        /// <summary>
+        /// The callback of Realized Event
+        /// </summary>
+        protected override void OnRealized()
+        {
+            base.OnRealized();
+            _languageChanged = new SmartEvent(this, this.RealHandle, "language,changed");
+            _languageChanged.On += (s, e) =>
+            {
+                LanguageChanged?.Invoke(this, EventArgs.Empty);
+            };
+
+            _themeChanged = new SmartEvent(this, this.RealHandle, "theme,changed");
+            _themeChanged.On += (s, e) =>
+            {
+                ThemeChanged?.Invoke(this, EventArgs.Empty);
+            };
         }
 
         /// <summary>

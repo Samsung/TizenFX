@@ -67,13 +67,13 @@ namespace ElmSharp
         ///as a child.It's <see cref="EvasObject"/> type.</param>
         public DateTimeSelector(EvasObject parent) : base(parent)
         {
-            _changed = new SmartEvent(this, this.RealHandle, "changed");
-            _changed.On += (s, e) =>
-            {
-                DateTime newDateTime = DateTime;
-                DateTimeChanged?.Invoke(this, new DateChangedEventArgs(_cacheDateTime, newDateTime));
-                DateTime = newDateTime;
-            };
+        }
+
+        /// <summary>
+        /// Creates and initializes a new instance of DateTimeSelector class.
+        /// </summary>
+        protected DateTimeSelector() : base()
+        {
         }
 
         /// <summary>
@@ -186,6 +186,21 @@ namespace ElmSharp
         public void SetFieldVisible(DateTimeFieldType type, bool visible)
         {
             Interop.Elementary.elm_datetime_field_visible_set(RealHandle, (int)type, visible);
+        }
+
+        /// <summary>
+        /// The callback of Realized Event
+        /// </summary>
+        protected override void OnRealized()
+        {
+            base.OnRealized();
+            _changed = new SmartEvent(this, this.RealHandle, "changed");
+            _changed.On += (s, e) =>
+            {
+                DateTime newDateTime = DateTime;
+                DateTimeChanged?.Invoke(this, new DateChangedEventArgs(_cacheDateTime, newDateTime));
+                DateTime = newDateTime;
+            };
         }
 
         /// <summary>

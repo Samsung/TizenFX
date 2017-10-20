@@ -28,7 +28,9 @@ namespace ElmSharp.Test.TC
             Conformant conformant = new Conformant(window);
             conformant.Show();
 
-            var list = new CircleGenList(conformant)
+            var surface = new CircleSurface(conformant);
+
+            var list = new CircleGenList(conformant, surface)
             {
                 Homogeneous = true,
                 VerticalScrollBarColor = Color.Red,

@@ -36,11 +36,13 @@ namespace ElmSharp
         /// <param name="parent">The parent of new Spinner instance</param>
         public Spinner(EvasObject parent) : base(parent)
         {
-            _changed = new SmartEvent(this, this.RealHandle, "changed");
-            _changed.On += (s, e) => ValueChanged?.Invoke(this, EventArgs.Empty);
+        }
 
-            _delayedChanged = new SmartEvent(this, this.RealHandle, "delay,changed");
-            _delayedChanged.On += (s, e) => DelayedValueChanged?.Invoke(this, EventArgs.Empty);
+        /// <summary>
+        /// Creates and initializes a new instance of Layout class.
+        /// </summary>
+        protected Spinner() : base()
+        {
         }
 
         /// <summary>
@@ -238,6 +240,19 @@ namespace ElmSharp
         public string GetSpecialValue(double value)
         {
             return Interop.Elementary.elm_spinner_special_value_get(RealHandle, value);
+        }
+
+        /// <summary>
+        /// The callback of Realized Event
+        /// </summary>
+        protected override void OnRealized()
+        {
+            base.OnRealized();
+            _changed = new SmartEvent(this, this.RealHandle, "changed");
+            _changed.On += (s, e) => ValueChanged?.Invoke(this, EventArgs.Empty);
+
+            _delayedChanged = new SmartEvent(this, this.RealHandle, "delay,changed");
+            _delayedChanged.On += (s, e) => DelayedValueChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>

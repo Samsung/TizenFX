@@ -33,7 +33,8 @@ namespace ElmSharp.Test.TC
             layout.SetTheme("layout", "circle", "spinner");
             conformant.SetContent(layout);
 
-            CircleSpinner spn1 = new CircleSpinner(conformant)
+            var surface = new CircleSurface(conformant);
+            CircleSpinner spn1 = new CircleSpinner(conformant, surface)
             {
                 Text = "Spinner Test",
                 LabelFormat = "%d Value",
@@ -59,7 +60,7 @@ namespace ElmSharp.Test.TC
 
             btn.Clicked += (s, e) =>
             {
-                spn1.Disabled = true;
+                spn1.IsEnabled = false;
                 spn1.Text = "100 match";
                 spn1.Value = 0;
             };
