@@ -107,7 +107,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="ArgumentOutOfRangeException">
         ///     index is less than 0.<br/>
         ///     -or-<br/>
-        ///     index is equal to or greater than Count.
+        ///     index is equal to or greater than <see cref="Count"/>.
         /// </exception>
         public ImageTransform this[int index]
         {
@@ -338,7 +338,7 @@ namespace Tizen.Multimedia.Util
         private Flips _flip;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RotateTransform"/> class.
+        /// Initializes a new instance of the <see cref="FlipTransform"/> class.
         /// </summary>
         /// <param name="flip">The value how to flip an image.</param>
         /// <exception cref="ArgumentException"><paramref name="flip"/> is invalid.</exception>
@@ -349,7 +349,7 @@ namespace Tizen.Multimedia.Util
         }
 
         /// <summary>
-        /// Gets or sets the value how to rotate an image.
+        /// Gets or sets the value how to flip an image.
         /// </summary>
         /// <exception cref="ArgumentException"><paramref name="value"/> is invalid.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is <see cref="Flips.None"/>.</exception>

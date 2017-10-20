@@ -95,9 +95,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="ArgumentException">
         ///     <paramref name="inputFilePath"/> is an empty string.<br/>
         ///     -or-<br/>
-        ///     <paramref name="inputFilePath"/> is not a image file.<br/>
-        ///     -or-<br/>
-        ///     The format of <paramref name="inputFilePath"/> is not <see cref="InputFormat"/>.
+        ///     <paramref name="inputFilePath"/> is not a image file.
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="inputFilePath"/> does not exists.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required permission to access the path.</exception>
@@ -140,11 +138,7 @@ namespace Tizen.Multimedia.Util
         /// <returns>A task that represents the asynchronous decoding operation.</returns>
         /// <remarks>Only Graphics Interchange Format(GIF) codec returns more than one frame.</remarks>
         /// <exception cref="ArgumentNullException"><paramref name="inputBuffer"/> is null.</exception>
-        /// <exception cref="ArgumentException">
-        ///     <paramref name="inputBuffer"/> is an empty array.<br/>
-        ///     -or-<br/>
-        ///     The format of <paramref name="inputBuffer"/> is not <see cref="InputFormat"/>.
-        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="inputBuffer"/> is an empty array.</exception>
         /// <exception cref="FileFormatException">The format of <paramref name="inputBuffer"/> is not <see cref="InputFormat"/>.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageDecoder"/> has already been disposed of.</exception>
         public Task<IEnumerable<BitmapFrame>> DecodeAsync(byte[] inputBuffer)

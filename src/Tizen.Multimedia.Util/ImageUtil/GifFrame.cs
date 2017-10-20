@@ -28,7 +28,7 @@ namespace Tizen.Multimedia.Util
         /// Initializes a new instance of the <see cref="GifFrame"/> class with a buffer and a delay.
         /// </summary>
         /// <param name="buffer">The raw image buffer to be encoded.</param>
-        /// <param name="delay">The delay for this image, in 0.001 sec units.</param>
+        /// <param name="delay">The delay for this image in milliseconds.</param>
         /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
         /// <exception cref="ArgumentException">The length of <paramref name="buffer"/> is zero.</exception>
         public GifFrame(byte[] buffer, uint delay)
@@ -55,7 +55,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Gets or sets the delay for this image.
         /// </summary>
-        /// <value>Time delay in 0.001 sec units.</value>
+        /// <value>Time delay in milliseconds.</value>
         public uint Delay { get; set; }
     }
 }

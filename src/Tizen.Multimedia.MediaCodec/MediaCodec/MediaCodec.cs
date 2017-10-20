@@ -21,7 +21,7 @@ using System.Diagnostics;
 namespace Tizen.Multimedia.MediaCodec
 {
     /// <summary>
-    /// Provides the means to encode and decode the video and the audio data.
+    /// Provides a means to encode and decode the video and the audio data.
     /// </summary>
     public class MediaCodec : IDisposable
     {

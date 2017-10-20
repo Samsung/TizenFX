@@ -38,7 +38,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <exception cref="InvalidOperationException">
         ///     Not connected to a source.<br/>
-        ///     <br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -60,7 +60,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <exception cref="InvalidOperationException">
         ///     Not connected to a source.<br/>
-        ///     <br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -82,7 +82,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <exception cref="InvalidOperationException">
         ///     Not connected to a source.<br/>
-        ///     <br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
@@ -104,7 +104,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <exception cref="InvalidOperationException">
         ///     Not connected to a source.<br/>
-        ///     <br/>
+        ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
