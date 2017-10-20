@@ -19,6 +19,10 @@ using System.ComponentModel;
 
 namespace Tizen.System
 {
+    /// <summary>
+    /// The SystemInfo class provides static system feature.
+    /// Please use Tizen.System.Information class. Information class supports same function.
+    /// </summary>
     [Obsolete("Use class Tizen.System.Information")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class SystemInfo
