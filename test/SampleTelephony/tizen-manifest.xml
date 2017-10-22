@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.Telephony.Tizen.Mobile" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+  <profile name="common" />
+  <ui-application appid="org.tizen.example.Tizen.Telephony.Test" exec="SampleTelephony.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+    <label>SampleTelephony</label>
+    <icon>Tizen.Telephony.Test.png</icon>
+  </ui-application>
+  <shortcut-list />
+  <privileges>
+    <privilege>http://tizen.org/privilege/telephony</privilege>
+    <privilege>http://tizen.org/privilege/location.coarse</privilege>
+  </privileges>
+</manifest>
