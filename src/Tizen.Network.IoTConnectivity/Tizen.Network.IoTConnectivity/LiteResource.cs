@@ -32,13 +32,11 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// Creates a lite resource, which can then be registered in server using <see cref="IoTConnectivityServerManager.RegisterResource(Resource)"/>.\n
-        /// When client requests some operations, it sends a response to client automatically.\n
-        /// @a uri length must be less than 128.
+        /// <para>Creates a lite resource, which can then be registered in server using <see cref="IoTConnectivityServerManager.RegisterResource(Resource)"/>.</para>
+        /// <para>When client requests some operations, it sends a response to client automatically.</para>
+        /// <para><paramref name="uri" /> length must be less than 128.</para>
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="uri">The uri path of the lite resource.</param>
         /// <param name="types">The type of the resource.</param>

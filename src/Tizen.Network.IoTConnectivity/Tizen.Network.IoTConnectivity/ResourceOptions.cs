@@ -23,9 +23,9 @@ using System.Linq;
 namespace Tizen.Network.IoTConnectivity
 {
     /// <summary>
-    /// This class represents resource options. It provides APIs to manage them.\n
-    /// The iotcon options API provides methods for managing vendor specific options of coap packet.\n
-    /// See more about coap packet in http://tools.ietf.org/html/rfc7252.
+    /// <para>This class represents resource options. It provides APIs to manage them.</para>
+    /// <para>The iotcon options API provides methods for managing vendor specific options of coap packet.</para>
+    /// <para>See more about coap packet in http://tools.ietf.org/html/rfc7252.</para>
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ResourceOptions : IDictionary<ushort, string>, IDisposable
@@ -217,9 +217,9 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// ResourceOptions can have up to 2 options. \n
-        /// key is always situated between 2048 and 3000. \n
-        /// Length of option data is less than or equal to 15.
+        /// <para>ResourceOptions can have up to 2 options.</para>
+        /// <para>key is always situated between 2048 and 3000.</para>
+        /// <para>Length of option data is less than or equal to 15.</para>
         /// </remarks>
         /// <param name="key">The ID of the option to insert.</param>
         /// <param name="value">The string data to insert into the options.</param>

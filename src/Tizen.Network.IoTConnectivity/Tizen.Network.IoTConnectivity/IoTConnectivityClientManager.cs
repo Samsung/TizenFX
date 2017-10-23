@@ -79,10 +79,10 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
-        /// Value to be set must be in range from 1 to 3600. Default timeout interval value is 30.\n
-        /// Sets/gets the timeout of StartFindingResource(), StartFindingDeviceInformation(), StartFindingPlatformInformation(),
-        /// RemoteResource.GetAsync(), RemoteResource.PutAsync(), RemoteResource.PostAsync() and RemoteResource.DeleteAsync() APIs.\n
-        /// Setter can throw exception.
+        /// <para>Value to be set must be in range from 1 to 3600. Default timeout interval value is 30.</para>
+        /// <para>Sets/gets the timeout of StartFindingResource(), StartFindingDeviceInformation(), StartFindingPlatformInformation(),
+        /// RemoteResource.GetAsync(), RemoteResource.PutAsync(), RemoteResource.PostAsync() and RemoteResource.DeleteAsync() APIs.</para>
+        /// <para>Setter can throw exception.</para>
         /// </value>
         /// <pre>
         /// Initialize() should be called to initialize.
@@ -163,16 +163,14 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// @a filePath point to a file for handling secure virtual resources.
+        /// <paramref name="filePath"/> points to a file for handling secure virtual resources.
         /// The file that is CBOR(Concise Binary Object Representation)-format must already exist
-        /// in @a filePath. We recommend to use application-local file for @a filePath.
+        /// in <paramref name="filePath" />. We recommend to use application-local file for <paramref name="filePath" />.
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/network.get \n
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
-        /// <param name="filePath">The file path to point to storage for handling secure virtual resources.</param>
+        /// <param name="filePath">The file path pointing to storage for handling secure virtual resources.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <post>
         /// You must call Deinitialize() if IoTCon API is no longer needed.
@@ -261,16 +259,15 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// Sends request to receive presence to an interested server's resource with resourceType.
+        /// <para>Sends request to receive presence to an interested server's resource with resourceType.
         /// If succeeded, <see cref="PresenceReceived"/> event handler will be triggered when the server sends presence.
-        /// A server sends presence events when adds / removes / alters a resource or start / stop presence.\n
-        /// @a hostAddress could be <see cref="MulticastAddress"/> for IPv4 multicast.
-        /// The length of @ resourceType should be less than or equal to 61. The @ resourceType must start with a lowercase alphabetic character, followed by a sequence
-        /// of lowercase alphabetic, numeric, ".", or "-" characters, and contains no white space.
+        /// A server sends presence events when adds / removes / alters a resource or start / stop presence.</para>
+        /// <para><paramref name="hostAddress" /> could be <see cref="MulticastAddress"/> for IPv4 multicast.
+        /// The length of <paramref name="resourceType" /> should be less than or equal to 61.
+        /// The <paramref name="resourceType" /> must start with a lowercase alphabetic character, followed by a sequence
+        /// of lowercase alphabetic, numeric, ".", or "-" characters, and contains no white space.</para>
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="hostAddress">The address or addressable name of the server.</param>
         /// <param name="resourceType">A resource type that a client is interested in.</param>
@@ -278,7 +275,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>Initialize() should be called to initialize.</pre>
         /// <post>
-        /// When the resource receive presence, <see cref="PresenceReceived"/> event handler will be invoked.\n
+        /// When the resource receive presence, <see cref="PresenceReceived"/> event handler will be invoked.<br/>
         /// You must destroy presence by calling StopReceivingPresence() if presence event is no longer needed.
         /// </post>
         /// <seealso cref="IoTConnectivityServerManager.StartSendingPresence(uint)"/>
@@ -371,9 +368,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <remarks>
         /// Sends request to not to receive server's presence any more.
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="presenceId">The start presence request identifier.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
@@ -443,15 +438,14 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// Sends request to find a resource of @a hostAddress server with @a resourceType.
-        /// If succeeded, <see cref="ResourceFound"/> event handler will be triggered with information of the resource.\n
-        /// @a hostAddress could be <see cref="MulticastAddress"/> for the IPv4 multicast.
-        /// The length of @a resourceType should be less than or equal to 61. The @ resourceType must start with a lowercase alphabetic character, followed by a sequence
-        /// of lowercase alphabetic, numeric, ".", or "-" characters, and contains no white space.
+        /// <para>Sends request to find a resource of <paramref name="hostAddress" /> server with <paramref name="resourceType" />.
+        /// If succeeded, <see cref="ResourceFound"/> event handler will be triggered with information of the resource.</para>
+        /// <para><paramref name="hostAddress" /> could be <see cref="MulticastAddress"/> for the IPv4 multicast.
+        /// The length of <paramref name="resourceType" /> should be less than or equal to 61. The <paramref name="resourceType" /> must start
+        /// with a lowercase alphabetic character, followed by a sequence
+        /// of lowercase alphabetic, numeric, ".", or "-" characters, and contains no white space.</para>
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="hostAddress">The address or addressable name of the server. The address includes a protocol like coaps://.</param>
         /// <param name="query">The query specified as a filter for founding resources.</param>
@@ -557,13 +551,11 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// Requests server for device information.
-        /// If succeeded, <see cref="DeviceInformationFound"/> event handler will be triggered with information of the device.\n
-        /// @a hostAddress could be <see cref="MulticastAddress"/> for the IPv4 multicast.
+        /// <para>Requests server for device information.
+        /// If succeeded, <see cref="DeviceInformationFound"/> event handler will be triggered with information of the device.</para>
+        /// <para><paramref name="hostAddress" /> could be <see cref="MulticastAddress"/> for the IPv4 multicast.</para>
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="hostAddress">The host address of the remote server.</param>
         /// <param name="query">The query specified as a filter for founding resources.</param>
@@ -660,13 +652,11 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// Requests server for platform information.
-        /// If succeeded, <see cref="PlatformInformationFound" /> event handler will be triggered with information of the platform.\n
-        /// @a hostAddress could be <see cref="MulticastAddress"/> for IPv4 multicast.
+        /// <para>Requests server for platform information.
+        /// If succeeded, <see cref="PlatformInformationFound" /> event handler will be triggered with information of the platform.</para>
+        /// <para><paramref name="hostAddress" /> could be <see cref="MulticastAddress"/> for IPv4 multicast.</para>
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="hostAddress">The host address of remote server.</param>
         /// <param name="query">The query specified as a filter for founding resources.</param>

@@ -51,10 +51,10 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// To use this API, you should provide all the details required to correctly contact and
-        /// observe the object.\n
-        /// If not, you should discover the resource object manually.\n
-        /// The @a policy can contain multiple policies like ResourcePolicy.Discoverable | ResourcePolicy.Observable.
+        /// <para>To use this API, you should provide all the details required to correctly contact and
+        /// observe the object.</para>
+        /// <para>If not, you should discover the resource object manually.</para>
+        /// <para>The <paramref name="policy" /> can contain multiple policies like <c>ResourcePolicy.Discoverable | ResourcePolicy.Observable</c>.</para>
         /// </remarks>
         /// <param name="hostAddress">The host address of the resource.</param>
         /// <param name="uriPath">The URI path of the resource.</param>
@@ -301,9 +301,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <remarks>
         /// When server sends notification message, <see cref="ObserverNotified"/> will be called.
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="policy">The type to specify how client wants to observe.</param>
         /// <param name="query">The query to send to server.</param>
@@ -369,9 +367,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Stops observing on the resource.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
@@ -391,9 +387,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Gets the attributes of a resource asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="query">The ResourceQuery to send to server.</param>
         /// <returns>Remote response with result and representation.</returns>
@@ -447,9 +441,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Puts the representation of a resource asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="representation">Resource representation to put.</param>
         /// <param name="query">The ResourceQuery to send to server.</param>
@@ -509,9 +501,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Posts request on a resource asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="representation">Resource representation of request.</param>
         /// <param name="query">The ResourceQuery to send to server.</param>
@@ -564,9 +554,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Deletes the resource asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <returns>Remote response with result and representation.</returns>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>

@@ -39,12 +39,10 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// @a uri format would be relative URI path like '/a/light'
+        /// <paramref name="uri" /> format would be relative URI path like '/a/light'
         /// and its length must be less than 128.
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="uri">The URI path of the resource.</param>
         /// <param name="types">Resource types.</param>
@@ -162,9 +160,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Notify the specified representation and qos.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="representation">Representation.</param>
         /// <param name="qos">The quality of service for message transfer.</param>

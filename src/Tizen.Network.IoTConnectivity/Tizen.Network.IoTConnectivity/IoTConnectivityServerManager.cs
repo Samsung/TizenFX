@@ -33,16 +33,14 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// @a filePath point to a file for handling secure virtual resources.
+        /// <paramref name="filePath" /> points to a file for handling secure virtual resources.
         /// The file that is CBOR(Concise Binary Object Representation)-format must already exist
-        /// in @a filePath. We recommend to use application-local file for @a filePath.
+        /// in <paramref name="filePath" />. We recommend to use application-local file for <paramref name="filePath" />.
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/network.get \n
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
-        /// <param name="filePath">The file path to point to storage for handling secure virtual resources.</param>
+        /// <param name="filePath">The file path pointing to storage for handling secure virtual resources.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <post>
         /// You must call Deinitialize() if IoTCon API is no longer needed.
@@ -93,9 +91,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Registers a resource in IoTCon server.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="resource">The resource to register.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
@@ -165,9 +161,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Unregisters a resource in IoTCon server.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="resource">The resource to unregister.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
@@ -208,14 +202,12 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// Use this API to send server's announcements to clients.
-        /// Server can call this API when online for the first time or come back from offline to online.\n
-        /// If @a time is 0, server will set default value as 60 seconds.\n
-        /// If @a time is very big, server will set maximum value as (60 * 60 * 24) seconds, (24 hours).
+        /// <para>Use this API to send server's announcements to clients.
+        /// Server can call this API when online for the first time or come back from offline to online.</para>
+        /// <para>If <paramref name="time" /> is 0, server will set default value as 60 seconds.</para>
+        /// <para>If <paramref name="time" /> is very big, server will set maximum value as (60 * 60 * 24) seconds, (24 hours).</para>
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <param name="time">The interval of announcing presence in seconds.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
@@ -254,9 +246,7 @@ namespace Tizen.Network.IoTConnectivity
         /// Use this API to stop sending server's announcements to clients.
         /// Server can call this API when terminating, entering to offline or out of network.
         /// </remarks>
-        /// <privilege>
-        /// http://tizen.org/privilege/internet
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <pre>
@@ -287,8 +277,8 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// This API sets the name of the local device (the device calling the API).\n
-        /// If the device name is set, clients can get the name using <see cref="IoTConnectivityClientManager.StartFindingDeviceInformation(string, ResourceQuery)"/>.
+        /// <para>This API sets the name of the local device (the device calling the API).</para>
+        /// <para>If the device name is set, clients can get the name using <see cref="IoTConnectivityClientManager.StartFindingDeviceInformation(string, ResourceQuery)"/>.</para>
         /// </remarks>
         /// <param name="deviceName">The device name.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>

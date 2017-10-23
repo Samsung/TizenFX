@@ -175,7 +175,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// @a item could be a value, such as <see cref="DefaultInterface"/>.
+        /// <paramref name="item" /> could be a value, such as <see cref="DefaultInterface"/>.
         /// </remarks>
         /// <param name="item">The string data to insert into the resource interfaces.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>

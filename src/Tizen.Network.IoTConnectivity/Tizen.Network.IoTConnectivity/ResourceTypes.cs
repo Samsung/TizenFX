@@ -134,10 +134,10 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// The length of @a item should be less than or equal to 61.\n
-        /// The @a item must start with a lowercase alphabetic character, followed by a sequence
-        /// of lowercase alphabetic, numeric, ".", or "-" characters, and contains no white space.\n
-        /// Duplicate strings are not allowed.
+        /// <para>The length of <paramref name="item" /> should be less than or equal to 61.</para>
+        /// <para>The <paramref name="item" /> must start with a lowercase alphabetic character, followed by a sequence
+        /// of lowercase alphabetic, numeric, ".", or "-" characters, and contains no white space.</para>
+        /// <para>Duplicate strings are not allowed.</para>
         /// </remarks>
         /// <param name="item">The string data to insert into the resource types.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
