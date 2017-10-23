@@ -44,32 +44,22 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         LINEAR,
         /// <summary>
-        /// Chooses the mipmap that most closely matches the size of the pixel being
-        /// textured and uses the GL_NEAREST criterion (the texture element closest to
-        /// the specified texture coordinates) to produce a texture value.
+        /// Filter nearest mipmap nearest.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         NEAREST_MIPMAP_NEAREST,
         /// <summary>
-        /// Chooses the mipmap that most closely matches the size of the pixel being textured
-        /// and uses the GL_LINEAR criterion (a weighted average of the four texture elements
-        /// that are closest to the specified texture coordinates) to produce a texture value.
+        /// Filter linear mipmap nearest.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         LINEAR_MIPMAP_NEAREST,
         /// <summary>
-        /// Chooses the two mipmaps that most closely match the size of the pixel being textured
-        /// and uses the GL_NEAREST criterion (the texture element closest to the specified texture
-        /// coordinates ) to produce a texture value from each mipmap. The final texture value is a
-        /// weighted average of those two values.
+        /// Filter nearest mipmap linear.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         NEAREST_MIPMAP_LINEAR,
         /// <summary>
-        /// Chooses the two mipmaps that most closely match the size of the pixel being textured and
-        /// uses the GL_LINEAR criterion (a weighted average of the texture elements that are closest
-        /// to the specified texture coordinates) to produce a texture value from each mipmap. The final
-        /// texture value is a weighted average of those two values.
+        /// Filter linear mipmap linear.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         LINEAR_MIPMAP_LINEAR
