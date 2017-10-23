@@ -77,9 +77,9 @@ namespace Tizen.Content.MediaContent
         public string DisplayName { get; }
 
         /// <summary>
-        /// Gets the <see cref="MediaType"/> of media.
+        /// Gets the <see cref="MediaContent.MediaType"/> of media.
         /// </summary>
-        /// <value>The <see cref="MediaType"/> of media.</value>
+        /// <value>The <see cref="MediaContent.MediaType"/> of media.</value>
         public MediaType MediaType { get; }
 
         /// <summary>
