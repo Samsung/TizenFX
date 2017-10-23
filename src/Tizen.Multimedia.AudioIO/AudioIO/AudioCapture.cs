@@ -170,9 +170,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the size allocated for the audio input buffer.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
         public int GetBufferSize()
         {
+            ValidateNotDisposed();
+
             AudioIOUtil.ThrowIfError(AudioInput.GetBufferSize(_handle, out var size));
             return size;
         }
@@ -185,6 +187,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     The current state is not <see cref="AudioIOState.Idle"/>.
         /// </exception>
+        /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
         /// <seealso cref="Unprepare"/>
         public void Prepare()
         {
@@ -202,6 +205,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     The current state is <see cref="AudioIOState.Idle"/>.
         /// </exception>
+        /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
         /// <seealso cref="Prepare"/>
         public void Unprepare()
         {
@@ -219,6 +223,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     The method is called in the <see cref="AsyncAudioCapture.DataAvailable"/> event handler.
         /// </exception>
+        /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
         /// <seealso cref="Resume"/>
         public void Pause()
         {
@@ -238,6 +243,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     The method is called in the <see cref="AsyncAudioCapture.DataAvailable"/> event handler.
         /// </exception>
+        /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
         /// <seealso cref="Pause"/>
         public void Resume()
         {
@@ -254,6 +260,7 @@ namespace Tizen.Multimedia
         /// Flushes and discards buffered audio data from the input stream.
         /// </summary>
         /// <exception cref="InvalidOperationException">The current state is <see cref="AudioIOState.Idle"/>.</exception>
+        /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
         public void Flush()
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
@@ -268,7 +275,11 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="streamPolicy">The <see cref="AudioStreamPolicy"/> to apply for the AudioCapture.</param>
         /// <exception cref="ArgumentNullException"><paramref name="streamPolicy"/> is null.</exception>
-        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">
+        ///     <paramref name="streamPolicy"/> has already been disposed of.<br/>
+        ///     -or-<br/>
+        ///     The AudioCaptureBase has already been disposed of.
+        /// </exception>
         /// <exception cref="NotSupportedException"><paramref name="streamPolicy"/> is not supported.</exception>
         /// <exception cref="ArgumentException">Not able to retrieve information from <paramref name="streamPolicy"/>.</exception>
         public void ApplyStreamPolicy(AudioStreamPolicy streamPolicy)
@@ -306,7 +317,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="sampleType"/> is invalid.
         /// </exception>
-        /// <exception cref="InvalidOperationException">The required privilege is not specified.</exception>
+        /// <exception cref="UnauthorizedAccessException">The required privilege is not specified.</exception>
         /// <exception cref="NotSupportedException">The system does not support microphone.</exception>
         public AudioCapture(int sampleRate, AudioChannel channel, AudioSampleType sampleType)
             : base(sampleRate, channel, sampleType)
@@ -320,6 +331,7 @@ namespace Tizen.Multimedia
         /// <returns>The buffer of audio data captured.</returns>
         /// <exception cref="InvalidOperationException">The current state is not <see cref="AudioIOState.Running"/>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is equal to or less than zero.</exception>
+        /// <exception cref="ObjectDisposedException">The AudioCapture has already been disposed of.</exception>
         public byte[] Read(int count)
         {
             if (count <= 0)
@@ -366,7 +378,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="sampleType"/> is invalid.
         /// </exception>
-        /// <exception cref="InvalidOperationException">The required privilege is not specified.</exception>
+        /// <exception cref="UnauthorizedAccessException">The required privilege is not specified.</exception>
         /// <exception cref="NotSupportedException">The system does not support microphone.</exception>
         public AsyncAudioCapture(int sampleRate, AudioChannel channel, AudioSampleType sampleType)
             : base(sampleRate, channel, sampleType)

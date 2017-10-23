@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using Native = Interop.Display;
 
@@ -28,6 +29,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// This constructor supports the product infrastructure and is not intended to be used directly from application code.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected PlayerDisplaySettings(Player player)
         {
             if (player == null)
@@ -99,7 +101,7 @@ namespace Tizen.Multimedia
         /// Gets or sets the rotation of the display.
         /// </summary>
         /// <value><see cref="Rotation.Rotate0"/>, <see cref="Rotation.Rotate90"/>, <see cref="Rotation.Rotate180"/>,
-        ///     <see cref="Rotation.Rotate270"/></value>
+        ///     <see cref="Rotation.Rotate270"/>.</value>
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.
         /// </exception>

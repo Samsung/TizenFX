@@ -74,7 +74,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="index"/> is less than zero.<br/>
         ///     -or-<br/>
-        ///     <paramref name="index"/> is equal to or greater than <see cref="GetCount()"/>
+        ///     <paramref name="index"/> is equal to or greater than <see cref="GetCount()"/>.
         /// </exception>
         public string GetLanguageCode(int index)
         {
@@ -123,7 +123,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is less than zero.<br/>
         ///     -or-<br/>
-        ///     <paramref name="value"/> is equal to or greater than <see cref="GetCount()"/>
+        ///     <paramref name="value"/> is equal to or greater than <see cref="GetCount()"/>.
         /// </exception>
         public int Selected
         {

@@ -20,6 +20,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using static Interop;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
@@ -167,7 +168,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException"><paramref name="path"/> is an empty string.</exception>
         /// <exception cref="FileNotFoundException">The specified path does not exist.</exception>
-        /// <exception cref="ArgumentNullException">The path is null.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         public void SetSubtitle(string path)
         {
             ValidateNotDisposed();
@@ -637,6 +638,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// This method supports the product infrastructure and is not intended to be used directly from application code.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected static Exception GetException(int errorCode, string message) =>
             ((PlayerErrorCode)errorCode).GetException(message);
     }
