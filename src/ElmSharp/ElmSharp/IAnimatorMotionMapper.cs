@@ -7,23 +7,23 @@ namespace ElmSharp
     /// <summary>
     /// The AnimatorMotionMapper interface
     /// </summary>
-    public interface AnimatorMotionMapper
+    public interface IAnimatorMotionMapper
     {
         /// <summary>
         /// Maps an input position from 0.0 to 1.0 along a timeline to a position in a different curve
         /// </summary>
-        double Caculate(double position);
+        double Calculate(double position);
     }
 
     /// <summary>
     /// The LinearMotionMapper class
     /// </summary>
-    public class LinearMotionMapper : AnimatorMotionMapper
+    public class LinearMotionMapper : IAnimatorMotionMapper
     {
         /// <summary>
         /// Maps an input position from 0.0 to 1.0 along a timeline to a position in a different curve
         /// </summary>
-        public double Caculate(double position)
+        public double Calculate(double position)
         {
             return Interop.Ecore.ecore_animator_pos_map(position, Interop.Ecore.PositionMap.Linear, 0, 0);
         }
@@ -32,12 +32,12 @@ namespace ElmSharp
     /// <summary>
     /// The AccelerateMotionMapper class
     /// </summary>
-    public class AccelerateMotionMapper : AnimatorMotionMapper
+    public class AccelerateMotionMapper : IAnimatorMotionMapper
     {
         /// <summary>
         /// Maps an input position from 0.0 to 1.0 along a timeline to a position in a different curve
         /// </summary>
-        public double Caculate(double position)
+        public double Calculate(double position)
         {
             return Interop.Ecore.ecore_animator_pos_map(position, Interop.Ecore.PositionMap.Accelerate, 0, 0);
         }
@@ -46,12 +46,12 @@ namespace ElmSharp
     /// <summary>
     /// The DecelerateMotionMapper class
     /// </summary>
-    public class DecelerateMotionMapper : AnimatorMotionMapper
+    public class DecelerateMotionMapper : IAnimatorMotionMapper
     {
         /// <summary>
         /// Maps an input position from 0.0 to 1.0 along a timeline to a position in a different curve
         /// </summary>
-        public double Caculate(double position)
+        public double Calculate(double position)
         {
             return Interop.Ecore.ecore_animator_pos_map(position, Interop.Ecore.PositionMap.Decelerate, 0, 0);
         }
@@ -60,12 +60,12 @@ namespace ElmSharp
     /// <summary>
     /// The SinusoidalMotionMapper class
     /// </summary>
-    public class SinusoidalMotionMapper : AnimatorMotionMapper
+    public class SinusoidalMotionMapper : IAnimatorMotionMapper
     {
         /// <summary>
         /// Maps an input position from 0.0 to 1.0 along a timeline to a position in a different curve
         /// </summary>
-        public double Caculate(double position)
+        public double Calculate(double position)
         {
             return Interop.Ecore.ecore_animator_pos_map(position, Interop.Ecore.PositionMap.Sinusoidal, 0, 0);
         }
@@ -74,7 +74,7 @@ namespace ElmSharp
     /// <summary>
     /// The AccelerateFactorMotionMapper class
     /// </summary>
-    public class AccelerateFactorMotionMapper : AnimatorMotionMapper
+    public class AccelerateFactorMotionMapper : IAnimatorMotionMapper
     {
         /// <summary>
         /// The power factor of AccelerateFactorMotionMapper
@@ -84,7 +84,7 @@ namespace ElmSharp
         /// <summary>
         /// Maps an input position from 0.0 to 1.0 along a timeline to a position in a different curve
         /// </summary>
-        public double Caculate(double position)
+        public double Calculate(double position)
         {
             return Interop.Ecore.ecore_animator_pos_map(position, Interop.Ecore.PositionMap.AccelerateFactor, PowerFactor, 0);
         }
@@ -93,7 +93,7 @@ namespace ElmSharp
     /// <summary>
     /// The DecelerateFactorMotionMapper class
     /// </summary>
-    public class DecelerateFactorMotionMapper : AnimatorMotionMapper
+    public class DecelerateFactorMotionMapper : IAnimatorMotionMapper
     {
         /// <summary>
         /// The power factor of DecelerateFactorMotionMapper
@@ -103,7 +103,7 @@ namespace ElmSharp
         /// <summary>
         /// Maps an input position from 0.0 to 1.0 along a timeline to a position in a different curve
         /// </summary>
-        public double Caculate(double position)
+        public double Calculate(double position)
         {
             return Interop.Ecore.ecore_animator_pos_map(position, Interop.Ecore.PositionMap.DecelerateFactor, PowerFactor, 0);
         }
@@ -112,7 +112,7 @@ namespace ElmSharp
     /// <summary>
     /// The SinusoidalFactorMotionMapper class
     /// </summary>
-    public class SinusoidalFactorMotionMapper : AnimatorMotionMapper
+    public class SinusoidalFactorMotionMapper : IAnimatorMotionMapper
     {
         /// <summary>
         /// The power factor of SinusoidalFactorMotionMapper
@@ -122,7 +122,7 @@ namespace ElmSharp
         /// <summary>
         /// Maps an input position from 0.0 to 1.0 along a timeline to a position in a different curve
         /// </summary>
-        public double Caculate(double position)
+        public double Calculate(double position)
         {
             return Interop.Ecore.ecore_animator_pos_map(position, Interop.Ecore.PositionMap.SinusoidalFactor, PowerFactor, 0);
         }
@@ -131,7 +131,7 @@ namespace ElmSharp
     /// <summary>
     /// The DivisorInterpolatedMotionMapper class
     /// </summary>
-    public class DivisorInterpolatedMotionMapper : AnimatorMotionMapper
+    public class DivisorInterpolatedMotionMapper : IAnimatorMotionMapper
     {
         /// <summary>
         /// The Divisor of DivisorInterpolatedMotionMapper
@@ -146,7 +146,7 @@ namespace ElmSharp
         /// <summary>
         /// Maps an input position from 0.0 to 1.0 along a timeline to a position in a different curve
         /// </summary>
-        public double Caculate(double position)
+        public double Calculate(double position)
         {
             return Interop.Ecore.ecore_animator_pos_map(position, Interop.Ecore.PositionMap.DivisorInterp, Divisor, Power);
         }
@@ -155,7 +155,7 @@ namespace ElmSharp
     /// <summary>
     /// The BounceMotionMapper class
     /// </summary>
-    public class BounceMotionMapper : AnimatorMotionMapper
+    public class BounceMotionMapper : IAnimatorMotionMapper
     {
         /// <summary>
         /// The bounces of BounceMotionMapper
@@ -170,7 +170,7 @@ namespace ElmSharp
         /// <summary>
         /// Maps an input position from 0.0 to 1.0 along a timeline to a position in a different curve
         /// </summary>
-        public double Caculate(double position)
+        public double Calculate(double position)
         {
             return Interop.Ecore.ecore_animator_pos_map(position, Interop.Ecore.PositionMap.Bounce, DecayFactor, Bounces);
         }
@@ -179,7 +179,7 @@ namespace ElmSharp
     /// <summary>
     /// The SpringMotionMapper class
     /// </summary>
-    public class SpringMotionMapper : AnimatorMotionMapper
+    public class SpringMotionMapper : IAnimatorMotionMapper
     {
         /// <summary>
         /// The wobbles of SpringMotionMapper
@@ -194,7 +194,7 @@ namespace ElmSharp
         /// <summary>
         /// Maps an input position from 0.0 to 1.0 along a timeline to a position in a different curve
         /// </summary>
-        public double Caculate(double position)
+        public double Calculate(double position)
         {
             return Interop.Ecore.ecore_animator_pos_map(position, Interop.Ecore.PositionMap.Bounce, DecayFactor, Wobbles);
         }
@@ -203,7 +203,7 @@ namespace ElmSharp
     /// <summary>
     /// The CubicBezierMotionMapper class
     /// </summary>
-    public class CubicBezierMotionMapper : AnimatorMotionMapper
+    public class CubicBezierMotionMapper : IAnimatorMotionMapper
     {
         /// <summary>
         /// The X1 of CubicBezierMotionMapper
@@ -228,7 +228,7 @@ namespace ElmSharp
         /// <summary>
         /// Maps an input position from 0.0 to 1.0 along a timeline to a position in a different curve
         /// </summary>
-        public double Caculate(double position)
+        public double Calculate(double position)
         {
             double[] values = { X1, Y1, X2, Y2 };
             return Interop.Ecore.ecore_animator_pos_map_n(position, Interop.Ecore.PositionMap.Bounce, values.Length, values);

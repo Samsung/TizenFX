@@ -16,19 +16,19 @@ namespace ElmSharp.Test
 
         int X1, Y1, X2, Y2;
 
-        Tuple<string, AnimatorMotionMapper>[] mappers =
+        Tuple<string, IAnimatorMotionMapper>[] mappers =
         {
-            new Tuple<string, AnimatorMotionMapper>("Linear", new LinearMotionMapper()),
-            new Tuple<string, AnimatorMotionMapper>("Accelerate", new AccelerateMotionMapper()),
-            new Tuple<string, AnimatorMotionMapper>("Decelerate", new DecelerateMotionMapper()),
-            new Tuple<string, AnimatorMotionMapper>("Sinusoida", new SinusoidalMotionMapper()),
-            new Tuple<string, AnimatorMotionMapper>("Bounce", new BounceMotionMapper{ Bounces = 3, DecayFactor = 1.8 }),
-            new Tuple<string, AnimatorMotionMapper>("Spring", new SpringMotionMapper{ Wobbles = 3, DecayFactor = 1.8 }),
-            new Tuple<string, AnimatorMotionMapper>("AccelerateFactor", new AccelerateFactorMotionMapper{ PowerFactor = 1.5 }),
-            new Tuple<string, AnimatorMotionMapper>("DecelerateFactor", new DecelerateFactorMotionMapper{ PowerFactor = 1.5 }),
-            new Tuple<string, AnimatorMotionMapper>("SinusoidaFactor", new SinusoidalFactorMotionMapper{ PowerFactor = 1.5 }),
-            new Tuple<string, AnimatorMotionMapper>("DivisorInterpolate", new DivisorInterpolatedMotionMapper{ Divisor = 1.0, Power = 2.0 }),
-            new Tuple<string, AnimatorMotionMapper>("CubicBezier", new CubicBezierMotionMapper{ X1 = 0, X2 = 1, Y1 = 0, Y2 = 1})
+            new Tuple<string, IAnimatorMotionMapper>("Linear", new LinearMotionMapper()),
+            new Tuple<string, IAnimatorMotionMapper>("Accelerate", new AccelerateMotionMapper()),
+            new Tuple<string, IAnimatorMotionMapper>("Decelerate", new DecelerateMotionMapper()),
+            new Tuple<string, IAnimatorMotionMapper>("Sinusoida", new SinusoidalMotionMapper()),
+            new Tuple<string, IAnimatorMotionMapper>("Bounce", new BounceMotionMapper{ Bounces = 3, DecayFactor = 1.8 }),
+            new Tuple<string, IAnimatorMotionMapper>("Spring", new SpringMotionMapper{ Wobbles = 3, DecayFactor = 1.8 }),
+            new Tuple<string, IAnimatorMotionMapper>("AccelerateFactor", new AccelerateFactorMotionMapper{ PowerFactor = 1.5 }),
+            new Tuple<string, IAnimatorMotionMapper>("DecelerateFactor", new DecelerateFactorMotionMapper{ PowerFactor = 1.5 }),
+            new Tuple<string, IAnimatorMotionMapper>("SinusoidaFactor", new SinusoidalFactorMotionMapper{ PowerFactor = 1.5 }),
+            new Tuple<string, IAnimatorMotionMapper>("DivisorInterpolate", new DivisorInterpolatedMotionMapper{ Divisor = 1.0, Power = 2.0 }),
+            new Tuple<string, IAnimatorMotionMapper>("CubicBezier", new CubicBezierMotionMapper{ X1 = 0, X2 = 1, Y1 = 0, Y2 = 1})
         };
 
         int map_index = 0;
@@ -77,7 +77,7 @@ namespace ElmSharp.Test
 
         void OnTimeline()
         {
-            double o = mappers[map_index].Item2.Caculate(timelineAnimator.Position);
+            double o = mappers[map_index].Item2.Calculate(timelineAnimator.Position);
             int x = (int)((X2 * o) + (X1 * (1.0 - o)));
             int y = (int)((Y2 * o) + (Y1 * (1.0 - o)));
 
