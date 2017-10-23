@@ -19,6 +19,8 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// SurveillanceEngineConfiguration is a base class for surveillance configurations.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
+    /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 3 </since_tizen>
     public class SurveillanceEngineConfiguration : EngineConfiguration
     {

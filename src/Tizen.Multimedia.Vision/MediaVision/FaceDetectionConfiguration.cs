@@ -21,6 +21,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents a configuration of <see cref="FaceDetector"/> instances.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <since_tizen> 3 </since_tizen>
     public class FaceDetectionConfiguration : EngineConfiguration
     {

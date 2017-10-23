@@ -60,7 +60,6 @@ namespace Tizen.Multimedia.Vision
 
         internal EngineConfiguration(string engineType1, string engineType2)
         {
-
             if (IsSupportedEngineType(engineType1, engineType2) == false)
             {
                 throw new NotSupportedException($"{engineType1} or {engineType2} : Not Supported");
@@ -101,7 +100,6 @@ namespace Tizen.Multimedia.Vision
         {
             EngineConfig.SetInt(Handle, key, value).Validate("Failed to set attribute");
         }
-
 
         internal void Set(string key, bool value)
         {

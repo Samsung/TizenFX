@@ -36,7 +36,7 @@ namespace Tizen.Multimedia.Vision
         {
             if (points.Length != 4)
             {
-                throw new ArgumentException($"{points} must have 4 elements.");
+                throw new ArgumentException($"{nameof(points)} must have 4 elements.");
             }
 
             Points = points;

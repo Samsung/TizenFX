@@ -49,6 +49,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="trackingModel"/> is not prepared.</exception>
+        /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<FaceTrackingResult> TrackAsync(MediaVisionSource source,
             FaceTrackingModel trackingModel, bool doLearn)

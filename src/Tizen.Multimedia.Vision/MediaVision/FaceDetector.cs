@@ -39,6 +39,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     The format of <paramref name="source"/> is not supported.
         /// </exception>
+        /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<Rectangle[]> DetectAsync(MediaVisionSource source)
         {
@@ -54,6 +55,7 @@ namespace Tizen.Multimedia.Vision
         /// <returns>A task that represents the asynchronous detect operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<Rectangle[]> DetectAsync(MediaVisionSource source,
             FaceDetectionConfiguration config)

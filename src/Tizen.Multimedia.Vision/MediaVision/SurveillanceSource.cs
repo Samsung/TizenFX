@@ -29,14 +29,18 @@ namespace Tizen.Multimedia.Vision
     public class SurveillanceSource
     {
         private static int _nextStreamId = int.MinValue;
+        private static readonly object _idLock = new object();
 
         private static int GetNextStreamId()
         {
-            if (_nextStreamId == int.MaxValue)
+            lock (_idLock)
             {
-                return _nextStreamId = int.MinValue;
+                if (_nextStreamId == int.MaxValue)
+                {
+                    _nextStreamId = int.MinValue;
+                }
+                return _nextStreamId++;
             }
-            return _nextStreamId++;
         }
 
         /// <summary>

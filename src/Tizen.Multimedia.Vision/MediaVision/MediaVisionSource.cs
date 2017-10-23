@@ -25,6 +25,10 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents the media vision source to keep information on the image or video frame data as raw buffer.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.barcode_detection</feature>
+    /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
+    /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
+    /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 3 </since_tizen>
     public class MediaVisionSource : IBufferOwner, IDisposable
     {
@@ -68,7 +72,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="MediaVisionSource"/> class based on the <see cref="MediaPacket"/>.
         /// </summary>
         /// <param name="mediaPacket">The <see cref="MediaPacket"/> from which the source will be filled.</param>
-        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="NotSupportedException">None of the related features are not supported.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaPacket"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="mediaPacket"/> has already been disposed of.</exception>
         /// <since_tizen> 3 </since_tizen>
@@ -105,7 +109,7 @@ namespace Tizen.Multimedia.Vision
         /// <param name="height">The height of image.</param>
         /// <param name="colorSpace">The image <see cref="ColorSpace"/>.</param>
         /// <exception cref="NotSupportedException">
-        ///     The feature is not supported.<br/>
+        ///     None of the related features are not supported.<br/>
         ///     -or-<br/>
         ///     <paramref name="colorSpace"/> is not supported.
         /// </exception>

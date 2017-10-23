@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents an image object.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 3 </since_tizen>
     public class ImageObject : IDisposable
     {
@@ -126,6 +127,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Sets the label for the <see cref="ImageObject"/>.
         /// </summary>
+        /// <param name="label">The label which will be assigned to the image object.</param>
         /// <seealso cref="GetLabel"/>
         /// <since_tizen> 3 </since_tizen>
         public void SetLabel(int label)
@@ -135,7 +137,7 @@ namespace Tizen.Multimedia.Vision
 
         /// <summary>
         /// Fills the image object.<br/>
-        /// Extracts data from @a source image which will be needed for recognition of depicted object in @a location.
+        /// Extracts data from source image which will be needed for recognition of depicted object.
         /// </summary>
         /// <param name="source">The source image where image object is depicted.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
@@ -152,7 +154,7 @@ namespace Tizen.Multimedia.Vision
 
         /// <summary>
         /// Fills the image object.<br/>
-        /// Extracts data from @a source image which will be needed for recognition of depicted object in @a location.
+        /// Extracts data from source image which will be needed for recognition of depicted object.
         /// </summary>
         /// <param name="source">The source image where image object is depicted.</param>
         /// <param name="config">The configuration used for extract recognition data from source. This value can be null.</param>
@@ -172,7 +174,8 @@ namespace Tizen.Multimedia.Vision
 
         /// <summary>
         /// Fills the image object.<br/>
-        /// Extracts data from @a source image which will be needed for recognition of depicted object in @a location.
+        /// Extracts data from source image which will be needed for recognition of depicted object
+        /// in location.
         /// </summary>
         /// <param name="source">The source image where image object is depicted.</param>
         /// <param name="rect">Rectangular bound of the image object on the source image.</param>
@@ -190,7 +193,8 @@ namespace Tizen.Multimedia.Vision
 
         /// <summary>
         /// Fills the image object.<br/>
-        /// Extracts data from @a source image which will be needed for recognition of depicted object in @a location.
+        /// Extracts data from source image which will be needed for recognition of depicted object
+        /// in location.
         /// </summary>
         /// <param name="source">The source image where image object is depicted.</param>
         /// <param name="config">The configuration used for extract recognition data from source. This value can be null.</param>
@@ -238,7 +242,7 @@ namespace Tizen.Multimedia.Vision
         /// <param name="path">Path to the file to save the model.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="ImageObject"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
         /// <since_tizen> 3 </since_tizen>
         public void Save(string path)

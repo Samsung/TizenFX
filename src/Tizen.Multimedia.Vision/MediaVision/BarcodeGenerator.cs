@@ -141,7 +141,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.<br/>
         ///     -or-<br/>
-        ///     <paramref name="type"/> is invalid.
+        ///     <paramref name="type"/> is invalid.<br/>
         ///     -or-<br/>
         ///     <paramref name="message"/> contains illegal characters.
         /// </exception>
@@ -163,9 +163,9 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ArgumentException">
         ///     <paramref name="message"/> is too long.<br/>
         ///     -or-<br/>
-        ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.
+        ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.<br/>
         ///     -or-<br/>
-        ///     <paramref name="type"/> is invalid.
+        ///     <paramref name="type"/> is invalid.<br/>
         ///     -or-<br/>
         ///     <paramref name="message"/> contains illegal characters.
         /// </exception>
@@ -304,9 +304,9 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ArgumentException">
         ///     <paramref name="message"/> is too long.<br/>
         ///     -or-<br/>
-        ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.
+        ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.<br/>
         ///     -or-<br/>
-        ///     <paramref name="type"/> is invalid.
+        ///     <paramref name="type"/> is invalid.<br/>
         ///     -or-<br/>
         ///     <paramref name="message"/> contains illegal characters.
         /// </exception>
@@ -334,9 +334,9 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ArgumentException">
         ///     <paramref name="message"/> is too long.<br/>
         ///     -or-<br/>
-        ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.
+        ///     <paramref name="type"/> is <see cref="BarcodeType.QR"/>.<br/>
         ///     -or-<br/>
-        ///     <paramref name="type"/> is invalid.
+        ///     <paramref name="type"/> is invalid.<br/>
         ///     -or-<br/>
         ///     <paramref name="message"/> contains illegal characters.
         /// </exception>

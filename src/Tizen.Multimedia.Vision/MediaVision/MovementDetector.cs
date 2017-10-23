@@ -22,6 +22,8 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Provides the ability to detect movement on image sources.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
+    /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <seealso cref="MovementDetectionConfiguration"/>
     /// <since_tizen> 3 </since_tizen>
     public class MovementDetector : SurveillanceEngine
@@ -34,7 +36,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="MovementDetector"/> class.
         /// </summary>
-        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         public MovementDetector() : base(MovementDetectedEventType)
         {

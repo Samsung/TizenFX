@@ -32,6 +32,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// The region of recognized image object on the source image.
         /// </summary>
+        /// <value>The region of recognized image object if successful, otherwise null.</value>
         /// <since_tizen> 3 </since_tizen>
         public Quadrangle Region { get; }
 

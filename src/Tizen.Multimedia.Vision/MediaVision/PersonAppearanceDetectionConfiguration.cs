@@ -21,6 +21,8 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents a configuration of <see cref="PersonAppearanceDetector"/> instances.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
+    /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 3 </since_tizen>
     public class PersonAppearanceDetectionConfiguration : SurveillanceEngineConfiguration
     {
@@ -35,7 +37,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonAppearanceDetectionConfiguration"/> class.
         /// </summary>
-        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         public PersonAppearanceDetectionConfiguration()
         {

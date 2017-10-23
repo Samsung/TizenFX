@@ -41,9 +41,11 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="imageFormat"/> is invalid.</exception>
+        /// <example>
         /// <code>
-        /// BarcodeImageConfiguration imageConfig = new BarcodeImageConfiguration(new Size(500, 400), "/opt/usr/test-barcode-generate-new", BarcodeImageFormat.JPG);
+        /// var imageConfig = new BarcodeImageConfiguration(new Size(500, 400), "/opt/usr/test-barcode-generate-new", BarcodeImageFormat.JPG);
         /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public BarcodeImageConfiguration(Size size, string path, BarcodeImageFormat imageFormat)
         {
@@ -89,9 +91,11 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="imageFormat"/> is invalid.</exception>
+        /// <example>
         /// <code>
-        /// BarcodeImageConfiguration imageConfig = new BarcodeImageConfiguration(500, 400, "/opt/usr/test-barcode-generate-new", BarcodeImageFormat.JPG);
+        /// var imageConfig = new BarcodeImageConfiguration(500, 400, "/opt/usr/test-barcode-generate-new", BarcodeImageFormat.JPG);
         /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public BarcodeImageConfiguration(int width, int height, string path, BarcodeImageFormat imageFormat)
             : this(new Size(width, height), path, imageFormat)

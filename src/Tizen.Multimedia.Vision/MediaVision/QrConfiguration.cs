@@ -30,9 +30,6 @@ namespace Tizen.Multimedia.Vision
         /// <param name="qrMode">Encoding mode for the message.</param>
         /// <param name="ecc">Error correction level.</param>
         /// <param name="version">QR code version. From 1 to 40 inclusive.</param>
-        /// <code>
-        /// var obj = new QrConfiguration(QrMode.Numeric, ErrorCorrectionLevel.Medium, 30);
-        /// </code>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="version"/> is less than 1.<br/>
         ///     -or-<br/>
@@ -43,6 +40,11 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="ecc"/> is invalid.
         /// </exception>
+        /// <example>
+        /// <code>
+        /// var qrConfig = new QrConfiguration(QrMode.Numeric, ErrorCorrectionLevel.Medium, 30);
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public QrConfiguration(QrMode qrMode, ErrorCorrectionLevel ecc, int version)
         {
