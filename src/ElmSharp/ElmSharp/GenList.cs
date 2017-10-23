@@ -289,6 +289,26 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Gets or Sets focus upon items selection mode.
+        /// </summary>
+        /// <remarks>
+        /// When enabled, every selection of an item inside the <see cref="GenList"/> will automatically set focus to its first focusable widget from the left.
+        /// This is true of course if the selection was made by clicking an unfocusable area in an item or selecting it with a key movement.
+        /// Clicking on a focusable widget inside an item will couse this particular item to get focus as usual.
+        /// </remarks>
+        public bool FocusOnSelection
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_focus_on_selection_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_genlist_focus_on_selection_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets whether enable multi-selection in the genlist.
         /// </summary>
         public bool IsMultiSelection

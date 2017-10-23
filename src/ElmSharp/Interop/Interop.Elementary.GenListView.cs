@@ -179,6 +179,12 @@ internal static partial class Interop
         internal static extern void elm_genlist_longpress_timeout_set(IntPtr obj, double timeout);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern void elm_genlist_focus_on_selection_set(IntPtr obj, bool enabled);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_genlist_focus_on_selection_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern bool elm_genlist_multi_select_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
