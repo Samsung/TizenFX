@@ -442,7 +442,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     The media file is read-only.
         /// </exception>
-        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="FileNotFoundException">The file does not exist.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to access the file.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>

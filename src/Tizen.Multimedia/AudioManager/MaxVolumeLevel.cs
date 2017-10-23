@@ -28,7 +28,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the max volume level of the specified <see cref="AudioVolumeType"/>
+        /// Gets the max volume level of the specified <see cref="AudioVolumeType"/>.
         /// </summary>
         /// <param name="type">The <see cref="AudioVolumeType"/> to query.</param>
         /// <value>The maximum volume level.</value>

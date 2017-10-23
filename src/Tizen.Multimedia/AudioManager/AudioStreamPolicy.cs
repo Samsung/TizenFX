@@ -29,11 +29,11 @@ namespace Tizen.Multimedia
         private Interop.AudioStreamPolicy.FocusStateChangedCallback _focusStateChangedCallback;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AudioStreamPolicy"/> class with <see cref="AudioStreamType"/>
+        /// Initializes a new instance of the <see cref="AudioStreamPolicy"/> class with <see cref="AudioStreamType"/>.
         /// </summary>
         /// <remarks>
         /// To apply the stream policy according to this stream information, the AudioStreamPolicy should
-        /// be passed to other APIs related to playback or recording. (For example., <see cref="T:Tizen.MultimediaPlayer"/>,
+        /// be passed to other APIs related to playback or recording. (For example., <see cref="T:Tizen.Multimedia.Player"/>,
         /// <see cref="T:Tizen.Multimedia.WavPlayer"/> , etc.)
         /// </remarks>
         /// <param name="streamType">The type of the sound stream for which the policy needs to be created.</param>
