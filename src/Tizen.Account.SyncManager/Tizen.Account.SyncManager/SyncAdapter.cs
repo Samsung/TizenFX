@@ -66,12 +66,14 @@ namespace Tizen.Account.SyncManager
                 AccountManager.Account account = new AccountManager.Account(new SafeAccountHandle(accountHandle, true));
                 Bundle bundle = new Bundle(new SafeBundleHandle(syncJobUserData, true));
 
-                SyncJobData syncJobData = new SyncJobData()
-                {
-                    Account = account,
-                    SyncJobName = syncJobName,
-                    UserData = bundle
-                };
+                SyncJobData syncJobData = new SyncJobData();
+                syncJobData.Account = account;
+                if (syncJobName == null)
+                    syncJobData.SyncJobName = syncCapability;
+                else
+                    syncJobData.SyncJobName = syncJobName;
+                syncJobData.UserData = bundle;
+
 
                 return startSyncCb(syncJobData);
             };
@@ -83,12 +85,13 @@ namespace Tizen.Account.SyncManager
                 AccountManager.Account account = new AccountManager.Account(new SafeAccountHandle(accountHandle, true));
                 Bundle bundle = new Bundle(new SafeBundleHandle(syncJobUserData, true));
 
-                SyncJobData syncJobData = new SyncJobData()
-                {
-                    Account = account,
-                    SyncJobName = syncJobName,
-                    UserData = bundle
-                };
+                SyncJobData syncJobData = new SyncJobData();
+                syncJobData.Account = account;
+                if (syncJobName == null)
+                    syncJobData.SyncJobName = syncCapability;
+                else
+                    syncJobData.SyncJobName = syncJobName;
+                syncJobData.UserData = bundle;
 
                 cancelSyncCb(syncJobData);
             };
