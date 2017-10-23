@@ -31,7 +31,7 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Initialize a new instance of the <see cref="StreamRecorderVideoOptions"/> class with the specified
-        /// codec, resolution, source format and frame rate.
+        /// codec, resolution, source format, and frame rate.
         /// </summary>
         /// <param name="codec">The <see cref="RecorderVideoCodec"/> for encoding video stream.</param>
         /// <param name="resolution">The resolution of video recording.</param>
@@ -58,7 +58,7 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Initialize a new instance of the <see cref="StreamRecorderVideoOptions"/> class with the specified
-        /// codec, resolution, source format, frame rate and bit rate.
+        /// codec, resolution, source format, frame rate, and bit rate.
         /// </summary>
         /// <param name="codec">The <see cref="RecorderVideoCodec"/> for encoding video stream.</param>
         /// <param name="resolution">The resolution of video recording.</param>

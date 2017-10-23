@@ -61,7 +61,7 @@ namespace Tizen.Multimedia
         /// Gets the video resolutions that the current device supports.
         /// </summary>
         /// <feature>http://tizen.org/feature/camera</feature>
-        /// <param name="device">The camera device to retrieve the supported resolutions</param>
+        /// <param name="device">The camera device to retrieve the supported resolutions.</param>
         /// <exception cref="NotSupportedException">A required feature is not supported.</exception>
         /// <exception cref="ArgumentException"><paramref name="device"/> is invalid.</exception>
         public static IEnumerable<Size> GetSupportedVideoResolutions(CameraDevice device)

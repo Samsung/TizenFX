@@ -138,8 +138,8 @@ namespace Tizen.Multimedia
         /// Prepares the media recorder for recording.
         /// </summary>
         /// <remarks>
-        /// The recorder should be in the <see cref="RecorderState.Idle"/> state.<br/>
-        /// The state of the recorder will be the <see cref="RecorderState.Ready"/> after this.<br/>
+        /// The recorder should be in the <see cref="RecorderState.Idle"/> state.
+        /// The state of the recorder will be the <see cref="RecorderState.Ready"/> after this.
         /// It has no effect if the current state is the <see cref="RecorderState.Ready"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">

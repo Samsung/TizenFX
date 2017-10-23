@@ -46,7 +46,7 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Initialize a new instance of the <see cref="StreamRecorderAudioOptions"/> class with the specified
-        /// codec, sample rate, bit rate and channel value.
+        /// codec, sample rate, bit rate, and channel value.
         /// </summary>
         /// <param name="codec">The <see cref="RecorderAudioCodec"/> for encoding audio stream.</param>
         /// <param name="sampleRate">The sample rate for encoding audio stream.</param>
