@@ -75,7 +75,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Gets the type of the media updated.
         /// </summary>
-        /// <value>The <see cref="MediaType"/> of the media updated.</value>
+        /// <value>The <see cref="MediaContent.MediaType"/> of the media updated.</value>
         public MediaType MediaType
         {
             get;

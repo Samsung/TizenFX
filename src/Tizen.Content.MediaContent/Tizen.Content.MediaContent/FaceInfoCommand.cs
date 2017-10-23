@@ -97,7 +97,6 @@ namespace Tizen.Content.MediaContent
         /// <param name="faceInfoId">The face information ID to update.</param>
         /// <param name="tag">The tag value for update.</param>
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
-        /// <remarks>Only values set in the <see cref="PlaylistUpdateValues"/> are updated.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>

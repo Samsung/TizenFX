@@ -316,7 +316,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Requests to scan a folder recursively.
+        /// Requests to scan a folder.
         /// </summary>
         /// <remarks>
         ///     If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>

@@ -69,7 +69,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="playlistId">The playlist ID.</param>
         /// <param name="memberId">The member ID of the playlist.</param>
-        /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
+        /// <returns>The order of the member in the playlist.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
