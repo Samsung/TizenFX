@@ -35,6 +35,31 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// This class is a possible value to use in the InstalledApplicationFilter.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static class Values
+        {
+            /// <summary>
+            /// A pre-defined value string for InstalledStorage key. This value means that the application is installed at internal storage.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public const string InstalledInternal = "installed_internal";
+
+            /// <summary>
+            /// A pre-defined value string for InstalledStorage key. This value means that the application is installed at external storage.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public const string InstalledExternal = "installed_external";
+
+            /// <summary>
+            /// A pre-defined value string for InstalledStorage key. This value means that the application is installed at extended storage.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public const string InstalledExtended = "installed_extended";
+        }
+
+        /// <summary>
         /// This class is a possible key to use in the InstalledApplicationFilter.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -55,6 +80,11 @@ namespace Tizen.Applications
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public const string Category = "PACKAGE_INFO_PROP_APP_CATEGORY";
+            /// <summary>
+            /// A key to filter by installed storage.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public const string InstalledStorage = "PACKAGE_INFO_PROP_APP_INSTALLED_STORAGE";
             /// <summary>
             /// A key to filter by nodisplay attribute.
             /// </summary>
