@@ -48,9 +48,11 @@ namespace Tizen.Applications.Messages
         /// <param name="portName">The name of the remote message port</param>
         /// <param name="trusted">If true is the trusted message port of application, otherwise false</param>
         /// <exception cref="System.ArgumentException">Thrown when appId is null or empty, when portName is null or empty</exception>
+        /// <example>
         /// <code>
         /// RemotePort remotePort = new RemotePort("org.tizen.example.messageport", "SenderPort", false);
         /// </code>
+        /// </example>
         public RemotePort(String appId, string portName, bool trusted)
         {
             if (String.IsNullOrEmpty(appId) || String.IsNullOrEmpty(portName))
@@ -137,10 +139,12 @@ namespace Tizen.Applications.Messages
         /// <since_tizen> 4 </since_tizen>
         /// <exception cref="System.InvalidOperationException">Thrown when there is an I/O error</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <example>
         /// <code>
         /// Remote remotePort = new RemotePort("org.tizen.example", "SenderPort", true);
         /// bool isRunning = remotePort.isRunning();
         /// </code>
+        /// </example>
         /// <returns> Return true if Remote Port is running </returns>
         public bool IsRunning()
         {
@@ -169,6 +173,7 @@ namespace Tizen.Applications.Messages
         /// <since_tizen> 4 </since_tizen>
         /// <exception cref="System.InvalidOperationException">Thrown when there is an I/O error</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <example>
         /// <code>
         /// Remote remotePort = new RemotePort("org.tizen.example", "SenderPort", true);
         /// remotePort.RemotePortStateChanged += RemotePortStateChangedCallback;
@@ -187,6 +192,7 @@ namespace Tizen.Applications.Messages
         ///     }
         /// }
         /// </code>
+        /// </example>
         public event EventHandler<RemotePortStateChangedEventArgs> RemotePortStateChanged
         {
             add
