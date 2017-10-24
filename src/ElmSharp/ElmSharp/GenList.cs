@@ -356,6 +356,17 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Gets count of items in a this genlist widget
+        /// </summary>
+        public int Count
+        {
+            get
+            {
+                return Interop.Elementary.elm_genlist_items_count(RealHandle);
+            }
+        }
+
+        /// <summary>
         /// ItemSelected is raised when a new genlist item is selected.
         /// </summary>
         public event EventHandler<GenListItemEventArgs> ItemSelected;

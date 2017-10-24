@@ -432,6 +432,16 @@ namespace ElmSharp
             return a;
         }
 
+	/// <summary>
+        /// Send a signal to the edje object of the widget.
+        /// </summary>
+        /// <param name="emission">The signal's name.</param>
+        /// <param name="source">The signal's source.</param>
+        public void SignalEmit(string emission, string source)
+        {
+            Interop.Elementary.elm_object_signal_emit(Handle, emission, source);
+        }
+
         /// <summary>
         /// The callback of Realized Event
         /// </summary>

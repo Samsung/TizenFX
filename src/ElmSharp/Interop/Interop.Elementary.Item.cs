@@ -99,6 +99,18 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern IntPtr elm_object_item_signal_callback_del(IntPtr obj, string emission, string source, Elm_Object_Item_Signal_Cb func);
 
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_object_item_style_set(IntPtr obj, string style);
+
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_object_item_style_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern IntPtr _elm_object_item_style_get(IntPtr obj);
+
+        internal static string elm_object_item_style_get(IntPtr obj)
+        {
+            var text = _elm_object_item_style_get(obj);
+            return Marshal.PtrToStringAnsi(text);
+        }
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool Elm_Object_Item_Signal_Cb(IntPtr data, IntPtr item, string emission, string source);
 

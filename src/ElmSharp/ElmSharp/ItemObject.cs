@@ -82,6 +82,21 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// Sets or gets the style of the Item.
+        /// </summary>
+        public string Style
+        {
+            get
+            {
+                return Interop.Elementary.elm_object_item_style_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_object_item_style_set(Handle, value);
+            }
+        }
+
         internal IntPtr Handle
         {
             get
