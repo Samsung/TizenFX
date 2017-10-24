@@ -34,9 +34,6 @@ internal static partial class Interop
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_set_hotplug_cb")]
     internal static extern ErrorCode SetHotplugCb(this UsbContextHandle /* usb_host_context_h */ ctx, HostHotplugCallback cb, HotplugEventType /* usb_host_hotplug_event_e */ hostEvent, IntPtr /* void */ userData, out HostHotplugHandle /* usb_host_hotplug_h */ handle);
 
-    [DllImport(Libraries.Usb, EntryPoint = "usb_host_unset_hotplug_cb")]
-    internal static extern ErrorCode UnsetHotplugCb(this HostHotplugHandle /* usb_host_hotplug_h */ handle);
-
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_get_device_list")]
     internal static extern ErrorCode GetDeviceList(this UsbContextHandle /* usb_host_context_h */ ctx, out IntPtr /* usb_host_device_h */ devs, out int length);
 
@@ -51,7 +48,7 @@ internal static partial class Interop
         internal static extern ErrorCode Create(out IntPtr /* usb_host_context_h */ ctx);
 
         [DllImport(Libraries.Usb, EntryPoint = "usb_host_destroy")]
-        internal static extern ErrorCode Destroy(UsbContextHandle /* usb_host_context_h */ ctx);
+        internal static extern ErrorCode Destroy(IntPtr /* usb_host_context_h */ ctx);
 
         [DllImport(Libraries.Usb, EntryPoint = "usb_host_free_device_list")]
         internal static extern ErrorCode FreeDeviceList(IntPtr deviceList, bool unrefDevices);
@@ -68,7 +65,7 @@ internal static partial class Interop
                 FreeDeviceList(nativeDevListPtr, true).ThrowIfFailed("Failed to free native device list");
                 nativeDevListPtr = IntPtr.Zero;
             }
-            Destroy(this).ThrowIfFailed("Failed to destroy native context handle");
+            Destroy(handle).ThrowIfFailed("Failed to destroy native context handle");
         }
 
         internal List<HostDeviceHandle> GetDeviceList()
@@ -96,9 +93,15 @@ internal static partial class Interop
         }
     }
 
-    internal class HostHotplugHandle
+    internal class HostHotplugHandle : SafeUsbHandle
     {
-        private IntPtr _handle;
-        public HostHotplugHandle(IntPtr handle) { _handle = handle; }
+        [DllImport(Libraries.Usb, EntryPoint = "usb_host_unset_hotplug_cb")]
+        internal static extern ErrorCode UnsetHotplugCb(IntPtr /* usb_host_hotplug_h */ handle);
+
+        public HostHotplugHandle(IntPtr handle) : base(handle) { }
+        public override void Destroy()
+        {
+            UnsetHotplugCb(handle).ThrowIfFailed($"Failed to unset hot plug callback");
+        }
     }
 }

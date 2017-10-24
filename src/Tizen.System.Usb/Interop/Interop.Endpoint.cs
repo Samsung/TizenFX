@@ -73,9 +73,9 @@ internal static partial class Interop
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_transfer")]
     internal static extern ErrorCode Transfer(this UsbEndpointHandle /* usb_host_endpoint_h */ ep, byte[] data, int length, out int transferred, uint timeout);
 
-    internal class UsbEndpointHandle
+    internal class UsbEndpointHandle : SafeUsbHandle
     {
-        private IntPtr _handle;
-        public UsbEndpointHandle(IntPtr handle){ _handle = handle; }
+        public UsbEndpointHandle(IntPtr handle) : base(handle) { }
+        public override void Destroy() { }
     }
 }

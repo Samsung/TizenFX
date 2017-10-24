@@ -31,7 +31,7 @@ internal static partial class Interop
     internal static extern ErrorCode Open(this HostDeviceHandle /* usb_host_device_h */ dev);
 
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_device_close")]
-    internal static extern ErrorCode Close(this HostDeviceHandle /* usb_host_device_h */ dev);
+    internal static extern ErrorCode CloseHandle(this HostDeviceHandle /* usb_host_device_h */ dev);
 
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_device_get_bus_number")]
     internal static extern ErrorCode GetBusNumber(this HostDeviceHandle /* usb_host_device_h */ dev, out int busNumber);

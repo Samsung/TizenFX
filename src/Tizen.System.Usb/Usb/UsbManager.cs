@@ -25,8 +25,8 @@ namespace Tizen.System.Usb
     /// </summary>
     public class UsbManager : IDisposable
     {
-        private readonly Interop.UsbContextHandle _context;
-        private readonly Interop.HostHotplugHandle _hotpluggedHandle;
+        private readonly Interop.UsbContextHandle _context = null;
+        private readonly Interop.HostHotplugHandle _hotpluggedHandle = null;
         private List<UsbDevice> _devices = new List<UsbDevice>();
 
         /// <summary>
@@ -98,8 +98,8 @@ namespace Tizen.System.Usb
         {
             if (!disposedValue)
             {
-                _hotpluggedHandle.UnsetHotplugCb();
-                _context.Dispose();
+                if (_hotpluggedHandle != null) _hotpluggedHandle.Dispose();
+                if (_context != null) _context.Dispose();
                 disposedValue = true;
             }
         }
