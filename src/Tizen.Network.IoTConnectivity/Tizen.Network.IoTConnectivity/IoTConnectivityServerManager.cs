@@ -49,10 +49,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access</exception>
-        /// <code>
+        /// <example><code>
         /// string filePath = "../../res/iotcon-test-svr-db-server.dat";
         /// IoTConnectivityServerManager.Initialize(filePath);
-        /// </code>
+        /// </code></example>
         public static void Initialize(string filePath)
         {
             int ret = Interop.IoTConnectivity.Client.IoTCon.Initialize(filePath);
@@ -75,9 +75,9 @@ namespace Tizen.Network.IoTConnectivity
         /// Initialize() should be called to initialize.
         /// </pre>
         /// <seealso cref="Initialize(string)"/>
-        /// <code>
+        /// <example><code>
         /// IoTConnectivityServerManager.Deinitialize();
-        /// </code>
+        /// </code></example>
         public static void Deinitialize()
         {
             _resources.Clear();
@@ -105,7 +105,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceTypes types = new ResourceTypes(new List<string>(){ "org.tizen.light" });
         /// Attributes attributes = new Attributes { { "state", "ON" }};
         /// Resource res = new LiteResource("/room/1", types, ResourcePolicy.Discoverable, attributes);
@@ -114,7 +114,7 @@ namespace Tizen.Network.IoTConnectivity
         /// } catch(Exception ex) {
         ///     Console.Log("Exception caught : " + ex.Message);
         /// }
-        /// ]]></code>
+        /// ]]></code></example>
         public static void RegisterResource(Resource resource)
         {
             Log.Info(IoTConnectivityErrorFactory.LogTag, "...");
@@ -172,7 +172,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="LiteResource"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceTypes types = new ResourceTypes(new List<string>(){ "org.tizen.light" });
         /// Attributes attributes = new Attributes { { "state", "ON" }};
         /// Resource res = new LiteResource("/room/1", types, ResourcePolicy.Discoverable, attributes);
@@ -182,7 +182,7 @@ namespace Tizen.Network.IoTConnectivity
         /// } catch(Exception ex) {
         ///     Console.Log("Exception caught : " + ex.Message);
         /// }
-        /// ]]></code>
+        /// ]]></code></example>
         public static void UnregisterResource(Resource resource)
         {
             if (resource != null)
@@ -221,13 +221,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
-        /// <code>
+        /// <example><code>
         /// try {
         ///     IoTConnectivityServerManager.StartSendingPresence(120);
         /// } catch(Exception ex) {
         ///     Console.Log("Exception caught : " + ex.Message);
         /// }
-        /// </code>
+        /// </code></example>
         public static void StartSendingPresence(uint time)
         {
             int ret = Interop.IoTConnectivity.Server.IoTCon.StartPresence(time);
@@ -259,9 +259,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
-        /// <code>
+        /// <example><code>
         /// IoTConnectivityServerManager.StopSendingPresence();
-        /// </code>
+        /// </code></example>
         public static void StopSendingPresence()
         {
             int ret = Interop.IoTConnectivity.Server.IoTCon.StopPresence();
@@ -288,9 +288,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
-        /// <code>
+        /// <example><code>
         /// IoTConnectivityServerManager.SetDeviceName("my-tizen");
-        /// </code>
+        /// </code></example>
         public static void SetDeviceName(string deviceName)
         {
             int ret = Interop.IoTConnectivity.Server.IoTCon.SetDeviceName(deviceName);

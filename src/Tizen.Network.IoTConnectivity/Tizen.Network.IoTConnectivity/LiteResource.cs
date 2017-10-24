@@ -49,13 +49,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="ResourceTypes"/>
         /// <seealso cref="ResourcePolicy"/>
         /// <seealso cref="Attributes"/>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// List<string> list = new List<string>() { "org.tizen.light" };
         /// Attributes attributes = new Attributes() {
         ///     { "state", "ON" }
         /// };
         /// LiteResource res = new LiteResource("/light/1", new ResourceTypes(list), ResourcePolicy.Discoverable, attributes);
-        /// ]]></code>
+        /// ]]></code></example>
         public LiteResource(string uri, ResourceTypes types, ResourcePolicy policy, Attributes attribs = null)
             : base(uri, types, new ResourceInterfaces(new string[] { ResourceInterfaces.DefaultInterface }), policy)
         {
@@ -67,7 +67,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The attributes of the lite resource.</value>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// List<string> list = new List<string>() { "org.tizen.light" };
         /// LiteResource res = new LiteResource("/light/1", new ResourceTypes(list), ResourcePolicy.Discoverable);
         /// Attributes attributes = new Attributes() {
@@ -78,7 +78,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
-        /// ]]></code>
+        /// ]]></code></example>
         public Attributes Attributes { get; set; }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </remarks>
         /// <param name="attribs">The new attributes of the lite resource.</param>
         /// <returns>true to accept post request, false to reject it.</returns>
-        /// <code>
+        /// <example><code>
         /// public class MyLightResource : LiteResource
         /// {
         ///     protected override bool OnPost(Attributes attributes)
@@ -102,7 +102,7 @@ namespace Tizen.Network.IoTConnectivity
         ///         return false;
         ///     }
         /// }
-        /// </code>
+        /// </code></example>
         protected virtual bool OnPost(Attributes attribs)
         {
             return true;

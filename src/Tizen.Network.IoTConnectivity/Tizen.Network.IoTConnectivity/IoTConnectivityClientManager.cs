@@ -87,10 +87,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
-        /// <code>
+        /// <example><code>
         /// IoTConnectivityClientManager.Initialize();
         /// IoTConnectivityClientManager.TimeOut = 120;
-        /// </code>
+        /// </code></example>
         public static int TimeOut
         {
             get
@@ -129,10 +129,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <pre>
         /// Initialize() should be called to initialize.
         /// </pre>
-        /// <code>
+        /// <example><code>
         /// IoTConnectivityClientManager.Initialize();
         /// IoTConnectivityClientManager.PollingInterval = 100;
-        /// </code>
+        /// </code></example>
         public static int PollingInterval
         {
             get
@@ -179,10 +179,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
-        /// <code>
+        /// <example><code>
         /// string filePath = "../../res/iotcon-test-svr-db-client.dat";
         /// IoTConnectivityClientManager.Initialize(filePath);
-        /// </code>
+        /// </code></example>
         public static void Initialize(string filePath)
         {
             int ret = Interop.IoTConnectivity.Client.IoTCon.Initialize(filePath);
@@ -205,9 +205,9 @@ namespace Tizen.Network.IoTConnectivity
         /// Initialize() should be called to initialize.
         /// </pre>
         /// <seealso cref="Initialize(string)"/>
-        /// <code>
+        /// <example><code>
         /// IoTConnectivityClientManager.Deinitialize();
-        /// </code>
+        /// </code></example>
         public static void Deinitialize()
         {
             s_presenceListenerId = 1;
@@ -241,9 +241,9 @@ namespace Tizen.Network.IoTConnectivity
         /// Initialize() should be called to initialize.
         /// </pre>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
-        /// <code>
+        /// <example><code>
         /// IoTConnectivityClientManager.InvokePolling();
-        /// </code>
+        /// </code></example>
         public static void InvokePolling()
         {
             int ret = Interop.IoTConnectivity.Client.IoTCon.InvokePolling();
@@ -287,7 +287,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// EventHandler<PresenceReceivedEventArgs> handler = (sender, e) => {
         ///     Console.Log("PresenceReceived, presence id :" + e.PresenceId);
         /// }
@@ -298,7 +298,7 @@ namespace Tizen.Network.IoTConnectivity
         /// IoTConnectivityClientManager.FindingErrorOccurred += errorHandler;
         /// // Do not forget to remove these event handlers when they are not required any more.
         /// int id = IoTConnectivityClientManager.StartReceivingPresence(IoTConnectivityClientManager.MulticastAddress, "oic.iot.door");
-        /// ]]></code>
+        /// ]]></code></example>
         public static int StartReceivingPresence(string hostAddress, string resourceType)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.Ip;
@@ -384,7 +384,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// EventHandler<PresenceReceivedEventArgs> handler = (sender, e) => {
         ///     Console.Log("PresenceReceived, presence id :" + e.PresenceId);
         /// }
@@ -399,7 +399,7 @@ namespace Tizen.Network.IoTConnectivity
         /// IoTConnectivityClientManager.PresenceReceived -= handler;
         /// IoTConnectivityClientManager.FindingErrorOccurred -= errorHandler;
         /// IoTConnectivityClientManager.StopReceivingPresence(id);
-        /// ]]></code>
+        /// ]]></code></example>
         public static void StopReceivingPresence(int presenceId)
         {
             if (!s_presenceHandlesMap.ContainsKey((IntPtr)presenceId))
@@ -438,12 +438,9 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// <para>Sends request to find a resource of <paramref name="hostAddress" /> server with <paramref name="resourceType" />.
+        /// <para>Sends request to find a resource of <paramref name="hostAddress" /> server with <paramref name="query" />.
         /// If succeeded, <see cref="ResourceFound"/> event handler will be triggered with information of the resource.</para>
-        /// <para><paramref name="hostAddress" /> could be <see cref="MulticastAddress"/> for the IPv4 multicast.
-        /// The length of <paramref name="resourceType" /> should be less than or equal to 61. The <paramref name="resourceType" /> must start
-        /// with a lowercase alphabetic character, followed by a sequence
-        /// of lowercase alphabetic, numeric, ".", or "-" characters, and contains no white space.</para>
+        /// <para><paramref name="hostAddress" /> could be <see cref="MulticastAddress"/> for the IPv4 multicast.</para>
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
@@ -462,7 +459,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// EventHandler<ResourceFoundEventArgs> handler = (sender, e) => {
         ///     Console.Log("Found resource at host address :" + e.Resource.HostAddress + ", uri :" + e.Resource.UriPath);
         /// }
@@ -475,7 +472,7 @@ namespace Tizen.Network.IoTConnectivity
         /// query.Type = "oic.iot.door";
         /// // Do not forget to remove these event handlers when they are not required any more.
         /// int id = IoTConnectivityClientManager.StartFindingResource(null, query);
-        /// ]]></code>
+        /// ]]></code></example>
         public static int StartFindingResource(string hostAddress, ResourceQuery query = null)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.Ip;
@@ -573,7 +570,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// EventHandler<DeviceInformationFoundEventArgs> handler = (sender, e) => {
         ///     Console.Log("Device information found, id : " + e.RequestId + ", name : " + e.Name);
         /// }
@@ -584,7 +581,7 @@ namespace Tizen.Network.IoTConnectivity
         /// IoTConnectivityClientManager.FindingErrorOccurred += errorHandler;
         /// // Do not forget to remove these event handlers when they are not required any more.
         /// int id = IoTConnectivityClientManager.StartFindingDeviceInformation(IoTConnectivityClientManager.MulticastAddress);
-        /// ]]></code>
+        /// ]]></code></example>
         public static int StartFindingDeviceInformation(string hostAddress, ResourceQuery query = null)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.Ip;
@@ -673,7 +670,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// EventHandler<PlatformInformationFoundEventArgs> handler = (sender, e) => {
         ///     Console.Log("PlatformInformationFound :" + e.RequestId);
         /// }
@@ -684,7 +681,7 @@ namespace Tizen.Network.IoTConnectivity
         /// IoTConnectivityClientManager.FindingErrorOccurred += errorHandler;
         /// // Do not forget to remove these event handlers when they are not required any more.
         /// int id = IoTConnectivityClientManager.StartFindingPlatformInformation(IoTConnectivityClientManager.MulticastAddress);
-        /// ]]></code>
+        /// ]]></code></example>
         public static int StartFindingPlatformInformation(string hostAddress, ResourceQuery query = null)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.Ip;
