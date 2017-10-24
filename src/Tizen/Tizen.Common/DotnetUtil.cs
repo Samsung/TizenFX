@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Common
 {
     /// <summary>
-    /// The DotnetAPIs class provides the .NET api version.
+    /// The DotnetUtil class provides the .NET API version.
     /// </summary>
     public static class DotnetUtil
     {
