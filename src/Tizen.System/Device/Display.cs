@@ -54,10 +54,12 @@ namespace Tizen.System
     /// <privilege>
     /// http://tizen.org/privilege/display
     /// </privilege>
+    /// <example>
     /// <code>
     ///     Console.WriteLine("Display current state is: {0}", Tizen.System.Display.State);
     ///     Console.WriteLine("Total number of Displays are: {0}", Tizen.System.Display.NumberOfDisplays);
     /// </code>
+    /// </example>
     public class Display
     {
         private readonly int _displayId;
@@ -115,10 +117,12 @@ namespace Tizen.System
         /// The maximum brightness value that can be set for the specific display.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <example>
         /// <code>
         ///     Display display = Display.Displays[0];
         ///     Console.WriteLine("Display MaxBrightness is: {0}", display.MaxBrightness);
         /// </code>
+        /// </example>
         public int MaxBrightness
         {
             get
@@ -142,10 +146,12 @@ namespace Tizen.System
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <example>
         /// <code>
         ///     Display display = Display.Displays[0];
         ///     Console.WriteLine("Display current Brightness is: {0}", display.Brightness);
         /// </code>
+        /// </example>
         public int Brightness
         {
             get
@@ -191,6 +197,7 @@ namespace Tizen.System
         ///  StateChanged is raised when the state of the display is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <example>
         /// <code>
         /// public static async Task DisplayEventHandler()
         /// {
@@ -201,8 +208,9 @@ namespace Tizen.System
         ///     }
         ///     Battery.StateChanged += handler;
         ///     await Task.Delay(20000);
-        ///  }
+        /// }
         /// </code>
+        /// </example>
         public static event EventHandler<DisplayStateChangedEventArgs> StateChanged
         {
             add

@@ -34,10 +34,12 @@ namespace Tizen.System
     /// <privilege>
     ///  http://tizen.org/privilege/led
     /// </privilege>
+    /// <example>
     /// <code>
     ///     Console.WriteLine("Led MaxBrightness is: {0}", Tizen.System.Led.MaxBrightness);
     ///     Console.WriteLine("Led current Brightness is: {0}", Tizen.System.Led.Brightness);
     /// </code>
+    /// </example>
     public static class Led
     {
         /// <summary>
@@ -73,11 +75,13 @@ namespace Tizen.System
         /// <exception cref="ArgumentException"> When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
+        /// <example>
         /// <code>
         ///     Console.WriteLine("Led current Brightness is: {0}", Tizen.System.Led.Brightness);
         ///     Tizen.System.Led.Brightness = 50;
         ///     Console.WriteLine("Led current Brightness is: {0}", Tizen.System.Led.Brightness);
         /// </code>
+        /// </example>
 
         public static int Brightness
         {
@@ -115,6 +119,7 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
+        /// <example>
         /// <code>
         ///     try
         ///     {
@@ -124,6 +129,7 @@ namespace Tizen.System
         ///     {
         ///     }
         /// </code>
+        /// </example>
         public static void Play(int on, int off, Color color)
         {
             //looks like only blink option is supported. So hard coded to default blink option.
@@ -141,6 +147,7 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
+        /// <example>
         /// <code>
         ///     try
         ///     {
@@ -152,6 +159,7 @@ namespace Tizen.System
         ///     {
         ///     }
         /// </code>
+        /// </example>
 
         public static void Stop()
         {

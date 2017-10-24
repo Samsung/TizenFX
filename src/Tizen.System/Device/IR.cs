@@ -27,9 +27,11 @@ namespace Tizen.System
     /// <privilege>
     /// http://tizen.org/privilege/use_ir
     /// </privilege>
+    /// <example>
     /// <code>
     ///     Console.WriteLine("IR availability for this device is: {0}", IR.IsAvailable);
     /// </code>
+    /// </example>
     public static class IR
     {
         /// <summary>
@@ -64,6 +66,7 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
+        /// <example>
         /// <code>
         ///    try
         ///    {
@@ -76,6 +79,7 @@ namespace Tizen.System
         ///    {
         ///    }
         /// </code>
+        /// </example>
         public static void Transmit(int carrierFreequency, IList<int> pattern)
         {
             int[] patternArray = pattern.ToArray();

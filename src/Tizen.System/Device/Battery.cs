@@ -133,6 +133,7 @@ namespace Tizen.System
         /// CapacityChanged is triggered when the battery charge percentage is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <example>
         /// <code>
         /// public static async Task BatteryEventHandler()
         /// {
@@ -143,8 +144,9 @@ namespace Tizen.System
         ///     }
         ///     Battery.PercentChanged += handler;
         ///     await Task.Delay(20000);
-        ///  }
+        /// }
         ///  </code>
+        /// </example>
         public static event EventHandler<BatteryPercentChangedEventArgs> PercentChanged
         {
             add
@@ -177,6 +179,7 @@ namespace Tizen.System
         /// LevelChanged is triggered when the battery level is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <example>
         /// <code>
         /// public static async Task BatteryEventHandler()
         /// {
@@ -187,8 +190,9 @@ namespace Tizen.System
         ///     }
         ///     Battery.LevelChanged += handler;
         ///     await Task.Delay(20000);
-        ///  }
+        /// }
         /// </code>
+        /// </example>
         public static event EventHandler<BatteryLevelChangedEventArgs> LevelChanged
         {
             add
@@ -221,6 +225,7 @@ namespace Tizen.System
         /// This event is triggered when the charger is connected/disconnected.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <example>
         /// <code>
         /// public static async Task BatteryEventHandler()
         /// {
@@ -231,8 +236,9 @@ namespace Tizen.System
         ///     }
         ///     Battery.ChargingStateChanged += handler;
         ///     await Task.Delay(20000);
-        ///  }
+        /// }
         /// </code>
+        /// </example>
         public static event EventHandler<BatteryChargingStateChangedEventArgs> ChargingStateChanged
         {
             add

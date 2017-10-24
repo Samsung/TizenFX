@@ -29,9 +29,11 @@ namespace Tizen.System
     /// <privilege>
     /// http://tizen.org/privilege/haptic
     /// </privilege>
+    /// <example>
     /// <code>
     ///     Console.WriteLine("Total number of Vibrators are: {0}", Tizen.System.Vibrator.NumberOfVibrators);
     /// </code>
+    /// </example>
     public class Vibrator : IDisposable
     {
         private readonly int _vibratorId;
@@ -118,6 +120,7 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
+        /// <example>
         /// <code>
         ///     Vibrator vibrator = Vibrator.Vibrators[0];
         ///     try
@@ -128,6 +131,7 @@ namespace Tizen.System
         ///     {
         ///     }
         /// </code>
+        /// </example>
 
         public void Vibrate(int duration, int feedback)
         {
@@ -157,6 +161,7 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
+        /// <example>
         /// <code>
         ///     Vibrator vibrator = Vibrator.Vibrators[0];
         ///     try
@@ -167,6 +172,7 @@ namespace Tizen.System
         ///     {
         ///     }
         /// </code>
+        /// </example>
         public void Stop()
         {
             if (_hapticHandle != IntPtr.Zero)

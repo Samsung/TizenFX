@@ -77,10 +77,12 @@ namespace Tizen.System
     /// http://tizen.org/privilege/haptic
     /// For controlling the sound, privilege is not needed.
     /// </privilege>
+    /// <example>
     /// <code>
     /// Feedback feedback = new Feedback();
     /// bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, "Tap");
     /// </code>
+    /// </example>
     public class Feedback
     {
         private const string LogTag = "Tizen.System.Feedback";
