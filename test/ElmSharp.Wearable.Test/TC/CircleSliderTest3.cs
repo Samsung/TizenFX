@@ -18,9 +18,9 @@ using ElmSharp.Wearable;
 
 namespace ElmSharp.Test.TC
 {
-    public class CircleSliderTest1 : TestCaseBase
+    public class CircleSliderTest3 : TestCaseBase
     {
-        public override string TestName => "CircleSliderTest1";
+        public override string TestName => "CircleSliderTest3";
         public override string TestDescription => "To test basic operation of CircleSlider";
 
         public override void Run(Window window)
@@ -28,25 +28,29 @@ namespace ElmSharp.Test.TC
             Conformant conformant = new Conformant(window);
             conformant.Show();
 
+            Naviframe naviframe = new Naviframe(window);
+            naviframe.Show();
+            conformant.SetContent(naviframe);
+
             var surface = new CircleSurface(conformant);
-            CircleSlider circleSlider = new CircleSlider(conformant, surface)
+            CircleSlider circleSlider = new CircleSlider(naviframe, surface)
             {
                 AlignmentX = -1,
                 AlignmentY = -1,
                 WeightX = 1,
                 WeightY = 1,
                 Minimum = 0,
-                Maximum = 100,
-                Value = 25,
-                Step = 5,
+                Maximum = 20,
+                Value = 5,
+                Step = 0.5,
             };
             ((IRotaryActionWidget)circleSlider).Activate();
             circleSlider.Show();
-            conformant.SetContent(circleSlider);
+            naviframe.Push(circleSlider, null, "empty");
 
             Label label1 = new Label(window)
             {
-                Text = string.Format("{0}", circleSlider.Value),
+                Text = string.Format("{0:F1}", circleSlider.Value),
                 Color = Color.White,
             };
 
@@ -56,8 +60,9 @@ namespace ElmSharp.Test.TC
 
             circleSlider.ValueChanged += (s, e) =>
             {
-                label1.Text = string.Format("{0}", circleSlider.Value);
+                label1.Text = string.Format("{0:F1}", circleSlider.Value);
             };
+
         }
     }
 }

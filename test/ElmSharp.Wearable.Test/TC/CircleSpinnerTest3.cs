@@ -18,9 +18,9 @@ using ElmSharp.Wearable;
 
 namespace ElmSharp.Test.TC
 {
-    class CircleSpinnerTest2 : TestCaseBase
+    class CircleSpinnerTest3 : TestCaseBase
     {
-        public override string TestName => "CircleSpinnerTest2";
+        public override string TestName => "CircleSpinnerTest3";
         public override string TestDescription => "To test basic operation of Circle Spinner";
 
         public override void Run(Window window)
@@ -29,12 +29,15 @@ namespace ElmSharp.Test.TC
             Conformant conformant = new Conformant(window);
             conformant.Show();
 
-            Layout layout = new Layout(window);
+            Naviframe naviframe = new Naviframe(window);
+            naviframe.Show();
+            conformant.SetContent(naviframe);
+
+            Layout layout = new Layout(naviframe);
             layout.SetTheme("layout", "circle", "spinner");
-            conformant.SetContent(layout);
 
             var surface = new CircleSurface(conformant);
-            CircleSpinner spn1 = new CircleSpinner(conformant, surface)
+            CircleSpinner spn1 = new CircleSpinner(naviframe, surface)
             {
                 Text = "Spinner Test",
                 LabelFormat = "%d Value",
@@ -48,11 +51,7 @@ namespace ElmSharp.Test.TC
                 AlignmentX = -1,
                 AlignmentY = 1,
                 WeightX = 1,
-                WeightY = 1,
-                // change marker
-                MarkerLineWidth = 40,
-                MarkerColor = Color.Pink,
-                MarkerRadius = 100,
+                WeightY = 1
             };
             ((IRotaryActionWidget)spn1).Activate();
             spn1.AddSpecialValue(50, "50 match !!!!");
@@ -65,6 +64,8 @@ namespace ElmSharp.Test.TC
 
             layout.SetPartContent("elm.swallow.btn", btn);
             layout.SetPartText("elm.text", "Set value");
+
+            naviframe.Push(layout, null, "empty");
         }
     }
 }

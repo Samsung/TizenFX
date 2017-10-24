@@ -51,6 +51,7 @@ namespace ElmSharp.Test.TC
                 Value = 3,
                 Step = 0.5,
             };
+            ((IRotaryActionWidget)circleSlider).Activate();
             circleSlider.Show();
             conformant.SetContent(circleSlider);
             Label label1 = new Label(window)

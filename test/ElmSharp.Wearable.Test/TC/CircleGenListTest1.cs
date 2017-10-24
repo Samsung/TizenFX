@@ -37,7 +37,7 @@ namespace ElmSharp.Test.TC
                 VerticalScrollBackgroundColor = Color.Pink,
                 VerticalScrollBarVisiblePolicy = ScrollBarVisiblePolicy.Visible,
             };
-
+            ((IRotaryActionWidget)list).Activate();
             conformant.SetContent(list);
 
             GenItemClass defaultClass = new GenItemClass("default")

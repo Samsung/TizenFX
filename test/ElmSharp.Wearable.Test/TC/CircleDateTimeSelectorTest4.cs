@@ -29,15 +29,15 @@ namespace ElmSharp.Test.TC
             Conformant conformant = new Conformant(window);
             conformant.Show();
 
-            Layout layout = new Layout(window);
+            var naviframe = new Naviframe(window);
 
+            conformant.SetContent(naviframe);
+            Layout layout = new Layout(naviframe);
             layout.SetTheme("layout", "circle", "datetime");
-
-            conformant.SetContent(layout);
 
             var surface = new CircleSurface(conformant);
 
-            DateTimeSelector datetime = new CircleDateTimeSelector(conformant, surface)
+            DateTimeSelector datetime = new CircleDateTimeSelector(naviframe, surface)
             {
                 DateTime = DateTime.Now,
                 Style = "timepicker/circle",
@@ -45,7 +45,7 @@ namespace ElmSharp.Test.TC
                 MarkerColor = Color.Pink,
                 MarkerRadius = 100,
             };
-
+            ((IRotaryActionWidget)datetime).Activate();
             layout.SetContent(datetime);
 
             Button btn = new Button(layout)
@@ -57,6 +57,8 @@ namespace ElmSharp.Test.TC
             layout.SetPartContent("elm.swallow.btn", btn);
 
             layout.SetPartText("elm.text", "Set time");
+
+            naviframe.Push(layout, null, "empty");
 
             datetime.DateTimeChanged += (object sender, DateChangedEventArgs e) =>
             {

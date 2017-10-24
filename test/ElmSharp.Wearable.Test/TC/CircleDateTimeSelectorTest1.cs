@@ -37,12 +37,13 @@ namespace ElmSharp.Test.TC
 
             var surface = new CircleSurface(conformant);
 
-            DateTimeSelector datetime = new CircleDateTimeSelector(conformant, surface)
+            var datetime = new CircleDateTimeSelector(conformant, surface)
             {
                 MinimumDateTime = new DateTime(2015, 1, 1),
                 MaximumDateTime = DateTime.Now,
                 DateTime = DateTime.Now
             };
+            ((IRotaryActionWidget)datetime).Activate();
 
             layout.SetContent(datetime);
 

@@ -41,6 +41,7 @@ namespace ElmSharp.Test.TC
                 VerticalScrollBarRadius = 170,
                 VerticalScrollBackgroundRadius = 170,
             };
+            ((IRotaryActionWidget)circleScroller).Activate();
             circleScroller.Show();
             circleScroller.Move(0, 0);
             circleScroller.Resize(360, 360);
