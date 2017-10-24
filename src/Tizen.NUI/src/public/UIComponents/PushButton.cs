@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.UIComponents
@@ -93,10 +94,13 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Please do not use! this will be deprecated
+        /// Downcasts a handle to pushButton handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new static PushButton DownCast(BaseHandle handle)
         {
             PushButton ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PushButton;
@@ -105,10 +109,13 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Please do not use! this will be deprecated
+        /// UnselectedIcon.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use UnselectedVisual.
+        [Obsolete("Please DO NOT use! This will be Deprecated!. Please implement by using Visual instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string UnselectedIcon
         {
             set
@@ -118,10 +125,13 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Please do not use! this will be deprecated
+        /// SelectedIcon.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use SelectedVisual.
+        [Obsolete("Please do not use! this will be deprecated, instead please use SelectedVisual.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string SelectedIcon
         {
             set
@@ -133,7 +143,8 @@ namespace Tizen.NUI.UIComponents
         /// Please do not use! this will be deprecated
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        [Obsolete("Please DO NOT use! This will be deprecated, please implement by using Visual instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IconAlignmentType IconAlignment
         {
             get
@@ -195,7 +206,9 @@ namespace Tizen.NUI.UIComponents
         /// Please do not use! this will be deprecated
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// no use
+        [Obsolete("Please DO NOT use! This will be deprecated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new Vector4 LabelPadding
         {
             get
@@ -214,7 +227,9 @@ namespace Tizen.NUI.UIComponents
         /// Please do not use! this will be deprecated
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// no use
+        [Obsolete("Please DO NOT use! This will be deprecated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 IconPadding
         {
             get
@@ -233,7 +248,9 @@ namespace Tizen.NUI.UIComponents
         /// Please do not use! this will be deprecated
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// no use
+        [Obsolete("Please DO NOT use! This will be deprecated!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum IconAlignmentType
         {
             /// <summary>

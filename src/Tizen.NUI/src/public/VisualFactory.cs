@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+
 using System;
 using System.ComponentModel;
 
@@ -42,14 +43,19 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="type">The dispose type</param>
         /// <since_tizen> 3 </since_tizen>
+        /// Please DO NOT use! This will be deprecated!
+        /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
+        /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
+        [Obsolete("Please DO NOT use! This will be Deprecated!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
-            if(disposed)
+            if (disposed)
             {
                 return;
             }
 
-            if(type == DisposeTypes.Explicit)
+            if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.

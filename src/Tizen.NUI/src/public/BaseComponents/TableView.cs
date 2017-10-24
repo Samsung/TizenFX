@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -352,10 +353,13 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Downcasts a handle to tabelView handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new static TableView DownCast(BaseHandle handle)
         {
             TableView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TableView;

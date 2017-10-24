@@ -16,12 +16,14 @@
  */
 extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
+
+using System;
+using System.Runtime.InteropServices;
+using System.Globalization;
+using System.ComponentModel;
+
 namespace Tizen.NUI.BaseComponents
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-    using System.Globalization;
     /// <summary>
     /// A control which provides a single line editable text field.
     /// </summary>
@@ -314,10 +316,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Downcasts a handle to textField handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new static TextField DownCast(BaseHandle handle)
         {
             TextField ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as TextField;

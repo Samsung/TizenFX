@@ -14,13 +14,12 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-
     /// <summary>
     /// Mechanism to issue simple periodic or one-shot events.<br />
     /// Timer is provided for application developers to be able to issue
@@ -153,10 +152,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        ///// Downcasts a handle to Timer handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Timer DownCast(BaseHandle handle)
         {
             Timer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Timer;

@@ -14,11 +14,12 @@
  * limitations under the License.
  *
  */
+using System;
+using Tizen.NUI.BaseComponents;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    using System;
-    using Tizen.NUI.BaseComponents;
 
     /// <summary>
     /// Layers provide a mechanism for overlaying groups of actors on top of each other.
@@ -179,10 +180,13 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Downcasts a handle to layer handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Layer DownCast(BaseHandle handle)
         {
             Layer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Layer;

@@ -14,14 +14,13 @@
  * limitations under the License.
  *
  */
+using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.UIComponents
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-    using Tizen.NUI.BaseComponents;
-
     /// <summary>
     /// The Popup widget provides a configurable popup dialog with a built-in layout of three main fields.
     /// </summary>
@@ -386,10 +385,13 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Please do not use! this will be deprecated
+        /// Downcasts a handle to popup handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new static Popup DownCast(BaseHandle handle)
         {
             Popup ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Popup;
