@@ -783,6 +783,9 @@ namespace ElmSharp
             }
         }
 
+        /// <summary>
+        /// The callback of Realized Event
+        /// </summary>
         protected override void OnRealized()
         {
             base.OnRealized();
