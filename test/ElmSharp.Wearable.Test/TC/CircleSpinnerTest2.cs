@@ -33,7 +33,8 @@ namespace ElmSharp.Test.TC
             layout.SetTheme("layout", "circle", "spinner");
             conformant.SetContent(layout);
 
-            CircleSpinner spn1 = new CircleSpinner(conformant)
+            var surface = new CircleSurface(conformant);
+            CircleSpinner spn1 = new CircleSpinner(conformant, surface)
             {
                 Text = "Slider Test",
                 LabelFormat = "%d Value",

@@ -31,7 +31,8 @@ namespace ElmSharp.Test.TC
 
             Naviframe naviframe = new Naviframe(conformant);
 
-            CircleScroller circleScroller = new CircleScroller(naviframe)
+            var surface = new CircleSurface(naviframe);
+            CircleScroller circleScroller = new CircleScroller(naviframe, surface)
             {
                 AlignmentX = -1,
                 AlignmentY = -1,

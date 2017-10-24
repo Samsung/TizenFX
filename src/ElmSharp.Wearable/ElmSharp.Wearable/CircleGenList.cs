@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Diagnostics;
 
 namespace ElmSharp.Wearable
 {
@@ -22,28 +23,45 @@ namespace ElmSharp.Wearable
     /// The Circle GenList Selector is a widget to display and handle genlist items by rotary event
     /// Inherits <see cref="GenList"/>
     /// </summary>
-    public class CircleGenList : GenList
+    public class CircleGenList : GenList, IRotaryActionWidget
     {
-        IntPtr circleHandle;
+        IntPtr _circleHandle;
+        CircleSurface _surface;
 
         /// <summary>
         /// Creates and initializes a new instance of the Circle GenList class
         /// </summary>
         /// <param name="parent">The parent of new Circle GenList instance</param>
-        public CircleGenList(EvasObject parent) : base(parent) { }
+        /// <param name="surface">The surface for drawing circle features for this widget.</param>
+        public CircleGenList(EvasObject parent, CircleSurface surface) : base()
+        {
+            Debug.Assert(parent == null || surface == null || parent.IsRealized);
+            _surface = surface;
+            Realize(parent);
+        }
 
         /// <summary>
-        /// Sets or gets the disabled state of the Circle GenList Selector
+        /// Gets the handle for Circle Widget.
         /// </summary>
-        public bool Disabled
+        public virtual IntPtr CircleHandle => _circleHandle;
+
+        /// <summary>
+        /// Gets the handle for Circle Surface used in this widget
+        /// </summary>
+        public virtual CircleSurface CircleSurface => _surface;
+
+        /// <summary>
+        /// Sets or gets the state of the widget, which might be enabled or disabled.
+        /// </summary>
+        public override bool IsEnabled
         {
             get
             {
-                return Interop.Eext.eext_circle_object_disabled_get(circleHandle);
+                return !Interop.Eext.eext_circle_object_disabled_get(CircleHandle);
             }
             set
             {
-                Interop.Eext.eext_circle_object_disabled_set(circleHandle, value);
+                Interop.Eext.eext_circle_object_disabled_set(CircleHandle, !value);
             }
         }
 
@@ -55,12 +73,12 @@ namespace ElmSharp.Wearable
             get
             {
                 int r, g, b, a;
-                Interop.Eext.eext_circle_object_item_color_get(circleHandle, "vertical,scroll,bg", out r, out g, out b, out a);
+                Interop.Eext.eext_circle_object_item_color_get(CircleHandle, "vertical,scroll,bg", out r, out g, out b, out a);
                 return new Color(r, g, b, a);
             }
             set
             {
-                Interop.Eext.eext_circle_object_item_color_set(circleHandle, "vertical,scroll,bg", value.R, value.G, value.B, value.A);
+                Interop.Eext.eext_circle_object_item_color_set(CircleHandle, "vertical,scroll,bg", value.R, value.G, value.B, value.A);
             }
         }
 
@@ -71,11 +89,11 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_item_line_width_get(circleHandle, "vertical,scroll,bg");
+                return Interop.Eext.eext_circle_object_item_line_width_get(CircleHandle, "vertical,scroll,bg");
             }
             set
             {
-                Interop.Eext.eext_circle_object_item_line_width_set(circleHandle, "vertical,scroll,bg", value);
+                Interop.Eext.eext_circle_object_item_line_width_set(CircleHandle, "vertical,scroll,bg", value);
             }
         }
 
@@ -86,11 +104,11 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_item_radius_get(circleHandle, "vertical,scroll,bg");
+                return Interop.Eext.eext_circle_object_item_radius_get(CircleHandle, "vertical,scroll,bg");
             }
             set
             {
-                Interop.Eext.eext_circle_object_item_radius_set(circleHandle, "vertical,scroll,bg", value);
+                Interop.Eext.eext_circle_object_item_radius_set(CircleHandle, "vertical,scroll,bg", value);
             }
         }
 
@@ -102,12 +120,12 @@ namespace ElmSharp.Wearable
             get
             {
                 int r, g, b, a;
-                Interop.Eext.eext_circle_object_item_color_get(circleHandle, "default", out r, out g, out b, out a);
+                Interop.Eext.eext_circle_object_item_color_get(CircleHandle, "default", out r, out g, out b, out a);
                 return new Color(r, g, b, a);
             }
             set
             {
-                Interop.Eext.eext_circle_object_item_color_set(circleHandle, "default", value.R, value.G, value.B, value.A);
+                Interop.Eext.eext_circle_object_item_color_set(CircleHandle, "default", value.R, value.G, value.B, value.A);
             }
         }
 
@@ -118,11 +136,11 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_item_line_width_get(circleHandle, "default");
+                return Interop.Eext.eext_circle_object_item_line_width_get(CircleHandle, "default");
             }
             set
             {
-                Interop.Eext.eext_circle_object_item_line_width_set(circleHandle, "default", value);
+                Interop.Eext.eext_circle_object_item_line_width_set(CircleHandle, "default", value);
             }
         }
 
@@ -133,11 +151,11 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return Interop.Eext.eext_circle_object_item_radius_get(circleHandle, "default");
+                return Interop.Eext.eext_circle_object_item_radius_get(CircleHandle, "default");
             }
             set
             {
-                Interop.Eext.eext_circle_object_item_radius_set(circleHandle, "default", value);
+                Interop.Eext.eext_circle_object_item_radius_set(CircleHandle, "default", value);
             }
         }
 
@@ -153,14 +171,14 @@ namespace ElmSharp.Wearable
             get
             {
                 int policy;
-                Interop.Eext.eext_circle_object_genlist_scroller_policy_get(circleHandle, IntPtr.Zero, out policy);
+                Interop.Eext.eext_circle_object_genlist_scroller_policy_get(CircleHandle, IntPtr.Zero, out policy);
                 return (ScrollBarVisiblePolicy)policy;
             }
             set
             {
                 int h;
-                Interop.Eext.eext_circle_object_genlist_scroller_policy_get(circleHandle, out h, IntPtr.Zero);
-                Interop.Eext.eext_circle_object_genlist_scroller_policy_set(circleHandle, (int)h, (int)value);
+                Interop.Eext.eext_circle_object_genlist_scroller_policy_get(CircleHandle, out h, IntPtr.Zero);
+                Interop.Eext.eext_circle_object_genlist_scroller_policy_set(CircleHandle, (int)h, (int)value);
             }
         }
 
@@ -172,36 +190,7 @@ namespace ElmSharp.Wearable
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             var handle = base.CreateHandle(parent);
-
-            IntPtr surface = IntPtr.Zero;
-
-            if (parent is Conformant)
-            {
-                surface = Interop.Eext.eext_circle_surface_conformant_add(parent);
-            }
-            else if (parent is Naviframe)
-            {
-                surface = Interop.Eext.eext_circle_surface_naviframe_add(parent.RealHandle);
-            }
-            else if (parent is Layout)
-            {
-                surface = Interop.Eext.eext_circle_surface_layout_add(parent);
-            }
-
-            circleHandle = Interop.Eext.eext_circle_object_genlist_add(RealHandle, surface);
-            if (surface == IntPtr.Zero)
-            {
-                EvasObject p = parent;
-                while(!(p is Window))
-                {
-                    p = p.Parent;
-                }
-                var w = (p as Window).ScreenSize.Width;
-                var h = (p as Window).ScreenSize.Height;
-                Interop.Evas.evas_object_resize(circleHandle, w, h);
-            }
-
-            Interop.Eext.eext_rotary_object_event_activated_set(circleHandle, true);
+            _circleHandle = Interop.Eext.eext_circle_object_genlist_add(RealHandle == IntPtr.Zero ? Handle : RealHandle, CircleSurface.Handle);
 
             return handle;
         }

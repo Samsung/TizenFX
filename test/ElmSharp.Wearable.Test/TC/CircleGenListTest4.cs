@@ -25,7 +25,9 @@ namespace ElmSharp.Test.TC
 
         public override void Run(Window window)
         {
-            var list = new CircleGenList(window)
+            var surface = new CircleSurface();
+
+            var list = new CircleGenList(window, surface)
             {
                 Homogeneous = true,
                 VerticalScrollBarVisiblePolicy = ScrollBarVisiblePolicy.Invisible,

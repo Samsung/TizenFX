@@ -97,10 +97,13 @@ namespace ElmSharp
         /// <param name="parent">The <see cref="EvasObject"/> to which the new Scroller will be attached as a child.</param>
         public Scroller(EvasObject parent) : base(parent)
         {
-            _scroll = new SmartEvent(this, this.RealHandle, "scroll");
-            _dragStart = new SmartEvent(this, this.RealHandle, "scroll,drag,start");
-            _dragStop = new SmartEvent(this, this.RealHandle, "scroll,drag,stop");
-            _scrollpage = new SmartEvent(this, this.RealHandle, "scroll,page,changed");
+        }
+
+        /// <summary>
+        /// Creates and initializes a new instance of the Scroller class.
+        /// </summary>
+        public Scroller() : base()
+        {
         }
 
         /// <summary>
@@ -778,6 +781,15 @@ namespace ElmSharp
             {
                 Interop.Elementary.elm_scroller_region_show(RealHandle, region.X, region.Y, region.Width, region.Height);
             }
+        }
+
+        protected override void OnRealized()
+        {
+            base.OnRealized();
+            _scroll = new SmartEvent(this, this.RealHandle, "scroll");
+            _dragStart = new SmartEvent(this, this.RealHandle, "scroll,drag,start");
+            _dragStop = new SmartEvent(this, this.RealHandle, "scroll,drag,stop");
+            _scrollpage = new SmartEvent(this, this.RealHandle, "scroll,page,changed");
         }
 
         /// <summary>

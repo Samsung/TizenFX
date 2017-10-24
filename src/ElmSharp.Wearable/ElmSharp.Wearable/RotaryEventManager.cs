@@ -67,7 +67,7 @@ namespace ElmSharp.Wearable
     /// <summary>
     /// RotaryEventManager serve extension functions for Rotary event to EvasObject on device like Galaxy Gear.
     /// </summary>
-    public static class EvasObjectExtensions
+    public static class RotaryEventExtensions
     {
         static Dictionary<EvasObject, RotaryEventHandler> s_rotaryObjectEventHandlers = new Dictionary<EvasObject, RotaryEventHandler>();
         static Dictionary<EvasObject, Interop.Eext.Eext_Rotary_Event_Cb> s_rotaryObjectEventMap = new Dictionary<EvasObject, Interop.Eext.Eext_Rotary_Event_Cb>();
@@ -107,6 +107,24 @@ namespace ElmSharp.Wearable
                     s_rotaryObjectEventHandlers.Remove(obj);
                 }
             }
+        }
+
+        /// <summary>
+        /// Activate this circle widget can take Rotary event.
+        /// </summary>
+        /// <param name="widget">Target circle widget</param>
+        public static void Activate(this IRotaryActionWidget widget)
+        {
+            Interop.Eext.eext_rotary_object_event_activated_set(widget.CircleHandle, true);
+        }
+
+        /// <summary>
+        /// Deactivate this circle widget is blocked from Rotary event.
+        /// </summary>
+        /// <param name="widget">Target circle widget</param>
+        public static void Deactivate(this IRotaryActionWidget widget)
+        {
+            Interop.Eext.eext_rotary_object_event_activated_set(widget.CircleHandle, false);
         }
 
         /// <summary>

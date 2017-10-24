@@ -30,7 +30,8 @@ namespace ElmSharp.Test.TC
             Conformant conformant = new Conformant(window);
             conformant.Show();
 
-            CircleProgressBar pb1 = new CircleProgressBar(conformant)
+            var surface = new CircleSurface(conformant);
+            CircleProgressBar pb1 = new CircleProgressBar(conformant, surface)
             {
                 AlignmentX = -1,
                 AlignmentY = -1,
@@ -66,7 +67,7 @@ namespace ElmSharp.Test.TC
                 if (pb1.Value == pb1.Maximum/2)
                 {
                     // Test purpose : set disable
-                    pb1.Disabled = true;
+                    pb1.IsEnabled = false;
                 }
 
                 if (pb1.Value == pb1.Maximum)

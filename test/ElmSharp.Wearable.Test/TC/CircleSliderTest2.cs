@@ -28,8 +28,8 @@ namespace ElmSharp.Test.TC
             Conformant conformant = new Conformant(window);
             conformant.Show();
 
-
-            CircleSlider circleSlider = new CircleSlider(conformant)
+            var surface = new CircleSurface(conformant);
+            CircleSlider circleSlider = new CircleSlider(conformant, surface)
             {
                 AlignmentX = -1,
                 AlignmentY = -1,
@@ -75,7 +75,7 @@ namespace ElmSharp.Test.TC
 
             Log.Debug(TestName, "CircleSliderTest2 step:" + circleSlider.Step);
 
-            circleSlider.Changed += (s, e) =>
+            circleSlider.ValueChanged += (s, e) =>
             {
                 label1.Text = string.Format("{0:F1}", circleSlider.Value);
             };

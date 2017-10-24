@@ -29,7 +29,8 @@ namespace ElmSharp.Test.TC
             Conformant conformant = new Conformant(window);
             conformant.Show();
 
-            CircleScroller circleScroller = new CircleScroller(conformant)
+            var surface = new CircleSurface(conformant);
+            CircleScroller circleScroller = new CircleScroller(conformant, surface)
             {
                 AlignmentX = -1,
                 AlignmentY = -1,

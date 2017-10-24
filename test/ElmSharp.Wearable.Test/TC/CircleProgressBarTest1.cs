@@ -30,7 +30,9 @@ namespace ElmSharp.Test.TC
             Conformant conformant = new Conformant(window);
             conformant.Show();
 
-            CircleProgressBar pb1 = new CircleProgressBar(conformant)
+            var surface = new CircleSurface(conformant);
+
+            CircleProgressBar pb1 = new CircleProgressBar(conformant, surface)
             {
                 AlignmentX = -1,
                 AlignmentY = -1,

@@ -26,8 +26,9 @@ namespace ElmSharp.Test.TC
 
         public override void Run(Window window)
         {
+            var surface = new CircleSurface();
 
-            CircleScroller circleScroller = new CircleScroller(window)
+            CircleScroller circleScroller = new CircleScroller(window, surface)
             {
                 AlignmentX = -1,
                 AlignmentY = -1,
