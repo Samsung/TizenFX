@@ -40,9 +40,11 @@ namespace Tizen.Applications
         /// The bundle constructor.
         /// </summary>
         /// <exception cref="System.InvalidOperationException">Thrown when out of memory.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// </code>
+        /// </example>
         public Bundle()
         {
             _handle = Interop.Bundle.Create();
@@ -96,11 +98,13 @@ namespace Tizen.Applications
         /// <summary>
         /// The number of items in a bundle object.
         /// </summary>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// bundle.AddItem("string", "a_string");
         /// Console.WriteLine("There are {0} items in the bundle", bundle.Count);
         /// </code>
+        /// </example>
         public int Count
         {
             get
@@ -112,6 +116,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The keys in a bundle object.
         /// </summary>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// bundle.AddItem("string1", "a_string1");
@@ -123,6 +128,7 @@ namespace Tizen.Applications
         ///     Console.WriteLine(key);
         /// }
         /// </code>
+        /// </example>
         public IEnumerable<string> Keys
         {
             get
@@ -153,6 +159,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="key">The key to check for.</param>
         /// <returns>true if the bundle contains the key, false otherwise.</returns>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// bundle.AddItem("string", "a_string");
@@ -162,6 +169,7 @@ namespace Tizen.Applications
         ///     Console.WriteLine(aValue);
         /// }
         /// </code>
+        /// </example>
         public bool Contains(string key)
         {
             return _keys.Contains(key);
@@ -175,11 +183,13 @@ namespace Tizen.Applications
         /// <exception cref="System.ArgumentException">Thrown when the key already exists or when there is an invalid parameter.</exception>
         /// <exception cref="System.ArgumentNullException">Thrown when a value is null.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when out of memory or when the bundle instance has been disposed.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// byte[] byteArray = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         /// bundle.AddItem("byte_array", byteArray);
         /// </code>
+        /// </example>
         public void AddItem(string key, byte[] value)
         {
             if (value == null)
@@ -200,11 +210,13 @@ namespace Tizen.Applications
         /// <exception cref="System.ArgumentException">Thrown when the key already exists or when there is an invalid parameter.</exception>
         /// <exception cref="System.ArgumentNullException">Thrown when a value is null.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when out of memory or when the bundle instance has been disposed.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// byte[] byteArray = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         /// bundle.AddItem("byte_array", byteArray, 2, 3);
         /// </code>
+        /// </example>
         public void AddItem(string key, byte[] value, int offset, int count)
         {
             if (!_keys.Contains(key))
@@ -247,10 +259,12 @@ namespace Tizen.Applications
         /// <param name="value">The value of the item.</param>
         /// <exception cref="System.ArgumentException">Thrown when the key already exists or when there is an invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when out of memory or when the bundle instance has been disposed.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// bundle.AddItem("string", "a_string");
         /// </code>
+        /// </example>
         public void AddItem(string key, string value)
         {
             if (!_keys.Contains(key))
@@ -272,11 +286,13 @@ namespace Tizen.Applications
         /// <param name="value">The value of the item.</param>
         /// <exception cref="System.ArgumentException">Thrown when the key already exists or when there is an invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when out of memory or when the bundle instance has been disposed.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// string[] stringArray = { "a", "b", "c" };
         /// bundle.AddItem("string_array", stringArray);
         /// </code>
+        /// </example>
         public void AddItem(string key, IEnumerable<string> value)
         {
             if (!_keys.Contains(key))
@@ -299,6 +315,7 @@ namespace Tizen.Applications
         /// <returns>The value of the bundle item.</returns>
         /// <exception cref="System.ArgumentException">Thrown when the key does not exist or when there is an invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// bundle.AddItem("string", "a_string");
@@ -312,6 +329,7 @@ namespace Tizen.Applications
         ///     }
         /// }
         /// </code>
+        /// </example>
         public object GetItem(string key)
         {
             if (_keys.Contains(key))
@@ -369,6 +387,7 @@ namespace Tizen.Applications
         /// <exception cref="System.ArgumentException">Thrown when the key does not exist or when there is an invalid parameter.</exception>
         /// <exception cref="System.InvalidCastException">Thrown when the value of the bundle item cannot be converted to the specified generic type.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// string[] stringArray = { "a", "b", "c" };
@@ -388,6 +407,7 @@ namespace Tizen.Applications
         ///     }
         /// }
         /// </code>
+        /// </example>
         public T GetItem<T>(string key)
         {
             return (T)GetItem(key);
@@ -400,6 +420,7 @@ namespace Tizen.Applications
         /// <param name="value">The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</param>
         /// <returns>true if an item with the key exists and if the value is the same type as the output value parameter, false otherwise.</returns>
         /// <exception cref="System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// byte[] byteArray = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -410,6 +431,7 @@ namespace Tizen.Applications
         ///     Console.WriteLine("First item in the byte array: {0}", aByteArray[0]);
         /// }
         /// </code>
+        /// </example>
         public bool TryGetItem(string key, out byte[] value)
         {
             if (_keys.Contains(key) && Interop.Bundle.GetType(_handle, key) == (int)BundleType.Byte)
@@ -435,6 +457,7 @@ namespace Tizen.Applications
         /// <param name="value">The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</param>
         /// <returns>true if an item with the key exists and if the value is the same type as the output value parameter, false otherwise.</returns>
         /// <exception cref="System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// bundle.AddItem("string", "a_string");
@@ -444,6 +467,7 @@ namespace Tizen.Applications
         ///     Console.WriteLine(aString);
         /// }
         /// </code>
+        /// </example>
         public bool TryGetItem(string key, out string value)
         {
             if (_keys.Contains(key) && Interop.Bundle.GetType(_handle, key) == (int)BundleType.String)
@@ -469,6 +493,7 @@ namespace Tizen.Applications
         /// <param name="value">The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</param>
         /// <returns>true if an item with the key exists and if the value is the same type as the output value parameter, false otherwise.</returns>
         /// <exception cref="System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// string[] stringArray = { "a", "b", "c" };
@@ -482,6 +507,7 @@ namespace Tizen.Applications
         ///     }
         /// }
         /// </code>
+        /// </example>
         public bool TryGetItem(string key, out IEnumerable<string> value)
         {
             if (_keys.Contains(key) && Interop.Bundle.GetType(_handle, key) == (int)BundleType.StringArray)
@@ -508,6 +534,7 @@ namespace Tizen.Applications
         /// <returns>true if the item is of the specified type, false otherwise.</returns>
         /// <exception cref="System.ArgumentException">Thrown when the key does not exist or when there is an invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// string[] stringArray = { "a", "b", "c" };
@@ -522,6 +549,7 @@ namespace Tizen.Applications
         ///     }
         /// }
         /// </code>
+        /// </example>
         public bool Is<T>(string key)
         {
             if (_keys.Contains(key))
@@ -555,6 +583,7 @@ namespace Tizen.Applications
         /// <returns>true if the item is successfully found and removed, false otherwise (even if the item is not found).</returns>
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// bundle.AddItem("string", "a_string");
@@ -566,6 +595,7 @@ namespace Tizen.Applications
         ///     }
         /// }
         /// </code>
+        /// </example>
         public bool RemoveItem(string key)
         {
             if (_keys.Contains(key))
@@ -591,11 +621,13 @@ namespace Tizen.Applications
         /// <param name="bundleRaw">The encoded bundle data. bundleRaw should be the returned value of Tizen.Applications.Bundle.Encode, otherwise this method will not succeed.</param>
         /// <returns>Decoded Bundle object.</returns>
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// string bundleRaw = bundle.Encode();
         /// Bundle data = bundle.Decode(bundleRaw);
         /// </code>
+        /// </example>
         public static Bundle Decode(string bundleRaw)
         {
             SafeBundleHandle handle;
@@ -614,10 +646,12 @@ namespace Tizen.Applications
         /// </summary>
         /// <returns>Encoded bundle data in string.</returns>
         /// <exception cref="System.InvalidOperationException">Thrown when out of memory or when the bundle instance has been disposed.</exception>
+        /// <example>
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// string bundleRaw = bundle.Encode();
         /// </code>
+        /// </example>
         public string Encode()
         {
             string bundleRaw;
