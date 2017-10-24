@@ -28,7 +28,7 @@ namespace Tizen.Multimedia.Vision
         /// <since_tizen> 3 </since_tizen>
         Numeric,
         /// <summary>
-        /// Alphanumeric characters, '$', '%', '*', '+', '-', '.', '/' and ':'.
+        /// Alphanumeric characters, '$', '%', '*', '+', '-', '.', '/', and ':'.
         /// </summary>
         /// <since_tizen> 3</since_tizen>
         AlphaNumeric,

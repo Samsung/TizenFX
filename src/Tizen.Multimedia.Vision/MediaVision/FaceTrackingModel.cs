@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents the face tracking model.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <since_tizen> 3 </since_tizen>
     public class FaceTrackingModel : IDisposable
     {
@@ -124,7 +125,7 @@ namespace Tizen.Multimedia.Vision
         /// <param name="path">Path to the file to save the model.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="FaceTrackingModel"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
         /// <since_tizen> 3 </since_tizen>
         public void Save(string path)

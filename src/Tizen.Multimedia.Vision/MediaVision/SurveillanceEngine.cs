@@ -24,6 +24,8 @@ namespace Tizen.Multimedia.Vision
     /// SurveillanceEngine is a base class for surveillance event triggers.
     /// Media Vision Surveillance provides the functionality which can be utilized for creation of video surveillance systems.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
+    /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <seealso cref="MovementDetector"/>
     /// <seealso cref="PersonAppearanceDetector"/>
     /// <seealso cref="PersonRecognizer"/>
@@ -131,7 +133,6 @@ namespace Tizen.Multimedia.Vision
             }
             UnsubscribeEventTrigger(Handle, source.StreamId).Validate("Failed to unsubscribe event trigger");
         }
-
 
         /// <summary>
         /// Releases all the resources used by the <see cref="SurveillanceEngine"/> object.

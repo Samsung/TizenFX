@@ -24,6 +24,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents the face recognition model interface.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <since_tizen> 3 </since_tizen>
     public class FaceRecognitionModel : IDisposable
     {
@@ -79,6 +80,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets labels that had been learned by the model.
         /// </summary>
+        /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
         /// <since_tizen> 3</since_tizen>
         public int[] Labels
         {
@@ -87,9 +89,7 @@ namespace Tizen.Multimedia.Vision
                 IntPtr unmangedArray = IntPtr.Zero;
                 try
                 {
-                    uint numOfLabels = 0;
-
-                    InteropModel.QueryLabels(Handle, out unmangedArray, out numOfLabels).
+                    InteropModel.QueryLabels(Handle, out unmangedArray, out var numOfLabels).
                         Validate("Failed to retrieve face labels.");
 
                     int[] labels = new int[numOfLabels];

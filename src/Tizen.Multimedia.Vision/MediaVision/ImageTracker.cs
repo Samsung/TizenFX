@@ -46,6 +46,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="trackingModel"/> has no target.</exception>
         /// <seealso cref="ImageTrackingModel.SetTarget(ImageObject)"/>
+        /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<Quadrangle> TrackAsync(MediaVisionSource source,
             ImageTrackingModel trackingModel)
@@ -75,6 +76,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="trackingModel"/> has no target.</exception>
         /// <seealso cref="ImageTrackingModel.SetTarget(ImageObject)"/>
+        /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<Quadrangle> TrackAsync(MediaVisionSource source,
             ImageTrackingModel trackingModel, ImageTrackingConfiguration config)

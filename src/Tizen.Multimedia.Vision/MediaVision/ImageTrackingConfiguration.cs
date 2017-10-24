@@ -21,6 +21,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents a configuration of <see cref="ImageTracker"/>.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 3 </since_tizen>
     public class ImageTrackingConfiguration : ImageRecognitionConfiguration
     {

@@ -22,6 +22,8 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Provides the ability to detect person appearance changes on image sources.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
+    /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <seealso cref="PersonAppearanceDetectionConfiguration"/>
     /// <since_tizen> 3 </since_tizen>
     public class PersonAppearanceDetector : SurveillanceEngine
@@ -38,7 +40,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonAppearanceDetector"/> class.
         /// </summary>
-        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         public PersonAppearanceDetector() : base(PersonAppearanceEventType)
         {

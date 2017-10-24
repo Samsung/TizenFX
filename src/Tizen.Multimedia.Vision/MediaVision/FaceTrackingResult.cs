@@ -30,7 +30,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets the value indicating the recognition is successful.
+        /// Gets the value indicating the tracking is successful.
         /// </summary>
         /// <since_tizen> 3</since_tizen>
         public bool Success { get; }

@@ -22,6 +22,8 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Provides the ability to recognize person on image sources.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
+    /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <seealso cref="PersonRecognitionConfiguration"/>
     /// <since_tizen> 3 </since_tizen>
     public class PersonRecognizer : SurveillanceEngine
@@ -36,7 +38,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonRecognizer"/> class.
         /// </summary>
-        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         public PersonRecognizer() : base(PersonRecognizedEventType)
         {

@@ -21,6 +21,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents a configuration of <see cref="ImageRecognizer"/>.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 3 </since_tizen>
     public class ImageRecognitionConfiguration : EngineConfiguration
     {
@@ -32,7 +33,7 @@ namespace Tizen.Multimedia.Vision
         private const string KeyTolerantPartMatchingError = "MV_IMAGE_RECOGNITION_TOLERANT_MATCH_PART_ERR";
 
         /// <summary>
-        /// A read-only field that represents the default value of <see cref="KeySceneScaleFactor"/>.
+        /// A read-only field that represents the default value of <see cref="SceneScaleFactor"/>.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly double DefaultSceneScaleFactor = 1.2;

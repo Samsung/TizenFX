@@ -21,6 +21,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents a configuration of fill operations of <see cref="ImageObject"/> instances.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 3 </since_tizen>
     public class ImageFillConfiguration : EngineConfiguration
     {

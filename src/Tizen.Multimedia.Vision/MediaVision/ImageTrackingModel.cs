@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents the image tracking model interface.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 3 </since_tizen>
     public class ImageTrackingModel : IDisposable
     {

@@ -21,6 +21,8 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents a configuration of <see cref="PersonRecognizer"/> instances.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
+    /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 3 </since_tizen>
     public class PersonRecognitionConfiguration : SurveillanceEngineConfiguration
     {
@@ -31,7 +33,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <param name="modelPath">Path to the face recognition model.</param>
         /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
-        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         public PersonRecognitionConfiguration(string modelPath)
         {
