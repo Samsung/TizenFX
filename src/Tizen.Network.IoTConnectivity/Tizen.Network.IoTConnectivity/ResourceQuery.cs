@@ -42,9 +42,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="Remove(string)"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
-        /// <code>
+        /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
-        /// </code>
+        /// </code></example>
         public ResourceQuery()
         {
             int ret = Interop.IoTConnectivity.Common.Query.Create(out _resourceQueryHandle);
@@ -94,11 +94,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code>
+        /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Type = "org.tizen.light";
         /// Console.WriteLine("Type of query : {0}", query.Type);
-        /// </code>
+        /// </code></example>
         public string Type
         {
             get
@@ -137,10 +137,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code>
+        /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Interface = ResourceInterfaces.LinkInterface;
-        /// </code>
+        /// </code></example>
         public string Interface
         {
             get
@@ -173,13 +173,13 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>All the query keys.</value>
-        /// <code>
+        /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key", "value");
         /// query.Add("newKey", "sample value");
         /// var keys = query.Keys;
         /// Console.WriteLine("Resource query contains keys {0} and {1}", keys.ElementAt(0), keys.ElementAt(1));
-        /// </code>
+        /// </code></example>
         public ICollection<string> Keys
         {
             get
@@ -193,13 +193,13 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>All the query values.</value>
-        /// <code>
+        /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key", "value");
         /// query.Add("newKey", "sample value");
         /// var values = query.Values;
         /// Console.WriteLine("Resource query contains values {0} and {1}", values.ElementAt(0), values.ElementAt(1));
-        /// </code>
+        /// </code></example>
         public ICollection<string> Values
         {
             get
@@ -213,13 +213,13 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The number of query elements.</value>
-        /// <code>
+        /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key", "value");
         /// query.Add("newKey", "sample value");
         /// var count = query.Count;
         /// Console.WriteLine("There are {0} keys in the query object", count);
-        /// </code>
+        /// </code></example>
         public int Count
         {
             get
@@ -233,11 +233,11 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Whether the collection is readonly.</value>
-        /// <code>
+        /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
         /// if (query.IsReadOnly)
         ///     Console.WriteLine("Read only query");
-        /// </code>
+        /// </code></example>
         public bool IsReadOnly
         {
             get
@@ -253,11 +253,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <value>The query data.</value>
         /// <param name="key">The query key to get or set.</param>
         /// <returns>The query with the specified key.</returns>
-        /// <code>
+        /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
         /// query["key1"] = "sample-data";
         /// Console.WriteLine("query has : {0}", query["key1"]);
-        /// </code>
+        /// </code></example>
         public string this[string key]
         {
             get
@@ -277,12 +277,12 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="key">The key to look for.</param>
         /// <returns>true if exists. Otherwise, false.</returns>
-        /// <code>
+        /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key1", "value1");
         /// if (query.ContainsKey("key1"))
         ///     Console.WriteLine("query conatins key : key1");
-        /// </code>
+        /// </code></example>
         public bool ContainsKey(string key)
         {
             return _query.ContainsKey(key);
@@ -302,10 +302,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code>
+        /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key1", "value1");
-        /// </code>
+        /// </code></example>
         public void Add(string key, string value)
         {
             if (CanAddQuery(key, value))
@@ -336,11 +336,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code>
+        /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key1", "value1");
         /// var result = query.Remove("key1");
-        /// </code>
+        /// </code></example>
         public bool Remove(string key)
         {
             int ret = Interop.IoTConnectivity.Common.Query.Remove(_resourceQueryHandle, key);
@@ -362,14 +362,14 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="key">The query key.</param>
         /// <param name="value">Value corresponding to query key.</param>
         /// <returns>True if the key exists, false otherwise.</returns>
-        /// <code>
+        /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key1", "value1");
         /// string value;
         /// var isPresent = query.TryGetValue("key1", out value);
         /// if (isPresent)
         ///     Console.WriteLine("value : {0}", value);
-        /// </code>
+        /// </code></example>
         public bool TryGetValue(string key, out string value)
         {
             return _query.TryGetValue(key, out value);
@@ -382,10 +382,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="item">The key value pair.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Remove(KeyValuePair{string, string})"/>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
-        /// ]]></code>
+        /// ]]></code></example>
         public void Add(KeyValuePair<string, string> item)
         {
             Add(item.Key, item.Value);
@@ -398,12 +398,12 @@ namespace Tizen.Network.IoTConnectivity
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code>
+        /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key1", "value1");
         /// query.Add("key2", "value2");
         /// query.Clear();
-        /// </code>
+        /// </code></example>
         public void Clear()
         {
             foreach (string key in _query.Keys)
@@ -424,13 +424,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="item">The key value pair.</param>
         /// <returns>True if exists. Otherwise, false.</returns>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
         /// var isPresent = query.Contains(new KeyValuePair<string, string>("key1", "value1"));
         /// if (isPresent)
         ///     Console.WriteLine("Key value pair is present");
-        /// ]]></code>
+        /// ]]></code></example>
         public bool Contains(KeyValuePair<string, string> item)
         {
             return _query.Contains(item);
@@ -442,13 +442,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="array">The destination array.</param>
         /// <param name="arrayIndex">Index parameter.</param>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
         /// KeyValuePair<string, string>[] dest = new KeyValuePair<string, string>[query.Count];
         /// query.CopyTo(dest, 0);
         /// Console.WriteLine("Dest conatins ({0}, {1})", dest[0].Key, dest[0].Value);
-        /// ]]></code>
+        /// ]]></code></example>
         public void CopyTo(KeyValuePair<string, string>[] array, int arrayIndex)
         {
             _query.CopyTo(array, arrayIndex);
@@ -463,11 +463,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Add(KeyValuePair{string, string})"/>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
         /// var result = query.Remove(new KeyValuePair<string, string>("key1", "value1"));
-        /// ]]></code>
+        /// ]]></code></example>
         public bool Remove(KeyValuePair<string, string> item)
         {
             return Remove(item.Key);
@@ -478,7 +478,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Enumerator to query pairs.</returns>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
         /// query.Add(new KeyValuePair<string, string>("key2", "value2"));
@@ -486,7 +486,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
-        /// ]]></code>
+        /// ]]></code></example>
         public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
         {
             return _query.GetEnumerator();
@@ -497,7 +497,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The enumerator to the query pairs.</returns>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
         /// query.Add(new KeyValuePair<string, string>("key2", "value2"));
@@ -505,7 +505,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
-        /// ]]></code>
+        /// ]]></code></example>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _query.GetEnumerator();

@@ -32,9 +32,9 @@ namespace Tizen.Network.IoTConnectivity
         /// Constructor of Response.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <code>
+        /// <example><code>
         /// Response response = new Response();
-        /// </code>
+        /// </code></example>
         public Response() { }
 
         /// <summary>

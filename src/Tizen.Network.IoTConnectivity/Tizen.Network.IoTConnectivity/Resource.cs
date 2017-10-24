@@ -57,7 +57,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="ResourcePolicy"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// // Create a class which inherits from Resource
         /// public class DoorResource : Resource
         /// {
@@ -77,7 +77,7 @@ namespace Tizen.Network.IoTConnectivity
         /// ResourceInterfaces ifaces = new ResourceInterfaces(new List<string>(){ ResourceInterfaces.DefaultInterface });
         /// ResourceTypes types = new ResourceTypes(new List<string>(){ "oic.iot.door.new" });
         /// Resource resource = new DoorResource("/door/uri1", types, ifaces, ResourcePolicy.Discoverable | ResourcePolicy.Observable);
-        /// ]]></code>
+        /// ]]></code></example>
         protected Resource(string uri, ResourceTypes types, ResourceInterfaces interfaces, ResourcePolicy policy)
         {
             UriPath = uri;
@@ -173,7 +173,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceInterfaces ifaces = new ResourceInterfaces(new List<string>(){ ResourceInterfaces.DefaultInterface });
         /// ResourceTypes types = new ResourceTypes(new List<string>(){ "oic.iot.door.new.notify" });
         /// Resource resource = new DoorResource("/door/uri/new/notify", types, ifaces, ResourcePolicy.Discoverable | ResourcePolicy.Observable);
@@ -186,7 +186,7 @@ namespace Tizen.Network.IoTConnectivity
         ///      _attribute, 1 }
         /// };
         /// resource.Notify(repr, QualityOfService.High);
-        /// ]]></code>
+        /// ]]></code></example>
         public void Notify(Representation representation, QualityOfService qos)
         {
             int ret = (int)IoTConnectivityError.None;

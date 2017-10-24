@@ -42,9 +42,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
-        /// <code>
+        /// <example><code>
         /// Representation repr = new Representation();
-        /// </code>
+        /// </code></example>
         public Representation()
         {
             int ret = Interop.IoTConnectivity.Common.Representation.Create(out _representationHandle);
@@ -93,11 +93,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code>
+        /// <example><code>
         /// Representation repr = new Representation();
         /// repr.UriPath = "/a/light";
         /// Console.WriteLine("URI is {0}", repr.UriPath);  //Getter
-        /// </code>
+        /// </code></example>
         public string UriPath
         {
             get
@@ -133,7 +133,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// Representation repr = new Representation();
         /// ResourceTypes types = new ResourceTypes (new List<string>(){ "org.tizen.light" });
         /// repr.Type = types;
@@ -142,7 +142,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("Type is {0}", item);
         /// }
-        /// ]]></code>
+        /// ]]></code></example>
         public ResourceTypes Type
         {
             get
@@ -178,7 +178,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// Representation repr = new Representation();
         /// ResourceInterfaces ifaces = new ResourceInterfaces (new List<string>(){ ResourceInterfaces.DefaultInterface });
         /// repr.Interface = ifaces;
@@ -187,7 +187,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("Interface is {0}", iface);
         /// }
-        /// ]]></code>
+        /// ]]></code></example>
         public ResourceInterfaces Interface
         {
             get
@@ -223,7 +223,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code>
+        /// <example><code>
         /// Representation repr = new Representation();
         /// Attributes attributes = new Attributes() {
         ///     { "state", "ON" },
@@ -234,7 +234,7 @@ namespace Tizen.Network.IoTConnectivity
         /// string strval = newAttributes["state"] as string;
         /// int intval = (int)newAttributes["dim"];
         /// Console.WriteLine("attributes are {0} and {1}", strval, intval);
-        /// </code>
+        /// </code></example>
         public Attributes Attributes
         {
             get
@@ -268,7 +268,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>List of Child resource representation.</value>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// Representation repr = new Representation();
         /// Representation child1 = new Representation();
         /// ResourceTypes types1 = new ResourceTypes(new List<string>() { "org.tizen.light" });
@@ -284,7 +284,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("Exception caught : " + ex.Message);
         /// }
-        /// ]]></code>
+        /// ]]></code></example>
         public ICollection<Representation> Children
         {
             get

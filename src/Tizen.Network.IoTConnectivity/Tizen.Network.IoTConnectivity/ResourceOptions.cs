@@ -48,9 +48,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="Remove(ushort)"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
-        /// <code>
+        /// <example><code>
         /// ResourceOptions options = new ResourceOptions();
-        /// </code>
+        /// </code></example>
         public ResourceOptions()
         {
             int ret = Interop.IoTConnectivity.Common.Options.Create(out _resourceOptionsHandle);
@@ -98,13 +98,13 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>All the Option keys.</value>
-        /// <code>
+        /// <example><code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "sample-data");
         /// options.Add(2055, "sample value");
         /// var keys = options.Keys;
         /// Console.WriteLine("Resource options contains keys {0} and {1}", keys.ElementAt(0), keys.ElementAt(1));
-        /// </code>
+        /// </code></example>
         public ICollection<ushort> Keys
         {
             get
@@ -118,13 +118,13 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>All the Option values.</value>
-        /// <code>
+        /// <example><code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "sample-data");
         /// options.Add(2055, "sample value");
         /// var values = options.Values;
         /// Console.WriteLine("Resource options contains values {0} and {1}", values.ElementAt(0), values.ElementAt(1));
-        /// </code>
+        /// </code></example>
         public ICollection<string> Values
         {
             get
@@ -138,13 +138,13 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The number of options.</value>
-        /// <code>
+        /// <example><code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "sample-data");
         /// options.Add(2055, "sample value");
         /// var count = options.Count;
         /// Console.WriteLine("There are {0} keys in the options object", count);
-        /// </code>
+        /// </code></example>
         public int Count
         {
             get
@@ -158,11 +158,11 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Whether the collection is readonly.</value>
-        /// <code>
+        /// <example><code>
         /// ResourceOptions options = new ResourceOptions();
         /// if (options.IsReadOnly)
         ///     Console.WriteLine("Read only options");
-        /// </code>
+        /// </code></example>
         public bool IsReadOnly
         {
             get
@@ -178,11 +178,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <value>The option data.</value>
         /// <param name="key">The option ID to get or set.</param>
         /// <returns>The option with the specified ID.</returns>
-        /// <code>
+        /// <example><code>
         /// ResourceOptions options = new ResourceOptions();
         /// options[2055] = "sample-data";
         /// Console.WriteLine("Option has : {0}", options[2055]);
-        /// </code>
+        /// </code></example>
         public string this[ushort key]
         {
             get
@@ -201,12 +201,12 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="key">The key to look for.</param>
         /// <returns>true if exists. Otherwise, false.</returns>
-        /// <code>
+        /// <example><code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "sample-data");
         /// if (options.ContainsKey(2050))
         ///     Console.WriteLine("options conatins key : 2050");
-        /// </code>
+        /// </code></example>
         public bool ContainsKey(ushort key)
         {
             return _options.ContainsKey(key);
@@ -227,10 +227,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="Remove(ushort)"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
-        /// <code>
+        /// <example><code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "sample-data");
-        /// </code>
+        /// </code></example>
         public void Add(ushort key, string value)
         {
             int ret = (int)IoTConnectivityError.InvalidParameter;
@@ -261,11 +261,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="Add(ushort, string)"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
-        /// <code>
+        /// <example><code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "12345");
         /// var result = options.Remove(2050);
-        /// </code>
+        /// </code></example>
         public bool Remove(ushort key)
         {
             int ret = Interop.IoTConnectivity.Common.Options.Remove(_resourceOptionsHandle, key);
@@ -287,14 +287,14 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="key">The option ID.</param>
         /// <param name="value">Value corresponding to option ID.</param>
         /// <returns>True if the key exists, false otherwise.</returns>
-        /// <code>
+        /// <example><code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "12345");
         /// string value;
         /// var isPresent = options.TryGetValue(2050, out value);
         /// if (isPresent)
         ///     Console.WriteLine("value : {0}", value);
-        /// </code>
+        /// </code></example>
         public bool TryGetValue(ushort key, out string value)
         {
             return _options.TryGetValue(key, out value);
@@ -307,10 +307,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="item">The key value pair.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Remove(KeyValuePair{ushort, string})"/>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "12345"));
-        /// ]]></code>
+        /// ]]></code></example>
         public void Add(KeyValuePair<ushort, string> item)
         {
             Add(item.Key, item.Value);
@@ -322,12 +322,12 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
-        /// <code>
+        /// <example><code>
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "12345");
         /// options.Add(2055, "sample");
         /// options.Clear();
-        /// </code>
+        /// </code></example>
         public void Clear()
         {
             foreach (ushort key in Keys)
@@ -348,13 +348,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="item">The key value pair.</param>
         /// <returns>True if exists. Otherwise, false.</returns>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "12345"));
         /// var isPresent = options.Contains(new KeyValuePair<ushort, string>(2050, "12345"));
         /// if (isPresent)
         ///     Console.WriteLine("Key value pair is present");
-        /// ]]></code>
+        /// ]]></code></example>
         public bool Contains(KeyValuePair<ushort, string> item)
         {
             return _options.Contains(item);
@@ -366,13 +366,13 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="array">The destination array.</param>
         /// <param name="arrayIndex">Index parameter.</param>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "12345"));
         /// KeyValuePair<ushort, string>[] dest = new KeyValuePair<ushort, string>[options.Count];
         /// options.CopyTo(dest, 0);
         /// Console.WriteLine("Dest conatins ({0}, {1})", dest[0].Key, dest[0].Value);
-        /// ]]></code>
+        /// ]]></code></example>
         public void CopyTo(KeyValuePair<ushort, string>[] array, int arrayIndex)
         {
             _options.CopyTo(array, arrayIndex);
@@ -387,11 +387,11 @@ namespace Tizen.Network.IoTConnectivity
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <seealso cref="Add(KeyValuePair{ushort, string})"/>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "12345"));
         /// var result = options.Remove(new KeyValuePair<ushort, string>(2050, "12345"));
-        /// ]]></code>
+        /// ]]></code></example>
         public bool Remove(KeyValuePair<ushort, string> item)
         {
             return Remove(item.Key);
@@ -402,7 +402,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Enumerator to option pairs.</returns>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "sample1"));
         /// options.Add(new KeyValuePair<ushort, string>(2055, "sample2"));
@@ -410,7 +410,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
-        /// ]]></code>
+        /// ]]></code></example>
         public IEnumerator<KeyValuePair<ushort, string>> GetEnumerator()
         {
             return _options.GetEnumerator();
@@ -432,7 +432,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Enumerator to option pairs.</returns>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "sample1"));
         /// options.Add(new KeyValuePair<ushort, string>(2055, "sample2"));
@@ -440,7 +440,7 @@ namespace Tizen.Network.IoTConnectivity
         /// {
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
-        /// ]]></code>
+        /// ]]></code></example>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _options.GetEnumerator();

@@ -43,9 +43,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <seealso cref="Remove(string)"/>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
-        /// <code>
+        /// <example><code>
         /// ResourceTypes types = new ResourceTypes();
-        /// </code>
+        /// </code></example>
         public ResourceTypes()
         {
             int ret = Interop.IoTConnectivity.Common.ResourceTypes.Create(out _resourceTypeHandle);
@@ -63,9 +63,9 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="types">List of resource types.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceTypes types = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
-        /// ]]></code>
+        /// ]]></code></example>
         public ResourceTypes(IEnumerable<string> types)
         {
             int ret = Interop.IoTConnectivity.Common.ResourceTypes.Create(out _resourceTypeHandle);
@@ -117,10 +117,10 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Count of types in the list.</value>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceTypes types = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// Console.WriteLine("There are {0} items", types.Count);
-        /// ]]></code>
+        /// ]]></code></example>
         public int Count
         {
             get
@@ -145,10 +145,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code>
+        /// <example><code>
         /// ResourceTypes resourceTypes = new ResourceTypes();
         /// resourceTypes.Add("org.tizen.light");
-        /// </code>
+        /// </code></example>
         public void Add(string item)
         {
             if (IsValid(item))
@@ -178,10 +178,10 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// resourceTypes.Remove("oic.if.room");
-        /// ]]></code>
+        /// ]]></code></example>
         public void Remove(string item)
         {
             int ret = Interop.IoTConnectivity.Common.ResourceTypes.Remove(_resourceTypeHandle, item);
@@ -199,13 +199,13 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The enumerator.</returns>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// foreach(string item in resourceTypes)
         /// {
         ///     Console.WriteLine("Type : {0}", item);
         /// }
-        /// ]]></code>
+        /// ]]></code></example>
         public IEnumerator<string> GetEnumerator()
         {
             return _resourceTypes.GetEnumerator();
@@ -216,13 +216,13 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The enumerator.</returns>
-        /// <code><![CDATA[
+        /// <example><code><![CDATA[
         /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// foreach(string item in resourceTypes)
         /// {
         ///     Console.WriteLine("Type : {0}", item);
         /// }
-        /// ]]></code>
+        /// ]]></code></example>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _resourceTypes.GetEnumerator();
