@@ -13,11 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-uid: Tizen.Pims.CalendarViews
+uid: Tizen.Pims.Calendar.CalendarViews
 summary: This namespace provides information about views with properties.
-remarks: Views are provided to access and handle entities. A view is a structure, which has property elements.
-         A view is almost the same as a database "VIEW", which limits access and guarantees performance.
-         A "record" represents a single row of the views.
-         A record can have basic properties of five types: integer, string, long, double, CalendarTime.
+remarks: |
+  Views are provided to access and handle entities. A view is a structure, which has property elements.
+  A view is almost the same as a database "VIEW", which limits access and guarantees performance.
+  A "record" represents a single row of the views.
+  A record can have basic properties of five types: integer, string, long, double, CalendarTime.
 sinceTizen: 4
 ---

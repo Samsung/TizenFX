@@ -228,7 +228,7 @@ namespace Tizen.Network.Nfc
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="text">The encoded text.</param>
-        /// <param name="languageCode">The language code string value followed by the IANA [RFC 3066] (ex: en-US, ko-KR).</param>
+        /// <param name="languageCode">The language code string value followed by the IANA [RFC 3066] \(ex: en-US, ko-KR).</param>
         /// <param name="encode">The encoding type.</param>
         /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when the method fails due to an invalid parameter.</exception>
@@ -267,7 +267,7 @@ namespace Tizen.Network.Nfc
         /// Creates a record with the mime type payload.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="mimeType">The mime type [RFC 2046] (ex. text/plain, image/jpeg ). This value is stored in the type field.</param>
+        /// <param name="mimeType">The mime type [RFC 2046] \(ex. text/plain, image/jpeg ). This value is stored in the type field.</param>
         /// <param name="data">The data in the form of the bytes array.</param>
         /// <param name="dataSize">The size of the data.</param>
         /// <exception cref="NotSupportedException">Thrown when the NFC is not supported.</exception>

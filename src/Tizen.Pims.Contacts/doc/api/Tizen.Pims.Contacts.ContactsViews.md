@@ -15,9 +15,10 @@
 
 uid: Tizen.Pims.Contacts.ContactsViews
 summary: The Tizen.Pims.Contacts.ContactsViews namespace provides information about views with properties.
-remarks: Views are provided to access and handle entities. A view is a structure, which has property elements.
-         A view is almost the same as a database "VIEW", which limits access and guarantees performance.
-         A "record" represents a single row of the views.
-         A record can have basic properties of five types: integer, string, boolean, long, double.
+remarks: |
+  Views are provided to access and handle entities. A view is a structure, which has property elements.
+  A view is almost the same as a database "VIEW", which limits access and guarantees performance.
+  A "record" represents a single row of the views.
+  A record can have basic properties of five types: integer, string, boolean, long, double.
 sinceTizen: 4
 ---
