@@ -51,7 +51,19 @@ namespace ElmSharp.Wearable
         /// </summary>
         public IntPtr Handle => _handle;
 
-        internal static CircleSurface CreateCircleSurface(EvasObject obj)
+        /// <summary>
+        /// Delete the given CirclrSurface
+        /// </summary>
+        public void Delete()
+        {
+            if (Handle != IntPtr.Zero)
+            {
+                Interop.Eext.eext_circle_surface_del(Handle);
+                _handle = IntPtr.Zero;
+            }
+        }
+
+	internal static CircleSurface CreateCircleSurface(EvasObject obj)
         {
             if (obj is Conformant) return new CircleSurface(obj as Conformant);
             else if (obj is Naviframe) return new CircleSurface(obj as Naviframe);
