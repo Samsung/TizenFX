@@ -9,7 +9,7 @@
 
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
-Version:    4.0.0.b345
+Version:    5.0.0.b346
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -144,7 +144,7 @@ rm -fr %{_tizenfx_bin_path}
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
 ./build.sh --full
 ./build.sh --dummy
-./build.sh --pack 4.0.0-preview1-00345
+./build.sh --pack 5.0.0-preview1-00346
 
 %install
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_PATH}
