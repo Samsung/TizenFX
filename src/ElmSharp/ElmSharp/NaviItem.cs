@@ -96,7 +96,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets an item style.
         /// </summary>
-        public string Style
+        public override string Style
         {
             get
             {

@@ -85,7 +85,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the style of the Item.
         /// </summary>
-        public string Style
+        public virtual string Style
         {
             get
             {
