@@ -1,7 +1,3 @@
-# !! IMPORTANT !!
-# This packaging spec file is for developer testing only.
-# For Tizen release, the spec file in the tizen branch should be used.
-
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
 %define DOTNET_ASSEMBLY_RES_PATH %{DOTNET_ASSEMBLY_PATH}/res
@@ -13,7 +9,7 @@
 
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
-Version:    99.99.99
+Version:    4.0.0.b345
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -148,7 +144,7 @@ rm -fr %{_tizenfx_bin_path}
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
 ./build.sh --full
 ./build.sh --dummy
-./build.sh --pack
+./build.sh --pack 4.0.0-preview1-00345
 
 %install
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_PATH}
