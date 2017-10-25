@@ -37,13 +37,13 @@ namespace ElmSharp.Test.TC
 
             var surface = new CircleSurface(conformant);
 
-            DateTimeSelector datetime = new CircleDateTimeSelector(conformant, surface)
+            var datetime = new CircleDateTimeSelector(conformant, surface)
             {
                 DateTime = DateTime.Now,
                 Style = "timepicker/circle",
                 IsEnabled = false
             };
-
+            ((IRotaryActionWidget)datetime).Activate();
             layout.SetContent(datetime);
 
             Button btn = new Button(layout)

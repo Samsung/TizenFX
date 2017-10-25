@@ -50,6 +50,7 @@ namespace ElmSharp.Test.TC
                 WeightX = 1,
                 WeightY = 1
             };
+            ((IRotaryActionWidget)spn1).Activate();
             spn1.AddSpecialValue(50, "50 match !!!!");
             layout.SetContent(spn1);
 

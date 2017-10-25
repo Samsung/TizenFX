@@ -29,9 +29,11 @@ namespace ElmSharp.Test.TC
             Conformant conformant = new Conformant(window);
             conformant.Show();
 
-            Naviframe naviframe = new Naviframe(conformant);
+            Naviframe naviframe = new Naviframe(window);
+            naviframe.Show();
+            conformant.SetContent(naviframe);
 
-            var surface = new CircleSurface(naviframe);
+            var surface = new CircleSurface(conformant);
             CircleScroller circleScroller = new CircleScroller(naviframe, surface)
             {
                 AlignmentX = -1,
@@ -45,10 +47,10 @@ namespace ElmSharp.Test.TC
                 HorizontalScrollBarLineWidth = 15,
                 HorizontalScrollBackgroundLineWidth = 15,
             };
+            ((IRotaryActionWidget)circleScroller).Activate();
             circleScroller.Show();
-            naviframe.Push(circleScroller);
-            naviframe.Show();
-            conformant.SetContent(naviframe);
+            naviframe.Push(circleScroller, null , "empty");
+
 
             Box box = new Box(window)
             {

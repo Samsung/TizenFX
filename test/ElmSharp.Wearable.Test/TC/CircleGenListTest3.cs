@@ -32,7 +32,7 @@ namespace ElmSharp.Test.TC
 
             conformant.SetContent(naviframe);
 
-            var surface = new CircleSurface(naviframe);
+            var surface = new CircleSurface(conformant);
 
             var list = new CircleGenList(naviframe, surface)
             {
@@ -40,7 +40,7 @@ namespace ElmSharp.Test.TC
                 VerticalScrollBarVisiblePolicy = ScrollBarVisiblePolicy.Auto,
                 IsEnabled = false,
             };
-
+            ((IRotaryActionWidget)list).Activate();
             var item = naviframe.Push(list);
             item.Style = "empty";
 

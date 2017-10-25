@@ -43,7 +43,7 @@ namespace ElmSharp.Test.TC
                 VerticalScrollBarLineWidth = 30,
             };
             list.Show();
-
+            ((IRotaryActionWidget)list).Activate();
             list.Move(0, 0);
             list.Resize(360, 360);
             list.Lower();

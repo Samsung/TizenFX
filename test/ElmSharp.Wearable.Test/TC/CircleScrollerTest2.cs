@@ -41,6 +41,7 @@ namespace ElmSharp.Test.TC
                 VerticalScrollBarVisiblePolicy = ScrollBarVisiblePolicy.Invisible,
                 HorizontalScrollBarVisiblePolicy = ScrollBarVisiblePolicy.Auto,
             };
+            ((IRotaryActionWidget)circleScroller).Activate();
             circleScroller.Show();
             circleScroller.Move(0, 0);
             circleScroller.Resize(360, 360);

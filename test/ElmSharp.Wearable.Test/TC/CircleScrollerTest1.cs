@@ -39,6 +39,7 @@ namespace ElmSharp.Test.TC
                 VerticalScrollBarVisiblePolicy = ScrollBarVisiblePolicy.Auto,
                 HorizontalScrollBarVisiblePolicy = ScrollBarVisiblePolicy.Invisible,
             };
+            ((IRotaryActionWidget)circleScroller).Activate();
             circleScroller.Show();
             conformant.SetContent(circleScroller);
             Box box = new Box(window)

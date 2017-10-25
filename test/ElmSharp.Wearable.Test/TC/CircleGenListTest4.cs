@@ -33,7 +33,7 @@ namespace ElmSharp.Test.TC
                 VerticalScrollBarVisiblePolicy = ScrollBarVisiblePolicy.Invisible,
             };
             list.Show();
-
+            ((IRotaryActionWidget)list).Activate();
             list.Move(0, 0);
             list.Resize(360, 360);
 
